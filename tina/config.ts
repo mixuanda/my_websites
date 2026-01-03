@@ -90,7 +90,6 @@ export default defineConfig({
             type: "boolean",
             name: "published",
             label: "已发布",
-            default: true,
           },
           {
             type: "rich-text",
@@ -179,7 +178,6 @@ export default defineConfig({
             type: "boolean",
             name: "toc",
             label: "显示目录",
-            default: true,
           },
           {
             type: "rich-text",

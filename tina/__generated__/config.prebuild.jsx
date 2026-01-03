@@ -73,8 +73,7 @@ var config_default = defineConfig({
           {
             type: "boolean",
             name: "published",
-            label: "\u5DF2\u53D1\u5E03",
-            default: true
+            label: "\u5DF2\u53D1\u5E03"
           },
           {
             type: "rich-text",
@@ -161,8 +160,7 @@ var config_default = defineConfig({
           {
             type: "boolean",
             name: "toc",
-            label: "\u663E\u793A\u76EE\u5F55",
-            default: true
+            label: "\u663E\u793A\u76EE\u5F55"
           },
           {
             type: "rich-text",
