@@ -2,7 +2,7 @@ import { auth, signOut } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { Button } from "@/components/ui/button";
-import { db, initSampleData } from "@/lib/db";
+import { db, initSampleData, usingFirestore } from "@/lib/db";
 import Link from "next/link";
 import { Calendar, Lock, Plus, User, Settings } from "lucide-react";
 import { format } from "date-fns";
@@ -35,9 +35,9 @@ export default async function DiaryPage() {
 
   const userId = session.user.id || session.user.email || "demo-user";
   
-  // 初始化示例数据（仅首次访问时）
+  // 初始化示例数据（仅内存模式用于演示）
   let diaries = await db.getAll(userId);
-  if (diaries.length === 0) {
+  if (!usingFirestore && diaries.length === 0) {
     initSampleData(userId);
     diaries = await db.getAll(userId);
   }

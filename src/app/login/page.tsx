@@ -8,6 +8,14 @@ import { useState } from "react";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
+  const availableProviders = (process.env.NEXT_PUBLIC_AUTH_PROVIDERS || "passkey,github,google")
+    .split(",")
+    .map((p) => p.trim())
+    .filter(Boolean);
+
+  const showPasskey = availableProviders.includes("passkey");
+  const showGithub = availableProviders.includes("github");
+  const showGoogle = availableProviders.includes("google");
 
   const handleSignIn = async (provider: string) => {
     setIsLoading(true);
@@ -26,56 +34,63 @@ export default function LoginPage() {
         </div>
 
         <div className="space-y-3">
-          {/* Passkey 登录 */}
-          <Button
-            onClick={() => handleSignIn("passkey")}
-            disabled={isLoading}
-            className="w-full"
-            variant="default"
-          >
-            <Fingerprint className="w-4 h-4 mr-2" />
-            使用 Passkey 登录 (推荐)
-          </Button>
+          {showPasskey && (
+            <Button
+              onClick={() => handleSignIn("passkey")}
+              disabled={isLoading}
+              className="w-full"
+              variant="default"
+            >
+              <Fingerprint className="w-4 h-4 mr-2" />
+              使用 Passkey 登录 (推荐)
+            </Button>
+          )}
 
-          <div className="relative my-4">
-            <div className="absolute inset-0 flex items-center">
-              <span className="w-full border-t border-border" />
+          {(showGithub || showGoogle) && (
+            <div className="relative my-4">
+              <div className="absolute inset-0 flex items-center">
+                <span className="w-full border-t border-border" />
+              </div>
+              <div className="relative flex justify-center text-xs uppercase">
+                <span className="bg-background px-2 text-muted-foreground">
+                  或使用其他方式
+                </span>
+              </div>
             </div>
-            <div className="relative flex justify-center text-xs uppercase">
-              <span className="bg-background px-2 text-muted-foreground">
-                或使用其他方式
-              </span>
-            </div>
+          )}
+
+          {showGithub && (
+            <Button
+              onClick={() => handleSignIn("github")}
+              disabled={isLoading}
+              className="w-full"
+              variant="outline"
+            >
+              <Github className="w-4 h-4 mr-2" />
+              GitHub
+            </Button>
+          )}
+
+          {showGoogle && (
+            <Button
+              onClick={() => handleSignIn("google")}
+              disabled={isLoading}
+              className="w-full"
+              variant="outline"
+            >
+              <Mail className="w-4 h-4 mr-2" />
+              Google
+            </Button>
+          )}
+        </div>
+
+        {showPasskey && (
+          <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
+            <p className="text-xs text-blue-900 dark:text-blue-200">
+              <strong>💡 提示:</strong> Passkey 是最安全的登录方式，使用你的设备的生物识别或 PIN 码验证。无需记住密码！
+            </p>
           </div>
-
-          {/* GitHub 登录 */}
-          <Button
-            onClick={() => handleSignIn("github")}
-            disabled={isLoading}
-            className="w-full"
-            variant="outline"
-          >
-            <Github className="w-4 h-4 mr-2" />
-            GitHub
-          </Button>
-
-          {/* Google 登录 */}
-          <Button
-            onClick={() => handleSignIn("google")}
-            disabled={isLoading}
-            className="w-full"
-            variant="outline"
-          >
-            <Mail className="w-4 h-4 mr-2" />
-            Google
-          </Button>
-        </div>
-
-        <div className="mt-6 p-4 bg-blue-50 dark:bg-blue-950/20 rounded-lg">
-          <p className="text-xs text-blue-900 dark:text-blue-200">
-            <strong>💡 提示:</strong> Passkey 是最安全的登录方式，使用你的设备的生物识别或 PIN 码验证。无需记住密码！
-          </p>
-        </div>
+        )}
 
         <p className="text-xs text-center text-muted-foreground mt-6">
           仅限授权用户访问私密内容

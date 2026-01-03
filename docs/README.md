@@ -50,9 +50,46 @@
    - 设置 GitHub Template 仓库
    - 自定义演示内容
    - 完整检查清单
+### 🔐 Firebase 和 Tina CMS 配置 ⭐ **新！**
+
+**👉 新用户从这里开始：**
+
+0. **[FIREBASE_TINA_ROADMAP.md](./FIREBASE_TINA_ROADMAP.md)** - 配置路线图与概览
+   - 完整的流程路线图
+   - 时间和难度估算
+   - 三个文档的对比
+   - 推荐使用流程
+   - 常见错误避坑
+
+8. **[FIREBASE_TINA_CHECKLIST.md](./FIREBASE_TINA_CHECKLIST.md)** - 完整配置检查清单 ⭐ **从这里开始！**
+   - 7 个阶段的逐步检查清单
+   - Firebase 配置（15 分钟）
+   - GitHub OAuth 配置（5 分钟）
+   - Tina CMS 配置（10 分钟）
+   - 本地开发设置（5 分钟）
+   - Vercel 部署设置（10 分钟）
+   - 部署验证（10 分钟）
+   - 安全检查（5 分钟）
+
+9. **[FIREBASE_TINA_SETUP.md](./FIREBASE_TINA_SETUP.md)** - Firebase 和 Tina CMS 完整配置指南
+   - Firebase 数据库详细设置（9 步）
+   - Tina CMS 配置步骤（6 步）
+   - 本地开发配置
+   - Vercel 部署配置
+   - 常见问题解决
+   - 安全最佳实践
+
+10. **[FIREBASE_TINA_QUICK_REFERENCE.md](./FIREBASE_TINA_QUICK_REFERENCE.md)** - Firebase 和 Tina CMS 快速参考
+   - 环境变量速查表（所有密钥的来源）
+   - 配置步骤速查清单
+   - 完整的 .env.local 模板
+   - Vercel 环境变量快速添加
+   - 快速问题排查
+   - 重要链接汇总
+
 ### 🔐 私密区功能
 
-8. **[PRIVATE_DIARY_GUIDE.md](./PRIVATE_DIARY_GUIDE.md)** - 私密日记使用指南
+10. **[PRIVATE_DIARY_GUIDE.md](./PRIVATE_DIARY_GUIDE.md)** - 私密日记使用指南
    - 登录方式 (Passkey / OAuth)
    - 日记管理
    - 数据导出和备份
@@ -61,7 +98,7 @@
 
 ### 💾 数据库配置
 
-9. **[DATABASE_CONFIG.md](./DATABASE_CONFIG.md)** - 详细数据库配置
+11. **[DATABASE_CONFIG.md](./DATABASE_CONFIG.md)** - 详细数据库配置
    - Firebase Firestore 配置
    - Supabase 配置
    - MongoDB 配置
@@ -70,7 +107,7 @@
 
 ### 🎛️ 后台管理
 
-10. **[BACKEND_CONTROL.md](./BACKEND_CONTROL.md)** - 内容管理和后台控制
+12. **[BACKEND_CONTROL.md](./BACKEND_CONTROL.md)** - 内容管理和后台控制
    - TinaCMS 可视化编辑器
    - 博客、笔记、项目管理
    - 权限控制
@@ -83,20 +120,25 @@
 
 ### 我想要...
 
-#### 立即开始使用
-→ [SETUP.md](./SETUP.md) 的 **快速开始** 部分
+#### 配置 Firebase 数据库和私密日记
+→ **从这里开始！** [FIREBASE_TINA_ROADMAP.md](./FIREBASE_TINA_ROADMAP.md)（2 分钟路线图概览）  
+→ 然后按照 [FIREBASE_TINA_CHECKLIST.md](./FIREBASE_TINA_CHECKLIST.md)（50 分钟逐步完成）  
+→ 遇到问题? [FIREBASE_TINA_SETUP.md](./FIREBASE_TINA_SETUP.md) 了解详细步骤  
+→ 需要快速查阅? [FIREBASE_TINA_QUICK_REFERENCE.md](./FIREBASE_TINA_QUICK_REFERENCE.md)
 
-#### 配置私密日记
-→ [SETUP.md](./SETUP.md) 的 **认证与登录**  
-→ [PRIVATE_DIARY_GUIDE.md](./PRIVATE_DIARY_GUIDE.md) 的 **登录方式**
+#### 设置 Tina CMS 内容编辑器
+→ [FIREBASE_TINA_CHECKLIST.md](./FIREBASE_TINA_CHECKLIST.md) 的 **第 3 阶段**（10 分钟）  
+→ [FIREBASE_TINA_SETUP.md](./FIREBASE_TINA_SETUP.md) 的 **Tina CMS 设置** 了解详细步骤  
+→ [FIREBASE_TINA_QUICK_REFERENCE.md](./FIREBASE_TINA_QUICK_REFERENCE.md) 快速参考
 
-#### 设置数据库
-→ [DATABASE_CONFIG.md](./DATABASE_CONFIG.md)  
-选择合适的数据库（推荐 Firebase）
+#### 在 Vercel 中配置环境变量
+→ [FIREBASE_TINA_CHECKLIST.md](./FIREBASE_TINA_CHECKLIST.md) 的 **第 5 阶段**（10 分钟）  
+→ [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md) 的 **环境变量配置** 了解详细说明  
+→ [FIREBASE_TINA_QUICK_REFERENCE.md](./FIREBASE_TINA_QUICK_REFERENCE.md) 的 **Vercel 快速添加指南**
 
-#### 编辑和发布内容
-→ [BACKEND_CONTROL.md](./BACKEND_CONTROL.md)  
-了解 TinaCMS 的使用方法
+#### 排查 Firebase 或 Tina 问题
+→ [FIREBASE_TINA_SETUP.md](./FIREBASE_TINA_SETUP.md) 的 **常见问题解决**  
+→ [FIREBASE_TINA_QUICK_REFERENCE.md](./FIREBASE_TINA_QUICK_REFERENCE.md) 的 **快速问题排查**
 
 #### 写日记和管理日记
 → [PRIVATE_DIARY_GUIDE.md](./PRIVATE_DIARY_GUIDE.md)  

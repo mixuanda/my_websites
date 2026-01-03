@@ -2,28 +2,52 @@ import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
 import Passkey from "next-auth/providers/passkey";
+import { FirestoreAdapter } from "@auth/firebase-adapter";
+import { firestore, firebaseEnabled } from "./firebase-admin";
 
-export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [
-    // OAuth 提供商
+const providers = [];
+
+if (process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET) {
+  providers.push(
     GitHub({
       clientId: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    }),
+    })
+  );
+}
+
+if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+  providers.push(
     Google({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    }),
-    // Passkey 无密码认证 (WebAuthn)
-    Passkey({
-      // 默认配置，支持 FIDO2 和 WebAuthn 标准
-      // 需要配置数据库以存储 passkey 凭证
-    }),
-  ],
+    })
+  );
+}
+
+const passkeyEnabled = firebaseEnabled && process.env.AUTH_DISABLE_PASSKEY !== "true";
+if (passkeyEnabled) {
+  providers.push(Passkey());
+}
+
+if (providers.length === 0) {
+  throw new Error("No authentication providers configured. Please set env variables.");
+}
+
+const adapter = firebaseEnabled && firestore ? FirestoreAdapter(firestore) : undefined;
+
+export const { handlers, signIn, signOut, auth } = NextAuth({
+  adapter,
+  providers,
+  secret: process.env.AUTH_SECRET || process.env.NEXTAUTH_SECRET,
+  trustHost: true,
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
-      const isPrivate = nextUrl.pathname.startsWith("/diary") || 
+      const isPrivate = nextUrl.pathname.startsWith("/diary") ||
                         nextUrl.pathname.startsWith("/private");
       
       if (isPrivate) {
@@ -32,6 +56,18 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       }
       
       return true;
+    },
+    async jwt({ token, user }) {
+      if (user) {
+        token.sub = user.id ?? user.email ?? token.sub;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (session.user && token.sub) {
+        (session.user as { id?: string }).id = token.sub;
+      }
+      return session;
     },
   },
   pages: {

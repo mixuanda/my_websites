@@ -9,6 +9,9 @@
  * - PostgreSQL: 配合 Prisma 使用
  */
 
+import { Timestamp } from "firebase-admin/firestore";
+import { firebaseEnabled, firestore } from "./firebase-admin";
+
 // ============================================
 // 类型定义
 // ============================================
@@ -134,136 +137,123 @@ export const memoryDb: DiaryDatabase = {
 };
 
 // ============================================
-// Firestore 实现示例（需要配置 Firebase）
+// Firestore 实现（需要配置 Firebase 服务账号）
 // ============================================
 
-/*
-import { initializeApp, cert, getApps } from "firebase-admin/app";
-import { getFirestore } from "firebase-admin/firestore";
+const normalizeDiary = (docId: string, data: any): Diary => {
+  const created = data.createdAt instanceof Timestamp ? data.createdAt.toDate() : new Date(data.createdAt);
+  const updated = data.updatedAt instanceof Timestamp ? data.updatedAt.toDate() : new Date(data.updatedAt);
 
-// 初始化 Firebase Admin
-if (!getApps().length) {
-  initializeApp({
-    credential: cert({
-      projectId: process.env.FIREBASE_PROJECT_ID,
-      clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-      privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
-    }),
-  });
-}
-
-const firestore = getFirestore();
-
-export const firestoreDb: DiaryDatabase = {
-  async getAll(userId: string): Promise<Diary[]> {
-    const snapshot = await firestore
-      .collection("users")
-      .doc(userId)
-      .collection("diaries")
-      .orderBy("createdAt", "desc")
-      .get();
-    
-    return snapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-      createdAt: doc.data().createdAt.toDate(),
-      updatedAt: doc.data().updatedAt.toDate(),
-    })) as Diary[];
-  },
-
-  async getById(userId: string, id: string): Promise<Diary | null> {
-    const doc = await firestore
-      .collection("users")
-      .doc(userId)
-      .collection("diaries")
-      .doc(id)
-      .get();
-    
-    if (!doc.exists) return null;
-    
-    return {
-      id: doc.id,
-      ...doc.data(),
-      createdAt: doc.data()?.createdAt.toDate(),
-      updatedAt: doc.data()?.updatedAt.toDate(),
-    } as Diary;
-  },
-
-  async create(userId: string, input: DiaryInput): Promise<Diary> {
-    const now = new Date();
-    const docRef = await firestore
-      .collection("users")
-      .doc(userId)
-      .collection("diaries")
-      .add({
-        ...input,
-        userId,
-        excerpt: input.content.slice(0, 100) + "...",
-        createdAt: now,
-        updatedAt: now,
-        isPublic: input.isPublic || false,
-      });
-    
-    return {
-      id: docRef.id,
-      userId,
-      ...input,
-      excerpt: input.content.slice(0, 100) + "...",
-      createdAt: now,
-      updatedAt: now,
-      isPublic: input.isPublic || false,
-    } as Diary;
-  },
-
-  async update(userId: string, id: string, input: Partial<DiaryInput>): Promise<Diary> {
-    const docRef = firestore
-      .collection("users")
-      .doc(userId)
-      .collection("diaries")
-      .doc(id);
-    
-    await docRef.update({
-      ...input,
-      updatedAt: new Date(),
-    });
-    
-    const doc = await docRef.get();
-    return {
-      id: doc.id,
-      ...doc.data(),
-      createdAt: doc.data()?.createdAt.toDate(),
-      updatedAt: doc.data()?.updatedAt.toDate(),
-    } as Diary;
-  },
-
-  async delete(userId: string, id: string): Promise<void> {
-    await firestore
-      .collection("users")
-      .doc(userId)
-      .collection("diaries")
-      .doc(id)
-      .delete();
-  },
-
-  async search(userId: string, query: string): Promise<Diary[]> {
-    // Firestore 不支持全文搜索，需要使用 Algolia 或客户端过滤
-    const all = await this.getAll(userId);
-    const lowerQuery = query.toLowerCase();
-    return all.filter(
-      (d) =>
-        d.title.toLowerCase().includes(lowerQuery) ||
-        d.content.toLowerCase().includes(lowerQuery)
-    );
-  },
+  return {
+    id: docId,
+    userId: data.userId,
+    title: data.title,
+    content: data.content,
+    excerpt: data.excerpt,
+    tags: data.tags,
+    mood: data.mood,
+    isPublic: data.isPublic,
+    createdAt: created,
+    updatedAt: updated,
+  };
 };
-*/
+
+const firestoreDb: DiaryDatabase | null = firestore
+  ? {
+      async getAll(userId: string): Promise<Diary[]> {
+        const snapshot = await firestore
+          .collection("users")
+          .doc(userId)
+          .collection("diaries")
+          .orderBy("createdAt", "desc")
+          .get();
+
+        return snapshot.docs.map((doc) => normalizeDiary(doc.id, doc.data()));
+      },
+
+      async getById(userId: string, id: string): Promise<Diary | null> {
+        const doc = await firestore
+          .collection("users")
+          .doc(userId)
+          .collection("diaries")
+          .doc(id)
+          .get();
+
+        if (!doc.exists) return null;
+        return normalizeDiary(doc.id, doc.data());
+      },
+
+      async create(userId: string, input: DiaryInput): Promise<Diary> {
+        const now = new Date();
+        const docRef = firestore
+          .collection("users")
+          .doc(userId)
+          .collection("diaries")
+          .doc();
+
+        await docRef.set({
+          ...input,
+          userId,
+          excerpt: input.content.slice(0, 100) + "...",
+          createdAt: now,
+          updatedAt: now,
+          isPublic: input.isPublic ?? false,
+        });
+
+        return {
+          id: docRef.id,
+          userId,
+          ...input,
+          excerpt: input.content.slice(0, 100) + "...",
+          createdAt: now,
+          updatedAt: now,
+          isPublic: input.isPublic ?? false,
+        } as Diary;
+      },
+
+      async update(userId: string, id: string, input: Partial<DiaryInput>): Promise<Diary> {
+        const docRef = firestore
+          .collection("users")
+          .doc(userId)
+          .collection("diaries")
+          .doc(id);
+
+        await docRef.update({
+          ...input,
+          updatedAt: new Date(),
+        });
+
+        const doc = await docRef.get();
+        return normalizeDiary(doc.id, doc.data());
+      },
+
+      async delete(userId: string, id: string): Promise<void> {
+        await firestore
+          .collection("users")
+          .doc(userId)
+          .collection("diaries")
+          .doc(id)
+          .delete();
+      },
+
+      async search(userId: string, query: string): Promise<Diary[]> {
+        const all = await this.getAll(userId);
+        const lowerQuery = query.toLowerCase();
+        return all.filter(
+          (d) =>
+            d.title.toLowerCase().includes(lowerQuery) ||
+            d.content.toLowerCase().includes(lowerQuery)
+        );
+      },
+    }
+  : null;
 
 // ============================================
 // 导出当前使用的数据库实例
 // ============================================
 
-// 开发环境使用内存数据库，生产环境可切换为 Firestore/Supabase
-export const db = memoryDb;
+export const usingFirestore = Boolean(firestoreDb && firebaseEnabled);
+export const db: DiaryDatabase = usingFirestore && firestoreDb ? firestoreDb : memoryDb;
 
 // 初始化示例数据（仅开发用）
 export function initSampleData(userId: string) {

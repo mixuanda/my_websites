@@ -104,41 +104,237 @@ git push -u origin main
 | **Install Command** | `npm install` | 自动 |
 | **Development Command** | `npm run dev` | 自动 |
 
-#### 3. 环境变量（如需要）
+#### 3. 环境变量配置
 
 如果你使用了认证或数据库功能，需要添加环境变量：
 
 **在 Vercel 中添加环境变量：**
 
 1. 进入项目 → **Settings** → **Environment Variables**
-2. 添加以下变量（如适用）：
+2. 添加以下变量（根据实际需要）
+
+---
+
+### 📌 完整的环境变量配置列表
+
+#### 3.1 基础配置
 
 ```env
-# 基础配置
 NEXT_PUBLIC_SITE_URL=https://your-domain.com
 NEXT_PUBLIC_SITE_NAME=Your Name
-
-# OAuth（可选）
-AUTH_SECRET=your-secret-key-here
-AUTH_GITHUB_ID=your-github-id
-AUTH_GITHUB_SECRET=your-github-secret
-AUTH_GOOGLE_ID=your-google-id
-AUTH_GOOGLE_SECRET=your-google-secret
-
-# 数据库（可选）
-DATABASE_URL=your-database-url
-
-# Giscus 评论（可选）
-NEXT_PUBLIC_GISCUS_REPO_ID=your-repo-id
-NEXT_PUBLIC_GISCUS_CATEGORY_ID=your-category-id
 ```
 
-**获取这些密钥的方法：**
+#### 3.2 Next.Auth OAuth 配置
 
-- **GitHub OAuth**: [https://github.com/settings/developers](https://github.com/settings/developers)
-- **Google OAuth**: [Google Cloud Console](https://console.cloud.google.com/)
-- **Database URL**: 从你的数据库提供商（Firebase、Supabase 等）
-- **Giscus**: [https://giscus.app](https://giscus.app)
+**GitHub OAuth:**
+```env
+AUTH_SECRET=your-secret-key-here-at-least-32-chars
+AUTH_GITHUB_ID=your-github-id
+AUTH_GITHUB_SECRET=your-github-secret
+```
+
+**Google OAuth:**
+```env
+AUTH_GOOGLE_ID=your-google-oauth-id
+AUTH_GOOGLE_SECRET=your-google-oauth-secret
+```
+
+**获取 GitHub OAuth 凭证：**
+1. 访问 [GitHub Developer Settings](https://github.com/settings/developers)
+2. 点击 **New OAuth App**
+3. 填写信息：
+   - **Application name**: Your App Name
+   - **Homepage URL**: `https://your-domain.com` (本地开发用 `http://localhost:3000`)
+   - **Authorization callback URL**: `https://your-domain.com/api/auth/callback/github`
+4. 获取 **Client ID** 和 **Client Secret**
+
+**获取 Google OAuth 凭证：**
+1. 访问 [Google Cloud Console](https://console.cloud.google.com/)
+2. 创建新项目或选择现有项目
+3. 启用 **Google+ API**
+4. 创建 OAuth 2.0 凭证（OAuth consent screen）
+5. 授权重定向 URI: `https://your-domain.com/api/auth/callback/google`
+6. 获取 **Client ID** 和 **Client Secret**
+
+#### 3.3 Firebase 配置（私密日记）
+
+```env
+# Firebase 配置（从 Firebase Console 获取）
+NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
+NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
+NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
+NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
+NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your-measurement-id
+
+# Firebase 服务账户密钥（后端私密）
+FIREBASE_SERVICE_ACCOUNT_KEY=your-service-account-json-stringified
+FIREBASE_ADMIN_SDK_KEY=your-admin-sdk-key
+```
+
+**获取 Firebase 凭证的步骤：**
+
+1. **访问 Firebase Console**
+   - 前往 [console.firebase.google.com](https://console.firebase.google.com/)
+
+2. **创建或选择项目**
+   - 点击 **Create Project**
+   - 输入项目名称
+   - 按步骤完成创建
+
+3. **获取 Web API 密钥**
+   - 点击项目设置 ⚙️
+   - 切换到 **Service Accounts** 标签
+   - 选择 **Google Cloud Platform** 链接
+   - 在 **API 和服务** 中找到你的 Web App 配置
+
+4. **在项目设置中获取配置**
+   ```
+   项目设置 → 你的应用 (Web)
+   ```
+   找到以下信息：
+   ```javascript
+   const firebaseConfig = {
+     apiKey: "NEXT_PUBLIC_FIREBASE_API_KEY",
+     authDomain: "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
+     projectId: "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
+     storageBucket: "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET",
+     messagingSenderId: "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
+     appId: "NEXT_PUBLIC_FIREBASE_APP_ID",
+     measurementId: "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID"
+   };
+   ```
+
+5. **启用 Firestore 数据库**
+   ```
+   Build → Firestore Database → Create Database
+   选择 Start in production mode（可后续修改规则）
+   ```
+
+6. **设置安全规则**
+   ```javascript
+   // Firestore Rules
+   rules_version = '2';
+   service cloud.firestore {
+     match /databases/{database}/documents {
+       // 用户只能访问自己的日记
+       match /diaries/{document=**} {
+         allow read, write: if request.auth.uid == resource.data.userId;
+         allow create: if request.auth.uid == request.resource.data.userId;
+       }
+     }
+   }
+   ```
+
+7. **获取服务账户密钥**（用于后端操作）
+   ```
+   项目设置 → Service Accounts → 生成新密钥
+   ```
+   生成的 JSON 文件内容需要转换为字符串并作为 `FIREBASE_SERVICE_ACCOUNT_KEY` 环境变量
+
+#### 3.4 Tina CMS 配置
+
+```env
+# Tina Cloud 配置
+NEXT_PUBLIC_TINA_CLIENT_ID=your-tina-client-id
+TINA_TOKEN=your-tina-token
+
+# GitHub 集成（Tina 使用）
+GITHUB_TOKEN=your-github-personal-access-token
+```
+
+**获取 Tina CMS 凭证的步骤：**
+
+1. **创建 Tina 账户**
+   - 访问 [tina.io](https://tina.io)
+   - 使用 GitHub 账号登录
+
+2. **创建新的 Tina 项目**
+   - 在 Tina Dashboard 中点击 **New Project**
+   - 连接你的 GitHub 仓库
+   - 获取 **Client ID** 和 **Token**
+
+3. **生成 GitHub Personal Access Token**（用于 Tina）
+   ```
+   GitHub Settings → Developer settings → Personal access tokens
+   → Tokens (classic) → Generate new token
+   ```
+   选择权限：
+   - `repo` - 完全控制仓库
+   - `user:email` - 读取邮件地址
+   
+4. **在 Tina Cloud 中配置**
+   ```
+   项目设置 → Integrations → GitHub
+   粘贴你的 GitHub Token
+   ```
+
+#### 3.5 评论系统 (Giscus)
+
+```env
+NEXT_PUBLIC_GISCUS_REPO=your-username/your-repo
+NEXT_PUBLIC_GISCUS_REPO_ID=your-repo-id
+NEXT_PUBLIC_GISCUS_CATEGORY_ID=your-category-id
+NEXT_PUBLIC_GISCUS_CATEGORY=General
+```
+
+**设置 Giscus 的步骤：**
+
+1. 访问 [giscus.app](https://giscus.app)
+2. 输入你的 GitHub 仓库
+3. 在仓库设置中启用 Discussions
+4. 获取必要的配置信息
+
+---
+
+### 🔧 在 Vercel 中添加环境变量
+
+#### 方法 1: 通过 Vercel Web 界面（推荐）
+
+```
+1. 访问 Vercel Dashboard
+2. 选择你的项目
+3. 点击 Settings → Environment Variables
+4. 点击 "Add New"
+5. 输入 Name 和 Value
+6. 选择应用环境（Production、Preview、Development）
+7. 点击 "Save"
+8. 点击项目的 Deployments 标签，选择最新部署
+9. 点击右上角的三个点，选择 "Redeploy"
+```
+
+#### 方法 2: 使用 Vercel CLI
+
+```bash
+# 安装 Vercel CLI（如果还没安装）
+npm i -g vercel
+
+# 登录 Vercel
+vercel login
+
+# 添加环境变量
+vercel env add NEXT_PUBLIC_SITE_URL
+
+# 列出所有环境变量
+vercel env list
+
+# 拉取所有环境变量到本地 .env.local
+vercel env pull
+```
+
+---
+
+### ✅ 环境变量检查清单
+
+- [ ] **NEXT_PUBLIC_SITE_URL** - 你的部署域名
+- [ ] **AUTH_SECRET** - 至少 32 个字符的随机字符串
+- [ ] **AUTH_GITHUB_ID** 和 **AUTH_GITHUB_SECRET** - GitHub OAuth
+- [ ] **AUTH_GOOGLE_ID** 和 **AUTH_GOOGLE_SECRET** - Google OAuth（可选）
+- [ ] **NEXT_PUBLIC_FIREBASE_API_KEY** 等 - Firebase 配置（可选）
+- [ ] **FIREBASE_SERVICE_ACCOUNT_KEY** - Firebase 后端密钥（可选）
+- [ ] **NEXT_PUBLIC_TINA_CLIENT_ID** 和 **TINA_TOKEN** - Tina CMS（可选）
+- [ ] **GITHUB_TOKEN** - GitHub Personal Access Token（用于 Tina）
 
 #### 4. 自定义域名（可选）
 
