@@ -9,8 +9,7 @@
  * - PostgreSQL: 配合 Prisma 使用
  */
 
-import { Timestamp } from "firebase-admin/firestore";
-import { firebaseEnabled, firestore } from "./firebase-admin";
+import { firebaseEnabled, firestore, firestoreModule } from "./firebase-admin";
 
 // ============================================
 // 类型定义
@@ -141,8 +140,9 @@ export const memoryDb: DiaryDatabase = {
 // ============================================
 
 const normalizeDiary = (docId: string, data: any): Diary => {
-  const created = data.createdAt instanceof Timestamp ? data.createdAt.toDate() : new Date(data.createdAt);
-  const updated = data.updatedAt instanceof Timestamp ? data.updatedAt.toDate() : new Date(data.updatedAt);
+  const Timestamp = firestoreModule?.Timestamp;
+  const created = Timestamp && data.createdAt instanceof Timestamp ? data.createdAt.toDate() : new Date(data.createdAt);
+  const updated = Timestamp && data.updatedAt instanceof Timestamp ? data.updatedAt.toDate() : new Date(data.updatedAt);
 
   return {
     id: docId,
@@ -158,95 +158,101 @@ const normalizeDiary = (docId: string, data: any): Diary => {
   };
 };
 
-const firestoreDb: DiaryDatabase | null = firestore
-  ? {
-      async getAll(userId: string): Promise<Diary[]> {
-        const snapshot = await firestore
-          .collection("users")
-          .doc(userId)
-          .collection("diaries")
-          .orderBy("createdAt", "desc")
-          .get();
+function createFirestoreDb(): DiaryDatabase | null {
+  // 必须在函数内部捕获 firestore 引用，确保 TypeScript 知道它不为 null
+  const fs = firestore;
+  if (!fs) return null;
 
-        return snapshot.docs.map((doc) => normalizeDiary(doc.id, doc.data()));
-      },
+  return {
+    async getAll(userId: string): Promise<Diary[]> {
+      const snapshot = await fs
+        .collection("users")
+        .doc(userId)
+        .collection("diaries")
+        .orderBy("createdAt", "desc")
+        .get();
 
-      async getById(userId: string, id: string): Promise<Diary | null> {
-        const doc = await firestore
-          .collection("users")
-          .doc(userId)
-          .collection("diaries")
-          .doc(id)
-          .get();
+      return snapshot.docs.map((doc) => normalizeDiary(doc.id, doc.data()));
+    },
 
-        if (!doc.exists) return null;
-        return normalizeDiary(doc.id, doc.data());
-      },
+    async getById(userId: string, id: string): Promise<Diary | null> {
+      const doc = await fs
+        .collection("users")
+        .doc(userId)
+        .collection("diaries")
+        .doc(id)
+        .get();
 
-      async create(userId: string, input: DiaryInput): Promise<Diary> {
-        const now = new Date();
-        const docRef = firestore
-          .collection("users")
-          .doc(userId)
-          .collection("diaries")
-          .doc();
+      if (!doc.exists) return null;
+      return normalizeDiary(doc.id, doc.data());
+    },
 
-        await docRef.set({
-          ...input,
-          userId,
-          excerpt: input.content.slice(0, 100) + "...",
-          createdAt: now,
-          updatedAt: now,
-          isPublic: input.isPublic ?? false,
-        });
+    async create(userId: string, input: DiaryInput): Promise<Diary> {
+      const now = new Date();
+      const docRef = fs
+        .collection("users")
+        .doc(userId)
+        .collection("diaries")
+        .doc();
 
-        return {
-          id: docRef.id,
-          userId,
-          ...input,
-          excerpt: input.content.slice(0, 100) + "...",
-          createdAt: now,
-          updatedAt: now,
-          isPublic: input.isPublic ?? false,
-        } as Diary;
-      },
+      await docRef.set({
+        ...input,
+        userId,
+        excerpt: input.content.slice(0, 100) + "...",
+        createdAt: now,
+        updatedAt: now,
+        isPublic: input.isPublic ?? false,
+      });
 
-      async update(userId: string, id: string, input: Partial<DiaryInput>): Promise<Diary> {
-        const docRef = firestore
-          .collection("users")
-          .doc(userId)
-          .collection("diaries")
-          .doc(id);
+      return {
+        id: docRef.id,
+        userId,
+        ...input,
+        excerpt: input.content.slice(0, 100) + "...",
+        createdAt: now,
+        updatedAt: now,
+        isPublic: input.isPublic ?? false,
+      } as Diary;
+    },
 
-        await docRef.update({
-          ...input,
-          updatedAt: new Date(),
-        });
+    async update(userId: string, id: string, input: Partial<DiaryInput>): Promise<Diary> {
+      const docRef = fs
+        .collection("users")
+        .doc(userId)
+        .collection("diaries")
+        .doc(id);
 
-        const doc = await docRef.get();
-        return normalizeDiary(doc.id, doc.data());
-      },
+      await docRef.update({
+        ...input,
+        updatedAt: new Date(),
+      });
 
-      async delete(userId: string, id: string): Promise<void> {
-        await firestore
-          .collection("users")
-          .doc(userId)
-          .collection("diaries")
-          .doc(id)
-          .delete();
-      },
+      const doc = await docRef.get();
+      return normalizeDiary(doc.id, doc.data());
+    },
 
-      async search(userId: string, query: string): Promise<Diary[]> {
-        const all = await this.getAll(userId);
-        const lowerQuery = query.toLowerCase();
-        return all.filter(
-          (d) =>
-            d.title.toLowerCase().includes(lowerQuery) ||
-            d.content.toLowerCase().includes(lowerQuery)
-        );
-      },
-    }
-  : null;
+    async delete(userId: string, id: string): Promise<void> {
+      await fs
+        .collection("users")
+        .doc(userId)
+        .collection("diaries")
+        .doc(id)
+        .delete();
+    },
+
+    async search(userId: string, query: string): Promise<Diary[]> {
+      const all = await this.getAll(userId);
+      const lowerQuery = query.toLowerCase();
+      return all.filter(
+        (d) =>
+          d.title.toLowerCase().includes(lowerQuery) ||
+          d.content.toLowerCase().includes(lowerQuery)
+      );
+    },
+  };
+}
+
+const firestoreDb = createFirestoreDb();
 
 // ============================================
 // 导出当前使用的数据库实例

@@ -1,5 +1,4 @@
-import { cert, getApps, initializeApp } from "firebase-admin/app";
-import { getFirestore } from "firebase-admin/firestore";
+import admin from "firebase-admin";
 
 const projectId = process.env.FIREBASE_PROJECT_ID;
 const clientEmail = process.env.FIREBASE_CLIENT_EMAIL;
@@ -12,15 +11,18 @@ export const firestore = (() => {
     return null;
   }
 
-  if (!getApps().length) {
-    initializeApp({
-      credential: cert({
-        projectId,
-        clientEmail,
-        privateKey,
+  if (!admin.apps.length) {
+    admin.initializeApp({
+      credential: admin.credential.cert({
+        projectId: projectId!,
+        clientEmail: clientEmail!,
+        privateKey: privateKey!,
       }),
     });
   }
 
-  return getFirestore();
+  return admin.firestore();
 })();
+
+// 导出 firestore 模块用于访问 Timestamp 等类型
+export const firestoreModule = firebaseEnabled ? admin.firestore : null;

@@ -39,7 +39,8 @@ if (passkeyEnabled) {
 }
 
 if (providers.length === 0) {
-  throw new Error("No authentication providers configured. Please set env variables.");
+  // 在构建时允许没有 provider，运行时才会报错
+  console.warn("Warning: No authentication providers configured. Please set env variables.");
 }
 
 const adapter = firebaseEnabled && firestore ? FirestoreAdapter(firestore) : undefined;
