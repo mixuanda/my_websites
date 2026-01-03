@@ -2,6 +2,42 @@
 
 import { useMDXComponent } from "next-contentlayer2/hooks";
 
+// Callout 组件 - 用于显示提示框
+interface CalloutProps {
+  type?: "info" | "warning" | "error" | "success";
+  title?: string;
+  body?: React.ReactNode;
+  children?: React.ReactNode;
+}
+
+export function Callout({ type = "info", title, body, children }: CalloutProps) {
+  const styles = {
+    info: "bg-blue-500/10 border-blue-500 text-blue-200",
+    warning: "bg-yellow-500/10 border-yellow-500 text-yellow-200",
+    error: "bg-red-500/10 border-red-500 text-red-200",
+    success: "bg-green-500/10 border-green-500 text-green-200",
+  };
+
+  const icons = {
+    info: "ℹ️",
+    warning: "⚠️",
+    error: "❌",
+    success: "✅",
+  };
+
+  return (
+    <div className={`my-6 p-4 border-l-4 rounded-r-lg ${styles[type]}`}>
+      {title && (
+        <div className="font-semibold mb-2 flex items-center gap-2">
+          <span>{icons[type]}</span>
+          {title}
+        </div>
+      )}
+      <div className="text-sm">{body || children}</div>
+    </div>
+  );
+}
+
 const components = {
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />
@@ -51,7 +87,8 @@ const components = {
     <td className="border border-border px-4 py-2" {...props} />
   ),
   hr: () => <hr className="my-8 border-border" />,
-};
+  Callout,
+} as const;
 
 interface MdxProps {
   code: string;
@@ -61,7 +98,7 @@ export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code);
   return (
     <div className="mdx prose prose-invert max-w-none">
-      <Component components={components} />
+      <Component components={components as any} />
     </div>
   );
 }

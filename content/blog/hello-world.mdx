@@ -1,50 +1,329 @@
 ---
-title: '[示例] Hello World - 我的第一篇博客'
-date: 2026-01-03T00:00:00.000Z
-description: 这是一篇示例文章，展示 MDX 和 KaTeX 的使用。使用模板时请删除或替换此文件。
-category: 技术
-tags:
-  - 入门
-  - 教程
-  - LaTeX
+title: "[示例] Hello World - 我的第一篇博客"
+date: 2026-01-03
+description: "这是一篇示例文章，展示 MDX 和 KaTeX 的使用。使用模板时请删除或替换此文件。"
+category: "技术"
+tags: ["入门", "教程", "LaTeX", "MDX"]
 toc: true
 published: true
 ---
 
-# 第一篇文章
+import { Callout } from '@/components/Mdx'
 
-测试一下能否正常书写
+# 欢迎来到我的博客
 
-<Callout
-  type="info"
-  body={<>
-    测试测试
-  </>}
-  title="测试"
-/>
+> 📝 **模板说明**: 这是一篇完整的示例博客文章，展示了博客系统的所有功能。使用模板时请删除或替换此文件。
 
+## 提示框组件 (Callout)
+
+### 信息提示
+
+<Callout type="info" title="信息提示">
+  这是一个信息提示框，用于展示重要的、需要用户关注的信息。
+</Callout>
+
+### 成功提示
+
+<Callout type="success" title="成功">
+  操作成功完成！这个提示框用于显示成功的操作或结果。
+</Callout>
+
+### 警告提示
+
+<Callout type="warning" title="警告">
+  请谨慎，这里有你需要注意的重要信息。警告提示通常用于提醒用户可能的风险。
+</Callout>
+
+### 错误提示
+
+<Callout type="error" title="错误">
+  出现了一个问题！这个提示框用于显示错误信息或失败的操作。
+</Callout>
+
+## 标题演示
+
+### 三级标题
+
+这是一个三级标题的演示。
+
+#### 四级标题
+
+这是一个四级标题的演示。
+
+## 文本格式
+
+这段文字包含了各种文本格式：
+
+- **加粗文本** 用于强调重点
+- *斜体文本* 用于表示强调或定义
+- ~~删除线文本~~ 用于表示已废弃的内容
+- `内联代码` 用于展示代码片段
+- [超链接](https://example.com) 用于跳转到其他页面
+
+## 列表演示
+
+### 无序列表
+
+- 第一项
+- 第二项
+  - 嵌套第二项的子项 A
+  - 嵌套第二项的子项 B
+    - 更深层次的嵌套项
+- 第三项
+- 第四项
+
+### 有序列表
+
+1. 第一步：准备工作
+2. 第二步：执行操作
+   1. 子步骤 2.1
+   2. 子步骤 2.2
+   3. 子步骤 2.3
+3. 第三步：验证结果
+4. 第四步：完成
+
+### 混合列表
+
+- 要点一
+  1. 细节 1.1
+  2. 细节 1.2
+- 要点二
+  1. 细节 2.1
+  2. 细节 2.2
+
+## 代码演示
+
+### JavaScript 代码
+
+```javascript
+// 一个简单的函数
+function fibonacci(n) {
+  if (n <= 1) return n;
+  return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
+console.log(fibonacci(10)); // 输出: 55
 ```
-测试
+
+### TypeScript 代码
+
+```typescript
+interface User {
+  id: number;
+  name: string;
+  email: string;
+}
+
+function createUser(name: string, email: string): User {
+  return {
+    id: Math.random(),
+    name,
+    email,
+  };
+}
 ```
 
-```mermaid
-%% This won't render without implementing a rendering engine (e.g. mermaid on npm)
-flowchart TD
-    id1(this is an example flow diagram)
-    --> id2(modify me to see changes!)
-    id2
-    --> id3(Click the top button to preview the changes)
-    --> id4(Learn about mermaid diagrams - mermaid.js.org)
+### Python 代码
+
+```python
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    
+    return merge(left, right)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    
+    while i < len(left) and j < len(right):
+        if left[i] <= right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    
+    return result + left[i:] + right[j:]
 ```
 
-```mermaid
-%% This won't render without implementing a rendering engine (e.g. mermaid on npm)
-flowchart TD
-    id1(this is an example flow diagram)
-    --> id2(modify me to see changes!)
-    id2
-    --> id3(Click the top button to preview the changes)
-    --> id4(Learn about mermaid diagrams - mermaid.js.org)
+### HTML/CSS 代码
+
+```html
+<div class="container">
+  <h1>Hello World</h1>
+  <p class="subtitle">Welcome to my blog</p>
+</div>
 ```
 
-请看。
+```css
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 18px;
+}
+```
+
+### Bash 代码
+
+```bash
+#!/bin/bash
+
+# 一个简单的备份脚本
+SOURCE_DIR="/path/to/source"
+BACKUP_DIR="/path/to/backup"
+DATE=$(date +%Y%m%d_%H%M%S)
+
+cp -r "$SOURCE_DIR" "$BACKUP_DIR/backup_$DATE"
+echo "Backup completed: backup_$DATE"
+```
+
+## 表格演示
+
+| 功能 | 描述 | 状态 |
+|------|------|------|
+| MDX 支持 | 在 Markdown 中使用 React 组件 | ✅ |
+| KaTeX 数学公式 | 支持复杂的数学公式渲染 | ✅ |
+| 代码高亮 | 多语言代码块高亮显示 | ✅ |
+| 提示框 | Callout 组件用于特殊提示 | ✅ |
+| 文章导航 | 自动生成目录 | ✅ |
+| 标签系统 | 按标签分类文章 | ✅ |
+
+## 数学公式演示
+
+### 行内公式
+
+勾股定理可以表示为 $a^2 + b^2 = c^2$，这是初中就学过的知识。
+
+欧拉公式 $e^{i\pi} + 1 = 0$ 被称为数学中最美丽的公式。
+
+二次方程的求根公式：$x = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}$
+
+### 块级公式
+
+高斯积分（概率分布中的重要公式）：
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+
+薛定谔方程（量子力学的基本方程）：
+
+$$
+i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat{H}\Psi(\mathbf{r},t)
+$$
+
+泰勒级数展开：
+
+$$
+f(x) = f(a) + f'(a)(x-a) + \frac{f''(a)}{2!}(x-a)^2 + \cdots + \frac{f^{(n)}(a)}{n!}(x-a)^n
+$$
+
+### 矩阵和向量
+
+线性变换矩阵乘法：
+
+$$
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+=
+\begin{pmatrix}
+ax + by \\
+cx + dy
+\end{pmatrix}
+$$
+
+行列式计算：
+
+$$
+\det\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix} = ad - bc
+$$
+
+增广矩阵（线性方程组求解）：
+
+$$
+\left[\begin{array}{ccc|c}
+1 & 2 & 3 & 0 \\
+4 & 5 & 6 & 1 \\
+7 & 8 & 9 & 2
+\end{array}\right]
+$$
+
+## 块引用演示
+
+### 单行引用
+
+> 学而不思则罔，思而不学则殆。— 孔子
+
+### 多行引用
+
+> 我们生活的这个世界，如果没有数学的话，就像鱼儿离开了水。
+> 
+> — 数学家们
+
+### 长段落引用
+
+> 技术的目的不是追求酷炫的特效，而是解决实际的问题。一个好的技术方案应该是：
+> 
+> 1. 简洁易懂
+> 2. 高效可靠
+> 3. 易于维护
+> 4. 可扩展性强
+> 
+> 记住这些原则，你的代码会更加优美。
+
+## 水平线
+
+以下是一条水平线分隔符：
+
+---
+
+可以用来分隔不同的内容段落。
+
+---
+
+## 组合示例
+
+<Callout type="info" title="学习提示">
+  将这些格式组合使用，可以创建更加丰富的文章内容。例如：
+
+  - 在引用中使用**加粗**
+  - 在列表中使用`代码`
+  - 在提示框中使用所有的格式
+
+  实际上，MDX 允许在任何地方混合使用这些元素。
+</Callout>
+
+## 总结
+
+这篇示例文章展示了以下功能：
+
+- ✅ **提示框组件** - 四种类型的 Callout 组件
+- ✅ **各级标题** - H1 到 H4
+- ✅ **文本格式** - 加粗、斜体、删除线、代码、链接
+- ✅ **列表格式** - 无序列表、有序列表、嵌套列表
+- ✅ **代码块** - 支持多种编程语言的代码高亮
+- ✅ **数学公式** - 行内和块级 LaTeX 公式
+- ✅ **表格** - 支持 Markdown 表格
+- ✅ **块引用** - 多种引用格式
+- ✅ **其他元素** - 水平线、超链接等
+
+现在你可以基于这个模板创建你自己的博客文章了！祝你写作愉快！ 🚀
