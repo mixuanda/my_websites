@@ -1,17 +1,6 @@
 import { defineDocumentType, makeSource } from 'contentlayer2/source-files'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
-import { visit } from 'unist-util-visit'
-
-// Rehype plugin to preserve JSX components
-const rehypePreserveComponents = () => (tree: any) => {
-  visit(tree, 'element', (node: any) => {
-    // Preserve JSX components like <Callout />
-    if (node.tagName && /^[A-Z]/.test(node.tagName)) {
-      node.type = 'mdxJsxFlowExpression'
-    }
-  })
-}
 
 export const Post = defineDocumentType(() => ({
   name: 'Post',
@@ -93,9 +82,5 @@ export default makeSource({
   mdx: {
     remarkPlugins: [remarkMath],
     rehypePlugins: [rehypeKatex as any],
-  },
-  mdxOptions: {
-    jsxImportSource: 'react',
-    development: process.env.NODE_ENV === 'development',
   },
 })
