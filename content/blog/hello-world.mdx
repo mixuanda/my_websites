@@ -1,0 +1,100 @@
+---
+title: "[示例] Hello World - 我的第一篇博客"
+date: 2026-01-03
+description: "这是一篇示例文章，展示 MDX 和 KaTeX 的使用。使用模板时请删除或替换此文件。"
+category: "技术"
+tags: ["入门", "教程", "LaTeX"]
+toc: true
+published: true
+---
+
+# 欢迎来到我的博客
+
+> 📝 **模板说明**: 这是一篇示例博客文章，展示了博客系统的各种功能。使用模板时请删除或替换此文件。
+
+## 数学公式演示
+
+### 行内公式
+
+勾股定理可以表示为 $a^2 + b^2 = c^2$，这是初中就学过的知识。
+
+欧拉公式 $e^{i\pi} + 1 = 0$ 被称为数学中最美丽的公式。
+
+### 块级公式
+
+高斯积分的结果是：
+
+$$
+\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}
+$$
+
+薛定谔方程：
+
+$$
+i\hbar\frac{\partial}{\partial t}\Psi(\mathbf{r},t) = \hat{H}\Psi(\mathbf{r},t)
+$$
+
+### 矩阵
+
+$$
+\begin{pmatrix}
+a & b \\
+c & d
+\end{pmatrix}
+\begin{pmatrix}
+x \\
+y
+\end{pmatrix}
+=
+\begin{pmatrix}
+ax + by \\
+cx + dy
+\end{pmatrix}
+$$
+
+## 代码示例
+
+```typescript
+function greet(name: string): string {
+  return `Hello, ${name}!`;
+}
+
+console.log(greet("World"));
+```
+
+## 列表
+
+### 无序列表
+
+- 项目一
+- 项目二
+  - 子项目 A
+  - 子项目 B
+- 项目三
+
+### 有序列表
+
+1. 第一步
+2. 第二步
+3. 第三步
+
+## 引用
+
+> 学而不思则罔，思而不学则殆。
+> 
+> — 孔子
+
+## 图片
+
+图片支持外链和本地路径，只需在 frontmatter 中设置 `image` 字段即可。
+
+## 总结
+
+这篇文章展示了：
+
+- MDX 内容渲染
+- KaTeX 数学公式
+- 代码高亮
+- 列表和引用
+
+希望你喜欢这个博客模板！
