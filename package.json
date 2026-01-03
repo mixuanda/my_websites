@@ -9,10 +9,14 @@
     "build": "contentlayer2 build && next build",
     "start": "next start",
     "lint": "eslint",
-    "contentlayer": "contentlayer2 build"
+    "contentlayer": "contentlayer2 build",
+    "tina:build": "tinacms build",
+    "tina:dev": "tinacms dev -c 'next dev'"
   },
   "dependencies": {
     "@next/mdx": "^16.1.1",
+    "@tinacms/cli": "^1.5.30",
+    "tinacms": "^1.5.30",
     "@auth/firebase-adapter": "^1.6.0",
     "@radix-ui/react-avatar": "^1.1.11",
     "@radix-ui/react-dialog": "^1.1.15",
