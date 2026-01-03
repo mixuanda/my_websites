@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# TinaCMS - 这些文件在构建时自动生成，不应提交
+tina/__generated__/client.ts
+tina/__generated__/.cache/
+tina/tina-lock.json
