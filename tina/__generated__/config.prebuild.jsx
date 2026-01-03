@@ -223,8 +223,7 @@ var config_default = defineConfig({
           {
             type: "boolean",
             name: "featured",
-            label: "\u7CBE\u9009\u9879\u76EE",
-            default: false
+            label: "\u7CBE\u9009\u9879\u76EE"
           },
           {
             type: "rich-text",

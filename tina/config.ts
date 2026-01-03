@@ -242,7 +242,6 @@ export default defineConfig({
             type: "boolean",
             name: "featured",
             label: "精选项目",
-            default: false,
           },
           {
             type: "rich-text",
