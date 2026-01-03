@@ -60,6 +60,11 @@ export default async function DiaryPage() {
             <User className="w-4 h-4" />
             {session.user.name || session.user.email}
           </span>
+          <Link href="/settings">
+            <Button variant="ghost" size="icon" title="账号设置">
+              <Settings className="w-4 h-4" />
+            </Button>
+          </Link>
           <form
             action={async () => {
               "use server";
