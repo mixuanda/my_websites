@@ -6,7 +6,8 @@
   "author": "Your Name",
   "scripts": {
     "dev": "next dev",
-    "build": "contentlayer2 build && next build",
+    "build": "tinacms build && contentlayer2 build && next build",
+    "postinstall": "tinacms build --skip-cloud-checks || true",
     "start": "next start",
     "lint": "eslint",
     "contentlayer": "contentlayer2 build",

@@ -1,0 +1,37 @@
+fragment PostParts on Post {
+  __typename
+  title
+  date
+  description
+  category
+  tags
+  image
+  toc
+  published
+  body
+}
+
+fragment NoteParts on Note {
+  __typename
+  title
+  date
+  description
+  category
+  tags
+  series
+  toc
+  body
+}
+
+fragment ProjectParts on Project {
+  __typename
+  title
+  description
+  date
+  tags
+  image
+  link
+  github
+  featured
+  body
+}

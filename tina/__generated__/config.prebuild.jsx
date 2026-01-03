@@ -1,261 +1,244 @@
-/**
- * TinaCMS 配置文件
- * 
- * TinaCMS 是一个 Git-backed 的内容管理系统
- * 它允许你在可视化编辑器中编辑 MDX 内容
- */
-
+// tina/config.ts
 import { defineConfig } from "tinacms";
-
-const branch =
-  process.env.GITHUB_BRANCH ||
-  process.env.VERCEL_GIT_COMMIT_REF ||
-  process.env.HEAD ||
-  "main";
-
-// 检测是否为本地开发模式
-const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
-
-export default defineConfig({
+var branch = process.env.GITHUB_BRANCH || process.env.VERCEL_GIT_COMMIT_REF || process.env.HEAD || "main";
+var isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
+var config_default = defineConfig({
   branch,
-
   // 从 Tina Cloud 获取（生产环境需要）
   clientId: process.env.TINA_CLIENT_ID || "",
   token: process.env.TINA_TOKEN || "",
-
   build: {
     outputFolder: "admin",
-    publicFolder: "public",
+    publicFolder: "public"
   },
-
   media: {
     tina: {
       mediaRoot: "images",
-      publicFolder: "public",
-    },
+      publicFolder: "public"
+    }
   },
-
   // 内容模型定义
   schema: {
     collections: [
       // 博客文章集合
       {
         name: "post",
-        label: "博客文章",
+        label: "\u535A\u5BA2\u6587\u7AE0",
         path: "content/blog",
         format: "mdx",
         fields: [
           {
             type: "string",
             name: "title",
-            label: "标题",
+            label: "\u6807\u9898",
             isTitle: true,
-            required: true,
+            required: true
           },
           {
             type: "datetime",
             name: "date",
-            label: "发布日期",
-            required: true,
+            label: "\u53D1\u5E03\u65E5\u671F",
+            required: true
           },
           {
             type: "string",
             name: "description",
-            label: "描述",
+            label: "\u63CF\u8FF0",
             required: true,
             ui: {
-              component: "textarea",
-            },
+              component: "textarea"
+            }
           },
           {
             type: "string",
             name: "category",
-            label: "分类",
+            label: "\u5206\u7C7B"
           },
           {
             type: "string",
             name: "tags",
-            label: "标签",
-            list: true,
+            label: "\u6807\u7B7E",
+            list: true
           },
           {
             type: "image",
             name: "image",
-            label: "封面图片",
+            label: "\u5C01\u9762\u56FE\u7247"
           },
           {
             type: "boolean",
             name: "toc",
-            label: "显示目录",
+            label: "\u663E\u793A\u76EE\u5F55"
           },
           {
             type: "boolean",
             name: "published",
-            label: "已发布",
-            default: true,
+            label: "\u5DF2\u53D1\u5E03",
+            default: true
           },
           {
             type: "rich-text",
             name: "body",
-            label: "内容",
+            label: "\u5185\u5BB9",
             isBody: true,
             templates: [
               {
                 name: "Callout",
-                label: "提示框",
+                label: "\u63D0\u793A\u6846",
                 ui: {
                   defaultItem: {
-                    type: "callout",
-                  },
+                    type: "callout"
+                  }
                 },
                 fields: [
                   {
                     name: "type",
-                    label: "类型",
+                    label: "\u7C7B\u578B",
                     type: "string",
-                    options: ["info", "warning", "error", "success"],
+                    options: ["info", "warning", "error", "success"]
                   },
                   {
                     name: "title",
-                    label: "标题",
-                    type: "string",
+                    label: "\u6807\u9898",
+                    type: "string"
                   },
                   {
                     name: "body",
-                    label: "内容",
-                    type: "rich-text",
-                  },
-                ],
-              },
-            ],
-          },
-        ],
+                    label: "\u5185\u5BB9",
+                    type: "rich-text"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
       },
-
       // 笔记集合
       {
         name: "note",
-        label: "学习笔记",
+        label: "\u5B66\u4E60\u7B14\u8BB0",
         path: "content/notes",
         format: "mdx",
         fields: [
           {
             type: "string",
             name: "title",
-            label: "标题",
+            label: "\u6807\u9898",
             isTitle: true,
-            required: true,
+            required: true
           },
           {
             type: "datetime",
             name: "date",
-            label: "日期",
-            required: true,
+            label: "\u65E5\u671F",
+            required: true
           },
           {
             type: "string",
             name: "description",
-            label: "描述",
+            label: "\u63CF\u8FF0",
             required: true,
             ui: {
-              component: "textarea",
-            },
+              component: "textarea"
+            }
           },
           {
             type: "string",
             name: "category",
-            label: "分类",
+            label: "\u5206\u7C7B"
           },
           {
             type: "string",
             name: "tags",
-            label: "标签",
-            list: true,
+            label: "\u6807\u7B7E",
+            list: true
           },
           {
             type: "string",
             name: "series",
-            label: "系列",
+            label: "\u7CFB\u5217"
           },
           {
             type: "boolean",
             name: "toc",
-            label: "显示目录",
-            default: true,
+            label: "\u663E\u793A\u76EE\u5F55",
+            default: true
           },
           {
             type: "rich-text",
             name: "body",
-            label: "内容",
-            isBody: true,
-          },
-        ],
+            label: "\u5185\u5BB9",
+            isBody: true
+          }
+        ]
       },
-
       // 项目集合
       {
         name: "project",
-        label: "项目",
+        label: "\u9879\u76EE",
         path: "content/projects",
         format: "mdx",
         fields: [
           {
             type: "string",
             name: "title",
-            label: "项目名称",
+            label: "\u9879\u76EE\u540D\u79F0",
             isTitle: true,
-            required: true,
+            required: true
           },
           {
             type: "string",
             name: "description",
-            label: "项目描述",
+            label: "\u9879\u76EE\u63CF\u8FF0",
             required: true,
             ui: {
-              component: "textarea",
-            },
+              component: "textarea"
+            }
           },
           {
             type: "datetime",
             name: "date",
-            label: "日期",
-            required: true,
+            label: "\u65E5\u671F",
+            required: true
           },
           {
             type: "string",
             name: "tags",
-            label: "标签",
-            list: true,
+            label: "\u6807\u7B7E",
+            list: true
           },
           {
             type: "image",
             name: "image",
-            label: "项目封面",
+            label: "\u9879\u76EE\u5C01\u9762"
           },
           {
             type: "string",
             name: "link",
-            label: "项目链接",
+            label: "\u9879\u76EE\u94FE\u63A5"
           },
           {
             type: "string",
             name: "github",
-            label: "GitHub 链接",
+            label: "GitHub \u94FE\u63A5"
           },
           {
             type: "boolean",
             name: "featured",
-            label: "精选项目",
-            default: false,
+            label: "\u7CBE\u9009\u9879\u76EE",
+            default: false
           },
           {
             type: "rich-text",
             name: "body",
-            label: "项目详情",
-            isBody: true,
-          },
-        ],
-      },
-    ],
-  },
+            label: "\u9879\u76EE\u8BE6\u60C5",
+            isBody: true
+          }
+        ]
+      }
+    ]
+  }
 });
+export {
+  config_default as default
+};
