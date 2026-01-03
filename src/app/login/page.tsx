@@ -8,7 +8,7 @@ import { useState } from "react";
 
 export default function LoginPage() {
   const [isLoading, setIsLoading] = useState(false);
-  const availableProviders = (process.env.NEXT_PUBLIC_AUTH_PROVIDERS || "passkey,github,google")
+  const availableProviders = (process.env.NEXT_PUBLIC_AUTH_PROVIDERS || "github,google")
     .split(",")
     .map((p) => p.trim())
     .filter(Boolean);

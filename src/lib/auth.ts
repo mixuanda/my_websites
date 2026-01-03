@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import GitHub from "next-auth/providers/github";
 import Google from "next-auth/providers/google";
-import Passkey from "next-auth/providers/passkey";
 import { FirestoreAdapter } from "@auth/firebase-adapter";
 import { firestore, firebaseEnabled } from "./firebase-admin";
 
@@ -25,19 +24,6 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
   );
 }
 
-const passkeyEnabled = firebaseEnabled && process.env.AUTH_DISABLE_PASSKEY !== "true";
-if (passkeyEnabled) {
-  providers.push(Passkey({
-    formFields: {
-      email: {
-        label: "Email",
-        required: true,
-        autocomplete: "username webauthn",
-      },
-    },
-  }));
-}
-
 if (providers.length === 0) {
   // 在构建时允许没有 provider，运行时才会报错
   console.warn("Warning: No authentication providers configured. Please set env variables.");
@@ -52,9 +38,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   trustHost: true,
   session: {
     strategy: "jwt",
-  },
-  experimental: {
-    enableWebAuthn: true,
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
