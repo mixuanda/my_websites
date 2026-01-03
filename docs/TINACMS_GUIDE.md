@@ -192,6 +192,14 @@ schema: {
 3. 检查浏览器控制台是否有错误
 4. 尝试在本地运行 `npm run tina:dev` 测试
 
+### Q: Vercel 构建日志提示 “Branch is not on TinaCloud” 或显示 Unindexed Branch？
+
+1. 登录 [Tina Cloud 项目配置页](https://app.tina.io/projects/a7d1dd0d-b855-4b0e-afec-ec20859c52a2/configuration)
+2. 在 *Branches* 卡片中点击 **Refresh Branches**
+3. 找到 `main`（或报错中提到的分支）并点击 **Index Branch**
+4. 等待状态变为 *Indexed* 后重新触发 Vercel 部署
+5. 如果仍失败，确认本地已 `git push` 到 GitHub，确保 Tina Cloud 能拉取到最新代码
+
 ## 与 Next.js 集成
 
 TinaCMS 完全集成在 Next.js 中，修改流程如下：
