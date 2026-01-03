@@ -13,14 +13,12 @@ const branch =
   process.env.HEAD ||
   "main";
 
-// 检测是否为本地开发模式
-const isLocal = process.env.TINA_PUBLIC_IS_LOCAL === "true";
-
 export default defineConfig({
   branch,
 
   // 从 Tina Cloud 获取（生产环境需要）
-  clientId: process.env.TINA_CLIENT_ID || "",
+  // NEXT_PUBLIC_TINA_CLIENT_ID 用于客户端，TINA_TOKEN 仅用于服务端
+  clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID || process.env.TINA_CLIENT_ID || "",
   token: process.env.TINA_TOKEN || "",
 
   build: {
