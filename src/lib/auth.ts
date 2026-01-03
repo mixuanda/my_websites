@@ -27,7 +27,15 @@ if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
 
 const passkeyEnabled = firebaseEnabled && process.env.AUTH_DISABLE_PASSKEY !== "true";
 if (passkeyEnabled) {
-  providers.push(Passkey());
+  providers.push(Passkey({
+    formFields: {
+      email: {
+        label: "Email",
+        required: true,
+        autocomplete: "username webauthn",
+      },
+    },
+  }));
 }
 
 if (providers.length === 0) {
