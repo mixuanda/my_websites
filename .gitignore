@@ -32,6 +32,7 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
@@ -40,7 +41,6 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# TinaCMS - 这些文件在构建时自动生成，不应提交
+# TinaCMS - 本地开发时生成的文件，不应提交
 tina/__generated__/client.ts
 tina/__generated__/.cache/
-tina/tina-lock.json
