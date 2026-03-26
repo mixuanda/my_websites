@@ -4,6 +4,8 @@ import { Mdx } from "@/components/Mdx";
 import { GlassCard } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ArticleDownloadMenu } from "@/components/ArticleDownloadMenu";
+import { PrintOnQuery } from "@/components/PrintOnQuery";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
 import Link from "next/link";
@@ -40,26 +42,36 @@ export default async function ProjectPage({ params }: PageProps) {
   }
 
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="print-article max-w-4xl mx-auto">
+      <PrintOnQuery />
       {/* Back Link */}
       <Link
         href="/projects"
-        className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-6"
+        className="print-hidden inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-6"
       >
         <ArrowLeft className="w-4 h-4" />
         返回项目列表
       </Link>
 
       {/* Project Header */}
-      <GlassCard className="p-6 md:p-8 mb-8">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">{project.title}</h1>
-        <p className="text-lg text-muted-foreground mb-6">{project.description}</p>
-        
-        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-6">
-          <span className="flex items-center gap-1">
-            <Calendar className="w-4 h-4" />
-            {format(new Date(project.date), "yyyy年MM月dd日", { locale: zhCN })}
-          </span>
+      <GlassCard className="print-surface p-6 md:p-8 mb-8">
+        <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+          <div className="min-w-0 flex-1">
+            <h1 className="text-3xl md:text-4xl font-bold mb-4">{project.title}</h1>
+            <p className="text-lg text-muted-foreground mb-6">{project.description}</p>
+
+            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground mb-6">
+              <span className="flex items-center gap-1">
+                <Calendar className="w-4 h-4" />
+                {format(new Date(project.date), "yyyy年MM月dd日", { locale: zhCN })}
+              </span>
+            </div>
+          </div>
+          <ArticleDownloadMenu
+            articlePath={`/projects/${project.slug}`}
+            kind="projects"
+            slug={project.slug}
+          />
         </div>
 
         {project.tags.length > 0 && (
@@ -72,7 +84,7 @@ export default async function ProjectPage({ params }: PageProps) {
           </div>
         )}
 
-        <div className="flex flex-wrap gap-3">
+        <div className="print-hidden flex flex-wrap gap-3">
           {project.link && (
             <Button asChild>
               <a href={project.link} target="_blank" rel="noopener noreferrer">
@@ -93,7 +105,7 @@ export default async function ProjectPage({ params }: PageProps) {
       </GlassCard>
 
       {/* Project Content */}
-      <GlassCard className="p-6 md:p-8">
+      <GlassCard className="print-surface p-6 md:p-8">
         <Mdx code={project.body.code} />
       </GlassCard>
     </div>
