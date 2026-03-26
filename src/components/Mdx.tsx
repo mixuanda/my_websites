@@ -1,9 +1,12 @@
 "use client";
 
+/* eslint-disable react-hooks/static-components */
+
+import type { MDXComponents } from "mdx/types";
 import { useMDXComponent } from "next-contentlayer2/hooks";
 import { Callout } from "./Callout";
 
-const components = {
+const components: MDXComponents = {
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />
   ),
@@ -61,9 +64,10 @@ interface MdxProps {
 
 export function Mdx({ code }: MdxProps) {
   const Component = useMDXComponent(code);
+
   return (
     <div className="mdx prose prose-invert max-w-none">
-      <Component components={components as any} />
+      <Component components={components} />
     </div>
   );
 }

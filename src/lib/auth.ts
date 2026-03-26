@@ -4,23 +4,32 @@ import Google from "next-auth/providers/google";
 import { FirestoreAdapter } from "@auth/firebase-adapter";
 import { firestore, firebaseEnabled } from "./firebase-admin";
 
+const githubClientId =
+  process.env.GITHUB_CLIENT_ID || process.env.AUTH_GITHUB_ID;
+const githubClientSecret =
+  process.env.GITHUB_CLIENT_SECRET || process.env.AUTH_GITHUB_SECRET;
+const googleClientId =
+  process.env.GOOGLE_CLIENT_ID || process.env.AUTH_GOOGLE_ID;
+const googleClientSecret =
+  process.env.GOOGLE_CLIENT_SECRET || process.env.AUTH_GOOGLE_SECRET;
+
 const providers = [];
 
-if (process.env.GITHUB_CLIENT_ID && process.env.GITHUB_CLIENT_SECRET) {
+if (githubClientId && githubClientSecret) {
   providers.push(
     GitHub({
-      clientId: process.env.GITHUB_CLIENT_ID,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET,
+      clientId: githubClientId,
+      clientSecret: githubClientSecret,
       allowDangerousEmailAccountLinking: true,
     })
   );
 }
 
-if (process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) {
+if (googleClientId && googleClientSecret) {
   providers.push(
     Google({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      clientId: googleClientId,
+      clientSecret: googleClientSecret,
       allowDangerousEmailAccountLinking: true,
     })
   );

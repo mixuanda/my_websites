@@ -18,33 +18,15 @@ export function Giscus({
 }: GiscusProps) {
   const ref = useRef<HTMLDivElement>(null);
   const { resolvedTheme } = useTheme();
-
-  // 如果没有配置，显示提示信息
-  if (!repo || !repoId || !categoryId) {
-    return (
-      <div className="text-center py-8 text-muted-foreground">
-        <p className="text-sm mb-2">评论系统尚未配置</p>
-        <p className="text-xs">
-          请在 <code className="bg-muted px-1 py-0.5 rounded">.env.local</code> 中设置 Giscus 相关环境变量
-        </p>
-        <p className="text-xs mt-2">
-          访问{" "}
-          <a 
-            href="https://giscus.app/zh-CN" 
-            target="_blank" 
-            rel="noopener noreferrer"
-            className="text-primary hover:underline"
-          >
-            giscus.app
-          </a>
-          {" "}获取配置
-        </p>
-      </div>
-    );
-  }
+  const isConfigured = Boolean(repo && repoId && categoryId);
 
   useEffect(() => {
-    if (!ref.current || ref.current.hasChildNodes()) return;
+    if (!isConfigured || !ref.current || !repo || !repoId || !categoryId) {
+      return;
+    }
+
+    const container = ref.current;
+    container.innerHTML = "";
 
     const script = document.createElement("script");
     script.src = "https://giscus.app/client.js";
@@ -62,10 +44,16 @@ export function Giscus({
     script.setAttribute("data-theme", resolvedTheme === "dark" ? "dark" : "light");
     script.setAttribute("data-lang", "zh-CN");
 
-    ref.current.appendChild(script);
-  }, [repo, repoId, category, categoryId, resolvedTheme]);
+    container.appendChild(script);
+
+    return () => {
+      container.replaceChildren();
+    };
+  }, [category, categoryId, isConfigured, repo, repoId, resolvedTheme]);
 
   useEffect(() => {
+    if (!isConfigured) return;
+
     const iframe = document.querySelector<HTMLIFrameElement>(
       "iframe.giscus-frame"
     );
@@ -81,7 +69,30 @@ export function Giscus({
         "https://giscus.app"
       );
     }
-  }, [resolvedTheme]);
+  }, [isConfigured, resolvedTheme]);
+
+  if (!isConfigured) {
+    return (
+      <div className="text-center py-8 text-muted-foreground">
+        <p className="text-sm mb-2">评论系统尚未配置</p>
+        <p className="text-xs">
+          请在 <code className="bg-muted px-1 py-0.5 rounded">.env.local</code> 中设置 Giscus 相关环境变量
+        </p>
+        <p className="text-xs mt-2">
+          访问{" "}
+          <a
+            href="https://giscus.app/zh-CN"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-primary hover:underline"
+          >
+            giscus.app
+          </a>
+          {" "}获取配置
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div ref={ref} className="giscus-wrapper" />

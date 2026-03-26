@@ -139,10 +139,46 @@ export const memoryDb: DiaryDatabase = {
 // Firestore 实现（需要配置 Firebase 服务账号）
 // ============================================
 
-const normalizeDiary = (docId: string, data: any): Diary => {
+type FirestoreDiaryRecord = {
+  content: string;
+  createdAt?: Date | number | string | { toDate?: () => Date };
+  excerpt?: string;
+  isPublic?: boolean;
+  mood?: Diary["mood"];
+  tags?: string[];
+  title: string;
+  updatedAt?: Date | number | string | { toDate?: () => Date };
+  userId: string;
+};
+
+function toDate(value: FirestoreDiaryRecord["createdAt"]): Date {
   const Timestamp = firestoreModule?.Timestamp;
-  const created = Timestamp && data.createdAt instanceof Timestamp ? data.createdAt.toDate() : new Date(data.createdAt);
-  const updated = Timestamp && data.updatedAt instanceof Timestamp ? data.updatedAt.toDate() : new Date(data.updatedAt);
+
+  if (Timestamp && value instanceof Timestamp) {
+    return value.toDate();
+  }
+
+  if (value instanceof Date) {
+    return value;
+  }
+
+  if (typeof value === "string" || typeof value === "number") {
+    return new Date(value);
+  }
+
+  if (value && typeof value === "object" && "toDate" in value) {
+    const maybeDate = value.toDate;
+    if (typeof maybeDate === "function") {
+      return maybeDate();
+    }
+  }
+
+  return new Date();
+}
+
+const normalizeDiary = (docId: string, data: FirestoreDiaryRecord): Diary => {
+  const created = toDate(data.createdAt);
+  const updated = toDate(data.updatedAt);
 
   return {
     id: docId,
@@ -152,7 +188,7 @@ const normalizeDiary = (docId: string, data: any): Diary => {
     excerpt: data.excerpt,
     tags: data.tags,
     mood: data.mood,
-    isPublic: data.isPublic,
+    isPublic: data.isPublic ?? false,
     createdAt: created,
     updatedAt: updated,
   };
@@ -172,7 +208,9 @@ function createFirestoreDb(): DiaryDatabase | null {
         .orderBy("createdAt", "desc")
         .get();
 
-      return snapshot.docs.map((doc) => normalizeDiary(doc.id, doc.data()));
+      return snapshot.docs.map((doc) =>
+        normalizeDiary(doc.id, doc.data() as FirestoreDiaryRecord)
+      );
     },
 
     async getById(userId: string, id: string): Promise<Diary | null> {
@@ -184,7 +222,7 @@ function createFirestoreDb(): DiaryDatabase | null {
         .get();
 
       if (!doc.exists) return null;
-      return normalizeDiary(doc.id, doc.data());
+      return normalizeDiary(doc.id, doc.data() as FirestoreDiaryRecord);
     },
 
     async create(userId: string, input: DiaryInput): Promise<Diary> {
@@ -228,7 +266,7 @@ function createFirestoreDb(): DiaryDatabase | null {
       });
 
       const doc = await docRef.get();
-      return normalizeDiary(doc.id, doc.data());
+      return normalizeDiary(doc.id, doc.data() as FirestoreDiaryRecord);
     },
 
     async delete(userId: string, id: string): Promise<void> {

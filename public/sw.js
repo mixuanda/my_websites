@@ -7,8 +7,9 @@ const CACHE_NAME = 'my-site-v1';
 const urlsToCache = [
   '/',
   '/offline.html',
-  '/styles.css',
-  '/app.js',
+  '/manifest.json',
+  '/icon-192.png',
+  '/icon-512.png',
 ];
 
 // 安装事件 - 缓存资源

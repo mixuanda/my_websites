@@ -8,7 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, Home, User, FolderKanban, FileText, BookOpen, Sun, Moon, Eye } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTheme } from "next-themes";
 
 interface NavItem {
@@ -30,20 +30,37 @@ interface GlassSidebarProps {
   onHighContrastChange?: (value: boolean) => void;
 }
 
-export function GlassSidebar({ highContrast = false, onHighContrastChange }: GlassSidebarProps) {
-  const pathname = usePathname();
-  const [open, setOpen] = useState(false);
-  const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+interface SidebarContentProps {
+  highContrast: boolean;
+  onHighContrastChange?: (value: boolean) => void;
+  onNavigate: () => void;
+  pathname: string;
+  theme?: string;
+  setTheme: (theme: string) => void;
+}
 
-  // Avoid hydration mismatch by only rendering theme-dependent UI after mount
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+function SidebarContent({
+  highContrast,
+  onHighContrastChange,
+  onNavigate,
+  pathname,
+  theme,
+  setTheme,
+}: SidebarContentProps) {
+  const isDarkTheme = theme === "dark";
+  const themeIcon = isDarkTheme ? (
+    <Sun className="w-4 h-4" />
+  ) : (
+    <Moon className="w-4 h-4" />
+  );
+  const themeLabel = theme
+    ? isDarkTheme
+      ? "亮色模式"
+      : "暗色模式"
+    : "切换主题";
 
-  const SidebarContent = () => (
+  return (
     <div className="flex flex-col h-full">
-      {/* Profile Section */}
       <div className="p-6 text-center">
         <Avatar className="w-24 h-24 mx-auto mb-4 ring-2 ring-white/20">
           <AvatarImage src="/avatar.png" alt="Avatar" />
@@ -57,17 +74,18 @@ export function GlassSidebar({ highContrast = false, onHighContrastChange }: Gla
 
       <Separator className="bg-white/10" />
 
-      {/* Navigation */}
       <nav className="flex-1 p-4">
         <ul className="space-y-2">
           {navItems.map((item) => {
-            const isActive = pathname === item.href || 
+            const isActive =
+              pathname === item.href ||
               (item.href !== "/" && pathname.startsWith(item.href));
+
             return (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  onClick={() => setOpen(false)}
+                  onClick={onNavigate}
                   className={cn(
                     "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200",
                     isActive
@@ -86,24 +104,15 @@ export function GlassSidebar({ highContrast = false, onHighContrastChange }: Gla
 
       <Separator className="bg-white/10" />
 
-      {/* Settings */}
       <div className="p-4 space-y-2">
         <Button
           variant="ghost"
           size="sm"
           className="w-full justify-start gap-3"
-          onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+          onClick={() => setTheme(isDarkTheme ? "light" : "dark")}
         >
-          {mounted ? (
-            theme === "dark" ? (
-              <Sun className="w-4 h-4" />
-            ) : (
-              <Moon className="w-4 h-4" />
-            )
-          ) : (
-            <Sun className="w-4 h-4" />
-          )}
-          <span>{mounted ? (theme === "dark" ? "亮色模式" : "暗色模式") : "切换主题"}</span>
+          {themeIcon}
+          <span>{themeLabel}</span>
         </Button>
         <Button
           variant="ghost"
@@ -119,12 +128,20 @@ export function GlassSidebar({ highContrast = false, onHighContrastChange }: Gla
         </Button>
       </div>
 
-      {/* Footer */}
       <div className="p-4 text-center text-xs text-muted-foreground">
         <p>© 2026 Evanalysis</p>
       </div>
     </div>
   );
+}
+
+export function GlassSidebar({
+  highContrast = false,
+  onHighContrastChange,
+}: GlassSidebarProps) {
+  const pathname = usePathname();
+  const [open, setOpen] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   return (
     <>
@@ -137,7 +154,14 @@ export function GlassSidebar({ highContrast = false, onHighContrastChange }: Gla
             : "bg-sidebar/90 backdrop-blur-2xl border-r border-white/10"
         )}
       >
-        <SidebarContent />
+        <SidebarContent
+          highContrast={highContrast}
+          onHighContrastChange={onHighContrastChange}
+          onNavigate={() => setOpen(false)}
+          pathname={pathname}
+          theme={theme}
+          setTheme={setTheme}
+        />
       </aside>
 
       {/* Mobile Header with Sheet */}
@@ -164,7 +188,14 @@ export function GlassSidebar({ highContrast = false, onHighContrastChange }: Gla
                 : "bg-sidebar/95 backdrop-blur-2xl"
             )}
           >
-            <SidebarContent />
+            <SidebarContent
+              highContrast={highContrast}
+              onHighContrastChange={onHighContrastChange}
+              onNavigate={() => setOpen(false)}
+              pathname={pathname}
+              theme={theme}
+              setTheme={setTheme}
+            />
           </SheetContent>
         </Sheet>
         <span className="ml-4 font-semibold">Evanalysis</span>

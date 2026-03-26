@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { GlassPanel } from "@/components/glass";
 
+const headingSelector = "article h2, article h3, article h4";
+
 interface TocItem {
   id: string;
   text: string;
@@ -14,18 +16,42 @@ interface TocProps {
   highContrast?: boolean;
 }
 
+function collectHeadings(): TocItem[] {
+  if (typeof document === "undefined") {
+    return [];
+  }
+
+  return Array.from(document.querySelectorAll<HTMLElement>(headingSelector)).map(
+    (el) => ({
+      id: el.id,
+      text: el.textContent || "",
+      level: Number.parseInt(el.tagName.charAt(1), 10),
+    })
+  );
+}
+
 export function Toc({ highContrast = false }: TocProps) {
   const [headings, setHeadings] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
 
   useEffect(() => {
-    const elements = document.querySelectorAll("article h2, article h3, article h4");
-    const items: TocItem[] = Array.from(elements).map((el) => ({
-      id: el.id,
-      text: el.textContent || "",
-      level: parseInt(el.tagName.charAt(1)),
-    }));
-    setHeadings(items);
+    const frame = window.requestAnimationFrame(() => {
+      setHeadings(collectHeadings());
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+    };
+  }, []);
+
+  useEffect(() => {
+    const elements = Array.from(
+      document.querySelectorAll<HTMLElement>(headingSelector)
+    );
+
+    if (elements.length === 0) {
+      return;
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -39,8 +65,11 @@ export function Toc({ highContrast = false }: TocProps) {
     );
 
     elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [headings]);
 
   if (headings.length === 0) return null;
 

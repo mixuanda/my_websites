@@ -1,17 +1,20 @@
 "use client";
 
+import { Suspense, useState } from "react";
 import { GlassCard } from "@/components/glass";
 import { Button } from "@/components/ui/button";
+import { useSearchParams } from "next/navigation";
 import { signIn } from "next-auth/react";
 import { Github, Mail, Fingerprint } from "lucide-react";
-import { useState } from "react";
 
-export default function LoginPage() {
+function LoginPageContent() {
   const [isLoading, setIsLoading] = useState(false);
+  const searchParams = useSearchParams();
   const availableProviders = (process.env.NEXT_PUBLIC_AUTH_PROVIDERS || "github,google")
     .split(",")
     .map((p) => p.trim())
     .filter(Boolean);
+  const callbackUrl = searchParams.get("callbackUrl") || "/diary";
 
   const showPasskey = availableProviders.includes("passkey");
   const showGithub = availableProviders.includes("github");
@@ -19,7 +22,7 @@ export default function LoginPage() {
 
   const handleSignIn = async (provider: string) => {
     setIsLoading(true);
-    await signIn(provider, { redirectTo: "/diary" });
+    await signIn(provider, { redirectTo: callbackUrl });
     setIsLoading(false);
   };
 
@@ -97,5 +100,13 @@ export default function LoginPage() {
         </p>
       </GlassCard>
     </div>
+  );
+}
+
+export default function LoginPage() {
+  return (
+    <Suspense fallback={<div className="max-w-md mx-auto mt-20" />}>
+      <LoginPageContent />
+    </Suspense>
   );
 }

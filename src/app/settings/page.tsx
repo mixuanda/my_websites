@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -107,9 +108,11 @@ export default function SettingsPage() {
       <GlassCard className="p-6">
         <div className="flex items-center gap-4">
           {session.user.image ? (
-            <img
+            <Image
               src={session.user.image}
               alt="Avatar"
+              width={64}
+              height={64}
               className="w-16 h-16 rounded-full"
             />
           ) : (

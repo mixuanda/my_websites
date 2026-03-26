@@ -81,6 +81,6 @@ export default makeSource({
   disableImportAliasWarning: true,
   mdx: {
     remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex as any],
+    rehypePlugins: [rehypeKatex],
   },
 })

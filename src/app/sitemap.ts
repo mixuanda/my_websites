@@ -2,7 +2,8 @@ import { allPosts, allNotes, allProjects } from "contentlayer/generated";
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://example.com";
+  const baseUrl =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.mixuanda.top";
 
   const staticPages = [
     { url: baseUrl, lastModified: new Date() },

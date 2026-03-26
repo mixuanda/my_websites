@@ -2,7 +2,7 @@ import { allNotes } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { Mdx } from "@/components/Mdx";
 import { Toc } from "@/components/Toc";
-import { GlassCard, GlassPanel } from "@/components/glass";
+import { GlassCard } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";

@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    ".contentlayer/**",
+    "tina/__generated__/**",
+    "public/admin/**",
   ]),
 ]);
 
