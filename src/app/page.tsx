@@ -44,14 +44,14 @@ export default function Home() {
             </Link>
             <Link
               href="/blog"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl border border-border/60 bg-background/40 px-4 py-2 transition-colors hover:bg-background/60"
             >
               <BookOpen className="w-4 h-4" />
               浏览博客
             </Link>
             <Link
               href="/projects"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl border border-border/60 bg-background/40 px-4 py-2 transition-colors hover:bg-background/60"
             >
               <FolderKanban className="w-4 h-4" />
               查看项目

@@ -6,7 +6,7 @@ import { GlassPanel } from "@/components/glass";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getInteractiveSnapshot } from "@/lib/textbook/interactive-snapshots";
-import { getLocalizedText } from "@/lib/textbook/i18n";
+import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
 import type { Locale, LocalizedText } from "@/lib/textbook/types";
 import { cn } from "@/lib/utils";
 
@@ -47,7 +47,7 @@ function MatrixView({
   highlightCell?: [number, number];
 }) {
   return (
-    <div className="inline-flex overflow-hidden rounded-xl border border-white/10">
+    <div className="inline-flex overflow-hidden rounded-xl border border-border/60 bg-background/20">
       <table className="border-collapse">
         <tbody>
           {data.map((row, rowIndex) => (
@@ -60,8 +60,8 @@ function MatrixView({
                   <td
                     key={`cell-${rowIndex}-${cellIndex}`}
                     className={cn(
-                      "min-w-12 border border-white/10 px-3 py-2 text-center font-mono text-sm",
-                      isHighlighted && "bg-primary/20 text-primary-foreground"
+                      "min-w-12 border border-border/60 px-3 py-2 text-center font-mono text-sm",
+                      isHighlighted && "bg-primary/15 text-foreground"
                     )}
                   >
                     {value}
@@ -90,11 +90,14 @@ function InteractiveShell({
   const snapshot = getInteractiveSnapshot(widgetId, locale);
 
   return (
-    <GlassPanel className="my-8 p-5">
+    <GlassPanel className="my-6 border border-primary/15 bg-card/80 p-4 md:p-5">
       <div className="flex items-start gap-3">
-        <div className="mt-1 text-primary">{icon}</div>
+        <div className="mt-1 rounded-full bg-primary/10 p-2 text-primary">{icon}</div>
         <div className="min-w-0 flex-1">
-          <h3 className="text-xl font-semibold">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+            {getLocalizedText(uiText.interactiveMoment, locale)}
+          </p>
+          <h3 className="mt-2 text-lg font-semibold">
             {snapshot?.title ?? widgetId}
           </h3>
           {snapshot ? (
@@ -155,9 +158,9 @@ function TruthTableBuilder({ locale }: { locale: Locale }) {
         <table className="w-full border-collapse text-sm">
           <thead>
             <tr className="text-left text-muted-foreground">
-              <th className="border-b border-white/10 px-3 py-2">P</th>
-              <th className="border-b border-white/10 px-3 py-2">Q</th>
-              <th className="border-b border-white/10 px-3 py-2">
+              <th className="border-b border-border/60 px-3 py-2">P</th>
+              <th className="border-b border-border/60 px-3 py-2">Q</th>
+              <th className="border-b border-border/60 px-3 py-2">
                 {formulaOptions.find((option) => option.key === selected)?.formula}
               </th>
             </tr>
@@ -165,9 +168,9 @@ function TruthTableBuilder({ locale }: { locale: Locale }) {
           <tbody>
             {rows.map(([p, q], index) => (
               <tr key={`${p}-${q}-${index}`}>
-                <td className="border-b border-white/10 px-3 py-2 font-mono">{p ? "T" : "F"}</td>
-                <td className="border-b border-white/10 px-3 py-2 font-mono">{q ? "T" : "F"}</td>
-                <td className="border-b border-white/10 px-3 py-2 font-mono">
+                <td className="border-b border-border/60 px-3 py-2 font-mono">{p ? "T" : "F"}</td>
+                <td className="border-b border-border/60 px-3 py-2 font-mono">{q ? "T" : "F"}</td>
+                <td className="border-b border-border/60 px-3 py-2 font-mono">
                   {computeValue(p, q) ? "T" : "F"}
                 </td>
               </tr>
@@ -247,7 +250,7 @@ function QuantifierNegationStepper({ locale }: { locale: Locale }) {
         </GlassPanel>
         <ol className="space-y-2 text-sm leading-7">
           {current.steps.slice(0, step).map((item, index) => (
-            <li key={`step-${index}`} className="rounded-xl border border-white/10 px-4 py-3">
+            <li key={`step-${index}`} className="rounded-xl border border-border/60 bg-background/20 px-4 py-3">
               {index + 1}. {getLocalizedText(item, locale)}
             </li>
           ))}

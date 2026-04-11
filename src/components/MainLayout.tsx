@@ -1,7 +1,9 @@
 "use client";
 
 import { GlassSidebar } from "@/components/glass";
-import { useState, createContext, useContext } from "react";
+import { cn } from "@/lib/utils";
+import { useTheme } from "next-themes";
+import { useEffect, useState, createContext, useContext } from "react";
 
 interface LayoutContextType {
   highContrast: boolean;
@@ -19,17 +21,61 @@ interface MainLayoutProps {
   children: React.ReactNode;
 }
 
+const HIGH_CONTRAST_STORAGE_KEY = "site-high-contrast";
+
 export function MainLayout({ children }: MainLayoutProps) {
   const [highContrast, setHighContrast] = useState(false);
+  const { resolvedTheme } = useTheme();
+
+  useEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    setHighContrast(window.localStorage.getItem(HIGH_CONTRAST_STORAGE_KEY) === "true");
+  }, []);
+
+  useEffect(() => {
+    if (typeof document === "undefined" || typeof window === "undefined") {
+      return;
+    }
+
+    document.documentElement.dataset.contrast = highContrast ? "high" : "normal";
+    window.localStorage.setItem(HIGH_CONTRAST_STORAGE_KEY, String(highContrast));
+  }, [highContrast]);
+
+  const isDarkTheme = resolvedTheme !== "light";
 
   return (
     <LayoutContext.Provider value={{ highContrast, setHighContrast }}>
-      <div className="min-h-screen bg-background">
-        {/* 背景装饰层 */}
-        <div className="fixed inset-0 -z-10">
-          <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-purple-950/50 to-slate-950" />
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
+      <div className="min-h-screen bg-background text-foreground transition-colors">
+        <div
+          aria-hidden="true"
+          className={cn(
+            "fixed inset-0 -z-10 transition-opacity duration-500",
+            highContrast && "opacity-0"
+          )}
+        >
+          <div
+            className={cn(
+              "absolute inset-0 transition-colors duration-500",
+              isDarkTheme
+                ? "bg-gradient-to-br from-slate-950 via-purple-950/50 to-slate-950"
+                : "bg-gradient-to-br from-stone-100 via-fuchsia-50/60 to-sky-100"
+            )}
+          />
+          <div
+            className={cn(
+              "absolute top-0 left-1/4 h-96 w-96 rounded-full blur-3xl transition-colors duration-500",
+              isDarkTheme ? "bg-purple-500/10" : "bg-fuchsia-300/20"
+            )}
+          />
+          <div
+            className={cn(
+              "absolute bottom-0 right-1/4 h-96 w-96 rounded-full blur-3xl transition-colors duration-500",
+              isDarkTheme ? "bg-blue-500/10" : "bg-sky-300/20"
+            )}
+          />
         </div>
         <GlassSidebar
           highContrast={highContrast}

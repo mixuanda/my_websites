@@ -48,19 +48,19 @@ export default function AboutPage() {
             <div className="flex gap-3 justify-center md:justify-start">
               <Link
                 href="https://github.com"
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                className="rounded-lg border border-border/60 bg-background/40 p-2 transition-colors hover:bg-background/60"
               >
                 <Github className="w-5 h-5" />
               </Link>
               <Link
                 href="https://twitter.com"
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                className="rounded-lg border border-border/60 bg-background/40 p-2 transition-colors hover:bg-background/60"
               >
                 <Twitter className="w-5 h-5" />
               </Link>
               <Link
                 href="mailto:example@example.com"
-                className="p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
+                className="rounded-lg border border-border/60 bg-background/40 p-2 transition-colors hover:bg-background/60"
               >
                 <Mail className="w-5 h-5" />
               </Link>

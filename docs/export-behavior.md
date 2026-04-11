@@ -14,6 +14,9 @@ The live page stays interactive. The export output is static.
 - PDF export is served from
   `/api/textbook-export/[locale]/[course]/[chapter]/[unit]/pdf`.
 - The export locale always matches the current page locale.
+- The correction pass keeps export at the current unit level even after the
+  article-flow refactor. Embedded widgets are still exported from the current
+  route only.
 
 ## What export keeps
 
@@ -53,6 +56,9 @@ MDX source, then serializes that structure to TXT or PDF.
 - `src/lib/textbook/export-pdf.tsx` renders the same block list to PDF.
 - `InteractiveWidget` blocks convert to localized static snapshots through
   `src/lib/textbook/interactive-snapshots.ts`.
+- The inline lead-in prose that now introduces `math1030` widgets remains in
+  the export before the snapshot, so the static study file keeps the same
+  teaching transition as the live page.
 
 ## Current blockers
 

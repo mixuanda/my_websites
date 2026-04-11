@@ -29,6 +29,7 @@ export pipeline.
 
 - [Export behavior](./export-behavior.md)
 - [Interactive component behavior](./interactive-component-behavior.md)
+- [Theme system](./theme-system.md)
 
 ## Legacy site docs
 

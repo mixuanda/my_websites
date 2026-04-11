@@ -19,18 +19,36 @@ The current codebase uses the following localization model.
 - Shared terminology and spoken-language-ready notes live in
   `src/lib/textbook/glossary.ts`.
 - Shared UI strings live in `src/lib/textbook/i18n.ts`.
+- Shared shell-level UI strings now live in `src/lib/site-i18n.ts`.
 
 ## Current UI behavior
 
-The textbook UI now localizes the chrome that matters for learning and export.
+Localization is no longer limited to textbook cards. The shell now localizes the
+site-wide chrome that sits around the textbook too.
 
 - The language switcher preserves the current textbook route while replacing
   the locale segment.
 - The course sidebar, breadcrumbs, page table of contents label, export menu,
   glossary labels, and progress labels localize.
+- The global sidebar now derives locale from the current route first, then from
+  the stored preferred locale. This keeps `/en`, `/zh-hk`, and `/zh-cn`
+  textbook pages aligned while still letting unprefixed shell pages adopt the
+  learner's last textbook language.
+- The global navigation, shell subtitle, theme toggle label, high-contrast
+  label, footer note, and default page TOC label now localize.
 - Progress state uses the canonical `unitId`, so switching language does not
   reset completion.
 - The current locale and last visited unit are stored in local storage.
+
+## Current correction focus
+
+This phase corrected the gap between localized textbook routes and the
+previously Chinese-only site shell.
+
+- English textbook routes no longer inherit Chinese sidebar labels by default.
+- zh-HK continues to prefer Hong Kong-friendly Traditional Chinese wording.
+- The shell locale handoff uses a client effect for stored-preference fallback
+  so unprefixed routes do not hydrate to mismatched labels.
 
 ## Writing and translation rules
 

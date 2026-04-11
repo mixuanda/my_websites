@@ -100,7 +100,7 @@ export default async function DiaryDetailPage({ params }: PageProps) {
 
       {/* Diary Content */}
       <GlassCard className="p-6 md:p-8">
-        <div className="prose prose-invert max-w-none">
+        <div className="prose max-w-none dark:prose-invert">
           {diary.content.split("\n").map((line, i) => {
             if (line.startsWith("## ")) {
               return <h2 key={i} className="text-xl font-semibold mt-6 mb-3">{line.replace("## ", "")}</h2>;

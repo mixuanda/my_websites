@@ -183,7 +183,7 @@ function ToggleBlock({
   const label = useMemo(() => getLocalizedText(blockLabels[type], locale), [locale, type]);
 
   return (
-    <GlassPanel className="my-6 border border-white/10 p-5">
+    <GlassPanel className="my-6 border border-border/60 p-5">
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">

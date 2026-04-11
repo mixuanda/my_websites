@@ -126,6 +126,10 @@
   }
 }
 
+html[data-contrast="high"] body {
+  background-image: none;
+}
+
 /* KaTeX styles */
 @import "katex/dist/katex.min.css";
 
@@ -142,7 +146,7 @@
 
 /* MDX code blocks */
 .mdx pre {
-  @apply bg-muted/30 backdrop-blur-sm border border-white/10 rounded-xl;
+  @apply rounded-xl border border-border/60 bg-muted/30 backdrop-blur-sm;
 }
 
 .mdx code {

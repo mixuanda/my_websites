@@ -8,8 +8,11 @@ import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, Home, User, FolderKanban, FileText, BookOpen, Sun, Moon, Eye } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import { getRouteLocale, getSiteText, resolveSiteLocale, siteUiText } from "@/lib/site-i18n";
+import { defaultLocale } from "@/lib/textbook/i18n";
+import type { Locale } from "@/lib/textbook/types";
 
 interface NavItem {
   href: string;
@@ -18,19 +21,21 @@ interface NavItem {
   matches?: (pathname: string) => boolean;
 }
 
-const navItems: NavItem[] = [
-  { href: "/", label: "首页", icon: <Home className="w-4 h-4" /> },
-  {
-    href: "/zh-hk/courses",
-    label: "教材",
-    icon: <BookOpen className="w-4 h-4" />,
-    matches: (pathname) => /^\/(en|zh-hk|zh-cn)(\/courses|$)/.test(pathname),
-  },
-  { href: "/about", label: "关于", icon: <User className="w-4 h-4" /> },
-  { href: "/projects", label: "项目", icon: <FolderKanban className="w-4 h-4" /> },
-  { href: "/blog", label: "博客", icon: <FileText className="w-4 h-4" /> },
-  { href: "/notes", label: "笔记", icon: <BookOpen className="w-4 h-4" /> },
-];
+function getNavItems(locale: Locale): NavItem[] {
+  return [
+    { href: "/", label: getSiteText(siteUiText.home, locale), icon: <Home className="w-4 h-4" /> },
+    {
+      href: `/${locale}/courses`,
+      label: getSiteText(siteUiText.textbooks, locale),
+      icon: <BookOpen className="w-4 h-4" />,
+      matches: (pathname) => /^\/(en|zh-hk|zh-cn)(\/courses|$)/.test(pathname),
+    },
+    { href: "/about", label: getSiteText(siteUiText.about, locale), icon: <User className="w-4 h-4" /> },
+    { href: "/projects", label: getSiteText(siteUiText.projects, locale), icon: <FolderKanban className="w-4 h-4" /> },
+    { href: "/blog", label: getSiteText(siteUiText.blog, locale), icon: <FileText className="w-4 h-4" /> },
+    { href: "/notes", label: getSiteText(siteUiText.notes, locale), icon: <BookOpen className="w-4 h-4" /> },
+  ];
+}
 
 interface GlassSidebarProps {
   highContrast?: boolean;
@@ -39,32 +44,33 @@ interface GlassSidebarProps {
 
 interface SidebarContentProps {
   highContrast: boolean;
+  locale: Locale;
   onHighContrastChange?: (value: boolean) => void;
   onNavigate: () => void;
   pathname: string;
-  theme?: string;
+  resolvedTheme?: string;
   setTheme: (theme: string) => void;
 }
 
 function SidebarContent({
   highContrast,
+  locale,
   onHighContrastChange,
   onNavigate,
   pathname,
-  theme,
+  resolvedTheme,
   setTheme,
 }: SidebarContentProps) {
-  const isDarkTheme = theme === "dark";
+  const navItems = getNavItems(locale);
+  const isDarkTheme = resolvedTheme === "dark";
   const themeIcon = isDarkTheme ? (
     <Sun className="w-4 h-4" />
   ) : (
     <Moon className="w-4 h-4" />
   );
-  const themeLabel = theme
-    ? isDarkTheme
-      ? "亮色模式"
-      : "暗色模式"
-    : "切换主题";
+  const themeLabel = isDarkTheme
+    ? getSiteText(siteUiText.switchToLightMode, locale)
+    : getSiteText(siteUiText.switchToDarkMode, locale);
 
   return (
     <div className="flex flex-col h-full">
@@ -75,11 +81,11 @@ function SidebarContent({
         </Avatar>
         <h2 className="text-xl font-bold">Evanalysis</h2>
         <p className="text-sm text-muted-foreground mt-1">
-          开发者 / 数学爱好者
+          {getSiteText(siteUiText.shellSubtitle, locale)}
         </p>
       </div>
 
-      <Separator className="bg-white/10" />
+      <Separator className="bg-border/70" />
 
       <nav className="flex-1 p-4">
         <ul className="space-y-2">
@@ -98,7 +104,7 @@ function SidebarContent({
                     "flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-200",
                     isActive
                       ? "bg-primary text-primary-foreground shadow-lg"
-                      : "hover:bg-white/10 dark:hover:bg-white/5"
+                      : "hover:bg-accent/70"
                   )}
                 >
                   {item.icon}
@@ -110,7 +116,7 @@ function SidebarContent({
         </ul>
       </nav>
 
-      <Separator className="bg-white/10" />
+      <Separator className="bg-border/70" />
 
       <div className="p-4 space-y-2">
         <Button
@@ -132,12 +138,13 @@ function SidebarContent({
           onClick={() => onHighContrastChange?.(!highContrast)}
         >
           <Eye className="w-4 h-4" />
-          <span>高对比度</span>
+          <span>{getSiteText(siteUiText.highContrast, locale)}</span>
         </Button>
       </div>
 
-      <div className="p-4 text-center text-xs text-muted-foreground">
+      <div className="p-4 text-center text-xs text-muted-foreground space-y-1">
         <p>© 2026 Evanalysis</p>
+        <p>{getSiteText(siteUiText.footerNote, locale)}</p>
       </div>
     </div>
   );
@@ -147,9 +154,16 @@ export function GlassSidebar({
   highContrast = false,
   onHighContrastChange,
 }: GlassSidebarProps) {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const [locale, setLocale] = useState<Locale>(
+    getRouteLocale(pathname) ?? defaultLocale
+  );
+  const { resolvedTheme, setTheme } = useTheme();
+
+  useEffect(() => {
+    setLocale(resolveSiteLocale(pathname));
+  }, [pathname]);
 
   return (
     <>
@@ -159,15 +173,16 @@ export function GlassSidebar({
           "hidden lg:flex flex-col w-64 h-screen fixed left-0 top-0 transition-all duration-300",
           highContrast
             ? "bg-sidebar border-r border-border"
-            : "bg-sidebar/90 backdrop-blur-2xl border-r border-white/10"
+            : "bg-sidebar/90 backdrop-blur-2xl border-r border-border/60"
         )}
       >
         <SidebarContent
           highContrast={highContrast}
+          locale={locale}
           onHighContrastChange={onHighContrastChange}
           onNavigate={() => setOpen(false)}
           pathname={pathname}
-          theme={theme}
+          resolvedTheme={resolvedTheme}
           setTheme={setTheme}
         />
       </aside>
@@ -178,7 +193,7 @@ export function GlassSidebar({
           "lg:hidden fixed top-0 left-0 right-0 z-50 h-16 flex items-center px-4 transition-all duration-300",
           highContrast
             ? "bg-sidebar border-b border-border"
-            : "bg-sidebar/90 backdrop-blur-2xl border-b border-white/10"
+            : "bg-sidebar/90 backdrop-blur-2xl border-b border-border/60"
         )}
       >
         <Sheet open={open} onOpenChange={setOpen}>
@@ -193,15 +208,16 @@ export function GlassSidebar({
               "w-64 p-0 transition-all duration-300",
               highContrast
                 ? "bg-sidebar"
-                : "bg-sidebar/95 backdrop-blur-2xl"
+                : "bg-sidebar/95 backdrop-blur-2xl border-r border-border/60"
             )}
           >
             <SidebarContent
               highContrast={highContrast}
+              locale={locale}
               onHighContrastChange={onHighContrastChange}
               onNavigate={() => setOpen(false)}
               pathname={pathname}
-              theme={theme}
+              resolvedTheme={resolvedTheme}
               setTheme={setTheme}
             />
           </SheetContent>

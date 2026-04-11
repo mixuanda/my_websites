@@ -24,6 +24,12 @@ The following milestone items are implemented in the current codebase.
   5.1.
 - A textbook course sidebar, localized breadcrumbs, a language switcher, a
   page-level table of contents, glossary popovers, and local progress state.
+- Shell-level localization now covers the global sidebar navigation, theme
+  controls, high-contrast label, footer note, and fallback page TOC label.
+- Textbook widgets now sit inside the article flow without a detached
+  "interactive studio" wrapper.
+- Theme handling now uses a shared light/dark background path and token-aware
+  glass borders instead of assuming a permanently dark canvas.
 
 ## Active
 
@@ -34,6 +40,8 @@ The following work is in progress and still needs follow-through.
   widgets and tables.
 - Hong Kong terminology review for zh-HK wording beyond the current early-unit
   glossary.
+- Manual theme QA for light mode, dark mode, and high-contrast mode across
+  both legacy pages and textbook routes.
 - Additional `math1030` interactive units for span, basis, linear
   independence, and linear transformations once the source-backed scaffolding
   is ready.

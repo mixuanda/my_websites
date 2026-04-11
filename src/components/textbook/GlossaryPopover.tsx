@@ -35,13 +35,13 @@ export function GlossaryPopover({
           {entry.displayDefinition}
         </p>
         {entry.notationNote ? (
-          <div className="mt-3 rounded-xl border border-white/10 bg-background/40 p-3 text-sm leading-7">
+          <div className="mt-3 rounded-xl border border-border/60 bg-background/40 p-3 text-sm leading-7">
             <p className="font-medium">{getLocalizedText(uiText.notationNote, locale)}</p>
             <p className="mt-1 text-muted-foreground">{entry.notationNote}</p>
           </div>
         ) : null}
         {entry.cantoneseNote || entry.putonghuaNote || entry.englishPronunciationNote ? (
-          <div className="mt-3 space-y-2 rounded-xl border border-white/10 bg-background/40 p-3 text-sm leading-7">
+          <div className="mt-3 space-y-2 rounded-xl border border-border/60 bg-background/40 p-3 text-sm leading-7">
             {entry.cantoneseNote ? (
               <div>
                 <p className="flex items-center gap-2 font-medium">

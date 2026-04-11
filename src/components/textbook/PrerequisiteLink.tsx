@@ -13,7 +13,7 @@ export function PrerequisiteLink({
   return (
     <Link
       href={getUnitHref(locale, unit)}
-      className="group flex items-start justify-between gap-3 rounded-xl border border-white/10 bg-background/30 px-4 py-3 transition-colors hover:bg-background/50"
+      className="group flex items-start justify-between gap-3 rounded-xl border border-border/60 bg-background/35 px-4 py-3 transition-colors hover:bg-background/55"
     >
       <div className="min-w-0">
         <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">

@@ -12,11 +12,11 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   title: {
-    default: "Evanalysis - 个人网站",
+    default: "Evanalysis",
     template: "%s | Evanalysis",
   },
-  description: "开发者 / 数学爱好者的个人网站",
-  keywords: ["博客", "技术", "数学", "笔记", "项目"],
+  description: "Interactive mathematics textbooks, projects, and notes.",
+  keywords: ["interactive textbook", "math1090", "math1030", "mathematics", "notes", "projects"],
   authors: [{ name: "Evanalysis" }],
   manifest: "/manifest.json",
   appleWebApp: {

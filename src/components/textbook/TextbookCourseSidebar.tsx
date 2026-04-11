@@ -33,13 +33,13 @@ export function TextbookCourseSidebar({
           <div className="flex flex-wrap gap-2">
             <Link
               href={getCoursesHref(locale)}
-              className="rounded-full border border-white/10 px-3 py-1 text-xs text-muted-foreground transition-colors hover:bg-background/50 hover:text-foreground"
+              className="rounded-full border border-border/60 px-3 py-1 text-xs text-muted-foreground transition-colors hover:bg-background/50 hover:text-foreground"
             >
               {getLocalizedText(uiText.allCourses, locale)}
             </Link>
             <Link
               href={getCourseHref(locale, courseMeta.id)}
-              className="rounded-full border border-white/10 px-3 py-1 text-xs text-muted-foreground transition-colors hover:bg-background/50 hover:text-foreground"
+              className="rounded-full border border-border/60 px-3 py-1 text-xs text-muted-foreground transition-colors hover:bg-background/50 hover:text-foreground"
             >
               {getLocalizedText(uiText.courseOverview, locale)}
             </Link>
@@ -68,7 +68,7 @@ export function TextbookCourseSidebar({
                     "group flex items-start justify-between gap-3 rounded-xl border px-3 py-3 transition-colors",
                     isActive
                       ? "border-primary/70 bg-primary/15"
-                      : "border-white/10 bg-background/20 hover:bg-background/45"
+                      : "border-border/60 bg-background/25 hover:bg-background/45"
                   )}
                 >
                   <div className="min-w-0">

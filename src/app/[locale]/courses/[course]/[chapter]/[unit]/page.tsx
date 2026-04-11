@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { ChevronLeft, ChevronRight, CircleDashed, Waypoints } from "lucide-react";
+import { ChevronLeft, ChevronRight, CircleDashed } from "lucide-react";
 import { notFound } from "next/navigation";
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
@@ -165,10 +165,6 @@ export default async function UnitPage({ params }: UnitPageProps) {
           </div>
 
           <GlassCard className="p-6 md:p-8">
-            <div className="mb-6 flex items-center gap-2 text-sm text-muted-foreground">
-              <Waypoints className="h-4 w-4 text-primary" />
-              {getLocalizedText(uiText.interactiveStudio, locale)}
-            </div>
             <article>
               <TextbookMdx code={bundle.doc.body.code} locale={locale} />
             </article>
@@ -228,7 +224,7 @@ export default async function UnitPage({ params }: UnitPageProps) {
                 {navigation.previous ? (
                   <Link
                     href={getUnitHref(locale, navigation.previous)}
-                    className="rounded-xl border border-white/10 bg-background/30 px-4 py-4 transition-colors hover:bg-background/50"
+                    className="rounded-xl border border-border/60 bg-background/35 px-4 py-4 transition-colors hover:bg-background/55"
                   >
                     <p className="flex items-center gap-2 text-xs uppercase tracking-[0.24em] text-muted-foreground">
                       <ChevronLeft className="h-4 w-4" />
@@ -239,7 +235,7 @@ export default async function UnitPage({ params }: UnitPageProps) {
                     </p>
                   </Link>
                 ) : (
-                  <div className="rounded-xl border border-dashed border-white/10 px-4 py-4 text-sm text-muted-foreground">
+                  <div className="rounded-xl border border-dashed border-border/60 px-4 py-4 text-sm text-muted-foreground">
                     <CircleDashed className="mb-2 h-4 w-4" />
                     {getLocalizedText(uiText.previousUnit, locale)}
                   </div>
@@ -248,7 +244,7 @@ export default async function UnitPage({ params }: UnitPageProps) {
                 {navigation.next ? (
                   <Link
                     href={getUnitHref(locale, navigation.next)}
-                    className="rounded-xl border border-white/10 bg-background/30 px-4 py-4 transition-colors hover:bg-background/50"
+                    className="rounded-xl border border-border/60 bg-background/35 px-4 py-4 transition-colors hover:bg-background/55"
                   >
                     <p className="flex items-center justify-end gap-2 text-xs uppercase tracking-[0.24em] text-muted-foreground">
                       {getLocalizedText(uiText.nextUnit, locale)}
@@ -259,7 +255,7 @@ export default async function UnitPage({ params }: UnitPageProps) {
                     </p>
                   </Link>
                 ) : (
-                  <div className="rounded-xl border border-dashed border-white/10 px-4 py-4 text-right text-sm text-muted-foreground">
+                  <div className="rounded-xl border border-dashed border-border/60 px-4 py-4 text-right text-sm text-muted-foreground">
                     <CircleDashed className="mb-2 ml-auto h-4 w-4" />
                     {getLocalizedText(uiText.nextUnit, locale)}
                   </div>

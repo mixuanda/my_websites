@@ -90,10 +90,10 @@ export const uiText = {
     "zh-cn": "词汇与记号",
     "zh-hk": "詞彙與記號",
   },
-  interactiveStudio: {
-    en: "Interactive studio",
-    "zh-cn": "互动学习区",
-    "zh-hk": "互動學習區",
+  interactiveMoment: {
+    en: "Try it here",
+    "zh-cn": "边读边试",
+    "zh-hk": "邊讀邊試",
   },
   interactiveSnapshot: {
     en: "Static study snapshot",

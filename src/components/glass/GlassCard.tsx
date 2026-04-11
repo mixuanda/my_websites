@@ -15,13 +15,13 @@ const GlassCard = forwardRef<HTMLDivElement, GlassCardProps>(
     const variantStyles = {
       default: highContrast
         ? "bg-card border border-border shadow-lg"
-        : "bg-card/80 backdrop-blur-xl border border-white/10 shadow-lg shadow-black/10",
+        : "bg-card/80 backdrop-blur-xl border border-border/60 shadow-lg shadow-black/10 dark:border-white/10",
       elevated: highContrast
         ? "bg-card border border-border shadow-xl"
-        : "bg-card/90 backdrop-blur-2xl border border-white/15 shadow-xl shadow-black/20",
+        : "bg-card/90 backdrop-blur-2xl border border-border/70 shadow-xl shadow-black/20 dark:border-white/15",
       subtle: highContrast
         ? "bg-card/90 border border-border/50"
-        : "bg-card/60 backdrop-blur-lg border border-white/5",
+        : "bg-card/60 backdrop-blur-lg border border-border/50 dark:border-white/5",
     };
 
     return (

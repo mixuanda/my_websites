@@ -1,8 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { GlassPanel } from "@/components/glass";
+import { getRouteLocale, getSiteText, resolveSiteLocale, siteUiText } from "@/lib/site-i18n";
+import { defaultLocale } from "@/lib/textbook/i18n";
+import type { Locale } from "@/lib/textbook/types";
 
 const headingSelector = "article h2, article h3, article h4";
 
@@ -31,7 +35,11 @@ function collectHeadings(): TocItem[] {
   );
 }
 
-export function Toc({ highContrast = false, title = "目录" }: TocProps) {
+export function Toc({ highContrast = false, title }: TocProps) {
+  const pathname = usePathname();
+  const [locale, setLocale] = useState<Locale>(
+    getRouteLocale(pathname) ?? defaultLocale
+  );
   const [headings, setHeadings] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
 
@@ -72,11 +80,17 @@ export function Toc({ highContrast = false, title = "目录" }: TocProps) {
     };
   }, [headings]);
 
+  useEffect(() => {
+    setLocale(resolveSiteLocale(pathname));
+  }, [pathname]);
+
   if (headings.length === 0) return null;
 
   return (
     <GlassPanel highContrast={highContrast} className="sticky top-24">
-      <h4 className="font-semibold mb-3 text-sm">{title}</h4>
+      <h4 className="font-semibold mb-3 text-sm">
+        {title ?? getSiteText(siteUiText.contents, locale)}
+      </h4>
       <nav className="space-y-1">
         {headings.map((heading) => (
           <a
