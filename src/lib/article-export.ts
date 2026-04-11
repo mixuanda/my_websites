@@ -129,7 +129,7 @@ function convertInlineMarkdown(value: string): string {
   );
 }
 
-function normalizeMdxSource(value: string) {
+export function normalizeMdxSource(value: string) {
   const withoutImports = value.replace(/^\s*import .*$/gm, "").trim();
 
   return withoutImports.replace(

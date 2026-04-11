@@ -1,0 +1,79 @@
+---
+title: "2.2 Augmented matrices and row operations"
+description: "Translate a system into an augmented matrix and see what each row operation preserves."
+---
+
+## From equations to rows
+
+When we write a linear system as a matrix, each equation becomes one row.
+The coefficients go first, and the constants go in the last column.
+
+That full table is called an augmented matrix.
+
+<Definition title="Augmented matrix">
+An augmented matrix places the coefficient matrix and the constant column in one
+table so you can row-reduce the whole system at once.
+</Definition>
+
+## The three row operations
+
+The local notes use three elementary row operations:
+
+1. swap two rows,
+2. multiply a row by a nonzero number,
+3. add a multiple of one row to another row.
+
+These operations preserve the solution set, so they are safe for solving a
+system.
+
+<WorkedExample title="Turn a system into an augmented matrix">
+Consider
+
+$$
+x + 2y = 5, \qquad 3x - y = 4.
+$$
+
+Its augmented matrix is
+
+$$
+\begin{bmatrix}
+1 & 2 & | & 5 \\
+3 & -1 & | & 4
+\end{bmatrix}.
+$$
+
+Now use the row operation `R_2 \leftarrow R_2 - 3R_1` to begin eliminating the
+`x`-term in the second row.
+</WorkedExample>
+
+## Why the row operations are allowed
+
+Row operations are just a matrix version of equivalent equation operations.
+They do not change which number lists satisfy the system.
+
+<InteractiveWidget id="system-augmented-matrix-explorer" />
+
+## Common mistake
+
+<CommonMistake title="Do not change only the constants">
+If you change one side of an equation but not the other, you are no longer
+working with an equivalent system.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="Which row operation keeps the solution set unchanged?">
+Think about swapping rows, scaling a row by `0`, or adding one row to another.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Swapping rows and adding a multiple of one row to another are safe, and scaling
+a row is safe only when the multiplier is nonzero.
+</RevealSolution>
+
+## Prerequisite link
+
+This page builds on
+[1.1 Equations and solution sets](/en/courses/math1030/systems/equations-solution-sets)
+and
+[2.1 Matrix basics](/en/courses/math1030/matrices/matrix-basics).

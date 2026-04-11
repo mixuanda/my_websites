@@ -5,7 +5,6 @@ import { Toc } from "@/components/Toc";
 import { GlassCard } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { ArticleDownloadMenu } from "@/components/ArticleDownloadMenu";
-import { PrintOnQuery } from "@/components/PrintOnQuery";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
 import Link from "next/link";
@@ -42,22 +41,21 @@ export default async function NotePage({ params }: PageProps) {
   }
 
   return (
-    <div className="print-article max-w-6xl mx-auto">
-      <PrintOnQuery />
+    <div className="max-w-6xl mx-auto">
       <div className="flex gap-8">
         {/* Main Content */}
         <article className="flex-1 min-w-0">
           {/* Back Link */}
           <Link
             href="/notes"
-            className="print-hidden inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-6"
+            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary mb-6"
           >
             <ArrowLeft className="w-4 h-4" />
             返回笔记列表
           </Link>
 
           {/* Note Header */}
-          <GlassCard className="print-surface p-6 md:p-8 mb-8">
+          <GlassCard className="p-6 md:p-8 mb-8">
             <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
               <div className="min-w-0 flex-1">
                 <h1 className="text-3xl md:text-4xl font-bold mb-4">{note.title}</h1>
@@ -77,7 +75,6 @@ export default async function NotePage({ params }: PageProps) {
                 </div>
               </div>
               <ArticleDownloadMenu
-                articlePath={`/notes/${note.slug}`}
                 kind="notes"
                 slug={note.slug}
               />
@@ -98,14 +95,14 @@ export default async function NotePage({ params }: PageProps) {
           </GlassCard>
 
           {/* Note Content */}
-          <GlassCard className="print-surface p-6 md:p-8">
+          <GlassCard className="p-6 md:p-8">
             <Mdx code={note.body.code} />
           </GlassCard>
         </article>
 
         {/* Sidebar with TOC */}
         {note.toc && (
-          <aside className="print-hidden hidden xl:block w-64 flex-shrink-0">
+          <aside className="hidden xl:block w-64 flex-shrink-0">
             <Toc />
           </aside>
         )}

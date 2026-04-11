@@ -1,0 +1,77 @@
+---
+title: "1.2 Truth tables and equivalence"
+description: "Build truth tables, compare formulas row by row, and recognize tautologies, contradictions, and logical equivalence."
+---
+
+# Truth tables and equivalence
+
+Prerequisite: review [1.1 Propositional logic](/en/courses/math1090/logic/propositional-logic)
+first, because the truth-table language uses the same connectives.
+
+## What a truth table does
+
+<Definition title="Truth table">
+A truth table lists the truth value of a formula for every possible assignment
+of its variables.
+</Definition>
+
+It is the safest way to check whether two formulas always match.
+
+## A first example
+
+<WorkedExample title="Checking implication by rows">
+Consider the formula `P → Q`.
+
+| P | Q | `P → Q` |
+| --- | --- | --- |
+| T | T | T |
+| T | F | F |
+| F | T | T |
+| F | F | T |
+
+The formula is false only in the row where `P` is true and `Q` is false.
+
+<RevealSolution title="Why `P → Q` matches `¬P ∨ Q`">
+If `P` is false, then `¬P ∨ Q` is already true. If `P` is true, the formula
+becomes `Q`. That is exactly the same truth pattern as `P → Q`.
+</RevealSolution>
+</WorkedExample>
+
+## Logical equivalence
+
+<Definition title="Logical equivalence">
+Two formulas are logically equivalent when they have the same truth value in
+every row of their truth tables.
+</Definition>
+
+That means a rewrite is allowed only if the whole table matches, not just one
+example row.
+
+<CommonMistake title="One matching row is not a proof">
+If two formulas agree on a single assignment, that does not prove equivalence.
+You must compare every row, or use a known equivalence law such as
+`P → Q ≡ ¬P ∨ Q`.
+</CommonMistake>
+
+## Tautologies and contradictions
+
+<Definition title="Two special kinds of formulas">
+- A tautology is always true.
+- A contradiction is always false.
+</Definition>
+
+Examples:
+
+- `P ∨ ¬P` is a tautology.
+- `P ∧ ¬P` is a contradiction.
+
+## Quick check
+
+<QuickCheck prompt="Are `P ∧ Q` and `Q ∧ P` logically equivalent?">
+Yes. They have the same truth value in every row, because `∧` is commutative.
+</QuickCheck>
+
+## Try it live
+
+<InteractiveWidget id="truth-table-builder" />
+

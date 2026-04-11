@@ -14,6 +14,7 @@ interface TocItem {
 
 interface TocProps {
   highContrast?: boolean;
+  title?: string;
 }
 
 function collectHeadings(): TocItem[] {
@@ -30,7 +31,7 @@ function collectHeadings(): TocItem[] {
   );
 }
 
-export function Toc({ highContrast = false }: TocProps) {
+export function Toc({ highContrast = false, title = "目录" }: TocProps) {
   const [headings, setHeadings] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
 
@@ -75,7 +76,7 @@ export function Toc({ highContrast = false }: TocProps) {
 
   return (
     <GlassPanel highContrast={highContrast} className="sticky top-24">
-      <h4 className="font-semibold mb-3 text-sm">目录</h4>
+      <h4 className="font-semibold mb-3 text-sm">{title}</h4>
       <nav className="space-y-1">
         {headings.map((heading) => (
           <a

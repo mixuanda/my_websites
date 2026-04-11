@@ -1,0 +1,164 @@
+import Link from "next/link";
+import type { Metadata } from "next";
+import { ArrowRight, Languages, SquareLibrary, Waypoints } from "lucide-react";
+import { GlassCard, GlassPanel } from "@/components/glass";
+import { Badge } from "@/components/ui/badge";
+import { getCourseList } from "@/lib/textbook/content";
+import { getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
+import { getCourseHref } from "@/lib/textbook/routes";
+import type { LocalizedText } from "@/lib/textbook/types";
+import { notFound } from "next/navigation";
+
+function text(en: string, zhHk: string, zhCn: string): LocalizedText {
+  return {
+    en,
+    "zh-cn": zhCn,
+    "zh-hk": zhHk,
+  };
+}
+
+const heroCopy = {
+  body: text(
+    "Learn from small interactive units, then export the exact unit you are studying as a static TXT or PDF revision copy.",
+    "用細小的互動單元學習，然後把你正在看的單元直接匯出成 TXT 或 PDF 靜態溫習版本。",
+    "用细小的互动单元学习，然后把你正在看的单元直接导出成 TXT 或 PDF 静态复习版本。"
+  ),
+  export: text(
+    "Unit-level export",
+    "單元級匯出",
+    "单元级导出"
+  ),
+  languages: text(
+    "English · 繁體中文 · 简体中文",
+    "English · 繁體中文 · 简体中文",
+    "English · 繁體中文 · 简体中文"
+  ),
+  route: text(
+    "Route-based reading",
+    "按路由切分閱讀",
+    "按路由切分阅读"
+  ),
+} as const;
+
+interface CoursesIndexPageProps {
+  params: Promise<{
+    locale: string;
+  }>;
+}
+
+export async function generateMetadata({
+  params,
+}: CoursesIndexPageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const safeLocale = isLocale(locale) ? locale : "zh-hk";
+
+  return {
+    title: getLocalizedText(uiText.textbook, safeLocale),
+    description: getLocalizedText(heroCopy.body, safeLocale),
+  };
+}
+
+export default async function CoursesIndexPage({
+  params,
+}: CoursesIndexPageProps) {
+  const { locale } = await params;
+
+  if (!isLocale(locale)) {
+    notFound();
+  }
+
+  const courses = getCourseList();
+
+  return (
+    <div className="mx-auto max-w-7xl space-y-8">
+      <GlassCard className="p-6 md:p-8">
+        <div className="flex flex-wrap items-start justify-between gap-6">
+          <div className="max-w-3xl">
+            <Badge variant="secondary">
+              {getLocalizedText(uiText.textbook, locale)}
+            </Badge>
+            <h1 className="mt-4 text-3xl font-bold md:text-4xl">
+              {getLocalizedText(uiText.textbook, locale)}
+            </h1>
+            <p className="mt-4 text-base leading-8 text-muted-foreground md:text-lg">
+              {getLocalizedText(heroCopy.body, locale)}
+            </p>
+          </div>
+          <div className="grid gap-3 text-sm text-muted-foreground sm:grid-cols-2">
+            <GlassPanel className="min-w-52 p-4">
+              <div className="flex items-center gap-2 text-foreground">
+                <Waypoints className="h-4 w-4 text-primary" />
+                {getLocalizedText(heroCopy.route, locale)}
+              </div>
+            </GlassPanel>
+            <GlassPanel className="min-w-52 p-4">
+              <div className="flex items-center gap-2 text-foreground">
+                <SquareLibrary className="h-4 w-4 text-primary" />
+                {getLocalizedText(heroCopy.export, locale)}
+              </div>
+            </GlassPanel>
+            <GlassPanel className="min-w-52 p-4 sm:col-span-2">
+              <div className="flex items-center gap-2 text-foreground">
+                <Languages className="h-4 w-4 text-primary" />
+                {getLocalizedText(heroCopy.languages, locale)}
+              </div>
+            </GlassPanel>
+          </div>
+        </div>
+      </GlassCard>
+
+      <div className="grid gap-6 xl:grid-cols-2">
+        {courses.map((course) => {
+          const unitCount = course.chapters.reduce(
+            (total, chapter) => total + chapter.units.length,
+            0
+          );
+
+          return (
+            <GlassCard key={course.id} className="p-6">
+              <div className="flex h-full flex-col">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                    {course.id.toUpperCase()}
+                  </p>
+                  <h2 className="mt-2 text-2xl font-semibold">
+                    {course.title[locale]}
+                  </h2>
+                  <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                    {course.description[locale]}
+                  </p>
+                </div>
+                <div className="mt-5 grid gap-3 md:grid-cols-2">
+                  {course.chapters.map((chapter) => (
+                    <GlassPanel key={chapter.id} className="p-4">
+                      <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                        {getLocalizedText(uiText.chapter, locale)} {chapter.number}
+                      </p>
+                      <h3 className="mt-2 font-medium">{chapter.title[locale]}</h3>
+                      <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                        {chapter.summary[locale]}
+                      </p>
+                    </GlassPanel>
+                  ))}
+                </div>
+                <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
+                  <p className="text-sm text-muted-foreground">
+                    {course.chapters.length} {getLocalizedText(uiText.chapter, locale)} · {unitCount}{" "}
+                    {getLocalizedText(uiText.unit, locale)}
+                  </p>
+                  <Link
+                    href={getCourseHref(locale, course.id)}
+                    className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+                  >
+                    {getLocalizedText(uiText.courseOverview, locale)}
+                    <ArrowRight className="h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            </GlassCard>
+          );
+        })}
+      </div>
+    </div>
+  );
+}

@@ -75,9 +75,51 @@ export const Project = defineDocumentType(() => ({
   },
 }))
 
+export const TextbookUnit = defineDocumentType(() => ({
+  name: 'TextbookUnit',
+  filePathPattern: `textbook/**/*.mdx`,
+  contentType: 'mdx',
+  fields: {
+    title: { type: 'string', required: true },
+    description: { type: 'string', required: true },
+  },
+  computedFields: {
+    chapterId: {
+      type: 'string',
+      resolve: (doc) => doc._raw.flattenedPath.split('/')[2] ?? '',
+    },
+    course: {
+      type: 'string',
+      resolve: (doc) => doc._raw.flattenedPath.split('/')[1] ?? '',
+    },
+    locale: {
+      type: 'string',
+      resolve: (doc) => doc._raw.flattenedPath.split('/')[4] ?? '',
+    },
+    unitSlug: {
+      type: 'string',
+      resolve: (doc) => doc._raw.flattenedPath.split('/')[3] ?? '',
+    },
+    unitId: {
+      type: 'string',
+      resolve: (doc) => {
+        const [, course, chapterId, unitSlug] = doc._raw.flattenedPath.split('/');
+        return `${course}.${chapterId}.${unitSlug}`;
+      },
+    },
+    url: {
+      type: 'string',
+      resolve: (doc) => {
+        const [, course, chapterId, unitSlug, locale] = doc._raw.flattenedPath.split('/');
+        return `/${locale}/courses/${course}/${chapterId}/${unitSlug}`;
+      },
+    },
+  },
+}))
+
 export default makeSource({
   contentDirPath: 'content',
-  documentTypes: [Post, Note, Project],
+  documentTypes: [Post, Note, Project, TextbookUnit],
   disableImportAliasWarning: true,
   mdx: {
     remarkPlugins: [remarkMath],

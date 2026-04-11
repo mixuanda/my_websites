@@ -1,0 +1,78 @@
+---
+title: "2.4 解集的种类"
+description: "根据化简后的形式，判断方程组是唯一解、无限多解，还是无解。"
+---
+
+## 三种可能结果
+
+做完消元之后，线性方程组通常会落入三种情况：
+
+1. 唯一解，
+2. 无限多解，
+3. 无解。
+
+化简后的矩阵会告诉你属于哪一种。
+
+<Definition title="解集的种类">
+线性方程组的化简形式可以显示它是唯一解、无限多解，还是无解。
+</Definition>
+
+## 怎样看模式
+
+- 如果每个变量都有主元，方程组就只有一个解。
+- 如果有自由变量，而且没有矛盾行，方程组就有无限多解。
+- 如果出现矛盾行，方程组就无解。
+
+<WorkedExample title="辨认三种情况">
+考虑这些化简后的矩阵：
+
+$$
+\begin{bmatrix}
+1 & 0 & | & 3 \\
+0 & 1 & | & -2
+\end{bmatrix}
+$$
+
+这代表唯一解。
+
+$$
+\begin{bmatrix}
+1 & 2 & | & 5 \\
+0 & 0 & | & 0
+\end{bmatrix}
+$$
+
+因为有一个自由变量，所以有无限多解。
+
+$$
+\begin{bmatrix}
+1 & 0 & | & 3 \\
+0 & 0 & | & 1
+\end{bmatrix}
+$$
+
+这代表无解，因为最后一行是矛盾。
+</WorkedExample>
+
+<InteractiveWidget id="solution-set-classifier" />
+
+## 常见错误
+
+<CommonMistake title="自由变量不等于未做完">
+自由变量只是表示解集需要参数来描述，不代表题目坏了，或未完成。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="`[0 0 0 | 1]` 对方程组有什么意思？">
+用这一行去判断方程组是否相容。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它表示方程组不相容，所以没有解。
+</RevealSolution>
+
+## 预备链接
+
+这一页用到
+[2.3 高斯消元与最简行阶梯形](/zh-cn/courses/math1030/matrices/gaussian-elimination-rref)。

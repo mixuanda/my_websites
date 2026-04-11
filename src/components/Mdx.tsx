@@ -4,20 +4,60 @@
 
 import type { MDXComponents } from "mdx/types";
 import { useMDXComponent } from "next-contentlayer2/hooks";
+import { Children, isValidElement } from "react";
 import { Callout } from "./Callout";
 
-const components: MDXComponents = {
+function extractText(children: React.ReactNode): string {
+  return Children.toArray(children)
+    .map((child) => {
+      if (typeof child === "string" || typeof child === "number") {
+        return String(child);
+      }
+
+      if (isValidElement(child)) {
+        const element = child as React.ReactElement<{
+          children?: React.ReactNode;
+        }>;
+        return extractText(element.props.children);
+      }
+
+      return "";
+    })
+    .join(" ");
+}
+
+function slugifyHeading(children: React.ReactNode) {
+  return extractText(children)
+    .trim()
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}\s-]/gu, "")
+    .replace(/\s+/g, "-");
+}
+
+const baseComponents: MDXComponents = {
   h1: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h1 className="text-3xl font-bold mt-8 mb-4" {...props} />
   ),
   h2: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h2 className="text-2xl font-semibold mt-8 mb-4 scroll-mt-20" id={props.children?.toString().toLowerCase().replace(/\s+/g, '-')} {...props} />
+    <h2
+      className="text-2xl font-semibold mt-8 mb-4 scroll-mt-20"
+      id={props.id ?? slugifyHeading(props.children)}
+      {...props}
+    />
   ),
   h3: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h3 className="text-xl font-semibold mt-6 mb-3 scroll-mt-20" id={props.children?.toString().toLowerCase().replace(/\s+/g, '-')} {...props} />
+    <h3
+      className="text-xl font-semibold mt-6 mb-3 scroll-mt-20"
+      id={props.id ?? slugifyHeading(props.children)}
+      {...props}
+    />
   ),
   h4: (props: React.HTMLAttributes<HTMLHeadingElement>) => (
-    <h4 className="text-lg font-medium mt-4 mb-2 scroll-mt-20" id={props.children?.toString().toLowerCase().replace(/\s+/g, '-')} {...props} />
+    <h4
+      className="text-lg font-medium mt-4 mb-2 scroll-mt-20"
+      id={props.id ?? slugifyHeading(props.children)}
+      {...props}
+    />
   ),
   p: (props: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p className="my-4 leading-7" {...props} />
@@ -60,14 +100,15 @@ const components: MDXComponents = {
 
 interface MdxProps {
   code: string;
+  components?: MDXComponents;
 }
 
-export function Mdx({ code }: MdxProps) {
+export function Mdx({ code, components }: MdxProps) {
   const Component = useMDXComponent(code);
 
   return (
     <div className="mdx prose prose-invert max-w-none">
-      <Component components={components} />
+      <Component components={{ ...baseComponents, ...components }} />
     </div>
   );
 }

@@ -1,0 +1,81 @@
+---
+title: "2.4 Solution-set types"
+description: "Classify a system as having one solution, infinitely many solutions, or no solution from its reduced form."
+---
+
+## Three possible outcomes
+
+After elimination, a linear system usually falls into one of three types:
+
+1. one solution,
+2. infinitely many solutions,
+3. no solution.
+
+The reduced matrix tells you which case you are in.
+
+<Definition title="Solution-set types">
+The reduced form of a linear system shows whether the system has one solution,
+infinitely many solutions, or no solution.
+</Definition>
+
+## How to read the pattern
+
+- If every variable has a pivot, the system has a single solution.
+- If at least one variable is free and there is no contradiction row, the system
+  has infinitely many solutions.
+- If a contradiction row appears, the system has no solution.
+
+<WorkedExample title="Recognize the three cases">
+Consider these reduced matrices:
+
+$$
+\begin{bmatrix}
+1 & 0 & | & 3 \\
+0 & 1 & | & -2
+\end{bmatrix}
+$$
+
+has one solution.
+
+$$
+\begin{bmatrix}
+1 & 2 & | & 5 \\
+0 & 0 & | & 0
+\end{bmatrix}
+$$
+
+has infinitely many solutions because one variable is free.
+
+$$
+\begin{bmatrix}
+1 & 0 & | & 3 \\
+0 & 0 & | & 1
+\end{bmatrix}
+$$
+
+has no solution because the last row is a contradiction.
+</WorkedExample>
+
+<InteractiveWidget id="solution-set-classifier" />
+
+## Common mistake
+
+<CommonMistake title="Free variable does not mean unfinished work">
+A free variable means the solution set has a parameter. It does not mean the
+problem is broken or incomplete.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="What does `[0 0 0 | 1]` tell you about the system?">
+Use the row to decide whether the system is consistent.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It tells you the system is inconsistent, so there is no solution.
+</RevealSolution>
+
+## Prerequisite link
+
+This page uses the ideas from
+[2.3 Gaussian elimination and RREF](/en/courses/math1030/matrices/gaussian-elimination-rref).

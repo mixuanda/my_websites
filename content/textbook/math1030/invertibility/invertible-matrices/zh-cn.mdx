@@ -1,0 +1,52 @@
+---
+title: "5.1 可逆矩阵"
+description: "把逆矩阵、行化简与非奇异的实际意义连接起来。"
+---
+
+## 什么叫可逆
+
+一个方阵如果有另一个矩阵可以把它“做回去”，就叫可逆。
+若 `A` 可逆，就存在 `A^{-1}`，而且
+
+$$
+AA^{-1} = A^{-1}A = I.
+$$
+
+<Definition title="可逆矩阵">
+可逆矩阵有逆矩阵，所以乘上它的逆之后，会回到单位矩阵。
+</Definition>
+
+## 可以怎样理解
+
+可逆不只是符号上的关系。它表示这个矩阵的作用可以被反转。
+因此行化简很有用：它可以帮你检查矩阵能否化成单位矩阵。
+
+<WorkedExample title="从行化简读出可逆性">
+假设一连串行变换把 `A` 变成 `I`。
+那么把同样的操作做在 `[A | I]` 上，就会得到 `[I | A^{-1}]`。
+
+这就是之后课程中一直要做分块行化简的原因。
+</WorkedExample>
+
+<InteractiveWidget id="invertibility-row-reduction-demo" />
+
+## 常见错误
+
+<CommonMistake title="外表简单不代表可逆">
+不要只凭外表猜。真正的测试，是能否把矩阵化成单位矩阵。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="如果 `A` 可逆，`AA^{-1}` 是什么？">
+用逆矩阵的定义来答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它是单位矩阵 `I`。
+</RevealSolution>
+
+## 预备链接
+
+这一页依赖
+[2.3 高斯消元与最简行阶梯形](/zh-cn/courses/math1030/matrices/gaussian-elimination-rref)。

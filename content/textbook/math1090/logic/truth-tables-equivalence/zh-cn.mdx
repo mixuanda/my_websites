@@ -1,0 +1,71 @@
+---
+title: "1.2 真值表与逻辑等价"
+description: "建立真值表、逐行比较公式，并认识永真式、永假式与逻辑等价。"
+---
+
+# 真值表与逻辑等价
+
+先复习 [1.1 命题逻辑](/zh-cn/courses/math1090/logic/propositional-logic)，
+因为这一页会沿用同样的连接词。
+
+## 真值表做什么
+
+<Definition title="真值表">
+真值表会列出一个公式在每一种变量取值下的真假。
+</Definition>
+
+它是检查两个公式是否永远一致的最稳妥方法。
+
+## 先看一个例子
+
+<WorkedExample title="逐行检查蕴含">
+考虑公式 `P → Q`。
+
+| P | Q | `P → Q` |
+| --- | --- | --- |
+| T | T | T |
+| T | F | F |
+| F | T | T |
+| F | F | T |
+
+它只有在 `P` 真而 `Q` 假时为假。
+
+<RevealSolution title="为什么 `P → Q` 等于 `¬P ∨ Q`">
+若 `P` 为假，`¬P ∨ Q` 已经是真。若 `P` 为真，公式便变成 `Q`。它的真假分布与 `P → Q` 完全一致。
+</RevealSolution>
+</WorkedExample>
+
+## 逻辑等价
+
+<Definition title="逻辑等价">
+如果两个公式在真值表的每一行都给出相同真假值，它们就是逻辑等价。
+</Definition>
+
+这表示你不能只看一个例子就下结论，必须整张表都一致，或者使用已知等价式。
+
+<CommonMistake title="只对上一行不算证明">
+两个公式在某一组取值下相同，不代表它们逻辑等价。你要比较所有列，或者直接使用已知等价式，例如 `P → Q ≡ ¬P ∨ Q`。
+</CommonMistake>
+
+## 永真式与永假式
+
+<Definition title="两类特别的公式">
+- 永真式：无论怎样代入都是真。
+- 永假式：无论怎样代入都是假。
+</Definition>
+
+例子：
+
+- `P ∨ ¬P` 是永真式。
+- `P ∧ ¬P` 是永假式。
+
+## 小检查
+
+<QuickCheck prompt="`P ∧ Q` 和 `Q ∧ P` 是否逻辑等价？">
+是。它们在每一行的真假值都相同，因为 `∧` 服从交换律。
+</QuickCheck>
+
+## 试用互动工具
+
+<InteractiveWidget id="truth-table-builder" />
+

@@ -15,10 +15,17 @@ interface NavItem {
   href: string;
   label: string;
   icon: React.ReactNode;
+  matches?: (pathname: string) => boolean;
 }
 
 const navItems: NavItem[] = [
   { href: "/", label: "首页", icon: <Home className="w-4 h-4" /> },
+  {
+    href: "/zh-hk/courses",
+    label: "教材",
+    icon: <BookOpen className="w-4 h-4" />,
+    matches: (pathname) => /^\/(en|zh-hk|zh-cn)(\/courses|$)/.test(pathname),
+  },
   { href: "/about", label: "关于", icon: <User className="w-4 h-4" /> },
   { href: "/projects", label: "项目", icon: <FolderKanban className="w-4 h-4" /> },
   { href: "/blog", label: "博客", icon: <FileText className="w-4 h-4" /> },
@@ -78,6 +85,7 @@ function SidebarContent({
         <ul className="space-y-2">
           {navItems.map((item) => {
             const isActive =
+              item.matches?.(pathname) ||
               pathname === item.href ||
               (item.href !== "/" && pathname.startsWith(item.href));
 

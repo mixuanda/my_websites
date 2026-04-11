@@ -1,0 +1,52 @@
+---
+title: "5.1 可逆矩陣"
+description: "把逆矩陣、行化簡與非奇異的實際意義連接起來。"
+---
+
+## 甚麼叫可逆
+
+一個方陣如果有另一個矩陣可以把它「做返轉頭」，就叫可逆。
+若 `A` 可逆，就存在 `A^{-1}`，而且
+
+$$
+AA^{-1} = A^{-1}A = I.
+$$
+
+<Definition title="可逆矩陣">
+可逆矩陣有逆矩陣，所以乘上它的逆之後，會回復到單位矩陣。
+</Definition>
+
+## 可以怎樣理解
+
+可逆不只是符號上的關係。它表示這個矩陣的作用可以被反轉。
+因此行化簡很有用：它可以幫你檢查矩陣能否化成單位矩陣。
+
+<WorkedExample title="從行化簡讀出可逆性">
+假設一連串行變換把 `A` 變成 `I`。
+那麼把同樣的操作做在 `[A | I]` 上，就會得到 `[I | A^{-1}]`。
+
+這就是之後課程中一直要做分塊行化簡的原因。
+</WorkedExample>
+
+<InteractiveWidget id="invertibility-row-reduction-demo" />
+
+## 常見錯誤
+
+<CommonMistake title="外表簡單不代表可逆">
+不要只憑外表猜。真正的測試，是能否把矩陣化成單位矩陣。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="如果 `A` 可逆，`AA^{-1}` 是甚麼？">
+用逆矩陣的定義來答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它是單位矩陣 `I`。
+</RevealSolution>
+
+## 預備連結
+
+這一頁依賴
+[2.3 高斯消元與最簡行階梯形](/zh-hk/courses/math1030/matrices/gaussian-elimination-rref)。

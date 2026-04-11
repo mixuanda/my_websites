@@ -1,0 +1,75 @@
+---
+title: "2.2 增廣矩陣與行變換"
+description: "把方程組翻譯成增廣矩陣，並看清每種行變換保留了甚麼。"
+---
+
+## 由方程到行
+
+把線性方程組寫成矩陣時，每條方程對應一行。
+係數先寫，常數放在最後一列。
+
+整個表就是增廣矩陣。
+
+<Definition title="增廣矩陣">
+增廣矩陣把係數矩陣和常數列放在同一張表裡，方便一次過對整個方程
+組做行化簡。
+</Definition>
+
+## 三種行變換
+
+本教材沿用三種基本行變換：
+
+1. 交換兩行，
+2. 用一個非零數乘一行，
+3. 用一行的倍數加到另一行。
+
+這些操作不會改變解集，所以可以安全地用來解方程組。
+
+<WorkedExample title="把方程組寫成增廣矩陣">
+考慮
+
+$$
+x + 2y = 5, \qquad 3x - y = 4.
+$$
+
+它的增廣矩陣是
+
+$$
+\begin{bmatrix}
+1 & 2 & | & 5 \\
+3 & -1 & | & 4
+\end{bmatrix}.
+$$
+
+之後可用行變換 `R_2 \leftarrow R_2 - 3R_1`，先消去第二行中的 `x` 項。
+</WorkedExample>
+
+## 為甚麼可以這樣做
+
+行變換其實就是等價方程操作的矩陣版本。
+它不會改變哪些數組能夠滿足整個方程組。
+
+<InteractiveWidget id="system-augmented-matrix-explorer" />
+
+## 常見錯誤
+
+<CommonMistake title="不要只改常數">
+如果只改方程一邊而不改另一邊，就已經不是等價方程組。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="哪一種行變換會保持解集不變？">
+想一想交換兩行、用 0 乘一行、以及把一行倍數加到另一行。
+</QuickCheck>
+
+<RevealSolution title="答案">
+交換兩行、以及把一行的倍數加到另一行都可以；縮放一行時，乘數必須是非零數。
+</RevealSolution>
+
+## 預備連結
+
+這一頁建基於
+[1.1 方程與解集](/zh-hk/courses/math1030/systems/equations-solution-sets)
+和
+[2.1 矩陣基礎](/zh-hk/courses/math1030/matrices/matrix-basics)。

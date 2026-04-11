@@ -1,0 +1,69 @@
+---
+title: "1.1 Propositional logic"
+description: "Learn what counts as a proposition, how the basic connectives work, and how to read short logical statements."
+---
+
+# Propositional logic
+
+Start with statements that can be true or false. That is the smallest useful
+unit of logic in this course.
+
+## What is a proposition?
+
+<Definition title="A proposition">
+A proposition is a statement with a definite truth value. It is either true or
+false.
+
+Examples:
+
+- `2 + 2 = 4` is a proposition.
+- `Close the door!` is not a proposition, because it is a command.
+- `x + 1 = 3` is not yet a proposition if `x` has not been specified.
+</Definition>
+
+<CommonMistake title="A sentence with a variable is not automatically a proposition">
+If a statement still depends on an unspecified variable, its truth value is not
+fixed yet. You need to know what the variable means before you can judge it.
+</CommonMistake>
+
+## The basic connectives
+
+The course uses five connectives again and again:
+
+| Symbol | Read as | Main idea |
+| --- | --- | --- |
+| `¬P` | not `P` | flips the truth value |
+| `P ∧ Q` | `P` and `Q` | true only when both are true |
+| `P ∨ Q` | `P` or `Q` | true when at least one is true |
+| `P → Q` | if `P`, then `Q` | false only when `P` is true and `Q` is false |
+| `P ↔ Q` | `P` if and only if `Q` | true when both sides match |
+
+## Read a formula in words
+
+<WorkedExample title="Translating an implication">
+Let `P` mean "it is raining" and let `Q` mean "the ground is wet".
+
+Then `P → Q` is read as:
+
+"If it is raining, then the ground is wet."
+
+The statement does **not** say that it is raining right now. It only says what
+must happen whenever the first part is true.
+
+<RevealSolution title="Why beginners often misread implication">
+The formula `P → Q` is false only in one case: `P` is true and `Q` is false.
+Every other case makes the implication true.
+</RevealSolution>
+</WorkedExample>
+
+## A first quick check
+
+<QuickCheck prompt="Which of these are propositions? `2 + 2 = 4`, `Open the window.`, `x + 1 = 3`">
+`2 + 2 = 4` is a proposition. `Open the window.` is not. `x + 1 = 3` is not a
+proposition until `x` is fixed.
+</QuickCheck>
+
+## Try it live
+
+<InteractiveWidget id="truth-table-builder" />
+

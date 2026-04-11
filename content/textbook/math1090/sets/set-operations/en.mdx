@@ -1,0 +1,77 @@
+---
+title: "2.1 Sets and set operations"
+description: "Understand membership, subsets, and the main set operations through concrete examples."
+---
+
+# Sets and set operations
+
+Prerequisite: if you want the notation in this unit to feel familiar, review
+[1.1 Propositional logic](/en/courses/math1090/logic/propositional-logic)
+first. Set membership is often read with logical language in the background.
+
+## What a set is
+
+<Definition title="A set">
+A set is a collection of things.
+
+We write `x ∈ A` when `x` is an element of the set `A`, and `x ∉ A` when it is
+not.
+</Definition>
+
+Two sets are equal when they have exactly the same elements.
+
+## The main operations
+
+| Operation | Symbol | Read as |
+| --- | --- | --- |
+| Union | `A ∪ B` | elements in `A` or `B` |
+| Intersection | `A ∩ B` | elements in both `A` and `B` |
+| Difference | `A \ B` | elements in `A` but not in `B` |
+| Complement | `A^c` | elements outside `A` in a chosen universal set |
+
+## See the operations on a concrete example
+
+<WorkedExample title="Track elements through two sets">
+Let `A = {1, 2, 4}` and `B = {2, 3, 4}`.
+
+Then:
+
+- `A ∪ B = {1, 2, 3, 4}`
+- `A ∩ B = {2, 4}`
+- `A \ B = {1}`
+
+If the universal set is `E = {1, 2, 3, 4, 5}`, then `A^c = {3, 5}`.
+
+<RevealSolution title="A quick De Morgan check">
+An element lies outside `A ∪ B` exactly when it is outside `A` and outside
+`B`. That is why `(A ∪ B)^c = A^c ∩ B^c`.
+</RevealSolution>
+</WorkedExample>
+
+## A note on two extra constructions
+
+The local notes also introduce two useful constructions:
+
+- `A × B`, the Cartesian product, is the set of ordered pairs `(a, b)`.
+- `P(A)`, the power set, is the set of all subsets of `A`.
+
+These are worth recognizing early, even if you only use them in a few places in
+this unit.
+
+## Common mistake
+
+<CommonMistake title="Do not confuse complement and difference">
+`A^c` depends on a universal set. `A \ B` depends on a second set. They are not
+the same idea.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="If `A = {a, b, c}` and `B = {b, c, d}`, what is `A ∩ B`?">
+`{b, c}`.
+</QuickCheck>
+
+## Try it live
+
+<InteractiveWidget id="set-operation-explorer" />
+

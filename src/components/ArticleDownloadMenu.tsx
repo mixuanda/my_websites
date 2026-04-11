@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { Download, FileText, FileType2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -12,23 +11,21 @@ import {
 import type { ExportArticleKind } from "@/lib/article-export";
 
 interface ArticleDownloadMenuProps {
-  articlePath: string;
   kind: ExportArticleKind;
   slug: string;
 }
 
 export function ArticleDownloadMenu({
-  articlePath,
   kind,
   slug,
 }: ArticleDownloadMenuProps) {
   const texHref = `/api/export/${kind}/${encodeURIComponent(slug)}`;
-  const pdfHref = `${articlePath}?print=1&autoclose=1`;
+  const pdfHref = `/api/export/${kind}/${encodeURIComponent(slug)}/pdf`;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="print-hidden shrink-0">
+        <Button variant="outline" className="shrink-0">
           <Download className="w-4 h-4" />
           下载
         </Button>
@@ -41,10 +38,10 @@ export function ArticleDownloadMenu({
           </a>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href={pdfHref} target="_blank" rel="noopener noreferrer">
+          <a href={pdfHref}>
             <FileType2 className="w-4 h-4" />
             PDF (.pdf)
-          </Link>
+          </a>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

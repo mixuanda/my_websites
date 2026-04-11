@@ -1,0 +1,57 @@
+---
+title: "5.1 Invertible matrices"
+description: "Connect inverse matrices, row reduction, and the practical meaning of nonsingularity."
+---
+
+## What invertible means
+
+A square matrix is invertible if there is another matrix that undoes it.
+If `A` is invertible, then `A^{-1}` exists and
+
+$$
+AA^{-1} = A^{-1}A = I.
+$$
+
+<Definition title="Invertible matrix">
+An invertible matrix has a matrix inverse, so multiplying by that inverse
+recovers the identity matrix.
+</Definition>
+
+## How to think about it
+
+Invertibility is not just a symbol game. It tells you whether the matrix has a
+reversible effect.
+That is why row reduction is so useful: it lets you test whether the matrix can
+be turned into the identity matrix.
+
+<WorkedExample title="Read invertibility from row reduction">
+Suppose row operations transform `A` into `I`.
+Then the same operations applied to `[A | I]` produce `[I | A^{-1}]`.
+
+This is the practical reason we keep row-reducing augmented blocks in the later
+pages of the course.
+</WorkedExample>
+
+<InteractiveWidget id="invertibility-row-reduction-demo" />
+
+## Common mistake
+
+<CommonMistake title="Simple-looking is not the same as invertible">
+Do not guess from appearance alone. The real test is whether the matrix can be
+reduced to the identity.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="If `A` is invertible, what is `AA^{-1}`?">
+Use the defining property of an inverse.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is the identity matrix `I`.
+</RevealSolution>
+
+## Prerequisite link
+
+This page depends on
+[2.3 Gaussian elimination and RREF](/en/courses/math1030/matrices/gaussian-elimination-rref).

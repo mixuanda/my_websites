@@ -1,0 +1,101 @@
+---
+title: "2.2 Functions and relations"
+description: "Read a function as a special kind of relation, then learn the language of images, preimages, and inverse maps."
+---
+
+# Functions and relations
+
+Prerequisite: review [2.1 Sets and set operations](/en/courses/math1090/sets/set-operations)
+first, because functions and relations are defined using sets.
+
+## What a function is
+
+<Definition title="A function">
+A function from `X` to `Y` is a subset of `X × Y` such that every `x` in `X`
+is paired with exactly one `y` in `Y`.
+</Definition>
+
+That is the set-theoretic definition used in the local notes.
+
+## Read the basic language
+
+- The domain is the set of inputs.
+- The target is the set of possible outputs.
+- The graph of the function is the set of pairs `(x, y)`.
+- The image of a set is the set of outputs it reaches.
+- The preimage of a set is the set of inputs that land there.
+
+<CommonMistake title="A function must not send one input to two outputs">
+A relation may connect one input to many outputs. A function cannot. Every input
+must have exactly one output.
+</CommonMistake>
+
+## A first example
+
+<WorkedExample title="Read a function from its rule">
+Take the rule `f(x) = x^2`.
+
+The inputs `-2` and `2` both map to `4`, so two different inputs may share the
+same output.
+
+What is not allowed is one input producing two different outputs.
+
+<RevealSolution title="Image and preimage">
+If `A` is a subset of the domain, then `f(A)` is the set of outputs reached by
+inputs in `A`. If `B` is a subset of the target, then `f^{-1}(B)` is the set of
+inputs whose outputs land in `B`.
+</RevealSolution>
+</WorkedExample>
+
+## Injective, surjective, bijective
+
+<Definition title="Three useful words">
+- Injective means different inputs never collide.
+- Surjective means every target value is hit.
+- Bijective means both injective and surjective.
+</Definition>
+
+The local notes also use this language to describe when an inverse function can
+exist.
+
+## Relations
+
+<Definition title="A relation">
+A relation on `X` and `Y` is any subset of `X × Y`.
+
+If `X = Y`, we speak of a relation on one set.
+</Definition>
+
+Relations may be read with properties such as:
+
+- reflexive
+- symmetric
+- antisymmetric
+- transitive
+
+Two especially important special cases are:
+
+- an equivalence relation
+- a partial order
+
+## A short example of relation language
+
+<WorkedExample title="Equality classes are built from a relation">
+When a relation is reflexive, symmetric, and transitive, it is an equivalence
+relation.
+
+Then the equivalence classes group the set into non-overlapping blocks.
+
+<RevealSolution title="What to remember">
+An equivalence relation tells you when two elements belong to the same class.
+The quotient set is the set of all those classes.
+</RevealSolution>
+</WorkedExample>
+
+## Quick check
+
+<QuickCheck prompt="Is `x ≤ y` on the real numbers a relation? Is it a function?">
+It is a relation, but not a function. One input `x` can be related to many
+values of `y`.
+</QuickCheck>
+

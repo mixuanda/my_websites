@@ -1,0 +1,79 @@
+---
+title: "1.1 Equations and solution sets"
+description: "Read a linear system as a set of conditions and describe its full solution set clearly."
+---
+
+## What we are really looking for
+
+A linear system is not just a pile of equations. It is a list of conditions that a
+single choice of numbers must satisfy all at once.
+
+If a pair or tuple of numbers makes every equation true, that choice is a
+solution. The collection of all such choices is the solution set.
+
+<Definition title="Solution set">
+A solution set is the collection of every number or vector that satisfies the
+whole system.
+</Definition>
+
+## One system, one meaning
+
+For a system such as
+
+$$
+x + y = 4, \qquad x - y = 0,
+$$
+
+we are looking for numbers that make both equations true at the same time.
+The second equation says the two numbers must be equal. Then the first equation
+forces that common value to be `2`.
+
+So the solution set is `{(2, 2)}`.
+
+<WorkedExample title="A tiny system with one solution">
+Solve
+
+$$
+x + 2y = 5, \qquad x - y = 1.
+$$
+
+From the second equation, `x = y + 1`. Substitute that into the first equation:
+
+$$
+(y + 1) + 2y = 5.
+$$
+
+That gives `3y = 4`, so `y = 4/3`. Then `x = 7/3`.
+
+The solution set is `{(7/3, 4/3)}`.
+</WorkedExample>
+
+## Why solution sets matter
+
+Later we will rewrite systems in matrix form. Even then, the goal does not
+change. We are still trying to describe the same solution set, just with a more
+efficient language.
+
+<InteractiveWidget id="system-augmented-matrix-explorer" />
+
+## Common mistake
+
+<CommonMistake title="One equation is not enough">
+It is not enough to make only one equation true. A solution must satisfy every
+equation in the system.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="Which ordered pair solves both equations?">
+Try `(1, 3)`, `(2, 2)`, and `(4, 0)` for the system `x + y = 4`, `x - y = 0`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Only `(2, 2)` works, because it makes both equations true at the same time.
+</RevealSolution>
+
+## Prerequisite link
+
+If you want a slower reminder about what a matrix entry means later on, move to
+[2.1 Matrix basics](/en/courses/math1030/matrices/matrix-basics).

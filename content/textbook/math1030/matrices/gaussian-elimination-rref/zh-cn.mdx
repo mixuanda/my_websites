@@ -1,0 +1,69 @@
+---
+title: "2.3 高斯消元与最简行阶梯形"
+description: "把高斯消元看成一连串有目的的操作，而不只是死记步骤。"
+---
+
+## 消元的目标
+
+高斯消元是一种用行变换简化增广矩阵的方法，目的是让解更容易读出
+来。
+
+重点不是乱做操作，而是每一步都让结构更清楚。
+
+<Definition title="RREF">
+最简行阶梯形，简称 RREF，是方便读出主元和自由变量的简化矩阵形式。
+</Definition>
+
+## 要看什么
+
+行化简后，你要留意主元、自由变量，以及像 `[0 0 0 | 1]` 这类矛盾行。
+
+最后这种行表示方程组无解。
+
+## 一个简单例子
+
+<WorkedExample title="在小方程组中开始消元">
+考虑增广矩阵
+
+$$
+\begin{bmatrix}
+1 & 2 & | & 5 \\
+3 & -1 & | & 4
+\end{bmatrix}.
+$$
+
+用 `R_2 \leftarrow R_2 - 3R_1` 去消去主元下面的第一个元素：
+
+$$
+\begin{bmatrix}
+1 & 2 & | & 5 \\
+0 & -7 & | & -11
+\end{bmatrix}.
+$$
+
+之后再继续化简，直到得到 RREF。
+</WorkedExample>
+
+<InteractiveWidget id="row-reduction-stepper" />
+
+## 常见错误
+
+<CommonMistake title="REF 还不是 RREF">
+很多人会太早停手。RREF 要求每个主元列其他位置都变成 0，不只是下
+面。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="`[0 0 0 | 1]` 是无害的一行吗？">
+先想一想这一行代表什么方程。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不是。它代表 `0 = 1`，是矛盾，所以方程组无解。
+</RevealSolution>
+
+## 预备链接
+
+这一页依赖
+[2.2 增广矩阵与行变换](/zh-cn/courses/math1030/matrices/augmented-matrices-row-operations)。

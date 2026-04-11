@@ -1,0 +1,70 @@
+---
+title: "1.3 Quantifiers and negation"
+description: "Read universal and existential statements carefully, then negate them without losing the meaning."
+---
+
+# Quantifiers and negation
+
+Prerequisite: you should already be comfortable reading short logical statements
+from [1.1 Propositional logic](/en/courses/math1090/logic/propositional-logic).
+
+## What the quantifiers say
+
+<Definition title="Universal and existential quantifiers">
+`∀x P(x)` means that `P(x)` is true for every allowed value of `x`.
+
+`∃x P(x)` means that there is at least one allowed value of `x` for which
+`P(x)` is true.
+</Definition>
+
+The allowed values of `x` come from the domain. Always keep the domain in mind.
+
+## Negating quantifiers
+
+The negation rules are small, but they matter a lot:
+
+| Statement | Negation |
+| --- | --- |
+| `∀x P(x)` | `∃x ¬P(x)` |
+| `∃x P(x)` | `∀x ¬P(x)` |
+
+## Work through one example
+
+<WorkedExample title="Negating a universal statement">
+Original statement:
+
+`For every real number x, x^2 >= 0.`
+
+Negation:
+
+`There exists a real number x such that x^2 < 0.`
+
+Why this works:
+
+1. Change "for every" to "there exists".
+2. Negate the inside statement.
+3. Keep the same domain.
+
+<RevealSolution title="The pattern to remember">
+When you negate a quantified statement, the outer quantifier flips and the
+inside statement is negated.
+</RevealSolution>
+</WorkedExample>
+
+## Common mistake
+
+<CommonMistake title="Do not stop after changing only the quantifier">
+`¬∀x P(x)` is not the same as `∀x ¬P(x)`. The first says "not every `x` works",
+which is the same as "there exists an `x` for which `P(x)` fails".
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="Write the negation of `∃x (x is a student and x has submitted the form)`">
+`∀x (x is not a student or x has not submitted the form)`.
+</QuickCheck>
+
+## Try it live
+
+<InteractiveWidget id="quantifier-negation-stepper" />
+

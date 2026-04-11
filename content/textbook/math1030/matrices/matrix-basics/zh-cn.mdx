@@ -1,0 +1,70 @@
+---
+title: "2.1 矩阵基础"
+description: "在做行化简前先建立矩阵直觉：大小、元素、行、列，以及矩阵记录什么。"
+---
+
+## 什么是矩阵
+
+矩阵是一个长方形数字表。
+它把资料整理成行和列，方便我们更有系统地处理。
+
+<Definition title="矩阵">
+矩阵是按行和列排成的长方形数字表。
+</Definition>
+
+## 先看大小
+
+矩阵的大小写作 `m × n`。
+
+- `m` 是行数。
+- `n` 是列数。
+
+如果 `m = n`，这个矩阵就是方阵。
+
+## 逐个元素去读
+
+若 `A` 是一个矩阵，`a_{ij}` 表示第 `i` 行第 `j` 列的元素。这种记号
+很重要，因为之后你可以精确指出一个数在矩阵中的位置。
+
+<WorkedExample title="仔细读一个矩阵">
+设
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & 0 \\
+3 & -1 & 4
+\end{bmatrix}.
+$$
+
+这个矩阵有 2 行 3 列，所以大小是 `2 × 3`。
+第 2 行第 3 列的元素是 `4`。
+</WorkedExample>
+
+## 为什么有用
+
+学会读矩阵后，你就可以用它来记录方程组、追踪行变换，并在之后判
+断矩阵是否可逆。
+
+<InteractiveWidget id="matrix-multiplication-visualizer" />
+
+## 常见错误
+
+<CommonMistake title="不要把行和列调乱">
+第一个下标是行号，不是列号。`a_{23}` 代表第 2 行第 3 列。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="一个 3 行 4 列的矩阵，大小是什么？">
+先想清楚哪个数是行数，哪个数是列数。
+</QuickCheck>
+
+<RevealSolution title="答案">
+大小是 `3 × 4`。
+</RevealSolution>
+
+## 预备链接
+
+如果想看方程组如何变成矩阵，可先回看
+[1.1 方程与解集](/zh-cn/courses/math1030/systems/equations-solution-sets)。

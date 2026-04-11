@@ -1,0 +1,72 @@
+---
+title: "2.3 Gaussian elimination and RREF"
+description: "See Gaussian elimination as a sequence of purposeful moves, not just memorized mechanics."
+---
+
+## The goal of elimination
+
+Gaussian elimination is a way to simplify an augmented matrix by row
+operations until the solution becomes easy to read.
+
+The point is not to perform random moves. Each move should make the structure
+clearer.
+
+<Definition title="RREF">
+Reduced row-echelon form, or RREF, is the simplified matrix form that makes pivots
+and free variables easy to read.
+</Definition>
+
+## What to look for
+
+In a row-reduced matrix, you want to see the pivots, the free variables, and any
+contradiction row such as `[0 0 0 | 1]`.
+
+That last kind of row tells you the system has no solution.
+
+## A simple example
+
+<WorkedExample title="Start elimination in a small system">
+Take the augmented matrix
+
+$$
+\begin{bmatrix}
+1 & 2 & | & 5 \\
+3 & -1 & | & 4
+\end{bmatrix}.
+$$
+
+Use `R_2 \leftarrow R_2 - 3R_1` to remove the first entry below the pivot:
+
+$$
+\begin{bmatrix}
+1 & 2 & | & 5 \\
+0 & -7 & | & -11
+\end{bmatrix}.
+$$
+
+From here you can continue until the matrix is in RREF.
+</WorkedExample>
+
+<InteractiveWidget id="row-reduction-stepper" />
+
+## Common mistake
+
+<CommonMistake title="REF is not yet RREF">
+It is easy to stop too early. In RREF, each pivot column has zeros everywhere
+else, not just below the pivot.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="Is `[0 0 0 | 1]` a harmless row?">
+Think about what equation that row represents.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. It means `0 = 1`, which is a contradiction, so the system has no solution.
+</RevealSolution>
+
+## Prerequisite link
+
+This page depends on
+[2.2 Augmented matrices and row operations](/en/courses/math1030/matrices/augmented-matrices-row-operations).

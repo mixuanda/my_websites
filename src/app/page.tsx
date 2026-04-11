@@ -3,7 +3,7 @@ import { PostCard } from "@/components/PostCard";
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import { ArrowRight, Sparkles, BookOpen, FolderKanban } from "lucide-react";
+import { ArrowRight, Sparkles, BookOpen, FolderKanban, Languages, Download } from "lucide-react";
 
 export default function Home() {
   const recentPosts = allPosts
@@ -36,8 +36,15 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/blog"
+              href="/zh-hk/courses"
               className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:opacity-90 transition-opacity"
+            >
+              <Languages className="w-4 h-4" />
+              进入互动教材
+            </Link>
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-white/20 rounded-xl transition-colors"
             >
               <BookOpen className="w-4 h-4" />
               浏览博客
@@ -49,6 +56,40 @@ export default function Home() {
               <FolderKanban className="w-4 h-4" />
               查看项目
             </Link>
+          </div>
+        </GlassCard>
+      </section>
+
+      <section>
+        <GlassCard className="p-6 md:p-8">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+            <div className="max-w-3xl">
+              <div className="flex items-center gap-2 mb-4">
+                <Languages className="w-5 h-5 text-primary" />
+                <Badge variant="secondary">互动教材</Badge>
+              </div>
+              <h2 className="text-2xl md:text-3xl font-bold">
+                math1090 / math1030 互动式数学书
+              </h2>
+              <p className="mt-4 text-muted-foreground leading-8">
+                现在的网站重点已经转向小单元、可交互、可导出的数学教材。阅读时优先用互动组件理解概念，
+                需要复习时再把当前单元直接导出成静态学习版。
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2">
+              <GlassPanel className="p-4">
+                <div className="flex items-center gap-2 font-medium">
+                  <BookOpen className="w-4 h-4 text-primary" />
+                  小单元分路由阅读
+                </div>
+              </GlassPanel>
+              <GlassPanel className="p-4">
+                <div className="flex items-center gap-2 font-medium">
+                  <Download className="w-4 h-4 text-primary" />
+                  当前单元可导出 TXT / PDF
+                </div>
+              </GlassPanel>
+            </div>
           </div>
         </GlassCard>
       </section>

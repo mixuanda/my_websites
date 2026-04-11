@@ -1,0 +1,73 @@
+---
+title: "2.1 Matrix basics"
+description: "Build matrix intuition before row reduction: size, entries, rows, columns, and what a matrix records."
+---
+
+## What a matrix is
+
+A matrix is a rectangular array of numbers.
+It helps us package information in rows and columns so we can work with it more
+systematically.
+
+<Definition title="Matrix">
+A matrix is a rectangular array of numbers arranged in rows and columns.
+</Definition>
+
+## Read the size first
+
+The size of a matrix is written as `m × n`.
+
+- `m` is the number of rows.
+- `n` is the number of columns.
+
+If `m = n`, the matrix is square.
+
+## Look at entries one by one
+
+If `A` is a matrix, then `a_{ij}` means the entry in row `i` and column `j`.
+That index notation matters later, because it tells you exactly where a number
+lives inside the matrix.
+
+<WorkedExample title="Reading a matrix carefully">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & 0 \\
+3 & -1 & 4
+\end{bmatrix}.
+$$
+
+This matrix has 2 rows and 3 columns, so its size is `2 × 3`.
+Its entry in row 2, column 3 is `4`.
+</WorkedExample>
+
+## Why this is useful
+
+Once you know how to read a matrix, you can use it to store a system of
+equations, track row operations, and later test whether a matrix is invertible.
+
+<InteractiveWidget id="matrix-multiplication-visualizer" />
+
+## Common mistake
+
+<CommonMistake title="Do not swap rows and columns">
+The first index is the row number, not the column number. `a_{23}` means row 2,
+column 3.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="What is the size of a matrix with 3 rows and 4 columns?">
+Think about which number counts rows and which number counts columns.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The size is `3 × 4`.
+</RevealSolution>
+
+## Prerequisite link
+
+If you want to see how a system becomes a matrix, review
+[1.1 Equations and solution sets](/en/courses/math1030/systems/equations-solution-sets).

@@ -1,0 +1,66 @@
+---
+title: "1.3 量詞與否定"
+description: "細心閱讀全稱與存在陳述，並學會在不失真的情況下否定它們。"
+---
+
+# 量詞與否定
+
+先要能閱讀 [1.1 命題邏輯](/zh-hk/courses/math1090/logic/propositional-logic)
+裡的簡短邏輯句子，這一頁才會順手。
+
+## 量詞說甚麼
+
+<Definition title="全稱與存在量詞">
+`∀x P(x)` 表示對每個允許的 `x`，`P(x)` 都是真的。
+
+`∃x P(x)` 表示至少有一個允許的 `x`，使 `P(x)` 為真。
+</Definition>
+
+`x` 可以取哪些值，要看定義域。閱讀時一定要記住這一點。
+
+## 否定量詞
+
+否定規則很短，但很重要：
+
+| 陳述 | 否定 |
+| --- | --- |
+| `∀x P(x)` | `∃x ¬P(x)` |
+| `∃x P(x)` | `∀x ¬P(x)` |
+
+## 走一個例子
+
+<WorkedExample title="否定一個全稱陳述">
+原句：
+
+`對每個實數 x，都有 x^2 >= 0。`
+
+否定：
+
+`存在一個實數 x，使得 x^2 < 0。`
+
+原因如下：
+
+1. 先把「對每個」改成「存在」。
+2. 再把內部陳述否定。
+3. 保持同一個定義域。
+
+<RevealSolution title="要記住的模式">
+否定有量詞的陳述時，外層量詞會翻轉，內部陳述也要否定。
+</RevealSolution>
+</WorkedExample>
+
+## 常見錯誤
+
+<CommonMistake title="不要只改量詞，不改內部陳述">
+`¬∀x P(x)` 不等於 `∀x ¬P(x)`。前者的意思是「不是每個 `x` 都成立」，也就是「存在某個 `x` 使 `P(x)` 不成立」。
+</CommonMistake>
+
+## 小檢查
+
+<QuickCheck prompt="寫出 `∃x (x 是學生 且 x 已提交表格)` 的否定">
+`∀x (x 不是學生 或 x 尚未提交表格)`。
+</QuickCheck>
+
+## 試用互動工具
+
+<InteractiveWidget id="quantifier-negation-stepper" />
