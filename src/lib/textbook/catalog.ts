@@ -199,6 +199,194 @@ const math1090SetsUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1090NumbersUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "numbers",
+    chapterNumber: "3",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Meet natural numbers through the Peano viewpoint and learn what the successor operation is really doing.",
+      "從 Peano 觀點認識自然數，並理解後繼運算真正代表甚麼。",
+      "从 Peano 观点认识自然数，并理解后继运算真正代表什么。"
+    ),
+    glossaryRefs: ["natural-number", "induction"],
+    interactiveIds: [],
+    order: 6,
+    prerequisites: [],
+    slug: "natural-numbers-peano",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf",
+        pages: "§3.1-§3.2",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_Worksheet4.pdf",
+        note: "Exercises 1-3",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex",
+        pages: "§3.1-§3.2 and Exercise 25",
+      },
+    ],
+    title: text(
+      "3.1 Natural numbers and Peano axioms",
+      "3.1 自然數與 Peano 公理",
+      "3.1 自然数与 Peano 公理"
+    ),
+    unitId: "math1090.numbers.natural-numbers-peano",
+    unitNumber: "3.1",
+  },
+  {
+    chapterId: "numbers",
+    chapterNumber: "3",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use induction as a proof pattern and read recursive formulas for + and · without losing the base case.",
+      "把歸納法當作證明模式，並能讀懂 + 和 · 的遞歸公式而不丟失基本情況。",
+      "把归纳法当作证明模式，并能读懂 + 和 · 的递归公式而不丢失基本情况。"
+    ),
+    glossaryRefs: ["induction", "natural-number"],
+    interactiveIds: ["induction-stepper"],
+    order: 7,
+    prerequisites: ["math1090.numbers.natural-numbers-peano"],
+    slug: "induction-and-recursive-arithmetic",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf",
+        pages: "§3.3-§3.4",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex",
+        pages: "§3.3 and Exercises 26-30",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_Worksheet4.pdf",
+        note: "Exercises 1-2",
+      },
+    ],
+    title: text(
+      "3.2 Induction and recursive arithmetic",
+      "3.2 歸納法與遞歸算術",
+      "3.2 归纳法与递归算术"
+    ),
+    unitId: "math1090.numbers.induction-and-recursive-arithmetic",
+    unitNumber: "3.2",
+  },
+  {
+    chapterId: "numbers",
+    chapterNumber: "3",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Build the integers from pairs of natural numbers and read each equivalence class as one signed number.",
+      "用自然數對的等價類構造整數，並把每個等價類讀成一個有符號數。",
+      "用自然数对的等价类构造整数，并把每个等价类读成一个有符号数。"
+    ),
+    glossaryRefs: ["integer", "equivalence-class"],
+    interactiveIds: [],
+    order: 8,
+    prerequisites: ["math1090.numbers.induction-and-recursive-arithmetic"],
+    slug: "integers-from-equivalence-classes",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf",
+        pages: "§3.5",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex",
+        pages: "Exercises 32-35",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_Worksheet4.pdf",
+        note: "Exercise 3",
+      },
+    ],
+    title: text(
+      "3.3 Integers from equivalence classes",
+      "3.3 由等價類構造整數",
+      "3.3 由等价类构造整数"
+    ),
+    unitId: "math1090.numbers.integers-from-equivalence-classes",
+    unitNumber: "3.3",
+  },
+  {
+    chapterId: "numbers",
+    chapterNumber: "3",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Define rational numbers as equivalence classes and check that the usual formulas do not depend on the representative you pick.",
+      "把有理數定義成等價類，並檢查常用公式不會依賴你選哪個代表元。",
+      "把有理数定义成等价类，并检查常用公式不会依赖你选哪个代表元。"
+    ),
+    glossaryRefs: ["rational-number", "well-defined-operation", "equivalence-class"],
+    interactiveIds: [],
+    order: 9,
+    prerequisites: ["math1090.numbers.integers-from-equivalence-classes"],
+    slug: "rationals-and-well-defined-operations",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf",
+        pages: "§3.6",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_Worksheet5.pdf",
+        note: "Exercises 1-2",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex",
+        pages: "Exercises 36-38 and Worksheet 5 Exercise 1",
+      },
+    ],
+    title: text(
+      "3.4 Rationals and well-defined operations",
+      "3.4 有理數與良定運算",
+      "3.4 有理数与良定运算"
+    ),
+    unitId: "math1090.numbers.rationals-and-well-defined-operations",
+    unitNumber: "3.4",
+  },
+  {
+    chapterId: "numbers",
+    chapterNumber: "3",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "See why Q still has holes by looking at the irrational number sqrt(2) and the set of rationals below it.",
+      "透過無理數 sqrt(2) 與其下方的有理數集合，看見 Q 為甚麼仍然有缺口。",
+      "透过无理数 sqrt(2) 与其下方的有理数集合，看见 Q 为什么仍然有缺口。"
+    ),
+    glossaryRefs: ["irrational-number", "rational-number", "supremum"],
+    interactiveIds: [],
+    order: 10,
+    prerequisites: ["math1090.numbers.rationals-and-well-defined-operations"],
+    slug: "gaps-in-q-and-sqrt2",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf",
+        pages: "§4.1-§4.7",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_Worksheet5.pdf",
+        note: "Exercises 3-4",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex",
+        pages: "Worksheet 5 Exercises 3-4 and §3.7-§4.7",
+      },
+    ],
+    title: text(
+      "3.5 Gaps in Q and why sqrt(2) is not rational",
+      "3.5 Q 的缺口與 sqrt(2)",
+      "3.5 Q 的缺口与 sqrt(2)"
+    ),
+    unitId: "math1090.numbers.gaps-in-q-and-sqrt2",
+    unitNumber: "3.5",
+  },
+];
+
 const math1030SystemsUnits: TextbookUnitMeta[] = [
   {
     chapterId: "systems",
@@ -412,6 +600,186 @@ const math1030InvertibilityUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "vector-spaces",
+    chapterNumber: "6",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Start from familiar examples and learn what the vector-space axioms are trying to protect.",
+      "由熟悉例子開始，理解向量空間公理到底想保護甚麼結構。",
+      "由熟悉例子开始，理解向量空间公理到底想保护什么结构。"
+    ),
+    glossaryRefs: ["vector-space"],
+    interactiveIds: [],
+    order: 7,
+    prerequisites: [],
+    slug: "vector-spaces",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§6.1",
+      },
+      {
+        file: "reference/MATH1030/1030efghi-tutorial-week08.pdf",
+        note: "Advice section on vector-space axioms",
+      },
+    ],
+    title: text(
+      "6.1 Vector spaces",
+      "6.1 向量空間",
+      "6.1 向量空间"
+    ),
+    unitId: "math1030.vector-spaces.vector-spaces",
+    unitNumber: "6.1",
+  },
+  {
+    chapterId: "vector-spaces",
+    chapterNumber: "6",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use the subspace test to separate genuine linear structure from lookalikes that fail closure or miss the zero vector.",
+      "用子空間測試把真正的線性結構，和那些缺少封閉性或零向量的集合分開。",
+      "用子空间测试把真正的线性结构，和那些缺少封闭性或零向量的集合分开。"
+    ),
+    glossaryRefs: ["vector-space", "subspace"],
+    interactiveIds: ["subspace-checker"],
+    order: 8,
+    prerequisites: ["math1030.vector-spaces.vector-spaces"],
+    slug: "subspaces",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§6.2",
+      },
+      {
+        file: "reference/MATH1030/1030efghi-tutorial-week08.pdf",
+        note: "Questions 1-4",
+      },
+      {
+        file: "reference/MATH1030/1030efghi-tutorial-week08as.pdf",
+      },
+    ],
+    title: text(
+      "6.2 Subspaces",
+      "6.2 子空間",
+      "6.2 子空间"
+    ),
+    unitId: "math1030.vector-spaces.subspaces",
+    unitNumber: "6.2",
+  },
+  {
+    chapterId: "vector-spaces",
+    chapterNumber: "6",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Treat linear combinations as controlled building instructions, then see span as every vector you can build that way.",
+      "把線性組合看成有控制的搭建指令，再把張成理解成所有能這樣搭出來的向量。",
+      "把线性组合看成有控制的搭建指令，再把张成理解成所有能这样搭出来的向量。"
+    ),
+    glossaryRefs: ["linear-combination", "span"],
+    interactiveIds: ["span-explorer"],
+    order: 9,
+    prerequisites: ["math1030.vector-spaces.vector-spaces"],
+    slug: "linear-combinations-and-span",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§6.3",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n05-03.pdf",
+      },
+      {
+        file: "reference/MATH1030/math1030_assignment4_review_solutions.pdf",
+        note: "Linear combination and span examples",
+      },
+    ],
+    title: text(
+      "6.3 Linear combinations and span",
+      "6.3 線性組合與張成",
+      "6.3 线性组合与张成"
+    ),
+    unitId: "math1030.vector-spaces.linear-combinations-and-span",
+    unitNumber: "6.3",
+  },
+  {
+    chapterId: "vector-spaces",
+    chapterNumber: "6",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Read dependence as redundancy, and independence as the point where every coefficient truly matters.",
+      "把相依看成冗餘，把無關看成每個係數都真正有作用的情況。",
+      "把相依看成冗余，把无关看成每个系数都真正有作用的情况。"
+    ),
+    glossaryRefs: ["linear-independence", "linear-combination", "span"],
+    interactiveIds: ["independence-checker"],
+    order: 10,
+    prerequisites: ["math1030.vector-spaces.linear-combinations-and-span"],
+    slug: "linear-dependence-and-independence",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§6.4",
+      },
+      {
+        file: "reference/MATH1030/math1030_assignment4_review_solutions.pdf",
+        note: "Dependence and independence examples",
+      },
+      {
+        file: "reference/MATH1030/1030efghi-as04-202526.pdf",
+        note: "Questions on dependence and transformed sets",
+      },
+    ],
+    title: text(
+      "6.4 Linear dependence and independence",
+      "6.4 線性相依與線性無關",
+      "6.4 线性相依与线性无关"
+    ),
+    unitId: "math1030.vector-spaces.linear-dependence-and-independence",
+    unitNumber: "6.4",
+  },
+  {
+    chapterId: "vector-spaces",
+    chapterNumber: "6",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "See why a basis is the smallest complete coordinate system for a space, and why dimension counts how many directions are really needed.",
+      "看清基底為何是空間最小而完整的座標系統，以及維數為何是在數真正需要多少個方向。",
+      "看清基底为何是空间最小而完整的坐标系统，以及维数为何是在数真正需要多少个方向。"
+    ),
+    glossaryRefs: ["basis", "dimension", "linear-independence", "span"],
+    interactiveIds: ["span-explorer", "independence-checker"],
+    order: 11,
+    prerequisites: ["math1030.vector-spaces.linear-dependence-and-independence"],
+    slug: "basis-and-dimension",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§6.5",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n05-01.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n05-02.pdf",
+      },
+    ],
+    title: text(
+      "6.5 Basis and dimension",
+      "6.5 基底與維數",
+      "6.5 基底与维数"
+    ),
+    unitId: "math1030.vector-spaces.basis-and-dimension",
+    unitNumber: "6.5",
+  },
+];
+
 const math1090: TextbookCourseMeta = {
   chapters: [
     {
@@ -438,6 +806,18 @@ const math1090: TextbookCourseMeta = {
       title: text("Sets and relations", "集合與關係", "集合与关系"),
       units: math1090SetsUnits,
     },
+    {
+      course: "math1090",
+      id: "numbers",
+      number: "3",
+      summary: text(
+        "How natural numbers, integers, and rationals are built, and where Q still falls short.",
+        "自然數、整數與有理數如何構造，以及 Q 還欠缺甚麼。",
+        "自然数、整数与有理数如何构造，以及 Q 还欠缺什么。"
+      ),
+      title: text("Numbers by construction", "由構造得到的數系", "由构造得到的数系"),
+      units: math1090NumbersUnits,
+    },
   ],
   description: text(
     "A beginner-friendly set theory path with short units, source traceability, and guided interaction.",
@@ -446,7 +826,7 @@ const math1090: TextbookCourseMeta = {
   ),
   id: "math1090",
   shortTitle: text("Set theory", "集合論", "集合论"),
-  title: text("MATH1090 interactive textbook", "MATH1090 互動教材", "MATH1090 互动教材"),
+  title: text("MATH1090: Set theory", "MATH1090：集合論", "MATH1090：集合论"),
 };
 
 const math1030: TextbookCourseMeta = {
@@ -487,6 +867,18 @@ const math1030: TextbookCourseMeta = {
       title: text("Invertibility", "可逆性", "可逆性"),
       units: math1030InvertibilityUnits,
     },
+    {
+      course: "math1030",
+      id: "vector-spaces",
+      number: "6",
+      summary: text(
+        "Move from matrix procedures to the structure of spaces, span, independence, and basis.",
+        "由矩陣程序走向空間結構、張成、無關與基底。",
+        "由矩阵程序走向空间结构、张成、无关与基底。"
+      ),
+      title: text("Vector spaces", "向量空間", "向量空间"),
+      units: math1030VectorSpaceUnits,
+    },
   ],
   description: text(
     "An interactive-first linear algebra route focused on operations, structure, and interpretation.",
@@ -495,7 +887,7 @@ const math1030: TextbookCourseMeta = {
   ),
   id: "math1030",
   shortTitle: text("Linear algebra I", "線性代數 I", "线性代数 I"),
-  title: text("MATH1030 interactive textbook", "MATH1030 互動教材", "MATH1030 互动教材"),
+  title: text("MATH1030: Linear algebra I", "MATH1030：線性代數 I", "MATH1030：线性代数 I"),
 };
 
 export const textbookCatalog: Record<CourseId, TextbookCourseMeta> = {

@@ -1,0 +1,96 @@
+---
+title: "6.2 子空間"
+description: "學會怎樣在一個較大的向量空間裡，辨認出一個較小但仍完整的向量空間。"
+---
+
+## 大空間裡的小空間
+
+很多時候，我們不需要整個外層向量空間，只需要其中一個仍然保留同
+樣運算規則的子集合。
+
+<Definition title="子空間">
+若 `V` 是一個向量空間，而 `W` 是 `V` 的子集合，當 `W` 非空，並且
+對加法與純量乘法都封閉時，`W` 就是 `V` 的子空間。
+</Definition>
+
+教學筆記中的等價說法是：如果 `W` 用繼承來的運算本身就是一個向量
+空間，那它就一定是 `V` 的子空間。
+
+## 常見例子
+
+筆記列出幾個標準例子：
+
+- 零子空間 `{0}`；
+- 整個空間 `V`；
+- `R^2` 裡通過原點的一條直線；
+- `R^3` 裡通過原點的一個平面；
+- 矩陣 `A` 的零空間 `N(A)`。
+
+關鍵詞是「通過原點」。如果集合不含 `0`，它就不可能是子空間。
+
+<WorkedExample title="通過原點的直線是子空間">
+考慮
+
+$$
+W = \{(x, 0) : x \in R\} \subseteq R^2.
+$$
+
+若 `(a, 0)` 和 `(b, 0)` 都在 `W`，則
+
+$$
+(a, 0) + (b, 0) = (a + b, 0) \in W.
+$$
+
+若 `c` 是任意實數，則
+
+$$
+c(a, 0) = (ca, 0) \in W.
+$$
+
+所以 `W` 通過子空間檢查。
+</WorkedExample>
+
+邊看邊試下面的檢查器，先拿一個候選集合，看看封閉性是否真的成立。
+
+<InteractiveWidget id="subspace-checker" />
+
+## 常見錯誤
+
+<CommonMistake title="平移過的直線不是子空間">
+集合 `\{(x, y) : x + y = 1\}` 不是 `R^2` 的子空間，因為它不包含零向量
+`(0, 0)`。一般來說，直線或平面要成為子空間，常數項必須是 `0`。
+</CommonMistake>
+
+## 為甚麼任何子空間都含有 `0`
+
+<CollapsibleProof title="子空間一定包含零向量">
+設 `W` 是 `V` 的子空間，並取任意 `u \in W`。
+
+因為 `W` 對純量乘法封閉，所以 `(-1)u \in W`。
+又因為 `W` 對加法封閉，所以 `u + (-1)u = 0` 也在 `W`。
+因此 `0 \in W`。
+</CollapsibleProof>
+
+## 快速檢查
+
+<QuickCheck prompt="集合 `\{(x, y) : y = 2x\}` 是否是 `R^2` 的子空間？">
+先想它有沒有包含 `0`，再想加法與純量乘法是否封閉。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。它是一條通過原點的直線，所以是子空間。
+</RevealSolution>
+
+<QuickCheck prompt="集合 `\{(x, y) : x + y = 1\}` 是否是 `R^2` 的子空間？">
+記得先做零向量檢查。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不是。它不包含 `0 = (0, 0)`。
+</RevealSolution>
+
+## 預備連結
+
+這一頁建立在
+[6.1 向量空間](/zh-hk/courses/math1030/vector-spaces/vector-spaces) 和
+[2.1 矩陣基礎](/zh-hk/courses/math1030/matrices/matrix-basics) 之上。

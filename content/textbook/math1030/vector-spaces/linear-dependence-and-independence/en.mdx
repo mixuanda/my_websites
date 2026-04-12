@@ -1,0 +1,104 @@
+---
+title: "6.4 Linear dependence and independence"
+description: "Tell when a vector list has hidden redundancy and when every vector adds something new."
+---
+
+## Why this matters
+
+Suppose a collection of vectors spans a space. If one vector can already be
+built from the others, it is redundant. Linear dependence and independence are
+the tools that detect that redundancy.
+
+<Definition title="Linear independence">
+Vectors `u_1, u_2, \ldots, u_n` are linearly independent if
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n = 0
+$$
+
+forces `\alpha_1 = \alpha_2 = \cdots = \alpha_n = 0`.
+</Definition>
+
+<Definition title="Linear dependence">
+Vectors `u_1, u_2, \ldots, u_n` are linearly dependent if there is a nontrivial
+choice of scalars, not all zero, such that
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n = 0.
+$$
+</Definition>
+
+Use the checker below to test whether a small list of vectors behaves like a
+redundant family or a genuinely independent one.
+
+<InteractiveWidget id="independence-checker" />
+
+## A simple reading rule
+
+The notes give two very useful consequences:
+
+- a dependent family has at least one vector that is a linear combination of the
+  others;
+- an independent family has no such vector.
+
+That is the fastest way to read the idea in practice.
+
+<WorkedExample title="A dependent family has a relation">
+The notes give
+
+$$
+u_3 = u_1 + u_2.
+$$
+
+Rewriting this gives
+
+$$
+u_1 + u_2 - u_3 = 0.
+$$
+
+That is a nontrivial linear relation, so the family is linearly dependent.
+</WorkedExample>
+
+<CollapsibleProof title="Why dependence means one vector is redundant">
+If
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n = 0
+$$
+
+is a nontrivial relation, pick a coefficient that is not zero. Solve for that
+vector in terms of the others. That shows one vector is a linear combination of
+the rest.
+</CollapsibleProof>
+
+## Common mistake
+
+<CommonMistake title="Dependent does not mean useless">
+A dependent list can still span a space. It only means the list has redundancy.
+That is why dependence is useful when we want to trim a spanning set down.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="Are `e_1, e_2, e_3` in `R^3` linearly independent?">
+Try the vector equation `\alpha_1 e_1 + \alpha_2 e_2 + \alpha_3 e_3 = 0`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. The only solution is `\alpha_1 = \alpha_2 = \alpha_3 = 0`.
+</RevealSolution>
+
+<QuickCheck prompt="Can a set that contains the zero vector be linearly independent?">
+Test the definition directly.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. The zero vector gives a nontrivial relation immediately.
+</RevealSolution>
+
+## Read this first
+
+This page builds on
+[6.3 Linear combinations and span](/en/courses/math1030/vector-spaces/linear-combinations-and-span)
+and the row-reduction language from
+[2.3 Gaussian elimination and RREF](/en/courses/math1030/matrices/gaussian-elimination-rref).

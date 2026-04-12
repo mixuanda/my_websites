@@ -1,0 +1,82 @@
+---
+title: "3.4 Rationals and well-defined operations"
+description: "Define rational numbers as equivalence classes and check that the usual formulas do not depend on the representative you pick."
+---
+
+Integers were built from pairs of natural numbers. Rationals are built in the
+same spirit, except now the second entry is not allowed to be `0`.
+
+## The quotient model
+
+<Definition title="Rational numbers">
+Let
+
+`Y = Z × (Z \ {0}) = {(a, b) | a in Z, b != 0}`.
+
+Define `(a, b) ~_Q (c, d)` if `a d = b c`.
+
+The rational numbers are the equivalence classes `Y / ~_Q`.
+</Definition>
+
+You can think of `[(a, b)]` as the fraction `a/b`. The point of the quotient
+construction is that equal fractions become equal by definition.
+
+## Why well-definedness matters
+
+If you write a formula on representatives, you still have to check that the
+answer is the same for every representative of the same rational number.
+That check is what "well-defined" means here.
+
+<WorkedExample title="Addition still matches the fraction intuition">
+The source notes define
+
+`[(a, b)] + [(c, d)] := [(ad + bc, bd)]`.
+
+For example,
+
+`[(1, 2)] + [(1, 3)] = [(5, 6)]`.
+
+If you switch the first representative to `(2, 4)`, the formula gives
+`[(10, 12)]`, which is the same rational number as `[(5, 6)]`.
+</WorkedExample>
+
+<CollapsibleProof title="Why the addition formula is well-defined">
+Suppose `(a, b) ~_Q (a', b')` and `(c, d) ~_Q (c', d')`.
+That means `a b' = b a'` and `c d' = d c'`.
+
+The source proof multiplies the right identities together and rearranges the
+terms to show
+
+`(ad + bc, bd) ~_Q (a'd' + b'c', b'd')`.
+
+So the sum does not depend on which representatives you started with.
+</CollapsibleProof>
+
+<CommonMistake title="Do not compare fractions using a formula that ignores signs">
+Worksheet 5 asks about relations such as `p/q R m/n` if `pn - qm > 0`.
+That kind of comparison is not safe on arbitrary representatives, because
+changing the sign of a representative can change the sign of the test.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Which of these relations from Worksheet 5 is well defined on Q as written: `p/q R m/n` if `p > m`, if `pn - qm > 0`, or if `(pn - mq)nq > 0`?">
+Think about what happens if you replace a representative by an equivalent one.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Only the third one is well defined as written. The first two depend on the chosen representatives.
+</RevealSolution>
+
+<QuickCheck prompt="Why does `Y` exclude pairs with denominator `0`?">
+Give the mathematical reason, not the everyday one.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Because the second coordinate is meant to play the role of a denominator, and the construction must avoid division by zero.
+</RevealSolution>
+
+## Read this first
+
+If you want to review the integer construction first, read
+[3.3 Integers from equivalence classes](/en/courses/math1090/numbers/integers-from-equivalence-classes).

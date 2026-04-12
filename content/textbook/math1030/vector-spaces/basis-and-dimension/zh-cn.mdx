@@ -1,0 +1,95 @@
+---
+title: "6.5 基与维数"
+description: "用最精简的张成集结束这一章，并数一数它有多少个向量。"
+---
+
+## 最精简的张成集
+
+基就是最干净的张成集：它能张成整个空间，而且没有多余向量。
+
+<Definition title="基">
+若一组向量 `{u_1, u_2, \ldots, u_m}` 同时满足：
+
+1. 这些向量线性独立；
+2. `Span{u_1, u_2, \ldots, u_m} = V`；
+
+那它就是向量空间 `V` 的基。
+</Definition>
+
+笔记特别强调：同一个空间可以有不止一个基，但每个基的向量个数都
+一样。
+
+<WorkedExample title="R^3 的标准基">
+设
+
+$$
+e_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \quad
+e_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \quad
+e_3 = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}.
+$$
+
+笔记指出，这三个向量线性独立，而且它们张成 `R^3`。
+
+所以 `{e_1, e_2, e_3}` 是 `R^3` 的基。
+</WorkedExample>
+
+## 维数
+
+知道什么是基之后，维数其实就是数一数。
+
+<Definition title="维数">
+向量空间 `V` 的维数记作 `dim(V)`，就是 `V` 的任意一组基所含向量的
+个数。
+</Definition>
+
+笔记也收录了特殊情况：`dim({0}) = 0`，因为零空间没有任何线性独立
+向量。
+
+章节中还列出一些熟悉的维数公式：
+
+- `dim(R^m) = m`；
+- 矩阵空间 `M_{mn}` 的维数是 `mn`；
+- `P_n` 的维数是 `n + 1`。
+
+## 为什么维数有力量
+
+维数可以直接告诉你什么可行、什么不行。若一个空间的维数是 `m`，
+那么：
+
+- 任何 `m` 个线性独立向量都能组成一组基；
+- 任何 `m` 个张成该空间的向量都能组成一组基；
+- 少于 `m` 个向量不可能张成整个空间。
+
+这是判断基问题最快的工具之一。
+
+## 常见错误
+
+<CommonMistake title="只会张成还不够">
+一组向量即使已经张成整个空间，也不一定是基；它还必须线性独立。
+所以检查基时，两个条件都不能少。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="`R^3` 的维数是多少？">
+数一数标准基里有多少个向量。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`dim(R^3) = 3`。
+</RevealSolution>
+
+<QuickCheck prompt="两个向量可以张成 `R^3` 吗？">
+用这一章的维数规则想一想。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不可以。`R^3` 的维数是 3，所以少于 3 个向量不可能张成它。
+</RevealSolution>
+
+## 预备链接
+
+这一页建立在
+[6.4 线性依赖与线性独立](/zh-cn/courses/math1030/vector-spaces/linear-dependence-and-independence)
+和
+[6.3 线性组合与张成](/zh-cn/courses/math1030/vector-spaces/linear-combinations-and-span) 之上。

@@ -59,9 +59,9 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       text("Read the inverse from the right block only after the left block is I.", "只有當左邊化成 I 時，才可從右邊讀出逆矩陣。", "只有当左边化成 I 时，才可从右边读出逆矩阵。"),
     ],
     title: text(
-      "Invertibility by row reduction",
-      "用行化簡理解可逆性",
-      "用行化简理解可逆性"
+      "Follow one inverse-by-row-reduction example",
+      "跟著看一個用行化簡求逆的例子",
+      "跟着看一个用行化简求逆的例子"
     ),
   },
   "matrix-multiplication-visualizer": {
@@ -90,9 +90,9 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       text("Multiply entry by entry, then add the results.", "逐項相乘，再把結果加起來。", "逐项相乘，再把结果加起来。"),
     ],
     title: text(
-      "Matrix multiplication visualizer",
-      "矩陣乘法視覺化",
-      "矩阵乘法可视化"
+      "Follow one matrix product entry",
+      "跟著看一格矩陣乘法",
+      "跟着看一格矩阵乘法"
     ),
   },
   "quantifier-negation-stepper": {
@@ -125,9 +125,52 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       text("Negate the inside statement after switching the quantifier.", "完成量詞切換後，再否定內部陳述。", "完成量词切换后，再否定内部陈述。"),
     ],
     title: text(
-      "Quantifier negation stepper",
-      "量詞否定步驟器",
-      "量词否定步骤器"
+      "Negate one quantified statement carefully",
+      "仔細否定一個帶量詞的陳述",
+      "仔细否定一个带量词的陈述"
+    ),
+  },
+  "induction-stepper": {
+    sampleStates: [
+      {
+        label: text("Base case", "基本情況", "基本情况"),
+        value: text(
+          "Check the claim at 0 before you try to move to the next number.",
+          "先檢查命題在 0 是否成立，再嘗試走到下一個數。",
+          "先检查命题在 0 是否成立，再尝试走到下一个数。"
+        ),
+      },
+      {
+        label: text("Induction step", "歸納步驟", "归纳步骤"),
+        value: text(
+          "Assume the claim for n, then show it for S(n).",
+          "先假設命題對 n 成立，再證明它對 S(n) 也成立。",
+          "先假设命题对 n 成立，再证明它对 S(n) 也成立。"
+        ),
+      },
+      {
+        label: text("Conclusion", "結論", "结论"),
+        value: text(
+          "Once both pieces are in place, the claim holds for every natural number.",
+          "兩部分都完成後，命題就對每個自然數成立。",
+          "两部分都完成后，命题就对每个自然数成立。"
+        ),
+      },
+    ],
+    summary: text(
+      "The live stepper separates a proof by induction into its three moving parts.",
+      "互動步驟器把歸納證明拆成三個會動的部分。",
+      "互动步骤器把归纳证明拆成三个会动的部分。"
+    ),
+    steps: [
+      text("State the claim you want for every natural number.", "先說明你想對每個自然數證明甚麼。", "先说明你想对每个自然数证明什么。"),
+      text("Check the base case at 0.", "檢查 0 的基本情況。", "检查 0 的基本情况。"),
+      text("Assume the claim for n and prove it for S(n).", "假設對 n 成立，再證 S(n) 的情況。", "假设对 n 成立，再证 S(n) 的情况。"),
+    ],
+    title: text(
+      "Trace one induction proof",
+      "跟著走一遍歸納證明",
+      "跟着走一遍归纳证明"
     ),
   },
   "row-reduction-stepper": {
@@ -160,9 +203,9 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       text("Normalize pivot rows only after the structure is clear.", "當結構清楚後，再把主元行標準化。", "当结构清楚后，再把主元行标准化。"),
     ],
     title: text(
-      "Row-reduction stepper",
-      "行化簡步驟器",
-      "行化简步骤器"
+      "Trace one elimination path",
+      "跟著走一條消元路徑",
+      "跟着走一条消元路径"
     ),
   },
   "set-operation-explorer": {
@@ -195,9 +238,9 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       text("Compare the overlap, union, and difference side by side.", "並排比較交集、聯集與差集。", "并排比较交集、并集与差集。"),
     ],
     title: text(
-      "Set-operation explorer",
-      "集合運算探索器",
-      "集合运算探索器"
+      "Compare one pair of sets",
+      "比較一對集合",
+      "比较一对集合"
     ),
   },
   "solution-set-classifier": {
@@ -233,9 +276,109 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "互动分类器会比较三个代表性的化简矩阵，并解释它们各自代表什么。"
     ),
     title: text(
-      "Solution-set classifier",
-      "解集分類器",
-      "解集分类器"
+      "Read the shape of a solution set",
+      "讀出解集的形狀",
+      "读出解集的形状"
+    ),
+  },
+  "span-explorer": {
+    sampleIO: [
+      {
+        input: text(
+          "Take u = (1, 0), v = (0, 1), α = 2, β = -1.",
+          "取 u = (1, 0)、v = (0, 1)、α = 2、β = -1。",
+          "取 u = (1, 0)、v = (0, 1)、α = 2、β = -1。"
+        ),
+        output: text(
+          "Then αu + βv = (2, -1), so the output lies in Span{u, v}.",
+          "則 αu + βv = (2, -1)，所以輸出向量屬於 Span{u, v}。",
+          "则 αu + βv = (2, -1)，所以输出向量属于 Span{u, v}。"
+        ),
+      },
+    ],
+    summary: text(
+      "The live explorer lets you vary coefficients and watch the resulting vector move inside the span.",
+      "互動探索讓你改變係數，並看著結果向量如何在張成裡移動。",
+      "互动探索让你改变系数，并看着结果向量如何在张成里移动。"
+    ),
+    steps: [
+      text("Choose two generators u and v.", "先選兩個生成向量 u 與 v。", "先选两个生成向量 u 与 v。"),
+      text("Adjust the coefficients α and β.", "調整係數 α 與 β。", "调整系数 α 与 β。"),
+      text("Read the new vector αu + βv as one point inside the span.", "把新的向量 αu + βv 看成張成中的一個點。", "把新的向量 αu + βv 看成张成中的一个点。"),
+    ],
+    title: text(
+      "Build one vector from a span",
+      "由張成組合出一個向量",
+      "由张成组合出一个向量"
+    ),
+  },
+  "subspace-checker": {
+    sampleStates: [
+      {
+        label: text("A passing case", "一個通過的例子", "一个通过的例子"),
+        value: text(
+          "The line y = 2x contains 0 and stays closed under addition and scalar multiplication.",
+          "直線 y = 2x 包含 0，而且對加法與數乘都封閉。",
+          "直线 y = 2x 包含 0，而且对加法与数乘都封闭。"
+        ),
+      },
+      {
+        label: text("A failing case", "一個不通過的例子", "一个不通过的例子"),
+        value: text(
+          "The line y = 2x + 1 misses the zero vector, so it cannot be a subspace.",
+          "直線 y = 2x + 1 不包含零向量，因此不可能是子空間。",
+          "直线 y = 2x + 1 不包含零向量，因此不可能是子空间。"
+        ),
+      },
+    ],
+    summary: text(
+      "The live checker compares common subsets and marks exactly where the subspace test passes or fails.",
+      "互動檢查會比較常見子集，並指出子空間測試到底在哪一步通過或失敗。",
+      "互动检查会比较常见子集，并指出子空间测试到底在哪一步通过或失败。"
+    ),
+    steps: [
+      text("Check whether 0 is inside the set.", "先檢查 0 是否在集合內。", "先检查 0 是否在集合内。"),
+      text("Check closure under vector addition.", "再檢查對向量加法是否封閉。", "再检查对向量加法是否封闭。"),
+      text("Check closure under scalar multiplication.", "最後檢查對數乘是否封閉。", "最后检查对数乘是否封闭。"),
+    ],
+    title: text(
+      "Run one subspace test",
+      "做一次子空間測試",
+      "做一次子空间测试"
+    ),
+  },
+  "independence-checker": {
+    sampleStates: [
+      {
+        label: text("Independent pair", "無關的一對向量", "无关的一对向量"),
+        value: text(
+          "{e1, e2} is independent because c1e1 + c2e2 = 0 forces c1 = c2 = 0.",
+          "{e1, e2} 線性無關，因為 c1e1 + c2e2 = 0 只會推出 c1 = c2 = 0。",
+          "{e1, e2} 线性无关，因为 c1e1 + c2e2 = 0 只会推出 c1 = c2 = 0。"
+        ),
+      },
+      {
+        label: text("Dependent triple", "相依的三個向量", "相依的三个向量"),
+        value: text(
+          "{u1, u2, u1 + u2} is dependent because one vector is already a combination of the other two.",
+          "{u1, u2, u1 + u2} 線性相依，因為其中一個向量本身就是另外兩個的組合。",
+          "{u1, u2, u1 + u2} 线性相依，因为其中一个向量本身就是另外两个的组合。"
+        ),
+      },
+    ],
+    summary: text(
+      "The live checker compares small vector sets and explains whether a nontrivial linear relation exists.",
+      "互動檢查會比較幾組小向量，並解釋是否存在非平凡線性關係。",
+      "互动检查会比较几组小向量，并解释是否存在非平凡线性关系。"
+    ),
+    steps: [
+      text("Look for an obvious redundancy such as one vector being a multiple or a sum of the others.", "先找明顯的冗餘，例如某個向量是其他向量的倍數或和。", "先找明显的冗余，例如某个向量是其他向量的倍数或和。"),
+      text("If no redundancy appears, test whether the zero combination forces every coefficient to be zero.", "若看不出冗餘，再檢查零組合是否逼使每個係數都等於 0。", "若看不出冗余，再检查零组合是否逼使每个系数都等于 0。"),
+    ],
+    title: text(
+      "Test one set for dependence",
+      "測試一組向量是否相依",
+      "测试一组向量是否相依"
     ),
   },
   "system-augmented-matrix-explorer": {
@@ -264,9 +407,9 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       text("Check that each row still represents the same equation.", "檢查每一行仍代表同一條方程。", "检查每一行仍代表同一条方程。"),
     ],
     title: text(
-      "System-to-augmented-matrix explorer",
-      "方程組到增廣矩陣探索器",
-      "方程组到增广矩阵探索器"
+      "Translate one system into a matrix",
+      "把一個方程組翻成矩陣",
+      "把一个方程组翻成矩阵"
     ),
   },
   "truth-table-builder": {
@@ -299,9 +442,9 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       text("Compare the final column with a rewritten formula to test equivalence.", "把最後一列與改寫後的公式比較，以檢查邏輯等價。", "把最后一列与改写后的公式比较，以检查逻辑等价。"),
     ],
     title: text(
-      "Truth-table builder",
-      "真值表建立器",
-      "真值表建立器"
+      "Trace one truth table",
+      "跟著看一張真值表",
+      "跟着看一张真值表"
     ),
   },
 };

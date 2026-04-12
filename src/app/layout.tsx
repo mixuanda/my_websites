@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Evanalysis",
   },
   description: "Interactive mathematics textbooks, projects, and notes.",
-  keywords: ["interactive textbook", "math1090", "math1030", "mathematics", "notes", "projects"],
+  keywords: ["math courses", "math1090", "math1030", "mathematics", "notes", "projects"],
   authors: [{ name: "Evanalysis" }],
   manifest: "/manifest.json",
   appleWebApp: {

@@ -40,7 +40,7 @@ export default function Home() {
               className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:opacity-90 transition-opacity"
             >
               <Languages className="w-4 h-4" />
-              进入互动教材
+              进入课程
             </Link>
             <Link
               href="/blog"
@@ -66,14 +66,13 @@ export default function Home() {
             <div className="max-w-3xl">
               <div className="flex items-center gap-2 mb-4">
                 <Languages className="w-5 h-5 text-primary" />
-                <Badge variant="secondary">互动教材</Badge>
+                <Badge variant="secondary">课程</Badge>
               </div>
               <h2 className="text-2xl md:text-3xl font-bold">
-                math1090 / math1030 互动式数学书
+                math1090 / math1030 数学课程章节
               </h2>
               <p className="mt-4 text-muted-foreground leading-8">
-                现在的网站重点已经转向小单元、可交互、可导出的数学教材。阅读时优先用互动组件理解概念，
-                需要复习时再把当前单元直接导出成静态学习版。
+                现在的网站重点已经转向按小节阅读、在正文中穿插互动引导、并支持把当前这一节直接导出成静态学习版。
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">

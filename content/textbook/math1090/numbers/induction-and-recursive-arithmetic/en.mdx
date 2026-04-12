@@ -1,0 +1,96 @@
+---
+title: "3.2 Induction and recursive arithmetic"
+description: "Use induction as a proof pattern and read recursive formulas for + and · without losing the base case."
+---
+
+Induction is not a magic trick. It is a proof pattern for statements that are
+meant to hold for every natural number.
+
+The same chapter also uses recursive definitions for addition and
+multiplication, so it helps to keep the base case and the step visible all the
+time.
+
+## Recursive addition
+
+<Definition title="Recursive definition of addition">
+For natural numbers `a` and `b`, addition is defined by:
+
+- `a + 0 = a`
+- `a + S(b) = S(a + b)`
+</Definition>
+
+This is a recursive definition. You know the result when the second input is
+`0`, and every later value is built from an earlier one.
+
+<WorkedExample title="Compute `2 + 3` from the definition">
+Write `2 = S(S(0))` and `3 = S(S(S(0)))`.
+
+Then:
+
+`2 + 3 = 2 + S(S(S(0)))`
+
+`= S(2 + S(S(0)))`
+
+`= S(S(2 + S(0)))`
+
+`= S(S(S(2 + 0)))`
+
+`= S(S(S(2)))`.
+
+That is the number usually called `5`.
+</WorkedExample>
+
+<CommonMistake title="A recursive formula is not yet a proof">
+The formulas tell you how the operation is defined. They do not automatically
+prove a claim about all natural numbers. For that, you still need induction.
+</CommonMistake>
+
+## Watch the proof pattern
+
+The stepper below separates one induction proof into the base case, the
+induction hypothesis, the induction step, and the conclusion.
+
+<InteractiveWidget id="induction-stepper" />
+
+## A proof sketch
+
+<CollapsibleProof title="Why `S(a) + b = S(a + b)` follows by induction on `b`">
+We prove the statement for all `b in N`.
+
+Base case: when `b = 0`,
+
+`S(a) + 0 = S(a) = S(a + 0)`.
+
+Induction step: assume `S(a) + b = S(a + b)`. Then
+
+`S(a) + S(b) = S(S(a) + b)` by the recursive rule,
+
+`= S(S(a + b))` by the induction hypothesis,
+
+`= S(a + S(b))` by the recursive rule again.
+
+So the statement holds for `S(b)` whenever it holds for `b`.
+</CollapsibleProof>
+
+## Quick checks
+
+<QuickCheck prompt="What is the base case in the recursive definition of addition?">
+Think about which input is fixed first.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The base case is `a + 0 = a`.
+</RevealSolution>
+
+<QuickCheck prompt="In an induction proof, what is the induction hypothesis?">
+Use one short sentence.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is the assumption that the claim holds for a fixed natural number `n`, before proving it for `S(n)`.
+</RevealSolution>
+
+## Read this first
+
+If you want the formal setup for the natural numbers, review
+[3.1 Natural numbers and Peano's axioms](/en/courses/math1090/numbers/natural-numbers-peano).

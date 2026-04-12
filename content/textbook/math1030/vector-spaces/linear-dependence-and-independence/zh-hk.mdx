@@ -1,0 +1,104 @@
+---
+title: "6.4 線性相依與線性獨立"
+description: "判斷一組向量有沒有多餘成分，以及每個向量是否都帶來新資訊。"
+---
+
+## 為甚麼這一節重要
+
+假設一組向量已經張成某個空間。如果其中一個向量其實可以由其他向
+量組合出來，那它就是多餘的。線性相依與線性獨立，就是用來找出這
+種多餘性的工具。
+
+<Definition title="線性獨立">
+若向量 `u_1, u_2, \ldots, u_n` 滿足
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n = 0
+$$
+
+時，只有 `\alpha_1 = \alpha_2 = \cdots = \alpha_n = 0` 這個解，那這組
+向量就是線性獨立。
+</Definition>
+
+<Definition title="線性相依">
+若 `u_1, u_2, \ldots, u_n` 存在一組不全為 `0` 的純量，使得
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n = 0,
+$$
+
+那這組向量就是線性相依。
+</Definition>
+
+邊看邊用下面的檢查器，試試一組小向量到底是「真的獨立」，還是有
+隱藏重複。
+
+<InteractiveWidget id="independence-checker" />
+
+## 一個簡單讀法
+
+筆記給了兩個很實用的結論：
+
+- 如果一組向量是相依的，總有一個向量可以寫成其他向量的線性組合；
+- 如果一組向量是獨立的，就沒有任何一個向量可以這樣寫。
+
+這是實際判斷時最快的讀法。
+
+<WorkedExample title="相依意味著有一條關係式">
+筆記裡有
+
+$$
+u_3 = u_1 + u_2.
+$$
+
+改寫後就是
+
+$$
+u_1 + u_2 - u_3 = 0.
+$$
+
+這是一條非平凡線性關係，所以這組向量是線性相依。
+</WorkedExample>
+
+<CollapsibleProof title="為甚麼相依代表有一個向量多餘">
+如果
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n = 0
+$$
+
+是一條非平凡關係，那就挑一個不為 `0` 的係數，將對應向量解出來。
+這就表示其中一個向量可以由其餘向量線性組合而成。
+</CollapsibleProof>
+
+## 常見錯誤
+
+<CommonMistake title="相依不等於沒用">
+一組相依向量仍然可以張成一個空間。它只是有多餘成分，所以在想
+找最小張成集時特別有用。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="`R^3` 裡的 `e_1, e_2, e_3` 是否線性獨立？">
+試試向量方程 `\alpha_1 e_1 + \alpha_2 e_2 + \alpha_3 e_3 = 0`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。只有 `\alpha_1 = \alpha_2 = \alpha_3 = 0` 這個解。
+</RevealSolution>
+
+<QuickCheck prompt="只要一組向量包含零向量，它還可能線性獨立嗎？">
+直接用定義判斷。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不可能。零向量會立刻給出一條非平凡關係式。
+</RevealSolution>
+
+## 預備連結
+
+這一頁建立在
+[6.3 線性組合與張成](/zh-hk/courses/math1030/vector-spaces/linear-combinations-and-span)
+和
+[2.3 高斯消去與 RREF](/zh-hk/courses/math1030/matrices/gaussian-elimination-rref) 之上。

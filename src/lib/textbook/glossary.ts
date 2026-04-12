@@ -93,6 +93,159 @@ export const glossaryEntries: GlossaryEntry[] = [
     termZhHk: "關係",
   },
   {
+    cantoneseNote: "香港課堂通常直接講「自然數」。",
+    definition: {
+      en: "The natural numbers are the counting numbers that start from 0 and continue by successor.",
+      "zh-cn": "自然数是从 0 开始，并通过后继不断延伸的计数数。",
+      "zh-hk": "自然數是從 0 開始，並透過後繼不斷延伸的計數數。",
+    },
+    id: "natural-number",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf", pages: "§3.1-§3.2" },
+      { file: "reference/MATH1090/MATH1090_Worksheet4.pdf" },
+    ],
+    termEn: "natural number",
+    termZhCn: "自然数",
+    termZhHk: "自然數",
+  },
+  {
+    notationNote: "The successor map is written `S(x)`.",
+    definition: {
+      en: "Peano's axioms describe a model of the natural numbers using 0, successor, and induction.",
+      "zh-cn": "皮亚诺公理用 0、后继和归纳法来描述自然数模型。",
+      "zh-hk": "皮亞諾公理用 0、後繼和歸納法來描述自然數模型。",
+    },
+    id: "peano-axiom",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf", pages: "§3.2" },
+      { file: "reference/MATH1090/MATH1090_Worksheet4.pdf", note: "Exercise 3" },
+    ],
+    termEn: "Peano axiom",
+    termZhCn: "皮亚诺公理",
+    termZhHk: "皮亞諾公理",
+  },
+  {
+    definition: {
+      en: "Mathematical induction is a proof method that starts from a base case and then proves the successor step.",
+      "zh-cn": "数学归纳法是一种证明方法：先证基本情况，再证后继步骤。",
+      "zh-hk": "數學歸納法是一種證明方法：先證基本情況，再證後繼步驟。",
+    },
+    id: "induction",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf", pages: "§3.2-§3.4" },
+      { file: "reference/MATH1090/MATH1090_Worksheet4.pdf", note: "Exercises 1-3" },
+    ],
+    termEn: "mathematical induction",
+    termZhCn: "数学归纳法",
+    termZhHk: "數學歸納法",
+  },
+  {
+    definition: {
+      en: "A recursive definition gives a base case and then defines later values from earlier ones.",
+      "zh-cn": "递归定义先给出基本情况，再用较早的值定义后面的值。",
+      "zh-hk": "遞歸定義先給出基本情況，再用較早的值定義後面的值。",
+    },
+    id: "recursive-definition",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf", pages: "§3.3" },
+      { file: "reference/MATH1090/MATH1090_Worksheet4.pdf", note: "Exercise 1" },
+    ],
+    termEn: "recursive definition",
+    termZhCn: "递归定义",
+    termZhHk: "遞歸定義",
+  },
+  {
+    definition: {
+      en: "An integer is one of the whole numbers ..., -2, -1, 0, 1, 2, ...",
+      "zh-cn": "整数是 ..., -2, -1, 0, 1, 2, ... 这些整数。",
+      "zh-hk": "整數是 ..., -2, -1, 0, 1, 2, ... 這些整數。",
+    },
+    id: "integer",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf", pages: "§3.5" },
+      { file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex", note: "Chapter 3 review" },
+    ],
+    termEn: "integer",
+    termZhCn: "整数",
+    termZhHk: "整數",
+  },
+  {
+    definition: {
+      en: "An equivalence relation is a relation that is reflexive, symmetric, and transitive.",
+      "zh-cn": "等价关系同时满足自反、对称和传递。",
+      "zh-hk": "等價關係同時滿足自反、對稱和傳遞。",
+    },
+    id: "equivalence-relation",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf", pages: "§2.10, §3.5-§3.6" },
+      { file: "reference/MATH1090/MATH1090_Worksheet5.pdf", note: "Exercise 1" },
+    ],
+    termEn: "equivalence relation",
+    termZhCn: "等价关系",
+    termZhHk: "等價關係",
+  },
+  {
+    definition: {
+      en: "An equivalence class is the collection of all elements that are equivalent to a chosen element.",
+      "zh-cn": "等价类是与某个选定元素等价的所有元素组成的集合。",
+      "zh-hk": "等價類是與某個選定元素等價的所有元素組成的集合。",
+    },
+    id: "equivalence-class",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf", pages: "§2.10, §3.5-§3.6" },
+      { file: "reference/MATH1090/MATH1090_Worksheet4.pdf", note: "Exercise 3" },
+    ],
+    termEn: "equivalence class",
+    termZhCn: "等价类",
+    termZhHk: "等價類",
+  },
+  {
+    definition: {
+      en: "A rational number is an equivalence class of pairs that behaves like a fraction.",
+      "zh-cn": "有理数是按分数方式运作的一类等价类。",
+      "zh-hk": "有理數是按分數方式運作的一類等價類。",
+    },
+    id: "rational-number",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf", pages: "§3.6" },
+      { file: "reference/MATH1090/MATH1090_Worksheet5.pdf" },
+    ],
+    termEn: "rational number",
+    termZhCn: "有理数",
+    termZhHk: "有理數",
+  },
+  {
+    notationNote: "A formula is well-defined only if it gives the same output for every equivalent representative.",
+    definition: {
+      en: "A well-defined operation gives the same result no matter which representative you choose.",
+      "zh-cn": "良定运算无论选哪个代表元，结果都一样。",
+      "zh-hk": "良定運算無論選哪個代表元，結果都一樣。",
+    },
+    id: "well-defined-operation",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf", pages: "§3.5-§3.6" },
+      { file: "reference/MATH1090/MATH1090_Worksheet5.pdf", note: "Exercise 1" },
+    ],
+    termEn: "well-defined operation",
+    termZhCn: "良定运算",
+    termZhHk: "良定運算",
+  },
+  {
+    definition: {
+      en: "An irrational number is a real number that is not rational.",
+      "zh-cn": "无理数是不能写成有理数的实数。",
+      "zh-hk": "無理數是不能寫成有理數的實數。",
+    },
+    id: "irrational-number",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf", pages: "§4.11" },
+      { file: "reference/MATH1090/MATH1090_Worksheet5.pdf", note: "Exercises 3-4" },
+    ],
+    termEn: "irrational number",
+    termZhCn: "无理数",
+    termZhHk: "無理數",
+  },
+  {
     cantoneseNote: "「矩陣」在香港課堂中最常用。",
     definition: {
       en: "A matrix is a rectangular array of numbers arranged in rows and columns.",
@@ -182,6 +335,139 @@ export const glossaryEntries: GlossaryEntry[] = [
     termEn: "invertible matrix",
     termZhCn: "可逆矩阵",
     termZhHk: "可逆矩陣",
+  },
+  {
+    cantoneseNote: "老師常會講「要先證明定義良好」，意思是不可以依賴代表元。",
+    definition: {
+      en: "A definition is well defined if the final object or value does not depend on which representative you chose to describe it.",
+      "zh-cn": "若最后得到的对象或数值不依赖你选了哪个代表元，这个定义就是良定义的。",
+      "zh-hk": "若最後得到的對象或數值不依賴你選了哪個代表元，這個定義就是良定義的。",
+    },
+    id: "well-defined",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex", pages: "§3.1, Exercises 34 and 37" },
+      { file: "reference/MATH1090/MATH1090_Worksheet5.pdf", note: "Exercise 1" },
+    ],
+    termEn: "well defined",
+    termZhCn: "良定义",
+    termZhHk: "良定義",
+  },
+  {
+    definition: {
+      en: "The supremum of a set is its least upper bound: it is an upper bound, and no smaller upper bound exists.",
+      "zh-cn": "上确界是一个集合的最小上界：它本身是上界，而且没有更小的上界。",
+      "zh-hk": "上確界是一個集合的最小上界：它本身是上界，而且沒有更小的上界。",
+    },
+    id: "supremum",
+    notationNote: "`sup(X)` denotes the supremum of the set X.",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex", pages: "Worksheet 5 Exercise 3 and §3.7" },
+      { file: "reference/MATH1090/MATH1090_Worksheet5.pdf", note: "Exercises 3 and 4" },
+    ],
+    termEn: "supremum",
+    termZhCn: "上确界",
+    termZhHk: "上確界",
+  },
+  {
+    cantoneseNote: "香港多數直接讀作「向量空間」。",
+    definition: {
+      en: "A vector space is a set of vectors with addition and scalar multiplication that satisfy the vector-space axioms.",
+      "zh-cn": "向量空间是一个带有向量加法和数乘，并满足向量空间公理的集合。",
+      "zh-hk": "向量空間是一個帶有向量加法和數乘，並滿足向量空間公理的集合。",
+    },
+    id: "vector-space",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§6.1" },
+      { file: "reference/MATH1030/1030efghi-tutorial-week08.pdf", note: "Advice section (VsA1-VsD2)" },
+    ],
+    termEn: "vector space",
+    termZhCn: "向量空间",
+    termZhHk: "向量空間",
+  },
+  {
+    definition: {
+      en: "A subspace is a subset of a vector space that contains the zero vector and is closed under addition and scalar multiplication.",
+      "zh-cn": "子空间是向量空间的一个子集，它包含零向量，并且对加法和数乘封闭。",
+      "zh-hk": "子空間是向量空間的一個子集，它包含零向量，並且對加法和數乘封閉。",
+    },
+    id: "subspace",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§6.2" },
+      { file: "reference/MATH1030/1030efghi-tutorial-week08.pdf", note: "Advice section (Ssp1-Ssp2b) and Question 1" },
+    ],
+    termEn: "subspace",
+    termZhCn: "子空间",
+    termZhHk: "子空間",
+  },
+  {
+    definition: {
+      en: "A linear combination is an expression of the form a1u1 + a2u2 + ... + anun, where the coefficients are scalars.",
+      "zh-cn": "线性组合是形如 a1u1 + a2u2 + ... + anun 的表达式，其中系数都是标量。",
+      "zh-hk": "線性組合是形如 a1u1 + a2u2 + ... + anun 的表達式，其中係數都是標量。",
+    },
+    id: "linear-combination",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§6.3" },
+    ],
+    termEn: "linear combination",
+    termZhCn: "线性组合",
+    termZhHk: "線性組合",
+  },
+  {
+    definition: {
+      en: "The span of a collection of vectors is the set of all linear combinations of those vectors.",
+      "zh-cn": "一个向量组的张成是由这些向量所有线性组合组成的集合。",
+      "zh-hk": "一組向量的張成是由這些向量所有線性組合組成的集合。",
+    },
+    id: "span",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§6.3" },
+    ],
+    termEn: "span",
+    termZhCn: "张成",
+    termZhHk: "張成",
+  },
+  {
+    definition: {
+      en: "Vectors are linearly independent when the only way to combine them to get 0 is to use all-zero coefficients.",
+      "zh-cn": "如果把这些向量线性组合成 0 的唯一办法是所有系数都等于 0，那么它们线性无关。",
+      "zh-hk": "如果把這些向量線性組合成 0 的唯一方法是所有係數都等於 0，那麼它們線性無關。",
+    },
+    id: "linear-independence",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§6.4" },
+    ],
+    termEn: "linear independence",
+    termZhCn: "线性无关",
+    termZhHk: "線性無關",
+  },
+  {
+    definition: {
+      en: "A basis is a set of vectors that is linearly independent and still spans the whole space.",
+      "zh-cn": "一组基底既线性无关，又能张成整个空间。",
+      "zh-hk": "一組基底既線性無關，又能張成整個空間。",
+    },
+    id: "basis",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§6.5" },
+    ],
+    termEn: "basis",
+    termZhCn: "基底",
+    termZhHk: "基底",
+  },
+  {
+    definition: {
+      en: "The dimension of a vector space is the number of vectors in any basis of that space.",
+      "zh-cn": "向量空间的维数是它任意一组基底所含向量的个数。",
+      "zh-hk": "向量空間的維數是它任意一組基底所含向量的個數。",
+    },
+    id: "dimension",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§6.5" },
+    ],
+    termEn: "dimension",
+    termZhCn: "维数",
+    termZhHk: "維數",
   },
 ];
 

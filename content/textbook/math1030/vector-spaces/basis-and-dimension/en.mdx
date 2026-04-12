@@ -1,0 +1,95 @@
+---
+title: "6.5 Basis and dimension"
+description: "Finish the chapter by finding the smallest spanning set and counting how many vectors it has."
+---
+
+## Minimal spanning sets
+
+A basis is the cleanest possible spanning set: it spans the space, and it has no
+redundant vectors.
+
+<Definition title="Basis">
+A set of vectors `{u_1, u_2, \ldots, u_m}` is a basis for a vector space `V` if:
+
+1. the vectors are linearly independent;
+2. `Span{u_1, u_2, \ldots, u_m} = V`.
+</Definition>
+
+The notes stress that the same space can have more than one basis, but every
+basis has the same number of vectors.
+
+<WorkedExample title="The standard basis of `R^3`">
+Let
+
+$$
+e_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \quad
+e_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \quad
+e_3 = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}.
+$$
+
+The notes show that these vectors are linearly independent and that they span
+`R^3`.
+
+So `{e_1, e_2, e_3}` is a basis for `R^3`.
+</WorkedExample>
+
+## Dimension
+
+Once you know what a basis is, dimension is just a count.
+
+<Definition title="Dimension">
+The dimension of a vector space `V`, written `dim(V)`, is the number of
+vectors in a basis of `V`.
+</Definition>
+
+The special case `dim({0}) = 0` is included in the notes because the zero space
+has no linearly independent vectors.
+
+The chapter also records familiar dimension facts:
+
+- `dim(R^m) = m`.
+- `dim(M_{mn}) = mn` for matrix spaces.
+- `dim(P_n) = n + 1` for polynomials of degree at most `n`.
+
+## Why dimension is powerful
+
+Dimension tells you what is possible and what is not. If a space has dimension
+`m`, then:
+
+- any `m` linearly independent vectors form a basis;
+- any `m` vectors that span the space form a basis;
+- fewer than `m` vectors cannot span the space.
+
+That is the quickest way to test many basis problems.
+
+## Common mistake
+
+<CommonMistake title="Spanning is not enough">
+A set can span a space and still fail to be a basis if it is not linearly
+independent. Always check both conditions.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="What is `dim(R^3)`?">
+Count the vectors in the standard basis.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`dim(R^3) = 3`.
+</RevealSolution>
+
+<QuickCheck prompt="Can two vectors span `R^3`?">
+Use the dimension rule from the chapter.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. `R^3` has dimension 3, so fewer than 3 vectors cannot span it.
+</RevealSolution>
+
+## Read this first
+
+This page depends on
+[6.4 Linear dependence and independence](/en/courses/math1030/vector-spaces/linear-dependence-and-independence)
+and
+[6.3 Linear combinations and span](/en/courses/math1030/vector-spaces/linear-combinations-and-span).

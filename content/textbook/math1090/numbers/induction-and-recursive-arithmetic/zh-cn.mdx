@@ -1,0 +1,94 @@
+---
+title: "3.2 归纳法与递归算术"
+description: "把归纳法当作证明模式，并读懂加法与乘法的递归公式。"
+---
+
+归纳法不是魔术。它是一种证明模式，专门处理“对每个自然数都成
+立”的命题。
+
+同一章也用到加法与乘法的递归定义，所以要一直把基本情况和步骤
+放在眼前。
+
+## 递归加法
+
+<Definition title="加法的递归定义">
+对自然数 `a` 和 `b`，加法定义为：
+
+- `a + 0 = a`
+- `a + S(b) = S(a + b)`
+</Definition>
+
+这是一个递归定义。你先知道第二个输入是 `0` 时的结果，再由较早
+的值推出之后的每一步。
+
+<WorkedExample title="由定义计算 `2 + 3`">
+把 `2` 写成 `S(S(0))`，把 `3` 写成 `S(S(S(0)))`。
+
+那么：
+
+`2 + 3 = 2 + S(S(S(0)))`
+
+`= S(2 + S(S(0)))`
+
+`= S(S(2 + S(0)))`
+
+`= S(S(S(2 + 0)))`
+
+`= S(S(S(2)))`。
+
+这就是通常叫做 `5` 的数。
+</WorkedExample>
+
+<CommonMistake title="递归公式本身还不是证明">
+这些公式只告诉你运算怎样定义，不会自动证明一个关于所有自然数
+的命题。要做那一步，你还是要用归纳法。
+</CommonMistake>
+
+## 先看互动步骤
+
+下面的步骤器把一个归纳证明拆成基本情况、归纳假设、归纳步骤和结论。
+
+<InteractiveWidget id="induction-stepper" />
+
+## 证明草图
+
+<CollapsibleProof title="为什么 `S(a) + b = S(a + b)` 可由归纳法得到">
+我们对 `b in N` 证明这个命题。
+
+基本情况：当 `b = 0`，
+
+`S(a) + 0 = S(a) = S(a + 0)`。
+
+归纳步骤：假设 `S(a) + b = S(a + b)`。那么
+
+`S(a) + S(b) = S(S(a) + b)`，因为加法是这样定义的，
+
+`= S(S(a + b))`，用归纳假设，
+
+`= S(a + S(b))`，再用一次加法定义。
+
+所以只要对 `b` 成立，它就对 `S(b)` 也成立。
+</CollapsibleProof>
+
+## 快问快答
+
+<QuickCheck prompt="加法的递归定义中，基本情况是哪一句？">
+想想哪一个输入先被固定。
+</QuickCheck>
+
+<RevealSolution title="答案">
+基本情况是 `a + 0 = a`。
+</RevealSolution>
+
+<QuickCheck prompt="在归纳证明中，归纳假设是什么？">
+用一句短句回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它是假设命题对某个固定的自然数 `n` 成立，然后再证 `S(n)` 的情况。
+</RevealSolution>
+
+## 先备连结
+
+如果你想先看自然数的正式设置，可以先读
+[3.1 自然数与 Peano 公理](/zh-cn/courses/math1090/numbers/natural-numbers-peano)。

@@ -1,0 +1,63 @@
+---
+title: "3.3 Integers from equivalence classes"
+description: "Build the integers from pairs of natural numbers and read each equivalence class as one signed number."
+---
+
+The source notes build the integers from a relation on pairs of natural numbers.
+The idea is simple: instead of trying to invent a brand-new object for `-1`,
+you let pairs such as `(0, 1)` or `(3, 4)` stand for the same signed number.
+
+## The relation
+
+<Definition title="Integers as equivalence classes">
+Work inside `N^2`, the set of ordered pairs of natural numbers.
+
+Define a relation `~_Z` by
+
+`(a, b) ~_Z (c, d)` if `a + d = b + c`.
+
+The integers are the equivalence classes of this relation.
+</Definition>
+
+Read a pair `(a, b)` as a difference `a - b`. Then different pairs can still
+represent the same integer if they encode the same difference.
+
+## A concrete example
+
+<WorkedExample title="Two pairs can represent the same integer">
+The pairs `(3, 1)` and `(5, 3)` are equivalent, because
+
+`3 + 3 = 1 + 5`.
+
+So they represent the same integer. In the usual mental picture, both stand
+for `2`.
+</WorkedExample>
+
+<CommonMistake title="Do not stop at the pair itself">
+The integer is not the ordered pair. The pair is only a representative of an
+equivalence class.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Are `(2, 0)` and `(5, 3)` equivalent under `~_Z`?">
+Use the rule `a + d = b + c`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. `2 + 3 = 0 + 5`, so the two pairs are equivalent.
+</RevealSolution>
+
+<QuickCheck prompt="Why do we use equivalence classes instead of raw pairs?">
+Say the reason in one sentence.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Because many different pairs should represent the same signed number, and the
+equivalence relation collects exactly those representatives together.
+</RevealSolution>
+
+## Read this first
+
+If you want a refresher on equivalence relations, review
+[2.2 Functions and relations](/en/courses/math1090/sets/functions-relations).

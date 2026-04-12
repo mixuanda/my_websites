@@ -1,0 +1,68 @@
+---
+title: "3.1 Natural numbers and Peano's axioms"
+description: "Start from counting, then see how Peano's axioms pin down the natural numbers."
+---
+
+We usually meet natural numbers as counting numbers. The source notes take a
+stricter route: they describe them by a small list of axioms instead of by
+examples alone.
+
+## A model of the naturals
+
+<Definition title="A model of the natural numbers">
+Suppose `N` is a set with a distinguished element `0` and a function
+`S : N -> N`.
+
+The notes call `(N, 0, S)` a model of the natural numbers if:
+
+- `S` is injective.
+- `S(x) != x` for every `x in N`.
+- There is no `x in N` such that `S(x) = 0`.
+- Induction holds: if a predicate is true for `0`, and it passes from `x` to
+  `S(x)`, then it is true for all `x in N`.
+</Definition>
+
+The point is not that the symbol `0` magically looks like zero. The point is
+that the structure tells you how to start and how to move forward.
+
+## Successor comes first
+
+<WorkedExample title="Reading the successor chain">
+If `0` is the starting point, then `S(0)` plays the role of `1`,
+`S(S(0))` plays the role of `2`, and so on.
+
+That is why the notes sometimes write `2` as `S(S(0))` when they want the
+definition to stay visible.
+</WorkedExample>
+
+<CommonMistake title="Do not treat the symbol and the role as the same thing">
+The Peano setup does not say that the written symbol `2` has some intrinsic
+meaning. It says that `2` is whatever object you reach after applying the
+successor map twice to `0`.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Which Peano axiom fails for the cycle `0 -> 1 -> 2 -> 0`?">
+Think about injectivity, fixed points, and whether `0` is ever a successor.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The cycle breaks several axioms. `S(2) = 0`, so `0` is a successor, and the
+loop also makes induction fail. The source exercise asks you to identify the
+failed axioms.
+</RevealSolution>
+
+<QuickCheck prompt="What does the induction axiom let you conclude once the base case and successor step are proved?">
+Say the answer in one sentence.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+You can conclude that the predicate holds for every natural number in `N`.
+</RevealSolution>
+
+## Read this first
+
+If you want a refresher on the language of relations and equivalence classes,
+review
+[2.2 Functions and relations](/en/courses/math1090/sets/functions-relations).

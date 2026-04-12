@@ -19,14 +19,14 @@ function text(en: string, zhHk: string, zhCn: string): LocalizedText {
 
 const heroCopy = {
   body: text(
-    "Learn from small interactive units, then export the exact unit you are studying as a static TXT or PDF revision copy.",
-    "用細小的互動單元學習，然後把你正在看的單元直接匯出成 TXT 或 PDF 靜態溫習版本。",
-    "用细小的互动单元学习，然后把你正在看的单元直接导出成 TXT 或 PDF 静态复习版本。"
+    "Read mathematics section by section, with guided interaction on the page and a clean TXT or PDF study copy for the exact section you are reading.",
+    "按小節閱讀數學內容，頁面中穿插互動引導，並可把你正在看的那一節匯出成乾淨的 TXT 或 PDF 溫習版本。",
+    "按小节阅读数学内容，页面中穿插互动引导，并可把你正在看的那一节导出成干净的 TXT 或 PDF 复习版本。"
   ),
   export: text(
-    "Unit-level export",
-    "單元級匯出",
-    "单元级导出"
+    "Download this section",
+    "下載這一節",
+    "下载这一节"
   ),
   languages: text(
     "English · 繁體中文 · 简体中文",
@@ -34,9 +34,9 @@ const heroCopy = {
     "English · 繁體中文 · 简体中文"
   ),
   route: text(
-    "Route-based reading",
-    "按路由切分閱讀",
-    "按路由切分阅读"
+    "Read in short sections",
+    "按短小段落閱讀",
+    "按短小段落阅读"
   ),
 } as const;
 

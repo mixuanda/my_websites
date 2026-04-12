@@ -1,0 +1,68 @@
+---
+title: "3.5 Gaps in Q and sqrt(2)"
+description: "See why Q still has holes by looking at the irrational number sqrt(2) and the set of rationals below it."
+---
+
+The rational numbers are dense, but density is not the same thing as
+completeness. The source notes use `sqrt(2)` to show that Q still has holes.
+
+## What the gap means
+
+<Definition title="Irrational number">
+An irrational number is a real number that is not rational.
+</Definition>
+
+The notes define a classic set:
+
+`S = {x in Q | x^2 < 2}`.
+
+Every rational with square less than `2` belongs to `S`, and every rational
+with square bigger than `2` sits above it. The missing point is the square
+root of `2`.
+
+## A familiar contradiction
+
+<CollapsibleProof title="Why no rational number squares to 2">
+Assume `x in Q` and `x^2 = 2`. Write `x = p/q` in lowest terms with
+`p, q in Z` and `q != 0`.
+
+Then `p^2 = 2q^2`, so `p^2` is even. The notes prove that this forces `p` to be
+even. Write `p = 2k`.
+
+Substitute again:
+
+`4k^2 = 2q^2`, so `q^2` is even, and then `q` is even too.
+
+That contradicts the choice of `p/q` in lowest terms. So there is no rational
+solution to `x^2 = 2`.
+</CollapsibleProof>
+
+<CommonMistake title="Dense does not mean complete">
+Even though there is always another rational between two rationals, a bounded
+set in Q can still fail to have a supremum in Q.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Does the set `S = {x in Q | x^2 < 2}` have a supremum in Q?">
+Use the contradiction above and the source notes on completeness.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. The notes show that `S` is bounded above in Q, but no rational supremum
+exists there.
+</RevealSolution>
+
+<QuickCheck prompt="Is `sqrt(2)` rational?">
+Say yes or no and give the reason in one phrase.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. The proof above shows that a rational square root of `2` would lead to a
+contradiction.
+</RevealSolution>
+
+## Read this first
+
+If you want the construction of Q first, read
+[3.4 Rationals and well-defined operations](/en/courses/math1090/numbers/rationals-and-well-defined-operations).

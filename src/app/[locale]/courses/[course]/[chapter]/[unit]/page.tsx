@@ -124,7 +124,6 @@ export default async function UnitPage({ params }: UnitPageProps) {
                   </Badge>
                   {bundle.meta.interactiveIds.length > 0 ? (
                     <Badge variant="outline">
-                      {bundle.meta.interactiveIds.length}{" "}
                       {getLocalizedText(uiText.interactiveUnits, locale)}
                     </Badge>
                   ) : null}
@@ -218,7 +217,7 @@ export default async function UnitPage({ params }: UnitPageProps) {
 
             <GlassPanel className="p-5">
               <h2 className="text-lg font-semibold">
-                {getLocalizedText(uiText.unit, locale)}
+                {getLocalizedText(uiText.sectionNavigation, locale)}
               </h2>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
                 {navigation.previous ? (

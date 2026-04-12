@@ -27,6 +27,11 @@ const interactiveLabels = {
   next: text("Next step", "下一步", "下一步"),
   previous: text("Previous step", "上一步", "上一步"),
   reset: text("Reset", "重設", "重置"),
+  claim: text("Claim", "命題", "命题"),
+  baseCase: text("Base case", "基本情況", "基本情况"),
+  inductionHypothesis: text("Induction hypothesis", "歸納假設", "归纳假设"),
+  inductionStep: text("Induction step", "歸納步驟", "归纳步骤"),
+  conclusion: text("Conclusion", "結論", "结论"),
   selectCase: text("Select a case", "選擇案例", "选择案例"),
   setA: text("Set A", "集合 A", "集合 A"),
   setB: text("Set B", "集合 B", "集合 B"),
@@ -37,6 +42,8 @@ const interactiveLabels = {
   example: text("Example", "例子", "例子"),
   result: text("Result", "結果", "结果"),
   why: text("Why it works", "為甚麼成立", "为什么成立"),
+  verdict: text("Verdict", "判斷", "判断"),
+  relation: text("Key relation", "關鍵關係", "关键关系"),
 } as const;
 
 function MatrixView({
@@ -280,6 +287,472 @@ function QuantifierNegationStepper({ locale }: { locale: Locale }) {
             {getLocalizedText(interactiveLabels.next, locale)}
           </Button>
         </div>
+      </div>
+    </InteractiveShell>
+  );
+}
+
+function InductionStepper({ locale }: { locale: Locale }) {
+  const stages = [
+    {
+      body: text(
+        "Claim: for every natural number n, 0 + n = n.",
+        "命題：對每個自然數 n，都有 0 + n = n。",
+        "命题：对每个自然数 n，都有 0 + n = n。"
+      ),
+      title: getLocalizedText(interactiveLabels.claim, locale),
+    },
+    {
+      body: text(
+        "Base case: when n = 0, the recursive rule gives 0 + 0 = 0.",
+        "基本情況：當 n = 0 時，遞歸規則給出 0 + 0 = 0。",
+        "基本情况：当 n = 0 时，递归规则给出 0 + 0 = 0。"
+      ),
+      title: getLocalizedText(interactiveLabels.baseCase, locale),
+    },
+    {
+      body: text(
+        "Induction hypothesis: assume 0 + n = n for a fixed n.",
+        "歸納假設：假設對某個固定的 n，有 0 + n = n。",
+        "归纳假设：假设对某个固定的 n，有 0 + n = n。"
+      ),
+      title: getLocalizedText(interactiveLabels.inductionHypothesis, locale),
+    },
+    {
+      body: text(
+        "Induction step: 0 + S(n) = S(0 + n) = S(n).",
+        "歸納步驟：0 + S(n) = S(0 + n) = S(n)。",
+        "归纳步骤：0 + S(n) = S(0 + n) = S(n)。"
+      ),
+      title: getLocalizedText(interactiveLabels.inductionStep, locale),
+    },
+    {
+      body: text(
+        "Conclusion: the claim holds for all natural numbers.",
+        "結論：命題對所有自然數都成立。",
+        "结论：命题对所有自然数都成立。"
+      ),
+      title: getLocalizedText(interactiveLabels.conclusion, locale),
+    },
+  ] as const;
+  const [step, setStep] = useState(0);
+
+  return (
+    <InteractiveShell icon={<StepForward className="h-5 w-5" />} locale={locale} widgetId="induction-stepper">
+      <div className="grid gap-4">
+        <GlassPanel className="bg-card/50">
+          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+            {stages[step].title}
+          </p>
+          <p className="mt-2 text-sm leading-7">
+            {getLocalizedText(stages[step].body, locale)}
+          </p>
+        </GlassPanel>
+        <div className="flex flex-wrap gap-2">
+          <Button
+            onClick={() => setStep((value) => Math.max(0, value - 1))}
+            size="sm"
+            type="button"
+            variant="outline"
+          >
+            {getLocalizedText(interactiveLabels.previous, locale)}
+          </Button>
+          <Button
+            onClick={() => setStep((value) => Math.min(stages.length - 1, value + 1))}
+            size="sm"
+            type="button"
+          >
+            {getLocalizedText(interactiveLabels.next, locale)}
+          </Button>
+          <Button
+            onClick={() => setStep(0)}
+            size="sm"
+            type="button"
+            variant="outline"
+          >
+            {getLocalizedText(interactiveLabels.reset, locale)}
+          </Button>
+        </div>
+      </div>
+    </InteractiveShell>
+  );
+}
+
+function SubspaceChecker({ locale }: { locale: Locale }) {
+  const cases = [
+    {
+      checks: [
+        {
+          label: text("Contains 0", "包含 0", "包含 0"),
+          note: text(
+            "(0, 0) satisfies y = 2x.",
+            "(0, 0) 滿足 y = 2x。",
+            "(0, 0) 满足 y = 2x。"
+          ),
+          passes: true,
+        },
+        {
+          label: text("Closed under addition", "對加法封閉", "对加法封闭"),
+          note: text(
+            "Adding two points on the line keeps you on the same line.",
+            "把直線上的兩點相加，仍會留在同一條直線上。",
+            "把直线上的两点相加，仍会留在同一条直线上。"
+          ),
+          passes: true,
+        },
+        {
+          label: text("Closed under scalar multiplication", "對數乘封閉", "对数乘封闭"),
+          note: text(
+            "Scaling a point on the line still gives y = 2x.",
+            "把直線上的點做數乘，仍會滿足 y = 2x。",
+            "把直线上的点做数乘，仍会满足 y = 2x。"
+          ),
+          passes: true,
+        },
+      ],
+      label: text("Line y = 2x", "直線 y = 2x", "直线 y = 2x"),
+      verdict: text(
+        "This set passes the full subspace test.",
+        "這個集合通過完整的子空間測試。",
+        "这个集合通过完整的子空间测试。"
+      ),
+    },
+    {
+      checks: [
+        {
+          label: text("Contains 0", "包含 0", "包含 0"),
+          note: text(
+            "(0, 0) does not satisfy y = 2x + 1.",
+            "(0, 0) 不滿足 y = 2x + 1。",
+            "(0, 0) 不满足 y = 2x + 1。"
+          ),
+          passes: false,
+        },
+        {
+          label: text("Closed under addition", "對加法封閉", "对加法封闭"),
+          note: text(
+            "Even if you test addition, the missing zero vector already blocks subspace status.",
+            "就算你再檢查加法，缺少零向量已經足以否定它是子空間。",
+            "就算你再检查加法，缺少零向量已经足以否定它是子空间。"
+          ),
+          passes: false,
+        },
+        {
+          label: text("Closed under scalar multiplication", "對數乘封閉", "对数乘封闭"),
+          note: text(
+            "Multiplying by 0 would send points to (0, 0), which is outside the set.",
+            "若乘上 0，點會被送到 (0, 0)，但它不在集合內。",
+            "若乘上 0，点会被送到 (0, 0)，但它不在集合内。"
+          ),
+          passes: false,
+        },
+      ],
+      label: text("Line y = 2x + 1", "直線 y = 2x + 1", "直线 y = 2x + 1"),
+      verdict: text(
+        "This set fails immediately because it misses the zero vector.",
+        "這個集合一開始就失敗，因為它缺少零向量。",
+        "这个集合一开始就失败，因为它缺少零向量。"
+      ),
+    },
+    {
+      checks: [
+        {
+          label: text("Contains 0", "包含 0", "包含 0"),
+          note: text(
+            "(0, 0, 0) lies in the plane z = 0.",
+            "(0, 0, 0) 在平面 z = 0 上。",
+            "(0, 0, 0) 在平面 z = 0 上。"
+          ),
+          passes: true,
+        },
+        {
+          label: text("Closed under addition", "對加法封閉", "对加法封闭"),
+          note: text(
+            "If both third coordinates are 0, their sum still has third coordinate 0.",
+            "若兩個向量的第三座標都是 0，相加後第三座標仍是 0。",
+            "若两个向量的第三坐标都是 0，相加后第三坐标仍是 0。"
+          ),
+          passes: true,
+        },
+        {
+          label: text("Closed under scalar multiplication", "對數乘封閉", "对数乘封闭"),
+          note: text(
+            "Scaling preserves the third coordinate 0.",
+            "數乘會保留第三座標為 0。",
+            "数乘会保留第三坐标为 0。"
+          ),
+          passes: true,
+        },
+      ],
+      label: text("Plane z = 0", "平面 z = 0", "平面 z = 0"),
+      verdict: text(
+        "This is a standard subspace of R^3.",
+        "這是 R^3 的標準子空間。",
+        "这是 R^3 的标准子空间。"
+      ),
+    },
+    {
+      checks: [
+        {
+          label: text("Contains 0", "包含 0", "包含 0"),
+          note: text(
+            "(0, 0) is not on the unit circle.",
+            "(0, 0) 不在單位圓上。",
+            "(0, 0) 不在单位圆上。"
+          ),
+          passes: false,
+        },
+        {
+          label: text("Closed under addition", "對加法封閉", "对加法封闭"),
+          note: text(
+            "Adding two unit vectors usually changes the length.",
+            "把兩個單位向量相加，長度通常會改變。",
+            "把两个单位向量相加，长度通常会改变。"
+          ),
+          passes: false,
+        },
+        {
+          label: text("Closed under scalar multiplication", "對數乘封閉", "对数乘封闭"),
+          note: text(
+            "Multiplying by 2 sends a unit vector outside the circle.",
+            "乘上 2 會把單位向量送到圓外。",
+            "乘上 2 会把单位向量送到圆外。"
+          ),
+          passes: false,
+        },
+      ],
+      label: text("Unit circle", "單位圓", "单位圆"),
+      verdict: text(
+        "This set is geometric, but it is not a subspace.",
+        "這個集合有幾何意義，但不是子空間。",
+        "这个集合有几何意义，但不是子空间。"
+      ),
+    },
+  ] as const;
+  const [selected, setSelected] = useState(0);
+  const current = cases[selected];
+
+  return (
+    <InteractiveShell icon={<Braces className="h-5 w-5" />} locale={locale} widgetId="subspace-checker">
+      <div className="flex flex-wrap gap-2">
+        {cases.map((item, index) => (
+          <Button
+            key={item.label.en}
+            onClick={() => setSelected(index)}
+            size="sm"
+            type="button"
+            variant={selected === index ? "default" : "outline"}
+          >
+            {getLocalizedText(item.label, locale)}
+          </Button>
+        ))}
+      </div>
+      <GlassPanel className="mt-4 bg-card/50">
+        <p className="text-sm leading-7 text-muted-foreground">
+          {getLocalizedText(current.verdict, locale)}
+        </p>
+      </GlassPanel>
+      <div className="mt-4 grid gap-3 md:grid-cols-3">
+        {current.checks.map((check) => (
+          <GlassPanel key={check.label.en} className="bg-card/50">
+            <p className="text-sm font-semibold">{getLocalizedText(check.label, locale)}</p>
+            <p className="mt-2 text-sm font-medium">
+              {check.passes
+                ? getLocalizedText(text("Passes", "通過", "通过"), locale)
+                : getLocalizedText(text("Fails", "失敗", "失败"), locale)}
+            </p>
+            <p className="mt-2 text-sm leading-7 text-muted-foreground">
+              {getLocalizedText(check.note, locale)}
+            </p>
+          </GlassPanel>
+        ))}
+      </div>
+    </InteractiveShell>
+  );
+}
+
+function SpanExplorer({ locale }: { locale: Locale }) {
+  const cases = [
+    {
+      label: text("Standard basis in R^2", "R^2 的標準基底", "R^2 的标准基底"),
+      note: text(
+        "Every output vector is built from the horizontal and vertical directions.",
+        "每個輸出向量都是由水平與垂直方向組合而成。",
+        "每个输出向量都是由水平与垂直方向组合而成。"
+      ),
+      u: [1, 0] as const,
+      v: [0, 1] as const,
+    },
+    {
+      label: text("Two diagonal generators", "兩條對角生成向量", "两条对角生成向量"),
+      note: text(
+        "These two vectors still span all of R^2 because they point in different directions.",
+        "這兩個向量仍會張成整個 R^2，因為它們指向不同方向。",
+        "这两个向量仍会张成整个 R^2，因为它们指向不同方向。"
+      ),
+      u: [1, 1] as const,
+      v: [1, -1] as const,
+    },
+  ] as const;
+  const [selected, setSelected] = useState(0);
+  const [alpha, setAlpha] = useState(1);
+  const [beta, setBeta] = useState(0);
+  const current = cases[selected];
+  const result = useMemo(
+    () => [
+      alpha * current.u[0] + beta * current.v[0],
+      alpha * current.u[1] + beta * current.v[1],
+    ],
+    [alpha, beta, current]
+  );
+
+  return (
+    <InteractiveShell icon={<ArrowLeftRight className="h-5 w-5" />} locale={locale} widgetId="span-explorer">
+      <div className="flex flex-wrap gap-2">
+        {cases.map((item, index) => (
+          <Button
+            key={item.label.en}
+            onClick={() => setSelected(index)}
+            size="sm"
+            type="button"
+            variant={selected === index ? "default" : "outline"}
+          >
+            {getLocalizedText(item.label, locale)}
+          </Button>
+        ))}
+      </div>
+      <div className="mt-4 grid gap-4 lg:grid-cols-3">
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">u</p>
+          <p className="mt-2 font-mono text-sm">{`(${current.u[0]}, ${current.u[1]})`}</p>
+          <p className="mt-4 text-sm font-semibold">v</p>
+          <p className="mt-2 font-mono text-sm">{`(${current.v[0]}, ${current.v[1]})`}</p>
+        </GlassPanel>
+        <GlassPanel className="bg-card/50">
+          <div className="space-y-3">
+            <div>
+              <p className="text-sm font-semibold">α</p>
+              <Input
+                className="mt-2 font-mono"
+                inputMode="numeric"
+                onChange={(event) => setAlpha(Number(event.target.value || "0"))}
+                type="number"
+                value={alpha}
+              />
+            </div>
+            <div>
+              <p className="text-sm font-semibold">β</p>
+              <Input
+                className="mt-2 font-mono"
+                inputMode="numeric"
+                onChange={(event) => setBeta(Number(event.target.value || "0"))}
+                type="number"
+                value={beta}
+              />
+            </div>
+          </div>
+        </GlassPanel>
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">{getLocalizedText(interactiveLabels.result, locale)}</p>
+          <p className="mt-2 font-mono text-sm">{`αu + βv = (${result[0]}, ${result[1]})`}</p>
+          <p className="mt-4 text-sm leading-7 text-muted-foreground">
+            {getLocalizedText(current.note, locale)}
+          </p>
+        </GlassPanel>
+      </div>
+    </InteractiveShell>
+  );
+}
+
+function IndependenceChecker({ locale }: { locale: Locale }) {
+  const cases = [
+    {
+      explanation: text(
+        "The only way to solve c1e1 + c2e2 = 0 is c1 = c2 = 0, so this pair is linearly independent.",
+        "解 c1e1 + c2e2 = 0 時，只會得到 c1 = c2 = 0，所以這一對向量線性無關。",
+        "解 c1e1 + c2e2 = 0 时，只会得到 c1 = c2 = 0，所以这一对向量线性无关。"
+      ),
+      label: text("{e1, e2}", "{e1, e2}", "{e1, e2}"),
+      relation: text(
+        "No nontrivial linear relation appears.",
+        "看不見任何非平凡線性關係。",
+        "看不见任何非平凡线性关系。"
+      ),
+      verdict: text("Independent", "線性無關", "线性无关"),
+    },
+    {
+      explanation: text(
+        "One vector is already the sum of the other two, so the set contains redundancy.",
+        "其中一個向量本身就是另外兩個的和，所以這組向量含有冗餘。",
+        "其中一个向量本身就是另外两个的和，所以这组向量含有冗余。"
+      ),
+      label: text("{u1, u2, u1 + u2}", "{u1, u2, u1 + u2}", "{u1, u2, u1 + u2}"),
+      relation: text(
+        "u1 + u2 - (u1 + u2) = 0",
+        "u1 + u2 - (u1 + u2) = 0",
+        "u1 + u2 - (u1 + u2) = 0"
+      ),
+      verdict: text("Dependent", "線性相依", "线性相依"),
+    },
+    {
+      explanation: text(
+        "The second vector is a scalar multiple of the first, so one direction is repeated.",
+        "第二個向量是第一個向量的倍數，所以同一個方向被重覆計數。",
+        "第二个向量是第一个向量的倍数，所以同一个方向被重复计数。"
+      ),
+      label: text("{u, 2u}", "{u, 2u}", "{u, 2u}"),
+      relation: text(
+        "2u - (2u) = 0, so one vector is a multiple of the other.",
+        "2u - (2u) = 0，因此其中一個向量是另一個的倍數。",
+        "2u - (2u) = 0，因此其中一个向量是另一个的倍数。"
+      ),
+      verdict: text("Dependent", "線性相依", "线性相依"),
+    },
+    {
+      explanation: text(
+        "Any set containing the zero vector is automatically dependent.",
+        "任何包含零向量的集合都會自動線性相依。",
+        "任何包含零向量的集合都会自动线性相依。"
+      ),
+      label: text("{0, u}", "{0, u}", "{0, u}"),
+      relation: text(
+        "1·0 + 0·u = 0 is already a nontrivial relation.",
+        "1·0 + 0·u = 0 已經是一個非平凡關係。",
+        "1·0 + 0·u = 0 已经是一个非平凡关系。"
+      ),
+      verdict: text("Dependent", "線性相依", "线性相依"),
+    },
+  ] as const;
+  const [selected, setSelected] = useState(0);
+  const current = cases[selected];
+
+  return (
+    <InteractiveShell icon={<ListChecks className="h-5 w-5" />} locale={locale} widgetId="independence-checker">
+      <div className="flex flex-wrap gap-2">
+        {cases.map((item, index) => (
+          <Button
+            key={item.label.en}
+            onClick={() => setSelected(index)}
+            size="sm"
+            type="button"
+            variant={selected === index ? "default" : "outline"}
+          >
+            {getLocalizedText(item.label, locale)}
+          </Button>
+        ))}
+      </div>
+      <div className="mt-4 grid gap-4 lg:grid-cols-2">
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">{getLocalizedText(interactiveLabels.verdict, locale)}</p>
+          <p className="mt-2 text-sm">{getLocalizedText(current.verdict, locale)}</p>
+          <p className="mt-4 text-sm leading-7 text-muted-foreground">
+            {getLocalizedText(current.explanation, locale)}
+          </p>
+        </GlassPanel>
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">{getLocalizedText(interactiveLabels.relation, locale)}</p>
+          <p className="mt-2 font-mono text-sm">{getLocalizedText(current.relation, locale)}</p>
+        </GlassPanel>
       </div>
     </InteractiveShell>
   );
@@ -718,12 +1191,16 @@ function InvertibilityRowReductionDemo({ locale }: { locale: Locale }) {
 }
 
 const interactiveComponents = {
+  "independence-checker": IndependenceChecker,
   "invertibility-row-reduction-demo": InvertibilityRowReductionDemo,
+  "induction-stepper": InductionStepper,
   "matrix-multiplication-visualizer": MatrixMultiplicationVisualizer,
   "quantifier-negation-stepper": QuantifierNegationStepper,
   "row-reduction-stepper": RowReductionStepper,
   "set-operation-explorer": SetOperationExplorer,
   "solution-set-classifier": SolutionSetClassifier,
+  "span-explorer": SpanExplorer,
+  "subspace-checker": SubspaceChecker,
   "system-augmented-matrix-explorer": SystemAugmentedMatrixExplorer,
   "truth-table-builder": TruthTableBuilder,
 };

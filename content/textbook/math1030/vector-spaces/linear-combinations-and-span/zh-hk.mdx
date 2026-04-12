@@ -1,0 +1,100 @@
+---
+title: "6.3 線性組合與張成"
+description: "看見向量如何湊出新向量，以及張成怎樣收集所有可能的結果。"
+---
+
+## 由向量造出新向量
+
+線性組合就是把一些向量乘上純量，再把結果相加。
+
+<Definition title="線性組合">
+設 `u_1, u_2, \ldots, u_n` 是向量空間 `V` 裡的向量，`\alpha_1, \alpha_2,
+\ldots, \alpha_n` 是純量。那麼
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n
+$$
+
+就叫做 `u_1, u_2, \ldots, u_n` 的線性組合。
+</Definition>
+
+重點是：每個係數都可以是任何實數，包括 `0`。
+
+<WorkedExample title="一個向量可以寫成線性組合">
+筆記裡有
+
+$$
+u_1 = \begin{bmatrix} 1 \\ -2 \\ -1 \end{bmatrix},
+\qquad
+u_2 = \begin{bmatrix} 3 \\ -5 \\ 4 \end{bmatrix},
+\qquad
+w = \begin{bmatrix} 2 \\ -6 \\ -16 \end{bmatrix}.
+$$
+
+例子顯示 `w = 8u_1 - 2u_2`。
+
+所以 `w` 是 `u_1` 和 `u_2` 的線性組合。
+</WorkedExample>
+
+## 張成是甚麼
+
+把一組向量的所有線性組合全部收集起來，就得到它們的張成。
+
+<Definition title="張成">
+`u_1, u_2, \ldots, u_n` 的張成是所有這些向量的線性組合所形成的集合，
+記作 `Span{u_1, u_2, \ldots, u_n}`。
+</Definition>
+
+張成就是「用已知向量可以造出甚麼」的總集合。
+
+筆記也說明，`Span{e_1, e_2}` 是 `R^3` 裡的 `x_1x_2` 平面，而
+`Span{e_1, e_2, e_3} = R^3`。
+
+邊讀邊用下面的探索器，試試某個向量能否由指定向量組合而成。
+
+<InteractiveWidget id="span-explorer" />
+
+## 為甚麼張成有用
+
+筆記也把張成和子空間連起來：任何向量組的張成都一定是子空間。
+
+<CollapsibleProof title="為甚麼張成一定是子空間">
+取 `Span{u_1, \ldots, u_n}` 裡任意兩個向量 `v` 和 `w`。
+
+按定義，它們各自都是 `u_1, \ldots, u_n` 的線性組合。把兩個線性組合
+相加，仍然是線性組合；乘上一個實數，也仍然是線性組合。
+
+所以張成對加法與純量乘法都封閉，因此是子空間。
+</CollapsibleProof>
+
+## 常見錯誤
+
+<CommonMistake title="張成不只是正倍數">
+張成允許所有實數係數，不只是正數。它也包括零組合，所以 `0` 永遠
+在張成裡。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="任何一組向量的張成都一定包含零向量嗎？">
+想一想當所有係數都取 `0` 會怎樣。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。所有係數都取 `0` 時，就得到零向量。
+</RevealSolution>
+
+<QuickCheck prompt="`R^3` 裡的 `Span{e_1, e_2}` 是否包含 `(2, -1, 0)`？">
+用 `x_1x_2` 平面的幾何圖像來想。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。它的第三個座標是 `0`，所以落在那個平面上。
+</RevealSolution>
+
+## 預備連結
+
+這一頁用到
+[6.2 子空間](/zh-hk/courses/math1030/vector-spaces/subspaces) 的想法，
+以及
+[2.2 增廣矩陣與行變換](/zh-hk/courses/math1030/matrices/augmented-matrices-row-operations) 的矩陣語言。

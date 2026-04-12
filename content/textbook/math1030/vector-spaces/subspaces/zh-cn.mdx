@@ -1,0 +1,96 @@
+---
+title: "6.2 子空间"
+description: "学会怎样在一个较大的向量空间里，辨认出一个较小但仍完整的向量空间。"
+---
+
+## 大空间里的小空间
+
+很多时候，我们不需要整个外层向量空间，只需要其中一个仍然保留同
+样运算规则的子集合。
+
+<Definition title="子空间">
+若 `V` 是一个向量空间，而 `W` 是 `V` 的子集，当 `W` 非空，并且对
+加法与数乘都封闭时，`W` 就是 `V` 的子空间。
+</Definition>
+
+教学笔记中的等价说法是：如果 `W` 用继承来的运算本身就是一个向量
+空间，那它就一定是 `V` 的子空间。
+
+## 常见例子
+
+笔记列出几个标准例子：
+
+- 零子空间 `{0}`；
+- 整个空间 `V`；
+- `R^2` 中过原点的一条直线；
+- `R^3` 中过原点的一个平面；
+- 矩阵 `A` 的零空间 `N(A)`。
+
+关键是“过原点”。如果集合不含 `0`，它就不可能是子空间。
+
+<WorkedExample title="过原点的直线是子空间">
+考虑
+
+$$
+W = \{(x, 0) : x \in R\} \subseteq R^2.
+$$
+
+若 `(a, 0)` 和 `(b, 0)` 都在 `W` 中，则
+
+$$
+(a, 0) + (b, 0) = (a + b, 0) \in W.
+$$
+
+若 `c` 是任意实数，则
+
+$$
+c(a, 0) = (ca, 0) \in W.
+$$
+
+所以 `W` 通过子空间检查。
+</WorkedExample>
+
+边看边试下面的检查器，先拿一个候选集合，看看封闭性是否真的成立。
+
+<InteractiveWidget id="subspace-checker" />
+
+## 常见错误
+
+<CommonMistake title="平移过的直线不是子空间">
+集合 `\{(x, y) : x + y = 1\}` 不是 `R^2` 的子空间，因为它不包含零向量
+`(0, 0)`。一般来说，直线或平面要成为子空间，常数项必须是 `0`。
+</CommonMistake>
+
+## 为什么任何子空间都含有 `0`
+
+<CollapsibleProof title="子空间一定包含零向量">
+设 `W` 是 `V` 的子空间，并取任意 `u \in W`。
+
+因为 `W` 对数乘封闭，所以 `(-1)u \in W`。
+又因为 `W` 对加法封闭，所以 `u + (-1)u = 0` 也在 `W`。
+因此 `0 \in W`。
+</CollapsibleProof>
+
+## 快速检查
+
+<QuickCheck prompt="集合 `\{(x, y) : y = 2x\}` 是否是 `R^2` 的子空间？">
+先想它有没有包含 `0`，再想加法与数乘是否封闭。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。它是一条过原点的直线，所以是子空间。
+</RevealSolution>
+
+<QuickCheck prompt="集合 `\{(x, y) : x + y = 1\}` 是否是 `R^2` 的子空间？">
+记得先做零向量检查。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不是。它不包含 `0 = (0, 0)`。
+</RevealSolution>
+
+## 预备链接
+
+这一页建立在
+[6.1 向量空间](/zh-cn/courses/math1030/vector-spaces/vector-spaces) 和
+[2.1 矩阵基础](/zh-cn/courses/math1030/matrices/matrix-basics) 之上。

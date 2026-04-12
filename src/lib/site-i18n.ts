@@ -19,9 +19,9 @@ export const siteUiText = {
     "zh-hk": "目錄",
   },
   footerNote: {
-    en: "Interactive math textbook in progress.",
-    "zh-cn": "互动数学教材持续建设中。",
-    "zh-hk": "互動數學教材持續建設中。",
+    en: "Mathematics course sections are being expanded.",
+    "zh-cn": "数学课程章节仍在持续扩写。",
+    "zh-hk": "數學課程章節仍在持續擴寫。",
   },
   highContrast: {
     en: "High contrast",
@@ -59,9 +59,9 @@ export const siteUiText = {
     "zh-hk": "切換到亮色模式",
   },
   textbooks: {
-    en: "Textbooks",
-    "zh-cn": "教材",
-    "zh-hk": "教材",
+    en: "Courses",
+    "zh-cn": "课程",
+    "zh-hk": "課程",
   },
 } as const satisfies Record<string, LocalizedText>;
 

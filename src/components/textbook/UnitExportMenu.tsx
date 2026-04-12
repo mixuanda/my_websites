@@ -9,7 +9,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
-import { getUnitHrefFromParts } from "@/lib/textbook/routes";
 import type { CourseId, Locale } from "@/lib/textbook/types";
 
 interface UnitExportMenuProps {
@@ -25,7 +24,6 @@ export function UnitExportMenu({
   locale,
   unit,
 }: UnitExportMenuProps) {
-  const unitPath = getUnitHrefFromParts(locale, course, chapter, unit);
   const txtHref = `/api/textbook-export/${locale}/${course}/${chapter}/${unit}`;
   const pdfHref = `${txtHref}/pdf`;
 
@@ -48,11 +46,6 @@ export function UnitExportMenu({
           <a href={pdfHref}>
             <FileType2 className="h-4 w-4" />
             {getLocalizedText(uiText.studyExportPdf, locale)}
-          </a>
-        </DropdownMenuItem>
-        <DropdownMenuItem asChild>
-          <a href={unitPath}>
-            {getLocalizedText(uiText.visitUnit, locale)}
           </a>
         </DropdownMenuItem>
       </DropdownMenuContent>

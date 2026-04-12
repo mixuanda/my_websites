@@ -1,0 +1,105 @@
+---
+title: "6.3 Linear combinations and span"
+description: "See how vectors build new vectors, and how span collects every possible result."
+---
+
+## Building new vectors
+
+A linear combination is what you get when you multiply vectors by scalars and
+add the results.
+
+<Definition title="Linear combination">
+Let `u_1, u_2, \ldots, u_n` be vectors in a vector space `V`, and let
+`\alpha_1, \alpha_2, \ldots, \alpha_n` be scalars. Then
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n
+$$
+
+is a linear combination of `u_1, u_2, \ldots, u_n`.
+</Definition>
+
+The important part is that every coefficient is allowed to be any real number,
+including `0`.
+
+<WorkedExample title="A vector can be written as a combination">
+In the notes,
+
+$$
+u_1 = \begin{bmatrix} 1 \\ -2 \\ -1 \end{bmatrix},
+\qquad
+u_2 = \begin{bmatrix} 3 \\ -5 \\ 4 \end{bmatrix},
+\qquad
+w = \begin{bmatrix} 2 \\ -6 \\ -16 \end{bmatrix}.
+$$
+
+The example shows that `w = 8u_1 - 2u_2`.
+
+So `w` is a linear combination of `u_1` and `u_2`.
+</WorkedExample>
+
+## What span means
+
+If you take all linear combinations of a list of vectors, you get their span.
+
+<Definition title="Span">
+The span of `u_1, u_2, \ldots, u_n` is the set of all linear combinations of
+those vectors. It is written as `Span{u_1, u_2, \ldots, u_n}`.
+</Definition>
+
+The span is the collection of everything you can build from the given vectors.
+
+Example-wise, the notes show that `Span{e_1, e_2}` is the `x_1x_2`-plane in
+`R^3`, while `Span{e_1, e_2, e_3} = R^3`.
+
+Use the explorer below to test whether a chosen vector can be built from a given
+set.
+
+<InteractiveWidget id="span-explorer" />
+
+## Why span is useful
+
+The notes also connect span to subspaces: the span of any collection of vectors
+is always a subspace.
+
+<CollapsibleProof title="Why the span is a subspace">
+Take any vectors `v` and `w` in `Span{u_1, \ldots, u_n}`.
+
+By definition, each of them is a linear combination of `u_1, \ldots, u_n`.
+Adding those combinations gives another linear combination, and scaling one of
+them by a real number also gives another linear combination.
+
+So the span is closed under addition and scalar multiplication. Therefore it is
+a subspace.
+</CollapsibleProof>
+
+## Common mistake
+
+<CommonMistake title="Span is not just positive multiples">
+Span allows all real coefficients, not only positive ones. It also includes the
+zero combination, so `0` is always in the span.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="Is the zero vector always in the span of any list of vectors?">
+Think about what happens when every coefficient is `0`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. The all-zero coefficients give the zero vector.
+</RevealSolution>
+
+<QuickCheck prompt="Does `Span{e_1, e_2}` in `R^3` contain `(2, -1, 0)`?">
+Use the geometric picture of the `x_1x_2`-plane.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. The vector has third coordinate `0`, so it lies in that plane.
+</RevealSolution>
+
+## Read this first
+
+This page uses the subspace idea from
+[6.2 Subspaces](/en/courses/math1030/vector-spaces/subspaces) and the matrix
+setup from [2.2 Augmented matrices and row operations](/en/courses/math1030/matrices/augmented-matrices-row-operations).

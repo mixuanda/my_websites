@@ -71,9 +71,9 @@ export const uiText = {
     "zh-hk": "章節",
   },
   courseOverview: {
-    en: "Course overview",
-    "zh-cn": "课程概览",
-    "zh-hk": "課程概覽",
+    en: "Start course",
+    "zh-cn": "课程首页",
+    "zh-hk": "課程首頁",
   },
   diagramNote: {
     en: "Diagram note",
@@ -91,7 +91,7 @@ export const uiText = {
     "zh-hk": "詞彙與記號",
   },
   interactiveMoment: {
-    en: "Try it here",
+    en: "Read and try",
     "zh-cn": "边读边试",
     "zh-hk": "邊讀邊試",
   },
@@ -101,9 +101,9 @@ export const uiText = {
     "zh-hk": "靜態學習快照",
   },
   interactiveUnits: {
-    en: "Interactive checkpoints",
-    "zh-cn": "互动检查点",
-    "zh-hk": "互動檢查點",
+    en: "Guided interaction",
+    "zh-cn": "互动引导",
+    "zh-hk": "互動引導",
   },
   output: {
     en: "Output",
@@ -136,14 +136,14 @@ export const uiText = {
     "zh-hk": "缺少來源支持",
   },
   nextUnit: {
-    en: "Next unit",
-    "zh-cn": "下一单元",
-    "zh-hk": "下一單元",
+    en: "Next section",
+    "zh-cn": "下一节",
+    "zh-hk": "下一節",
   },
   noPrerequisites: {
-    en: "This unit can be read on its own.",
-    "zh-cn": "这个单元可以独立阅读。",
-    "zh-hk": "這個單元可以獨立閱讀。",
+    en: "This section can be read on its own.",
+    "zh-cn": "这一节可以独立阅读。",
+    "zh-hk": "這一節可以獨立閱讀。",
   },
   pageToc: {
     en: "On this page",
@@ -161,9 +161,9 @@ export const uiText = {
     "zh-hk": "先備知識",
   },
   previousUnit: {
-    en: "Previous unit",
-    "zh-cn": "上一单元",
-    "zh-hk": "上一單元",
+    en: "Previous section",
+    "zh-cn": "上一节",
+    "zh-hk": "上一節",
   },
   progress: {
     en: "Progress",
@@ -206,23 +206,28 @@ export const uiText = {
     "zh-hk": "文字 (.txt)",
   },
   textbook: {
-    en: "Interactive textbooks",
-    "zh-cn": "互动教材",
-    "zh-hk": "互動教材",
+    en: "Courses",
+    "zh-cn": "课程",
+    "zh-hk": "課程",
   },
   unitList: {
-    en: "Units in this chapter",
-    "zh-cn": "本章节单元",
-    "zh-hk": "本章節單元",
+    en: "Sections in this chapter",
+    "zh-cn": "本章节各节",
+    "zh-hk": "本章節各節",
   },
   visitUnit: {
-    en: "Open unit",
-    "zh-cn": "打开单元",
-    "zh-hk": "打開單元",
+    en: "Read section",
+    "zh-cn": "阅读此节",
+    "zh-hk": "閱讀此節",
   },
   unit: {
-    en: "Unit",
-    "zh-cn": "单元",
-    "zh-hk": "單元",
+    en: "Sections",
+    "zh-cn": "各节",
+    "zh-hk": "各節",
+  },
+  sectionNavigation: {
+    en: "Section navigation",
+    "zh-cn": "章节导航",
+    "zh-hk": "章節導覽",
   },
 } as const satisfies Record<string, LocalizedText>;

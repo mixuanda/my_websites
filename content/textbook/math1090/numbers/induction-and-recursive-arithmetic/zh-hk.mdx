@@ -1,0 +1,94 @@
+---
+title: "3.2 歸納法與遞歸算術"
+description: "把歸納法當作證明模式，並讀懂加法與乘法的遞歸公式。"
+---
+
+歸納法不是魔術。它是一種證明模式，專門處理「對每個自然數都成
+立」的命題。
+
+同一章也用到加法與乘法的遞歸定義，所以要一直把基本情況和步驟
+放在眼前。
+
+## 遞歸加法
+
+<Definition title="加法的遞歸定義">
+對自然數 `a` 和 `b`，加法定義為：
+
+- `a + 0 = a`
+- `a + S(b) = S(a + b)`
+</Definition>
+
+這是一個遞歸定義。你先知道第二個輸入是 `0` 時的結果，再由較早
+的值推出之後的每一步。
+
+<WorkedExample title="由定義計算 `2 + 3`">
+把 `2` 寫成 `S(S(0))`，把 `3` 寫成 `S(S(S(0)))`。
+
+那麼：
+
+`2 + 3 = 2 + S(S(S(0)))`
+
+`= S(2 + S(S(0)))`
+
+`= S(S(2 + S(0)))`
+
+`= S(S(S(2 + 0)))`
+
+`= S(S(S(2)))`。
+
+這就是通常叫做 `5` 的數。
+</WorkedExample>
+
+<CommonMistake title="遞歸公式本身還不是證明">
+這些公式只告訴你運算怎樣定義，不會自動證明一個關於所有自然數
+的命題。要做那一步，你還是要用歸納法。
+</CommonMistake>
+
+## 先看互動步驟
+
+下面的步驟器把一個歸納證明拆成基本情況、歸納假設、歸納步驟和結論。
+
+<InteractiveWidget id="induction-stepper" />
+
+## 證明草圖
+
+<CollapsibleProof title="為甚麼 `S(a) + b = S(a + b)` 可由歸納法得到">
+我們對 `b in N` 證明這個命題。
+
+基本情況：當 `b = 0`，
+
+`S(a) + 0 = S(a) = S(a + 0)`。
+
+歸納步驟：假設 `S(a) + b = S(a + b)`。那麼
+
+`S(a) + S(b) = S(S(a) + b)`，因為加法是這樣定義的，
+
+`= S(S(a + b))`，用歸納假設，
+
+`= S(a + S(b))`，再用一次加法定義。
+
+所以只要對 `b` 成立，它就對 `S(b)` 也成立。
+</CollapsibleProof>
+
+## 快問快答
+
+<QuickCheck prompt="加法的遞歸定義中，基本情況是哪一句？">
+想想哪一個輸入先被固定。
+</QuickCheck>
+
+<RevealSolution title="答案">
+基本情況是 `a + 0 = a`。
+</RevealSolution>
+
+<QuickCheck prompt="在歸納證明中，歸納假設是甚麼？">
+用一句短句回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它是假設命題對某個固定的自然數 `n` 成立，然後再證 `S(n)` 的情況。
+</RevealSolution>
+
+## 建議先讀
+
+如果你想先看自然數的正式設定，可以先讀
+[3.1 自然數與 Peano 公理](/zh-hk/courses/math1090/numbers/natural-numbers-peano)。

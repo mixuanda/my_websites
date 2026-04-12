@@ -20,14 +20,14 @@ function text(en: string, zhHk: string, zhCn: string): LocalizedText {
 
 const courseCopy = {
   export: text(
-    "Every unit on this course page can be opened as a live learning page and exported as a static study copy.",
-    "這個課程頁面的每個單元都可以打開成互動學習頁，並匯出成靜態溫習版本。",
-    "这个课程页面的每个单元都可以打开成互动学习页，并导出成静态复习版本。"
+    "Each section can be read on the page and downloaded as a static study copy when you need it offline.",
+    "每一節都可以直接在頁面閱讀，亦可以在需要離線溫習時下載成靜態版本。",
+    "每一节都可以直接在页面阅读，也可以在需要离线复习时下载成静态版本。"
   ),
   units: text(
-    "Use the course sidebar to move chapter by chapter, or jump directly into a unit below.",
-    "你可以用課程側欄逐章前進，或直接從下方進入某個單元。",
-    "你可以用课程侧栏逐章前进，或直接从下方进入某个单元。"
+    "Use the course sidebar to move chapter by chapter, or jump directly into a section below.",
+    "你可以用課程側欄逐章前進，或直接從下方進入某一節。",
+    "你可以用课程侧栏逐章前进，或直接从下方进入某一节。"
   ),
 } as const;
 
@@ -146,7 +146,6 @@ export default async function CoursePage({ params }: CoursePageProps) {
                           </Badge>
                           {unit.interactiveIds.length > 0 ? (
                             <Badge variant="outline">
-                              {unit.interactiveIds.length}{" "}
                               {getLocalizedText(uiText.interactiveUnits, locale)}
                             </Badge>
                           ) : null}

@@ -1,0 +1,104 @@
+---
+title: "6.4 线性依赖与线性独立"
+description: "判断一组向量有没有多余成分，以及每个向量是否都带来新信息。"
+---
+
+## 为什么这一节重要
+
+假设一组向量已经张成某个空间。如果其中一个向量其实可以由其他向
+量组合出来，那它就是多余的。线性依赖与线性独立，就是用来找出这
+种多余性的工具。
+
+<Definition title="线性独立">
+若向量 `u_1, u_2, \ldots, u_n` 满足
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n = 0
+$$
+
+时，只有 `\alpha_1 = \alpha_2 = \cdots = \alpha_n = 0` 这个解，那这组
+向量就是线性独立。
+</Definition>
+
+<Definition title="线性依赖">
+若 `u_1, u_2, \ldots, u_n` 存在一组不全为 `0` 的数，使得
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n = 0,
+$$
+
+那这组向量就是线性依赖。
+</Definition>
+
+边看边用下面的检查器，试试一组小向量到底是“真的独立”，还是有
+隐藏重复。
+
+<InteractiveWidget id="independence-checker" />
+
+## 一个简单读法
+
+笔记给了两个很实用的结论：
+
+- 如果一组向量是依赖的，总有一个向量可以写成其他向量的线性组合；
+- 如果一组向量是独立的，就没有任何一个向量可以这样写。
+
+这就是实际判断时最快的读法。
+
+<WorkedExample title="依赖意味着有一条关系式">
+笔记里有
+
+$$
+u_3 = u_1 + u_2.
+$$
+
+改写后就是
+
+$$
+u_1 + u_2 - u_3 = 0.
+$$
+
+这是一条非平凡线性关系，所以这组向量是线性依赖。
+</WorkedExample>
+
+<CollapsibleProof title="为什么依赖代表有一个向量多余">
+如果
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n = 0
+$$
+
+是一条非平凡关系，那就挑一个不为 `0` 的系数，将对应向量解出来。
+这就表示其中一个向量可以由其余向量线性组合而成。
+</CollapsibleProof>
+
+## 常见错误
+
+<CommonMistake title="依赖不等于没用">
+一组依赖向量仍然可以张成一个空间。它只是有多余成分，所以在想
+找最小张成集时特别有用。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="`R^3` 里的 `e_1, e_2, e_3` 是否线性独立？">
+试试向量方程 `\alpha_1 e_1 + \alpha_2 e_2 + \alpha_3 e_3 = 0`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。只有 `\alpha_1 = \alpha_2 = \alpha_3 = 0` 这个解。
+</RevealSolution>
+
+<QuickCheck prompt="只要一组向量包含零向量，它还可能线性独立吗？">
+直接用定义判断。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不可能。零向量会立刻给出一条非平凡关系式。
+</RevealSolution>
+
+## 预备链接
+
+这一页建立在
+[6.3 线性组合与张成](/zh-cn/courses/math1030/vector-spaces/linear-combinations-and-span)
+和
+[2.3 高斯消元与 RREF](/zh-cn/courses/math1030/matrices/gaussian-elimination-rref) 之上。

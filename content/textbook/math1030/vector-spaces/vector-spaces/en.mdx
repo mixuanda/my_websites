@@ -1,0 +1,100 @@
+---
+title: "6.1 Vector spaces"
+description: "Meet the common algebraic rules that let very different objects behave like vectors."
+---
+
+## Why this chapter starts here
+
+Linear algebra keeps reusing the same two moves: add things together, then scale
+them by real numbers. A vector space is the setting where those moves make
+sense and obey the usual rules.
+
+<Definition title="Vector space">
+A vector space over the real numbers is a non-empty set `V` with addition and
+scalar multiplication such that the usual vector laws hold: closure under
+addition and scalar multiplication, commutativity, associativity, a zero vector,
+additive inverses, distributivity, and scalar one.
+</Definition>
+
+## Familiar examples
+
+The notes build the idea from several examples:
+
+- `R^n` with usual vector addition and scalar multiplication.
+- `M_{mn}`, the set of `m × n` real matrices with usual matrix addition and
+  scalar multiplication.
+- The set of all functions from `R` to `R`.
+- `P_n`, the polynomials in one variable of degree at most `n`.
+
+These look different, but the same algebraic rules still work.
+
+<WorkedExample title="One idea, two different-looking examples">
+Take `u = (1, 2)` and `v = (3, -1)` in `R^2`.
+
+Then
+
+$$
+u + v = (4, 1), \qquad 2u = (2, 4).
+$$
+
+Now take
+
+$$
+A = \begin{bmatrix} 1 & 0 \\ 2 & -1 \end{bmatrix},
+\qquad
+B = \begin{bmatrix} 0 & 3 \\ 1 & 1 \end{bmatrix}.
+$$
+
+Then
+
+$$
+A + B = \begin{bmatrix} 1 & 3 \\ 3 & 0 \end{bmatrix}.
+$$
+
+The objects are different, but the same addition-and-scaling logic is at work.
+</WorkedExample>
+
+## What the axioms are doing
+
+The axioms are not just formal decoration. They guarantee that the usual moves
+you already trust in `R^n` also work in more abstract settings.
+
+## Common mistake
+
+<CommonMistake title="Shape alone is not enough">
+Not every set with numbers in it is a vector space. You still need closure and
+the rest of the vector laws. A set can look familiar and still fail one of the
+axioms.
+</CommonMistake>
+
+## A small proof worth remembering
+
+<CollapsibleProof title="Why the zero vector is unique">
+Suppose `0` and `0'` are both zero vectors in the same vector space.
+
+Then `0 = 0 + 0' = 0'`. So there is only one zero vector.
+</CollapsibleProof>
+
+## Quick check
+
+<QuickCheck prompt="Which of these is a vector space with the usual operations: `R^n`, `M_{mn}`, or the set of all functions from `R` to `R`?">
+Think about which examples are explicitly listed in the notes.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+All of them are vector spaces over `R` with the usual operations.
+</RevealSolution>
+
+<QuickCheck prompt="Can a vector space have two different zero vectors at the same time?">
+Use the proof above, or test the defining property directly.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. The zero vector is unique.
+</RevealSolution>
+
+## Read this first
+
+If you want the matrix and system language behind these examples, review
+[2.1 Matrix basics](/en/courses/math1030/matrices/matrix-basics) and
+[1.1 Equations and solution sets](/en/courses/math1030/systems/equations-solution-sets).

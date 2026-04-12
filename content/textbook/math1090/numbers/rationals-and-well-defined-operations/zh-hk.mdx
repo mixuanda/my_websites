@@ -1,0 +1,79 @@
+---
+title: "3.4 有理數與良定運算"
+description: "把有理數定義成等價類，並檢查常用公式不會依賴你選哪個代表元。"
+---
+
+整數是由自然數對構造出來的。有理數也用同樣想法，只是第二個分
+量不能是 `0`。
+
+## 商模型
+
+<Definition title="有理數">
+設
+
+`Y = Z × (Z \ {0}) = {(a, b) | a in Z, b != 0}`。
+
+定義 `(a, b) ~_Q (c, d)`，若且唯若 `a d = b c`。
+
+有理數就是等價類 `Y / ~_Q`。
+</Definition>
+
+你可以把 `[(a, b)]` 當成分數 `a/b`。做商集合的目的，就是讓相等
+的分數在定義上就相等。
+
+## 為甚麼要顧及良定性
+
+如果你只在代表元上寫公式，就要先確認答案對同一個有理數的每個
+代表元都一樣。這就是這裡的「良定」意思。
+
+<WorkedExample title="加法仍然符合分數直覺">
+講義把加法定義為
+
+`[(a, b)] + [(c, d)] := [(ad + bc, bd)]`。
+
+例如，
+
+`[(1, 2)] + [(1, 3)] = [(5, 6)]`。
+
+如果把第一個代表元換成 `(2, 4)`，公式會得到 `[(10, 12)]`，
+而這和 `[(5, 6)]` 是同一個有理數。
+</WorkedExample>
+
+<CollapsibleProof title="為甚麼加法公式是良定的">
+假設 `(a, b) ~_Q (a', b')` 和 `(c, d) ~_Q (c', d')`。
+這表示 `a b' = b a'` 和 `c d' = d c'`。
+
+講義的證明會把這兩個等式整理起來，推出
+
+`(ad + bc, bd) ~_Q (a'd' + b'c', b'd')`。
+
+所以加法不會依賴你選哪一組代表元。
+</CollapsibleProof>
+
+<CommonMistake title="不要用忽略符號的方式去比分數">
+Worksheet 5 會問像 `p/q R m/n if pn - qm > 0` 這種關係。對任意代表元
+來說，這類比較法不安全，因為換一個等價代表元時，符號可能改變。
+</CommonMistake>
+
+## 快問快答
+
+<QuickCheck prompt="Worksheet 5 裡哪一條關係在 Q 上是良定的：`p/q R m/n` if `p > m`，if `pn - qm > 0`，還是 if `(pn - mq)nq > 0`？">
+想想把代表元換成等價形式會發生甚麼事。
+</QuickCheck>
+
+<RevealSolution title="答案">
+按題目寫法，只有第三條是良定的。前兩條都會依賴你選的代表元。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼 `Y` 要排除分母是 `0` 的對子？">
+用數學理由回答，不要只說直覺。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因為第二個分量要扮演分母，而這個構造不能把除以 `0` 放進去。
+</RevealSolution>
+
+## 建議先讀
+
+如果你想先重溫整數的構造，可以看
+[3.3 由等價類構造整數](/zh-hk/courses/math1090/numbers/integers-from-equivalence-classes)。

@@ -1,0 +1,95 @@
+---
+title: "6.5 基底與維數"
+description: "用最精簡的張成集結束這一章，並數一數它有多少個向量。"
+---
+
+## 最精簡的張成集
+
+基底就是最乾淨的張成集：它能張成整個空間，而且沒有多餘向量。
+
+<Definition title="基底">
+若一組向量 `{u_1, u_2, \ldots, u_m}` 同時滿足：
+
+1. 這些向量線性獨立；
+2. `Span{u_1, u_2, \ldots, u_m} = V`；
+
+那它就是向量空間 `V` 的基底。
+</Definition>
+
+筆記特別強調：同一個空間可以有不只一個基底，但每個基底的向量
+個數都一樣。
+
+<WorkedExample title="R^3 的標準基底">
+設
+
+$$
+e_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \quad
+e_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \quad
+e_3 = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}.
+$$
+
+筆記指出，這三個向量線性獨立，而且它們張成 `R^3`。
+
+所以 `{e_1, e_2, e_3}` 是 `R^3` 的基底。
+</WorkedExample>
+
+## 維數
+
+知道甚麼是基底之後，維數其實就是數一數。
+
+<Definition title="維數">
+向量空間 `V` 的維數記作 `dim(V)`，就是 `V` 的任一組基底所含向量的
+個數。
+</Definition>
+
+筆記也收錄了特殊情況：`dim({0}) = 0`，因為零空間沒有任何線性獨立
+向量。
+
+章節中還列出一些熟悉的維數公式：
+
+- `dim(R^m) = m`；
+- 矩陣空間 `M_{mn}` 的維數是 `mn`；
+- `P_n` 的維數是 `n + 1`。
+
+## 為甚麼維數有力量
+
+維數可以直接告訴你甚麼可行、甚麼不行。若一個空間的維數是 `m`，
+那麼：
+
+- 任何 `m` 個線性獨立向量都會形成基底；
+- 任何 `m` 個張成該空間的向量都會形成基底；
+- 少於 `m` 個向量不可能張成整個空間。
+
+這是判斷基底問題最快的工具之一。
+
+## 常見錯誤
+
+<CommonMistake title="只會張成還不夠">
+一組向量即使已經張成整個空間，也不一定是基底；它還必須線性獨立。
+所以檢查基底時，兩個條件都不能少。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="`R^3` 的維數是多少？">
+數一數標準基底裡有多少個向量。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`dim(R^3) = 3`。
+</RevealSolution>
+
+<QuickCheck prompt="兩個向量可以張成 `R^3` 嗎？">
+用這一章的維數規則想一想。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不可以。`R^3` 的維數是 3，所以少於 3 個向量不可能張成它。
+</RevealSolution>
+
+## 預備連結
+
+這一頁建立在
+[6.4 線性相依與線性獨立](/zh-hk/courses/math1030/vector-spaces/linear-dependence-and-independence)
+和
+[6.3 線性組合與張成](/zh-hk/courses/math1030/vector-spaces/linear-combinations-and-span) 之上。

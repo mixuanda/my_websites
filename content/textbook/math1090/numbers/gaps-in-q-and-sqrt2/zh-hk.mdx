@@ -1,0 +1,64 @@
+---
+title: "3.5 Q 的缺口與 sqrt(2)"
+description: "透過無理數 sqrt(2) 與其下方的有理數集合，看見 Q 為甚麼仍然有缺口。"
+---
+
+有理數是稠密的，但稠密不等於完備。講義用 `sqrt(2)` 來說明 Q 仍
+然有洞。
+
+## 缺口代表甚麼
+
+<Definition title="無理數">
+無理數是實數之中，不屬於有理數的那些數。
+</Definition>
+
+講義會看一個經典集合：
+
+`S = {x in Q | x^2 < 2}`。
+
+每個平方小於 `2` 的有理數都在 `S` 裡，而平方大於 `2` 的有理數
+都在它上方。那個缺少的點，就是 `2` 的平方根。
+
+## 熟悉的矛盾
+
+<CollapsibleProof title="為甚麼不存在有理數平方等於 2">
+假設 `x in Q` 而且 `x^2 = 2`。把 `x` 寫成最簡分數 `p/q`，
+其中 `p, q in Z` 且 `q != 0`。
+
+那麼 `p^2 = 2q^2`，所以 `p^2` 是偶數。講義證明過，這會推出 `p`
+也是偶數。寫成 `p = 2k`。
+
+再代入一次：
+
+`4k^2 = 2q^2`，所以 `q^2` 是偶數，然後 `q` 也是偶數。
+
+這和 `p/q` 已經是最簡分數矛盾。所以不存在平方等於 `2` 的有理數。
+</CollapsibleProof>
+
+<CommonMistake title="稠密不等於完備">
+就算兩個有理數之間總能找到另一個有理數，一個有上界的 Q 子集
+仍然可能沒有屬於 Q 的上確界。
+</CommonMistake>
+
+## 快問快答
+
+<QuickCheck prompt="集合 `S = {x in Q | x^2 < 2}` 在 Q 裡有上確界嗎？">
+用上面的矛盾和講義對完備性的說明來想。
+</QuickCheck>
+
+<RevealSolution title="答案">
+沒有。講義說明了 `S` 在 Q 中有上界，但在 Q 裡找不到上確界。
+</RevealSolution>
+
+<QuickCheck prompt="sqrt(2) 是有理數嗎？">
+用一句話回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不是。上面的證明顯示，若它是有理數，就會出現矛盾。
+</RevealSolution>
+
+## 建議先讀
+
+如果你想先看 Q 的構造，可以先讀
+[3.4 有理數與良定運算](/zh-hk/courses/math1090/numbers/rationals-and-well-defined-operations)。

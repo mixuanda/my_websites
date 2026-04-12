@@ -1,0 +1,100 @@
+---
+title: "6.3 线性组合与张成"
+description: "看见向量如何凑出新向量，以及张成怎样收集所有可能的结果。"
+---
+
+## 由向量造出新向量
+
+线性组合就是把一些向量乘上数，再把结果相加。
+
+<Definition title="线性组合">
+设 `u_1, u_2, \ldots, u_n` 是向量空间 `V` 里的向量，`\alpha_1, \alpha_2,
+\ldots, \alpha_n` 是数。那么
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n
+$$
+
+就叫做 `u_1, u_2, \ldots, u_n` 的线性组合。
+</Definition>
+
+重点是：每个系数都可以是任何实数，包括 `0`。
+
+<WorkedExample title="一个向量可以写成线性组合">
+笔记里有
+
+$$
+u_1 = \begin{bmatrix} 1 \\ -2 \\ -1 \end{bmatrix},
+\qquad
+u_2 = \begin{bmatrix} 3 \\ -5 \\ 4 \end{bmatrix},
+\qquad
+w = \begin{bmatrix} 2 \\ -6 \\ -16 \end{bmatrix}.
+$$
+
+例子说明 `w = 8u_1 - 2u_2`。
+
+所以 `w` 是 `u_1` 和 `u_2` 的线性组合。
+</WorkedExample>
+
+## 张成是什么
+
+把一组向量的所有线性组合全部收集起来，就得到它们的张成。
+
+<Definition title="张成">
+`u_1, u_2, \ldots, u_n` 的张成是所有这些向量的线性组合所形成的集合，
+记作 `Span{u_1, u_2, \ldots, u_n}`。
+</Definition>
+
+张成就是“用已知向量可以造出什么”的总集合。
+
+笔记还说明，`Span{e_1, e_2}` 是 `R^3` 里的 `x_1x_2` 平面，而
+`Span{e_1, e_2, e_3} = R^3`。
+
+边读边用下面的探索器，试试某个向量能不能由指定向量组合而成。
+
+<InteractiveWidget id="span-explorer" />
+
+## 为什么张成有用
+
+笔记也把张成和子空间连起来：任何向量组的张成都一定是子空间。
+
+<CollapsibleProof title="为什么张成一定是子空间">
+取 `Span{u_1, \ldots, u_n}` 里任意两个向量 `v` 和 `w`。
+
+按定义，它们各自都是 `u_1, \ldots, u_n` 的线性组合。把两个线性组
+合相加，仍然是线性组合；乘上一个实数，也仍然是线性组合。
+
+所以张成对加法与数乘都封闭，因此是子空间。
+</CollapsibleProof>
+
+## 常见错误
+
+<CommonMistake title="张成不只是正倍数">
+张成允许所有实数系数，不只是正数。它也包括零组合，所以 `0` 永远
+在张成里。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="任何一组向量的张成都一定包含零向量吗？">
+想一想当所有系数都取 `0` 会怎样。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。所有系数都取 `0` 时，就得到零向量。
+</RevealSolution>
+
+<QuickCheck prompt="`R^3` 里的 `Span{e_1, e_2}` 是否包含 `(2, -1, 0)`？">
+用 `x_1x_2` 平面的几何图像来想。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。它的第三个坐标是 `0`，所以落在那个平面上。
+</RevealSolution>
+
+## 预备链接
+
+这一页用到
+[6.2 子空间](/zh-cn/courses/math1030/vector-spaces/subspaces) 的想法，
+以及
+[2.2 增广矩阵与行变换](/zh-cn/courses/math1030/matrices/augmented-matrices-row-operations) 的矩阵语言。

@@ -1,0 +1,101 @@
+---
+title: "6.2 Subspaces"
+description: "Learn how to spot a smaller vector space inside a larger one."
+---
+
+## A smaller space inside a larger one
+
+Often we do not need the whole ambient vector space. We only want a subset that
+still behaves like a vector space when we use the same addition and scalar
+multiplication.
+
+<Definition title="Subspace">
+Let `V` be a vector space. A subset `W` of `V` is a subspace if it is non-empty
+and closed under addition and scalar multiplication.
+</Definition>
+
+That short test matches the equivalent formulations in the tutorial:
+if `W` is a vector space using the inherited operations, then `W` is a subspace
+of `V`.
+
+## Typical examples
+
+The notes give several standard examples:
+
+- the zero subspace `{0}`;
+- the whole space `V`;
+- a line through the origin in `R^2`;
+- a plane through the origin in `R^3`;
+- the null space `N(A)` of a matrix `A`.
+
+The key phrase is "through the origin". If the set misses `0`, it cannot be a
+subspace.
+
+<WorkedExample title="A line through the origin is a subspace">
+Consider
+
+$$
+W = \{(x, 0) : x \in R\} \subseteq R^2.
+$$
+
+If `(a, 0)` and `(b, 0)` are in `W`, then
+
+$$
+(a, 0) + (b, 0) = (a + b, 0) \in W.
+$$
+
+If `c` is any real number, then
+
+$$
+c(a, 0) = (ca, 0) \in W.
+$$
+
+So `W` passes the subspace test.
+</WorkedExample>
+
+Use the checker below to try a candidate set and see whether the closure rules
+line up with your intuition.
+
+<InteractiveWidget id="subspace-checker" />
+
+## Common mistake
+
+<CommonMistake title="A shifted line is not a subspace">
+The set `\{(x, y) : x + y = 1\}` is not a subspace of `R^2`, because it does not
+contain the zero vector `(0, 0)`. In general, a line or plane is a subspace only
+when the constant term is `0`.
+</CommonMistake>
+
+## Why every subspace contains `0`
+
+<CollapsibleProof title="Subspaces always contain the zero vector">
+Let `W` be a subspace of `V`, and pick any `u \in W`.
+
+Since `W` is closed under scalar multiplication, `(-1)u \in W`.
+Then `u + (-1)u = 0` is also in `W` because `W` is closed under addition.
+So `0 \in W`.
+</CollapsibleProof>
+
+## Quick check
+
+<QuickCheck prompt="Is the set `\{(x, y) : y = 2x\}` a subspace of `R^2`?">
+Check whether it contains `0` and stays closed under the two operations.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. It is a line through the origin, so it is a subspace.
+</RevealSolution>
+
+<QuickCheck prompt="Is the set `\{(x, y) : x + y = 1\}` a subspace of `R^2`?">
+Remember the zero vector test.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. It does not contain `0 = (0, 0)`.
+</RevealSolution>
+
+## Read this first
+
+This page depends on the vector-space rules from
+[6.1 Vector spaces](/en/courses/math1030/vector-spaces/vector-spaces) and the
+matrix language from [2.1 Matrix basics](/en/courses/math1030/matrices/matrix-basics).
