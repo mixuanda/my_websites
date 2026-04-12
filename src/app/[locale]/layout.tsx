@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { LocaleDocumentController } from "@/components/LocaleDocumentController";
 import { isLocale, locales, toHtmlLang } from "@/lib/textbook/i18n";
 
 interface LocaleLayoutProps {
@@ -22,5 +23,10 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  return <div lang={toHtmlLang(locale)}>{children}</div>;
+  return (
+    <>
+      <LocaleDocumentController locale={locale} />
+      <div lang={toHtmlLang(locale)}>{children}</div>
+    </>
+  );
 }

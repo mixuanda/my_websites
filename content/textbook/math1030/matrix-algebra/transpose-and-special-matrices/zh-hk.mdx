@@ -1,0 +1,248 @@
+---
+title: "3.2 轉置與特殊矩陣"
+description: "用轉置、對稱性、不交換乘積與分塊結構去理解矩陣的形狀與代數行為。"
+---
+
+當矩陣乘法出現之後，「結構」便開始變得重要。有些矩陣因為元素排列有特定
+形式，所以更容易分析。轉置正是辨認這些結構的主要工具之一。
+
+## 轉置就是把行與列互換
+
+<Definition title="轉置">
+若 `A = [a_{ij}]` 是 `m \times n` 矩陣，則它的轉置 `A^T` 是
+`n \times m` 矩陣，其 `(j,i)` 元素為 `a_{ij}`。
+
+也就是
+
+$$
+(A^T)_{ji} = a_{ij}.
+$$
+</Definition>
+
+所以 `A` 的每一行都會變成 `A^T` 的一列，而 `A` 的每一列都會變成
+`A^T` 的一行。
+
+<WorkedExample title="計算一個轉置">
+設
+
+$$
+A =
+\begin{bmatrix}
+1 & 4 & -2 \\
+0 & 3 & 5
+\end{bmatrix}.
+$$
+
+則
+
+$$
+A^T =
+\begin{bmatrix}
+1 & 0 \\
+4 & 3 \\
+-2 & 5
+\end{bmatrix}.
+$$
+
+原來的 `2 \times 3` 矩陣變成 `3 \times 2`，因為行列角色對調了。
+</WorkedExample>
+
+有兩條基本恆等式值得熟記：
+
+$$
+(A^T)^T = A,
+\qquad
+(A + B)^T = A^T + B^T.
+$$
+
+若乘積有定義，轉置還會把乘積次序反過來：
+
+$$
+(AB)^T = B^T A^T.
+$$
+
+這個「反序」不是小細節，而是行乘列規則被反轉後的結果。
+
+## 對稱矩陣與反對稱矩陣
+
+有些方陣與自己的轉置一樣；有些則只差一個負號。
+
+<Definition title="對稱矩陣與反對稱矩陣">
+設 `A` 為方陣。
+
+- 若 `A^T = A`，則稱 `A` 為對稱矩陣；
+- 若 `A^T = -A`，則稱 `A` 為反對稱矩陣。
+</Definition>
+
+對稱矩陣沿主對角線反射後不變；反對稱矩陣反射後會整體變號。
+
+<WorkedExample title="分類兩個矩陣">
+矩陣
+
+$$
+\begin{bmatrix}
+2 & -1 \\
+-1 & 3
+\end{bmatrix}
+$$
+
+是對稱矩陣，因為轉置後完全不變。
+
+矩陣
+
+$$
+\begin{bmatrix}
+0 & 4 \\
+-4 & 0
+\end{bmatrix}
+$$
+
+是反對稱矩陣，因為
+
+$$
+A^T =
+\begin{bmatrix}
+0 & -4 \\
+4 & 0
+\end{bmatrix}
+= -A.
+$$
+</WorkedExample>
+
+要特別注意：實數反對稱矩陣的主對角線元素必定全是 `0`，因為每個對角元素
+都要等於自己的相反數。
+
+## 次序重要：可交換與不可交換
+
+課堂筆記一再強調，矩陣乘法一般不具交換性。不過，也有某些矩陣對是可以交
+換的。
+
+<Definition title="可交換矩陣">
+若同樣大小的方陣 `A` 與 `B` 滿足
+
+$$
+AB = BA,
+$$
+
+便稱它們可交換。
+</Definition>
+
+可交換是特殊情況，不是預設情況。
+
+<TheoremCard title="矩陣乘法一般不交換">
+存在方陣 `A` 與 `B`，使得 `AB \ne BA`。
+</TheoremCard>
+
+<WorkedExample title="一對不可交換的矩陣">
+令
+
+$$
+A =
+\begin{bmatrix}
+1 & 1 \\
+0 & 1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+1 & 0 \\
+1 & 1
+\end{bmatrix}.
+$$
+
+則
+
+$$
+AB =
+\begin{bmatrix}
+2 & 1 \\
+1 & 1
+\end{bmatrix},
+\qquad
+BA =
+\begin{bmatrix}
+1 & 1 \\
+1 & 2
+\end{bmatrix}.
+$$
+
+因此 `AB \ne BA`。
+</WorkedExample>
+
+所以任何矩陣恆等式都必須保留因子的次序，不能隨手調換。
+
+## 特殊矩陣之所以重要，在於它的形狀
+
+不少常見矩陣家族，都是由哪些位置必須是 `0` 來定義的。這些形狀往往令後
+面的計算與判斷容易得多。
+
+- 對角矩陣只容許主對角線上出現非零元素；
+- 上三角矩陣在主對角線下方全是 `0`；
+- 下三角矩陣在主對角線上方全是 `0`。
+
+對這些矩陣來說，乘法與可逆性分析通常較簡單，因為零元素的排列具有穩定性。
+
+## 分塊矩陣是在大矩陣內部整理結構
+
+有時候，一個大矩陣最好視為若干較小矩陣拼接而成，這就是分塊記號。
+
+例如
+
+$$
+\begin{bmatrix}
+A_{11} & A_{12} \\
+A_{21} & A_{22}
+\end{bmatrix}
+$$
+
+就是由四個小塊組成的分塊矩陣。這不是一種新矩陣，而是一種較有紀律的閱讀
+方法：把大矩陣拆成較清楚的部分。
+
+只要大小配對正確，分塊加法與分塊乘法都遵循與普通矩陣運算相同的形式。好
+處是你可以一次處理一塊，而不是每次都盯着全部元素。
+
+## 常見錯誤
+
+<CommonMistake title="轉置乘積時，不要保留原來次序">
+正確公式是 `(AB)^T = B^T A^T`，不是 `A^T B^T`。次序一定會反過來。
+</CommonMistake>
+
+<CommonMistake title="對稱不代表任何矩陣對都可交換">
+對稱是單一矩陣的性質；可交換是兩個矩陣之間的性質。兩者回答的是不同問題。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="若 `A` 是 `3 × 2` 矩陣，`A^T` 的大小是甚麼？">
+把行與列對調。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`A^T` 是 `2 × 3` 矩陣。
+</RevealSolution>
+
+<QuickCheck prompt="實數反對稱矩陣的主對角線元素可以是甚麼？">
+把 `A^T = -A` 套在對角位置。
+</QuickCheck>
+
+<RevealSolution title="答案">
+全部都必須是 `0`。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="為甚麼每個對角矩陣都等於自己的轉置？">
+請從可能非零元素的位置來回答。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+對角矩陣在非對角位置本來就是 `0`。轉置時，非對角位置只會互相交換，但
+`0` 仍然是 `0`；而對角元素則停留在原位。因此整個矩陣不變。
+</RevealSolution>
+
+## 相關筆記
+
+本節建立在
+[3.1 矩陣乘法與單位矩陣](/zh-hk/notes/math1030/matrix-algebra/matrix-multiplication-and-identity)
+之上。若想看解集結構，下一節可讀
+[4.1 齊次方程組與零空間](/zh-hk/notes/math1030/solution-structure/homogeneous-systems-and-null-space)。

@@ -1,29 +1,50 @@
 ---
 title: "1.1 命题逻辑"
-description: "认识什么才算命题，理解基本连接词，并学会阅读简短的逻辑陈述。"
+description: "仔细定义命题，准确阅读布尔连接词与优先次序，并用真值表检查等价与有效推理。"
 ---
 
-先从能判定真或假的陈述开始。这是本课最基本、也最实用的逻辑单位。
+逻辑从已经足够完整、可以判断真假的陈述开始。这个区别看起来简单，
+但在整门课里都非常重要：一旦一句话还没有封闭，就不能把它当作命题来处理。
 
-## 什么是命题？
+## 命题与真假值
 
 <Definition title="命题">
-命题是有确定真假值的陈述。它不是真，就是假。
+命题是一个具有确定真假值的陈述。它要么是真的，要么是假的，没有第三种情况。
+</Definition>
+
+这个定义的目的不是把逻辑弄得更抽象，而是区分哪些句子已经可以检验，
+哪些句子仍然不完整。
 
 例子：
 
 - `2 + 2 = 4` 是命题。
-- `请关门！` 不是命题，因为它是命令。
-- 如果没有指定 `x`，`x + 1 = 3` 也还不是命题。
-</Definition>
+- `每个偶数都可以被 2 整除` 是命题。
+- `请打开门。` 不是命题，因为它是命令。
+- 如果没有指定 `x`，`x + 1 = 3` 还不是命题。
 
-<CommonMistake title="含有变量的句子不会自动变成命题">
-如果陈述仍然依赖某个未指定的变量，它的真假值就未固定。要先知道变量代表什么，才可以判断真假。
+<CommonMistake title="含有自由变量的公式不会自动变成命题">
+如果一句话的真假仍然依赖未指定的变量，那么它就是开放句，不是完整陈述。
+你必须先赋值，或者以后用量词把它绑定起来。
 </CommonMistake>
 
-## 基本连接词
+<WorkedExample title="判断哪些句子是命题">
+考虑以下三句：
 
-课程会反复用到五个连接词：
+1. `7` 是质数。
+2. `x^2 + 1 > 0`。
+3. `请交作业。`
+
+第 1 句是命题，而且是真的。第 2 句不是命题，因为要看 `x` 取什么值。
+第 3 句不是命题，因为它是请求，不是主张。
+
+<RevealSolution title="为什么要分清楚">
+逻辑分析只有在句子足够完整时才能开始。未封闭的句子，不适合直接做真值表分析。
+</RevealSolution>
+</WorkedExample>
+
+## 布尔连接词
+
+课程里会反复用到五个连接词：
 
 | 符号 | 读法 | 核心意思 |
 | --- | --- | --- |
@@ -31,31 +52,160 @@ description: "认识什么才算命题，理解基本连接词，并学会阅读
 | `P ∧ Q` | `P` 且 `Q` | 只有两边都真才真 |
 | `P ∨ Q` | `P` 或 `Q` | 只要至少一边真就真 |
 | `P → Q` | 若 `P`，则 `Q` | 只有 `P` 真而 `Q` 假时为假 |
-| `P ↔ Q` | `P` 当且仅当 `Q` | 两边真假一致才真 |
+| `P ↔ Q` | `P` 当且仅当 `Q` | 两边真假一致时才真 |
 
-## 把公式读成句子
+这些不是普通口语的缩写，而是逻辑语言的基本符号，用来拼出更复杂的陈述。
 
-<WorkedExample title="把蕴含读出来">
-设 `P` 代表“正在下雨”，`Q` 代表“地面是湿的”。
+运算次序也固定：
 
-`P → Q` 读作：
+1. `¬`
+2. `∧` 和 `∨`
+3. `→` 和 `↔`
 
-“如果正在下雨，那么地面是湿的。”
+如果仍然有歧义，就必须加括号。
 
-这句话**不**表示现在一定正在下雨，只是说一旦前件成立，后件就必须成立。
+<WorkedExample title="先解析，再阅读">
+公式 `¬A ∧ B ∨ C` 应该读成
 
-<RevealSolution title="初学时最容易误读的地方">
-`P → Q` 只会在一种情况下为假：`P` 真而 `Q` 假。其余情况都是真。
+$$
+(¬A ∧ B) ∨ C.
+$$
+
+也就是说：或者 `A` 为假而 `B` 为真，或者 `C` 为真。
+
+如果你想表达别的意思，就一定要明确加括号。
+
+<RevealSolution title="为什么括号不是装饰">
+逻辑公式是精确对象。括号不是装饰，而是决定句子真正内容的一部分。
 </RevealSolution>
 </WorkedExample>
 
-## 先做一个小检查
+## 真值表与逻辑等价
 
-<QuickCheck prompt="下列哪些是命题？`2 + 2 = 4`、`请打开窗户。`、`x + 1 = 3`">
+当你知道各个命题的真假值之后，就可以计算复合公式的真假。真值表就是用来记录这件事的。
+
+<TheoremCard title="常用等价式">
+下面这些等价式是基本工具，应该尽量熟记：
+
+$$
+P → Q \equiv ¬P ∨ Q
+$$
+
+$$
+P ↔ Q \equiv (P → Q) ∧ (Q → P)
+$$
+
+$$
+¬(P ∧ Q) \equiv ¬P ∨ ¬Q
+$$
+
+$$
+¬(P ∨ Q) \equiv ¬P ∧ ¬Q
+$$
+
+$$
+¬¬P \equiv P
+$$
+</TheoremCard>
+
+这些不是哲学命题，而是真值表恒等式。
+
+<WorkedExample title="用真值表检查蕴含">
+`P → Q` 只会在一种情况下为假：`P` 真而 `Q` 假。其余情况都为真。
+
+| `P` | `Q` | `P → Q` |
+| --- | --- | --- |
+| `T` | `T` | `T` |
+| `T` | `F` | `F` |
+| `F` | `T` | `T` |
+| `F` | `F` | `T` |
+
+所以 `P → Q` 不是说 `P` 和 `Q` 都真，而是排除了“前件真、后件假”这种情况。
+
+<RevealSolution title="这一点很重要">
+很多人会把 `P → Q` 读成因果句。在逻辑里，它不是故事式的因果，而是真值条件。
+</RevealSolution>
+</WorkedExample>
+
+## 推理规则
+
+课程里会反复用到几种有效推理模式。
+
+<TheoremCard title="常见推理模式">
+如果 `P → Q` 和 `P` 都真，那么 `Q` 一定真。这叫 modus ponens。
+
+如果 `P → Q` 和 `¬Q` 都真，那么 `¬P` 一定真。这叫 modus tollens。
+
+如果 `P → Q` 和 `Q → R` 都真，那么 `P → R` 一定真。这叫 hypothetical syllogism。
+
+如果 `P ∨ Q` 和 `¬P` 都真，那么 `Q` 一定真。这叫 disjunctive syllogism。
+</TheoremCard>
+
+这些模式之所以重要，是因为它们像合法运算：前提真，结论就一定真。
+
+<WorkedExample title="一条有效的推理链">
+假设你知道
+
+$$
+A → B,\qquad B → C,\qquad A.
+$$
+
+你可以先由第一句和第三句推出 `B`，再由第二句推出 `C`。
+
+所以结论 `C` 能从前提逻辑地推出。
+
+<RevealSolution title="如何识别这类推理">
+这是两次使用 modus ponens：先由 `A` 推出 `B`，再由 `B` 推出 `C`。
+</RevealSolution>
+</WorkedExample>
+
+<CommonMistake title="不要混淆有效与无效的推理模式">
+由 `P → Q` 和 `Q`，你不能推出 `P`。这个谬误叫 affirming the consequent。
+
+由 `P → Q` 和 `¬P`，你不能推出 `¬Q`。这个谬误叫 denying the antecedent。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="以下哪些是命题：`2 + 2 = 4`、`请打开窗户。`、`x + 1 = 3`？">
 `2 + 2 = 4` 是命题。`请打开窗户。` 不是。`x + 1 = 3` 要先指定 `x` 才算命题。
 </QuickCheck>
 
-## 读到这里，试一试
+<RevealSolution title="答案">
+只有第一句在原本写法下有确定真假值。
+</RevealSolution>
+
+<QuickCheck prompt="按照标准次序，`¬A ∧ B ∨ C` 应该加什么括号？">
+记住 `¬` 最先，然后是 `∧` 和 `∨`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它表示 `(¬A ∧ B) ∨ C`。
+</RevealSolution>
+
+<QuickCheck prompt="`P → Q` 和 `¬P ∨ Q`、`P ∧ Q`，哪个等价？">
+看蕴含的真假条件。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`¬P ∨ Q` 和 `P → Q` 等价。
+</RevealSolution>
+
+<QuickCheck prompt="推理 `P → Q`、`Q`，所以 `P` 有效吗？">
+试想 `P` 其实为假的情况。
+</QuickCheck>
+
+<RevealSolution title="答案">
+无效。这个谬误叫 affirming the consequent。
+</RevealSolution>
+
+## 嵌入式检查
+
+用互动表试验你自己写出来的公式。
 
 <InteractiveWidget id="truth-table-builder" />
 
+## 先读这一页
+
+如果你想看量词版本，请读
+[1.3 量词与否定](/zh-cn/notes/math1090/logic/quantifiers-negation)。

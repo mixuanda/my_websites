@@ -444,10 +444,14 @@ const math1030MatricesUnits: TextbookUnitMeta[] = [
     sourceRefs: [
       {
         file: "reference/MATH1030/MATH1030-Notes.pdf",
-        pages: "§2.1, §3.1-§3.2",
+        pages: "§2.1, §3.1",
       },
       {
         file: "reference/MATH1030/1030gi-n01-01.pdf",
+      },
+      {
+        file: "reference/MATH1030/Practice Set 2_Matrix Algebra.pdf",
+        note: "Question 1",
       },
     ],
     title: text(
@@ -564,6 +568,133 @@ const math1030MatricesUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1030MatrixAlgebraUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "matrix-algebra",
+    chapterNumber: "3",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Learn when matrix products are defined, how the row-by-column rule works, and why the identity matrix matters for solving linear systems.",
+      "理解何時可以做矩陣乘法、行乘列規則怎樣運作，以及單位矩陣為何在解線性方程組時重要。",
+      "理解何时可以做矩阵乘法、行乘列规则怎样运作，以及单位矩阵为何在解线性方程组时重要。"
+    ),
+    glossaryRefs: ["matrix", "identity-matrix"],
+    interactiveIds: ["matrix-multiplication-visualizer"],
+    order: 6,
+    prerequisites: ["math1030.matrices.matrix-basics"],
+    slug: "matrix-multiplication-and-identity",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§3.2",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-02.pdf",
+      },
+      {
+        file: "reference/MATH1030/Practice Set 2_Matrix Algebra.pdf",
+      },
+      {
+        file: "reference/MATH1030/Practice Set 3_Matrix Algebra and Linear Equation System.pdf",
+        note: "Question 1 and matrix products",
+      },
+    ],
+    title: text(
+      "3.1 Matrix multiplication and identity matrices",
+      "3.1 矩陣乘法與單位矩陣",
+      "3.1 矩阵乘法与单位矩阵"
+    ),
+    unitId: "math1030.matrix-algebra.matrix-multiplication-and-identity",
+    unitNumber: "3.1",
+  },
+  {
+    chapterId: "matrix-algebra",
+    chapterNumber: "3",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use transpose, symmetry, commuting products, and block notation to read matrix structure rather than treating formulas as isolated tricks.",
+      "用轉置、對稱性、交換乘積與分塊記號去讀懂矩陣結構，而不是把公式當成零散技巧。",
+      "用转置、对称性、交换乘积与分块记号去读懂矩阵结构，而不是把公式当成零散技巧。"
+    ),
+    glossaryRefs: ["matrix", "transpose", "identity-matrix"],
+    interactiveIds: [],
+    order: 7,
+    prerequisites: [
+      "math1030.matrix-algebra.matrix-multiplication-and-identity",
+    ],
+    slug: "transpose-and-special-matrices",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§3.3-§3.5",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-03.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-04.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030efghi-tutorial-week04.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-se0304.pdf",
+        note: "Supplementary exercises on transpose, symmetry, and commuting matrices",
+      },
+    ],
+    title: text(
+      "3.2 Transpose and special matrices",
+      "3.2 轉置與特殊矩陣",
+      "3.2 转置与特殊矩阵"
+    ),
+    unitId: "math1030.matrix-algebra.transpose-and-special-matrices",
+    unitNumber: "3.2",
+  },
+];
+
+const math1030SolutionStructureUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "solution-structure",
+    chapterNumber: "4",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Study homogeneous systems carefully, then use null spaces to describe every solution as a structured set rather than a loose list of examples.",
+      "仔細研究齊次方程組，再用零空間把所有解描述成有結構的集合，而不是零散例子。",
+      "仔细研究齐次方程组，再用零空间把所有解描述成有结构的集合，而不是零散例子。"
+    ),
+    glossaryRefs: ["solution-set", "null-space", "matrix"],
+    interactiveIds: [],
+    order: 8,
+    prerequisites: ["math1030.matrices.solution-set-types"],
+    slug: "homogeneous-systems-and-null-space",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§4.1-§4.2",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n02-04.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n04-03.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030efghi-tutorial-week06.pdf",
+      },
+    ],
+    title: text(
+      "4.1 Homogeneous systems and null space",
+      "4.1 齊次方程組與零空間",
+      "4.1 齐次方程组与零空间"
+    ),
+    unitId: "math1030.solution-structure.homogeneous-systems-and-null-space",
+    unitNumber: "4.1",
+  },
+];
+
 const math1030InvertibilityUnits: TextbookUnitMeta[] = [
   {
     chapterId: "invertibility",
@@ -575,15 +706,31 @@ const math1030InvertibilityUnits: TextbookUnitMeta[] = [
       "把逆矩陣、行化簡與非奇異矩陣的實際意義連接起來。",
       "把逆矩阵、行化简与非奇异矩阵的实际意义连接起来。"
     ),
-    glossaryRefs: ["invertible-matrix", "row-operation", "matrix"],
+    glossaryRefs: ["invertible-matrix", "nonsingular-matrix", "row-operation", "matrix"],
     interactiveIds: ["invertibility-row-reduction-demo"],
-    order: 6,
-    prerequisites: ["math1030.matrices.gaussian-elimination-rref"],
+    order: 9,
+    prerequisites: [
+      "math1030.matrices.gaussian-elimination-rref",
+      "math1030.matrix-algebra.matrix-multiplication-and-identity",
+      "math1030.solution-structure.homogeneous-systems-and-null-space",
+    ],
     slug: "invertible-matrices",
     sourceRefs: [
       {
         file: "reference/MATH1030/MATH1030-Notes.pdf",
-        pages: "§5.1-§5.3",
+        pages: "§4.3, §5.1-§5.3",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n03-01.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n03-02.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n03-03.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030efghi-tutorial-week07.pdf",
       },
       {
         file: "reference/MATH1030/Practice Set 4_Invertible Matrix.pdf",
@@ -612,7 +759,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["vector-space"],
     interactiveIds: [],
-    order: 7,
+    order: 10,
     prerequisites: [],
     slug: "vector-spaces",
     sourceRefs: [
@@ -645,7 +792,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["vector-space", "subspace"],
     interactiveIds: ["subspace-checker"],
-    order: 8,
+    order: 11,
     prerequisites: ["math1030.vector-spaces.vector-spaces"],
     slug: "subspaces",
     sourceRefs: [
@@ -681,7 +828,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["linear-combination", "span"],
     interactiveIds: ["span-explorer"],
-    order: 9,
+    order: 12,
     prerequisites: ["math1030.vector-spaces.vector-spaces"],
     slug: "linear-combinations-and-span",
     sourceRefs: [
@@ -717,7 +864,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["linear-independence", "linear-combination", "span"],
     interactiveIds: ["independence-checker"],
-    order: 10,
+    order: 13,
     prerequisites: ["math1030.vector-spaces.linear-combinations-and-span"],
     slug: "linear-dependence-and-independence",
     sourceRefs: [
@@ -754,7 +901,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["basis", "dimension", "linear-independence", "span"],
     interactiveIds: ["span-explorer", "independence-checker"],
-    order: 11,
+    order: 14,
     prerequisites: ["math1030.vector-spaces.linear-dependence-and-independence"],
     slug: "basis-and-dimension",
     sourceRefs: [
@@ -776,6 +923,42 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     ),
     unitId: "math1030.vector-spaces.basis-and-dimension",
     unitNumber: "6.5",
+  },
+  {
+    chapterId: "vector-spaces",
+    chapterNumber: "6",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use row reduction and basis ideas together to read column space, row space, and rank without confusing what row operations actually preserve.",
+      "把行化簡與基底觀念結合起來，讀懂列空間、行空間與秩，並分清楚行變換到底保留甚麼。",
+      "把行化简与基底观念结合起来，读懂列空间、行空间与秩，并分清楚行变换到底保留什么。"
+    ),
+    glossaryRefs: ["column-space", "row-space", "rank", "rref"],
+    interactiveIds: [],
+    order: 15,
+    prerequisites: [
+      "math1030.matrices.gaussian-elimination-rref",
+      "math1030.matrix-algebra.transpose-and-special-matrices",
+      "math1030.vector-spaces.basis-and-dimension",
+    ],
+    slug: "column-space-row-space-rank",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§6.6",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n05-04.pdf",
+      },
+    ],
+    title: text(
+      "6.6 Column space, row space, and rank",
+      "6.6 列空間、行空間與秩",
+      "6.6 列空间、行空间与秩"
+    ),
+    unitId: "math1030.vector-spaces.column-space-row-space-rank",
+    unitNumber: "6.6",
   },
 ];
 
@@ -819,9 +1002,9 @@ const math1090: TextbookCourseMeta = {
     },
   ],
   description: text(
-    "A beginner-friendly set theory note collection with short units, careful explanations, and guided interaction.",
-    "以初學者為本的集合論筆記系列，包含短單元、清晰講解與互動引導。",
-    "以初学者为本的集合论笔记系列，包含短单元、清晰讲解与互动引导。"
+    "Rigorous course notes on logic, sets, and number construction, written in short linked sections with careful proofs and examples.",
+    "以嚴謹課程筆記方式整理的邏輯、集合與數系構造筆記，按互相關聯的小節撰寫，重視證明與例子。",
+    "以严谨课程笔记方式整理的逻辑、集合与数系构造笔记，按相互关联的小节撰写，重视证明与例子。"
   ),
   id: "math1090",
   shortTitle: text("Set theory", "集合論", "集合论"),
@@ -856,6 +1039,30 @@ const math1030: TextbookCourseMeta = {
     },
     {
       course: "math1030",
+      id: "matrix-algebra",
+      number: "3",
+      summary: text(
+        "Matrix multiplication, transpose, and structural matrix notation.",
+        "矩陣乘法、轉置與結構化矩陣記號。",
+        "矩阵乘法、转置与结构化矩阵记号。"
+      ),
+      title: text("Matrix algebra", "矩陣代數", "矩阵代数"),
+      units: math1030MatrixAlgebraUnits,
+    },
+    {
+      course: "math1030",
+      id: "solution-structure",
+      number: "4",
+      summary: text(
+        "Homogeneous systems, null spaces, and the shape of full solution sets.",
+        "齊次方程組、零空間與完整解集的結構。",
+        "齐次方程组、零空间与完整解集的结构。"
+      ),
+      title: text("Solution structure", "解的結構", "解的结构"),
+      units: math1030SolutionStructureUnits,
+    },
+    {
+      course: "math1030",
       id: "invertibility",
       number: "5",
       summary: text(
@@ -880,9 +1087,9 @@ const math1030: TextbookCourseMeta = {
     },
   ],
   description: text(
-    "An interactive-first linear algebra note collection focused on operations, structure, and interpretation.",
-    "以互動為先的線性代數筆記系列，重點是運算、結構與理解。",
-    "以互动为先的线性代数笔记系列，重点是运算、结构与理解。"
+    "Rigorous linear algebra notes on systems, matrices, structure, and proof, with interaction used only where it clarifies the mathematics.",
+    "以嚴謹方式整理的線性代數筆記，涵蓋方程組、矩陣、結構與證明；互動只在真正有助理解數學時使用。",
+    "以严谨方式整理的线性代数笔记，涵盖方程组、矩阵、结构与证明；互动只在真正有助理解数学时使用。"
   ),
   id: "math1030",
   shortTitle: text("Linear algebra I", "線性代數 I", "线性代数 I"),

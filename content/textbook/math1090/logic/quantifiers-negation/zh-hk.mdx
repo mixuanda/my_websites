@@ -1,64 +1,230 @@
 ---
 title: "1.3 量詞與否定"
-description: "細心閱讀全稱與存在陳述，並學會在不失真的情況下否定它們。"
+description: "仔細閱讀謂詞、定義域與量詞，並在不失真的情況下否定帶量詞的陳述。"
 ---
 
-先要能閱讀 [1.1 命題邏輯](/zh-hk/notes/math1090/logic/propositional-logic)
-裡的簡短邏輯句子，這一頁才會順手。
+量詞的作用，是將開放句變成命題。喺本課入面，佢哋令我哋可以講「所有允許的對象」
+或者「至少有一個允許的對象」，而唔需要逐個個案寫晒出嚟。
 
-## 量詞說甚麼
+## 謂詞與定義域
 
-<Definition title="全稱與存在量詞">
-`∀x P(x)` 表示對每個允許的 `x`，`P(x)` 都是真的。
-
-`∃x P(x)` 表示至少有一個允許的 `x`，使 `P(x)` 為真。
+<Definition title="謂詞">
+謂詞係含有一個或多個自由變量的陳述。只有當每個自由變量都已經被賦值，或者被量詞綁定之後，
+佢先會變成命題。
 </Definition>
 
-`x` 可以取哪些值，要看定義域。閱讀時一定要記住這一點。
+<Definition title="定義域">
+定義域係變量允許取值的集合。
+</Definition>
 
-## 否定量詞
+每次見到 `∀` 或 `∃`，都要先問：變量可以喺邊個集合入面取值？同一個形式，喺唔同定義域下可以有唔同意思。
 
-否定規則很短，但很重要：
+例如 `x^2 = 1` 喺自然數、整數、有理數同實數入面，會有唔同答案。若果你冇講定義域，陳述其實仲未完整。
 
-| 陳述 | 否定 |
-| --- | --- |
-| `∀x P(x)` | `∃x ¬P(x)` |
-| `∃x P(x)` | `∀x ¬P(x)` |
+<CommonMistake title="唔好漏掉定義域">
+`∀x P(x)` 如果唔清楚 `x` 可以取邊啲值，就唔算完整。實際上，定義域通常會明示，或者由上下文默認。
+</CommonMistake>
 
-## 走一個例子
+## 全稱量詞與存在量詞
 
-<WorkedExample title="否定一個全稱陳述">
-原句：
+<Definition title="量詞">
+`∀x P(x)` 表示對每一個允許的 `x`，`P(x)` 都真。
 
-`對每個實數 x，都有 x^2 >= 0。`
+`∃x P(x)` 表示至少有一個允許的 `x` 使得 `P(x)` 真。
+</Definition>
 
-否定：
+如果想用口語講：
 
-`存在一個實數 x，使得 x^2 < 0。`
+- `∀` 係「對所有」或「對每個」。
+- `∃` 係「存在」。
 
-原因如下：
+句子要到量詞加上去之後先算完成。所以 `P(x)` 本身唔係命題，但 `∀x P(x)` 同 `∃x P(x)` 都係。
 
-1. 先把「對每個」改成「存在」。
-2. 再把內部陳述否定。
-3. 保持同一個定義域。
+<WorkedExample title="把帶量詞的句子讀成英文">
+設 `P(x)` 代表「x 可以被 2 整除」，定義域係整數。
 
-<RevealSolution title="要記住的模式">
-否定有量詞的陳述時，外層量詞會翻轉，內部陳述也要否定。
+咁 `∀x P(x)` 就係：
+
+「每個整數都可以被 2 整除。」
+
+呢句係假。相反，`∃x P(x)` 係：
+
+「存在一個整數可以被 2 整除。」
+
+呢句係真，例如 `x = 2`。
+
+<RevealSolution title="量詞做咩事">
+量詞決定陳述係講幾多個對象。佢唔會改變原本嘅謂詞，但會改變句子的邏輯力度。
 </RevealSolution>
 </WorkedExample>
 
-## 常見錯誤
+## 否定量詞
 
-<CommonMistake title="不要只改量詞，不改內部陳述">
-`¬∀x P(x)` 不等於 `∀x ¬P(x)`。前者的意思是「不是每個 `x` 都成立」，也就是「存在某個 `x` 使 `P(x)` 不成立」。
+<TheoremCard title="量詞否定">
+最基本的否定規則係：
+
+$$
+¬∀x\,P(x) \equiv ∃x\,¬P(x)
+$$
+
+$$
+¬∃x\,P(x) \equiv ∀x\,¬P(x)
+$$
+</TheoremCard>
+
+讀呢兩條規則時，要記住兩件事：
+
+1. 外層量詞要翻轉。
+2. 內部謂詞要否定。
+
+就係咁簡單。
+
+<WorkedExample title="否定質數的定義">
+工作紙用咗以下方式定義 `n` 係質數：對每個自然數 `d`，如果 `d` 整除 `n`，咁 `d = 1` 或 `d = n`。
+
+符號寫法係：
+
+$$
+∀d ∈ N,\; d \mid n \to (d = 1 \lor d = n).
+$$
+
+它的否定係：
+
+$$
+∃d ∈ N \text{ 使得 } d \mid n \text{，而且 } d \neq 1 \text{ 並且 } d \neq n。
+$$
+
+呢個正正就係「n 不是質數」的意思：存在一個非平凡除數。
+
+<RevealSolution title="否定點解啱">
+否定唔係模糊咁講「唔係所有情況都成」，而係直接指出一個反例 `d`。
+</RevealSolution>
+</WorkedExample>
+
+<WorkedExample title="否定一個學生陳述">
+設 `Student(x)` 表示「x 係學生」，`Submitted(x)` 表示「x 已提交表格」。
+
+則
+
+$$
+∃x\,(Student(x) \land Submitted(x))
+$$
+
+表示至少有一個學生已提交表格。
+
+佢的否定係
+
+$$
+∀x\,(\neg Student(x) \lor \neg Submitted(x)).
+$$
+
+即係話：每個允許的對象都至少欠缺其中一個性質。
+
+<RevealSolution title="讀法">
+`¬(A ∧ B)` 會變成 `¬A ∨ ¬B`，所以內部合取否定後就變成析取。
+</RevealSolution>
+</WorkedExample>
+
+## 為甚麼量詞次序好重要
+
+量詞次序係意思的一部分。
+
+`∀x ∃y P(x, y)` 表示對每個 `x`，都可以揾到一個可能唔同的 `y`。
+
+`∃y ∀x P(x, y)` 表示有同一個 `y` 對所有 `x` 都有效。
+
+兩者差好遠。第一句容許 `y` 依賴 `x`，第二句唔容許。
+
+<WorkedExample title="每本書有借閱者，不等於同一個人借晒所有書">
+設 `Book(b)` 代表 `b` 係書，`Borrows(x, b)` 代表 `x` 借咗 `b`。
+
+$$
+∀b\,(Book(b) \to ∃x\,Borrows(x, b))
+$$
+
+意思係每本書至少有一個借閱者。
+
+$$
+∃x\,∀b\,(Book(b) \to Borrows(x, b))
+$$
+
+意思係有一個人借晒所有書。
+
+第一句可以真，而第二句可以假。
+
+<RevealSolution title="呢個例子要記住咩">
+只要量詞順序變咗，意思通常就會變。唔好隨便交換量詞。
+</RevealSolution>
+</WorkedExample>
+
+## 常見的錯誤形式化
+
+<CommonMistake title="蘊含唔等於合取">
+如果意思係「對每個學生，如果佢有註冊，咁佢就滿足先修要求」，正確形式應該係
+
+$$
+∀x\,((Student(x) \land Enrolls(x)) \to Prereq(x)).
+$$
+
+如果寫成純粹 `Student(x) \land Enrolls(x)`，就會變成更強、而且完全不同的說法。
 </CommonMistake>
 
-## 小檢查
+<WorkedExample title="把課程要求寫成量詞公式">
+設 `Taken(x, m)` 表示「學生 x 修過數學課 m」。
+「每個學生至少修過一門數學課」可寫成
 
-<QuickCheck prompt="寫出 `∃x (x 是學生 且 x 已提交表格)` 的否定">
-`∀x (x 不是學生 或 x 尚未提交表格)`。
+$$
+∀x\,(Student(x) \to ∃m\,(MathCourse(m) \land Taken(x, m))).
+$$
+
+呢個寫法比起壓成一句模糊陳述更加清楚。
+
+<RevealSolution title="為甚麼內層要有存在量詞">
+因為揀邊一門課，可能會跟學生本人有關，所以存在量詞一定要放喺全稱量詞入面。
+</RevealSolution>
+</WorkedExample>
+
+## 快速檢查
+
+<QuickCheck prompt="寫出 `∀x P(x)` 的否定，並化簡。">
+把外層量詞翻轉，再否定內部謂詞。
 </QuickCheck>
 
-## 讀到這裡，試一試
+<RevealSolution title="答案">
+`∃x ¬P(x)`。
+</RevealSolution>
+
+<QuickCheck prompt="`∃x (x 是學生 且 x 已提交表格)` 的否定係咩？">
+用德摩根律處理內部合取。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`∀x (x 不是學生 或 x 尚未提交表格)`。
+</RevealSolution>
+
+<QuickCheck prompt="`∀x∃y P(x,y)` 同 `∃y∀x P(x,y)`，邊個較強？">
+想想是否只需一個 `y` 就能對所有 `x` 成立。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`∃y∀x P(x,y)` 較強，因為同一個 `y` 要對每個 `x` 都有效。
+</RevealSolution>
+
+<QuickCheck prompt="把 `∀b(Book(b) → ∃x Borrows(x,b))` 讀成中文。">
+由外到內讀量詞。
+</QuickCheck>
+
+<RevealSolution title="答案">
+每本書都至少有一個借閱者。
+</RevealSolution>
+
+## 嵌入式檢查
+
+用 stepper 練習在帶量詞的陳述同其否定之間來回轉換。
 
 <InteractiveWidget id="quantifier-negation-stepper" />
+
+## 先讀呢一頁
+
+如果想先重溫命題邏輯，請讀
+[1.1 命題邏輯](/zh-hk/notes/math1090/logic/propositional-logic)。

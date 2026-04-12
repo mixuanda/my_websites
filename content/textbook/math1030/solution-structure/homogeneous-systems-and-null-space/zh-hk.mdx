@@ -1,0 +1,293 @@
+---
+title: "4.1 齊次方程組與零空間"
+description: "用齊次方程組與零空間去系統描述所有解，而不是只找出某一個解。"
+---
+
+當你已經懂得對方程組做行化簡，下一步就不應只問「這一題怎樣解」，而應問
+「全部解究竟有甚麼結構」。齊次方程組是最適合開始問這個問題的地方，而零
+空間正是回答這個問題的語言。
+
+## 為甚麼齊次方程組特別
+
+齊次線性方程組的常數項全部都是 `0`。用矩陣寫，就是
+
+$$
+Ax = 0.
+$$
+
+這種情況有一個立刻可見的特點：零向量永遠是它的解。
+
+<Definition title="齊次方程組">
+齊次線性方程組是形如
+
+$$
+Ax = 0
+$$
+
+的線性方程組。
+
+其中 `x = 0` 稱為平凡解。
+</Definition>
+
+真正的問題在於：除了平凡解之外，是否還有非平凡解。
+
+## 零空間把所有齊次解收集起來
+
+<Definition title="零空間">
+若 `A` 是矩陣，則 `A` 的零空間定義為
+
+$$
+N(A) = \{x : Ax = 0\}.
+$$
+
+因此 `N(A)` 正正就是齊次方程組 `Ax = 0` 的解集。
+</Definition>
+
+這個定義把「一些解」變成一個完整的數學對象。你不再只是在列例子，而是在
+描述整個集合。
+
+## 行化簡會揭示零空間的形狀
+
+要找 `N(A)`，就是解 `Ax = 0`，也就是對增廣系統 `[A \mid 0]` 做行化簡。
+主元告訴你哪些變量被決定，自由變量則告訴你剩下多少自由方向。
+
+<WorkedExample title="解一個齊次方程組並描述零空間">
+令
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & -1 \\
+2 & 4 & -2
+\end{bmatrix}.
+$$
+
+要求解 `Ax = 0`，把它行化簡：
+
+$$
+\left[
+\begin{array}{ccc|c}
+1 & 2 & -1 & 0 \\
+2 & 4 & -2 & 0
+\end{array}
+\right]
+\sim
+\left[
+\begin{array}{ccc|c}
+1 & 2 & -1 & 0 \\
+0 & 0 & 0 & 0
+\end{array}
+\right].
+$$
+
+所以方程變成
+
+$$
+x_1 + 2x_2 - x_3 = 0.
+$$
+
+令 `x_2 = s`、`x_3 = t` 為自由變量，則
+
+$$
+x_1 = -2s + t.
+$$
+
+因此
+
+$$
+x =
+\begin{bmatrix}
+-2s + t \\
+s \\
+t
+\end{bmatrix}
+=
+s
+\begin{bmatrix}
+-2 \\ 1 \\ 0
+\end{bmatrix}
++
+t
+\begin{bmatrix}
+1 \\ 0 \\ 1
+\end{bmatrix}.
+$$
+
+所以
+
+$$
+N(A) =
+\operatorname{Span}
+\left\{
+\begin{bmatrix}
+-2 \\ 1 \\ 0
+\end{bmatrix},
+\begin{bmatrix}
+1 \\ 0 \\ 1
+\end{bmatrix}
+\right\}.
+$$
+</WorkedExample>
+
+這個例子說明：零空間描述的不只是「有沒有解」，而是全部解如何被建立出來。
+
+## 齊次解控制非齊次解的結構
+
+同一個想法也可用來描述一致系統 `Ax = b` 的全部解。
+
+<TheoremCard title="所有解都等於某個特解加上一個零空間向量">
+設 `x_p` 是 `Ax = b` 的一個特解。
+
+則向量 `x` 是 `Ax = b` 的解，當且僅當
+
+$$
+x = x_p + v
+$$
+
+其中 `v \in N(A)`。
+</TheoremCard>
+
+這正是自由變量公式背後的結構定理。
+
+<CollapsibleProof title="為甚麼全部解都具有 `x_p + N(A)` 的形式">
+先設 `x` 是 `Ax = b` 的任意一個解。那麼
+
+$$
+Ax = b
+\qquad \text{且} \qquad
+Ax_p = b.
+$$
+
+相減得
+
+$$
+A(x - x_p) = 0.
+$$
+
+所以 `x - x_p \in N(A)`，即 `x = x_p + v`，其中 `v \in N(A)`。
+
+反過來，若 `v \in N(A)`，則 `Av = 0`。因此
+
+$$
+A(x_p + v) = Ax_p + Av = b + 0 = b.
+$$
+
+所以任何形如 `x_p + v` 的向量，也必定是系統的解。
+</CollapsibleProof>
+
+## 一個非齊次例子
+
+<WorkedExample title="把所有解寫成特解加零空間">
+假設系統 `Ax = b` 有一個特解
+
+$$
+x_p =
+\begin{bmatrix}
+3 \\ 0 \\ 1
+\end{bmatrix},
+$$
+
+並且
+
+$$
+N(A) =
+\operatorname{Span}
+\left\{
+\begin{bmatrix}
+1 \\ -1 \\ 0
+\end{bmatrix}
+\right\}.
+$$
+
+那麼所有解都可寫成
+
+$$
+x =
+\begin{bmatrix}
+3 \\ 0 \\ 1
+\end{bmatrix}
++
+t
+\begin{bmatrix}
+1 \\ -1 \\ 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+3 + t \\ -t \\ 1
+\end{bmatrix},
+\qquad t \in R.
+$$
+
+零空間給出自由方向；特解則決定這整個解族位於哪裏。
+</WorkedExample>
+
+## 零空間如何決定唯一性
+
+由這個結構定理可以立刻得到：
+
+- 若 `N(A) = \{0\}`，則一致系統 `Ax = b` 只有唯一解；
+- 若 `N(A)` 含有非零向量，則每個一致系統 `Ax = b` 都有無限多解，
+  因為你可以在特解上加上任意標量倍的零空間向量。
+
+所以零空間正好量度了系統中隱藏的自由度。
+
+## 常見錯誤
+
+<CommonMistake title="零向量永遠屬於零空間">
+有些同學會誤以為齊次方程組可能沒有解。這是不可能的，因為 `x = 0` 永遠
+滿足 `Ax = 0`。
+</CommonMistake>
+
+<CommonMistake title="找到一個特解，不等於已經找到全部解">
+即使你已經找到某個 `x_p` 滿足 `Ax_p = b`，仍然要把整個零空間加上去，才
+算完整描述了解集。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="為甚麼 `Ax = 0` 一定至少有一個解？">
+用一句話回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因為零向量總會滿足 `A0 = 0`。
+</RevealSolution>
+
+<QuickCheck prompt="若 `N(A) = \{0\}` 且 `Ax = b` 一致，它有多少個解？">
+請用本節定理解釋。
+</QuickCheck>
+
+<RevealSolution title="答案">
+只有一個，因為沒有任何非零零空間向量可以再加到特解上。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="若 `x_p` 解 `Ax = b`，而 `u, v \in N(A)`，為甚麼 `x_p + u` 與 `x_p + v` 都是 `Ax = b` 的解？">
+請用線性性質寫一行。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+因為 `Au = 0` 且 `Av = 0`，所以
+
+$$
+A(x_p + u) = Ax_p + Au = b + 0 = b,
+$$
+
+同理
+
+$$
+A(x_p + v) = Ax_p + Av = b + 0 = b.
+$$
+
+因此，只要在特解上加任何零空間向量，仍然留在同一個解集之中。
+</RevealSolution>
+
+## 相關筆記
+
+本節建立在
+[2.3 高斯消元與最簡行階梯形](/zh-hk/notes/math1030/matrices/gaussian-elimination-rref)
+與 [2.4 解集的種類](/zh-hk/notes/math1030/matrices/solution-set-types) 之上。
+它會為
+[5.1 可逆矩陣](/zh-hk/notes/math1030/invertibility/invertible-matrices)
+與 [6.2 子空間](/zh-hk/notes/math1030/vector-spaces/subspaces) 做準備。

@@ -1,54 +1,293 @@
 ---
 title: "5.1 可逆矩阵"
-description: "把逆矩阵、行化简与非奇异的实际意义连接起来。"
+description: "从定义、行化简、等价表述与逆矩阵运算，系统理解可逆矩阵。"
 ---
+
+可逆性是线性代数中最早让你感受到“一个矩阵表示一个可逆过程”的地方。对于方阵，如果它可逆，就表示有另一个方阵能够把它完全还原。更重要的是，这个概念和许多其他说法其实等价：可以行化简成单位矩阵、每个方程组 `Ax = b` 都有解、列向量线性无关，以及矩阵乘法可以被系统地反向处理。
+
+这一页会把这些等价关系分开讲清楚。目标不只是会写 `A^{-1}`，而是能严格判断一个方阵什么时候可逆，以及怎样可靠地算出它的逆矩阵。
+
+## 左逆和右逆
+
+先不要直接进入方阵。对一般矩阵，左逆和右逆是两个不同概念。
+
+<Definition title="左逆与右逆">
+设 `A` 是一个 `p \times q` 矩阵。
+
+- 如果一个 `q \times p` 矩阵 `H` 满足 `HA = I_q`，那么 `H` 是 `A` 的**左逆**。
+- 如果一个 `q \times p` 矩阵 `G` 满足 `AG = I_p`，那么 `G` 是 `A` 的**右逆**。
+</Definition>
+
+这两个定义很重要，因为矩阵乘法不交换。对于长方形矩阵，左逆和右逆不一定同时存在；即使都存在，也不一定相同。方阵的情况更特殊。
+
+<Definition title="可逆矩阵">
+如果 `A` 是一个 `p \times p` 方阵，并且存在另一个 `p \times p` 矩阵 `B`
+使得
+
+$$
+BA = AB = I_p,
+$$
+
+那么 `A` 称为**可逆**。矩阵 `B` 称为 `A` 的**逆矩阵**，记作 `A^{-1}`。
+</Definition>
+
+<TheoremCard title="逆矩阵是唯一的">
+如果 `B` 是 `A` 的左逆，而 `C` 是 `A` 的右逆，那么 `B = C`。所以可逆矩阵只有一个逆矩阵。
+</TheoremCard>
+
+<CollapsibleProof title="为什么逆矩阵唯一">
+设 `B` 是 `A` 的左逆，`C` 是 `A` 的右逆。那么 `BA = I_p`，`AC = I_p`。
+利用矩阵乘法的结合律，
+
+$$
+B = BI_p = B(AC) = (BA)C = I_pC = C.
+$$
+
+所以左逆和右逆必然相同。
+</CollapsibleProof>
 
 ## 什么叫可逆
 
-一个方阵如果有另一个矩阵可以把它“做回去”，就叫可逆。
-若 `A` 可逆，就存在 `A^{-1}`，而且
+可逆本质上就是“可以完全反过来”。`A` 做一次变换之后，如果 `A^{-1}` 存在，
+就能把结果准确地拉回原位。
+
+单位矩阵 `I_p` 之所以出现，是因为它不会改变任何向量：
 
 $$
-AA^{-1} = A^{-1}A = I.
+I_p x = x
 $$
 
-<Definition title="可逆矩阵">
-可逆矩阵有逆矩阵，所以乘上它的逆之后，会回到单位矩阵。
-</Definition>
+对任何相容向量 `x` 都成立。逆矩阵就是让你回到这个“不被改变”的状态的矩阵。
 
-## 可以怎样理解
+<WorkedExample title="对角矩阵最容易看出逆矩阵">
+设
 
-可逆不只是符号上的关系。它表示这个矩阵的作用可以被反转。
-因此行化简很有用：它可以帮你检查矩阵能否化成单位矩阵。
+$$
+D = \operatorname{diag}(2, -1, 3).
+$$
 
-<WorkedExample title="从行化简读出可逆性">
-假设一连串行变换把 `A` 变成 `I`。
-那么把同样的操作做在 `[A | I]` 上，就会得到 `[I | A^{-1}]`。
+那么
 
-这就是之后课程中一直要做分块行化简的原因。
+$$
+D^{-1} = \operatorname{diag}\left(\tfrac{1}{2}, -1, \tfrac{1}{3}\right).
+$$
+
+原因很直接：对角线上的非零元素变成倒数，其余位置的零保持不变。把 `D` 和 `D^{-1}` 相乘，就会得到 `I_3`。
 </WorkedExample>
 
-跟着下面的 `[A | I]` 例子一步一步看。真正重要的不是“做了很多步”，而是“左边终于化成 `I`”那一刻。
+## 行化简和逆矩阵
+
+实际计算逆矩阵时，最可靠的方法是行化简。课程材料的核心想法分成两步：
+
+1. 行变换矩阵本身可逆，而且它的逆就是反向行变换矩阵；
+2. 一个方阵可逆，当且仅当它能够被行化简到 `I_p`。
+
+<TheoremCard title="行变换矩阵是可逆的">
+如果 `\rho` 是一个对 `p` 行矩阵进行的行变换，而 `\bar{\rho}` 是对应的反向行变换，那么行变换矩阵 `M[\rho]` 和 `M[\bar{\rho}]` 满足
+
+$$
+M[\rho]^{-1} = M[\bar{\rho}],
+\qquad
+M[\bar{\rho}]^{-1} = M[\rho].
+$$
+</TheoremCard>
+
+所以每一步行化简，其实都是在左乘一个可逆矩阵。这个观点会让后面的很多证明更清楚。
+
+<TheoremCard title="可逆性和行化简">
+对一个方阵 `A`，以下命题等价：
+
+- `A` 可逆；
+- `A` 与 `I_p` 行等价；
+- `A` 是若干个行变换矩阵的乘积；
+- `A` 是非奇异矩阵。
+</TheoremCard>
+
+所以当你把 `A` 和 `I_p` 并排写成 `[A | I_p]`，再做行化简时，
+如果左边最后变成 `I_p`，右边就会读出 `A^{-1}`。
 
 <InteractiveWidget id="invertibility-row-reduction-demo" />
 
+上面的交互示范直接展示“把 `[A | I]` 化到左边变成 `I`”到底是什么意思。它不是定义本身，而是和定义完全一致的计算方法。
+
+<InteractiveWidget id="row-reduction-stepper" />
+
+第二个交互工具显示一条完整的消元路径。对于可逆矩阵，重点不是“做了多少步”，而是“左边最后真的化成了 `I_p`”。
+
+## 等价表述
+
+源材料整理出一个非常重要的“字典”：可逆性可以用很多不同语言来描述。
+
+<TheoremCard title="识别可逆矩阵的等价条件">
+设 `A` 是一个 `p \times p` 矩阵。以下命题等价：
+
+1. `A` 可逆。
+2. `A` 与 `I_p` 行等价。
+3. `A` 是若干个行变换矩阵的乘积。
+4. `A` 有左逆。
+5. `A` 有右逆。
+6. `A` 是非奇异矩阵。
+7. 对每个 `p` 维列向量 `b`，方程组 `Ax = b` 都相容。
+8. 对每个 `p` 维列向量 `b`，方程组 `Ax = b` 都有唯一解，且解为 `x = A^{-1}b`。
+</TheoremCard>
+
+其中两个最实用：
+
+- 第 7 点说明：`A` 的列向量张成 `R^p`。
+- 第 8 点说明：一旦可逆，就不只是“有解”，而是可以直接写出解。
+
+所以可逆性正是矩阵解方程组时最核心的代数条件。
+
+## 列向量的无关与线性组合
+
+可逆性也可以用列向量语言来读。
+
+<TheoremCard title="可逆性和列向量">
+对一个 `p \times p` 矩阵 `A`，以下命题等价：
+
+- `A` 可逆；
+- `A` 的列向量线性无关；
+- `R^p` 中每个向量都可以写成 `A` 的列向量的线性组合。
+</TheoremCard>
+
+这三句话其实是同一件事的三种说法。
+
+如果列向量线性无关，就表示没有一列是多余的。
+如果列向量张成 `R^p`，就表示每个目标向量都能构造出来。
+对方阵来说，这两个条件同时成立，正是可逆。
+
+## 转置和幂次
+
+可逆性和转置也相容。
+
+<TheoremCard title="转置与幂次">
+如果 `A` 可逆，那么：
+
+- `A^t` 也可逆，而且 `(A^t)^{-1} = (A^{-1})^t`；
+- `A^n` 对每个整数 `n` 都可逆，而且 `(A^n)^{-1} = (A^{-1})^n`。
+</TheoremCard>
+
+转置结果方便你把关于列的命题改写成关于行的命题；幂次结果则适合处理重复出现的变换。
+
+## 例题
+
+<WorkedExample title="用行化简求逆矩阵">
+设
+
+$$
+A = \begin{bmatrix}
+1 & 2 \\
+3 & 5
+\end{bmatrix}.
+$$
+
+先写出 `[A | I_2]`：
+
+$$
+\left[\begin{array}{cc|cc}
+1 & 2 & 1 & 0 \\
+3 & 5 & 0 & 1
+\end{array}\right].
+$$
+
+先消去左下角的 3：
+
+$$
+\left[\begin{array}{cc|cc}
+1 & 2 & 1 & 0 \\
+0 & -1 & -3 & 1
+\end{array}\right].
+$$
+
+再把第二行除以 `-1`，然后清掉第一行第二列：
+
+$$
+\left[\begin{array}{cc|cc}
+1 & 0 & -5 & 2 \\
+0 & 1 & 3 & -1
+\end{array}\right].
+$$
+
+因此
+
+$$
+A^{-1} = \begin{bmatrix}
+-5 & 2 \\
+3 & -1
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+重点不只是算出答案，而是看清楚：当左边变成单位矩阵时，右边自然就是逆矩阵。
+
 ## 常见错误
 
-<CommonMistake title="外表简单不代表可逆">
-不要只凭外表猜。真正的测试，是能否把矩阵化成单位矩阵。
+<CommonMistake title="不要把长方形矩阵的一侧逆当成另一侧逆">
+对于非方阵，左逆不一定等于右逆，甚至不一定存在。方阵则不同：一旦逆矩阵存在，它就同时是左逆和右逆，而且一定唯一。
+</CommonMistake>
+
+<CommonMistake title="不要只凭外表判断可逆性">
+一个矩阵看起来简单，也不代表它一定可逆。正确方法是行化简，或者使用上面列出的等价条件。
 </CommonMistake>
 
 ## 快速检查
 
-<QuickCheck prompt="如果 `A` 可逆，`AA^{-1}` 是什么？">
-用逆矩阵的定义来答。
+<QuickCheck prompt="如果 `A` 可逆，`A^{-1}A` 是什么？">
+直接用逆矩阵的定义。
 </QuickCheck>
 
 <RevealSolution title="答案">
-它是单位矩阵 `I`。
+`A^{-1}A = I_p`。
 </RevealSolution>
 
-## 预备链接
+<QuickCheck prompt="如果 `A` 可逆，齐次方程组 `Ax = 0` 会不会有非零解？">
+用唯一解的结论来想。
+</QuickCheck>
 
-这一页依赖
-[2.3 高斯消元与最简行阶梯形](/zh-cn/notes/math1030/matrices/gaussian-elimination-rref)。
+<RevealSolution title="答案">
+不会。因为可逆时，`Ax = b` 对每个 `b` 都有唯一解；取 `b = 0` 时，唯一解就是 `x = 0`。
+</RevealSolution>
+
+<QuickCheck prompt="如果 `A` 可逆，`A^t` 是否可逆？">
+使用上面的转置定理。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。`A^t` 可逆，而且 `(A^t)^{-1} = (A^{-1})^t`。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="假设 `A` 可逆，而且 `AB = I_p`。证明 `B = A^{-1}`。">
+可以利用逆矩阵唯一性，也可以左乘 `A^{-1}`。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+因为 `A` 可逆，所以存在 `A^{-1}`。把等式 `AB = I_p` 左乘 `A^{-1}`，得到
+
+$$
+A^{-1}(AB) = A^{-1}I_p.
+$$
+
+由结合律，
+
+$$
+(A^{-1}A)B = A^{-1}.
+$$
+
+而 `A^{-1}A = I_p`，所以
+
+$$
+B = A^{-1}.
+$$
+
+因此任何可逆方阵的右逆都必定等于它的逆矩阵。
+</RevealSolution>
+
+## 先读这些页
+
+这一页特别依赖
+[2.3 Gaussian elimination and RREF](/zh-cn/notes/math1030/matrices/gaussian-elimination-rref)、
+[3.1 Matrix multiplication and identity matrices](/zh-cn/notes/math1030/matrix-algebra/matrix-multiplication-and-identity)
+和
+[3.2 Transpose and special matrices](/zh-cn/notes/math1030/matrix-algebra/transpose-and-special-matrices)。

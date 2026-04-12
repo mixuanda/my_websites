@@ -263,6 +263,36 @@ export const glossaryEntries: GlossaryEntry[] = [
   },
   {
     definition: {
+      en: "An identity matrix is a square matrix with 1s on the main diagonal and 0s elsewhere, so multiplying by it leaves vectors or matrices unchanged.",
+      "zh-cn": "单位矩阵是在主对角线放 1、其余位置放 0 的方阵；与它相乘不会改变向量或矩阵。",
+      "zh-hk": "單位矩陣是在主對角線放 1、其餘位置放 0 的方陣；與它相乘不會改變向量或矩陣。",
+    },
+    id: "identity-matrix",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§3.2-§3.4" },
+      { file: "reference/MATH1030/1030gi-n01-02.pdf" },
+    ],
+    termEn: "identity matrix",
+    termZhCn: "单位矩阵",
+    termZhHk: "單位矩陣",
+  },
+  {
+    definition: {
+      en: "The transpose of a matrix is formed by swapping its rows and columns.",
+      "zh-cn": "矩阵的转置是通过交换它的行和列得到的新矩阵。",
+      "zh-hk": "矩陣的轉置是透過交換它的行和列得到的新矩陣。",
+    },
+    id: "transpose",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§3.3" },
+      { file: "reference/MATH1030/1030gi-n01-03.pdf" },
+    ],
+    termEn: "transpose",
+    termZhCn: "转置",
+    termZhHk: "轉置",
+  },
+  {
+    definition: {
       en: "An augmented matrix places the coefficient matrix and constant column in one table so you can row-reduce the whole system at once.",
       "zh-cn": "增广矩阵把系数矩阵和常数列放在同一张表里，方便一起做行变换。",
       "zh-hk": "增廣矩陣把係數矩陣和常數列放在同一張表裡，方便一起做行變換。",
@@ -335,6 +365,66 @@ export const glossaryEntries: GlossaryEntry[] = [
     termEn: "invertible matrix",
     termZhCn: "可逆矩阵",
     termZhHk: "可逆矩陣",
+  },
+  {
+    definition: {
+      en: "A null space is the set of all vectors sent to 0 by a given matrix.",
+      "zh-cn": "零空间是被某个矩阵送到 0 的所有向量组成的集合。",
+      "zh-hk": "零空間是被某個矩陣送到 0 的所有向量組成的集合。",
+    },
+    id: "null-space",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§4.1, §6.6" },
+      { file: "reference/MATH1030/1030gi-n04-03.pdf" },
+    ],
+    termEn: "null space",
+    termZhCn: "零空间",
+    termZhHk: "零空間",
+  },
+  {
+    definition: {
+      en: "The column space of a matrix is the span of its columns; equivalently, it is the set of all outputs Ax.",
+      "zh-cn": "矩阵的列空间是它所有列向量的张成；等价地，它是所有输出 Ax 组成的集合。",
+      "zh-hk": "矩陣的列空間是它所有列向量的張成；等價地，它是所有輸出 Ax 組成的集合。",
+    },
+    id: "column-space",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§6.6" },
+      { file: "reference/MATH1030/1030gi-n05-04.pdf" },
+    ],
+    termEn: "column space",
+    termZhCn: "列空间",
+    termZhHk: "列空間",
+  },
+  {
+    definition: {
+      en: "The row space of a matrix is the span of its rows; equivalently, it is the column space of the transpose.",
+      "zh-cn": "矩阵的行空间是它所有行向量的张成；等价地，它就是转置矩阵的列空间。",
+      "zh-hk": "矩陣的行空間是它所有行向量的張成；等價地，它就是轉置矩陣的列空間。",
+    },
+    id: "row-space",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§6.6" },
+      { file: "reference/MATH1030/1030gi-n05-04.pdf" },
+    ],
+    termEn: "row space",
+    termZhCn: "行空间",
+    termZhHk: "行空間",
+  },
+  {
+    definition: {
+      en: "A nonsingular matrix is a square matrix whose homogeneous system has only the trivial solution and is therefore invertible.",
+      "zh-cn": "非奇异矩阵是齐次方程组只有平凡解、因此也可逆的方阵。",
+      "zh-hk": "非奇異矩陣是齊次方程組只有平凡解、因此亦可逆的方陣。",
+    },
+    id: "nonsingular-matrix",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§4.3, §5.2" },
+      { file: "reference/MATH1030/1030gi-n03-03.pdf" },
+    ],
+    termEn: "nonsingular matrix",
+    termZhCn: "非奇异矩阵",
+    termZhHk: "非奇異矩陣",
   },
   {
     cantoneseNote: "老師常會講「要先證明定義良好」，意思是不可以依賴代表元。",
@@ -468,6 +558,21 @@ export const glossaryEntries: GlossaryEntry[] = [
     termEn: "dimension",
     termZhCn: "维数",
     termZhHk: "維數",
+  },
+  {
+    definition: {
+      en: "The rank of a matrix is the common dimension of its column space and row space.",
+      "zh-cn": "矩阵的秩是它的列空间和行空间共同的维数。",
+      "zh-hk": "矩陣的秩是它的列空間和行空間共同的維數。",
+    },
+    id: "rank",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§6.6" },
+      { file: "reference/MATH1030/1030gi-n05-04.pdf" },
+    ],
+    termEn: "rank",
+    termZhCn: "秩",
+    termZhHk: "秩",
   },
 ];
 

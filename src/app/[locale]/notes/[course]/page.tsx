@@ -20,14 +20,14 @@ function text(en: string, zhHk: string, zhCn: string): LocalizedText {
 
 const courseCopy = {
   export: text(
-    "Each note can be read on the page and exported as a static study copy when you need it offline.",
-    "每則筆記都可以直接在頁面閱讀，亦可以在需要離線溫習時匯出成靜態版本。",
-    "每则笔记都可以直接在页面阅读，也可以在需要离线复习时导出成静态版本。"
+    "Each section stays readable on the page and exports as a static study copy when you need an offline version.",
+    "每一節都可以直接在頁面閱讀，亦可以在需要離線溫習時匯出成靜態版本。",
+    "每一节都可以直接在页面阅读，也可以在需要离线复习时导出成静态版本。"
   ),
   units: text(
-    "Use the sidebar to move chapter by chapter, or jump directly into a note below.",
-    "你可以用側欄逐章前進，或直接從下方進入某一則筆記。",
-    "你可以用侧栏逐章前进，或直接从下方进入某一则笔记。"
+    "Use the sidebar to move chapter by chapter, or jump directly into a section below.",
+    "你可以用側欄逐章前進，或直接從下方進入某一節筆記。",
+    "你可以用侧栏逐章前进，或直接从下方进入某一节笔记。"
   ),
 } as const;
 

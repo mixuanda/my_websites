@@ -1,32 +1,58 @@
 ---
 title: "1.1 Propositional logic"
-description: "Learn what counts as a proposition, how the basic connectives work, and how to read short logical statements."
+description: "Define propositions carefully, read Boolean connectives with the correct precedence, and use truth tables to check equivalence and valid inference patterns."
 ---
 
-Start with statements that can be true or false. That is the smallest useful
-unit of logic in this course.
+Logic begins with statements that are already complete enough to be judged
+true or false. That sounds simple, but the distinction matters throughout the
+course: once a statement is not yet closed, it cannot be treated as a
+proposition.
 
-## What is a proposition?
+## Propositions and truth values
 
-<Definition title="A proposition">
+<Definition title="Proposition">
 A proposition is a statement with a definite truth value. It is either true or
-false.
+false, and nothing in between.
+</Definition>
+
+The point of the definition is not to make logic abstract for its own sake. It
+is to separate statements that can be tested from statements that are still
+unfinished.
 
 Examples:
 
 - `2 + 2 = 4` is a proposition.
-- `Close the door!` is not a proposition, because it is a command.
-- `x + 1 = 3` is not yet a proposition if `x` has not been specified.
-</Definition>
+- `Every even number is divisible by 2` is a proposition.
+- `Open the window.` is not a proposition, because it is a command.
+- `x + 1 = 3` is not yet a proposition if `x` has not been fixed.
 
-<CommonMistake title="A sentence with a variable is not automatically a proposition">
-If a statement still depends on an unspecified variable, its truth value is not
-fixed yet. You need to know what the variable means before you can judge it.
+<CommonMistake title="A formula with a free variable is not automatically a proposition">
+If the truth of a sentence still depends on an unspecified variable, then the
+sentence is open, not closed. You must either assign a value to the variable or
+bind it later with a quantifier.
 </CommonMistake>
 
-## The basic connectives
+<WorkedExample title="Decide which statements are propositions">
+Consider the following three statements:
 
-The course uses five connectives again and again:
+1. `7` is prime.
+2. `x^2 + 1 > 0`.
+3. `Please hand in the worksheet.`
+
+Statement 1 is a proposition, and it is true. Statement 2 is not a proposition
+yet, because its truth value depends on the choice of `x`. Statement 3 is not a
+proposition, because it is a request rather than a claim.
+
+<RevealSolution title="Why the distinction matters">
+Logic only starts after the sentence is definite enough to be checked. A
+sentence that still needs a missing variable is not ready for truth-table
+analysis.
+</RevealSolution>
+</WorkedExample>
+
+## The Boolean alphabet
+
+The course uses five connectives repeatedly:
 
 | Symbol | Read as | Main idea |
 | --- | --- | --- |
@@ -34,34 +60,175 @@ The course uses five connectives again and again:
 | `P ∧ Q` | `P` and `Q` | true only when both are true |
 | `P ∨ Q` | `P` or `Q` | true when at least one is true |
 | `P → Q` | if `P`, then `Q` | false only when `P` is true and `Q` is false |
-| `P ↔ Q` | `P` if and only if `Q` | true when both sides match |
+| `P ↔ Q` | `P` if and only if `Q` | true when the two sides match |
 
-## Read a formula in words
+These are not just informal abbreviations. They are the basic symbols of the
+logic language, and they are the tools used to build more complicated
+statements.
 
-<WorkedExample title="Translating an implication">
-Let `P` mean "it is raining" and let `Q` mean "the ground is wet".
+The order of operations is also fixed:
 
-Then `P → Q` is read as:
+1. `¬`
+2. `∧` and `∨`
+3. `→` and `↔`
 
-"If it is raining, then the ground is wet."
+If that order still leaves ambiguity, add parentheses.
 
-The statement does **not** say that it is raining right now. It only says what
-must happen whenever the first part is true.
+<WorkedExample title="Parse a formula before reading it">
+The formula `¬A ∧ B ∨ C` is read as
 
-<RevealSolution title="Why beginners often misread implication">
-The formula `P → Q` is false only in one case: `P` is true and `Q` is false.
-Every other case makes the implication true.
+$$
+(¬A ∧ B) ∨ C.
+$$
+
+The outer `∨` comes after the `¬` and the `∧`. So the statement says: either
+`A` is false and `B` is true, or `C` is true.
+
+If you meant something else, you must say so explicitly with parentheses.
+
+<RevealSolution title="Why this is not cosmetic">
+Logic formulas are precise objects. Parentheses are not decoration; they decide
+what the statement actually says.
 </RevealSolution>
 </WorkedExample>
 
-## A first quick check
+## Truth tables and equivalence
 
-<QuickCheck prompt="Which of these are propositions? `2 + 2 = 4`, `Open the window.`, `x + 1 = 3`">
+A Boolean formula can be evaluated once the truth values of its component
+propositions are known. That is what a truth table records.
+
+<TheoremCard title="Useful equivalences">
+The following equivalences are standard and should become automatic:
+
+$$
+P → Q \equiv ¬P ∨ Q
+$$
+
+$$
+P ↔ Q \equiv (P → Q) ∧ (Q → P)
+$$
+
+$$
+¬(P ∧ Q) \equiv ¬P ∨ ¬Q
+$$
+
+$$
+¬(P ∨ Q) \equiv ¬P ∧ ¬Q
+$$
+
+$$
+¬¬P \equiv P
+$$
+</TheoremCard>
+
+These are not philosophy statements. They are truth-table identities.
+
+<WorkedExample title="Check implication with a truth table">
+The implication `P → Q` is false in exactly one case: when `P` is true and `Q`
+is false. In every other case it is true.
+
+| `P` | `Q` | `P → Q` |
+| --- | --- | --- |
+| `T` | `T` | `T` |
+| `T` | `F` | `F` |
+| `F` | `T` | `T` |
+| `F` | `F` | `T` |
+
+So `P → Q` does not mean that `P` and `Q` are both true. It means that the
+case `P` true and `Q` false is ruled out.
+
+<RevealSolution title="Why this matters">
+Many students read `P → Q` as a causal sentence. In logic, it is not a story
+about cause and effect. It is a truth condition.
+</RevealSolution>
+</WorkedExample>
+
+## Rules of inference
+
+The lecture notes and homework use several deduction patterns repeatedly.
+
+<TheoremCard title="Common inference patterns">
+If `P → Q` and `P` are true, then `Q` is true. This is modus ponens.
+
+If `P → Q` and `¬Q` are true, then `¬P` is true. This is modus tollens.
+
+If `P → Q` and `Q → R` are true, then `P → R` is true. This is hypothetical syllogism.
+
+If `P ∨ Q` and `¬P` are true, then `Q` is true. This is disjunctive syllogism.
+</TheoremCard>
+
+These patterns are important because they are the logic version of a valid
+calculation. If the premises are true, the conclusion must also be true.
+
+<WorkedExample title="A valid chain of implications">
+Suppose you know
+
+$$
+A → B,\qquad B → C,\qquad A.
+$$
+
+Then you may conclude `B` from the first and third statements, and then `C`
+from the second statement.
+
+The conclusion `C` follows from the premises because every step preserves
+truth.
+
+<RevealSolution title="How to recognize the argument">
+This is a two-step use of modus ponens. First `A` gives `B`, then `B` gives
+`C`.
+</RevealSolution>
+</WorkedExample>
+
+<CommonMistake title="Do not confuse valid and invalid implication patterns">
+From `P → Q` and `Q`, you cannot conclude `P`. That fallacy is called affirming
+the consequent.
+
+From `P → Q` and `¬P`, you cannot conclude `¬Q`. That fallacy is called
+denying the antecedent.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Which of these are propositions: `2 + 2 = 4`, `Open the window.`, `x + 1 = 3`?">
 `2 + 2 = 4` is a proposition. `Open the window.` is not. `x + 1 = 3` is not a
 proposition until `x` is fixed.
 </QuickCheck>
 
-## Pause and test the idea
+<RevealSolution title="Answer">
+Only the first statement has a definite truth value as written.
+</RevealSolution>
+
+<QuickCheck prompt="Insert parentheses into `¬A ∧ B ∨ C` using the standard order of operations.">
+Remember that `¬` binds first, then `∧` and `∨`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It means `(¬A ∧ B) ∨ C`.
+</RevealSolution>
+
+<QuickCheck prompt="Which of the following is logically equivalent to `P → Q`: `¬P ∨ Q` or `P ∧ Q`?">
+Check the truth condition of implication.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`¬P ∨ Q` is equivalent to `P → Q`.
+</RevealSolution>
+
+<QuickCheck prompt="Is the argument `P → Q`, `Q`, therefore `P` valid?">
+Test the conclusion against the case where `P` is false.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. It is invalid, and the fallacy is affirming the consequent.
+</RevealSolution>
+
+## Embedded check
+
+Use the interactive table to test formulas against the truth values you assign.
 
 <InteractiveWidget id="truth-table-builder" />
 
+## Read this first
+
+If you want the quantifier version of the language, read
+[1.3 Quantifiers and negation](/en/notes/math1090/logic/quantifiers-negation).

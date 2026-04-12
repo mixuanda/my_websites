@@ -1,60 +1,331 @@
 ---
 title: "5.1 Invertible matrices"
-description: "Connect inverse matrices, row reduction, and the practical meaning of nonsingularity."
+description: "Study invertible matrices through definitions, row reduction, equivalent formulations, and the algebra of inverses."
 ---
 
-## What invertible means
+Invertibility is one of the first places where linear algebra becomes more than
+a procedure for solving one system. A square matrix is invertible exactly when
+it can be undone by another square matrix, and that idea turns out to be
+equivalent to many other statements: row reduction to the identity, consistency
+of every system `Ax = b`, linear independence of the columns, and the ability
+to write every vector as a linear combination of those columns.
 
-A square matrix is invertible if there is another matrix that undoes it.
-If `A` is invertible, then `A^{-1}` exists and
+This note develops those equivalences carefully. The goal is not only to know
+what the symbol `A^{-1}` means, but also to recognize when it exists and how to
+use it without guessing.
 
-$$
-AA^{-1} = A^{-1}A = I.
-$$
+## Left and right inverses
 
-<Definition title="Invertible matrix">
-An invertible matrix has a matrix inverse, so multiplying by that inverse
-recovers the identity matrix.
+Before the square case, it is useful to separate two one-sided notions.
+
+<Definition title="Left inverse and right inverse">
+Let `A` be a `p \times q` matrix.
+
+- A `q \times p` matrix `H` is a **left inverse** of `A` if `HA = I_q`.
+- A `q \times p` matrix `G` is a **right inverse** of `A` if `AG = I_p`.
 </Definition>
 
-## How to think about it
+These definitions matter because matrix multiplication is not commutative. For
+rectangular matrices, a left inverse and a right inverse need not both exist.
+The square case is special.
 
-Invertibility is not just a symbol game. It tells you whether the matrix has a
-reversible effect.
-That is why row reduction is so useful: it lets you test whether the matrix can
-be turned into the identity matrix.
+<Definition title="Invertible matrix">
+Let `A` be a `p \times p` square matrix. We say that `A` is **invertible** if
+there exists a `p \times p` matrix `B` such that
 
-<WorkedExample title="Read invertibility from row reduction">
-Suppose row operations transform `A` into `I`.
-Then the same operations applied to `[A | I]` produce `[I | A^{-1}]`.
+$$
+BA = AB = I_p.
+$$
 
-This is the practical reason we keep row-reducing augmented blocks in the later
-pages of the course.
+The matrix `B` is called the **inverse** of `A`, and we write `B = A^{-1}`.
+</Definition>
+
+<TheoremCard title="The inverse is unique">
+If `B` is a left inverse of `A` and `C` is a right inverse of `A`, then
+`B = C`. So an invertible matrix has exactly one inverse.
+</TheoremCard>
+
+<CollapsibleProof title="Why the inverse is unique">
+Suppose `B` is a left inverse and `C` is a right inverse of the same square
+matrix `A`. Then `BA = I_p` and `AC = I_p`. By associativity,
+
+$$
+B = BI_p = B(AC) = (BA)C = I_p C = C.
+$$
+
+So the two one-sided inverses must coincide.
+</CollapsibleProof>
+
+## What invertibility means
+
+Invertibility is a reversibility statement. Applying `A` changes a vector, but
+if `A` is invertible then `A^{-1}` undoes that change exactly.
+
+That is why the identity matrix appears in the definition. The identity matrix
+does nothing:
+
+$$
+I_p x = x
+$$
+
+for every compatible vector `x`. An inverse is precisely a matrix that brings
+you back to that unchanged state.
+
+<WorkedExample title="A diagonal matrix is easy to invert">
+Let
+
+$$
+D = \operatorname{diag}(2, -1, 3).
+$$
+
+Then
+
+$$
+D^{-1} = \operatorname{diag}\left(\tfrac{1}{2}, -1, \tfrac{1}{3}\right).
+$$
+
+This works because each diagonal entry is replaced by its reciprocal, and the
+off-diagonal zeros stay zero. Multiplying `D` by `D^{-1}` gives `I_3`.
 </WorkedExample>
 
-Step through `[A | I]` below and watch what you are really waiting for. The key
-moment is not “many operations happened,” but “the left block became `I`.”
+## Row reduction and the inverse
+
+The most practical way to test invertibility is to row-reduce. The source notes
+make the key point in two steps:
+
+1. row-operation matrices are invertible, with inverse given by the reverse row
+   operation;
+2. a square matrix is invertible exactly when it can be row-reduced to `I_p`.
+
+<TheoremCard title="Row-operation matrices are invertible">
+If `\rho` is a row operation on matrices with `p` rows, and `\bar{\rho}` is
+the reverse row operation, then the corresponding row-operation matrices
+`M[\rho]` and `M[\bar{\rho}]` satisfy
+
+$$
+M[\rho]^{-1} = M[\bar{\rho}],
+\qquad
+M[\bar{\rho}]^{-1} = M[\rho].
+$$
+</TheoremCard>
+
+This gives a clean interpretation of row reduction: every row operation is
+actually multiplication on the left by an invertible matrix.
+
+<TheoremCard title="Invertibility and row reduction">
+For a square matrix `A`, the following are equivalent:
+
+- `A` is invertible.
+- `A` is row-equivalent to `I_p`.
+- `A` is a product of `p \times p` row-operation matrices.
+- `A` is nonsingular.
+</TheoremCard>
+
+The practical consequence is very concrete: if row operations transform `A` to
+`I_p`, then those same operations, applied to `[A | I_p]`, transform it to
+`[I_p | A^{-1}]`.
 
 <InteractiveWidget id="invertibility-row-reduction-demo" />
 
-## Common mistake
+The live demo above is the shortest way to see the logic. It is not the
+definition. It is the computational method that matches the definition.
 
-<CommonMistake title="Simple-looking is not the same as invertible">
-Do not guess from appearance alone. The real test is whether the matrix can be
-reduced to the identity.
+<InteractiveWidget id="row-reduction-stepper" />
+
+The second widget shows the shape of a full elimination path. In an invertible
+case, the left block eventually becomes `I_p`, and that is the moment when the
+right block becomes the inverse.
+
+## Equivalent formulations
+
+The source material builds a dictionary of equivalent conditions. This is the
+main bridge between algebra, row reduction, and systems of linear equations.
+
+<TheoremCard title="Equivalent ways to recognize invertibility">
+Let `A` be a `p \times p` matrix. Then the following statements are equivalent:
+
+1. `A` is invertible.
+2. `A` is row-equivalent to `I_p`.
+3. `A` is a product of row-operation matrices.
+4. `A` has a left inverse.
+5. `A` has a right inverse.
+6. `A` is nonsingular.
+7. For every column vector `b` with `p` entries, the system `Ax = b` is
+   consistent.
+8. For every column vector `b` with `p` entries, the system `Ax = b` has the
+   unique solution `x = A^{-1}b`.
+</TheoremCard>
+
+Two of these statements are especially important in practice.
+
+- Statement 7 says that the columns of `A` span `R^p`.
+- Statement 8 says that invertibility gives you a complete solution formula,
+  not just existence.
+
+That is why invertibility is the exact algebraic condition behind solving a
+linear system by a matrix inverse.
+
+## Column independence and linear combinations
+
+The same source also recasts invertibility in terms of columns.
+
+<TheoremCard title="Invertibility and the columns of a square matrix">
+For a `p \times p` matrix `A`, the following are equivalent:
+
+- `A` is invertible.
+- The columns of `A` are linearly independent.
+- Every column vector in `R^p` is a linear combination of the columns of `A`.
+</TheoremCard>
+
+These are not separate facts. They are three ways of reading the same
+structural statement.
+
+If the columns are linearly independent, then no column is redundant.
+If they span `R^p`, then every target vector can be built from them.
+For a square matrix, those two conditions coincide exactly when the matrix is
+invertible.
+
+## Why the transpose also matters
+
+Invertibility behaves well under transpose.
+
+<TheoremCard title="Transpose and powers">
+If `A` is invertible, then:
+
+- `A^t` is invertible, and `(A^t)^{-1} = (A^{-1})^t`.
+- `A^n` is invertible for every integer `n`, and `(A^n)^{-1} = (A^{-1})^n`.
+</TheoremCard>
+
+The transpose result is useful when you want to turn a statement about columns
+into a statement about rows. The power rule is useful when a repeated
+transformation appears in a calculation.
+
+## Worked example
+
+<WorkedExample title="Find an inverse by row reduction">
+Let
+
+$$
+A = \begin{bmatrix}
+1 & 2 \\
+3 & 5
+\end{bmatrix}.
+$$
+
+Start from `[A | I_2]`:
+
+$$
+\left[\begin{array}{cc|cc}
+1 & 2 & 1 & 0 \\
+3 & 5 & 0 & 1
+\end{array}\right].
+$$
+
+Eliminate the entry below the first pivot:
+
+$$
+\left[\begin{array}{cc|cc}
+1 & 2 & 1 & 0 \\
+0 & -1 & -3 & 1
+\end{array}\right].
+$$
+
+Now scale the second row and clear the entry above the second pivot:
+
+$$
+\left[\begin{array}{cc|cc}
+1 & 0 & -5 & 2 \\
+0 & 1 & 3 & -1
+\end{array}\right].
+$$
+
+So
+
+$$
+A^{-1} = \begin{bmatrix}
+-5 & 2 \\
+3 & -1
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+The computation is not the point by itself. The point is that the right block
+of the augmented matrix records the inverse because the left block has been
+driven to the identity.
+
+## Common mistakes
+
+<CommonMistake title="Do not confuse one-sided inverses in the rectangular case">
+For a non-square matrix, having a left inverse does not automatically mean it
+has a right inverse. The square case is special: once an inverse exists, it is
+both a left inverse and a right inverse, and it is unique.
 </CommonMistake>
 
-## Quick check
+<CommonMistake title="Do not guess invertibility from appearance">
+A matrix can look simple and still fail to be invertible. The correct test is
+to row-reduce it, or to use one of the equivalent conditions above.
+</CommonMistake>
 
-<QuickCheck prompt="If `A` is invertible, what is `AA^{-1}`?">
+## Quick checks
+
+<QuickCheck prompt="If `A` is invertible, what is `A^{-1}A`?">
 Use the defining property of an inverse.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-It is the identity matrix `I`.
+It is `I_p`.
+</RevealSolution>
+
+<QuickCheck prompt="If `A` is invertible, can the homogeneous system `Ax = 0` have a nonzero solution?">
+Use the unique-solution statement.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. Since `Ax = b` has the unique solution `x = A^{-1}b`, the homogeneous case
+`b = 0` has only the trivial solution `x = 0`.
+</RevealSolution>
+
+<QuickCheck prompt="If `A` is invertible, is `A^t` invertible?">
+Use the transpose rule above.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. `A^t` is invertible, and `(A^t)^{-1} = (A^{-1})^t`.
+</RevealSolution>
+
+## Exercise
+
+<QuickCheck prompt="Suppose `A` is invertible and `AB = I_p`. Prove that `B = A^{-1}`.">
+Use the fact that the inverse of `A` is unique.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Since `A` is invertible, it has an inverse `A^{-1}`. Multiply the equation
+`AB = I_p` on the left by `A^{-1}`:
+
+$$
+A^{-1}(AB) = A^{-1}I_p.
+$$
+
+By associativity,
+
+$$
+(A^{-1}A)B = A^{-1}.
+$$
+
+Because `A^{-1}A = I_p`, this becomes
+
+$$
+B = A^{-1}.
+$$
+
+So any right inverse of an invertible square matrix must be the inverse itself.
 </RevealSolution>
 
 ## Read this first
 
-This page depends on
-[2.3 Gaussian elimination and RREF](/en/notes/math1030/matrices/gaussian-elimination-rref).
+This page depends especially on
+[2.3 Gaussian elimination and RREF](/en/notes/math1030/matrices/gaussian-elimination-rref),
+[3.1 Matrix multiplication and identity matrices](/en/notes/math1030/matrix-algebra/matrix-multiplication-and-identity),
+and
+[3.2 Transpose and special matrices](/en/notes/math1030/matrix-algebra/transpose-and-special-matrices).

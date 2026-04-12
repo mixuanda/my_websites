@@ -19,9 +19,9 @@ export const siteUiText = {
     "zh-hk": "目錄",
   },
   footerNote: {
-    en: "Interactive mathematics notes are still expanding.",
-    "zh-cn": "互动数学笔记仍在持续扩写。",
-    "zh-hk": "互動數學筆記仍在持續擴寫。",
+    en: "The Notes section continues to expand course by course.",
+    "zh-cn": "笔记栏目仍在按课程持续扩写。",
+    "zh-hk": "筆記欄目仍在按課程持續擴寫。",
   },
   highContrast: {
     en: "High contrast",
@@ -44,9 +44,9 @@ export const siteUiText = {
     "zh-hk": "項目",
   },
   shellSubtitle: {
-    en: "Developer / interactive math notes in progress",
-    "zh-cn": "开发者 / 互动数学笔记建设中",
-    "zh-hk": "開發者 / 互動數學筆記建設中",
+    en: "Mathematics notes, projects, and technical writing",
+    "zh-cn": "数学笔记、项目与技术写作",
+    "zh-hk": "數學筆記、項目與技術寫作",
   },
   switchToDarkMode: {
     en: "Switch to dark mode",

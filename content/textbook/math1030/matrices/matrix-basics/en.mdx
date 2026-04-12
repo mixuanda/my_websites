@@ -1,19 +1,35 @@
 ---
 title: "2.1 Matrix basics"
-description: "Build matrix intuition before row reduction: size, entries, rows, columns, and what a matrix records."
+description: "Read matrices carefully as mathematical objects: size, entries, equality, basic operations, and how systems of equations become matrix statements."
 ---
 
-## What a matrix is
+Matrices first appear in the course as a convenient way to record a system of
+linear equations. Very quickly, though, they become objects in their own right.
+To work rigorously later, you need to separate several ideas that beginners
+often blur together:
 
-A matrix is a rectangular array of numbers.
-It helps us package information in rows and columns so we can work with it more
-systematically.
+- what a matrix is;
+- when two matrices are equal;
+- which operations are defined before multiplication even enters the story;
+- how a matrix records the data of a linear system.
+
+This note lays down that language carefully.
+
+## What a matrix is
 
 <Definition title="Matrix">
 A matrix is a rectangular array of numbers arranged in rows and columns.
 </Definition>
 
-## Read the size first
+If a matrix has `m` rows and `n` columns, we say it is an `m \times n` matrix.
+The entries are usually real numbers in this course, although the formal
+definitions make sense over other number systems as well.
+
+The point of the rectangular format is not decoration. A row records one line
+of data, a column records another line of data, and the position of an entry
+matters. Later, multiplication and row operations will depend on that position.
+
+## Read the size before you touch the entries
 
 The size of a matrix is written as `m × n`.
 
@@ -22,11 +38,15 @@ The size of a matrix is written as `m × n`.
 
 If `m = n`, the matrix is square.
 
-## Look at entries one by one
+Two matrices with different sizes are different kinds of objects. A `2 \times 3`
+matrix and a `3 \times 2` matrix are not even comparable entry by entry, because
+their row-column positions do not match.
+
+## Read entries one by one
 
 If `A` is a matrix, then `a_{ij}` means the entry in row `i` and column `j`.
-That index notation matters later, because it tells you exactly where a number
-lives inside the matrix.
+That notation matters because it tells you exactly where a number lives inside
+the array.
 
 <WorkedExample title="Reading a matrix carefully">
 Let
@@ -43,35 +63,227 @@ This matrix has 2 rows and 3 columns, so its size is `2 × 3`.
 Its entry in row 2, column 3 is `4`.
 </WorkedExample>
 
-## Why this is useful
+The notation `a_{ij}` is not optional bookkeeping. It is the language used in
+definitions such as matrix equality, matrix addition, and matrix multiplication.
 
-Once you know how to read a matrix, you can use it to store a system of
-equations, track row operations, and later test whether a matrix is invertible.
+## Matrix equality is entrywise
 
-Use the small explorer below as you read. Change one entry, pick one output
-cell, and watch how one row of the first matrix and one column of the second
-matrix produce that single entry.
+Two matrices are equal only when they have the same size and every
+corresponding entry matches.
+
+<Definition title="Matrix equality">
+Let `A = [a_{ij}]` and `B = [b_{ij}]` be matrices.
+
+Then `A = B` if and only if:
+
+1. `A` and `B` have the same size, and
+2. `a_{ij} = b_{ij}` for every row index `i` and column index `j`.
+</Definition>
+
+This means that proving two matrices are equal is often an entry-by-entry
+argument.
+
+<WorkedExample title="Using matrix equality to solve for an unknown entry">
+Suppose
+
+$$
+\begin{bmatrix}
+1 & 2 \\
+3 & x
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 2 \\
+3 & 5
+\end{bmatrix}.
+$$
+
+The two matrices already agree in three positions. Equality of matrices forces
+the remaining position to agree as well, so `x = 5`.
+</WorkedExample>
+
+## Addition and scalar multiplication come first
+
+Before matrix multiplication appears, there are two basic operations you should
+already read confidently.
+
+<Definition title="Addition and scalar multiplication">
+Let `A = [a_{ij}]` and `B = [b_{ij}]` be matrices of the same size, and let `c`
+be a scalar.
+
+- The sum `A + B` is the matrix obtained by adding corresponding entries:
+  `(A + B)_{ij} = a_{ij} + b_{ij}`.
+- The scalar multiple `cA` is the matrix obtained by multiplying every entry of
+  `A` by `c`: `(cA)_{ij} = c a_{ij}`.
+</Definition>
+
+The phrase "of the same size" is essential. Matrix addition is not defined for
+matrices of different sizes.
+
+<WorkedExample title="Compute a sum and a scalar multiple">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & -2 \\
+0 & 3
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+4 & 1 \\
+-5 & 2
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+A + B =
+\begin{bmatrix}
+5 & -1 \\
+-5 & 5
+\end{bmatrix},
+\qquad
+2A =
+\begin{bmatrix}
+2 & -4 \\
+0 & 6
+\end{bmatrix}.
+$$
+
+Every entry is handled separately, but the size stays `2 \times 2`.
+</WorkedExample>
+
+The zero matrix is the matrix whose entries are all `0`. For each size it plays
+the role of the additive identity:
+
+$$
+A + O = A.
+$$
+
+## A matrix records a linear system compactly
+
+One reason matrices matter so early is that they package a linear system in a
+form that is easier to transform systematically.
+
+Consider the system
+
+$$
+\begin{aligned}
+x_1 + 2x_2 - x_3 &= 4, \\
+3x_1 - x_2 + 5x_3 &= 7.
+\end{aligned}
+$$
+
+Its coefficient matrix is
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & -1 \\
+3 & -1 & 5
+\end{bmatrix},
+$$
+
+its unknown vector is
+
+$$
+x =
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix},
+$$
+
+and its constant vector is
+
+$$
+b =
+\begin{bmatrix}
+4 \\ 7
+\end{bmatrix}.
+$$
+
+So the whole system can be recorded as
+
+$$
+Ax = b.
+$$
+
+This compact form is not a shortcut that hides meaning. It gathers the same
+coefficients, variables, and constants into an object that later supports row
+operations, null-space language, and invertibility tests.
+
+## A short preview of multiplication
+
+The next note explains matrix multiplication carefully. For now, you only need
+to see why rows and columns matter so much. Changing one row of a left matrix
+or one column of a right matrix changes exactly the output entries built from
+them.
+
+Use the embedded figure as a preview of that row-by-column rule.
 
 <InteractiveWidget id="matrix-multiplication-visualizer" />
 
-## Common mistake
+## Common mistakes
 
 <CommonMistake title="Do not swap rows and columns">
 The first index is the row number, not the column number. `a_{23}` means row 2,
 column 3.
 </CommonMistake>
 
+<CommonMistake title="Different sizes cannot be added">
+Matrix addition is defined entrywise. If the positions do not line up, there is
+no operation to perform.
+</CommonMistake>
+
 ## Quick check
 
-<QuickCheck prompt="What is the size of a matrix with 3 rows and 4 columns?">
-Think about which number counts rows and which number counts columns.
+<QuickCheck prompt="Can a `2 × 3` matrix be added to a `3 × 2` matrix?">
+Answer from the definition of matrix addition, not from visual guesswork.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-The size is `3 × 4`.
+No. Matrix addition is only defined for matrices of the same size.
 </RevealSolution>
 
-## Read this first
+<QuickCheck prompt="If `A` is a `4 × 2` matrix, what does the symbol `a_{31}` mean?">
+Name both the row and the column.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is the entry in row 3 and column 1 of `A`.
+</RevealSolution>
+
+## Exercise
+
+<QuickCheck prompt="Write the coefficient matrix and constant vector for the system `x_1 - x_2 = 3`, `2x_1 + x_2 = 0`.">
+Keep the order of the variables fixed.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Using the variable order `(x_1, x_2)`, the coefficient matrix is
+
+$$
+\begin{bmatrix}
+1 & -1 \\
+2 & 1
+\end{bmatrix},
+$$
+
+and the constant vector is
+
+$$
+\begin{bmatrix}
+3 \\ 0
+\end{bmatrix}.
+$$
+</RevealSolution>
+
+## Related notes
 
 If you want to see how a system becomes a matrix, review
 [1.1 Equations and solution sets](/en/notes/math1030/systems/equations-solution-sets).
+For the next algebraic operation, continue to
+[3.1 Matrix multiplication and identity matrices](/en/notes/math1030/matrix-algebra/matrix-multiplication-and-identity).

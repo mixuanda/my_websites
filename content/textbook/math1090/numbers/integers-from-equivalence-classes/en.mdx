@@ -1,63 +1,303 @@
 ---
 title: "3.3 Integers from equivalence classes"
-description: "Build the integers from pairs of natural numbers and read each equivalence class as one signed number."
+description: "Construct the integers from pairs of natural numbers, understand why equivalence classes are needed, and see how the familiar signed numbers reappear."
 ---
 
-The source notes build the integers from a relation on pairs of natural numbers.
-The idea is simple: instead of trying to invent a brand-new object for `-1`,
-you let pairs such as `(0, 1)` or `(3, 4)` stand for the same signed number.
+The natural numbers are not enough for every algebraic problem. A simple
+equation such as
 
-## The relation
+$$
+1 = x + 2
+$$
 
-<Definition title="Integers as equivalence classes">
-Work inside `N^2`, the set of ordered pairs of natural numbers.
+has no solution in `N`. So if we want subtraction to become possible in a
+systematic way, we need a larger number system.
 
-Define a relation `~_Z` by
+The source notes do not introduce negative numbers by intuition alone. Instead,
+they construct the integers from objects we already understand well, namely
+pairs of natural numbers.
 
-`(a, b) ~_Z (c, d)` if `a + d = b + c`.
+## The guiding idea
 
-The integers are the equivalence classes of this relation.
+A pair `(a,b)` is meant to represent the formal difference
+
+$$
+a-b.
+$$
+
+From that viewpoint, different pairs can represent the same intended integer.
+For example,
+
+$$
+(3,1), \quad (5,3), \quad (8,6)
+$$
+
+all suggest the same difference, namely `2`.
+
+So the integer should not be the ordered pair itself. It should be the whole
+equivalence class of pairs that encode the same difference.
+
+## The relation on `N^2`
+
+<Definition title="The equivalence relation for the integers">
+Work in the set `N^2` of ordered pairs of natural numbers.
+
+Define a relation `\sim_Z` by
+
+$$
+(a,b) \sim_Z (c,d)
+\quad \Longleftrightarrow \quad
+a+d=b+c.
+$$
+
+The integers are defined to be the equivalence classes of this relation.
 </Definition>
 
-Read a pair `(a, b)` as a difference `a - b`. Then different pairs can still
-represent the same integer if they encode the same difference.
+The equation `a+d=b+c` is exactly what we would expect if `(a,b)` and `(c,d)`
+are both meant to represent the same formal difference:
 
-## A concrete example
+$$
+a-b=c-d.
+$$
 
-<WorkedExample title="Two pairs can represent the same integer">
-The pairs `(3, 1)` and `(5, 3)` are equivalent, because
+Indeed, rearranging this equality gives precisely `a+d=b+c`.
 
-`3 + 3 = 1 + 5`.
+## Why this relation is the right one
 
-So they represent the same integer. In the usual mental picture, both stand
-for `2`.
+<TheoremCard title="The relation really is an equivalence relation">
+The relation `\sim_Z` on `N^2` is reflexive, symmetric, and transitive, so it is
+an equivalence relation.
+</TheoremCard>
+
+The proof is not difficult, but it is worth understanding because it explains
+why quotient constructions work.
+
+<CollapsibleProof title="Why `\sim_Z` is an equivalence relation">
+For reflexivity, every pair satisfies
+
+$$
+a+b=b+a,
+$$
+
+so `(a,b)\sim_Z(a,b)`.
+
+For symmetry, if `(a,b)\sim_Z(c,d)`, then `a+d=b+c`. The same equality can be
+read backwards as `c+b=d+a`, so `(c,d)\sim_Z(a,b)`.
+
+For transitivity, suppose
+
+$$
+(a,b)\sim_Z(c,d)
+\quad \text{and} \quad
+(c,d)\sim_Z(e,f).
+$$
+
+Then
+
+$$
+a+d=b+c,
+\qquad
+c+f=d+e.
+$$
+
+Adding these equalities and cancelling `c+d` on both sides gives
+
+$$
+a+f=b+e,
+$$
+
+which means `(a,b)\sim_Z(e,f)`.
+</CollapsibleProof>
+
+## What an integer now is
+
+<Definition title="Integers as quotient classes">
+Let `X=N^2`. The set of integers is
+
+$$
+\mathbf{Z} = X/{\sim_Z}.
+$$
+
+For a pair `(a,b) \in N^2`, its equivalence class is written
+
+$$
+[(a,b)] = \{(c,d)\in N^2 : (c,d)\sim_Z(a,b)\}.
+$$
+</Definition>
+
+So an integer is not one pair, but an entire class of equivalent pairs.
+
+This construction explains how the familiar numbers reappear:
+
+- `[(0,0)]` behaves like `0`;
+- `[(1,0)]` behaves like `1`;
+- `[(0,1)]` behaves like `-1`;
+- more generally, `[(n,0)]` gives the usual natural number `n`.
+
+## Embedding the natural numbers
+
+The natural numbers are still present inside the integers. They are not lost;
+they are reinterpreted.
+
+<WorkedExample title="How `N` sits inside `Z`">
+Define a map from `N` to `Z` by
+
+$$
+n \longmapsto [(n,0)].
+$$
+
+Under this map,
+
+$$
+0 \mapsto [(0,0)], \qquad
+1 \mapsto [(1,0)], \qquad
+2 \mapsto [(2,0)].
+$$
+
+So the old natural numbers appear inside the new system as particular
+equivalence classes.
 </WorkedExample>
 
-<CommonMistake title="Do not stop at the pair itself">
-The integer is not the ordered pair. The pair is only a representative of an
-equivalence class.
+This is why quotient constructions do not destroy previous number systems. They
+usually enlarge them while preserving a recognizable copy inside the new one.
+
+## Positive, negative, and zero
+
+The source notes emphasize that sign is not attached to one chosen pair, but to
+the entire class.
+
+- an integer is **positive** when it has representatives `(a,b)` with `a>b`;
+- it is **negative** when it has representatives with `a<b`;
+- it is **zero** when it has representatives with `a=b`.
+
+Because these properties must not depend on the chosen representative, one also
+has to check that sign is well defined on equivalence classes.
+
+## Arithmetic on equivalence classes
+
+To turn the quotient set into a number system, we still need operations.
+Addition is defined by
+
+$$
+[(a,b)] + [(c,d)] := [(a+c,b+d)].
+$$
+
+This definition matches the formal-difference intuition:
+
+$$
+(a-b)+(c-d)=(a+c)-(b+d).
+$$
+
+The next step, developed further in the source notes, is to check that such
+definitions are well defined, meaning they do not depend on the representatives
+chosen.
+
+## A concrete class calculation
+
+<WorkedExample title="Recognizing one integer through several representatives">
+Consider the class `[(2,5)]`.
+
+Since
+
+$$
+2+4 = 5+1,
+$$
+
+we have
+
+$$
+(2,5)\sim_Z(1,4).
+$$
+
+Likewise,
+
+$$
+2+7 = 5+4,
+$$
+
+so
+
+$$
+(2,5)\sim_Z(4,7).
+$$
+
+All of these pairs represent the same integer, namely the one we would usually
+think of as `-3`.
+</WorkedExample>
+
+## Common mistakes
+
+<CommonMistake title="The integer is not the pair">
+The pair `(a,b)` is only a representative. The actual integer is the entire
+equivalence class `[(a,b)]`.
+</CommonMistake>
+
+<CommonMistake title="Different representatives can describe the same number">
+Pairs such as `(3,1)` and `(5,3)` are not different integers. They belong to the
+same class because they encode the same difference.
 </CommonMistake>
 
 ## Quick checks
 
-<QuickCheck prompt="Are `(2, 0)` and `(5, 3)` equivalent under `~_Z`?">
-Use the rule `a + d = b + c`.
+<QuickCheck prompt="Are `(2,0)` and `(5,3)` equivalent under `\sim_Z`?">
+Apply the rule `a+d=b+c` directly.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-Yes. `2 + 3 = 0 + 5`, so the two pairs are equivalent.
+Yes. We compute
+
+$$
+2+3=0+5,
+$$
+
+so `(2,0)\sim_Z(5,3)`.
 </RevealSolution>
 
-<QuickCheck prompt="Why do we use equivalence classes instead of raw pairs?">
-Say the reason in one sentence.
+<QuickCheck prompt="Which class should represent the integer `-1`?">
+Use the idea that the pair records a formal difference.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-Because many different pairs should represent the same signed number, and the
-equivalence relation collects exactly those representatives together.
+The class `[(0,1)]` represents `-1`, because the formal difference is `0-1`.
+Any equivalent pair such as `(2,3)` represents the same integer.
+</RevealSolution>
+
+<QuickCheck prompt="Why do we need equivalence classes instead of just using raw ordered pairs?">
+Answer in one careful sentence.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+We need equivalence classes because many different ordered pairs encode the same
+formal difference, and the integer must identify all of those representatives as
+one object.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Show that `[(4,1)] = [(7,4)]`, and decide whether the class is positive, negative, or zero.">
+Check equivalence first, then interpret the sign from a representative.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+We compute
+
+$$
+4+4 = 1+7,
+$$
+
+so `(4,1)\sim_Z(7,4)`, which means
+
+$$
+[(4,1)] = [(7,4)].
+$$
+
+Since `4>1`, the class is positive. In ordinary notation, it represents the
+integer `3`.
 </RevealSolution>
 
 ## Read this first
 
-If you want a refresher on equivalence relations, review
-[2.2 Functions and relations](/en/notes/math1090/sets/functions-relations).
+This note depends on the language of equivalence relations from
+[2.2 Functions and relations](/en/notes/math1090/sets/functions-relations) and
+continues into
+[3.4 Rationals and well-defined operations](/en/notes/math1090/numbers/rationals-and-well-defined-operations).

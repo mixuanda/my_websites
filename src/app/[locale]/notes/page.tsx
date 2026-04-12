@@ -24,14 +24,14 @@ const heroCopy = {
     "打开一般笔记档案"
   ),
   body: text(
-    "Browse mathematics notes one unit at a time. Each note stays article-first, keeps guided interaction inside the reading flow, and exports the exact unit you are reading as TXT or PDF.",
-    "逐則閱讀數學筆記。每則筆記都以文章閱讀為主，把互動引導嵌在正文中，並可把你正在看的單元匯出成 TXT 或 PDF 溫習版本。",
-    "逐则阅读数学笔记。每则笔记都以文章阅读为主，把互动引导嵌在正文中，并可把你正在看的单元导出成 TXT 或 PDF 复习版本。"
+    "Browse rigorous mathematics notes one section at a time. Each page is written as a serious course-note article, with interaction used only where it clarifies a definition, computation, or proof idea, and each section exports as TXT or PDF.",
+    "逐節閱讀嚴謹的數學筆記。每頁都按正式課程筆記文章撰寫，只在能幫助理解定義、計算或證明思路時加入互動，並可把當前一節匯出成 TXT 或 PDF 溫習版本。",
+    "逐节阅读严谨的数学笔记。每页都按正式课程笔记文章撰写，只在能帮助理解定义、计算或证明思路时加入互动，并可把当前一节导出成 TXT 或 PDF 复习版本。"
   ),
   export: text(
-    "Export the current note",
-    "匯出目前筆記",
-    "导出当前笔记"
+    "Export the current section",
+    "匯出目前一節",
+    "导出当前一节"
   ),
   languages: text(
     "English · 繁體中文 · 简体中文",
@@ -39,9 +39,9 @@ const heroCopy = {
     "English · 繁體中文 · 简体中文"
   ),
   route: text(
-    "Read in short, linked note units",
-    "按短小而互相連結的筆記單元閱讀",
-    "按短小而互相链接的笔记单元阅读"
+    "Read by linked sections with prerequisites",
+    "按帶有先備關係的連結小節閱讀",
+    "按带有先备关系的链接小节阅读"
   ),
 } as const;
 

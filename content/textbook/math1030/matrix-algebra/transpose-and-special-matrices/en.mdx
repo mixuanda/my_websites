@@ -1,0 +1,257 @@
+---
+title: "3.2 Transpose and special matrices"
+description: "Use transpose, symmetry, non-commuting products, and block structure to read matrix shape and algebraic behavior."
+---
+
+Once matrix multiplication is available, structure starts to matter. Some
+matrices are easier to understand because their entries line up in a special
+pattern. The transpose is one of the main tools for detecting that structure.
+
+## Transpose swaps rows and columns
+
+<Definition title="Transpose">
+If `A = [a_{ij}]` is an `m \times n` matrix, then its transpose `A^T` is the
+`n \times m` matrix whose `(j,i)` entry is `a_{ij}`.
+
+Equivalently,
+
+$$
+(A^T)_{ji} = a_{ij}.
+$$
+</Definition>
+
+So every row of `A` becomes a column of `A^T`, and every column of `A` becomes
+a row.
+
+<WorkedExample title="Compute a transpose">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 4 & -2 \\
+0 & 3 & 5
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+A^T =
+\begin{bmatrix}
+1 & 0 \\
+4 & 3 \\
+-2 & 5
+\end{bmatrix}.
+$$
+
+The `2 \times 3` matrix becomes a `3 \times 2` matrix because rows and columns
+swap roles.
+</WorkedExample>
+
+Two basic identities are worth learning early:
+
+$$
+(A^T)^T = A,
+\qquad
+(A + B)^T = A^T + B^T.
+$$
+
+When products are defined, transpose also reverses the order:
+
+$$
+(AB)^T = B^T A^T.
+$$
+
+The reversal is not cosmetic. It reflects the fact that the row-column pairing
+has been turned around.
+
+## Symmetric and skew-symmetric matrices
+
+Some square matrices agree with their transpose; others differ from it in a
+very controlled way.
+
+<Definition title="Symmetric and skew-symmetric matrices">
+Let `A` be a square matrix.
+
+- `A` is symmetric if `A^T = A`.
+- `A` is skew-symmetric if `A^T = -A`.
+</Definition>
+
+For a symmetric matrix, reflecting across the main diagonal changes nothing. For
+a skew-symmetric matrix, reflection changes every entry by a minus sign.
+
+<WorkedExample title="Classify two matrices">
+The matrix
+
+$$
+\begin{bmatrix}
+2 & -1 \\
+-1 & 3
+\end{bmatrix}
+$$
+
+is symmetric because transposing it leaves the entries unchanged.
+
+The matrix
+
+$$
+\begin{bmatrix}
+0 & 4 \\
+-4 & 0
+\end{bmatrix}
+$$
+
+is skew-symmetric because
+
+$$
+A^T =
+\begin{bmatrix}
+0 & -4 \\
+4 & 0
+\end{bmatrix}
+= -A.
+$$
+</WorkedExample>
+
+Notice that every diagonal entry of a skew-symmetric real matrix must be `0`,
+because the diagonal entry must equal its own negative.
+
+## Order matters: commuting versus non-commuting matrices
+
+The course notes emphasize that matrix multiplication is not commutative in
+general. Still, some pairs of matrices do commute.
+
+<Definition title="Commuting matrices">
+Two square matrices `A` and `B` of the same size commute if
+
+$$
+AB = BA.
+$$
+</Definition>
+
+Commuting matrices are special. They are not the default.
+
+<TheoremCard title="Matrix multiplication is not commutative in general">
+There exist square matrices `A` and `B` such that `AB \ne BA`.
+</TheoremCard>
+
+<WorkedExample title="A concrete non-commuting pair">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 1 \\
+0 & 1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+1 & 0 \\
+1 & 1
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+AB =
+\begin{bmatrix}
+2 & 1 \\
+1 & 1
+\end{bmatrix},
+\qquad
+BA =
+\begin{bmatrix}
+1 & 1 \\
+1 & 2
+\end{bmatrix}.
+$$
+
+So `AB \ne BA`.
+</WorkedExample>
+
+This is why you must preserve order in every matrix identity. Reversing factors
+changes the statement.
+
+## Special matrices are easier to read because of their shape
+
+Several standard matrix families are defined by the locations of zero entries.
+These shapes matter because they simplify later computations.
+
+- A diagonal matrix has nonzero entries allowed only on the main diagonal.
+- An upper-triangular matrix has `0` below the main diagonal.
+- A lower-triangular matrix has `0` above the main diagonal.
+
+For such matrices, multiplication and invertibility often become easier to
+analyze because the zero pattern survives useful operations.
+
+## Block matrices group information on purpose
+
+Sometimes a large matrix is best read as smaller submatrices pasted together.
+That is called block notation.
+
+For example,
+
+$$
+\begin{bmatrix}
+A_{11} & A_{12} \\
+A_{21} & A_{22}
+\end{bmatrix}
+$$
+
+is a block matrix made from four smaller blocks. Block notation is not a new
+kind of matrix. It is a disciplined way to see structure inside a large one.
+
+When the sizes match correctly, block addition and block multiplication follow
+the same formal patterns as ordinary matrix operations. The advantage is that
+you can reason about large matrices one chunk at a time.
+
+## Common mistakes
+
+<CommonMistake title="Do not transpose a product in the same order">
+The correct identity is `(AB)^T = B^T A^T`, not `A^T B^T`. The order reverses.
+</CommonMistake>
+
+<CommonMistake title="Symmetric does not mean every pair of matrices commutes">
+Symmetry is a property of one matrix. Commuting is a property of a pair of
+matrices. They answer different questions.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="If `A` is `3 × 2`, what is the size of `A^T`?">
+Swap rows and columns.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`A^T` is `2 × 3`.
+</RevealSolution>
+
+<QuickCheck prompt="What can you say about the diagonal entries of a real skew-symmetric matrix?">
+Use the equation `A^T = -A` on the diagonal.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Every diagonal entry must be `0`.
+</RevealSolution>
+
+## Exercise
+
+<QuickCheck prompt="Why is every diagonal matrix equal to its transpose?">
+Answer from the location of its possible nonzero entries.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+In a diagonal matrix, every off-diagonal entry is already `0`. Transposing
+swaps off-diagonal positions, but `0` stays `0`, and each diagonal entry stays
+in the same place. So the whole matrix is unchanged by transposition.
+</RevealSolution>
+
+## Related notes
+
+This note builds on
+[3.1 Matrix multiplication and identity matrices](/en/notes/math1030/matrix-algebra/matrix-multiplication-and-identity).
+For solution-set structure, continue to
+[4.1 Homogeneous systems and null space](/en/notes/math1030/solution-structure/homogeneous-systems-and-null-space).

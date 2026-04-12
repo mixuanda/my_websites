@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     default: "Evanalysis",
     template: "%s | Evanalysis",
   },
-  description: "Interactive mathematics notes, projects, and articles.",
+  description: "Rigorous mathematics notes, projects, and articles.",
   keywords: ["math notes", "math1090", "math1030", "mathematics", "notes", "projects"],
   authors: [{ name: "Evanalysis" }],
   manifest: "/manifest.json",
@@ -51,16 +51,16 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         {/* PWA Meta Tags */}
-        <meta name="theme-color" content="#f7f3ef" />
+        <meta name="theme-color" content="#f6f0e8" />
         <meta
           name="theme-color"
           media="(prefers-color-scheme: light)"
-          content="#f7f3ef"
+          content="#f6f0e8"
         />
         <meta
           name="theme-color"
           media="(prefers-color-scheme: dark)"
-          content="#11101a"
+          content="#1b2230"
         />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

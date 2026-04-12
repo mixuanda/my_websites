@@ -1,68 +1,264 @@
 ---
 title: "1.3 Quantifiers and negation"
-description: "Read universal and existential statements carefully, then negate them without losing the meaning."
+description: "Read predicates, domains, and quantifiers carefully, then negate quantified statements without losing the scope or meaning."
 ---
 
-Prerequisite: you should already be comfortable reading short logical statements
-from [1.1 Propositional logic](/en/notes/math1090/logic/propositional-logic).
+Quantifiers turn open statements into propositions. That is their main job in
+the course: they let us talk about every allowed object, or at least one
+allowed object, without writing out every case separately.
 
-## What the quantifiers say
+## Predicates and domains
 
-<Definition title="Universal and existential quantifiers">
+<Definition title="Predicate">
+A predicate is a statement with one or more free variables. It becomes a
+proposition only after every free variable has been assigned a value or bound
+by a quantifier.
+</Definition>
+
+<Definition title="Domain">
+The domain is the set of allowed values for the variables.
+</Definition>
+
+The domain matters every time you read `∀` or `∃`. The same formal string can
+mean different things in different domains.
+
+For example, the statement `x^2 = 1` behaves differently over the natural
+numbers, integers, rationals, and reals. If you do not state the domain, you do
+not yet have a complete statement.
+
+<CommonMistake title="Do not forget the domain">
+`∀x P(x)` is incomplete unless it is clear which values `x` may take. In
+practice, the domain is either stated explicitly or understood from context.
+</CommonMistake>
+
+## Universal and existential quantifiers
+
+<Definition title="Quantifiers">
 `∀x P(x)` means that `P(x)` is true for every allowed value of `x`.
 
 `∃x P(x)` means that there is at least one allowed value of `x` for which
 `P(x)` is true.
 </Definition>
 
-The allowed values of `x` come from the domain. Always keep the domain in mind.
+If you prefer words:
 
-## Negating quantifiers
+- `∀` means "for all" or "for every."
+- `∃` means "there exists."
 
-The negation rules are small, but they matter a lot:
+The statement is not finished until the quantifier is attached. For that
+reason, `P(x)` alone is not a proposition, but `∀x P(x)` and `∃x P(x)` are.
 
-| Statement | Negation |
-| --- | --- |
-| `∀x P(x)` | `∃x ¬P(x)` |
-| `∃x P(x)` | `∀x ¬P(x)` |
+<WorkedExample title="Read a quantified statement as English">
+Let `P(x)` mean "x is divisible by 2" and let the domain be the integers.
 
-## Work through one example
+Then `∀x P(x)` means:
 
-<WorkedExample title="Negating a universal statement">
-Original statement:
+"Every integer is divisible by 2."
 
-`For every real number x, x^2 >= 0.`
+That statement is false. By contrast, `∃x P(x)` means:
 
-Negation:
+"There is an integer that is divisible by 2."
 
-`There exists a real number x such that x^2 < 0.`
+That statement is true, for example `x = 2`.
 
-Why this works:
-
-1. Change "for every" to "there exists".
-2. Negate the inside statement.
-3. Keep the same domain.
-
-<RevealSolution title="The pattern to remember">
-When you negate a quantified statement, the outer quantifier flips and the
-inside statement is negated.
+<RevealSolution title="What the quantifier is doing">
+The quantifier tells you how many objects the statement is about. It does not
+change the underlying predicate; it changes the logical force of the sentence.
 </RevealSolution>
 </WorkedExample>
 
-## Common mistake
+## Negating quantified statements
 
-<CommonMistake title="Do not stop after changing only the quantifier">
-`¬∀x P(x)` is not the same as `∀x ¬P(x)`. The first says "not every `x` works",
-which is the same as "there exists an `x` for which `P(x)` fails".
+<TheoremCard title="Quantifier negation">
+The basic negation laws are:
+
+$$
+¬∀x\,P(x) \equiv ∃x\,¬P(x)
+$$
+
+$$
+¬∃x\,P(x) \equiv ∀x\,¬P(x)
+$$
+</TheoremCard>
+
+Read these carefully. The negation always does two things:
+
+1. It flips the outer quantifier.
+2. It negates the predicate inside.
+
+That is the whole pattern.
+
+<WorkedExample title="Negate the definition of a prime number">
+The worksheet defines `n` to be prime by saying that, for every natural number
+`d`, if `d` divides `n`, then `d = 1` or `d = n`.
+
+In symbols:
+
+$$
+∀d ∈ N,\; d \mid n \to (d = 1 \lor d = n).
+$$
+
+Its negation is:
+
+$$
+∃d ∈ N \text{ such that } d \mid n \text{ and } d \neq 1 \text{ and } d \neq n.
+$$
+
+This is exactly the meaning of "n is not prime": there is a divisor other than
+the trivial ones.
+
+<RevealSolution title="Why the negation is right">
+The negation does not say only that the universal statement fails in some vague
+way. It identifies a concrete counterexample `d`.
+</RevealSolution>
+</WorkedExample>
+
+<WorkedExample title="Negate a statement about students">
+Suppose `Student(x)` means "x is a student" and `Submitted(x)` means "x has
+submitted the form."
+
+The statement
+
+$$
+∃x\,(Student(x) \land Submitted(x))
+$$
+
+means that at least one student has submitted the form.
+
+Its negation is
+
+$$
+∀x\,(\neg Student(x) \lor \neg Submitted(x)).
+$$
+
+In words: every allowed object fails at least one of the two properties.
+
+<RevealSolution title="How to read the negation">
+`¬(A ∧ B)` becomes `¬A ∨ ¬B`, so the inside conjunction turns into a disjunction
+after negation.
+</RevealSolution>
+</WorkedExample>
+
+## Why quantifier order matters
+
+The order of quantifiers is part of the meaning.
+
+`∀x ∃y P(x, y)` says that for each `x`, there is a possibly different `y` that
+works.
+
+`∃y ∀x P(x, y)` says that one single `y` works for every `x`.
+
+Those are very different statements. The first allows the choice of `y` to
+depend on `x`. The second does not.
+
+<WorkedExample title="One borrower per book is not the same as one person for all books">
+Let `Book(b)` mean that `b` is a book, and `Borrows(x, b)` mean that `x`
+borrows `b`.
+
+The statement
+
+$$
+∀b\,(Book(b) \to ∃x\,Borrows(x, b))
+$$
+
+means that every book is borrowed by at least one person.
+
+The statement
+
+$$
+∃x\,∀b\,(Book(b) \to Borrows(x, b))
+$$
+
+means that one person borrows every book.
+
+The first statement can be true even when the second is false.
+
+<RevealSolution title="What the example teaches">
+When you move a quantifier across another quantifier, you usually change the
+meaning. Do not do that unless you have checked the logic carefully.
+</RevealSolution>
+</WorkedExample>
+
+## Common incorrect formalizations
+
+<CommonMistake title="Implication is not conjunction">
+If the intended meaning is "for every student, if the student enrolls, then the
+student satisfies the prerequisite," then the correct shape is
+
+$$
+∀x\,(Student(x) \to (Enrolls(x) \to Prereq(x)))
+$$
+
+or, more naturally,
+
+$$
+∀x\,((Student(x) \land Enrolls(x)) \to Prereq(x)).
+$$
+
+Writing `Student(x) \land Enrolls(x)` without the implication would state a very
+different and much stronger claim.
 </CommonMistake>
 
-## Quick check
+<WorkedExample title="Formalize a course requirement">
+Say that `Taken(x, m)` means "student `x` has taken mathematics course `m`."
+Then the statement "Every student has taken at least one mathematics course"
+can be written as
 
-<QuickCheck prompt="Write the negation of `∃x (x is a student and x has submitted the form)`">
-`∀x (x is not a student or x has not submitted the form)`.
+$$
+∀x\,(Student(x) \to ∃m\,(MathCourse(m) \land Taken(x, m))).
+$$
+
+This is stronger and clearer than trying to compress the meaning into a single
+unstructured sentence.
+
+<RevealSolution title="Why the nested quantifier is necessary">
+The existential quantifier must sit inside the universal one, because the
+chosen course may depend on which student you are talking about.
+</RevealSolution>
+</WorkedExample>
+
+## Quick checks
+
+<QuickCheck prompt="Write the negation of `∀x P(x)` and simplify it.">
+Flip the quantifier and negate the predicate.
 </QuickCheck>
 
-## Pause and test the idea
+<RevealSolution title="Answer">
+`∃x ¬P(x)`.
+</RevealSolution>
+
+<QuickCheck prompt="What is the negation of `∃x (x is a student and x has submitted the form)`?">
+Use De Morgan's law inside the predicate.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`∀x (x is not a student or x has not submitted the form)`.
+</RevealSolution>
+
+<QuickCheck prompt="Which statement is stronger: `∀x∃y P(x,y)` or `∃y∀x P(x,y)`?">
+Ask whether one witness must work for all `x`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`∃y∀x P(x,y)` is stronger, because the same `y` must work for every `x`.
+</RevealSolution>
+
+<QuickCheck prompt="Translate `∀b(Book(b) → ∃x Borrows(x,b))` into English.">
+Read the quantifiers from the outside in.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Every book is borrowed by at least one person.
+</RevealSolution>
+
+## Embedded check
+
+Use the stepper to practice moving between a quantified statement and its
+negation.
 
 <InteractiveWidget id="quantifier-negation-stepper" />
 
+## Read this first
+
+For the propositional version of these ideas, review
+[1.1 Propositional logic](/en/notes/math1090/logic/propositional-logic).

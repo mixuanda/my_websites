@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { SiteLanguageSwitcher } from "@/components/SiteLanguageSwitcher";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
@@ -48,6 +49,7 @@ interface SidebarContentProps {
   highContrast: boolean;
   locale: Locale;
   onHighContrastChange?: (value: boolean) => void;
+  onLocaleChange?: (locale: Locale) => void;
   onNavigate: () => void;
   pathname: string;
   resolvedTheme?: string;
@@ -58,6 +60,7 @@ function SidebarContent({
   highContrast,
   locale,
   onHighContrastChange,
+  onLocaleChange,
   onNavigate,
   pathname,
   resolvedTheme,
@@ -121,6 +124,7 @@ function SidebarContent({
       <Separator className="bg-border/70" />
 
       <div className="p-4 space-y-2">
+        <SiteLanguageSwitcher locale={locale} onLocaleChange={onLocaleChange} />
         <Button
           variant="ghost"
           size="sm"
@@ -182,6 +186,7 @@ export function GlassSidebar({
           highContrast={highContrast}
           locale={locale}
           onHighContrastChange={onHighContrastChange}
+          onLocaleChange={setLocale}
           onNavigate={() => setOpen(false)}
           pathname={pathname}
           resolvedTheme={resolvedTheme}
@@ -217,6 +222,7 @@ export function GlassSidebar({
               highContrast={highContrast}
               locale={locale}
               onHighContrastChange={onHighContrastChange}
+              onLocaleChange={setLocale}
               onNavigate={() => setOpen(false)}
               pathname={pathname}
               resolvedTheme={resolvedTheme}

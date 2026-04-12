@@ -1,0 +1,270 @@
+---
+title: "3.1 Matrix multiplication and identity matrices"
+description: "Learn when matrix products are defined, how the row-by-column rule works, and why identity matrices matter for systems and inverses."
+---
+
+Matrix multiplication is the first matrix operation that genuinely mixes rows
+with columns. It is also the operation that lets matrices encode composition,
+systems of equations, and later inverse matrices. Because of that, you should
+not memorize the rule as a pattern of symbols only. You should know what the
+dimensions are doing at each step.
+
+## Why multiplication is more subtle than addition
+
+Addition and scalar multiplication act entry by entry. Matrix multiplication is
+different. To compute one output entry, you compare one row of the left matrix
+with one column of the right matrix.
+
+That is why dimensions matter so strictly.
+
+<Definition title="When a matrix product is defined">
+If `A` is an `m \times n` matrix and `B` is an `n \times p` matrix, then the
+product `AB` is defined and is an `m \times p` matrix.
+
+If the number of columns of `A` does not equal the number of rows of `B`, then
+the product `AB` is undefined.
+</Definition>
+
+The inner dimensions must match. The outer dimensions tell you the size of the
+result.
+
+## The row-by-column rule
+
+<Definition title="Matrix multiplication">
+Suppose `A = [a_{ij}]` is an `m \times n` matrix and `B = [b_{jk}]` is an
+`n \times p` matrix.
+
+Then the `(i,k)` entry of `AB` is
+
+$$
+(AB)_{ik} = a_{i1}b_{1k} + a_{i2}b_{2k} + \cdots + a_{in}b_{nk}.
+$$
+
+So each output entry is the dot-product-style combination of row `i` of `A`
+with column `k` of `B`.
+</Definition>
+
+This rule explains three important facts at once:
+
+- multiplication is not entrywise;
+- the inner dimensions must match;
+- the output entry uses every matched position in the row and column.
+
+<WorkedExample title="Compute a product carefully">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+3 & -1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+4 & 0 \\
+5 & 1
+\end{bmatrix}.
+$$
+
+Then `AB` is defined because both matrices are `2 \times 2`. Its entries are:
+
+$$
+(AB)_{11} = 1 \cdot 4 + 2 \cdot 5 = 14,
+$$
+
+$$
+(AB)_{12} = 1 \cdot 0 + 2 \cdot 1 = 2,
+$$
+
+$$
+(AB)_{21} = 3 \cdot 4 + (-1) \cdot 5 = 7,
+$$
+
+$$
+(AB)_{22} = 3 \cdot 0 + (-1) \cdot 1 = -1.
+$$
+
+So
+
+$$
+AB =
+\begin{bmatrix}
+14 & 2 \\
+7 & -1
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+## Matrix-vector multiplication is a system statement
+
+If `x` is a column vector, then `Ax` is a special case of matrix multiplication.
+It packages the left-hand sides of a linear system into one object.
+
+For
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & -1 \\
+3 & -1 & 5
+\end{bmatrix},
+\qquad
+x =
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix},
+$$
+
+we have
+
+$$
+Ax =
+\begin{bmatrix}
+x_1 + 2x_2 - x_3 \\
+3x_1 - x_2 + 5x_3
+\end{bmatrix}.
+$$
+
+So the system `Ax = b` is not merely shorthand. It is a matrix product whose
+entries reproduce the equations of the system.
+
+## Identity matrices do nothing, on purpose
+
+<Definition title="Identity matrix">
+For each positive integer `n`, the identity matrix `I_n` is the `n \times n`
+square matrix with `1` on the main diagonal and `0` everywhere else.
+</Definition>
+
+For example,
+
+$$
+I_2 =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix},
+\qquad
+I_3 =
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}.
+$$
+
+The identity matrix matters because it preserves any compatible matrix:
+
+$$
+AI_n = A, \qquad I_m A = A
+$$
+
+whenever the sizes match.
+
+<WorkedExample title="Why multiplying by the identity changes nothing">
+Let
+
+$$
+A =
+\begin{bmatrix}
+2 & -1 \\
+4 & 3
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+AI_2 =
+\begin{bmatrix}
+2 & -1 \\
+4 & 3
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & -1 \\
+4 & 3
+\end{bmatrix}.
+$$
+
+The first column of `AI_2` reproduces the first column of `A`, and the second
+column reproduces the second column of `A`.
+</WorkedExample>
+
+That is exactly why inverse matrices are defined through the identity later: if
+`A^{-1}` exists, then `AA^{-1} = I`.
+
+## Multiplication is usually not commutative
+
+One of the first conceptual shocks in linear algebra is that
+
+$$
+AB \ne BA
+$$
+
+in general.
+
+Sometimes both products are defined and differ. Sometimes one product is
+defined and the other is not. So order matters twice: it matters for meaning,
+and it matters for the final answer.
+
+Use the figure below to watch one output entry being built from a selected row
+and a selected column.
+
+<InteractiveWidget id="matrix-multiplication-visualizer" />
+
+## Common mistakes
+
+<CommonMistake title="Matrix multiplication is not entrywise multiplication">
+The entry `(AB)_{ik}` is not `a_{ik}b_{ik}`. It is built from the whole `i`th
+row of `A` and the whole `k`th column of `B`.
+</CommonMistake>
+
+<CommonMistake title="Defined products can still appear in only one order">
+If `A` is `2 \times 3` and `B` is `3 \times 4`, then `AB` is defined but `BA`
+is not. Never assume the reverse order makes sense automatically.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="If `A` is `2 × 3` and `B` is `3 × 5`, what is the size of `AB`?">
+Use the inner dimensions to test whether the product is defined, then read the
+outer dimensions.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`AB` is defined and has size `2 × 5`.
+</RevealSolution>
+
+<QuickCheck prompt="What does multiplying by `I_n` do to a compatible matrix?">
+Answer in one sentence.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It leaves the matrix unchanged.
+</RevealSolution>
+
+## Exercise
+
+<QuickCheck prompt="Why does `Ax = 0` always have at least one solution, no matter what `A` is?">
+Think of `x` as a column vector.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Take the zero vector `x = 0`. Every entry of `A0` is a linear combination of
+the entries of `0`, so every entry is `0`. Hence `A0 = 0`, and the homogeneous
+system always has the trivial solution.
+</RevealSolution>
+
+## Related notes
+
+This note depends on
+[2.1 Matrix basics](/en/notes/math1030/matrices/matrix-basics).
+Continue to
+[3.2 Transpose and special matrices](/en/notes/math1030/matrix-algebra/transpose-and-special-matrices)
+or jump ahead to
+[5.1 Invertible matrices](/en/notes/math1030/invertibility/invertible-matrices).

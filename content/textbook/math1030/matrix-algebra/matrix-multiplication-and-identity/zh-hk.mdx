@@ -1,0 +1,254 @@
+---
+title: "3.1 矩陣乘法與單位矩陣"
+description: "理解何時可以做矩陣乘法、行乘列規則怎樣運作，以及單位矩陣為何對方程組與逆矩陣重要。"
+---
+
+矩陣乘法是第一個真正把「行」與「列」結合起來的矩陣運算。它也是矩陣之所
+以能表達複合、線性方程組與逆矩陣的核心原因。所以這條規則不能只靠死記；
+你要明白每一步的大小條件到底在做甚麼。
+
+## 為甚麼矩陣乘法比加法微妙
+
+矩陣加法與數乘都是逐項進行。矩陣乘法則不同：輸出中的一個元素，是由左邊
+矩陣的一整行與右邊矩陣的一整列共同決定。
+
+<Definition title="矩陣乘積何時有定義">
+若 `A` 是 `m \times n` 矩陣，`B` 是 `n \times p` 矩陣，則乘積 `AB`
+有定義，且結果是 `m \times p` 矩陣。
+
+若 `A` 的列數不等於 `B` 的行數，則 `AB` 未定義。
+</Definition>
+
+內側大小必須配對；外側大小則給出結果矩陣的大小。
+
+## 行乘列規則
+
+<Definition title="矩陣乘法">
+設 `A = [a_{ij}]` 是 `m \times n` 矩陣，`B = [b_{jk}]` 是 `n \times p`
+矩陣。
+
+則 `AB` 的 `(i,k)` 元素為
+
+$$
+(AB)_{ik} = a_{i1}b_{1k} + a_{i2}b_{2k} + \cdots + a_{in}b_{nk}.
+$$
+
+也就是說，輸出中的一個元素，是 `A` 的第 `i` 行與 `B` 的第 `k` 列按位相
+乘後再相加。
+</Definition>
+
+這個定義同時說明三件事：
+
+- 矩陣乘法不是逐項相乘；
+- 內側大小必須吻合；
+- 一個輸出元素會用到整行與整列中所有對應位置。
+
+<WorkedExample title="細算一個矩陣乘積">
+令
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+3 & -1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+4 & 0 \\
+5 & 1
+\end{bmatrix}.
+$$
+
+由於兩者都是 `2 \times 2`，所以 `AB` 有定義。其元素為
+
+$$
+(AB)_{11} = 1 \cdot 4 + 2 \cdot 5 = 14,
+$$
+
+$$
+(AB)_{12} = 1 \cdot 0 + 2 \cdot 1 = 2,
+$$
+
+$$
+(AB)_{21} = 3 \cdot 4 + (-1) \cdot 5 = 7,
+$$
+
+$$
+(AB)_{22} = 3 \cdot 0 + (-1) \cdot 1 = -1.
+$$
+
+因此
+
+$$
+AB =
+\begin{bmatrix}
+14 & 2 \\
+7 & -1
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+## 矩陣乘向量就是方程組語言
+
+若 `x` 是列向量，那麼 `Ax` 只是矩陣乘法的特例，但它剛好把線性方程組的左
+邊全部打包起來。
+
+對
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & -1 \\
+3 & -1 & 5
+\end{bmatrix},
+\qquad
+x =
+\begin{bmatrix}
+x_1 \\ x_2 \\ x_3
+\end{bmatrix},
+$$
+
+有
+
+$$
+Ax =
+\begin{bmatrix}
+x_1 + 2x_2 - x_3 \\
+3x_1 - x_2 + 5x_3
+\end{bmatrix}.
+$$
+
+所以 `Ax = b` 並不是純粹縮寫，而是把整個方程組寫成一個矩陣乘積。
+
+## 單位矩陣是刻意「甚麼也不改變」的矩陣
+
+<Definition title="單位矩陣">
+對每個正整數 `n`，`I_n` 表示 `n \times n` 單位矩陣：主對角線上全是 `1`，
+其餘位置全是 `0`。
+</Definition>
+
+例如
+
+$$
+I_2 =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix},
+\qquad
+I_3 =
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}.
+$$
+
+單位矩陣之所以重要，是因為它對任何大小相容的矩陣都不起改變作用：
+
+$$
+AI_n = A, \qquad I_m A = A.
+$$
+
+<WorkedExample title="為甚麼乘上單位矩陣不會改變矩陣">
+若
+
+$$
+A =
+\begin{bmatrix}
+2 & -1 \\
+4 & 3
+\end{bmatrix},
+$$
+
+則
+
+$$
+AI_2 =
+\begin{bmatrix}
+2 & -1 \\
+4 & 3
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & -1 \\
+4 & 3
+\end{bmatrix}.
+$$
+
+因為 `I_2` 的第一列會抽出 `A` 的第一列，第二列會抽出 `A` 的第二列。
+</WorkedExample>
+
+這正是往後定義逆矩陣的原因：若 `A^{-1}` 存在，就要求 `AA^{-1} = I`。
+
+## 乘法一般不交換
+
+線性代數最早令學生不習慣的地方之一，就是
+
+$$
+AB \ne BA
+$$
+
+一般並不成立。
+
+有時兩個乘積都定義，但結果不同；有時其中一個有定義，另一個根本未定義。
+所以次序同時影響「能不能做」與「做出來是甚麼」。
+
+下面的圖可以幫你直接看到：一個輸出元素，是如何由一行與一列構成的。
+
+<InteractiveWidget id="matrix-multiplication-visualizer" />
+
+## 常見錯誤
+
+<CommonMistake title="矩陣乘法不是逐項相乘">
+`(AB)_{ik}` 不是 `a_{ik}b_{ik}`。它來自 `A` 的第 `i` 行與 `B` 的第 `k`
+列。
+</CommonMistake>
+
+<CommonMistake title="一個方向可乘，不代表反方向也可乘">
+若 `A` 是 `2 \times 3`、`B` 是 `3 \times 4`，則 `AB` 有定義，但 `BA`
+沒有。不要自動把順序反過來。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="若 `A` 是 `2 × 3`、`B` 是 `3 × 5`，那麼 `AB` 的大小是甚麼？">
+先檢查內側大小，再讀外側大小。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`AB` 有定義，而且大小是 `2 × 5`。
+</RevealSolution>
+
+<QuickCheck prompt="把一個大小相容的矩陣乘上 `I_n`，會發生甚麼？">
+用一句話回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+矩陣保持不變。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="為甚麼 `Ax = 0` 不論 `A` 是甚麼，都至少有一個解？">
+把 `x` 看成列向量來回答。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+取零向量 `x = 0`。由於 `A0` 的每個元素都是把 `0` 的元素做線性組合，所
+以全部都是 `0`。因此 `A0 = 0`，齊次系統永遠至少有平凡解。
+</RevealSolution>
+
+## 相關筆記
+
+本節建立在
+[2.1 矩陣基礎](/zh-hk/notes/math1030/matrices/matrix-basics) 之上。
+下一節可讀
+[3.2 轉置與特殊矩陣](/zh-hk/notes/math1030/matrix-algebra/transpose-and-special-matrices)，
+或直接跳到
+[5.1 可逆矩陣](/zh-hk/notes/math1030/invertibility/invertible-matrices)。

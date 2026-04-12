@@ -1,75 +1,236 @@
 ---
 title: "1.2 Truth tables and equivalence"
-description: "Build truth tables, compare formulas row by row, and recognize tautologies, contradictions, and logical equivalence."
+description: "Build truth tables systematically, use them to test equivalence, and distinguish tautologies, contradictions, and contingent formulas."
 ---
 
-Prerequisite: review [1.1 Propositional logic](/en/notes/math1090/logic/propositional-logic)
-first, because the truth-table language uses the same connectives.
+This section turns propositional formulas into something we can calculate with.
+Once the atomic propositions have been fixed, a truth table lets us test a
+compound statement by checking every possible assignment of truth values.
 
-## What a truth table does
+That may sound mechanical, but the point is mathematical: a truth table is a
+complete argument. If a formula depends on `n` proposition variables, then
+there are exactly `2^n` possible assignments, so there are no hidden cases once
+those rows have been checked.
+
+## What a truth table records
 
 <Definition title="Truth table">
-A truth table lists the truth value of a formula for every possible assignment
-of its variables.
+A **truth table** for a propositional formula `\varphi` lists every possible
+assignment of truth values to the variables in `\varphi`, together with the
+resulting truth value of `\varphi` in each case.
 </Definition>
 
-It is the safest way to check whether two formulas always match.
+For example, if a formula involves only `P` and `Q`, then there are four rows:
 
-## A first example
+$$
+(T,T), \quad (T,F), \quad (F,T), \quad (F,F).
+$$
 
-<WorkedExample title="Checking implication by rows">
-Consider the formula `P → Q`.
+The truth table is therefore not just a picture. It is an exhaustive case
+analysis.
 
-| P | Q | `P → Q` |
-| --- | --- | --- |
-| T | T | T |
-| T | F | F |
-| F | T | T |
-| F | F | T |
+## How to construct a table carefully
 
-The formula is false only in the row where `P` is true and `Q` is false.
+When students make mistakes with truth tables, the problem is usually not the
+connective itself. The problem is that the rows are incomplete, out of order, or
+the columns are computed too quickly. A reliable method is:
 
-<RevealSolution title="Why `P → Q` matches `¬P ∨ Q`">
-If `P` is false, then `¬P ∨ Q` is already true. If `P` is true, the formula
-becomes `Q`. That is exactly the same truth pattern as `P → Q`.
-</RevealSolution>
+- list all assignments of the atomic propositions;
+- add columns for simpler subformulas first;
+- compute the final formula only after the intermediate columns are correct.
+
+This matters especially when a formula contains several connectives.
+
+## A first important equivalence
+
+<WorkedExample title="Why `P \to Q` and `\neg P \lor Q` say the same thing">
+Consider the formulas `P \to Q` and `\neg P \lor Q`.
+
+| `P` | `Q` | `\neg P` | `P \to Q` | `\neg P \lor Q` |
+| --- | --- | --- | --- | --- |
+| T | T | F | T | T |
+| T | F | F | F | F |
+| F | T | T | T | T |
+| F | F | T | T | T |
+
+The last two columns match in every row.
+
+Therefore
+
+$$
+P \to Q \equiv \neg P \lor Q.
+$$
+
+This is one of the most useful equivalences in elementary logic. It explains why
+an implication fails only in the case "true hypothesis, false conclusion."
 </WorkedExample>
 
 ## Logical equivalence
 
 <Definition title="Logical equivalence">
-Two formulas are logically equivalent when they have the same truth value in
-every row of their truth tables.
+Two formulas `\varphi` and `\psi` are **logically equivalent** if they have the
+same truth value under every assignment of their variables. We write
+
+$$
+\varphi \equiv \psi.
+$$
 </Definition>
 
-That means a rewrite is allowed only if the whole table matches, not just one
-example row.
+Logical equivalence is stronger than saying that two formulas happen to agree in
+one example. It means they define the same truth function.
 
-<CommonMistake title="One matching row is not a proof">
-If two formulas agree on a single assignment, that does not prove equivalence.
-You must compare every row, or use a known equivalence law such as
-`P → Q ≡ ¬P ∨ Q`.
+The source notes also warn you not to confuse two related but different ideas:
+
+- `\varphi \leftrightarrow \psi` is a new Boolean formula;
+- `\varphi \equiv \psi` is a statement about two formulas.
+
+These are connected, but they are not literally the same notation.
+
+<TheoremCard title="Equivalence and biconditionals">
+Two formulas `\varphi` and `\psi` are logically equivalent if and only if the
+formula
+
+$$
+\varphi \leftrightarrow \psi
+$$
+
+is a tautology.
+</TheoremCard>
+
+So a biconditional can be used as a test for equivalence: if its final column is
+all true, then the two formulas match in every row.
+
+## Tautologies, contradictions, and contingent formulas
+
+<Definition title="Three basic types of formula">
+Let `\varphi` be a propositional formula.
+
+- `\varphi` is a **tautology** if it is true in every row.
+- `\varphi` is a **contradiction** if it is false in every row.
+- `\varphi` is **contingent** if it is true in some rows and false in others.
+</Definition>
+
+Standard examples are:
+
+$$
+P \lor \neg P
+$$
+
+which is a tautology, and
+
+$$
+P \land \neg P
+$$
+
+which is a contradiction.
+
+The distinction matters because many short logical arguments amount to showing
+that some formula is always true or always false.
+
+## A second worked example
+
+<WorkedExample title="Checking De Morgan's law by truth table">
+We test
+
+$$
+\neg(P \lor Q) \equiv (\neg P) \land (\neg Q).
+$$
+
+| `P` | `Q` | `P \lor Q` | `\neg(P \lor Q)` | `\neg P` | `\neg Q` | `(\neg P) \land (\neg Q)` |
+| --- | --- | --- | --- | --- | --- | --- |
+| T | T | T | F | F | F | F |
+| T | F | T | F | F | T | F |
+| F | T | T | F | T | F | F |
+| F | F | F | T | T | T | T |
+
+Again the last two columns agree row by row, so the formulas are logically
+equivalent.
+
+This is a typical use of truth tables: not merely evaluating one formula, but
+proving a law of equivalence.
+</WorkedExample>
+
+## Why this section matters later
+
+Truth-table reasoning is not the endpoint of mathematical logic, but it trains
+two habits that remain important:
+
+- separating syntax from meaning;
+- checking whether a claim is valid in every case, not merely in one example.
+
+Later, when the course turns to quantifiers, sets, and proof, that same demand
+for complete case analysis returns in a more sophisticated form.
+
+## Common mistakes
+
+<CommonMistake title="One matching row is not enough">
+If two formulas agree on one row, or even on several rows, that does not prove
+equivalence. Equivalence requires agreement on every possible assignment.
 </CommonMistake>
 
-## Tautologies and contradictions
+<CommonMistake title="Do not confuse `\leftrightarrow` with `\equiv`">
+The formula `\varphi \leftrightarrow \psi` belongs inside a truth table. The
+notation `\varphi \equiv \psi` is a metalogical statement saying that two
+formulas define the same truth function.
+</CommonMistake>
 
-<Definition title="Two special kinds of formulas">
-- A tautology is always true.
-- A contradiction is always false.
-</Definition>
-
-Examples:
-
-- `P ∨ ¬P` is a tautology.
-- `P ∧ ¬P` is a contradiction.
-
-## Quick check
-
-<QuickCheck prompt="Are `P ∧ Q` and `Q ∧ P` logically equivalent?">
-Yes. They have the same truth value in every row, because `∧` is commutative.
-</QuickCheck>
-
-## Pause and test the idea
+## Try it yourself
 
 <InteractiveWidget id="truth-table-builder" />
 
+## Quick checks
+
+<QuickCheck prompt="How many rows are needed in a truth table for a formula involving exactly three proposition variables?">
+Use the rule for the number of possible truth assignments.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+There are `2^3 = 8` rows, because each of the three variables can be either true
+or false independently.
+</RevealSolution>
+
+<QuickCheck prompt="Why is `P \lor \neg P` a tautology?">
+Think row by row, not by slogan.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+If `P` is true, then `P \lor \neg P` is true because the left side is true. If
+`P` is false, then `\neg P` is true, so the disjunction is still true. Every row
+therefore gives T.
+</RevealSolution>
+
+<QuickCheck prompt="Is the formula `P \land Q` logically equivalent to `P \lor Q`?">
+Compare at least one row where the two formulas behave differently.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. For example, when `P = T` and `Q = F`, we get `P \land Q = F` but
+`P \lor Q = T`. Since they differ on that row, they are not equivalent.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Show that `\neg(P \land Q) \equiv (\neg P) \lor (\neg Q)` by constructing a truth table.">
+Introduce intermediate columns instead of trying to compute the final answer in
+one jump.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Construct the columns for `P`, `Q`, `P \land Q`, `\neg(P \land Q)`, `\neg P`,
+`\neg Q`, and `(\neg P) \lor (\neg Q)`.
+
+| `P` | `Q` | `P \land Q` | `\neg(P \land Q)` | `\neg P` | `\neg Q` | `(\neg P) \lor (\neg Q)` |
+| --- | --- | --- | --- | --- | --- | --- |
+| T | T | T | F | F | F | F |
+| T | F | F | T | F | T | T |
+| F | T | F | T | T | F | T |
+| F | F | F | T | T | T | T |
+
+The last two columns are identical, so the formulas are logically equivalent.
+</RevealSolution>
+
+## Read this first
+
+This page builds directly on
+[1.1 Propositional logic](/en/notes/math1090/logic/propositional-logic) and
+prepares for [1.3 Quantifiers and negation](/en/notes/math1090/logic/quantifiers-negation).

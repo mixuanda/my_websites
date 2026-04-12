@@ -1,244 +1,480 @@
 # AGENTS.md
 
-## Project goal
-Build a deeply beginner-friendly, interactive web-based mathematics book from the local `reference/` folder.
-The website must cover two courses: `math1090` and `math1030`.
+## Mission
 
-## Non-negotiable goals
-- The site is not a blog and not a notes dump.
-- The site must feel like an interactive textbook for first-time learners.
-- Content must be split into many small, readable sections and routes.
-- Never generate one giant page for a whole chapter.
-- Every section should be easy to read, well-structured, and visually navigable.
+Continue this existing website repository in place.
 
-## Source policy
-- Treat `reference/` as the primary source of truth.
-- Audit `reference/` before writing substantial content.
-- Create `docs/source-audit.md` listing:
-  - available materials
-  - missing materials
-  - duplicate or conflicting materials
-  - weak or incomplete source coverage
-- If a topic lacks source support, mark it clearly as `MISSING_SOURCE` and do not invent authoritative course-specific claims.
+Build a serious, detailed, rigorous mathematics notes system inside the existing website.
 
-## Pedagogy policy
-- Assume the reader has never seen the topic before.
-- Prefer intuition first, then formal definition, then examples, then exercises.
-- Explain symbols, notation, and hidden assumptions.
-- Surface common mistakes and misconceptions.
-- Use short paragraphs, clear headings, and progressive disclosure.
-- Add prerequisite links whenever a section depends on earlier material.
+Current course focus:
+- Math1090
+- Math1030
 
-## Website requirements
-- Implement a course sidebar and page-level table of contents.
-- Support chapter / section / microsection navigation.
-- Support collapsible proofs, worked examples, quick checks, and revealable solutions.
-- Include glossary / notation support.
-- Include progress tracking via local state or localStorage.
-- Make the site responsive and comfortable to read.
+Future course support must be prepared for:
+- Math1025
+- Math1010
 
-## Structure requirements
-- Separate content for `math1090` and `math1030`.
-- Keep source audit, IA planning, content authoring, UI engineering, and QA as distinct workstreams.
-- Prefer route-based content organization.
-- Keep traceability between written content and source materials.
+Do not restart the project.
+Do not casually redesign the whole site.
+Do not turn the site into a playful, gamified, overly simplified learning product.
 
-## Multi-agent workflow
-- Use separate agents or workstreams for:
-  - source audit
-  - information architecture
-  - student-skeptic review
-  - math1090 authoring
-  - math1030 authoring
-  - exercise building
-  - UI / navigation
-  - QA / verification
-- Do not let multiple agents edit the same core files unless necessary.
-- Prefer isolated branches / worktrees for parallel efforts.
+The desired direction is:
+- textbook-first
+- rigor-first
+- completeness-first
+- article-style note pages
+- interactivity only when it genuinely improves understanding
 
-## Writing standards
-- Be precise but beginner-friendly.
-- Avoid unexplained jargon.
-- Avoid overly compressed proofs.
-- Prefer explicit logical transitions.
-- Use examples generously.
-- When adapting from source materials, transform them into teachable explanations rather than copying lecture-note phrasing.
+---
 
-## Delivery expectations
-- Produce working code, not just plans.
-- Keep documentation updated in `docs/`.
-- Maintain `docs/roadmap.md` with completed, active, and blocked items.
-- Always finish a work cycle with:
-  - what changed
-  - what remains
-  - what is blocked by missing references
-  - what should be reviewed next
+## Repository truth
 
-## Verification
-Before considering a milestone complete:
-- run build
-- run lint if available
-- run typecheck if available
-- verify route structure
-- verify internal navigation
-- verify math rendering
-- verify source coverage notes
+- Work only from files that are present in this repository.
+- Do not assume access to any unpublished local files, local folders, desktop files, or local-only references.
+- The repository version is the only guaranteed environment.
+- `reference/` is expected to exist in the repository and is the primary source of truth for course materials.
+- If `reference/` is missing, empty, or incomplete, stop guessing and report that clearly.
+- Do not invent course-specific claims that are not supported by the repository contents.
+- Prefer repository evidence over stale assumptions.
 
-## Existing design preservation
-- The project already has an existing website style and partial UI design.
-- Preserve the current visual language, layout system, interaction patterns, and overall reading experience unless there is a strong reason to refactor.
-- Do not casually replace the current design direction.
-- Before implementing major UI changes, inspect the existing components, route structure, style tokens, and layout conventions, then extend them consistently.
+---
 
-## Current project phase
-- The current priority is no longer initial site ideation.
-- The current priority is to continue building the learning content and interactive educational experience for:
-  - `math1090`
-  - `math1030`
-- Focus on course content, interactivity, readability, and multilingual delivery.
+## Public-facing product framing
 
-## Bilingual trilingual requirement
-- The website must treat “biliterate and trilingual” support as a core requirement.
-- For written language support, the site must support:
-  - English
-  - Traditional Chinese
-  - Simplified Chinese
-- The UI must provide a clear language switcher.
-- The language switcher must work at both interface level and content level wherever possible.
+- This mathematics area must live under the public-facing **Notes** section.
+- Do NOT frame it publicly as a separate top-level **Textbook** product.
+- Each chapter / section / subsection should behave like an individual note detail page.
+- The public reading experience should feel like browsing serious, structured, high-quality notes inside a personal website.
+- It must NOT feel like entering a detached course portal, standalone app, or isolated learning platform.
 
-## Interpretation policy for biliterate and trilingual support
-- Since this is a web-based textbook, implement written language switching first:
-  - EN
-  - zh-HK / Traditional Chinese
-  - zh-CN / Simplified Chinese
-- Also design the content system so it can support spoken-language-oriented features later:
-  - Cantonese
-  - Putonghua
-  - English
-- Spoken-language support may appear through:
-  - glossary pronunciation notes,
-  - audio-ready metadata,
-  - read-aloud hooks,
-  - optional narration scripts,
-  - terminology mapping for Cantonese / Putonghua / English.
+Public-facing terminology should prefer:
+- Notes
+- Note
+- Course notes
+- Section notes
 
-## Localization requirements
-- Do not treat localization as a literal machine translation layer only.
-- Preserve mathematical meaning, pedagogy, terminology consistency, and beginner readability across all supported written variants.
-- Keep math notation identical across languages unless a notation note is necessary.
-- Maintain a terminology map for:
-  - English term
-  - Traditional Chinese term
-  - Simplified Chinese term
-  - optional Cantonese phrasing note
-  - optional Putonghua phrasing note
-- Avoid inconsistent translation of core mathematical terms across pages.
+Avoid strong public-facing framing such as:
+- Textbook portal
+- Interactive studio
+- Learning app
+- Detached course platform
 
-## Content architecture
-- Structure content so each section can have parallel localized versions.
-- Prefer a content model that supports:
-  - shared mathematical structure,
-  - localized exposition text,
-  - localized examples and notes,
-  - shared exercises when possible,
-  - localized hints and explanations where necessary.
-- Keep the route structure coherent and avoid duplication chaos.
+---
 
-## Interaction requirements
-- Every important section should remain easy for first-time learners.
-- Use reusable interactive blocks that support localization:
-  - definitions
-  - theorem cards
-  - worked examples
-  - collapsible proofs
-  - quick checks
-  - revealable solutions
-  - common mistakes
-  - prerequisite links
-  - glossary popovers
+## Writing standard
 
-## Translation quality policy
-- Do not produce awkward or overly literal Chinese that sounds machine-generated.
-- Do not produce overly compressed English that loses pedagogical clarity.
-- Prefer Hong Kong–friendly Traditional Chinese for zh-HK content.
-- Preserve beginner-friendliness in every language variant.
-- When exact equivalent terms differ by region, record the decision in the terminology guide.
+The content must read like serious textbook-style course notes.
 
-## Required docs
-- Maintain:
-  - `docs/localization-strategy.md`
-  - `docs/terminology-glossary.md`
-  - `docs/content-parity-checklist.md`
-- These docs should record:
-  - language architecture
-  - terminology decisions
-  - missing localized sections
-  - content parity gaps between languages
+Required writing qualities:
+- detailed
+- rigorous
+- logically structured
+- mathematically careful
+- beginner-aware without being childish
+- pedagogically clear
+- not entertainment-driven
 
-## Verification for multilingual delivery
-- Check that the language switcher works.
-- Check that each completed section exists in the intended language variants.
-- Check that terminology stays consistent across English, Traditional Chinese, and Simplified Chinese.
-- Check that math rendering is stable in every language view.
-- Check that navigation, sidebar labels, and page TOC localize correctly.
+Do NOT:
+- write like you are entertaining a child
+- overuse playful filler
+- over-compress the content into thin summaries
+- replace serious explanation with slogans
+- add interactivity merely to look dynamic
 
-- English is the drafting source language for prompts and agent instructions.
-- However, the final website content must not be English-only.
-- Every production-ready section must be designed with multilingual parity in mind.
-- No section should be considered complete if it breaks the language-switching experience.
+Do:
+- explain notation carefully
+- explain hidden assumptions
+- explain why definitions are introduced
+- explain transitions between ideas
+- show reasoning steps
+- preserve mathematical seriousness
+- prefer explicit logic over vague intuition-only writing
 
+For important sections, when appropriate, structure the note page like this:
+- title
+- short introduction
+- motivation / intuition
+- precise definitions
+- formal statement / theorem / proposition
+- explanation
+- worked example(s)
+- common mistakes / subtle points
+- embedded interaction only where helpful
+- quick check
+- exercises
+- answers / solutions or guided solution structure
+- related notes / prerequisites
 
-## Core product principle
-- The website must be interactive-first.
-- Interactivity is a core learning mechanism, not a decorative extra.
-- The goal is to help first-time learners understand concepts through active exploration, especially in `math1030`.
+---
 
-## Interactive learning requirement
-- Build the site as an interactive educational website.
-- Each important topic should include interactive learning elements whenever pedagogically useful.
-- Especially for `math1030`, prioritize interactive demonstrations for:
-  - matrix operations
-  - row operations
-  - Gaussian elimination
-  - systems of linear equations
-  - span / basis / linear independence
-  - linear transformations
-  - geometric intuition where applicable
+## Detail and completeness requirement
+
+The current content must not stay brief or incomplete.
+
+Hard rule:
+- Expand the content substantially.
+- Write in much more detail than a short summary.
+- Build toward completeness for every topic supported by `reference/`.
+- Do not stop after only early chapters if later chapters are already supported.
+- Do not treat placeholders or short blurbs as sufficient completion.
+
+Coverage means real authored instructional content, not merely:
+- page titles
+- empty routes
+- placeholders
+- tiny summaries
+- copied headings without explanation
+
+---
+
+## Reference coverage rule
+
+Treat `reference/` as the master content backlog.
+
+You must continue authoring until the content represented inside `reference/` has been fully processed.
+
+Interpret “fully processed” strictly:
+- every relevant source item in `reference/` must be reviewed
+- every teachable topic supported by those materials must be incorporated into the website notes
+- overlapping source files should be merged intelligently instead of duplicated
+- incomplete, conflicting, unreadable, or weak source files must be explicitly recorded internally
+- unsupported sections must not be silently skipped
+
+The work is NOT complete unless every relevant item in `reference/` is in one of these states:
+- incorporated into the website content
+- merged into other already-authored content because it overlapped
+- marked internally as insufficient / incomplete / unreadable / conflicting
+- intentionally deferred with a clearly documented reason
+
+Do not stop early while `reference/` still contains unprocessed relevant material.
+
+Maintain an internal document:
+- `docs/reference-coverage.md`
+
+This file should track, for each source item where possible:
+- course
+- chapter
+- section
+- material type
+- current status
+- whether incorporated
+- whether overlapping
+- whether blocked by weak material
+- notes about next action
+
+---
+
+## Missing-reference public policy
+
+Do NOT show full source-tracing blocks on normal public pages.
+
+Public-facing rule:
+- only show a lightweight notice when the current chapter / section lacks enough support in `reference/`
+- do not show “reference”, “source trail”, or similar blocks on every page
+- keep well-supported pages clean
+
+When a lightweight notice is needed, it should:
+- be visually secondary
+- say that this part is currently incomplete because the relevant reference material is missing or insufficient
+- not dominate the page
+- not pretend unsupported content is complete
+
+---
+
+## Interaction policy
+
+The website may include interaction, but interaction is secondary to the instructional writing.
+
+Hard rules:
+- the page must still read primarily like a serious textbook section or high-quality lecture-note article
+- add interaction only when it genuinely improves conceptual understanding
+- do NOT add interactivity merely for decoration
+- do NOT let interactivity break the logical flow
+- do NOT make the page feel like a detached app
+
+If interaction is used:
+- embed it naturally inside the article flow
+- treat it like a supporting figure, demonstration, or guided step
+- keep it visually integrated with the note page
+
+Especially for Math1030, selective embedded interaction is useful for:
+- systems of linear equations
+- matrices
+- augmented matrices
+- row operations
+- Gaussian elimination
+- RREF
+- matrix multiplication
+- span
+- basis
+- linear independence
+- linear transformations
+- geometric intuition where appropriate
+
+But even on Math1030 pages:
+- the note must still feel rigorous and text-led first
+
+---
+
+## Notes architecture and future extensibility
+
+Keep mathematics content under Notes.
+
+The Notes system must be extensible so that future courses can be added cleanly, including:
+- Math1025
+- Math1010
+- other future courses
+
+Do not hardcode the architecture only for Math1090 and Math1030.
+
+Design the following to be extensible:
+- routing
+- metadata
+- note listings
+- course groupings
+- breadcrumbs
+- side navigation
+- note detail pages
+- export actions
+- language switching
+
+Prepare the structure now.
+Do not fabricate Math1025 or Math1010 content unless their source material is actually present in the repository.
+
+---
+
+## i18n requirement
+
+The site must have a clear, visible, site-level language switcher.
+
+Support these written language modes:
+- English
+- Traditional Chinese
+- Simplified Chinese
+
+This switcher must work as a real site-level control, not only as scattered local replacements.
+
+Localize:
+- header
+- footer
+- navigation
+- breadcrumbs
+- sidebar
+- TOC labels
+- export labels
+- note metadata where applicable
+- interactive UI text
+- course labels
+- section labels
+
+Prefer Hong Kong–friendly Traditional Chinese for the Traditional Chinese version.
+
+Do not implement i18n as a shallow, scattered text-swap hack.
+Keep terminology consistent across languages.
+
+Maintain internal docs:
+- `docs/localization-strategy.md`
+- `docs/terminology-glossary.md`
+- `docs/content-parity-checklist.md`
+
+---
+
+## Theme requirement
+
+The dark/light theme behavior must be correct and consistent.
+
+Audit and fix:
+- theme provider logic
+- CSS variables / design tokens
+- dark/light class toggling
+- hardcoded component colors
+- contrast-mode interactions
+
+Fix the issue systemically, not with random patches.
+
+Both light mode and dark mode must remain readable and coherent.
+
+---
+
+## Rendering and formatting requirement
+
+Audit the site for:
+- broken math rendering
+- malformed MDX / markdown blocks
+- broken layouts
+- broken headings
+- broken list formatting
+- callout issues
+- example / theorem / proof formatting inconsistencies
+- spacing problems
+- content block ordering issues
+
+Fix all rendering and formatting problems carefully.
+
+Formulas must render correctly.
+The page structure must be consistent and reliable.
+
+---
+
+## Exercise / answer / solution integrity
+
+Audit all:
+- quick checks
+- exercises
+- answers
+- solutions
+- reveal blocks
+- guided solution blocks
+
+Fix local logic errors such as:
+- missing answers
+- answer appearing in the next block
+- mismatched question / answer pairing
+- incomplete solution sequences
+- wrong reveal content
+- incorrect ordering
+
+Each prompt must match its answer or solution block.
+No answer should drift into the wrong section.
+
+Maintain an internal QA note if helpful:
+- `docs/exercise-solution-integrity.md`
+
+---
 
 ## Export requirement
-- Users must be able to export the current learning unit, such as a section or subsection (for example `1.3` or `1.4`), as:
-  - TXT
-  - PDF
-- Exported files are static study materials derived from the current interactive page.
-- The exported file does not need to preserve interactivity.
 
-## Static degradation policy for exports
-- Interactive elements must degrade gracefully into static study content during export.
-- When exporting:
-  - preserve explanatory text
-  - preserve formulas
-  - preserve examples
-  - preserve exercises
-  - preserve solutions where applicable
-  - convert interactive widgets into simple static representations
-- Static representations may include:
-  - fixed example states
-  - step-by-step snapshots
-  - simplified diagrams
-  - textual descriptions of what the interaction demonstrates
-  - representative outputs
+Each learning unit, such as a section or subsection, should support export to:
+- TXT
+- PDF
 
-## Authoring policy
-- Do not design the website as a plain static notes viewer.
-- Do not remove meaningful interactivity merely to simplify export.
-- Instead, keep the website interactive and make export a clean static learning snapshot.
+Exports are static study materials.
 
-## UX requirement
-- Add clear export controls on each relevant section/subsection page.
-- The user should be able to export the currently viewed unit directly, without unnecessary steps.
+Do not try to preserve interactivity in exported files.
+Instead, interactive blocks must degrade into static study-friendly forms.
 
-## Verification
-- Check that the website remains interactive-first.
-- Check that exported TXT and PDF files correspond to the current section/subsection.
-- Check that interactive modules degrade cleanly into static readable content in exports.
-- Check that `math1030` includes genuinely useful interactive learning experiences rather than superficial UI motion.
+Preserve learning value during export.
+
+Static conversion rules:
+- sliders -> export default state plus 1–2 representative states with explanation
+- steppers -> export all steps as a static sequence
+- click-to-reveal -> export as expanded content or clearly labeled answer sections
+- matrix manipulators -> export representative matrix states and outputs
+- geometric visualizations -> export static diagrams plus captions
+- quizzes -> export question, options, correct answer, and brief explanation
+- input/output demos -> export sample input, sample output, and rule explanation
+
+Exports must preserve where possible:
+- titles
+- headings
+- formulas
+- worked examples
+- exercises
+- answers / solutions
+- explanatory text
+
+---
+
+## Public UI simplification
+
+Keep public pages clean.
+
+Do NOT clutter note pages with:
+- source trail sections
+- repeated reference boxes
+- internal authoring metadata
+- excessive implementation notes
+
+The public page should focus on:
+- content
+- logic
+- examples
+- exercises
+- necessary interaction
+- clean navigation
+
+Internal progress tracking belongs in `docs/`, not on public-facing pages.
+
+---
+
+## Recommended internal work documents
+
+Maintain and update these as needed:
+- `docs/reference-coverage.md`
+- `docs/chapter-coverage-map.md`
+- `docs/missing-reference-policy.md`
+- `docs/localization-strategy.md`
+- `docs/terminology-glossary.md`
+- `docs/content-parity-checklist.md`
+- `docs/theme-notes.md`
+- `docs/rendering-formatting-qa.md`
+- `docs/exercise-solution-integrity.md`
+
+These are internal maintenance documents.
+Do not surface them prominently on public pages.
+
+---
+
+## Work loop
+
+When starting work, do this in order:
+
+1. Inspect the current repository structure.
+2. Inspect the current Notes architecture.
+3. Inspect current theme behavior.
+4. Inspect existing i18n behavior and the language switcher.
+5. Inspect export behavior.
+6. Audit `reference/` thoroughly.
+7. Build or update the reference coverage map.
+8. Identify the highest-value architectural and content corrections.
+9. Fix the highest-impact structural issues first.
+10. Continue expanding detailed content.
+11. Re-scan `reference/` after major passes.
+12. Continue until all usable reference-backed material is processed.
+
+Do not stop at planning only.
+Do real implementation work.
+
+---
+
+## Completion standard
+
+Do NOT consider the work complete merely because a few chapters have been written.
+
+The work is only complete when:
+- all relevant materials in `reference/` have been audited
+- all usable content has been authored into the Notes system
+- overlapping materials have been merged intelligently
+- unsupported or incomplete parts are explicitly documented internally
+- public pages only show lightweight missing-reference notices where truly needed
+- the writing is detailed, rigorous, and textbook-like
+- interaction is embedded and pedagogically justified
+- formatting and rendering are correct
+- exercise / answer / solution logic is correct
+- dark mode and light mode both work
+- global language switching works
+- exports work
+- the Notes system is ready for future course addition
+
+---
+
+## Verification before declaring progress
+
+Check all of the following:
+
+- the public-facing math area lives under Notes
+- pages feel like serious course notes, not playful mini-lessons
+- the writing is substantially more detailed
+- coverage is not artificially limited to only early chapters
+- all reference-supported chapters / sections are represented
+- unsupported areas are handled with lightweight missing-reference notices only where needed
+- interactivity is secondary, embedded, and pedagogically justified
+- math rendering works
+- layout and formatting are correct
+- exercise / answer / solution logic is correct
+- no answer is misplaced into the wrong block
+- dark mode and light mode both render correctly
+- the global language switcher works
+- English / Traditional Chinese / Simplified Chinese are coherent
+- exports to TXT and PDF still work
+- future-course extensibility remains intact

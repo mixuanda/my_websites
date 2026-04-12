@@ -1,68 +1,220 @@
 ---
 title: "3.1 Natural numbers and Peano's axioms"
-description: "Start from counting, then see how Peano's axioms pin down the natural numbers."
+description: "Move from the informal counting picture to a formal description of the natural numbers through zero, successor, and induction."
 ---
 
-We usually meet natural numbers as counting numbers. The source notes take a
-stricter route: they describe them by a small list of axioms instead of by
-examples alone.
+At first sight, the natural numbers seem too familiar to need a definition. We
+count with them from childhood, and it is tempting to think that the list
 
-## A model of the naturals
+$$
+0, 1, 2, 3, \ldots
+$$
+
+already says everything important.
+
+The source notes take a more serious view. They ask what structure actually
+makes the natural numbers behave the way they do. The answer is not the shape of
+the symbols, but the presence of a distinguished starting point, a successor
+operation, and an induction principle.
+
+## Why a formal definition is needed
+
+If we describe the natural numbers only by writing `0, 1, 2, 3, \ldots`, then we
+have not really explained what the dots mean, why the process continues, or why
+induction works.
+
+The Peano viewpoint solves that problem by specifying the essential properties
+directly. It tells us what must be true in any model of the natural numbers,
+without depending on intuition alone.
+
+## The data of a model
 
 <Definition title="A model of the natural numbers">
-Suppose `N` is a set with a distinguished element `0` and a function
-`S : N -> N`.
+Suppose `N` is a set equipped with:
 
-The notes call `(N, 0, S)` a model of the natural numbers if:
+- a distinguished element `0 \in N`;
+- a function `S : N \to N`, called the **successor map**.
 
-- `S` is injective.
-- `S(x) != x` for every `x in N`.
-- There is no `x in N` such that `S(x) = 0`.
-- Induction holds: if a predicate is true for `0`, and it passes from `x` to
-  `S(x)`, then it is true for all `x in N`.
+The triple `(N, 0, S)` is called a **model of the natural numbers** if it
+satisfies the Peano axioms:
+
+1. `S` is injective: if `S(x) = S(y)`, then `x = y`.
+2. No element is its own successor: `S(x) \ne x` for every `x \in N`.
+3. Zero is not a successor: there is no `x \in N` with `S(x) = 0`.
+4. Induction holds: if a predicate `P` is true of `0`, and whenever `P(x)` is
+   true it follows that `P(S(x))` is true, then `P` is true for every `x \in N`.
 </Definition>
 
-The point is not that the symbol `0` magically looks like zero. The point is
-that the structure tells you how to start and how to move forward.
+The central idea is that the natural numbers are characterized by how they are
+connected, not by how they are written.
 
-## Successor comes first
+## What each axiom is doing
 
-<WorkedExample title="Reading the successor chain">
-If `0` is the starting point, then `S(0)` plays the role of `1`,
-`S(S(0))` plays the role of `2`, and so on.
+Each axiom rules out a specific kind of pathology.
 
-That is why the notes sometimes write `2` as `S(S(0))` when they want the
-definition to stay visible.
+- Injectivity says different numbers cannot suddenly merge after one successor
+  step.
+- `S(x) \ne x` rules out fixed points.
+- `S(x) \ne 0` says zero is the starting point, not something reached later.
+- Induction rules out disconnected extra pieces and ensures that every element
+  lies in the chain generated from `0`.
+
+Taken together, these axioms force the familiar picture of counting forward one
+step at a time.
+
+## Reading numbers through successor
+
+<WorkedExample title="How the usual numerals arise from `0` and `S`">
+Once `0` and the successor map are fixed, the next numbers are interpreted as
+
+$$
+1 = S(0), \qquad
+2 = S(S(0)), \qquad
+3 = S(S(S(0))),
+$$
+
+and so on.
+
+So the notation `2` is shorthand for "the element obtained by applying the
+successor map twice to `0`." The notation is convenient, but the structure comes
+first.
 </WorkedExample>
 
-<CommonMistake title="Do not treat the symbol and the role as the same thing">
-The Peano setup does not say that the written symbol `2` has some intrinsic
-meaning. It says that `2` is whatever object you reach after applying the
-successor map twice to `0`.
+This is why the notes sometimes return to successor notation when they want the
+definition to remain visible instead of being hidden behind familiar symbols.
+
+## Induction is not an extra trick
+
+Students often meet induction as a proof technique after they already believe
+the natural numbers are understood. The source notes reverse that perspective.
+
+The induction principle is part of the definition of what the natural numbers
+are. In that sense, induction is not merely a useful method for proving
+statements about `N`; it is one of the structural facts that makes `N` the
+natural numbers in the first place.
+
+<TheoremCard title="What induction gives you">
+To prove a statement `P(n)` for all `n \in N`, it is enough to show:
+
+1. `P(0)` is true.
+2. For every `x \in N`, if `P(x)` is true, then `P(S(x))` is true.
+
+Once these two facts are established, induction implies that `P(n)` holds for
+every natural number `n`.
+</TheoremCard>
+
+## A model that fails
+
+<WorkedExample title="Why a finite cycle is not a model of the natural numbers">
+Consider the set `\{0,1,2\}` with successor map
+
+$$
+S(0)=1, \qquad S(1)=2, \qquad S(2)=0.
+$$
+
+This structure does not satisfy the Peano axioms.
+
+First, `0` is a successor because `S(2)=0`, so axiom 3 fails.
+Second, induction fails as well: the subset `\{0,1,2\}` loops back on itself
+instead of extending in a one-way chain from `0`.
+
+So although the symbols look familiar, this structure is not a model of the
+natural numbers.
+</WorkedExample>
+
+This example is important because it shows why the Peano axioms are not
+ornamental. They exclude structures that resemble counting in superficial ways
+but do not behave like `N`.
+
+## Why the axioms are more informative than the dots
+
+The expression
+
+$$
+0,1,2,3,\ldots
+$$
+
+is useful notation, but by itself it does not explain why arithmetic and
+induction work.
+
+The Peano description does. It tells us:
+
+- where counting begins;
+- how one step forward is represented;
+- why there are no loops;
+- why proofs by induction reach every natural number.
+
+That is why the formal definition is more revealing than the informal list.
+
+## Common mistakes
+
+<CommonMistake title="Do not confuse the symbol with the structural role">
+The Peano viewpoint does not say that the written mark `2` has some built-in
+meaning. It says that the object denoted by `2` is the second successor of `0`.
+</CommonMistake>
+
+<CommonMistake title="Induction is not optional decoration">
+Without the induction axiom, a structure can contain a familiar successor chain
+starting from `0` and still have extra disconnected elements or loops. The
+induction principle rules those out.
 </CommonMistake>
 
 ## Quick checks
 
-<QuickCheck prompt="Which Peano axiom fails for the cycle `0 -> 1 -> 2 -> 0`?">
-Think about injectivity, fixed points, and whether `0` is ever a successor.
+<QuickCheck prompt="Why does the axiom `S(x) \ne 0` matter?">
+Explain what would go wrong if `0` were allowed to be a successor.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-The cycle breaks several axioms. `S(2) = 0`, so `0` is a successor, and the
-loop also makes induction fail. The source exercise asks you to identify the
-failed axioms.
+If `0` were a successor, then the counting chain could loop back on itself
+instead of having a genuine starting point. The structure would no longer match
+the one-way progression we expect from the natural numbers.
 </RevealSolution>
 
-<QuickCheck prompt="What does the induction axiom let you conclude once the base case and successor step are proved?">
-Say the answer in one sentence.
+<QuickCheck prompt="What does injectivity of the successor map prevent?">
+Answer in terms of two different numbers trying to behave like the same next
+number.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-You can conclude that the predicate holds for every natural number in `N`.
+It prevents two different elements from having the same successor. Without
+injectivity, distinct numbers could collapse into a single next step, which
+would destroy the usual linear counting structure.
+</RevealSolution>
+
+<QuickCheck prompt="After proving a base case and an induction step, what exactly may you conclude?">
+State the conclusion carefully.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+You may conclude that the predicate holds for every element of `N`, not merely
+for the first few examples that you checked by hand.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Show that the structure `\{0,1,2\}` with successor map `S(0)=1`, `S(1)=2`, `S(2)=2` is not a model of the natural numbers. Which axiom fails?">
+Check the axioms one by one instead of guessing.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The key failure is axiom 2, which requires `S(x) \ne x` for every `x \in N`.
+Here we have
+
+$$
+S(2)=2,
+$$
+
+so `2` is its own successor. That already prevents the structure from being a
+Peano model.
+
+You can also observe that such a fixed point is incompatible with the intended
+"always move forward" interpretation of successor.
 </RevealSolution>
 
 ## Read this first
 
-If you want a refresher on the language of relations and equivalence classes,
-review
+This note sits at the start of the construction chapter. It connects forward to
+[3.2 Induction and recursive arithmetic](/en/notes/math1090/numbers/induction-and-recursive-arithmetic)
+and uses language prepared earlier in
 [2.2 Functions and relations](/en/notes/math1090/sets/functions-relations).

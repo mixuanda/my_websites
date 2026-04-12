@@ -1,69 +1,227 @@
 ---
 title: "1.2 真值表與邏輯等價"
-description: "建立真值表、逐行比較公式，並認得永真式、永假式與邏輯等價。"
+description: "系統地建立真值表，用它檢查等價式，並分清永真式、矛盾式與偶然式。"
 ---
 
-先複習 [1.1 命題邏輯](/zh-hk/notes/math1090/logic/propositional-logic)，
-因為這一頁會沿用同樣的連接詞。
+呢一節會把命題公式變成可以逐步計算嘅對象。當原子命題一旦固定之後，
+真值表就可以透過檢查所有可能真假指派，去判斷一個複合公式到底係真定假。
 
-## 真值表做甚麼
+呢件事聽落似乎機械，但其實數學意義好清楚：如果一個公式只牽涉 `n`
+個命題變數，就只會有 `2^n` 種真假配置。真值表正正係把全部情況列晒出嚟，
+所以唔會有暗藏情況漏咗。
+
+## 真值表記錄緊乜
 
 <Definition title="真值表">
-真值表會列出一個公式在每一種變量取值下的真假。
+一個命題公式 `\varphi` 嘅 **真值表**，會列出 `\varphi` 入面所有變數嘅
+每一種真假指派，並記錄 `\varphi` 喺每一行嘅真假值。
 </Definition>
 
-它是檢查兩個公式是否永遠一致的最穩妥方法。
+例如，如果公式只涉及 `P` 同 `Q`，咁就有四行：
 
-## 先看一個例子
+$$
+(T,T), \quad (T,F), \quad (F,T), \quad (F,F).
+$$
 
-<WorkedExample title="逐行檢查蘊含">
-考慮公式 `P → Q`。
+所以真值表唔只係一張表，而係一個完整嘅分類討論。
 
-| P | Q | `P → Q` |
-| --- | --- | --- |
-| T | T | T |
-| T | F | F |
-| F | T | T |
-| F | F | T |
+## 點樣穩陣咁造一張表
 
-它只有在 `P` 真而 `Q` 假時為假。
+學生喺真值表出錯，通常唔係因為唔識某個連接詞，而係因為：
 
-<RevealSolution title="為甚麼 `P → Q` 等於 `¬P ∨ Q`">
-若 `P` 為假，`¬P ∨ Q` 已經是真。若 `P` 為真，公式便變成 `Q`。它的真假分布與 `P → Q` 完全一致。
-</RevealSolution>
+- 行冇列齊；
+- 次序混亂；
+- 未先算中間公式就急住寫最後一列。
+
+比較可靠嘅做法係：
+
+- 先列出原子命題嘅全部真假配置；
+- 先計較簡單嘅子公式；
+- 最後先計整個公式。
+
+當公式包含多重連接詞時，呢個習慣尤其重要。
+
+## 一個最重要嘅等價式
+
+<WorkedExample title="點解 `P \to Q` 同 `\neg P \lor Q` 係同一句意思">
+考慮公式 `P \to Q` 同 `\neg P \lor Q`。
+
+| `P` | `Q` | `\neg P` | `P \to Q` | `\neg P \lor Q` |
+| --- | --- | --- | --- | --- |
+| T | T | F | T | T |
+| T | F | F | F | F |
+| F | T | T | T | T |
+| F | F | T | T | T |
+
+最後兩列逐行完全一致。
+
+因此
+
+$$
+P \to Q \equiv \neg P \lor Q.
+$$
+
+呢個等價式喺初等邏輯入面非常重要。佢講清楚咗蘊含式只會喺「前件真、
+後件假」嗰一行失敗。
 </WorkedExample>
 
 ## 邏輯等價
 
 <Definition title="邏輯等價">
-若兩個公式在真值表的每一行都給出相同真假值，它們就是邏輯等價。
+如果兩個公式 `\varphi` 同 `\psi` 喺所有變數指派之下都得到相同真假值，
+就話佢哋 **邏輯等價**，記作
+
+$$
+\varphi \equiv \psi.
+$$
 </Definition>
 
-這表示你不能只看一個例子就下結論，必須整張表都一致，或者使用已知等價式。
+邏輯等價比「啱啱喺某個例子一致」強得多。佢表示兩個公式其實定義咗同一個
+truth function。
 
-<CommonMistake title="只對上一行不算證明">
-兩個公式在某一組取值下相同，不代表它們邏輯等價。你要比較所有列，或者直接使用已知等價式，例如 `P → Q ≡ ¬P ∨ Q`。
+源材料亦特別提醒我哋，以下兩種寫法唔可以混為一談：
+
+- `\varphi \leftrightarrow \psi` 係一個新嘅 Boolean 公式；
+- `\varphi \equiv \psi` 係一個關於兩個公式嘅陳述。
+
+兩者有關，但唔係同一樣嘢。
+
+<TheoremCard title="等價同雙條件">
+兩個公式 `\varphi` 同 `\psi` 邏輯等價，當且僅當
+
+$$
+\varphi \leftrightarrow \psi
+$$
+
+係一個永真式。
+</TheoremCard>
+
+所以雙條件可以當成檢查工具：如果佢嘅最後一列全部都係真，咁兩個公式就
+喺每一行都一致。
+
+## 永真式、矛盾式同偶然式
+
+<Definition title="三種基本類型">
+設 `\varphi` 係一個命題公式。
+
+- 如果 `\varphi` 喺每一行都真，佢就係 **永真式**。
+- 如果 `\varphi` 喺每一行都假，佢就係 **矛盾式**。
+- 如果 `\varphi` 有啲行真、有啲行假，佢就係 **偶然式**。
+</Definition>
+
+標準例子係：
+
+$$
+P \lor \neg P
+$$
+
+佢係永真式；而
+
+$$
+P \land \neg P
+$$
+
+就係矛盾式。
+
+呢個區分好重要，因為好多簡短邏輯論證本質上都係證明某個公式永遠真，
+或者永遠假。
+
+## 第二個例題
+
+<WorkedExample title="用真值表檢查 De Morgan 定律">
+我哋檢查
+
+$$
+\neg(P \lor Q) \equiv (\neg P) \land (\neg Q).
+$$
+
+| `P` | `Q` | `P \lor Q` | `\neg(P \lor Q)` | `\neg P` | `\neg Q` | `(\neg P) \land (\neg Q)` |
+| --- | --- | --- | --- | --- | --- | --- |
+| T | T | T | F | F | F | F |
+| T | F | T | F | F | T | F |
+| F | T | T | F | T | F | F |
+| F | F | F | T | T | T | T |
+
+最後兩列逐行一致，所以兩個公式邏輯等價。
+
+呢個例子顯示咗真值表嘅典型用途：唔只係計某一個公式，而係證明一條等價律。
+</WorkedExample>
+
+## 點解呢一節之後仲有用
+
+真值表唔係邏輯課程嘅終點，但佢訓練兩個一直都會用嘅習慣：
+
+- 把語法同意思分開處理；
+- 檢查「所有情況」而唔係只睇一兩個例子。
+
+之後學量詞、集合同證明時，呢種完整分類討論嘅要求會以更成熟嘅形式再出現。
+
+## 常見錯誤
+
+<CommonMistake title="只啱一兩行唔足夠">
+如果兩個公式只係喺某一行，甚至幾行入面一致，都唔足以證明等價。
+等價要求嘅係所有可能指派都一致。
 </CommonMistake>
 
-## 永真式與永假式
+<CommonMistake title="唔好把 `\leftrightarrow` 同 `\equiv` 當成同一個符號">
+`\varphi \leftrightarrow \psi` 係放入真值表裏面計算嘅公式。
+`\varphi \equiv \psi` 就係講兩個公式定義同一個 truth function 嘅陳述。
+</CommonMistake>
 
-<Definition title="兩類特別的公式">
-- 永真式：無論怎樣代入都是真。
-- 永假式：無論怎樣代入都是假。
-</Definition>
-
-例子：
-
-- `P ∨ ¬P` 是永真式。
-- `P ∧ ¬P` 是永假式。
-
-## 小檢查
-
-<QuickCheck prompt="`P ∧ Q` 和 `Q ∧ P` 是否邏輯等價？">
-是。它們在每一行的真假值都相同，因為 `∧` 服從交換律。
-</QuickCheck>
-
-## 讀到這裡，試一試
+## 讀到呢度，試一試
 
 <InteractiveWidget id="truth-table-builder" />
 
+## 小檢查
+
+<QuickCheck prompt="如果一個公式涉及三個命題變數，真值表要有幾多行？">
+用真假配置數量嘅規則回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+要有 `2^3 = 8` 行，因為三個變數都可以各自獨立取真或假。
+</RevealSolution>
+
+<QuickCheck prompt="點解 `P \lor \neg P` 係永真式？">
+逐行情況回答，唔好只背結論。
+</QuickCheck>
+
+<RevealSolution title="答案">
+如果 `P` 真，咁 `P \lor \neg P` 因為左邊真而成立；如果 `P` 假，
+咁 `\neg P` 真，所以析取仍然成立。每一行都係真，因此佢係永真式。
+</RevealSolution>
+
+<QuickCheck prompt="`P \land Q` 同 `P \lor Q` 是否邏輯等價？">
+指出至少一行令佢哋表現唔同。
+</QuickCheck>
+
+<RevealSolution title="答案">
+唔係。例如當 `P = T`、`Q = F` 時，有 `P \land Q = F`，
+但 `P \lor Q = T`。兩者喺呢一行唔一致，所以唔等價。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="用真值表證明 `\neg(P \land Q) \equiv (\neg P) \lor (\neg Q)`。">
+先加中間列，唔好一步跳到最後答案。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+依次建立 `P`、`Q`、`P \land Q`、`\neg(P \land Q)`、`\neg P`、`\neg Q`
+同 `(\neg P) \lor (\neg Q)` 幾列：
+
+| `P` | `Q` | `P \land Q` | `\neg(P \land Q)` | `\neg P` | `\neg Q` | `(\neg P) \lor (\neg Q)` |
+| --- | --- | --- | --- | --- | --- | --- |
+| T | T | T | F | F | F | F |
+| T | F | F | T | F | T | T |
+| F | T | F | T | T | F | T |
+| F | F | F | T | T | T | T |
+
+最後兩列完全相同，所以公式邏輯等價。
+</RevealSolution>
+
+## 建議先讀
+
+呢一頁直接承接
+[1.1 命題邏輯](/zh-hk/notes/math1090/logic/propositional-logic)，並且為
+[1.3 量詞與否定](/zh-hk/notes/math1090/logic/quantifiers-negation) 做準備。

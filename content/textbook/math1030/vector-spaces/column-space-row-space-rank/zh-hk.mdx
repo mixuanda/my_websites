@@ -1,0 +1,310 @@
+---
+title: "6.6 列空間、行空間與秩"
+description: "把矩陣同時讀成輸出的來源與線性關係的來源，再用秩去數清楚真正獨立的方向有多少。"
+---
+
+呢一節係矩陣語言同向量空間語言真正接上嘅地方。固定咗一個矩陣之後，
+自然會出現兩個子空間：
+
+- 由各列向量張成嘅子空間；
+- 由各行向量張成嘅子空間。
+
+呢兩個定義唔係形式上加上去嘅裝飾，而係直接回答以下問題：
+
+- 對於方程組 `Ax = b`，邊啲右端向量 `b` 真係可以出現？
+- 各行裏面實際上保存住幾多獨立嘅線性資訊？
+- 把冗餘完全刪走之後，仲剩返幾多個真正獨立嘅方向？
+
+答案就叫做矩陣嘅 **列空間**、**行空間** 同 **秩**。
+
+## 列空間：矩陣可以輸出啲乜？
+
+設 `A` 係一個 `m \times n` 矩陣，將佢嘅列寫成
+
+$$
+A = \begin{bmatrix} a_1 & a_2 & \cdots & a_n \end{bmatrix}.
+$$
+
+<Definition title="列空間">
+矩陣 `A` 嘅 **列空間**，記作 `C(A)`，就係 `A` 各列向量嘅張成：
+
+$$
+C(A) = \operatorname{Span}\{a_1, a_2, \ldots, a_n\}.
+$$
+
+佢係 `R^m` 嘅一個子空間。
+</Definition>
+
+呢個定義最有用嘅讀法，係經由矩陣乘法理解。
+如果 `x = (x_1, \ldots, x_n)^t`，咁就有
+
+$$
+Ax = x_1 a_1 + x_2 a_2 + \cdots + x_n a_n.
+$$
+
+所以任何形如 `Ax` 嘅向量，都是各列向量嘅線性組合。
+反過來講，任何由各列向量組成嘅線性組合，都可以寫成某個 `Ax`。
+
+<TheoremCard title="列空間就係所有可能輸出">
+對任何 `m \times n` 矩陣 `A`，
+
+$$
+C(A) = \{Ax : x \in R^n\}.
+$$
+
+因此一個向量 `b \in R^m` 屬於 `C(A)`，當且僅當方程組 `Ax = b`
+係相容、有解。
+</TheoremCard>
+
+呢個就係點解列空間咁重要。佢精確講清楚邊啲右端向量係可以由矩陣產生出嚟嘅。
+
+## 行空間：各行帶住啲乜線性資訊？
+
+如果 `A` 嘅各行係 `r_1, r_2, \ldots, r_m`，將每一行都睇成 `R^n` 裏面嘅
+row vector，咁我哋就定義第二個子空間。
+
+<Definition title="行空間">
+矩陣 `A` 嘅 **行空間**，記作 `R(A)`，就係 `A` 各行向量嘅張成：
+
+$$
+R(A) = \operatorname{Span}\{r_1, r_2, \ldots, r_m\}.
+$$
+
+佢係 `R^n` 嘅一個子空間。
+</Definition>
+
+一般情況下，呢兩個空間係住喺唔同 ambient space 入面：
+
+- `C(A)` 屬於 `R^m`，因為每一列有 `m` 個分量；
+- `R(A)` 屬於 `R^n`，因為每一行有 `n` 個分量。
+
+就算 `A` 係方陣，都唔應該把列空間同行空間混為一談。佢哋由唔同嘅向量生成，
+亦都回答唔同問題。
+
+同轉置之間有一個乾淨嘅關係：
+
+$$
+R(A) = C(A^t).
+$$
+
+所以關於行空間嘅敘述，往往可以翻譯成關於轉置矩陣列空間嘅敘述。
+
+## 行化簡時，究竟保留咗啲乜？
+
+最簡行階梯形係計算呢個主題最重要嘅工具，但一定要小心用。
+
+<TheoremCard title="行變換保留與唔保留嘅內容">
+如果 `B` 同 `A` 行等價，咁就有
+
+$$
+R(B) = R(A).
+$$
+
+但一般並唔會有
+
+$$
+C(B) = C(A).
+$$
+</TheoremCard>
+
+點解呢個分別咁重要？
+
+- 行變換會將新嘅一行寫成舊行嘅線性組合，所以行空間保持不變；
+- 行變換係整行一齊動，唔係逐列獨立處理，所以實際嘅列空間通常會改變。
+
+呢個就帶出一條學生成日背，但未必真正明白嘅規則：
+
+<Callout title="揀基底嘅規則">
+想搵 `C(A)` 嘅一組基底，要用 **原矩陣 `A` 嘅樞紐列所對應嘅列**。
+
+想搵 `R(A)` 嘅一組基底，就用 `A` 嘅 **RREF 嘅所有非零行**。
+</Callout>
+
+樞紐位置係由 RREF 讀出嚟，但列空間嘅基底向量一定要返去原矩陣入面攞。
+
+## 秩：數清楚獨立方向有幾多個
+
+列空間嘅維數叫做 **column rank**，
+行空間嘅維數叫做 **row rank**。
+線性代數一條核心定理話我哋知，呢兩個數其實相等。
+
+<Definition title="秩">
+矩陣 `A` 嘅 **秩**，就係列空間同行空間共同嘅維數：
+
+$$
+\operatorname{rank}(A) = \dim C(A) = \dim R(A).
+$$
+</Definition>
+
+當你把矩陣行化簡到 RREF 之後，樞紐列嘅數目正正就係秩。
+所以秩衡量嘅，係去除所有冗餘之後，仲保留咗幾多個獨立方向。
+
+## 例題：一次行化簡讀晒列空間、行空間同秩
+
+<WorkedExample title="由同一個矩陣讀出列空間、行空間與秩">
+考慮
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & 1 & 3 \\
+0 & 1 & 1 & 1 \\
+1 & 3 & 2 & 4
+\end{bmatrix}.
+$$
+
+行化簡得到
+
+$$
+A \sim
+\begin{bmatrix}
+1 & 0 & -1 & 1 \\
+0 & 1 & 1 & 1 \\
+0 & 0 & 0 & 0
+\end{bmatrix}
+= R.
+$$
+
+呢度有兩個樞紐列，即係第 `1` 列同第 `2` 列。
+
+將 `A` 嘅列記作
+
+$$
+c_1 =
+\begin{bmatrix}
+1 \\ 0 \\ 1
+\end{bmatrix},
+\quad
+c_2 =
+\begin{bmatrix}
+2 \\ 1 \\ 3
+\end{bmatrix},
+\quad
+c_3 =
+\begin{bmatrix}
+1 \\ 1 \\ 2
+\end{bmatrix},
+\quad
+c_4 =
+\begin{bmatrix}
+3 \\ 1 \\ 4
+\end{bmatrix}.
+$$
+
+咁列空間嘅一組基底就係
+
+$$
+\{c_1, c_2\}.
+$$
+
+因為其餘列都可以由佢哋表示：
+
+$$
+c_3 = -c_1 + c_2,
+\qquad
+c_4 = c_1 + c_2.
+$$
+
+至於行空間，就用 `R` 嘅非零行：
+
+$$
+\{(1, 0, -1, 1), (0, 1, 1, 1)\}.
+$$
+
+因此
+
+$$
+\dim C(A) = 2,
+\qquad
+\dim R(A) = 2,
+\qquad
+\operatorname{rank}(A) = 2.
+$$
+
+最後，如果
+
+$$
+b =
+\begin{bmatrix}
+5 \\ 2 \\ 7
+\end{bmatrix},
+$$
+
+咁 `b \in C(A)`，因為
+
+$$
+b = c_1 + 2c_2.
+$$
+
+等價地，方程組 `Ax = b` 係有解嘅。
+</WorkedExample>
+
+## 點解個基底規則成立？
+
+設 `R` 係 `A` 嘅 RREF。
+
+- `R` 嘅樞紐列指出邊啲欄位位置係獨立嘅；
+- 行變換會保留各列之間嘅線性關係；
+- 所以原矩陣 `A` 入面相應位置嘅列，仍然獨立，而且仍然張成整個 `C(A)`。
+
+對於行空間就更加直接：因為行變換本身保留行空間，所以 `R` 嘅非零行已經構成
+`R(A)` 嘅一組基底。
+
+## 常見錯誤
+
+<CommonMistake title="唔好用 RREF 嘅樞紐列直接做列空間基底">
+行化簡通常會改變列空間。所以雖然樞紐**位置**係由 RREF 睇出嚟，但 `C(A)`
+真正嘅基底向量一定要取自原矩陣中相應嘅列。
+</CommonMistake>
+
+另一個常見錯誤，係因為列空間同埋行空間維數一樣，就話佢哋係同一個子空間。
+維數相同只表示獨立方向嘅數目相同，唔表示兩個子空間本身相等。
+
+## 快速檢查
+
+<QuickCheck prompt="如果 `A` 係一個 `4 \times 3` 矩陣，`C(A)` 同 `R(A)` 分別住喺邊個 ambient space？">
+分別數一數一列有幾多個分量，同一行有幾多個分量。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`C(A)` 係 `R^4` 嘅子空間，因為每一列有 4 個分量。
+`R(A)` 係 `R^3` 嘅子空間，因為每一行有 3 個分量。
+</RevealSolution>
+
+<QuickCheck prompt="如果某個矩陣嘅 RREF 有三個樞紐列，佢嘅秩係幾多？">
+記住秩點樣由 RREF 讀出。
+</QuickCheck>
+
+<RevealSolution title="答案">
+秩係 `3`。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="設 `A = \begin{bmatrix} 1 & 0 & 1 \\ 0 & 1 & 1 \\ 1 & 1 & 2 \end{bmatrix}`。求秩，並求列空間嘅一組基底。">
+先做行化簡，找出樞紐列，再返去原矩陣取相應嘅列。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+行化簡會發現第三行變成零行，所以秩係 `2`。
+樞紐列係第 `1` 列同第 `2` 列。
+
+因此列空間嘅一組基底係
+
+$$
+\left\{
+\begin{bmatrix} 1 \\ 0 \\ 1 \end{bmatrix},
+\begin{bmatrix} 0 \\ 1 \\ 1 \end{bmatrix}
+\right\}.
+$$
+
+第三列係前兩列之和，所以冇提供新方向。
+</RevealSolution>
+
+## 先讀呢幾節
+
+呢一節特別依賴
+[2.3 Gaussian elimination and RREF](/zh-hk/notes/math1030/matrices/gaussian-elimination-rref)、
+[3.2 Transpose and special matrices](/zh-hk/notes/math1030/matrix-algebra/transpose-and-special-matrices)
+同
+[6.5 Basis and dimension](/zh-hk/notes/math1030/vector-spaces/basis-and-dimension)。

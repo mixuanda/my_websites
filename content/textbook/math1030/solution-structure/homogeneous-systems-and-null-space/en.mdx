@@ -1,0 +1,303 @@
+---
+title: "4.1 Homogeneous systems and null space"
+description: "Use homogeneous systems and null spaces to describe all solutions systematically, not just one solution at a time."
+---
+
+By the time you can row-reduce a system, the next question is no longer
+"Can I solve this example?" but rather "What is the structure of every
+solution?" Homogeneous systems are the cleanest place to ask that question, and
+the null space is the language that answers it.
+
+## Why homogeneous systems are special
+
+A homogeneous linear system is a system whose constant terms are all `0`. In
+matrix form, it looks like
+
+$$
+Ax = 0.
+$$
+
+This situation is special for one immediate reason: the zero vector always
+solves it.
+
+<Definition title="Homogeneous system">
+A homogeneous linear system is a linear system of the form
+
+$$
+Ax = 0.
+$$
+
+Its trivial solution is the zero vector `x = 0`.
+</Definition>
+
+The real question is whether there are also nontrivial solutions.
+
+## The null space collects all homogeneous solutions
+
+<Definition title="Null space">
+If `A` is a matrix, the null space of `A` is
+
+$$
+N(A) = \{x : Ax = 0\}.
+$$
+
+So `N(A)` is exactly the solution set of the homogeneous system `Ax = 0`.
+</Definition>
+
+This definition turns a list of solutions into a mathematical object. Instead
+of saying "here are some vectors that work," you can describe the whole set at
+once.
+
+## Row reduction tells you the shape of the null space
+
+To find `N(A)`, you solve `Ax = 0` by reducing the augmented system `[A \mid 0]`.
+The pivots tell you which variables are determined; the free variables tell you
+how many directions of freedom remain.
+
+<WorkedExample title="Solve a homogeneous system and describe the null space">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & -1 \\
+2 & 4 & -2
+\end{bmatrix}.
+$$
+
+To solve `Ax = 0`, row-reduce:
+
+$$
+\left[
+\begin{array}{ccc|c}
+1 & 2 & -1 & 0 \\
+2 & 4 & -2 & 0
+\end{array}
+\right]
+\sim
+\left[
+\begin{array}{ccc|c}
+1 & 2 & -1 & 0 \\
+0 & 0 & 0 & 0
+\end{array}
+\right].
+$$
+
+So the equation is
+
+$$
+x_1 + 2x_2 - x_3 = 0.
+$$
+
+Take `x_2 = s` and `x_3 = t` as free variables. Then
+
+$$
+x_1 = -2s + t.
+$$
+
+Therefore
+
+$$
+x =
+\begin{bmatrix}
+-2s + t \\
+s \\
+t
+\end{bmatrix}
+=
+s
+\begin{bmatrix}
+-2 \\ 1 \\ 0
+\end{bmatrix}
++
+t
+\begin{bmatrix}
+1 \\ 0 \\ 1
+\end{bmatrix}.
+$$
+
+So
+
+$$
+N(A) =
+\operatorname{Span}
+\left\{
+\begin{bmatrix}
+-2 \\ 1 \\ 0
+\end{bmatrix},
+\begin{bmatrix}
+1 \\ 0 \\ 1
+\end{bmatrix}
+\right\}.
+$$
+</WorkedExample>
+
+This example shows why null-space descriptions are powerful. They tell you not
+only whether solutions exist, but how every solution is built.
+
+## Homogeneous solutions control nonhomogeneous ones
+
+The same idea explains the structure of a system `Ax = b` when it is
+consistent.
+
+<TheoremCard title="Every solution is a particular solution plus a null-space vector">
+Suppose `x_p` is one particular solution of `Ax = b`.
+
+Then a vector `x` solves `Ax = b` if and only if
+
+$$
+x = x_p + v
+$$
+
+for some `v \in N(A)`.
+</TheoremCard>
+
+This is the key structural theorem behind free-variable formulas.
+
+<CollapsibleProof title="Why the full solution set has the form `x_p + N(A)`">
+First suppose `x` is any solution of `Ax = b`. Then
+
+$$
+Ax = b
+\qquad \text{and} \qquad
+Ax_p = b.
+$$
+
+Subtracting gives
+
+$$
+A(x - x_p) = 0.
+$$
+
+So `x - x_p \in N(A)`, which means `x = x_p + v` for some `v \in N(A)`.
+
+Conversely, if `v \in N(A)`, then `Av = 0`. Hence
+
+$$
+A(x_p + v) = Ax_p + Av = b + 0 = b.
+$$
+
+So every vector of the form `x_p + v` is also a solution.
+</CollapsibleProof>
+
+## A nonhomogeneous example
+
+<WorkedExample title="Describe all solutions as a translate of the null space">
+Suppose the system `Ax = b` has one particular solution
+
+$$
+x_p =
+\begin{bmatrix}
+3 \\ 0 \\ 1
+\end{bmatrix},
+$$
+
+and suppose
+
+$$
+N(A) =
+\operatorname{Span}
+\left\{
+\begin{bmatrix}
+1 \\ -1 \\ 0
+\end{bmatrix}
+\right\}.
+$$
+
+Then every solution has the form
+
+$$
+x =
+\begin{bmatrix}
+3 \\ 0 \\ 1
+\end{bmatrix}
++
+t
+\begin{bmatrix}
+1 \\ -1 \\ 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+3 + t \\ -t \\ 1
+\end{bmatrix},
+\qquad t \in R.
+$$
+
+The null space gives the direction of freedom; the particular solution tells
+you where that family of solutions sits.
+</WorkedExample>
+
+## What null space says about uniqueness
+
+The structure theorem gives an immediate test.
+
+- If `N(A) = \{0\}`, then a consistent system `Ax = b` has exactly one solution.
+- If `N(A)` contains a nonzero vector, then every consistent system `Ax = b`
+  has infinitely many solutions, because you can add scalar multiples of that
+  vector to a particular solution.
+
+So null space measures the hidden freedom in the system.
+
+## Common mistakes
+
+<CommonMistake title="The zero vector always belongs to the null space">
+Students sometimes think a homogeneous system can have no solution. That is
+impossible, because `x = 0` always satisfies `Ax = 0`.
+</CommonMistake>
+
+<CommonMistake title="A particular solution is not the whole solution set">
+Finding one vector `x_p` with `Ax_p = b` is only the start. You still need to
+add the whole null space to describe every solution.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Why does `Ax = 0` always have at least one solution?">
+Answer in one sentence.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Because the zero vector always satisfies `A0 = 0`.
+</RevealSolution>
+
+<QuickCheck prompt="If `N(A) = \{0\}` and `Ax = b` is consistent, how many solutions does it have?">
+Use the theorem from this note.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Exactly one, because there is no nonzero null-space vector to add to a
+particular solution.
+</RevealSolution>
+
+## Exercise
+
+<QuickCheck prompt="Suppose `x_p` solves `Ax = b` and `u, v \in N(A)`. Why do `x_p + u` and `x_p + v` both solve `Ax = b`?">
+Write one line using linearity.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Because `Au = 0` and `Av = 0`, we have
+
+$$
+A(x_p + u) = Ax_p + Au = b + 0 = b,
+$$
+
+and similarly
+
+$$
+A(x_p + v) = Ax_p + Av = b + 0 = b.
+$$
+
+So adding any null-space vector to a particular solution keeps you inside the
+solution set.
+</RevealSolution>
+
+## Related notes
+
+This note builds on
+[2.3 Gaussian elimination and RREF](/en/notes/math1030/matrices/gaussian-elimination-rref)
+and [2.4 Solution-set types](/en/notes/math1030/matrices/solution-set-types).
+It prepares the way for
+[5.1 Invertible matrices](/en/notes/math1030/invertibility/invertible-matrices)
+and connects naturally with
+[6.2 Subspaces](/en/notes/math1030/vector-spaces/subspaces).
