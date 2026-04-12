@@ -20,6 +20,57 @@ The tables below use these status labels:
 so they are intentionally excluded from the tables. `reference/rerference/` is
 currently empty.
 
+## Checkpoint log
+
+This log records the latest implementation checkpoints that affected source
+coverage decisions or the next source-backed target.
+
+### 2026-04-13 checkpoint 1: rendering and note-block titles
+
+This checkpoint focused on the render path rather than new source ingestion,
+but it still changes the immediate coverage work order.
+
+- Checkpoint name: rendering and note-block title formatting
+- What was inspected:
+  `AGENTS.md`, `contentlayer.config.ts`, `src/app/globals.css`,
+  `src/components/Mdx.tsx`, `src/components/textbook/TextbookMdx.tsx`,
+  `src/components/textbook/mdx-components.tsx`,
+  `src/components/textbook/mdx-blocks.tsx`,
+  `src/app/[locale]/notes/[course]/[chapter]/[unit]/page.tsx`,
+  representative `content/textbook/**` units, and current reference coverage
+  notes.
+- What was changed:
+  no source coverage state changed yet; the active work shifted to a rendering
+  fix so note titles and quick-check prompts can display inline math and
+  notation instead of raw backticks.
+- What was verified:
+  a KaTeX smoke check with the local Windows Node runtime succeeded, and the
+  malformed zh-HK basis prompt was corrected in source.
+- Files touched:
+  `src/components/textbook/mdx-blocks.tsx`,
+  `content/textbook/math1030/vector-spaces/basis-and-dimension/zh-hk.mdx`,
+  `docs/reference-coverage.md`,
+  `docs/rendering-formatting-qa.md`,
+  `docs/exercise-solution-integrity.md`,
+  `docs/content-parity-checklist.md`.
+- Remaining issues:
+  source-backed coverage remains incomplete beyond the currently authored
+  chapters, and the next structural checkpoint is still exercise / solution
+  integrity.
+- Exact next target:
+  normalize the six MATH1090 set-theory units whose `QuickCheck` blocks contain
+  answers directly instead of pairing each prompt with a following
+  `RevealSolution`.
+- Commit created:
+  pending at the time of this doc update; the checkpoint commit follows this
+  documentation step.
+- Push succeeded:
+  pending at the time of this doc update; push is scheduled immediately after
+  the checkpoint commit.
+- Current resume point:
+  start checkpoint 2 with the six MATH1090 set-theory files and the
+  `QuickCheck` / `RevealSolution` pairing audit.
+
 ## Current public note boundary
 
 After the current implementation pass, the live MATH1030 notes extend through

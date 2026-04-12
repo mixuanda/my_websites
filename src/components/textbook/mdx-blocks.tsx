@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import katex from "katex";
+import { Fragment, useMemo, useState } from "react";
 import { ChevronDown, ChevronUp, CircleAlert, CircleCheck, Lightbulb, Sigma } from "lucide-react";
 import { GlassPanel } from "@/components/glass";
 import { Button } from "@/components/ui/button";
@@ -51,6 +52,85 @@ const blockLabels = {
   },
 } as const satisfies Record<string, LocalizedText>;
 
+function renderInlineMath(expression: string) {
+  try {
+    return katex.renderToString(expression, {
+      displayMode: false,
+      strict: "ignore",
+      throwOnError: true,
+    });
+  } catch {
+    return null;
+  }
+}
+
+function InlineRichText({ text }: { text: string }) {
+  const nodes = useMemo(() => {
+    const parts: React.ReactNode[] = [];
+    const matcher = /(`([^`]+)`)|(\$([^$]+)\$)/g;
+    let cursor = 0;
+    let key = 0;
+    let match: RegExpExecArray | null;
+
+    while ((match = matcher.exec(text)) !== null) {
+      const [rawMatch, codeMatch, codeValue, mathMatch, mathValue] = match;
+      const startIndex = match.index;
+
+      if (startIndex > cursor) {
+        parts.push(
+          <Fragment key={`text-${key}`}>
+            {text.slice(cursor, startIndex)}
+          </Fragment>
+        );
+        key += 1;
+      }
+
+      const rawValue = codeValue ?? mathValue ?? "";
+      const renderedMath = renderInlineMath(rawValue);
+
+      if (renderedMath) {
+        parts.push(
+          <span
+            key={`math-${key}`}
+            className="inline-katex-rich align-middle [&_.katex]:text-[1em]"
+            dangerouslySetInnerHTML={{ __html: renderedMath }}
+          />
+        );
+      } else if (codeMatch) {
+        parts.push(
+          <code
+            key={`code-${key}`}
+            className="rounded bg-muted/50 px-1.5 py-0.5 font-mono text-[0.9em]"
+          >
+            {rawValue}
+          </code>
+        );
+      } else if (mathMatch) {
+        parts.push(
+          <Fragment key={`fallback-${key}`}>
+            {rawMatch}
+          </Fragment>
+        );
+      }
+
+      key += 1;
+      cursor = startIndex + rawMatch.length;
+    }
+
+    if (cursor < text.length) {
+      parts.push(
+        <Fragment key={`text-${key}`}>
+          {text.slice(cursor)}
+        </Fragment>
+      );
+    }
+
+    return parts;
+  }, [text]);
+
+  return <>{nodes}</>;
+}
+
 function BlockFrame({
   accentClassName,
   children,
@@ -72,7 +152,11 @@ function BlockFrame({
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
             {label}
           </p>
-          {title ? <h4 className="mt-1 text-lg font-semibold">{title}</h4> : null}
+          {title ? (
+            <h4 className="mt-1 text-lg font-semibold leading-7">
+              <InlineRichText text={title} />
+            </h4>
+          ) : null}
           <div className="mt-3 space-y-3 text-sm leading-7 text-foreground/95">
             {children}
           </div>
@@ -189,7 +273,11 @@ function ToggleBlock({
           <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
             {label}
           </p>
-          {title ? <h4 className="mt-1 text-lg font-semibold">{title}</h4> : null}
+          {title ? (
+            <h4 className="mt-1 text-lg font-semibold leading-7">
+              <InlineRichText text={title} />
+            </h4>
+          ) : null}
         </div>
         <Button
           onClick={() => setOpen((value) => !value)}

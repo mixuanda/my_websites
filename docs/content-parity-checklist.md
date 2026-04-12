@@ -19,6 +19,50 @@ The following units are currently present in EN, zh-HK, and zh-CN.
   6.2 subspaces, 6.3 linear combinations and span, 6.4 linear dependence and
   independence, 6.5 basis and dimension
 
+## Checkpoint log
+
+This log records parity-relevant fixes and the next localization target.
+
+### 2026-04-13 checkpoint 1: render parity in note-block prompts
+
+This checkpoint fixed a cross-locale rendering defect and one zh-HK source typo
+that affected prompt display parity.
+
+- Checkpoint name: render parity in note-block prompts
+- What was inspected:
+  `src/components/textbook/mdx-blocks.tsx`, representative EN / zh-HK / zh-CN
+  textbook files, and the zh-HK basis note prompt around the exercise section.
+- What was changed:
+  note-block prompt and title props now render inline notation consistently
+  instead of showing literal backticks, and the zh-HK basis note no longer has
+  the stray backtick in its final exercise prompt.
+- What was verified:
+  the zh-HK basis note now matches the EN and zh-CN prompt structure for that
+  exercise, and the shared block renderer now applies to all three locales.
+- Files touched:
+  `src/components/textbook/mdx-blocks.tsx`,
+  `content/textbook/math1030/vector-spaces/basis-and-dimension/zh-hk.mdx`,
+  `docs/content-parity-checklist.md`,
+  `docs/reference-coverage.md`,
+  `docs/rendering-formatting-qa.md`,
+  `docs/exercise-solution-integrity.md`.
+- Remaining issues:
+  the six set-theory files listed in
+  `docs/exercise-solution-integrity.md` still need prompt / answer parity
+  cleanup across all three languages.
+- Exact next target:
+  keep EN, zh-HK, and zh-CN aligned while normalizing the MATH1090 set-theory
+  quick checks into prompt plus `RevealSolution` pairs.
+- Commit created:
+  pending at the time of this doc update; the checkpoint commit follows this
+  documentation step.
+- Push succeeded:
+  pending at the time of this doc update; push is scheduled immediately after
+  the checkpoint commit.
+- Current resume point:
+  start parity-preserving edits in the three-language MATH1090 set-theory
+  notes.
+
 ## Unit checklist
 
 Run this checklist on every localized unit.
