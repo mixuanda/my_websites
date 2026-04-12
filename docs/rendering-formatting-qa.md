@@ -93,9 +93,49 @@ pattern that made the reveal UI misleading on six pages.
   perform a source-backed content-deepening pass on
   `2.2 Augmented matrices and row operations`.
 - Commit created:
+  yes. Created as `49345a4` with message
+  `Fix set note reveal integrity`.
+- Push succeeded:
+  no. The batch-mode retry failed with
+  `ssh: Could not resolve hostname github.com: Temporary failure in name
+  resolution`.
+- Current resume point:
+  commit checkpoint 2, retry push, then continue with the row-operation unit.
+
+### 2026-04-13 checkpoint 3: structural deepening of MATH1030 unit 2.2
+
+This checkpoint focused on note structure and formatting consistency while
+expanding the thin `2.2` unit into a full article-style page.
+
+- Checkpoint name: structural deepening of MATH1030 unit 2.2
+- What was inspected:
+  the three localized `2.2` files, the extracted MATH1030 source PDFs, and the
+  resulting diffs after the rewrite.
+- What was changed:
+  replaced the short stub with a structured note containing introduction,
+  definitions, theorem, proof rationale, worked example, common mistakes, quick
+  checks, exercises, and prerequisite links across EN, zh-HK, and zh-CN.
+  Also extended the textbook MDX code renderer so inline code spans can render
+  math-like notation inside note bodies instead of showing raw markup.
+- What was verified:
+  the localized files now share the same major sections and supporting blocks;
+  formulas, matrix layouts, and exercise ordering remain parallel across the
+  three versions.
+- Files touched:
+  the three localized `2.2` note files,
+  `src/components/textbook/mdx-blocks.tsx`,
+  `src/components/textbook/mdx-components.tsx`,
+  and the four tracking documents.
+- Remaining issues:
+  broader representative formatting QA is still needed across other units, and
+  full build verification remains blocked by the shell environment.
+- Exact next target:
+  run the same structural pass on another thin source-backed unit, most likely
+  `2.3 Gaussian elimination and RREF` or a nearby MATH1030 chapter.
+- Commit created:
   pending at the time of this doc update; the checkpoint commit follows this
   documentation step.
 - Push succeeded:
   pending at the time of this doc update; push will be retried in batch mode.
 - Current resume point:
-  commit checkpoint 2, retry push, then continue with the row-operation unit.
+  commit the `2.2` rewrite and continue the chapter 2 structural audit.

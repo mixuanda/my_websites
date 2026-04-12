@@ -6,6 +6,7 @@ import {
   Definition,
   QuickCheck,
   RevealSolution,
+  TextbookInlineCode,
   TheoremCard,
   WorkedExample,
 } from "./mdx-blocks";
@@ -24,6 +25,9 @@ export function createTextbookMdxComponents(locale: Locale): MDXComponents {
     ),
     InteractiveWidget: (props: { id: string }) => (
       <InteractiveWidget locale={locale} {...props} />
+    ),
+    code: (props: { children?: React.ReactNode; className?: string }) => (
+      <TextbookInlineCode {...props} />
     ),
     QuickCheck: (props: { children?: React.ReactNode; prompt: string }) => (
       <QuickCheck locale={locale} {...props} />

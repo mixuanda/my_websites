@@ -89,13 +89,50 @@ languages in the MATH1090 set chapter.
   preserve three-language structure while expanding the thin MATH1030 row
   operations note from the reference PDFs.
 - Commit created:
+  yes. Created as `49345a4` with message
+  `Fix set note reveal integrity`.
+- Push succeeded:
+  no. The batch-mode retry failed with
+  `ssh: Could not resolve hostname github.com: Temporary failure in name
+  resolution`.
+- Current resume point:
+  commit checkpoint 2 and continue with a three-language-aware content
+  deepening pass.
+
+### 2026-04-13 checkpoint 3: parity-preserving rewrite of MATH1030 unit 2.2
+
+This checkpoint deepened one source-backed MATH1030 note while preserving EN,
+zh-HK, and zh-CN parity at the section level.
+
+- Checkpoint name: parity-preserving rewrite of MATH1030 unit 2.2
+- What was inspected:
+  EN, zh-HK, and zh-CN versions of `augmented-matrices-row-operations`, plus
+  the extracted reference text used to guide the rewrite.
+- What was changed:
+  rewrote all three localized files together so they now share the same article
+  structure, theorem flow, worked example, common mistakes, quick checks, and
+  guided exercises.
+- What was verified:
+  the three locales keep aligned section order and mathematical content, and the
+  new exercises appear in the same sequence with matching reveal blocks.
+- Files touched:
+  the three localized `2.2` note files,
+  `src/components/textbook/mdx-blocks.tsx`,
+  `src/components/textbook/mdx-components.tsx`,
+  and the four tracking documents.
+- Remaining issues:
+  later units still need the same parity discipline as they are expanded.
+- Exact next target:
+  keep EN, zh-HK, and zh-CN aligned while deepening the next source-backed
+  MATH1030 unit in the chapter 2 to 3 sequence.
+- Commit created:
   pending at the time of this doc update; the checkpoint commit follows this
   documentation step.
 - Push succeeded:
   pending at the time of this doc update; push will be retried in batch mode.
 - Current resume point:
-  commit checkpoint 2 and continue with a three-language-aware content
-  deepening pass.
+  commit the `2.2` parity-preserving rewrite and continue with the next
+  three-language content pass.
 
 ## Unit checklist
 

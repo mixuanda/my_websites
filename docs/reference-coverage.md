@@ -96,13 +96,61 @@ content integrity repair in the existing MATH1090 set-theory coverage.
   `reference/MATH1030/1030gi-n02-01.pdf`, related tutorial material, and the
   master note packet where relevant.
 - Commit created:
+  yes. Created as `49345a4` with message
+  `Fix set note reveal integrity`.
+- Push succeeded:
+  no. The batch-mode retry failed with
+  `ssh: Could not resolve hostname github.com: Temporary failure in name
+  resolution`.
+- Current resume point:
+  commit this integrity checkpoint, retry push, then read the row-operation
+  PDFs for the next content cycle.
+
+### 2026-04-13 checkpoint 3: deepen the row-operations unit
+
+This checkpoint substantially expanded an existing source-backed MATH1030 unit
+instead of adding a brand-new route.
+
+- Checkpoint name: deepen the row-operations unit
+- What was inspected:
+  `reference/MATH1030/1030gi-n02-01.pdf`,
+  `reference/MATH1030/MATH1030-Notes.pdf`,
+  `reference/MATH1030/Practice Set 1_Set review and Solving Linear system.pdf`,
+  the existing three localized `2.2 Augmented matrices and row operations`
+  files, and the catalog metadata for that unit.
+- What was changed:
+  rewrote the EN, zh-HK, and zh-CN versions of the `2.2` note so the unit now
+  covers `Ax = b`, `[A|b]`, the three elementary row operations, reversibility,
+  a source-backed worked elimination example, structured mistakes, quick checks,
+  and guided exercises. Folded in the current textbook inline-math renderer so
+  body-level code spans can display mathematical notation consistently.
+- What was verified:
+  cross-checked the new sections against the extracted PDF text; confirmed the
+  three locales keep the same note structure and exercise flow; inspected the
+  final diff to confirm the note is substantially deeper than the previous stub.
+- Files touched:
+  `content/textbook/math1030/matrices/augmented-matrices-row-operations/en.mdx`,
+  `content/textbook/math1030/matrices/augmented-matrices-row-operations/zh-hk.mdx`,
+  `content/textbook/math1030/matrices/augmented-matrices-row-operations/zh-cn.mdx`,
+  `src/components/textbook/mdx-blocks.tsx`,
+  `src/components/textbook/mdx-components.tsx`,
+  and the four tracking documents.
+- Remaining issues:
+  many later source-backed MATH1030 chapters remain unauthored, and several
+  earlier authored units are still thinner than the available reference
+  material.
+- Exact next target:
+  continue the chapter 2 matrix sequence with a formatting and content pass on
+  `2.3 Gaussian elimination and RREF`, or deepen the MATH1030 invertibility
+  sequence from the `n03-*` lecture notes.
+- Commit created:
   pending at the time of this doc update; the checkpoint commit follows this
   documentation step.
 - Push succeeded:
   pending at the time of this doc update; push will be retried in batch mode.
 - Current resume point:
-  commit this integrity checkpoint, retry push, then read the row-operation
-  PDFs for the next content cycle.
+  commit the `2.2` expansion, retry push, then continue with the next highest
+  value source-backed MATH1030 unit.
 
 ## Current public note boundary
 

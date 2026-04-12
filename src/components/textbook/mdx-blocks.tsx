@@ -52,9 +52,47 @@ const blockLabels = {
   },
 } as const satisfies Record<string, LocalizedText>;
 
+const fileLikePattern = /\.[A-Za-z0-9]{2,4}\b|[/#]/;
+const mathIndicatorPattern =
+  /\\[A-Za-z]+|[_^=+\-*/<>≤≥→∨∧¬∈∉⊆⊂⊇⊃≈≠×÷∩∪∅]/;
+const shortMathPattern =
+  /^(?:[A-Z]|[A-Z]_[A-Za-z0-9{}]+|[A-Z]\^[A-Za-z0-9{}]+|sqrt\(.+\)|sup\(.+\)|inf\(.+\)|diag\(.+\)|Span\{.+\}|I_[A-Za-z0-9{}]+)$/;
+
+function normalizeInlineMath(expression: string) {
+  let normalized = expression.trim();
+
+  normalized = normalized.replace(/^sqrt\((.+)\)$/u, "\\sqrt{$1}");
+  normalized = normalized.replace(/^sup\((.+)\)$/u, "\\sup($1)");
+  normalized = normalized.replace(/^inf\((.+)\)$/u, "\\inf($1)");
+  normalized = normalized.replace(
+    /^diag\((.+)\)$/u,
+    "\\operatorname{diag}($1)"
+  );
+  normalized = normalized.replace(
+    /^Span\{(.+)\}$/u,
+    "\\operatorname{Span}\\{$1\\}"
+  );
+
+  return normalized;
+}
+
+function shouldRenderAsMath(expression: string) {
+  const trimmed = expression.trim();
+
+  if (!trimmed || trimmed.includes("\n") || fileLikePattern.test(trimmed)) {
+    return false;
+  }
+
+  if (/[A-Za-z]{4,}\s+[A-Za-z]{4,}/u.test(trimmed) && !mathIndicatorPattern.test(trimmed)) {
+    return false;
+  }
+
+  return mathIndicatorPattern.test(trimmed) || shortMathPattern.test(trimmed);
+}
+
 function renderInlineMath(expression: string) {
   try {
-    return katex.renderToString(expression, {
+    return katex.renderToString(normalizeInlineMath(expression), {
       displayMode: false,
       strict: "ignore",
       throwOnError: true,
@@ -86,7 +124,10 @@ function InlineRichText({ text }: { text: string }) {
       }
 
       const rawValue = codeValue ?? mathValue ?? "";
-      const renderedMath = renderInlineMath(rawValue);
+      const renderedMath =
+        mathMatch || shouldRenderAsMath(rawValue)
+          ? renderInlineMath(rawValue)
+          : null;
 
       if (renderedMath) {
         parts.push(
@@ -129,6 +170,57 @@ function InlineRichText({ text }: { text: string }) {
   }, [text]);
 
   return <>{nodes}</>;
+}
+
+function getInlineChildrenText(children: React.ReactNode) {
+  if (typeof children === "string" || typeof children === "number") {
+    return String(children);
+  }
+
+  if (Array.isArray(children)) {
+    const values = children
+      .map((child) => {
+        if (typeof child === "string" || typeof child === "number") {
+          return String(child);
+        }
+
+        return null;
+      })
+      .filter((value): value is string => value !== null);
+
+    return values.length === children.length ? values.join("") : null;
+  }
+
+  return null;
+}
+
+export function TextbookInlineCode({
+  children,
+  className,
+}: {
+  children?: React.ReactNode;
+  className?: string;
+}) {
+  const content = getInlineChildrenText(children);
+  const renderedMath =
+    !className && content && shouldRenderAsMath(content)
+      ? renderInlineMath(content)
+      : null;
+
+  if (renderedMath) {
+    return (
+      <span
+        className={cn("inline-katex-rich align-middle [&_.katex]:text-[1em]", className)}
+        dangerouslySetInnerHTML={{ __html: renderedMath }}
+      />
+    );
+  }
+
+  return (
+    <code className={cn("rounded bg-muted/50 px-1.5 py-0.5 font-mono text-[0.9em]", className)}>
+      {children}
+    </code>
+  );
 }
 
 function BlockFrame({

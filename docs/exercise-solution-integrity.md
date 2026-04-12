@@ -96,10 +96,46 @@ languages.
   deepen one of the thinnest source-backed MATH1030 units using the repository
   reference PDFs, starting with `2.2 Augmented matrices and row operations`.
 - Commit created:
+  yes. Created as `49345a4` with message
+  `Fix set note reveal integrity`.
+- Push succeeded:
+  no. The batch-mode retry failed with
+  `ssh: Could not resolve hostname github.com: Temporary failure in name
+  resolution`.
+- Current resume point:
+  commit the six-file exercise fix, retry push, then open the MATH1030 row
+  operation references for the next content pass.
+
+### 2026-04-13 checkpoint 3: exercise structure in MATH1030 unit 2.2
+
+This checkpoint added new quick checks and guided solutions while keeping the
+prompt / reveal pairing intact.
+
+- Checkpoint name: exercise structure in MATH1030 unit 2.2
+- What was inspected:
+  the rewritten EN, zh-HK, and zh-CN versions of
+  `augmented-matrices-row-operations`.
+- What was changed:
+  added paired `QuickCheck` and `RevealSolution` blocks for conceptual checks
+  and guided exercises in all three locales.
+- What was verified:
+  each new prompt is followed by the correct solution block, and the three
+  locales keep the same exercise order and answer structure.
+- Files touched:
+  the three localized `2.2` note files,
+  `src/components/textbook/mdx-blocks.tsx`,
+  `src/components/textbook/mdx-components.tsx`,
+  and the four tracking documents.
+- Remaining issues:
+  wider exercise QA is still needed across more MATH1030 and MATH1090 units.
+- Exact next target:
+  carry the same prompt / reveal audit into the next deepened unit rather than
+  waiting for a later cleanup pass.
+- Commit created:
   pending at the time of this doc update; the checkpoint commit follows this
   documentation step.
 - Push succeeded:
   pending at the time of this doc update; push will be retried in batch mode.
 - Current resume point:
-  commit the six-file exercise fix, retry push, then open the MATH1030 row
-  operation references for the next content pass.
+  commit the `2.2` content expansion and keep exercise integrity coupled to the
+  next content rewrite.

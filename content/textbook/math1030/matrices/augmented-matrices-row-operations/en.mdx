@@ -1,78 +1,332 @@
 ---
 title: "2.2 Augmented matrices and row operations"
-description: "Translate a system into an augmented matrix and see what each row operation preserves."
+description: "Translate a system into `Ax = b`, package it as `[A|b]`, and understand exactly why elementary row operations preserve the solution set."
 ---
 
-## From equations to rows
+A linear system contains two kinds of data: the coefficients attached to the
+variables, and the constants on the right-hand side. When we solve the system,
+the variables, plus signs, and equality signs stay in the same pattern; what
+changes are the numerical entries.
 
-When we write a linear system as a matrix, each equation becomes one row.
-The coefficients go first, and the constants go in the last column.
+That is why augmented matrices matter. They let us store exactly the data that
+row operations modify, without rewriting every variable symbol after each step.
 
-That full table is called an augmented matrix.
+## Why the augmented matrix is the right package
 
-<Definition title="Augmented matrix">
-An augmented matrix places the coefficient matrix and the constant column in one
-table so you can row-reduce the whole system at once.
+Consider a system of `m` linear equations in `n` unknowns:
+
+$$
+\begin{aligned}
+a_{11}x_1 + a_{12}x_2 + \cdots + a_{1n}x_n &= b_1, \\
+a_{21}x_1 + a_{22}x_2 + \cdots + a_{2n}x_n &= b_2, \\
+&\ \vdots \\
+a_{m1}x_1 + a_{m2}x_2 + \cdots + a_{mn}x_n &= b_m.
+\end{aligned}
+$$
+
+The source notes rewrite this system in three parallel ways:
+
+- as a list of equations;
+- as a matrix equation `Ax = b`;
+- as a single augmented matrix `[A|b]`.
+
+<Definition title="Coefficient matrix, constant vector, and augmented matrix">
+For a system `Ax = b`:
+
+- `A` is the **coefficient matrix**;
+- `b` is the **vector of constants**;
+- `[A|b]` is the **augmented matrix**, formed by placing the constant column
+  beside the coefficient matrix.
+
+The vertical bar is bookkeeping. It reminds you which column came from the
+right-hand side, but it does not create a new kind of matrix operation.
 </Definition>
 
-## The three row operations
+There is also a useful column-vector reading. If the columns of `A` are
+`a_1, a_2, \ldots, a_n`, then
 
-The local notes use three elementary row operations:
+$$
+Ax = b
+\quad\Longleftrightarrow\quad
+x_1 a_1 + x_2 a_2 + \cdots + x_n a_n = b.
+$$
 
-1. swap two rows,
-2. multiply a row by a nonzero number,
-3. add a multiple of one row to another row.
+This matters later when we study span and column space. For now, it already
+explains why a linear system can be read either row by row or column by column.
 
-These operations preserve the solution set, so they are safe for solving a
-system.
-
-<WorkedExample title="Turn a system into an augmented matrix">
+<WorkedExample title="Write one system in all three forms">
 Consider
 
 $$
-x + 2y = 5, \qquad 3x - y = 4.
+\begin{aligned}
+x_1 + 2x_2 + 2x_3 &= 4, \\
+x_1 + 3x_2 + 3x_3 &= 5, \\
+2x_1 + 6x_2 + 5x_3 &= 6.
+\end{aligned}
 $$
 
-Its augmented matrix is
+Its coefficient matrix and constant vector are
 
 $$
+A =
 \begin{bmatrix}
-1 & 2 & | & 5 \\
-3 & -1 & | & 4
+1 & 2 & 2 \\
+1 & 3 & 3 \\
+2 & 6 & 5
+\end{bmatrix},
+\qquad
+b =
+\begin{bmatrix}
+4 \\
+5 \\
+6
 \end{bmatrix}.
 $$
 
-Now use the row operation `R_2 \leftarrow R_2 - 3R_1` to begin eliminating the
-`x`-term in the second row.
+So the system may be written as `Ax = b`, where
+
+$$
+x =
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{bmatrix},
+$$
+
+and its augmented matrix is
+
+$$
+\left[
+\begin{array}{ccc|c}
+1 & 2 & 2 & 4 \\
+1 & 3 & 3 & 5 \\
+2 & 6 & 5 & 6
+\end{array}
+\right].
+$$
 </WorkedExample>
 
-## Why the row operations are allowed
+## The three elementary row operations
 
-Row operations are just a matrix version of equivalent equation operations.
-They do not change which number lists satisfy the system.
+The local notes define exactly three row operations:
 
-Use the explorer below while the three operations are still fresh. The point is
-to see that editing a row means editing one equation in a controlled way, not
-scrambling the problem.
+1. swap two rows;
+2. multiply one row by a nonzero scalar;
+3. add a multiple of one row to another row.
+
+The phrase “nonzero” in operation 2 is essential. Multiplying a row by `0`
+would erase the equation instead of rewriting it equivalently, so it would no
+longer be reversible.
+
+<Definition title="Elementary row operations">
+The allowed operations on an augmented matrix are:
+
+1. `R_i \leftrightarrow R_j`
+2. `R_i \leftarrow \alpha R_i`, where `\alpha \ne 0`
+3. `R_j \leftarrow \alpha R_i + R_j`
+
+These are called **elementary row operations**.
+</Definition>
+
+## Why these operations preserve the solution set
+
+The serious point is not that row operations make a matrix “look nicer.” The
+serious point is that they preserve the set of solutions.
+
+<TheoremCard title="Row-equivalent augmented matrices represent equivalent systems">
+If one augmented matrix is obtained from another by a sequence of elementary
+row operations, then the two corresponding systems are equivalent: they have
+exactly the same solution set.
+</TheoremCard>
+
+<CollapsibleProof title="Why each elementary row operation is safe">
+Each operation is just an equation operation written in matrix form.
+
+- Swapping two rows only changes the order in which the equations are listed.
+  A number tuple solves all equations before the swap if and only if it solves
+  all equations after the swap.
+- Multiplying a row by a nonzero scalar multiplies both sides of one equation by
+  the same nonzero number. That produces an equivalent equation, and the move is
+  reversible by multiplying by `1 / \alpha`.
+- Replacing `R_j` by `\alpha R_i + R_j` means replacing equation `j` by
+  “`alpha ×` equation `i` plus equation `j`.” Any solution of the original
+  system still satisfies the new equation, and the move is reversible by adding
+  `-\alpha` times row `i` back to row `j`.
+
+So every elementary row operation preserves the solution set, and therefore any
+finite sequence of them does the same.
+</CollapsibleProof>
+
+The local notes also stress reversibility. This is worth remembering because it
+separates genuine equivalence moves from destructive shortcuts.
+
+## Read each row operation as an equation operation
+
+When you apply a row operation, do not think “I am changing numbers in a
+table.” Think “I am rewriting one equation using another equation.”
+
+<WorkedExample title="Interpret elimination before you memorize it">
+Start from
+
+$$
+\left[
+\begin{array}{ccc|c}
+1 & 2 & 2 & 4 \\
+1 & 3 & 3 & 5 \\
+2 & 6 & 5 & 6
+\end{array}
+\right].
+$$
+
+Apply
+
+$$
+R_2 \leftarrow R_2 - R_1,
+\qquad
+R_3 \leftarrow R_3 - 2R_1.
+$$
+
+The new augmented matrix is
+
+$$
+\left[
+\begin{array}{ccc|c}
+1 & 2 & 2 & 4 \\
+0 & 1 & 1 & 1 \\
+0 & 2 & 1 & -2
+\end{array}
+\right].
+$$
+
+This is not magic. It simply means:
+
+- equation 2 is replaced by “equation 2 minus equation 1”;
+- equation 3 is replaced by “equation 3 minus `2` times equation 1.”
+
+So the same system is now being read in a form where the first variable is
+already eliminated from the lower rows. The problem has not changed; only its
+presentation has changed.
+</WorkedExample>
+
+The next note studies Gaussian elimination in detail. At the current stage, the
+important idea is more basic: an augmented matrix is a compact record of the
+same system, and row operations are legitimate because they preserve the
+solution set.
+
+## A practical solving strategy
+
+The source notes summarize the matrix method in three steps:
+
+1. write the system as an augmented matrix;
+2. perform row operations to reach a simpler matrix;
+3. translate the simpler matrix back into equations, or read the answers from a
+   sufficiently simple form.
+
+This strategy is easy to say, but it becomes reliable only when you keep asking
+what each step is preserving and what structural feature you are trying to
+create.
+
+Use the explorer below to connect the symbolic row operations with the changing
+system they represent.
 
 <InteractiveWidget id="system-augmented-matrix-explorer" />
 
-## Common mistake
+## Common mistakes and subtle points
 
-<CommonMistake title="Do not change only the constants">
-If you change one side of an equation but not the other, you are no longer
-working with an equivalent system.
+<CommonMistake title="The bar in `[A|b]` is not a wall you may ignore">
+The last column belongs to the same system. If you apply a row operation to the
+coefficient entries but leave the constants untouched, you are no longer
+rewriting the same system.
 </CommonMistake>
 
-## Quick check
+<CommonMistake title="Multiplying a row by `0` is not an allowed move">
+The allowed scaling operation requires a nonzero scalar. Multiplying by `0`
+throws away the equation and is not reversible, so it does not preserve
+equivalence.
+</CommonMistake>
 
-<QuickCheck prompt="Which row operation keeps the solution set unchanged?">
-Think about swapping rows, scaling a row by `0`, or adding one row to another.
+<CommonMistake title="A row operation changes equations, not variables">
+Row operations combine equations with one another. They do not mean
+"replace `x_2` by something else" or "change the meaning of the unknowns."
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Why is `R_i \leftarrow 0R_i` not an allowed row operation?">
+Answer in terms of reversibility and loss of information.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-Swapping rows and adding a multiple of one row to another are safe, and scaling
-a row is safe only when the multiplier is nonzero.
+Multiplying a row by `0` erases the entire equation, so the move cannot be
+reversed. Because it destroys information, it is not guaranteed to preserve the
+solution set.
+</RevealSolution>
+
+<QuickCheck prompt="If two equations are swapped, does the system get a different solution set?">
+Do not think about appearance only. Think about what it means to solve all the
+equations simultaneously.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. Swapping rows only changes the order in which the equations are written. A
+tuple solves the original system exactly when it solves the reordered system.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Write the augmented matrix for the system `x_1 - 2x_2 - x_3 + x_4 = 1`, `x_2 + x_3 - x_4 = 2`, `x_3 + 2x_4 = 3`.">
+Keep the columns in the order `x_1, x_2, x_3, x_4`, even when a variable does
+not appear in a given equation.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The coefficients of the three equations are
+
+$$
+(1, -2, -1, 1),\qquad
+(0, 1, 1, -1),\qquad
+(0, 0, 1, 2),
+$$
+
+and the constant column is `(1, 2, 3)^t`. Therefore the augmented matrix is
+
+$$
+\left[
+\begin{array}{cccc|c}
+1 & -2 & -1 & 1 & 1 \\
+0 & 1 & 1 & -1 & 2 \\
+0 & 0 & 1 & 2 & 3
+\end{array}
+\right].
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Using the same system, which single row operation eliminates the `x_2` term from the first equation, and what new first equation do you get?">
+The coefficient of `x_2` in equation 1 is `-2`, while the coefficient in
+equation 2 is `1`.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Use
+
+$$
+R_1 \leftarrow 2R_2 + R_1.
+$$
+
+Indeed,
+
+$$
+2(x_2 + x_3 - x_4 = 2) + (x_1 - 2x_2 - x_3 + x_4 = 1)
+$$
+
+gives
+
+$$
+x_1 + x_3 - x_4 = 5.
+$$
+
+So after the row operation, the first equation becomes `x_1 + x_3 - x_4 = 5`.
 </RevealSolution>
 
 ## Read this first
@@ -80,4 +334,6 @@ a row is safe only when the multiplier is nonzero.
 This page builds on
 [1.1 Equations and solution sets](/en/notes/math1030/systems/equations-solution-sets)
 and
-[2.1 Matrix basics](/en/notes/math1030/matrices/matrix-basics).
+[2.1 Matrix basics](/en/notes/math1030/matrices/matrix-basics),
+and it prepares the elimination viewpoint used in
+[2.3 Gaussian elimination and RREF](/en/notes/math1030/matrices/gaussian-elimination-rref).
