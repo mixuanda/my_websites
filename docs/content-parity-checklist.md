@@ -4,6 +4,26 @@ Use this checklist before you mark a note unit ready. The goal is not only to
 have three files on disk. The goal is to keep the meaning, navigation, and
 export output aligned across all written languages.
 
+## Latest resume state
+
+As of April 13, 2026, the latest local parity-related checkpoints are:
+
+- `9085148` `Fix note block prompt rendering`
+- `49345a4` `Fix set note reveal integrity`
+- `0526751` `Deepen augmented matrix notes`
+
+Every push attempt for those checkpoints failed with the same external error:
+`ssh: Could not resolve hostname github.com: Temporary failure in name
+resolution`.
+
+The next resume point is to expand the next source-backed MATH1030 unit in EN,
+zh-HK, and zh-CN together rather than deepening English first and translating
+later.
+
+The current local workspace also includes a shared `QuickCheck` renderer update
+that makes prompt cards visible by default. When the next unit is expanded, the
+three locales should be re-checked with that visible-prompt behavior in mind.
+
 ## Current parity status
 
 The following units are currently present in EN, zh-HK, and zh-CN.
@@ -163,3 +183,37 @@ The following gaps remain active.
 
 Use this checklist while you verify the current note set, then extend it as new
 source-backed chapters are added.
+
+## Checkpoint log
+
+This log records parity-impacting checkpoints so the three-language note set
+stays resumable across implementation cycles.
+
+### 2026-04-13 checkpoint 1: textbook inline notation rendering
+
+This checkpoint improved rendering in the shared textbook MDX layer, so it
+applies to all three locales at once.
+
+- Checkpoint name: Shared rendering pass across EN, zh-HK, and zh-CN
+- What was inspected: representative units in all three supported languages,
+  especially MATH1030 and MATH1090 units that use dense inline notation in the
+  article body and in block prompts
+- What was changed: textbook inline code now promotes obvious mathematical
+  notation to KaTeX in the shared renderer instead of leaving it in code
+  styling; the change is locale-neutral and therefore parity-preserving
+- What was verified: the rendering logic was changed in the shared textbook MDX
+  component layer rather than in one locale-specific content file
+- Files touched: `src/components/textbook/mdx-blocks.tsx`,
+  `src/components/textbook/mdx-components.tsx`,
+  `docs/content-parity-checklist.md`,
+  `docs/rendering-formatting-qa.md`,
+  `docs/exercise-solution-integrity.md`,
+  `docs/reference-coverage.md`
+- Remaining issues: the authored `QuickCheck` / `RevealSolution` pairing still
+  needs a shared component-level fix and then a parity re-check
+- Exact next target: fix the shared `QuickCheck` structure so exercise prompts
+  and answer disclosure behave consistently in all locales
+- Commit created: pending until this checkpoint commit is written
+- Push succeeded: pending until this checkpoint push is attempted
+- Current resume point: continue in the shared textbook MDX block components
+  before making any locale-specific note edits

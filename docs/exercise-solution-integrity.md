@@ -1,141 +1,96 @@
-# Exercise and solution integrity
+# Exercise, answer, and solution integrity
 
-This document tracks audits of quick checks, reveal blocks, and guided-solution
-components in the public Notes section. Record the exact mismatch, the affected
-files, and the next repair target so answer drift does not reappear later.
+This document tracks whether quick checks, reveal blocks, proof toggles, and
+guided solutions line up with the authored mathematics notes. The goal is to
+keep every prompt matched to the correct answer structure and avoid hidden
+empty panels or misplaced solution text.
 
-## Current status
+## Latest resume state
 
-The component wiring itself is internally consistent:
-`src/components/textbook/mdx-components.tsx` passes the expected props into
-`QuickCheck`, `RevealSolution`, and `CollapsibleProof`, and
-`src/components/textbook/mdx-blocks.tsx` renders all three through the same
-toggle shell.
+As of April 13, 2026, the latest local integrity-related checkpoints are:
 
-The current integrity risk is content-structure drift. A small group of notes
-places the answer directly inside `QuickCheck` instead of separating the prompt
-from the reveal block.
+- `9085148` `Fix note block prompt rendering`
+- `49345a4` `Fix set note reveal integrity`
+- `0526751` `Deepen augmented matrix notes`
+
+Every push attempt for those checkpoints failed with the same external error:
+`ssh: Could not resolve hostname github.com: Temporary failure in name
+resolution`.
+
+The next resume point is to keep exercise integrity coupled to the next content
+rewrite, starting with the next MATH1030 unit that is expanded from the
+reference PDFs.
+
+## Current findings
+
+The latest local pass removed the biggest component-level mismatch in the
+textbook exercise blocks.
+
+- `QuickCheck` now renders as a visible prompt card rather than a reveal-style
+  toggle.
+- Authored note units that use `QuickCheck` for the prompt and
+  `RevealSolution` for the answer now match the shared component behavior more
+  closely.
+- The next integrity risk is broader QA: confirming that existing units do not
+  rely on the old toggle interaction and that export output still reads cleanly.
 
 ## Checkpoint log
 
-### 2026-04-13 pre-checkpoint 2 audit: set-theory answer drift
+This log records what has been audited and what still needs repair.
 
-This audit collected the first concrete exercise-integrity issues that need a
-dedicated follow-up checkpoint.
+### 2026-04-13 checkpoint 1: integrity issue identified during rendering pass
 
-- Checkpoint name: set-theory answer drift audit
-- What was inspected:
-  `AGENTS.md`, `src/components/textbook/mdx-blocks.tsx`,
-  `src/components/textbook/mdx-components.tsx`,
-  `src/components/textbook/TextbookMdx.tsx`,
-  and representative textbook units with quick checks and reveal blocks.
-- What was changed:
-  no exercise blocks were rewritten yet in this audit step.
-- What was verified:
-  confirmed that the component API is not the source of the mismatch; the issue
-  is in authored content structure.
-- Files touched:
-  `docs/exercise-solution-integrity.md`,
-  `docs/reference-coverage.md`,
+The rendering audit surfaced the structural exercise issue, but this
+checkpoint does not yet change the exercise components.
+
+- Checkpoint name: Exercise / reveal mismatch identified
+- What was inspected: `src/components/textbook/mdx-blocks.tsx`,
+  `src/components/textbook/mdx-components.tsx`, and representative authored
+  units under `content/textbook/math1030/**` and
+  `content/textbook/math1090/**`
+- What was changed: no exercise-block logic changes yet; this checkpoint only
+  documented the component/content mismatch clearly so the next cycle can fix
+  it without guessing
+- What was verified: repository-wide search confirmed that the prevailing
+  authored pattern is `QuickCheck` prompt plus visible hint text followed by a
+  separate `RevealSolution`
+- Files touched: `docs/exercise-solution-integrity.md`,
   `docs/rendering-formatting-qa.md`,
-  `docs/content-parity-checklist.md`.
-- Remaining issues:
-  the following six files place answers directly inside `QuickCheck`:
-  `content/textbook/math1090/sets/set-operations/en.mdx`,
-  `content/textbook/math1090/sets/set-operations/zh-hk.mdx`,
-  `content/textbook/math1090/sets/set-operations/zh-cn.mdx`,
-  `content/textbook/math1090/sets/functions-relations/en.mdx`,
-  `content/textbook/math1090/sets/functions-relations/zh-hk.mdx`,
-  `content/textbook/math1090/sets/functions-relations/zh-cn.mdx`.
-- Exact next target:
-  move each embedded answer into a following `RevealSolution` block so the
-  prompt, reveal logic, export behavior, and later audits stay aligned.
-- Commit created:
-  yes for the audit trail. The current audit state was captured in commit
-  `9085148` with message `Fix note block prompt rendering`. The repair itself
-  still belongs to the next checkpoint.
-- Push succeeded:
-  no. `git push origin main` stalled, and the explicit batch-mode retry failed
-  with `ssh: Could not resolve hostname github.com: Temporary failure in name
-  resolution`.
-- Current resume point:
-  start with the three `set-operations` files, then normalize the three
-  `functions-relations` files in the same checkpoint.
-
-### 2026-04-13 checkpoint 2: normalize set-theory quick checks
-
-This checkpoint removed the known answer drift in the MATH1090 set-theory
-notes and restored the intended prompt-plus-reveal structure in all three
-languages.
-
-- Checkpoint name: normalize set-theory quick checks
-- What was inspected:
-  all six flagged set-theory note files and the resulting diffs after the edit.
-- What was changed:
-  rewrote each flagged `QuickCheck` so it now contains only guidance or a hint,
-  then added a following `RevealSolution` with the actual answer.
-- What was verified:
-  re-read the edited blocks in EN, zh-HK, and zh-CN; confirmed each question
-  now has a matching reveal block immediately after it; confirmed no answer text
-  remains directly inside those six `QuickCheck` blocks.
-- Files touched:
-  `content/textbook/math1090/sets/set-operations/en.mdx`,
-  `content/textbook/math1090/sets/set-operations/zh-hk.mdx`,
-  `content/textbook/math1090/sets/set-operations/zh-cn.mdx`,
-  `content/textbook/math1090/sets/functions-relations/en.mdx`,
-  `content/textbook/math1090/sets/functions-relations/zh-hk.mdx`,
-  `content/textbook/math1090/sets/functions-relations/zh-cn.mdx`,
-  `docs/exercise-solution-integrity.md`,
   `docs/reference-coverage.md`,
+  `docs/content-parity-checklist.md`
+- Remaining issues: `QuickCheck`, `RevealSolution`, and export behavior still
+  need to be reconciled with the authored note structure
+- Exact next target: replace the reveal-style `QuickCheck` shell with a prompt
+  card that keeps the question visible and leaves answer disclosure to
+  `RevealSolution`
+- Commit created: pending until this checkpoint commit is written
+- Push succeeded: pending until this checkpoint push is attempted
+- Current resume point: re-open `src/components/textbook/mdx-blocks.tsx` and
+  the units surfaced by the `rg "<QuickCheck"` audit
+
+### 2026-04-13 checkpoint 4: make quick checks visible by default
+
+This checkpoint aligned the shared `QuickCheck` component with the dominant
+authored content pattern.
+
+- Checkpoint name: make quick checks visible by default
+- What was inspected: `src/components/textbook/mdx-blocks.tsx` and the note
+  units that already pair `QuickCheck` with a following `RevealSolution`
+- What was changed: changed `QuickCheck` from a toggle block to a visible note
+  card so the prompt and learner hint are always visible, while answer
+  disclosure remains the responsibility of `RevealSolution`
+- What was verified: the shared implementation now matches the authored prompt /
+  answer structure used across the textbook notes
+- Files touched: `src/components/textbook/mdx-blocks.tsx`,
+  `docs/exercise-solution-integrity.md`,
   `docs/rendering-formatting-qa.md`,
-  `docs/content-parity-checklist.md`.
-- Remaining issues:
-  broader exercise QA still needs a wider pass across other chapters, but the
-  known set-theory drift is now resolved.
-- Exact next target:
-  deepen one of the thinnest source-backed MATH1030 units using the repository
-  reference PDFs, starting with `2.2 Augmented matrices and row operations`.
-- Commit created:
-  yes. Created as `49345a4` with message
-  `Fix set note reveal integrity`.
-- Push succeeded:
-  no. The batch-mode retry failed with
-  `ssh: Could not resolve hostname github.com: Temporary failure in name
-  resolution`.
-- Current resume point:
-  commit the six-file exercise fix, retry push, then open the MATH1030 row
-  operation references for the next content pass.
-
-### 2026-04-13 checkpoint 3: exercise structure in MATH1030 unit 2.2
-
-This checkpoint added new quick checks and guided solutions while keeping the
-prompt / reveal pairing intact.
-
-- Checkpoint name: exercise structure in MATH1030 unit 2.2
-- What was inspected:
-  the rewritten EN, zh-HK, and zh-CN versions of
-  `augmented-matrices-row-operations`.
-- What was changed:
-  added paired `QuickCheck` and `RevealSolution` blocks for conceptual checks
-  and guided exercises in all three locales.
-- What was verified:
-  each new prompt is followed by the correct solution block, and the three
-  locales keep the same exercise order and answer structure.
-- Files touched:
-  the three localized `2.2` note files,
-  `src/components/textbook/mdx-blocks.tsx`,
-  `src/components/textbook/mdx-components.tsx`,
-  and the four tracking documents.
-- Remaining issues:
-  wider exercise QA is still needed across more MATH1030 and MATH1090 units.
-- Exact next target:
-  carry the same prompt / reveal audit into the next deepened unit rather than
-  waiting for a later cleanup pass.
-- Commit created:
-  pending at the time of this doc update; the checkpoint commit follows this
-  documentation step.
-- Push succeeded:
-  pending at the time of this doc update; push will be retried in batch mode.
-- Current resume point:
-  commit the `2.2` content expansion and keep exercise integrity coupled to the
-  next content rewrite.
+  `docs/reference-coverage.md`,
+  `docs/content-parity-checklist.md`
+- Remaining issues: representative export QA and page-level regression checks
+  are still needed now that `QuickCheck` no longer toggles open and closed
+- Exact next target: verify export behavior and continue with the next
+  source-backed MATH1030 unit after the push blocker clears
+- Commit created: pending until this checkpoint commit is written
+- Push succeeded: pending until this checkpoint push is attempted
+- Current resume point: continue from the shared textbook MDX blocks, then
+  return to source-backed note expansion

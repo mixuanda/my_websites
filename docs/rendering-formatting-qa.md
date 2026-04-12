@@ -1,141 +1,104 @@
 # Rendering and formatting QA
 
-This document tracks rendering-specific audits for the public Notes section.
-Use it to record the exact defect, the files inspected, the verification
-method, and the next target so the next run can resume without repeating the
-same discovery work.
+This document records rendering-specific audits for the public Notes section.
+Use it to track problems in the MDX pipeline, KaTeX display, spacing, and
+block-level note formatting without exposing internal authoring detail on the
+site itself.
 
-## Current status
+## Latest resume state
 
-The math plugin chain is present in the repository:
-`remark-math` and `rehype-katex` are configured in
-`contentlayer.config.ts`, KaTeX CSS is imported in
-`src/app/globals.css`, and textbook pages render MDX through
-`src/components/Mdx.tsx` and `src/components/textbook/TextbookMdx.tsx`.
+As of April 13, 2026, the latest local rendering-related checkpoints are:
 
-The current high-priority render defect was not a missing plugin. It was that
-custom note block titles and prompts were plain strings, so inline notation in
-props rendered with literal backticks instead of formatted inline math or code.
+- `9085148` `Fix note block prompt rendering`
+- `49345a4` `Fix set note reveal integrity`
+- `0526751` `Deepen augmented matrix notes`
+
+Every push attempt for those checkpoints failed with the same external error:
+`ssh: Could not resolve hostname github.com: Temporary failure in name
+resolution`.
+
+The next resume point is a representative formatting and content pass on
+`2.3 Gaussian elimination and RREF`, while keeping the textbook inline-math
+renderer and note-block behavior aligned.
+
+## Current findings
+
+The current rendering pass confirmed that the repository already wires
+`remark-math`, `rehype-katex`, KaTeX CSS, and the textbook MDX renderer
+together. The remaining defects are not missing-package issues. They are
+component- and authoring-shape issues inside the existing Notes stack.
+
+- Textbook note bodies contain many backticked notation fragments such as `Q`,
+  `R^3`, `A^{-1}`, `Ax = b`, and `sqrt(2)`.
+- The shared renderer now promotes obvious mathematical notation in both block
+  titles and textbook body code spans.
+- The current remaining rendering risk is interaction shape and representative
+  export QA, not missing math infrastructure.
 
 ## Checkpoint log
 
-### 2026-04-13 checkpoint 1: note-block title rendering
+This log keeps the implementation state resumable across runs.
 
-This checkpoint repaired the note-block title path used by definitions,
-theorems, worked examples, quick checks, reveal blocks, and collapsible proofs.
+### 2026-04-13 checkpoint 1: rendering pipeline and inline notation
 
-- Checkpoint name: note-block title rendering
-- What was inspected:
-  `AGENTS.md`, `contentlayer.config.ts`, `src/app/globals.css`,
-  `src/components/Mdx.tsx`, `src/components/textbook/TextbookMdx.tsx`,
+This checkpoint focused on textbook-only rendering rather than content
+expansion.
+
+- Checkpoint name: Rendering pipeline and inline textbook notation
+- What was inspected: `AGENTS.md`, `contentlayer.config.ts`,
+  `src/app/globals.css`, `src/components/Mdx.tsx`,
+  `src/components/textbook/TextbookMdx.tsx`,
   `src/components/textbook/mdx-components.tsx`,
   `src/components/textbook/mdx-blocks.tsx`,
   `src/app/[locale]/notes/[course]/[chapter]/[unit]/page.tsx`,
-  and representative note files including
-  `content/textbook/math1030/vector-spaces/basis-and-dimension/zh-hk.mdx`.
-- What was changed:
-  added inline rich-text rendering for block titles and prompts in
-  `src/components/textbook/mdx-blocks.tsx`; backtick-delimited segments now
-  render as inline math when KaTeX can parse them and fall back to inline code
-  otherwise. Fixed one malformed zh-HK prompt string with an extra backtick.
-- What was verified:
-  inspected the final patch with `git diff`; confirmed the corrected prompt in
-  the zh-HK basis note; ran a KaTeX smoke check with
-  `node.exe -e "require('./node_modules/katex').renderToString('R^3', ...)"`
-  and received `true`.
-- Files touched:
-  `src/components/textbook/mdx-blocks.tsx`,
-  `content/textbook/math1030/vector-spaces/basis-and-dimension/zh-hk.mdx`,
-  `docs/rendering-formatting-qa.md`,
-  `docs/reference-coverage.md`,
-  `docs/exercise-solution-integrity.md`,
-  `docs/content-parity-checklist.md`.
-- Remaining issues:
-  `npm run build` and `npm run build:site` still fail in this shell because the
-  environment resolves to the Windows Node toolchain on a WSL UNC path before
-  reaching the site build itself. This is an environment blocker for full build
-  verification, not yet a confirmed repository code failure.
-- Exact next target:
-  fix exercise / solution integrity in the MATH1090 set-theory notes, then
-  return to broader formatting consistency and export QA.
-- Commit created:
-  yes. Created as `9085148` with message
-  `Fix note block prompt rendering`.
-- Push succeeded:
-  no. `git push origin main` stalled, and the explicit batch-mode retry failed
-  with `ssh: Could not resolve hostname github.com: Temporary failure in name
-  resolution`.
-- Current resume point:
-  continue with checkpoint 2 on the six set-theory files flagged in
-  `docs/exercise-solution-integrity.md`.
-
-### 2026-04-13 checkpoint 2: set-theory reveal pairing
-
-This checkpoint did not change the renderer itself, but it removed a content
-pattern that made the reveal UI misleading on six pages.
-
-- Checkpoint name: set-theory reveal pairing
-- What was inspected:
-  the quick-check sections in the six MATH1090 set-theory files flagged in the
-  previous audit.
-- What was changed:
-  moved direct answer text out of `QuickCheck` blocks and into explicit
-  `RevealSolution` blocks.
-- What was verified:
-  re-read the edited note sections and confirmed the reveal UI now matches the
-  authored structure in all six files.
-- Files touched:
-  the six MATH1090 set-theory note files plus the four tracking documents.
-- Remaining issues:
-  full build verification remains blocked by the shell environment, and broader
-  formatting QA still needs a representative pass after the next content edit.
-- Exact next target:
-  perform a source-backed content-deepening pass on
-  `2.2 Augmented matrices and row operations`.
-- Commit created:
-  yes. Created as `49345a4` with message
-  `Fix set note reveal integrity`.
-- Push succeeded:
-  no. The batch-mode retry failed with
-  `ssh: Could not resolve hostname github.com: Temporary failure in name
-  resolution`.
-- Current resume point:
-  commit checkpoint 2, retry push, then continue with the row-operation unit.
-
-### 2026-04-13 checkpoint 3: structural deepening of MATH1030 unit 2.2
-
-This checkpoint focused on note structure and formatting consistency while
-expanding the thin `2.2` unit into a full article-style page.
-
-- Checkpoint name: structural deepening of MATH1030 unit 2.2
-- What was inspected:
-  the three localized `2.2` files, the extracted MATH1030 source PDFs, and the
-  resulting diffs after the rewrite.
-- What was changed:
-  replaced the short stub with a structured note containing introduction,
-  definitions, theorem, proof rationale, worked example, common mistakes, quick
-  checks, exercises, and prerequisite links across EN, zh-HK, and zh-CN.
-  Also extended the textbook MDX code renderer so inline code spans can render
-  math-like notation inside note bodies instead of showing raw markup.
-- What was verified:
-  the localized files now share the same major sections and supporting blocks;
-  formulas, matrix layouts, and exercise ordering remain parallel across the
-  three versions.
-- Files touched:
-  the three localized `2.2` note files,
-  `src/components/textbook/mdx-blocks.tsx`,
+  representative `content/textbook/**` units, and representative
+  `reference/MATH1030/**` and `reference/MATH1090/**` sources
+- What was changed: added a textbook-only inline-code renderer that promotes
+  obvious mathematical notation to KaTeX while leaving filenames and plain
+  language as code text; tightened the same heuristic for title and prompt rich
+  text so non-math backticks do not get pushed through KaTeX
+- What was verified: manual diff review of the textbook MDX component layer;
+  attempted direct `next build` and TypeScript verification through the
+  available Windows Node binary because no Linux `node` executable is present
+  in WSL for this repository
+- Files touched: `src/components/textbook/mdx-blocks.tsx`,
   `src/components/textbook/mdx-components.tsx`,
-  and the four tracking documents.
-- Remaining issues:
-  broader representative formatting QA is still needed across other units, and
-  full build verification remains blocked by the shell environment.
-- Exact next target:
-  run the same structural pass on another thin source-backed unit, most likely
-  `2.3 Gaussian elimination and RREF` or a nearby MATH1030 chapter.
-- Commit created:
-  pending at the time of this doc update; the checkpoint commit follows this
-  documentation step.
-- Push succeeded:
-  pending at the time of this doc update; push will be retried in batch mode.
-- Current resume point:
-  commit the `2.2` rewrite and continue the chapter 2 structural audit.
+  `docs/rendering-formatting-qa.md`,
+  `docs/exercise-solution-integrity.md`,
+  `docs/reference-coverage.md`,
+  `docs/content-parity-checklist.md`
+- Remaining issues: `QuickCheck` still uses a reveal-style shell even though
+  many authored units use it as a visible prompt plus hint block followed by a
+  separate `RevealSolution`
+- Exact next target: checkpoint 2, exercise / answer / reveal integrity in the
+  textbook MDX blocks and representative authored units
+- Commit created: pending until this checkpoint commit is written
+- Push succeeded: pending until this checkpoint push is attempted
+- Current resume point: start from `src/components/textbook/mdx-blocks.tsx`
+  and the representative units that currently pair `QuickCheck` with a
+  following `RevealSolution`
+
+### 2026-04-13 checkpoint 4: visible quick-check prompts
+
+This checkpoint adjusted the shared note-block rendering so quick-check prompts
+behave like visible textbook callouts rather than collapsible panels.
+
+- Checkpoint name: visible quick-check prompts
+- What was inspected: `src/components/textbook/mdx-blocks.tsx` and the current
+  authored usage of `QuickCheck` and `RevealSolution`
+- What was changed: `QuickCheck` now uses a visible `BlockFrame` instead of the
+  shared toggle shell
+- What was verified: the change matches the authored pattern where the prompt
+  and hint are visible and the answer lives in `RevealSolution`
+- Files touched: `src/components/textbook/mdx-blocks.tsx`,
+  `docs/rendering-formatting-qa.md`,
+  `docs/exercise-solution-integrity.md`,
+  `docs/reference-coverage.md`,
+  `docs/content-parity-checklist.md`
+- Remaining issues: representative page QA and export QA still need a wider pass
+- Exact next target: verify export behavior for visible quick checks once the
+  environment blocker on build and push clears
+- Commit created: pending until this checkpoint commit is written
+- Push succeeded: pending until this checkpoint push is attempted
+- Current resume point: continue from the shared note-block renderer before
+  deepening the next source-backed note

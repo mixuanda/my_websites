@@ -5,6 +5,26 @@ to the math notes system. It is the working ledger for deciding whether a
 source has already been incorporated into the public Notes section, merged into
 another authored note, deferred, or blocked.
 
+## Latest resume state
+
+As of April 13, 2026, the latest local source-processing checkpoints are:
+
+- `9085148` `Fix note block prompt rendering`
+- `49345a4` `Fix set note reveal integrity`
+- `0526751` `Deepen augmented matrix notes`
+
+Every push attempt for those checkpoints failed with the same external error:
+`ssh: Could not resolve hostname github.com: Temporary failure in name
+resolution`.
+
+The next resume point is the next highest-value source-backed MATH1030 unit:
+either `2.3 Gaussian elimination and RREF` or the `n03-*` invertibility notes.
+
+The current local workspace also includes a shared `QuickCheck` renderer update
+that makes prompts visible by default. That structural cleanup should be
+verified together with the next content pass rather than treated as isolated UI
+decoration.
+
 The tables below use these status labels:
 
 - `incorporated`: already represented in public notes or in shared glossary and
@@ -341,3 +361,38 @@ The following constraints still matter during future authoring:
   appendices.
 - `MATH1090 HW8.pdf` and `MATH1030 HW3.pdf` extract poorly enough that they
   should not be used as primary sources without stronger corroborating files.
+
+## Checkpoint log
+
+This log records implementation checkpoints that affect the reference-backed
+authoring workflow.
+
+### 2026-04-13 checkpoint 1: rendering-only pass
+
+This checkpoint changed rendering behavior, not course coverage, but it still
+updated the source ledger so the next run does not have to rediscover the
+state.
+
+- Checkpoint name: Rendering pipeline and inline notation
+- What was inspected: the current authored unit tree under `content/textbook`,
+  representative MATH1030 and MATH1090 reference packets, and the existing
+  course catalog / coverage mapping
+- What was changed: no source rows changed; the current coverage map still
+  accurately describes the public boundary after the rendering-only component
+  fix
+- What was verified: re-audited the existing public unit set and confirmed that
+  the next highest-value source-backed content target is still the MATH1030
+  invertibility / row-equivalence backlog
+- Files touched: `docs/reference-coverage.md`,
+  `docs/rendering-formatting-qa.md`,
+  `docs/exercise-solution-integrity.md`,
+  `docs/content-parity-checklist.md`
+- Remaining issues: source-backed backlog still begins with stronger treatment
+  of MATH1030 invertibility, row equivalence, dimension criteria, then the
+  determinant and eigenvalue chapters
+- Exact next target: complete checkpoint 2 first, then return to the next
+  source-backed authoring pass
+- Commit created: pending until this checkpoint commit is written
+- Push succeeded: pending until this checkpoint push is attempted
+- Current resume point: after the exercise / reveal integrity fix, return to
+  MATH1030 `1030gi-n03-04.pdf` and adjacent invertibility material

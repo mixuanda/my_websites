@@ -400,14 +400,14 @@ export function QuickCheck({
   prompt: string;
 }) {
   return (
-    <ToggleBlock
-      buttonLabel={blockLabels.reveal}
-      locale={locale}
+    <BlockFrame
+      accentClassName="border-sky-400/70"
+      icon={<CircleCheck className="h-5 w-5" />}
+      label={getLocalizedText(blockLabels.quickCheck, locale)}
       title={prompt}
-      type="quickCheck"
     >
       {children}
-    </ToggleBlock>
+    </BlockFrame>
   );
 }
 
