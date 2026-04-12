@@ -217,3 +217,31 @@ applies to all three locales at once.
 - Push succeeded: pending until this checkpoint push is attempted
 - Current resume point: continue in the shared textbook MDX block components
   before making any locale-specific note edits
+
+### 2026-04-13 checkpoint 4: shared quick-check shell fix
+
+This checkpoint changed the shared quick-check shell, so it applies to all
+three locales at once.
+
+- Checkpoint name: Shared quick-check shell fix across EN, zh-HK, and zh-CN
+- What was inspected: representative units in all three supported languages,
+  especially MATH1030 and MATH1090 units that pair `QuickCheck` with a
+  following `RevealSolution`
+- What was changed: `QuickCheck` now renders as a visible shared prompt card,
+  which matches the authored multilingual note structure and preserves parity
+  across locales
+- What was verified: the change lives in the shared textbook MDX block layer
+  rather than in one locale-specific content file
+- Files touched: `src/components/textbook/mdx-blocks.tsx`,
+  `docs/content-parity-checklist.md`,
+  `docs/rendering-formatting-qa.md`,
+  `docs/exercise-solution-integrity.md`,
+  `docs/reference-coverage.md`
+- Remaining issues: representative localized pages still need visual QA and
+  export QA once the environment can run a platform-matched build
+- Exact next target: keep parity checks attached to the next source-backed
+  content expansion rather than letting the three locales drift
+- Commit created: pending until this checkpoint commit is written
+- Push succeeded: pending until this checkpoint push is attempted
+- Current resume point: continue from the next shared content expansion with
+  the quick-check contract aligned in all locales

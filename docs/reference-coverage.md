@@ -396,3 +396,32 @@ state.
 - Push succeeded: pending until this checkpoint push is attempted
 - Current resume point: after the exercise / reveal integrity fix, return to
   MATH1030 `1030gi-n03-04.pdf` and adjacent invertibility material
+
+### 2026-04-13 checkpoint 4: shared quick-check shell fix
+
+This checkpoint changed the shared note shell, not course coverage, but it
+still updated the reference ledger so the next run can resume from the right
+source-backed backlog.
+
+- Checkpoint name: Shared quick-check shell fix
+- What was inspected: the current authored unit tree under `content/textbook`,
+  especially units that pair `QuickCheck` with a following `RevealSolution`
+- What was changed: no source rows changed; the coverage map remains accurate
+  after the shared `QuickCheck` component fix
+- What was verified: re-audited the current public boundary and confirmed that
+  the next highest-value content target is still the MATH1030 invertibility /
+  row-equivalence backlog centered on `1030gi-n03-04.pdf`
+- Files touched: `src/components/textbook/mdx-blocks.tsx`,
+  `docs/reference-coverage.md`,
+  `docs/rendering-formatting-qa.md`,
+  `docs/exercise-solution-integrity.md`,
+  `docs/content-parity-checklist.md`
+- Remaining issues: source-backed backlog is unchanged; the next major content
+  work still starts with MATH1030 invertibility depth, then determinants and
+  eigenvalues
+- Exact next target: after this checkpoint commit, return to
+  `reference/MATH1030/1030gi-n03-04.pdf` and adjacent invertibility material
+- Commit created: pending until this checkpoint commit is written
+- Push succeeded: pending until this checkpoint push is attempted
+- Current resume point: commit the shared shell fix, then continue the next
+  source-backed MATH1030 expansion
