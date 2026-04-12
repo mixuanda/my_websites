@@ -28,7 +28,7 @@ set. The practical route plan is:
 | --- | --- | --- |
 | 1 Systems of linear equations | Dense | Partly live |
 | 2 Matrices and Gaussian elimination | Dense | Live |
-| 3 Matrix algebra | Dense | Not yet live |
+| 3 Matrix algebra | Dense | Live |
 | 4 Homogeneous systems and nonsingular matrices | Strong | Not yet live |
 | 5 Invertible matrix | Strong | Partly live |
 | 6 Vector space | Dense through `6.6` | Live through `6.5` |
@@ -40,11 +40,11 @@ set. The practical route plan is:
 
 Use the next content cycle on the strongest missing MATH1030 chapters first.
 
-1. Chapter 3 matrix algebra.
-2. Chapter 4 homogeneous systems, null space, and nonsingularity.
-3. Chapter 5.2 to 5.3 on invertibility equivalences and inverse computation.
-4. Chapter 6.6 on null space, column space, and row space.
-5. Chapter 7 determinant basics.
+1. Chapter 4 homogeneous systems, null space, and nonsingularity.
+2. Chapter 5.2 to 5.3 on invertibility equivalences and inverse computation.
+3. Chapter 6.6 on null space, column space, and row space.
+4. Chapter 7 determinant basics.
+5. Chapter 8 opening notes only after tighter subsection mapping.
 
 ## Hold line
 

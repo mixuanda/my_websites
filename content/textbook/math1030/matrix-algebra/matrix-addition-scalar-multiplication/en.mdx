@@ -1,0 +1,214 @@
+---
+title: "3.1 Matrix addition, subtraction, and scalar multiplication"
+description: "Treat the basic matrix operations as entry-by-entry rules, and learn exactly when the operations make sense."
+---
+
+This note is the point where matrices stop being only containers and start
+behaving like objects you can calculate with. The first three operations are
+the easiest ones: add two matrices, subtract one matrix from another, and
+multiply a matrix by a scalar.
+
+The key beginner idea is simple:
+
+- Addition compares matching positions.
+- Subtraction compares matching positions.
+- Scalar multiplication keeps the same shape and rescales every entry.
+
+If the matching positions do not exist, the operation is not defined.
+
+## Intuition first: same shape is not a decoration
+
+When you add ordinary numbers, you do not worry about shape. Matrices are
+different. A matrix records information in a particular row-and-column layout,
+so the location of each entry matters.
+
+If two matrices have different sizes, then row 2, column 3 in one matrix may
+have no matching partner in the other matrix. In that case, entrywise addition
+or subtraction cannot even begin.
+
+This is why students often hear the phrase "same size" before they see any
+formula. The size condition is part of the meaning of the operation.
+
+## Definitions
+
+<Definition title="Matrix addition and scalar multiplication">
+Suppose `A` and `B` are both `m × n` matrices.
+
+- The sum `A + B` is the `m × n` matrix obtained by adding corresponding
+  entries.
+- The difference `A - B` is defined by `A + (-B)`.
+- If `c` is a scalar, then `cA` is the `m × n` matrix obtained by multiplying
+  every entry of `A` by `c`.
+</Definition>
+
+In symbols, if `A = [a_{ij}]` and `B = [b_{ij}]`, then
+
+$$
+[A + B]_{ij} = a_{ij} + b_{ij}, \qquad [cA]_{ij} = c a_{ij}.
+$$
+
+<Definition title="Zero matrix and additive inverse">
+The zero matrix is the matrix whose entries are all `0`. It plays the same role
+for matrix addition that the number `0` plays for ordinary addition.
+
+The additive inverse of `A` is the matrix `-A`, obtained by negating every
+entry of `A`.
+</Definition>
+
+## What subtraction really means
+
+Subtraction is not a completely new rule. It is just addition after you first
+build the additive inverse.
+
+That means:
+
+$$
+A - B = A + (-B).
+$$
+
+This is worth saying out loud because it explains several later algebraic
+patterns. Whenever you are unsure how to handle subtraction, rewrite it as
+addition with negatives and the structure becomes clearer.
+
+## Embedded interactive moment
+
+The live block below lets you switch among `A + B`, `A - B`, and `cA`. Keep
+your eye on the shape of the result. No matter which of these three operations
+you choose, the output keeps the same size as the input matrix or matrices.
+
+<InteractiveWidget id="matrix-arithmetic-lab" />
+
+## Worked example
+
+<WorkedExample title="Compute each operation carefully">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+0 & -1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+3 & 1 \\
+-2 & 4
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+A + B =
+\begin{bmatrix}
+1+3 & 2+1 \\
+0+(-2) & -1+4
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 & 3 \\
+-2 & 3
+\end{bmatrix}.
+$$
+
+Also,
+
+$$
+A - B =
+\begin{bmatrix}
+1-3 & 2-1 \\
+0-(-2) & -1-4
+\end{bmatrix}
+=
+\begin{bmatrix}
+-2 & 1 \\
+2 & -5
+\end{bmatrix}.
+$$
+
+If `c = -2`, then
+
+$$
+-2A =
+\begin{bmatrix}
+-2 & -4 \\
+0 & 2
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+## Why the zero matrix matters
+
+The zero matrix is not just a boring special case. It tells you what the
+"do-nothing" matrix for addition looks like.
+
+If `O` is the zero matrix of the same size as `A`, then
+
+$$
+A + O = A.
+$$
+
+This matters later because every algebraic system needs an identity element for
+its addition. For matrices, that identity depends on the size. A `2 × 2` zero
+matrix cannot replace a `3 × 3` zero matrix.
+
+## Common mistakes
+
+<CommonMistake title="Checking the entries but forgetting the size">
+Even if two matrices contain many similar numbers, you cannot add them unless
+their sizes match exactly.
+</CommonMistake>
+
+<CommonMistake title="Thinking scalar multiplication changes the size">
+Multiplying by a scalar changes the entries, not the shape. If `A` is `m × n`,
+then `cA` is still `m × n`.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Why is matrix addition only defined for matrices of the same size?">
+Answer in one sentence using the phrase "corresponding entries."
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Matrix addition is entrywise, so each entry of one matrix must have a
+corresponding entry in the other matrix.
+</RevealSolution>
+
+<QuickCheck prompt="If `A` is a `3 × 4` matrix, what is the size of `-A`?">
+Focus on shape, not on the signs of the entries.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`-A` is still a `3 × 4` matrix.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Let `A` be `2 × 3` and `B` be `3 × 2`. Which of `A + B`, `A - B`, and `2A` are defined?">
+State each one separately.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+`A + B` is not defined because the sizes do not match. `A - B` is not defined
+for the same reason. `2A` is defined because scalar multiplication only needs
+one matrix and one scalar.
+</RevealSolution>
+
+<QuickCheck prompt="Why is the zero matrix called the additive identity?">
+Use the equation that expresses its identity role.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+It is called the additive identity because for every matrix `A` of the same
+size, we have `A + O = A`.
+</RevealSolution>
+
+## Related notes
+
+Read [2.1 Matrix basics](/en/notes/math1030/matrices/matrix-basics) first if
+you still want a slower introduction to rows, columns, and entries.
+
+Read [3.2 Matrix multiplication and linear systems](/en/notes/math1030/matrix-algebra/matrix-multiplication-and-linear-systems)
+next if you want to see the first matrix operation that is *not* entrywise.

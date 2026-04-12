@@ -26,6 +26,16 @@ The table below covers the current source-backed note set in the implementation.
 | Irrational number | irrational number | 無理數 | 无理数 | Avoid replacing it with vague “not rational” wording in definitions. | MATH1090 numbers |
 | System of linear equations | system of linear equations | 線性方程組 | 线性方程组 | Read as a full system, not isolated equations. | MATH1030 notes |
 | Matrix | matrix | 矩陣 | 矩阵 | Hong Kong teaching normally uses “矩陣”. | MATH1030 notes |
+| Zero matrix | zero matrix | 零矩陣 | 零矩阵 | Keep it tied to additive identity language. | MATH1030 matrix algebra |
+| Matrix multiplication | matrix multiplication | 矩陣乘法 | 矩阵乘法 | Emphasize row-by-column rather than vague “multiply matrices”. | MATH1030 matrix algebra |
+| Transpose | transpose | 轉置 | 转置 | Keep notation as `A^T` in all language variants. | MATH1030 matrix algebra |
+| Symmetric matrix | symmetric matrix | 對稱矩陣 | 对称矩阵 | Tie it to equality with the transpose. | MATH1030 matrix algebra |
+| Skew-symmetric matrix | skew-symmetric matrix | 反對稱矩陣 | 反对称矩阵 | Use `反對稱 / 反对称` as the primary written term. | MATH1030 matrix algebra |
+| Diagonal matrix | diagonal matrix | 對角矩陣 | 对角矩阵 | Explain it through off-diagonal zeros. | MATH1030 matrix algebra |
+| Triangular matrix | triangular matrix | 三角矩陣 | 三角矩阵 | Say explicitly which side of the diagonal is zero. | MATH1030 matrix algebra |
+| Identity matrix | identity matrix | 單位矩陣 | 单位矩阵 | Keep the “does nothing under multiplication” meaning visible. | MATH1030 matrix algebra |
+| Elementary matrix | elementary matrix | 初等矩陣 | 初等矩阵 | Link it directly to one row operation on `I`. | MATH1030 matrix algebra |
+| Block matrix | block matrix | 分塊矩陣 | 分块矩阵 | Stress that block partitions must match before blockwise addition. | MATH1030 matrix algebra |
 | Augmented matrix | augmented matrix | 增廣矩陣 | 增广矩阵 | Keep the “augmented” part visible. | MATH1030 notes |
 | Row operation | row operation | 行變換 | 行变换 | Use the operation wording, not just “move rows.” | MATH1030 notes |
 | Pivot | pivot | 主元 | 主元 | Keep it tied to reading matrix structure, not only mechanics. | MATH1030 notes |

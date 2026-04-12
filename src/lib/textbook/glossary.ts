@@ -263,6 +263,158 @@ export const glossaryEntries: GlossaryEntry[] = [
   },
   {
     definition: {
+      en: "A zero matrix is a matrix whose entries are all 0.",
+      "zh-cn": "零矩阵是每一个元素都等于 0 的矩阵。",
+      "zh-hk": "零矩陣是每一個元素都等於 0 的矩陣。",
+    },
+    id: "zero-matrix",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§3.1" },
+      { file: "reference/MATH1030/1030gi-n01-se0102.pdf", note: "Advice and Questions 4-7" },
+    ],
+    termEn: "zero matrix",
+    termZhCn: "零矩阵",
+    termZhHk: "零矩陣",
+  },
+  {
+    definition: {
+      en: "Matrix multiplication builds each output entry from one row of the left matrix and one column of the right matrix, so the inner dimensions must match.",
+      "zh-cn": "矩阵乘法把左边矩阵的一行与右边矩阵的一列配对来生成输出元素，因此中间维度必须相同。",
+      "zh-hk": "矩陣乘法把左邊矩陣的一行與右邊矩陣的一列配對來生成輸出元素，因此中間維度必須相同。",
+    },
+    id: "matrix-product",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§3.2" },
+      { file: "reference/MATH1030/Practice Set 2_Matrix Algebra.pdf", note: "Questions 2-3" },
+    ],
+    termEn: "matrix multiplication",
+    termZhCn: "矩阵乘法",
+    termZhHk: "矩陣乘法",
+  },
+  {
+    definition: {
+      en: "The transpose of a matrix is formed by turning rows into columns and columns into rows.",
+      "zh-cn": "矩阵的转置是把行换成列、列换成行之后得到的新矩阵。",
+      "zh-hk": "矩陣的轉置是把行換成列、列換成行之後得到的新矩陣。",
+    },
+    id: "transpose",
+    notationNote: "The transpose of A is written A^T in these notes.",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§3.3" },
+      { file: "reference/MATH1030/1030efghi-tutorial-week04.pdf", note: "Question 1" },
+    ],
+    termEn: "transpose",
+    termZhCn: "转置",
+    termZhHk: "轉置",
+  },
+  {
+    definition: {
+      en: "A symmetric matrix is a square matrix that equals its transpose.",
+      "zh-cn": "对称矩阵是一个与自己转置相等的方阵。",
+      "zh-hk": "對稱矩陣是一個與自己轉置相等的方陣。",
+    },
+    id: "symmetric-matrix",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§3.3" },
+      { file: "reference/MATH1030/1030efghi-tutorial-week04.pdf", note: "Question 1" },
+    ],
+    termEn: "symmetric matrix",
+    termZhCn: "对称矩阵",
+    termZhHk: "對稱矩陣",
+  },
+  {
+    definition: {
+      en: "A skew-symmetric matrix is a square matrix whose transpose is the negative of the matrix.",
+      "zh-cn": "反对称矩阵是一个满足 A^T = -A 的方阵。",
+      "zh-hk": "反對稱矩陣是一個滿足 A^T = -A 的方陣。",
+    },
+    id: "skew-symmetric-matrix",
+    sourceRefs: [
+      { file: "reference/MATH1030/1030efghi-tutorial-week04.pdf", note: "Advice section and Question 1" },
+      { file: "reference/MATH1030/Practice Set 3_Matrix Algebra and Linear Equation System.pdf", note: "Question 6" },
+    ],
+    termEn: "skew-symmetric matrix",
+    termZhCn: "反对称矩阵",
+    termZhHk: "反對稱矩陣",
+  },
+  {
+    definition: {
+      en: "An identity matrix is the square matrix with 1s on the main diagonal and 0s elsewhere.",
+      "zh-cn": "单位矩阵是在主对角线放 1、其余位置放 0 的方阵。",
+      "zh-hk": "單位矩陣是在主對角線放 1、其餘位置放 0 的方陣。",
+    },
+    id: "identity-matrix",
+    notationNote: "The identity matrix of size n is denoted by I_n.",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§3.4" },
+      { file: "reference/MATH1030/Practice Set 4_Invertible Matrix.pdf", note: "Questions 1-4" },
+    ],
+    termEn: "identity matrix",
+    termZhCn: "单位矩阵",
+    termZhHk: "單位矩陣",
+  },
+  {
+    definition: {
+      en: "A diagonal matrix is a square matrix whose off-diagonal entries are all 0.",
+      "zh-cn": "对角矩阵是主对角线以外的元素全都等于 0 的方阵。",
+      "zh-hk": "對角矩陣是主對角線以外的元素全都等於 0 的方陣。",
+    },
+    id: "diagonal-matrix",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§3.4" },
+      { file: "reference/MATH1030/Practice Set 4_Invertible Matrix.pdf", note: "Question 6" },
+    ],
+    termEn: "diagonal matrix",
+    termZhCn: "对角矩阵",
+    termZhHk: "對角矩陣",
+  },
+  {
+    definition: {
+      en: "A triangular matrix is a square matrix whose entries on one side of the main diagonal are all 0.",
+      "zh-cn": "三角矩阵是在主对角线一侧全部为 0 的方阵。",
+      "zh-hk": "三角矩陣是在主對角線一側全部為 0 的方陣。",
+    },
+    id: "triangular-matrix",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§3.4" },
+      { file: "reference/MATH1030/1030gi-n01-se0102.pdf", note: "Advice section on upper-triangular matrices" },
+    ],
+    termEn: "triangular matrix",
+    termZhCn: "三角矩阵",
+    termZhHk: "三角矩陣",
+  },
+  {
+    definition: {
+      en: "An elementary matrix is obtained by applying one elementary row operation to an identity matrix.",
+      "zh-cn": "初等矩阵是把一次初等行变换作用在单位矩阵上得到的矩阵。",
+      "zh-hk": "初等矩陣是把一次初等行變換作用在單位矩陣上得到的矩陣。",
+    },
+    id: "elementary-matrix",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§3.4" },
+      { file: "reference/MATH1030/Practice Set 3_Matrix Algebra and Linear Equation System.pdf", note: "Questions 9-11" },
+    ],
+    termEn: "elementary matrix",
+    termZhCn: "初等矩阵",
+    termZhHk: "初等矩陣",
+  },
+  {
+    definition: {
+      en: "A block matrix is a matrix that has been partitioned into smaller rectangular submatrices and then handled block by block.",
+      "zh-cn": "分块矩阵是先把大矩阵切成较小长方块，再按块来处理的矩阵。",
+      "zh-hk": "分塊矩陣是先把大矩陣切成較小長方塊，再按塊來處理的矩陣。",
+    },
+    id: "block-matrix",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§3.5" },
+      { file: "reference/MATH1030/1030gi-n01-se0102.pdf", note: "Advice section mentions block matrices" },
+    ],
+    termEn: "block matrix",
+    termZhCn: "分块矩阵",
+    termZhHk: "分塊矩陣",
+  },
+  {
+    definition: {
       en: "An augmented matrix places the coefficient matrix and constant column in one table so you can row-reduce the whole system at once.",
       "zh-cn": "增广矩阵把系数矩阵和常数列放在同一张表里，方便一起做行变换。",
       "zh-hk": "增廣矩陣把係數矩陣和常數列放在同一張表裡，方便一起做行變換。",

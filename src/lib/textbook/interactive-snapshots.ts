@@ -64,6 +64,84 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "跟着看一个用行化简求逆的例子"
     ),
   },
+  "matrix-arithmetic-lab": {
+    sampleStates: [
+      {
+        label: text("Addition view", "加法畫面", "加法画面"),
+        value: text(
+          "A + B adds matching entries, so two 2 x 2 matrices stay 2 x 2 after addition.",
+          "A + B 會把對應位置逐格相加，所以兩個 2 x 2 矩陣相加後仍是 2 x 2。",
+          "A + B 会把对应位置逐格相加，所以两个 2 x 2 矩阵相加后仍是 2 x 2。"
+        ),
+      },
+      {
+        label: text("Scalar view", "數乘畫面", "数乘画面"),
+        value: text(
+          "cA keeps the same matrix shape but multiplies every entry by the scalar c.",
+          "cA 會保留原來的矩陣大小，只是把每個元素都乘上純量 c。",
+          "cA 会保留原来的矩阵大小，只是把每个元素都乘上标量 c。"
+        ),
+      },
+    ],
+    summary: text(
+      "The live lab switches among A + B, A - B, and cA so students can see that these operations are entrywise and size-preserving.",
+      "互動工具可在 A + B、A - B 與 cA 之間切換，讓學生看見這些運算都是逐格進行，而且會保留矩陣大小。",
+      "互动工具可在 A + B、A - B 与 cA 之间切换，让学生看见这些运算都是逐格进行，而且会保留矩阵大小。"
+    ),
+    steps: [
+      text("Choose whether you want addition, subtraction, or scalar multiplication.", "先選擇你想看加法、減法，還是數乘。", "先选择你想看加法、减法，还是数乘。"),
+      text("Change one matrix entry at a time and watch the matching result entry update.", "逐個改變矩陣元素，觀察對應的結果位置如何改變。", "逐个改变矩阵元素，观察对应的结果位置如何改变。"),
+      text("For scalar multiplication, keep the matrix fixed and change only the scalar to see every entry scale together.", "做數乘時，固定矩陣，只改變純量，就會看到全部元素一起縮放。", "做数乘时，固定矩阵，只改变标量，就会看到全部元素一起缩放。"),
+    ],
+    title: text(
+      "Compare entrywise matrix operations",
+      "比較逐格矩陣運算",
+      "比较逐格矩阵运算"
+    ),
+  },
+  "matrix-family-checker": {
+    sampleStates: [
+      {
+        label: text("Symmetric example", "對稱例子", "对称例子"),
+        value: text(
+          "A = [[2, -1], [-1, 5]] matches its transpose exactly, so it is symmetric.",
+          "A = [[2, -1], [-1, 5]] 與自己的轉置完全相同，所以它是對稱矩陣。",
+          "A = [[2, -1], [-1, 5]] 与自己的转置完全相同，所以它是对称矩阵。"
+        ),
+      },
+      {
+        label: text("Skew-symmetric example", "反對稱例子", "反对称例子"),
+        value: text(
+          "A = [[0, 4], [-4, 0]] changes sign under transpose, so A^T = -A.",
+          "A = [[0, 4], [-4, 0]] 在轉置後會改變符號，所以 A^T = -A。",
+          "A = [[0, 4], [-4, 0]] 在转置后会改变符号，所以 A^T = -A。"
+        ),
+      },
+      {
+        label: text("Identity example", "單位矩陣例子", "单位矩阵例子"),
+        value: text(
+          "The identity matrix is also diagonal and symmetric, so one matrix can belong to several useful families at once.",
+          "單位矩陣同時也是對角矩陣與對稱矩陣，所以同一個矩陣可以同時屬於多個有用的類型。",
+          "单位矩阵同时也是对角矩阵与对称矩阵，所以同一个矩阵可以同时属于多个有用的类型。"
+        ),
+      },
+    ],
+    summary: text(
+      "The live checker compares A with A^T and highlights whether the example is symmetric, skew-symmetric, diagonal, or identity.",
+      "互動檢查器會把 A 與 A^T 並排比較，並標示例子是否屬於對稱、反對稱、對角或單位矩陣。",
+      "互动检查器会把 A 与 A^T 并排比较，并标示例子是否属于对称、反对称、对角或单位矩阵。"
+    ),
+    steps: [
+      text("Pick one matrix family to inspect.", "先選擇一種矩陣類型來看。", "先选择一种矩阵类型来看。"),
+      text("Compare A with A^T entry by entry instead of guessing from the shape alone.", "逐格比較 A 與 A^T，而不是只靠外觀猜測。", "逐格比较 A 与 A^T，而不是只靠外观猜测。"),
+      text("Notice that diagonal and identity matrices also satisfy stronger properties such as symmetry.", "留意對角矩陣與單位矩陣往往還會同時滿足更強的性質，例如對稱。", "留意对角矩阵与单位矩阵往往还会同时满足更强的性质，例如对称。"),
+    ],
+    title: text(
+      "Classify one matrix by its transpose",
+      "用轉置分類一個矩陣",
+      "用转置分类一个矩阵"
+    ),
+  },
   "matrix-multiplication-visualizer": {
     sampleIO: [
       {
@@ -93,6 +171,41 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "Follow one matrix product entry",
       "跟著看一格矩陣乘法",
       "跟着看一格矩阵乘法"
+    ),
+  },
+  "transpose-symmetry-lab": {
+    sampleStates: [
+      {
+        label: text("Symmetric example", "對稱例子", "对称例子"),
+        value: text(
+          "A = [[2, -1], [-1, 3]] has matching off-diagonal entries, so A^T = A.",
+          "A = [[2, -1], [-1, 3]] 的對角線兩側元素互相對應，所以 A^T = A。",
+          "A = [[2, -1], [-1, 3]] 的对角线两侧元素互相对应，所以 A^T = A。"
+        ),
+      },
+      {
+        label: text("Neither example", "既非對稱亦非反對稱的例子", "既非对称也非反对称的例子"),
+        value: text(
+          "A = [[2, 4], [0, 6]] is neither symmetric nor skew-symmetric, but it splits into a symmetric part and a skew-symmetric part.",
+          "A = [[2, 4], [0, 6]] 既不是對稱矩陣，也不是反對稱矩陣，但它可以拆成一個對稱部分和一個反對稱部分。",
+          "A = [[2, 4], [0, 6]] 既不是对称矩阵，也不是反对称矩阵，但它可以拆成一个对称部分和一个反对称部分。"
+        ),
+      },
+    ],
+    summary: text(
+      "The live widget compares a matrix with its transpose and shows how the symmetric and skew-symmetric parts are built.",
+      "互動工具會把矩陣和它的轉置並排比較，並顯示對稱部分與反對稱部分如何組成。",
+      "互动工具会把矩阵和它的转置并排比较，并显示对称部分与反对称部分如何组成。"
+    ),
+    steps: [
+      text("Pick one example matrix.", "先選擇一個例子矩陣。", "先选择一个例子矩阵。"),
+      text("Compare A with A^T by checking the entries across the main diagonal.", "沿主對角線兩側比較 A 和 A^T 的元素。", "沿主对角线两侧比较 A 和 A^T 的元素。"),
+      text("Use 1/2(A + A^T) and 1/2(A - A^T) to separate the symmetric and skew-symmetric parts.", "用 1/2(A + A^T) 與 1/2(A - A^T) 分開對稱部分和反對稱部分。", "用 1/2(A + A^T) 与 1/2(A - A^T) 分开对称部分和反对称部分。"),
+    ],
+    title: text(
+      "Compare a matrix with its transpose",
+      "比較一個矩陣與它的轉置",
+      "比较一个矩阵与它的转置"
     ),
   },
   "quantifier-negation-stepper": {

@@ -1,0 +1,217 @@
+---
+title: "3.2 Matrix multiplication and linear systems"
+description: "Understand matrix multiplication as a row-by-column rule, then connect it back to the linear systems you already know."
+---
+
+Matrix multiplication is the first matrix operation that feels different from
+the basic arithmetic in the previous note. Addition, subtraction, and scalar
+multiplication all work entry by entry. Matrix multiplication does not.
+
+Instead, each output entry is built by pairing:
+
+- one row from the left matrix, and
+- one column from the right matrix.
+
+That is why the size rule is stricter here.
+
+## Intuition first: the middle size has to agree
+
+Suppose `A` is `m × n` and `B` is `n × p`. Then the product `AB` is defined,
+and the result has size `m × p`.
+
+The inner number `n` appears twice because the `n` entries in a row of `A` must
+have exactly `n` partners in a column of `B`. If those counts do not agree,
+there is no row-by-column pairing to carry out.
+
+So the beginner's size rule is:
+
+> The inside sizes must match.
+
+## Definition
+
+<Definition title="Matrix multiplication">
+Suppose `A` is an `m × n` matrix and `B` is an `n × p` matrix. The product
+`AB` is the `m × p` matrix whose `(i, j)` entry is
+
+$$
+[AB]_{ij} = \sum_{k=1}^{n} [A]_{ik}[B]_{kj}.
+$$
+
+In words: take row `i` of `A`, take column `j` of `B`, multiply matching
+entries, then add the results.
+</Definition>
+
+## What one entry really means
+
+It is easy to get lost in the notation, so slow the rule down.
+
+To compute `[AB]_{23}`:
+
+1. Go to row 2 of `A`.
+2. Go to column 3 of `B`.
+3. Multiply entry by entry.
+4. Add the products.
+
+That means one output entry is a compact summary of several multiplications and
+one final addition.
+
+## Embedded interactive moment
+
+Use the visualizer below to keep one output cell fixed while you change the
+input entries. This is the quickest way to build the row-by-column habit.
+
+<InteractiveWidget id="matrix-multiplication-visualizer" />
+
+## Worked example
+
+<WorkedExample title="Compute a product by the row-by-column rule">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+0 & 1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+2 & 1 \\
+3 & 4
+\end{bmatrix}.
+$$
+
+Then `AB` is `2 × 2`. Compute each entry:
+
+$$
+[AB]_{11} = 1 \cdot 2 + 2 \cdot 3 = 8,
+$$
+
+$$
+[AB]_{12} = 1 \cdot 1 + 2 \cdot 4 = 9,
+$$
+
+$$
+[AB]_{21} = 0 \cdot 2 + 1 \cdot 3 = 3,
+$$
+
+$$
+[AB]_{22} = 0 \cdot 1 + 1 \cdot 4 = 4.
+$$
+
+So
+
+$$
+AB =
+\begin{bmatrix}
+8 & 9 \\
+3 & 4
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+## Why this connects to linear systems
+
+You have already seen systems written as `Ax = b`.
+
+That formula is not just shorter notation. It tells you that matrix
+multiplication packages several linear equations into one object. Each row of
+`A` creates one equation by pairing that row with the column vector `x`.
+
+If
+
+$$
+A =
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23}
+\end{bmatrix},
+\qquad
+x =
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{bmatrix},
+$$
+
+then
+
+$$
+Ax =
+\begin{bmatrix}
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3
+\end{bmatrix}.
+$$
+
+So `Ax = b` really means a full system of linear equations, one row at a time.
+
+<TheoremCard title="The product order matters">
+Even when both `AB` and `BA` are defined, they usually are not equal.
+</TheoremCard>
+
+This is a major change from ordinary number multiplication. With matrices,
+order carries meaning.
+
+## Common mistakes
+
+<CommonMistake title="Checking the wrong dimensions">
+For `AB`, compare the number of columns of `A` with the number of rows of `B`.
+Do not compare the outside numbers first.
+</CommonMistake>
+
+<CommonMistake title="Multiplying rows by rows">
+The rule is row of `A` against column of `B`, not row against row.
+</CommonMistake>
+
+<CommonMistake title="Assuming AB = BA">
+Matrix multiplication is generally not commutative. Two products with the same
+letters can represent different computations or even have different sizes.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="If `A` is `2 × 3` and `B` is `3 × 4`, what is the size of `AB`?">
+Use the inside-match, outside-survive rule.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`AB` has size `2 × 4`.
+</RevealSolution>
+
+<QuickCheck prompt="Why does `Ax = b` represent several equations at once?">
+Use the word "rows" in your answer.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Each row of `A` produces one equation when it is paired with the column vector
+`x`, so the product `Ax` packages all those row equations together.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Suppose `A` is `3 × 2` and `B` is `2 × 5`. Is `BA` defined? If so, what size would it have?">
+Do not guess from the fact that `AB` is defined.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+`BA` would require the number of columns of `B` to equal the number of rows of
+`A`. But `B` has 5 columns and `A` has 3 rows, so `BA` is not defined.
+</RevealSolution>
+
+<QuickCheck prompt="Write the first entry of `Ax` when the first row of `A` is `(4, -1, 2)` and `x = (x_1, x_2, x_3)^T`.">
+Use the row-by-column rule.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The first entry is `4x_1 - x_2 + 2x_3`.
+</RevealSolution>
+
+## Related notes
+
+Review [2.2 Augmented matrices and row operations](/en/notes/math1030/matrices/augmented-matrices-row-operations)
+if you want to reconnect `Ax = b` with the matrix form of a linear system.
+
+Continue to [3.3 Transposes, symmetric matrices, and skew-symmetric matrices](/en/notes/math1030/matrix-algebra/transposes-and-symmetric-matrices)
+for the next important matrix operation.

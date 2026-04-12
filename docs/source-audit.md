@@ -11,7 +11,8 @@ The current production note set remains inside the strongest audited zones.
 These units are already authored in EN, zh-HK, and zh-CN.
 
 - `math1090`: 1.1, 1.2, 1.3, 2.1, 2.2, 3.1, 3.2, 3.3, 3.4, 3.5
-- `math1030`: 1.1, 2.1, 2.2, 2.3, 2.4, 5.1, 6.1, 6.2, 6.3, 6.4, 6.5
+- `math1030`: 1.1, 2.1, 2.2, 2.3, 2.4, 3.1, 3.2, 3.3, 3.4, 3.5, 5.1,
+  6.1, 6.2, 6.3, 6.4, 6.5
 
 ## MATH1090
 
@@ -115,6 +116,7 @@ The current local files for MATH1030 include:
 - `reference/MATH1030/math1030_assignment4_review_solutions.pdf`
 - `reference/MATH1030/1030efghi-as01.pdf` through
   `reference/MATH1030/1030efghi-as04-202526.pdf`
+- `reference/MATH1030/1030gi-n01-se0102.pdf`
 - `reference/MATH1030/1030gi-n01-01.pdf` through
   `reference/MATH1030/1030gi-n08-01.pdf`
 
@@ -129,6 +131,9 @@ The source map is much broader than the currently surfaced notes.
   eigenvectors, and Chapter 9 inner product spaces.
 - `tutorial-week04` focuses on transpose, symmetry, skew-symmetry, commuting
   matrices, and orthogonal matrices.
+- `1030gi-n01-se0102` gives direct supplementary support for matrix addition,
+  matrix multiplication, upper-triangular matrices, and block-matrix
+  manipulations.
 - `tutorial-week05` focuses on row operations, row-equivalence, REF, RREF, and
   reading solution sets.
 - `tutorial-week06` focuses on set language in linear algebra, null spaces, and
@@ -145,7 +150,8 @@ The strongest authoring zones are:
 
 - Chapters 1 and 2 on systems, matrices, augmented matrices, row operations,
   elimination, and solution-set types.
-- Chapter 3 matrix algebra and its tutorial or practice support.
+- Chapter 3 matrix algebra and its tutorial or practice support. This chapter
+  is now live across EN, zh-HK, and zh-CN through `3.5`.
 - Chapters 4 and 5 on homogeneous systems, null space, nonsingularity,
   invertibility, and inverse computations.
 - Chapter 6 through basis and dimension, with additional support for set
@@ -158,9 +164,9 @@ The strongest authoring zones are:
 The current weak spots are:
 
 - The public site still surfaces only a subset of the source-backed chapters.
-  The later matrix-algebra, homogeneous-system, determinant, and early
-  eigenvalue material is available locally and should be treated as authorable
-  once the corresponding note packs are written.
+  The homogeneous-system, determinant, and early eigenvalue material is
+  available locally and should be treated as authorable once the corresponding
+  note packs are written.
 - Chapter 8 has targeted support for eigenvalues, but the later diagonalization
   sequence is thinner than the earlier algebra and vector-space blocks.
 - Chapter 9 is only lightly reinforced beyond the master notes and the first

@@ -1,0 +1,159 @@
+---
+title: "3.5 Block matrices"
+description: "Partition a large matrix into smaller pieces and carry out the familiar operations block by block."
+---
+
+When matrices become large, writing every entry can hide the main idea. Block
+matrices fix that problem by letting you treat a large matrix as a small matrix
+whose "entries" are themselves smaller matrices.
+
+This does not change the mathematics. It changes the level at which you look at
+the structure.
+
+## Intuition first: one large matrix, several smaller pieces
+
+A block matrix begins with a partition. You draw horizontal and vertical cuts
+through a matrix and group the resulting submatrices into blocks.
+
+The important point is that the blocks are not random decorations. They are
+chosen so that the shapes line up in a useful way.
+
+Once the partition is fixed, you can often perform addition, scalar
+multiplication, and multiplication using whole blocks at once.
+
+## Definition
+
+<Definition title="Block matrix">
+A block matrix is a matrix partitioned into smaller rectangular submatrices,
+called blocks.
+
+You may add or subtract two block matrices block by block only when they have
+the same block partition.
+
+You may multiply block matrices by the usual block formula only when the block
+sizes match in the same way ordinary matrix multiplication requires matching
+inner dimensions.
+</Definition>
+
+## Why partitions matter
+
+Students sometimes think that once two large matrices have the same outer size,
+they can automatically be added block by block. That is false.
+
+The partition itself must match. If one matrix is cut into a `2 + 3` row split
+and the other is cut into a `1 + 4` row split, then the blocks do not
+correspond, even if both whole matrices are `5 × 5`.
+
+So with block matrices you always check two levels:
+
+1. the size of the whole matrix;
+2. the size of each block.
+
+## Worked example
+
+<WorkedExample title="Read the 2 × 2 block multiplication rule">
+Suppose
+
+$$
+A =
+\begin{bmatrix}
+A_{11} & A_{12} \\
+A_{21} & A_{22}
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+B_{11} & B_{12} \\
+B_{21} & B_{22}
+\end{bmatrix}.
+$$
+
+If the block sizes are compatible, then
+
+$$
+AB =
+\begin{bmatrix}
+A_{11}B_{11} + A_{12}B_{21} & A_{11}B_{12} + A_{12}B_{22} \\
+A_{21}B_{11} + A_{22}B_{21} & A_{21}B_{12} + A_{22}B_{22}
+\end{bmatrix}.
+$$
+
+This looks exactly like ordinary `2 × 2` matrix multiplication, except each
+"entry" is now a whole submatrix.
+</WorkedExample>
+
+## Why block multiplication is useful
+
+Block multiplication is not a new algebraic universe. It is a bookkeeping tool
+for ordinary matrix multiplication.
+
+Its value is that it lets you:
+
+- separate variables into groups,
+- keep related rows and columns together,
+- reuse familiar small patterns inside a large computation.
+
+This becomes especially useful later when matrices naturally split into
+coefficient blocks, identity blocks, or transformation blocks.
+
+## Common mistakes
+
+<CommonMistake title="Assuming any partition will do">
+Block formulas only work when the partitions are compatible. The cuts must be
+chosen so that the relevant block products are defined.
+</CommonMistake>
+
+<CommonMistake title="Forgetting that block operations still obey ordinary size rules">
+Each block product such as `A_{12}B_{21}` still needs matching inner
+dimensions. The block view does not cancel the usual multiplication rule.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Why do two block matrices need the same partition before you add them block by block?">
+Answer using the phrase "corresponding blocks."
+</QuickCheck>
+
+<RevealSolution title="Answer">
+They need the same partition because each block in one matrix must have a
+corresponding block of the same size in the other matrix.
+</RevealSolution>
+
+<QuickCheck prompt="What is the main idea behind the formula for 2 × 2 block multiplication?">
+Do not compute; describe the pattern.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+You use the same pattern as ordinary `2 × 2` matrix multiplication, but each
+entry is replaced by a whole submatrix.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Explain why block multiplication is still ordinary matrix multiplication in disguise.">
+Use the words "same rule" somewhere in your answer.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Block multiplication is ordinary matrix multiplication in disguise because it
+uses the same rule as usual multiplication. The only difference is that the
+entries being combined are now submatrices instead of single numbers.
+</RevealSolution>
+
+<QuickCheck prompt="A pair of `4 × 4` matrices have different block cuts. Can you still add them block by block? Why or why not?">
+Answer in one or two sentences.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+No. Even though the whole matrices have the same outer size, blockwise addition
+needs matching block partitions. Without corresponding blocks, the block sums
+are not defined.
+</RevealSolution>
+
+## Related notes
+
+Review [3.2 Matrix multiplication and linear systems](/en/notes/math1030/matrix-algebra/matrix-multiplication-and-linear-systems)
+if the ordinary multiplication pattern is still shaky.
+
+Continue to [5.1 Invertible matrices](/en/notes/math1030/invertibility/invertible-matrices)
+when you are ready to see how matrix structure connects to reversibility.

@@ -23,12 +23,20 @@ function text(
 }
 
 const interactiveLabels = {
+  addition: text("A + B", "A + B", "A + B"),
+  arithmeticRule: text("What the rule says", "規則提醒", "规则提醒"),
   equations: text("System", "方程組", "方程组"),
   focus: text("What to notice", "要留意甚麼", "要留意什么"),
+  family: text("Matrix family", "矩陣類型", "矩阵类型"),
+  inspectMatrix: text("Inspect one family", "查看一個類型", "查看一个类型"),
+  matrixA: text("Matrix A", "矩陣 A", "矩阵 A"),
   next: text("Next step", "下一步", "下一步"),
   operation: text("Row operation", "行變換", "行变换"),
   previous: text("Previous step", "上一步", "上一步"),
   readSolution: text("Read the solution", "讀出解", "读出解"),
+  scalar: text("Scalar c", "純量 c", "标量 c"),
+  scalarMultiply: text("cA", "cA", "cA"),
+  subtraction: text("A - B", "A - B", "A - B"),
   reset: text("Reset", "重設", "重置"),
   claim: text("Claim", "命題", "命题"),
   baseCase: text("Base case", "基本情況", "基本情况"),
@@ -44,6 +52,7 @@ const interactiveLabels = {
   highlightCell: text("Inspect output cell", "查看輸出位置", "查看输出位置"),
   example: text("Example", "例子", "例子"),
   result: text("Result", "結果", "结果"),
+  transposeOfA: text("Transpose A^T", "轉置 A^T", "转置 A^T"),
   why: text("Why it works", "為甚麼成立", "为什么成立"),
   verdict: text("Verdict", "判斷", "判断"),
   relation: text("Key relation", "關鍵關係", "关键关系"),
@@ -84,6 +93,37 @@ function MatrixView({
       </table>
     </div>
   );
+}
+
+function transposeMatrix(matrix: ReadonlyArray<ReadonlyArray<number>>) {
+  return matrix[0].map((_, columnIndex) =>
+    matrix.map((row) => row[columnIndex] ?? 0)
+  );
+}
+
+function addMatrices(
+  left: ReadonlyArray<ReadonlyArray<number>>,
+  right: ReadonlyArray<ReadonlyArray<number>>
+) {
+  return left.map((row, rowIndex) =>
+    row.map((value, cellIndex) => value + (right[rowIndex]?.[cellIndex] ?? 0))
+  );
+}
+
+function subtractMatrices(
+  left: ReadonlyArray<ReadonlyArray<number>>,
+  right: ReadonlyArray<ReadonlyArray<number>>
+) {
+  return left.map((row, rowIndex) =>
+    row.map((value, cellIndex) => value - (right[rowIndex]?.[cellIndex] ?? 0))
+  );
+}
+
+function scaleMatrix(
+  matrix: ReadonlyArray<ReadonlyArray<number>>,
+  scalar: number
+) {
+  return matrix.map((row) => row.map((value) => value * scalar));
 }
 
 function InteractiveShell({
@@ -381,6 +421,136 @@ function InductionStepper({ locale }: { locale: Locale }) {
   );
 }
 
+function MatrixArithmeticLab({ locale }: { locale: Locale }) {
+  const [left, setLeft] = useState<number[][]>([
+    [1, 2],
+    [0, -1],
+  ]);
+  const [right, setRight] = useState<number[][]>([
+    [3, 1],
+    [-2, 4],
+  ]);
+  const [scalar, setScalar] = useState(2);
+  const [operation, setOperation] = useState<"add" | "subtract" | "scalar">("add");
+
+  const result = useMemo(() => {
+    if (operation === "scalar") {
+      return left.map((row) => row.map((value) => scalar * value));
+    }
+
+    return left.map((row, rowIndex) =>
+      row.map((value, columnIndex) =>
+        operation === "add"
+          ? value + right[rowIndex][columnIndex]
+          : value - right[rowIndex][columnIndex]
+      )
+    );
+  }, [left, operation, right, scalar]);
+
+  const ruleText =
+    operation === "add"
+      ? text(
+          "Addition is entrywise, so both matrices must have the same size and you add matching positions.",
+          "加法是逐格進行，所以兩個矩陣必須同型，並把對應位置相加。",
+          "加法是逐格进行，所以两个矩阵必须同型，并把对应位置相加。"
+        )
+      : operation === "subtract"
+        ? text(
+            "Subtraction is also entrywise. You subtract the matching entry of B from the matching entry of A.",
+            "減法同樣是逐格進行，把 B 的對應元素從 A 的對應元素減走。",
+            "减法同样是逐格进行，把 B 的对应元素从 A 的对应元素减走。"
+          )
+        : text(
+            "Scalar multiplication keeps the same matrix shape and multiplies every entry by the scalar.",
+            "數乘會保留矩陣大小不變，並把每一個元素都乘上同一個純量。",
+            "数乘会保留矩阵大小不变，并把每一个元素都乘上同一个标量。"
+          );
+
+  return (
+    <InteractiveShell icon={<ArrowLeftRight className="h-5 w-5" />} locale={locale} widgetId="matrix-arithmetic-lab">
+      <div className="flex flex-wrap gap-2">
+        {[
+          { value: "add" as const, label: interactiveLabels.addition },
+          { value: "subtract" as const, label: interactiveLabels.subtraction },
+          { value: "scalar" as const, label: interactiveLabels.scalarMultiply },
+        ].map((item) => (
+          <Button
+            key={item.value}
+            onClick={() => setOperation(item.value)}
+            size="sm"
+            type="button"
+            variant={operation === item.value ? "default" : "outline"}
+          >
+            {getLocalizedText(item.label, locale)}
+          </Button>
+        ))}
+      </div>
+      <div className="mt-4 grid gap-4 lg:grid-cols-3">
+        {[left, right].map((matrix, matrixIndex) => (
+          <GlassPanel key={`matrix-${matrixIndex}`} className="bg-card/50">
+            <p className="text-sm font-semibold">
+              {matrixIndex === 0 ? getLocalizedText(interactiveLabels.matrixA, locale) : "B"}
+            </p>
+            <div className="mt-3 grid gap-2">
+              {matrix.map((row, rowIndex) => (
+                <div key={`row-${matrixIndex}-${rowIndex}`} className="grid grid-cols-2 gap-2">
+                  {row.map((value, cellIndex) => (
+                    <Input
+                      key={`input-${matrixIndex}-${rowIndex}-${cellIndex}`}
+                      className="text-center font-mono"
+                      inputMode="numeric"
+                      onChange={(event) => {
+                        const nextValue = Number(event.target.value || "0");
+                        const setter = matrixIndex === 0 ? setLeft : setRight;
+                        setter((previous) =>
+                          previous.map((oldRow, oldRowIndex) =>
+                            oldRowIndex === rowIndex
+                              ? oldRow.map((oldCell, oldCellIndex) =>
+                                  oldCellIndex === cellIndex ? nextValue : oldCell
+                                )
+                              : oldRow
+                          )
+                        );
+                      }}
+                      type="number"
+                      value={value}
+                    />
+                  ))}
+                </div>
+              ))}
+            </div>
+            {matrixIndex === 0 && operation === "scalar" ? (
+              <div className="mt-4">
+                <p className="text-sm font-semibold">
+                  {getLocalizedText(interactiveLabels.scalar, locale)}
+                </p>
+                <Input
+                  className="mt-2 text-center font-mono"
+                  inputMode="numeric"
+                  onChange={(event) => setScalar(Number(event.target.value || "0"))}
+                  type="number"
+                  value={scalar}
+                />
+              </div>
+            ) : null}
+          </GlassPanel>
+        ))}
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">
+            {getLocalizedText(interactiveLabels.result, locale)}
+          </p>
+          <div className="mt-3 overflow-x-auto">
+            <MatrixView data={result} />
+          </div>
+          <p className="mt-4 text-sm leading-7 text-muted-foreground">
+            {getLocalizedText(ruleText, locale)}
+          </p>
+        </GlassPanel>
+      </div>
+    </InteractiveShell>
+  );
+}
+
 function SubspaceChecker({ locale }: { locale: Locale }) {
   const cases = [
     {
@@ -569,6 +739,124 @@ function SubspaceChecker({ locale }: { locale: Locale }) {
             </p>
           </GlassPanel>
         ))}
+      </div>
+    </InteractiveShell>
+  );
+}
+
+function MatrixFamilyChecker({ locale }: { locale: Locale }) {
+  const cases = [
+    {
+      family: text("Symmetric", "對稱", "对称"),
+      label: text("Symmetric example", "對稱例子", "对称例子"),
+      matrix: [
+        [2, -1],
+        [-1, 5],
+      ],
+      note: text(
+        "The transpose matches the original matrix entry by entry, so A^T = A.",
+        "轉置後與原矩陣逐格完全相同，所以 A^T = A。",
+        "转置后与原矩阵逐格完全相同，所以 A^T = A。"
+      ),
+    },
+    {
+      family: text("Skew-symmetric", "反對稱", "反对称"),
+      label: text("Skew-symmetric example", "反對稱例子", "反对称例子"),
+      matrix: [
+        [0, 4],
+        [-4, 0],
+      ],
+      note: text(
+        "The diagonal stays 0, and every off-diagonal entry changes sign after transposing.",
+        "主對角線保持 0，而每個非對角元素在轉置後都會改變符號。",
+        "主对角线保持 0，而每个非对角元素在转置后都会改变符号。"
+      ),
+    },
+    {
+      family: text("Diagonal and symmetric", "對角且對稱", "对角且对称"),
+      label: text("Diagonal example", "對角例子", "对角例子"),
+      matrix: [
+        [3, 0],
+        [0, -1],
+      ],
+      note: text(
+        "All off-diagonal entries are 0, so the matrix is diagonal; diagonal matrices are automatically symmetric.",
+        "所有非對角元素都是 0，所以它是對角矩陣；而對角矩陣會自動是對稱矩陣。",
+        "所有非对角元素都是 0，所以它是对角矩阵；而对角矩阵会自动是对称矩阵。"
+      ),
+    },
+    {
+      family: text("Identity, diagonal, and symmetric", "單位、對角且對稱", "单位、对角且对称"),
+      label: text("Identity example", "單位矩陣例子", "单位矩阵例子"),
+      matrix: [
+        [1, 0],
+        [0, 1],
+      ],
+      note: text(
+        "The identity matrix is the cleanest special case: it is diagonal, symmetric, and leaves vectors unchanged under multiplication.",
+        "單位矩陣是最乾淨的特殊情況：它既是對角矩陣，又是對稱矩陣，而且乘上去不會改變向量。",
+        "单位矩阵是最干净的特殊情况：它既是对角矩阵，又是对称矩阵，而且乘上去不会改变向量。"
+      ),
+    },
+    {
+      family: text("Neither", "兩者都不是", "两者都不是"),
+      label: text("Neither example", "兩者都不是的例子", "两者都不是的例子"),
+      matrix: [
+        [1, 2],
+        [0, 1],
+      ],
+      note: text(
+        "The transpose is different, but it is not the negative either, so the matrix is neither symmetric nor skew-symmetric.",
+        "它的轉置不同於原矩陣，而又不是原矩陣的相反數，所以既不是對稱矩陣，也不是反對稱矩陣。",
+        "它的转置不同于原矩阵，而又不是原矩阵的相反数，所以既不是对称矩阵，也不是反对称矩阵。"
+      ),
+    },
+  ] as const;
+  const [selected, setSelected] = useState(0);
+  const current = cases[selected];
+  const transpose = useMemo(() => transposeMatrix(current.matrix), [current.matrix]);
+
+  return (
+    <InteractiveShell icon={<Braces className="h-5 w-5" />} locale={locale} widgetId="matrix-family-checker">
+      <div className="flex flex-wrap gap-2">
+        {cases.map((item, index) => (
+          <Button
+            key={item.label.en}
+            onClick={() => setSelected(index)}
+            size="sm"
+            type="button"
+            variant={selected === index ? "default" : "outline"}
+          >
+            {getLocalizedText(item.family, locale)}
+          </Button>
+        ))}
+      </div>
+      <div className="mt-4 grid gap-4 lg:grid-cols-[auto_auto_minmax(0,1fr)]">
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">
+            {getLocalizedText(interactiveLabels.matrixA, locale)}
+          </p>
+          <div className="mt-3 overflow-x-auto">
+            <MatrixView data={current.matrix} />
+          </div>
+        </GlassPanel>
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">
+            {getLocalizedText(interactiveLabels.transposeOfA, locale)}
+          </p>
+          <div className="mt-3 overflow-x-auto">
+            <MatrixView data={transpose} />
+          </div>
+        </GlassPanel>
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">
+            {getLocalizedText(interactiveLabels.family, locale)}
+          </p>
+          <p className="mt-2 text-sm">{getLocalizedText(current.family, locale)}</p>
+          <p className="mt-4 text-sm leading-7 text-muted-foreground">
+            {getLocalizedText(current.note, locale)}
+          </p>
+        </GlassPanel>
       </div>
     </InteractiveShell>
   );
@@ -1176,6 +1464,143 @@ function MatrixMultiplicationVisualizer({ locale }: { locale: Locale }) {
   );
 }
 
+function TransposeSymmetryLab({ locale }: { locale: Locale }) {
+  const examples = [
+    {
+      detail: text(
+        "The off-diagonal entries match, so swapping rows and columns changes nothing.",
+        "對角線兩側的元素互相對應，所以交換行和列後完全不變。",
+        "对角线两侧的元素互相对应，所以交换行和列后完全不变。"
+      ),
+      id: "symmetric",
+      label: text("Symmetric", "對稱", "对称"),
+      matrix: [
+        [2, -1],
+        [-1, 3],
+      ],
+      verdict: text("A^T = A", "A^T = A", "A^T = A"),
+    },
+    {
+      detail: text(
+        "Every reflected entry changes sign, which is exactly the pattern A^T = -A.",
+        "沿對角線反射後，每個非對角元素都反號，這正是 A^T = -A 的模式。",
+        "沿对角线反射后，每个非对角元素都反号，这正是 A^T = -A 的模式。"
+      ),
+      id: "skew",
+      label: text("Skew-symmetric", "反對稱", "反对称"),
+      matrix: [
+        [0, 4],
+        [-4, 0],
+      ],
+      verdict: text("A^T = -A", "A^T = -A", "A^T = -A"),
+    },
+    {
+      detail: text(
+        "This matrix is neither symmetric nor skew-symmetric, but the two half-sums still separate its structure cleanly.",
+        "這個矩陣既不是對稱，也不是反對稱，但兩個半和仍然可以把結構清楚分開。",
+        "这个矩阵既不是对称，也不是反对称，但两个半和仍然可以把结构清楚分开。"
+      ),
+      id: "neither",
+      label: text("Neither", "兩者都不是", "两者都不是"),
+      matrix: [
+        [2, 4],
+        [0, 6],
+      ],
+      verdict: text("A^T is different from both A and -A", "A^T 與 A、-A 都不同", "A^T 与 A、-A 都不同"),
+    },
+  ] as const;
+  const labels = {
+    classification: text("Classification", "分類", "分类"),
+    chooseExample: text("Choose an example", "選擇例子", "选择例子"),
+    original: text("Original matrix A", "原矩陣 A", "原矩阵 A"),
+    skewPart: text("Skew-symmetric part 1/2(A - A^T)", "反對稱部分 1/2(A - A^T)", "反对称部分 1/2(A - A^T)"),
+    symmetricPart: text("Symmetric part 1/2(A + A^T)", "對稱部分 1/2(A + A^T)", "对称部分 1/2(A + A^T)"),
+    transpose: text("Transpose A^T", "轉置 A^T", "转置 A^T"),
+  } as const;
+  const [selected, setSelected] = useState<(typeof examples)[number]["id"]>(
+    examples[0].id
+  );
+  const current = examples.find((item) => item.id === selected) ?? examples[0];
+  const transpose = transposeMatrix(current.matrix);
+  const symmetricPart = scaleMatrix(addMatrices(current.matrix, transpose), 0.5);
+  const skewPart = scaleMatrix(subtractMatrices(current.matrix, transpose), 0.5);
+
+  return (
+    <InteractiveShell icon={<ArrowLeftRight className="h-5 w-5" />} locale={locale} widgetId="transpose-symmetry-lab">
+      <p className="text-sm leading-7 text-muted-foreground">
+        {getLocalizedText(labels.chooseExample, locale)}
+      </p>
+      <div className="mt-4 flex flex-wrap gap-2">
+        {examples.map((item) => (
+          <Button
+            key={item.id}
+            onClick={() => setSelected(item.id)}
+            size="sm"
+            type="button"
+            variant={selected === item.id ? "default" : "outline"}
+          >
+            {getLocalizedText(item.label, locale)}
+          </Button>
+        ))}
+      </div>
+      <div className="mt-4 grid gap-4 lg:grid-cols-2">
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">
+            {getLocalizedText(labels.original, locale)}
+          </p>
+          <div className="mt-3">
+            <MatrixView data={current.matrix} />
+          </div>
+        </GlassPanel>
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">
+            {getLocalizedText(labels.transpose, locale)}
+          </p>
+          <div className="mt-3">
+            <MatrixView data={transpose} />
+          </div>
+        </GlassPanel>
+      </div>
+      <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto]">
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">
+            {getLocalizedText(labels.classification, locale)}
+          </p>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
+            {getLocalizedText(current.detail, locale)}
+          </p>
+          <p className="mt-3 font-mono text-sm text-foreground">
+            {getLocalizedText(current.verdict, locale)}
+          </p>
+        </GlassPanel>
+        <div className="flex items-center justify-center">
+          <div className="rounded-full border border-border/60 bg-background/35 px-4 py-2 text-sm font-medium">
+            {getLocalizedText(current.label, locale)}
+          </div>
+        </div>
+      </div>
+      <div className="mt-4 grid gap-4 lg:grid-cols-2">
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">
+            {getLocalizedText(labels.symmetricPart, locale)}
+          </p>
+          <div className="mt-3">
+            <MatrixView data={symmetricPart} />
+          </div>
+        </GlassPanel>
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">
+            {getLocalizedText(labels.skewPart, locale)}
+          </p>
+          <div className="mt-3">
+            <MatrixView data={skewPart} />
+          </div>
+        </GlassPanel>
+      </div>
+    </InteractiveShell>
+  );
+}
+
 function SolutionSetClassifier({ locale }: { locale: Locale }) {
   const cases = [
     {
@@ -1318,6 +1743,8 @@ const interactiveComponents = {
   "independence-checker": IndependenceChecker,
   "invertibility-row-reduction-demo": InvertibilityRowReductionDemo,
   "induction-stepper": InductionStepper,
+  "matrix-arithmetic-lab": MatrixArithmeticLab,
+  "matrix-family-checker": MatrixFamilyChecker,
   "matrix-multiplication-visualizer": MatrixMultiplicationVisualizer,
   "quantifier-negation-stepper": QuantifierNegationStepper,
   "row-reduction-stepper": RowReductionStepper,
@@ -1326,6 +1753,7 @@ const interactiveComponents = {
   "span-explorer": SpanExplorer,
   "subspace-checker": SubspaceChecker,
   "system-augmented-matrix-explorer": SystemAugmentedMatrixExplorer,
+  "transpose-symmetry-lab": TransposeSymmetryLab,
   "truth-table-builder": TruthTableBuilder,
 };
 

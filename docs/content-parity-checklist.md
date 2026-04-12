@@ -15,9 +15,12 @@ The following units are currently present in EN, zh-HK, and zh-CN.
   well-defined operations, 3.5 gaps in `Q` and `sqrt(2)`
 - `math1030`: 1.1 equations and solution sets, 2.1 matrix basics,
   2.2 augmented matrices and row operations, 2.3 Gaussian elimination and
-  RREF, 2.4 solution-set types, 5.1 invertible matrices, 6.1 vector spaces,
-  6.2 subspaces, 6.3 linear combinations and span, 6.4 linear dependence and
-  independence, 6.5 basis and dimension
+  RREF, 2.4 solution-set types, 3.1 matrix addition, subtraction, and scalar
+  multiplication, 3.2 matrix multiplication and linear systems,
+  3.3 transposes, symmetric matrices, and skew-symmetric matrices,
+  3.4 special matrices, 3.5 block matrices, 5.1 invertible matrices,
+  6.1 vector spaces, 6.2 subspaces, 6.3 linear combinations and span,
+  6.4 linear dependence and independence, 6.5 basis and dimension
 
 ## Unit checklist
 
@@ -38,10 +41,10 @@ Run this checklist on every localized unit.
 
 The following gaps remain active.
 
-- Later `math1090` and `math1030` units are not authored yet, so parity is
-  limited to the current source-backed note set.
+- Later `math1090` units and post-Chapter-3 `math1030` units are not authored
+  yet, so parity is limited to the current source-backed note set.
 - zh-HK wording still needs a dedicated Hong Kong terminology review beyond the
-  newer number-system and vector-space units.
+  newer matrix-algebra, number-system, and vector-space units.
 - TXT and PDF export need a final visual QA pass on all localized units.
 
 ## Next steps
