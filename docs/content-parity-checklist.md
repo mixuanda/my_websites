@@ -272,7 +272,9 @@ languages.
   current mixed-platform build environment
 - Exact next target: carry the same parity discipline into the next MATH1030
   basis / dimension expansion
-- Commit created: pending until this checkpoint commit is written
-- Push succeeded: pending until this checkpoint push is attempted
-- Current resume point: continue from the next source-backed MATH1030 unit
-  rather than reopening `5.1`
+- Commit created: yes, `95f3ad7` (`Deepen invertible matrix notes`)
+- Push succeeded: no. `git push origin main` failed with
+  `ssh: Could not resolve hostname github.com: Temporary failure in name resolution`
+- Current resume point: once connectivity and build verification are available
+  again, continue from the next source-backed MATH1030 unit rather than
+  reopening `5.1`

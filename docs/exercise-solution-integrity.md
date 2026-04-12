@@ -12,6 +12,7 @@ As of April 13, 2026, the latest local integrity-related checkpoints are:
 - `9085148` `Fix note block prompt rendering`
 - `49345a4` `Fix set note reveal integrity`
 - `0526751` `Deepen augmented matrix notes`
+- `95f3ad7` `Deepen invertible matrix notes`
 
 Every push attempt for those checkpoints failed with the same external error:
 `ssh: Could not resolve hostname github.com: Temporary failure in name
@@ -122,3 +123,12 @@ invertibility note while keeping the shared prompt / answer contract intact.
 - Push succeeded: pending until this checkpoint push is attempted
 - Current resume point: continue with the next MATH1030 source-backed note and
   preserve the same prompt / reveal pairing discipline
+
+Current checkpoint resolution:
+
+- Commit created: yes, `95f3ad7` (`Deepen invertible matrix notes`)
+- Push succeeded: no. `git push origin main` failed with
+  `ssh: Could not resolve hostname github.com: Temporary failure in name resolution`
+- Current resume point: after connectivity is restored, verify representative
+  exports and page behavior for the new invertibility quick checks, then keep
+  the same integrity discipline in the next source-backed unit

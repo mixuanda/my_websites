@@ -455,7 +455,8 @@ existing invertibility note instead of creating a detached new route.
   than fully exhausted
 - Exact next target: move to the MATH1030 basis / dimension backlog in
   `1030gi-n05-05.pdf` and `1030gi-n05-07.pdf`
-- Commit created: pending until this checkpoint commit is written
-- Push succeeded: pending until this checkpoint push is attempted
-- Current resume point: commit this `5.1` expansion, then continue with the
-  next MATH1030 source-backed chapter
+- Commit created: yes, `95f3ad7` (`Deepen invertible matrix notes`)
+- Push succeeded: no. `git push origin main` failed with
+  `ssh: Could not resolve hostname github.com: Temporary failure in name resolution`
+- Current resume point: once pushing and platform-matched verification are
+  available again, continue with `1030gi-n05-05.pdf` and `1030gi-n05-07.pdf`

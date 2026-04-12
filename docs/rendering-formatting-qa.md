@@ -12,6 +12,7 @@ As of April 13, 2026, the latest local rendering-related checkpoints are:
 - `9085148` `Fix note block prompt rendering`
 - `49345a4` `Fix set note reveal integrity`
 - `0526751` `Deepen augmented matrix notes`
+- `95f3ad7` `Deepen invertible matrix notes`
 
 Every push attempt for those checkpoints failed with the same external error:
 `ssh: Could not resolve hostname github.com: Temporary failure in name
@@ -136,3 +137,12 @@ quick checks, and display math.
 - Push succeeded: pending until this checkpoint push is attempted
 - Current resume point: continue from the next MATH1030 backlog item after
   this `5.1` content checkpoint is committed
+  
+Current checkpoint resolution:
+
+- Commit created: yes, `95f3ad7` (`Deepen invertible matrix notes`)
+- Push succeeded: no. `git push origin main` failed with
+  `ssh: Could not resolve hostname github.com: Temporary failure in name resolution`
+- Current resume point: once DNS and a platform-matched Node / esbuild setup
+  are available, run representative page QA on the expanded `5.1` note and
+  continue to the next MATH1030 backlog unit
