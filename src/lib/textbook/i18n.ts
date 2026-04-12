@@ -20,6 +20,18 @@ export function toHtmlLang(locale: Locale) {
   return "en";
 }
 
+export function toOpenGraphLocale(locale: Locale) {
+  if (locale === "zh-hk") {
+    return "zh_HK";
+  }
+
+  if (locale === "zh-cn") {
+    return "zh_CN";
+  }
+
+  return "en_US";
+}
+
 export function getLocalizedText(text: LocalizedText, locale: Locale) {
   return text[locale];
 }
@@ -131,9 +143,14 @@ export const uiText = {
     "zh-hk": "已完成",
   },
   missingSource: {
-    en: "Missing source support",
-    "zh-cn": "缺少来源支持",
-    "zh-hk": "缺少來源支持",
+    en: "Incomplete reference coverage",
+    "zh-cn": "参考覆盖不足",
+    "zh-hk": "參考覆蓋不足",
+  },
+  missingSourceNotice: {
+    en: "This note stays visible, but it is still incomplete because the relevant reference materials in this repository do not yet cover this section well enough.",
+    "zh-cn": "这一则笔记会继续保留，但相关参考材料在仓库内仍不足以完整支持这一节，所以内容暂时未完成。",
+    "zh-hk": "這則筆記會繼續保留，但相關參考材料在倉庫內仍不足以完整支持這一節，所以內容暫時未完成。",
   },
   noteCollections: {
     en: "Note collections",

@@ -1,8 +1,17 @@
 import type { Metadata, Viewport } from "next";
+import { cookies } from "next/headers";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeMetaController } from "@/components/ThemeMetaController";
 import { MainLayout } from "@/components/MainLayout";
+import { siteThemeColors } from "@/lib/site-theme";
+import {
+  defaultLocale,
+  isLocale,
+  toHtmlLang,
+  toOpenGraphLocale,
+} from "@/lib/textbook/i18n";
+import { TEXTBOOK_PREFERRED_LOCALE_COOKIE_NAME } from "@/lib/textbook/storage";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -30,7 +39,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: toOpenGraphLocale(defaultLocale),
     siteName: "Evanalysis",
   },
   twitter: {
@@ -42,32 +51,36 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const cookieStore = await cookies();
+  const localeCookie = cookieStore.get(
+    TEXTBOOK_PREFERRED_LOCALE_COOKIE_NAME
+  )?.value;
+  const initialLocale =
+    localeCookie && isLocale(localeCookie) ? localeCookie : defaultLocale;
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={toHtmlLang(initialLocale)} suppressHydrationWarning>
       <head>
-        {/* PWA Meta Tags */}
-        <meta name="theme-color" content="#f7f3ef" />
+        <meta name="theme-color" content={siteThemeColors.light} />
         <meta
           name="theme-color"
           media="(prefers-color-scheme: light)"
-          content="#f7f3ef"
+          content={siteThemeColors.light}
         />
         <meta
           name="theme-color"
           media="(prefers-color-scheme: dark)"
-          content="#11101a"
+          content={siteThemeColors.dark}
         />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Evanalysis" />
-        
-        {/* App Icons */}
         <link rel="apple-touch-icon" href="/icon-192.png" />
         <link rel="icon" type="image/png" href="/icon-192.png" />
       </head>
@@ -82,8 +95,6 @@ export default function RootLayout({
           <ThemeMetaController />
           <MainLayout>{children}</MainLayout>
         </ThemeProvider>
-        
-        {/* Service Worker Registration */}
         <script src="/sw-register.js" defer />
       </body>
     </html>

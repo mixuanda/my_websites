@@ -13,10 +13,20 @@ export const siteUiText = {
     "zh-cn": "博客",
     "zh-hk": "博客",
   },
+  appearance: {
+    en: "Appearance",
+    "zh-cn": "外观",
+    "zh-hk": "外觀",
+  },
   contents: {
     en: "Contents",
     "zh-cn": "目录",
     "zh-hk": "目錄",
+  },
+  darkMode: {
+    en: "Dark",
+    "zh-cn": "暗色",
+    "zh-hk": "暗色",
   },
   footerNote: {
     en: "Interactive mathematics notes are still expanding.",
@@ -33,6 +43,11 @@ export const siteUiText = {
     "zh-cn": "首页",
     "zh-hk": "首頁",
   },
+  lightMode: {
+    en: "Light",
+    "zh-cn": "亮色",
+    "zh-hk": "亮色",
+  },
   notes: {
     en: "Notes",
     "zh-cn": "笔记",
@@ -48,15 +63,15 @@ export const siteUiText = {
     "zh-cn": "开发者 / 互动数学笔记建设中",
     "zh-hk": "開發者 / 互動數學筆記建設中",
   },
-  switchToDarkMode: {
-    en: "Switch to dark mode",
-    "zh-cn": "切换到暗色模式",
-    "zh-hk": "切換到暗色模式",
+  systemTheme: {
+    en: "System",
+    "zh-cn": "跟随系统",
+    "zh-hk": "跟隨系統",
   },
-  switchToLightMode: {
-    en: "Switch to light mode",
-    "zh-cn": "切换到亮色模式",
-    "zh-hk": "切換到亮色模式",
+  themeMode: {
+    en: "Theme mode",
+    "zh-cn": "主题模式",
+    "zh-hk": "主題模式",
   },
   textbooks: {
     en: "Notes",

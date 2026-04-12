@@ -1,14 +1,14 @@
 {
-  "name": "个人网站",
-  "short_name": "My Site",
-  "description": "一个现代化的个人网站和博客平台",
+  "name": "Evanalysis",
+  "short_name": "Evanalysis",
+  "description": "Interactive mathematics notes, projects, and articles.",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait-primary",
-  "theme_color": "#6d28d9",
-  "background_color": "#ffffff",
-  "categories": ["productivity", "utilities"],
+  "theme_color": "#f7f3ef",
+  "background_color": "#f7f3ef",
+  "categories": ["education", "productivity"],
   "icons": [
     {
       "src": "/icon-192.png",
@@ -37,10 +37,10 @@
   ],
   "shortcuts": [
     {
-      "name": "新建日记",
-      "short_name": "新日记",
-      "description": "快速创建新日记",
-      "url": "/diary?new=true",
+      "name": "Open notes",
+      "short_name": "Notes",
+      "description": "Browse the notes hub and math note collections",
+      "url": "/notes",
       "icons": [
         {
           "src": "/icon-192.png",
@@ -50,10 +50,10 @@
       ]
     },
     {
-      "name": "阅读博客",
-      "short_name": "博客",
-      "description": "查看最新的博客文章",
-      "url": "/blog",
+      "name": "Math notes",
+      "short_name": "Math",
+      "description": "Jump into the localized interactive math notes",
+      "url": "/zh-hk/notes",
       "icons": [
         {
           "src": "/icon-192.png",

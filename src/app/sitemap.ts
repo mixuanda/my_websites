@@ -1,5 +1,12 @@
-import { allPosts, allNotes, allProjects } from "contentlayer/generated";
+import {
+  allNotes,
+  allPosts,
+  allProjects,
+  allTextbookUnits,
+} from "contentlayer/generated";
 import { MetadataRoute } from "next";
+import { textbookCatalog } from "@/lib/textbook/catalog";
+import { locales } from "@/lib/textbook/i18n";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl =
@@ -12,6 +19,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/notes`, lastModified: new Date() },
     { url: `${baseUrl}/projects`, lastModified: new Date() },
   ];
+
+  const textbookIndexPages = locales.map((locale) => ({
+    url: `${baseUrl}/${locale}/notes`,
+    lastModified: new Date(),
+  }));
+
+  const textbookCoursePages = locales.flatMap((locale) =>
+    Object.keys(textbookCatalog).map((course) => ({
+      url: `${baseUrl}/${locale}/notes/${course}`,
+      lastModified: new Date(),
+    }))
+  );
+
+  const textbookUnitPages = allTextbookUnits.map((unit) => ({
+    url: `${baseUrl}${unit.url}`,
+    lastModified: new Date(),
+  }));
 
   const postPages = allPosts
     .filter((post) => post.published)
@@ -51,6 +75,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     ...staticPages,
+    ...textbookIndexPages,
+    ...textbookCoursePages,
+    ...textbookUnitPages,
     ...postPages,
     ...notePages,
     ...projectPages,

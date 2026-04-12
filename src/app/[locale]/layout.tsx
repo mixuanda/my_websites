@@ -1,5 +1,6 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, locales, toHtmlLang } from "@/lib/textbook/i18n";
+import { isLocale, locales, toOpenGraphLocale } from "@/lib/textbook/i18n";
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
@@ -12,6 +13,22 @@ export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
 }
 
+export async function generateMetadata({
+  params,
+}: LocaleLayoutProps): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!isLocale(locale)) {
+    return {};
+  }
+
+  return {
+    openGraph: {
+      locale: toOpenGraphLocale(locale),
+    },
+  };
+}
+
 export default async function LocaleLayout({
   children,
   params,
@@ -22,5 +39,5 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  return <div lang={toHtmlLang(locale)}>{children}</div>;
+  return <>{children}</>;
 }

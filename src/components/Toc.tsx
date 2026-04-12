@@ -1,12 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { useSitePreferences } from "@/components/SitePreferencesProvider";
 import { cn } from "@/lib/utils";
 import { GlassPanel } from "@/components/glass";
-import { getRouteLocale, getSiteText, resolveSiteLocale, siteUiText } from "@/lib/site-i18n";
-import { defaultLocale } from "@/lib/textbook/i18n";
-import type { Locale } from "@/lib/textbook/types";
+import { getSiteText, siteUiText } from "@/lib/site-i18n";
 
 const headingSelector = "article h2, article h3, article h4";
 
@@ -36,12 +34,10 @@ function collectHeadings(): TocItem[] {
 }
 
 export function Toc({ highContrast = false, title }: TocProps) {
-  const pathname = usePathname();
-  const [locale, setLocale] = useState<Locale>(
-    getRouteLocale(pathname) ?? defaultLocale
-  );
+  const { highContrast: siteHighContrast, locale } = useSitePreferences();
   const [headings, setHeadings] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
+  const effectiveHighContrast = highContrast || siteHighContrast;
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -79,15 +75,10 @@ export function Toc({ highContrast = false, title }: TocProps) {
       observer.disconnect();
     };
   }, [headings]);
-
-  useEffect(() => {
-    setLocale(resolveSiteLocale(pathname));
-  }, [pathname]);
-
   if (headings.length === 0) return null;
 
   return (
-    <GlassPanel highContrast={highContrast} className="sticky top-24">
+    <GlassPanel highContrast={effectiveHighContrast} className="sticky top-24">
       <h4 className="font-semibold mb-3 text-sm">
         {title ?? getSiteText(siteUiText.contents, locale)}
       </h4>

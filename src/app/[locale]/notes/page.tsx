@@ -19,9 +19,9 @@ function text(en: string, zhHk: string, zhCn: string): LocalizedText {
 
 const heroCopy = {
   archive: text(
-    "Open the general note archive",
-    "打開一般筆記檔案",
-    "打开一般笔记档案"
+    "Open the full notes hub",
+    "打開完整筆記首頁",
+    "打开完整笔记首页"
   ),
   body: text(
     "Browse mathematics notes one unit at a time. Each note stays article-first, keeps guided interaction inside the reading flow, and exports the exact unit you are reading as TXT or PDF.",

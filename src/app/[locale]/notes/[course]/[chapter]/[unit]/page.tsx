@@ -20,7 +20,7 @@ import {
   textbookCatalog,
 } from "@/lib/textbook/catalog";
 import { getTextbookUnit, getStaticTextbookParams } from "@/lib/textbook/content";
-import { getCoverageLabel, getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
+import { getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
 import { getCoursesHref, getCourseHref, getUnitHref } from "@/lib/textbook/routes";
 import type { CourseId } from "@/lib/textbook/types";
 
@@ -121,9 +121,11 @@ export default async function UnitPage({ params }: UnitPageProps) {
               <div className="max-w-3xl">
                 <div className="flex flex-wrap gap-2">
                   <Badge variant="secondary">{bundle.meta.unitNumber}</Badge>
-                  <Badge variant="outline">
-                    {getCoverageLabel(bundle.meta.coverageStatus, locale)}
-                  </Badge>
+                  {bundle.meta.coverageStatus === "MISSING_SOURCE" ? (
+                    <Badge variant="outline">
+                      {getLocalizedText(uiText.missingSource, locale)}
+                    </Badge>
+                  ) : null}
                   {bundle.meta.interactiveIds.length > 0 ? (
                     <Badge variant="outline">
                       {getLocalizedText(uiText.interactiveUnits, locale)}
@@ -135,8 +137,15 @@ export default async function UnitPage({ params }: UnitPageProps) {
                   {bundle.doc.description}
                 </p>
                 {bundle.meta.coverageStatus === "MISSING_SOURCE" ? (
-                  <GlassPanel className="mt-5 border border-amber-400/40 bg-amber-500/10 p-4 text-sm leading-7">
-                    {getLocalizedText(uiText.missingSource, locale)}
+                  <GlassPanel
+                    className="mt-5 p-4 text-sm leading-7"
+                    style={{
+                      background: "var(--callout-warning-bg)",
+                      borderColor: "var(--callout-warning-border)",
+                      color: "var(--callout-warning-foreground)",
+                    }}
+                  >
+                    {getLocalizedText(uiText.missingSourceNotice, locale)}
                   </GlassPanel>
                 ) : null}
               </div>

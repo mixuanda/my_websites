@@ -5,7 +5,7 @@ import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { TextbookCourseSidebar } from "@/components/textbook/TextbookCourseSidebar";
 import { getCourseMeta, textbookCatalog } from "@/lib/textbook/catalog";
-import { getCoverageLabel, getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
+import { getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
 import { getCoursesHref, getUnitHref } from "@/lib/textbook/routes";
 import type { CourseId, LocalizedText } from "@/lib/textbook/types";
 import { notFound } from "next/navigation";
@@ -141,9 +141,11 @@ export default async function CoursePage({ params }: CoursePageProps) {
                       <div className="flex-1">
                         <div className="flex flex-wrap items-center gap-2">
                           <Badge variant="secondary">{unit.unitNumber}</Badge>
-                          <Badge variant="outline">
-                            {getCoverageLabel(unit.coverageStatus, locale)}
-                          </Badge>
+                          {unit.coverageStatus === "MISSING_SOURCE" ? (
+                            <Badge variant="outline">
+                              {getLocalizedText(uiText.missingSource, locale)}
+                            </Badge>
+                          ) : null}
                           {unit.interactiveIds.length > 0 ? (
                             <Badge variant="outline">
                               {getLocalizedText(uiText.interactiveUnits, locale)}

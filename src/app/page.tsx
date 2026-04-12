@@ -36,7 +36,7 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/zh-hk/notes"
+              href="/notes"
               className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:opacity-90 transition-opacity"
             >
               <Languages className="w-4 h-4" />

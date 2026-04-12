@@ -1,5 +1,7 @@
 "use client";
 
+import { LanguageSwitcher } from "@/components/textbook/LanguageSwitcher";
+import { useSitePreferences } from "@/components/SitePreferencesProvider";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -7,11 +9,20 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Home, User, FolderKanban, FileText, BookOpen, Sun, Moon, Eye } from "lucide-react";
-import { useEffect, useState } from "react";
+import {
+  BookOpen,
+  Eye,
+  FileText,
+  FolderKanban,
+  Home,
+  Laptop,
+  Menu,
+  User,
+} from "lucide-react";
+import { useState } from "react";
 import { useTheme } from "next-themes";
-import { getRouteLocale, getSiteText, resolveSiteLocale, siteUiText } from "@/lib/site-i18n";
-import { defaultLocale } from "@/lib/textbook/i18n";
+import { getSiteText, siteUiText } from "@/lib/site-i18n";
+import { siteThemeModes } from "@/lib/site-theme";
 import type { Locale } from "@/lib/textbook/types";
 
 interface NavItem {
@@ -25,7 +36,7 @@ function getNavItems(locale: Locale): NavItem[] {
   return [
     { href: "/", label: getSiteText(siteUiText.home, locale), icon: <Home className="w-4 h-4" /> },
     {
-      href: `/${locale}/notes`,
+      href: "/notes",
       label: getSiteText(siteUiText.notes, locale),
       icon: <BookOpen className="w-4 h-4" />,
       matches: (pathname) =>
@@ -51,6 +62,7 @@ interface SidebarContentProps {
   onNavigate: () => void;
   pathname: string;
   resolvedTheme?: string;
+  theme?: string;
   setTheme: (theme: string) => void;
 }
 
@@ -61,18 +73,13 @@ function SidebarContent({
   onNavigate,
   pathname,
   resolvedTheme,
+  theme,
   setTheme,
 }: SidebarContentProps) {
   const navItems = getNavItems(locale);
-  const isDarkTheme = resolvedTheme === "dark";
-  const themeIcon = isDarkTheme ? (
-    <Sun className="w-4 h-4" />
-  ) : (
-    <Moon className="w-4 h-4" />
-  );
-  const themeLabel = isDarkTheme
-    ? getSiteText(siteUiText.switchToLightMode, locale)
-    : getSiteText(siteUiText.switchToDarkMode, locale);
+  const activeTheme = siteThemeModes.includes(theme as (typeof siteThemeModes)[number])
+    ? (theme as (typeof siteThemeModes)[number])
+    : "system";
 
   return (
     <div className="flex flex-col h-full">
@@ -120,16 +127,47 @@ function SidebarContent({
 
       <Separator className="bg-border/70" />
 
-      <div className="p-4 space-y-2">
-        <Button
-          variant="ghost"
-          size="sm"
-          className="w-full justify-start gap-3"
-          onClick={() => setTheme(isDarkTheme ? "light" : "dark")}
-        >
-          {themeIcon}
-          <span>{themeLabel}</span>
-        </Button>
+      <div className="p-4 space-y-4">
+        <div className="space-y-2">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+            {getSiteText(siteUiText.appearance, locale)}
+          </p>
+          <div className="grid grid-cols-3 gap-2">
+            <Button
+              size="sm"
+              type="button"
+              variant={activeTheme === "system" ? "default" : "outline"}
+              onClick={() => setTheme("system")}
+            >
+              <Laptop className="mr-1 h-4 w-4" />
+              {getSiteText(siteUiText.systemTheme, locale)}
+            </Button>
+            <Button
+              size="sm"
+              type="button"
+              variant={activeTheme === "light" ? "default" : "outline"}
+              onClick={() => setTheme("light")}
+            >
+              {getSiteText(siteUiText.lightMode, locale)}
+            </Button>
+            <Button
+              size="sm"
+              type="button"
+              variant={activeTheme === "dark" ? "default" : "outline"}
+              onClick={() => setTheme("dark")}
+            >
+              {getSiteText(siteUiText.darkMode, locale)}
+            </Button>
+          </div>
+          {activeTheme === "system" && resolvedTheme ? (
+            <p className="text-xs text-muted-foreground">
+              {getSiteText(siteUiText.themeMode, locale)}:{" "}
+              {resolvedTheme === "dark"
+                ? getSiteText(siteUiText.darkMode, locale)
+                : getSiteText(siteUiText.lightMode, locale)}
+            </p>
+          ) : null}
+        </div>
         <Button
           variant="ghost"
           size="sm"
@@ -142,6 +180,7 @@ function SidebarContent({
           <Eye className="w-4 h-4" />
           <span>{getSiteText(siteUiText.highContrast, locale)}</span>
         </Button>
+        <LanguageSwitcher className="border-t border-border/60 pt-4" locale={locale} />
       </div>
 
       <div className="p-4 text-center text-xs text-muted-foreground space-y-1">
@@ -158,14 +197,12 @@ export function GlassSidebar({
 }: GlassSidebarProps) {
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
-  const [locale, setLocale] = useState<Locale>(
-    getRouteLocale(pathname) ?? defaultLocale
-  );
-  const { resolvedTheme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setLocale(resolveSiteLocale(pathname));
-  }, [pathname]);
+  const { highContrast: storedHighContrast, locale } = useSitePreferences();
+  const { resolvedTheme, setTheme, theme } = useTheme();
+  const effectiveHighContrast = onHighContrastChange
+    ? highContrast
+    : storedHighContrast;
+  const handleHighContrastChange = onHighContrastChange ?? (() => {});
 
   return (
     <>
@@ -173,18 +210,19 @@ export function GlassSidebar({
       <aside
         className={cn(
           "hidden lg:flex flex-col w-64 h-screen fixed left-0 top-0 transition-all duration-300",
-          highContrast
+          effectiveHighContrast
             ? "bg-sidebar border-r border-border"
             : "bg-sidebar/90 backdrop-blur-2xl border-r border-border/60"
         )}
       >
         <SidebarContent
-          highContrast={highContrast}
+          highContrast={effectiveHighContrast}
           locale={locale}
-          onHighContrastChange={onHighContrastChange}
+          onHighContrastChange={handleHighContrastChange}
           onNavigate={() => setOpen(false)}
           pathname={pathname}
           resolvedTheme={resolvedTheme}
+          theme={theme}
           setTheme={setTheme}
         />
       </aside>
@@ -193,7 +231,7 @@ export function GlassSidebar({
       <header
         className={cn(
           "lg:hidden fixed top-0 left-0 right-0 z-50 h-16 flex items-center px-4 transition-all duration-300",
-          highContrast
+          effectiveHighContrast
             ? "bg-sidebar border-b border-border"
             : "bg-sidebar/90 backdrop-blur-2xl border-b border-border/60"
         )}
@@ -208,18 +246,19 @@ export function GlassSidebar({
             side="left"
             className={cn(
               "w-64 p-0 transition-all duration-300",
-              highContrast
+              effectiveHighContrast
                 ? "bg-sidebar"
                 : "bg-sidebar/95 backdrop-blur-2xl border-r border-border/60"
             )}
           >
             <SidebarContent
-              highContrast={highContrast}
+              highContrast={effectiveHighContrast}
               locale={locale}
-              onHighContrastChange={onHighContrastChange}
+              onHighContrastChange={handleHighContrastChange}
               onNavigate={() => setOpen(false)}
               pathname={pathname}
               resolvedTheme={resolvedTheme}
+              theme={theme}
               setTheme={setTheme}
             />
           </SheetContent>

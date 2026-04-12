@@ -2,11 +2,7 @@
 
 import { useEffect } from "react";
 import { useTheme } from "next-themes";
-
-const themeColors = {
-  dark: "#11101a",
-  light: "#f7f3ef",
-} as const;
+import { siteThemeColors } from "@/lib/site-theme";
 
 export function ThemeMetaController() {
   const { resolvedTheme } = useTheme();
@@ -19,7 +15,7 @@ export function ThemeMetaController() {
     const themeMeta = document.querySelector('meta[name="theme-color"]:not([media])');
     const theme = resolvedTheme === "dark" ? "dark" : "light";
 
-    themeMeta?.setAttribute("content", themeColors[theme]);
+    themeMeta?.setAttribute("content", siteThemeColors[theme]);
     document.documentElement.style.colorScheme = theme;
   }, [resolvedTheme]);
 
