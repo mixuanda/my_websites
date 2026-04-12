@@ -296,16 +296,6 @@ function TextbookUnitPdf({ unit }: { unit: ExportableTextbookUnit }) {
             ))}
           </View>
         ) : null}
-        <View style={{ marginBottom: 8 }}>
-          <Text style={styles.meta}>{getLocalizedText(uiText.sourceTrail, unit.locale)}</Text>
-          {unit.sourceRefs.map((ref) => (
-            <Text key={`${ref.file}-${ref.pages ?? ""}`} style={styles.bodyText}>
-              • {ref.file}
-              {ref.pages ? ` (${ref.pages})` : ""}
-              {ref.note ? ` — ${ref.note}` : ""}
-            </Text>
-          ))}
-        </View>
         {unit.glossaryRefs.length > 0 ? (
           <View style={{ marginBottom: 8 }}>
             <Text style={styles.meta}>

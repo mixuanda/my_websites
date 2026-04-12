@@ -1,68 +1,227 @@
 ---
-title: "3.5 Gaps in Q and sqrt(2)"
-description: "See why Q still has holes by looking at the irrational number sqrt(2) and the set of rationals below it."
+title: "3.5 Gaps in Q and why sqrt(2) is not rational"
+description: "Use the set of rationals below sqrt(2) to see why density is not enough to make Q complete."
 ---
 
-The rational numbers are dense, but density is not the same thing as
-completeness. The source notes use `sqrt(2)` to show that Q still has holes.
+This note is where the construction story of the number systems starts to
+change direction. Up to now, you have been building `N`, `Z`, and `Q` and
+checking that their operations are well-defined. Here the question is different:
 
-## What the gap means
+Does `Q` already contain every number you need for order and limit arguments?
 
-<Definition title="Irrational number">
-An irrational number is a real number that is not rational.
+The answer is no. The standard example comes from `sqrt(2)`.
+
+## Intuition first: dense is not the same as complete
+
+A common first reaction is:
+
+"But there are so many rational numbers. Surely there is no gap."
+
+That reaction mixes up two different ideas.
+
+- Dense means that between two different rational numbers, you can always find
+  another rational.
+- Complete means that certain bounded sets really do have least upper bounds
+  inside the number system you are working in.
+
+The notes use `Q` to show that density does not guarantee completeness.
+Rationals can be packed closely together and still miss an important boundary
+point.
+
+## The key order-language
+
+<Definition title="Upper bound and supremum">
+Let `X` be a subset of an ordered set.
+
+- An upper bound of `X` is a number `u` such that `x \le u` for every `x \in X`.
+- A supremum of `X`, written `sup(X)`, is the least upper bound of `X`.
 </Definition>
 
-The notes define a classic set:
+The word "least" is crucial. A supremum is not just any upper bound. It is the
+smallest number that still stays above the whole set.
 
-`S = {x in Q | x^2 < 2}`.
+<Definition title="Irrational number">
+An irrational number is a real number that does not belong to `Q`.
+</Definition>
 
-Every rational with square less than `2` belongs to `S`, and every rational
-with square bigger than `2` sits above it. The missing point is the square
-root of `2`.
+## The set that exposes the gap
 
-## A familiar contradiction
+The classic set is
 
-<CollapsibleProof title="Why no rational number squares to 2">
-Assume `x in Q` and `x^2 = 2`. Write `x = p/q` in lowest terms with
-`p, q in Z` and `q != 0`.
+$$
+S = \{q \in Q \mid q^2 < 2\}.
+$$
 
-Then `p^2 = 2q^2`, so `p^2` is even. The notes prove that this forces `p` to be
-even. Write `p = 2k`.
+This set collects all rational numbers whose square is still less than `2`.
 
-Substitute again:
+At first glance, it feels as if this set ought to have a rational boundary.
+After all, numbers such as `1`, `1.4`, and `1.41` belong to it, while numbers
+such as `2` or `3/2` sit above it.
 
-`4k^2 = 2q^2`, so `q^2` is even, and then `q` is even too.
+The problem is that the "correct" boundary is `sqrt(2)`, and that number is not
+in `Q`.
 
-That contradicts the choice of `p/q` in lowest terms. So there is no rational
-solution to `x^2 = 2`.
+## Why `S` is bounded above in `Q`
+
+Before proving that `S` has no supremum in `Q`, you should first check that
+`S` really is a bounded-above set.
+
+<WorkedExample title="Finding an upper bound for `S`">
+Take `u = 2`.
+
+Since `2^2 = 4 > 2`, the number `2` does not belong to `S`. More importantly,
+every rational `q` with `q > 2` also satisfies `q^2 > 2`, so such a `q` lies
+above every element of `S`.
+
+That means `2` is an upper bound for `S`.
+
+In fact, any rational number `u` with `u^2 > 2` is an upper bound for `S`.
+</WorkedExample>
+
+So the issue is not that `S` has no upper bounds. The issue is that among its
+rational upper bounds, there is no least one.
+
+## Why `sqrt(2)` is not rational
+
+The source notes first recall the standard contradiction proof.
+
+<CollapsibleProof title="Proof that `sqrt(2)` does not belong to `Q`">
+Assume, for contradiction, that `sqrt(2)` is rational.
+
+Then there exist integers `p` and `q` with `q \ne 0` such that
+
+$$
+\sqrt{2} = \frac{p}{q}
+$$
+
+and the fraction is already in lowest terms.
+
+Squaring both sides gives
+
+$$
+p^2 = 2q^2.
+$$
+
+So `p^2` is even, which forces `p` itself to be even. Write `p = 2k`.
+
+Substituting back gives
+
+$$
+4k^2 = 2q^2,
+$$
+
+so
+
+$$
+q^2 = 2k^2.
+$$
+
+Therefore `q^2` is even, and `q` is even as well.
+
+Now both `p` and `q` are even, which contradicts the assumption that `p/q` was
+already in lowest terms.
+
+Therefore `sqrt(2)` is not rational.
 </CollapsibleProof>
 
+This matters because if `sqrt(2)` were rational, it would be the obvious
+candidate for `sup(S)` in `Q`. The contradiction tells you that the obvious
+candidate is missing from the rational number system.
+
+## The formal gap statement
+
+<TheoremCard title="The set `S = \{q \in Q \mid q^2 < 2\}` has no supremum in `Q`">
+The set `S` is bounded above in `Q`, but there is no rational number that serves
+as its least upper bound.
+</TheoremCard>
+
+The notes justify this by splitting every rational candidate `s` into three
+cases.
+
+<CollapsibleProof title="Why no rational candidate can be `sup(S)`">
+Suppose `s \in Q`. We check all possible ways `s` could compare with `2`
+through the square `s^2`.
+
+Case 1: `s^2 < 2`.
+
+Then `s` is still inside the set `S`, so it cannot be an upper bound. The notes
+show more: you can move a little to the right and still remain in `S`. So a
+number with `s^2 < 2` is definitely too small to be the supremum.
+
+Case 2: `s^2 > 2`.
+
+Then `s` is an upper bound, but it is too large to be the least upper bound.
+The notes show that you can move a little to the left and still stay above all
+elements of `S`. So a number with `s^2 > 2` cannot be the supremum either.
+
+Case 3: `s^2 = 2`.
+
+This would make `s = sqrt(2)`, but the previous proof shows that no such
+rational `s` exists.
+
+Every rational candidate fails. Therefore `S` has no supremum in `Q`.
+</CollapsibleProof>
+
+## What this teaches you about Q
+
+This result is not just a trick about one set.
+
+It tells you that `Q` is missing some order-theoretic limits. A bounded set of
+rational numbers can get closer and closer to a boundary without ever finding a
+rational least upper bound.
+
+That is what the notes mean when they say that `Q` is not complete.
+
+## Common mistake
+
 <CommonMistake title="Dense does not mean complete">
-Even though there is always another rational between two rationals, a bounded
-set in Q can still fail to have a supremum in Q.
+It is true that between any two rational numbers there is another rational.
+But that fact only talks about what happens between two existing rationals. It
+does not say that every bounded set of rationals has a rational supremum.
 </CommonMistake>
+
+Another common mistake is to think that a supremum must belong to the set
+itself. That is false. A supremum only has to be the least upper bound in the
+ambient ordered set.
 
 ## Quick checks
 
-<QuickCheck prompt="Does the set `S = {x in Q | x^2 < 2}` have a supremum in Q?">
-Use the contradiction above and the source notes on completeness.
+<QuickCheck prompt="Why is a rational number `s` with `s^2 < 2` not an upper bound for `S`?">
+Use the source-note idea that you can move a little to the right and still keep
+the square below `2`.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-No. The notes show that `S` is bounded above in Q, but no rational supremum
-exists there.
+Because such an `s` is still too small. The notes show that there exists a
+rational `r > s` with `r^2 < 2`, so `r` also belongs to `S`. That means `s`
+cannot be above the whole set.
 </RevealSolution>
 
-<QuickCheck prompt="Is `sqrt(2)` rational?">
-Say yes or no and give the reason in one phrase.
+<QuickCheck prompt="Does the supremum of a set have to belong to the set?">
+Answer in one sentence.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-No. The proof above shows that a rational square root of `2` would lead to a
-contradiction.
+No. A supremum only has to be the least upper bound. It may lie outside the set
+itself.
+</RevealSolution>
+
+## Exercise
+
+<QuickCheck prompt="Why do infinitely many rationals near `sqrt(2)` still fail to fix the gap in `Q`?">
+Use the difference between density and completeness.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Having many rationals near `sqrt(2)` only shows that `Q` is dense. It tells you
+that you can approximate the missing boundary very well. But approximation is
+not the same as possession. The boundary point that should play the role of the
+least upper bound is `sqrt(2)`, and that point is not rational. So the set can
+have arbitrarily close rational approximations and still have no supremum in
+`Q`.
 </RevealSolution>
 
 ## Read this first
 
-If you want the construction of Q first, read
-[3.4 Rationals and well-defined operations](/en/courses/math1090/numbers/rationals-and-well-defined-operations).
+If you want the construction of `Q` first, read
+[3.4 Rationals and well-defined operations](/en/notes/math1090/numbers/rationals-and-well-defined-operations).

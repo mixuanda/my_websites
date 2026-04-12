@@ -1,75 +1,344 @@
 ---
 title: "2.3 Gaussian elimination and RREF"
-description: "See Gaussian elimination as a sequence of purposeful moves, not just memorized mechanics."
+description: "Follow one full row-reduction path and learn how REF and RREF let you read a system instead of guessing."
 ---
 
-## The goal of elimination
+## Why elimination matters
 
-Gaussian elimination is a way to simplify an augmented matrix by row
-operations until the solution becomes easy to read.
+When students first meet Gaussian elimination, it can feel like a pile of
+rules:
 
-The point is not to perform random moves. Each move should make the structure
-clearer.
+- swap rows,
+- multiply a row,
+- subtract a row,
+- keep going until the matrix looks “nice.”
 
-<Definition title="RREF">
-Reduced row-echelon form, or RREF, is the simplified matrix form that makes pivots
-and free variables easy to read.
+That is not the right mental model.
+
+Gaussian elimination is really a reading strategy. You start with a system that
+is hard to read, then you use row operations to make the logical structure of
+the system more visible. Each row operation should answer a question such as:
+
+- Which variable am I trying to isolate next?
+- Which entry is blocking me?
+- Which move will create more zeros without changing the solution set?
+
+If you keep asking those questions, elimination becomes much less mechanical.
+
+## Intuition first: what are we trying to build?
+
+The dream shape is not “a random simpler matrix.” The dream shape is a matrix
+whose important columns are easy to spot and whose equations are easy to read
+from bottom to top.
+
+In practice, that means:
+
+1. pick a pivot entry,
+2. clear the entries below it,
+3. move to the smaller submatrix that remains,
+4. then clean up above the pivots if you want full reduced form.
+
+So elimination is a controlled way of building a staircase of pivots.
+
+<Definition title="REF and RREF">
+A matrix is in **row echelon form (REF)** when:
+
+1. all zero rows are at the bottom, and
+2. each nonzero row starts farther to the right than the row above it.
+
+A matrix is in **reduced row echelon form (RREF)** when, in addition:
+
+1. each pivot is `1`, and
+2. each pivot is the only nonzero entry in its column.
 </Definition>
 
-## What to look for
+The first nonzero entry in a nonzero row is called a **pivot** or **leading
+entry**. A column containing a pivot is a **pivot column**. Columns without a
+pivot correspond to **free variables**.
 
-In a row-reduced matrix, you want to see the pivots, the free variables, and any
-contradiction row such as `[0 0 0 | 1]`.
+That vocabulary matters because it tells you what kind of solution set to
+expect later.
 
-That last kind of row tells you the system has no solution.
+<TheoremCard title="Why row reduction is safe">
+If two augmented matrices are row-equivalent, then they represent equivalent
+systems of linear equations. In other words, row operations change the *look*
+of the system, but not its solution set.
+</TheoremCard>
 
-## A simple example
+This is why elimination is legitimate. We are reorganizing information, not
+inventing a new problem.
 
-<WorkedExample title="Start elimination in a small system">
-Take the augmented matrix
+## One full elimination path
+
+The local lecture notes in `MATH1030-Notes.pdf §2.2` build elimination by
+starting from an augmented matrix and repeatedly clearing the entries beneath a
+pivot. We will follow that same idea on a small system:
+
+$$
+\begin{aligned}
+x + 2y + 2z &= 4, \\
+x + 3y + 3z &= 5, \\
+2x + 6y + 5z &= 6.
+\end{aligned}
+$$
+
+Its augmented matrix is
 
 $$
 \begin{bmatrix}
-1 & 2 & | & 5 \\
-3 & -1 & | & 4
+1 & 2 & 2 & 4 \\
+1 & 3 & 3 & 5 \\
+2 & 6 & 5 & 6
 \end{bmatrix}.
 $$
 
-Use `R_2 \leftarrow R_2 - 3R_1` to remove the first entry below the pivot:
+<WorkedExample title="Read every row operation as a purpose">
+The entry in the top-left corner is already a convenient pivot because it is
+`1`. So the first goal is simple:
+
+> make everything **below** that pivot become `0`.
+
+Use
+
+$$
+R_2 \leftarrow R_2 - R_1,
+\qquad
+R_3 \leftarrow R_3 - 2R_1.
+$$
+
+Then the matrix becomes
 
 $$
 \begin{bmatrix}
-1 & 2 & | & 5 \\
-0 & -7 & | & -11
+1 & 2 & 2 & 4 \\
+0 & 1 & 1 & 1 \\
+0 & 2 & 1 & -2
 \end{bmatrix}.
 $$
 
-From here you can continue until the matrix is in RREF.
+Now column 1 is finished. The next pivot lives in row 2, column 2. So we use it
+to clear the `2` below it:
+
+$$
+R_3 \leftarrow R_3 - 2R_2.
+$$
+
+This gives
+
+$$
+\begin{bmatrix}
+1 & 2 & 2 & 4 \\
+0 & 1 & 1 & 1 \\
+0 & 0 & -1 & -4
+\end{bmatrix}.
+$$
+
+At this stage the matrix is already in REF. You can solve by back-substitution.
+But if you want the cleanest reading form, continue to RREF.
+
+First make the last pivot equal to `1`:
+
+$$
+R_3 \leftarrow -R_3
+\quad\Rightarrow\quad
+\begin{bmatrix}
+1 & 2 & 2 & 4 \\
+0 & 1 & 1 & 1 \\
+0 & 0 & 1 & 4
+\end{bmatrix}.
+$$
+
+Then clear the entries **above** that pivot:
+
+$$
+R_1 \leftarrow R_1 - 2R_3,
+\qquad
+R_2 \leftarrow R_2 - R_3,
+$$
+
+so the matrix becomes
+
+$$
+\begin{bmatrix}
+1 & 2 & 0 & -4 \\
+0 & 1 & 0 & -3 \\
+0 & 0 & 1 & 4
+\end{bmatrix}.
+$$
+
+Finally clear the `2` above the second pivot:
+
+$$
+R_1 \leftarrow R_1 - 2R_2,
+$$
+
+which gives the RREF
+
+$$
+\begin{bmatrix}
+1 & 0 & 0 & 2 \\
+0 & 1 & 0 & -3 \\
+0 & 0 & 1 & 4
+\end{bmatrix}.
+$$
+
+Now the solution can be read immediately:
+
+$$
+x = 2,\qquad y = -3,\qquad z = 4.
+$$
 </WorkedExample>
 
-Pause here and step through one elimination path. After each move, ask which
-entry became easier to read and why that move was chosen.
+Notice the teaching pattern:
+
+- below-pivot clearing creates REF,
+- above-pivot clearing creates RREF,
+- RREF is the easiest form to read directly.
+
+## Try the same path interactively
+
+The stepper below keeps the same logic, but slows it down. At each stage, look
+at three things:
+
+1. which pivot is active,
+2. which row operation is being applied, and
+3. what becomes easier to read afterward.
 
 <InteractiveWidget id="row-reduction-stepper" />
 
-## Common mistake
+## How to read an RREF matrix
+
+Once a matrix is in RREF, the main reading questions are:
+
+- Does every variable column have a pivot?
+- Is there any free variable?
+- Is there a contradiction row?
+
+<WorkedExample title="Read structure before you compute">
+Suppose you arrive at
+
+$$
+\begin{bmatrix}
+1 & 0 & 3 & 5 \\
+0 & 1 & -2 & 1 \\
+0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+Here columns 1 and 2 are pivot columns, but column 3 is not. That means the
+third variable is free.
+
+So this system does **not** have one unique solution. Instead, it has infinitely
+many solutions, because you may choose the free variable first and then solve
+for the pivot variables.
+</WorkedExample>
+
+<TheoremCard title="What a contradiction row means">
+If row reduction produces a row such as
+
+$$
+\begin{bmatrix}
+0 & 0 & 0 & 1
+\end{bmatrix},
+$$
+
+then the corresponding equation is `0 = 1`. That is impossible, so the system
+is inconsistent and has no solution.
+</TheoremCard>
+
+## Common mistakes
 
 <CommonMistake title="REF is not yet RREF">
-It is easy to stop too early. In RREF, each pivot column has zeros everywhere
-else, not just below the pivot.
+It is common to stop as soon as everything below each pivot is `0`. That may be
+good enough for back-substitution, but it is not yet RREF. In RREF, each pivot
+column must have zeros everywhere else as well.
 </CommonMistake>
 
-## Quick check
+<CommonMistake title="Choosing operations without a target">
+Do not subtract rows just because “something should happen.” Before each move,
+state the target clearly:
 
-<QuickCheck prompt="Is `[0 0 0 | 1]` a harmless row?">
-Think about what equation that row represents.
+- which pivot are you using?
+- which entry are you trying to kill?
+- why is this the best next move?
+
+That habit keeps your work organized and makes sign mistakes easier to catch.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="When should you swap rows before eliminating?">
+Think about the first available pivot position. What if the entry there is `0`
+but a nonzero entry appears lower in the same column?
 </QuickCheck>
 
 <RevealSolution title="Answer">
-No. It means `0 = 1`, which is a contradiction, so the system has no solution.
+Swap rows when the current pivot position is unusable, for example when it is
+`0` but a nonzero entry appears below it in the same column. The row swap moves
+a usable pivot into place so elimination can continue.
+</RevealSolution>
+
+<QuickCheck prompt="Is `[0 0 0 | 1]` a harmless row?">
+Translate the row back into an equation before you answer.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. It represents `0 = 1`, which is a contradiction. That means the system is
+inconsistent and has no solution.
+</RevealSolution>
+
+## Exercises
+
+### Exercise 1
+
+Start from
+
+$$
+\begin{bmatrix}
+1 & 1 & 2 & 3 \\
+2 & 3 & 5 & 8 \\
+0 & 1 & 1 & 2
+\end{bmatrix}.
+$$
+
+What is the most natural first row operation if your goal is to clear the entry
+below the first pivot?
+
+<RevealSolution title="Guided solution for exercise 1">
+The first pivot is already the `1` in row 1, column 1. The entry beneath it is
+`2`, so the natural move is
+
+$$
+R_2 \leftarrow R_2 - 2R_1.
+$$
+
+That operation clears column 1 below the pivot in one step.
+</RevealSolution>
+
+### Exercise 2
+
+Consider the matrix
+
+$$
+\begin{bmatrix}
+1 & 0 & 2 & 4 \\
+0 & 1 & -1 & 3 \\
+0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+Does this represent a system with a unique solution, infinitely many solutions,
+or no solution?
+
+<RevealSolution title="Guided solution for exercise 2">
+There is no contradiction row, so the system is not inconsistent. But column 3
+has no pivot, which means there is a free variable. Therefore the system has
+infinitely many solutions.
 </RevealSolution>
 
 ## Read this first
 
-This page depends on
-[2.2 Augmented matrices and row operations](/en/courses/math1030/matrices/augmented-matrices-row-operations).
+This page builds directly on
+[2.2 Augmented matrices and row operations](/en/notes/math1030/matrices/augmented-matrices-row-operations).
+If you are still unsure why row operations preserve the solution set, go back to
+that note first before practicing longer elimination paths.

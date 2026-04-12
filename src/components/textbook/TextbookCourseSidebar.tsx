@@ -22,7 +22,7 @@ export function TextbookCourseSidebar({
     <div className="space-y-4 xl:sticky xl:top-24">
       <GlassCard className="p-5">
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-          {getLocalizedText(uiText.textbook, locale)}
+          {getLocalizedText(uiText.noteCollections, locale)}
         </p>
         <h2 className="mt-2 text-xl font-semibold">{courseMeta.title[locale]}</h2>
         <p className="mt-3 text-sm leading-7 text-muted-foreground">

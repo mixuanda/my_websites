@@ -25,15 +25,17 @@ function getNavItems(locale: Locale): NavItem[] {
   return [
     { href: "/", label: getSiteText(siteUiText.home, locale), icon: <Home className="w-4 h-4" /> },
     {
-      href: `/${locale}/courses`,
-      label: getSiteText(siteUiText.textbooks, locale),
+      href: `/${locale}/notes`,
+      label: getSiteText(siteUiText.notes, locale),
       icon: <BookOpen className="w-4 h-4" />,
-      matches: (pathname) => /^\/(en|zh-hk|zh-cn)(\/courses|$)/.test(pathname),
+      matches: (pathname) =>
+        pathname === "/notes" ||
+        pathname.startsWith("/notes/") ||
+        /^\/(en|zh-hk|zh-cn)(\/notes|$)/.test(pathname),
     },
     { href: "/about", label: getSiteText(siteUiText.about, locale), icon: <User className="w-4 h-4" /> },
     { href: "/projects", label: getSiteText(siteUiText.projects, locale), icon: <FolderKanban className="w-4 h-4" /> },
     { href: "/blog", label: getSiteText(siteUiText.blog, locale), icon: <FileText className="w-4 h-4" /> },
-    { href: "/notes", label: getSiteText(siteUiText.notes, locale), icon: <BookOpen className="w-4 h-4" /> },
   ];
 }
 
@@ -75,7 +77,7 @@ function SidebarContent({
   return (
     <div className="flex flex-col h-full">
       <div className="p-6 text-center">
-        <Avatar className="w-24 h-24 mx-auto mb-4 ring-2 ring-white/20">
+        <Avatar className="w-24 h-24 mx-auto mb-4 ring-2 ring-border/70">
           <AvatarImage src="/avatar.png" alt="Avatar" />
           <AvatarFallback className="text-2xl">EA</AvatarFallback>
         </Avatar>

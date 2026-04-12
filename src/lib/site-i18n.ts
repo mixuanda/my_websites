@@ -19,9 +19,9 @@ export const siteUiText = {
     "zh-hk": "目錄",
   },
   footerNote: {
-    en: "Mathematics course sections are being expanded.",
-    "zh-cn": "数学课程章节仍在持续扩写。",
-    "zh-hk": "數學課程章節仍在持續擴寫。",
+    en: "Interactive mathematics notes are still expanding.",
+    "zh-cn": "互动数学笔记仍在持续扩写。",
+    "zh-hk": "互動數學筆記仍在持續擴寫。",
   },
   highContrast: {
     en: "High contrast",
@@ -44,9 +44,9 @@ export const siteUiText = {
     "zh-hk": "項目",
   },
   shellSubtitle: {
-    en: "Developer / math educator",
-    "zh-cn": "开发者 / 数学教育内容建设中",
-    "zh-hk": "開發者 / 數學教育內容建設中",
+    en: "Developer / interactive math notes in progress",
+    "zh-cn": "开发者 / 互动数学笔记建设中",
+    "zh-hk": "開發者 / 互動數學筆記建設中",
   },
   switchToDarkMode: {
     en: "Switch to dark mode",
@@ -59,9 +59,9 @@ export const siteUiText = {
     "zh-hk": "切換到亮色模式",
   },
   textbooks: {
-    en: "Courses",
-    "zh-cn": "课程",
-    "zh-hk": "課程",
+    en: "Notes",
+    "zh-cn": "笔记",
+    "zh-hk": "筆記",
   },
 } as const satisfies Record<string, LocalizedText>;
 

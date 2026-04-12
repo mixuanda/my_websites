@@ -107,7 +107,7 @@ export function Mdx({ code, components }: MdxProps) {
   const Component = useMDXComponent(code);
 
   return (
-    <div className="mdx prose max-w-none prose-headings:text-foreground prose-p:text-foreground/95 prose-strong:text-foreground prose-li:text-foreground/95 prose-code:text-foreground prose-a:text-primary dark:prose-invert">
+    <div className="mdx prose max-w-none prose-headings:text-foreground prose-p:text-foreground/95 prose-strong:text-foreground prose-li:text-foreground/95 prose-code:text-foreground prose-pre:border prose-pre:border-border/60 prose-blockquote:border-primary prose-a:text-primary">
       <Component components={{ ...baseComponents, ...components }} />
     </div>
   );

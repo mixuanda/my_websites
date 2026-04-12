@@ -1,27 +1,27 @@
 # Source audit
 
-This audit records the current local source coverage for the textbook site.
+This audit records the current local source coverage for the math notes site.
 `reference/` is the source of truth. If a topic is not supported by the local
-materials, mark it as `MISSING_SOURCE` in content plans and do not invent
-course-specific claims.
+materials, mark it as `MISSING_SOURCE` and do not invent course-specific
+claims.
 
 ## Current authoring boundary
 
-The current implementation only ships source-backed early units. That means the
-live textbook currently stays inside the strongest local coverage zones.
+The current live note set stays inside the strongest audited coverage zones.
+These units are already present in code and should remain source-backed.
 
-- `math1090`: logic, quantifiers, sets, functions, and relations
-- `math1030`: systems of equations, matrices, row operations, RREF,
-  solution-set types, and invertibility
+- `math1090`: 1.1, 1.2, 1.3, 2.1, 2.2, 3.1, 3.2, 3.3, 3.4, 3.5
+- `math1030`: 1.1, 2.1, 2.2, 2.3, 2.4, 5.1, 6.1, 6.2, 6.3, 6.4, 6.5
 
 ## MATH1090
 
-The MATH1090 set theory sources are strongest in the early course spine:
-logic, sets, functions, relations, natural numbers, integers, and rational
-numbers. The local files also support the beginning of the real-number
-chapter, but coverage becomes thinner after that.
+The MATH1090 sources are strongest in the early logic, sets, and number
+construction spine. Coverage is good through the current `sqrt(2)` unit and
+then becomes noticeably thinner.
 
 ### Available materials
+
+The current local files for MATH1090 are:
 
 - `reference/MATH1090/MATH1090_Lecture_Notes_Feb27.pdf`
 - `reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf`
@@ -29,42 +29,50 @@ chapter, but coverage becomes thinner after that.
 - `reference/MATH1090/MATH1090_midterm_review_notes_final.pdf`
 - `reference/MATH1090/MATH1090_midterm_review_notes_final.tex`
 - `reference/MATH1090/MATH1090_HW1.pdf`
+- `reference/MATH1090/MATH1090 HW8.pdf`
 - `reference/MATH1090/MATH1090_Worksheet1.pdf`
 - `reference/MATH1090/MATH1090_Worksheet2.pdf`
 - `reference/MATH1090/MATH1090_Worksheet3.pdf`
 - `reference/MATH1090/MATH1090_Worksheet4.pdf`
 - `reference/MATH1090/MATH1090_Worksheet5.pdf`
-- `reference/MATH1090/MATH1090 HW8.pdf`
 
 ### Duplicate or conflicting materials
 
-- The February 27 and March 26 lecture notes are near-duplicate variants of
-  the same lecture-note stream.
-- The `midterm_review_notes_master.pdf` and `midterm_review_notes_final.pdf`
-  files overlap heavily and should be treated as two editorial states of the
+The local MATH1090 tree has a few editorial duplicates and Windows metadata
+artifacts that should not be treated as separate sources.
+
+- `*:Zone.Identifier` files are sidecar metadata only.
+- `MATH1090_midterm_review_notes_master.pdf` and
+  `MATH1090_midterm_review_notes_final.pdf` are two editorial states of the
   same review packet.
-- The `.tex` file is a richer source for headings, appendix structure, and
-  some proof templates, but it should not be treated as a separate topical
-  source.
+- `MATH1090_midterm_review_notes_final.tex` is useful for headings and proof
+  structure, but it is not a separate topical source.
 
 ### Weak or incomplete coverage
 
-- Early chapter coverage is strong and traceable.
-- Later real-number material is present, but the local packet is clearly
-  thinner than the early chapters.
-- `MISSING_SOURCE`: lecture-note content beyond `§4.7` and Dedekind cuts is
-  not supported by the local audit set.
-- `MISSING_SOURCE`: the local tree does not include a complete homework series
-  beyond the available `HW1` and `HW8` files.
+The current weak spots are:
+
+- Coverage is strong for logic, quantifiers, sets, functions, relations,
+  natural numbers, induction, integers, rationals, and the `sqrt(2)` gap in
+  `Q`.
+- Coverage becomes thin after the currently authored `3.5` note. The local
+  tree does not support a confident expansion into later real-number topics
+  without tighter page-by-page mapping.
+- `MISSING_SOURCE`: material beyond the currently audited `§4.7` boundary and
+  later completeness constructions is not yet supported well enough for
+  detailed public notes.
+- `MISSING_SOURCE`: the homework sequence is incomplete. Only `HW1` and `HW8`
+  are locally available.
 
 ## MATH1030
 
-The MATH1030 linear algebra sources are strongest in the matrix and system
-foundations: systems of linear equations, elimination, RREF, matrix algebra,
-invertibility, vector spaces, basis, dimension, determinants, eigenvalues, and
-inner product space material are all present in the main notes.
+The MATH1030 sources are strongest in systems, matrices, elimination,
+invertibility, and the first vector-space sequence through basis and
+dimension.
 
 ### Available materials
+
+The current local files for MATH1030 include:
 
 - `reference/MATH1030/MATH1030-Notes.pdf`
 - `reference/MATH1030/1030efghi-tutorial-week02.pdf`
@@ -91,38 +99,58 @@ inner product space material are all present in the main notes.
 - `reference/MATH1030/Practice Set 4_Solutions.pdf`
 - `reference/MATH1030/MATH1030 HW3.pdf`
 - `reference/MATH1030/math1030_assignment4_review_solutions.pdf`
-- `reference/MATH1030/math1030_assignment4_review_solutions (1).pdf`
-- `reference/MATH1030/math1030_assignment4_review_solutions (2).pdf`
+- `reference/MATH1030/1030efghi-as01.pdf` through
+  `reference/MATH1030/1030efghi-as04-202526.pdf`
+- `reference/MATH1030/1030gi-n01-01.pdf` through
+  `reference/MATH1030/1030gi-n08-01.pdf`
 
 ### Duplicate or conflicting materials
 
-- The week 2 through week 8 tutorials each have answer-sheet variants, which
-  makes them useful for tracing worked solutions but easy to confuse with the
-  question-only versions.
-- The practice sets have matching solution files, so content authoring must
-  keep question text and answer text separate.
-- The assignment 4 review solutions appear in multiple local copies with the
-  same substance.
-- `reference/MATH1030/MATH1090_Worksheet5 (1).pdf` is a stray, misfiled copy
-  from the MATH1090 tree and should not be treated as MATH1030 source.
+The MATH1030 tree contains many useful but easy-to-confuse duplicates.
+
+- `*:Zone.Identifier` files are sidecar metadata only.
+- `1030efghi-tutorial-week02 (1).pdf` duplicates the week 2 tutorial packet.
+- `math1030_assignment4_review_solutions.pdf`,
+  `math1030_assignment4_review_solutions (1).pdf`, and
+  `math1030_assignment4_review_solutions (2).pdf` overlap heavily.
+- Tutorial files and `as` answer-sheet variants must be kept distinct when you
+  trace problem statements versus worked solutions.
+- `reference/MATH1030/MATH1090_Worksheet5 (1).pdf` is a stray MATH1090 file
+  and must not be treated as MATH1030 source.
+- `reference/MATH1030/1030 added.zip` is an opaque bundle. Audit the extracted
+  files before you cite it directly.
 
 ### Weak or incomplete coverage
 
-- The main notes support the later vector-space and inner-product chapters,
-  but the practice material is less dense there than in the early matrix
-  chapters.
-- `MISSING_SOURCE`: any chapter or subsection beyond the locally available
-  notes and tutorials is unsupported by the current audit set.
-- `MISSING_SOURCE`: do not invent course-specific claims for advanced topics
-  that are not explicitly present in the local notes or exercises.
+The current weak spots are:
+
+- Coverage is strong for systems of equations, augmented matrices, row
+  operations, Gaussian elimination, solution-set types, invertibility, vector
+  spaces, subspaces, span, linear independence, basis, and dimension.
+- The master notes appear to continue beyond the current authored boundary,
+  but later topics are not yet mapped tightly enough to subsection-level note
+  plans.
+- `MISSING_SOURCE`: linear transformations, determinants, eigenvalues, and
+  inner-product topics need tighter source mapping before they become detailed
+  public notes.
+- `MISSING_SOURCE`: later problem sets are less densely represented than the
+  early matrix and vector-space chapters.
 
 ## Audit rules for content authors
 
-Use the audit like this when writing pages:
+Use this audit during authoring so the public notes stay conservative and
+traceable.
 
-- Prefer the earliest source that states the relevant concept clearly.
-- Cite the exact chapter, worksheet, or practice set in the section metadata.
-- Label unsupported claims with `MISSING_SOURCE` instead of filling gaps from
+- Prefer the clearest local source that states the concept directly.
+- Keep `sourceRefs` accurate in catalog metadata even if the public page does
+  not show the raw list.
+- Mark unsupported detail as `MISSING_SOURCE` instead of filling gaps from
   memory.
-- When two local sources disagree, keep the site content conservative and add
-  a note that the source set is conflicted.
+- Treat duplicates and answer-key variants carefully so you do not merge
+  question text with solution text by accident.
+
+## Next steps
+
+Map later MATH1030 sections page by page before writing new notes, and do not
+expand MATH1090 beyond the current `3.5` boundary until stronger local support
+is available.

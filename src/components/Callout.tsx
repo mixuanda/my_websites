@@ -12,10 +12,13 @@ export interface CalloutProps {
 
 export function Callout({ type = "info", title, body, children }: CalloutProps) {
   const styles = {
-    info: "bg-blue-500/10 border-blue-500 text-blue-200",
-    warning: "bg-yellow-500/10 border-yellow-500 text-yellow-200",
-    error: "bg-red-500/10 border-red-500 text-red-200",
-    success: "bg-green-500/10 border-green-500 text-green-200",
+    info: "border-[var(--callout-info-border)] bg-[var(--callout-info-bg)] text-[var(--callout-info-foreground)]",
+    warning:
+      "border-[var(--callout-warning-border)] bg-[var(--callout-warning-bg)] text-[var(--callout-warning-foreground)]",
+    error:
+      "border-[var(--callout-error-border)] bg-[var(--callout-error-bg)] text-[var(--callout-error-foreground)]",
+    success:
+      "border-[var(--callout-success-border)] bg-[var(--callout-success-bg)] text-[var(--callout-success-foreground)]",
   };
 
   const icons = {

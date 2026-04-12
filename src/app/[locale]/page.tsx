@@ -11,5 +11,5 @@ export default async function LocaleIndexPage({
   params,
 }: LocaleIndexPageProps) {
   const { locale } = await params;
-  redirect(`/${isLocale(locale) ? locale : defaultLocale}/courses`);
+  redirect(`/${isLocale(locale) ? locale : defaultLocale}/notes`);
 }

@@ -2,7 +2,6 @@
 
 import { GlassSidebar } from "@/components/glass";
 import { cn } from "@/lib/utils";
-import { useTheme } from "next-themes";
 import { useEffect, useState, createContext, useContext } from "react";
 
 interface LayoutContextType {
@@ -24,16 +23,13 @@ interface MainLayoutProps {
 const HIGH_CONTRAST_STORAGE_KEY = "site-high-contrast";
 
 export function MainLayout({ children }: MainLayoutProps) {
-  const [highContrast, setHighContrast] = useState(false);
-  const { resolvedTheme } = useTheme();
-
-  useEffect(() => {
+  const [highContrast, setHighContrast] = useState(() => {
     if (typeof window === "undefined") {
-      return;
+      return false;
     }
 
-    setHighContrast(window.localStorage.getItem(HIGH_CONTRAST_STORAGE_KEY) === "true");
-  }, []);
+    return window.localStorage.getItem(HIGH_CONTRAST_STORAGE_KEY) === "true";
+  });
 
   useEffect(() => {
     if (typeof document === "undefined" || typeof window === "undefined") {
@@ -43,8 +39,6 @@ export function MainLayout({ children }: MainLayoutProps) {
     document.documentElement.dataset.contrast = highContrast ? "high" : "normal";
     window.localStorage.setItem(HIGH_CONTRAST_STORAGE_KEY, String(highContrast));
   }, [highContrast]);
-
-  const isDarkTheme = resolvedTheme !== "light";
 
   return (
     <LayoutContext.Provider value={{ highContrast, setHighContrast }}>
@@ -57,24 +51,19 @@ export function MainLayout({ children }: MainLayoutProps) {
           )}
         >
           <div
-            className={cn(
-              "absolute inset-0 transition-colors duration-500",
-              isDarkTheme
-                ? "bg-gradient-to-br from-slate-950 via-purple-950/50 to-slate-950"
-                : "bg-gradient-to-br from-stone-100 via-fuchsia-50/60 to-sky-100"
-            )}
+            className="absolute inset-0 transition-colors duration-500"
+            style={{
+              background:
+                "linear-gradient(135deg, var(--page-gradient-start) 0%, var(--page-gradient-mid) 50%, var(--page-gradient-end) 100%)",
+            }}
           />
           <div
-            className={cn(
-              "absolute top-0 left-1/4 h-96 w-96 rounded-full blur-3xl transition-colors duration-500",
-              isDarkTheme ? "bg-purple-500/10" : "bg-fuchsia-300/20"
-            )}
+            className="absolute top-0 left-1/4 h-96 w-96 rounded-full blur-3xl transition-colors duration-500"
+            style={{ background: "var(--page-orb-1)" }}
           />
           <div
-            className={cn(
-              "absolute bottom-0 right-1/4 h-96 w-96 rounded-full blur-3xl transition-colors duration-500",
-              isDarkTheme ? "bg-blue-500/10" : "bg-sky-300/20"
-            )}
+            className="absolute bottom-0 right-1/4 h-96 w-96 rounded-full blur-3xl transition-colors duration-500"
+            style={{ background: "var(--page-orb-2)" }}
           />
         </div>
         <GlassSidebar

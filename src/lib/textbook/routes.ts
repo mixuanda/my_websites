@@ -1,11 +1,19 @@
 import type { CourseId, Locale, TextbookUnitMeta } from "./types";
 
-export function getCoursesHref(locale: Locale) {
+export function getNotesHref(locale: Locale) {
+  return `/${locale}/notes`;
+}
+
+export function getLegacyCoursesHref(locale: Locale) {
   return `/${locale}/courses`;
 }
 
+export function getCoursesHref(locale: Locale) {
+  return getNotesHref(locale);
+}
+
 export function getCourseHref(locale: Locale, course: CourseId) {
-  return `${getCoursesHref(locale)}/${course}`;
+  return `${getNotesHref(locale)}/${course}`;
 }
 
 export function getUnitHref(locale: Locale, unit: TextbookUnitMeta) {

@@ -4,7 +4,6 @@ import type {
   Locale,
   LocalizedGlossaryEntry,
   LocalizedText,
-  TextbookChapterMeta,
   TextbookCourseMeta,
   TextbookUnitMeta,
 } from "./types";
@@ -820,9 +819,9 @@ const math1090: TextbookCourseMeta = {
     },
   ],
   description: text(
-    "A beginner-friendly set theory path with short units, source traceability, and guided interaction.",
-    "以初學者為本的集合論學習路徑，包含短單元、來源追蹤與互動引導。",
-    "以初学者为本的集合论学习路径，包含短单元、来源追踪与互动引导。"
+    "A beginner-friendly set theory note collection with short units, careful explanations, and guided interaction.",
+    "以初學者為本的集合論筆記系列，包含短單元、清晰講解與互動引導。",
+    "以初学者为本的集合论笔记系列，包含短单元、清晰讲解与互动引导。"
   ),
   id: "math1090",
   shortTitle: text("Set theory", "集合論", "集合论"),
@@ -881,9 +880,9 @@ const math1030: TextbookCourseMeta = {
     },
   ],
   description: text(
-    "An interactive-first linear algebra route focused on operations, structure, and interpretation.",
-    "以互動為先的線性代數學習路徑，重點是運算、結構與理解。",
-    "以互动为先的线性代数学习路径，重点是运算、结构与理解。"
+    "An interactive-first linear algebra note collection focused on operations, structure, and interpretation.",
+    "以互動為先的線性代數筆記系列，重點是運算、結構與理解。",
+    "以互动为先的线性代数笔记系列，重点是运算、结构与理解。"
   ),
   id: "math1030",
   shortTitle: text("Linear algebra I", "線性代數 I", "线性代数 I"),

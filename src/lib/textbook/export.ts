@@ -404,14 +404,6 @@ export function buildTextbookTxt(unit: ExportableTextbookUnit) {
     );
   }
 
-  metadataLines.push(
-    "",
-    `${getLocalizedText(uiText.sourceTrail, unit.locale)}:`,
-    ...unit.sourceRefs.map((ref) =>
-      `- ${ref.file}${ref.pages ? ` (${ref.pages})` : ""}${ref.note ? ` — ${ref.note}` : ""}`
-    )
-  );
-
   if (unit.glossaryRefs.length > 0) {
     metadataLines.push(
       "",

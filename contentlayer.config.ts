@@ -111,7 +111,7 @@ export const TextbookUnit = defineDocumentType(() => ({
       type: 'string',
       resolve: (doc) => {
         const [, course, chapterId, unitSlug, locale] = doc._raw.flattenedPath.split('/');
-        return `/${locale}/courses/${course}/${chapterId}/${unitSlug}`;
+        return `/${locale}/notes/${course}/${chapterId}/${unitSlug}`;
       },
     },
   },

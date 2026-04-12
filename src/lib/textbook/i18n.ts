@@ -56,9 +56,9 @@ export const localeNames: Record<Locale, LocalizedText> = {
 
 export const uiText = {
   allCourses: {
-    en: "All courses",
-    "zh-cn": "全部课程",
-    "zh-hk": "全部課程",
+    en: "All note collections",
+    "zh-cn": "全部笔记系列",
+    "zh-hk": "全部筆記系列",
   },
   cantoneseNote: {
     en: "Cantonese note",
@@ -71,9 +71,9 @@ export const uiText = {
     "zh-hk": "章節",
   },
   courseOverview: {
-    en: "Start course",
-    "zh-cn": "课程首页",
-    "zh-hk": "課程首頁",
+    en: "Series overview",
+    "zh-cn": "系列总览",
+    "zh-hk": "系列總覽",
   },
   diagramNote: {
     en: "Diagram note",
@@ -101,9 +101,9 @@ export const uiText = {
     "zh-hk": "靜態學習快照",
   },
   interactiveUnits: {
-    en: "Guided interaction",
-    "zh-cn": "互动引导",
-    "zh-hk": "互動引導",
+    en: "Embedded interaction",
+    "zh-cn": "嵌入式互动",
+    "zh-hk": "嵌入式互動",
   },
   output: {
     en: "Output",
@@ -134,6 +134,11 @@ export const uiText = {
     en: "Missing source support",
     "zh-cn": "缺少来源支持",
     "zh-hk": "缺少來源支持",
+  },
+  noteCollections: {
+    en: "Note collections",
+    "zh-cn": "笔记系列",
+    "zh-hk": "筆記系列",
   },
   nextUnit: {
     en: "Next section",
@@ -186,14 +191,14 @@ export const uiText = {
     "zh-hk": "有來源支持",
   },
   sourceTrail: {
-    en: "Source trail",
-    "zh-cn": "来源追踪",
-    "zh-hk": "來源追蹤",
+    en: "Source notes",
+    "zh-cn": "来源备注",
+    "zh-hk": "來源備註",
   },
   studyExport: {
-    en: "Export study copy",
-    "zh-cn": "导出学习版",
-    "zh-hk": "匯出學習版",
+    en: "Export this note",
+    "zh-cn": "导出当前笔记",
+    "zh-hk": "匯出目前筆記",
   },
   studyExportPdf: {
     en: "PDF (.pdf)",
@@ -206,19 +211,19 @@ export const uiText = {
     "zh-hk": "文字 (.txt)",
   },
   textbook: {
-    en: "Courses",
-    "zh-cn": "课程",
-    "zh-hk": "課程",
+    en: "Notes",
+    "zh-cn": "笔记",
+    "zh-hk": "筆記",
   },
   unitList: {
-    en: "Sections in this chapter",
-    "zh-cn": "本章节各节",
-    "zh-hk": "本章節各節",
+    en: "Notes in this chapter",
+    "zh-cn": "本章节笔记",
+    "zh-hk": "本章節筆記",
   },
   visitUnit: {
-    en: "Read section",
-    "zh-cn": "阅读此节",
-    "zh-hk": "閱讀此節",
+    en: "Read note",
+    "zh-cn": "阅读笔记",
+    "zh-hk": "閱讀筆記",
   },
   unit: {
     en: "Sections",
@@ -226,8 +231,8 @@ export const uiText = {
     "zh-hk": "各節",
   },
   sectionNavigation: {
-    en: "Section navigation",
-    "zh-cn": "章节导航",
-    "zh-hk": "章節導覽",
+    en: "More notes in this series",
+    "zh-cn": "本系列更多笔记",
+    "zh-hk": "本系列更多筆記",
   },
 } as const satisfies Record<string, LocalizedText>;

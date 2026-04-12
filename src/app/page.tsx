@@ -36,11 +36,11 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
-              href="/zh-hk/courses"
+              href="/zh-hk/notes"
               className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:opacity-90 transition-opacity"
             >
               <Languages className="w-4 h-4" />
-              进入课程
+              进入笔记
             </Link>
             <Link
               href="/blog"
@@ -66,13 +66,13 @@ export default function Home() {
             <div className="max-w-3xl">
               <div className="flex items-center gap-2 mb-4">
                 <Languages className="w-5 h-5 text-primary" />
-                <Badge variant="secondary">课程</Badge>
+                <Badge variant="secondary">笔记</Badge>
               </div>
               <h2 className="text-2xl md:text-3xl font-bold">
-                math1090 / math1030 数学课程章节
+                math1090 / math1030 互动数学笔记
               </h2>
               <p className="mt-4 text-muted-foreground leading-8">
-                现在的网站重点已经转向按小节阅读、在正文中穿插互动引导、并支持把当前这一节直接导出成静态学习版。
+                现在的网站重点已经转向按小节阅读的数学笔记，在正文中穿插互动引导，并支持把当前这一节直接导出成静态学习版。
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">

@@ -1,25 +1,56 @@
 ---
 title: "6.5 Basis and dimension"
-description: "Finish the chapter by finding the smallest spanning set and counting how many vectors it has."
+description: "Understand a basis as a just-right spanning set, then use dimension to judge what can and cannot happen in a vector space."
 ---
 
-## Minimal spanning sets
+A basis is where the chapter comes together. Earlier notes taught you how to
+build vectors from other vectors, how to test whether a set is a subspace, and
+how to recognize linear dependence. This note combines those ideas into one
+question:
 
-A basis is the cleanest possible spanning set: it spans the space, and it has no
-redundant vectors.
+When do we have exactly enough vectors to describe a space without keeping any
+redundant directions?
+
+## Intuition first: enough directions, but not extra baggage
+
+If a set of vectors spans a space, then it gives you enough directions to build
+every vector in that space.
+
+If the set is also linearly independent, then none of those directions is
+wasted. No vector in the set can already be made from the others.
+
+So a basis is the "just right" situation:
+
+- enough vectors to reach every target in the space;
+- not so many vectors that one of them is unnecessary.
+
+That is why a basis is often the most useful coordinate system for a space.
+Once you choose a basis, every vector can be described in terms of those basis
+vectors.
 
 <Definition title="Basis">
-A set of vectors `{u_1, u_2, \ldots, u_m}` is a basis for a vector space `V` if:
+A set of vectors `\{u_1, u_2, \ldots, u_m\}` is a basis for a vector space `V`
+if both conditions hold:
 
-1. the vectors are linearly independent;
-2. `Span{u_1, u_2, \ldots, u_m} = V`.
+1. `u_1, u_2, \ldots, u_m` are linearly independent.
+2. `Span\{u_1, u_2, \ldots, u_m\} = V`.
 </Definition>
 
-The notes stress that the same space can have more than one basis, but every
-basis has the same number of vectors.
+The two conditions do different jobs.
 
-<WorkedExample title="The standard basis of `R^3`">
-Let
+- The spanning condition says the set is large enough.
+- The independence condition says the set is not larger than necessary.
+
+If you forget either condition, you can misidentify a basis.
+
+Pause and vary the coefficients in a spanning example. Watch how changing the
+generators changes the set of vectors you can reach.
+
+<InteractiveWidget id="span-explorer" />
+
+## The standard basis is the model example
+
+The first basis most students meet is the standard basis of `R^3`:
 
 $$
 e_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix}, \quad
@@ -27,69 +58,233 @@ e_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}, \quad
 e_3 = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}.
 $$
 
-The notes show that these vectors are linearly independent and that they span
-`R^3`.
+These vectors are important because each one isolates one coordinate direction.
 
-So `{e_1, e_2, e_3}` is a basis for `R^3`.
+<WorkedExample title="Why the standard basis of `R^3` really is a basis">
+To show that `\{e_1, e_2, e_3\}` is a basis for `R^3`, you must check the two
+basis conditions.
+
+First, they span `R^3`. If
+
+$$
+x = \begin{bmatrix} a \\ b \\ c \end{bmatrix},
+$$
+
+then
+
+$$
+x = a e_1 + b e_2 + c e_3.
+$$
+
+So every vector in `R^3` can be built from `e_1, e_2, e_3`.
+
+Second, they are linearly independent. If
+
+$$
+\alpha_1 e_1 + \alpha_2 e_2 + \alpha_3 e_3 = 0,
+$$
+
+then comparing coordinates gives
+
+$$
+\alpha_1 = 0,\quad \alpha_2 = 0,\quad \alpha_3 = 0.
+$$
+
+So the only linear relation is the trivial one.
+
+Since both conditions hold, `\{e_1, e_2, e_3\}` is a basis for `R^3`.
 </WorkedExample>
 
-## Dimension
+This example also explains why basis coordinates are useful. Once the basis is
+fixed, the coefficients `a`, `b`, and `c` tell you exactly how to rebuild the
+vector.
 
-Once you know what a basis is, dimension is just a count.
+## Why the number of basis vectors matters
+
+The notes stress a fact that is easy to say and very important to use:
+
+<TheoremCard title="Every basis of the same space has the same size">
+If `B_1` and `B_2` are both bases of the same vector space `V`, then `B_1` and
+`B_2` contain the same number of vectors.
+</TheoremCard>
+
+This statement is what makes dimension well-defined. Without it, the phrase
+"the number of vectors in a basis" would depend on which basis you picked, and
+dimension would not be a stable idea.
+
+## Dimension is a count of independent directions
 
 <Definition title="Dimension">
-The dimension of a vector space `V`, written `dim(V)`, is the number of
-vectors in a basis of `V`.
+The dimension of a vector space `V`, written `dim(V)`, is the number of vectors
+in any basis of `V`.
 </Definition>
 
-The special case `dim({0}) = 0` is included in the notes because the zero space
-has no linearly independent vectors.
+Dimension tells you how many genuinely independent directions the space has.
 
-The chapter also records familiar dimension facts:
+- `dim(R^m) = m`
+- `dim(M_{mn}) = mn`
+- `dim(P_n) = n + 1`
 
-- `dim(R^m) = m`.
-- `dim(M_{mn}) = mn` for matrix spaces.
-- `dim(P_n) = n + 1` for polynomials of degree at most `n`.
+The zero space is the exceptional case:
 
-## Why dimension is powerful
+$$
+dim(\{0\}) = 0.
+$$
 
-Dimension tells you what is possible and what is not. If a space has dimension
-`m`, then:
+That makes sense because the zero space has no nonzero direction at all.
 
-- any `m` linearly independent vectors form a basis;
-- any `m` vectors that span the space form a basis;
-- fewer than `m` vectors cannot span the space.
+## A basis does not have to look like the standard one
 
-That is the quickest way to test many basis problems.
+A basis is not required to use the standard coordinate vectors. Many different
+sets can serve as a basis for the same space, as long as they span the space
+and stay linearly independent.
+
+<WorkedExample title="A basis for a plane inside `R^3`">
+Let
+
+$$
+W = \left\{
+\begin{bmatrix}
+x \\ y \\ 0
+\end{bmatrix}
+: x, y \in R
+\right\}.
+$$
+
+This is the plane `z = 0` inside `R^3`.
+
+Consider
+
+$$
+u_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix},
+\qquad
+u_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix}.
+$$
+
+Every vector in `W` has the form
+
+$$
+\begin{bmatrix}
+x \\ y \\ 0
+\end{bmatrix}
+= x u_1 + y u_2,
+$$
+
+so `u_1` and `u_2` span `W`.
+
+They are also linearly independent, because
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 = 0
+$$
+
+forces `\alpha_1 = \alpha_2 = 0`.
+
+Therefore `\{u_1, u_2\}` is a basis for `W`, and
+
+$$
+dim(W) = 2.
+$$
+</WorkedExample>
+
+So dimension does not count how many entries a vector happens to have. It
+counts how many independent directions the space itself contains.
+
+## How dimension becomes a shortcut
+
+Once you know the dimension of a space, many basis questions become shorter.
+
+If `dim(V) = m`, then:
+
+- any `m` linearly independent vectors in `V` automatically form a basis;
+- any `m` vectors in `V` that span `V` automatically form a basis;
+- fewer than `m` vectors cannot span `V`;
+- more than `m` vectors cannot all remain linearly independent.
+
+This is why dimension is powerful. It turns a long two-part basis test into a
+one-part check when the number of vectors already matches the dimension.
+
+Try a few typical dependence patterns before you use that shortcut.
+
+<InteractiveWidget id="independence-checker" />
+
+## A practical checklist for basis questions
+
+When you are asked whether a set is a basis, work in this order:
+
+1. Identify the space you are trying to span.
+2. Count how many vectors you were given.
+3. Check linear independence, or check spanning.
+4. Use dimension to finish the argument when the count matches.
+
+For example, in `R^3`, three independent vectors already form a basis. You do
+not need a second long spanning calculation after that.
 
 ## Common mistake
 
-<CommonMistake title="Spanning is not enough">
-A set can span a space and still fail to be a basis if it is not linearly
-independent. Always check both conditions.
+<CommonMistake title="Dimension is not just the number of coordinates">
+A subspace of `R^3` can have dimension 1, 2, or 3. The ambient space tells you
+how many entries vectors have; the dimension tells you how many independent
+directions the subspace itself has.
 </CommonMistake>
 
-## Quick check
+Another common mistake is to check spanning and stop there. A spanning set can
+still fail to be a basis if one vector is redundant.
 
-<QuickCheck prompt="What is `dim(R^3)`?">
-Count the vectors in the standard basis.
+## Quick checks
+
+<QuickCheck prompt="Can `\{(1,0), (2,0)\}` be a basis for `R^2`?">
+Think about both basis conditions, not just the number of vectors.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-`dim(R^3) = 3`.
+No. The two vectors point in the same direction, so they are linearly
+dependent. They also fail to span the vertical direction. Therefore they are
+not a basis for `R^2`.
 </RevealSolution>
 
-<QuickCheck prompt="Can two vectors span `R^3`?">
-Use the dimension rule from the chapter.
+<QuickCheck prompt="Suppose `dim(V) = 3` and you already found three linearly independent vectors in `V`. What remains to prove?">
+Use the dimension shortcut from this note.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-No. `R^3` has dimension 3, so fewer than 3 vectors cannot span it.
+Nothing essential remains. In a 3-dimensional space, any three linearly
+independent vectors automatically form a basis, so they already span `V`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Do the vectors `u_1 = (1,1,0)`, `u_2 = (1,0,1)`, and `u_3 = (0,1,1)` form a basis for `R^3`?">
+Try to test independence first. If they are independent, dimension does the
+rest.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Set
+
+$$
+\alpha_1 u_1 + \alpha_2 u_2 + \alpha_3 u_3 = 0.
+$$
+
+Comparing coordinates gives
+
+$$
+\alpha_1 + \alpha_2 = 0,\quad
+\alpha_1 + \alpha_3 = 0,\quad
+\alpha_2 + \alpha_3 = 0.
+$$
+
+Subtract the first two equations to get `\alpha_2 - \alpha_3 = 0`, so
+`\alpha_2 = \alpha_3`. Then the third equation becomes `2\alpha_2 = 0`, so
+`\alpha_2 = 0`, and therefore `\alpha_1 = \alpha_3 = 0` too.
+
+So the three vectors are linearly independent. Because `R^3` has dimension 3,
+they automatically form a basis for `R^3`.
 </RevealSolution>
 
 ## Read this first
 
-This page depends on
-[6.4 Linear dependence and independence](/en/courses/math1030/vector-spaces/linear-dependence-and-independence)
+This note depends on
+[6.4 Linear dependence and independence](/en/notes/math1030/vector-spaces/linear-dependence-and-independence)
 and
-[6.3 Linear combinations and span](/en/courses/math1030/vector-spaces/linear-combinations-and-span).
+[6.3 Linear combinations and span](/en/notes/math1030/vector-spaces/linear-combinations-and-span).

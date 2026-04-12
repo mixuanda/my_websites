@@ -5,7 +5,8 @@ import Image from "next/image";
 import { GlassCard } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { format } from "date-fns";
-import { zhCN } from "date-fns/locale";
+import { enUS, zhCN, zhHK } from "date-fns/locale";
+import type { Locale } from "@/lib/textbook/types";
 
 interface PostCardProps {
   title: string;
@@ -16,6 +17,7 @@ interface PostCardProps {
   category?: string;
   image?: string;
   highContrast?: boolean;
+  locale?: Locale;
   type?: "blog" | "note" | "project";
 }
 
@@ -28,9 +30,12 @@ export function PostCard({
   category,
   image,
   highContrast = false,
+  locale = "zh-cn",
   type = "blog",
 }: PostCardProps) {
   const href = type === "project" ? `/projects/${slug}` : type === "note" ? `/notes/${slug}` : `/blog/${slug}`;
+  const dateLocale = locale === "en" ? enUS : locale === "zh-hk" ? zhHK : zhCN;
+  const datePattern = locale === "en" ? "MMM d, yyyy" : "yyyy年MM月dd日";
   
   return (
     <Link href={href}>
@@ -50,7 +55,7 @@ export function PostCard({
         )}
         <div className="p-5 flex flex-col flex-1">
           <div className="flex items-center gap-2 text-xs text-muted-foreground mb-2">
-            <time>{format(new Date(date), "yyyy年MM月dd日", { locale: zhCN })}</time>
+            <time>{format(new Date(date), datePattern, { locale: dateLocale })}</time>
             {category && (
               <>
                 <span>•</span>

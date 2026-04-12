@@ -27,7 +27,7 @@ function getLocaleHref(pathname: string, nextLocale: Locale) {
     return `/${segments.join("/")}`;
   }
 
-  return `/${nextLocale}/courses`;
+  return `/${nextLocale}/notes`;
 }
 
 export function LanguageSwitcher({
@@ -37,7 +37,7 @@ export function LanguageSwitcher({
   className?: string;
   locale: Locale;
 }) {
-  const pathname = usePathname() ?? `/${defaultLocale}/courses`;
+  const pathname = usePathname() ?? `/${defaultLocale}/notes`;
 
   useEffect(() => {
     if (typeof window !== "undefined") {

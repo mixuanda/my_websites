@@ -1,9 +1,9 @@
 # Agent workstreams
 
-This project uses separate workstreams so the textbook can keep moving without
-constant merge conflicts in the same core files. The supervisor agent keeps the
-route model, export flow, and localization architecture coherent across these
-workstreams.
+This project uses separate workstreams so the math notes system can keep moving
+without constant merge conflicts in the same core files. The supervisor agent
+keeps the route model, export flow, and localization architecture coherent
+across these workstreams.
 
 ## Current responsibilities
 
@@ -11,7 +11,7 @@ Use the following ownership boundaries unless the supervisor explicitly changes
 them.
 
 - **Supervisor / coordinator agent** owns shared architecture, shared route
-  files, shared textbook UI, and final integration.
+  files, shared note-shell UI, and final integration.
 - **Source audit agent** owns `reference/**` review and
   `docs/source-audit.md`.
 - **Localization agent** owns `src/lib/textbook/i18n.ts`,
@@ -34,6 +34,7 @@ editing.
 
 - `src/lib/textbook/catalog.ts`
 - `src/lib/textbook/types.ts`
+- `src/app/[locale]/notes/**`
 - `src/app/[locale]/courses/**`
 - `src/components/textbook/TextbookCourseSidebar.tsx`
 
@@ -43,8 +44,8 @@ change narrowly and avoid touching unrelated behavior.
 ## Current status
 
 The current milestone used separate content workstreams for `math1090` and
-`math1030`, then merged them into the shared textbook shell and export layer.
-That split remains the default workflow for future units.
+`math1030`, then merged them into the shared note shell and export layer. That
+split remains the default workflow for future units.
 
 ## Next steps
 

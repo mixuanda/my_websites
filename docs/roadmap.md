@@ -1,80 +1,76 @@
 # Roadmap
 
-This roadmap tracks the interactive textbook implementation that now exists in
-the workspace. It records what is already live in code, what is still active,
-and what remains blocked by source coverage or environment issues.
+This roadmap tracks the current interactive math notes implementation in the
+workspace. It records what is already live in code, what remains active, and
+what is blocked by source availability or local tooling.
 
 ## Completed
 
-The following milestone items are implemented in the current codebase.
+The following milestone items are already implemented in the current codebase.
 
-- Locale-prefixed textbook routes under
-  `/[locale]/courses/[course]/[chapter]/[unit]`.
-- A shared textbook catalog, glossary model, route helpers, and localized UI
-  text utilities in `src/lib/textbook/`.
+- Localized public notes routes under
+  `/[locale]/notes/[course]/[chapter]/[unit]`.
+- Compatibility redirects from `/${locale}/courses/**` to the matching notes
+  routes.
+- A shared catalog, glossary model, route helper layer, and localized UI text
+  utilities under `src/lib/textbook/`.
 - Unit-level TXT and PDF export endpoints under
   `/api/textbook-export/[locale]/[course]/[chapter]/[unit]`.
-- Reusable localized learning blocks for definitions, theorem cards, worked
+- Reusable localized note blocks for definitions, theorem cards, worked
   examples, quick checks, revealable solutions, collapsible proofs, and common
   mistakes.
-- Reusable interactive widgets for the first `math1090` and `math1030`
-  milestone units.
-- The first complete source-backed unit packs in EN, zh-HK, and zh-CN for:
-  `math1090` 1.1, 1.2, 1.3, 2.1, 2.2 and `math1030` 1.1, 2.1, 2.2, 2.3, 2.4,
-  5.1.
-- A textbook course sidebar, localized breadcrumbs, a language switcher, a
-  page-level table of contents, glossary popovers, and local progress state.
-- Shell-level localization now covers the global sidebar navigation, theme
-  controls, high-contrast label, footer note, and fallback page TOC label.
-- Textbook widgets now sit inside the article flow without a detached
-  "interactive studio" wrapper.
-- Theme handling now uses a shared light/dark background path and token-aware
-  glass borders instead of assuming a permanently dark canvas.
+- Reusable interactive widgets for `math1090` logic and sets, and for
+  `math1030` systems, elimination, matrix multiplication, invertibility,
+  subspaces, span, and independence.
+- Source-backed EN, zh-HK, and zh-CN note packs for:
+  `math1090` 1.1, 1.2, 1.3, 2.1, 2.2, 3.1, 3.2, 3.3, 3.4, 3.5
+  and `math1030` 1.1, 2.1, 2.2, 2.3, 2.4, 5.1, 6.1, 6.2, 6.3, 6.4, 6.5.
+- A localized sidebar, breadcrumbs, page-level TOC, glossary popovers,
+  progress tracking, and unit export controls on note pages.
+- Public note pages now keep source traceability internal instead of showing
+  large source-list panels in the main reading flow.
 
 ## Active
 
-The following work is in progress and still needs follow-through.
+The following work is still active and needs follow-through.
 
-- QA for the new textbook routes in all three written languages.
-- QA for TXT and PDF export formatting, especially on units with interactive
-  widgets and tables.
-- Hong Kong terminology review for zh-HK wording beyond the current early-unit
-  glossary.
-- Manual theme QA for light mode, dark mode, and high-contrast mode across
-  both legacy pages and textbook routes.
-- Additional `math1030` interactive units for span, basis, linear
-  independence, and linear transformations once the source-backed scaffolding
-  is ready.
-- Additional `math1090` units after the early logic and set-theory spine.
+- QA for the localized notes routes in EN, zh-HK, and zh-CN.
+- Manual TXT and PDF export QA on units with tables, math blocks, and
+  interactive snapshots.
+- zh-HK terminology review for the newer vector-space and number-system units.
+- Manual theme QA in light mode, dark mode, and high-contrast mode across both
+  legacy pages and localized notes routes.
+- Additional `math1030` work on linear transformations and later geometry-rich
+  interactions once source mapping is tighter.
+- Additional `math1090` work only if stronger local references are added.
 
 ## Blocked or partial
 
-These items are currently limited by source availability or local tooling.
+The following items remain limited by source availability or the local
+environment.
 
-- `MISSING_SOURCE`: `math1090` content beyond the current local boundary after
-  `§4.7` remains unsupported by the audited references.
-- `MISSING_SOURCE`: later `math1030` topics must stay conservative until the
-  local notes and exercises are mapped more tightly to each subsection.
-- Full automated verification remains partial because the WSL `node.exe`
-  bridge is slow and inconsistent for long-running `contentlayer`, `tsc`,
-  `eslint`, and `next build` runs in this workspace.
+- `MISSING_SOURCE`: MATH1090 topics beyond the current `3.5` boundary do not
+  yet have enough local support for detailed public notes.
+- `MISSING_SOURCE`: later MATH1030 topics after the current basis and
+  dimension pack still need subsection-level source mapping.
+- Automated verification remains partial because the local Node setup is
+  inconsistent inside this WSL workspace and some `npm`-driven commands fall
+  back to the Windows bridge.
 
 ## Review gate
 
-Use this review gate before you mark a textbook milestone complete.
+Use this gate before you mark a note milestone complete.
 
-1. Confirm the target route resolves under `en`, `zh-hk`, and `zh-cn`.
-2. Confirm the course sidebar, breadcrumbs, and page table of contents
-   localize correctly.
-3. Confirm the page content exists in all three written languages or is marked
+1. Confirm the target note resolves under `en`, `zh-hk`, and `zh-cn`.
+2. Confirm the sidebar, breadcrumbs, and page TOC localize correctly.
+3. Confirm the note content exists in all three languages or is marked
    `MISSING_SOURCE`.
 4. Confirm the interactive widget has a readable static export snapshot.
-5. Confirm TXT and PDF export only the current unit.
-6. Confirm the terminology matches `docs/terminology-glossary.md`.
-7. Confirm the page cites the local `reference/` sources in its unit metadata.
+5. Confirm TXT and PDF export only the current note.
+6. Confirm terminology matches `docs/terminology-glossary.md`.
+7. Confirm source refs remain accurate in metadata and docs.
 
 ## Next steps
 
-Finish the textbook QA pass, tighten the zh-HK terminology review, and expand
-the next source-backed `math1030` units before authoring later unsupported
-chapters.
+Finish the QA pass on the new Notes routes, verify export output on the newer
+vector-space units, and only then expand into the next source-backed topics.

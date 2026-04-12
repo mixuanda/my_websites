@@ -16,7 +16,7 @@ const GlassPanel = forwardRef<HTMLDivElement, GlassPanelProps>(
           "rounded-xl p-4 transition-all duration-300",
           highContrast
             ? "bg-card border border-border"
-            : "bg-card/70 backdrop-blur-lg border border-border/60 dark:border-white/10",
+            : "bg-card/70 backdrop-blur-lg border border-border/60",
           className
         )}
         {...props}

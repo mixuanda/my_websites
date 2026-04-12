@@ -1,7 +1,7 @@
 # Content parity checklist
 
-Use this checklist before you mark a textbook unit ready. The goal is not only
-to have three files on disk. The goal is to keep the meaning, navigation, and
+Use this checklist before you mark a note unit ready. The goal is not only to
+have three files on disk. The goal is to keep the meaning, navigation, and
 export output aligned across all written languages.
 
 ## Current parity status
@@ -10,10 +10,14 @@ The following units are currently present in EN, zh-HK, and zh-CN.
 
 - `math1090`: 1.1 propositional logic, 1.2 truth tables and equivalence,
   1.3 quantifiers and negation, 2.1 sets and set operations, 2.2 functions and
-  relations
+  relations, 3.1 natural numbers and Peano axioms, 3.2 induction and recursive
+  arithmetic, 3.3 integers from equivalence classes, 3.4 rationals and
+  well-defined operations, 3.5 gaps in `Q` and `sqrt(2)`
 - `math1030`: 1.1 equations and solution sets, 2.1 matrix basics,
   2.2 augmented matrices and row operations, 2.3 Gaussian elimination and
-  RREF, 2.4 solution-set types, 5.1 invertible matrices
+  RREF, 2.4 solution-set types, 5.1 invertible matrices, 6.1 vector spaces,
+  6.2 subspaces, 6.3 linear combinations and span, 6.4 linear dependence and
+  independence, 6.5 basis and dimension
 
 ## Unit checklist
 
@@ -35,12 +39,12 @@ Run this checklist on every localized unit.
 The following gaps remain active.
 
 - Later `math1090` and `math1030` units are not authored yet, so parity is
-  limited to the first source-backed milestone units.
+  limited to the current source-backed note set.
 - zh-HK wording still needs a dedicated Hong Kong terminology review beyond the
-  currently shipped glossary items.
+  newer number-system and vector-space units.
 - TXT and PDF export need a final visual QA pass on all localized units.
 
 ## Next steps
 
-Use this checklist while you verify the first milestone units, then extend it
-as new chapters are added.
+Use this checklist while you verify the current note set, then extend it as new
+source-backed chapters are added.

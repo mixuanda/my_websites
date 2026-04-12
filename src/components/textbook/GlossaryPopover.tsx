@@ -6,7 +6,6 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
@@ -73,19 +72,6 @@ export function GlossaryPopover({
             ) : null}
           </div>
         ) : null}
-        <DropdownMenuSeparator className="my-3" />
-        <div className="space-y-1 text-xs leading-6 text-muted-foreground">
-          <p className="font-semibold uppercase tracking-[0.24em]">
-            {getLocalizedText(uiText.sourceTrail, locale)}
-          </p>
-          {entry.sourceRefs.map((source) => (
-            <p key={`${source.file}-${source.pages ?? ""}`}>
-              {source.file}
-              {source.pages ? ` (${source.pages})` : ""}
-              {source.note ? ` — ${source.note}` : ""}
-            </p>
-          ))}
-        </div>
       </DropdownMenuContent>
     </DropdownMenu>
   );

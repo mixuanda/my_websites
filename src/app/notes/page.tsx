@@ -1,8 +1,9 @@
 import { allNotes } from "contentlayer/generated";
 import { PostCard } from "@/components/PostCard";
-import { GlassPanel } from "@/components/glass";
+import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import { ArrowRight, Languages, SquareLibrary } from "lucide-react";
 
 export const metadata = {
   title: "笔记",
@@ -28,6 +29,52 @@ export default function NotesPage() {
           共 {notes.length} 篇笔记
         </p>
       </div>
+
+      <GlassCard className="p-6">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
+          <div className="max-w-3xl">
+            <div className="flex items-center gap-2">
+              <SquareLibrary className="h-5 w-5 text-primary" />
+              <Badge variant="secondary">互动数学笔记</Badge>
+            </div>
+            <h2 className="mt-4 text-2xl font-semibold">
+              math1090 / math1030 结构化学习笔记
+            </h2>
+            <p className="mt-3 text-sm leading-7 text-muted-foreground">
+              数学内容现在以按章节和小节拆分的互动笔记形式继续扩写。每则笔记都保持文章式阅读体验，并支持导出当前学习单元。
+            </p>
+          </div>
+          <div className="space-y-3">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Languages className="h-4 w-4 text-primary" />
+              English / 繁體中文 / 简体中文
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Link
+                href="/en/notes"
+                className="inline-flex items-center gap-2 rounded-xl border border-border/60 bg-background/40 px-4 py-2 text-sm transition-colors hover:bg-background/60"
+              >
+                EN
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/zh-hk/notes"
+                className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
+              >
+                繁體
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/zh-cn/notes"
+                className="inline-flex items-center gap-2 rounded-xl border border-border/60 bg-background/40 px-4 py-2 text-sm transition-colors hover:bg-background/60"
+              >
+                简体
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </GlassCard>
 
       {/* Filters */}
       <GlassPanel className="p-4">

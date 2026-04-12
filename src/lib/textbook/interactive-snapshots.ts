@@ -176,36 +176,45 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
   "row-reduction-stepper": {
     sampleStates: [
       {
-        label: text("Before elimination", "消元前", "消元前"),
+        label: text("Start with the augmented matrix", "由增廣矩陣開始", "由增广矩阵开始"),
         value: text(
-          "Pivot candidates appear in columns 1 and 2, but lower entries still need to be cleared.",
-          "第 1、2 列已見到主元候選，但下面仍有元素要消去。",
-          "第 1、2 列已见到主元候选，但下面仍有元素要消去。"
+          "Column 1 already has a useful pivot 1, so the first job is to clear the entries underneath it.",
+          "第 1 列已經有可用的主元 1，所以第一個任務是清掉它下面的元素。",
+          "第 1 列已经有可用的主元 1，所以第一个任务是清掉它下面的元素。"
         ),
       },
       {
-        label: text("After elimination", "消元後", "消元后"),
+        label: text("Build the echelon shape", "建立階梯形", "建立阶梯形"),
         value: text(
-          "The final RREF makes pivots and free variables visible at a glance.",
-          "最終的 RREF 讓主元與自由變量一眼可見。",
-          "最终的 RREF 让主元与自由变量一眼可见。"
+          "After clearing below the first two pivots, the matrix becomes triangular enough that the final cleanup is predictable.",
+          "清掉前兩個主元下方的元素後，矩陣已經足夠接近三角形，最後整理的方向就很清楚。",
+          "清掉前两个主元下方的元素后，矩阵已经足够接近三角形，最后整理的方向就很清楚。"
+        ),
+      },
+      {
+        label: text("Read the finished RREF", "讀出完成後的 RREF", "读出完成后的 RREF"),
+        value: text(
+          "The final matrix gives x = 2, y = -3, z = 4 directly from the last column.",
+          "最後的矩陣可以直接從最後一列讀出 x = 2、y = -3、z = 4。",
+          "最后的矩阵可以直接从最后一列读出 x = 2、y = -3、z = 4。"
         ),
       },
     ],
     summary: text(
-      "The live stepper lets you compare each row operation with the matrix it produces.",
-      "互動步驟器讓你把每個行變換與其產生的矩陣逐一對照。",
-      "互动步骤器让你把每个行变换与其产生的矩阵逐一对照。"
+      "The live stepper walks through one complete elimination path, showing the row operation, the pivot you are focusing on, and the matrix produced at each step.",
+      "互動步驟器會帶你走完一條完整的消元路徑，逐步顯示行變換、正在處理的主元，以及每一步得到的矩陣。",
+      "互动步骤器会带你走完一条完整的消元路径，逐步显示行变换、正在处理的主元，以及每一步得到的矩阵。"
     ),
     steps: [
-      text("Choose a pivot column.", "先選一個主元列。", "先选一个主元列。"),
-      text("Clear entries below or above that pivot with row operations.", "用行變換把主元上下的元素清掉。", "用行变换把主元上下的元素清掉。"),
-      text("Normalize pivot rows only after the structure is clear.", "當結構清楚後，再把主元行標準化。", "当结构清楚后，再把主元行标准化。"),
+      text("Use the first pivot to clear column 1 below it.", "用第一個主元把第 1 列下面的元素清掉。", "用第一个主元把第 1 列下面的元素清掉。"),
+      text("Repeat inside the smaller bottom-right submatrix.", "再到右下角較小的子矩陣重複同樣過程。", "再到右下角较小的子矩阵重复同样过程。"),
+      text("Normalize the last pivot and clear the entries above it.", "把最後一個主元標準化，並清掉它上方的元素。", "把最后一个主元标准化，并清掉它上方的元素。"),
+      text("Finish by clearing above the second pivot so the matrix reaches RREF.", "最後清掉第二個主元上方的元素，令矩陣到達 RREF。", "最后清掉第二个主元上方的元素，让矩阵到达 RREF。"),
     ],
     title: text(
-      "Trace one elimination path",
-      "跟著走一條消元路徑",
-      "跟着走一条消元路径"
+      "Trace one full row-reduction path",
+      "跟著走完一條行化簡路徑",
+      "跟着走完一条行化简路径"
     ),
   },
   "set-operation-explorer": {

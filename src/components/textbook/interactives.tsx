@@ -24,8 +24,11 @@ function text(
 
 const interactiveLabels = {
   equations: text("System", "方程組", "方程组"),
+  focus: text("What to notice", "要留意甚麼", "要留意什么"),
   next: text("Next step", "下一步", "下一步"),
+  operation: text("Row operation", "行變換", "行变换"),
   previous: text("Previous step", "上一步", "上一步"),
+  readSolution: text("Read the solution", "讀出解", "读出解"),
   reset: text("Reset", "重設", "重置"),
   claim: text("Claim", "命題", "命题"),
   baseCase: text("Base case", "基本情況", "基本情况"),
@@ -600,10 +603,10 @@ function SpanExplorer({ locale }: { locale: Locale }) {
   const current = cases[selected];
   const result = useMemo(
     () => [
-      alpha * current.u[0] + beta * current.v[0],
-      alpha * current.u[1] + beta * current.v[1],
+      alpha * cases[selected].u[0] + beta * cases[selected].v[0],
+      alpha * cases[selected].u[1] + beta * cases[selected].v[1],
     ],
-    [alpha, beta, current]
+    [alpha, beta, selected]
   );
 
   return (
@@ -892,35 +895,107 @@ function SystemAugmentedMatrixExplorer({ locale }: { locale: Locale }) {
 const rowReductionSteps = [
   {
     explanation: text(
-      "Start with the augmented matrix of the system.",
-      "先由方程組的增廣矩陣開始。",
-      "先由方程组的增广矩阵开始。"
+      "Start with the augmented matrix. The first pivot should help us clear the entries underneath it.",
+      "先由增廣矩陣開始。第一個主元的工作，是幫我們把它下面的元素清掉。",
+      "先由增广矩阵开始。第一个主元的工作，是帮我们把它下面的元素清掉。"
     ),
-    matrix: [[1, 2, -1, 3], [2, 5, 1, 8], [0, 1, 2, 4]],
+    focus: text(
+      "Column 1 already has a convenient pivot 1 in the first row, so we do not need a row swap.",
+      "第 1 列的第一行已經有方便的主元 1，所以暫時不用換行。",
+      "第 1 列的第一行已经有方便的主元 1，所以暂时不用换行。"
+    ),
+    highlightCell: [0, 0] as [number, number],
+    matrix: [
+      [1, 2, 2, 4],
+      [1, 3, 3, 5],
+      [2, 6, 5, 6],
+    ],
+    operation: text("Choose the first pivot in column 1.", "先在第 1 列選主元。", "先在第 1 列选主元。"),
   },
   {
     explanation: text(
-      "Use R2 - 2R1 to clear the entry below the first pivot.",
-      "用 R2 - 2R1 消去第一個主元下方的元素。",
-      "用 R2 - 2R1 消去第一个主元下方的元素。"
+      "Clear everything below the first pivot so the first column starts to look like echelon form.",
+      "把第一個主元下面的元素全部清掉，令第一列開始有階梯形的樣子。",
+      "把第一个主元下面的元素全部清掉，让第一列开始有阶梯形的样子。"
     ),
-    matrix: [[1, 2, -1, 3], [0, 1, 3, 2], [0, 1, 2, 4]],
+    focus: text(
+      "After this step, column 1 has the shape we want: one pivot on top and zeros below it.",
+      "做完後，第 1 列便有我們想要的形狀：上面一個主元，下面全是 0。",
+      "做完后，第 1 列便有我们想要的形状：上面一个主元，下面全是 0。"
+    ),
+    highlightCell: [1, 1] as [number, number],
+    matrix: [
+      [1, 2, 2, 4],
+      [0, 1, 1, 1],
+      [0, 2, 1, -2],
+    ],
+    operation: text(
+      "Apply R2 ← R2 − R1 and R3 ← R3 − 2R1.",
+      "做 R2 ← R2 − R1，再做 R3 ← R3 − 2R1。",
+      "做 R2 ← R2 − R1，再做 R3 ← R3 − 2R1。"
+    ),
   },
   {
     explanation: text(
-      "Use R3 - R2 to create a pivot in the third row.",
-      "再用 R3 - R2 在第三行製造主元。",
-      "再用 R3 - R2 在第三行制造主元。"
+      "Move to the smaller submatrix on the bottom right and repeat the same idea in column 2.",
+      "把視線移到右下角較小的子矩陣，然後在第 2 列重複同樣想法。",
+      "把视线移到右下角较小的子矩阵，然后在第 2 列重复同样想法。"
     ),
-    matrix: [[1, 2, -1, 3], [0, 1, 3, 2], [0, 0, -1, 2]],
+    focus: text(
+      "The second row now gives the next pivot. Once the 2 underneath disappears, the triangular structure is visible.",
+      "第二行現在提供下一個主元。下面那個 2 消失後，三角形結構就清楚了。",
+      "第二行现在提供下一个主元。下面那个 2 消失后，三角形结构就清楚了。"
+    ),
+    highlightCell: [2, 2] as [number, number],
+    matrix: [
+      [1, 2, 2, 4],
+      [0, 1, 1, 1],
+      [0, 0, -1, -4],
+    ],
+    operation: text("Apply R3 ← R3 − 2R2.", "做 R3 ← R3 − 2R2。", "做 R3 ← R3 − 2R2。"),
   },
   {
     explanation: text(
-      "Back-substitute to read the solution directly from the triangular form.",
-      "最後回代，就可直接從三角形形式讀出解。",
-      "最后回代，就可直接从三角形形式读出解。"
+      "Turn the last pivot into a 1, then clear the entries above it so column 3 becomes a pivot column of an RREF matrix.",
+      "把最後一個主元變成 1，然後清掉它上面的元素，令第 3 列成為 RREF 的主元列。",
+      "把最后一个主元变成 1，然后清掉它上面的元素，让第 3 列成为 RREF 的主元列。"
     ),
-    matrix: [[1, 0, -7, -1], [0, 1, 3, 2], [0, 0, -1, 2]],
+    focus: text(
+      "This is the moment when Gaussian elimination becomes Gauss-Jordan elimination: we are clearing above a pivot, not only below it.",
+      "這一步正是從 Gaussian elimination 走向 Gauss-Jordan elimination：現在要清的是主元上方，而不只是下方。",
+      "这一步正是从 Gaussian elimination 走向 Gauss-Jordan elimination：现在要清的是主元上方，而不只是下方。"
+    ),
+    highlightCell: [2, 2] as [number, number],
+    matrix: [
+      [1, 2, 0, -4],
+      [0, 1, 0, -3],
+      [0, 0, 1, 4],
+    ],
+    operation: text(
+      "Apply R3 ← −R3, then R1 ← R1 − 2R3 and R2 ← R2 − R3.",
+      "先做 R3 ← −R3，再做 R1 ← R1 − 2R3 及 R2 ← R2 − R3。",
+      "先做 R3 ← −R3，再做 R1 ← R1 − 2R3 及 R2 ← R2 − R3。"
+    ),
+  },
+  {
+    explanation: text(
+      "Clear the last entry above the second pivot. Now every pivot column has one leading 1 and zeros everywhere else.",
+      "把第二個主元上方最後一個元素也清掉。此時每個主元列都有一個 leading 1，而其他位置全是 0。",
+      "把第二个主元上方最后一个元素也清掉。此时每个主元列都有一个 leading 1，而其他位置全是 0。"
+    ),
+    focus: text(
+      "The finished RREF is not just tidy. It lets you read x, y, and z directly from the last column.",
+      "完成後的 RREF 不只是整齊，而是讓你可以直接從最後一列讀出 x、y、z。",
+      "完成后的 RREF 不只是整齐，而是让你可以直接从最后一列读出 x、y、z。"
+    ),
+    highlightCell: [1, 1] as [number, number],
+    matrix: [
+      [1, 0, 0, 2],
+      [0, 1, 0, -3],
+      [0, 0, 1, 4],
+    ],
+    operation: text("Apply R1 ← R1 − 2R2.", "做 R1 ← R1 − 2R2。", "做 R1 ← R1 − 2R2。"),
+    readout: text("x = 2, y = -3, z = 4.", "x = 2，y = -3，z = 4。", "x = 2，y = -3，z = 4。"),
   },
 ];
 
@@ -930,12 +1005,53 @@ function RowReductionStepper({ locale }: { locale: Locale }) {
 
   return (
     <InteractiveShell icon={<StepForward className="h-5 w-5" />} locale={locale} widgetId="row-reduction-stepper">
-      <p className="text-sm leading-7 text-muted-foreground">
+      <div className="flex flex-wrap gap-2">
+        {rowReductionSteps.map((_, index) => (
+          <Button
+            key={`step-${index}`}
+            onClick={() => setStep(index)}
+            size="sm"
+            type="button"
+            variant={step === index ? "default" : "outline"}
+          >
+            {index + 1}
+          </Button>
+        ))}
+      </div>
+      <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
+        <div className="overflow-x-auto">
+          <MatrixView data={current.matrix} highlightCell={current.highlightCell} />
+        </div>
+        <div className="space-y-3">
+          <GlassPanel className="bg-card/50">
+            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+              {getLocalizedText(interactiveLabels.operation, locale)}
+            </p>
+            <p className="mt-2 text-sm leading-7">
+              {getLocalizedText(current.operation, locale)}
+            </p>
+          </GlassPanel>
+          <GlassPanel className="bg-card/50">
+            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+              {getLocalizedText(interactiveLabels.focus, locale)}
+            </p>
+            <p className="mt-2 text-sm leading-7">
+              {getLocalizedText(current.focus, locale)}
+            </p>
+          </GlassPanel>
+        </div>
+      </div>
+      <p className="mt-4 text-sm leading-7 text-muted-foreground">
         {getLocalizedText(current.explanation, locale)}
       </p>
-      <div className="mt-4 overflow-x-auto">
-        <MatrixView data={current.matrix} />
-      </div>
+      {current.readout ? (
+        <GlassPanel className="mt-4 border border-emerald-400/35 bg-card/55">
+          <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+            {getLocalizedText(interactiveLabels.readSolution, locale)}
+          </p>
+          <p className="mt-2 text-sm leading-7">{getLocalizedText(current.readout, locale)}</p>
+        </GlassPanel>
+      ) : null}
       <div className="mt-4 flex flex-wrap gap-2">
         <Button
           onClick={() => setStep((value) => Math.max(0, value - 1))}
@@ -951,6 +1067,14 @@ function RowReductionStepper({ locale }: { locale: Locale }) {
           type="button"
         >
           {getLocalizedText(interactiveLabels.next, locale)}
+        </Button>
+        <Button
+          onClick={() => setStep(0)}
+          size="sm"
+          type="button"
+          variant="ghost"
+        >
+          {getLocalizedText(interactiveLabels.reset, locale)}
         </Button>
       </div>
     </InteractiveShell>
