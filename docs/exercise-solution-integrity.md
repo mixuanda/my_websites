@@ -51,10 +51,55 @@ dedicated follow-up checkpoint.
   move each embedded answer into a following `RevealSolution` block so the
   prompt, reveal logic, export behavior, and later audits stay aligned.
 - Commit created:
-  pending at the time of this doc update; the next checkpoint commit will
-  include the repair once the six files are normalized.
+  yes for the audit trail. The current audit state was captured in commit
+  `9085148` with message `Fix note block prompt rendering`. The repair itself
+  still belongs to the next checkpoint.
 - Push succeeded:
-  pending at the time of this doc update.
+  no. `git push origin main` stalled, and the explicit batch-mode retry failed
+  with `ssh: Could not resolve hostname github.com: Temporary failure in name
+  resolution`.
 - Current resume point:
   start with the three `set-operations` files, then normalize the three
   `functions-relations` files in the same checkpoint.
+
+### 2026-04-13 checkpoint 2: normalize set-theory quick checks
+
+This checkpoint removed the known answer drift in the MATH1090 set-theory
+notes and restored the intended prompt-plus-reveal structure in all three
+languages.
+
+- Checkpoint name: normalize set-theory quick checks
+- What was inspected:
+  all six flagged set-theory note files and the resulting diffs after the edit.
+- What was changed:
+  rewrote each flagged `QuickCheck` so it now contains only guidance or a hint,
+  then added a following `RevealSolution` with the actual answer.
+- What was verified:
+  re-read the edited blocks in EN, zh-HK, and zh-CN; confirmed each question
+  now has a matching reveal block immediately after it; confirmed no answer text
+  remains directly inside those six `QuickCheck` blocks.
+- Files touched:
+  `content/textbook/math1090/sets/set-operations/en.mdx`,
+  `content/textbook/math1090/sets/set-operations/zh-hk.mdx`,
+  `content/textbook/math1090/sets/set-operations/zh-cn.mdx`,
+  `content/textbook/math1090/sets/functions-relations/en.mdx`,
+  `content/textbook/math1090/sets/functions-relations/zh-hk.mdx`,
+  `content/textbook/math1090/sets/functions-relations/zh-cn.mdx`,
+  `docs/exercise-solution-integrity.md`,
+  `docs/reference-coverage.md`,
+  `docs/rendering-formatting-qa.md`,
+  `docs/content-parity-checklist.md`.
+- Remaining issues:
+  broader exercise QA still needs a wider pass across other chapters, but the
+  known set-theory drift is now resolved.
+- Exact next target:
+  deepen one of the thinnest source-backed MATH1030 units using the repository
+  reference PDFs, starting with `2.2 Augmented matrices and row operations`.
+- Commit created:
+  pending at the time of this doc update; the checkpoint commit follows this
+  documentation step.
+- Push succeeded:
+  pending at the time of this doc update; push will be retried in batch mode.
+- Current resume point:
+  commit the six-file exercise fix, retry push, then open the MATH1030 row
+  operation references for the next content pass.

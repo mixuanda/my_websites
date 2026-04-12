@@ -62,14 +62,47 @@ but it still changes the immediate coverage work order.
   answers directly instead of pairing each prompt with a following
   `RevealSolution`.
 - Commit created:
-  pending at the time of this doc update; the checkpoint commit follows this
-  documentation step.
+  yes. Created as `9085148` with message
+  `Fix note block prompt rendering`.
 - Push succeeded:
-  pending at the time of this doc update; push is scheduled immediately after
-  the checkpoint commit.
+  no. `git push origin main` stalled, and the explicit batch-mode retry failed
+  with `ssh: Could not resolve hostname github.com: Temporary failure in name
+  resolution`.
 - Current resume point:
   start checkpoint 2 with the six MATH1090 set-theory files and the
   `QuickCheck` / `RevealSolution` pairing audit.
+
+### 2026-04-13 checkpoint 2: set-theory integrity cleanup
+
+This checkpoint did not add new source-backed units, but it completed a known
+content integrity repair in the existing MATH1090 set-theory coverage.
+
+- Checkpoint name: set-theory integrity cleanup
+- What was inspected:
+  the six MATH1090 set-theory files previously flagged for answer drift.
+- What was changed:
+  converted embedded answers inside `QuickCheck` blocks into proper
+  `RevealSolution` pairs across EN, zh-HK, and zh-CN.
+- What was verified:
+  each edited quick check now contains only the learner prompt or hint, and the
+  answer lives in the following reveal block.
+- Files touched:
+  the six MATH1090 set-theory note files plus the four tracking documents.
+- Remaining issues:
+  the next source-backed content gain should come from a thin MATH1030 note
+  rather than another bookkeeping-only pass.
+- Exact next target:
+  expand `2.2 Augmented matrices and row operations` with direct support from
+  `reference/MATH1030/1030gi-n02-01.pdf`, related tutorial material, and the
+  master note packet where relevant.
+- Commit created:
+  pending at the time of this doc update; the checkpoint commit follows this
+  documentation step.
+- Push succeeded:
+  pending at the time of this doc update; push will be retried in batch mode.
+- Current resume point:
+  commit this integrity checkpoint, retry push, then read the row-operation
+  PDFs for the next content cycle.
 
 ## Current public note boundary
 

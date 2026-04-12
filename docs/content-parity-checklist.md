@@ -54,14 +54,48 @@ that affected prompt display parity.
   keep EN, zh-HK, and zh-CN aligned while normalizing the MATH1090 set-theory
   quick checks into prompt plus `RevealSolution` pairs.
 - Commit created:
-  pending at the time of this doc update; the checkpoint commit follows this
-  documentation step.
+  yes. Created as `9085148` with message
+  `Fix note block prompt rendering`.
 - Push succeeded:
-  pending at the time of this doc update; push is scheduled immediately after
-  the checkpoint commit.
+  no. `git push origin main` stalled, and the explicit batch-mode retry failed
+  with `ssh: Could not resolve hostname github.com: Temporary failure in name
+  resolution`.
 - Current resume point:
   start parity-preserving edits in the three-language MATH1090 set-theory
   notes.
+
+### 2026-04-13 checkpoint 2: set-theory quick-check parity
+
+This checkpoint restored a consistent prompt / answer pattern across all three
+languages in the MATH1090 set chapter.
+
+- Checkpoint name: set-theory quick-check parity
+- What was inspected:
+  EN, zh-HK, and zh-CN versions of `set-operations` and
+  `functions-relations`.
+- What was changed:
+  each of the six flagged quick checks now uses the same structure:
+  `QuickCheck` for the learner-facing prompt or hint, followed immediately by
+  `RevealSolution` for the answer.
+- What was verified:
+  the edited sections remain aligned across EN, zh-HK, and zh-CN, and no locale
+  keeps the old inline-answer pattern.
+- Files touched:
+  the six MATH1090 set-theory note files plus the four tracking documents.
+- Remaining issues:
+  deeper parity work is still needed when new content is added, especially in
+  later MATH1030 and MATH1090 chapters.
+- Exact next target:
+  preserve three-language structure while expanding the thin MATH1030 row
+  operations note from the reference PDFs.
+- Commit created:
+  pending at the time of this doc update; the checkpoint commit follows this
+  documentation step.
+- Push succeeded:
+  pending at the time of this doc update; push will be retried in batch mode.
+- Current resume point:
+  commit checkpoint 2 and continue with a three-language-aware content
+  deepening pass.
 
 ## Unit checklist
 

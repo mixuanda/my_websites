@@ -59,11 +59,43 @@ theorems, worked examples, quick checks, reveal blocks, and collapsible proofs.
   fix exercise / solution integrity in the MATH1090 set-theory notes, then
   return to broader formatting consistency and export QA.
 - Commit created:
-  pending at the time of this doc update; the checkpoint commit follows this
-  documentation step.
+  yes. Created as `9085148` with message
+  `Fix note block prompt rendering`.
 - Push succeeded:
-  pending at the time of this doc update; push is scheduled immediately after
-  the checkpoint commit.
+  no. `git push origin main` stalled, and the explicit batch-mode retry failed
+  with `ssh: Could not resolve hostname github.com: Temporary failure in name
+  resolution`.
 - Current resume point:
   continue with checkpoint 2 on the six set-theory files flagged in
   `docs/exercise-solution-integrity.md`.
+
+### 2026-04-13 checkpoint 2: set-theory reveal pairing
+
+This checkpoint did not change the renderer itself, but it removed a content
+pattern that made the reveal UI misleading on six pages.
+
+- Checkpoint name: set-theory reveal pairing
+- What was inspected:
+  the quick-check sections in the six MATH1090 set-theory files flagged in the
+  previous audit.
+- What was changed:
+  moved direct answer text out of `QuickCheck` blocks and into explicit
+  `RevealSolution` blocks.
+- What was verified:
+  re-read the edited note sections and confirmed the reveal UI now matches the
+  authored structure in all six files.
+- Files touched:
+  the six MATH1090 set-theory note files plus the four tracking documents.
+- Remaining issues:
+  full build verification remains blocked by the shell environment, and broader
+  formatting QA still needs a representative pass after the next content edit.
+- Exact next target:
+  perform a source-backed content-deepening pass on
+  `2.2 Augmented matrices and row operations`.
+- Commit created:
+  pending at the time of this doc update; the checkpoint commit follows this
+  documentation step.
+- Push succeeded:
+  pending at the time of this doc update; push will be retried in batch mode.
+- Current resume point:
+  commit checkpoint 2, retry push, then continue with the row-operation unit.
