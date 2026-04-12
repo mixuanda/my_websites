@@ -245,3 +245,34 @@ three locales at once.
 - Push succeeded: pending until this checkpoint push is attempted
 - Current resume point: continue from the next shared content expansion with
   the quick-check contract aligned in all locales
+
+### 2026-04-13 checkpoint 5: invertibility expansion kept in parity
+
+This checkpoint deepened one existing source-backed note in all three
+languages.
+
+- Checkpoint name: Three-language expansion of `5.1 Invertible matrices`
+- What was inspected: the EN, zh-HK, and zh-CN versions of
+  `content/textbook/math1030/invertibility/invertible-matrices/*.mdx`
+- What was changed: added parallel sections on row-equivalence through
+  invertible matrices, preserved column relations, uniqueness of RREF, rank,
+  and two matching quick checks in all three locales
+- What was verified: the new major sections and quick-check / reveal ordering
+  remain parallel across EN, zh-HK, and zh-CN, and the shared catalog now cites
+  the additional source packets
+- Files touched: `content/textbook/math1030/invertibility/invertible-matrices/en.mdx`,
+  `content/textbook/math1030/invertibility/invertible-matrices/zh-hk.mdx`,
+  `content/textbook/math1030/invertibility/invertible-matrices/zh-cn.mdx`,
+  `src/lib/textbook/catalog.ts`,
+  `docs/content-parity-checklist.md`,
+  `docs/reference-coverage.md`,
+  `docs/rendering-formatting-qa.md`,
+  `docs/exercise-solution-integrity.md`
+- Remaining issues: page-level visual QA and export QA are still blocked by the
+  current mixed-platform build environment
+- Exact next target: carry the same parity discipline into the next MATH1030
+  basis / dimension expansion
+- Commit created: pending until this checkpoint commit is written
+- Push succeeded: pending until this checkpoint push is attempted
+- Current resume point: continue from the next source-backed MATH1030 unit
+  rather than reopening `5.1`

@@ -94,3 +94,31 @@ authored content pattern.
 - Push succeeded: pending until this checkpoint push is attempted
 - Current resume point: continue from the shared textbook MDX blocks, then
   return to source-backed note expansion
+
+### 2026-04-13 checkpoint 5: new invertibility quick checks
+
+This checkpoint added new quick checks and reveal blocks inside the expanded
+invertibility note while keeping the shared prompt / answer contract intact.
+
+- Checkpoint name: Invertibility quick-check expansion
+- What was inspected: the three localized `5.1 Invertible matrices` note files
+- What was changed: added two new quick checks and matching reveal blocks in
+  EN, zh-HK, and zh-CN for preserved column relations and well-defined rank
+- What was verified: the prompt / reveal ordering stays aligned in all three
+  locales and continues to match the shared `QuickCheck` / `RevealSolution`
+  behavior
+- Files touched: `content/textbook/math1030/invertibility/invertible-matrices/en.mdx`,
+  `content/textbook/math1030/invertibility/invertible-matrices/zh-hk.mdx`,
+  `content/textbook/math1030/invertibility/invertible-matrices/zh-cn.mdx`,
+  `docs/exercise-solution-integrity.md`,
+  `docs/rendering-formatting-qa.md`,
+  `docs/reference-coverage.md`,
+  `docs/content-parity-checklist.md`
+- Remaining issues: representative export QA is still needed once the local
+  build can run on a platform-matched dependency set
+- Exact next target: keep exercise integrity coupled to the next source-backed
+  content expansion instead of deferring it to a later cleanup pass
+- Commit created: pending until this checkpoint commit is written
+- Push succeeded: pending until this checkpoint push is attempted
+- Current resume point: continue with the next MATH1030 source-backed note and
+  preserve the same prompt / reveal pairing discipline

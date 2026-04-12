@@ -102,3 +102,37 @@ behave like visible textbook callouts rather than collapsible panels.
 - Push succeeded: pending until this checkpoint push is attempted
 - Current resume point: continue from the shared note-block renderer before
   deepening the next source-backed note
+
+### 2026-04-13 checkpoint 5: invertibility note expansion
+
+This checkpoint extended an existing note rather than changing the renderer,
+but it still needed structural QA because the page gained more theorem blocks,
+quick checks, and display math.
+
+- Checkpoint name: Invertibility note expansion
+- What was inspected: the three localized `5.1 Invertible matrices` MDX files
+  and the extracted MATH1030 reference packets for row-equivalence and RREF
+  uniqueness
+- What was changed: added new sections on row-equivalence through invertible
+  matrices, preserved column relations, uniqueness of RREF, rank, and matching
+  quick checks in EN, zh-HK, and zh-CN
+- What was verified: diff review confirmed the new sections and block ordering
+  are present in all three locales; direct `next build` remains blocked by the
+  mixed-platform Contentlayer / esbuild environment and therefore could not be
+  used as the final page-render verification step
+- Files touched: `content/textbook/math1030/invertibility/invertible-matrices/en.mdx`,
+  `content/textbook/math1030/invertibility/invertible-matrices/zh-hk.mdx`,
+  `content/textbook/math1030/invertibility/invertible-matrices/zh-cn.mdx`,
+  `src/lib/textbook/catalog.ts`,
+  `docs/rendering-formatting-qa.md`,
+  `docs/reference-coverage.md`,
+  `docs/content-parity-checklist.md`,
+  `docs/exercise-solution-integrity.md`
+- Remaining issues: representative visual QA and export QA still need a
+  platform-matched build environment
+- Exact next target: move to the next source-backed MATH1030 unit without
+  reopening the textbook shell components
+- Commit created: pending until this checkpoint commit is written
+- Push succeeded: pending until this checkpoint push is attempted
+- Current resume point: continue from the next MATH1030 backlog item after
+  this `5.1` content checkpoint is committed

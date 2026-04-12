@@ -165,6 +165,155 @@ Two of these statements are especially important in practice.
 That is why invertibility is the exact algebraic condition behind solving a
 linear system by a matrix inverse.
 
+## Row-equivalence through invertible matrices
+
+The next source packet pushes the row-operation viewpoint one step further.
+Instead of thinking about row-equivalence as a long list of elementary moves,
+it packages the whole list into one invertible matrix on the left.
+
+<TheoremCard title="Row-equivalence is left multiplication by an invertible matrix">
+Suppose `A` and `B` are matrices with `p` rows. Then the following are
+equivalent:
+
+- `A` and `B` are row-equivalent.
+- There exists an invertible `p \times p` matrix `G` such that
+
+$$
+B = GA.
+$$
+
+Moreover, once `B = GA`, we also have
+
+$$
+A = G^{-1}B.
+$$
+</TheoremCard>
+
+This theorem is not a new computational trick. It is a cleaner language for
+the same phenomenon. A sequence of row operations can always be compressed into
+one invertible matrix `G`, and the reverse row operations are encoded by
+`G^{-1}`.
+
+<WorkedExample title="Reading a row-equivalence as one matrix equality">
+Let
+
+$$
+A = \begin{bmatrix}
+1 & 0 & 1 \\
+1 & 2 & 3 \\
+0 & 1 & 1
+\end{bmatrix},
+\qquad
+G = \begin{bmatrix}
+1 & 0 & 0 \\
+-1 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}.
+$$
+
+The matrix `G` is the row-operation matrix for the move
+
+$$
+R_2 \leftarrow R_2 - R_1.
+$$
+
+So
+
+$$
+GA
+=
+\begin{bmatrix}
+1 & 0 & 1 \\
+0 & 2 & 2 \\
+0 & 1 & 1
+\end{bmatrix}.
+$$
+
+If we call this new matrix `B`, then `B = GA`. That single equation records the
+entire row operation. Since `G` is invertible, `A` and `B` are row-equivalent.
+</WorkedExample>
+
+The gain is conceptual. Once you know that row-equivalence means multiplication
+by an invertible matrix on the left, you can explain many invariants in one
+line instead of by repeating row-operation arguments.
+
+<TheoremCard title="Row operations preserve linear relations among corresponding columns">
+Let `A` and `B` be row-equivalent `p \times q` matrices, and write their
+columns as
+
+$$
+A = [a_1 \; a_2 \; \cdots \; a_q],
+\qquad
+B = [b_1 \; b_2 \; \cdots \; b_q].
+$$
+
+If
+
+$$
+a_j = \alpha_1 a_{k_1} + \alpha_2 a_{k_2} + \cdots + \alpha_n a_{k_n},
+$$
+
+then
+
+$$
+b_j = \alpha_1 b_{k_1} + \alpha_2 b_{k_2} + \cdots + \alpha_n b_{k_n}.
+$$
+
+In particular, linear dependence and linear independence among corresponding
+columns are preserved by row-equivalence.
+</TheoremCard>
+
+The proof is short once `B = GA` is known. Multiply the relation for the
+columns of `A` by `G`. Because matrix multiplication is linear,
+
+$$
+Ga_j
+=
+\alpha_1 G a_{k_1} + \alpha_2 G a_{k_2} + \cdots + \alpha_n G a_{k_n},
+$$
+
+which is exactly the corresponding relation amongst the columns of `B`.
+
+This is the bridge from row reduction to column language. Row operations change
+the actual columns, but they do not change which columns are redundant or which
+column relations are forced by the others.
+
+## Why the reduced row-echelon form is unique
+
+The appendix to the source notes proves that the reduced row-echelon form in a
+row-equivalence class is unique. That fact is easy to overlook, but it is what
+makes later definitions mathematically legitimate.
+
+<TheoremCard title="A row-equivalence class has exactly one reduced row-echelon form">
+Suppose `A` is a matrix, and suppose `B` and `C` are both reduced
+row-echelon forms. If `B` is row-equivalent to `A` and `C` is row-equivalent
+to `A`, then
+
+$$
+B = C.
+$$
+</TheoremCard>
+
+The appendix proves this by induction on the rank. The basic strategy is:
+
+1. compare the pivot columns from left to right,
+2. use preserved linear relations to force the same pivot positions, and then
+3. show that every free column must have the same coefficients in terms of the
+   pivot columns.
+
+So reduced row-echelon form is not merely *a* convenient final answer. It is
+*the* final answer inside a row-equivalence class.
+
+<Definition title="Rank">
+The **rank** of a matrix is the number of pivots in its reduced row-echelon
+form.
+</Definition>
+
+This definition works only because the reduced row-echelon form is unique. If
+different reduction paths could produce different reduced forms with different
+numbers of pivots, then rank would depend on the calculation. The uniqueness
+theorem rules that out.
+
 ## Column independence and linear combinations
 
 The same source also recasts invertibility in terms of columns.
@@ -291,6 +440,30 @@ Use the transpose rule above.
 
 <RevealSolution title="Answer">
 Yes. `A^t` is invertible, and `(A^t)^{-1} = (A^{-1})^t`.
+</RevealSolution>
+
+<QuickCheck prompt="If `B = GA` with `G` invertible and the columns of `A` satisfy `a_3 = 2a_1 - a_2`, what relation must hold among the columns of `B`?">
+Keep the same coefficients and use `b_j = Ga_j`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The corresponding columns of `B` satisfy
+
+$$
+b_3 = 2b_1 - b_2.
+$$
+
+Row-equivalence changes the columns themselves, but not the coefficient pattern
+in a linear relation.
+</RevealSolution>
+
+<QuickCheck prompt="Why does uniqueness of RREF matter when defining rank?">
+Answer in one sentence using the phrase “well defined.”
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Rank is well defined only because every matrix has one and only one RREF, so
+the number of pivots does not depend on which reduction path you choose.
 </RevealSolution>
 
 ## Exercise

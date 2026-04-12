@@ -730,6 +730,13 @@ const math1030InvertibilityUnits: TextbookUnitMeta[] = [
         file: "reference/MATH1030/1030gi-n03-03.pdf",
       },
       {
+        file: "reference/MATH1030/1030gi-n03-04.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n03-04p.pdf",
+        note: "Appendix on uniqueness of RREF and rank",
+      },
+      {
         file: "reference/MATH1030/1030efghi-tutorial-week07.pdf",
       },
       {

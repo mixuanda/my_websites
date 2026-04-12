@@ -250,8 +250,8 @@ These files are the main conceptual sources for authored note pages.
 | MATH1030 | `reference/MATH1030/1030gi-n03-01.pdf` | lecture note | partially incorporated | partial | no | no | Supports invertible / nonsingular language; public invertibility note still needs another depth pass. |
 | MATH1030 | `reference/MATH1030/1030gi-n03-02.pdf` | lecture note | partially incorporated | partial | no | no | Row-operation characterization of invertibility is present, but not yet covered with full theorem detail. |
 | MATH1030 | `reference/MATH1030/1030gi-n03-03.pdf` | lecture note | partially incorporated | partial | no | no | Necessary-and-sufficient conditions for invertibility are only partly surfaced. |
-| MATH1030 | `reference/MATH1030/1030gi-n03-04.pdf` | lecture note | pending | no | no | no | Row-equivalence from the invertible-matrix viewpoint is audited but not yet authored. |
-| MATH1030 | `reference/MATH1030/1030gi-n03-04p.pdf` | optional appendix | pending | no | no | no | Uniqueness proof for RREF still needs a theory-oriented appendix note or expansion. |
+| MATH1030 | `reference/MATH1030/1030gi-n03-04.pdf` | lecture note | incorporated | yes | no | no | Direct source for the expanded row-equivalence, preserved-column-relation, and rank discussion in `5.1 Invertible matrices`. |
+| MATH1030 | `reference/MATH1030/1030gi-n03-04p.pdf` | optional appendix | partially incorporated | partial | no | no | The uniqueness of RREF and well-defined rank now appear in `5.1`, though the full induction proof is still only summarized. |
 | MATH1030 | `reference/MATH1030/1030gi-n04-01.pdf` | lecture note | partially incorporated | partial | no | no | Set language in elementary linear algebra informs `4.1` and vector-space notes, but is not yet a standalone public page. |
 | MATH1030 | `reference/MATH1030/1030gi-n04-02.pdf` | lecture note | pending | no | no | no | Set equality arguments are audited but not yet surfaced as a public note. |
 | MATH1030 | `reference/MATH1030/1030gi-n04-03.pdf` | lecture note | incorporated | yes | no | no | Direct source for the new null-space note. |
@@ -339,14 +339,12 @@ public notes.
 
 The next source-backed expansions with the clearest payoff are:
 
-1. MATH1030 `1030gi-n03-04.pdf` and `1030gi-n03-04p.pdf` for a more rigorous
-   row-equivalence / uniqueness bridge after the current invertibility note.
-2. MATH1030 `1030gi-n05-05.pdf` and `1030gi-n05-07.pdf` for sharper basis
+1. MATH1030 `1030gi-n05-05.pdf` and `1030gi-n05-07.pdf` for sharper basis
    tests, dimension criteria, and matrix-subspace dimension.
-3. MATH1030 `1030gi-n06-01.pdf` to `1030gi-n08-01.pdf` and the parallel master
+2. MATH1030 `1030gi-n06-01.pdf` to `1030gi-n08-01.pdf` and the parallel master
    note chapters for determinants, eigenvalues, diagonalization, and inner
    products.
-4. MATH1090 later sections from `MATH1090_Lecture_Notes_Mar26.pdf` and the
+3. MATH1090 later sections from `MATH1090_Lecture_Notes_Mar26.pdf` and the
    review packet, especially total orders, supremum / infimum, incompleteness
    of `Q`, first constructions of the reals, and the later proof templates.
 
@@ -425,3 +423,39 @@ source-backed backlog.
 - Push succeeded: pending until this checkpoint push is attempted
 - Current resume point: commit the shared shell fix, then continue the next
   source-backed MATH1030 expansion
+
+### 2026-04-13 checkpoint 5: deepen invertibility with row-equivalence and rank
+
+This checkpoint folded the previously pending row-equivalence packet into the
+existing invertibility note instead of creating a detached new route.
+
+- Checkpoint name: Deepen `5.1 Invertible matrices`
+- What was inspected: `reference/MATH1030/1030gi-n03-04.pdf`,
+  `reference/MATH1030/1030gi-n03-04p.pdf`,
+  `reference/MATH1030/1030efghi-tutorial-week07.pdf`,
+  `reference/MATH1030/Practice Set 4_Invertible Matrix.pdf`,
+  and the three localized `5.1` note files
+- What was changed: expanded the existing `5.1` note in EN, zh-HK, and zh-CN
+  to include row-equivalence as left multiplication by an invertible matrix,
+  preservation of column relations, uniqueness of RREF, and the definition of
+  rank; added the new source refs to the textbook catalog
+- What was verified: diff review confirmed the new sections are present in all
+  three locales and that `src/lib/textbook/catalog.ts` now cites
+  `1030gi-n03-04.pdf` and `1030gi-n03-04p.pdf`
+- Files touched: `content/textbook/math1030/invertibility/invertible-matrices/en.mdx`,
+  `content/textbook/math1030/invertibility/invertible-matrices/zh-hk.mdx`,
+  `content/textbook/math1030/invertibility/invertible-matrices/zh-cn.mdx`,
+  `src/lib/textbook/catalog.ts`,
+  `docs/reference-coverage.md`,
+  `docs/rendering-formatting-qa.md`,
+  `docs/exercise-solution-integrity.md`,
+  `docs/content-parity-checklist.md`
+- Remaining issues: the full induction proof from the appendix is only
+  summarized, so `1030gi-n03-04p.pdf` remains partially incorporated rather
+  than fully exhausted
+- Exact next target: move to the MATH1030 basis / dimension backlog in
+  `1030gi-n05-05.pdf` and `1030gi-n05-07.pdf`
+- Commit created: pending until this checkpoint commit is written
+- Push succeeded: pending until this checkpoint push is attempted
+- Current resume point: commit this `5.1` expansion, then continue with the
+  next MATH1030 source-backed chapter
