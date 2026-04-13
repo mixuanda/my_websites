@@ -30,6 +30,34 @@ The current local workspace also includes a shared `QuickCheck` renderer update
 that makes prompt cards visible by default. When the next unit is expanded, the
 three locales should be re-checked with that visible-prompt behavior in mind.
 
+## Mandatory unit authoring template and depth targets
+
+Every textbook unit file under `content/textbook/**/{en,zh-hk,zh-cn}.mdx` must
+follow this fixed block order with a level-2 heading for each block:
+
+1. Motivation
+2. Definitions
+3. Theorem/Proposition
+4. Proof sketch or proof idea
+5. Worked examples
+6. Common mistakes
+7. Summary
+8. Exercises
+9. Solutions
+
+Quantitative depth targets (lint proxy):
+
+- EN units: **1800-3000** English-word proxy
+- zh-HK units: **1300-2200** English-equivalent proxy
+- zh-CN units: **1300-2200** English-equivalent proxy
+- Minimum theorem/proposition blocks per unit: **2** (`<TheoremCard />`)
+- Minimum worked-example blocks per unit: **3** (`<WorkedExample />`)
+
+The checker script is `scripts/check-textbook-content.mjs` and can run through
+`npm run check:textbook-content`. It treats missing or out-of-order required
+blocks as errors, and reports depth / theorem / example shortfalls as warnings
+for triage.
+
 ## Current parity status
 
 The following units are currently present in EN, zh-HK, and zh-CN.
