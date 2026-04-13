@@ -1,0 +1,41 @@
+---
+title: "0.1 Course foundations and notation"
+description: "Build symbolic discipline, statement structure, and baseline algebra habits used throughout MATH1025."
+---
+
+## Purpose of chapter 0
+
+This chapter aligns notation and proof habits before heavy computational topics.
+You should read this as a methods chapter: how we write claims, track domains,
+and justify each algebraic transformation.
+
+## Symbol discipline
+
+<Definition title="Well-formed mathematical statement">
+A statement should clearly specify:
+
+1. variable domain,
+2. operation legality,
+3. conclusion target.
+</Definition>
+
+A common source of error is transforming expressions without checking domain
+conditions (e.g. dividing by quantities that may be zero).
+
+## Baseline transformation rules
+
+- Equality-preserving operations: adding/subtracting same term both sides,
+  multiplying by nonzero constants, substituting equivalent expressions.
+- Domain-sensitive steps: square roots, logarithms, division, inverse
+  trigonometric functions.
+
+## Quick checks
+
+<QuickCheck prompt="Why must x != 0 be stated before dividing an equation by x?">
+Think about equivalence of solution sets.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+If `x=0` is allowed, division by `x` is undefined and may remove valid
+solutions or create invalid steps.
+</RevealSolution>

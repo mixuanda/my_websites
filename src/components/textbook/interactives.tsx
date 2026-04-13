@@ -1311,7 +1311,100 @@ function InvertibilityRowReductionDemo({ locale }: { locale: Locale }) {
   );
 }
 
+const adtOperationSteps = [
+  {
+    op: text("push(10)", "push(10)", "push(10)"),
+    queue: text("queue: []", "queue: []", "queue: []"),
+    stack: text("stack: [10]", "stack: [10]", "stack: [10]"),
+    note: text("Top now points to 10.", "頂端現為 10。", "栈顶现为 10。"),
+  },
+  {
+    op: text("push(20)", "push(20)", "push(20)"),
+    queue: text("queue: []", "queue: []", "queue: []"),
+    stack: text("stack: [10, 20]", "stack: [10, 20]", "stack: [10, 20]"),
+    note: text("Newest element becomes top.", "最新元素成為頂端。", "最新元素成为栈顶。"),
+  },
+  {
+    op: text("enqueue(3), enqueue(5)", "enqueue(3), enqueue(5)", "enqueue(3), enqueue(5)"),
+    queue: text("queue: [3, 5]", "queue: [3, 5]", "queue: [3, 5]"),
+    stack: text("stack: [10, 20]", "stack: [10, 20]", "stack: [10, 20]"),
+    note: text("Queue inserts at rear, preserving arrival order.", "Queue 由尾端加入，保留到達次序。", "Queue 由尾端加入，保留到达次序。"),
+  },
+  {
+    op: text("pop(), dequeue()", "pop(), dequeue()", "pop(), dequeue()"),
+    queue: text("queue: [5] (returned 3)", "queue: [5]（回傳 3）", "queue: [5]（返回 3）"),
+    stack: text("stack: [10] (returned 20)", "stack: [10]（回傳 20）", "stack: [10]（返回 20）"),
+    note: text("Same call style, different ADT semantics.", "同樣是操作呼叫，但語義按不同 ADT 生效。", "同样是操作调用，但语义按不同 ADT 生效。"),
+  },
+];
+
+function AdtStackQueueStepper({ locale }: { locale: Locale }) {
+  const [step, setStep] = useState(0);
+  const current = adtOperationSteps[step];
+
+  return (
+    <InteractiveShell icon={<ListChecks className="h-5 w-5" />} locale={locale} widgetId="adt-stack-queue-stepper">
+      <div className="space-y-2 text-sm">
+        <p><strong>{getLocalizedText(interactiveLabels.operation, locale)}:</strong> {getLocalizedText(current.op, locale)}</p>
+        <p>{getLocalizedText(current.stack, locale)}</p>
+        <p>{getLocalizedText(current.queue, locale)}</p>
+        <p className="text-muted-foreground">{getLocalizedText(current.note, locale)}</p>
+      </div>
+      <div className="mt-4 flex gap-2">
+        <Button onClick={() => setStep((s) => Math.max(0, s - 1))} size="sm" variant="outline">
+          {getLocalizedText(interactiveLabels.previous, locale)}
+        </Button>
+        <Button onClick={() => setStep((s) => Math.min(adtOperationSteps.length - 1, s + 1))} size="sm">
+          {getLocalizedText(interactiveLabels.next, locale)}
+        </Button>
+      </div>
+    </InteractiveShell>
+  );
+}
+
+function ComplexityGrowthComparator({ locale }: { locale: Locale }) {
+  const [nText, setNText] = useState("16");
+  const n = Math.max(1, Number.parseInt(nText, 10) || 1);
+  const log2n = Math.log2(n);
+  const rows = [
+    { name: "O(1)", value: 1 },
+    { name: "O(log n)", value: log2n },
+    { name: "O(n)", value: n },
+    { name: "O(n log n)", value: n * log2n },
+    { name: "O(n^2)", value: n * n },
+  ];
+
+  return (
+    <InteractiveShell icon={<ChartColumnBig className="h-5 w-5" />} locale={locale} widgetId="complexity-growth-comparator">
+      <label className="text-sm">
+        n:
+        <Input className="mt-2 w-40" value={nText} onChange={(event) => setNText(event.target.value)} />
+      </label>
+      <div className="mt-4 overflow-x-auto">
+        <table className="min-w-[320px] text-sm">
+          <thead>
+            <tr className="text-left text-muted-foreground">
+              <th className="py-1 pr-4">Class</th>
+              <th className="py-1">Value at n={n}</th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={row.name} className="border-t border-border/40">
+                <td className="py-1 pr-4 font-medium">{row.name}</td>
+                <td className="py-1">{row.value.toFixed(2)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </InteractiveShell>
+  );
+}
+
 const interactiveComponents = {
+  "adt-stack-queue-stepper": AdtStackQueueStepper,
+  "complexity-growth-comparator": ComplexityGrowthComparator,
   "independence-checker": IndependenceChecker,
   "invertibility-row-reduction-demo": InvertibilityRowReductionDemo,
   "induction-stepper": InductionStepper,

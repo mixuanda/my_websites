@@ -10,8 +10,11 @@ import { PrerequisiteLink } from "@/components/textbook/PrerequisiteLink";
 import { TextbookCourseSidebar } from "@/components/textbook/TextbookCourseSidebar";
 import { TextbookMdx } from "@/components/textbook/TextbookMdx";
 import { TextbookSessionSync } from "@/components/textbook/TextbookSessionSync";
+import { UnitCheckpoint } from "@/components/textbook/UnitCheckpoint";
 import { UnitExportMenu } from "@/components/textbook/UnitExportMenu";
 import { UnitProgressToggle } from "@/components/textbook/UnitProgressToggle";
+import { auth } from "@/lib/auth";
+import { canAccessTier, getUserEntitlements } from "@/lib/membership/entitlements";
 import {
   getCourseMeta,
   getLocalizedGlossaryEntries,
@@ -19,8 +22,9 @@ import {
   getUnitMetaByRoute,
   textbookCatalog,
 } from "@/lib/textbook/catalog";
-import { getTextbookUnit, getStaticTextbookParams } from "@/lib/textbook/content";
+import { estimateReadingTimeMinutes, getTextbookUnit, getStaticTextbookParams } from "@/lib/textbook/content";
 import { getCoverageLabel, getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
+import { getProblemsForUnit } from "@/lib/textbook/problem-bank";
 import { getCoursesHref, getCourseHref, getUnitHref } from "@/lib/textbook/routes";
 import type { CourseId } from "@/lib/textbook/types";
 
@@ -85,6 +89,13 @@ export default async function UnitPage({ params }: UnitPageProps) {
     .filter((value): value is NonNullable<typeof value> => Boolean(value));
   const navigation = getPreviousAndNextUnits(bundle.meta.unitId);
   const unitHref = getUnitHref(locale, bundle.meta);
+  const session = await auth();
+  const entitlements = await getUserEntitlements(session);
+  const canAccessPremium = canAccessTier(entitlements, bundle.meta.accessTier);
+  const checkpointProblems = getProblemsForUnit(bundle.meta.unitId).filter((problem) =>
+    canAccessTier(entitlements, problem.accessTier)
+  );
+  const readingTime = estimateReadingTimeMinutes(bundle.doc.body.raw);
 
   if (!chapterMeta) {
     notFound();
@@ -129,6 +140,12 @@ export default async function UnitPage({ params }: UnitPageProps) {
                       {getLocalizedText(uiText.interactiveUnits, locale)}
                     </Badge>
                   ) : null}
+                  {bundle.meta.accessTier === "MEMBER" ? (
+                    <Badge variant="outline">{getLocalizedText(uiText.premium, locale)}</Badge>
+                  ) : null}
+                  <Badge variant="outline">
+                    {getLocalizedText(uiText.estimatedReadingTime, locale)}: {readingTime} {getLocalizedText(uiText.minutes, locale)}
+                  </Badge>
                 </div>
                 <h1 className="mt-4 text-3xl font-bold md:text-4xl">{bundle.doc.title}</h1>
                 <p className="mt-4 text-base leading-8 text-muted-foreground md:text-lg">
@@ -167,9 +184,27 @@ export default async function UnitPage({ params }: UnitPageProps) {
 
           <GlassCard className="p-6 md:p-8">
             <article>
-              <TextbookMdx code={bundle.doc.body.code} locale={locale} />
+              {canAccessPremium ? (
+                <TextbookMdx code={bundle.doc.body.code} locale={locale} />
+              ) : (
+                <div className="space-y-4">
+                  <p className="text-sm text-muted-foreground">
+                    {getLocalizedText(uiText.premiumLocked, locale)}
+                  </p>
+                  <Link
+                    className="inline-flex rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
+                    href="/notes/membership"
+                  >
+                    {getLocalizedText(uiText.upgradeMembership, locale)}
+                  </Link>
+                </div>
+              )}
             </article>
           </GlassCard>
+
+          {canAccessPremium && checkpointProblems.length > 0 ? (
+            <UnitCheckpoint problems={checkpointProblems} title="Section mastery checkpoint" />
+          ) : null}
 
           <div className="grid gap-6 lg:grid-cols-2">
             <GlassPanel className="p-5">

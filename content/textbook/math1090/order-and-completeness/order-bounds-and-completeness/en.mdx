@@ -1,0 +1,152 @@
+---
+title: "4.1 Order, bounds, and completeness"
+description: "Use total order and least-upper-bound language to explain precisely why R is complete and Q is not."
+---
+
+## Why this chapter is the turning point
+
+Earlier chapters built number systems by construction. This section changes the
+question: not only what numbers are, but what *order structure* those numbers
+support. The concepts of upper bounds, lower bounds, supremum, and infimum are
+not vocabulary decoration. They are the technical bridge from algebraic
+manipulation to analysis.
+
+## Ordered sets and total order
+
+<Definition title="Total order">
+A set `S` with relation `\le` is totally ordered if for all `a,b,c\in S`:
+
+1. `a\le a` (reflexive),
+2. `a\le b` and `b\le a` imply `a=b` (antisymmetric),
+3. `a\le b` and `b\le c` imply `a\le c` (transitive),
+4. either `a\le b` or `b\le a` (comparability).
+</Definition>
+
+Comparability is the extra ingredient that separates total order from partial
+order. In `R`, any two real numbers can be compared.
+
+## Upper/lower bounds and bounded sets
+
+<Definition title="Upper bound and lower bound">
+Let `A\subseteq R`.
+
+- `u` is an upper bound of `A` if `x\le u` for all `x\in A`.
+- `\ell` is a lower bound of `A` if `\ell\le x` for all `x\in A`.
+
+If upper bounds exist, `A` is bounded above. If lower bounds exist, it is
+bounded below.
+</Definition>
+
+<WorkedExample title="A set with many upper bounds">
+Take `A=(0,1)`. Every number `u\ge 1` is an upper bound. The value `1` is
+special because it is the *smallest* upper bound.
+</WorkedExample>
+
+<CommonMistake title="Maximum is not the same as supremum">
+Students often think a supremum must belong to the set. Not true.
+For `A=(0,1)`, `\sup A=1`, but `1\notin A`.
+</CommonMistake>
+
+## Supremum and infimum
+
+<Definition title="Supremum and infimum">
+Let `A\subseteq R` be nonempty.
+
+- `s=\sup A` means: (i) `s` is an upper bound of `A`; (ii) any upper bound
+  `u` satisfies `s\le u`.
+- `t=\inf A` means: (i) `t` is a lower bound of `A`; (ii) any lower bound
+  `\ell` satisfies `\ell\le t`.
+</Definition>
+
+Equivalent approximation property for supremum:
+
+> `s=\sup A` iff `s` is an upper bound and for every `\varepsilon>0` there
+> exists `a\in A` with `s-\varepsilon<a\le s`.
+
+This turns order language into a usable proof tool.
+
+<CollapsibleProof title="Why the approximation property is equivalent">
+If `s` is least upper bound, then `s-\varepsilon` cannot be an upper bound,
+otherwise it would be smaller than `s`; thus some `a\in A` exceeds
+`s-\varepsilon`.
+
+Conversely, if every `s-\varepsilon` is exceeded by some point of `A`, then no
+number `<s` can be an upper bound. So `s` is the least upper bound.
+</CollapsibleProof>
+
+## Completeness axiom
+
+<TheoremCard title="Least-upper-bound property of R">
+Every nonempty subset `A\subseteq R` that is bounded above has a supremum in
+`R`.
+</TheoremCard>
+
+This is what “`R` is complete” means in order language. It is not true in `Q`.
+
+<WorkedExample title="A rational set without rational supremum">
+Let
+
+$$
+A=\{q\in Q : q>0,\ q^2<2\}.
+$$
+
+Inside `R`, `\sup A=\sqrt2`. But `\sqrt2\notin Q`, so `A` has no supremum in
+`Q`. Therefore `Q` fails the least-upper-bound property.
+</WorkedExample>
+
+## How this controls future analysis
+
+- Monotone convergence arguments use bounded monotone sequences and supremum.
+- Continuity proofs use interval and order completeness repeatedly.
+- Existence theorems are often hidden completeness arguments.
+
+So this chapter is foundational, not optional.
+
+## Quick checks
+
+<QuickCheck prompt="If A has a maximum m, what is sup A?">
+Use the definition directly.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`\sup A=m`. A maximum is an upper bound that belongs to `A`, and no smaller
+upper bound can exist.
+</RevealSolution>
+
+<QuickCheck prompt="Can a nonempty set be bounded above but not bounded below? Give one example.">
+Think of half-lines.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. Example: `A=[0,\infty)` is bounded below (by `0`) but not bounded above.
+The reverse example is `(-\infty,0]`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Find sup and inf of A={1-1/n : n in N}. Does A have a maximum?">
+Write first few terms and identify the limit behavior.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+`A=\{0,1/2,2/3,3/4,\ldots\}`. Values increase and stay below `1`, so
+`\sup A=1`. Since `1\notin A`, no maximum exists. Also `\inf A=0`, and `0` is
+actually the minimum.
+</RevealSolution>
+
+<QuickCheck prompt="Show that if B is nonempty and bounded below, then inf B = -sup(-B).">
+Translate lower-bound statements into upper-bound statements for `-B`.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+`\ell` is a lower bound of `B` iff `-\ell` is an upper bound of `-B`.
+Least-lower-bound and least-upper-bound conditions then translate exactly, so
+`\inf B=-\sup(-B)`.
+</RevealSolution>
+
+## Prerequisite links
+
+Read this after
+[3.4 Rationals and well-defined operations](/en/notes/math1090/numbers/rationals-and-well-defined-operations)
+and
+[3.5 Gaps in Q and sqrt(2)](/en/notes/math1090/numbers/gaps-in-q-and-sqrt2).

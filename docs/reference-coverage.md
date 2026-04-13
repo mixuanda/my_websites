@@ -502,3 +502,32 @@ existing invertibility note instead of creating a detached new route.
   `ssh: Could not resolve hostname github.com: Temporary failure in name resolution`
 - Current resume point: once pushing and platform-matched verification are
   available again, continue with `1030gi-n05-05.pdf` and `1030gi-n05-07.pdf`
+
+### 2026-04-13 checkpoint 6: membership gating and dependence-note expansion
+
+- Checkpoint name: membership entitlement baseline + dependence note deepening
+- What was inspected: Notes route rendering, textbook catalog metadata, problem-bank APIs, and Stripe integration points.
+- What was changed: introduced server-side membership entitlements (`FREE` / `MEMBER` with admin bypass), Stripe checkout/portal/webhook routes, premium unit gating, premium-problem API checks, and a deeper three-locale rewrite of `6.4 linear dependence and independence` with matrix criterion, pivot criterion, and extra guided exercises.
+- What was verified: premium units now show member badges; premium unit bodies and premium checkpoint problems are blocked unless entitlement is satisfied server-side.
+- Files touched: billing APIs, membership libs, unit rendering pages, quiz routes, and the `6.4` EN/zh-HK/zh-CN note pages.
+- Remaining issues: live Stripe webhook sync still depends on deployment environment variables and endpoint setup.
+- Exact next target: broaden premium checkpoint coverage across more units and localize membership center text.
+
+### 2026-04-13 checkpoint 7: math1090 order/completeness expansion and backlog constraints
+
+- Added a new three-locale MATH1090 chapter-4 unit (`4.1 Order, bounds, and completeness`) from the Mar26 lecture notes and review packet references.
+- Recorded explicit backlog constraint: `reference/` currently has no `MATH1010` source folder, so MATH1010 public-note completion is blocked by missing repository source material.
+- Recorded explicit backlog constraint: `reference/CSCI2520/**` is present but primarily legacy `.ppt` binaries; a full source-backed chapter-by-chapter conversion requires a controlled extraction pass before claiming complete coverage.
+
+### 2026-04-13 checkpoint 8: csci2520 ADT interactive baseline + reading-time function
+
+- Added a new CSCI2520 unit (`1.1 ADT operations: stack, queue, and function pointers`) in EN/zh-HK/zh-CN under Notes.
+- Added one embedded interactive widget (`adt-stack-queue-stepper`) for operation-semantics walkthrough aligned with ADT/function-operation demos.
+- Added estimated reading-time computation in textbook content utilities and surfaced it in unit pages.
+- Added an internal skill (`skills/ppt-reference-reader`) to standardize `.ppt/.pptx` extraction workflow before claiming full source-backed coverage for legacy slide decks.
+
+### 2026-04-13 checkpoint 9: csci complexity unit + math1025 baseline units
+
+- Added CSCI2520 chapter 2 baseline unit on complexity growth with a new interactive comparator.
+- Added first MATH1025 baseline units (`0.1` and `1.1`) in EN/zh-HK/zh-CN from chapter-0/chapter-1 slide references.
+- Kept remaining MATH1025 chapters (`ch2`-`ch11`) and CSCI2520 chapters beyond current authored units in active backlog for continued source-backed authoring cycles.

@@ -1,0 +1,34 @@
+---
+title: "2.1 复杂度增长与算法成本"
+description: "在写程序前先严格比较 O(1)、O(log n)、O(n)、O(n log n)、O(n^2) 的增长。"
+---
+
+## 为什么先做复杂度分析
+
+渐进分析回答的是“输入变大时成本如何放大”。它比常数项调优更能决
+定算法是否可扩展。
+
+<Definition title="Big-O 上界">
+`T(n)=O(f(n))` 表示存在常数 `C>0` 与 `n_0`，使得对所有 `n\ge n_0`
+都有 `T(n)\le C f(n)`。
+</Definition>
+
+<InteractiveWidget id="complexity-growth-comparator" />
+
+## 常见级别
+
+- `O(1)`：直接存取、已知节点的 pointer 重连
+- `O(log n)`：对半缩减搜索
+- `O(n)`：线性扫描
+- `O(n log n)`：分治加线性合并
+- `O(n^2)`：双层线性循环
+
+## 快速检查
+
+<QuickCheck prompt="两层各跑 n 次的循环（内部 O(1)）是什么复杂度？">
+直接乘法则。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`O(n^2)`。
+</RevealSolution>

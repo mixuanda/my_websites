@@ -29,6 +29,60 @@ function text(
 }
 
 const snapshotCatalog: Record<string, SnapshotBuilder> = {
+  "adt-stack-queue-stepper": {
+    sampleStates: [
+      {
+        label: text("Stack push/pop trace", "Stack push/pop 追蹤", "Stack push/pop 追踪"),
+        value: text("push(10), push(20), pop() returns 20 and leaves [10].", "push(10), push(20), pop() 回傳 20，剩下 [10]。", "push(10), push(20), pop() 返回 20，剩下 [10]。"),
+      },
+      {
+        label: text("Queue enqueue/dequeue trace", "Queue enqueue/dequeue 追蹤", "Queue enqueue/dequeue 追踪"),
+        value: text("enqueue(3), enqueue(5), dequeue() returns 3 and leaves [5].", "enqueue(3), enqueue(5), dequeue() 回傳 3，剩下 [5]。", "enqueue(3), enqueue(5), dequeue() 返回 3，剩下 [5]。"),
+      },
+    ],
+    summary: text(
+      "The stepper shows operation-by-operation state transitions so ADT contracts can be checked directly.",
+      "此步進器按操作展示狀態轉移，讓你可直接核對 ADT 契約。",
+      "此步进器按操作展示状态转移，让你可直接核对 ADT 契约。"
+    ),
+    steps: [
+      text("Read each operation and resulting state.", "逐步讀取操作與結果狀態。", "逐步读取操作与结果状态。"),
+      text("Check whether LIFO/FIFO invariants still hold.", "檢查 LIFO/FIFO 不變量是否維持。", "检查 LIFO/FIFO 不变量是否维持。"),
+      text("Relate this behavior to implementation dispatch through function pointers.", "把行為對應到 function pointer 的操作分派。", "把行为对应到 function pointer 的操作分派。"),
+    ],
+    title: text(
+      "Trace ADT operation semantics",
+      "追蹤 ADT 操作語義",
+      "追踪 ADT 操作语义"
+    ),
+  },
+  "complexity-growth-comparator": {
+    sampleStates: [
+      {
+        label: text("n = 16", "n = 16", "n = 16"),
+        value: text("O(n log n) ≈ 64, O(n^2) = 256.", "O(n log n) ≈ 64，O(n^2) = 256。", "O(n log n) ≈ 64，O(n^2) = 256。"),
+      },
+      {
+        label: text("n = 128", "n = 128", "n = 128"),
+        value: text("O(n log n) ≈ 896, O(n^2) = 16384.", "O(n log n) ≈ 896，O(n^2) = 16384。", "O(n log n) ≈ 896，O(n^2) = 16384。"),
+      },
+    ],
+    summary: text(
+      "Compares growth classes at the same n so relative scaling becomes concrete.",
+      "在同一 n 下比較多種級別，讓相對增長差距具體化。",
+      "在同一 n 下比较多种级别，让相对增长差距具体化。"
+    ),
+    steps: [
+      text("Set n to a moderate size (e.g. 16).", "先設一個中等 n（例如 16）。", "先设一个中等 n（例如 16）。"),
+      text("Increase n and track how O(n log n) and O(n^2) separate.", "逐步增加 n，觀察 O(n log n) 與 O(n^2) 的分離。", "逐步增加 n，观察 O(n log n) 与 O(n^2) 的分离。"),
+      text("Relate growth differences to algorithm choice.", "把差距轉化為選演算法的依據。", "把差距转化为选算法的依据。"),
+    ],
+    title: text(
+      "Compare asymptotic growth at one n",
+      "在同一 n 比較漸進增長",
+      "在同一 n 比较渐进增长"
+    ),
+  },
   "invertibility-row-reduction-demo": {
     sampleStates: [
       {

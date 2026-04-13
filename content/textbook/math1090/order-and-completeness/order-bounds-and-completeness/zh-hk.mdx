@@ -1,0 +1,118 @@
+---
+title: "4.1 序、界與完備性"
+description: "用全序與上確界語言精確說明：為甚麼 R 完備而 Q 不完備。"
+---
+
+## 為甚麼這一節是轉折
+
+前面章節重點是「怎樣構造數系」。這一節改問另一件事：這個數系的
+次序結構是否足夠強，去支持極限與分析。上界、下界、上確界、下確
+界不是術語堆砌，而是從代數走向分析的核心橋樑。
+
+## 全序
+
+<Definition title="全序">
+集合 `S` 配上關係 `\le`，若對任意 `a,b,c\in S` 皆有
+
+1. `a\le a`（自反），
+2. `a\le b` 且 `b\le a` 推得 `a=b`（反對稱），
+3. `a\le b` 且 `b\le c` 推得 `a\le c`（遞移），
+4. `a\le b` 或 `b\le a`（可比較），
+
+就稱為全序。
+</Definition>
+
+## 上下界與有界集合
+
+<Definition title="上界與下界">
+設 `A\subseteq R`。
+
+- 若對所有 `x\in A` 都有 `x\le u`，則 `u` 是 `A` 的上界。
+- 若對所有 `x\in A` 都有 `\ell\le x`，則 `\ell` 是 `A` 的下界。
+</Definition>
+
+<WorkedExample title="(0,1) 的上界">
+`(0,1)` 的上界有很多，例如 `1,2,100`。其中最重要的是最小上界 `1`。
+</WorkedExample>
+
+<CommonMistake title="最大值不等於上確界">
+`A=(0,1)` 的 `\sup A=1`，但 `1\notin A`，所以它沒有最大值。
+</CommonMistake>
+
+## 上確界與下確界
+
+<Definition title="上確界與下確界">
+對非空 `A\subseteq R`：
+
+- `s=\sup A`：`s` 是上界，且任何上界 `u` 都滿足 `s\le u`。
+- `t=\inf A`：`t` 是下界，且任何下界 `\ell` 都滿足 `\ell\le t`。
+</Definition>
+
+上確界常用等價判準：
+
+> `s=\sup A` 當且僅當 `s` 是上界，且對每個 `\varepsilon>0`，都存在
+> `a\in A` 使 `s-\varepsilon<a\le s`。
+
+## 完備性
+
+<TheoremCard title="R 的最小上界性質">
+任何非空且有上界的 `A\subseteq R`，都在 `R` 中有上確界。
+</TheoremCard>
+
+這就是序意義下的完備性。
+
+<WorkedExample title="Q 中缺失的上確界">
+令
+
+$$
+A=\{q\in Q:q>0,\ q^2<2\}.
+$$
+
+在 `R` 中其上確界是 `\sqrt2`，但 `\sqrt2\notin Q`，所以同一集合在 `Q`
+裡沒有上確界。這說明 `Q` 不完備。
+</WorkedExample>
+
+## 快速檢查
+
+<QuickCheck prompt="若 A 有最大值 m，是否一定 sup A = m？">
+由定義判斷。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。最大值本身是上界，且任何更小數都不可能是上界。
+</RevealSolution>
+
+<QuickCheck prompt="一個集合可否有上界但沒有最大值？">
+試想開區間。
+</QuickCheck>
+
+<RevealSolution title="答案">
+可以，`A=(0,1)` 就是例子：有上界 `1`，但最大值不存在。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="求 A={1-1/n : n in N} 的 sup 與 inf，並判斷是否有最大值。">
+先列前幾項，再看趨勢。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+`A=\{0,1/2,2/3,3/4,\ldots\}`，遞增且小於 `1`，故 `\sup A=1`。
+因 `1\notin A`，沒有最大值。`\inf A=0`，且 `0` 是最小值。
+</RevealSolution>
+
+<QuickCheck prompt="證明：B 非空且下有界時，inf B = -sup(-B)。">
+把下界語句翻譯成 `-B` 的上界語句。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+`\ell` 是 `B` 下界，等價於 `-\ell` 是 `-B` 上界。最小下界與最小上界
+條件一一對應，所以 `\inf B=-\sup(-B)`。
+</RevealSolution>
+
+## 先備連結
+
+可先讀
+[3.4 有理數與良定義運算](/zh-hk/notes/math1090/numbers/rationals-and-well-defined-operations)
+及
+[3.5 Q 的缺口與 sqrt(2)](/zh-hk/notes/math1090/numbers/gaps-in-q-and-sqrt2)。
