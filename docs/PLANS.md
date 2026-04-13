@@ -104,9 +104,10 @@ Validation commands:
 
 Current sub-status:
 
-- `math1030` `6.3` is now rewritten and validated.
-- next target inside this milestone is `math1030` `6.2`, unless a chapter-4
-  Math1090 bridge note becomes the higher-value next step after source review.
+- `math1030` `6.3` and `6.2` are now rewritten and validated.
+- the next target inside this milestone is the first Math1090 chapter-4 bridge
+  note, sourced primarily from the April 10 lecture packet and the review
+  notes.
 
 ### Milestone 5: future-course preparation
 

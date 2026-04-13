@@ -11,10 +11,12 @@ Completed and validated so far:
 - `math1030` unit `2.4` rewritten in EN, zh-HK, and zh-CN;
 - `math1030` unit `6.1` rewritten in EN, zh-HK, and zh-CN;
 - `math1030` unit `6.3` rewritten in EN, zh-HK, and zh-CN;
+- `math1030` unit `6.2` rewritten in EN, zh-HK, and zh-CN;
 - localized Notes landing page now uses a route helper for the archive CTA
   instead of a hardcoded path;
 - course typing generalized away from a two-course union;
-- internal coverage and QA docs updated;
+- internal coverage and QA docs updated, including a grouped Math1025 source
+  map and the next Math1090 chapter-4 bridge target;
 - local build and lint passed after each completed milestone.
 
 ## What changed
@@ -31,10 +33,17 @@ Completed and validated so far:
 - `math1030` `6.3` now treats span as a theorem-backed object, connects
   membership in a span to solvability of `Ax = b`, and expands the geometric and
   subspace interpretations substantially.
+- `math1030` `6.2` now explains why inherited operations reduce the subspace
+  test to closure, proves the equivalent `0` plus `\alpha u + \beta v` test,
+  develops the standard line and plane examples carefully, proves the null-space
+  theorem, and adds tutorial-backed matrix and polynomial quick checks.
 - localized display math in the rewritten zh-HK and zh-CN files was cleaned so
   KaTeX no longer warns about punctuation inside math mode.
-- the internal docs now track future `math1025` coverage explicitly and record
-  the missing-reference public policy.
+- the zh-HK and zh-CN versions of `math1030` `6.6` no longer leak English
+  prerequisite-link labels.
+- the internal docs now track future `math1025` coverage by grouped source
+  families instead of one undifferentiated slide row, and they record the
+  missing-reference public policy.
 
 ## Decisions made and why
 
@@ -53,16 +62,17 @@ Completed and validated so far:
 
 ## Known issues
 
-- Several thin public units remain, especially `math1030` `6.2`, `6.4`, and
-  the unauthored `math1090` chapter 4 sequence.
+- Several thin or partially localized public units remain, especially
+  `math1030` `6.4`, the broader chapter-6 export/theme QA, and the unauthored
+  `math1090` chapter 4 sequence.
 - The repo worktree still contains a pre-existing `AGENTS.md` deletion and
   `Agents.md` addition. That rename state was not altered in this run.
 
 ## Next milestone
 
-Continue Milestone 4 with the next thin public note, most likely
-`math1030` `6.2 Subspaces`, then move into the first Math1090 chapter-4 bridge
-note on total order, bounds, and completeness.
+Continue Milestone 4 with the first Math1090 chapter-4 bridge note on total
+order, bounds, supremum / infimum, completeness, and the transition from `Q`
+to `R`.
 
 ## Uncovered reference areas
 

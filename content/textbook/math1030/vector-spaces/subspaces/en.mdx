@@ -1,101 +1,458 @@
 ---
 title: "6.2 Subspaces"
-description: "Learn how to spot a smaller vector space inside a larger one."
+description: "Use the subspace test carefully, prove the first structural consequences, and learn the standard matrix and equation-defined examples that recur throughout linear algebra."
 ---
 
-## A smaller space inside a larger one
+Subspaces appear as soon as we notice that many linear problems do not use the
+whole ambient vector space. The solution set of a homogeneous system, the set
+of symmetric matrices, and the set of polynomials vanishing at a chosen point
+are all smaller collections inside larger vector spaces.
 
-Often we do not need the whole ambient vector space. We only want a subset that
-still behaves like a vector space when we use the same addition and scalar
-multiplication.
+The point of this section is to decide exactly when such a subset still carries
+the full linear structure. A subspace is not merely a geometrically nice subset.
+It is a subset on which the inherited addition and scalar multiplication still
+satisfy the vector-space laws.
 
-<Definition title="Subspace">
-Let `V` be a vector space. A subset `W` of `V` is a subspace if it is non-empty
-and closed under addition and scalar multiplication.
+## Why only a few axioms need checking
+
+Suppose `V` is already a vector space and `W \subseteq V`. If we use on `W` the
+same addition and scalar multiplication already defined on `V`, then we do not
+need to reprove associativity, commutativity, or the distributive laws from the
+ground up. Those identities are already true in `V`.
+
+The real question is narrower:
+
+- does addition of two vectors in `W` stay inside `W`?
+- does scalar multiplication stay inside `W`?
+- does `W` still contain the vectors needed for the vector-space structure,
+  especially the zero vector?
+
+That is why the subspace test is a closure test.
+
+<Definition title="Subspace definition">
+Let `V` be a vector space. A subset `W \subseteq V` is called a **subspace** of
+`V` if:
+
+1. `W` is nonempty;
+2. `u + v \in W` for all `u, v \in W`;
+3. `\alpha u \in W` for all `u \in W` and all `\alpha \in R`.
 </Definition>
 
-That short test matches the equivalent formulations in the tutorial:
-if `W` is a vector space using the inherited operations, then `W` is a subspace
-of `V`.
+The tutorial packet also emphasizes an equivalent formulation that is often
+more convenient in proofs.
 
-## Typical examples
+<TheoremCard title="Equivalent subspace test">
+Let `V` be a vector space and `W \subseteq V`. Then `W` is a subspace of `V` if
+and only if:
 
-The notes give several standard examples:
+1. `0 \in W`;
+2. for every `u, v \in W` and every `\alpha, \beta \in R`, the vector
 
-- the zero subspace `{0}`;
-- the whole space `V`;
-- a line through the origin in `R^2`;
-- a plane through the origin in `R^3`;
-- the null space `N(A)` of a matrix `A`.
+   $$
+   \alpha u + \beta v
+   $$
 
-The key phrase is "through the origin". If the set misses `0`, it cannot be a
-subspace.
+   also belongs to `W`.
+</TheoremCard>
 
-<WorkedExample title="A line through the origin is a subspace">
-Consider
-
-$$
-W = \{(x, 0) : x \in R\} \subseteq R^2.
-$$
-
-If `(a, 0)` and `(b, 0)` are in `W`, then
+<CollapsibleProof title="Why the equivalent test works">
+Assume first that `W` is a subspace. Because `W` is nonempty, choose some
+`w \in W`. Since `W` is closed under scalar multiplication,
 
 $$
-(a, 0) + (b, 0) = (a + b, 0) \in W.
+0w = 0 \in W.
 $$
 
-If `c` is any real number, then
+Now let `u, v \in W` and let `\alpha, \beta \in R`. Closure under scalar
+multiplication gives `\alpha u \in W` and `\beta v \in W`, and then closure
+under addition gives
 
 $$
-c(a, 0) = (ca, 0) \in W.
+\alpha u + \beta v \in W.
 $$
 
-So `W` passes the subspace test.
+Conversely, suppose `0 \in W` and `\alpha u + \beta v \in W` whenever
+`u, v \in W` and `\alpha, \beta \in R`. Then `W` is nonempty because it
+contains `0`. If `u, v \in W`, choose `\alpha = \beta = 1` to get
+
+$$
+u + v \in W.
+$$
+
+If `u \in W` and `\kappa \in R`, choose `v = 0` and `\alpha = \kappa`,
+`\beta = 0` to get
+
+$$
+\kappa u + 0 \cdot 0 = \kappa u \in W.
+$$
+
+So the original three-part definition is satisfied.
+</CollapsibleProof>
+
+## Standard examples from equations
+
+The master notes begin with subsets defined by simple linear equations. These
+examples matter because they show exactly what "through the origin" and
+"homogeneous" mean in linear algebra.
+
+<WorkedExample title="A line through the origin in `R^2`">
+Let
+
+$$
+W = \left\{(x, y) \in R^2 : y = 2x\right\}.
+$$
+
+To prove that `W` is a subspace of `R^2`, check the three defining conditions.
+
+1. `W` is nonempty because `(0, 0)` satisfies `0 = 2 \cdot 0`.
+2. If `(x_1, y_1), (x_2, y_2) \in W`, then `y_1 = 2x_1` and `y_2 = 2x_2`.
+   Therefore
+
+   $$
+   (y_1 + y_2) = 2(x_1 + x_2),
+   $$
+
+   so `(x_1 + x_2, y_1 + y_2) \in W`.
+3. If `(x, y) \in W` and `\alpha \in R`, then `y = 2x`, so
+
+   $$
+   \alpha y = 2(\alpha x),
+   $$
+
+   which means `(\alpha x, \alpha y) \in W`.
+
+Hence `W` is a subspace of `R^2`.
 </WorkedExample>
 
-Use the checker below to try a candidate set and see whether the closure rules
-line up with your intuition.
+The geometry matches the algebra: `W` is a line through the origin. The phrase
+"through the origin" is not decorative. It is the visible sign that the zero
+vector belongs to the set.
+
+<WorkedExample title="A plane cut out by one homogeneous equation">
+Now let
+
+$$
+W = \left\{(x, y, z) \in R^3 : x + 2y + 3z = 0\right\}.
+$$
+
+Again we check the definition.
+
+1. `W` is nonempty because `(0, 0, 0)` satisfies the equation.
+2. If `u = (u_1, u_2, u_3)` and `v = (v_1, v_2, v_3)` lie in `W`, then
+
+   $$
+   u_1 + 2u_2 + 3u_3 = 0,
+   \qquad
+   v_1 + 2v_2 + 3v_3 = 0.
+   $$
+
+   Adding these equations gives
+
+   $$
+   (u_1 + v_1) + 2(u_2 + v_2) + 3(u_3 + v_3) = 0,
+   $$
+
+   so `u + v \in W`.
+3. If `u \in W` and `\alpha \in R`, then
+
+   $$
+   \alpha u_1 + 2\alpha u_2 + 3\alpha u_3
+   =
+   \alpha(u_1 + 2u_2 + 3u_3)
+   =
+   \alpha \cdot 0
+   =
+   0,
+   $$
+
+   so `\alpha u \in W`.
+
+Thus `W` is a subspace of `R^3`.
+</WorkedExample>
+
+This example is the model case for a set defined by a **homogeneous linear
+equation**. The zero right-hand side is what makes the closure argument work.
+
+After proving a few examples by hand, use the checker below to compare a
+genuine subspace with common lookalikes that fail one part of the test.
 
 <InteractiveWidget id="subspace-checker" />
 
-## Common mistake
+## Consequences of the subspace test
 
-<CommonMistake title="A shifted line is not a subspace">
-The set `\{(x, y) : x + y = 1\}` is not a subspace of `R^2`, because it does not
-contain the zero vector `(0, 0)`. In general, a line or plane is a subspace only
-when the constant term is `0`.
-</CommonMistake>
+Once `W` is known to be a subspace, several facts follow immediately.
 
-## Why every subspace contains `0`
+<TheoremCard title="Every subspace contains `0` and additive inverses">
+Let `W` be a subspace of a vector space `V`. Then:
 
-<CollapsibleProof title="Subspaces always contain the zero vector">
-Let `W` be a subspace of `V`, and pick any `u \in W`.
+1. `0 \in W`;
+2. if `u \in W`, then `-u \in W`.
+</TheoremCard>
 
-Since `W` is closed under scalar multiplication, `(-1)u \in W`.
-Then `u + (-1)u = 0` is also in `W` because `W` is closed under addition.
-So `0 \in W`.
+<CollapsibleProof title="Proof of the first consequences">
+Because `W` is nonempty, choose some `u \in W`. Closure under scalar
+multiplication gives
+
+$$
+0u = 0 \in W.
+$$
+
+Now let `u \in W`. Since `-1 \in R`, closure under scalar multiplication gives
+
+$$
+(-1)u = -u \in W.
+$$
 </CollapsibleProof>
 
-## Quick check
+Two immediate examples now become unavoidable:
 
-<QuickCheck prompt="Is the set `\{(x, y) : y = 2x\}` a subspace of `R^2`?">
-Check whether it contains `0` and stays closed under the two operations.
+- `{0}` is a subspace of every vector space, so it is the **smallest**
+  subspace;
+- `V` itself is a subspace of `V`, so it is the **largest** subspace.
+
+## Null spaces are subspaces
+
+The first important family of subspaces coming from matrix theory is the null
+space.
+
+<TheoremCard title="The null space of a matrix is a subspace">
+Let `A` be an `m \times n` matrix, and let
+
+$$
+N(A) = \left\{x \in R^n : Ax = 0\right\}.
+$$
+
+Then `N(A)` is a subspace of `R^n`.
+</TheoremCard>
+
+<CollapsibleProof title="Why `N(A)` is a subspace">
+First, `0 \in N(A)` because
+
+$$
+A0 = 0.
+$$
+
+Now let `u, v \in N(A)` and let `\alpha \in R`. Then `Au = 0` and `Av = 0`, so
+
+$$
+A(u + v) = Au + Av = 0 + 0 = 0,
+$$
+
+and
+
+$$
+A(\alpha u) = \alpha(Au) = \alpha \cdot 0 = 0.
+$$
+
+Therefore `u + v \in N(A)` and `\alpha u \in N(A)`, so `N(A)` is a subspace of
+`R^n`.
+</CollapsibleProof>
+
+This theorem explains why the phrase **null space** is not just convenient
+terminology. The solution set to a homogeneous system really is a vector space.
+
+<WorkedExample title="A homogeneous equation defines a null space">
+Let
+
+$$
+A = \begin{bmatrix} 1 & 2 & 3 \end{bmatrix}.
+$$
+
+Then
+
+$$
+N(A)
+=
+\left\{
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix}
+:
+x + 2y + 3z = 0
+\right\}.
+$$
+
+So the plane from the earlier example is exactly the null space of a matrix.
+Solving for `x` gives
+
+$$
+x = -2y - 3z,
+$$
+
+and therefore every vector in the null space has the form
+
+$$
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix}
+=
+y \begin{bmatrix} -2 \\ 1 \\ 0 \end{bmatrix}
++
+z \begin{bmatrix} -3 \\ 0 \\ 1 \end{bmatrix}.
+$$
+
+So this subspace is a plane through the origin generated by two vectors.
+</WorkedExample>
+
+## A broader pattern: matrix conditions that preserve subspaces
+
+The tutorial sheet includes a stronger example than a null space. Instead of
+requiring `Ax = 0`, it considers vectors whose images under `A` land inside an
+already known subspace.
+
+<WorkedExample title="Preimage of a subspace under matrix multiplication">
+Let `A` be a `4 \times 6` matrix, let `V` be a subspace of `R^4`, and define
+
+$$
+W = \left\{x \in R^6 : Ax \in V\right\}.
+$$
+
+Then `W` is a subspace of `R^6`.
+
+The proof is a direct application of the subspace test:
+
+1. `0 \in W` because `A0 = 0`, and `0 \in V`;
+2. if `x, y \in W`, then `Ax, Ay \in V`, so
+
+   $$
+   A(x + y) = Ax + Ay \in V,
+   $$
+
+   which means `x + y \in W`;
+3. if `x \in W` and `\alpha \in R`, then `Ax \in V`, so
+
+   $$
+   A(\alpha x) = \alpha(Ax) \in V,
+   $$
+
+   which means `\alpha x \in W`.
+
+The null space is the special case where `V = \{0\}`.
+</WorkedExample>
+
+This viewpoint is worth remembering. Many subspaces are best described not by
+listing their elements, but by writing a condition that is preserved by linear
+operations.
+
+## Common ways a subset fails
+
+The subspace test is short, but it is unforgiving. A set can fail in more than
+one way.
+
+<CommonMistake title="Containing `0` is necessary, but not sufficient">
+The set
+
+$$
+\left\{(x, y) \in R^2 : x + y = 1\right\}
+$$
+
+is not a subspace because it does not contain `(0, 0)`.
+
+But failing to contain `0` is not the only danger. The tutorial also gives a
+quadratic example
+
+$$
+S = \left\{x \in R^4 : x^T C x = 0\right\},
+$$
+
+which may contain `0` and still fail to be a subspace. The reason is that for
+`w = u + v`,
+
+$$
+w^T C w = u^T C u + v^T C v + 2u^T C v,
+$$
+
+and the cross term `2u^T C v` need not vanish. So closure under addition can
+break even when a set looks symmetric and still contains `0`.
+</CommonMistake>
+
+In practice, the safest habit is this:
+
+1. check `0`;
+2. check addition;
+3. check scalar multiplication.
+
+Do not rely on pictures or intuition alone.
+
+## Quick checks
+
+<QuickCheck prompt="Why is `E = \{f(x) \in P_n : f(1) = 0\}` a subspace of `P_n`?">
+Use the value at `x = 1` as the quantity that has to stay unchanged under the
+subspace test.
 </QuickCheck>
 
-<RevealSolution title="Answer">
-Yes. It is a line through the origin, so it is a subspace.
+<RevealSolution title="Solution">
+The zero polynomial belongs to `E` because `0(1) = 0`. If `f, g \in E`, then
+`f(1) = g(1) = 0`, so
+
+$$
+(f + g)(1) = f(1) + g(1) = 0.
+$$
+
+If `\alpha \in R` and `f \in E`, then
+
+$$
+(\alpha f)(1) = \alpha f(1) = \alpha \cdot 0 = 0.
+$$
+
+So `E` is closed under addition and scalar multiplication, hence it is a
+subspace of `P_n`.
 </RevealSolution>
 
-<QuickCheck prompt="Is the set `\{(x, y) : x + y = 1\}` a subspace of `R^2`?">
-Remember the zero vector test.
+<QuickCheck prompt="Let `W = \{X \in M_{p,p}(R) : AX - XA = O_{p \times p}\}`. Why does this set form a subspace?">
+Treat the defining equation `AX - XA = O_{p \times p}` the same way you treated
+`Ax = 0`.
 </QuickCheck>
 
-<RevealSolution title="Answer">
-No. It does not contain `0 = (0, 0)`.
+<RevealSolution title="Solution">
+The zero matrix belongs to `W` because
+
+$$
+A O_{p \times p} - O_{p \times p} A = O_{p \times p}.
+$$
+
+If `X, Y \in W` and `\kappa, \lambda \in R`, then
+
+$$
+A(\kappa X + \lambda Y) - (\kappa X + \lambda Y)A
+=
+\kappa(AX - XA) + \lambda(AY - YA)
+=
+O_{p \times p}.
+$$
+
+So `\kappa X + \lambda Y` also belongs to `W`, and the equivalent subspace test
+applies.
+</RevealSolution>
+
+<QuickCheck prompt="Why is `\{(x, y) \in R^2 : x + y = 1\}` not a subspace, even though it is still a line?">
+Answer this without drawing a graph.
+</QuickCheck>
+
+<RevealSolution title="Solution">
+It fails at the first necessary step: the zero vector is not in the set, because
+
+$$
+0 + 0 \neq 1.
+$$
+
+Since every subspace must contain `0`, this line cannot be a subspace.
 </RevealSolution>
 
 ## Read this first
 
-This page depends on the vector-space rules from
-[6.1 Vector spaces](/en/notes/math1030/vector-spaces/vector-spaces) and the
-matrix language from [2.1 Matrix basics](/en/notes/math1030/matrices/matrix-basics).
+This section depends on
+[6.1 Vector spaces](/en/notes/math1030/vector-spaces/vector-spaces) for the
+axioms and on
+[4.1 Homogeneous systems and null space](/en/notes/math1030/solution-structure/homogeneous-systems-and-null-space)
+for the meaning of `Ax = 0`.
+
+## Continue with
+
+The next section,
+[6.3 Linear combinations and span](/en/notes/math1030/vector-spaces/linear-combinations-and-span),
+uses subspaces as the natural output of a generating process.

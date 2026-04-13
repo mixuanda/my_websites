@@ -34,7 +34,7 @@ eigenvalue / inner-product backlog.
 | `math1030` | 3 Matrix algebra | Authored | Strong | Still needs a public-source-clutter cleanup pass. |
 | `math1030` | 4 Homogeneous systems and null space | Authored | Strong | Structurally solid; still needs full export QA. |
 | `math1030` | 5 Invertibility | Authored | Strong | `5.1` is much deeper now, but appendix proofs remain partial. |
-| `math1030` | 6 Vector spaces, span, basis, rank | Authored through `6.6` | Strong | `6.1` and `6.3` have now been deepened; `6.2` remains the next thin unit. |
+| `math1030` | 6 Vector spaces, span, basis, rank | Authored through `6.6` | Strong | `6.1`, `6.2`, and `6.3` have now been deepened; `6.4` remains the next thin public unit. |
 | `math1030` | 7 Determinants | Unauthored | Usable | `1030gi-n06-01.pdf` to `1030gi-n06-03.pdf`. |
 | `math1030` | 8 Eigenvalues and diagonalization | Unauthored | Usable | `1030gi-n07-01.pdf` to `1030gi-n07-03.pdf`. |
 | `math1030` | 9 Inner products and orthogonality | Unauthored | Usable | `1030gi-n08-01.pdf` plus the master-note chapter. |
@@ -46,8 +46,11 @@ planned as a future course rather than treated as unknown.
 
 | Course | Chapter family | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
-| `math1025` | `ch0` to `ch11` slide sequence | Unauthored | Usable | Use the chapter slides as the primary conceptual backbone. |
-| `math1025` | Homework and exam solutions | Unauthored | Secondary support | Keep for exercise design after baseline notes exist. |
+| `math1025` | Foundations (`ch0` to `ch4`) | Unauthored | Usable | Chapter slides cover preliminaries, trigonometry, induction, inequalities, and the binomial theorem. |
+| `math1025` | Methods spine (`ch5` to `ch8`) | Unauthored | Usable | Chapter slides cover sequences, complex numbers, integers / rational numbers, and polynomials. |
+| `math1025` | Vectors and geometry (`ch9` to `ch11`) | Unauthored | Usable | Chapter slides cover vectors in `R^n`, straight lines / planes / curves, and conic sections. |
+| `math1025` | Homework and assessment support | Unauthored | Secondary support | Keep homework-solution PDFs and the MATH1025 midterm pair for later exercise design after baseline notes exist. |
+| `math1025` | MATH1028 overlap material | Unauthored | Overlap | Treat the MATH1028 midterm pair as adjacent-course overlap, not as primary Math1025 conceptual source. |
 
 ## Math1010
 
@@ -57,6 +60,7 @@ future addition.
 
 ## Next steps
 
-The next content cycle should deepen thin public Math1030 chapter 6 units, then
-author the first Math1090 chapter 4 note. Math1025 should remain an internal
-planned course until the active Math1090 and Math1030 corrections stabilize.
+The next content cycle should author the first Math1090 chapter 4 note, then
+return to the remaining thin Math1030 chapter-6 and export / i18n cleanup.
+Math1025 should remain an internal planned course until the active Math1090 and
+Math1030 corrections stabilize.

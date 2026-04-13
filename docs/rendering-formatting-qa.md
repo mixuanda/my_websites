@@ -18,17 +18,18 @@ The current local workspace also includes an uncommitted formatting pass that
 replaces the brittle augmented-matrix markup in `math1030` unit `2.4` with
 `array`-based display math and removes public source-process phrasing from the
 rewritten `math1090` unit `3.4`. The same local pass also cleaned the rewritten
-`math1030` `6.1` and `6.3` localized files so they no longer leave Chinese
-punctuation inside display-math blocks.
+`math1030` `6.1`, `6.2`, and `6.3` localized files so they no longer leave
+Chinese punctuation inside display-math blocks, and it repaired English-only
+prerequisite-link labels in the zh-HK and zh-CN `6.6` note.
 
 Every push attempt for those checkpoints failed with the same external error:
 `ssh: Could not resolve hostname github.com: Temporary failure in name
 resolution`.
 
-The next resume point is a representative formatting and content pass on the
-remaining thin chapter 6 MATH1030 notes, while keeping the inline-math renderer
-and export output aligned with the newer `2.4`, `6.1`, and `6.3` notation
-cleanup.
+The next resume point is the first Math1090 chapter-4 note plus representative
+export / theme QA on the richer chapter-6 Math1030 notes, while keeping the
+inline-math renderer and export output aligned with the newer `2.4`, `6.1`,
+`6.2`, and `6.3` notation cleanup.
 
 ## Current findings
 
@@ -41,8 +42,8 @@ component- and authoring-shape issues inside the existing Notes stack.
   `R^3`, `A^{-1}`, `Ax = b`, and `sqrt(2)`.
 - The shared renderer now promotes obvious mathematical notation in both block
   titles and textbook body code spans.
-- The current remaining rendering risk is interaction shape and representative
-  export QA, not missing math infrastructure.
+- The current remaining rendering risk is representative export QA and
+  cross-locale content drift, not missing math infrastructure.
 
 ## Checkpoint log
 

@@ -15,17 +15,17 @@ As of April 13, 2026, the latest local integrity-related checkpoints are:
 - `95f3ad7` `Deepen invertible matrix notes`
 
 The current local workspace also includes an uncommitted three-language rewrite
-of `math1030` unit `2.4` and `math1090` unit `3.4`. Both rewrites preserve the
-visible `QuickCheck` plus following `RevealSolution` contract instead of hiding
-answers inside the prompt block.
+of `math1030` units `2.4` and `6.2`, plus `math1090` unit `3.4`. Those
+rewrites preserve the visible `QuickCheck` plus following `RevealSolution`
+contract instead of hiding answers inside the prompt block.
 
 Every push attempt for those checkpoints failed with the same external error:
 `ssh: Could not resolve hostname github.com: Temporary failure in name
 resolution`.
 
 The next resume point is to keep exercise integrity coupled to the next content
-rewrite, starting with the thin MATH1030 chapter 6 units and the first
-MATH1090 chapter 4 note.
+rewrite, starting with the first Math1090 chapter-4 note and the remaining thin
+Math1030 chapter-6 units.
 
 ## Current findings
 
@@ -37,8 +37,9 @@ textbook exercise blocks.
 - Authored note units that use `QuickCheck` for the prompt and
   `RevealSolution` for the answer now match the shared component behavior more
   closely.
-- The next integrity risk is broader QA: confirming that existing units do not
-  rely on the old toggle interaction and that export output still reads cleanly.
+- The next integrity risk is broader QA: confirming that export output still
+  reads cleanly on the richer rewritten notes and that no localized note drifts
+  into mismatched prerequisite or answer labels.
 
 ## Checkpoint log
 

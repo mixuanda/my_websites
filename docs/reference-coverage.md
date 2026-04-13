@@ -33,16 +33,19 @@ The current local workspace also includes an uncommitted content pass that:
 - rewrites `math1030` unit `6.3 Linear combinations and span` in EN, zh-HK,
   and zh-CN so the page now includes the `Ax = b` equivalence, geometric span
   examples, the span-subspace theorem, and fuller exercises;
-- confirms that `reference/MATH1025/**` is substantial enough to enter the
-  internal backlog immediately, even though no public `math1025` notes exist
-  yet.
+- rewrites `math1030` unit `6.2 Subspaces` in EN, zh-HK, and zh-CN so the page
+  now includes the equivalent subspace test, equation-defined examples,
+  the null-space theorem, tutorial-backed matrix examples, and fuller quick
+  checks;
+- splits the `reference/MATH1025/**` backlog into grouped source families
+  rather than tracking the whole course as a single slide row.
 
 The next resume point is a split backlog:
 
-1. deepen the remaining thin public MATH1030 chapter 6 units, especially `6.2`
-   and `6.4`;
-2. map and author the next clear MATH1090 chapter 4 notes from the April 10
-   lecture packet and the review materials;
+1. author the next clear MATH1090 chapter 4 note from the April 10 lecture
+   packet and the review materials;
+2. deepen the remaining thin public MATH1030 chapter 6 units, especially
+   `6.4`, and keep export / localization QA coupled to those passes;
 3. prepare a first source-backed `math1025` route family only after the active
    Math1090 and Math1030 corrections are stable.
 
@@ -363,30 +366,29 @@ even though the public note system does not yet expose a `math1025` course.
 
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| MATH1025 | `reference/MATH1025/MATH1025_slides_ch0.pdf` to `reference/MATH1025/MATH1025_slides_ch11.pdf` | chapter slides | pending | no | no | no | Source-backed slide sequence exists across the course. Use it to plan the future route family in `docs/chapter-coverage-map.md`. |
-| MATH1025 | `reference/MATH1025/MATH1025_Midterm_Exam.pdf` | exam | pending | no | partial | no | Useful later for exercise selection after baseline chapter notes exist. |
-| MATH1025 | `reference/MATH1025/MATH1028_Midterm_Exam.pdf` | adjacent-course exam | overlap | no | yes | no | Shared support material; do not treat it as the primary MATH1025 conceptual source. |
-| MATH1025 | `reference/MATH1025/Solution to MATH1025_1028_HW1.pdf` to `reference/MATH1025/Solution to MATH1025_1028_HW10.pdf` | homework solutions | pending | no | partial | no | Keep for later exercise / solution authoring once the chapter notes are drafted. |
-| MATH1025 | `reference/MATH1025/Solution to MATH1025_Midterm_Exam.pdf` | exam solutions | pending | no | partial | no | Secondary support only; do not start authoring from solution keys alone. |
-| MATH1025 | `reference/MATH1025/Solution to MATH1028_Midterm_Exam.pdf` | adjacent-course solutions | overlap | no | yes | no | Shared support material only. |
+| MATH1025 | `reference/MATH1025/MATH1025_slides_ch0.pdf` to `reference/MATH1025/MATH1025_slides_ch4(1).pdf` | foundations slides | pending | no | no | no | Primary future-course backbone for preliminaries, trigonometry, induction, inequalities, and binomial-theorem material. |
+| MATH1025 | `reference/MATH1025/MATH1025_slides_ch5.pdf` to `reference/MATH1025/MATH1025_slides_ch8.pdf` | methods slides | pending | no | no | no | Primary future-course backbone for sequences, complex numbers, integers / rational numbers, and polynomials. |
+| MATH1025 | `reference/MATH1025/MATH1025_slides_ch9.pdf` to `reference/MATH1025/MATH1025_slides_ch11.pdf` | vectors and geometry slides | pending | no | no | no | Primary future-course backbone for vectors in `R^n`, straight lines / planes / curves, and conic sections. |
+| MATH1025 | `reference/MATH1025/Solution to MATH1025_1028_HW1.pdf` to `reference/MATH1025/Solution to MATH1025_1028_HW10.pdf` | homework solutions | pending | no | partial | no | Keep for later exercise / solution authoring once the baseline chapter notes exist. |
+| MATH1025 | `reference/MATH1025/MATH1025_Midterm_Exam.pdf` and `reference/MATH1025/Solution to MATH1025_Midterm_Exam.pdf` | assessment pair | pending | no | partial | no | Secondary support only; use after the first chapter-family notes exist. |
+| MATH1025 | `reference/MATH1025/MATH1028_Midterm_Exam.pdf` and `reference/MATH1025/Solution to MATH1028_Midterm_Exam.pdf` | adjacent-course assessment pair | overlap | no | yes | no | Shared support material only; do not treat it as primary Math1025 conceptual source. |
 
 ## Highest-value remaining backlog
 
 The next source-backed expansions with the clearest payoff are:
 
 1. Thin but already public units: MATH1030 `6.1 Vector spaces`,
-   `6.2 Subspaces`, `6.3 Linear combinations and span`, and MATH1090 `2.1`,
-   `2.2`, `3.4`.
-2. Next missing source-backed chapters: MATH1090 chapter 4 material on total
-   order, upper and lower bounds, supremum / infimum, and incompleteness of
-   `Q`.
+   `6.4 Linear dependence and independence`, and MATH1090 `2.1`, `2.2`.
+2. Next missing source-backed chapter family: MATH1090 chapter 4 material on
+   total order, upper and lower bounds, supremum / infimum, completeness, and
+   the transition from `Q` to `R`.
 3. MATH1030 `1030gi-n05-05.pdf` and `1030gi-n05-07.pdf` for sharper basis
    tests, dimension criteria, and matrix-subspace dimension.
 4. MATH1030 `1030gi-n06-01.pdf` to `1030gi-n08-01.pdf` and the parallel master
    note chapters for determinants, eigenvalues, diagonalization, and inner
    products.
-5. MATH1025 chapter slides `ch0` to `ch11` for the first future-course rollout
-   once the active Math1090 and Math1030 corrections are stable.
+5. The grouped MATH1025 slide families for the first future-course rollout once
+   the active Math1090 and Math1030 corrections are stable.
 
 ## Current blockers
 

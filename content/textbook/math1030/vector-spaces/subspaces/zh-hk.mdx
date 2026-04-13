@@ -1,96 +1,436 @@
 ---
 title: "6.2 子空間"
-description: "學會怎樣在一個較大的向量空間裡，辨認出一個較小但仍完整的向量空間。"
+description: "仔細使用子空間測試，證明最基本的結構結論，並掌握線性代數裡反覆出現的矩陣例子與方程例子。"
 ---
 
-## 大空間裡的小空間
+子空間一出現，就提醒我們很多線性問題其實不需要整個外層向量空間。
+齊次方程組的解集、對稱矩陣的集合、在某一點取值為 `0` 的多項式集合，
+全部都是大向量空間裡較小的集合。
 
-很多時候，我們不需要整個外層向量空間，只需要其中一個仍然保留同
-樣運算規則的子集合。
+本節要處理的問題是：甚麼時候這樣的子集合仍然保留完整的線性結構？
+子空間不是「看上去像一條線」那麼簡單，而是指在繼承來的加法和純量
+乘法之下，所有向量空間公理仍然成立的集合。
 
-<Definition title="子空間">
-若 `V` 是一個向量空間，而 `W` 是 `V` 的子集合，當 `W` 非空，並且
-對加法與純量乘法都封閉時，`W` 就是 `V` 的子空間。
+## 為甚麼只需要檢查少數公理
+
+設 `V` 已經是一個向量空間，而 `W \subseteq V`。如果我們在 `W` 上使用
+的仍然是 `V` 原本的加法與純量乘法，那麼交換律、結合律和分配律並不
+需要由頭再證一次，因為這些恆等式在 `V` 裡本來就成立。
+
+真正要問的是：
+
+- `W` 裡兩個向量相加後，會不會仍留在 `W`？
+- `W` 裡一個向量乘上純量後，會不會仍留在 `W`？
+- `W` 有沒有包含向量空間結構一定要有的向量，尤其是零向量？
+
+所以子空間測試本質上是一個封閉性測試。
+
+<Definition title="子空間定義">
+設 `V` 是一個向量空間。若子集合 `W \subseteq V` 滿足：
+
+1. `W` 非空；
+2. 對所有 `u, v \in W`，都有 `u + v \in W`；
+3. 對所有 `u \in W` 和所有 `\alpha \in R`，都有 `\alpha u \in W`；
+
+那麼 `W` 稱為 `V` 的一個 **子空間**。
 </Definition>
 
-教學筆記中的等價說法是：如果 `W` 用繼承來的運算本身就是一個向量
-空間，那它就一定是 `V` 的子空間。
+教學筆記亦強調另一個常用的等價形式，很多證明用起來更直接。
 
-## 常見例子
+<TheoremCard title="等價的子空間測試">
+設 `V` 是向量空間，`W \subseteq V`。則 `W` 是 `V` 的子空間，當且僅當：
 
-筆記列出幾個標準例子：
+1. `0 \in W`；
+2. 對任意 `u, v \in W` 及任意 `\alpha, \beta \in R`，向量
 
-- 零子空間 `{0}`；
-- 整個空間 `V`；
-- `R^2` 裡通過原點的一條直線；
-- `R^3` 裡通過原點的一個平面；
-- 矩陣 `A` 的零空間 `N(A)`。
+   $$
+   \alpha u + \beta v
+   $$
 
-關鍵詞是「通過原點」。如果集合不含 `0`，它就不可能是子空間。
+   仍然屬於 `W`。
+</TheoremCard>
 
-<WorkedExample title="通過原點的直線是子空間">
-考慮
-
-$$
-W = \{(x, 0) : x \in R\} \subseteq R^2.
-$$
-
-若 `(a, 0)` 和 `(b, 0)` 都在 `W`，則
+<CollapsibleProof title="為甚麼這個等價形式成立">
+先假設 `W` 已經是子空間。因為 `W` 非空，取一個 `w \in W`。由純量乘法
+封閉性可得
 
 $$
-(a, 0) + (b, 0) = (a + b, 0) \in W.
+0w = 0 \in W.
 $$
 
-若 `c` 是任意實數，則
+再設 `u, v \in W`，`\alpha, \beta \in R`。由純量乘法封閉性得
+`\alpha u \in W`、`\beta v \in W`，再由加法封閉性得
 
 $$
-c(a, 0) = (ca, 0) \in W.
+\alpha u + \beta v \in W.
 $$
 
-所以 `W` 通過子空間檢查。
+反過來，若 `0 \in W`，而且對所有 `u, v \in W`、`\alpha, \beta \in R`
+都有 `\alpha u + \beta v \in W`，則 `W` 已經非空。若取
+`\alpha = \beta = 1`，便得到
+
+$$
+u + v \in W.
+$$
+
+若取 `v = 0`、`\alpha = \kappa`、`\beta = 0`，便得到
+
+$$
+\kappa u + 0 \cdot 0 = \kappa u \in W.
+$$
+
+所以原本三條定義也成立。
+</CollapsibleProof>
+
+## 由方程定義的標準例子
+
+主筆記最先列出的，是由簡單線性方程描述的集合。這些例子重要，因為
+它們清楚說明「通過原點」和「齊次」在本章裡到底代表甚麼。
+
+<WorkedExample title="`R^2` 裡一條通過原點的直線">
+設
+
+$$
+W = \left\{(x, y) \in R^2 : y = 2x\right\}.
+$$
+
+要證明 `W` 是 `R^2` 的子空間，只需逐條檢查定義。
+
+1. `W` 非空，因為 `(0, 0)` 滿足 `0 = 2 \cdot 0`。
+2. 若 `(x_1, y_1), (x_2, y_2) \in W`，則 `y_1 = 2x_1`、`y_2 = 2x_2`。
+   因而
+
+   $$
+   y_1 + y_2 = 2(x_1 + x_2),
+   $$
+
+   所以 `(x_1 + x_2, y_1 + y_2) \in W`。
+3. 若 `(x, y) \in W` 且 `\alpha \in R`，則 `y = 2x`，因此
+
+   $$
+   \alpha y = 2(\alpha x),
+   $$
+
+   所以 `(\alpha x, \alpha y) \in W`。
+
+故此 `W` 是 `R^2` 的子空間。
 </WorkedExample>
 
-邊看邊試下面的檢查器，先拿一個候選集合，看看封閉性是否真的成立。
+幾何圖像與代數結論完全一致：這是一條通過原點的直線。所謂「通過原
+點」不是裝飾性描述，而是零向量屬於集合的幾何痕跡。
+
+<WorkedExample title="由一條齊次線性方程切出的平面">
+再設
+
+$$
+W = \left\{(x, y, z) \in R^3 : x + 2y + 3z = 0\right\}.
+$$
+
+同樣只需檢查三件事。
+
+1. `W` 非空，因為 `(0, 0, 0)` 滿足方程。
+2. 若 `u = (u_1, u_2, u_3)` 與 `v = (v_1, v_2, v_3)` 在 `W` 內，則
+
+   $$
+   u_1 + 2u_2 + 3u_3 = 0,
+   \qquad
+   v_1 + 2v_2 + 3v_3 = 0.
+   $$
+
+   相加後得到
+
+   $$
+   (u_1 + v_1) + 2(u_2 + v_2) + 3(u_3 + v_3) = 0,
+   $$
+
+   因此 `u + v \in W`。
+3. 若 `u \in W` 且 `\alpha \in R`，則
+
+   $$
+   \alpha u_1 + 2\alpha u_2 + 3\alpha u_3
+   =
+   \alpha(u_1 + 2u_2 + 3u_3)
+   =
+   \alpha \cdot 0
+   =
+   0,
+   $$
+
+   所以 `\alpha u \in W`。
+
+於是 `W` 是 `R^3` 的子空間。
+</WorkedExample>
+
+這個例子是「由齊次線性方程定義的集合」的原型。右邊的常數是 `0`，
+正正就是封閉性得以成立的原因。
+
+做過幾個手算例子之後，再用下面的檢查器比較真正的子空間和一些很像
+但其實失敗的集合。
 
 <InteractiveWidget id="subspace-checker" />
 
-## 常見錯誤
+## 子空間測試的直接推論
 
-<CommonMistake title="平移過的直線不是子空間">
-集合 `\{(x, y) : x + y = 1\}` 不是 `R^2` 的子空間，因為它不包含零向量
-`(0, 0)`。一般來說，直線或平面要成為子空間，常數項必須是 `0`。
+一旦知道 `W` 是子空間，若干基本結論就立刻成立。
+
+<TheoremCard title="每個子空間都包含 `0` 與加法逆元">
+設 `W` 是向量空間 `V` 的子空間。則：
+
+1. `0 \in W`；
+2. 若 `u \in W`，則 `-u \in W`。
+</TheoremCard>
+
+<CollapsibleProof title="這些基本結論的證明">
+因為 `W` 非空，取任意 `u \in W`。由純量乘法封閉性可得
+
+$$
+0u = 0 \in W.
+$$
+
+若 `u \in W`，由 `-1 \in R` 及封閉性可得
+
+$$
+(-1)u = -u \in W.
+$$
+</CollapsibleProof>
+
+於是兩個極端例子也自然成立：
+
+- `{0}` 是任何向量空間的 **最小** 子空間；
+- `V` 本身是 `V` 的 **最大** 子空間。
+
+## 零空間一定是子空間
+
+矩陣理論裡第一個重要的子空間家族，就是零空間。
+
+<TheoremCard title="矩陣的零空間是子空間">
+設 `A` 是一個 `m \times n` 矩陣，並令
+
+$$
+N(A) = \left\{x \in R^n : Ax = 0\right\}.
+$$
+
+則 `N(A)` 是 `R^n` 的一個子空間。
+</TheoremCard>
+
+<CollapsibleProof title="為甚麼 `N(A)` 是子空間">
+首先，`0 \in N(A)`，因為
+
+$$
+A0 = 0.
+$$
+
+再設 `u, v \in N(A)`，`\alpha \in R`。由 `Au = 0`、`Av = 0` 可得
+
+$$
+A(u + v) = Au + Av = 0 + 0 = 0,
+$$
+
+以及
+
+$$
+A(\alpha u) = \alpha(Au) = \alpha \cdot 0 = 0.
+$$
+
+所以 `u + v \in N(A)`，亦有 `\alpha u \in N(A)`。因此 `N(A)` 是
+`R^n` 的子空間。
+</CollapsibleProof>
+
+這個定理說明「零空間」不是方便的名字而已。齊次方程組的解集真的是
+一個向量空間。
+
+<WorkedExample title="一條齊次方程其實就是某個零空間">
+令
+
+$$
+A = \begin{bmatrix} 1 & 2 & 3 \end{bmatrix}.
+$$
+
+則
+
+$$
+N(A)
+=
+\left\{
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix}
+:
+x + 2y + 3z = 0
+\right\}.
+$$
+
+所以剛才那個平面，其實正是某個矩陣的零空間。由
+
+$$
+x = -2y - 3z
+$$
+
+可得零空間裡任意向量都可寫成
+
+$$
+\begin{bmatrix}
+x \\
+y \\
+z
+\end{bmatrix}
+=
+y \begin{bmatrix} -2 \\ 1 \\ 0 \end{bmatrix}
++
+z \begin{bmatrix} -3 \\ 0 \\ 1 \end{bmatrix}.
+$$
+
+因此這個子空間是一個通過原點、由兩個向量生成的平面。
+</WorkedExample>
+
+## 一個更廣的模式：由矩陣條件保留下來的子空間
+
+教學紙還給了一個比零空間更一般的例子。它不是要求 `Ax = 0`，而是
+要求 `Ax` 落在一個已知的子空間裡。
+
+<WorkedExample title="經矩陣乘法拉回來的子空間">
+設 `A` 是一個 `4 \times 6` 矩陣，`V` 是 `R^4` 的子空間，並定義
+
+$$
+W = \left\{x \in R^6 : Ax \in V\right\}.
+$$
+
+則 `W` 是 `R^6` 的子空間。
+
+證明完全按照子空間測試進行：
+
+1. `0 \in W`，因為 `A0 = 0`，而 `0 \in V`；
+2. 若 `x, y \in W`，則 `Ax, Ay \in V`，因此
+
+   $$
+   A(x + y) = Ax + Ay \in V,
+   $$
+
+   所以 `x + y \in W`；
+3. 若 `x \in W` 且 `\alpha \in R`，則 `Ax \in V`，故
+
+   $$
+   A(\alpha x) = \alpha(Ax) \in V,
+   $$
+
+   所以 `\alpha x \in W`。
+
+零空間其實就是這個例子的特殊情形，只要把 `V` 取成 `{0}` 即可。
+</WorkedExample>
+
+這個觀點值得記住：很多子空間最自然的描述，不是逐個元素列出來，而
+是寫成一個會被線性運算保留下來的條件。
+
+## 子集合最常見的失敗方式
+
+子空間測試雖然短，但非常嚴格。一個集合可以在多個地方失敗。
+
+<CommonMistake title="包含 `0` 是必要條件，但不是充分條件">
+集合
+
+$$
+\left\{(x, y) \in R^2 : x + y = 1\right\}
+$$
+
+不是子空間，因為它不包含 `(0, 0)`。
+
+但「不包含 `0`」不是唯一危險。教學紙還給出一個二次條件的例子
+
+$$
+S = \left\{x \in R^4 : x^T C x = 0\right\},
+$$
+
+它可以包含 `0`，卻仍然未必是子空間。原因在於若 `w = u + v`，則
+
+$$
+w^T C w = u^T C u + v^T C v + 2u^T C v,
+$$
+
+其中交叉項 `2u^T C v` 未必消失，所以加法封閉性可能失敗。可見一個
+集合即使看起來對稱、也包含 `0`，仍然可能不是子空間。
 </CommonMistake>
 
-## 為甚麼任何子空間都含有 `0`
+實際做題時，最穩妥的習慣是：
 
-<CollapsibleProof title="子空間一定包含零向量">
-設 `W` 是 `V` 的子空間，並取任意 `u \in W`。
+1. 先檢查 `0`；
+2. 再檢查加法封閉；
+3. 最後檢查純量乘法封閉。
 
-因為 `W` 對純量乘法封閉，所以 `(-1)u \in W`。
-又因為 `W` 對加法封閉，所以 `u + (-1)u = 0` 也在 `W`。
-因此 `0 \in W`。
-</CollapsibleProof>
+不要只靠圖像直覺下判斷。
 
 ## 快速檢查
 
-<QuickCheck prompt="集合 `\{(x, y) : y = 2x\}` 是否是 `R^2` 的子空間？">
-先想它有沒有包含 `0`，再想加法與純量乘法是否封閉。
+<QuickCheck prompt="為甚麼 `E = \{f(x) \in P_n : f(1) = 0\}` 是 `P_n` 的子空間？">
+把 `x = 1` 時的函數值，當作需要在子空間測試下被保留下來的量。
 </QuickCheck>
 
-<RevealSolution title="答案">
-是。它是一條通過原點的直線，所以是子空間。
+<RevealSolution title="解答">
+零多項式屬於 `E`，因為 `0(1) = 0`。若 `f, g \in E`，則 `f(1) = g(1) = 0`，
+所以
+
+$$
+(f + g)(1) = f(1) + g(1) = 0.
+$$
+
+若 `\alpha \in R` 且 `f \in E`，則
+
+$$
+(\alpha f)(1) = \alpha f(1) = \alpha \cdot 0 = 0.
+$$
+
+因此 `E` 對加法與純量乘法都封閉，所以是 `P_n` 的子空間。
 </RevealSolution>
 
-<QuickCheck prompt="集合 `\{(x, y) : x + y = 1\}` 是否是 `R^2` 的子空間？">
-記得先做零向量檢查。
+<QuickCheck prompt="設 `W = \{X \in M_{p,p}(R) : AX - XA = O_{p \times p}\}`。為甚麼這個集合形成子空間？">
+把定義方程 `AX - XA = O_{p \times p}` 當成 `Ax = 0` 的矩陣版去處理。
 </QuickCheck>
 
-<RevealSolution title="答案">
-不是。它不包含 `0 = (0, 0)`。
+<RevealSolution title="解答">
+零矩陣屬於 `W`，因為
+
+$$
+A O_{p \times p} - O_{p \times p} A = O_{p \times p}.
+$$
+
+若 `X, Y \in W` 且 `\kappa, \lambda \in R`，則
+
+$$
+A(\kappa X + \lambda Y) - (\kappa X + \lambda Y)A
+=
+\kappa(AX - XA) + \lambda(AY - YA)
+=
+O_{p \times p}.
+$$
+
+所以 `\kappa X + \lambda Y` 仍屬於 `W`，等價子空間測試便可套用。
 </RevealSolution>
 
-## 預備連結
+<QuickCheck prompt="為甚麼 `\{(x, y) \in R^2 : x + y = 1\}` 不是子空間，雖然它仍然是一條直線？">
+不要畫圖，直接用子空間測試回答。
+</QuickCheck>
 
-這一頁建立在
-[6.1 向量空間](/zh-hk/notes/math1030/vector-spaces/vector-spaces) 和
-[2.1 矩陣基礎](/zh-hk/notes/math1030/matrices/matrix-basics) 之上。
+<RevealSolution title="解答">
+它在第一步就失敗了：零向量不在集合裡，因為
+
+$$
+0 + 0 \neq 1.
+$$
+
+每個子空間都必須包含 `0`，所以這條直線不可能是子空間。
+</RevealSolution>
+
+## 先讀這些內容
+
+本節建立在
+[6.1 向量空間](/zh-hk/notes/math1030/vector-spaces/vector-spaces) 的公理，
+以及
+[4.1 齊次方程組與零空間](/zh-hk/notes/math1030/solution-structure/homogeneous-systems-and-null-space)
+對 `Ax = 0` 的解釋之上。
+
+## 下一節
+
+下一節
+[6.3 線性組合與張成](/zh-hk/notes/math1030/vector-spaces/linear-combinations-and-span)
+會把子空間當成生成過程的自然輸出來處理。

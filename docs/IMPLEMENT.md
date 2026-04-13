@@ -43,3 +43,7 @@ Only stop when one of the following is true:
 - Milestone 2 is complete and validated.
 - Milestone 3 is complete and validated.
 - Milestone 4 is in progress.
+- `math1030` `6.2 Subspaces` is now rewritten and validated in EN, zh-HK, and
+  zh-CN.
+- The next execution target is the first Math1090 chapter-4 bridge note from
+  the April 10 lecture packet and the review materials.
