@@ -137,3 +137,87 @@ export interface ExportableTextbookUnit {
   unitId: string;
   unitNumber: string;
 }
+
+export type ProblemType = "MCQ" | "FILL_IN_BLANK";
+
+export interface ProblemChoice {
+  id: string;
+  text: string;
+}
+
+export interface ToleranceRule {
+  absolute?: number;
+  relative?: number;
+}
+
+export type EquivalenceRule =
+  | { type: "exact" }
+  | { type: "trimmed" }
+  | { type: "case-insensitive" }
+  | { type: "symbolic" };
+
+export interface ProblemBase {
+  id: string;
+  courseId: CourseId;
+  chapterId: string;
+  unitId: string;
+  prompt: string;
+  hints: string[];
+  solutionSteps: string[];
+  skillTags: string[];
+}
+
+export interface McqProblem extends ProblemBase {
+  type: "MCQ";
+  choices: ProblemChoice[];
+  correctAnswer: {
+    choiceId: string;
+  };
+}
+
+export interface FillInBlankAnswer {
+  value: string;
+  equivalentValues?: string[];
+  tolerance?: ToleranceRule;
+  equivalence?: EquivalenceRule[];
+}
+
+export interface FillInBlankProblem extends ProblemBase {
+  type: "FILL_IN_BLANK";
+  choices?: never;
+  correctAnswer: FillInBlankAnswer;
+}
+
+export type ProblemSchema = McqProblem | FillInBlankProblem;
+
+export interface ProblemSubmission {
+  answer?: string;
+  choiceId?: string;
+}
+
+export interface ProblemSubmissionResult {
+  correct: boolean;
+  hint?: string;
+  normalizedAnswer: string;
+  shouldShowSolution: boolean;
+}
+
+export interface ProblemAttemptRecord {
+  attemptId: string;
+  attemptedAt: string;
+  correct: boolean;
+  courseId: CourseId;
+  chapterId: string;
+  normalizedAnswer: string;
+  problemId: string;
+  unitId: string;
+  userId?: string;
+}
+
+export interface SectionMastery {
+  correctAttempts: number;
+  mastery: number;
+  sectionId: string;
+  totalAttempts: number;
+  userId?: string;
+}
