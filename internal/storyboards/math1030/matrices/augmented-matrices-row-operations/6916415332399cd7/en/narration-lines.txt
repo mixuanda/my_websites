@@ -1,0 +1,15 @@
+[concept_intro]
+Augmented matrices keep equation structure while making elimination systematic.
+Every row operation must preserve solution equivalence.
+
+[theorem_statement]
+Elementary operations change representation, not the solution set.
+That invariant is the reason Gaussian elimination is mathematically valid.
+
+[example_walkthrough]
+Name the target zero first, then select the row operation.
+After each operation, read the new row as an equation to avoid blind manipulation.
+
+[recap_checkpoints]
+Most elimination errors are bookkeeping errors, not concept errors.
+Consistent operation notation makes audit and QA possible.

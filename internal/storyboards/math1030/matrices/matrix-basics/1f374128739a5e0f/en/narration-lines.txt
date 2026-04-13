@@ -1,0 +1,15 @@
+[concept_intro]
+A matrix is a structured table, not a loose list of numbers.
+Its dimensions tell us exactly how many equations and variables are being tracked.
+
+[theorem_statement]
+Matrix equality is strict: same shape and same entry in every position.
+One mismatched entry is enough to invalidate equality.
+
+[example_walkthrough]
+Start by reading dimensions before touching any arithmetic.
+Dimension mismatch immediately blocks equality checks.
+
+[recap_checkpoints]
+If you can read dimensions and entries confidently, elimination becomes much cleaner.
+These checkpoints should be automatic before moving to row operations.

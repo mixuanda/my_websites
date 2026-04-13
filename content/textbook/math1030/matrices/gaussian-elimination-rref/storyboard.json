@@ -1,0 +1,160 @@
+{
+  "course": "math1030",
+  "chapter": "matrices",
+  "unit": "gaussian-elimination-rref",
+  "unitTitle": {
+    "en": "2.3 Gaussian elimination and RREF",
+    "zh-hk": "2.3 高斯消元與最簡列階梯形",
+    "zh-cn": "2.3 高斯消元与最简行阶梯形"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "From hard-to-read to readable",
+          "goal": "Frame elimination as a structure-reading process.",
+          "beats": [
+            "Define pivot and pivot column in context of augmented matrices.",
+            "Differentiate REF and RREF reading power.",
+            "Show staircase intuition for pivot placement."
+          ],
+          "mathBlocks": [
+            "\\text{REF}\\subset\\text{RREF}",
+            "\\begin{bmatrix}1&2&2&4\\\\0&1&1&1\\\\0&0&-1&-4\\end{bmatrix}"
+          ],
+          "voiceover": [
+            "Elimination is not random simplification; it is controlled readability.",
+            "Each pivot narrows uncertainty in the solution structure."
+          ],
+          "animation": "pivot staircase build"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "Row-equivalence theorem",
+          "goal": "Anchor elimination with a formal invariant.",
+          "beats": [
+            "State row-equivalent augmented matrices represent equivalent systems.",
+            "Connect theorem to legal operation sequence logging.",
+            "Note contradiction-row interpretation."
+          ],
+          "mathBlocks": [
+            "A\\sim B \\Rightarrow \\mathcal{S}(A)=\\mathcal{S}(B)",
+            "[0\\;0\\;0\\mid c],\\;c\\neq0"
+          ],
+          "voiceover": [
+            "Without the row-equivalence theorem, elimination would be only procedural.",
+            "With it, every operation is justified by solution-set invariance."
+          ],
+          "animation": "invariant lock icon across matrix states"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Complete RREF derivation",
+          "goal": "Walk through full elimination from system to final solution.",
+          "beats": [
+            "Apply below-pivot elimination to reach REF.",
+            "Normalize pivot and eliminate above to reach RREF.",
+            "Read solution directly from final matrix."
+          ],
+          "mathBlocks": [
+            "R_2\\leftarrow R_2-R_1",
+            "R_3\\leftarrow R_3-2R_1",
+            "R_3\\leftarrow -R_3"
+          ],
+          "voiceover": [
+            "Name each elimination target before computing.",
+            "At RREF, every pivot column gives one solved variable immediately."
+          ],
+          "animation": "frame-by-frame elimination timeline"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Read solution type fast",
+          "goal": "Classify unique/infinite/inconsistent outcomes from RREF patterns.",
+          "beats": [
+            "Checkpoint: no contradiction + pivot in every variable column => unique solution.",
+            "Checkpoint: free variable present => infinitely many solutions.",
+            "Checkpoint: contradiction row => no solution."
+          ],
+          "voiceover": [
+            "The final matrix is a classification tool, not just an arithmetic endpoint.",
+            "Always classify solution type before reporting numbers."
+          ],
+          "animation": "three-case decision tree"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "由難讀系統到可讀結構",
+          "goal": "把消元法定位為結構閱讀程序。",
+          "beats": [
+            "在增廣矩陣中定義主元與主元列。",
+            "比較 REF 與 RREF 的閱讀能力。",
+            "用階梯形直觀說明主元安排。"
+          ],
+          "mathBlocks": [
+            "\\text{REF}\\subset\\text{RREF}"
+          ],
+          "voiceover": [
+            "高斯消元唔係亂咁化簡，而係逐步令系統變得易讀。"
+          ],
+          "animation": "主元階梯逐步建立"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "列等價定理",
+          "goal": "以形式不變量支撐每一步運算。",
+          "beats": [
+            "陳述列等價矩陣對應等價方程組。",
+            "指出每一步都要記錄列運算符號。",
+            "補充矛盾列的判讀。"
+          ],
+          "mathBlocks": [
+            "A\\sim B \\Rightarrow \\mathcal{S}(A)=\\mathcal{S}(B)"
+          ],
+          "voiceover": [
+            "有咗列等價定理，先可以確認解集喺過程中保持不變。"
+          ],
+          "animation": "不變量鎖定標記"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "完整 RREF 推導",
+          "goal": "由原方程組完整推到最簡列階梯形。",
+          "beats": [
+            "先消主元下方元素去到 REF。",
+            "再標準化主元並清主元上方去到 RREF。",
+            "最後直接讀出未知數。"
+          ],
+          "mathBlocks": [
+            "R_2\\leftarrow R_2-R_1"
+          ],
+          "voiceover": [
+            "每一步先講清楚目標零元素，先至落手計。"
+          ],
+          "animation": "逐格消元時間線"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "快速判讀解的型態",
+          "goal": "由 RREF 快速分辨唯一解、無限多解、無解。",
+          "beats": [
+            "無矛盾且每個變數列都有主元：唯一解。",
+            "有自由變數：無限多解。",
+            "出現矛盾列：無解。"
+          ],
+          "voiceover": [
+            "RREF 係判讀工具，唔只係計算終點。"
+          ],
+          "animation": "三分支決策圖"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,11 @@
+[concept_intro]
+高斯消元唔係亂咁化簡，而係逐步令系統變得易讀。
+
+[theorem_statement]
+有咗列等價定理，先可以確認解集喺過程中保持不變。
+
+[example_walkthrough]
+每一步先講清楚目標零元素，先至落手計。
+
+[recap_checkpoints]
+RREF 係判讀工具，唔只係計算終點。

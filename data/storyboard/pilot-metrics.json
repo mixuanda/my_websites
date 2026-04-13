@@ -1,0 +1,12 @@
+{
+  "units": [
+    "math1030/matrices/matrix-basics",
+    "math1030/matrices/augmented-matrices-row-operations",
+    "math1030/matrices/gaussian-elimination-rref"
+  ],
+  "completionRate": 0.0,
+  "errorReportsPer100Sessions": 0.0,
+  "notationQaPassRate": 0.0,
+  "localeQaPassRate": 0.0,
+  "notes": "Replace with pilot telemetry and QA outcomes before scale-out decisions."
+}
