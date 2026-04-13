@@ -1,0 +1,39 @@
+{
+  "chapter": "matrices",
+  "course": "math1030",
+  "fingerprint": "a02d0e4e339175f1",
+  "generatedAt": "2026-04-13T10:42:20.356Z",
+  "locales": {
+    "en": {
+      "files": [
+        "script-draft.md",
+        "narration-lines.txt",
+        "slide-plan.json",
+        "qa-checklist.md"
+      ],
+      "segmentCount": 4
+    },
+    "zh-hk": {
+      "files": [
+        "script-draft.md",
+        "narration-lines.txt",
+        "slide-plan.json",
+        "qa-checklist.md"
+      ],
+      "segmentCount": 4
+    }
+  },
+  "sourceFile": "content/textbook/math1030/matrices/gaussian-elimination-rref/storyboard.json",
+  "unit": "gaussian-elimination-rref",
+  "unitTitle": {
+    "en": "2.3 Gaussian elimination and RREF",
+    "zh-hk": "2.3 高斯消元與最簡列階梯形",
+    "zh-cn": "2.3 高斯消元与最简行阶梯形"
+  },
+  "workflowStages": [
+    "drafting",
+    "narration",
+    "slide_assembly",
+    "qa"
+  ]
+}

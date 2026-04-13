@@ -1,0 +1,88 @@
+{
+  "course": "math1030",
+  "chapter": "matrices",
+  "unit": "matrix-basics",
+  "unitTitle": {
+    "en": "2.1 Matrix basics",
+    "zh-hk": "2.1 矩陣基礎",
+    "zh-cn": "2.1 矩阵基础"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "What a matrix stores",
+          "goal": "Connect matrix shape to data organization and system representation.",
+          "beats": [
+            "Define matrix size m×n and explain row/column indexing notation a_{ij}.",
+            "Contrast coefficient matrix with augmented matrix.",
+            "State why dimensions control allowed operations."
+          ],
+          "mathBlocks": [
+            "A = [a_{ij}]_{m\\times n}",
+            "\\left[\\begin{array}{ccc|c}1&2&-1&4\\end{array}\\right]"
+          ],
+          "voiceover": [
+            "A matrix is a structured table, not a loose list of numbers.",
+            "Its dimensions tell us exactly how many equations and variables are being tracked."
+          ],
+          "animation": "progressive highlight of row and column indices"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "Matrix equality criterion",
+          "goal": "State the formal condition for two matrices to be equal.",
+          "beats": [
+            "Require same dimensions.",
+            "Require entry-wise equality for all i,j.",
+            "Show one mismatch entry as a counterexample."
+          ],
+          "mathBlocks": [
+            "A=B \\iff a_{ij}=b_{ij}\\;\\forall i,j"
+          ],
+          "voiceover": [
+            "Matrix equality is strict: same shape and same entry in every position.",
+            "One mismatched entry is enough to invalidate equality."
+          ],
+          "animation": "split-screen equality check with red mismatch indicator"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Classify and read matrices",
+          "goal": "Practice identifying dimensions, entries, and legal comparisons.",
+          "beats": [
+            "Read dimensions of three sample matrices.",
+            "Extract designated entries a_23, b_11.",
+            "Decide if two matrices can be compared for equality."
+          ],
+          "mathBlocks": [
+            "A\\in\\mathbb{R}^{2\\times3}",
+            "B\\in\\mathbb{R}^{3\\times2}"
+          ],
+          "voiceover": [
+            "Start by reading dimensions before touching any arithmetic.",
+            "Dimension mismatch immediately blocks equality checks."
+          ],
+          "animation": "stepwise annotation overlays on matrix entries"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Rapid structure checks",
+          "goal": "Confirm foundational matrix literacy before row operations.",
+          "beats": [
+            "Checkpoint: identify matrix dimensions quickly.",
+            "Checkpoint: explain entry notation without ambiguity.",
+            "Checkpoint: apply equality rule to short examples."
+          ],
+          "voiceover": [
+            "If you can read dimensions and entries confidently, elimination becomes much cleaner.",
+            "These checkpoints should be automatic before moving to row operations."
+          ],
+          "animation": "three-card recap with timed reveal"
+        }
+      ]
+    }
+  }
+}

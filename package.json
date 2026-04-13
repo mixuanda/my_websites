@@ -16,6 +16,8 @@
     "tina:build:auto": "if [ -n \"$TINA_TOKEN\" ] && [ -n \"${NEXT_PUBLIC_TINA_CLIENT_ID:-$TINA_CLIENT_ID}\" ]; then tinacms build; else tinacms build --local --skip-cloud-checks --skip-search-index; fi",
     "tina:dev": "tinacms dev -c 'next dev'",
     "check:textbook-content": "node scripts/check-textbook-content.mjs"
+    "storyboard:generate": "node tools/storyboard/generate-storyboards.mjs",
+    "storyboard:pilot-evaluate": "node tools/storyboard/evaluate-pilot.mjs"
   },
   "dependencies": {
     "@auth/firebase-adapter": "^2.11.1",
@@ -59,6 +61,7 @@
     "eslint-config-next": "16.1.1",
     "tailwindcss": "^4",
     "tw-animate-css": "^1.4.0",
-    "typescript": "^5"
+    "typescript": "^5",
+    "yaml": "^2.8.1"
   }
 }

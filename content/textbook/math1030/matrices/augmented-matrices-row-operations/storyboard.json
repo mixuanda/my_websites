@@ -1,0 +1,89 @@
+{
+  "course": "math1030",
+  "chapter": "matrices",
+  "unit": "augmented-matrices-row-operations",
+  "unitTitle": {
+    "en": "2.2 Augmented matrices and row operations",
+    "zh-hk": "2.2 增廣矩陣與列運算",
+    "zh-cn": "2.2 增广矩阵与行变换"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Why augment a matrix",
+          "goal": "Map a linear system into one manipulable matrix object.",
+          "beats": [
+            "Separate coefficient block and constants column.",
+            "Explain vertical bar notation and what must remain aligned.",
+            "Preview legal elementary row operations."
+          ],
+          "mathBlocks": [
+            "\\left[\\begin{array}{ccc|c}1&2&-1&4\\\\2&1&3&5\\end{array}\\right]"
+          ],
+          "voiceover": [
+            "Augmented matrices keep equation structure while making elimination systematic.",
+            "Every row operation must preserve solution equivalence."
+          ],
+          "animation": "system-to-matrix morph with coefficient/constant color coding"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "Elementary row operation safety",
+          "goal": "State and justify the row-equivalence principle.",
+          "beats": [
+            "List three elementary row operations.",
+            "State equivalence of solution sets under these operations.",
+            "Clarify nonzero scalar requirement for row scaling."
+          ],
+          "mathBlocks": [
+            "R_i\\leftrightarrow R_j",
+            "R_i\\leftarrow cR_i\\;(c\\neq0)",
+            "R_i\\leftarrow R_i+cR_j"
+          ],
+          "voiceover": [
+            "Elementary operations change representation, not the solution set.",
+            "That invariant is the reason Gaussian elimination is mathematically valid."
+          ],
+          "animation": "operation cards with invariant badge"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "One elimination cycle",
+          "goal": "Execute two row operations and interpret each move.",
+          "beats": [
+            "Choose first pivot in column one.",
+            "Eliminate below-pivot entries using row replacement.",
+            "Interpret resulting row as simplified equation."
+          ],
+          "mathBlocks": [
+            "R_2\\leftarrow R_2-2R_1",
+            "R_3\\leftarrow R_3+R_1"
+          ],
+          "voiceover": [
+            "Name the target zero first, then select the row operation.",
+            "After each operation, read the new row as an equation to avoid blind manipulation."
+          ],
+          "animation": "row-operation stepper with before/after matrix panes"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Operation validity checks",
+          "goal": "Prevent common algebraic and structural mistakes.",
+          "beats": [
+            "Checkpoint: constants column transformed together with coefficient columns.",
+            "Checkpoint: row scaling never uses zero multiplier.",
+            "Checkpoint: each operation documented in notation R_i←..."
+          ],
+          "voiceover": [
+            "Most elimination errors are bookkeeping errors, not concept errors.",
+            "Consistent operation notation makes audit and QA possible."
+          ],
+          "animation": "checklist with pass/fail badges"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "chapter": "matrices",
+  "course": "math1030",
+  "fingerprint": "1f374128739a5e0f",
+  "generatedAt": "2026-04-13T10:42:20.362Z",
+  "locales": {
+    "en": {
+      "files": [
+        "script-draft.md",
+        "narration-lines.txt",
+        "slide-plan.json",
+        "qa-checklist.md"
+      ],
+      "segmentCount": 4
+    }
+  },
+  "sourceFile": "content/textbook/math1030/matrices/matrix-basics/storyboard.json",
+  "unit": "matrix-basics",
+  "unitTitle": {
+    "en": "2.1 Matrix basics",
+    "zh-hk": "2.1 矩陣基礎",
+    "zh-cn": "2.1 矩阵基础"
+  },
+  "workflowStages": [
+    "drafting",
+    "narration",
+    "slide_assembly",
+    "qa"
+  ]
+}

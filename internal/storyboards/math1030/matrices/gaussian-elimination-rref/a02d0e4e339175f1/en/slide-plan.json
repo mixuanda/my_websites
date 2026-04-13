@@ -1,0 +1,40 @@
+[
+  {
+    "animation": "pivot staircase build",
+    "cardTitle": "From hard-to-read to readable",
+    "frame": 1,
+    "mathFocus": [
+      "\\text{REF}\\subset\\text{RREF}",
+      "\\begin{bmatrix}1&2&2&4\\\\0&1&1&1\\\\0&0&-1&-4\\end{bmatrix}"
+    ],
+    "segmentType": "concept_intro"
+  },
+  {
+    "animation": "invariant lock icon across matrix states",
+    "cardTitle": "Row-equivalence theorem",
+    "frame": 2,
+    "mathFocus": [
+      "A\\sim B \\Rightarrow \\mathcal{S}(A)=\\mathcal{S}(B)",
+      "[0\\;0\\;0\\mid c],\\;c\\neq0"
+    ],
+    "segmentType": "theorem_statement"
+  },
+  {
+    "animation": "frame-by-frame elimination timeline",
+    "cardTitle": "Complete RREF derivation",
+    "frame": 3,
+    "mathFocus": [
+      "R_2\\leftarrow R_2-R_1",
+      "R_3\\leftarrow R_3-2R_1",
+      "R_3\\leftarrow -R_3"
+    ],
+    "segmentType": "example_walkthrough"
+  },
+  {
+    "animation": "three-case decision tree",
+    "cardTitle": "Read solution type fast",
+    "frame": 4,
+    "mathFocus": [],
+    "segmentType": "recap_checkpoints"
+  }
+]
