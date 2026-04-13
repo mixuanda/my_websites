@@ -37,6 +37,9 @@ The current local workspace also includes an uncommitted content pass that:
   now includes the equivalent subspace test, equation-defined examples,
   the null-space theorem, tutorial-backed matrix examples, and fuller quick
   checks;
+- rewrites `math1030` unit `6.4 Linear dependence and independence` in EN,
+  zh-HK, and zh-CN using the new fixed authoring block order, theorem-led
+  structure, and aligned exercise/solution sequencing;
 - splits the `reference/MATH1025/**` backlog into grouped source families
   rather than tracking the whole course as a single slide row.
 
@@ -48,6 +51,16 @@ The next resume point is a split backlog:
    `6.4`, and keep export / localization QA coupled to those passes;
 3. prepare a first source-backed `math1025` route family only after the active
    Math1090 and Math1030 corrections are stable.
+
+
+### Thin-unit priority queue for parity rewrites
+
+The current thin-unit queue, to be rewritten in EN + zh-HK + zh-CN together,
+is:
+
+1. `math1030` `6.4` linear dependence and independence;
+2. `math1030` `6.5` basis and dimension follow-up depth pass;
+3. first `math1090` chapter-4 bridge unit sourced from the April 10 packet.
 
 The tables below use these status labels:
 

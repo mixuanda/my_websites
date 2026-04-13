@@ -14,7 +14,8 @@
     "build:cms": "npm run tina:build:auto && contentlayer2 build && next build --webpack",
     "tina:build": "tinacms build",
     "tina:build:auto": "if [ -n \"$TINA_TOKEN\" ] && [ -n \"${NEXT_PUBLIC_TINA_CLIENT_ID:-$TINA_CLIENT_ID}\" ]; then tinacms build; else tinacms build --local --skip-cloud-checks --skip-search-index; fi",
-    "tina:dev": "tinacms dev -c 'next dev'"
+    "tina:dev": "tinacms dev -c 'next dev'",
+    "check:textbook-content": "node scripts/check-textbook-content.mjs"
   },
   "dependencies": {
     "@auth/firebase-adapter": "^2.11.1",
