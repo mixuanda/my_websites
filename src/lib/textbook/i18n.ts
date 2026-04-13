@@ -60,6 +60,11 @@ export const uiText = {
     "zh-cn": "全部笔记系列",
     "zh-hk": "全部筆記系列",
   },
+  adminHasFullAccess: {
+    en: "Admin accounts already have full access and do not need a billing flow.",
+    "zh-cn": "管理员账号已经拥有完整权限，不需要进入账单流程。",
+    "zh-hk": "管理員帳號已經擁有完整權限，不需要進入帳單流程。",
+  },
   cantoneseNote: {
     en: "Cantonese note",
     "zh-cn": "粤语提示",
@@ -69,6 +74,41 @@ export const uiText = {
     en: "Chapter",
     "zh-cn": "章节",
     "zh-hk": "章節",
+  },
+  checkpointCompleted: {
+    en: "Section checkpoint completed. You can now review each item and reopen the guided solutions you unlocked.",
+    "zh-cn": "本节 checkpoint 已完成。你现在可以回看每一题，并重新打开你已解锁的引导解答。",
+    "zh-hk": "本節 checkpoint 已完成。你現在可以重看每一題，並重新打開你已解鎖的引導解答。",
+  },
+  checkpointProgressLabel: {
+    en: "Correct progress",
+    "zh-cn": "答对进度",
+    "zh-hk": "答對進度",
+  },
+  checkpointRequiresCorrectAnswers: {
+    en: "Answer each question correctly to complete this section checkpoint.",
+    "zh-cn": "要完成这一节 checkpoint，需要把每一题答对。",
+    "zh-hk": "要完成這一節 checkpoint，需要把每一題答對。",
+  },
+  checkpointTitle: {
+    en: "Section mastery checkpoint",
+    "zh-cn": "本节掌握 checkpoint",
+    "zh-hk": "本節掌握 checkpoint",
+  },
+  correct: {
+    en: "Correct.",
+    "zh-cn": "答对了。",
+    "zh-hk": "答對了。",
+  },
+  correctAttemptsLabel: {
+    en: "correct attempts",
+    "zh-cn": "次答对",
+    "zh-hk": "次答對",
+  },
+  enterYourAnswer: {
+    en: "Enter your answer",
+    "zh-cn": "输入你的答案",
+    "zh-hk": "輸入你的答案",
   },
   courseOverview: {
     en: "Series overview",
@@ -115,15 +155,35 @@ export const uiText = {
     "zh-cn": "输入",
     "zh-hk": "輸入",
   },
+  hideFullSolution: {
+    en: "Hide full solution",
+    "zh-cn": "隐藏完整解答",
+    "zh-hk": "隱藏完整解答",
+  },
+  hint: {
+    en: "Hint",
+    "zh-cn": "提示",
+    "zh-hk": "提示",
+  },
   language: {
     en: "Language",
     "zh-cn": "语言",
     "zh-hk": "語言",
   },
+  loading: {
+    en: "Loading…",
+    "zh-cn": "加载中…",
+    "zh-hk": "載入中…",
+  },
   markComplete: {
     en: "Mark complete",
     "zh-cn": "标记完成",
     "zh-hk": "標記完成",
+  },
+  membershipAlreadyActive: {
+    en: "Membership is already active on this account.",
+    "zh-cn": "这个账号的会员已经处于启用状态。",
+    "zh-hk": "這個帳號的會員已經處於啟用狀態。",
   },
   markedComplete: {
     en: "Completed",
@@ -139,6 +199,21 @@ export const uiText = {
     en: "Note collections",
     "zh-cn": "笔记系列",
     "zh-hk": "筆記系列",
+  },
+  noBillingProfile: {
+    en: "No Stripe billing profile is linked to this account yet.",
+    "zh-cn": "这个账号目前还没有关联 Stripe 账单档案。",
+    "zh-hk": "這個帳號目前還沒有關聯 Stripe 帳單檔案。",
+  },
+  notCorrectYet: {
+    en: "Not correct yet.",
+    "zh-cn": "还没答对。",
+    "zh-hk": "還未答對。",
+  },
+  openCheckout: {
+    en: "Opening…",
+    "zh-cn": "正在打开…",
+    "zh-hk": "正在打開…",
   },
   nextUnit: {
     en: "Next section",
@@ -170,6 +245,11 @@ export const uiText = {
     "zh-cn": "上一节",
     "zh-hk": "上一節",
   },
+  signInToSubscribe: {
+    en: "Sign in to start or manage membership.",
+    "zh-cn": "请先登录，再开始或管理会员订阅。",
+    "zh-hk": "請先登入，再開始或管理會員訂閱。",
+  },
   progress: {
     en: "Progress",
     "zh-cn": "进度",
@@ -184,6 +264,16 @@ export const uiText = {
     en: "Putonghua note",
     "zh-cn": "普通话提示",
     "zh-hk": "普通話提示",
+  },
+  sectionMastery: {
+    en: "Section mastery",
+    "zh-cn": "本节掌握度",
+    "zh-hk": "本節掌握度",
+  },
+  skillsLabel: {
+    en: "Skills",
+    "zh-cn": "技能点",
+    "zh-hk": "技能點",
   },
   sourceBacked: {
     en: "Source-backed",
@@ -209,6 +299,26 @@ export const uiText = {
     en: "Text (.txt)",
     "zh-cn": "文本 (.txt)",
     "zh-hk": "文字 (.txt)",
+  },
+  submitAnswer: {
+    en: "Submit answer",
+    "zh-cn": "提交答案",
+    "zh-hk": "提交答案",
+  },
+  solutionLocked: {
+    en: "The full guided solution for this item is available to members.",
+    "zh-cn": "这一题的完整引导解答向会员开放。",
+    "zh-hk": "這一題的完整引導解答向會員開放。",
+  },
+  solutionStepsTitle: {
+    en: "Full solution steps",
+    "zh-cn": "完整解答步骤",
+    "zh-hk": "完整解答步驟",
+  },
+  showFullSolution: {
+    en: "Show full step-by-step solution",
+    "zh-cn": "显示完整逐步解答",
+    "zh-hk": "顯示完整逐步解答",
   },
   textbook: {
     en: "Notes",
@@ -249,6 +359,31 @@ export const uiText = {
     en: "Upgrade membership",
     "zh-cn": "升级会员",
     "zh-hk": "升級會員",
+  },
+  subscribeMonthly: {
+    en: "Subscribe monthly",
+    "zh-cn": "订阅月费会员",
+    "zh-hk": "訂閱月費會員",
+  },
+  subscribeYearly: {
+    en: "Subscribe yearly",
+    "zh-cn": "订阅年费会员",
+    "zh-hk": "訂閱年費會員",
+  },
+  manageBilling: {
+    en: "Manage billing",
+    "zh-cn": "管理账单",
+    "zh-hk": "管理帳單",
+  },
+  billingActionFailed: {
+    en: "We could not open the billing flow right now. Try again in a moment.",
+    "zh-cn": "目前无法打开账单流程，请稍后再试。",
+    "zh-hk": "目前無法打開帳單流程，請稍後再試。",
+  },
+  gradingRetry: {
+    en: "We could not grade your answer right now. Try again.",
+    "zh-cn": "目前无法批改你的答案，请再试一次。",
+    "zh-hk": "目前無法批改你的答案，請再試一次。",
   },
   estimatedReadingTime: {
     en: "Estimated reading time",

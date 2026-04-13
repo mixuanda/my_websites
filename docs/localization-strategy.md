@@ -11,6 +11,9 @@ the Notes frame consistently, while the internal code namespace remains
 The current codebase uses the following localization model.
 
 - Public routes use `/[locale]/notes/[course]/[chapter]/[unit]`.
+- Membership routes use `/[locale]/notes/membership`,
+  `/[locale]/notes/membership/success`, and
+  `/[locale]/notes/membership/cancel`.
 - Old `/[locale]/courses/**` routes redirect to the matching notes route.
 - Each finished unit has three MDX files under `content/textbook/**`:
   `en.mdx`, `zh-hk.mdx`, and `zh-cn.mdx`.
@@ -29,8 +32,8 @@ Localization now covers both the note content and the shared chrome around it.
 - The language switcher preserves the current note route while replacing the
   locale segment.
 - The localized note shell includes translated breadcrumbs, sidebar labels,
-  TOC labels, export labels, progress labels, glossary labels, and interactive
-  UI text.
+  TOC labels, export labels, progress labels, glossary labels, interactive
+  UI text, checkpoint UI text, and membership-center actions.
 - The global sidebar derives locale from the current route first, then from the
   stored preferred locale. This keeps `/en`, `/zh-hk`, and `/zh-cn` note pages
   aligned while still letting unprefixed shell pages reuse the learner's last
@@ -80,7 +83,7 @@ The following units currently exist in EN, zh-HK, and zh-CN.
 
 ## Next steps
 
-Keep future public wording inside the Notes frame, finish the zh-HK review on
-the newer units, maintain full three-language parity whenever you expand
-coverage, and keep future-course architecture generic enough for Math1025
-without exposing unauthored routes publicly.
+Keep future public wording inside the Notes frame, maintain three-language
+parity whenever you expand checkpoint or billing flows, and keep future-course
+architecture generic enough for Math1025 without pretending that unfinished
+course families are complete.

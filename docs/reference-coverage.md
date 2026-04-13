@@ -42,12 +42,14 @@ The current local workspace also includes an uncommitted content pass that:
 
 The next resume point is a split backlog:
 
-1. author the next clear MATH1090 chapter 4 note from the April 10 lecture
-   packet and the review materials;
-2. deepen the remaining thin public MATH1030 chapter 6 units, especially
-   `6.4`, and keep export / localization QA coupled to those passes;
-3. prepare a first source-backed `math1025` route family only after the active
-   Math1090 and Math1030 corrections are stable.
+1. author the determinant chapter family from
+   `reference/MATH1030/1030gi-n06-01.pdf` to `1030gi-n06-03.pdf`;
+2. continue into the eigenvalue / diagonalization family from
+   `reference/MATH1030/1030gi-n07-01.pdf` to `1030gi-n07-03.pdf`;
+3. finish the first inner-product / orthogonality note from
+   `reference/MATH1030/1030gi-n08-01.pdf`;
+4. return to the remaining Math1090 chapter-4 and proof-structure backlog only
+   after the next Math1030 family lands cleanly.
 
 The tables below use these status labels:
 
@@ -361,8 +363,9 @@ public notes.
 
 ## MATH1025 coverage
 
-The `reference/MATH1025/**` tree is large enough that it must be tracked now,
-even though the public note system does not yet expose a `math1025` course.
+The `reference/MATH1025/**` tree is large enough that it must be tracked now.
+The public site now exposes a small `math1025` foundations baseline, but the
+course remains mostly backlog rather than finished coverage.
 
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -377,18 +380,17 @@ even though the public note system does not yet expose a `math1025` course.
 
 The next source-backed expansions with the clearest payoff are:
 
-1. Thin but already public units: MATH1030 `6.1 Vector spaces`,
-   `6.4 Linear dependence and independence`, and MATH1090 `2.1`, `2.2`.
-2. Next missing source-backed chapter family: MATH1090 chapter 4 material on
-   total order, upper and lower bounds, supremum / infimum, completeness, and
-   the transition from `Q` to `R`.
-3. MATH1030 `1030gi-n05-05.pdf` and `1030gi-n05-07.pdf` for sharper basis
-   tests, dimension criteria, and matrix-subspace dimension.
-4. MATH1030 `1030gi-n06-01.pdf` to `1030gi-n08-01.pdf` and the parallel master
-   note chapters for determinants, eigenvalues, diagonalization, and inner
-   products.
-5. The grouped MATH1025 slide families for the first future-course rollout once
-   the active Math1090 and Math1030 corrections are stable.
+1. Next missing source-backed chapter family: MATH1030 determinants from
+   `1030gi-n06-01.pdf` to `1030gi-n06-03.pdf`.
+2. After determinants, move directly to the MATH1030 eigenvalue /
+   diagonalization packet `1030gi-n07-01.pdf` to `1030gi-n07-03.pdf`.
+3. Then open the MATH1030 inner-product / orthogonality packet
+   `1030gi-n08-01.pdf` together with the parallel master-note chapter.
+4. Keep refining thin but already public units, especially MATH1030 `6.4` and
+   the lighter MATH1090 set / function notes, only when they compete directly
+   with a current source-backed chapter family.
+5. Continue the grouped Math1025 slide families only after the active Math1030
+   expansion wave stabilizes.
 
 ## Current blockers
 

@@ -4,11 +4,13 @@ import { getProblemById } from "@/lib/textbook/problem-bank";
 import { persistProblemAttempt, getSectionMastery } from "@/lib/textbook/problem-attempts";
 import { gradeProblem } from "@/lib/textbook/problem-grading";
 import { canAccessTier, getUserEntitlements } from "@/lib/membership/entitlements";
+import { defaultLocale, isLocale } from "@/lib/textbook/i18n";
 import type { ProblemAttemptRecord, ProblemSubmission } from "@/lib/textbook/types";
 
 export async function POST(request: Request) {
   try {
     const payload = (await request.json()) as {
+      locale?: string;
       problemId?: string;
       submission?: ProblemSubmission;
     };
@@ -28,7 +30,12 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Member access required." }, { status: 403 });
     }
 
-    const result = gradeProblem(problem, payload.submission);
+    const locale = payload.locale && isLocale(payload.locale) ? payload.locale : defaultLocale;
+    const canRevealSolution = canAccessTier(
+      entitlements,
+      problem.solutionAccessTier ?? problem.accessTier
+    );
+    const result = gradeProblem(problem, payload.submission, locale, canRevealSolution);
     const userId = (session?.user as { id?: string } | undefined)?.id;
 
     const attempt: ProblemAttemptRecord = {

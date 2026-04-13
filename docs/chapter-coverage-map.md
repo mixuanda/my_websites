@@ -8,17 +8,17 @@ authored, what is thin and needs another pass, and what is only present in
 
 ## Math1090
 
-The current public notes cover the early logic, sets, and number-construction
-spine. The next clear source-backed expansion is the chapter 4 order and
-completeness sequence.
+The current public notes now reach the first order-and-completeness unit. The
+next work is to deepen that chapter further and fold later review / proof
+structure material into the live note set deliberately.
 
 | Course | Chapter | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
 | `math1090` | 1 Logic | Authored in EN, zh-HK, zh-CN | Strong | Needs tone / depth review only. |
 | `math1090` | 2 Sets, functions, relations | Authored in EN, zh-HK, zh-CN | Strong | `2.1` and `2.2` are still thinner than the source density. |
 | `math1090` | 3 Naturals, integers, rationals | Authored through `3.5` | Strong | `3.4` now has a fuller quotient-construction rewrite. |
-| `math1090` | 4 Orders, bounds, completeness, reals | Unauthored | Usable | April 10 lecture notes and review packet support the next route family. |
-| `math1090` | 5 Proof templates and review structure | Unauthored | Usable but secondary | Better treated as embedded pedagogy or appendix notes after chapter 4. |
+| `math1090` | 4 Orders, bounds, completeness, reals | Authored baseline exists | Strong | `4.1` is live in three languages; later completeness / real-number sections remain backlog. |
+| `math1090` | 5 Proof templates and review structure | Unauthored | Usable but secondary | Better treated as embedded pedagogy or appendix notes after the remaining chapter-4 work. |
 | `math1090` | 6 Rapid review / appendices | Unauthored | Secondary | Internal support material, not the next public priority. |
 
 ## Math1030
@@ -41,12 +41,12 @@ eigenvalue / inner-product backlog.
 
 ## Math1025
 
-Math1025 is not yet public, but the source material already exists and should be
-planned as a future course rather than treated as unknown.
+Math1025 is no longer a purely future placeholder. The repo already exposes a
+small public foundations baseline, but the course is still far from complete.
 
 | Course | Chapter family | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
-| `math1025` | Foundations (`ch0` to `ch4`) | Unauthored | Usable | Chapter slides cover preliminaries, trigonometry, induction, inequalities, and the binomial theorem. |
+| `math1025` | Foundations (`ch0` to `ch4`) | Baseline authored | Usable | Two foundation units are live; the rest of the chapter family still needs source-backed expansion. |
 | `math1025` | Methods spine (`ch5` to `ch8`) | Unauthored | Usable | Chapter slides cover sequences, complex numbers, integers / rational numbers, and polynomials. |
 | `math1025` | Vectors and geometry (`ch9` to `ch11`) | Unauthored | Usable | Chapter slides cover vectors in `R^n`, straight lines / planes / curves, and conic sections. |
 | `math1025` | Homework and assessment support | Unauthored | Secondary support | Keep homework-solution PDFs and the MATH1025 midterm pair for later exercise design after baseline notes exist. |
@@ -60,7 +60,7 @@ future addition.
 
 ## Next steps
 
-The next content cycle should author the first Math1090 chapter 4 note, then
-return to the remaining thin Math1030 chapter-6 and export / i18n cleanup.
-Math1025 should remain an internal planned course until the active Math1090 and
-Math1030 corrections stabilize.
+The next content cycle should move into the strongest missing Math1030 chapter
+families: determinants first, then eigenvalues / diagonalization, then inner
+products / orthogonality. After that, return to the remaining Math1090 chapter
+4 backlog and keep Math1025 expansion controlled and source-backed.

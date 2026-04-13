@@ -2,12 +2,15 @@
 
 import { useMemo, useState } from "react";
 import { PracticeQuestion } from "@/components/textbook/PracticeQuestion";
-import type { ProblemSchema } from "@/lib/textbook/types";
+import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
+import type { Locale, ProblemSchema, ProblemSubmissionResult } from "@/lib/textbook/types";
 
 export function UnitCheckpoint({
+  locale,
   problems,
   title,
 }: {
+  locale: Locale;
   problems: ProblemSchema[];
   title: string;
 }) {
@@ -23,15 +26,23 @@ export function UnitCheckpoint({
       <div>
         <h2 className="text-lg font-semibold">{title}</h2>
         <p className="text-sm text-muted-foreground">
-          Complete the questions below to run a final section checkpoint. Progress: {progress}%.
+          {getLocalizedText(uiText.checkpointRequiresCorrectAnswers, locale)}{" "}
+          {getLocalizedText(uiText.checkpointProgressLabel, locale)}: {progress}%.
         </p>
       </div>
 
       {problems.map((problem) => (
         <PracticeQuestion
           key={problem.id}
-          onSubmitted={() => {
-            setFinished((current) => (current.includes(problem.id) ? current : [...current, problem.id]));
+          locale={locale}
+          onSubmitted={(result: ProblemSubmissionResult) => {
+            if (!result.correct) {
+              return;
+            }
+
+            setFinished((current) =>
+              current.includes(problem.id) ? current : [...current, problem.id]
+            );
           }}
           problem={problem}
         />
@@ -39,7 +50,7 @@ export function UnitCheckpoint({
 
       {finished.length === problems.length && problems.length > 0 ? (
         <p className="rounded-md bg-emerald-500/10 p-3 text-sm text-emerald-700 dark:text-emerald-300">
-          Section checkpoint completed. You can now review any item and revisit guided solutions.
+          {getLocalizedText(uiText.checkpointCompleted, locale)}
         </p>
       ) : null}
     </section>

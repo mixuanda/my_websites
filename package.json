@@ -5,7 +5,7 @@
   "description": "A modern personal website template with glass morphism design, MDX blog, and private diary",
   "author": "Your Name",
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev --webpack",
     "build": "npm run build:site",
     "start": "next start",
     "lint": "eslint",

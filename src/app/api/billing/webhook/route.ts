@@ -52,7 +52,7 @@ export async function POST(request: Request) {
         {
           customerId: typeof session.customer === "string" ? session.customer : undefined,
           email: email ?? undefined,
-          priceId: session.metadata?.plan,
+          priceId: session.metadata?.priceId,
           status: "active",
           subscriptionId: typeof session.subscription === "string" ? session.subscription : undefined,
           updatedAt: new Date().toISOString(),

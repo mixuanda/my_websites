@@ -25,7 +25,12 @@ import {
 import { estimateReadingTimeMinutes, getTextbookUnit, getStaticTextbookParams } from "@/lib/textbook/content";
 import { getCoverageLabel, getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
 import { getProblemsForUnit } from "@/lib/textbook/problem-bank";
-import { getCoursesHref, getCourseHref, getUnitHref } from "@/lib/textbook/routes";
+import {
+  getCoursesHref,
+  getCourseHref,
+  getMembershipHref,
+  getUnitHref,
+} from "@/lib/textbook/routes";
 import type { CourseId } from "@/lib/textbook/types";
 
 interface UnitPageProps {
@@ -193,7 +198,7 @@ export default async function UnitPage({ params }: UnitPageProps) {
                   </p>
                   <Link
                     className="inline-flex rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground"
-                    href="/notes/membership"
+                    href={getMembershipHref(locale)}
                   >
                     {getLocalizedText(uiText.upgradeMembership, locale)}
                   </Link>
@@ -203,7 +208,11 @@ export default async function UnitPage({ params }: UnitPageProps) {
           </GlassCard>
 
           {canAccessPremium && checkpointProblems.length > 0 ? (
-            <UnitCheckpoint problems={checkpointProblems} title="Section mastery checkpoint" />
+            <UnitCheckpoint
+              locale={locale}
+              problems={checkpointProblems}
+              title={getLocalizedText(uiText.checkpointTitle, locale)}
+            />
           ) : null}
 
           <div className="grid gap-6 lg:grid-cols-2">

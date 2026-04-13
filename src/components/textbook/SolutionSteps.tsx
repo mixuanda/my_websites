@@ -1,16 +1,25 @@
 "use client";
 
+import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
+import type { Locale, LocalizedText } from "@/lib/textbook/types";
+
 export function SolutionSteps({
+  locale,
   steps,
 }: {
-  steps: string[];
+  locale: Locale;
+  steps: LocalizedText[];
 }) {
   return (
     <div className="space-y-3 rounded-md border p-4">
-      <h4 className="text-sm font-semibold">Full solution steps</h4>
+      <h4 className="text-sm font-semibold">
+        {getLocalizedText(uiText.solutionStepsTitle, locale)}
+      </h4>
       <ol className="list-decimal space-y-2 pl-5 text-sm">
         {steps.map((step, index) => (
-          <li key={`${index}-${step.slice(0, 20)}`}>{step}</li>
+          <li key={`${index}-${step.en.slice(0, 20)}`}>
+            {getLocalizedText(step, locale)}
+          </li>
         ))}
       </ol>
     </div>

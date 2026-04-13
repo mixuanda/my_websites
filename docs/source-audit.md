@@ -10,12 +10,14 @@ claims.
 The current live note set stays inside the strongest audited coverage zones.
 These units are already present in code and should remain source-backed.
 
-- `math1090`: 1.1, 1.2, 1.3, 2.1, 2.2, 3.1, 3.2, 3.3, 3.4, 3.5
-- `math1030`: 1.1, 2.1, 2.2, 2.3, 2.4, 5.1, 6.1, 6.2, 6.3, 6.4, 6.5
+- `math1090`: 1.1, 1.2, 1.3, 2.1, 2.2, 3.1, 3.2, 3.3, 3.4, 3.5, 4.1
+- `math1030`: 1.1, 2.1, 2.2, 2.3, 2.4, 3.1, 3.2, 4.1, 5.1, 6.1, 6.2, 6.3,
+  6.4, 6.5, 6.6
+- `math1025`: baseline foundations pair only
 
-There is still no authored `math1025` tree under `content/textbook`, but the
-reference folder already contains a full chapter-slide sequence plus homework
-and exam support. That future course is no longer "unknown"; it is unauthored.
+`math1025` now has a small authored tree under `content/textbook`, but most of
+its slide families are still only source backlog rather than complete public
+notes.
 
 ## MATH1090
 
@@ -176,10 +178,10 @@ The current weak spots are straightforward:
 
 - The repository clearly contains usable conceptual material for a future
   MATH1025 course.
-- No public `math1025` notes, catalog entries, or localized route content
-  exist yet.
-- A chapter-by-chapter route plan is required before any public authoring
-  starts.
+- The course now has a minimal public foundations baseline, but the majority of
+  chapter-slide material is still unauthored.
+- The next Math1025 work must stay source-backed and chapter-scoped rather than
+  pretending the course is already broadly complete.
 
 ## Audit rules for content authors
 
@@ -196,7 +198,7 @@ traceable.
 
 ## Next steps
 
-Map later MATH1030 sections page by page before writing new notes, start the
-next MATH1090 pass from the clear chapter 4 source support already present in
-the April 10 packet and the review notes, and keep MATH1025 in the internal
-coverage map until the active Math1090 and Math1030 corrections are stable.
+Map the determinant, eigenvalue, and inner-product families page by page before
+writing new Math1030 notes, then return to the remaining Math1090 chapter-4
+and proof-structure backlog. Keep Math1025 expansion narrow and source-backed
+while the main Math1090 / Math1030 spine remains the priority.

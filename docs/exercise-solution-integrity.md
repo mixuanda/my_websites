@@ -23,9 +23,9 @@ Every push attempt for those checkpoints failed with the same external error:
 `ssh: Could not resolve hostname github.com: Temporary failure in name
 resolution`.
 
-The next resume point is to keep exercise integrity coupled to the next content
-rewrite, starting with the first Math1090 chapter-4 note and the remaining thin
-Math1030 chapter-6 units.
+The next resume point is to keep exercise integrity coupled to the next
+source-backed Math1030 chapter family, starting with determinants, while
+preserving the same correctness and reveal discipline on every new checkpoint.
 
 ## Current findings
 
@@ -37,9 +37,47 @@ textbook exercise blocks.
 - Authored note units that use `QuickCheck` for the prompt and
   `RevealSolution` for the answer now match the shared component behavior more
   closely.
+- Section checkpoints now advance only on correct answers, so the completion
+  state can no longer be faked by submitting every item incorrectly.
 - The next integrity risk is broader QA: confirming that export output still
   reads cleanly on the richer rewritten notes and that no localized note drifts
   into mismatched prerequisite or answer labels.
+
+### 2026-04-13 checkpoint 6: checkpoint correctness gating + localization
+
+This checkpoint fixed the main false-positive issue in the current assessment
+layer and aligned the shared problem UI with the site-level language switcher.
+
+- Checkpoint name: checkpoint correctness gating + localization
+- What was inspected:
+  `src/components/textbook/AttemptInput.tsx`,
+  `src/components/textbook/PracticeQuestion.tsx`,
+  `src/components/textbook/FeedbackPanel.tsx`,
+  `src/components/textbook/SolutionSteps.tsx`,
+  `src/components/textbook/UnitCheckpoint.tsx`,
+  `src/lib/textbook/problem-bank.ts`,
+  `src/lib/textbook/problem-grading.ts`,
+  and the billing / membership routes that surround the Notes entitlement flow
+- What was changed:
+  section checkpoints now count a problem only after a correct submission; the
+  problem bank now carries three-language prompts, choices, hints, and solution
+  steps; and the shared answer / feedback / solution controls now localize with
+  the note locale
+- What was verified:
+  the checkpoint completion state is now tied to correctness instead of mere
+  submission, and the shared assessment controls no longer hardcode English in
+  localized Notes pages
+- Files touched:
+  shared problem types, grading logic, problem bank entries, assessment
+  components, and the localized membership routes that support gated solution
+  access
+- Remaining issues:
+  broader content depth and export QA still need to be carried through the next
+  source-backed chapter family
+- Exact next target:
+  carry the same integrity discipline into the determinant chapter family and
+  verify that exported TXT / PDF output still reads cleanly after the richer
+  localized checkpoint content
 
 ## Checkpoint log
 

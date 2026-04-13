@@ -20,6 +20,18 @@ export function getCourseHref(locale: Locale, course: CourseId) {
   return `${getNotesHref(locale)}/${course}`;
 }
 
+export function getMembershipHref(locale: Locale) {
+  return `${getNotesHref(locale)}/membership`;
+}
+
+export function getMembershipSuccessHref(locale: Locale) {
+  return `${getMembershipHref(locale)}/success`;
+}
+
+export function getMembershipCancelHref(locale: Locale) {
+  return `${getMembershipHref(locale)}/cancel`;
+}
+
 export function getUnitHref(locale: Locale, unit: TextbookUnitMeta) {
   return `${getCourseHref(locale, unit.course)}/${unit.chapterId}/${unit.slug}`;
 }

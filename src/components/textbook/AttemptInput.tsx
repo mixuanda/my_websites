@@ -3,14 +3,17 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import type { ProblemSchema, ProblemSubmission } from "@/lib/textbook/types";
+import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
+import type { Locale, ProblemSchema, ProblemSubmission } from "@/lib/textbook/types";
 
 export function AttemptInput({
   disabled,
+  locale,
   onSubmit,
   problem,
 }: {
   disabled?: boolean;
+  locale: Locale;
   onSubmit: (submission: ProblemSubmission) => void;
   problem: ProblemSchema;
 }) {
@@ -37,14 +40,14 @@ export function AttemptInput({
                 type="radio"
                 value={choice.id}
               />
-              <span>{choice.text}</span>
+              <span>{getLocalizedText(choice.text, locale)}</span>
             </label>
           ))}
         </fieldset>
       ) : (
         <Input
           onChange={(event) => setAnswer(event.target.value)}
-          placeholder="Enter your answer"
+          placeholder={getLocalizedText(uiText.enterYourAnswer, locale)}
           value={answer}
         />
       )}
@@ -54,7 +57,7 @@ export function AttemptInput({
         onClick={() => onSubmit(problem.type === "MCQ" ? { choiceId } : { answer })}
         type="button"
       >
-        Submit answer
+        {getLocalizedText(uiText.submitAnswer, locale)}
       </Button>
     </div>
   );

@@ -15,8 +15,14 @@ note detail page.
   course.
 - `/${locale}/notes/${course}/${chapter}/${unit}` is the note detail route for
   a single learning unit.
+- `/${locale}/notes/membership` is the localized membership center for the
+  Notes product.
+- `/${locale}/notes/membership/success` and
+  `/${locale}/notes/membership/cancel` are localized Stripe return routes.
 - `/notes` remains the legacy note archive and now links back into the
   localized math notes hub.
+- `/notes/membership*` remains only as compatibility redirects to the default
+  locale membership routes.
 - `/${locale}/courses/**` remains as compatibility redirects only. It is not
   the intended public entry path.
 

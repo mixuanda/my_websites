@@ -144,7 +144,7 @@ export type ProblemType = "MCQ" | "FILL_IN_BLANK";
 
 export interface ProblemChoice {
   id: string;
-  text: string;
+  text: LocalizedText;
 }
 
 export interface ToleranceRule {
@@ -160,13 +160,14 @@ export type EquivalenceRule =
 
 export interface ProblemBase {
   accessTier?: AccessTier;
+  solutionAccessTier?: AccessTier;
   id: string;
   courseId: CourseId;
   chapterId: string;
   unitId: string;
-  prompt: string;
-  hints: string[];
-  solutionSteps: string[];
+  prompt: LocalizedText;
+  hints: LocalizedText[];
+  solutionSteps: LocalizedText[];
   skillTags: string[];
 }
 
@@ -203,6 +204,7 @@ export interface ProblemSubmissionResult {
   hint?: string;
   normalizedAnswer: string;
   shouldShowSolution: boolean;
+  solutionLocked?: boolean;
 }
 
 export interface ProblemAttemptRecord {

@@ -1,10 +1,12 @@
 import type {
   FillInBlankAnswer,
   FillInBlankProblem,
+  Locale,
   ProblemSchema,
   ProblemSubmission,
   ProblemSubmissionResult,
 } from "./types";
+import { getLocalizedText } from "./i18n";
 
 function gcd(a: number, b: number): number {
   let x = Math.abs(a);
@@ -139,7 +141,12 @@ function equivalentByRule(answer: string, target: string, rules: FillInBlankAnsw
   return false;
 }
 
-function gradeFillBlank(problem: FillInBlankProblem, submission: ProblemSubmission): ProblemSubmissionResult {
+function gradeFillBlank(
+  problem: FillInBlankProblem,
+  submission: ProblemSubmission,
+  locale: Locale,
+  canRevealSolution: boolean
+): ProblemSubmissionResult {
   const answer = normalizeWhitespace(submission.answer ?? "");
   const expected = normalizeWhitespace(problem.correctAnswer.value);
   const numericAnswer = parseNumberLike(answer);
@@ -167,15 +174,18 @@ function gradeFillBlank(problem: FillInBlankProblem, submission: ProblemSubmissi
 
   return {
     correct: isCorrect,
-    hint: isCorrect ? undefined : problem.hints[0],
+    hint: isCorrect ? undefined : getLocalizedText(problem.hints[0], locale),
     normalizedAnswer: answer,
-    shouldShowSolution: !isCorrect,
+    shouldShowSolution: !isCorrect && canRevealSolution,
+    solutionLocked: !isCorrect && !canRevealSolution,
   };
 }
 
 export function gradeProblem(
   problem: ProblemSchema,
-  submission: ProblemSubmission
+  submission: ProblemSubmission,
+  locale: Locale,
+  canRevealSolution: boolean
 ): ProblemSubmissionResult {
   if (problem.type === "MCQ") {
     const selectedChoice = submission.choiceId ?? "";
@@ -183,11 +193,12 @@ export function gradeProblem(
 
     return {
       correct: isCorrect,
-      hint: isCorrect ? undefined : problem.hints[0],
+      hint: isCorrect ? undefined : getLocalizedText(problem.hints[0], locale),
       normalizedAnswer: selectedChoice,
-      shouldShowSolution: !isCorrect,
+      shouldShowSolution: !isCorrect && canRevealSolution,
+      solutionLocked: !isCorrect && !canRevealSolution,
     };
   }
 
-  return gradeFillBlank(problem, submission);
+  return gradeFillBlank(problem, submission, locale, canRevealSolution);
 }
