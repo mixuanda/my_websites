@@ -201,6 +201,25 @@ export default async function UnitPage({ params }: UnitPageProps) {
             </GlassPanel>
           </div>
 
+
+          <GlassPanel className="p-5">
+            <h2 className="text-lg font-semibold">Premium learning add-ons</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Core notes stay free. Advanced exercises, video explanations, and premium exports are available through paid plans.
+            </p>
+            <div className="mt-4 flex flex-wrap gap-3 text-sm">
+              <Link className="text-primary underline" href={`/${locale}/premium/exercises`}>
+                Advanced exercises
+              </Link>
+              <Link className="text-primary underline" href={`/${locale}/premium/videos`}>
+                Video explanations
+              </Link>
+              <Link className="text-primary underline" href="/settings/billing">
+                Billing & plans
+              </Link>
+            </div>
+          </GlassPanel>
+
           <GlassPanel className="p-5">
             <h2 className="text-lg font-semibold">
               {getLocalizedText(uiText.sectionNavigation, locale)}

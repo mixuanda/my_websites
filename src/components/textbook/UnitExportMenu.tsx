@@ -1,6 +1,6 @@
 "use client";
 
-import { Download, FileText, FileType2 } from "lucide-react";
+import { Download, FileText, FileType2, Lock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -26,6 +26,7 @@ export function UnitExportMenu({
 }: UnitExportMenuProps) {
   const txtHref = `/api/textbook-export/${locale}/${course}/${chapter}/${unit}`;
   const pdfHref = `${txtHref}/pdf`;
+  const premiumPdfHref = `${txtHref}/premium-pdf`;
 
   return (
     <DropdownMenu>
@@ -46,6 +47,12 @@ export function UnitExportMenu({
           <a href={pdfHref}>
             <FileType2 className="h-4 w-4" />
             {getLocalizedText(uiText.studyExportPdf, locale)}
+          </a>
+        </DropdownMenuItem>
+        <DropdownMenuItem asChild>
+          <a href={premiumPdfHref}>
+            <Lock className="h-4 w-4" />
+            Premium PDF (with gated extras)
           </a>
         </DropdownMenuItem>
       </DropdownMenuContent>
