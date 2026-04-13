@@ -1,0 +1,6 @@
+{
+  "minCompletionRate": 0.72,
+  "maxErrorReportsPer100Sessions": 4,
+  "minNotationQaPassRate": 0.98,
+  "minLocaleQaPassRate": 0.97
+}

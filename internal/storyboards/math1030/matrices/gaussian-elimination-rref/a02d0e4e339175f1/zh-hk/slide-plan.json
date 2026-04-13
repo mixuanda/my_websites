@@ -1,0 +1,36 @@
+[
+  {
+    "animation": "主元階梯逐步建立",
+    "cardTitle": "由難讀系統到可讀結構",
+    "frame": 1,
+    "mathFocus": [
+      "\\text{REF}\\subset\\text{RREF}"
+    ],
+    "segmentType": "concept_intro"
+  },
+  {
+    "animation": "不變量鎖定標記",
+    "cardTitle": "列等價定理",
+    "frame": 2,
+    "mathFocus": [
+      "A\\sim B \\Rightarrow \\mathcal{S}(A)=\\mathcal{S}(B)"
+    ],
+    "segmentType": "theorem_statement"
+  },
+  {
+    "animation": "逐格消元時間線",
+    "cardTitle": "完整 RREF 推導",
+    "frame": 3,
+    "mathFocus": [
+      "R_2\\leftarrow R_2-R_1"
+    ],
+    "segmentType": "example_walkthrough"
+  },
+  {
+    "animation": "三分支決策圖",
+    "cardTitle": "快速判讀解的型態",
+    "frame": 4,
+    "mathFocus": [],
+    "segmentType": "recap_checkpoints"
+  }
+]

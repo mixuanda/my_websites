@@ -1,0 +1,38 @@
+[
+  {
+    "animation": "progressive highlight of row and column indices",
+    "cardTitle": "What a matrix stores",
+    "frame": 1,
+    "mathFocus": [
+      "A = [a_{ij}]_{m\\times n}",
+      "\\left[\\begin{array}{ccc|c}1&2&-1&4\\end{array}\\right]"
+    ],
+    "segmentType": "concept_intro"
+  },
+  {
+    "animation": "split-screen equality check with red mismatch indicator",
+    "cardTitle": "Matrix equality criterion",
+    "frame": 2,
+    "mathFocus": [
+      "A=B \\iff a_{ij}=b_{ij}\\;\\forall i,j"
+    ],
+    "segmentType": "theorem_statement"
+  },
+  {
+    "animation": "stepwise annotation overlays on matrix entries",
+    "cardTitle": "Classify and read matrices",
+    "frame": 3,
+    "mathFocus": [
+      "A\\in\\mathbb{R}^{2\\times3}",
+      "B\\in\\mathbb{R}^{3\\times2}"
+    ],
+    "segmentType": "example_walkthrough"
+  },
+  {
+    "animation": "three-card recap with timed reveal",
+    "cardTitle": "Rapid structure checks",
+    "frame": 4,
+    "mathFocus": [],
+    "segmentType": "recap_checkpoints"
+  }
+]

@@ -1,0 +1,15 @@
+[concept_intro]
+Elimination is not random simplification; it is controlled readability.
+Each pivot narrows uncertainty in the solution structure.
+
+[theorem_statement]
+Without the row-equivalence theorem, elimination would be only procedural.
+With it, every operation is justified by solution-set invariance.
+
+[example_walkthrough]
+Name each elimination target before computing.
+At RREF, every pivot column gives one solved variable immediately.
+
+[recap_checkpoints]
+The final matrix is a classification tool, not just an arithmetic endpoint.
+Always classify solution type before reporting numbers.

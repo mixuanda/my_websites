@@ -1,0 +1,30 @@
+{
+  "chapter": "matrices",
+  "course": "math1030",
+  "fingerprint": "6916415332399cd7",
+  "generatedAt": "2026-04-13T10:42:20.343Z",
+  "locales": {
+    "en": {
+      "files": [
+        "script-draft.md",
+        "narration-lines.txt",
+        "slide-plan.json",
+        "qa-checklist.md"
+      ],
+      "segmentCount": 4
+    }
+  },
+  "sourceFile": "content/textbook/math1030/matrices/augmented-matrices-row-operations/storyboard.json",
+  "unit": "augmented-matrices-row-operations",
+  "unitTitle": {
+    "en": "2.2 Augmented matrices and row operations",
+    "zh-hk": "2.2 增廣矩陣與列運算",
+    "zh-cn": "2.2 增广矩阵与行变换"
+  },
+  "workflowStages": [
+    "drafting",
+    "narration",
+    "slide_assembly",
+    "qa"
+  ]
+}
