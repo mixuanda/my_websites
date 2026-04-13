@@ -12,18 +12,39 @@ As of April 13, 2026, the latest local source-processing checkpoints are:
 - `9085148` `Fix note block prompt rendering`
 - `49345a4` `Fix set note reveal integrity`
 - `0526751` `Deepen augmented matrix notes`
+- `95f3ad7` `Deepen invertible matrix notes`
 
 Every push attempt for those checkpoints failed with the same external error:
 `ssh: Could not resolve hostname github.com: Temporary failure in name
 resolution`.
 
-The next resume point is the next highest-value source-backed MATH1030 unit:
-either `2.3 Gaussian elimination and RREF` or the `n03-*` invertibility notes.
+The current local workspace also includes an uncommitted content pass that:
 
-The current local workspace also includes a shared `QuickCheck` renderer update
-that makes prompts visible by default. That structural cleanup should be
-verified together with the next content pass rather than treated as isolated UI
-decoration.
+- rewrites `math1090` unit `3.4 Rationals and well-defined operations` in EN,
+  zh-HK, and zh-CN so the page reads as a serious quotient-construction note
+  instead of a worksheet summary;
+- rewrites `math1030` unit `2.4 Solution-set types` in EN, zh-HK, and zh-CN
+  with fuller theorem flow, parameterized examples, and robust `array`-based
+  augmented-matrix notation for KaTeX and export;
+- rewrites `math1030` unit `6.1 Vector spaces` in EN, zh-HK, and zh-CN so the
+  page now covers the axioms, standard examples, a nonstandard structure
+  example, and the first uniqueness / cancellation theorems at real chapter
+  depth;
+- rewrites `math1030` unit `6.3 Linear combinations and span` in EN, zh-HK,
+  and zh-CN so the page now includes the `Ax = b` equivalence, geometric span
+  examples, the span-subspace theorem, and fuller exercises;
+- confirms that `reference/MATH1025/**` is substantial enough to enter the
+  internal backlog immediately, even though no public `math1025` notes exist
+  yet.
+
+The next resume point is a split backlog:
+
+1. deepen the remaining thin public MATH1030 chapter 6 units, especially `6.2`
+   and `6.4`;
+2. map and author the next clear MATH1090 chapter 4 notes from the April 10
+   lecture packet and the review materials;
+3. prepare a first source-backed `math1025` route family only after the active
+   Math1090 and Math1030 corrections are stable.
 
 The tables below use these status labels:
 
@@ -335,18 +356,37 @@ public notes.
 | MATH1030 | `reference/MATH1030/0314 表格2.pdf` | non-course handout | blocked | no | no | yes | Not MATH1030 mathematics content. |
 | MATH1030 | `reference/MATH1030/MATH1090_Worksheet5 (1).pdf` | stray file | blocked | no | yes | yes | MATH1090 rational-number worksheet stored in the wrong course folder. |
 
+## MATH1025 coverage
+
+The `reference/MATH1025/**` tree is large enough that it must be tracked now,
+even though the public note system does not yet expose a `math1025` course.
+
+| Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| MATH1025 | `reference/MATH1025/MATH1025_slides_ch0.pdf` to `reference/MATH1025/MATH1025_slides_ch11.pdf` | chapter slides | pending | no | no | no | Source-backed slide sequence exists across the course. Use it to plan the future route family in `docs/chapter-coverage-map.md`. |
+| MATH1025 | `reference/MATH1025/MATH1025_Midterm_Exam.pdf` | exam | pending | no | partial | no | Useful later for exercise selection after baseline chapter notes exist. |
+| MATH1025 | `reference/MATH1025/MATH1028_Midterm_Exam.pdf` | adjacent-course exam | overlap | no | yes | no | Shared support material; do not treat it as the primary MATH1025 conceptual source. |
+| MATH1025 | `reference/MATH1025/Solution to MATH1025_1028_HW1.pdf` to `reference/MATH1025/Solution to MATH1025_1028_HW10.pdf` | homework solutions | pending | no | partial | no | Keep for later exercise / solution authoring once the chapter notes are drafted. |
+| MATH1025 | `reference/MATH1025/Solution to MATH1025_Midterm_Exam.pdf` | exam solutions | pending | no | partial | no | Secondary support only; do not start authoring from solution keys alone. |
+| MATH1025 | `reference/MATH1025/Solution to MATH1028_Midterm_Exam.pdf` | adjacent-course solutions | overlap | no | yes | no | Shared support material only. |
+
 ## Highest-value remaining backlog
 
 The next source-backed expansions with the clearest payoff are:
 
-1. MATH1030 `1030gi-n05-05.pdf` and `1030gi-n05-07.pdf` for sharper basis
+1. Thin but already public units: MATH1030 `6.1 Vector spaces`,
+   `6.2 Subspaces`, `6.3 Linear combinations and span`, and MATH1090 `2.1`,
+   `2.2`, `3.4`.
+2. Next missing source-backed chapters: MATH1090 chapter 4 material on total
+   order, upper and lower bounds, supremum / infimum, and incompleteness of
+   `Q`.
+3. MATH1030 `1030gi-n05-05.pdf` and `1030gi-n05-07.pdf` for sharper basis
    tests, dimension criteria, and matrix-subspace dimension.
-2. MATH1030 `1030gi-n06-01.pdf` to `1030gi-n08-01.pdf` and the parallel master
+4. MATH1030 `1030gi-n06-01.pdf` to `1030gi-n08-01.pdf` and the parallel master
    note chapters for determinants, eigenvalues, diagonalization, and inner
    products.
-3. MATH1090 later sections from `MATH1090_Lecture_Notes_Mar26.pdf` and the
-   review packet, especially total orders, supremum / infimum, incompleteness
-   of `Q`, first constructions of the reals, and the later proof templates.
+5. MATH1025 chapter slides `ch0` to `ch11` for the first future-course rollout
+   once the active Math1090 and Math1030 corrections are stable.
 
 ## Current blockers
 

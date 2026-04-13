@@ -1,6 +1,6 @@
 export type Locale = "en" | "zh-hk" | "zh-cn";
 
-export type CourseId = "math1090" | "math1030";
+export type CourseId = string;
 
 export type CoverageStatus = "SOURCE_BACKED" | "MISSING_SOURCE";
 

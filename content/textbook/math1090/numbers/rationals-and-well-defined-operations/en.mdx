@@ -1,82 +1,435 @@
 ---
 title: "3.4 Rationals and well-defined operations"
-description: "Define rational numbers as equivalence classes and check that the usual formulas do not depend on the representative you pick."
+description: "Construct Q from integer pairs, define its operations on classes, and learn why a formula on representatives must be checked before it becomes a genuine statement about rational numbers."
 ---
 
-Integers were built from pairs of natural numbers. Rationals are built in the
-same spirit, except now the second entry is not allowed to be `0`.
+The passage from integers to rational numbers changes the construction problem
+in an important way. For integers, different pairs of natural numbers can encode
+the same difference. For rationals, different pairs of integers can encode the
+same quotient. The notation `a/b` hides that redundancy, so this note makes it
+explicit.
 
-## The quotient model
+The guiding idea is simple: rational numbers are not raw pairs. They are
+equivalence classes of pairs, and every operation on `Q` must respect that
+quotient structure.
 
-<Definition title="Rational numbers">
+## Why a quotient is needed
+
+The fractions
+
+$$
+\frac{1}{2}, \qquad \frac{2}{4}, \qquad \frac{-3}{-6}
+$$
+
+all describe the same rational number. If we want to build `Q` from integer
+data alone, then the construction must identify all such pairs automatically.
+
+That is why we do not define a rational number to be a single ordered pair.
+Instead, we define a rational number to be a whole equivalence class of pairs
+that represent the same quotient.
+
+<Definition title="Rational numbers as equivalence classes">
 Let
 
-`Y = Z × (Z \ {0}) = {(a, b) | a in Z, b != 0}`.
+$$
+Y = Z \times (Z \setminus \{0\}).
+$$
 
-Define `(a, b) ~_Q (c, d)` if `a d = b c`.
+Thus an element of `Y` is a pair `(a, b)` with `a \in Z` and `b \in Z \setminus
+\{0\}`.
 
-The rational numbers are the equivalence classes `Y / ~_Q`.
+Define a relation `\sim_Q` on `Y` by
+
+$$
+(a, b) \sim_Q (c, d)
+\quad\Longleftrightarrow\quad
+ad = bc.
+$$
+
+The set of rational numbers is the quotient
+
+$$
+Q = Y / \sim_Q.
+$$
+
+The equivalence class of `(a, b)` is written `[(a, b)]`, and it is represented
+informally by the fraction `a/b`.
 </Definition>
 
-You can think of `[(a, b)]` as the fraction `a/b`. The point of the quotient
-construction is that equal fractions become equal by definition.
+The denominator is required to be nonzero because the construction is intended
+to model quotients. If `b = 0`, then the pair `(a, b)` cannot represent a
+meaningful rational number.
 
-## Why well-definedness matters
+## Why the relation makes sense
 
-If you write a formula on representatives, you still have to check that the
-answer is the same for every representative of the same rational number.
-That check is what "well-defined" means here.
+The equation `ad = bc` is the usual cross-multiplication test for equality of
+fractions. In the quotient construction, that familiar test becomes the actual
+definition of equality.
 
-<WorkedExample title="Addition still matches the fraction intuition">
-The source notes define
+<TheoremCard title="The relation `\sim_Q` is an equivalence relation">
+The relation defined by
 
-`[(a, b)] + [(c, d)] := [(ad + bc, bd)]`.
+$$
+(a, b) \sim_Q (c, d)
+\quad\Longleftrightarrow\quad
+ad = bc
+$$
 
-For example,
+is reflexive, symmetric, and transitive on `Y`.
+</TheoremCard>
 
-`[(1, 2)] + [(1, 3)] = [(5, 6)]`.
+<CollapsibleProof title="Why `\sim_Q` is an equivalence relation">
+Reflexivity is immediate because `ab = ba`, so `(a, b) \sim_Q (a, b)`.
 
-If you switch the first representative to `(2, 4)`, the formula gives
-`[(10, 12)]`, which is the same rational number as `[(5, 6)]`.
-</WorkedExample>
+Symmetry is also immediate: if `ad = bc`, then `cb = da`, so `(c, d) \sim_Q
+(a, b)`.
 
-<CollapsibleProof title="Why the addition formula is well-defined">
-Suppose `(a, b) ~_Q (a', b')` and `(c, d) ~_Q (c', d')`.
-That means `a b' = b a'` and `c d' = d c'`.
+For transitivity, assume
 
-The source proof multiplies the right identities together and rearranges the
-terms to show
+$$
+(a, b) \sim_Q (c, d)
+\qquad\text{and}\qquad
+(c, d) \sim_Q (e, f).
+$$
 
-`(ad + bc, bd) ~_Q (a'd' + b'c', b'd')`.
+Then
 
-So the sum does not depend on which representatives you started with.
+$$
+ad = bc
+\qquad\text{and}\qquad
+cf = de.
+$$
+
+Multiply the first equation by `f` and the second by `b`:
+
+$$
+adf = bcf,
+\qquad
+bcf = bde.
+$$
+
+Hence `adf = bde`. Because `d \neq 0`, we may cancel `d` in `Z` to obtain
+
+$$
+af = be.
+$$
+
+Therefore `(a, b) \sim_Q (e, f)`, so the relation is transitive.
 </CollapsibleProof>
 
-<CommonMistake title="Do not compare fractions using a formula that ignores signs">
-Worksheet 5 asks about relations such as `p/q R m/n` if `pn - qm > 0`.
-That kind of comparison is not safe on arbitrary representatives, because
-changing the sign of a representative can change the sign of the test.
+## Representatives and the same rational number
+
+An equivalence class contains many representatives. That is not a defect. It is
+the whole point of the construction.
+
+<WorkedExample title="Different pairs can describe the same rational number">
+Consider the pairs `(1, 2)`, `(2, 4)`, and `(-3, -6)`.
+
+We have
+
+$$
+1 \cdot 4 = 2 \cdot 2,
+\qquad
+1 \cdot (-6) = 2 \cdot (-3).
+$$
+
+Therefore
+
+$$
+(1, 2) \sim_Q (2, 4)
+\qquad\text{and}\qquad
+(1, 2) \sim_Q (-3, -6).
+$$
+
+So all three pairs belong to the same rational number:
+
+$$
+[(1, 2)] = [(2, 4)] = [(-3, -6)].
+$$
+
+This is the quotient-theoretic version of the elementary fact that
+
+$$
+\frac{1}{2} = \frac{2}{4} = \frac{-3}{-6}.
+$$
+</WorkedExample>
+
+It is often useful to remember that a rational number is not tied to a preferred
+representative. The class `[(a, b)]` does not become a different number just
+because you multiply both coordinates by the same nonzero integer.
+
+## Operations on `Q`
+
+Once the classes are defined, the next task is to define addition and
+multiplication on the classes themselves.
+
+<Definition title="Addition, multiplication, and inverses on `Q`">
+For classes in `Q`, define
+
+$$
+[(a, b)] + [(c, d)] := [(ad + bc, bd)],
+$$
+
+and
+
+$$
+[(a, b)] \cdot [(c, d)] := [(ac, bd)].
+$$
+
+The additive inverse is defined by
+
+$$
+-[(a, b)] := [(-a, b)].
+$$
+
+If `a \neq 0`, the multiplicative inverse is defined by
+
+$$
+[(a, b)]^{-1} := [(b, a)].
+$$
+</Definition>
+
+Each of these formulas is written on representatives, so each of them must be
+checked for well-definedness. Otherwise the formula might depend on the chosen
+pair rather than on the rational number itself.
+
+## What "well-defined" means
+
+A formula on equivalence classes is **well-defined** if changing
+representatives does not change the resulting class.
+
+For addition, this means the following statement must be true:
+
+if `(a, b) \sim_Q (a', b')` and `(c, d) \sim_Q (c', d')`, then
+
+$$
+(ad + bc, bd) \sim_Q (a'd' + b'c', b'd').
+$$
+
+<TheoremCard title="Addition on `Q` is well-defined">
+If `(a, b) \sim_Q (a', b')` and `(c, d) \sim_Q (c', d')`, then
+
+$$
+[(ad + bc, bd)] = [(a'd' + b'c', b'd')].
+$$
+
+So the addition formula does not depend on the chosen representatives.
+</TheoremCard>
+
+<CollapsibleProof title="Why the addition formula is well-defined">
+Assume
+
+$$
+ab' = ba'
+\qquad\text{and}\qquad
+cd' = dc'.
+$$
+
+We must show
+
+$$
+(ad + bc, bd) \sim_Q (a'd' + b'c', b'd').
+$$
+
+By definition of `\sim_Q`, it is enough to prove
+
+$$
+(ad + bc)b'd' = (a'd' + b'c')bd.
+$$
+
+Expanding the left-hand side gives
+
+$$
+adb'd' + bcb'd'.
+$$
+
+Using `ab' = ba'`, the first term becomes
+
+$$
+adb'd' = ba'dd'.
+$$
+
+Using `cd' = dc'`, the second term becomes
+
+$$
+bcb'd' = bdb'c'.
+$$
+
+Hence
+
+$$
+(ad + bc)b'd' = ba'dd' + bdb'c' = (a'd' + b'c')bd.
+$$
+
+Therefore
+
+$$
+(ad + bc, bd) \sim_Q (a'd' + b'c', b'd'),
+$$
+
+so the sum is well-defined.
+</CollapsibleProof>
+
+The multiplication formula is proved in the same spirit, but more quickly:
+starting from `ab' = ba'` and `cd' = dc'`, one obtains
+
+$$
+acb'd' = a'c'bd.
+$$
+
+Thus multiplication is also well-defined.
+
+<WorkedExample title="Compute in classes, then simplify conceptually">
+Let
+
+$$
+x = [(1, 2)],
+\qquad
+y = [(1, 3)].
+$$
+
+Then
+
+$$
+x + y = [(1 \cdot 3 + 2 \cdot 1, 2 \cdot 3)] = [(5, 6)].
+$$
+
+Also,
+
+$$
+x \cdot y = [(1 \cdot 1, 2 \cdot 3)] = [(1, 6)].
+$$
+
+If we replace `x` by the equivalent representative `[(2, 4)]`, then the same
+formulas give
+
+$$
+[(2, 4)] + [(1, 3)] = [(10, 12)],
+$$
+
+and
+
+$$
+[(2, 4)] \cdot [(1, 3)] = [(2, 12)].
+$$
+
+These are the same rational numbers as `[(5, 6)]` and `[(1, 6)]`, so the class
+operations behave as they should.
+</WorkedExample>
+
+## Not every representative formula descends to `Q`
+
+Once you start thinking in equivalence classes, you should become suspicious of
+any proposed relation or operation written directly on representatives.
+
+For example, consider the following candidate rules on classes `[(p, q)]` and
+`[(m, n)]`:
+
+1. compare `p` and `m`;
+2. compare the sign of `pn - qm`;
+3. compare the sign of `(pn - mq)nq`.
+
+The first two rules are not well-defined on `Q`, because changing a
+representative can change the truth value. The third rule compensates for sign
+changes in the denominators and is invariant under changing representatives.
+
+<WorkedExample title="Why the denominator signs matter">
+The pair `(1, 2)` represents the same rational number as `(-1, -2)`.
+
+If you test a relation using only `p > m` or only the sign of `pn - qm`, then
+switching from `(1, 2)` to `(-1, -2)` can change the answer even though the
+rational number has not changed.
+
+That is exactly what well-definedness forbids. A statement about rational
+numbers must survive the change of representatives.
+</WorkedExample>
+
+## Common mistakes
+
+<CommonMistake title="A quotient class is not one preferred fraction">
+The symbols `[(1, 2)]`, `[(2, 4)]`, and `[(-3, -6)]` do not name three
+different rational numbers. They name one class with three different
+representatives.
+</CommonMistake>
+
+<CommonMistake title="A plausible formula is not automatically well-defined">
+A formula on pairs may look natural and still fail on the quotient. Before
+accepting any operation or relation on `Q`, you must check that equivalent
+representatives always produce equivalent outputs.
 </CommonMistake>
 
 ## Quick checks
 
-<QuickCheck prompt="Which of these relations from Worksheet 5 is well defined on Q as written: `p/q R m/n` if `p > m`, if `pn - qm > 0`, or if `(pn - mq)nq > 0`?">
-Think about what happens if you replace a representative by an equivalent one.
+<QuickCheck prompt="Why must the second coordinate in `(a, b)` be restricted to `b \neq 0`?">
+Answer in terms of the quotient construction, not everyday arithmetic slogans.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-Only the third one is well defined as written. The first two depend on the chosen representatives.
+The pair `(a, b)` is intended to represent the quotient `a/b`. If `b = 0`, then
+the pair cannot model a rational number at all, so it must be excluded before
+the quotient is formed.
 </RevealSolution>
 
-<QuickCheck prompt="Why does `Y` exclude pairs with denominator `0`?">
-Give the mathematical reason, not the everyday one.
+<QuickCheck prompt="If `a \neq 0`, what should be the multiplicative inverse of `[(a, b)]`?">
+Check the product with the original class.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-Because the second coordinate is meant to play the role of a denominator, and the construction must avoid division by zero.
+It should be `[(b, a)]`, because
+
+$$
+[(a, b)] \cdot [(b, a)] = [(ab, ba)] = [(1, 1)],
+$$
+
+which is the multiplicative identity in `Q`.
 </RevealSolution>
 
-## Read this first
+## Exercises
 
-If you want to review the integer construction first, read
-[3.3 Integers from equivalence classes](/en/notes/math1090/numbers/integers-from-equivalence-classes).
+<QuickCheck prompt="Show that `[(3, 5)] = [(9, 15)]`, and then compute `[(3, 5)] + [(1, 5)]`.">
+First verify equality of classes by the defining relation, then use the class
+addition formula.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+We have
+
+$$
+3 \cdot 15 = 45 = 5 \cdot 9,
+$$
+
+so `(3, 5) \sim_Q (9, 15)` and therefore `[(3, 5)] = [(9, 15)]`.
+
+For the sum,
+
+$$
+[(3, 5)] + [(1, 5)]
+= [(3 \cdot 5 + 5 \cdot 1, 5 \cdot 5)]
+= [(20, 25)].
+$$
+
+This class is the same rational number as `[(4, 5)]`.
+</RevealSolution>
+
+<QuickCheck prompt="Why does the relation `[(p, q)] \prec [(m, n)]` defined by `p > m` fail to be well-defined?">
+Find equivalent representatives that change the truth value.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Take `[(1, 2)] = [(-1, -2)]`. Compare both with `[(0, 1)]`.
+
+Using the representative `(1, 2)`, the statement `p > m` reads `1 > 0`, which
+is true. Using the equivalent representative `(-1, -2)`, it reads `-1 > 0`,
+which is false.
+
+So the rule depends on the chosen representative and therefore does not define
+an order relation on `Q`.
+</RevealSolution>
+
+## Related notes
+
+Read
+[3.3 Integers from equivalence classes](/en/notes/math1090/numbers/integers-from-equivalence-classes)
+for the previous quotient construction, and
+[3.5 Gaps in Q and why sqrt(2) is not rational](/en/notes/math1090/numbers/gaps-in-q-and-sqrt2)
+for the next point where the rational number system shows its limitations.

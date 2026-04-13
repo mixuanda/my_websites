@@ -61,6 +61,23 @@ export type Project = {
   /** MDX file body */
   body: MDX
   slug: string
+}
+
+export type TextbookUnit = {
+  /** File path relative to `contentDirPath` */
+  _id: string
+  _raw: Local.RawDocumentData
+  type: 'TextbookUnit'
+  title: string
+  description: string
+  /** MDX file body */
+  body: MDX
+  chapterId: string
+  course: string
+  locale: string
+  unitSlug: string
+  unitId: string
+  url: string
 }  
 
 /** Nested types */
@@ -71,8 +88,8 @@ export type Project = {
 export type AllTypes = DocumentTypes | NestedTypes
 export type AllTypeNames = DocumentTypeNames | NestedTypeNames
 
-export type DocumentTypes = Note | Post | Project
-export type DocumentTypeNames = 'Note' | 'Post' | 'Project'
+export type DocumentTypes = Note | Post | Project | TextbookUnit
+export type DocumentTypeNames = 'Note' | 'Post' | 'Project' | 'TextbookUnit'
 
 export type NestedTypes = never
 export type NestedTypeNames = never
@@ -82,6 +99,7 @@ export type DataExports = {
   allPosts: Post[]
   allNotes: Note[]
   allProjects: Project[]
+  allTextbookUnits: TextbookUnit[]
 }
 
 
@@ -104,6 +122,7 @@ export type DocumentTypeMap = {
   Note: Note
   Post: Post
   Project: Project
+  TextbookUnit: TextbookUnit
 }
 
 export type NestedTypeMap = {

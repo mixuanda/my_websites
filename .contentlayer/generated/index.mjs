@@ -7,9 +7,10 @@ export { isType } from 'contentlayer2/client'
 import allPosts from './Post/_index.json' with { type: 'json' }
 import allNotes from './Note/_index.json' with { type: 'json' }
 import allProjects from './Project/_index.json' with { type: 'json' }
+import allTextbookUnits from './TextbookUnit/_index.json' with { type: 'json' }
 
-export { allPosts, allNotes, allProjects }
+export { allPosts, allNotes, allProjects, allTextbookUnits }
 
-export const allDocuments = [...allPosts, ...allNotes, ...allProjects]
+export const allDocuments = [...allPosts, ...allNotes, ...allProjects, ...allTextbookUnits]
 
 

@@ -1,84 +1,365 @@
 ---
 title: "2.4 Solution-set types"
-description: "Classify a system as having one solution, infinitely many solutions, or no solution from its reduced form."
+description: "Use RREF to classify a linear system rigorously, identify pivot and free variables, and explain why a system has exactly one solution, infinitely many solutions, or no solution."
 ---
 
-## Three possible outcomes
+Gaussian elimination is not finished once the matrix looks simpler. The point of
+row reduction is that the reduced form lets you *read* the structure of the
+solution set. This note makes that reading process precise.
 
-After elimination, a linear system usually falls into one of three types:
+There are only three possible outcomes for a linear system:
 
-1. one solution,
+1. exactly one solution,
 2. infinitely many solutions,
 3. no solution.
 
-The reduced matrix tells you which case you are in.
+The classification is not based on guesswork. It follows from the position of
+the pivot columns in the reduced augmented matrix.
 
-<Definition title="Solution-set types">
-The reduced form of a linear system shows whether the system has one solution,
-infinitely many solutions, or no solution.
+## Dependent variables and free variables
+
+When a consistent linear system is reduced to RREF, the pivot columns tell you
+which variables are determined by the others. Columns without pivots correspond
+to variables that may be chosen freely.
+
+<Definition title="Dependent variables and free variables">
+Suppose the augmented matrix of a consistent linear system is row-equivalent to
+a matrix `B` in RREF. If column `j` of `B` is a pivot column, then the variable
+`x_j` is called a **dependent variable** or **leading variable**. A variable whose
+column is not a pivot column is called a **free variable**.
 </Definition>
 
-## How to read the pattern
+This language matters because it tells you how the final answer should be
+written. Free variables become parameters. Dependent variables are then solved
+in terms of those parameters.
 
-- If every variable has a pivot, the system has a single solution.
-- If at least one variable is free and there is no contradiction row, the system
-  has infinitely many solutions.
-- If a contradiction row appears, the system has no solution.
+## The consistency test
 
-<WorkedExample title="Recognize the three cases">
-Consider these reduced matrices:
+The first question is not whether the system has one solution or many. The first
+question is whether it has any solution at all.
 
-$$
-\begin{bmatrix}
-1 & 0 & | & 3 \\
-0 & 1 & | & -2
-\end{bmatrix}
-$$
+<TheoremCard title="Consistency criterion from RREF">
+Let `A` be the augmented matrix of an `m \times n` linear system, and let `B`
+be the RREF row-equivalent to `A`. Then the system is inconsistent if and only
+if the last column of `B` is a pivot column.
 
-has one solution.
+Equivalently, the system is inconsistent if and only if `B` contains a row of
+the form
 
 $$
-\begin{bmatrix}
-1 & 2 & | & 5 \\
-0 & 0 & | & 0
-\end{bmatrix}
+\left[
+\begin{array}{cccc|c}
+0 & 0 & \cdots & 0 & d
+\end{array}
+\right]
+\qquad\text{with } d \neq 0.
+$$
+</TheoremCard>
+
+Such a row represents the equation
+
+$$
+0 = d,
 $$
 
-has infinitely many solutions because one variable is free.
+which is impossible when `d \neq 0`. That is why contradiction rows settle the
+question immediately.
+
+## Why only three cases can occur
+
+Once the system is known to be consistent, the remaining issue is the number of
+free variables.
+
+<TheoremCard title="Classification by the number of pivots">
+Suppose an `m \times n` linear system is consistent, and suppose its augmented
+matrix is row-equivalent to an RREF matrix with `r` pivot columns. Then `r \le
+n`. Moreover:
+
+1. if `r = n`, the system has a unique solution;
+2. if `r < n`, the system has infinitely many solutions.
+</TheoremCard>
+
+The reason is structural.
+
+- If `r = n`, every variable column contains a pivot, so there are no free
+  variables.
+- If `r < n`, then `n - r > 0`, so at least one variable is free.
+- Every choice of the free variables gives a solution, so consistency plus a
+  free variable automatically creates infinitely many solutions.
+
+Putting the consistency theorem and the pivot-count theorem together gives the
+standard trichotomy.
+
+<TheoremCard title="Possible solution sets for a linear system">
+A linear system has exactly one of the following three solution-set types:
+
+1. a unique solution;
+2. infinitely many solutions;
+3. no solution.
+</TheoremCard>
+
+## Three reduced forms, three different readings
+
+The reduced matrix already contains the whole story. The only question is
+whether you know what to look for.
+
+<WorkedExample title="Read the matrix before solving">
+Consider the following three RREF augmented matrices.
+
+First,
 
 $$
-\begin{bmatrix}
-1 & 0 & | & 3 \\
-0 & 0 & | & 1
-\end{bmatrix}
+\left[
+\begin{array}{cc|c}
+1 & 0 & 3 \\
+0 & 1 & -2
+\end{array}
+\right].
 $$
 
-has no solution because the last row is a contradiction.
+Both variable columns are pivot columns, so there are no free variables. The
+system has the unique solution
+
+$$
+x_1 = 3,\qquad x_2 = -2.
+$$
+
+Second,
+
+$$
+\left[
+\begin{array}{ccc|c}
+1 & 2 & 0 & 5 \\
+0 & 0 & 0 & 0
+\end{array}
+\right].
+$$
+
+Column 1 is a pivot column, but columns 2 and 3 are not. So `x_2` and `x_3` are
+free variables. The equation is
+
+$$
+x_1 + 2x_2 = 5,
+$$
+
+which gives
+
+$$
+x_1 = 5 - 2x_2.
+$$
+
+Hence the solution set is
+
+$$
+\{(5 - 2s, s, t) \mid s, t \in R\}.
+$$
+
+Third,
+
+$$
+\left[
+\begin{array}{cc|c}
+1 & 0 & 3 \\
+0 & 0 & 1
+\end{array}
+\right].
+$$
+
+The last row says `0 = 1`, so the system is inconsistent and has no solution.
 </WorkedExample>
 
-Pause here and compare the three reduced matrices below. Try to name the case
-only after you have looked for pivots, free variables, and contradiction rows.
+The essential habit is this:
+
+1. check for contradiction rows;
+2. identify pivot columns;
+3. count free variables;
+4. write the dependent variables in terms of the free ones.
+
+## A larger parameterized example
+
+The source notes emphasize that a free-variable answer should be written as a
+full set, not as a vague phrase such as "there are many solutions."
+
+<WorkedExample title="Write the solution set explicitly">
+Suppose a system in variables `x_1, x_2, x_3, x_4, x_5` has RREF
+
+$$
+\left[
+\begin{array}{ccccc|c}
+1 & -1 & 0 & 0 & 3 & 6 \\
+0 & 0 & 1 & 0 & -2 & 1 \\
+0 & 0 & 0 & 1 & 4 & 9 \\
+0 & 0 & 0 & 0 & 0 & 0
+\end{array}
+\right].
+$$
+
+Columns 1, 3, and 4 are pivot columns, so `x_1`, `x_3`, and `x_4` are dependent
+variables. Columns 2 and 5 are non-pivot columns, so `x_2` and `x_5` are free.
+
+Reading the rows gives
+
+$$
+\begin{aligned}
+x_1 - x_2 + 3x_5 &= 6, \\
+x_3 - 2x_5 &= 1, \\
+x_4 + 4x_5 &= 9.
+\end{aligned}
+$$
+
+Let
+
+$$
+x_2 = s,\qquad x_5 = t.
+$$
+
+Then
+
+$$
+\begin{aligned}
+x_1 &= 6 + s - 3t, \\
+x_3 &= 1 + 2t, \\
+x_4 &= 9 - 4t.
+\end{aligned}
+$$
+
+Therefore the solution set is
+
+$$
+\{(6 + s - 3t,\ s,\ 1 + 2t,\ 9 - 4t,\ t) \mid s, t \in R\}.
+$$
+
+Two free variables produce a two-parameter family of solutions.
+</WorkedExample>
+
+## A useful corollary when there are more variables than equations
+
+One common classroom situation is a consistent system with fewer equations than
+variables.
+
+<TheoremCard title="If `n > m`, consistency forces infinitely many solutions">
+Suppose a consistent linear system has `m` equations in `n` variables, and
+suppose `n > m`. Then the system has infinitely many solutions.
+</TheoremCard>
+
+Why? In RREF there can be at most `m` nonzero rows, so there can be at most `m`
+pivot columns. If `n > m`, then at least one of the `n` variable columns must be
+non-pivot. Hence there is at least one free variable, and consistency then
+forces infinitely many solutions.
+
+This corollary does **not** say that every underdetermined system is consistent.
+It says that once such a system is consistent, uniqueness is impossible.
+
+## Compare the three cases interactively
+
+The classifier below is useful because it makes the reading process explicit:
+you check contradiction rows, look for pivots, and then decide how many free
+variables remain.
 
 <InteractiveWidget id="solution-set-classifier" />
 
-## Common mistake
+## Common mistakes
 
-<CommonMistake title="Free variable does not mean unfinished work">
-A free variable means the solution set has a parameter. It does not mean the
-problem is broken or incomplete.
+<CommonMistake title="A free variable is not an unfinished calculation">
+A free variable is a genuine feature of the system. It means the solution set is
+parameterized. The algebra is complete, even though the answer is a family of
+vectors rather than one point.
 </CommonMistake>
 
-## Quick check
+<CommonMistake title="A zero row is not the same as a contradiction row">
+The row
 
-<QuickCheck prompt="What does `[0 0 0 | 1]` tell you about the system?">
-Use the row to decide whether the system is consistent.
+$$
+\left[
+\begin{array}{cccc|c}
+0 & 0 & 0 & 0 & 0
+\end{array}
+\right]
+$$
+
+adds no new condition and is perfectly compatible with consistency. By contrast,
+
+$$
+\left[
+\begin{array}{cccc|c}
+0 & 0 & 0 & 0 & 1
+\end{array}
+\right]
+$$
+
+is a contradiction and destroys consistency.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="What does the row `\left[\begin{array}{ccc|c}0 & 0 & 0 & 1\end{array}\right]` tell you about the system?">
+Interpret the row as an equation.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-It tells you the system is inconsistent, so there is no solution.
+It represents the equation `0 = 1`, so the system is inconsistent and has no
+solution.
 </RevealSolution>
 
-## Read this first
+<QuickCheck prompt="If a consistent system in four variables has three pivot columns, how many free variables does it have?">
+Count the non-pivot variable columns.
+</QuickCheck>
 
-This page uses the ideas from
-[2.3 Gaussian elimination and RREF](/en/notes/math1030/matrices/gaussian-elimination-rref).
+<RevealSolution title="Answer">
+It has `4 - 3 = 1` free variable, so the system has infinitely many solutions.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Classify the solution set of the system whose RREF is `\left[\begin{array}{ccc|c}1 & 0 & 2 & 4 \\ 0 & 1 & -3 & -1 \\ 0 & 0 & 0 & 0\end{array}\right]`, and write the solution set explicitly.">
+Start by naming the free variable, then solve for the pivot variables.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Columns 1 and 2 are pivot columns, while column 3 is not. So `x_3` is free. Let
+
+$$
+x_3 = t.
+$$
+
+Then the rows give
+
+$$
+x_1 + 2t = 4,
+\qquad
+x_2 - 3t = -1.
+$$
+
+Hence
+
+$$
+x_1 = 4 - 2t,
+\qquad
+x_2 = -1 + 3t.
+$$
+
+So the solution set is
+
+$$
+\{(4 - 2t,\ -1 + 3t,\ t) \mid t \in R\}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Why can a consistent system never have exactly two solutions?">
+Answer from the free-variable theorem, not from a picture.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+If a consistent system has no free variables, it has one unique solution. If it
+has at least one free variable, then the free variable can take infinitely many
+real values, so the system has infinitely many solutions. There is no structural
+way to obtain exactly two solutions.
+</RevealSolution>
+
+## Related notes
+
+Read
+[2.3 Gaussian elimination and RREF](/en/notes/math1030/matrices/gaussian-elimination-rref)
+for the mechanics of row reduction, and
+[2.2 Augmented matrices and row operations](/en/notes/math1030/matrices/augmented-matrices-row-operations)
+for the meaning of augmented matrices and elementary row operations.

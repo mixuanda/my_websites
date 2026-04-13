@@ -4,6 +4,10 @@ export function getNotesHref(locale: Locale) {
   return `/${locale}/notes`;
 }
 
+export function getPublicNoteArchiveHref() {
+  return "/notes";
+}
+
 export function getLegacyCoursesHref(locale: Locale) {
   return `/${locale}/courses`;
 }

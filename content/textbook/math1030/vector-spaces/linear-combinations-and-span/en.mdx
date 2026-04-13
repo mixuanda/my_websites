@@ -1,105 +1,367 @@
 ---
 title: "6.3 Linear combinations and span"
-description: "See how vectors build new vectors, and how span collects every possible result."
+description: "Treat span as a precise set of outputs, connect it to linear systems, and learn how to decide whether a vector can or cannot be built from a given list."
 ---
 
-## Building new vectors
+Once a vector space has been defined, the next question is not merely whether
+its operations make sense. The real question is what those operations can
+produce.
 
-A linear combination is what you get when you multiply vectors by scalars and
-add the results.
+If you start with a list of vectors, how many new vectors can be built by adding
+and scaling them? That is the problem of linear combinations and span.
+
+This section is fundamental because it converts geometric language such as
+"these vectors generate a plane" into exact algebra. It also provides the
+bridge from vector-space language back to linear systems.
+
+## Linear combinations are the basic building blocks
 
 <Definition title="Linear combination">
 Let `u_1, u_2, \ldots, u_n` be vectors in a vector space `V`, and let
-`\alpha_1, \alpha_2, \ldots, \alpha_n` be scalars. Then
+`\alpha_1, \alpha_2, \ldots, \alpha_n \in R`. Then
 
 $$
 \alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n
 $$
 
-is a linear combination of `u_1, u_2, \ldots, u_n`.
+is called a **linear combination** of `u_1, u_2, \ldots, u_n`.
 </Definition>
 
-The important part is that every coefficient is allowed to be any real number,
-including `0`.
+The important point is that the coefficients are completely unrestricted real
+numbers. They may be positive, negative, fractional, irrational, or zero.
 
-<WorkedExample title="A vector can be written as a combination">
-In the notes,
+That flexibility is why linear combinations are so expressive.
+
+<WorkedExample title="Examples of linear combinations">
+If `u_1, \ldots, u_n` are vectors, then all of the following are linear
+combinations of them:
+
+$$
+23u_1 - \sqrt{2}\,u_2 + \pi u_n,
+$$
+
+$$
+0 = 0u_1 + 0u_2 + \cdots + 0u_n,
+$$
+
+and
+
+$$
+u_1 = 1u_1 + 0u_2 + \cdots + 0u_n.
+$$
+
+The source notes also emphasize a closure fact: if `v` and `w` are themselves
+linear combinations of `u_1, \ldots, u_n`, then any expression `cv + dw` is
+again a linear combination of `u_1, \ldots, u_n`.
+</WorkedExample>
+
+So linear combinations are stable under the very operations that created them in
+the first place.
+
+## Membership in a span is a solvability question
+
+In practice, the question "Is `b` a linear combination of `u_1, \ldots, u_n`?"
+is not answered by inspection. It is answered by solving a linear system.
+
+<TheoremCard title="Linear combinations and linear systems">
+Let `u_1, u_2, \ldots, u_n` and `b` be vectors in `R^m`, and let
+
+$$
+A = \begin{bmatrix} u_1 & u_2 & \cdots & u_n \end{bmatrix}.
+$$
+
+Then `b` can be expressed as a linear combination of `u_1, \ldots, u_n` if and
+only if the linear system
+
+$$
+Ax = b
+$$
+
+has a solution.
+</TheoremCard>
+
+This theorem is one of the most useful ideas in the chapter. It means that a
+generation question in a vector space becomes a consistency question for a
+matrix equation.
+
+<WorkedExample title="Testing whether a vector is a linear combination">
+Let
 
 $$
 u_1 = \begin{bmatrix} 1 \\ -2 \\ -1 \end{bmatrix},
 \qquad
-u_2 = \begin{bmatrix} 3 \\ -5 \\ 4 \end{bmatrix},
-\qquad
+u_2 = \begin{bmatrix} 3 \\ -5 \\ 4 \end{bmatrix}.
+$$
+
+Consider the vector
+
+$$
 w = \begin{bmatrix} 2 \\ -6 \\ -16 \end{bmatrix}.
 $$
 
-The example shows that `w = 8u_1 - 2u_2`.
+To ask whether `w` is a linear combination of `u_1` and `u_2` is to ask whether
+there exist scalars `c_1, c_2` such that
 
-So `w` is a linear combination of `u_1` and `u_2`.
+$$
+c_1u_1 + c_2u_2 = w.
+$$
+
+Equivalently,
+
+$$
+\begin{bmatrix}
+1 & 3 \\
+-2 & -5 \\
+-1 & 4
+\end{bmatrix}
+\begin{bmatrix}
+c_1 \\
+c_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 \\
+-6 \\
+-16
+\end{bmatrix}.
+$$
+
+Row reduction shows that the system is consistent and gives
+
+$$
+c_1 = 8,
+\qquad
+c_2 = -2.
+$$
+
+Hence
+
+$$
+w = 8u_1 - 2u_2.
+$$
+
+So `w` belongs to the span of `u_1` and `u_2`.
 </WorkedExample>
 
-## What span means
+The same method can also prove *non-membership*: if the system is inconsistent,
+then the target vector is not in the span.
 
-If you take all linear combinations of a list of vectors, you get their span.
+## Span collects all possible outputs
 
 <Definition title="Span">
-The span of `u_1, u_2, \ldots, u_n` is the set of all linear combinations of
-those vectors. It is written as `Span{u_1, u_2, \ldots, u_n}`.
+Let `u_1, u_2, \ldots, u_n` be vectors in a vector space `V`. The **span** of
+these vectors is the set of all linear combinations of them:
+
+$$
+\operatorname{Span}\{u_1, u_2, \ldots, u_n\}
+=
+\{\alpha_1u_1 + \alpha_2u_2 + \cdots + \alpha_nu_n \mid \alpha_i \in R\}.
+$$
 </Definition>
 
-The span is the collection of everything you can build from the given vectors.
+So the span is not one vector. It is the whole collection of vectors that can be
+built from the given list.
 
-Example-wise, the notes show that `Span{e_1, e_2}` is the `x_1x_2`-plane in
-`R^3`, while `Span{e_1, e_2, e_3} = R^3`.
+This is why span is often read as "the subspace generated by" or "the set
+spanned by" the given vectors.
 
-Use the explorer below to test whether a chosen vector can be built from a given
-set.
+## Standard geometric examples
+
+<WorkedExample title="What span looks like in `R^3`">
+Let
+
+$$
+e_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix},
+\qquad
+e_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix},
+\qquad
+e_3 = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}.
+$$
+
+Then every vector in `\operatorname{Span}\{e_1, e_2\}` has the form
+
+$$
+\alpha e_1 + \beta e_2
+=
+\begin{bmatrix}
+\alpha \\
+\beta \\
+0
+\end{bmatrix}.
+$$
+
+So
+
+$$
+\operatorname{Span}\{e_1, e_2\}
+$$
+
+is exactly the `x_1x_2`-plane in `R^3`.
+
+If we include `e_3` as well, then every vector in `R^3` can be written as
+
+$$
+\alpha_1 e_1 + \alpha_2 e_2 + \alpha_3 e_3,
+$$
+
+so
+
+$$
+\operatorname{Span}\{e_1, e_2, e_3\} = R^3.
+$$
+</WorkedExample>
+
+This example is important because it shows that span can describe:
+
+- a line,
+- a plane,
+- or the whole ambient space,
+
+depending on the vectors you start with.
+
+## Why the span is always a subspace
+
+The span of a set of vectors is not just some arbitrary subset. It is the
+smallest natural vector-space object generated by those vectors.
+
+<TheoremCard title="The span of any set of vectors is a subspace">
+If `u_1, \ldots, u_n` are vectors in a vector space `V`, then
+
+$$
+\operatorname{Span}\{u_1, \ldots, u_n\}
+$$
+
+is a subspace of `V`.
+</TheoremCard>
+
+<CollapsibleProof title="Why the span is a subspace">
+The span is nonempty because it contains the zero vector:
+
+$$
+0 = 0u_1 + \cdots + 0u_n.
+$$
+
+Now take two vectors `v` and `w` in the span. Then there exist scalars
+`\alpha_i` and `\beta_i` such that
+
+$$
+v = \alpha_1u_1 + \cdots + \alpha_nu_n,
+\qquad
+w = \beta_1u_1 + \cdots + \beta_nu_n.
+$$
+
+Then
+
+$$
+v + w
+=
+(\alpha_1 + \beta_1)u_1 + \cdots + (\alpha_n + \beta_n)u_n,
+$$
+
+which is again a linear combination of the same vectors. So the span is closed
+under addition.
+
+If `c \in R`, then
+
+$$
+cv = (c\alpha_1)u_1 + \cdots + (c\alpha_n)u_n,
+$$
+
+which is also a linear combination of the same vectors. So the span is closed
+under scalar multiplication.
+
+Therefore the span is a subspace of `V`.
+</CollapsibleProof>
+
+This theorem is one of the main reasons span matters so much. It gives a
+systematic way to build subspaces from a generating list.
+
+## Use the explorer as a supporting figure
+
+The span explorer below is useful only after the algebraic meaning is clear. It
+lets you vary the coefficients and watch a vector move through the generated
+set, but it should be read as a supporting visualization of the definitions and
+theorem above.
 
 <InteractiveWidget id="span-explorer" />
 
-## Why span is useful
+## Common mistakes
 
-The notes also connect span to subspaces: the span of any collection of vectors
-is always a subspace.
-
-<CollapsibleProof title="Why the span is a subspace">
-Take any vectors `v` and `w` in `Span{u_1, \ldots, u_n}`.
-
-By definition, each of them is a linear combination of `u_1, \ldots, u_n`.
-Adding those combinations gives another linear combination, and scaling one of
-them by a real number also gives another linear combination.
-
-So the span is closed under addition and scalar multiplication. Therefore it is
-a subspace.
-</CollapsibleProof>
-
-## Common mistake
-
-<CommonMistake title="Span is not just positive multiples">
-Span allows all real coefficients, not only positive ones. It also includes the
-zero combination, so `0` is always in the span.
+<CommonMistake title="Span is not the set of positive multiples only">
+The coefficients in a linear combination may be any real numbers. Negative and
+zero coefficients are just as legitimate as positive ones.
 </CommonMistake>
 
-## Quick check
+<CommonMistake title="To prove membership in a span, you need coefficients">
+It is not enough to say that a target vector "looks similar." To prove that a
+vector lies in a span, you must either produce the coefficients explicitly or
+solve the associated system and show it is consistent.
+</CommonMistake>
 
-<QuickCheck prompt="Is the zero vector always in the span of any list of vectors?">
-Think about what happens when every coefficient is `0`.
+## Quick checks
+
+<QuickCheck prompt="Is the zero vector always in the span of any finite list of vectors?">
+Use the definition of linear combination directly.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-Yes. The all-zero coefficients give the zero vector.
+Yes. Set every coefficient equal to `0`. The resulting linear combination is the
+zero vector, so the span always contains `0`.
 </RevealSolution>
 
-<QuickCheck prompt="Does `Span{e_1, e_2}` in `R^3` contain `(2, -1, 0)`?">
-Use the geometric picture of the `x_1x_2`-plane.
+<QuickCheck prompt="Why does `\operatorname{Span}\{e_1, e_2\}` in `R^3` contain `(2, -1, 0)`?">
+Write the vector as a combination of `e_1` and `e_2`.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-Yes. The vector has third coordinate `0`, so it lies in that plane.
+Because
+
+$$
+\begin{bmatrix}
+2 \\
+-1 \\
+0
+\end{bmatrix}
+=
+2e_1 - e_2.
+$$
+
+So the vector is a linear combination of `e_1` and `e_2`.
 </RevealSolution>
 
-## Read this first
+## Exercises
 
-This page uses the subspace idea from
-[6.2 Subspaces](/en/notes/math1030/vector-spaces/subspaces) and the matrix
-setup from [2.2 Augmented matrices and row operations](/en/notes/math1030/matrices/augmented-matrices-row-operations).
+<QuickCheck prompt="Explain why every vector `u_i` in a generating list automatically lies in `\operatorname{Span}\{u_1, \ldots, u_n\}`.">
+Use coefficients.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+To isolate `u_i`, choose coefficient `1` for `u_i` and coefficient `0` for every
+other vector. Then
+
+$$
+u_i = 0u_1 + \cdots + 0u_{i-1} + 1u_i + 0u_{i+1} + \cdots + 0u_n,
+$$
+
+so `u_i` is a linear combination of the full list and therefore belongs to its
+span.
+</RevealSolution>
+
+<QuickCheck prompt="Why does the theorem `b \in \operatorname{Span}\{u_1, \ldots, u_n\}` if and only if `Ax = b` is solvable matter so much in practice?">
+Answer in terms of what it lets you do computationally.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+It turns a generation question into a linear-system question. Instead of guessing
+coefficients by inspection, you form the matrix with columns `u_1, \ldots, u_n`
+and row-reduce the augmented system `Ax = b`. Consistency then tells you exactly
+whether `b` lies in the span.
+</RevealSolution>
+
+## Related notes
+
+Read
+[6.2 Subspaces](/en/notes/math1030/vector-spaces/subspaces) for the subspace
+tests used here, and then continue to
+[6.4 Linear dependence and independence](/en/notes/math1030/vector-spaces/linear-dependence-and-independence),
+where span is paired with the question of redundancy in a generating list.

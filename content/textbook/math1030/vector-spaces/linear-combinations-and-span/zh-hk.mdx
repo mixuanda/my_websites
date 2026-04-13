@@ -1,100 +1,351 @@
 ---
 title: "6.3 線性組合與張成"
-description: "看見向量如何湊出新向量，以及張成怎樣收集所有可能的結果。"
+description: "把張成視為一個精確的輸出集合，將它與線性系統連起來，並學會判斷一個向量能否由指定向量組合而成。"
 ---
 
-## 由向量造出新向量
+一旦向量空間的定義確立，下一個問題便不只是「這些運算有沒有意義」，而是：
 
-線性組合就是把一些向量乘上純量，再把結果相加。
+若你手上有一列向量，究竟可以用加法與純量乘法造出多少新向量？
+
+這正是線性組合與張成要回答的問題。
+
+本節十分關鍵，因為它把「這些向量會生成一條線、生成一個平面」之類的幾何語
+言，轉化為精確的代數陳述；同時也把向量空間語言重新接到線性系統上。
+
+## 線性組合是最基本的構造單位
 
 <Definition title="線性組合">
-設 `u_1, u_2, \ldots, u_n` 是向量空間 `V` 裡的向量，`\alpha_1, \alpha_2,
-\ldots, \alpha_n` 是純量。那麼
+設 `u_1, u_2, \ldots, u_n` 是向量空間 `V` 裡的向量，而
+`\alpha_1, \alpha_2, \ldots, \alpha_n \in R`。則
 
 $$
 \alpha_1 u_1 + \alpha_2 u_2 + \cdots + \alpha_n u_n
 $$
 
-就叫做 `u_1, u_2, \ldots, u_n` 的線性組合。
+稱為 `u_1, u_2, \ldots, u_n` 的**線性組合**。
 </Definition>
 
-重點是：每個係數都可以是任何實數，包括 `0`。
+這個定義的重點，在於係數完全不受限制。它們可以是正數、負數、分數、無理數，
+也可以是 `0`。
 
-<WorkedExample title="一個向量可以寫成線性組合">
-筆記裡有
+正因如此，線性組合才有足夠的表達能力。
+
+<WorkedExample title="幾種典型的線性組合">
+若 `u_1, \ldots, u_n` 是向量，則以下各式都是它們的線性組合：
+
+$$
+23u_1 - \sqrt{2}\,u_2 + \pi u_n,
+$$
+
+$$
+0 = 0u_1 + 0u_2 + \cdots + 0u_n,
+$$
+
+以及
+
+$$
+u_1 = 1u_1 + 0u_2 + \cdots + 0u_n.
+$$
+
+源講義還特別指出一個封閉事實：若 `v` 與 `w` 本身都是
+`u_1, \ldots, u_n` 的線性組合，則任何 `cv + dw` 仍然是
+`u_1, \ldots, u_n` 的線性組合。
+</WorkedExample>
+
+所以，線性組合對於「由線性組合再做線性組合」這件事本身是封閉的。
+
+## 是否屬於某個張成，其實是可解性問題
+
+在實際計算裡，問題「`b` 是否是 `u_1, \ldots, u_n` 的線性組合」通常不是靠
+肉眼判斷，而是靠解一個線性系統。
+
+<TheoremCard title="線性組合與線性系統">
+設 `u_1, u_2, \ldots, u_n` 與 `b` 都是 `R^m` 中的向量，並令
+
+$$
+A = \begin{bmatrix} u_1 & u_2 & \cdots & u_n \end{bmatrix}.
+$$
+
+則 `b` 能寫成 `u_1, \ldots, u_n` 的線性組合，當且僅當線性系統
+
+$$
+Ax = b
+$$
+
+有解。
+</TheoremCard>
+
+這個定理非常有用，因為它告訴你：一個「生成」問題，可以完全化成一個矩陣方
+程的一致性問題。
+
+<WorkedExample title="檢查一個向量是否是線性組合">
+令
 
 $$
 u_1 = \begin{bmatrix} 1 \\ -2 \\ -1 \end{bmatrix},
 \qquad
-u_2 = \begin{bmatrix} 3 \\ -5 \\ 4 \end{bmatrix},
-\qquad
+u_2 = \begin{bmatrix} 3 \\ -5 \\ 4 \end{bmatrix}.
+$$
+
+再考慮向量
+
+$$
 w = \begin{bmatrix} 2 \\ -6 \\ -16 \end{bmatrix}.
 $$
 
-例子顯示 `w = 8u_1 - 2u_2`。
+要問 `w` 是否為 `u_1` 與 `u_2` 的線性組合，就是要問是否存在純量
+`c_1, c_2` 使得
 
-所以 `w` 是 `u_1` 和 `u_2` 的線性組合。
+$$
+c_1u_1 + c_2u_2 = w.
+$$
+
+等價地，
+
+$$
+\begin{bmatrix}
+1 & 3 \\
+-2 & -5 \\
+-1 & 4
+\end{bmatrix}
+\begin{bmatrix}
+c_1 \\
+c_2
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 \\
+-6 \\
+-16
+\end{bmatrix}.
+$$
+
+把這個系統做行化簡，可得它是一致的，而且解為
+
+$$
+c_1 = 8,
+\qquad
+c_2 = -2.
+$$
+
+因此
+
+$$
+w = 8u_1 - 2u_2.
+$$
+
+所以 `w` 屬於 `u_1` 與 `u_2` 的張成。
 </WorkedExample>
 
-## 張成是甚麼
+同一道理也可以用來證明某向量**不屬於**張成：若對應系統不一致，便表示找不
+到係數，自然也就不在張成裡。
 
-把一組向量的所有線性組合全部收集起來，就得到它們的張成。
+## 張成是所有可造出的結果
 
 <Definition title="張成">
-`u_1, u_2, \ldots, u_n` 的張成是所有這些向量的線性組合所形成的集合，
-記作 `Span{u_1, u_2, \ldots, u_n}`。
+設 `u_1, u_2, \ldots, u_n` 是向量空間 `V` 裡的向量。它們的**張成**定義為所
+有線性組合組成的集合：
+
+$$
+\operatorname{Span}\{u_1, u_2, \ldots, u_n\}
+=
+\{\alpha_1u_1 + \alpha_2u_2 + \cdots + \alpha_nu_n \mid \alpha_i \in R\}.
+$$
 </Definition>
 
-張成就是「用已知向量可以造出甚麼」的總集合。
+因此，張成不是單一向量，而是由這些向量可造出的整個向量集合。
 
-筆記也說明，`Span{e_1, e_2}` 是 `R^3` 裡的 `x_1x_2` 平面，而
-`Span{e_1, e_2, e_3} = R^3`。
+也正因如此，張成常被讀作「由這組向量生成的子空間」。
 
-邊讀邊用下面的探索器，試試某個向量能否由指定向量組合而成。
+## `R^3` 裡的標準幾何例子
+
+<WorkedExample title="張成在 `R^3` 裡看起來像甚麼">
+令
+
+$$
+e_1 = \begin{bmatrix} 1 \\ 0 \\ 0 \end{bmatrix},
+\qquad
+e_2 = \begin{bmatrix} 0 \\ 1 \\ 0 \end{bmatrix},
+\qquad
+e_3 = \begin{bmatrix} 0 \\ 0 \\ 1 \end{bmatrix}.
+$$
+
+則 `\operatorname{Span}\{e_1, e_2\}` 中的每個向量都可寫成
+
+$$
+\alpha e_1 + \beta e_2
+=
+\begin{bmatrix}
+\alpha \\
+\beta \\
+0
+\end{bmatrix}.
+$$
+
+因此
+
+$$
+\operatorname{Span}\{e_1, e_2\}
+$$
+
+正正就是 `R^3` 裡的 `x_1x_2` 平面。
+
+若再把 `e_3` 加入，則 `R^3` 中任意向量都可寫成
+
+$$
+\alpha_1 e_1 + \alpha_2 e_2 + \alpha_3 e_3,
+$$
+
+故
+
+$$
+\operatorname{Span}\{e_1, e_2, e_3\} = R^3.
+$$
+</WorkedExample>
+
+這個例子很重要，因為它說明張成可以描述：
+
+- 一條直線；
+- 一個平面；
+- 甚至整個空間；
+
+視乎你起始的向量列表而定。
+
+## 為甚麼張成一定是子空間
+
+張成並不是某個隨意的子集合，它其實是由該組向量生成出來的最自然向量空間物
+件。
+
+<TheoremCard title="任何向量組的張成都必定是子空間">
+若 `u_1, \ldots, u_n` 是向量空間 `V` 裡的向量，則
+
+$$
+\operatorname{Span}\{u_1, \ldots, u_n\}
+$$
+
+是 `V` 的一個子空間。
+</TheoremCard>
+
+<CollapsibleProof title="為甚麼張成是子空間">
+張成非空，因為它包含零向量：
+
+$$
+0 = 0u_1 + \cdots + 0u_n.
+$$
+
+現在取兩個在張成中的向量 `v` 與 `w`。則存在純量 `\alpha_i` 與 `\beta_i`
+使得
+
+$$
+v = \alpha_1u_1 + \cdots + \alpha_nu_n,
+\qquad
+w = \beta_1u_1 + \cdots + \beta_nu_n.
+$$
+
+那麼
+
+$$
+v + w
+=
+(\alpha_1 + \beta_1)u_1 + \cdots + (\alpha_n + \beta_n)u_n,
+$$
+
+仍然是由同一組向量組成的線性組合，所以張成對加法封閉。
+
+若 `c \in R`，則
+
+$$
+cv = (c\alpha_1)u_1 + \cdots + (c\alpha_n)u_n,
+$$
+
+這仍然是同一組向量的線性組合，所以張成也對純量乘法封閉。
+
+因此，張成是 `V` 的子空間。
+</CollapsibleProof>
+
+這個定理是張成如此重要的主要原因之一：它給了我們一個系統方法，由一組向量
+直接構造子空間。
+
+## 把互動元件當成輔助圖像
+
+下面的張成探索器只有在上面的代數意義先弄清楚之後才真正有用。它讓你改變係
+數，觀察向量如何在生成集合裡移動，但它應被視為前述定義與定理的輔助圖像，
+而不是主要內容。
 
 <InteractiveWidget id="span-explorer" />
 
-## 為甚麼張成有用
-
-筆記也把張成和子空間連起來：任何向量組的張成都一定是子空間。
-
-<CollapsibleProof title="為甚麼張成一定是子空間">
-取 `Span{u_1, \ldots, u_n}` 裡任意兩個向量 `v` 和 `w`。
-
-按定義，它們各自都是 `u_1, \ldots, u_n` 的線性組合。把兩個線性組合
-相加，仍然是線性組合；乘上一個實數，也仍然是線性組合。
-
-所以張成對加法與純量乘法都封閉，因此是子空間。
-</CollapsibleProof>
-
 ## 常見錯誤
 
-<CommonMistake title="張成不只是正倍數">
-張成允許所有實數係數，不只是正數。它也包括零組合，所以 `0` 永遠
-在張成裡。
+<CommonMistake title="張成不是『正倍數集合』">
+線性組合裡的係數可以是任何實數，所以負數與 `0` 都同樣合法。若只容許正係數，
+那便不是本節所說的張成。
+</CommonMistake>
+
+<CommonMistake title="要證明屬於張成，就必須給出係數">
+只說一個向量「看起來差不多」並不足夠。要證明某向量屬於一個張成，你必須明
+確給出係數，或把關係轉成線性系統，證明它是一致的。
 </CommonMistake>
 
 ## 快速檢查
 
-<QuickCheck prompt="任何一組向量的張成都一定包含零向量嗎？">
-想一想當所有係數都取 `0` 會怎樣。
+<QuickCheck prompt="任何有限向量列表的張成都一定包含零向量嗎？">
+直接回到線性組合的定義回答。
 </QuickCheck>
 
 <RevealSolution title="答案">
-是。所有係數都取 `0` 時，就得到零向量。
+是。把所有係數都取成 `0`，便得到零向量，所以張成一定包含 `0`。
 </RevealSolution>
 
-<QuickCheck prompt="`R^3` 裡的 `Span{e_1, e_2}` 是否包含 `(2, -1, 0)`？">
-用 `x_1x_2` 平面的幾何圖像來想。
+<QuickCheck prompt="為甚麼 `\operatorname{Span}\{e_1, e_2\}` 在 `R^3` 裡會包含 `(2, -1, 0)`？">
+請把該向量寫成 `e_1` 與 `e_2` 的線性組合。
 </QuickCheck>
 
 <RevealSolution title="答案">
-是。它的第三個座標是 `0`，所以落在那個平面上。
+因為
+
+$$
+\begin{bmatrix}
+2 \\
+-1 \\
+0
+\end{bmatrix}
+=
+2e_1 - e_2.
+$$
+
+所以它是 `e_1` 與 `e_2` 的線性組合，自然屬於它們的張成。
 </RevealSolution>
 
-## 預備連結
+## 練習
 
-這一頁用到
-[6.2 子空間](/zh-hk/notes/math1030/vector-spaces/subspaces) 的想法，
-以及
-[2.2 增廣矩陣與行變換](/zh-hk/notes/math1030/matrices/augmented-matrices-row-operations) 的矩陣語言。
+<QuickCheck prompt="為甚麼生成列表中的每一個向量 `u_i` 都一定屬於 `\operatorname{Span}\{u_1, \ldots, u_n\}`？">
+請用係數直接說明。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+要孤立 `u_i`，只需令 `u_i` 的係數為 `1`，其餘向量的係數全為 `0`。於是
+
+$$
+u_i = 0u_1 + \cdots + 0u_{i-1} + 1u_i + 0u_{i+1} + \cdots + 0u_n,
+$$
+
+因此 `u_i` 本身就是那一列向量的一個線性組合，所以一定屬於其張成。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼定理 `b \in \operatorname{Span}\{u_1, \ldots, u_n\}` 當且僅當 `Ax = b` 可解，在計算上如此重要？">
+請用它帶來的計算方法回答。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+它把一個「能否生成」的問題，直接化成一個線性系統的一致性問題。於是你不必
+靠猜測係數，而是把 `u_1, \ldots, u_n` 放成矩陣的列，對增廣系統 `Ax = b` 做
+行化簡。一致與否，便準確告訴你 `b` 是否在該張成裡。
+</RevealSolution>
+
+## 相關筆記
+
+先讀
+[6.2 子空間](/zh-hk/notes/math1030/vector-spaces/subspaces) 可回顧本節用到
+的子空間判準；接着再讀
+[6.4 線性相關與線性獨立](/zh-hk/notes/math1030/vector-spaces/linear-dependence-and-independence)，
+看張成如何與「生成列表有沒有冗餘」這個問題連在一起。

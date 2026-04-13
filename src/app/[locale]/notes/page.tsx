@@ -5,7 +5,7 @@ import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { getCourseList } from "@/lib/textbook/content";
 import { getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
-import { getCourseHref } from "@/lib/textbook/routes";
+import { getCourseHref, getPublicNoteArchiveHref } from "@/lib/textbook/routes";
 import type { LocalizedText } from "@/lib/textbook/types";
 import { notFound } from "next/navigation";
 
@@ -110,7 +110,7 @@ export default async function NotesIndexPage({
             </GlassPanel>
             <GlassPanel className="min-w-52 p-4">
               <Link
-                href="/notes"
+                href={getPublicNoteArchiveHref()}
                 className="flex items-center gap-2 text-foreground transition-colors hover:text-primary"
               >
                 <BookOpen className="h-4 w-4 text-primary" />

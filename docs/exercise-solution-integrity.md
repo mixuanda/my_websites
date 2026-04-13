@@ -14,13 +14,18 @@ As of April 13, 2026, the latest local integrity-related checkpoints are:
 - `0526751` `Deepen augmented matrix notes`
 - `95f3ad7` `Deepen invertible matrix notes`
 
+The current local workspace also includes an uncommitted three-language rewrite
+of `math1030` unit `2.4` and `math1090` unit `3.4`. Both rewrites preserve the
+visible `QuickCheck` plus following `RevealSolution` contract instead of hiding
+answers inside the prompt block.
+
 Every push attempt for those checkpoints failed with the same external error:
 `ssh: Could not resolve hostname github.com: Temporary failure in name
 resolution`.
 
 The next resume point is to keep exercise integrity coupled to the next content
-rewrite, starting with the next MATH1030 unit that is expanded from the
-reference PDFs.
+rewrite, starting with the thin MATH1030 chapter 6 units and the first
+MATH1090 chapter 4 note.
 
 ## Current findings
 

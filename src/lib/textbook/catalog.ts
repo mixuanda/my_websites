@@ -1103,7 +1103,7 @@ const math1030: TextbookCourseMeta = {
   title: text("MATH1030: Linear algebra I", "MATH1030：線性代數 I", "MATH1030：线性代数 I"),
 };
 
-export const textbookCatalog: Record<CourseId, TextbookCourseMeta> = {
+export const textbookCatalog: Record<string, TextbookCourseMeta> = {
   math1030,
   math1090,
 };

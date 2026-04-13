@@ -38,6 +38,11 @@ Localization now covers both the note content and the shared chrome around it.
 - Progress state uses the canonical `unitId`, so switching languages does not
   reset completion.
 
+The latest three-language content rewrites also remove mixed English worksheet
+or source-file phrasing from the public teaching prose. The goal is that the
+localized note reads like a note in that language, not like a translation shell
+wrapped around authoring-process comments.
+
 ## Writing and translation rules
 
 The prose itself must stay mathematically stable while sounding natural in each
@@ -76,5 +81,6 @@ The following units currently exist in EN, zh-HK, and zh-CN.
 ## Next steps
 
 Keep future public wording inside the Notes frame, finish the zh-HK review on
-the newer units, and maintain full three-language parity whenever you expand
-coverage.
+the newer units, maintain full three-language parity whenever you expand
+coverage, and keep future-course architecture generic enough for Math1025
+without exposing unauthored routes publicly.

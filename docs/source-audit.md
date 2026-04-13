@@ -13,6 +13,10 @@ These units are already present in code and should remain source-backed.
 - `math1090`: 1.1, 1.2, 1.3, 2.1, 2.2, 3.1, 3.2, 3.3, 3.4, 3.5
 - `math1030`: 1.1, 2.1, 2.2, 2.3, 2.4, 5.1, 6.1, 6.2, 6.3, 6.4, 6.5
 
+There is still no authored `math1025` tree under `content/textbook`, but the
+reference folder already contains a full chapter-slide sequence plus homework
+and exam support. That future course is no longer "unknown"; it is unauthored.
+
 ## MATH1090
 
 The MATH1090 sources are strongest in the early logic, sets, and number
@@ -55,12 +59,13 @@ The current weak spots are:
 - Coverage is strong for logic, quantifiers, sets, functions, relations,
   natural numbers, induction, integers, rationals, and the `sqrt(2)` gap in
   `Q`.
-- Coverage becomes thin after the currently authored `3.5` note. The local
-  tree does not support a confident expansion into later real-number topics
-  without tighter page-by-page mapping.
-- `MISSING_SOURCE`: material beyond the currently audited `§4.7` boundary and
-  later completeness constructions is not yet supported well enough for
-  detailed public notes.
+- Coverage becomes thinner after the currently authored `3.5` note, but the
+  April 10 lecture packet and the review materials do support a next chapter on
+  total order, upper and lower bounds, supremum / infimum, and incompleteness
+  of `Q`.
+- `MISSING_SOURCE`: material well beyond the audited `§4.7` boundary and the
+  later completeness constructions still needs tighter page-by-page mapping
+  before it becomes detailed public notes.
 - `MISSING_SOURCE`: the homework sequence is incomplete. Only `HW1` and `HW8`
   are locally available.
 
@@ -136,6 +141,46 @@ The current weak spots are:
 - `MISSING_SOURCE`: later problem sets are less densely represented than the
   early matrix and vector-space chapters.
 
+## MATH1025
+
+The MATH1025 tree is broad enough to enter planning immediately, even though it
+does not yet appear in the public Notes catalog.
+
+### Available materials
+
+The current local files for MATH1025 include:
+
+- `reference/MATH1025/MATH1025_slides_ch0.pdf` through
+  `reference/MATH1025/MATH1025_slides_ch11.pdf`
+- `reference/MATH1025/MATH1025_Midterm_Exam.pdf`
+- `reference/MATH1025/MATH1028_Midterm_Exam.pdf`
+- `reference/MATH1025/Solution to MATH1025_1028_HW1.pdf` through
+  `reference/MATH1025/Solution to MATH1025_1028_HW10.pdf`
+- `reference/MATH1025/Solution to MATH1025_Midterm_Exam.pdf`
+- `reference/MATH1025/Solution to MATH1028_Midterm_Exam.pdf`
+
+### Duplicate or conflicting materials
+
+The MATH1025 tree is cleaner than MATH1030, but there are still distinctions to
+preserve during future authoring.
+
+- `*:Zone.Identifier` files are sidecar metadata only.
+- The `1028` exam and solution files are adjacent-course support, not primary
+  chapter-note sources.
+- The homework and exam solution PDFs are secondary support. They should enrich
+  exercises only after the chapter notes are built from the slide sequence.
+
+### Weak or incomplete coverage
+
+The current weak spots are straightforward:
+
+- The repository clearly contains usable conceptual material for a future
+  MATH1025 course.
+- No public `math1025` notes, catalog entries, or localized route content
+  exist yet.
+- A chapter-by-chapter route plan is required before any public authoring
+  starts.
+
 ## Audit rules for content authors
 
 Use this audit during authoring so the public notes stay conservative and
@@ -151,6 +196,7 @@ traceable.
 
 ## Next steps
 
-Map later MATH1030 sections page by page before writing new notes, and do not
-expand MATH1090 beyond the current `3.5` boundary until stronger local support
-is available.
+Map later MATH1030 sections page by page before writing new notes, start the
+next MATH1090 pass from the clear chapter 4 source support already present in
+the April 10 packet and the review notes, and keep MATH1025 in the internal
+coverage map until the active Math1090 and Math1030 corrections are stable.

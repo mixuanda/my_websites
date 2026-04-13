@@ -12,6 +12,12 @@ As of April 13, 2026, the latest local parity-related checkpoints are:
 - `49345a4` `Fix set note reveal integrity`
 - `0526751` `Deepen augmented matrix notes`
 
+The current local workspace also includes synchronized rewrites of `math1090`
+unit `3.4` and `math1030` unit `2.4` in EN, zh-HK, and zh-CN. Those rewrites
+remove public source-process phrasing and keep the same theorem / example /
+quick-check order across all three locales. The same is now true for
+`math1030` units `6.1` and `6.3`.
+
 Every push attempt for those checkpoints failed with the same external error:
 `ssh: Could not resolve hostname github.com: Temporary failure in name
 resolution`.

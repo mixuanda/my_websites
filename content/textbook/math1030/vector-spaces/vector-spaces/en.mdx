@@ -1,100 +1,381 @@
 ---
 title: "6.1 Vector spaces"
-description: "Meet the common algebraic rules that let very different objects behave like vectors."
+description: "Define vector spaces carefully, compare the standard examples, and prove the first structural facts that every later span, basis, and dimension argument depends on."
 ---
 
-## Why this chapter starts here
+Chapter 6 marks a real shift in the course. Earlier chapters focused on
+particular matrix procedures: solving systems, row reduction, invertibility, and
+null space. A vector space asks a broader question:
 
-Linear algebra keeps reusing the same two moves: add things together, then scale
-them by real numbers. A vector space is the setting where those moves make
-sense and obey the usual rules.
+What algebraic structure is shared by all the settings where we can add objects
+and multiply them by scalars?
+
+That question matters because linear algebra is not only about column vectors in
+`R^n`. It also applies to matrix spaces, polynomial spaces, function spaces, and
+later to subspaces cut out by equations. If the same algebraic rules hold in all
+those settings, then one theory can govern all of them.
+
+## Why the chapter begins with structure rather than computation
+
+In `R^n`, you already know how to do two things:
+
+1. add vectors;
+2. multiply a vector by a real number.
+
+Those two operations are so familiar that it is easy to forget what makes them
+work well. They are not merely defined. They satisfy a network of rules:
+
+- addition stays inside the set;
+- scalar multiplication stays inside the set;
+- addition is associative and commutative;
+- there is a genuine zero vector;
+- every vector has an additive inverse;
+- scalar multiplication interacts with addition in the expected distributive way.
+
+The purpose of the definition is to isolate exactly those rules and make them
+the starting point.
+
+## The geometric model: Euclidean space `R^n`
+
+The first model is still geometric. A vector in `R^n` is an ordered `n`-tuple of
+real numbers, usually written as a column vector. In `R^2` and `R^3`, such
+vectors can be pictured as directed line segments.
+
+For example, in `R^2`,
+
+$$
+u = \begin{bmatrix} 1 \\ 2 \end{bmatrix},
+\qquad
+v = \begin{bmatrix} 3 \\ -1 \end{bmatrix}.
+$$
+
+Their sum is
+
+$$
+u + v = \begin{bmatrix} 4 \\ 1 \end{bmatrix},
+$$
+
+and for a scalar `\alpha = 2`,
+
+$$
+2u = \begin{bmatrix} 2 \\ 4 \end{bmatrix}.
+$$
+
+Geometrically, vector addition can be drawn by the head-to-tail rule or by the
+parallelogram law. Scalar multiplication stretches or reverses direction,
+depending on the sign of the scalar.
+
+That geometric picture is useful, but it is not the full definition of linear
+algebra. The full definition must also cover settings that have no obvious
+picture in the plane.
+
+## Formal definition
 
 <Definition title="Vector space">
-A vector space over the real numbers is a non-empty set `V` with addition and
-scalar multiplication such that the usual vector laws hold: closure under
-addition and scalar multiplication, commutativity, associativity, a zero vector,
-additive inverses, distributivity, and scalar one.
+Let `V` be a nonempty set equipped with an addition operation and a scalar
+multiplication by real numbers. We say that `V` is a **vector space over `R`**
+if the following axioms hold for all vectors `u, v, w \in V` and all scalars
+`\alpha, \beta \in R`:
+
+1. `u + v \in V` (closure under addition);
+2. `\alpha u \in V` (closure under scalar multiplication);
+3. `u + v = v + u` (commutativity of addition);
+4. `u + (v + w) = (u + v) + w` (associativity of addition);
+5. there exists a vector `0 \in V` such that `u + 0 = u` for all `u`;
+6. for every `u \in V`, there exists `-u \in V` such that `u + (-u) = 0`;
+7. `\alpha(\beta u) = (\alpha\beta)u`;
+8. `\alpha(u + v) = \alpha u + \alpha v`;
+9. `(\alpha + \beta)u = \alpha u + \beta u`;
+10. `1u = u`.
 </Definition>
 
-## Familiar examples
+This definition deserves to be read slowly. It says that a vector space is not
+merely a set of objects that look like vectors. It is a set together with two
+operations that satisfy these ten structural laws.
 
-The notes build the idea from several examples:
+In particular, the zero vector and additive inverse are part of the algebraic
+structure. They are not visual conventions.
 
-- `R^n` with usual vector addition and scalar multiplication.
-- `M_{mn}`, the set of `m × n` real matrices with usual matrix addition and
-  scalar multiplication.
-- The set of all functions from `R` to `R`.
-- `P_n`, the polynomials in one variable of degree at most `n`.
+## Standard examples
 
-These look different, but the same algebraic rules still work.
+The source notes begin with a list of examples that all satisfy the same axioms
+even though the underlying objects look very different.
 
-<WorkedExample title="One idea, two different-looking examples">
-Take `u = (1, 2)` and `v = (3, -1)` in `R^2`.
+<WorkedExample title="Four standard vector spaces">
+The following are all vector spaces over `R` with their usual operations.
 
-Then
+1. **Euclidean space `R^n`.** Vectors are `n`-tuples of real numbers.
 
-$$
-u + v = (4, 1), \qquad 2u = (2, 4).
-$$
+2. **Matrix space `M_{mn}` or `R^{m \times n}`.** Vectors are `m \times n`
+   real matrices, and the vector-space operations are ordinary matrix addition
+   and scalar multiplication.
 
-Now take
+3. **Function space `F = \{f : R \to R\}`.** The sum and scalar multiple are
+   defined pointwise:
 
-$$
-A = \begin{bmatrix} 1 & 0 \\ 2 & -1 \end{bmatrix},
-\qquad
-B = \begin{bmatrix} 0 & 3 \\ 1 & 1 \end{bmatrix}.
-$$
+   $$
+   (f + g)(x) = f(x) + g(x),
+   \qquad
+   (\alpha f)(x) = \alpha f(x).
+   $$
 
-Then
+4. **Polynomial space `P_n`.** The elements are real polynomials of degree at
+   most `n`, with the usual polynomial addition and scalar multiplication.
 
-$$
-A + B = \begin{bmatrix} 1 & 3 \\ 3 & 0 \end{bmatrix}.
-$$
-
-The objects are different, but the same addition-and-scaling logic is at work.
+These examples already show the real point of the definition. Linear algebra is
+not tied to one shape of object. It is tied to one family of algebraic laws.
 </WorkedExample>
 
-## What the axioms are doing
+### The function-space example
 
-The axioms are not just formal decoration. They guarantee that the usual moves
-you already trust in `R^n` also work in more abstract settings.
+Function spaces are often the first place where students see that "vector" does
+not mean "arrow in the plane."
 
-## Common mistake
+If `f, g : R \to R`, then `f + g` is another function from `R` to `R`, and
+`\alpha f` is also a function from `R` to `R`. The zero vector is the zero
+function
 
-<CommonMistake title="Shape alone is not enough">
-Not every set with numbers in it is a vector space. You still need closure and
-the rest of the vector laws. A set can look familiar and still fail one of the
-axioms.
-</CommonMistake>
+$$
+0(x) = 0 \quad \text{for all } x \in R,
+$$
 
-## A small proof worth remembering
+and the additive inverse of `f` is the function `-f` defined by
 
-<CollapsibleProof title="Why the zero vector is unique">
-Suppose `0` and `0'` are both zero vectors in the same vector space.
+$$
+(-f)(x) = -f(x).
+$$
 
-Then `0 = 0 + 0' = 0'`. So there is only one zero vector.
+Every vector-space axiom is checked pointwise. That is exactly why this is a
+vector space.
+
+### The polynomial-space example
+
+The same pattern works for polynomials. If
+
+$$
+p(x) = a_0 + a_1x + \cdots + a_nx^n,
+\qquad
+q(x) = b_0 + b_1x + \cdots + b_nx^n,
+$$
+
+then `p + q` and `\alpha p` are still polynomials of degree at most `n`. So the
+set `P_n` is closed under the operations, and the other axioms follow from the
+usual algebra of real numbers.
+
+## A warning: the operations matter
+
+One of the most important remarks in the source notes is that a vector space is
+determined not only by its underlying set, but also by the operations chosen on
+that set.
+
+The same set can support different vector-space structures.
+
+<WorkedExample title="A nonstandard vector space on the same underlying set">
+Let
+
+$$
+C = \{(x_1, x_2) \mid x_1, x_2 \in R\}.
+$$
+
+Define operations by
+
+$$
+(x_1, x_2) \oplus (y_1, y_2) = (x_1 + y_1 + 1,\ x_2 + y_2 + 1),
+$$
+
+and
+
+$$
+\alpha \odot (x_1, x_2) = (\alpha x_1 + \alpha - 1,\ \alpha x_2 + \alpha - 1).
+$$
+
+This is not the usual vector-space structure on `R^2`, but it still satisfies
+the vector-space axioms. In this structure, the zero vector is
+
+$$
+0_C = (-1, -1),
+$$
+
+not `(0, 0)`.
+</WorkedExample>
+
+This example is valuable because it forces you to think structurally. The phrase
+"zero vector" means the additive identity for the chosen operation, not the
+visually obvious point `(0, 0)` from the usual Euclidean structure.
+
+## First structural theorems
+
+After the definition, the first theorems in the source notes establish facts
+that may feel obvious from `R^n`, but which should now be proved from the
+axioms alone.
+
+<TheoremCard title="Cancellation law for vector addition">
+If `v, u, w \in V` and
+
+$$
+v + w = u + w,
+$$
+
+then
+
+$$
+v = u.
+$$
+</TheoremCard>
+
+<CollapsibleProof title="Proof of the cancellation law">
+By the additive-inverse axiom, there exists `-w \in V` such that
+
+$$
+w + (-w) = 0.
+$$
+
+Starting from `v + w = u + w`, add `-w` to both sides:
+
+$$
+(v + w) + (-w) = (u + w) + (-w).
+$$
+
+By associativity,
+
+$$
+v + (w + (-w)) = u + (w + (-w)).
+$$
+
+Since `w + (-w) = 0`, this becomes
+
+$$
+v + 0 = u + 0.
+$$
+
+Using the zero-vector axiom, we conclude
+
+$$
+v = u.
+$$
 </CollapsibleProof>
 
-## Quick check
+<TheoremCard title="Uniqueness of the zero vector and additive inverse">
+In any vector space:
 
-<QuickCheck prompt="Which of these is a vector space with the usual operations: `R^n`, `M_{mn}`, or the set of all functions from `R` to `R`?">
-Think about which examples are explicitly listed in the notes.
+1. the zero vector is unique;
+2. each vector has a unique additive inverse.
+</TheoremCard>
+
+<CollapsibleProof title="Why the zero vector is unique">
+Suppose `0_1` and `0_2` both satisfy the zero-vector axiom. Then
+
+$$
+0_1 + 0_2 = 0_2
+$$
+
+because `0_1` acts as a zero vector, and also
+
+$$
+0_1 + 0_2 = 0_1
+$$
+
+because `0_2` acts as a zero vector. Hence
+
+$$
+0_1 = 0_2.
+$$
+</CollapsibleProof>
+
+<CollapsibleProof title="Why the additive inverse is unique">
+Suppose both `v` and `u` are additive inverses of `w`. Then
+
+$$
+v + w = 0
+\qquad\text{and}\qquad
+u + w = 0.
+$$
+
+So
+
+$$
+v + w = u + w.
+$$
+
+By the cancellation law, `v = u`. Therefore the additive inverse of a vector is
+unique.
+</CollapsibleProof>
+
+These theorems are elementary, but they matter because they justify later
+arguments. Once uniqueness is proved, you may speak of **the** zero vector and
+**the** additive inverse without ambiguity.
+
+## What students often overlook
+
+<CommonMistake title="Closure is necessary, but it is not enough">
+A set may be closed under one or both operations and still fail to be a vector
+space. The full axiom list matters. Closure alone does not guarantee the
+existence of a zero vector, additive inverses, or distributive laws.
+</CommonMistake>
+
+<CommonMistake title="The zero vector depends on the chosen operations">
+In the usual structure on `R^2`, the zero vector is `(0, 0)`. In the nonstandard
+example above, the zero vector is `(-1, -1)`. The phrase "zero vector" refers to
+the additive identity of the current vector-space structure, not to a visually
+preferred coordinate pair.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Why is the set of all functions `f : R \to R` a vector space with pointwise addition and scalar multiplication?">
+Answer by identifying the operations and the zero vector, not by appealing to
+intuition alone.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-All of them are vector spaces over `R` with the usual operations.
+Pointwise addition and scalar multiplication keep us inside the set of functions
+from `R` to `R`. The zero vector is the zero function `0(x) = 0`, and the other
+axioms hold because they reduce pointwise to the usual arithmetic laws in `R`.
 </RevealSolution>
 
-<QuickCheck prompt="Can a vector space have two different zero vectors at the same time?">
-Use the proof above, or test the defining property directly.
+<QuickCheck prompt="Can the same underlying set carry two different vector-space structures?">
+Think about the nonstandard example on ordered pairs.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-No. The zero vector is unique.
+Yes. The same underlying set can support different choices of addition and
+scalar multiplication. What matters is the full algebraic structure, not only
+the set of elements.
 </RevealSolution>
 
-## Read this first
+## Exercises
 
-If you want the matrix and system language behind these examples, review
-[2.1 Matrix basics](/en/notes/math1030/matrices/matrix-basics) and
-[1.1 Equations and solution sets](/en/notes/math1030/systems/equations-solution-sets).
+<QuickCheck prompt="Explain why `P_2`, the polynomials of degree at most `2`, is closed under addition and scalar multiplication.">
+Use the degree bound directly.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+If `p(x)` and `q(x)` both have degree at most `2`, then each has the form
+
+$$
+a_0 + a_1x + a_2x^2.
+$$
+
+Adding them still produces a polynomial with no power above `x^2`, and
+multiplying by a scalar only rescales the coefficients. So both operations stay
+inside `P_2`.
+</RevealSolution>
+
+<QuickCheck prompt="Why does the uniqueness of the zero vector need a proof instead of being built into the definition directly?">
+Answer from the axiomatic viewpoint.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The definition says that a vector with the zero-vector property exists, not that
+there is exactly one such vector. Uniqueness must be deduced from the axioms so
+that later arguments can refer unambiguously to the zero vector.
+</RevealSolution>
+
+## Related notes
+
+Read
+[4.1 Homogeneous systems and null space](/en/notes/math1030/solution-structure/homogeneous-systems-and-null-space)
+for one important family of subspaces already defined by equations, and then
+continue to
+[6.2 Subspaces](/en/notes/math1030/vector-spaces/subspaces), where these
+axioms are used to decide when a subset inherits a vector-space structure.

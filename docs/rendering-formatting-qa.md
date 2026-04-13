@@ -14,13 +14,21 @@ As of April 13, 2026, the latest local rendering-related checkpoints are:
 - `0526751` `Deepen augmented matrix notes`
 - `95f3ad7` `Deepen invertible matrix notes`
 
+The current local workspace also includes an uncommitted formatting pass that
+replaces the brittle augmented-matrix markup in `math1030` unit `2.4` with
+`array`-based display math and removes public source-process phrasing from the
+rewritten `math1090` unit `3.4`. The same local pass also cleaned the rewritten
+`math1030` `6.1` and `6.3` localized files so they no longer leave Chinese
+punctuation inside display-math blocks.
+
 Every push attempt for those checkpoints failed with the same external error:
 `ssh: Could not resolve hostname github.com: Temporary failure in name
 resolution`.
 
-The next resume point is a representative formatting and content pass on
-`2.3 Gaussian elimination and RREF`, while keeping the textbook inline-math
-renderer and note-block behavior aligned.
+The next resume point is a representative formatting and content pass on the
+remaining thin chapter 6 MATH1030 notes, while keeping the inline-math renderer
+and export output aligned with the newer `2.4`, `6.1`, and `6.3` notation
+cleanup.
 
 ## Current findings
 

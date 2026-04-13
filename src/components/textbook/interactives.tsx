@@ -601,13 +601,10 @@ function SpanExplorer({ locale }: { locale: Locale }) {
   const [alpha, setAlpha] = useState(1);
   const [beta, setBeta] = useState(0);
   const current = cases[selected];
-  const result = useMemo(
-    () => [
-      alpha * cases[selected].u[0] + beta * cases[selected].v[0],
-      alpha * cases[selected].u[1] + beta * cases[selected].v[1],
-    ],
-    [alpha, beta, selected]
-  );
+  const result = [
+    alpha * current.u[0] + beta * current.v[0],
+    alpha * current.u[1] + beta * current.v[1],
+  ];
 
   return (
     <InteractiveShell icon={<ArrowLeftRight className="h-5 w-5" />} locale={locale} widgetId="span-explorer">
