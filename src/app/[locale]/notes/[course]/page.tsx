@@ -149,6 +149,9 @@ export default async function CoursePage({ params }: CoursePageProps) {
                               {getLocalizedText(uiText.interactiveUnits, locale)}
                             </Badge>
                           ) : null}
+                          {unit.accessTier === "MEMBER" ? (
+                            <Badge variant="outline">{getLocalizedText(uiText.premium, locale)}</Badge>
+                          ) : null}
                         </div>
                         <h3 className="mt-4 text-lg font-semibold">{unit.title[locale]}</h3>
                         <p className="mt-3 text-sm leading-7 text-muted-foreground">

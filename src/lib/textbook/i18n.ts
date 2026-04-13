@@ -235,4 +235,29 @@ export const uiText = {
     "zh-cn": "本系列更多笔记",
     "zh-hk": "本系列更多筆記",
   },
+  premium: {
+    en: "Member",
+    "zh-cn": "会员",
+    "zh-hk": "會員",
+  },
+  premiumLocked: {
+    en: "This advanced section is available to members.",
+    "zh-cn": "这一进阶小节仅向会员开放。",
+    "zh-hk": "這一進階小節僅向會員開放。",
+  },
+  upgradeMembership: {
+    en: "Upgrade membership",
+    "zh-cn": "升级会员",
+    "zh-hk": "升級會員",
+  },
+  estimatedReadingTime: {
+    en: "Estimated reading time",
+    "zh-cn": "预计阅读时间",
+    "zh-hk": "預計閱讀時間",
+  },
+  minutes: {
+    en: "min",
+    "zh-cn": "分钟",
+    "zh-hk": "分鐘",
+  },
 } as const satisfies Record<string, LocalizedText>;

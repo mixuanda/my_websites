@@ -386,6 +386,157 @@ const math1090NumbersUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1090OrderUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "order-and-completeness",
+    chapterNumber: "4",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Study total order, upper/lower bounds, supremum/infimum, and why completeness is the structural gap between Q and R.",
+      "學習全序、上下界、上確界/下確界，以及完備性為何是 Q 與 R 之間的關鍵結構差異。",
+      "学习全序、上下界、上确界/下确界，以及完备性为何是 Q 与 R 之间的关键结构差异。"
+    ),
+    glossaryRefs: ["set"],
+    interactiveIds: [],
+    order: 11,
+    prerequisites: ["math1090.numbers.gaps-in-q-and-sqrt2"],
+    slug: "order-bounds-and-completeness",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf",
+        pages: "§4.1-§4.7",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_midterm_review_notes_final.pdf",
+        note: "Order, bounds, supremum/infimum and completeness review",
+      },
+    ],
+    title: text(
+      "4.1 Order, bounds, and completeness",
+      "4.1 序、界與完備性",
+      "4.1 序、界与完备性"
+    ),
+    unitId: "math1090.order-and-completeness.order-bounds-and-completeness",
+    unitNumber: "4.1",
+  },
+];
+
+const csci2520AdtUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "adt-and-operations",
+    chapterNumber: "1",
+    course: "csci2520",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Build a precise ADT view of stacks, queues, and function-pointer-based operation dispatch in C data-structure implementations.",
+      "以 ADT 角度精確理解 stack、queue 以及 C 語言中以 function pointer 進行操作分派的設計。",
+      "以 ADT 角度精确理解 stack、queue 以及 C 语言中以 function pointer 进行操作分派的设计。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: ["adt-stack-queue-stepper"],
+    order: 1,
+    prerequisites: [],
+    slug: "stack-queue-and-function-operations",
+    sourceRefs: [
+      { file: "reference/CSCI2520/2520ds_01_adt.ppt" },
+      { file: "reference/CSCI2520/2520ds_02_stack.ppt" },
+      { file: "reference/CSCI2520/2520ds_03_queue.ppt" },
+      { file: "reference/CSCI2520/2520ds_04b_functionPointer.ppt" },
+    ],
+    title: text(
+      "1.1 ADT operations: stack, queue, and function pointers",
+      "1.1 ADT 操作：stack、queue 與 function pointer",
+      "1.1 ADT 操作：stack、queue 与 function pointer"
+    ),
+    unitId: "csci2520.adt-and-operations.stack-queue-and-function-operations",
+    unitNumber: "1.1",
+  },
+];
+
+const csci2520ComplexityUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "complexity-and-sorting",
+    chapterNumber: "2",
+    course: "csci2520",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Interpret asymptotic growth and compare algorithmic costs before implementing sorting or selection routines.",
+      "在實作排序或選擇演算法前，先解讀漸進增長並比較成本。",
+      "在实作排序或选择算法前，先解读渐进增长并比较成本。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: ["complexity-growth-comparator"],
+    order: 2,
+    prerequisites: ["csci2520.adt-and-operations.stack-queue-and-function-operations"],
+    slug: "complexity-growth-and-cost",
+    sourceRefs: [
+      { file: "reference/CSCI2520/2520ds_06_complexity (1).ppt" },
+      { file: "reference/CSCI2520/csci2520_tuto5_complexity_analysis (1).pptx" },
+      { file: "reference/CSCI2520/2520ds_07_sorting (1).ppt" },
+      { file: "reference/CSCI2520/2520ds_07_sorting2 (1).pptx" },
+    ],
+    title: text(
+      "2.1 Complexity growth and algorithmic cost",
+      "2.1 複雜度增長與演算法成本",
+      "2.1 复杂度增长与算法成本"
+    ),
+    unitId: "csci2520.complexity-and-sorting.complexity-growth-and-cost",
+    unitNumber: "2.1",
+  },
+];
+
+const math1025FoundationUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "foundations",
+    chapterNumber: "0",
+    course: "math1025",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Set up notation, proof habits, and algebraic prerequisites that support later trigonometry, sequences, and vectors.",
+      "建立符號、證明習慣與代數先備，為後續三角、數列與向量章節打底。",
+      "建立符号、证明习惯与代数先备，为后续三角、数列与向量章节打底。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 1,
+    prerequisites: [],
+    slug: "course-foundations-and-notation",
+    sourceRefs: [{ file: "reference/MATH1025/MATH1025_slides_ch0.pdf" }],
+    title: text(
+      "0.1 Course foundations and notation",
+      "0.1 課程基礎與記號",
+      "0.1 课程基础与记号"
+    ),
+    unitId: "math1025.foundations.course-foundations-and-notation",
+    unitNumber: "0.1",
+  },
+  {
+    chapterId: "foundations",
+    chapterNumber: "1",
+    course: "math1025",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Reinforce equation-solving structure and trigonometric identities with proof-aware algebraic transformations.",
+      "以帶證明意識的代數變形鞏固方程結構與三角恆等式。",
+      "以带证明意识的代数变形巩固方程结构与三角恒等式。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 2,
+    prerequisites: ["math1025.foundations.course-foundations-and-notation"],
+    slug: "equation-structure-and-trigonometric-identities",
+    sourceRefs: [{ file: "reference/MATH1025/MATH1025_slides_ch1(1).pdf" }],
+    title: text(
+      "1.1 Equation structure and trigonometric identities",
+      "1.1 方程結構與三角恆等式",
+      "1.1 方程结构与三角恒等式"
+    ),
+    unitId: "math1025.foundations.equation-structure-and-trigonometric-identities",
+    unitNumber: "1.1",
+  },
+];
+
 const math1030SystemsUnits: TextbookUnitMeta[] = [
   {
     chapterId: "systems",
@@ -697,6 +848,7 @@ const math1030SolutionStructureUnits: TextbookUnitMeta[] = [
 
 const math1030InvertibilityUnits: TextbookUnitMeta[] = [
   {
+    accessTier: "MEMBER",
     chapterId: "invertibility",
     chapterNumber: "5",
     course: "math1030",
@@ -755,6 +907,7 @@ const math1030InvertibilityUnits: TextbookUnitMeta[] = [
 
 const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
   {
+    accessTier: "MEMBER",
     chapterId: "vector-spaces",
     chapterNumber: "6",
     course: "math1030",
@@ -788,6 +941,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     unitNumber: "6.1",
   },
   {
+    accessTier: "MEMBER",
     chapterId: "vector-spaces",
     chapterNumber: "6",
     course: "math1030",
@@ -824,6 +978,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     unitNumber: "6.2",
   },
   {
+    accessTier: "MEMBER",
     chapterId: "vector-spaces",
     chapterNumber: "6",
     course: "math1030",
@@ -860,6 +1015,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     unitNumber: "6.3",
   },
   {
+    accessTier: "MEMBER",
     chapterId: "vector-spaces",
     chapterNumber: "6",
     course: "math1030",
@@ -897,6 +1053,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     unitNumber: "6.4",
   },
   {
+    accessTier: "MEMBER",
     chapterId: "vector-spaces",
     chapterNumber: "6",
     course: "math1030",
@@ -932,6 +1089,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     unitNumber: "6.5",
   },
   {
+    accessTier: "MEMBER",
     chapterId: "vector-spaces",
     chapterNumber: "6",
     course: "math1030",
@@ -1006,6 +1164,18 @@ const math1090: TextbookCourseMeta = {
       ),
       title: text("Numbers by construction", "由構造得到的數系", "由构造得到的数系"),
       units: math1090NumbersUnits,
+    },
+    {
+      course: "math1090",
+      id: "order-and-completeness",
+      number: "4",
+      summary: text(
+        "Total order, bounds, supremum and infimum, and the completeness gap between Q and R.",
+        "全序、上下界、上確界與下確界，以及 Q 與 R 的完備性差異。",
+        "全序、上下界、上确界与下确界，以及 Q 与 R 的完备性差异。"
+      ),
+      title: text("Order and completeness", "序與完備性", "序与完备性"),
+      units: math1090OrderUnits,
     },
   ],
   description: text(
@@ -1103,7 +1273,71 @@ const math1030: TextbookCourseMeta = {
   title: text("MATH1030: Linear algebra I", "MATH1030：線性代數 I", "MATH1030：线性代数 I"),
 };
 
+const csci2520: TextbookCourseMeta = {
+  chapters: [
+    {
+      course: "csci2520",
+      id: "adt-and-operations",
+      number: "1",
+      summary: text(
+        "From ADT contracts to operation behavior in stack/queue implementations.",
+        "由 ADT 規格走向 stack/queue 實作中的操作行為。",
+        "由 ADT 规格走向 stack/queue 实作中的操作行为。"
+      ),
+      title: text("ADT and operation semantics", "ADT 與操作語義", "ADT 与操作语义"),
+      units: csci2520AdtUnits,
+    },
+    {
+      course: "csci2520",
+      id: "complexity-and-sorting",
+      number: "2",
+      summary: text(
+        "Asymptotic growth, cost comparison, and sorting-oriented complexity reasoning.",
+        "漸進增長、成本比較與面向排序的複雜度推理。",
+        "渐进增长、成本比较与面向排序的复杂度推理。"
+      ),
+      title: text("Complexity and sorting", "複雜度與排序", "复杂度与排序"),
+      units: csci2520ComplexityUnits,
+    },
+  ],
+  description: text(
+    "Structured notes for CSCI2520 data-structure foundations with operation-level reasoning and selective interactive demonstrations.",
+    "針對 CSCI2520 資料結構基礎的結構化筆記，重視操作層級推理與選擇性互動示範。",
+    "针对 CSCI2520 资料结构基础的结构化笔记，重视操作层级推理与选择性互动示范。"
+  ),
+  id: "csci2520",
+  shortTitle: text("Data structures", "資料結構", "资料结构"),
+  title: text("CSCI2520: Data structures", "CSCI2520：資料結構", "CSCI2520：资料结构"),
+};
+
+const math1025: TextbookCourseMeta = {
+  chapters: [
+    {
+      course: "math1025",
+      id: "foundations",
+      number: "0-1",
+      summary: text(
+        "Foundational symbolic language and core transformations used across the course.",
+        "課程基礎符號語言與全課共用的核心變形技巧。",
+        "课程基础符号语言与全课共用的核心变形技巧。"
+      ),
+      title: text("Foundations and early methods", "基礎與早期方法", "基础与早期方法"),
+      units: math1025FoundationUnits,
+    },
+  ],
+  description: text(
+    "MATH1025 preparatory notes built from repository slide chapters, expanded progressively with proof-aware worked examples.",
+    "以 repository 投影片章節為基礎逐步擴寫的 MATH1025 筆記，重視證明意識與例題步驟。",
+    "以 repository 投影片章节为基础逐步扩写的 MATH1025 笔记，重视证明意识与例题步骤。"
+  ),
+  id: "math1025",
+  shortTitle: text("Preparatory mathematics", "預備數學", "预备数学"),
+  title: text("MATH1025: Preparatory mathematics", "MATH1025：預備數學", "MATH1025：预备数学"),
+};
+
 export const textbookCatalog: Record<string, TextbookCourseMeta> = {
+  csci2520,
+  math1025,
   math1030,
   math1090,
 };

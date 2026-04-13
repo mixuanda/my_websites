@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { auth } from "@/lib/auth";
+import { canAccessTier, getUserEntitlements } from "@/lib/membership/entitlements";
 import { getProblemById } from "@/lib/textbook/problem-bank";
 import { gradeProblem } from "@/lib/textbook/problem-grading";
 import type { ProblemSubmission } from "@/lib/textbook/types";
@@ -17,6 +19,11 @@ export async function POST(request: Request) {
     const problem = getProblemById(payload.problemId);
     if (!problem) {
       return NextResponse.json({ error: "Problem not found" }, { status: 404 });
+    }
+
+    const entitlements = await getUserEntitlements(await auth());
+    if (!canAccessTier(entitlements, problem.accessTier)) {
+      return NextResponse.json({ error: "Member access required." }, { status: 403 });
     }
 
     const result = gradeProblem(problem, payload.submission);

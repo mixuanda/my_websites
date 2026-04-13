@@ -3,6 +3,7 @@ import { auth } from "@/lib/auth";
 import { getProblemById } from "@/lib/textbook/problem-bank";
 import { persistProblemAttempt, getSectionMastery } from "@/lib/textbook/problem-attempts";
 import { gradeProblem } from "@/lib/textbook/problem-grading";
+import { canAccessTier, getUserEntitlements } from "@/lib/membership/entitlements";
 import type { ProblemAttemptRecord, ProblemSubmission } from "@/lib/textbook/types";
 
 export async function POST(request: Request) {
@@ -21,8 +22,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Problem not found" }, { status: 404 });
     }
 
-    const result = gradeProblem(problem, payload.submission);
     const session = await auth();
+    const entitlements = await getUserEntitlements(session);
+    if (!canAccessTier(entitlements, problem.accessTier)) {
+      return NextResponse.json({ error: "Member access required." }, { status: 403 });
+    }
+
+    const result = gradeProblem(problem, payload.submission);
     const userId = (session?.user as { id?: string } | undefined)?.id;
 
     const attempt: ProblemAttemptRecord = {

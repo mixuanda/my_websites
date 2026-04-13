@@ -1,0 +1,67 @@
+---
+title: "1.1 ADT 操作：stack、queue 與 function pointer"
+description: "先定義操作契約，再追蹤 stack/queue 狀態轉移，最後理解 C 語言 function pointer 的操作分派。"
+---
+
+## 為甚麼先談 ADT 契約
+
+資料結構課最易出錯的位置，不是語法，而是操作語義。ADT 先規定「可
+做甚麼、做完要保證甚麼、錯誤情況如何處理」，然後才選實作（array
+或 linked list）。
+
+## Stack 操作語義
+
+<Definition title="Stack 核心操作">
+- `push(x)`：把 `x` 放到頂端。
+- `pop()`：移除並回傳頂端元素。
+- `top()`：讀取頂端但不移除。
+- `isEmpty()`：檢查是否為空。
+</Definition>
+
+LIFO 是核心不變量：後進先出。
+
+## Queue 操作語義
+
+<Definition title="Queue 核心操作">
+- `enqueue(x)`：從尾端加入 `x`。
+- `dequeue()`：由前端移除並回傳。
+- `front()`：讀取前端但不移除。
+- `isEmpty()`：檢查是否為空。
+</Definition>
+
+Queue 的不變量是 FIFO：先進先出。
+
+## C 語言 function pointer 操作分派
+
+把 ADT 操作函數放進 function-pointer table，可在不改 client call-site
+下切換實作。這是 C 中常見的介面穩定策略。
+
+<InteractiveWidget id="adt-stack-queue-stepper" />
+
+## 常見錯誤
+
+<CommonMistake title="把 stack/queue 語義混用">
+函數名稱叫 queue，但行為做成 LIFO，屬於契約破壞。
+</CommonMistake>
+
+<CommonMistake title="忽略空結構前置條件">
+對空 stack 做 `pop`、對空 queue 做 `dequeue`，必須明確定義錯誤策略。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="push(1), push(2), pop() 後 stack 剩下甚麼？">
+按 LIFO 判斷。
+</QuickCheck>
+
+<RevealSolution title="答案">
+剩下 `1`。
+</RevealSolution>
+
+<QuickCheck prompt="enqueue(4), enqueue(7), dequeue() 會回傳甚麼？">
+按 FIFO 判斷。
+</QuickCheck>
+
+<RevealSolution title="答案">
+回傳 `4`。
+</RevealSolution>

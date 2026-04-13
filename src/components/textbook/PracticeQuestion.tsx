@@ -14,8 +14,10 @@ import type {
 
 export function PracticeQuestion({
   problem,
+  onSubmitted,
 }: {
   problem: ProblemSchema;
+  onSubmitted?: () => void;
 }) {
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState<ProblemSubmissionResult | null>(null);
@@ -49,6 +51,7 @@ export function PracticeQuestion({
 
       setResult(data.result);
       setMastery(data.mastery);
+      onSubmitted?.();
       if (!data.result.correct) {
         setShowSolution(false);
       }

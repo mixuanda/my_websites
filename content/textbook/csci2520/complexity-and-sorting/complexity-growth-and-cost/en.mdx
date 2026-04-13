@@ -1,0 +1,56 @@
+---
+title: "2.1 Complexity growth and algorithmic cost"
+description: "Compare O(1), O(log n), O(n), O(n log n), and O(n^2) growth rigorously before coding." 
+---
+
+## Why complexity first
+
+Before implementation details, we need a growth model. Asymptotic analysis
+captures how running cost scales with input size `n`, which is often more
+important than constant-factor micro-optimizations.
+
+## Cost model and Big-O
+
+<Definition title="Asymptotic upper bound (Big-O)">
+`T(n)=O(f(n))` means there exist constants `C>0` and `n_0` such that
+`T(n)\le C f(n)` for all `n\ge n_0`.
+</Definition>
+
+This definition is a *proof obligation*: you must show constants and a valid
+threshold, not only say “it looks quadratic”.
+
+## Typical growth classes in CSCI2520
+
+- `O(1)`: direct index access, pointer re-link (with known node addresses).
+- `O(log n)`: balanced-tree search, binary-search style halving.
+- `O(n)`: full scan in array/list.
+- `O(n log n)`: merge/heap style divide + linear merge phase.
+- `O(n^2)`: nested scan (e.g. simple comparison-based double loops).
+
+<InteractiveWidget id="complexity-growth-comparator" />
+
+## Worked comparison
+
+<WorkedExample title="When does n log n dominate n?">
+For `n=8`, `n log_2 n = 24` and `n = 8`, so `n log n` is already larger.
+As `n` grows, `n log n` stays asymptotically below `n^2` but above linear.
+</WorkedExample>
+
+## Quick checks
+
+<QuickCheck prompt="If an algorithm has two nested loops each running n times, what class is the total cost?">
+Assume loop body is O(1).
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`O(n^2)`.
+</RevealSolution>
+
+<QuickCheck prompt="Why does O(n log n) beat O(n^2) for sufficiently large n?">
+Compare ratio `(n^2)/(n log n)`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The ratio is `n/log n`, which grows without bound, so quadratic eventually
+becomes much larger.
+</RevealSolution>

@@ -5,7 +5,7 @@ import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { getCourseList } from "@/lib/textbook/content";
 import { getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
-import { getCourseHref, getPublicNoteArchiveHref } from "@/lib/textbook/routes";
+import { getCourseHref } from "@/lib/textbook/routes";
 import type { LocalizedText } from "@/lib/textbook/types";
 import { notFound } from "next/navigation";
 
@@ -18,11 +18,6 @@ function text(en: string, zhHk: string, zhCn: string): LocalizedText {
 }
 
 const heroCopy = {
-  archive: text(
-    "Open the general note archive",
-    "打開一般筆記檔案",
-    "打开一般笔记档案"
-  ),
   body: text(
     "Browse rigorous mathematics notes one section at a time. Each page is written as a serious course-note article, with interaction used only where it clarifies a definition, computation, or proof idea, and each section exports as TXT or PDF.",
     "逐節閱讀嚴謹的數學筆記。每頁都按正式課程筆記文章撰寫，只在能幫助理解定義、計算或證明思路時加入互動，並可把當前一節匯出成 TXT 或 PDF 溫習版本。",
@@ -110,11 +105,11 @@ export default async function NotesIndexPage({
             </GlassPanel>
             <GlassPanel className="min-w-52 p-4">
               <Link
-                href={getPublicNoteArchiveHref()}
+                href="/notes/membership"
                 className="flex items-center gap-2 text-foreground transition-colors hover:text-primary"
               >
                 <BookOpen className="h-4 w-4 text-primary" />
-                {getLocalizedText(heroCopy.archive, locale)}
+                {getLocalizedText(uiText.upgradeMembership, locale)}
               </Link>
             </GlassPanel>
           </div>

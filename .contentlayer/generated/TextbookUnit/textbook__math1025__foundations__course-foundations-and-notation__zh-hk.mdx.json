@@ -1,0 +1,23 @@
+{
+  "title": "0.1 課程基礎與記號",
+  "description": "建立全課共用的符號紀律、陳述結構與基礎代數步驟。",
+  "body": {
+    "raw": "\n## 章節目的\n\n此章先統一記號與推理習慣，避免後續章節在代數變形時出現語義錯誤。\n\n<Definition title=\"完整數學陳述\">\n應清楚交代：變數定義域、操作是否合法、要證明的結論。\n</Definition>\n\n## 快速檢查\n\n<QuickCheck prompt=\"為甚麼未先聲明 x != 0 就不能直接把方程兩邊除以 x？\">\n從解集等價角度回答。\n</QuickCheck>\n\n<RevealSolution title=\"答案\">\n若允許 `x=0`，除以 `x` 會變成未定義步驟，可能錯刪或錯造解。\n</RevealSolution>\n",
+    "code": "var Component=(()=>{var x=Object.create;var c=Object.defineProperty;var f=Object.getOwnPropertyDescriptor;var a=Object.getOwnPropertyNames;var m=Object.getPrototypeOf,_=Object.prototype.hasOwnProperty;var j=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports),k=(n,e)=>{for(var i in e)c(n,i,{get:e[i],enumerable:!0})},l=(n,e,i,r)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let o of a(e))!_.call(n,o)&&o!==i&&c(n,o,{get:()=>e[o],enumerable:!(r=f(e,o))||r.enumerable});return n};var g=(n,e,i)=>(i=n!=null?x(m(n)):{},l(e||!n||!n.__esModule?c(i,\"default\",{value:n,enumerable:!0}):i,n)),C=n=>l(c({},\"__esModule\",{value:!0}),n);var s=j((w,h)=>{h.exports=_jsx_runtime});var M={};k(M,{default:()=>u,frontmatter:()=>D});var t=g(s()),D={title:\"0.1 \\u8AB2\\u7A0B\\u57FA\\u790E\\u8207\\u8A18\\u865F\",description:\"\\u5EFA\\u7ACB\\u5168\\u8AB2\\u5171\\u7528\\u7684\\u7B26\\u865F\\u7D00\\u5F8B\\u3001\\u9673\\u8FF0\\u7D50\\u69CB\\u8207\\u57FA\\u790E\\u4EE3\\u6578\\u6B65\\u9A5F\\u3002\"};function p(n){let e={code:\"code\",h2:\"h2\",p:\"p\",...n.components},{Definition:i,QuickCheck:r,RevealSolution:o}=e;return i||d(\"Definition\",!0),r||d(\"QuickCheck\",!0),o||d(\"RevealSolution\",!0),(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(e.h2,{children:\"\\u7AE0\\u7BC0\\u76EE\\u7684\"}),`\n`,(0,t.jsx)(e.p,{children:\"\\u6B64\\u7AE0\\u5148\\u7D71\\u4E00\\u8A18\\u865F\\u8207\\u63A8\\u7406\\u7FD2\\u6163\\uFF0C\\u907F\\u514D\\u5F8C\\u7E8C\\u7AE0\\u7BC0\\u5728\\u4EE3\\u6578\\u8B8A\\u5F62\\u6642\\u51FA\\u73FE\\u8A9E\\u7FA9\\u932F\\u8AA4\\u3002\"}),`\n`,(0,t.jsx)(i,{title:\"\\u5B8C\\u6574\\u6578\\u5B78\\u9673\\u8FF0\",children:(0,t.jsx)(e.p,{children:\"\\u61C9\\u6E05\\u695A\\u4EA4\\u4EE3\\uFF1A\\u8B8A\\u6578\\u5B9A\\u7FA9\\u57DF\\u3001\\u64CD\\u4F5C\\u662F\\u5426\\u5408\\u6CD5\\u3001\\u8981\\u8B49\\u660E\\u7684\\u7D50\\u8AD6\\u3002\"})}),`\n`,(0,t.jsx)(e.h2,{children:\"\\u5FEB\\u901F\\u6AA2\\u67E5\"}),`\n`,(0,t.jsx)(r,{prompt:\"\\u70BA\\u751A\\u9EBC\\u672A\\u5148\\u8072\\u660E x != 0 \\u5C31\\u4E0D\\u80FD\\u76F4\\u63A5\\u628A\\u65B9\\u7A0B\\u5169\\u908A\\u9664\\u4EE5 x\\uFF1F\",children:(0,t.jsx)(e.p,{children:\"\\u5F9E\\u89E3\\u96C6\\u7B49\\u50F9\\u89D2\\u5EA6\\u56DE\\u7B54\\u3002\"})}),`\n`,(0,t.jsx)(o,{title:\"\\u7B54\\u6848\",children:(0,t.jsxs)(e.p,{children:[\"\\u82E5\\u5141\\u8A31 \",(0,t.jsx)(e.code,{children:\"x=0\"}),\"\\uFF0C\\u9664\\u4EE5 \",(0,t.jsx)(e.code,{children:\"x\"}),\" \\u6703\\u8B8A\\u6210\\u672A\\u5B9A\\u7FA9\\u6B65\\u9A5F\\uFF0C\\u53EF\\u80FD\\u932F\\u522A\\u6216\\u932F\\u9020\\u89E3\\u3002\"]})})]})}function u(n={}){let{wrapper:e}=n.components||{};return e?(0,t.jsx)(e,{...n,children:(0,t.jsx)(p,{...n})}):p(n)}function d(n,e){throw new Error(\"Expected \"+(e?\"component\":\"object\")+\" `\"+n+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return C(M);})();\n;return Component;"
+  },
+  "_id": "textbook/math1025/foundations/course-foundations-and-notation/zh-hk.mdx",
+  "_raw": {
+    "sourceFilePath": "textbook/math1025/foundations/course-foundations-and-notation/zh-hk.mdx",
+    "sourceFileName": "zh-hk.mdx",
+    "sourceFileDir": "textbook/math1025/foundations/course-foundations-and-notation",
+    "contentType": "mdx",
+    "flattenedPath": "textbook/math1025/foundations/course-foundations-and-notation/zh-hk"
+  },
+  "type": "TextbookUnit",
+  "chapterId": "foundations",
+  "course": "math1025",
+  "locale": "zh-hk",
+  "unitSlug": "course-foundations-and-notation",
+  "unitId": "math1025.foundations.course-foundations-and-notation",
+  "url": "/zh-hk/notes/math1025/foundations/course-foundations-and-notation"
+}

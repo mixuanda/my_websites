@@ -78,6 +78,70 @@ A dependent list can still span a space. It only means the list has redundancy.
 That is why dependence is useful when we want to trim a spanning set down.
 </CommonMistake>
 
+## Matrix criterion and pivot criterion
+
+Suppose we place `u_1,\dots,u_n` as columns of a matrix
+
+$$
+A = [u_1\ u_2\ \cdots\ u_n].
+$$
+
+Then a relation
+
+$$
+\alpha_1 u_1 + \cdots + \alpha_n u_n = 0
+$$
+
+is exactly the same as solving
+
+$$
+A\alpha = 0,\quad \alpha = (\alpha_1,\dots,\alpha_n)^T.
+$$
+
+So linear independence means the homogeneous system has only the trivial
+solution.
+
+<TheoremCard title="Equivalent matrix test for independence">
+The vectors `u_1,\dots,u_n` are linearly independent if and only if the matrix
+`A=[u_1\ \cdots\ u_n]` has a pivot in every column (equivalently, no free
+variable in `A\alpha=0`).
+</TheoremCard>
+
+<WorkedExample title="Use row reduction to test independence">
+Let
+
+$$
+u_1=\begin{bmatrix}1\\2\\1\end{bmatrix},\quad
+u_2=\begin{bmatrix}2\\4\\3\end{bmatrix},\quad
+u_3=\begin{bmatrix}1\\1\\0\end{bmatrix}.
+$$
+
+Set `A=[u_1\ u_2\ u_3]`. Row reduce:
+
+$$
+\begin{bmatrix}
+1 & 2 & 1\\
+2 & 4 & 1\\
+1 & 3 & 0
+\end{bmatrix}
+\xrightarrow{R_2-2R_1,\ R_3-R_1}
+\begin{bmatrix}
+1 & 2 & 1\\
+0 & 0 & -1\\
+0 & 1 & -1
+\end{bmatrix}
+\xrightarrow{R_2\leftrightarrow R_3}
+\begin{bmatrix}
+1 & 2 & 1\\
+0 & 1 & -1\\
+0 & 0 & -1
+\end{bmatrix}.
+$$
+
+There is a pivot in each column, so the three vectors are linearly
+independent.
+</WorkedExample>
+
 ## Quick check
 
 <QuickCheck prompt="Are `e_1, e_2, e_3` in `R^3` linearly independent?">
@@ -94,6 +158,37 @@ Test the definition directly.
 
 <RevealSolution title="Answer">
 No. The zero vector gives a nontrivial relation immediately.
+</RevealSolution>
+
+<QuickCheck prompt="If a set has 5 vectors in `R^3`, can it be linearly independent?">
+Use pivots and the number of rows.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. A `3\times 5` matrix can have at most 3 pivots, so at least two columns are
+free-variable columns. Therefore a nontrivial relation must exist.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Determine whether `{(1,0,1),(2,1,3),(0,1,1)}` is independent.">
+Set them as columns, reduce, and read pivot columns.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Form
+`A=\begin{bmatrix}1&2&0\\0&1&1\\1&3&1\end{bmatrix}`.
+Row reduction gives pivots in all three columns, so the set is linearly
+independent.
+</RevealSolution>
+
+<QuickCheck prompt="Show that `{(1,2,3),(2,4,6),(1,0,1)}` is dependent by writing one vector from others.">
+Look for a direct scalar-multiple relation first.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+`(2,4,6)=2(1,2,3)`, so
+`2(1,2,3)-(2,4,6)+0(1,0,1)=0` is nontrivial. The set is dependent.
 </RevealSolution>
 
 ## Read this first

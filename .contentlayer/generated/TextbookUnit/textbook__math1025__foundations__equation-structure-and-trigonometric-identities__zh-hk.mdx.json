@@ -1,0 +1,23 @@
+{
+  "title": "1.1 方程結構與三角恆等式",
+  "description": "以解集等價為核心，審慎使用恆等式變形與驗根步驟。",
+  "body": {
+    "raw": "\n## 核心觀念\n\n三角方程中，恆等式可以幫你改寫，但不代表每一步都對解集雙向等價。\n\n<Definition title=\"恆等式與解方程的分別\">\n恆等式在定義域內對所有值成立；解方程只找使語句成立的值。\n</Definition>\n\n## 快速檢查\n\n<QuickCheck prompt=\"為甚麼最後一定要代回原式驗根？\">\n從單向變形角度回答。\n</QuickCheck>\n\n<RevealSolution title=\"答案\">\n部分變形可能引入假根或遺失條件，代回原式可剔除非真解。\n</RevealSolution>\n",
+    "code": "var Component=(()=>{var f=Object.create;var c=Object.defineProperty;var a=Object.getOwnPropertyDescriptor;var m=Object.getOwnPropertyNames;var x=Object.getPrototypeOf,_=Object.prototype.hasOwnProperty;var j=(n,e)=>()=>(e||n((e={exports:{}}).exports,e),e.exports),k=(n,e)=>{for(var i in e)c(n,i,{get:e[i],enumerable:!0})},d=(n,e,i,r)=>{if(e&&typeof e==\"object\"||typeof e==\"function\")for(let o of m(e))!_.call(n,o)&&o!==i&&c(n,o,{get:()=>e[o],enumerable:!(r=a(e,o))||r.enumerable});return n};var g=(n,e,i)=>(i=n!=null?f(x(n)):{},d(e||!n||!n.__esModule?c(i,\"default\",{value:n,enumerable:!0}):i,n)),C=n=>d(c({},\"__esModule\",{value:!0}),n);var h=j((w,s)=>{s.exports=_jsx_runtime});var M={};k(M,{default:()=>u,frontmatter:()=>D});var t=g(h()),D={title:\"1.1 \\u65B9\\u7A0B\\u7D50\\u69CB\\u8207\\u4E09\\u89D2\\u6046\\u7B49\\u5F0F\",description:\"\\u4EE5\\u89E3\\u96C6\\u7B49\\u50F9\\u70BA\\u6838\\u5FC3\\uFF0C\\u5BE9\\u614E\\u4F7F\\u7528\\u6046\\u7B49\\u5F0F\\u8B8A\\u5F62\\u8207\\u9A57\\u6839\\u6B65\\u9A5F\\u3002\"};function p(n){let e={h2:\"h2\",p:\"p\",...n.components},{Definition:i,QuickCheck:r,RevealSolution:o}=e;return i||l(\"Definition\",!0),r||l(\"QuickCheck\",!0),o||l(\"RevealSolution\",!0),(0,t.jsxs)(t.Fragment,{children:[(0,t.jsx)(e.h2,{children:\"\\u6838\\u5FC3\\u89C0\\u5FF5\"}),`\n`,(0,t.jsx)(e.p,{children:\"\\u4E09\\u89D2\\u65B9\\u7A0B\\u4E2D\\uFF0C\\u6046\\u7B49\\u5F0F\\u53EF\\u4EE5\\u5E6B\\u4F60\\u6539\\u5BEB\\uFF0C\\u4F46\\u4E0D\\u4EE3\\u8868\\u6BCF\\u4E00\\u6B65\\u90FD\\u5C0D\\u89E3\\u96C6\\u96D9\\u5411\\u7B49\\u50F9\\u3002\"}),`\n`,(0,t.jsx)(i,{title:\"\\u6046\\u7B49\\u5F0F\\u8207\\u89E3\\u65B9\\u7A0B\\u7684\\u5206\\u5225\",children:(0,t.jsx)(e.p,{children:\"\\u6046\\u7B49\\u5F0F\\u5728\\u5B9A\\u7FA9\\u57DF\\u5167\\u5C0D\\u6240\\u6709\\u503C\\u6210\\u7ACB\\uFF1B\\u89E3\\u65B9\\u7A0B\\u53EA\\u627E\\u4F7F\\u8A9E\\u53E5\\u6210\\u7ACB\\u7684\\u503C\\u3002\"})}),`\n`,(0,t.jsx)(e.h2,{children:\"\\u5FEB\\u901F\\u6AA2\\u67E5\"}),`\n`,(0,t.jsx)(r,{prompt:\"\\u70BA\\u751A\\u9EBC\\u6700\\u5F8C\\u4E00\\u5B9A\\u8981\\u4EE3\\u56DE\\u539F\\u5F0F\\u9A57\\u6839\\uFF1F\",children:(0,t.jsx)(e.p,{children:\"\\u5F9E\\u55AE\\u5411\\u8B8A\\u5F62\\u89D2\\u5EA6\\u56DE\\u7B54\\u3002\"})}),`\n`,(0,t.jsx)(o,{title:\"\\u7B54\\u6848\",children:(0,t.jsx)(e.p,{children:\"\\u90E8\\u5206\\u8B8A\\u5F62\\u53EF\\u80FD\\u5F15\\u5165\\u5047\\u6839\\u6216\\u907A\\u5931\\u689D\\u4EF6\\uFF0C\\u4EE3\\u56DE\\u539F\\u5F0F\\u53EF\\u5254\\u9664\\u975E\\u771F\\u89E3\\u3002\"})})]})}function u(n={}){let{wrapper:e}=n.components||{};return e?(0,t.jsx)(e,{...n,children:(0,t.jsx)(p,{...n})}):p(n)}function l(n,e){throw new Error(\"Expected \"+(e?\"component\":\"object\")+\" `\"+n+\"` to be defined: you likely forgot to import, pass, or provide it.\")}return C(M);})();\n;return Component;"
+  },
+  "_id": "textbook/math1025/foundations/equation-structure-and-trigonometric-identities/zh-hk.mdx",
+  "_raw": {
+    "sourceFilePath": "textbook/math1025/foundations/equation-structure-and-trigonometric-identities/zh-hk.mdx",
+    "sourceFileName": "zh-hk.mdx",
+    "sourceFileDir": "textbook/math1025/foundations/equation-structure-and-trigonometric-identities",
+    "contentType": "mdx",
+    "flattenedPath": "textbook/math1025/foundations/equation-structure-and-trigonometric-identities/zh-hk"
+  },
+  "type": "TextbookUnit",
+  "chapterId": "foundations",
+  "course": "math1025",
+  "locale": "zh-hk",
+  "unitSlug": "equation-structure-and-trigonometric-identities",
+  "unitId": "math1025.foundations.equation-structure-and-trigonometric-identities",
+  "url": "/zh-hk/notes/math1025/foundations/equation-structure-and-trigonometric-identities"
+}

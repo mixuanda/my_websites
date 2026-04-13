@@ -76,6 +76,11 @@ export function TextbookCourseSidebar({
                       {unit.unitNumber}
                     </p>
                     <p className="mt-1 text-sm leading-6">{unit.title[locale]}</p>
+                    {unit.accessTier === "MEMBER" ? (
+                      <p className="mt-1 text-xs text-muted-foreground">
+                        {getLocalizedText(uiText.premium, locale)}
+                      </p>
+                    ) : null}
                   </div>
                   <ChevronRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
                 </Link>

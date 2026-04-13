@@ -1,0 +1,122 @@
+---
+title: "1.1 ADT operations: stack, queue, and function pointers"
+description: "Specify operation contracts first, then track exactly how stack/queue operations change state and how function pointers dispatch those operations in C."
+---
+
+## Why start from ADT contracts
+
+In data structures, implementation details are secondary to operation contracts.
+An ADT (Abstract Data Type) defines the legal operations, the state guarantees,
+and the error cases before we commit to arrays, linked lists, or any specific
+layout.
+
+## Stack ADT: operation semantics
+
+<Definition title="Stack ADT core operations">
+For a stack `S`:
+
+- `push(x)`: insert `x` on top,
+- `pop()`: remove and return top element,
+- `top()`: return top element without removing,
+- `isEmpty()`: return whether `S` is empty.
+</Definition>
+
+LIFO is not a slogan. It is an invariant: if `a` is pushed before `b`, then `b`
+must be popped before `a` unless removed by error handling.
+
+<WorkedExample title="State trace for push/pop/top">
+Start with empty stack.
+
+1. `push(10)` -> `[10]`
+2. `push(20)` -> `[10,20]` (top is `20`)
+3. `top()` returns `20`, state unchanged
+4. `pop()` returns `20`, state becomes `[10]`
+</WorkedExample>
+
+## Queue ADT: operation semantics
+
+<Definition title="Queue ADT core operations">
+For a queue `Q`:
+
+- `enqueue(x)`: insert `x` at rear,
+- `dequeue()`: remove and return front element,
+- `front()`: inspect front without removal,
+- `isEmpty()`: return whether `Q` is empty.
+</Definition>
+
+Queue invariant is FIFO: earlier inserted item exits earlier.
+
+<WorkedExample title="State trace for enqueue/dequeue">
+Start with empty queue.
+
+1. `enqueue(3)` -> `[3]`
+2. `enqueue(5)` -> `[3,5]`
+3. `dequeue()` returns `3`, queue becomes `[5]`
+4. `front()` returns `5`, state unchanged
+</WorkedExample>
+
+## Function-pointer dispatch in C
+
+When implementing ADT operations in C, we often store function pointers in an
+operation table so code can switch behavior by structure type without rewriting
+call sites.
+
+<TheoremCard title="Interface consistency via function pointers">
+If every implementation of an ADT exposes the same function-pointer signatures,
+client code can remain stable while underlying structures vary.
+</TheoremCard>
+
+This is effectively manual polymorphism in C.
+
+<InteractiveWidget id="adt-stack-queue-stepper" />
+
+## Common mistakes
+
+<CommonMistake title="Mixing stack and queue invariants">
+Using `enqueue`/`dequeue` names but applying LIFO behavior (or vice versa)
+breaks ADT contracts even if code compiles.
+</CommonMistake>
+
+<CommonMistake title="Ignoring empty-structure preconditions">
+`pop` and `dequeue` on empty structures need explicit error policy (status code,
+exception-like return, or sentinel with validity flag).
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="After push(1), push(2), pop(), what remains in the stack?">
+Apply LIFO strictly.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Only `1` remains.
+</RevealSolution>
+
+<QuickCheck prompt="After enqueue(4), enqueue(7), dequeue(), which element is returned?">
+Apply FIFO strictly.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`4` is returned.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Design precondition/postcondition for stack pop().">
+Write one valid contract in words.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Precondition: stack is non-empty. Postcondition: old top element is returned and
+removed; size decreases by one; remaining order is preserved.
+</RevealSolution>
+
+<QuickCheck prompt="Explain in one paragraph why an operation table of function pointers helps testing.">
+Focus on swapping implementations with unchanged client tests.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Function-pointer tables let the same test suite call the same signatures while
+switching backend implementations (array/linked list). This isolates behavioral
+correctness from storage choices and reveals contract violations early.
+</RevealSolution>

@@ -3,6 +3,7 @@ export type Locale = "en" | "zh-hk" | "zh-cn";
 export type CourseId = string;
 
 export type CoverageStatus = "SOURCE_BACKED" | "MISSING_SOURCE";
+export type AccessTier = "FREE" | "MEMBER";
 
 export interface SourceRef {
   file: string;
@@ -17,6 +18,7 @@ export interface LocalizedText {
 }
 
 export interface TextbookUnitMeta {
+  accessTier?: AccessTier;
   chapterId: string;
   chapterNumber: string;
   course: CourseId;
@@ -157,6 +159,7 @@ export type EquivalenceRule =
   | { type: "symbolic" };
 
 export interface ProblemBase {
+  accessTier?: AccessTier;
   id: string;
   courseId: CourseId;
   chapterId: string;

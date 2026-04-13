@@ -95,3 +95,16 @@ export function getStaticTextbookParams() {
     unit: doc.unitSlug,
   }));
 }
+
+export function estimateReadingTimeMinutes(rawMdx: string) {
+  const textOnly = rawMdx
+    .replace(/```[\s\S]*?```/g, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/\$[^$]+\$/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const words = textOnly.length > 0 ? textOnly.split(" ").length : 0;
+  const minutes = Math.max(1, Math.ceil(words / 180));
+  return minutes;
+}
