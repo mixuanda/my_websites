@@ -1,67 +1,325 @@
 ---
 title: "1.1 ADT 操作：stack、queue 与 function pointer"
-description: "先定义操作契约，再追踪 stack/queue 状态转移，最后理解 C 语言 function pointer 的操作分派。"
+description: "先理解 ADT 契约，再逐步追踪 stack、queue 的状态变化，以及 C 语言中 function pointer 的分派方式。"
 ---
 
-## 为什么先谈 ADT 契约
+## 为什么先讲契约
 
-资料结构课最容易出错的地方，不是语法，而是操作语义。ADT 先规定
-“能做什么、做完要保证什么、错误情况如何处理”，然后才选实现（array
-或 linked list）。
+在 CSCI2520 里，最常见的错误通常不是少了一个分号，而是少了一个
+清楚的契约。
 
-## Stack 操作语义
+ADT 会先说明四件事：
+
+- 允许做什么操作，
+- 每个操作要保证什么结果，
+- client 调用之后可以假设什么状态，
+- 空结构和错误情况怎么处理。
+
+这一步很重要，因为同一个 stack 或 queue 接口，可以用 fixed array、
+dynamic array，或者 linked list 来实现。client 代码不应该因为内部实现
+变化而一起改。
+
+<Definition title="ADT 契约与实现">
+ADT 契约描述操作和语义。
+实现决定数据字段、内存布局，以及更新方式。
+契约是承诺；实现是机制。
+</Definition>
+
+## Stack 是只能从顶端操作的结构
+
+讲到 stack，核心不是“一摞东西”这个比喻，而是 top-only 这条不变量。
 
 <Definition title="Stack 核心操作">
-- `push(x)`：把 `x` 放到栈顶。
-- `pop()`：移除并返回栈顶元素。
-- `top()`：读取栈顶但不移除。
-- `isEmpty()`：检查是否为空。
+对于一个 stack `S`：
+
+- `push(x)`：把 `x` 放入顶端，
+- `pop()`：移除并返回顶端元素，
+- `top()`：查看顶端但不移除，
+- `isEmpty()`：检查是否为空，
+- `StackDepth()`：返回深度。
 </Definition>
 
-LIFO 是核心不变量：后进先出。
+LIFO 是 stack 的基本规则：后进先出。
 
-## Queue 操作语义
+<WorkedExample title="追踪 stack 状态">
+初始是空 stack。
+
+1. `push(10)` 之后是 `[10]`
+2. `push(20)` 之后是 `[10, 20]`
+3. `top()` 返回 `20`，状态不变
+4. `pop()` 返回 `20`，stack 变成 `[10]`
+</WorkedExample>
+
+## Stack 接口会隐藏内部表示
+
+课堂里的 opaque type 形式是：
+
+```c
+typedef struct stackCDT *stackADT;
+typedef int stackElementT;
+
+stackADT EmptyStack(void);
+void Push(stackADT stack, stackElementT element);
+stackElementT Pop(stackADT stack);
+int StackDepth(stackADT stack);
+int StackIsEmpty(stackADT stack);
+```
+
+这个设计不是装饰，而是保护契约。`stackADT` 只是指向不完整 `struct`
+的指针，client 可以传递 stack，但不能直接改内部字段。
+
+<TheoremCard title="表示独立性">
+如果 client 只能通过 ADT 已声明的操作来使用数据结构，那么内部
+representation 就可以自由更改，而不影响 client 可见行为。
+</TheoremCard>
+
+## Stack 的实现方式
+
+slides 里强调了三个重要概念。
+
+第一，fixed array 版本会用一个 `count` 记录深度：
+
+```c
+struct stackCDT {
+   stackElementT elements[100];
+   int count;
+};
+```
+
+这个版本简单，但最大深度固定为 100。深度超过上限时，会出现
+representation-level 的 overflow。
+
+第二，dynamic array 版本会再加 `size`，并在满的时候使用 `realloc()`
+扩容：
+
+```c
+struct stackCDT {
+   stackElementT *elements;
+   int count;
+   int size;
+};
+```
+
+第三，`Pop()` 还可以进一步收敛 memory usage，让实现更完整。意思是：
+ADT 接口不变，但 memory policy 可以逐步改进。
+
+<WorkedExample title="Push / Pop 的简化实现">
+```c
+void Push(stackADT stack, stackElementT element) {
+   if (stack->count == stack->size) {
+      stack->size += 10;
+      stack->elements = realloc(
+         stack->elements,
+         stack->size * sizeof(stackElementT)
+      );
+   }
+   stack->elements[stack->count] = element;
+   stack->count++;
+}
+
+stackElementT Pop(stackADT stack) {
+   stack->count--;
+   return stack->elements[stack->count];
+}
+```
+
+重点是：
+
+- `count` 表示下一个可用位置，
+- `push` 先存再加一，
+- `pop` 先减一再返回旧顶端。
+</WorkedExample>
+
+## Queue 虽然相似，但语义完全不同
+
+Queue 的规则是 FIFO：先进先出。
 
 <Definition title="Queue 核心操作">
-- `enqueue(x)`：从尾端加入 `x`。
-- `dequeue()`：由前端移除并返回。
-- `front()`：读取前端但不移除。
-- `isEmpty()`：检查是否为空。
+对于一个 queue `Q`：
+
+- `enqueue(x)`：从尾端加入 `x`，
+- `dequeue()`：从前端移除并返回，
+- `front()`：查看前端但不移除，
+- `isEmpty()`：检查是否为空，
+- `QueueLength()`：返回长度。
 </Definition>
 
-Queue 的不变量是 FIFO：先进先出。
+Queue 的 header 也采用 opaque 形式：
 
-## C 语言 function pointer 操作分派
+```c
+typedef struct queueCDT *queueADT;
+typedef int queueElementT;
 
-把 ADT 操作函数放进 function-pointer table，可在不改 client call-site
-下切换实现。这是 C 中常见的接口稳定策略。
+queueADT EmptyQueue(void);
+void Enqueue(queueADT queue, queueElementT element);
+queueElementT Dequeue(queueADT queue);
+int QueueLength(queueADT queue);
+int QueueIsEmpty(queueADT queue);
+```
+
+## Queue 的实现：array、circular array、linked list
+
+tutorial slide 已经把几个版本讲得很清楚。
+
+- fixed array 版本最好理解，但前端出队后容易浪费空间；
+- circular array 通过 `%` 实现 wrap around，让前后位置可以重复使用；
+- linked list 用 `head` 和 `tail` 指针，插入和删除时不需要搬移旧数据。
+
+```c
+struct cellT {
+   queueElementT element;
+   struct cellT *next;
+};
+
+struct queueCDT {
+   struct cellT *head;
+   struct cellT *tail;
+};
+```
+
+linked list 版本的意思是：
+
+- 新节点接到尾端后面，
+- `head` 指向前端，
+- `QueueIsEmpty()` 只要检查 `head == NULL`。
+
+<WorkedExample title="为什么 circular array 比普通 array 更好">
+如果 queue 不断交替 `enqueue` 和 `dequeue`：
+
+- 普通 array 会在前端释放出空位后，未必能有效重用；
+- circular array 会把 `front` 和 `rear` wrap around，把前面空位重新利用起来。
+
+所以 tutorial 才会问：如果重复做很多次 `enqueue` / `dequeue`，会发生什么？
+</WorkedExample>
+
+## function pointer 让 C 可以做分派和 callback
+
+function pointer 不是额外技巧，而是 C 做 runtime dispatch 的核心工具。
+
+```c
+int (*fp)(int);
+```
+
+这个声明表示 `fp` 是一个指向“接收一个 `int`，返回一个 `int`”函数的
+指针。prototype 本身就是 type contract。
+
+<Definition title="Function pointer 规则">
+function pointer 只能指向参数列表和返回类型都匹配的函数。
+</Definition>
+
+课堂里用 hashtable 做了一个很实际的例子：给 ADT 加一个 callback
+traversal operation。
+
+```c
+typedef void (*hashtableFnT)(char *, void *);
+
+void ForEachEntryDo(hashtableFnT fp, hashtableADT table);
+```
+
+client 可以传入：
+
+```c
+void DisplayWordCount(hashtableADT table) {
+   ForEachEntryDo(PrintEntry, table);
+}
+```
+
+这个模式对 ADT 很有用，因为 traversal 交给 implementation 做，而每个
+entry 要怎么处理，则由 client 提供。
+
+同样，dispatch table 也可以靠 function pointer 来做，避免一大串 `if`
+判断。
+
+```c
+void ApplyOperator(char c, stackADT stack) {
+   int y = Pop(stack);
+   int x = Pop(stack);
+
+   switch (c) {
+   case '+': Push(stack, x + y); break;
+   case '-': Push(stack, x - y); break;
+   case '*': Push(stack, x * y); break;
+   case '/': Push(stack, x / y); break;
+   }
+}
+```
+
+在这个例子里，stack 用来存 operand，而 operation table 决定怎么把它们
+组合起来。function pointer 让 C 具备了一种手工控制的 polymorphism。
 
 <InteractiveWidget id="adt-stack-queue-stepper" />
 
 ## 常见错误
 
-<CommonMistake title="把 stack/queue 语义混用">
-函数名叫 queue，但行为做成 LIFO，属于契约破坏。
+<CommonMistake title="把 stack 和 queue 语义混淆">
+`push` / `pop` 是 stack；`enqueue` / `dequeue` 是 queue。改名不改行为，
+就是破坏 ADT 契约。
 </CommonMistake>
 
-<CommonMistake title="忽略空结构前置条件">
-对空 stack 做 `pop`、对空 queue 做 `dequeue`，必须明确错误策略。
+<CommonMistake title="忽略空结构错误策略">
+空 stack 做 `pop`、空 queue 做 `dequeue`，都必须预先定义清楚错误处理方式。
+</CommonMistake>
+
+<CommonMistake title="把接口稳定和实现稳定混为一谈">
+应该保持稳定的是接口；应该允许演进的是内部 representation。
 </CommonMistake>
 
 ## 快速检查
 
-<QuickCheck prompt="push(1), push(2), pop() 后 stack 剩下什么？">
-按 LIFO 判断。
+<QuickCheck prompt="做完 `push(1)`, `push(2)`, `pop()` 之后，stack 还剩什么？">
+按 LIFO 来判断。
 </QuickCheck>
 
 <RevealSolution title="答案">
-剩下 `1`。
+只剩 `1`。
 </RevealSolution>
 
-<QuickCheck prompt="enqueue(4), enqueue(7), dequeue() 会返回什么？">
-按 FIFO 判断。
+<QuickCheck prompt="做完 `enqueue(4)`, `enqueue(7)`, `dequeue()` 之后，返回什么元素？">
+按 FIFO 来判断。
 </QuickCheck>
 
 <RevealSolution title="答案">
 返回 `4`。
 </RevealSolution>
+
+<QuickCheck prompt="为什么 `ForEachEntryDo(PrintEntry, table)` 需要 callback type，而不是普通 generic pointer？">
+重点是 type checking 和参数列表匹配。
+</QuickCheck>
+
+<RevealSolution title="引导答案">
+callback type 清楚指定了合法的函数签名。generic pointer 会失去参数和返回类型信息，编译器就无法帮你检查契约。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="写出 `Pop(stack)` 对非空 stack 的前置条件和后置条件。">
+尽量精确。
+</QuickCheck>
+
+<RevealSolution title="引导答案">
+前置条件：stack 不是空。后置条件：旧顶端元素被返回，深度减一，剩余元素次序保持不变。
+</RevealSolution>
+
+<QuickCheck prompt="解释为什么 linked list queue 可以 enqueue 而不需要搬移旧元素。">
+用 `head` 和 `tail` 来讲。
+</QuickCheck>
+
+<RevealSolution title="引导答案">
+新节点接在尾端后面，而 `tail` 会更新到新节点。旧节点不需要移动，所以原有顺序完全不会改变。
+</RevealSolution>
+
+<QuickCheck prompt="用一小段文字解释 function pointer 怎样帮助 ADT 测试。">
+要讲到接口和实现分离。
+</QuickCheck>
+
+<RevealSolution title="引导答案">
+function pointer 让相同 client code 可以调用相同签名，而 backend 可以换成不同实现。这样测试就可以复用同一套 contract，去验证多个 ADT 实现有没有违反规格。
+</RevealSolution>
+
+## 重点总结
+
+真正重要的不是“stack 和 queue 是两种数据结构”这么简单，而是：
+
+- ADT 契约定义行为，
+- 实现负责存储和内存，
+- function pointer 让 C 可以维持 type-safe 的分派和 callback。

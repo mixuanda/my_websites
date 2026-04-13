@@ -1,56 +1,249 @@
 ---
 title: "2.1 Complexity growth and algorithmic cost"
-description: "Compare O(1), O(log n), O(n), O(n log n), and O(n^2) growth rigorously before coding." 
+description: "Develop a rigorous cost model, simplify asymptotic expressions correctly, and use concrete code to read growth rates instead of guessing them."
 ---
 
-## Why complexity first
+## Why complexity comes before optimization
 
-Before implementation details, we need a growth model. Asymptotic analysis
-captures how running cost scales with input size `n`, which is often more
-important than constant-factor micro-optimizations.
+The lecture slides are right to begin with growth, not with micro-optimizations.
+When input size `n` becomes large, the way cost scales usually matters more than
+the exact machine that happens to run the code.
 
-## Cost model and Big-O
+Big-O analysis is therefore a model of growth, not a stopwatch reading.
+Different machines will change constant factors, but they do not change whether
+the underlying pattern is linear, quadratic, or logarithmic.
 
 <Definition title="Asymptotic upper bound (Big-O)">
 `T(n)=O(f(n))` means there exist constants `C>0` and `n_0` such that
-`T(n)\le C f(n)` for all `n\ge n_0`.
+`T(n)\le C f(n)` for every `n\ge n_0`.
 </Definition>
 
-This definition is a *proof obligation*: you must show constants and a valid
-threshold, not only say “it looks quadratic”.
+That definition is a proof obligation. To use Big-O correctly, you need to show
+the bound with a valid threshold, not just say “it looks quadratic”.
 
-## Typical growth classes in CSCI2520
+## The simplification rules are not shortcuts; they are the point
 
-- `O(1)`: direct index access, pointer re-link (with known node addresses).
-- `O(log n)`: balanced-tree search, binary-search style halving.
-- `O(n)`: full scan in array/list.
-- `O(n log n)`: merge/heap style divide + linear merge phase.
-- `O(n^2)`: nested scan (e.g. simple comparison-based double loops).
+The tutorial slides repeatedly emphasize two rules:
+
+- drop terms whose contribution becomes insignificant for large `n`,
+- drop constant factors.
+
+That is why expressions such as
+
+`0.1n^3 + 10000n^2 + n + 3`
+
+still simplify to `O(n^3)`. The cubic term eventually dominates everything else.
+Likewise,
+
+`(n^2 + n)/2`
+
+still has growth rate `O(n^2)` because the `1/2` does not change the asymptotic
+shape.
+
+<WorkedExample title="Why n^2 dominates n">
+Compare the ratio
+
+`n^2 / n = n`.
+
+The ratio grows without bound, so `n^2` eventually becomes much larger than `n`.
+That is why linear terms can be dropped when a quadratic term is present.
+</WorkedExample>
+
+## Common growth classes in CSCI2520
+
+The course slides and tutorials repeatedly use the same five classes.
+
+- `O(1)`: direct field access, known-pointer re-linking, simple arithmetic.
+- `O(log n)`: halving-style search, balanced-tree lookup, repeated division by 2.
+- `O(n)`: full scan over an array or linked list.
+- `O(n log n)`: divide-and-conquer with linear work per level.
+- `O(n^2)`: nested scans, especially comparison-heavy double loops.
 
 <InteractiveWidget id="complexity-growth-comparator" />
 
-## Worked comparison
+The comparator widget is a visual aid, not a substitute for derivation. Use it
+to confirm intuition after you have already written down the growth model.
 
-<WorkedExample title="When does n log n dominate n?">
-For `n=8`, `n log_2 n = 24` and `n = 8`, so `n log n` is already larger.
-As `n` grows, `n log n` stays asymptotically below `n^2` but above linear.
+## Reading complexity from code
+
+The fastest way to analyze a function is usually to find the piece executed most
+often and count how many times that piece runs.
+
+<WorkedExample title="Constant-time statements">
+```c
+int x = a + b;
+int y = x * 2;
+return y;
+```
+
+Each statement executes once, so the function is `O(1)`. The exact CPU cost is
+not important; the growth does not depend on `n`.
 </WorkedExample>
 
-## Quick checks
+<WorkedExample title="Linear scan">
+```c
+int sum(const int a[], int n) {
+   int total = 0;
+   for (int i = 0; i < n; i++) {
+      total += a[i];
+   }
+   return total;
+}
+```
+
+The loop body runs `n` times, and each body step is constant time, so the whole
+function is `O(n)`.
+</WorkedExample>
+
+<WorkedExample title="Nested loops create quadratic cost">
+```c
+int countPairs(int n) {
+   int c = 0;
+   for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+         c++;
+      }
+   }
+   return c;
+}
+```
+
+The inner statement runs `n * n` times. That is why the function is `O(n^2)`.
+</WorkedExample>
+
+## A concrete sorting example: selection sort
+
+The tutorial deck uses selection sort to show where quadratic growth comes from.
+In pseudocode, the algorithm scans the remaining suffix to find the next minimum
+and then swaps it into place.
+
+```c
+void selectionSort(int a[], int n) {
+   for (int i = 0; i < n - 1; i++) {
+      int min = i;
+      for (int j = i + 1; j < n; j++) {
+         if (a[j] < a[min]) {
+            min = j;
+         }
+      }
+      if (min != i) {
+         int tmp = a[i];
+         a[i] = a[min];
+         a[min] = tmp;
+      }
+   }
+}
+```
+
+The exact number of comparisons is roughly
+
+`(n-1) + (n-2) + ... + 1 = n(n-1)/2`.
+
+That sum is quadratic, so the algorithm is `O(n^2)`. The slide deck’s message
+is the same in words: doubling `n` makes the time roughly four times larger.
+
+<WorkedExample title="Selection-sort growth">
+If `n` doubles, `n^2` becomes `4n^2`.
+If `n` increases by a factor of 10, `n^2` increases by a factor of 100.
+
+That is the reason quadratic algorithms quickly become expensive on large
+inputs.
+</WorkedExample>
+
+## Comparison sorts versus non-comparison sorts
+
+The sorting slides add an important refinement: merge sort, heapsort, and
+quicksort are all comparison sorts.
+
+For comparison sorts, the worst-case number of comparisons has a lower bound of
+`Ω(n log n)`. That means no comparison sort can beat that asymptotic barrier in
+the worst case.
+
+If we want to sort faster than that lower bound, we have to avoid comparisons as
+the primary mechanism. That is exactly why counting sort and radix sort matter.
+
+- Counting sort is linear time when the key range `k` is manageable.
+- Radix sort repeatedly sorts by digit, typically using a stable subroutine.
+- Counting sort is not an in-place comparison sort.
+
+The practical lesson is not “every sort is the same”. The lesson is that the
+data domain and the operation model determine the correct complexity class.
+
+## Why lower terms and constants disappear
+
+The tutorial’s simplification slides use expressions like
+
+`N + 1 = O(N)`
+
+and
+
+`N^3 + 1000N^2 + N = O(N^3)`.
+
+The reason is that the fastest-growing term controls the long-run growth.
+Lower-order terms still exist, but they stop mattering once `n` is large enough.
+
+<WorkedExample title="A clean simplification proof">
+To show that `(n^2 + n)/2 = O(n^2)`, choose `C = 1` and `n_0 = 1`.
+
+For every `n \ge 1`,
+
+`(n^2 + n)/2 <= (n^2 + n^2)/2 = n^2`.
+
+So the function is bounded above by a constant multiple of `n^2` for all
+large enough `n`.
+</WorkedExample>
+
+## Cost of stack and queue operations
+
+The previous section on ADTs gives useful concrete examples for this section.
+Once the representation is fixed, the same interface can have different costs.
+
+- Array-based stack `push` / `pop` are typically constant time except when a
+  resize happens.
+- Linked-list queue `enqueue` / `dequeue` can be constant time when `head` and
+  `tail` are maintained correctly.
+- `QueueLength()` can be constant time if the length is stored, or linear time
+  if it must scan the list.
+
+That is why asymptotic analysis belongs next to implementation details, not
+apart from them.
 
 <QuickCheck prompt="If an algorithm has two nested loops each running n times, what class is the total cost?">
-Assume loop body is O(1).
+Assume the loop body is `O(1)`.
 </QuickCheck>
 
 <RevealSolution title="Answer">
 `O(n^2)`.
 </RevealSolution>
 
-<QuickCheck prompt="Why does O(n log n) beat O(n^2) for sufficiently large n?">
-Compare ratio `(n^2)/(n log n)`.
+<QuickCheck prompt="Why does `O(n log n)` beat `O(n^2)` for sufficiently large n?">
+Compare the ratio `(n^2)/(n log n)`.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-The ratio is `n/log n`, which grows without bound, so quadratic eventually
-becomes much larger.
+The ratio is `n / log n`, which grows without bound. So the quadratic term
+eventually dominates the `n log n` term.
 </RevealSolution>
+
+<QuickCheck prompt="What is the asymptotic class of `0.0001n^3 + n`?">
+Drop constants and lower-order terms.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`O(n^3)`.
+</RevealSolution>
+
+<QuickCheck prompt="Why does selection sort have quadratic cost even though only one element is placed each pass?">
+Count the comparisons inside the shrinking inner loop.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Each outer pass finds the minimum by scanning the remaining suffix. The first pass compares about `n-1` values, the second compares about `n-2`, and so on. The total is a triangular sum, which is quadratic.
+</RevealSolution>
+
+## Takeaway
+
+Complexity analysis is a way to reason about scaling, not a way to guess which
+implementation “feels faster”. If you can identify the dominant repeated action,
+write the count, and simplify correctly, you can usually classify the algorithm
+without running it.

@@ -1,34 +1,238 @@
 ---
 title: "2.1 複雜度增長與演算法成本"
-description: "在寫程式前先嚴格比較 O(1)、O(log n)、O(n)、O(n log n)、O(n^2) 的增長。"
+description: "建立嚴謹的成本模型，正確化簡漸近式，並用具體程式讀出增長率，而唔係估。"
 ---
 
-## 為甚麼先做複雜度分析
+## 點解要先講複雜度
 
-漸進分析回答的是「輸入變大時成本如何放大」。它比常數項調整更能決
-定演算法是否可擴展。
+lecture slides 一開始就講 growth，而唔係先講 micro-optimization，係有
+原因嘅。當輸入規模 `n` 變大時，成本點樣放大通常比某一部機快幾多更
+重要。
 
-<Definition title="Big-O 上界">
-`T(n)=O(f(n))` 表示存在常數 `C>0` 與 `n_0`，使得對所有 `n\ge n_0`
-都有 `T(n)\le C f(n)`。
+Big-O 係一個增長模型，唔係計時器。唔同機器會改變 constant factor，
+但唔會改變線性、二次、對數呢啲基本形狀。
+
+<Definition title="漸近上界（Big-O）">
+`T(n)=O(f(n))` 表示存在常數 `C>0` 同 `n_0`，令所有 `n\ge n_0` 都有
+`T(n)\le C f(n)`。
 </Definition>
+
+呢個定義係一個 proof obligation。你要證明上界，而唔係只係話「睇落似
+二次」。
+
+## 化簡規則唔係偷步，而係重點
+
+tutorial slides 重複強調兩條規則：
+
+- 當 `n` 夠大時，刪走影響愈來愈細嘅項，
+- 刪走 constant factor。
+
+所以
+
+`0.1n^3 + 10000n^2 + n + 3`
+
+最後仍然係 `O(n^3)`。cubic term 會慢慢主導其他所有項。同樣，
+
+`(n^2 + n)/2`
+
+嘅增長率仍然係 `O(n^2)`，因為 `1/2` 唔會改變漸近形狀。
+
+<WorkedExample title="點解 n^2 壓過 n">
+比較 ratio：
+
+`n^2 / n = n`.
+
+個 ratio 會無界增長，所以 `n^2` 遲早會明顯大過 `n`。因此當 quadratic
+term 存在時，linear term 就可以刪走。
+</WorkedExample>
+
+## CSCI2520 常見增長級別
+
+課程入面反覆用到同一組 class。
+
+- `O(1)`：直接存取、已知指標重連、簡單算術。
+- `O(log n)`：對半縮減搜尋、平衡樹查找、反覆除 2。
+- `O(n)`：掃描 array 或 linked list。
+- `O(n log n)`：分治加上每一層嘅線性工作。
+- `O(n^2)`：雙重掃描，尤其係比較密集嘅 double loop。
 
 <InteractiveWidget id="complexity-growth-comparator" />
 
-## 常見級別
+個 comparator widget 係視覺輔助，唔係 derivation 嘅代替品。你應該先寫
+出增長式，再用 widget 去確認 intuition。
 
-- `O(1)`：直接存取、已知節點的 pointer 重連
-- `O(log n)`：對半縮減搜尋
-- `O(n)`：線性掃描
-- `O(n log n)`：分治加線性合併
-- `O(n^2)`：雙層線性迴圈
+## 由程式讀出複雜度
 
-## 快速檢查
+最快嘅方法，通常係搵出最常執行嘅部分，再數佢跑幾多次。
 
-<QuickCheck prompt="兩層各跑 n 次的迴圈（內部 O(1)）是甚麼複雜度？">
+<WorkedExample title="常數時間語句">
+```c
+int x = a + b;
+int y = x * 2;
+return y;
+```
+
+每一行都只執行一次，所以整個函數係 `O(1)`。實際 CPU 成本會變，但唔會
+隨 `n` 改變。
+</WorkedExample>
+
+<WorkedExample title="線性掃描">
+```c
+int sum(const int a[], int n) {
+   int total = 0;
+   for (int i = 0; i < n; i++) {
+      total += a[i];
+   }
+   return total;
+}
+```
+
+loop body 會跑 `n` 次，而每次 body 都係 constant time，所以成個函數係
+`O(n)`。
+</WorkedExample>
+
+<WorkedExample title="巢狀迴圈會變成二次成本">
+```c
+int countPairs(int n) {
+   int c = 0;
+   for (int i = 0; i < n; i++) {
+      for (int j = 0; j < n; j++) {
+         c++;
+      }
+   }
+   return c;
+}
+```
+
+內部 statement 總共會執行 `n * n` 次，所以係 `O(n^2)`。
+</WorkedExample>
+
+## 一個具體排序例子：selection sort
+
+tutorial deck 用 selection sort 去示範 quadratic growth 點樣出現。
+算法會喺剩餘 suffix 入面搵最細元素，再 swap 去正確位置。
+
+```c
+void selectionSort(int a[], int n) {
+   for (int i = 0; i < n - 1; i++) {
+      int min = i;
+      for (int j = i + 1; j < n; j++) {
+         if (a[j] < a[min]) {
+            min = j;
+         }
+      }
+      if (min != i) {
+         int tmp = a[i];
+         a[i] = a[min];
+         a[min] = tmp;
+      }
+   }
+}
+```
+
+比較次數大約係
+
+`(n-1) + (n-2) + ... + 1 = n(n-1)/2`.
+
+呢個和係二次，所以演算法係 `O(n^2)`。slide 裡面用文字講嘅重點都一樣：
+當 `n` 加倍，時間大約變成 4 倍。
+
+<WorkedExample title="selection sort 的增長">
+如果 `n` 加倍，`n^2` 會變成 `4n^2`。
+如果 `n` 增加 10 倍，`n^2` 會增加 100 倍。
+
+所以 quadratic 算法喺大資料集上會好快變貴。
+</WorkedExample>
+
+## comparison sort 同 non-comparison sort
+
+sorting slides 再進一步指出：merge sort、heapsort 同 quicksort 都係
+comparison sort。
+
+對 comparison sort 而言，worst-case comparisons 有 `Ω(n log n)` 嘅 lower
+bound。即係話，任何 comparison sort 都唔可以喺 worst case 打破呢個漸近
+界限。
+
+如果想快過呢個 lower bound，就要避免用 comparison 做主要機制。呢個就係
+counting sort 同 radix sort 嘅意義。
+
+- counting sort 喺 key range `k` 可控時可以係 linear time。
+- radix sort 會逐個 digit 做 stable subroutine sorting。
+- counting sort 唔係 in-place comparison sort。
+
+實際重點唔係「所有 sort 都一樣」，而係資料域同操作模型會決定應該用咩
+複雜度類別。
+
+## 點解 lower terms 同 constants 會消失
+
+tutorial 嘅 simplification slide 有好多類似：
+
+`N + 1 = O(N)`
+
+同
+
+`N^3 + 1000N^2 + N = O(N^3)`.
+
+原因係最快增長嘅項會主導長遠增長。低階項仍然存在，但當 `n` 大到某個
+程度之後，就唔再重要。
+
+<WorkedExample title="一個乾淨嘅化簡證明">
+要證明 `(n^2 + n)/2 = O(n^2)`，可以揀 `C = 1` 同 `n_0 = 1`。
+
+對所有 `n \ge 1`，
+
+`(n^2 + n)/2 <= (n^2 + n^2)/2 = n^2`.
+
+所以當 `n` 夠大時，佢可以被某個常數倍嘅 `n^2` 上界住。
+</WorkedExample>
+
+## stack 同 queue 操作嘅成本
+
+上一節 ADT 內容其實正好提供呢一節嘅具體例子。當 representation 定咗，
+同一個 interface 仍然可以有唔同成本。
+
+- array-based stack `push` / `pop` 通常係 constant time，但 resize 時會貴啲。
+- linked-list queue 如果 `head` 同 `tail` 維護得好，`enqueue` / `dequeue`
+  可以係 constant time。
+- `QueueLength()` 如果要掃 linked list，就可能係 linear time；如果有長度
+  欄位，就可以係 constant time。
+
+所以漸近分析一定要同實作細節一齊睇，唔可以分開。
+
+<QuickCheck prompt="如果一個 algorithm 有兩層各跑 n 次嘅迴圈，而 loop body 係 O(1)，總成本係咩？">
 直接乘法則。
 </QuickCheck>
 
 <RevealSolution title="答案">
 `O(n^2)`。
 </RevealSolution>
+
+<QuickCheck prompt="點解 `O(n log n)` 會喺足夠大嘅 n 下贏過 `O(n^2)`？">
+比較 `(n^2)/(n log n)` 嘅 ratio。
+</QuickCheck>
+
+<RevealSolution title="答案">
+ratio 係 `n / log n`，會無界增長，所以 quadratic 項最後一定會壓過 `n log n`。
+</RevealSolution>
+
+<QuickCheck prompt="`0.0001n^3 + n` 的漸近類別係咩？">
+刪走常數同低階項。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`O(n^3)`。
+</RevealSolution>
+
+<QuickCheck prompt="點解 selection sort 仍然係 quadratic cost，即使每一輪只放一個元素？">
+數清楚 inner loop 入面嘅 comparisons。
+</QuickCheck>
+
+<RevealSolution title="引導答案">
+每一輪 outer pass 都要喺剩餘 suffix 入面掃一次。第一次大約比較 `n-1` 次，第二次大約比較 `n-2` 次，如此類推。總和係三角形求和，所以係二次。
+</RevealSolution>
+
+## 重點總結
+
+複雜度分析係用嚟理解 scaling，而唔係估邊個 implementation「感覺上快啲」。
+如果你可以搵到主導重複動作、寫出計數、再正確化簡，通常就可以唔跑程式都
+分類到演算法。

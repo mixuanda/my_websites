@@ -1,90 +1,314 @@
 ---
 title: "1.1 ADT operations: stack, queue, and function pointers"
-description: "Specify operation contracts first, then track exactly how stack/queue operations change state and how function pointers dispatch those operations in C."
+description: "Study ADT contracts first, then follow stack and queue operations through concrete C implementations and function-pointer-based dispatch."
 ---
 
-## Why start from ADT contracts
+## Why this section starts with contracts
 
-In data structures, implementation details are secondary to operation contracts.
-An ADT (Abstract Data Type) defines the legal operations, the state guarantees,
-and the error cases before we commit to arrays, linked lists, or any specific
-layout.
+In CSCI2520, the first mistake is usually not a missing semicolon. It is a
+missing contract.
 
-## Stack ADT: operation semantics
+An abstract data type tells us four things before we commit to a particular
+representation:
 
-<Definition title="Stack ADT core operations">
+- what operations are legal,
+- what each operation guarantees,
+- what the client may assume after a call,
+- how empty-state and error cases are handled.
+
+That separation matters because the same stack or queue interface can be backed
+by a fixed array, a dynamic array, or a linked list. The client code should not
+need to change when the representation changes.
+
+<Definition title="ADT contract versus implementation">
+An ADT contract names the operations and their meaning.
+An implementation chooses the data fields, memory layout, and update strategy.
+The contract is the promise; the representation is the mechanism.
+</Definition>
+
+## A stack is a disciplined top-only structure
+
+The lecture slides define a stack as a pile that can be accessed only from the
+top. That is not just an analogy. It is the invariant that makes stack code
+predictable.
+
+<Definition title="Stack core operations">
 For a stack `S`:
 
-- `push(x)`: insert `x` on top,
-- `pop()`: remove and return top element,
-- `top()`: return top element without removing,
-- `isEmpty()`: return whether `S` is empty.
+- `push(x)`: place `x` on the top of `S`,
+- `pop()`: remove and return the top element,
+- `top()`: inspect the top element without removing it,
+- `isEmpty()`: test whether the stack has no elements,
+- `StackDepth()`: return the number of stored elements.
 </Definition>
 
-LIFO is not a slogan. It is an invariant: if `a` is pushed before `b`, then `b`
-must be popped before `a` unless removed by error handling.
+The key law is LIFO, last in first out. If `a` is pushed before `b`, then `b`
+must come out first unless an error interrupts the process.
 
-<WorkedExample title="State trace for push/pop/top">
-Start with empty stack.
+<WorkedExample title="Tracing a stack by state">
+Start with an empty stack.
 
-1. `push(10)` -> `[10]`
-2. `push(20)` -> `[10,20]` (top is `20`)
-3. `top()` returns `20`, state unchanged
-4. `pop()` returns `20`, state becomes `[10]`
+1. `push(10)` gives `[10]`
+2. `push(20)` gives `[10, 20]`
+3. `top()` returns `20` and leaves the state unchanged
+4. `pop()` returns `20` and the stack becomes `[10]`
 </WorkedExample>
 
-## Queue ADT: operation semantics
+## The stack interface hides the representation
 
-<Definition title="Queue ADT core operations">
-For a queue `Q`:
+The lecture makes a point of the opaque type pattern:
 
-- `enqueue(x)`: insert `x` at rear,
-- `dequeue()`: remove and return front element,
-- `front()`: inspect front without removal,
-- `isEmpty()`: return whether `Q` is empty.
-</Definition>
+```c
+typedef struct stackCDT *stackADT;
+typedef int stackElementT;
 
-Queue invariant is FIFO: earlier inserted item exits earlier.
+stackADT EmptyStack(void);
+void Push(stackADT stack, stackElementT element);
+stackElementT Pop(stackADT stack);
+int StackDepth(stackADT stack);
+int StackIsEmpty(stackADT stack);
+```
 
-<WorkedExample title="State trace for enqueue/dequeue">
-Start with empty queue.
+This is not cosmetic. `stackADT` is a pointer to an incomplete structure, so the
+client can hold and pass stacks around but cannot reach inside the structure.
+That means the implementation can change from:
 
-1. `enqueue(3)` -> `[3]`
-2. `enqueue(5)` -> `[3,5]`
-3. `dequeue()` returns `3`, queue becomes `[5]`
-4. `front()` returns `5`, state unchanged
-</WorkedExample>
+- a fixed array of 100 entries,
+- to a dynamic array with `realloc`,
+- to another internal layout later,
 
-## Function-pointer dispatch in C
+without rewriting client code.
 
-When implementing ADT operations in C, we often store function pointers in an
-operation table so code can switch behavior by structure type without rewriting
-call sites.
-
-<TheoremCard title="Interface consistency via function pointers">
-If every implementation of an ADT exposes the same function-pointer signatures,
-client code can remain stable while underlying structures vary.
+<TheoremCard title="Representation independence">
+If the client can use an ADT only through its declared operations, then the
+implementation may change its internal representation without changing the
+client-visible behavior.
 </TheoremCard>
 
-This is effectively manual polymorphism in C.
+## How the stack is implemented in practice
+
+The source slides show three important implementation ideas.
+
+First, a fixed array implementation stores values bottom to top and keeps a
+`count` field for the current depth:
+
+```c
+struct stackCDT {
+   stackElementT elements[100];
+   int count;
+};
+```
+
+This version is simple, but it has a hard capacity limit. If the depth grows
+beyond 100, the implementation hits stack overflow at the representation level,
+not the mathematical stack operation.
+
+Second, a dynamic-array version stores an expandable pointer and a `size`
+field:
+
+```c
+struct stackCDT {
+   stackElementT *elements;
+   int count;
+   int size;
+};
+```
+
+When the array fills, `Push()` expands the storage with `realloc()`. That gives
+the client a larger logical stack without changing the interface.
+
+Third, the slides also refine `Pop()` to recover memory more carefully when the
+underlying array is no longer fully used. That is a reminder that a correct
+interface is not enough; memory policy still matters.
+
+<WorkedExample title="A push/pop implementation sketch">
+```c
+void Push(stackADT stack, stackElementT element) {
+   if (stack->count == stack->size) {
+      stack->size += 10;
+      stack->elements = realloc(
+         stack->elements,
+         stack->size * sizeof(stackElementT)
+      );
+   }
+   stack->elements[stack->count] = element;
+   stack->count++;
+}
+
+stackElementT Pop(stackADT stack) {
+   stack->count--;
+   return stack->elements[stack->count];
+}
+```
+
+The code is intentionally direct:
+
+- `count` tracks the next free slot,
+- `push` stores at that slot and increments the count,
+- `pop` decrements the count and returns the old top value.
+</WorkedExample>
+
+## Queue semantics are different, even if the code looks similar
+
+The queue ADT is the other side of the same design problem. The operations are
+similar in style, but the invariant is FIFO, first in first out.
+
+<Definition title="Queue core operations">
+For a queue `Q`:
+
+- `enqueue(x)`: add `x` at the tail,
+- `dequeue()`: remove and return the head element,
+- `front()`: inspect the head element without removing it,
+- `isEmpty()`: test whether the queue has no elements,
+- `QueueLength()`: return the number of stored elements.
+</Definition>
+
+The lecture notes present the queue header in the same opaque-style pattern:
+
+```c
+typedef struct queueCDT *queueADT;
+typedef int queueElementT;
+
+queueADT EmptyQueue(void);
+void Enqueue(queueADT queue, queueElementT element);
+queueElementT Dequeue(queueADT queue);
+int QueueLength(queueADT queue);
+int QueueIsEmpty(queueADT queue);
+```
+
+Again, the interface says what the user may do; it does not say how the queue is
+stored.
+
+## Queue implementations: array, circular array, linked list
+
+The tutorial slides make the implementation tradeoffs explicit.
+
+- A fixed-size array is the simplest first version, but it wastes space when
+  elements are dequeued from the front and new values are appended at the tail.
+- A circular array fixes that waste by wrapping `front` and `rear` around with
+  the modulus operator.
+- A linked-list queue stores `head` and `tail` pointers and grows as long as the
+  heap can provide memory.
+
+The linked-list version is especially useful when we want the queue to keep
+accepting work items without shifting existing elements around.
+
+```c
+struct cellT {
+   queueElementT element;
+   struct cellT *next;
+};
+
+struct queueCDT {
+   struct cellT *head;
+   struct cellT *tail;
+};
+```
+
+That representation makes `enqueue` and `dequeue` conceptually simple:
+
+- a new node is linked at the tail,
+- the head node is removed and freed,
+- `QueueIsEmpty()` is just `head == NULL`.
+
+<WorkedExample title="Why a circular array is better than a plain array">
+Suppose a queue alternates `enqueue` and `dequeue` many times.
+
+- In a plain array, values near the front can leave empty space that is not
+  reused efficiently.
+- In a circular array, the front and rear indices wrap around so the earlier
+  slots can be reused.
+
+That is why the tutorial explicitly asks what happens if we `enqueue` and
+`dequeue` repeatedly for millions of operations.
+</WorkedExample>
+
+## Function pointers let C simulate method dispatch and callbacks
+
+The lecture on function pointers is not random extra material. It explains how
+C can defer behavior until runtime while still staying type-safe.
+
+At a minimum, a function pointer stores the address of code:
+
+```c
+int (*fp)(int);
+```
+
+The pointer may point to any function with the matching prototype. That means
+the type signature is the contract.
+
+<Definition title="Function-pointer rule">
+A function pointer may point only to functions whose parameter list and return
+type match the declared function-pointer type.
+</Definition>
+
+The slides then move to a practical ADT example: extending a hash table with a
+callback-based traversal operation.
+
+```c
+typedef void (*hashtableFnT)(char *, void *);
+
+void ForEachEntryDo(hashtableFnT fp, hashtableADT table);
+```
+
+Client code can pass a callback:
+
+```c
+void DisplayWordCount(hashtableADT table) {
+   ForEachEntryDo(PrintEntry, table);
+}
+```
+
+This pattern matters for ADTs because it lets the implementation perform the
+iteration while the client controls what happens to each entry. The traversal
+logic stays in one place, but the action can vary.
+
+The same idea also appears in dispatch tables: a set of function pointers can
+select the correct operation for a specific structure or command without a long
+chain of `if` statements.
+
+```c
+void ApplyOperator(char c, stackADT stack) {
+   int y = Pop(stack);
+   int x = Pop(stack);
+
+   switch (c) {
+   case '+': Push(stack, x + y); break;
+   case '-': Push(stack, x - y); break;
+   case '*': Push(stack, x * y); break;
+   case '/': Push(stack, x / y); break;
+   }
+}
+```
+
+In this example, the stack stores operands while the operation table decides how
+to combine them. The code is small, but the concept is broad: function pointers
+turn C into a manually controlled dispatch system.
 
 <InteractiveWidget id="adt-stack-queue-stepper" />
 
 ## Common mistakes
 
-<CommonMistake title="Mixing stack and queue invariants">
-Using `enqueue`/`dequeue` names but applying LIFO behavior (or vice versa)
-breaks ADT contracts even if code compiles.
+<CommonMistake title="Mixing the stack and queue invariants">
+`push`/`pop` belong to a stack; `enqueue`/`dequeue` belong to a queue. Renaming
+the functions without preserving the access order breaks the ADT contract even
+if the program still compiles.
 </CommonMistake>
 
-<CommonMistake title="Ignoring empty-structure preconditions">
-`pop` and `dequeue` on empty structures need explicit error policy (status code,
-exception-like return, or sentinel with validity flag).
+<CommonMistake title="Forgetting error policy on empty structures">
+The slides explicitly treat empty-stack underflow and queue-empty cases as
+errors that must be handled. Decide whether the function returns a status code,
+a sentinel, or an error indicator before you code the interface.
+</CommonMistake>
+
+<CommonMistake title="Confusing interface stability with implementation stability">
+The interface should stay stable. The internal representation is what should be
+free to change when the data structure evolves.
 </CommonMistake>
 
 ## Quick checks
 
-<QuickCheck prompt="After push(1), push(2), pop(), what remains in the stack?">
+<QuickCheck prompt="After `push(1)`, `push(2)`, `pop()`, what remains in the stack?">
 Apply LIFO strictly.
 </QuickCheck>
 
@@ -92,7 +316,7 @@ Apply LIFO strictly.
 Only `1` remains.
 </RevealSolution>
 
-<QuickCheck prompt="After enqueue(4), enqueue(7), dequeue(), which element is returned?">
+<QuickCheck prompt="After `enqueue(4)`, `enqueue(7)`, `dequeue()`, which element is returned?">
 Apply FIFO strictly.
 </QuickCheck>
 
@@ -100,23 +324,43 @@ Apply FIFO strictly.
 `4` is returned.
 </RevealSolution>
 
+<QuickCheck prompt="Why does `ForEachEntryDo(PrintEntry, table)` need a callback type, not just a generic pointer?">
+Focus on type checking and matching parameter lists.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The callback type says exactly which function signatures are legal. A generic pointer does not preserve the parameter and return-type information, so the compiler cannot enforce the contract. The callback type keeps the traversal safe and explicit.
+</RevealSolution>
+
 ## Exercises
 
-<QuickCheck prompt="Design precondition/postcondition for stack pop().">
-Write one valid contract in words.
+<QuickCheck prompt="Write a precondition and a postcondition for `Pop(stack)` on a non-empty stack.">
+Keep the contract precise.
 </QuickCheck>
 
 <RevealSolution title="Guided solution">
-Precondition: stack is non-empty. Postcondition: old top element is returned and
-removed; size decreases by one; remaining order is preserved.
+Precondition: the stack is not empty. Postcondition: the old top element is returned, the stack depth decreases by one, and the order of the remaining elements is unchanged.
 </RevealSolution>
 
-<QuickCheck prompt="Explain in one paragraph why an operation table of function pointers helps testing.">
-Focus on swapping implementations with unchanged client tests.
+<QuickCheck prompt="Explain why a queue implemented with a linked list can support `enqueue` without shifting existing elements.">
+Tie your answer to `head` and `tail`.
 </QuickCheck>
 
 <RevealSolution title="Guided solution">
-Function-pointer tables let the same test suite call the same signatures while
-switching backend implementations (array/linked list). This isolates behavioral
-correctness from storage choices and reveals contract violations early.
+The new node is linked after the current tail, and the tail pointer is updated to the new node. No earlier node has to move, so the existing queue order stays intact.
 </RevealSolution>
+
+<QuickCheck prompt="Write one short paragraph explaining how function pointers help testing an ADT implementation.">
+Use the interface-versus-implementation distinction.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Function pointers let the same client code call the same signatures while the backend changes. A test suite can therefore exercise multiple implementations of the same ADT contract and catch violations without rewriting the tests.
+</RevealSolution>
+
+## Takeaway
+
+The main idea is not “stack and queue are two data structures.” The real idea is
+that ADT contracts define behavior, implementations choose storage, and function
+pointers let C separate those responsibilities without losing control over the
+types.
