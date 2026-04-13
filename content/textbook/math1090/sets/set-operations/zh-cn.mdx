@@ -1,73 +1,312 @@
 ---
 title: "2.1 集合与集合运算"
-description: "通过具体例子理解属于、子集，以及主要的集合运算。"
+description: "建立成员关系、子集证明，以及标准集合构造的语言，为后续章节反复使用的概念打底。"
 ---
 
-先复习 [1.1 命题逻辑](/zh-cn/notes/math1090/logic/propositional-logic)，
-因为这一单元的符号常常要配合逻辑语言来读。
+集合是用来描述一批对象的基础语言。在这门课里，集合不是旁支，
+而是逻辑、函数、关系，以及后续数系构造共同依赖的语言。
 
-## 什么是集合
+如果你现在觉得符号有些陌生，这是正常的。这一单元的目标就是把这套语言
+变得足够精确，好让后面的章节可以直接使用。
+
+## 集合、属于、相等
 
 <Definition title="集合">
-集合是事物的集合。
+集合是一批对象的集合。
 
-若 `x` 是集合 `A` 的元素，我们写作 `x ∈ A`；若不是，则写作 `x ∉ A`。
+如果 `x` 是集合 `A` 的元素，我们写 `x \in A`；如果不是，就写
+`x \notin A`。
 </Definition>
 
-两个集合相等，表示它们的元素完全一样。
+例子：
 
-## 主要运算
+- `{1, 2, 3}` 是集合。
+- `{香港岛、九龙、新界}` 是集合。
+- `∅` 是空集合，也就是没有任何元素的集合。
 
-| 运算 | 符号 | 读法 |
+同一个集合可以有不同写法，但集合本身只由元素决定。
+
+<TheoremCard title="外延性">
+两个集合相等，当且仅当它们拥有完全相同的元素。
+
+符号上写成：
+
+$$
+A = B \iff \forall x\, (x \in A \leftrightarrow x \in B).
+$$
+</TheoremCard>
+
+所以证明集合相等的标准方法是先证两个包含关系：
+
+1. 证明 `A \subset B`
+2. 证明 `B \subset A`
+
+<CommonMistake title="不要把集合相等和描述相等混淆">
+`{1, 2, 3}` 和 `{3, 2, 1}` 是同一个集合，因为元素完全一样。列出的顺序并不重要。
+</CommonMistake>
+
+<CommonMistake title="子集符号要注意本地约定">
+本课程用 `A \subset B` 表示“`A` 的每个元素都在 `B` 里”。有些书会用
+`A \subseteq B` 表示这个意思，而把 `A \subset B` 留给 strict subset。
+读书时要先确认约定。
+</CommonMistake>
+
+## 建立新集合
+
+知道了一些集合之后，我们通常会想造出更多集合。标准运算就是用来做这件事的。
+
+| 运算 | 符号 | 定义 |
 | --- | --- | --- |
-| 并集 | `A ∪ B` | 属于 `A` 或 `B` 的元素 |
-| 交集 | `A ∩ B` | 同时属于 `A` 和 `B` 的元素 |
-| 差集 | `A \ B` | 属于 `A` 但不属于 `B` 的元素 |
-| 补集 | `A^c` | 在选定的全集中，位于 `A` 外的元素 |
+| 并集 | `A \cup B` | 属于 `A` 或 `B` 的元素 |
+| 交集 | `A \cap B` | 同时属于 `A` 和 `B` 的元素 |
+| 差集 | `A \setminus B` | 属于 `A` 但不属于 `B` 的元素 |
+| 补集 | `A^c` | 在所选全集内，不属于 `A` 的元素 |
 
-## 用一个具体例子看运算
+补集一定要先指定全集 `E`。在这一单元里，我们通常默认所有集合都在某个
+固定 `E` 里面，所以 `A^c` 就是 `E \setminus A`。
 
-<WorkedExample title="追踪元素如何移动">
-设 `A = {1, 2, 4}`，`B = {2, 3, 4}`。
+<WorkedExample title="追踪元素如何经过几个运算">
+设
+
+$$
+A = \{1, 2, 4\}, \qquad B = \{2, 3, 4\},
+$$
+
+而全集取为
+
+$$
+E = \{1, 2, 3, 4, 5\}.
+$$
 
 那么：
 
-- `A ∪ B = {1, 2, 3, 4}`
-- `A ∩ B = {2, 4}`
-- `A \ B = {1}`
+- `A \cup B = \{1, 2, 3, 4\}`
+- `A \cap B = \{2, 4\}`
+- `A \setminus B = \{1\}`
+- `B \setminus A = \{3\}`
+- `A^c = \{3, 5\}`
+- `(A \cup B)^c = \{5\}`
 
-如果全集是 `E = {1, 2, 3, 4, 5}`，则 `A^c = {3, 5}`。
-
-<RevealSolution title="快速检查德摩根律">
-某个元素不在 `A ∪ B` 里，正好等于它同时不在 `A` 里，也不在 `B` 里。这就是 `(A ∪ B)^c = A^c ∩ B^c`。
+<RevealSolution title="为什么补集一定要有全集">
+`A^c` 不是 `A` 自身的绝对性质。在不同 universe 里，同一个集合的补集可以完全不同。
+所以一定要先知道当前讨论的是哪个全集。
 </RevealSolution>
 </WorkedExample>
 
-## 另外两个你会见到的构造
+## 这些等式怎么证
 
-本地材料还会介绍两个常用构造：
+本单元的集合恒等式不是靠死记，而是靠逐个元素追踪来证明。
 
-- `A × B`，笛卡儿积，是有序对 `(a, b)` 的集合。
-- `P(A)`，幂集，是 `A` 的所有子集所组成的集合。
+<TheoremCard title="基本集合代数">
+对集合 `A`、`B`、`C`：
 
-这两个符号值得及早认识。
+- `A \cup \varnothing = A`
+- `A \cup B = B \cup A`
+- `A \cup (B \cup C) = (A \cup B) \cup C`
+- `A \cup A = A`
+- `A \cap (B \cup C) = (A \cap B) \cup (A \cap C)`
+- `A \cup (B \cap C) = (A \cup B) \cap (A \cup C)`
+- `(A \cup B)^c = A^c \cap B^c`
+- `(A \cap B)^c = A^c \cup B^c`
+- `A \subset B` 当且仅当 `A \cup B = B`
+- `A \subset B` 当且仅当 `A \cap B = A`
+</TheoremCard>
+
+核心证明法是 element chasing。比如：
+
+$$
+x \in A \cap (B \cup C)
+\iff x \in A \text{ 且 } (x \in B \text{ 或 } x \in C)
+$$
+
+等价于
+
+$$
+(x \in A \text{ 且 } x \in B) \text{ 或 } (x \in A \text{ 且 } x \in C),
+$$
+
+所以又等价于
+
+$$
+x \in (A \cap B) \cup (A \cap C).
+$$
+
+<CollapsibleProof title="示范：为什么 `A \subset B` 会推出 `A \cup B = B`">
+假设 `A \subset B`。
+
+要证 `A \cup B = B`，只需证两个包含。
+
+先证 `A \cup B \subset B`：如果 `x \in A \cup B`，那么 `x \in A` 或 `x \in B`。
+若 `x \in A`，由 `A \subset B` 得 `x \in B`。所以无论哪种情况，都有 `x \in B`。
+
+再证 `B \subset A \cup B`：如果 `x \in B`，那当然 `x \in A \cup B`。
+
+因此 `A \cup B = B`。
+</CollapsibleProof>
+
+## 其他常见构造
+
+这门课后面还会反复用到下面几种集合构造。
+
+### 笛卡儿积
+
+`A \times B` 是所有有序对 `(a, b)` 的集合，其中 `a \in A` 而 `b \in B`。
+顺序是有意义的：`(a, b)` 和 `(b, a)` 通常不同。
+
+如果 `|A| = 5` 且 `|B| = 3`，那么 `|A \times B| = 15`。
+
+`R \times R = R^2` 就是平面。
+
+### 有限次积
+
+`A^n` 表示 `A` 和自己做 `n` 次笛卡儿积，也就是所有 `n`-tuple。
+
+### 幂集
+
+`P(A)` 是 `A` 的所有子集所组成的集合。
+
+如果 `A` 有 `n` 个元素，那么 `P(A)` 有 `2^n` 个元素。另一个很有用的理解方式
+是 indicator function：每个子集都可以对应到一个 `A \to {0,1}` 的函数。
+
+例如
+
+$$
+P(\{a, b\}) = \{\varnothing, \{a\}, \{b\}, \{a, b\}\}.
+$$
+
+### 不交并
+
+有时两个集合在原始写法上可能有重叠，但我们又想保留每个元素的来源。
+不交并就是通过标签记住每个元素最初属于哪个集合。
+
+直观上，`A \sqcup B` 就是“加了标签 1 的 `A`”和“加了标签 2 的 `B`”。
+
+## 怎样仔细证明集合恒等式
+
+到了这里，集合恒等式应该被理解成“属元条件相同”的命题，而不是只靠图形
+去记。
+
+标准证明方法通常是：
+
+1. 任取一个元素 `x`；
+2. 把 `x \in` 两边集合翻译成逻辑条件；
+3. 逐步化简，直到两边变成同一句话。
+
+<WorkedExample title="证明 `A \cap (B \setminus C) = (A \cap B) \setminus C`">
+从
+
+$$
+x \in A \cap (B \setminus C)
+$$
+
+出发，就表示：
+
+- `x \in A`，
+- `x \in B`，
+- `x \notin C`。
+
+而这三个条件合起来，正是
+
+$$
+x \in (A \cap B) \setminus C
+$$
+
+的意思。
+
+由于推理可以反向读回去，所以两边集合相等。
+</WorkedExample>
+
+这种逐元素追踪的方法，后面还会再次出现在德摩根律、关系，以及数系构造中。
+
+## 有限集合怎样计数
+
+集合语言不只用来分类，也直接控制计数。
+
+如果 `A`、`B` 都是有限集合，那么：
+
+- `|A \times B| = |A|\,|B|`；
+- `|P(A)| = 2^{|A|}`；
+- `|A \cup B| = |A| + |B| - |A \cap B|`。
+
+并集公式之所以要减交集，是因为交集中的元素如果直接相加，会被算两次。
+
+<WorkedExample title="计算一个并集和幂集">
+假设 `|A| = 6`、`|B| = 5`、`|A \cap B| = 2`。
+
+那么
+
+$$
+|A \cup B| = 6 + 5 - 2 = 9
+$$
+
+再设 `S = \{a,b,c\}`。每个元素都只有两种选择：放进某个子集，或者不放进。
+所以总共有
+
+$$
+2 \cdot 2 \cdot 2 = 2^3 = 8
+$$
+
+个子集。因此 `|P(S)| = 8`。
+</WorkedExample>
+
+## 子集证明检查表
+
+子集证明会反复出现，所以最好让它变成固定套路。
+
+如果要证明 `A \subseteq B`，就从任取 `x \in A` 开始，再用 `A` 的定义推出
+足够信息，最后证明同一个 `x` 其实也在 `B` 里面。由于 `x` 是任取，结论
+就对 `A` 的每个元素成立。
+
+这种 direct proof 模式，后面在关系、偏序，以及等价类中都会再次出现。
 
 ## 常见错误
 
-<CommonMistake title="不要把补集和差集混为一谈">
-`A^c` 要先有全集。`A \ B` 则是另一个集合运算。两者不是同一回事。
+<CommonMistake title="补集不等于差集">
+`A^c` 是“在全集外面的部分”。`A \setminus B` 是“A 里面但不在 B 里面的部分”。
+两者有关，但不一样。
+</CommonMistake>
+
+<CommonMistake title="没有全集就不能写补集">
+如果你写补集，一定要知道你是在什么 universe 里做运算。否则 `^c` 是含糊的。
+</CommonMistake>
+
+<CommonMistake title="积集顺序有意义">
+`A \times B` 和 `B \times A` 一般包含不同的有序对。这就是为什么函数和关系要用积集语言。
 </CommonMistake>
 
 ## 小检查
 
-<QuickCheck prompt="若 `A = {a, b, c}` 且 `B = {b, c, d}`，`A ∩ B` 是什么？">
-直接用交集的定义去想：只保留同时属于两个集合的元素。
+<QuickCheck prompt="如果 `A = {a, b, c}` 而 `B = {b, c, d}`，`A \cap B` 是什么？">
+只保留同时属于两个集合的元素。
 </QuickCheck>
 
 <RevealSolution title="答案">
-`A ∩ B = {b, c}`，因为 `b` 和 `c` 正是同时属于两个集合的元素。
+`A \cap B = \{b, c\}`。
 </RevealSolution>
 
-## 读到这里，试一试
+<QuickCheck prompt="为什么在未指定全集之前，`A^c` 不够清楚？">
+想一想补集是“在哪个范围内”取外面。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因为同一个集合在不同 universe 里的补集可以完全不同。
+</RevealSolution>
+
+<QuickCheck prompt="如果 `A \subset B`，那么 `A \cup B` 和 `A \cap B` 会简化成什么？">
+用上面的 absorption laws。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`A \cup B = B`，而 `A \cap B = A`。
+</RevealSolution>
+
+## 为什么这一单元重要
+
+这一单元是后面数系构造的语言基础。
+
+- `N^2` 会用来构造整数。
+- 等价类会用来构造有理数。
+- 一个集合上的关系会变成偏序和等价关系的语言。
+- 幂集和笛卡儿积会在后面讲 family、tuple，以及各种构造时再次出现。
 
 <InteractiveWidget id="set-operation-explorer" />

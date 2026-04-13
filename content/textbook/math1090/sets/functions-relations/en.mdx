@@ -1,26 +1,31 @@
 ---
 title: "2.2 Functions and relations"
-description: "Read a function as a special kind of relation, then learn the language of images, preimages, and inverse maps."
+description: "Read functions and relations as subsets of products, then use that language to understand image, preimage, inverse maps, partial orders, and equivalence classes."
 ---
 
-Prerequisite: review [2.1 Sets and set operations](/en/notes/math1090/sets/set-operations)
-first, because functions and relations are defined using sets.
+This unit is the bridge from set language to almost everything that follows.
+Functions, relations, and quotient constructions all start with the same idea:
+take a product set, then specify which pairs are allowed.
 
-## What a function is
+The point is not just to know the vocabulary. It is to understand what kind of
+statement each definition is making, because later chapters will build `N`, `Z`,
+`Q`, orders, and classes from exactly this language.
+
+## Functions are special relations
 
 <Definition title="A function">
-A function from `X` to `Y` is a subset of `X × Y` such that every `x` in `X`
-is paired with exactly one `y` in `Y`.
+A function from `X` to `Y` is a subset of `X \times Y` such that every `x \in X`
+is paired with exactly one `y \in Y`.
 </Definition>
 
-That is the set-theoretic definition used in the local notes.
+This is the set-theoretic definition used throughout the local notes.
 
-## Read the basic language
+The same information can be read in several equivalent ways:
 
-- The domain is the set of inputs.
-- The target is the set of possible outputs.
-- The graph of the function is the set of pairs `(x, y)`.
-- The image of a set is the set of outputs it reaches.
+- `X` is the domain, the set of allowed inputs.
+- `Y` is the target, the set of possible outputs.
+- The graph of `f` is the set of pairs `(x, y)` with `y = f(x)`.
+- The image of a set is the set of outputs reached by that set.
 - The preimage of a set is the set of inputs that land there.
 
 <CommonMistake title="A function must not send one input to two outputs">
@@ -28,20 +33,87 @@ A relation may connect one input to many outputs. A function cannot. Every input
 must have exactly one output.
 </CommonMistake>
 
-## A first example
+<CommonMistake title="The domain may depend on context">
+The formula `1/x` is not a single function unless you specify a domain. It can
+be a function on `R \setminus \{0\}`, on `Q \setminus \{0\}`, or on another
+domain where division by zero is excluded.
+</CommonMistake>
 
-<WorkedExample title="Read a function from its rule">
+## Reading a function carefully
+
+<WorkedExample title="The square function has repeated outputs">
 Take the rule `f(x) = x^2`.
 
-The inputs `-2` and `2` both map to `4`, so two different inputs may share the
-same output.
+Then `f(-2) = 4` and `f(2) = 4`, so different inputs may share the same output.
+That is allowed.
 
-What is not allowed is one input producing two different outputs.
+What is not allowed is a single input having two different outputs.
 
-<RevealSolution title="Image and preimage">
-If `A` is a subset of the domain, then `f(A)` is the set of outputs reached by
-inputs in `A`. If `B` is a subset of the target, then `f^{-1}(B)` is the set of
-inputs whose outputs land in `B`.
+For example, the relation “`y^2 = x`” on `Z \times Z` is not a function if you
+read it as a rule from `x` to `y`, because `x = 4` allows both `y = 2` and
+`y = -2`.
+
+<RevealSolution title="What to remember">
+The graph of a function is a very special subset of a product: every vertical
+line through an allowed input hits the graph exactly once.
+</RevealSolution>
+</WorkedExample>
+
+## Image, preimage, and composition
+
+For a function `f : X \to Y`, the course uses the word image in three related
+ways:
+
+- `f(x)` is the image of the single input `x`.
+- If `A \subset X`, then `f(A) = {f(x) \mid x \in A}` is the image of the set.
+- `f(X)` is the full image of `f`, meaning the actual outputs that appear.
+
+The preimage of a set `B \subset Y` is
+
+$$
+f^{-1}(B) = \{x \in X \mid f(x) \in B\}.
+$$
+
+This exists even when `f` does not have an inverse function.
+
+Composition is defined by
+
+$$
+(g \circ f)(x) = g(f(x)).
+$$
+
+The order matters: `g \circ f` means “first `f`, then `g`”.
+
+<WorkedExample title="Compare image and preimage for `f(x)=x^2`">
+Let `f : R \to R` be given by `f(x) = x^2`, and let
+
+$$
+A = \{-2, -1, 0, 1, 2\}, \qquad B = \{0, 1, 4\}.
+$$
+
+Then
+
+$$
+f(A) = \{0, 1, 4\}.
+$$
+
+Also,
+
+$$
+f^{-1}(B) = \{-2, -1, 0, 1, 2\},
+$$
+
+because every element of `A` maps into `B`.
+
+If we instead take `C = \{4\}`, then
+
+$$
+f^{-1}(C) = \{-2, 2\}.
+$$
+
+<RevealSolution title="Why this distinction matters">
+The image answers “what outputs do we get from these inputs?” The preimage
+answers “which inputs land in this output set?” Those are different questions.
 </RevealSolution>
 </WorkedExample>
 
@@ -53,52 +125,288 @@ inputs whose outputs land in `B`.
 - Bijective means both injective and surjective.
 </Definition>
 
-The local notes also use this language to describe when an inverse function can
-exist.
+Equivalent formulations are often useful:
+
+- `f` is injective if `f(x1) = f(x2)` implies `x1 = x2`.
+- `f` is surjective if `f(X) = Y`.
+- `f` is bijective if every element of the target is hit exactly once.
+
+The local notes use these words because they tell you whether an inverse
+function can exist.
+
+<TheoremCard title="Inverse functions exist exactly for bijections">
+For a function `f : X \to Y`, an inverse function exists if and only if `f` is
+bijective.
+</TheoremCard>
+
+<CollapsibleProof title="Why a bijection has an inverse">
+If `f` is injective and surjective, then for every `y \in Y` there is a unique
+`x \in X` with `f(x) = y`.
+
+That uniqueness lets us define a new function `g : Y \to X` by declaring `g(y)`
+to be the unique `x` satisfying `f(x)=y`.
+
+By construction, `g(f(x)) = x` and `f(g(y)) = y`, so `g` is the inverse of `f`.
+</CollapsibleProof>
+
+<WorkedExample title="Construct injective and non-injective examples">
+The function `n \mapsto n + 1` on `Z` is injective and surjective, so it is
+bijective.
+
+The function `x \mapsto x^2` on `R` is not injective because `1` and `-1` have
+the same image.
+
+The function `x \mapsto e^x` on `R` is injective but not surjective onto `R`,
+because it never reaches nonpositive numbers.
+
+<RevealSolution title="What to look for first">
+When you test injectivity, look for two different inputs with the same output.
+When you test surjectivity, look for a target value that is never hit.
+</RevealSolution>
+</WorkedExample>
+
+<CommonMistake title="Do not confuse preimage with inverse function">
+`f^{-1}(B)` always makes sense as a preimage. The inverse function `f^{-1}` only
+exists when `f` is bijective.
+</CommonMistake>
+
+## Left and right inverses
+
+The worksheet makes a useful distinction here.
+
+- A left inverse `h` satisfies `h \circ f = id`.
+- A right inverse `g` satisfies `f \circ g = id`.
+
+These conditions are not the same in general.
+
+<WorkedExample title="One map with a left inverse but no right inverse">
+Let `X = {a, b, c}` and `Y = {α, β, γ, δ}`. Define
+
+$$
+f_1(a)=α,\qquad f_1(b)=β,\qquad f_1(c)=γ.
+$$
+
+This map is injective but not surjective, because `δ` is never hit.
+So it can have a left inverse, but it cannot have a right inverse.
+
+For instance, define `h : Y \to X` by
+
+$$
+h(α)=a,\qquad h(β)=b,\qquad h(γ)=c,\qquad h(δ)=a.
+$$
+
+Then `h \circ f_1 = id_X`.
+
+<RevealSolution title="Why the missing output blocks a right inverse">
+If `f_1 \circ g = id_Y` held for some `g : Y \to X`, then every `y \in Y` would
+have to appear as an output of `f_1`. But `δ` does not appear, so no right
+inverse can exist.
+</RevealSolution>
+</WorkedExample>
+
+<WorkedExample title="One map with a right inverse but no left inverse">
+Define `f_2 : Y \to X` by
+
+$$
+f_2(α)=a,\qquad f_2(β)=a,\qquad f_2(γ)=b,\qquad f_2(δ)=c.
+$$
+
+This map is surjective but not injective, so it can have a right inverse but no
+left inverse.
+
+A right inverse is given by `g : X \to Y` with
+
+$$
+g(a)=α,\qquad g(b)=γ,\qquad g(c)=δ.
+$$
+
+Then `f_2 \circ g = id_X`.
+
+<RevealSolution title="Why collisions block a left inverse">
+If a left inverse existed, then two different inputs with the same output would
+be forced to equal each other after applying the left inverse. That is
+impossible.
+</RevealSolution>
+</WorkedExample>
 
 ## Relations
 
 <Definition title="A relation">
-A relation on `X` and `Y` is any subset of `X × Y`.
+A relation on a pair of sets `X` and `Y` is any subset of `X \times Y`.
 
-If `X = Y`, we speak of a relation on one set.
+If `X = Y`, we simply call it a relation on `X`.
 </Definition>
 
-Relations may be read with properties such as:
+We write `xRy` to mean `(x, y) \in R`.
 
-- reflexive
-- symmetric
-- antisymmetric
-- transitive
+This is the broader notion. A function is just a relation with the extra rule
+that every input has exactly one output.
 
-Two especially important special cases are:
+For a relation `R \subset X \times Y`:
 
-- an equivalence relation
-- a partial order
+- the domain of `R` is the set of `x` that relate to at least one `y`;
+- the image or range of `R` is the set of `y` that are hit by at least one `x`.
 
-## A short example of relation language
+<WorkedExample title="A relation need not be a function">
+Let `X` be the set of countries and `Y` the set of cities.
 
-<WorkedExample title="Equality classes are built from a relation">
-When a relation is reflexive, symmetric, and transitive, it is an equivalence
-relation.
+The relation “`y` is a capital city of `x`” is a relation on `X \times Y`.
+Whether it is a function depends on the historical period and the country.
 
-Then the equivalence classes group the set into non-overlapping blocks.
+The relation `y^2 = x` on `Z \times Z` is also a relation. It is not a function
+when read from `x` to `y`, because one input may have multiple outputs.
 
-<RevealSolution title="What to remember">
-An equivalence relation tells you when two elements belong to the same class.
-The quotient set is the set of all those classes.
+<RevealSolution title="Why the relation language is still useful">
+Relations let us talk about connections without forcing uniqueness. That is
+exactly what we need for order relations and equivalence relations later on.
 </RevealSolution>
 </WorkedExample>
 
-## Quick check
+## Relations on one set
+
+Relations `R \subset X \times X` are especially important.
+
+<TheoremCard title="Four properties used constantly">
+A relation on `X` may have these properties:
+
+- Reflexive: `xRx` for every `x \in X`
+- Symmetric: `xRy` implies `yRx`
+- Antisymmetric: if `xRy` and `yRx`, then `x = y`
+- Transitive: if `xRy` and `yRz`, then `xRz`
+</TheoremCard>
+
+Two special kinds of relations appear everywhere in later chapters:
+
+- a partial order is reflexive, antisymmetric, and transitive;
+- an equivalence relation is reflexive, symmetric, and transitive.
+
+The difference between symmetric and antisymmetric is easy to blur:
+
+- symmetric says the arrows go both ways whenever one goes one way;
+- antisymmetric says two-way arrows force equality.
+
+<WorkedExample title="The divisibility relation is a partial order">
+On positive integers, write `a \mid b` when `a` divides `b`.
+
+This relation is reflexive because every number divides itself.
+It is antisymmetric because if `a \mid b` and `b \mid a`, then `a = b`
+for positive integers.
+It is transitive because divisibility passes through chains.
+
+So divisibility is a partial order.
+
+<RevealSolution title="Why this matters">
+Posets are not just a vocabulary item. They let us organize objects by how one
+contains, refines, or divides another.
+</RevealSolution>
+</WorkedExample>
+
+<WorkedExample title="A simple equivalence relation">
+Congruence modulo `m` is an equivalence relation on `Z`.
+
+The idea is that two integers belong to the same class if they have the same
+remainder modulo `m`.
+
+For example, modulo `3` the integers split into three classes:
+
+- numbers congruent to `0`
+- numbers congruent to `1`
+- numbers congruent to `2`
+
+Those classes partition the whole set.
+</WorkedExample>
+
+## Equivalence classes and quotient sets
+
+<Definition title="Equivalence class">
+Let `R` be an equivalence relation on `X`.
+For `x \in X`, the equivalence class of `x` is
+
+$$
+[x]_R = \{y \in X \mid yRx\}.
+$$
+
+</Definition>
+
+<Definition title="Quotient set">
+If `\sim` is an equivalence relation on `X`, then the set of equivalence classes
+is written `X / \sim`.
+</Definition>
+
+Equivalence classes are the reason quotient constructions work. Instead of
+tracking every representative separately, we package all equivalent
+representatives into one object.
+
+<TheoremCard title="Equivalence classes partition the set">
+If `R` is an equivalence relation on `X`, then the equivalence classes cover
+`X`, and any two classes are either equal or disjoint.
+</TheoremCard>
+
+<CollapsibleProof title="Why the classes do not overlap partially">
+Every element `x \in X` belongs to its own class `[x]_R`, so the classes cover
+the set.
+
+Now suppose two classes meet at some `z`. If `y` is in the first class, then
+`yRz`. Because `z` is also in the second class, `z` is related to every element
+in that class as well. Transitivity and symmetry force the two classes to agree.
+</CollapsibleProof>
+
+This is the mechanism behind the later constructions of the integers and the
+rationals from equivalence classes of pairs.
+
+## Common mistakes
+
+<CommonMistake title="Do not treat preimage as inverse function">
+`f^{-1}(B)` is always a subset of the domain. It does not require `f` to be
+bijective.
+</CommonMistake>
+
+<CommonMistake title="Symmetric is not the same as antisymmetric">
+`≤` is antisymmetric but not symmetric. Equality is both symmetric and
+antisymmetric, while divisibility is antisymmetric but not symmetric.
+</CommonMistake>
+
+<CommonMistake title="A relation can fail to be a function in several ways">
+It may send one input to many outputs, or it may leave some inputs with no
+output at all.
+</CommonMistake>
+
+## Quick checks
 
 <QuickCheck prompt="Is `x ≤ y` on the real numbers a relation? Is it a function?">
-Separate the two questions. First ask whether it is a subset of `R × R`, then
-ask whether each input is paired with exactly one output.
+First ask whether it is a subset of `R \times R`. Then ask whether every input
+has exactly one output.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-It is a relation, because it defines a subset of `R × R`. It is not a
-function, because one fixed input `x` is related to many possible values of
-`y`, not exactly one.
+It is a relation, because it is a subset of `R \times R`. It is not a function,
+because one input `x` is related to many possible values of `y`.
 </RevealSolution>
+
+<QuickCheck prompt="Is `f^{-1}(B)` defined when `f` is not bijective?">
+Separate preimage notation from inverse-function notation.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. The preimage always exists.
+</RevealSolution>
+
+<QuickCheck prompt="If a relation is reflexive, symmetric, and transitive, what is it called?">
+Recall the special name for a relation that partitions the set into classes.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is an equivalence relation.
+</RevealSolution>
+
+## Why this unit matters later
+
+The rest of the course repeatedly uses these ideas:
+
+- `N` is built using set language and induction.
+- `Z` and `Q` are built from equivalence classes.
+- `≤` on numbers is a partial order.
+- Quotient sets explain why the same object can have many representatives.
+
+If this unit is clear, the later constructions become much easier to read
+because the notation is no longer doing hidden work.

@@ -287,6 +287,31 @@ turn C into a manually controlled dispatch system.
 
 <InteractiveWidget id="adt-stack-queue-stepper" />
 
+## Testing an ADT contract with code
+
+Once the interface is fixed, the next question is not “does it compile?” but
+“does every observable state transition still satisfy the contract?”
+
+One practical method is to write tiny trace-based tests:
+
+```c
+stackADT s = EmptyStack();
+Push(s, 10);
+Push(s, 20);
+assert(StackDepth(s) == 2);
+assert(Pop(s) == 20);
+assert(Pop(s) == 10);
+assert(StackIsEmpty(s));
+```
+
+This kind of test is valuable because it checks the contract at the ADT level,
+not the memory layout level. If you later replace the array-backed stack with a
+linked representation, the same test should still pass unchanged.
+
+The same idea applies to queues: a short `enqueue`, `enqueue`, `dequeue`,
+`dequeue` trace should confirm that the first inserted element is still the
+first one removed, even after the representation changes.
+
 ## Common mistakes
 
 <CommonMistake title="Mixing the stack and queue invariants">

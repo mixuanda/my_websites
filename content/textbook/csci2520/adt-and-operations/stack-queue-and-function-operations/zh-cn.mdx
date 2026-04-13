@@ -249,6 +249,30 @@ void ApplyOperator(char c, stackADT stack) {
 
 <InteractiveWidget id="adt-stack-queue-stepper" />
 
+## 用程序测试 ADT 契约
+
+当接口固定之后，下一个问题不应该只是“能不能 compile”，而是
+“每一步可观察到的状态转移，是否仍然符合契约”。
+
+一个实用做法是写小型 trace test：
+
+```c
+stackADT s = EmptyStack();
+Push(s, 10);
+Push(s, 20);
+assert(StackDepth(s) == 2);
+assert(Pop(s) == 20);
+assert(Pop(s) == 10);
+assert(StackIsEmpty(s));
+```
+
+这类测试有价值，因为它检查的是 ADT 层次的承诺，而不是底层内存布局。
+即使以后你把 array-based stack 换成 linked representation，只要契约没变，
+同一组测试也应该原封不动地通过。
+
+queue 也是一样：一段短短的 `enqueue`、`enqueue`、`dequeue`、`dequeue`
+trace，就应该证明第一个入队的元素仍然是第一个出队。
+
 ## 常见错误
 
 <CommonMistake title="把 stack 和 queue 语义混淆">

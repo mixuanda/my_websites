@@ -1,36 +1,512 @@
 ---
 title: "1.1 Equation structure and trigonometric identities"
-description: "Use identity transformations carefully and separate structural equivalence from accidental cancellation."
+description: "Use radian measure, unit-circle definitions, and identity families to solve trig equations carefully."
 ---
 
-## Structural equation reading
+## Why this chapter matters
 
-Many equation mistakes come from treating identity manipulations as reversible in
-all contexts. In trigonometric equations, each transformation must preserve the
-solution set under the stated domain.
+This chapter is about structure, not memorization. In trigonometry, the same
+expression can be rewritten in several useful ways, but those rewrites are only
+valuable if you know what they preserve:
 
-<Definition title="Identity vs equation solving">
-- Identity: true for all allowed variable values.
-- Equation solving: find values where statement is true.
+- some steps preserve the solution set exactly;
+- some steps only produce candidate solutions;
+- some steps are valid only when the domain is checked first.
 
-Identity transformations support solving, but each step still needs domain
-checks.
+The goal is to read trig expressions as objects with geometry, symmetry, and
+algebraic behavior.
+
+## Radian measure and standard position
+
+<Definition title="Radian measure">
+If an angle subtends an arc of length `s` on a circle of radius `r`, then its
+radian measure is
+
+$$
+\theta = \frac{s}{r}.
+$$
 </Definition>
 
-## Core identity workflow
+When `r=1`, the radian measure is literally the arc length on the unit circle.
+That is why radians are the natural unit for trigonometry and calculus.
 
-1. Rewrite to one side = 0 when helpful.
-2. Factor or convert with standard identities.
-3. Solve candidate branches.
-4. Verify candidates in original equation.
+Since one full revolution is `2\pi` radians or `360^\circ`, we have
+
+$$
+\pi \text{ radians} = 180^\circ,
+$$
+
+so
+
+$$
+1 \text{ radian} = \frac{180}{\pi}^\circ,
+\qquad
+1^\circ = \frac{\pi}{180} \text{ radians}.
+$$
+
+<Definition title="Angles in standard position">
+An angle in the `xy`-plane is in standard position if its vertex is at the
+origin and its initial ray lies on the positive `x`-axis.
+
+- Counterclockwise rotation is positive.
+- Clockwise rotation is negative.
+</Definition>
+
+From now on, every angle in this chapter is measured in radians unless the
+problem explicitly says otherwise.
+
+<WorkedExample title="Convert between degrees and radians">
+The angle `150^\circ` equals
+
+$$
+150^\circ = 150 \cdot \frac{\pi}{180} = \frac{5\pi}{6}.
+$$
+
+Likewise, `-45^\circ = -\pi/4`.
+</WorkedExample>
+
+## Area and arc length
+
+Two useful geometric formulas follow immediately from the definition of radian
+measure:
+
+$$
+s = r\theta,
+\qquad
+A = \frac{1}{2}r^2\theta.
+$$
+
+These formulas are not separate facts to memorize. They are the same angle
+measure translated into length and area.
+
+## Trigonometric functions on the unit circle
+
+<Definition title="Trigonometric functions">
+Place an angle `\theta` in standard position on a circle of radius `r`. Let the
+terminal ray meet the circle at `P(x,y)`. Then
+
+$$
+\sin\theta = \frac{y}{r},
+\qquad
+\cos\theta = \frac{x}{r},
+\qquad
+\tan\theta = \frac{y}{x},
+$$
+
+and
+
+$$
+\csc\theta = \frac{r}{y},
+\qquad
+\sec\theta = \frac{r}{x},
+\qquad
+\cot\theta = \frac{x}{y}.
+$$
+</Definition>
+
+On the unit circle, `r=1`, so sine and cosine become the `y`- and `x`-
+coordinates directly. That is the geometric reason the unit circle is so useful:
+it turns trigonometric values into coordinates.
+
+Some values are undefined because their denominators vanish. For example,
+`tan(\pi/2)` is undefined because `\cos(\pi/2)=0`.
+
+<WorkedExample title="Exact values from the unit circle">
+The standard values at `0`, `\pi/6`, `\pi/4`, `\pi/3`, and `\pi/2` are:
+
+| `\theta` | `\sin\theta` | `\cos\theta` | `\tan\theta` |
+| --- | --- | --- | --- |
+| `0` | `0` | `1` | `0` |
+| `\pi/6` | `1/2` | `\sqrt3/2` | `1/\sqrt3` |
+| `\pi/4` | `\sqrt2/2` | `\sqrt2/2` | `1` |
+| `\pi/3` | `\sqrt3/2` | `1/2` | `\sqrt3` |
+| `\pi/2` | `1` | `0` | undefined |
+
+These values are the building blocks for the rest of the chapter.
+</WorkedExample>
+
+<CommonMistake title="Do not treat degrees as the default">
+If a problem says `\pi/3`, it means radians, not degrees. In this course,
+`60^\circ` and `\pi/3` are the same angle written in different units.
+</CommonMistake>
+
+## Symmetry and periodicity
+
+The unit circle immediately gives the basic symmetry rules:
+
+$$
+\sin(-\theta) = -\sin\theta,
+\qquad
+\cos(-\theta) = \cos\theta,
+\qquad
+\tan(-\theta) = -\tan\theta.
+$$
+
+Reflection across the `y`-axis and the origin also gives the familiar angle
+shifts such as `\pi-\theta`, `\pi+\theta`, and `2\pi+\theta`.
+
+<TheoremCard title="Periodicity of trigonometric functions">
+$$
+\sin(\theta+2\pi)=\sin\theta,
+\qquad
+\cos(\theta+2\pi)=\cos\theta,
+$$
+
+$$
+\sec(\theta+2\pi)=\sec\theta,
+\qquad
+\csc(\theta+2\pi)=\csc\theta,
+$$
+
+$$
+\tan(\theta+\pi)=\tan\theta,
+\qquad
+\cot(\theta+\pi)=\cot\theta.
+$$
+</TheoremCard>
+
+Periodicity is not merely a trick for reducing angles. It tells you what part of
+the circle controls each function.
+
+<WorkedExample title="Use symmetry to simplify a value">
+Because `\sin(-\theta)=-\sin\theta`, we get
+
+$$
+\sin(-\pi/6) = -\sin(\pi/6) = -\frac12.
+$$
+
+Because `\cos(-\theta)=\cos\theta`, we get
+
+$$
+\cos(-\pi/6) = \cos(\pi/6) = \frac{\sqrt3}{2}.
+$$
+</WorkedExample>
+
+## The basic identities
+
+<TheoremCard title="Pythagorean identities">
+$$
+\sin^2\theta + \cos^2\theta = 1,
+\qquad
+1+\tan^2\theta = \sec^2\theta,
+\qquad
+1+\cot^2\theta = \csc^2\theta.
+$$
+</TheoremCard>
+
+The first identity is the coordinate statement `x^2+y^2=1` on the unit circle.
+The other two follow by dividing through by `\cos^2\theta` or `\sin^2\theta`
+where those quantities are nonzero.
+
+<WorkedExample title="Turn one identity into another">
+Starting from
+
+$$
+\sin^2\theta + \cos^2\theta = 1,
+$$
+
+divide by `\cos^2\theta` to obtain
+
+$$
+\tan^2\theta + 1 = \sec^2\theta.
+$$
+
+This step is valid only where `\cos\theta \neq 0`.
+</WorkedExample>
+
+<CommonMistake title="Do not divide without checking the denominator">
+If a step divides by `\sin\theta` or `\cos\theta`, the identity may become
+invalid at the angles where that quantity is zero. Always keep track of the
+restricted domain.
+</CommonMistake>
+
+## Compound angle formulas
+
+The compound angle formulas are the workhorse identities of the chapter. They
+let you turn sums and differences of angles into algebraic expressions.
+
+<CollapsibleProof title="Why the cosine difference formula is the key step">
+Take two points on the unit circle:
+
+$$
+A=(\cos\alpha,\sin\alpha),
+\qquad
+B=(\cos\beta,\sin\beta).
+$$
+
+The distance formula gives
+
+$$
+AB^2=(\cos\alpha-\cos\beta)^2+(\sin\alpha-\sin\beta)^2.
+$$
+
+Expanding this expression and simplifying yields
+
+$$
+AB^2 = 2 - 2\cos\alpha\cos\beta - 2\sin\alpha\sin\beta.
+$$
+
+On the other hand, `AB` also depends on the angle difference `\alpha-\beta`,
+so the same geometric quantity can be written as
+
+$$
+AB^2 = 2 - 2\cos(\alpha-\beta).
+$$
+
+Comparing the two formulas gives
+
+$$
+\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta.
+$$
+
+Once this identity is known, the remaining compound-angle formulas follow by
+substituting `\beta\mapsto -\beta` and by taking ratios where appropriate.
+</CollapsibleProof>
+
+<TheoremCard title="Compound angle formulas">
+$$
+\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta
+$$
+
+$$
+\sin(\alpha-\beta)=\sin\alpha\cos\beta-\cos\alpha\sin\beta
+$$
+
+$$
+\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta
+$$
+
+$$
+\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta
+$$
+
+$$
+\tan(\alpha+\beta)=\frac{\tan\alpha+\tan\beta}{1-\tan\alpha\tan\beta}
+$$
+
+$$
+\tan(\alpha-\beta)=\frac{\tan\alpha-\tan\beta}{1+\tan\alpha\tan\beta}
+$$
+</TheoremCard>
+
+These formulas explain most of the angle-algebra manipulations you will see in
+later work.
+
+<WorkedExample title="Derive a sine addition formula from the cosine one">
+If you know
+
+$$
+\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta,
+$$
+
+then replacing `\alpha` by `\pi/2-\alpha` and `\beta` by `-\beta` gives
+
+$$
+\sin(\alpha-\beta)=\sin\alpha\cos\beta-\cos\alpha\sin\beta.
+$$
+
+The other addition and subtraction formulas follow in the same way.
+</WorkedExample>
+
+## Double angle, product-to-sum, and sum-to-product
+
+<TheoremCard title="Double angle formulas">
+$$
+\sin(2\alpha)=2\sin\alpha\cos\alpha
+$$
+
+$$
+\cos(2\alpha)=\cos^2\alpha-\sin^2\alpha
+=2\cos^2\alpha-1
+=1-2\sin^2\alpha
+$$
+
+$$
+\tan(2\alpha)=\frac{2\tan\alpha}{1-\tan^2\alpha}
+$$
+</TheoremCard>
+
+These are just the compound-angle formulas with the same angle used twice.
+
+<TheoremCard title="Product-to-sum formulas">
+$$
+\sin\alpha\cos\beta=\frac12\bigl(\sin(\alpha+\beta)+\sin(\alpha-\beta)\bigr)
+$$
+
+$$
+\cos\alpha\sin\beta=\frac12\bigl(\sin(\alpha+\beta)-\sin(\alpha-\beta)\bigr)
+$$
+
+$$
+\sin\alpha\sin\beta=-\frac12\bigl(\cos(\alpha+\beta)-\cos(\alpha-\beta)\bigr)
+$$
+
+$$
+\cos\alpha\cos\beta=\frac12\bigl(\cos(\alpha+\beta)+\cos(\alpha-\beta)\bigr)
+$$
+</TheoremCard>
+
+<TheoremCard title="Sum-to-product formulas">
+$$
+\sin A+\sin B = 2\sin\frac{A+B}{2}\cos\frac{A-B}{2}
+$$
+
+$$
+\sin A-\sin B = 2\cos\frac{A+B}{2}\sin\frac{A-B}{2}
+$$
+
+$$
+\cos A+\cos B = 2\cos\frac{A+B}{2}\cos\frac{A-B}{2}
+$$
+
+$$
+\cos A-\cos B = -2\sin\frac{A+B}{2}\sin\frac{A-B}{2}
+$$
+</TheoremCard>
+
+## Worked examples
+
+<WorkedExample title="Rewrite a linear combination as a single sine">
+Express `\sqrt3\cos x - \sin x` in the form `r\sin(x+\alpha)`.
+
+We compare
+
+$$
+r\sin(x+\alpha)=r\sin x\cos\alpha+r\cos x\sin\alpha.
+$$
+
+Matching coefficients gives
+
+$$
+r\sin\alpha=\sqrt3,
+\qquad
+r\cos\alpha=-1.
+$$
+
+So `r=\sqrt{3+1}=2`, and we may choose `\alpha=2\pi/3`. Therefore
+
+$$
+\sqrt3\cos x-\sin x = 2\sin\!\left(x+\frac{2\pi}{3}\right).
+$$
+
+If we solve `\sqrt3\cos x-\sin x=1`, then
+
+$$
+2\sin\!\left(x+\frac{2\pi}{3}\right)=1,
+$$
+
+so
+
+$$
+\sin\!\left(x+\frac{2\pi}{3}\right)=\frac12.
+$$
+
+Hence
+
+$$
+x+\frac{2\pi}{3}=\frac{\pi}{6}+2k\pi
+\quad\text{or}\quad
+x+\frac{2\pi}{3}=\frac{5\pi}{6}+2k\pi,
+$$
+
+which gives
+
+$$
+x=-\frac{\pi}{2}+2k\pi
+\quad\text{or}\quad
+x=-\frac{\pi}{6}+2k\pi,
+\qquad k\in Z.
+$$
+</WorkedExample>
+
+<WorkedExample title="A compact algebraic identity">
+Show that
+
+$$
+\cos^4\theta+\sin^4\theta=\frac{1+\cos^2(2\theta)}{2}
+=\frac{3+\cos(4\theta)}{4}.
+$$
+
+Start with
+
+$$
+(\sin^2\theta+\cos^2\theta)^2=1.
+$$
+
+Expanding gives
+
+$$
+\sin^4\theta+\cos^4\theta+2\sin^2\theta\cos^2\theta=1.
+$$
+
+So
+
+$$
+\sin^4\theta+\cos^4\theta
+=1-2\sin^2\theta\cos^2\theta.
+$$
+
+Use `\sin(2\theta)=2\sin\theta\cos\theta` to get
+
+$$
+\sin^2\theta\cos^2\theta=\frac14\sin^2(2\theta),
+$$
+
+and then use `\sin^2(2\theta)=1-\cos^2(2\theta)` or
+` \cos(4\theta)=1-2\sin^2(2\theta)` to reach the stated forms.
+</WorkedExample>
+
+<CommonMistake title="Back-substitution is not optional">
+After using identities to solve a trigonometric equation, always check the
+candidate solutions in the original equation. A transformation may introduce
+extra roots or hide domain restrictions.
+</CommonMistake>
 
 ## Quick checks
 
-<QuickCheck prompt="Why should final candidates be substituted back into the original trig equation?">
-Consider non-equivalent transformations.
+<QuickCheck prompt="Convert `210^\circ` to radians.">
+Use the degree-radian conversion formula.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-Some algebraic steps are one-way or domain-restricted, so back-substitution
-filters extraneous roots.
+`210^\circ = 210 \cdot \pi/180 = 7\pi/6`.
 </RevealSolution>
+
+<QuickCheck prompt="What are `\sin(-\theta)`, `\cos(-\theta)`, and `\tan(-\theta)`?">
+Use symmetry of the unit circle.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`\sin(-\theta)=-\sin\theta`, `\cos(-\theta)=\cos\theta`, and
+`\tan(-\theta)=-\tan\theta`.
+</RevealSolution>
+
+<QuickCheck prompt="Why is `\tan(\pi/2)` undefined?">
+Look at the denominator in the definition.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Because `\tan\theta=\sin\theta/\cos\theta`, and `\cos(\pi/2)=0`.
+</RevealSolution>
+
+<QuickCheck prompt="Show the route from `\sin^2\theta+\cos^2\theta=1` to `1+\tan^2\theta=\sec^2\theta`.">
+State the division step carefully.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Divide both sides by `\cos^2\theta` where `\cos\theta \neq 0`, then rewrite
+` \sin^2\theta/\cos^2\theta = \tan^2\theta` and `1/\cos^2\theta = \sec^2\theta`.
+</RevealSolution>
+
+## Exercises
+
+1. Convert `330^\circ` to radians and compute `\sin(330^\circ)` and
+   `\cos(330^\circ)`.
+2. Use a periodicity identity to simplify `\tan(\theta+\pi)`.
+3. Prove `1+\tan^2\theta=\sec^2\theta` from the Pythagorean identity.
+4. Rewrite `\sqrt3\cos x-\sin x` as `r\sin(x+\alpha)` and solve
+   `\sqrt3\cos x-\sin x = 1`.
+5. Show that `\cos^4\theta+\sin^4\theta = (3+\cos 4\theta)/4`.
+
+The point of the exercises is not speed. It is to make the identities feel like
+tools that you can derive, explain, and reuse.

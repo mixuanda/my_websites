@@ -185,6 +185,90 @@ tutorial 的 simplification slide 里有很多类似：
 所以当 `n` 足够大时，它能被某个常数倍的 `n^2` 上界住。
 </WorkedExample>
 
+## best case、worst case、average case
+
+同一个算法，单靠一个复杂度标签未必足够。不同输入安排，可以让成本表现
+完全不同。
+
+- **Best case**：最有利输入下的成本；
+- **Worst case**：最昂贵输入下的成本；
+- **Average case**：在某个概率模型下的平均成本。
+
+binary search 就是一个好例子。
+
+<WorkedExample title="binary search 为什么不需要全扫">
+```c
+int binarySearch(const int a[], int n, int target) {
+   int left = 0, right = n - 1;
+   while (left <= right) {
+      int mid = (left + right) / 2;
+      if (a[mid] == target) return mid;
+      if (a[mid] < target) left = mid + 1;
+      else right = mid - 1;
+   }
+   return -1;
+}
+```
+
+最好情况下，第一个 middle 就已经命中，所以成本是 `O(1)`。最坏情况下，
+每一步都把剩余搜索区间减半，所以成本是 `O(log n)`。关键不是逐个候选值
+移除，而是每步大约砍掉一半搜索空间。
+</WorkedExample>
+
+所以你看到复杂度结论时，一定要问：这里说的是哪个 case？如果没有特别说，
+通常默认是 worst case。
+
+## divide-and-conquer 与 `n log n` 形状
+
+slide deck 提到 merge-sort 类结构，因为这正是 `n log n` 最典型的例子。
+
+标准推理分两层：
+
+- 每一层都处理线性数量的数据；
+- 总层数大约是 `log n`。
+
+所以总成本就会变成 `n log n`。
+
+<WorkedExample title="为什么 merge 类结构会得到 `n log n`">
+假设一个算法会不断把输入对半拆分，直到每个 subproblem 只剩 `1`
+个元素，而每一层都只需要最多 `cn` 单位的合并工作。
+
+如果总共有大约 `log_2 n` 层，那么总工作量大约是
+
+$$
+cn + cn + \cdots + cn
+$$
+
+重复 `log_2 n` 次，所以整体就是
+
+$$
+O(n \log n)
+$$
+
+重点不在常数 `c`，而在“每层线性工作”乘上“对数层数”这个结构。
+</WorkedExample>
+
+## 读 code 时的复杂度检查表
+
+当你看到一段新 code，最稳妥的顺序是：
+
+1. 找出哪个操作重复得最多；
+2. 数清楚外层 loop、recursion，或者 traversal 会让它执行多少次；
+3. 分开 constant work 和 size-dependent work；
+4. 等计数写清楚之后再做化简。
+
+如果跳过计数，最后通常只是在猜。好的 complexity analysis 是先慢慢读，
+再做短而准确的分类。
+
+## constants 仍然怎样重要
+
+渐近记号描述的是长期形状，但不代表 constants 永远不重要。当 `n` 还小，
+一个简单的 `O(n^2)` routine，实际表现仍然可能跑赢一个隐藏常数很大的
+`O(n log n)` routine。
+
+所以比较完整的结论通常分两步：先把增长类别分清楚，再判断当前输入规模
+是否仍然受到常数因素影响。
+
 ## stack 和 queue 操作的成本
 
 上一节 ADT 其实正好给这一节提供了具体例子。一旦 representation 固定，

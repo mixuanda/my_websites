@@ -32,23 +32,31 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
   "adt-stack-queue-stepper": {
     sampleStates: [
       {
-        label: text("Stack push/pop trace", "Stack push/pop 追蹤", "Stack push/pop 追踪"),
-        value: text("push(10), push(20), pop() returns 20 and leaves [10].", "push(10), push(20), pop() 回傳 20，剩下 [10]。", "push(10), push(20), pop() 返回 20，剩下 [10]。"),
+        label: text("Stack code trace", "Stack 程式追蹤", "Stack 程序追踪"),
+        value: text(
+          "Command list: push 10, push 20, top, pop. Returned values confirm the same LIFO contract shown in the sample C push/pop functions.",
+          "指令串列：push 10、push 20、top、pop。回傳結果會對應到 C 範例裡的 LIFO push/pop 契約。",
+          "指令串列：push 10、push 20、top、pop。返回结果会对应到 C 示例里的 LIFO push/pop 契约。"
+        ),
       },
       {
-        label: text("Queue enqueue/dequeue trace", "Queue enqueue/dequeue 追蹤", "Queue enqueue/dequeue 追踪"),
-        value: text("enqueue(3), enqueue(5), dequeue() returns 3 and leaves [5].", "enqueue(3), enqueue(5), dequeue() 回傳 3，剩下 [5]。", "enqueue(3), enqueue(5), dequeue() 返回 3，剩下 [5]。"),
+        label: text("Queue code trace", "Queue 程式追蹤", "Queue 程序追踪"),
+        value: text(
+          "Command list: enqueue 3, enqueue 5, front, dequeue. Returned values confirm the FIFO behavior implemented by the enqueue/dequeue sample.",
+          "指令串列：enqueue 3、enqueue 5、front、dequeue。回傳結果會對應到 enqueue/dequeue 範例裡的 FIFO 行為。",
+          "指令串列：enqueue 3、enqueue 5、front、dequeue。返回结果会对应到 enqueue/dequeue 示例里的 FIFO 行为。"
+        ),
       },
     ],
     summary: text(
-      "The stepper shows operation-by-operation state transitions so ADT contracts can be checked directly.",
-      "此步進器按操作展示狀態轉移，讓你可直接核對 ADT 契約。",
-      "此步进器按操作展示状态转移，让你可直接核对 ADT 契约。"
+      "The widget now pairs a C-style code sample with an editable command list, so readers can test stack and queue semantics against the stated ADT contract.",
+      "這個工具現在把 C 風格程式範例和可編輯指令串列放在一起，讓讀者可以直接測試 stack 與 queue 的 ADT 語義。",
+      "这个工具现在把 C 风格程序示例和可编辑指令串列放在一起，让读者可以直接测试 stack 与 queue 的 ADT 语义。"
     ),
     steps: [
-      text("Read each operation and resulting state.", "逐步讀取操作與結果狀態。", "逐步读取操作与结果状态。"),
-      text("Check whether LIFO/FIFO invariants still hold.", "檢查 LIFO/FIFO 不變量是否維持。", "检查 LIFO/FIFO 不变量是否维持。"),
-      text("Relate this behavior to implementation dispatch through function pointers.", "把行為對應到 function pointer 的操作分派。", "把行为对应到 function pointer 的操作分派。"),
+      text("Read the sample push/pop or enqueue/dequeue code first.", "先閱讀對應的 push/pop 或 enqueue/dequeue 程式範例。", "先阅读对应的 push/pop 或 enqueue/dequeue 程序示例。"),
+      text("Edit the command list and watch the returned values and resulting state.", "改動指令串列，觀察回傳值與最後狀態。", "改动指令串列，观察返回值与最终状态。"),
+      text("Check whether the observed behavior still satisfies the ADT contract.", "檢查觀察到的行為是否仍符合 ADT 契約。", "检查观察到的行为是否仍符合 ADT 契约。"),
     ],
     title: text(
       "Trace ADT operation semantics",
@@ -59,23 +67,31 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
   "complexity-growth-comparator": {
     sampleStates: [
       {
-        label: text("n = 16", "n = 16", "n = 16"),
-        value: text("O(n log n) ≈ 64, O(n^2) = 256.", "O(n log n) ≈ 64，O(n^2) = 256。", "O(n log n) ≈ 64，O(n^2) = 256。"),
+        label: text("Merge-style code at n = 16", "merge 類程式在 n = 16", "merge 类程序在 n = 16"),
+        value: text(
+          "The sample merge-style loop estimates about 64 primitive steps, while a quadratic double loop would already be at 256.",
+          "範例中的 merge 類迴圈大約是 64 個基本步，而二次雙重迴圈已經到 256。",
+          "示例中的 merge 类循环大约是 64 个基本步，而二次双重循环已经到 256。"
+        ),
       },
       {
-        label: text("n = 128", "n = 128", "n = 128"),
-        value: text("O(n log n) ≈ 896, O(n^2) = 16384.", "O(n log n) ≈ 896，O(n^2) = 16384。", "O(n log n) ≈ 896，O(n^2) = 16384。"),
+        label: text("Halving vs nested loops at n = 128", "n = 128 時的對半迴圈與雙重迴圈", "n = 128 时的对半循环与双重循环"),
+        value: text(
+          "The halving loop stays logarithmic, while the nested loop explodes to 16384 primitive steps.",
+          "對半迴圈仍保持對數級，而雙重迴圈已膨脹到 16384 個基本步。",
+          "对半循环仍保持对数级，而双重循环已膨胀到 16384 个基本步。"
+        ),
       },
     ],
     summary: text(
-      "Compares growth classes at the same n so relative scaling becomes concrete.",
-      "在同一 n 下比較多種級別，讓相對增長差距具體化。",
-      "在同一 n 下比较多种级别，让相对增长差距具体化。"
+      "The widget now ties each growth class to a concrete code shape, so readers can change n and see how the chosen sample behaves against the comparison table.",
+      "這個工具現在把增長級別綁到具體程式形狀上，讓讀者可以改變 n，並把當前範例與比較表對照。",
+      "这个工具现在把增长级别绑到具体程序形状上，让读者可以改变 n，并把当前示例与比较表对照。"
     ),
     steps: [
-      text("Set n to a moderate size (e.g. 16).", "先設一個中等 n（例如 16）。", "先设一个中等 n（例如 16）。"),
-      text("Increase n and track how O(n log n) and O(n^2) separate.", "逐步增加 n，觀察 O(n log n) 與 O(n^2) 的分離。", "逐步增加 n，观察 O(n log n) 与 O(n^2) 的分离。"),
-      text("Relate growth differences to algorithm choice.", "把差距轉化為選演算法的依據。", "把差距转化为选算法的依据。"),
+      text("Choose one sample code shape first.", "先選擇一個程式形狀。", "先选择一个程序形状。"),
+      text("Change n and compare the estimated primitive steps with the table on the right.", "調整 n，並把估計步數與右邊的比較表對照。", "调整 n，并把估计步数与右边的比较表对照。"),
+      text("Use the widening gap to justify why one algorithm scales better than another.", "用逐步擴大的差距說明為甚麼某些演算法比另一些更能擴展。", "用逐步扩大的差距说明为什么某些算法比另一些更能扩展。"),
     ],
     title: text(
       "Compare asymptotic growth at one n",

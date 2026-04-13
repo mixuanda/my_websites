@@ -186,6 +186,90 @@ tutorial 嘅 simplification slide 有好多類似：
 所以當 `n` 夠大時，佢可以被某個常數倍嘅 `n^2` 上界住。
 </WorkedExample>
 
+## best case、worst case、average case
+
+同一個演算法，單靠一個複雜度標籤未必夠。唔同輸入安排，可以令成本表現
+完全唔同。
+
+- **Best case**：最有利輸入下嘅成本；
+- **Worst case**：最昂貴輸入下嘅成本；
+- **Average case**：喺某個概率模型之下嘅平均成本。
+
+binary search 就係一個好例子。
+
+<WorkedExample title="binary search 點解唔使全掃">
+```c
+int binarySearch(const int a[], int n, int target) {
+   int left = 0, right = n - 1;
+   while (left <= right) {
+      int mid = (left + right) / 2;
+      if (a[mid] == target) return mid;
+      if (a[mid] < target) left = mid + 1;
+      else right = mid - 1;
+   }
+   return -1;
+}
+```
+
+最好情況下，第一個 middle 已經命中，所以成本係 `O(1)`。最壞情況下，
+每一步都將剩餘搜尋區間減半，所以成本係 `O(log n)`。關鍵唔係逐個候選值
+移除，而係每步大概砍走一半搜索空間。
+</WorkedExample>
+
+所以你見到複雜度聲稱時，一定要問：而家講緊邊個 case？如果冇特別講，
+通常默認係 worst case。
+
+## divide-and-conquer 同 `n log n` 形狀
+
+slide deck 提到 merge-sort 類結構，因為呢個正正係 `n log n` 最典型嘅例子。
+
+標準推理分兩層：
+
+- 每一層都處理線性數量嘅資料；
+- 總層數大約係 `log n`。
+
+所以總成本就會變成 `n log n`。
+
+<WorkedExample title="點解 merge 類結構會得到 `n log n`">
+假設一個演算法會不斷將輸入對半拆分，直到每個 subproblem 只剩 `1`
+個元素，而每一層都只需要最多 `cn` 單位嘅合併工作。
+
+如果總共有大約 `log_2 n` 層，咁總工作量大約係
+
+$$
+cn + cn + \cdots + cn
+$$
+
+重複 `log_2 n` 次，所以整體就係
+
+$$
+O(n \log n)
+$$
+
+重點唔係常數 `c`，而係「每層線性工作」乘上「對數層數」呢個結構。
+</WorkedExample>
+
+## 讀 code 時嘅複雜度檢查表
+
+當你見到一段新 code，最穩妥嘅順序係：
+
+1. 搵出邊個操作重複得最多；
+2. 數清楚外層 loop、recursion，或者 traversal 會令佢跑幾多次；
+3. 分開 constant work 同 size-dependent work；
+4. 等數清楚之後先做化簡。
+
+如果你跳過計數，通常最後就只係估。好嘅 complexity analysis 係先慢慢讀，
+再做短而準確嘅分類。
+
+## constants 仍然點樣重要
+
+漸近記號描述嘅係長遠形狀，但唔代表 constants 永遠唔重要。當 `n` 仲細，
+一個簡單嘅 `O(n^2)` routine，實際上仍然可能跑贏一個隱藏常數好大嘅
+`O(n log n)` routine。
+
+所以較完整嘅結論通常分兩步：先將增長類別分清楚，再判斷目前輸入規模
+係咪仍然受常數因素影響。
+
 ## stack 同 queue 操作嘅成本
 
 上一節 ADT 內容其實正好提供呢一節嘅具體例子。當 representation 定咗，

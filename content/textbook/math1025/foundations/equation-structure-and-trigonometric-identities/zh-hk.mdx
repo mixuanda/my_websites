@@ -1,22 +1,500 @@
 ---
 title: "1.1 方程結構與三角恆等式"
-description: "以解集等價為核心，審慎使用恆等式變形與驗根步驟。"
+description: "以弧度制、單位圓定義與恆等式族，審慎處理三角方程。"
 ---
 
-## 核心觀念
+## 為甚麼這章重要
 
-三角方程中，恆等式可以幫你改寫，但不代表每一步都對解集雙向等價。
+本章重點不是背公式，而是理解結構。三角學中，同一個式子可以有
+多種改寫方式，但每種改寫只在某些意義下有效：
 
-<Definition title="恆等式與解方程的分別">
-恆等式在定義域內對所有值成立；解方程只找使語句成立的值。
+- 有些步驟完全保留解集；
+- 有些步驟只會產生候選解；
+- 有些步驟必須先檢查定義域才可以做。
+
+因此，你要學會把三角式看成同時帶有幾何、對稱與代數結構的對象。
+
+## 弧度制與標準位置
+
+<Definition title="弧度制">
+若一個角在半徑為 `r` 的圓上所對應的弧長為 `s`，則其弧度值為
+
+$$
+\theta = \frac{s}{r}.
+$$
 </Definition>
+
+當 `r=1` 時，弧度值就等於單位圓上的弧長。這就是為甚麼弧度制是
+三角學與微積分最自然的角度單位。
+
+既然一圈完整轉動是 `2\pi` 弧度或 `360^\circ`，所以
+
+$$
+\pi \text{ radians} = 180^\circ,
+$$
+
+因此
+
+$$
+1 \text{ radian} = \frac{180}{\pi}^\circ,
+\qquad
+1^\circ = \frac{\pi}{180} \text{ radians}.
+$$
+
+<Definition title="標準位置的角">
+在 `xy` 平面上，若角的頂點位於原點，且初始射線沿正 `x` 軸，則該
+角稱為標準位置角。
+
+- 逆時針轉動為正；
+- 順時針轉動為負。
+</Definition>
+
+本章其後所有角，除非題目特別聲明，均以弧度為單位。
+
+<WorkedExample title="角度與弧度轉換">
+`150^\circ` 可以轉成
+
+$$
+150^\circ = 150 \cdot \frac{\pi}{180} = \frac{5\pi}{6}.
+$$
+
+同樣地，`-45^\circ = -\pi/4`。
+</WorkedExample>
+
+## 弧長與扇形面積
+
+由弧度制的定義可直接得到兩個常用公式：
+
+$$
+s = r\theta,
+\qquad
+A = \frac{1}{2}r^2\theta.
+$$
+
+這兩個公式不是額外要背的東西，而是同一個角度概念在長度與面積上
+的翻譯。
+
+## 單位圓上的三角函數
+
+<Definition title="三角函數">
+把角 `\theta` 放在半徑為 `r` 的圓上，令終邊與圓相交於 `P(x,y)`。
+則
+
+$$
+\sin\theta = \frac{y}{r},
+\qquad
+\cos\theta = \frac{x}{r},
+\qquad
+\tan\theta = \frac{y}{x},
+$$
+
+以及
+
+$$
+\csc\theta = \frac{r}{y},
+\qquad
+\sec\theta = \frac{r}{x},
+\qquad
+\cot\theta = \frac{x}{y}.
+$$
+</Definition>
+
+在單位圓上，`r=1`，所以正弦和餘弦直接變成座標的 `y`、`x` 分量。
+這就是單位圓之所以重要的幾何原因：它把三角值變成座標。
+
+有些值會因為分母為零而不存在，例如 `tan(\pi/2)` 不存在，因為
+`\cos(\pi/2)=0`。
+
+<WorkedExample title="單位圓上的精確值">
+在 `0`、`\pi/6`、`\pi/4`、`\pi/3` 和 `\pi/2` 的標準值如下：
+
+| `\theta` | `\sin\theta` | `\cos\theta` | `\tan\theta` |
+| --- | --- | --- | --- |
+| `0` | `0` | `1` | `0` |
+| `\pi/6` | `1/2` | `\sqrt3/2` | `1/\sqrt3` |
+| `\pi/4` | `\sqrt2/2` | `\sqrt2/2` | `1` |
+| `\pi/3` | `\sqrt3/2` | `1/2` | `\sqrt3` |
+| `\pi/2` | `1` | `0` | undefined |
+
+這些數值是後面所有公式與練習的基礎。
+</WorkedExample>
+
+<CommonMistake title="不要把角度制當作預設">
+題目若寫 `\pi/3`，就表示弧度，不是角度。在本課中，`60^\circ` 和
+`\pi/3` 只是同一個角用不同單位表示。
+</CommonMistake>
+
+## 對稱與週期
+
+單位圓立即給出基本對稱關係：
+
+$$
+\sin(-\theta) = -\sin\theta,
+\qquad
+\cos(-\theta) = \cos\theta,
+\qquad
+\tan(-\theta) = -\tan\theta.
+$$
+
+關於 `y` 軸與原點的對稱，也會導出 `\pi-\theta`、`\pi+\theta` 和
+`2\pi+\theta` 等常見角度變換。
+
+<TheoremCard title="三角函數的週期性">
+$$
+\sin(\theta+2\pi)=\sin\theta,
+\qquad
+\cos(\theta+2\pi)=\cos\theta,
+$$
+
+$$
+\sec(\theta+2\pi)=\sec\theta,
+\qquad
+\csc(\theta+2\pi)=\csc\theta,
+$$
+
+$$
+\tan(\theta+\pi)=\tan\theta,
+\qquad
+\cot(\theta+\pi)=\cot\theta.
+$$
+</TheoremCard>
+
+週期性不只是縮角技巧，而是告訴你每一個函數究竟由圓上的哪一段
+結構所控制。
+
+<WorkedExample title="利用對稱性簡化數值">
+因為 `\sin(-\theta)=-\sin\theta`，所以
+
+$$
+\sin(-\pi/6) = -\sin(\pi/6) = -\frac12.
+$$
+
+因為 `\cos(-\theta)=\cos\theta`，所以
+
+$$
+\cos(-\pi/6) = \cos(\pi/6) = \frac{\sqrt3}{2}.
+$$
+</WorkedExample>
+
+## 基本恆等式
+
+<TheoremCard title="畢氏恆等式">
+$$
+\sin^2\theta + \cos^2\theta = 1,
+\qquad
+1+\tan^2\theta = \sec^2\theta,
+\qquad
+1+\cot^2\theta = \csc^2\theta.
+$$
+</TheoremCard>
+
+第一條就是單位圓上的座標關係 `x^2+y^2=1`。後兩條則是在 `\cos\theta`
+或 `\sin\theta` 不為零時，把第一條除下去得到的。
+
+<WorkedExample title="由一條恆等式推出另一條">
+從
+
+$$
+\sin^2\theta + \cos^2\theta = 1
+$$
+
+兩邊同除以 `\cos^2\theta`，便得
+
+$$
+\tan^2\theta + 1 = \sec^2\theta。
+$$
+
+這一步只在 `\cos\theta \neq 0` 的地方合法。
+</WorkedExample>
+
+<CommonMistake title="不要在未檢查分母時直接除法">
+若某一步要除以 `\sin\theta` 或 `\cos\theta`，就必須先確認該量不為
+零。否則恆等式可能在某些角度失效。
+</CommonMistake>
+
+## 和角與差角公式
+
+和角公式是本章的主力工具。它們把角度的加減轉成代數運算。
+
+<CollapsibleProof title="為甚麼餘弦差角公式是關鍵一步">
+在單位圓上取兩點
+
+$$
+A=(\cos\alpha,\sin\alpha),
+\qquad
+B=(\cos\beta,\sin\beta).
+$$
+
+距離公式給出
+
+$$
+AB^2=(\cos\alpha-\cos\beta)^2+(\sin\alpha-\sin\beta)^2。
+$$
+
+展開整理後得
+
+$$
+AB^2 = 2 - 2\cos\alpha\cos\beta - 2\sin\alpha\sin\beta。
+$$
+
+另一方面，`AB` 也只取決於角差 `\alpha-\beta`，所以同一個幾何量
+又可寫成
+
+$$
+AB^2 = 2 - 2\cos(\alpha-\beta)。
+$$
+
+比較兩式即得
+
+$$
+\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta。
+$$
+
+一旦知道這條公式，其餘和角與差角公式便可透過代入
+`\beta\mapsto -\beta` 與取比值得到。
+</CollapsibleProof>
+
+<TheoremCard title="和角與差角公式">
+$$
+\sin(\alpha+\beta)=\sin\alpha\cos\beta+\cos\alpha\sin\beta
+$$
+
+$$
+\sin(\alpha-\beta)=\sin\alpha\cos\beta-\cos\alpha\sin\beta
+$$
+
+$$
+\cos(\alpha+\beta)=\cos\alpha\cos\beta-\sin\alpha\sin\beta
+$$
+
+$$
+\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta
+$$
+
+$$
+\tan(\alpha+\beta)=\frac{\tan\alpha+\tan\beta}{1-\tan\alpha\tan\beta}
+$$
+
+$$
+\tan(\alpha-\beta)=\frac{\tan\alpha-\tan\beta}{1+\tan\alpha\tan\beta}
+$$
+</TheoremCard>
+
+這些公式幾乎解釋了你之後會遇到的大部分角度代換。
+
+<WorkedExample title="從餘弦公式推出正弦公式">
+若你已知
+
+$$
+\cos(\alpha-\beta)=\cos\alpha\cos\beta+\sin\alpha\sin\beta,
+$$
+
+把 `\alpha` 改成 `\pi/2-\alpha`、把 `\beta` 改成 `-\beta`，便得到
+
+$$
+\sin(\alpha-\beta)=\sin\alpha\cos\beta-\cos\alpha\sin\beta。
+$$
+
+其餘加角和減角公式也可用同樣思路推出。
+</WorkedExample>
+
+## 倍角、積化和差與和差化積
+
+<TheoremCard title="倍角公式">
+$$
+\sin(2\alpha)=2\sin\alpha\cos\alpha
+$$
+
+$$
+\cos(2\alpha)=\cos^2\alpha-\sin^2\alpha
+=2\cos^2\alpha-1
+=1-2\sin^2\alpha
+$$
+
+$$
+\tan(2\alpha)=\frac{2\tan\alpha}{1-\tan^2\alpha}
+$$
+</TheoremCard>
+
+這些公式其實就是把和角公式中兩個角都取成同一個角。
+
+<TheoremCard title="積化和差公式">
+$$
+\sin\alpha\cos\beta=\frac12\bigl(\sin(\alpha+\beta)+\sin(\alpha-\beta)\bigr)
+$$
+
+$$
+\cos\alpha\sin\beta=\frac12\bigl(\sin(\alpha+\beta)-\sin(\alpha-\beta)\bigr)
+$$
+
+$$
+\sin\alpha\sin\beta=-\frac12\bigl(\cos(\alpha+\beta)-\cos(\alpha-\beta)\bigr)
+$$
+
+$$
+\cos\alpha\cos\beta=\frac12\bigl(\cos(\alpha+\beta)+\cos(\alpha-\beta)\bigr)
+$$
+</TheoremCard>
+
+<TheoremCard title="和差化積公式">
+$$
+\sin A+\sin B = 2\sin\frac{A+B}{2}\cos\frac{A-B}{2}
+$$
+
+$$
+\sin A-\sin B = 2\cos\frac{A+B}{2}\sin\frac{A-B}{2}
+$$
+
+$$
+\cos A+\cos B = 2\cos\frac{A+B}{2}\cos\frac{A-B}{2}
+$$
+
+$$
+\cos A-\cos B = -2\sin\frac{A+B}{2}\sin\frac{A-B}{2}
+$$
+</TheoremCard>
+
+## 兩個完整例子
+
+<WorkedExample title="把線性組合寫成單一正弦">
+把 `\sqrt3\cos x - \sin x` 寫成 `r\sin(x+\alpha)` 的形式。
+
+先寫
+
+$$
+r\sin(x+\alpha)=r\sin x\cos\alpha+r\cos x\sin\alpha。
+$$
+
+比較係數可得
+
+$$
+r\sin\alpha=\sqrt3,
+\qquad
+r\cos\alpha=-1。
+$$
+
+因此 `r=\sqrt{3+1}=2`，可取 `\alpha=2\pi/3`。於是
+
+$$
+\sqrt3\cos x-\sin x = 2\sin\!\left(x+\frac{2\pi}{3}\right)。
+$$
+
+若進一步解 `\sqrt3\cos x-\sin x=1`，便有
+
+$$
+2\sin\!\left(x+\frac{2\pi}{3}\right)=1，
+$$
+
+即
+
+$$
+\sin\!\left(x+\frac{2\pi}{3}\right)=\frac12。
+$$
+
+因此
+
+$$
+x+\frac{2\pi}{3}=\frac{\pi}{6}+2k\pi
+\quad\text{or}\quad
+x+\frac{2\pi}{3}=\frac{5\pi}{6}+2k\pi，
+$$
+
+所以
+
+$$
+x=-\frac{\pi}{2}+2k\pi
+\quad\text{or}\quad
+x=-\frac{\pi}{6}+2k\pi，
+\qquad k\in Z。
+$$
+</WorkedExample>
+
+<WorkedExample title="一個緊湊的代數恆等式">
+證明
+
+$$
+\cos^4\theta+\sin^4\theta=\frac{1+\cos^2(2\theta)}{2}
+=\frac{3+\cos(4\theta)}{4}。
+$$
+
+從
+
+$$
+(\sin^2\theta+\cos^2\theta)^2=1
+$$
+
+展開開始：
+
+$$
+\sin^4\theta+\cos^4\theta+2\sin^2\theta\cos^2\theta=1。
+$$
+
+所以
+
+$$
+\sin^4\theta+\cos^4\theta
+=1-2\sin^2\theta\cos^2\theta。
+$$
+
+再用 `\sin(2\theta)=2\sin\theta\cos\theta`，可得
+
+$$
+\sin^2\theta\cos^2\theta=\frac14\sin^2(2\theta)。
+$$
+
+最後把 `\sin^2(2\theta)` 改寫成 `1-\cos^2(2\theta)`，或使用
+`\cos(4\theta)=1-2\sin^2(2\theta)`，便得到題目要求的形式。
+</WorkedExample>
+
+<CommonMistake title="驗根不能省略">
+使用恆等式解三角方程之後，一定要把候選解代回原式檢查。變形過程中
+可能會引入多餘解，或者隱藏定義域限制。
+</CommonMistake>
 
 ## 快速檢查
 
-<QuickCheck prompt="為甚麼最後一定要代回原式驗根？">
-從單向變形角度回答。
+<QuickCheck prompt="把 `210^\circ` 轉成弧度。">
+用度數與弧度的轉換公式。
 </QuickCheck>
 
 <RevealSolution title="答案">
-部分變形可能引入假根或遺失條件，代回原式可剔除非真解。
+`210^\circ = 210 \cdot \pi/180 = 7\pi/6`。
 </RevealSolution>
+
+<QuickCheck prompt="`\sin(-\theta)`、`\cos(-\theta)`、`\tan(-\theta)` 分別是甚麼？">
+用單位圓對稱性回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`\sin(-\theta)=-\sin\theta`、`\cos(-\theta)=\cos\theta`、`\tan(-\theta)=-\tan\theta`。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼 `\tan(\pi/2)` 會沒有定義？">
+看看定義中的分母。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因為 `\tan\theta=\sin\theta/\cos\theta`，而 `\cos(\pi/2)=0`。
+</RevealSolution>
+
+<QuickCheck prompt="說出從 `\sin^2\theta+\cos^2\theta=1` 推到 `1+\tan^2\theta=\sec^2\theta` 的步驟。">
+把除法條件講清楚。
+</QuickCheck>
+
+<RevealSolution title="答案">
+在 `\cos\theta \neq 0` 的地方，兩邊同除以 `\cos^2\theta`，再把
+`\sin^2\theta/\cos^2\theta` 改寫成 `\tan^2\theta`，把 `1/\cos^2\theta`
+改寫成 `\sec^2\theta`。
+</RevealSolution>
+
+## 練習
+
+1. 把 `330^\circ` 轉成弧度，並計算 `\sin(330^\circ)` 與 `\cos(330^\circ)`。
+2. 用週期性公式化簡 `\tan(\theta+\pi)`。
+3. 由畢氏恆等式證明 `1+\tan^2\theta=\sec^2\theta`。
+4. 把 `\sqrt3\cos x-\sin x` 寫成 `r\sin(x+\alpha)`，再解
+   `\sqrt3\cos x-\sin x = 1`。
+5. 證明 `\cos^4\theta+\sin^4\theta = (3+\cos 4\theta)/4`。
+
+這些練習的目的不是求快，而是讓你能把恆等式當成可以推導、可以
+解釋、也可以重用的工具。

@@ -193,6 +193,97 @@ So the function is bounded above by a constant multiple of `n^2` for all
 large enough `n`.
 </WorkedExample>
 
+## Best case, worst case, and average case
+
+One complexity label is often not enough. The same algorithm may behave
+differently depending on the input arrangement.
+
+- **Best case** describes the most favorable legal input.
+- **Worst case** describes the most expensive legal input.
+- **Average case** describes the expected cost under a probability model.
+
+Binary search is a clean example.
+
+<WorkedExample title="Binary search does not need a full scan">
+```c
+int binarySearch(const int a[], int n, int target) {
+   int left = 0, right = n - 1;
+   while (left <= right) {
+      int mid = (left + right) / 2;
+      if (a[mid] == target) return mid;
+      if (a[mid] < target) left = mid + 1;
+      else right = mid - 1;
+   }
+   return -1;
+}
+```
+
+In the best case, the first middle element already matches the target, so the
+cost is `O(1)`. In the worst case, the loop keeps halving the remaining search
+interval, so the cost is `O(log n)`. The crucial idea is that we do not remove
+one candidate at a time; we discard about half the search space at every step.
+</WorkedExample>
+
+When you read complexity claims in code, always ask which case is being quoted.
+A worst-case statement is the default unless the analysis explicitly says
+otherwise.
+
+## Divide-and-conquer and the `n log n` pattern
+
+The slide deck mentions merge-sort-style behavior because it is the standard
+example of an `n log n` algorithm.
+
+The usual reasoning has two layers:
+
+- each round processes a linear amount of data,
+- the number of rounds is about `log n`.
+
+That is why the total becomes `n log n`.
+
+<WorkedExample title="Why merge-style structure gives `n log n`">
+Suppose one algorithm repeatedly splits the input in half until subproblems are
+size `1`, and every level of the recursion does at most `cn` units of merge or
+combination work.
+
+If there are about `log_2 n` levels, then the total work is approximately
+
+$$
+cn + cn + \cdots + cn
+$$
+
+repeated `log_2 n` times, which is
+
+$$
+O(n \log n).
+$$
+
+The point is not the exact constant `c`. The point is that “linear work per
+level” and “logarithmically many levels” multiply into the standard `n log n`
+shape.
+</WorkedExample>
+
+## A checklist for reading complexity from code
+
+When you meet a new piece of code, the safest order is:
+
+1. identify the operation that repeats most often;
+2. count how many times the surrounding loop, recursion, or traversal executes;
+3. separate constant work from size-dependent work;
+4. simplify only after the counting step is explicit.
+
+If you skip the counting step, you usually end up guessing. Good complexity
+work is slow reading first, short classification second.
+
+## When constants still matter
+
+Asymptotic notation describes the long-run shape, but it does not say constants
+never matter. For small `n`, a simple `O(n^2)` routine may still beat an
+`O(n log n)` routine with a very large hidden constant.
+
+The disciplined conclusion is therefore two-part: first classify the growth
+correctly, then discuss whether the current input size is small enough that
+constant factors still influence the practical choice.
+
 ## Cost of stack and queue operations
 
 The previous section on ADTs gives useful concrete examples for this section.

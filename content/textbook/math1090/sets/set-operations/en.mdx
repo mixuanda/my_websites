@@ -1,79 +1,332 @@
 ---
 title: "2.1 Sets and set operations"
-description: "Understand membership, subsets, and the main set operations through concrete examples."
+description: "Build the language of membership, subset proofs, and standard set constructions that later chapters repeatedly rely on."
 ---
 
-Prerequisite: if you want the notation in this unit to feel familiar, review
-[1.1 Propositional logic](/en/notes/math1090/logic/propositional-logic)
-first. Set membership is often read with logical language in the background.
+Sets are the basic objects that let us talk about collections without
+constantly repeating the same description. In this course, sets are not a side
+topic. They are the language behind logic, functions, relations, and the later
+number constructions.
 
-## What a set is
+If the notation here feels unfamiliar, that is normal. The point of this unit is
+to make the language precise enough that later chapters can use it freely.
+
+## Sets, membership, and equality
 
 <Definition title="A set">
 A set is a collection of things.
 
-We write `x ∈ A` when `x` is an element of the set `A`, and `x ∉ A` when it is
-not.
+If `x` is an element of a set `A`, we write `x ∈ A`. If `x` is not an element of
+`A`, we write `x ∉ A`.
 </Definition>
 
-Two sets are equal when they have exactly the same elements.
+Examples:
 
-## The main operations
+- `{1, 2, 3}` is a set.
+- `{Hong Kong Island, Kowloon, New Territories}` is a set.
+- `∅` is the empty set, the set with no elements.
 
-| Operation | Symbol | Read as |
+The same object may be written in different ways, but a set is determined only
+by its elements.
+
+<TheoremCard title="Extensionality">
+Two sets are equal if and only if they have exactly the same elements.
+
+In symbols:
+
+$$
+A = B \iff \forall x\, (x \in A \leftrightarrow x \in B).
+$$
+</TheoremCard>
+
+This is the rule that makes set equality practical. To prove `A = B`, the
+standard method is to prove both inclusions:
+
+1. show `A \subset B`;
+2. show `B \subset A`.
+
+<CommonMistake title="Do not confuse equal sets with equal descriptions">
+`{1, 2, 3}` and `{3, 2, 1}` are the same set, because they have the same
+elements. The order of listing does not matter.
+</CommonMistake>
+
+<CommonMistake title="Subset notation varies across books">
+This course uses `A \subset B` to mean “every element of `A` is in `B`”. Some
+books write `A \subseteq B` for that idea and reserve `A \subset B` for strict
+subset. Always check the local convention.
+</CommonMistake>
+
+## Building new sets
+
+Once we know some sets, we usually want to build more. The standard operations
+do exactly that.
+
+| Operation | Symbol | Definition |
 | --- | --- | --- |
-| Union | `A ∪ B` | elements in `A` or `B` |
-| Intersection | `A ∩ B` | elements in both `A` and `B` |
-| Difference | `A \ B` | elements in `A` but not in `B` |
+| Union | `A \cup B` | elements in `A` or in `B` |
+| Intersection | `A \cap B` | elements in both `A` and `B` |
+| Difference | `A \setminus B` | elements in `A` but not in `B` |
 | Complement | `A^c` | elements outside `A` in a chosen universal set |
 
-## See the operations on a concrete example
+The complement depends on a universal set `E`. In this unit we usually assume
+all sets live inside some fixed `E`, so `A^c` means `E \setminus A`.
 
-<WorkedExample title="Track elements through two sets">
-Let `A = {1, 2, 4}` and `B = {2, 3, 4}`.
+<WorkedExample title="Track elements through several set operations">
+Let
+
+$$
+A = \{1, 2, 4\}, \qquad B = \{2, 3, 4\},
+$$
+
+and take the universal set
+
+$$
+E = \{1, 2, 3, 4, 5\}.
+$$
 
 Then:
 
-- `A ∪ B = {1, 2, 3, 4}`
-- `A ∩ B = {2, 4}`
-- `A \ B = {1}`
+- `A \cup B = \{1, 2, 3, 4\}`
+- `A \cap B = \{2, 4\}`
+- `A \setminus B = \{1\}`
+- `B \setminus A = \{3\}`
+- `A^c = \{3, 5\}`
+- `(A \cup B)^c = \{5\}`
 
-If the universal set is `E = {1, 2, 3, 4, 5}`, then `A^c = {3, 5}`.
-
-<RevealSolution title="A quick De Morgan check">
-An element lies outside `A ∪ B` exactly when it is outside `A` and outside
-`B`. That is why `(A ∪ B)^c = A^c ∩ B^c`.
+<RevealSolution title="Why the complement needs a universal set">
+`A^c` is not an intrinsic property of `A` alone. It depends on what counts as
+“everything” in the current discussion. That is why the universal set has to be
+understood first.
 </RevealSolution>
 </WorkedExample>
 
-## A note on two extra constructions
+## Why the identities are true
 
-The local notes also introduce two useful constructions:
+The set laws in this unit are not memorized by magic. They are proved by
+tracking one element at a time.
 
-- `A × B`, the Cartesian product, is the set of ordered pairs `(a, b)`.
-- `P(A)`, the power set, is the set of all subsets of `A`.
+<TheoremCard title="Basic algebra of sets">
+For sets `A`, `B`, and `C`:
 
-These are worth recognizing early, even if you only use them in a few places in
-this unit.
+- `A \cup \varnothing = A`
+- `A \cup B = B \cup A`
+- `A \cup (B \cup C) = (A \cup B) \cup C`
+- `A \cup A = A`
+- `A \cap (B \cup C) = (A \cap B) \cup (A \cap C)`
+- `A \cup (B \cap C) = (A \cup B) \cap (A \cup C)`
+- `(A \cup B)^c = A^c \cap B^c`
+- `(A \cap B)^c = A^c \cup B^c`
+- `A \subset B` if and only if `A \cup B = B`
+- `A \subset B` if and only if `A \cap B = A`
+</TheoremCard>
 
-## Common mistake
+The key proof method is element chasing. For example:
 
-<CommonMistake title="Do not confuse complement and difference">
-`A^c` depends on a universal set. `A \ B` depends on a second set. They are not
-the same idea.
+$$
+x \in A \cap (B \cup C)
+\iff x \in A \text{ and } (x \in B \text{ or } x \in C)
+$$
+
+which is equivalent to
+
+$$
+(x \in A \text{ and } x \in B) \text{ or } (x \in A \text{ and } x \in C),
+$$
+
+and therefore to
+
+$$
+x \in (A \cap B) \cup (A \cap C).
+$$
+
+<CollapsibleProof title="Guided proof: why `A \subset B` implies `A \cup B = B`">
+Assume `A \subset B`.
+
+To show `A \cup B = B`, it is enough to show both inclusions.
+
+First, if `x \in A \cup B`, then `x \in A` or `x \in B`.
+If `x \in A`, then `x \in B` because `A \subset B`.
+So in either case `x \in B`, which gives `A \cup B \subset B`.
+
+Conversely, if `x \in B`, then automatically `x \in A \cup B`.
+So `B \subset A \cup B`.
+
+Hence `A \cup B = B`.
+</CollapsibleProof>
+
+## Other set constructions
+
+The course also uses a few larger constructions that are still built from the
+same language.
+
+### Cartesian products
+
+`A \times B` is the set of ordered pairs `(a, b)` with `a \in A` and `b \in B`.
+Order matters: `(a, b)` and `(b, a)` are different unless `a = b`.
+
+If `|A| = 5` and `|B| = 3`, then `|A \times B| = 15`.
+
+`R \times R = R^2` is the Cartesian plane.
+
+### Finite products
+
+The `n`-fold product `A^n` is the set of all `n`-tuples with entries in `A`.
+This is just the repeated Cartesian product of `A` with itself.
+
+### Power sets
+
+`P(A)` is the set of all subsets of `A`.
+
+If `A` has `n` elements, then `P(A)` has `2^n` elements. A useful way to think
+about this is the indicator-function viewpoint: every subset of `A` can be
+encoded by a function `A → {0, 1}`.
+
+For example,
+
+$$
+P(\{a, b\}) = \{\varnothing, \{a\}, \{b\}, \{a, b\}\}.
+$$
+
+### Disjoint union
+
+Sometimes two sets may overlap as raw collections, but we still want to keep
+track of where each element came from. The disjoint union does that by tagging
+the elements with their origin.
+
+Informally, `A \sqcup B` is “`A` with tag 1” together with “`B` with tag 2”.
+
+## How to prove a set identity carefully
+
+At this stage of the course, a set identity should be read as a statement about
+membership, not as a picture to be memorized.
+
+The standard proof pattern is:
+
+1. take an arbitrary element `x`;
+2. rewrite `x \in` each side into logical conditions;
+3. simplify those conditions until both sides say the same thing.
+
+<WorkedExample title="Prove `A \cap (B \setminus C) = (A \cap B) \setminus C`">
+Start with
+
+$$
+x \in A \cap (B \setminus C).
+$$
+
+This means:
+
+- `x \in A`,
+- `x \in B`,
+- `x \notin C`.
+
+But that is exactly the condition for
+
+$$
+x \in (A \cap B) \setminus C.
+$$
+
+Since the reasoning can be read in either direction, the two sets are equal.
+</WorkedExample>
+
+This is the same idea used for De Morgan’s laws, distributive laws, and later
+proofs about relations and number constructions.
+
+## Counting finite sets
+
+The language of sets also controls counting.
+
+For finite sets:
+
+- `|A \times B| = |A|\,|B|`,
+- `|P(A)| = 2^{|A|}`,
+- `|A \cup B| = |A| + |B| - |A \cap B|`.
+
+The last formula matters because elements in the intersection are counted twice
+if you simply add `|A|` and `|B|`.
+
+<WorkedExample title="Count a union and a power set">
+Suppose `|A| = 6`, `|B| = 5`, and `|A \cap B| = 2`.
+
+Then
+
+$$
+|A \cup B| = 6 + 5 - 2 = 9.
+$$
+
+Now let `S = \{a,b,c\}`. Each element either belongs to a subset or does not,
+so there are
+
+$$
+2 \cdot 2 \cdot 2 = 2^3 = 8
+$$
+
+possible subsets. Hence `|P(S)| = 8`.
+</WorkedExample>
+
+## A checklist for subset proofs
+
+Subset proofs are common enough that they should become routine.
+
+To prove `A \subseteq B`, start with an arbitrary element `x` in `A`. Then use
+the definition of `A` to deduce enough information to show that the same `x`
+lies in `B`. Because `x` was arbitrary, the conclusion applies to every element
+of `A`.
+
+This direct-proof pattern is exactly what later chapters reuse for relations,
+orders, and equivalence classes.
+
+## Common mistakes
+
+<CommonMistake title="Complement is not the same as difference">
+`A^c` means “everything outside `A` in the chosen universe”. `A \setminus B`
+means “the part of `A` that is not in `B`”. They are related, but not the same.
 </CommonMistake>
 
-## Quick check
+<CommonMistake title="The universal set cannot be ignored">
+If you write a complement, you must know what universe you are working in.
+Otherwise the symbol `^c` is ambiguous.
+</CommonMistake>
 
-<QuickCheck prompt="If `A = {a, b, c}` and `B = {b, c, d}`, what is `A ∩ B`?">
-Work directly from the definition of intersection: keep only the elements that
-belong to both sets.
+<CommonMistake title="Order matters in products">
+`A \times B` and `B \times A` usually contain different ordered pairs.
+This is why products are the correct language for functions and relations.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="If `A = {a, b, c}` and `B = {b, c, d}`, what is `A \cap B`?">
+Keep only the elements that belong to both sets.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-`A ∩ B = {b, c}` because `b` and `c` are the elements shared by both sets.
+`A \cap B = \{b, c\}`.
 </RevealSolution>
 
-## Pause and test the idea
+<QuickCheck prompt="Why is `A^c` not defined until a universal set is chosen?">
+Ask what the complement is supposed to be taken inside.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Because the same set has different complements in different universes.
+</RevealSolution>
+
+<QuickCheck prompt="If `A \subset B`, what do `A \cup B` and `A \cap B` simplify to?">
+Use the absorption laws from the theorem above.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`A \cup B = B` and `A \cap B = A`.
+</RevealSolution>
+
+## Why this matters later
+
+This unit is the first place where the course starts building the later number
+systems in a disciplined way.
+
+- `N^2` is used to construct the integers.
+- Equivalence classes are later used to construct the rationals.
+- Relations on one set become the language for orders and classes.
+- Power sets and products reappear whenever we talk about families of subsets
+  or tuples.
 
 <InteractiveWidget id="set-operation-explorer" />

@@ -47,6 +47,20 @@ const interactiveLabels = {
   why: text("Why it works", "為甚麼成立", "为什么成立"),
   verdict: text("Verdict", "判斷", "判断"),
   relation: text("Key relation", "關鍵關係", "关键关系"),
+  codeSample: text("Code sample", "程式範例", "程序示例"),
+  tryItYourself: text("Try it yourself", "自己試一試", "自己试一试"),
+  stackMode: text("Stack", "Stack", "Stack"),
+  queueMode: text("Queue", "Queue", "Queue"),
+  commands: text("Commands", "指令", "指令"),
+  currentState: text("Current state", "目前狀態", "当前状态"),
+  returnedValue: text("Returned value", "回傳值", "返回值"),
+  finalState: text("Final state", "最後狀態", "最终状态"),
+  noReturn: text("No returned value", "沒有回傳值", "没有返回值"),
+  parseError: text("Parsing error", "解析錯誤", "解析错误"),
+  chooseAlgorithm: text("Choose an algorithm shape", "選擇演算法形狀", "选择算法形状"),
+  growthClass: text("Growth class", "增長級別", "增长级别"),
+  estimatedCost: text("Estimated primitive steps", "估計基本步數", "估计基本步数"),
+  interpretation: text("Interpretation", "如何理解", "如何理解"),
 } as const;
 
 function MatrixView({
@@ -118,6 +132,25 @@ function InteractiveShell({
         </div>
       </div>
       <div className="mt-5">{children}</div>
+    </GlassPanel>
+  );
+}
+
+function CodeSample({
+  code,
+  locale,
+}: {
+  code: LocalizedText;
+  locale: Locale;
+}) {
+  return (
+    <GlassPanel className="border border-border/60 bg-background/30 p-4">
+      <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+        {getLocalizedText(interactiveLabels.codeSample, locale)}
+      </p>
+      <pre className="overflow-x-auto rounded-lg bg-slate-950/90 p-4 font-mono text-xs leading-6 text-slate-100">
+        <code>{getLocalizedText(code, locale)}</code>
+      </pre>
     </GlassPanel>
   );
 }
@@ -1338,32 +1371,415 @@ const adtOperationSteps = [
   },
 ];
 
+type AdtMode = "stack" | "queue";
+
+const adtCodeSamples: Record<AdtMode, LocalizedText> = {
+  stack: text(
+    [
+      "typedef struct {",
+      "  int data[100];",
+      "  int top;",
+      "} Stack;",
+      "",
+      "void push(Stack *s, int x) {",
+      "  s->data[++(s->top)] = x;",
+      "}",
+      "",
+      "int pop(Stack *s) {",
+      "  return s->data[(s->top)--];",
+      "}",
+    ].join("\n"),
+    [
+      "typedef struct {",
+      "  int data[100];",
+      "  int top;",
+      "} Stack;",
+      "",
+      "void push(Stack *s, int x) {",
+      "  s->data[++(s->top)] = x;",
+      "}",
+      "",
+      "int pop(Stack *s) {",
+      "  return s->data[(s->top)--];",
+      "}",
+    ].join("\n"),
+    [
+      "typedef struct {",
+      "  int data[100];",
+      "  int top;",
+      "} Stack;",
+      "",
+      "void push(Stack *s, int x) {",
+      "  s->data[++(s->top)] = x;",
+      "}",
+      "",
+      "int pop(Stack *s) {",
+      "  return s->data[(s->top)--];",
+      "}",
+    ].join("\n")
+  ),
+  queue: text(
+    [
+      "typedef struct {",
+      "  int data[100];",
+      "  int front, rear;",
+      "} Queue;",
+      "",
+      "void enqueue(Queue *q, int x) {",
+      "  q->data[(q->rear)++] = x;",
+      "}",
+      "",
+      "int dequeue(Queue *q) {",
+      "  return q->data[(q->front)++];",
+      "}",
+    ].join("\n"),
+    [
+      "typedef struct {",
+      "  int data[100];",
+      "  int front, rear;",
+      "} Queue;",
+      "",
+      "void enqueue(Queue *q, int x) {",
+      "  q->data[(q->rear)++] = x;",
+      "}",
+      "",
+      "int dequeue(Queue *q) {",
+      "  return q->data[(q->front)++];",
+      "}",
+    ].join("\n"),
+    [
+      "typedef struct {",
+      "  int data[100];",
+      "  int front, rear;",
+      "} Queue;",
+      "",
+      "void enqueue(Queue *q, int x) {",
+      "  q->data[(q->rear)++] = x;",
+      "}",
+      "",
+      "int dequeue(Queue *q) {",
+      "  return q->data[(q->front)++];",
+      "}",
+    ].join("\n")
+  ),
+};
+
+const adtTryItCopy: Record<AdtMode, LocalizedText> = {
+  stack: text(
+    "push 10\npush 20\ntop\npop\npush 7",
+    "push 10\npush 20\ntop\npop\npush 7",
+    "push 10\npush 20\ntop\npop\npush 7"
+  ),
+  queue: text(
+    "enqueue 3\nenqueue 5\nfront\ndequeue\nenqueue 8",
+    "enqueue 3\nenqueue 5\nfront\ndequeue\nenqueue 8",
+    "enqueue 3\nenqueue 5\nfront\ndequeue\nenqueue 8"
+  ),
+};
+
+function runAdtOperations(mode: AdtMode, commandsText: string) {
+  const state: number[] = [];
+  const trace: Array<{
+    command: string;
+    error?: string;
+    returned?: number | null;
+    state: number[];
+  }> = [];
+
+  for (const rawLine of commandsText.split("\n")) {
+    const command = rawLine.trim();
+    if (!command) continue;
+
+    const parts = command.split(/\s+/);
+    const op = parts[0]?.toLowerCase();
+    const value = parts[1] ? Number(parts[1]) : null;
+
+    if (mode === "stack") {
+      if (op === "push" && value !== null && Number.isFinite(value)) {
+        state.push(value);
+        trace.push({ command, returned: null, state: [...state] });
+        continue;
+      }
+      if (op === "pop") {
+        if (!state.length) {
+          trace.push({ command, error: "empty stack", state: [...state] });
+        } else {
+          const returned = state.pop() ?? null;
+          trace.push({ command, returned, state: [...state] });
+        }
+        continue;
+      }
+      if (op === "top") {
+        if (!state.length) {
+          trace.push({ command, error: "empty stack", state: [...state] });
+        } else {
+          trace.push({ command, returned: state[state.length - 1], state: [...state] });
+        }
+        continue;
+      }
+    }
+
+    if (mode === "queue") {
+      if (op === "enqueue" && value !== null && Number.isFinite(value)) {
+        state.push(value);
+        trace.push({ command, returned: null, state: [...state] });
+        continue;
+      }
+      if (op === "dequeue") {
+        if (!state.length) {
+          trace.push({ command, error: "empty queue", state: [...state] });
+        } else {
+          const returned = state.shift() ?? null;
+          trace.push({ command, returned, state: [...state] });
+        }
+        continue;
+      }
+      if (op === "front") {
+        if (!state.length) {
+          trace.push({ command, error: "empty queue", state: [...state] });
+        } else {
+          trace.push({ command, returned: state[0], state: [...state] });
+        }
+        continue;
+      }
+    }
+
+    trace.push({
+      command,
+      error: mode === "stack" ? "expected push/pop/top" : "expected enqueue/dequeue/front",
+      state: [...state],
+    });
+  }
+
+  return trace;
+}
+
 function AdtStackQueueStepper({ locale }: { locale: Locale }) {
   const [step, setStep] = useState(0);
+  const [mode, setMode] = useState<AdtMode>("stack");
+  const [commandsText, setCommandsText] = useState(
+    getLocalizedText(adtTryItCopy.stack, locale)
+  );
   const current = adtOperationSteps[step];
+  const trace = useMemo(
+    () => runAdtOperations(mode, commandsText),
+    [commandsText, mode]
+  );
 
   return (
     <InteractiveShell icon={<ListChecks className="h-5 w-5" />} locale={locale} widgetId="adt-stack-queue-stepper">
-      <div className="space-y-2 text-sm">
-        <p><strong>{getLocalizedText(interactiveLabels.operation, locale)}:</strong> {getLocalizedText(current.op, locale)}</p>
-        <p>{getLocalizedText(current.stack, locale)}</p>
-        <p>{getLocalizedText(current.queue, locale)}</p>
-        <p className="text-muted-foreground">{getLocalizedText(current.note, locale)}</p>
+      <div className="flex flex-wrap gap-2">
+        <Button
+          onClick={() => {
+            setMode("stack");
+            setCommandsText(getLocalizedText(adtTryItCopy.stack, locale));
+          }}
+          size="sm"
+          type="button"
+          variant={mode === "stack" ? "default" : "outline"}
+        >
+          {getLocalizedText(interactiveLabels.stackMode, locale)}
+        </Button>
+        <Button
+          onClick={() => {
+            setMode("queue");
+            setCommandsText(getLocalizedText(adtTryItCopy.queue, locale));
+          }}
+          size="sm"
+          type="button"
+          variant={mode === "queue" ? "default" : "outline"}
+        >
+          {getLocalizedText(interactiveLabels.queueMode, locale)}
+        </Button>
       </div>
-      <div className="mt-4 flex gap-2">
-        <Button onClick={() => setStep((s) => Math.max(0, s - 1))} size="sm" variant="outline">
-          {getLocalizedText(interactiveLabels.previous, locale)}
-        </Button>
-        <Button onClick={() => setStep((s) => Math.min(adtOperationSteps.length - 1, s + 1))} size="sm">
-          {getLocalizedText(interactiveLabels.next, locale)}
-        </Button>
+
+      <div className="mt-4 grid gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <div className="space-y-4">
+          <CodeSample code={adtCodeSamples[mode]} locale={locale} />
+          <GlassPanel className="border border-border/60 bg-background/30 p-4">
+            <p className="mb-2 text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+              {getLocalizedText(interactiveLabels.tryItYourself, locale)}
+            </p>
+            <label className="text-sm font-medium">
+              {getLocalizedText(interactiveLabels.commands, locale)}
+            </label>
+            <textarea
+              className="mt-2 min-h-44 w-full rounded-lg border border-border/60 bg-background/70 p-3 font-mono text-sm"
+              onChange={(event) => setCommandsText(event.target.value)}
+              value={commandsText}
+            />
+          </GlassPanel>
+        </div>
+
+        <div className="space-y-4">
+          <GlassPanel className="border border-border/60 bg-background/30 p-4">
+            <div className="space-y-2 text-sm">
+              <p><strong>{getLocalizedText(interactiveLabels.operation, locale)}:</strong> {getLocalizedText(current.op, locale)}</p>
+              <p>{getLocalizedText(current.stack, locale)}</p>
+              <p>{getLocalizedText(current.queue, locale)}</p>
+              <p className="text-muted-foreground">{getLocalizedText(current.note, locale)}</p>
+            </div>
+            <div className="mt-4 flex gap-2">
+              <Button onClick={() => setStep((s) => Math.max(0, s - 1))} size="sm" variant="outline">
+                {getLocalizedText(interactiveLabels.previous, locale)}
+              </Button>
+              <Button onClick={() => setStep((s) => Math.min(adtOperationSteps.length - 1, s + 1))} size="sm">
+                {getLocalizedText(interactiveLabels.next, locale)}
+              </Button>
+            </div>
+          </GlassPanel>
+
+          <GlassPanel className="border border-border/60 bg-background/30 p-4">
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+              {getLocalizedText(interactiveLabels.tryItYourself, locale)}
+            </p>
+            <div className="space-y-3">
+              {trace.map((row, index) => (
+                <div key={`${row.command}-${index}`} className="rounded-lg border border-border/40 p-3 text-sm">
+                  <p className="font-mono">{row.command}</p>
+                  <p className="mt-1">
+                    <strong>{getLocalizedText(interactiveLabels.currentState, locale)}:</strong>{" "}
+                    [{row.state.join(", ")}]
+                  </p>
+                  <p className="mt-1">
+                    <strong>{row.error ? getLocalizedText(interactiveLabels.parseError, locale) : getLocalizedText(interactiveLabels.returnedValue, locale)}:</strong>{" "}
+                    {row.error ?? (row.returned ?? getLocalizedText(interactiveLabels.noReturn, locale))}
+                  </p>
+                </div>
+              ))}
+              <p className="text-sm text-muted-foreground">
+                <strong>{getLocalizedText(interactiveLabels.finalState, locale)}:</strong>{" "}
+                [{trace[trace.length - 1]?.state.join(", ") ?? ""}]
+              </p>
+            </div>
+          </GlassPanel>
+        </div>
       </div>
     </InteractiveShell>
   );
 }
 
+const complexityCodeExamples = [
+  {
+    code: text(
+      ["for (int i = 0; i < n; ++i) {", "  visit(a[i]);", "}"].join("\n"),
+      ["for (int i = 0; i < n; ++i) {", "  visit(a[i]);", "}"].join("\n"),
+      ["for (int i = 0; i < n; ++i) {", "  visit(a[i]);", "}"].join("\n")
+    ),
+    growth: "O(n)",
+    id: "linear",
+    label: text("Single scan", "單次掃描", "单次扫描"),
+    note: text(
+      "One loop touches each item once, so the dominant cost scales linearly with n.",
+      "只有一個迴圈逐項走過資料，主導成本會與 n 成正比。",
+      "只有一个循环逐项走过数据，主导成本会与 n 成正比。"
+    ),
+    value: (n: number) => n,
+  },
+  {
+    code: text(
+      [
+        "for (int i = 0; i < n; ++i) {",
+        "  for (int j = 0; j < n; ++j) {",
+        "    compare(a[i], a[j]);",
+        "  }",
+        "}",
+      ].join("\n"),
+      [
+        "for (int i = 0; i < n; ++i) {",
+        "  for (int j = 0; j < n; ++j) {",
+        "    compare(a[i], a[j]);",
+        "  }",
+        "}",
+      ].join("\n"),
+      [
+        "for (int i = 0; i < n; ++i) {",
+        "  for (int j = 0; j < n; ++j) {",
+        "    compare(a[i], a[j]);",
+        "  }",
+        "}",
+      ].join("\n")
+    ),
+    growth: "O(n^2)",
+    id: "quadratic",
+    label: text("Nested double loop", "雙重巢狀迴圈", "双重嵌套循环"),
+    note: text(
+      "Each outer-loop pass triggers a full inner scan, so the work multiplies to n^2.",
+      "外層每跑一次，都會重新完成整個內層掃描，因此總工作量乘成 n^2。",
+      "外层每跑一次，都会重新完成整个内层扫描，因此总工作量乘成 n^2。"
+    ),
+    value: (n: number) => n * n,
+  },
+  {
+    code: text(
+      [
+        "int i = n;",
+        "while (i > 1) {",
+        "  i /= 2;",
+        "}",
+      ].join("\n"),
+      [
+        "int i = n;",
+        "while (i > 1) {",
+        "  i /= 2;",
+        "}",
+      ].join("\n"),
+      [
+        "int i = n;",
+        "while (i > 1) {",
+        "  i /= 2;",
+        "}",
+      ].join("\n")
+    ),
+    growth: "O(log n)",
+    id: "logarithmic",
+    label: text("Halving loop", "對半縮減迴圈", "对半缩减循环"),
+    note: text(
+      "The loop does not remove one item at a time. It cuts the remaining problem roughly in half each step.",
+      "這個迴圈不是每次只少一個，而是每步都把剩餘問題約減半。",
+      "这个循环不是每次只少一个，而是每步都把剩余问题约减半。"
+    ),
+    value: (n: number) => Math.max(1, Math.log2(n)),
+  },
+  {
+    code: text(
+      [
+        "for (int width = 1; width < n; width *= 2) {",
+        "  for (int i = 0; i < n; i += 2 * width) {",
+        "    merge_block(i, width);",
+        "  }",
+        "}",
+      ].join("\n"),
+      [
+        "for (int width = 1; width < n; width *= 2) {",
+        "  for (int i = 0; i < n; i += 2 * width) {",
+        "    merge_block(i, width);",
+        "  }",
+        "}",
+      ].join("\n"),
+      [
+        "for (int width = 1; width < n; width *= 2) {",
+        "  for (int i = 0; i < n; i += 2 * width) {",
+        "    merge_block(i, width);",
+        "  }",
+        "}",
+      ].join("\n")
+    ),
+    growth: "O(n log n)",
+    id: "nlogn",
+    label: text("Merge-style pass structure", "類 merge 的分層掃描", "类 merge 的分层扫描"),
+    note: text(
+      "There are about log n rounds, and each round still touches a linear amount of data.",
+      "大約有 log n 輪，而每一輪仍然會處理線性數量的資料。",
+      "大约有 log n 轮，而每一轮仍然会处理线性数量的数据。"
+    ),
+    value: (n: number) => n * Math.max(1, Math.log2(n)),
+  },
+] as const;
+
 function ComplexityGrowthComparator({ locale }: { locale: Locale }) {
   const [nText, setNText] = useState("16");
+  const [selectedId, setSelectedId] = useState<(typeof complexityCodeExamples)[number]["id"]>("nlogn");
   const n = Math.max(1, Number.parseInt(nText, 10) || 1);
   const log2n = Math.log2(n);
   const rows = [
@@ -1373,30 +1789,69 @@ function ComplexityGrowthComparator({ locale }: { locale: Locale }) {
     { name: "O(n log n)", value: n * log2n },
     { name: "O(n^2)", value: n * n },
   ];
+  const selectedExample =
+    complexityCodeExamples.find((item) => item.id === selectedId) ??
+    complexityCodeExamples[0];
 
   return (
     <InteractiveShell icon={<ChartColumnBig className="h-5 w-5" />} locale={locale} widgetId="complexity-growth-comparator">
-      <label className="text-sm">
-        n:
-        <Input className="mt-2 w-40" value={nText} onChange={(event) => setNText(event.target.value)} />
-      </label>
-      <div className="mt-4 overflow-x-auto">
-        <table className="min-w-[320px] text-sm">
-          <thead>
-            <tr className="text-left text-muted-foreground">
-              <th className="py-1 pr-4">Class</th>
-              <th className="py-1">Value at n={n}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {rows.map((row) => (
-              <tr key={row.name} className="border-t border-border/40">
-                <td className="py-1 pr-4 font-medium">{row.name}</td>
-                <td className="py-1">{row.value.toFixed(2)}</td>
-              </tr>
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <div className="space-y-4">
+          <p className="text-sm font-medium">
+            {getLocalizedText(interactiveLabels.chooseAlgorithm, locale)}
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {complexityCodeExamples.map((example) => (
+              <Button
+                key={example.id}
+                onClick={() => setSelectedId(example.id)}
+                size="sm"
+                type="button"
+                variant={selectedId === example.id ? "default" : "outline"}
+              >
+                {getLocalizedText(example.label, locale)}
+              </Button>
             ))}
-          </tbody>
-        </table>
+          </div>
+          <CodeSample code={selectedExample.code} locale={locale} />
+          <label className="text-sm font-medium">
+            n
+            <Input className="mt-2 w-40" value={nText} onChange={(event) => setNText(event.target.value)} />
+          </label>
+          <GlassPanel className="border border-border/60 bg-background/30 p-4 text-sm">
+            <p>
+              <strong>{getLocalizedText(interactiveLabels.growthClass, locale)}:</strong>{" "}
+              {selectedExample.growth}
+            </p>
+            <p className="mt-2">
+              <strong>{getLocalizedText(interactiveLabels.estimatedCost, locale)}:</strong>{" "}
+              {selectedExample.value(n).toFixed(2)}
+            </p>
+            <p className="mt-2 text-muted-foreground">
+              <strong>{getLocalizedText(interactiveLabels.interpretation, locale)}:</strong>{" "}
+              {getLocalizedText(selectedExample.note, locale)}
+            </p>
+          </GlassPanel>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="min-w-[320px] text-sm">
+            <thead>
+              <tr className="text-left text-muted-foreground">
+                <th className="py-1 pr-4">Class</th>
+                <th className="py-1">Value at n={n}</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((row) => (
+                <tr key={row.name} className="border-t border-border/40">
+                  <td className="py-1 pr-4 font-medium">{row.name}</td>
+                  <td className="py-1">{row.value.toFixed(2)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
     </InteractiveShell>
   );

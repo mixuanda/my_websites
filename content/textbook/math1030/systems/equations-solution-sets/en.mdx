@@ -1,83 +1,401 @@
 ---
 title: "1.1 Equations and solution sets"
-description: "Read a linear system as a set of conditions and describe its full solution set clearly."
+description: "Treat a linear system as a set of simultaneous conditions, classify its solution set carefully, and see why equation operations preserve that set."
 ---
 
-## What we are really looking for
+When a system of linear equations is written down, the real object of interest is
+not the list of equations itself. It is the set of all tuples of numbers that
+make every equation true at the same time.
 
-A linear system is not just a pile of equations. It is a list of conditions that a
-single choice of numbers must satisfy all at once.
+That solution set can be a single point, no point at all, or an infinite family
+of points. The course notes begin with this language because every later method,
+from substitution to elimination to matrices, row reduction, and null spaces,
+is really a way of describing the same set more efficiently.
 
-If a pair or tuple of numbers makes every equation true, that choice is a
-solution. The collection of all such choices is the solution set.
+## What a solution set records
 
 <Definition title="Solution set">
 A solution set is the collection of every number or vector that satisfies the
 whole system.
 </Definition>
 
-## One system, one meaning
+If the system has unknowns `x_1, x_2, \ldots, x_n`, then a solution is an
+ordered `n`-tuple `(s_1, s_2, \ldots, s_n)` such that every equation becomes a
+true statement after we substitute `x_i = s_i` for each `i`.
 
-For a system such as
+That order matters. The tuple `(2, 3)` is not the same solution as `(3, 2)`.
+Likewise, a tuple is not a set. We do not write `{2, 3}` when the intended
+solution is the ordered pair `(2, 3)`.
 
-$$
-x + y = 4, \qquad x - y = 0,
-$$
+The system itself can be read as an intersection of conditions:
 
-we are looking for numbers that make both equations true at the same time.
-The second equation says the two numbers must be equal. Then the first equation
-forces that common value to be `2`.
+- the first equation cuts out the tuples that satisfy it;
+- the second equation cuts out the tuples that satisfy it;
+- the solution set is the intersection of all those individual solution sets.
 
-So the solution set is `{(2, 2)}`.
+This is why even one failed equation disqualifies a tuple.
+
+## Consistent or inconsistent
+
+<Definition title="Consistent and inconsistent systems">
+A linear system is **consistent** if it has at least one solution.
+
+Otherwise, it is **inconsistent**.
+</Definition>
+
+This is a very small definition, but it carries a lot of meaning.
+
+- A consistent system may have exactly one solution.
+- A consistent system may have infinitely many solutions.
+- An inconsistent system has no solutions, so its solution set is empty.
+
+The lecture notes later prove that these are the only possibilities.
+
+<TheoremCard title="A linear system has only three possible kinds of solution set">
+For a linear system, the solution set is either:
+
+1. a singleton, so the system has a unique solution;
+2. the empty set, so the system is inconsistent;
+3. an infinite set, so the system has infinitely many solutions.
+</TheoremCard>
+
+The theorem is not a guess. Later sections justify it by elimination and
+row-reduction, but the point is already visible here: once a free variable
+appears, there are infinitely many choices; once a contradiction appears, there
+are none.
+
+## A system with one solution
 
 <WorkedExample title="A tiny system with one solution">
 Solve
 
 $$
-x + 2y = 5, \qquad x - y = 1.
+x + y = 4, \qquad x - y = 0.
 $$
 
-From the second equation, `x = y + 1`. Substitute that into the first equation:
+The second equation says `x = y`. Substitute that into the first equation:
 
 $$
-(y + 1) + 2y = 5.
+y + y = 4.
 $$
 
-That gives `3y = 4`, so `y = 4/3`. Then `x = 7/3`.
+So `2y = 4`, hence `y = 2`, and therefore `x = 2`.
 
-The solution set is `{(7/3, 4/3)}`.
+The solution set is
+
+$$
+\{(2, 2)\}.
+$$
+
+This is the simplest possible example of a consistent system: there is exactly
+one ordered pair that works.
 </WorkedExample>
 
-## Why solution sets matter
+## A system with no solution
 
-Later we will rewrite systems in matrix form. Even then, the goal does not
-change. We are still trying to describe the same solution set, just with a more
-efficient language.
+<WorkedExample title="A contradiction gives an empty solution set">
+Consider
 
-Before moving on, try translating one system into its augmented matrix. Matching
-each equation to one row makes the later row operations feel much less
-mysterious.
+$$
+x + y = 1, \qquad x + y = 3.
+$$
+
+If a pair `(x, y)` satisfied both equations, then the same left-hand side would
+have to equal two different numbers. Subtracting the first equation from the
+second gives
+
+$$
+0 = 2,
+$$
+
+which is impossible.
+
+So the system is inconsistent, and its solution set is empty:
+
+$$
+\varnothing.
+$$
+</WorkedExample>
+
+The important subtlety is that an inconsistent system is not a system with
+"many" solutions. It has none.
+
+<CommonMistake title="Inconsistent does not mean more than one solution">
+Students sometimes read "inconsistent" as "too complicated" or "overdetermined."
+That is not the definition. Inconsistent means that there is no tuple of values
+that satisfies all equations simultaneously.
+</CommonMistake>
+
+## A system with infinitely many solutions
+
+<WorkedExample title="The same line can be written in more than one way">
+Consider
+
+$$
+x + y = 4, \qquad 2x + 2y = 8.
+$$
+
+The second equation is just `2` times the first, so it adds no new condition.
+Every pair on the line `x + y = 4` satisfies both equations.
+
+If we let `x = t`, then `y = 4 - t`, where `t \in R`. So the solution set is
+
+$$
+\{(t, 4 - t) \mid t \in R\}.
+$$
+
+There are infinitely many solutions because every real value of `t` gives a
+different ordered pair.
+</WorkedExample>
+
+The same phenomenon appears in larger systems. The notation gets longer, but the
+logic is the same: each free variable introduces one independent choice.
+
+<WorkedExample title="A four-variable system written as a full solution set">
+Solve
+
+$$
+x_1 - 2x_2 - x_3 + x_4 = 1, \qquad
+x_2 + x_3 - x_4 = 2, \qquad
+x_3 + 2x_4 = 3.
+$$
+
+Start from the last equation:
+
+$$
+x_3 = 3 - 2x_4.
+$$
+
+Substitute this into the second equation:
+
+$$
+x_2 + (3 - 2x_4) - x_4 = 2,
+$$
+
+so
+
+$$
+x_2 = -1 + 3x_4.
+$$
+
+Now substitute both expressions into the first equation:
+
+$$
+x_1 - 2(-1 + 3x_4) - (3 - 2x_4) + x_4 = 1.
+$$
+
+Simplifying gives
+
+$$
+x_1 = 2 + 3x_4.
+$$
+
+Let `x_4 = t`. Then every solution has the form
+
+$$
+(x_1, x_2, x_3, x_4) = (2 + 3t, -1 + 3t, 3 - 2t, t),
+$$
+
+so the solution set is
+
+$$
+\{(2 + 3t, -1 + 3t, 3 - 2t, t) \mid t \in R\}.
+$$
+
+This is the kind of answer the course wants: a complete description of all
+solutions, not just one sample solution.
+</WorkedExample>
+
+## Why equivalent systems matter
+
+Two systems are **equivalent** if they have the same solution set.
+
+<Definition title="Equivalent systems">
+Two linear systems are equivalent if and only if they have exactly the same
+solution set.
+</Definition>
+
+This definition is stronger than "they look similar" and stronger than "they
+have the same number of equations." Equivalence is about solutions only.
+
+<CommonMistake title="Same number of equations does not mean equivalent">
+Two systems can have the same number of equations but different solution sets.
+They can also have different numbers of equations and still be equivalent.
+</CommonMistake>
+
+The lecture notes emphasize the three elementary equation operations:
+
+1. swap two equations;
+2. multiply one equation by a nonzero scalar;
+3. add a multiple of one equation to another equation.
+
+These are the equation-level version of the row operations used later on
+augmented matrices.
+
+<TheoremCard title="Elementary equation operations preserve the solution set">
+If one system is obtained from another by a finite sequence of the three
+elementary equation operations, then the two systems are equivalent.
+</TheoremCard>
+
+<CollapsibleProof title="Why the three elementary equation operations are safe">
+Each operation is reversible.
+
+- Swapping two equations only changes the order in which the conditions are
+  listed.
+- Multiplying an equation by a nonzero scalar produces an equivalent equation,
+  because we can reverse the move by multiplying by its reciprocal.
+- Replacing equation `j` by `alpha ×` equation `i` plus equation `j` is
+  reversible by subtracting `alpha ×` equation `i` from the new equation `j`.
+
+Since each step is reversible, no step changes the solution set.
+</CollapsibleProof>
+
+This is the formal reason elimination is allowed. We are not changing the
+problem; we are rewriting it in a more readable form.
+
+## Two variables: geometry gives a quick picture
+
+When there are two unknowns, each equation can be drawn as a line in the
+plane. Then the solution set is the intersection of those lines.
+
+- If the lines meet at one point, the system has a unique solution.
+- If the lines are parallel and distinct, the system is inconsistent.
+- If the lines coincide, the system has infinitely many solutions.
+
+This geometric picture is useful because it makes the three possibilities feel
+inevitable instead of arbitrary.
+
+## Why the course starts with solution sets
+
+The later matrix language does not replace this section. It formalizes it.
+
+Once we introduce coefficient matrices and augmented matrices, the same system
+can be encoded more compactly. Once we introduce row operations, we can
+transform one equation system into an equivalent one. Once we reach row-echelon
+or reduced row-echelon form, the solution set becomes easier to read.
+
+So if the solution set is the object, then every later technique is just a
+different lens.
+
+Try the interactive preview below once you are comfortable reading a small
+system as a list of conditions.
 
 <InteractiveWidget id="system-augmented-matrix-explorer" />
 
-## Common mistake
+## Common mistakes and subtle points
 
-<CommonMistake title="One equation is not enough">
-It is not enough to make only one equation true. A solution must satisfy every
-equation in the system.
+<CommonMistake title="A solution is an ordered tuple, not a bag of numbers">
+`(2, 3)` solves a system in two variables, but `{2, 3}` does not mean the same
+thing. Order matters because the first number belongs to `x_1` and the second
+belongs to `x_2`.
 </CommonMistake>
 
-## Quick check
+<CommonMistake title="A contradiction row means no solution">
+If elimination produces a row like `0 = 1`, the system is inconsistent. Do not
+continue trying to solve it as if it were a valid equation.
+</CommonMistake>
 
-<QuickCheck prompt="Which ordered pair solves both equations?">
-Try `(1, 3)`, `(2, 2)`, and `(4, 0)` for the system `x + y = 4`, `x - y = 0`.
+<CommonMistake title="A free variable is part of the answer">
+When a solution set is written with parameters, the parameter is not a missing
+answer. It is the correct way to describe the whole family of solutions.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Which ordered pair solves both equations `x + y = 4` and `x - y = 0`?">
+Test the pair against both equations.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-Only `(2, 2)` works, because it makes both equations true at the same time.
+`(2, 2)`.
+</RevealSolution>
+
+<QuickCheck prompt="Is the system `x + y = 1`, `x + y = 3` consistent?">
+Use the definition of consistency, not the number of equations.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. It is inconsistent because the two equations contradict each other.
+</RevealSolution>
+
+<QuickCheck prompt="If two systems have the same solution set, what do we call them?">
+This is the course definition.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Equivalent systems.
+</RevealSolution>
+
+<QuickCheck prompt="Why does swapping two equations not change the solution set?">
+Think about what the word "solution" means.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+A solution must satisfy every equation in the system. The order of the equations
+does not matter, so swapping them does not change which tuples satisfy all of
+them.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Write the solution set of `x_1 - 5x_4 = 1`, `x_2 + x_4 = 2`, `x_3 + 3x_4 = 3` in parametric form.">
+Use one free parameter.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Let `x_4 = t`. Then
+
+$$
+x_1 = 1 + 5t, \qquad x_2 = 2 - t, \qquad x_3 = 3 - 3t.
+$$
+
+So the solution set is
+
+$$
+\{(1 + 5t, 2 - t, 3 - 3t, t) \mid t \in R\}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Find `c` so that the system `x + 2y - 5z = 6`, `2x + 3y - 2z = 7`, `x + cy + z = 0` has no solution.">
+You may eliminate `x` first.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Eliminate `x` from the second equation by subtracting `2` times the first:
+
+$$
+-y + 8z = -5.
+$$
+
+Eliminate `x` from the third equation by subtracting the first:
+
+$$
+(c - 2)y + 6z = -6.
+$$
+
+For inconsistency, the two resulting equations in `y` and `z` must become
+parallel but different. That happens when their coefficient rows are multiples.
+So solve
+
+$$
+\frac{c - 2}{-1} = \frac{6}{8},
+$$
+
+which gives
+
+$$
+c = \frac{5}{4}.
+$$
+
+With `c = 5/4`, the two equations are parallel but not the same, so the system
+has no solution.
 </RevealSolution>
 
 ## Read this first
 
-If you want a slower reminder about what a matrix entry means later on, move to
-[2.1 Matrix basics](/en/notes/math1030/matrices/matrix-basics).
+This note is the starting point for the matrix treatment of systems. The next
+useful pages are:
+
+- [2.2 Augmented matrices and row operations](/en/notes/math1030/matrices/augmented-matrices-row-operations)
+- [2.3 Gaussian elimination and RREF](/en/notes/math1030/matrices/gaussian-elimination-rref)
+- [4.1 Homogeneous systems and null space](/en/notes/math1030/solution-structure/homogeneous-systems-and-null-space)

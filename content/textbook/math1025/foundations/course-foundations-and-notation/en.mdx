@@ -1,41 +1,380 @@
 ---
 title: "0.1 Course foundations and notation"
-description: "Build symbolic discipline, statement structure, and baseline algebra habits used throughout MATH1025."
+description: "Build the notation, language, and algebraic discipline used throughout MATH1025."
 ---
 
-## Purpose of chapter 0
+## Why this chapter comes first
 
-This chapter aligns notation and proof habits before heavy computational topics.
-You should read this as a methods chapter: how we write claims, track domains,
-and justify each algebraic transformation.
+The first topic in a mathematics methods course is not a technique but a
+language. If notation is sloppy, later algebra becomes impossible to audit:
+you cannot tell what is assumed, what is being proved, or whether a step keeps
+the same solution set.
 
-## Symbol discipline
+This chapter therefore does three jobs at once:
 
-<Definition title="Well-formed mathematical statement">
-A statement should clearly specify:
+- it fixes the meaning of basic set notation;
+- it introduces the logic symbols that will appear in every proof;
+- it explains the difference between a legitimate transformation and a step
+  that changes the problem.
 
-1. variable domain,
-2. operation legality,
-3. conclusion target.
+## Sets and membership
+
+<Definition title="Set">
+A set is a collection of distinct objects. The objects inside the set are its
+elements or members.
+
+If `x` is an element of a set `A`, we write `x \in A`. If `x` is not an
+element of `A`, we write `x \notin A`.
 </Definition>
 
-A common source of error is transforming expressions without checking domain
-conditions (e.g. dividing by quantities that may be zero).
+Set membership is the smallest unit of mathematical language here. Once you can
+state membership precisely, you can state subsets, domains, ranges, and
+solution sets precisely as well.
+
+<Definition title="Subset and equality of sets">
+Let `A` and `B` be sets.
+
+- `A \subseteq B` means every element of `A` is also an element of `B`.
+- `A = B` means `A` and `B` have exactly the same elements.
+
+Equivalently, `A = B` if and only if `A \subseteq B` and `B \subseteq A`.
+</Definition>
+
+That equivalence is worth remembering. To prove two sets are equal, it is often
+cleaner to prove the two inclusions separately.
+
+<WorkedExample title="A set written two ways">
+The set of positive even integers can be written as
+
+$$
+\{2m : m \in Z^+\}
+$$
+
+or as
+
+$$
+\{n \in Z^+ : n = 2m \text{ for some } m \in Z^+\}.
+$$
+
+The first form emphasizes the pattern; the second form emphasizes the property
+that defines the elements.
+</WorkedExample>
+
+## Set-builder notation and standard sets
+
+The course uses the notation
+
+$$
+\{x \in S : P(x)\}
+$$
+
+for the set of all elements `x` in a universe `S` that satisfy the property
+`P(x)`.
+
+This is not just shorthand. It tells you three things at once:
+
+- where the objects are coming from;
+- what property selects them;
+- whether the property is being imposed on a larger ambient set.
+
+<Definition title="Common number sets">
+- `N := \{0,1,2,3,\dots\}` is the set of natural numbers.
+- `Z := \{\dots,-2,-1,0,1,2,\dots\}` is the set of integers.
+- `Z^+ := \{1,2,3,\dots\}` is the set of positive integers.
+- `Q := \{p/q : p,q \in Z, \ q \neq 0\}` is the set of rational numbers.
+- `R` is the set of real numbers.
+</Definition>
+
+The notation `:=` means “is defined to be.” It is used when the symbol on the
+left is being introduced rather than merely asserted.
+
+<WorkedExample title="From a property to an interval">
+The set
+
+$$
+\{x \in R : x^2 > 1\}
+$$
+
+is the same as
+
+$$
+(-\infty,-1) \cup (1,\infty).
+$$
+
+Reason: `x^2 > 1` means `|x| > 1`, so `x` must lie outside the closed interval
+`[-1,1]`.
+</WorkedExample>
+
+<CommonMistake title="Do not confuse set subtraction with division">
+Write `R \setminus \{2\}` for the set of all real numbers except `2`.
+The expression `R \2` is not valid notation because `2` is not a set.
+</CommonMistake>
+
+## Set operations and interval notation
+
+<Definition title="Intersection, union, and difference">
+Let `A` and `B` be sets.
+
+- `A \cap B` contains the elements common to both sets.
+- `A \cup B` contains the elements that belong to at least one of the sets.
+- `A \setminus B` contains the elements of `A` that are not in `B`.
+</Definition>
+
+These operations appear constantly when you describe solution sets, domains,
+and the outcome of splitting a problem into cases.
+
+The interval symbols are shorthand for subsets of `R`:
+
+- `[a,b] = \{x \in R : a \le x \le b\}`;
+- `(a,b) = \{x \in R : a < x < b\}`;
+- `(a,b] = \{x \in R : a < x \le b\}`;
+- `[a,\infty) = \{x \in R : a \le x\}`.
+
+The closed bracket means the endpoint is included; the open bracket means it
+is excluded.
+
+<WorkedExample title="Two ways to describe the same set">
+The set of real numbers whose square exceeds `1` can be written in at least
+three equivalent ways:
+
+$$
+\{x \in R : x^2 > 1\} = (-\infty,-1) \cup (1,\infty) = R \setminus [-1,1].
+$$
+
+All three descriptions are useful, but they emphasize different aspects of the
+same set.
+</WorkedExample>
+
+## Logic symbols and quantifiers
+
+The course uses a small number of logic symbols repeatedly:
+
+- `\forall` means “for all” or “for every”;
+- `\exists` means “there exists at least one”;
+- `\exists !` means “there exists exactly one”;
+- `\Rightarrow` means “implies”;
+- `\Leftrightarrow` means “if and only if.”
+
+<Definition title="A fully stated mathematical claim">
+A serious mathematical statement should make clear:
+
+- the domain of the variables;
+- the operation being performed;
+- the conclusion being claimed.
+</Definition>
+
+The order of quantifiers matters. These two statements are not the same:
+
+$$
+\forall x \in Z, \exists y \in Z, x+y=0
+$$
+
+and
+
+$$
+\exists y \in Z, \forall x \in Z, x+y=0.
+$$
+
+The first is true: for each integer `x`, choose `y=-x`. The second is false:
+no single integer `y` cancels every integer `x` at once.
+
+<WorkedExample title="Reading quantifiers carefully">
+The statement
+
+$$
+\exists ! x \in R \text{ such that } x^2 - 2x + 1 = 0
+$$
+
+means that the equation has exactly one real solution. Since
+
+$$
+x^2 - 2x + 1 = (x-1)^2,
+$$
+
+the unique solution is `x=1`.
+</WorkedExample>
+
+<CommonMistake title="Do not swap the order of quantifiers casually">
+`\forall x \exists y` and `\exists y \forall x` usually mean different
+things. If you change the order, you usually change the statement itself.
+</CommonMistake>
+
+## Functions, domain, codomain, and range
+
+<Definition title="Function">
+A function is a rule that assigns to each element of a domain exactly one
+element of a codomain.
+
+If `b = f(a)`, then `b` is the value of `f` at `a`, or the image of `a`.
+The range of `f`, written `f(A)` or `range(f)`, is the set of all outputs that
+actually occur.
+</Definition>
+
+The domain is not optional decoration. It tells you where the rule is legally
+defined. The codomain tells you where the outputs are allowed to live. The
+range is the subset of the codomain that the function actually reaches.
+
+<WorkedExample title="Same formula, different range">
+Consider `f(x)=x^2`.
+
+- If `f : R \to R`, then `range(f) = [0,\infty)`.
+- If `f : Z^+ \to Z^+`, then `range(f)` is the set of perfect squares in
+  `Z^+`.
+
+The formula is the same, but the domain changes the meaning of the function.
+</WorkedExample>
+
+<CommonMistake title="Range is not the same as codomain">
+If a function is declared as `f : A \to B`, then `B` is the codomain, not
+necessarily the range. The range is usually smaller unless the function is onto.
+</CommonMistake>
 
 ## Baseline transformation rules
 
-- Equality-preserving operations: adding/subtracting same term both sides,
-  multiplying by nonzero constants, substituting equivalent expressions.
-- Domain-sensitive steps: square roots, logarithms, division, inverse
-  trigonometric functions.
+Some steps preserve an equation exactly. Others only make sense when extra
+domain information is known.
+
+<Definition title="Equality-preserving and domain-sensitive steps">
+- Equality-preserving steps: adding or subtracting the same term on both
+  sides, multiplying by a nonzero constant, or replacing an expression by an
+  equivalent one.
+- Domain-sensitive steps: dividing by an expression that may be zero,
+  squaring both sides, taking square roots, and applying inverse functions
+  without checking their domain restrictions.
+</Definition>
+
+The main habit in this course is simple: every time you transform a statement,
+ask whether the new statement has exactly the same solution set as the old one.
+
+That habit is why the course keeps repeating words like *domain*, *legal*,
+*equivalent*, and *verify*.
+
+## Equations, identities, and conditions
+
+One reason early notation matters so much is that an equation and an identity
+ask for different kinds of work.
+
+<Definition title="Equation versus identity">
+An **equation** asks for the values in the allowed domain that make two
+expressions equal.
+
+An **identity** claims that two expressions are equal for every value in a
+specified domain.
+</Definition>
+
+For example,
+
+$$
+(x-1)(x+1) = x^2 - 1
+$$
+
+is an identity in `R`, because both sides agree for every real `x`.
+
+By contrast,
+
+$$
+x^2 - 1 = 0
+$$
+
+is an equation. We are not claiming it is always true. We are asking for the
+values of `x` that make it true, namely `x = 1` or `x = -1`.
+
+This distinction is exactly why the course keeps talking about preserving the
+solution set. When you solve an equation, every legal step must keep the same
+set of valid values. When you verify an identity, every step must remain valid
+for the whole stated domain.
+
+## Absolute value and distance notation
+
+Absolute value is another place where careful notation matters early.
+
+<Definition title="Absolute value">
+For a real number `x`,
+
+$$
+|x| =
+\begin{cases}
+x, & x \ge 0, \\
+-x, & x < 0.
+\end{cases}
+$$
+
+So `|x|` is the distance from `x` to `0` on the number line.
+</Definition>
+
+More generally, `|a-b|` measures the distance between `a` and `b`. That is why
+absolute-value inequalities often translate directly into intervals.
+
+<WorkedExample title="Rewrite an absolute-value inequality as an interval">
+Solve
+
+$$
+|x-3| < 2.
+$$
+
+The statement says that the distance from `x` to `3` is less than `2`, so `x`
+must lie within `2` units of `3`. Therefore
+
+$$
+1 < x < 5.
+$$
+
+Written in interval form, the solution set is `(1,5)`.
+</WorkedExample>
+
+## Short checklist before you move on
+
+Before you start a calculation, make sure you can answer these questions:
+
+- What is the variable domain?
+- Is every operation legal on that domain?
+- Are you solving an equation, proving an identity, or describing a set?
+- If you split into cases, have you covered every case exactly once?
 
 ## Quick checks
 
-<QuickCheck prompt="Why must x != 0 be stated before dividing an equation by x?">
-Think about equivalence of solution sets.
+<QuickCheck prompt="Why must `x \neq 0` be stated before dividing an equation by `x`?">
+Think about both legality and solution sets.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-If `x=0` is allowed, division by `x` is undefined and may remove valid
-solutions or create invalid steps.
+Division by `x` is undefined at `x=0`. If zero is allowed, the step is not
+legal and may change the solution set.
 </RevealSolution>
+
+<QuickCheck prompt="Which notation shows that `A` and `B` have the same elements: `A \subseteq B` or `A = B`?">
+Use the definition of set equality.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`A = B`. The relation `A \subseteq B` alone only says that every element of `A`
+is in `B`.
+</RevealSolution>
+
+<QuickCheck prompt="Read the statement: `\forall x \in Z, \exists y \in Z, x+y=0`. What does it say in words?">
+Pay attention to the order of the quantifiers.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+For every integer `x`, there exists an integer `y` such that `x+y=0`.
+</RevealSolution>
+
+<QuickCheck prompt="If `f : R \to R` is given by `f(x)=x^2`, what is its range?">
+Do not confuse the range with the codomain.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`range(f) = [0,\infty)`.
+</RevealSolution>
+
+## Exercises
+
+1. Rewrite the set of all positive odd integers in set-builder notation.
+2. Decide whether `\{x \in R : x^2 \le 4\}` is an interval or a union of
+   intervals, and write it explicitly.
+3. Explain why `\exists ! x \in R` is stronger than `\exists x \in R`.
+4. State the domain, codomain, and range of `f(x)=1/(x-1)` if `f : R \setminus
+   \{1\} \to R`.
+
+Use the quick-check answers above as a model for the level of precision the
+course expects.
