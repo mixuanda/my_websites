@@ -217,6 +217,134 @@ and a selected column.
 
 <InteractiveWidget id="matrix-multiplication-visualizer" />
 
+## Read the product by columns as well as by entries
+
+The row-by-column rule is the standard local computation rule, but it is not
+the only useful interpretation.
+
+Write the columns of `B` as
+
+$$
+B = [b_1\ b_2\ \cdots\ b_p].
+$$
+
+Then the product can be read as
+
+$$
+AB = [Ab_1\ Ab_2\ \cdots\ Ab_p].
+$$
+
+So each column of `AB` is obtained by applying `A` to the corresponding column
+of `B`.
+
+<WorkedExample title="One product read column by column">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+3 & -1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+4 & 0 \\
+5 & 1
+\end{bmatrix}.
+$$
+
+If
+
+$$
+b_1 =
+\begin{bmatrix}
+4 \\ 5
+\end{bmatrix},
+\qquad
+b_2 =
+\begin{bmatrix}
+0 \\ 1
+\end{bmatrix},
+$$
+
+then
+
+$$
+Ab_1 =
+\begin{bmatrix}
+14 \\ 7
+\end{bmatrix},
+\qquad
+Ab_2 =
+\begin{bmatrix}
+2 \\ -1
+\end{bmatrix}.
+$$
+
+Therefore
+
+$$
+AB =
+\begin{bmatrix}
+14 & 2 \\
+7 & -1
+\end{bmatrix}.
+$$
+
+This is the same answer as the entrywise row-by-column computation. The point
+is that matrix multiplication packages several matrix-vector products together.
+</WorkedExample>
+
+## Matrix multiplication represents composition
+
+The multiplication rule is not arbitrary. It is the rule that makes matrices
+encode linear transformations in sequence.
+
+If a vector `x` is first sent to `Bx`, and then that result is sent to
+`A(Bx)`, the combined effect is
+
+$$
+(AB)x.
+$$
+
+That is why the inner dimensions must match. The output of the first map must
+be a valid input for the second one.
+
+<TheoremCard title="Associativity matches repeated composition">
+Whenever the products are defined,
+
+$$
+A(BC) = (AB)C.
+$$
+
+So we may regroup a chain of matrix products without changing the final linear
+transformation.
+</TheoremCard>
+
+This does **not** mean that order may be changed. Associativity lets us change
+parentheses, not the order of the factors themselves.
+
+<WorkedExample title="Grouping may change, but order may not">
+Suppose `A` is `2 \times 3`, `B` is `3 \times 4`, and `C` is `4 \times 2`.
+
+Then both `AB` and `BC` are defined, so both `(AB)C` and `A(BC)` make sense,
+and associativity says they are equal.
+
+But `BA` is not defined at all, because the inner dimensions `4` and `2` do not
+match. So matrix multiplication is associative, but not commutative.
+</WorkedExample>
+
+## Standard basis vectors explain why columns behave so cleanly
+
+The standard basis vectors make the column interpretation precise. In `R^n`,
+the vector `e_k` has a `1` in position `k` and `0` everywhere else. If `A` is
+an `m \times n` matrix, then `Ae_k` is exactly the `k`th column of `A`.
+
+This is why the identity matrix behaves so naturally. The columns of `I_n` are
+`e_1, e_2, \ldots, e_n`, so right-multiplying by `I_n` simply reproduces the
+columns of `A` one by one.
+
 ## Common mistakes
 
 <CommonMistake title="Matrix multiplication is not entrywise multiplication">
@@ -248,6 +376,14 @@ Answer in one sentence.
 It leaves the matrix unchanged.
 </RevealSolution>
 
+<QuickCheck prompt="If the columns of `B` are `b_1` and `b_2`, how should you read the columns of `AB`?">
+Use the column interpretation of matrix multiplication.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The columns of `AB` are `Ab_1` and `Ab_2`.
+</RevealSolution>
+
 ## Exercise
 
 <QuickCheck prompt="Why does `Ax = 0` always have at least one solution, no matter what `A` is?">
@@ -258,6 +394,17 @@ Think of `x` as a column vector.
 Take the zero vector `x = 0`. Every entry of `A0` is a linear combination of
 the entries of `0`, so every entry is `0`. Hence `A0 = 0`, and the homogeneous
 system always has the trivial solution.
+</RevealSolution>
+
+<QuickCheck prompt="Explain why `BA` may be undefined even when `AB` is defined.">
+Answer in terms of the inner dimensions, not just by giving one example.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+For `AB` to be defined, the number of columns of `A` must equal the number of
+rows of `B`. For `BA` to be defined, the number of columns of `B` must equal
+the number of rows of `A`. These are different conditions, so one order may be
+legal while the reverse order is not.
 </RevealSolution>
 
 ## Related notes

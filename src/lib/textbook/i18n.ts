@@ -60,6 +60,26 @@ export const uiText = {
     "zh-cn": "全部笔记系列",
     "zh-hk": "全部筆記系列",
   },
+  attemptsExhausted: {
+    en: "No graded attempts remain for this problem.",
+    "zh-cn": "这题已经没有可评分的剩余尝试次数。",
+    "zh-hk": "這題已經沒有可評分的剩餘嘗試次數。",
+  },
+  attemptsRemaining: {
+    en: "Attempts remaining",
+    "zh-cn": "剩余尝试次数",
+    "zh-hk": "剩餘嘗試次數",
+  },
+  attemptsUnlimited: {
+    en: "Unlimited attempts",
+    "zh-cn": "不限尝试次数",
+    "zh-hk": "不限嘗試次數",
+  },
+  attemptsUsed: {
+    en: "Attempts used",
+    "zh-cn": "已用尝试次数",
+    "zh-hk": "已用嘗試次數",
+  },
   adminHasFullAccess: {
     en: "Admin accounts already have full access and do not need a billing flow.",
     "zh-cn": "管理员账号已经拥有完整权限，不需要进入账单流程。",
@@ -95,6 +115,16 @@ export const uiText = {
     "zh-cn": "本节掌握 checkpoint",
     "zh-hk": "本節掌握 checkpoint",
   },
+  checkpointSummary: {
+    en: "Checkpoint summary",
+    "zh-cn": "Checkpoint 摘要",
+    "zh-hk": "Checkpoint 摘要",
+  },
+  checkpointScore: {
+    en: "Best-score coverage",
+    "zh-cn": "最佳得分覆盖率",
+    "zh-hk": "最佳得分覆蓋率",
+  },
   correct: {
     en: "Correct.",
     "zh-cn": "答对了。",
@@ -104,6 +134,11 @@ export const uiText = {
     en: "correct attempts",
     "zh-cn": "次答对",
     "zh-hk": "次答對",
+  },
+  correctAnswer: {
+    en: "Correct answer",
+    "zh-cn": "正确答案",
+    "zh-hk": "正確答案",
   },
   enterYourAnswer: {
     en: "Enter your answer",
@@ -175,6 +210,11 @@ export const uiText = {
     "zh-cn": "加载中…",
     "zh-hk": "載入中…",
   },
+  lockedOut: {
+    en: "Locked out",
+    "zh-cn": "已锁定",
+    "zh-hk": "已鎖定",
+  },
   markComplete: {
     en: "Mark complete",
     "zh-cn": "标记完成",
@@ -209,6 +249,11 @@ export const uiText = {
     en: "Not correct yet.",
     "zh-cn": "还没答对。",
     "zh-hk": "還未答對。",
+  },
+  notStarted: {
+    en: "Not started",
+    "zh-cn": "未开始",
+    "zh-hk": "未開始",
   },
   openCheckout: {
     en: "Opening…",
@@ -255,6 +300,21 @@ export const uiText = {
     "zh-cn": "进度",
     "zh-hk": "進度",
   },
+  previewAnswer: {
+    en: "Preview answer",
+    "zh-cn": "预览答案",
+    "zh-hk": "預覽答案",
+  },
+  previewDoesNotCount: {
+    en: "Preview does not consume an attempt.",
+    "zh-cn": "预览不会消耗尝试次数。",
+    "zh-hk": "預覽不會消耗嘗試次數。",
+  },
+  previewNormalizedAs: {
+    en: "Your answer will be graded as",
+    "zh-cn": "系统会按以下形式评分",
+    "zh-hk": "系統會按以下形式評分",
+  },
   relatedTerms: {
     en: "Key terms in this unit",
     "zh-cn": "本单元重点词汇",
@@ -269,6 +329,11 @@ export const uiText = {
     en: "Section mastery",
     "zh-cn": "本节掌握度",
     "zh-hk": "本節掌握度",
+  },
+  solved: {
+    en: "Solved",
+    "zh-cn": "已解决",
+    "zh-hk": "已解決",
   },
   skillsLabel: {
     en: "Skills",
@@ -305,10 +370,30 @@ export const uiText = {
     "zh-cn": "提交答案",
     "zh-hk": "提交答案",
   },
+  submitConsumesAttempt: {
+    en: "Submit records a graded attempt.",
+    "zh-cn": "提交会记录一次正式评分尝试。",
+    "zh-hk": "提交會記錄一次正式評分嘗試。",
+  },
   solutionLocked: {
     en: "The full guided solution for this item is available to members.",
     "zh-cn": "这一题的完整引导解答向会员开放。",
     "zh-hk": "這一題的完整引導解答向會員開放。",
+  },
+  syntaxGuidance: {
+    en: "Syntax guidance",
+    "zh-cn": "输入格式提示",
+    "zh-hk": "輸入格式提示",
+  },
+  weakTopics: {
+    en: "Weak topics to revisit",
+    "zh-cn": "建议回看薄弱主题",
+    "zh-hk": "建議回看薄弱主題",
+  },
+  inProgress: {
+    en: "In progress",
+    "zh-cn": "进行中",
+    "zh-hk": "進行中",
   },
   solutionStepsTitle: {
     en: "Full solution steps",
@@ -384,6 +469,11 @@ export const uiText = {
     en: "We could not grade your answer right now. Try again.",
     "zh-cn": "目前无法批改你的答案，请再试一次。",
     "zh-hk": "目前無法批改你的答案，請再試一次。",
+  },
+  previewRetry: {
+    en: "We could not preview your answer right now. Try again.",
+    "zh-cn": "目前无法预览你的答案，请再试一次。",
+    "zh-hk": "目前無法預覽你的答案，請再試一次。",
   },
   estimatedReadingTime: {
     en: "Estimated reading time",

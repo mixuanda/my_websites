@@ -7,47 +7,42 @@ another authored note, deferred, or blocked.
 
 ## Latest resume state
 
-As of April 13, 2026, the latest local source-processing checkpoints are:
+As of April 14, 2026, the latest local source-processing checkpoints are:
 
 - `9085148` `Fix note block prompt rendering`
 - `49345a4` `Fix set note reveal integrity`
 - `0526751` `Deepen augmented matrix notes`
 - `95f3ad7` `Deepen invertible matrix notes`
+- `f2c5513` `Deepen notes across math and CSCI units`
 
 Every push attempt for those checkpoints failed with the same external error:
 `ssh: Could not resolve hostname github.com: Temporary failure in name
 resolution`.
 
-The current local workspace also includes an uncommitted content pass that:
+The latest merged content passes also:
 
-- rewrites `math1090` unit `3.4 Rationals and well-defined operations` in EN,
-  zh-HK, and zh-CN so the page reads as a serious quotient-construction note
-  instead of a worksheet summary;
-- rewrites `math1030` unit `2.4 Solution-set types` in EN, zh-HK, and zh-CN
-  with fuller theorem flow, parameterized examples, and robust `array`-based
-  augmented-matrix notation for KaTeX and export;
-- rewrites `math1030` unit `6.1 Vector spaces` in EN, zh-HK, and zh-CN so the
-  page now covers the axioms, standard examples, a nonstandard structure
-  example, and the first uniqueness / cancellation theorems at real chapter
-  depth;
-- rewrites `math1030` unit `6.3 Linear combinations and span` in EN, zh-HK,
-  and zh-CN so the page now includes the `Ax = b` equivalence, geometric span
-  examples, the span-subspace theorem, and fuller exercises;
-- rewrites `math1030` unit `6.2 Subspaces` in EN, zh-HK, and zh-CN so the page
-  now includes the equivalent subspace test, equation-defined examples,
-  the null-space theorem, tutorial-backed matrix examples, and fuller quick
-  checks;
-- splits the `reference/MATH1025/**` backlog into grouped source families
-  rather than tracking the whole course as a single slide row.
+- deepened the public `math1030` unit `3.1 Matrix multiplication and identity
+  matrices` in EN, zh-HK, and zh-CN with stronger column-reading and
+  composition structure;
+- deepened the public `math1030` unit `4.1 Homogeneous systems and null space`
+  in EN, zh-HK, and zh-CN with stronger null-space structure, free-variable,
+  and subspace explanations;
+- expanded the public `csci2520` units on ADT operations and complexity growth
+  in EN, zh-HK, and zh-CN so the course no longer feels like it jumps
+  immediately from a thin ADT page into a thin complexity page;
+- added code-oriented CSCI interactive support that is now active in the public
+  Notes routes;
+- keeps the grouped `reference/MATH1025/**` backlog active after the initial
+  foundations baseline.
 
 The next resume point is a split backlog:
 
-1. author the determinant chapter family from
+1. continue deepening the remaining thin public `math1030` units, especially
+   `3.2`, `4.1`, and `6.4`, until they reach the target reading depth;
+2. after that, author the determinant chapter family from
    `reference/MATH1030/1030gi-n06-01.pdf` to `1030gi-n06-03.pdf`;
-2. continue into the eigenvalue / diagonalization family from
+3. continue into the eigenvalue / diagonalization family from
    `reference/MATH1030/1030gi-n07-01.pdf` to `1030gi-n07-03.pdf`;
-3. finish the first inner-product / orthogonality note from
-   `reference/MATH1030/1030gi-n08-01.pdf`;
 4. return to the remaining Math1090 chapter-4 and proof-structure backlog only
    after the next Math1030 family lands cleanly.
 

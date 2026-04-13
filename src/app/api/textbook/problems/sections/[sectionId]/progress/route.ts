@@ -2,7 +2,8 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { canAccessTier, getUserEntitlements } from "@/lib/membership/entitlements";
 import { getUnitMeta } from "@/lib/textbook/catalog";
-import { getSectionMastery } from "@/lib/textbook/problem-attempts";
+import { getProblemsForUnit } from "@/lib/textbook/problem-bank";
+import { getCheckpointSummary, getSectionMastery } from "@/lib/textbook/problem-attempts";
 
 export async function GET(
   _request: Request,
@@ -16,7 +17,11 @@ export async function GET(
     return NextResponse.json({ error: "Member access required." }, { status: 403 });
   }
   const userId = (session?.user as { id?: string } | undefined)?.id;
+  const problems = getProblemsForUnit(sectionId).filter((problem) =>
+    canAccessTier(entitlements, problem.accessTier)
+  );
 
   const mastery = await getSectionMastery(sectionId, userId);
-  return NextResponse.json({ mastery });
+  const summary = await getCheckpointSummary(sectionId, problems, userId);
+  return NextResponse.json({ mastery, summary });
 }

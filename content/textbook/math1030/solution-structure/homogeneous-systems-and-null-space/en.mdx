@@ -227,6 +227,138 @@ The null space gives the direction of freedom; the particular solution tells
 you where that family of solutions sits.
 </WorkedExample>
 
+## Why free variables force infinitely many homogeneous solutions
+
+The reduced system viewpoint makes one important consequence immediate.
+
+<TheoremCard title="A free variable creates infinitely many solutions">
+If the homogeneous system `Ax = 0` has at least one free variable, then it has
+infinitely many solutions.
+</TheoremCard>
+
+The reason is not mysterious. A free variable may be assigned any real value,
+and each different assignment gives a different solution vector unless the
+parameter disappears completely.
+
+<WorkedExample title="One free variable already produces a whole line of solutions">
+Suppose row reduction shows that
+
+$$
+x_1 - 3x_2 = 0.
+$$
+
+If `x_2 = t`, then `x_1 = 3t`, so every solution has the form
+
+$$
+\begin{bmatrix}
+x_1 \\ x_2
+\end{bmatrix}
+=
+t
+\begin{bmatrix}
+3 \\ 1
+\end{bmatrix},
+\qquad t \in R.
+$$
+
+Different values of `t` give different vectors, so the homogeneous system has
+infinitely many solutions, not just more than one.
+</WorkedExample>
+
+## The null space is a subspace
+
+This fact is easy to overlook because we first meet the null space as a
+solution set. But it is more than a solution set: it is always a subspace of
+the domain of `A`.
+
+<TheoremCard title="The null space is closed under linear combinations">
+For any matrix `A`, the null space `N(A)` is a subspace. In particular:
+
+- `0 \in N(A)`,
+- if `u, v \in N(A)`, then `u + v \in N(A)`,
+- if `u \in N(A)` and `c` is a scalar, then `cu \in N(A)`.
+</TheoremCard>
+
+<CollapsibleProof title="Why the null space is a subspace">
+We already know `0 \in N(A)` because `A0 = 0`.
+
+Now take `u, v \in N(A)`. Then `Au = 0` and `Av = 0`. By linearity,
+
+$$
+A(u+v) = Au + Av = 0 + 0 = 0,
+$$
+
+so `u+v \in N(A)`.
+
+Likewise, if `u \in N(A)` and `c` is a scalar, then
+
+$$
+A(cu) = c(Au) = c \cdot 0 = 0,
+$$
+
+so `cu \in N(A)`.
+</CollapsibleProof>
+
+This matters later because once you know a solution set is a subspace, you may
+look for a basis, count dimensions, and compare it to the pivot structure of
+the coefficient matrix.
+
+## Nullity counts how many independent directions remain
+
+The previous discussion explains why the null space is not just a pile of
+solutions. It records how many genuinely independent directions of motion are
+still left after the pivot equations have imposed all their constraints.
+
+Each free variable contributes one independent parameter. So the dimension of
+the null space is exactly the number of free variables in the reduced
+homogeneous system.
+
+## Homogeneous solutions and column dependence
+
+The null-space equation also explains when the columns of a matrix are
+dependent.
+
+Let the columns of `A` be `a_1, a_2, \ldots, a_n`. Then
+
+$$
+Ax = 0
+$$
+
+is the same as
+
+$$
+x_1 a_1 + x_2 a_2 + \cdots + x_n a_n = 0.
+$$
+
+So a nontrivial solution of the homogeneous system is exactly a nontrivial
+linear relation among the columns.
+
+<WorkedExample title="A nontrivial null-space vector gives a dependence relation">
+Suppose
+
+$$
+x =
+\begin{bmatrix}
+1 \\ -2 \\ 1
+\end{bmatrix}
+\in N(A).
+$$
+
+Then
+
+$$
+Ax = 0
+$$
+
+means
+
+$$
+1 \cdot a_1 - 2 \cdot a_2 + 1 \cdot a_3 = 0.
+$$
+
+This is a nontrivial dependence relation among the columns of `A`.
+</WorkedExample>
+
 ## What null space says about uniqueness
 
 The structure theorem gives an immediate test.
@@ -267,6 +399,15 @@ Use the theorem from this note.
 <RevealSolution title="Answer">
 Exactly one, because there is no nonzero null-space vector to add to a
 particular solution.
+</RevealSolution>
+
+<QuickCheck prompt="If `Ax = 0` has a free variable, can the solution set contain only two vectors?">
+Answer from the parameter form, not from a guess.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. A free variable can vary through infinitely many scalar values, so it
+produces infinitely many solution vectors.
 </RevealSolution>
 
 ## Exercise

@@ -2,6 +2,7 @@ import type {
   FillInBlankAnswer,
   FillInBlankProblem,
   Locale,
+  ProblemPreviewResult,
   ProblemSchema,
   ProblemSubmission,
   ProblemSubmissionResult,
@@ -141,11 +142,43 @@ function equivalentByRule(answer: string, target: string, rules: FillInBlankAnsw
   return false;
 }
 
+function buildFillBlankPreview(problem: FillInBlankProblem, answer: string, locale: Locale): ProblemPreviewResult {
+  const normalized = normalizeWhitespace(answer);
+  const symbolicEnabled = problem.correctAnswer.equivalence?.some(
+    (rule) => rule.type === "symbolic"
+  );
+  const fraction = reduceFraction(normalized);
+  const previewValue = fraction
+    ? fraction
+    : symbolicEnabled
+      ? normalizeSymbolic(normalized)
+      : normalized;
+
+  return {
+    normalizedAnswer: previewValue,
+    parsedSuccessfully: Boolean(previewValue),
+    previewText: previewValue || undefined,
+    syntaxGuidance: problem.syntaxGuidance
+      ? getLocalizedText(problem.syntaxGuidance, locale)
+      : undefined,
+  };
+}
+
+function getCorrectAnswerPreview(problem: ProblemSchema, locale: Locale) {
+  if (problem.type === "MCQ") {
+    const correctChoice = problem.choices.find(
+      (choice) => choice.id === problem.correctAnswer.choiceId
+    );
+    return correctChoice ? getLocalizedText(correctChoice.text, locale) : undefined;
+  }
+
+  return problem.correctAnswer.value;
+}
+
 function gradeFillBlank(
   problem: FillInBlankProblem,
   submission: ProblemSubmission,
-  locale: Locale,
-  canRevealSolution: boolean
+  locale: Locale
 ): ProblemSubmissionResult {
   const answer = normalizeWhitespace(submission.answer ?? "");
   const expected = normalizeWhitespace(problem.correctAnswer.value);
@@ -174,18 +207,45 @@ function gradeFillBlank(
 
   return {
     correct: isCorrect,
+    correctAnswerPreview: getCorrectAnswerPreview(problem, locale),
     hint: isCorrect ? undefined : getLocalizedText(problem.hints[0], locale),
     normalizedAnswer: answer,
-    shouldShowSolution: !isCorrect && canRevealSolution,
-    solutionLocked: !isCorrect && !canRevealSolution,
+    previewText: buildFillBlankPreview(problem, answer, locale).previewText,
+    shouldShowSolution: false,
+    solutionLocked: false,
+    showCorrectAnswer: false,
   };
+}
+
+export function previewProblemSubmission(
+  problem: ProblemSchema,
+  submission: ProblemSubmission,
+  locale: Locale
+): ProblemPreviewResult {
+  if (problem.type === "MCQ") {
+    const correctChoice = submission.choiceId
+      ? problem.choices.find((choice) => choice.id === submission.choiceId)
+      : null;
+
+    return {
+      normalizedAnswer: submission.choiceId ?? "",
+      parsedSuccessfully: Boolean(correctChoice),
+      previewText: correctChoice
+        ? getLocalizedText(correctChoice.text, locale)
+        : undefined,
+      syntaxGuidance: problem.syntaxGuidance
+        ? getLocalizedText(problem.syntaxGuidance, locale)
+        : undefined,
+    };
+  }
+
+  return buildFillBlankPreview(problem, submission.answer ?? "", locale);
 }
 
 export function gradeProblem(
   problem: ProblemSchema,
   submission: ProblemSubmission,
-  locale: Locale,
-  canRevealSolution: boolean
+  locale: Locale
 ): ProblemSubmissionResult {
   if (problem.type === "MCQ") {
     const selectedChoice = submission.choiceId ?? "";
@@ -193,12 +253,15 @@ export function gradeProblem(
 
     return {
       correct: isCorrect,
+      correctAnswerPreview: getCorrectAnswerPreview(problem, locale),
       hint: isCorrect ? undefined : getLocalizedText(problem.hints[0], locale),
       normalizedAnswer: selectedChoice,
-      shouldShowSolution: !isCorrect && canRevealSolution,
-      solutionLocked: !isCorrect && !canRevealSolution,
+      previewText: previewProblemSubmission(problem, submission, locale).previewText,
+      shouldShowSolution: false,
+      solutionLocked: false,
+      showCorrectAnswer: false,
     };
   }
 
-  return gradeFillBlank(problem, submission, locale, canRevealSolution);
+  return gradeFillBlank(problem, submission, locale);
 }

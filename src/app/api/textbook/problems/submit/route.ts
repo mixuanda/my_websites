@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getProblemById } from "@/lib/textbook/problem-bank";
-import { persistProblemAttempt, getSectionMastery } from "@/lib/textbook/problem-attempts";
+import { getProblemById, getProblemsForUnit } from "@/lib/textbook/problem-bank";
+import {
+  getCheckpointSummary,
+  getNextAttemptNumber,
+  getProblemProgress,
+  getSectionMastery,
+  persistProblemAttempt,
+} from "@/lib/textbook/problem-attempts";
 import { gradeProblem } from "@/lib/textbook/problem-grading";
 import { canAccessTier, getUserEntitlements } from "@/lib/membership/entitlements";
-import { defaultLocale, isLocale } from "@/lib/textbook/i18n";
+import { defaultLocale, getLocalizedText, isLocale } from "@/lib/textbook/i18n";
 import type { ProblemAttemptRecord, ProblemSubmission } from "@/lib/textbook/types";
 
 export async function POST(request: Request) {
@@ -31,32 +37,104 @@ export async function POST(request: Request) {
     }
 
     const locale = payload.locale && isLocale(payload.locale) ? payload.locale : defaultLocale;
-    const canRevealSolution = canAccessTier(
+    const userId = (session?.user as { id?: string } | undefined)?.id;
+    const currentProgress = await getProblemProgress(problem.id, userId, problem.maxAttempts);
+    const showCorrectAnswerPolicy = problem.showCorrectAnswerPolicy ?? "after-submit";
+    const showSolutionPolicy = problem.showSolutionPolicy ?? "after-submit";
+    const canAccessSolutionTier = canAccessTier(
       entitlements,
       problem.solutionAccessTier ?? problem.accessTier
     );
-    const result = gradeProblem(problem, payload.submission, locale, canRevealSolution);
-    const userId = (session?.user as { id?: string } | undefined)?.id;
+
+    if (
+      currentProgress.maxAttempts !== null &&
+      currentProgress.attemptsUsed >= currentProgress.maxAttempts
+    ) {
+      const canRevealCorrectAnswer =
+        showCorrectAnswerPolicy === "after-submit" ||
+        (showCorrectAnswerPolicy === "after-max-attempts" &&
+          currentProgress.attemptsRemaining === 0);
+      const canRevealSolutionByPolicy =
+        showSolutionPolicy === "after-submit" ||
+        (showSolutionPolicy === "after-max-attempts" &&
+          currentProgress.attemptsRemaining === 0);
+
+      return NextResponse.json(
+        {
+          error: "No attempts remaining for this problem.",
+          problemProgress: currentProgress,
+          result: {
+            correct: currentProgress.solved,
+            correctAnswerPreview: canRevealCorrectAnswer
+              ? problem.type === "MCQ"
+                ? problem.choices.find(
+                    (choice) => choice.id === problem.correctAnswer.choiceId
+                  )
+                  ? getLocalizedText(
+                      problem.choices.find(
+                        (choice) => choice.id === problem.correctAnswer.choiceId
+                      )!.text,
+                      locale
+                    )
+                  : undefined
+                : problem.correctAnswer.value
+              : undefined,
+            normalizedAnswer: "",
+            shouldShowSolution: canRevealSolutionByPolicy && canAccessSolutionTier,
+            showCorrectAnswer: canRevealCorrectAnswer,
+            solutionLocked: canRevealSolutionByPolicy && !canAccessSolutionTier,
+          },
+        },
+        { status: 409 }
+      );
+    }
+
+    const result = gradeProblem(problem, payload.submission, locale);
+    const attemptNumber = await getNextAttemptNumber(problem.id, userId);
 
     const attempt: ProblemAttemptRecord = {
       attemptId: crypto.randomUUID(),
       attemptedAt: new Date().toISOString(),
+      attemptNumber,
       chapterId: problem.chapterId,
       correct: result.correct,
       courseId: problem.courseId,
       normalizedAnswer: result.normalizedAnswer,
       problemId: problem.id,
+      score: result.correct ? 1 : 0,
       unitId: problem.unitId,
       userId,
     };
 
     await persistProblemAttempt(attempt);
     const mastery = await getSectionMastery(problem.unitId, userId);
+    const problemProgress = await getProblemProgress(problem.id, userId, problem.maxAttempts);
+    const canRevealCorrectAnswer =
+      showCorrectAnswerPolicy === "after-submit" ||
+      (showCorrectAnswerPolicy === "after-max-attempts" &&
+        problemProgress.attemptsRemaining === 0);
+    const canRevealSolutionByPolicy =
+      showSolutionPolicy === "after-submit" ||
+      (showSolutionPolicy === "after-correct" && result.correct) ||
+      (showSolutionPolicy === "after-max-attempts" &&
+        problemProgress.attemptsRemaining === 0);
+    const checkpointProblems = getProblemsForUnit(problem.unitId).filter((candidate) =>
+      canAccessTier(entitlements, candidate.accessTier)
+    );
+    const summary = await getCheckpointSummary(problem.unitId, checkpointProblems, userId);
+    const responseResult = {
+      ...result,
+      shouldShowSolution: canRevealSolutionByPolicy && canAccessSolutionTier,
+      solutionLocked: canRevealSolutionByPolicy && !canAccessSolutionTier,
+      showCorrectAnswer: canRevealCorrectAnswer,
+    };
 
     return NextResponse.json({
       attempt,
       mastery,
-      result,
+      problemProgress,
+      result: responseResult,
+      summary,
     });
   } catch (error) {
     console.error("Submit API error:", error);

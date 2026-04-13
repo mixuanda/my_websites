@@ -1,16 +1,31 @@
 "use client";
 
 import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
-import type { Locale } from "@/lib/textbook/types";
+import type { Locale, ProblemProgress } from "@/lib/textbook/types";
 import type { ProblemSubmissionResult, SectionMastery } from "@/lib/textbook/types";
+
+function getProgressStatusText(progress: ProblemProgress, locale: Locale) {
+  switch (progress.status) {
+    case "solved":
+      return getLocalizedText(uiText.solved, locale);
+    case "in-progress":
+      return getLocalizedText(uiText.inProgress, locale);
+    case "locked-out":
+      return getLocalizedText(uiText.lockedOut, locale);
+    default:
+      return getLocalizedText(uiText.notStarted, locale);
+  }
+}
 
 export function FeedbackPanel({
   mastery,
   locale,
+  progress,
   result,
 }: {
   mastery?: SectionMastery;
   locale: Locale;
+  progress?: ProblemProgress | null;
   result: ProblemSubmissionResult;
 }) {
   return (
@@ -33,6 +48,33 @@ export function FeedbackPanel({
       ) : null}
       {!result.correct && result.solutionLocked ? (
         <p className="mt-2">{getLocalizedText(uiText.solutionLocked, locale)}</p>
+      ) : null}
+      {result.showCorrectAnswer && result.correctAnswerPreview ? (
+        <p className="mt-2">
+          {getLocalizedText(uiText.correctAnswer, locale)}:{" "}
+          <span className="font-mono">{result.correctAnswerPreview}</span>
+        </p>
+      ) : null}
+      {progress ? (
+        <div className="mt-3 space-y-1 text-xs opacity-80">
+          <p>
+            {getLocalizedText(uiText.progress, locale)}:{" "}
+            {getProgressStatusText(progress, locale)}
+          </p>
+          <p>
+            {getLocalizedText(uiText.attemptsUsed, locale)}: {progress.attemptsUsed}
+          </p>
+          <p>
+            {getLocalizedText(uiText.attemptsRemaining, locale)}:{" "}
+            {progress.maxAttempts === null
+              ? getLocalizedText(uiText.attemptsUnlimited, locale)
+              : progress.attemptsRemaining}
+          </p>
+          <p>
+            {getLocalizedText(uiText.checkpointScore, locale)}:{" "}
+            {(progress.bestScore * 100).toFixed(0)}%
+          </p>
+        </div>
       ) : null}
       {mastery ? (
         <p className="mt-2 text-xs opacity-80">

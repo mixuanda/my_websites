@@ -7,12 +7,13 @@ empty panels or misplaced solution text.
 
 ## Latest resume state
 
-As of April 13, 2026, the latest local integrity-related checkpoints are:
+As of April 14, 2026, the latest local integrity-related checkpoints are:
 
 - `9085148` `Fix note block prompt rendering`
 - `49345a4` `Fix set note reveal integrity`
 - `0526751` `Deepen augmented matrix notes`
 - `95f3ad7` `Deepen invertible matrix notes`
+- `f2c5513` `Deepen notes across math and CSCI units`
 
 The current local workspace also includes an uncommitted three-language rewrite
 of `math1030` units `2.4` and `6.2`, plus `math1090` unit `3.4`. Those
@@ -24,8 +25,9 @@ Every push attempt for those checkpoints failed with the same external error:
 resolution`.
 
 The next resume point is to keep exercise integrity coupled to the next
-source-backed Math1030 chapter family, starting with determinants, while
-preserving the same correctness and reveal discipline on every new checkpoint.
+assessment pass, especially the WeBWorK-inspired preview / submit workflow and
+the larger MATH1030 problem inventory now sitting under the thinner public
+units.
 
 ## Current findings
 
@@ -42,6 +44,39 @@ textbook exercise blocks.
 - The next integrity risk is broader QA: confirming that export output still
   reads cleanly on the richer rewritten notes and that no localized note drifts
   into mismatched prerequisite or answer labels.
+
+### 2026-04-14 checkpoint 7: preview / submit foundation
+
+This checkpoint moves the Notes assessment layer toward a lightweight
+WeBWorK-inspired model without changing the site’s visual language.
+
+- Checkpoint name: preview / submit foundation
+- What was inspected:
+  `src/components/textbook/AttemptInput.tsx`,
+  `src/components/textbook/PracticeQuestion.tsx`,
+  `src/components/textbook/FeedbackPanel.tsx`,
+  `src/components/textbook/UnitCheckpoint.tsx`,
+  `src/app/api/textbook/problems/**`,
+  `src/lib/textbook/problem-attempts.ts`,
+  `src/lib/textbook/problem-bank.ts`,
+  `src/lib/textbook/problem-grading.ts`,
+  and `src/lib/textbook/types.ts`
+- What was changed:
+  Preview and Submit are now separate actions; Preview does not consume an
+  attempt; Submit records an attempt; per-problem progress now tracks attempts
+  used, attempts remaining, best score, and solved state; checkpoint summaries
+  now surface weak tags instead of only a raw completion ratio; and the problem
+  inventory is materially larger than before
+- What was verified:
+  lint and build passed after the new progress route, richer problem metadata,
+  and checkpoint-summary UI were added
+- Remaining issues:
+  the richer problem bank still needs to spread to more public units, and some
+  older units still have too little reading depth relative to their new
+  checkpoint surface
+- Exact next target:
+  extend the same preview / submit and progress discipline to the next MATH1030
+  unit family while continuing the content-depth pass
 
 ### 2026-04-13 checkpoint 6: checkpoint correctness gating + localization
 

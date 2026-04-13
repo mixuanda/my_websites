@@ -26,3 +26,5 @@ Use these agents to keep work bounded and non-overlapping.
   gaps; default is read-only.
 - `docs-integrator`: keeps `README.md` and `docs/**` aligned with the actual
   implementation.
+- `ui-ia-refiner`: refines public shell framing, note-page information
+  architecture, and navigation clarity without rewriting the whole site.

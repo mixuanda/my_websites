@@ -4,25 +4,58 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
-import type { Locale, ProblemSchema, ProblemSubmission } from "@/lib/textbook/types";
+import type {
+  Locale,
+  ProblemPreviewResult,
+  ProblemProgress,
+  ProblemSchema,
+  ProblemSubmission,
+} from "@/lib/textbook/types";
+
+function formatAttemptsRemaining(progress: ProblemProgress | null, locale: Locale) {
+  if (!progress) {
+    return getLocalizedText(uiText.attemptsUnlimited, locale);
+  }
+
+  if (progress.maxAttempts === null) {
+    return getLocalizedText(uiText.attemptsUnlimited, locale);
+  }
+
+  return `${progress.attemptsRemaining}`;
+}
 
 export function AttemptInput({
-  disabled,
   locale,
+  preview,
+  previewLoading,
+  progress,
+  submitLoading,
+  onPreview,
   onSubmit,
   problem,
 }: {
-  disabled?: boolean;
   locale: Locale;
+  preview: ProblemPreviewResult | null;
+  previewLoading: boolean;
+  progress: ProblemProgress | null;
+  submitLoading: boolean;
+  onPreview: (submission: ProblemSubmission) => void;
   onSubmit: (submission: ProblemSubmission) => void;
   problem: ProblemSchema;
 }) {
   const [answer, setAnswer] = useState("");
   const [choiceId, setChoiceId] = useState<string>("");
 
+  const submissionReady =
+    problem.type === "MCQ" ? Boolean(choiceId) : Boolean(answer.trim());
+  const canPreview = submissionReady && !previewLoading;
   const canSubmit =
-    !disabled &&
-    (problem.type === "MCQ" ? Boolean(choiceId) : Boolean(answer.trim()));
+    submissionReady &&
+    !submitLoading &&
+    !(
+      progress?.maxAttempts !== null &&
+      (progress?.attemptsRemaining ?? 1) <= 0
+    );
 
   return (
     <div className="space-y-4">
@@ -46,19 +79,78 @@ export function AttemptInput({
         </fieldset>
       ) : (
         <Input
+          className="font-mono"
           onChange={(event) => setAnswer(event.target.value)}
           placeholder={getLocalizedText(uiText.enterYourAnswer, locale)}
           value={answer}
         />
       )}
 
-      <Button
-        disabled={!canSubmit}
-        onClick={() => onSubmit(problem.type === "MCQ" ? { choiceId } : { answer })}
-        type="button"
-      >
-        {getLocalizedText(uiText.submitAnswer, locale)}
-      </Button>
+      <div className="space-y-2 text-xs text-muted-foreground">
+        <p>
+          {getLocalizedText(uiText.attemptsUsed, locale)}: {progress?.attemptsUsed ?? 0}
+        </p>
+        <p>
+          {getLocalizedText(uiText.attemptsRemaining, locale)}:{" "}
+          {formatAttemptsRemaining(progress, locale)}
+        </p>
+        <p>{getLocalizedText(uiText.previewDoesNotCount, locale)}</p>
+        <p>{getLocalizedText(uiText.submitConsumesAttempt, locale)}</p>
+        {problem.syntaxGuidance ? (
+          <p>
+            {getLocalizedText(uiText.syntaxGuidance, locale)}:{" "}
+            {getLocalizedText(problem.syntaxGuidance, locale)}
+          </p>
+        ) : null}
+        {problem.previewExamples?.length ? (
+          <ul className="list-disc pl-5">
+            {problem.previewExamples.map((example) => (
+              <li key={example.en}>{getLocalizedText(example, locale)}</li>
+            ))}
+          </ul>
+        ) : null}
+      </div>
+
+      {preview ? (
+        <div className="rounded-md border border-primary/25 bg-primary/5 p-4 text-sm">
+          <p className="font-medium">{getLocalizedText(uiText.previewAnswer, locale)}</p>
+          {preview.previewText ? (
+            <p className="mt-2">
+              {getLocalizedText(uiText.previewNormalizedAs, locale)}:{" "}
+              <span className="font-mono">{preview.previewText}</span>
+            </p>
+          ) : null}
+          {preview.syntaxGuidance ? (
+            <p className="mt-2 text-muted-foreground">
+              {getLocalizedText(uiText.syntaxGuidance, locale)}: {preview.syntaxGuidance}
+            </p>
+          ) : null}
+        </div>
+      ) : null}
+
+      <div className="flex flex-wrap gap-3">
+        <Button
+          disabled={!canPreview}
+          onClick={() =>
+            onPreview(problem.type === "MCQ" ? { choiceId } : { answer })
+          }
+          type="button"
+          variant="outline"
+        >
+          {previewLoading
+            ? getLocalizedText(uiText.loading, locale)
+            : getLocalizedText(uiText.previewAnswer, locale)}
+        </Button>
+        <Button
+          disabled={!canSubmit || submitLoading}
+          onClick={() => onSubmit(problem.type === "MCQ" ? { choiceId } : { answer })}
+          type="button"
+        >
+          {submitLoading
+            ? getLocalizedText(uiText.loading, locale)
+            : getLocalizedText(uiText.submitAnswer, locale)}
+        </Button>
+      </div>
     </div>
   );
 }

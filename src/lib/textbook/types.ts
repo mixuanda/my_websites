@@ -141,6 +141,18 @@ export interface ExportableTextbookUnit {
 }
 
 export type ProblemType = "MCQ" | "FILL_IN_BLANK";
+export type ProblemInputMode =
+  | "text"
+  | "math-expression"
+  | "vector"
+  | "matrix"
+  | "interval"
+  | "set";
+export type ProblemRevealPolicy =
+  | "never"
+  | "after-submit"
+  | "after-correct"
+  | "after-max-attempts";
 
 export interface ProblemChoice {
   id: string;
@@ -160,7 +172,14 @@ export type EquivalenceRule =
 
 export interface ProblemBase {
   accessTier?: AccessTier;
+  inputMode?: ProblemInputMode;
+  maxAttempts?: number | null;
+  points?: number;
+  previewExamples?: LocalizedText[];
+  showCorrectAnswerPolicy?: ProblemRevealPolicy;
+  showSolutionPolicy?: ProblemRevealPolicy;
   solutionAccessTier?: AccessTier;
+  syntaxGuidance?: LocalizedText;
   id: string;
   courseId: CourseId;
   chapterId: string;
@@ -199,23 +218,47 @@ export interface ProblemSubmission {
   choiceId?: string;
 }
 
+export interface ProblemPreviewResult {
+  normalizedAnswer: string;
+  parsedSuccessfully: boolean;
+  previewText?: string;
+  syntaxGuidance?: string;
+}
+
 export interface ProblemSubmissionResult {
+  correctAnswerPreview?: string;
   correct: boolean;
   hint?: string;
   normalizedAnswer: string;
+  previewText?: string;
   shouldShowSolution: boolean;
   solutionLocked?: boolean;
+  showCorrectAnswer?: boolean;
 }
 
 export interface ProblemAttemptRecord {
   attemptId: string;
   attemptedAt: string;
+  attemptNumber: number;
   correct: boolean;
   courseId: CourseId;
   chapterId: string;
   normalizedAnswer: string;
+  score: number;
   problemId: string;
   unitId: string;
+  userId?: string;
+}
+
+export interface ProblemProgress {
+  attemptsRemaining: number | null;
+  attemptsUsed: number;
+  bestScore: number;
+  lastSubmittedAt?: string;
+  maxAttempts: number | null;
+  problemId: string;
+  solved: boolean;
+  status: "not-started" | "in-progress" | "solved" | "locked-out";
   userId?: string;
 }
 
@@ -225,4 +268,14 @@ export interface SectionMastery {
   sectionId: string;
   totalAttempts: number;
   userId?: string;
+}
+
+export interface CheckpointSummary {
+  attemptsUsed: number;
+  averageBestScore: number;
+  masteredCount: number;
+  problemCount: number;
+  sectionId: string;
+  submittedCount: number;
+  weakTags: string[];
 }

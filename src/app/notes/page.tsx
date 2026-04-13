@@ -7,7 +7,7 @@ import { ArrowRight, Languages, SquareLibrary } from "lucide-react";
 
 export const metadata = {
   title: "笔记",
-  description: "我的学习笔记",
+  description: "按课程、章节和小节组织的课程笔记与学习记录。",
 };
 
 export default function NotesPage() {
@@ -33,16 +33,17 @@ export default function NotesPage() {
       <GlassCard className="p-6">
         <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
           <div className="max-w-3xl">
-            <div className="flex items-center gap-2">
-              <SquareLibrary className="h-5 w-5 text-primary" />
-              <Badge variant="secondary">互动数学笔记</Badge>
-            </div>
-            <h2 className="mt-4 text-2xl font-semibold">
-              math1090 / math1030 结构化学习笔记
-            </h2>
-            <p className="mt-3 text-sm leading-7 text-muted-foreground">
-              数学内容现在以按章节和小节拆分的互动笔记形式继续扩写。每则笔记都保持文章式阅读体验，并支持导出当前学习单元。
-            </p>
+              <div className="flex items-center gap-2">
+                <SquareLibrary className="h-5 w-5 text-primary" />
+                <Badge variant="secondary">课程笔记</Badge>
+              </div>
+              <h2 className="mt-4 text-2xl font-semibold">
+                Notes 主线：课程、小节、与持续扩写
+              </h2>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                当前公开主线是按课程与小节组织的 Notes。重点仍然是严谨的课程笔记，
+                互动只在真正帮助理解时出现，而不是把页面做成独立学习 app。
+              </p>
           </div>
           <div className="space-y-3">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">

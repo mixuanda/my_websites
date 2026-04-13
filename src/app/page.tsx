@@ -31,8 +31,8 @@ export default function Home() {
             </span>
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mb-6">
-            一名热爱技术和数学的开发者。在这里，我分享我的项目、博客文章和学习笔记。
-            欢迎探索这个用玻璃拟态风格打造的个人空间。
+            一名把课程笔记、技术写作和项目实践持续整理到同一个网站里的学习者。
+            这里的当前重点是按小节持续扩写的 Notes 系统，同时保留项目与文章记录。
           </p>
           <div className="flex flex-wrap gap-3">
             <Link
@@ -69,10 +69,11 @@ export default function Home() {
                 <Badge variant="secondary">笔记</Badge>
               </div>
               <h2 className="text-2xl md:text-3xl font-bold">
-                math1090 / math1030 互动数学笔记
+                math1090 / math1030 课程笔记主线
               </h2>
               <p className="mt-4 text-muted-foreground leading-8">
-                现在的网站重点已经转向按小节阅读的数学笔记，在正文中穿插互动引导，并支持把当前这一节直接导出成静态学习版。
+                当前主线是按章节和小节持续扩写的课程笔记。页面保持文章式阅读，
+                只在需要时嵌入互动说明，并支持把当前小节导出成静态学习材料。
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">

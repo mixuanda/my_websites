@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { canAccessTier, getUserEntitlements } from "@/lib/membership/entitlements";
 import { getProblemById } from "@/lib/textbook/problem-bank";
-import { gradeProblem } from "@/lib/textbook/problem-grading";
+import { previewProblemSubmission } from "@/lib/textbook/problem-grading";
 import { defaultLocale, isLocale } from "@/lib/textbook/i18n";
 import type { ProblemSubmission } from "@/lib/textbook/types";
 
@@ -29,15 +29,11 @@ export async function POST(request: Request) {
     }
 
     const locale = payload.locale && isLocale(payload.locale) ? payload.locale : defaultLocale;
-    const canRevealSolution = canAccessTier(
-      entitlements,
-      problem.solutionAccessTier ?? problem.accessTier
-    );
-    const result = gradeProblem(problem, payload.submission, locale, canRevealSolution);
+    const preview = previewProblemSubmission(problem, payload.submission, locale);
 
     return NextResponse.json({
       problemId: payload.problemId,
-      result,
+      preview,
     });
   } catch (error) {
     console.error("Grade API error:", error);

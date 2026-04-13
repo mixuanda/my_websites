@@ -111,8 +111,13 @@ README、導覽、breadcrumbs、CTA，都應以 **Notes**、**course notes**、
 
 - 文章正文內的 quick checks
 - 題庫驅動的 section-level checkpoint
+- Preview 與 Submit 分離
 - 即時作答與批改
 - 錯誤時回饋提示
+- normalized answer preview
+- attempts used / attempts remaining
+- per-problem best status
+- checkpoint summary 與 weak topics 提示
 - 視權限而定的 guided solution reveal
 
 對應實作：
@@ -134,10 +139,21 @@ README、導覽、breadcrumbs、CTA，都應以 **Notes**、**course notes**、
 
 - MCQ
 - fill-in-the-blank
+- Preview 不消耗 attempts
+- Submit 才會記錄正式嘗試
 - 即時 correctness feedback
 - hints
 - step-by-step guided solution reveal
+- per-problem attempts / best score / solved status
 - section checkpoint progress
+- checkpoint-level summary 與 weak-tag remediation signals
+
+目前的 fill-in-the-blank 已開始走向輕量 WeBWorK 風格：
+
+- math-aware normalized preview
+- problem-specific syntax guidance
+- configurable equivalence / tolerance policy
+- per-problem reveal policy，而不是單靠靜態 “show answer”
 
 這個層次會受到會員權限控制：
 
