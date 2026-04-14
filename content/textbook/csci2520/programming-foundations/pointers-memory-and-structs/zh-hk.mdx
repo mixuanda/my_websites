@@ -247,6 +247,30 @@ stack node、queue node、或者 hashtable cell，都應該即刻問：呢個 ob
 allocation 大小仍然正確。
 </RevealSolution>
 
+## 一個更完整的 struct trace
+
+student 例子值得再慢讀一次，因為它同時牽涉 pointer、struct、file input
+同 ownership。
+
+先睇這幾行：
+
+```c
+Sdata *p;
+p = (Sdata *)malloc(sizeof(Sdata));
+FILE *fp = fopen("example.txt", "r");
+fscanf(fp, "%s %d %s", p->name, &p->age, p->address);
+```
+
+可以將 trace 拆成四個問題：
+
+1. `p` 指向邊度？
+2. `p->name` 同 `p->address` 係寫入邊個 buffer？
+3. `&p->age` 點解要加 address？
+4. 讀完之後邊個負責清理？
+
+當你可以清楚答到呢四條，代表你已經開始將 pointer、field access 同
+resource ownership 放在同一個框架裡面理解，而唔係逐句死記。
+
 ## 練習
 
 <QuickCheck prompt="追蹤這段 code 的最後結果：`int x=1,y=2; int *p=&x; int *q=&y; *p=*q; q=p; *q=9;`">

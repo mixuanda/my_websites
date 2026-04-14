@@ -252,6 +252,29 @@ Think about portability and maintenance.
 allocation stays correct even if the fields of the structure later change.
 </RevealSolution>
 
+## A fuller struct trace
+
+The student example is worth reading one level more slowly, because it combines
+pointer setup, struct field access, file input, and ownership in one short
+trace.
+
+```c
+Sdata *p;
+p = (Sdata *)malloc(sizeof(Sdata));
+FILE *fp = fopen("example.txt", "r");
+fscanf(fp, "%s %d %s", p->name, &p->age, p->address);
+```
+
+There are four separate questions hidden in those lines:
+
+1. what object does `p` point to after `malloc`?
+2. which buffers receive the strings read into `p->name` and `p->address`?
+3. why does `p->age` need an address operator while the array fields do not?
+4. after the input is done, which resources must still be released?
+
+If you can answer those four questions cleanly, you are no longer reading the
+code as isolated syntax. You are reading it as one ownership-and-state trace.
+
 ## Exercises
 
 <QuickCheck prompt="Trace the final values of `x` and `y` in this code: `int x=1, y=2; int *p=&x; int *q=&y; *p=*q; q=p; *q=9;`">
