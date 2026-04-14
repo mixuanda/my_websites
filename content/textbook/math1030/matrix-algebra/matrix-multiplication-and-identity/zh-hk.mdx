@@ -286,6 +286,38 @@ $$
 呢幾條法則雖然基本，但往後講逆矩陣、block 計算和更長的乘積推理時，
 都會默默用到。如果唔將佢哋明確掌握，後面的大計算就會好難核對。
 
+<WorkedExample title="零乘積不代表其中一個因子必定為零">
+令
+
+$$
+A =
+\begin{bmatrix}
+1 & -1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+1 \\
+1
+\end{bmatrix}.
+$$
+
+兩個矩陣都不是零矩陣，但
+
+$$
+AB =
+\begin{bmatrix}
+1 \cdot 1 + (-1) \cdot 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+0
+\end{bmatrix}.
+$$
+
+所以矩陣乘法同實數乘法不同：`AB = 0` 並不推出 `A = 0` 或 `B = 0`。
+</WorkedExample>
+
 <TheoremCard title="單位矩陣是唯一的">
 如果 `E` 係一個 `n \times n` 矩陣，而且對每個相容的 `n \times n` 矩陣 `A`
 都滿足

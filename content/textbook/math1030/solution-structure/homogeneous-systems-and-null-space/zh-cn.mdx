@@ -258,6 +258,32 @@ $$
 由于 `t` 可以取无限多个值，所以解集也不只是“多于一个”，而是真正无限多。
 </WorkedExample>
 
+<WorkedExample title="零空间也可能只剩平凡解">
+令
+
+$$
+A =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}.
+$$
+
+那么 `Ax = 0` 就只是
+
+$$
+x_1 = 0, \qquad x_2 = 0.
+$$
+
+因此唯一解是零向量，所以
+
+$$
+N(A) = \{0\}
+$$
+
+这个例子与前面有自由变量的情形刚好相反。
+</WorkedExample>
+
 ## 零空间本身是一个子空间
 
 零空间最先是以“解集”身份出现，但它不只是解集；它永远都是 `A` 定义域中
@@ -312,6 +338,45 @@ $$
 
 但即使在秩—零度定理正式出现之前，你也应该先把 nullity 读成“系统还剩多
 少条独立零空间方向”。
+
+<WorkedExample title="零空间成员测试其实很直接">
+令
+
+$$
+A =
+\begin{bmatrix}
+1 & 1 & 0 \\
+0 & 1 & 1
+\end{bmatrix},
+\qquad
+x =
+\begin{bmatrix}
+1 \\ -1 \\ 1
+\end{bmatrix},
+\qquad
+z =
+\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix}.
+$$
+
+计算得到
+
+$$
+Ax =
+\begin{bmatrix}
+0 \\ 0
+\end{bmatrix},
+\qquad
+Az =
+\begin{bmatrix}
+1 \\ 0
+\end{bmatrix}.
+$$
+
+因此 `x \in N(A)`，但 `z \notin N(A)`。要测试某个向量是否属于零空间，
+最直接的方法就是实际计算 `Ax`。
+</WorkedExample>
 
 ## 怎样由 RREF 读出零空间基底
 

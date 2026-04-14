@@ -270,6 +270,32 @@ Different values of `t` give different vectors, so the homogeneous system has
 infinitely many solutions, not just more than one.
 </WorkedExample>
 
+<WorkedExample title="A trivial null space can also occur">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}.
+$$
+
+Then `Ax = 0` is simply
+
+$$
+x_1 = 0, \qquad x_2 = 0.
+$$
+
+So the only solution is the zero vector, and therefore
+
+$$
+N(A) = \{0\}.
+$$
+
+This is the opposite extreme from the earlier example with free variables.
+</WorkedExample>
+
 ## The null space is a subspace
 
 This fact is easy to overlook because we first meet the null space as a
@@ -326,6 +352,46 @@ $$
 
 but even before that theorem is named formally, you should already read nullity
 as "the number of independent null-space directions left by the system."
+
+<WorkedExample title="Membership in the null space is a direct test">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 1 & 0 \\
+0 & 1 & 1
+\end{bmatrix},
+\qquad
+x =
+\begin{bmatrix}
+1 \\ -1 \\ 1
+\end{bmatrix},
+\qquad
+z =
+\begin{bmatrix}
+1 \\ 0 \\ 0
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+Ax =
+\begin{bmatrix}
+0 \\ 0
+\end{bmatrix},
+\qquad
+Az =
+\begin{bmatrix}
+1 \\ 0
+\end{bmatrix}.
+$$
+
+So `x \in N(A)` but `z \notin N(A)`. This is the practical meaning of the
+definition: to test membership in `N(A)`, compute `Ax` and check whether the
+result is exactly the zero vector.
+</WorkedExample>
 
 ## How to read a basis for the null space from RREF
 

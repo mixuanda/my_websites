@@ -286,6 +286,38 @@ $$
 这些法则虽然基础，但后面谈逆矩阵、block 计算和更长乘积推理时都会默认使
 用。如果不把它们明确掌握，后面的长计算会很难核对。
 
+<WorkedExample title="零乘积不代表其中一个因子必定为零">
+令
+
+$$
+A =
+\begin{bmatrix}
+1 & -1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+1 \\
+1
+\end{bmatrix}.
+$$
+
+两个矩阵都不是零矩阵，但
+
+$$
+AB =
+\begin{bmatrix}
+1 \cdot 1 + (-1) \cdot 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+0
+\end{bmatrix}.
+$$
+
+所以矩阵乘法与实数乘法不同：`AB = 0` 并不推出 `A = 0` 或 `B = 0`。
+</WorkedExample>
+
 <TheoremCard title="单位矩阵是唯一的">
 如果 `E` 是一个 `n \times n` 矩阵，而且对每个相容的 `n \times n` 矩阵 `A`
 都满足

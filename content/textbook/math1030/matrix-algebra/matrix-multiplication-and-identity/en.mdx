@@ -385,6 +385,39 @@ inverse matrices, row operations, and block-matrix computation assume them
 silently. If you do not know them explicitly, longer calculations become much
 harder to audit.
 
+<WorkedExample title="A zero product does not force a zero factor">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & -1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+1 \\
+1
+\end{bmatrix}.
+$$
+
+Neither factor is the zero matrix, yet
+
+$$
+AB =
+\begin{bmatrix}
+1 \cdot 1 + (-1) \cdot 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+0
+\end{bmatrix}.
+$$
+
+So matrix multiplication behaves differently from real-number multiplication:
+`AB = 0` does not imply `A = 0` or `B = 0`.
+</WorkedExample>
+
 <TheoremCard title="The identity matrix is unique">
 If `E` is an `n \times n` matrix such that
 
