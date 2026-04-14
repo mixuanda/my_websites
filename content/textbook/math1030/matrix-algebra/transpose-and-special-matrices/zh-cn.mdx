@@ -3,24 +3,27 @@ title: "3.2 转置与特殊矩阵"
 description: "用转置、对称性、不交换乘积与分块结构去理解矩阵的形状与代数行为。"
 ---
 
-当矩阵乘法出现之后，“结构”便开始变得重要。有些矩阵因为元素排列有特定
-形式，所以更容易分析。转置正是辨认这些结构的主要工具之一。
+当矩阵乘法已经出现之后，矩阵的“形状”开始和它的数值一样重要。转置是
+本节最基本的工具：行与列对调，主对角线变成反射轴。这个简单想法，足以说
+明对称、反对称、可交换现象，以及分块矩阵的阅读方法。
 
-## 转置就是把行与列互换
+## 转置就是把行与列对调
 
 <Definition title="转置">
-若 `A = [a_{ij}]` 是 `m \times n` 矩阵，则它的转置 `A^T` 是
-`n \times m` 矩阵，其 `(j,i)` 元素为 `a_{ij}`。
+若 `A = [a_{ij}]` 是一个 `m \times n` 矩阵，则它的转置 `A^T` 是
+`n \times m` 矩阵，其 `(j,i)` 位置的元素为 `a_{ij}`。
 
 也就是
 
 $$
 (A^T)_{ji} = a_{ij}.
 $$
-</Definition>
 
 所以 `A` 的每一行都会变成 `A^T` 的一列，而 `A` 的每一列都会变成
 `A^T` 的一行。
+</Definition>
+
+这不是一个神秘的新运算，只是把同一批元素用相反方向重新阅读。
 
 <WorkedExample title="计算一个转置">
 设
@@ -44,97 +47,307 @@ A^T =
 \end{bmatrix}.
 $$
 
-原来的 `2 \times 3` 矩阵变成 `3 \times 2`，因为行列角色对调了。
+原来的 `2 \times 3` 矩阵变成 `3 \times 2`，因为行与列的角色对调了。
 </WorkedExample>
 
-有两条基本恒等式值得熟记：
+几条基本恒等式，应当视作本节的核心语言：
 
 $$
 (A^T)^T = A,
 \qquad
-(A + B)^T = A^T + B^T.
+(A + B)^T = A^T + B^T,
+\qquad
+(cA)^T = cA^T.
 $$
 
-若乘积有定义，转置还会把乘积次序反过来：
+若乘积有定义，转置会把次序反过来：
 
 $$
 (AB)^T = B^T A^T.
 $$
 
-这个“反序”不是小细节，而是行乘列规则被反转后的结果。
+这个“反序”不是小事，而是行乘列配对被转向之后的必然结果。
+
+<WorkedExample title="转置恒等式的例子">
+取
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+0 & 1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+3 & 0 \\
+4 & 5
+\end{bmatrix}.
+$$
+
+则
+
+$$
+A + B =
+\begin{bmatrix}
+4 & 2 \\
+4 & 6
+\end{bmatrix},
+\qquad
+(A + B)^T =
+\begin{bmatrix}
+4 & 4 \\
+2 & 6
+\end{bmatrix}.
+$$
+
+另一方面，
+
+$$
+A^T + B^T =
+\begin{bmatrix}
+1 & 0 \\
+2 & 1
+\end{bmatrix}
++
+\begin{bmatrix}
+3 & 4 \\
+0 & 5
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 & 4 \\
+2 & 6
+\end{bmatrix}.
+$$
+
+乘积也是同样道理，只是次序一定要反过来：
+
+$$
+AB =
+\begin{bmatrix}
+11 & 10 \\
+4 & 5
+\end{bmatrix},
+\qquad
+(AB)^T =
+\begin{bmatrix}
+11 & 4 \\
+10 & 5
+\end{bmatrix},
+$$
+
+而
+
+$$
+B^T A^T =
+\begin{bmatrix}
+3 & 4 \\
+0 & 5
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+2 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+11 & 4 \\
+10 & 5
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+<TheoremCard title="转置的基本性质">
+对所有尺寸相容的矩阵，
+
+1. `(A^T)^T = A`
+2. `(A + B)^T = A^T + B^T`
+3. `(cA)^T = cA^T`
+4. `(AC)^T = C^T A^T`
+</TheoremCard>
+
+乘积公式的证明值得细读一次：比较 `(AC)^T` 和 `C^T A^T` 的对应元素，
+你会发现求和中的数字没有改变，只是读取方向变了。
 
 ## 对称矩阵与反对称矩阵
-
-有些方阵与自己的转置一样；有些则只差一个负号。
 
 <Definition title="对称矩阵与反对称矩阵">
 设 `A` 为方阵。
 
-- 若 `A^T = A`，则称 `A` 为对称矩阵；
-- 若 `A^T = -A`，则称 `A` 为反对称矩阵。
+- 若 `A^T = A`，则 `A` 称为对称矩阵。
+- 若 `A^T = -A`，则 `A` 称为反对称矩阵。
 </Definition>
 
-对称矩阵沿主对角线反射后不变；反对称矩阵反射后会整体变号。
+对称表示沿主对角线反射后不变。反对称表示反射后整个矩阵变号。
 
-<WorkedExample title="分类两个矩阵">
+<WorkedExample title="辨认对称性">
 矩阵
 
 $$
 \begin{bmatrix}
-2 & -1 \\
--1 & 3
+2 & -1 & 4 \\
+-1 & 3 & 0 \\
+4 & 0 & 5
 \end{bmatrix}
 $$
 
-是对称矩阵，因为转置后完全不变。
+是对称矩阵，因为 `(i,j)` 与 `(j,i)` 位置的元素相同。
 
 矩阵
 
 $$
 \begin{bmatrix}
-0 & 4 \\
--4 & 0
+0 & 2 & -1 \\
+-2 & 0 & 4 \\
+1 & -4 & 0
 \end{bmatrix}
 $$
 
-是反对称矩阵，因为
+是反对称矩阵，因为转置之后每个非对角元素都改变符号，而对角线保持 `0`。
+</WorkedExample>
+
+三个直接后果很重要：
+
+- 实数反对称矩阵的对角元素全部都是 `0`
+- 零矩阵既对称又反对称
+- 单位矩阵是对称矩阵
+
+第三项其实只是“对角矩阵在转置下不变”的特例。
+
+<TheoremCard title="两个常用的转置型态">
+对每一个方阵 `A`，
+
+$$
+(A + A^T)^T = A + A^T,
+\qquad
+(A - A^T)^T = -(A - A^T).
+$$
+
+因此 `A + A^T` 是对称矩阵，而 `A - A^T` 是反对称矩阵。
+</TheoremCard>
+
+<ProofSketch title="为什么成立">
+直接套用转置公式：
+
+$$
+(A + A^T)^T = A^T + (A^T)^T = A^T + A = A + A^T.
+$$
+
+至于差，
+
+$$
+(A - A^T)^T = A^T - (A^T)^T = A^T - A = -(A - A^T).
+$$
+</ProofSketch>
+
+上一结果是最重要结构定理的起点。
+
+<TheoremCard title="分解为对称部分与反对称部分">
+每一个方阵 `A` 都可以唯一写成
+
+$$
+A = S + K,
+$$
+
+其中 `S` 是对称矩阵，`K` 是反对称矩阵。事实上，
+
+$$
+S = \frac{1}{2}(A + A^T),
+\qquad
+K = \frac{1}{2}(A - A^T).
+$$
+</TheoremCard>
+
+这个证明是本节最重要的推理范例之一，因为它把直觉变成了可检查的公式。
+
+<WorkedExample title="把矩阵分解成两部分">
+设
+
+$$
+A =
+\begin{bmatrix}
+1 & 0 & 1 \\
+2 & -1 & 3 \\
+4 & 2 & 0
+\end{bmatrix}.
+$$
+
+则
 
 $$
 A^T =
 \begin{bmatrix}
-0 & -4 \\
-4 & 0
-\end{bmatrix}
-= -A.
+1 & 2 & 4 \\
+0 & -1 & 2 \\
+1 & 3 & 0
+\end{bmatrix}.
 $$
+
+所以
+
+$$
+\frac{1}{2}(A + A^T)
+=
+\begin{bmatrix}
+1 & 1 & \frac{5}{2} \\
+1 & -1 & \frac{5}{2} \\
+\frac{5}{2} & \frac{5}{2} & 0
+\end{bmatrix},
+$$
+
+而
+
+$$
+\frac{1}{2}(A - A^T)
+=
+\begin{bmatrix}
+0 & -1 & -\frac{3}{2} \\
+1 & 0 & \frac{1}{2} \\
+\frac{3}{2} & -\frac{1}{2} & 0
+\end{bmatrix}.
+$$
+
+第一个矩阵是对称矩阵，第二个矩阵是反对称矩阵，而二者相加正好回到 `A`。
 </WorkedExample>
 
-要特别注意：实数反对称矩阵的主对角线元素必定全是 `0`，因为每个对角元素
-都要等于自己的相反数。
+还有一个非常有用的对称型态，会在后面课题反复出现。
 
-## 次序重要：可交换与不可交换
+<TheoremCard title="含转置的乘积是对称的">
+只要乘积有定义，`A^T A` 和 `A A^T` 都是对称矩阵。
+</TheoremCard>
 
-课堂笔记一再强调，矩阵乘法一般不具交换性。不过，也有某些矩阵对是可以交
-换的。
+<ProofSketch title="一行证明">
+对 `A^T A`，
+
+$$
+(A^T A)^T = A^T (A^T)^T = A^T A.
+$$
+
+`A A^T` 的证明完全相同。
+</ProofSketch>
+
+这也是转置在后续的正交、投影和最小平方型论证里反复出现的原因之一。
+
+## 可交换与不可交换的矩阵
 
 <Definition title="可交换矩阵">
-若同样大小的方阵 `A` 与 `B` 满足
+若两个同大小的矩阵 `A` 和 `B` 满足
 
 $$
 AB = BA,
 $$
 
-便称它们可交换。
+则称它们可交换。
 </Definition>
 
-可交换是特殊情况，不是默认情况。
+对加法而言，可交换性是预设；对乘法而言，可交换性却是特例。这是矩阵代
+数与纯量代数最重要的差别之一。
 
-<TheoremCard title="矩阵乘法一般不交换">
-存在方阵 `A` 与 `B`，使得 `AB \ne BA`。
-</TheoremCard>
+零矩阵与单位矩阵都会和任何同大小方阵可交换。相同大小的对角矩阵彼此也可
+交换，因为它们的乘积仍是对角矩阵，而且对角元素相乘本身就交换。
 
 <WorkedExample title="一对不可交换的矩阵">
-令
+取
 
 $$
 A =
@@ -169,46 +382,237 @@ $$
 因此 `AB \ne BA`。
 </WorkedExample>
 
-所以任何矩阵恒等式都必须保留因子的次序，不能随手调换。
+这种例子不是小插曲，而是提醒我们：矩阵恒等式里，因子的次序绝不能乱改。
 
-## 特殊矩阵之所以重要，在于它的形状
+<TheoremCard title="反对称矩阵的可交换测试">
+若 `A` 和 `B` 都是反对称方阵，则
 
-不少常见矩阵家族，都是由哪些位置必须是 `0` 来定义的。这些形状往往令后
-面的计算与判断容易得多。
+$$
+AB \text{ 对称 } \iff AB = BA.
+$$
+</TheoremCard>
 
-- 对角矩阵只容许主对角线上出现非零元素；
-- 上三角矩阵在主对角线下方全是 `0`；
-- 下三角矩阵在主对角线上方全是 `0`。
+<ProofSketch title="为什么成立">
+因为 `A^T = -A` 与 `B^T = -B`，
 
-对这些矩阵来说，乘法与可逆性分析通常较简单，因为零元素的排列具有稳定性。
+$$
+(AB)^T = B^T A^T = (-B)(-A) = BA.
+$$
 
-## 分块矩阵是在大矩阵内部整理结构
+所以 `AB` 对称，等价于 `(AB)^T = AB`，而这又等价于 `BA = AB`。
+</ProofSketch>
 
-有时候，一个大矩阵最好视为若干较小矩阵拼接而成，这就是分块记号。
+<WorkedExample title="对称矩阵与反对称矩阵的组合">
+设
+
+$$
+S =
+\begin{bmatrix}
+2 & 0 \\
+0 & 3
+\end{bmatrix},
+\qquad
+K =
+\begin{bmatrix}
+0 & 1 \\
+-1 & 0
+\end{bmatrix}.
+$$
+
+这里 `S` 是对称矩阵，`K` 是反对称矩阵，但二者不交换：
+
+$$
+SK =
+\begin{bmatrix}
+0 & 2 \\
+-3 & 0
+\end{bmatrix},
+\qquad
+KS =
+\begin{bmatrix}
+0 & 3 \\
+-2 & 0
+\end{bmatrix}.
+$$
+
+若某一对同类矩阵真的可交换，则它们的乘积便会继续保留清楚的对称型态。
+</WorkedExample>
+
+## 特殊矩阵
+
+特殊矩阵的定义方式很直接：看哪些位置必须是 `0`。这使它们比一般矩阵更
+容易阅读与计算。
+
+<Definition title="对角矩阵、上三角矩阵、下三角矩阵">
+- 对角矩阵的所有非对角元素都是 `0`
+- 上三角矩阵的主对角线下方全部是 `0`
+- 下三角矩阵的主对角线上方全部是 `0`
+</Definition>
+
+<WorkedExample title="三角矩阵的转置">
+若
+
+$$
+U =
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 4 & 5 \\
+0 & 0 & 6
+\end{bmatrix},
+$$
+
+则
+
+$$
+U^T =
+\begin{bmatrix}
+1 & 0 & 0 \\
+2 & 4 & 0 \\
+3 & 5 & 6
+\end{bmatrix}.
+$$
+
+所以上三角矩阵的转置是下三角矩阵。
+</WorkedExample>
+
+几个结构性事实要一起记：
+
+- 两个对角矩阵相乘仍是对角矩阵
+- 两个上三角矩阵相乘仍是上三角矩阵
+- 两个下三角矩阵相乘仍是下三角矩阵
+
+对角矩阵尤其简单：
+
+$$
+\operatorname{diag}(d_1,\dots,d_n)\,
+\operatorname{diag}(e_1,\dots,e_n)
+=
+\operatorname{diag}(d_1 e_1,\dots,d_n e_n).
+$$
+
+这也是为什么同大小的对角矩阵彼此都可交换。
+
+<CommonMistake title="不要把零结构和矩阵本身混淆">
+上三角矩阵可以在对角线上方有很多非零元素，但对角线下方一定是 `0`。对角
+矩阵更严格：所有非对角元素都必须是 `0`。
+</CommonMistake>
+
+## 分块矩阵
+
+大矩阵若分成几个小块，往往更容易阅读。分块矩阵仍然只是矩阵，只是多了一
+层组织方式。
+
+<Definition title="分块矩阵">
+若把矩阵用横线和竖线分隔成若干子矩阵，这些子矩阵就叫做 block（分块）。
+</Definition>
 
 例如
 
 $$
+A =
+\begin{bmatrix}
+1 & 0 & 2 & 1 \\
+3 & 4 & 0 & -1 \\
+5 & 2 & 6 & 3 \\
+7 & 8 & 1 & 0
+\end{bmatrix}
+=
 \begin{bmatrix}
 A_{11} & A_{12} \\
 A_{21} & A_{22}
-\end{bmatrix}
+\end{bmatrix},
 $$
 
-就是由四个小块组成的分块矩阵。这不是一种新矩阵，而是一种较有纪律的阅读
-方法：把大矩阵拆成较清楚的部分。
+其中
 
-只要大小配对正确，分块加法与分块乘法都遵循与普通矩阵运算相同的形式。好
-处是你可以一次处理一块，而不是每次都盯着全部元素。
+$$
+A_{11} =
+\begin{bmatrix}
+1 & 0 \\
+3 & 4
+\end{bmatrix},
+\quad
+A_{12} =
+\begin{bmatrix}
+2 & 1 \\
+0 & -1
+\end{bmatrix},
+\quad
+A_{21} =
+\begin{bmatrix}
+5 & 2 \\
+7 & 8
+\end{bmatrix},
+\quad
+A_{22} =
+\begin{bmatrix}
+6 & 3 \\
+1 & 0
+\end{bmatrix}.
+$$
+
+在分块层面，转置只会把块的位置互换，并且把每一块本身也转置：
+
+$$
+A^T =
+\begin{bmatrix}
+A_{11}^T & A_{21}^T \\
+A_{12}^T & A_{22}^T
+\end{bmatrix}.
+$$
+
+这其实就是同一条“行与列对调”原理，只是从元素层面推广到分块层面。
+
+<WorkedExample title="分块乘法">
+若分块大小相容，设
+
+$$
+M =
+\begin{bmatrix}
+A & B \\
+C & D
+\end{bmatrix},
+\qquad
+N =
+\begin{bmatrix}
+E & F \\
+G & H
+\end{bmatrix}.
+$$
+
+则
+
+$$
+MN =
+\begin{bmatrix}
+AE + BG & AF + BH \\
+CE + DG & CF + DH
+\end{bmatrix}.
+$$
+
+这个公式看起来就像 `2 \times 2` 的普通矩阵乘法，只不过每一个位置现在都
+是一个分块。
+</WorkedExample>
+
+真正要留意的是相容性：只有当内部块的尺寸对得上，分块乘法才有意义。若分
+块方式不配合，这种写法就不能直接使用。
 
 ## 常见错误
 
-<CommonMistake title="转置乘积时，不要保留原来次序">
-正确公式是 `(AB)^T = B^T A^T`，不是 `A^T B^T`。次序一定会反过来。
+<CommonMistake title="转置乘积时，次序一定反转">
+正确公式是 `(AB)^T = B^T A^T`，不是 `A^T B^T`。
 </CommonMistake>
 
-<CommonMistake title="对称不代表任何矩阵对都可交换">
-对称是单一矩阵的性质；可交换是两个矩阵之间的性质。两者回答的是不同问题。
+<CommonMistake title="对称不等于可交换">
+对称是单一矩阵的性质，可交换是两个矩阵之间的性质。两者不是同一件事。
+</CommonMistake>
+
+<CommonMistake title="实数反对称矩阵的对角线一定是零">
+若 `A^T = -A`，每个对角元素都要等于自己的相反数，所以只能是 `0`。
+</CommonMistake>
+
+<CommonMistake title="分块大小一定要相容">
+只有在块与块的尺寸能匹配时，才能把分块矩阵当成一个整体来乘。
 </CommonMistake>
 
 ## 快速检查
@@ -221,7 +625,7 @@ $$
 `A^T` 是 `2 × 3` 矩阵。
 </RevealSolution>
 
-<QuickCheck prompt="实数反对称矩阵的主对角线元素可以是什么？">
+<QuickCheck prompt="实数反对称矩阵的对角元素必须是什么？">
 把 `A^T = -A` 套在对角位置。
 </QuickCheck>
 
@@ -229,15 +633,84 @@ $$
 全部都必须是 `0`。
 </RevealSolution>
 
-## 练习
+<QuickCheck prompt="哪一条公式正确：`(AB)^T = A^T B^T` 还是 `(AB)^T = B^T A^T`？">
+记住转置会反转乘法次序。
+</QuickCheck>
 
-<QuickCheck prompt="为什么每个对角矩阵都等于自己的转置？">
-请从可能非零元素的位置来回答。
+<RevealSolution title="答案">
+`(AB)^T = B^T A^T`。
+</RevealSolution>
+
+<QuickCheck prompt="若 `S` 是对称矩阵，`K` 是反对称矩阵，则 `S^T` 和 `K^T` 各是多少？">
+直接读定义。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`S^T = S`，`K^T = -K`。
+</RevealSolution>
+
+## 引导练习
+
+<QuickCheck prompt="把 `A = [[2,1],[4,3]]` 分解成对称部分与反对称部分。">
+使用 `S = 1/2 (A + A^T)` 及 `K = 1/2 (A - A^T)`。
 </QuickCheck>
 
 <RevealSolution title="引导解答">
-对角矩阵在非对角位置本来就是 `0`。转置时，非对角位置只会互相交换，但
-`0` 仍然是 `0`；而对角元素则停留在原位。因此整个矩阵不变。
+先算
+
+$$
+A^T =
+\begin{bmatrix}
+2 & 4 \\
+1 & 3
+\end{bmatrix}.
+$$
+
+再算
+
+$$
+S = \frac{1}{2}
+\begin{bmatrix}
+4 & 5 \\
+5 & 6
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & \frac{5}{2} \\
+\frac{5}{2} & 3
+\end{bmatrix},
+$$
+
+以及
+
+$$
+K = \frac{1}{2}
+\begin{bmatrix}
+0 & -3 \\
+3 & 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & -\frac{3}{2} \\
+\frac{3}{2} & 0
+\end{bmatrix}.
+$$
+
+检查 `S` 是否对称、`K` 是否反对称，最后确认 `A = S + K`。
+</RevealSolution>
+
+<QuickCheck prompt="若 `A` 与 `B` 都是对称矩阵，而 `AB = BA`，为什么 `AB` 也是对称矩阵？">
+使用转置公式与可交换假设。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+因为
+
+$$
+(AB)^T = B^T A^T = BA = AB.
+$$
+
+所以 `AB` 等于自己的转置，正是对称矩阵的定义。
 </RevealSolution>
 
 ## 相关笔记

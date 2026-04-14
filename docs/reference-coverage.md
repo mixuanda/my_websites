@@ -15,6 +15,8 @@ As of April 14, 2026, the latest local source-processing checkpoints are:
 - `95f3ad7` `Deepen invertible matrix notes`
 - `f2c5513` `Deepen notes across math and CSCI units`
 - `0d5aaa5` `Deepen MATH1030 notes and assessment flow`
+- `0371ef0` `Expand MATH1030 notes and problem model`
+- `a032185` `Deepen linear dependence note`
 
 Every push attempt for those checkpoints failed with the same external error:
 `ssh: Could not resolve hostname github.com: Temporary failure in name
@@ -35,26 +37,27 @@ The latest merged content passes also:
   Notes routes;
 - keeps the grouped `reference/MATH1025/**` backlog active after the initial
   foundations baseline.
-- deepened `math1030` unit `3.1 Matrix multiplication and identity matrices`
-  in EN, zh-HK, and zh-CN with stronger column-reading and composition flow;
-- deepened `math1030` unit `4.1 Homogeneous systems and null space` in EN,
-  zh-HK, and zh-CN with stronger free-variable, subspace, and nullity
-  structure;
 - expanded the `math1030` problem inventory and added a first Preview / Submit
   attempt-tracking assessment foundation beneath the public Notes shell.
+- deepened `math1030` unit `3.2 Transpose and special matrices` across all
+  three locales so the transpose chapter now carries symmetry, decomposition,
+  commuting, and block-matrix structure at real note depth;
+- deepened `math1030` unit `6.4 Linear dependence and independence` across all
+  three locales so the dependence chapter now carries redundancy, null-space,
+  pivot, and low-dimensional tests at real note depth.
 
 The next resume point is a split backlog:
 
 1. continue deepening the remaining thin public `math1030` units, especially
-   `3.2`, `4.1`, and `6.4`, until they reach the target reading depth;
+   `3.1` and `4.1`, until they reach the target reading depth;
 2. after that, author the determinant chapter family from
    `reference/MATH1030/1030gi-n06-01.pdf` to `1030gi-n06-03.pdf`;
 3. continue into the eigenvalue / diagonalization family from
    `reference/MATH1030/1030gi-n07-01.pdf` to `1030gi-n07-03.pdf`;
 4. return to the remaining Math1090 chapter-4 and proof-structure backlog only
    after the next Math1030 family lands cleanly.
-5. continue the thin public MATH1030 units `3.2` and `6.4` before treating the
-   chapter-6 and matrix-algebra backbone as stable.
+5. keep the remaining thinner matrix-algebra and solution-structure units in
+   active review before treating the chapter-3 / chapter-4 backbone as stable.
 
 The tables below use these status labels:
 

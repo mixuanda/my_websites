@@ -1,0 +1,721 @@
+---
+title: "3.2 轉置與特殊矩陣"
+description: "用轉置、對稱性、不交換乘積與分塊結構去理解矩陣的形狀與代數行為。"
+---
+
+當矩陣乘法已經出現之後，矩陣的「形狀」開始和它的數值一樣重要。轉置是
+本節最基本的工具：行與列對調，主對角線變成反射軸。這個簡單的想法，足以
+說明對稱、反對稱、可交換現象，以及分塊矩陣的閱讀方法。
+
+## 轉置就是把行與列對調
+
+<Definition title="轉置">
+若 `A = [a_{ij}]` 是一個 `m \times n` 矩陣，則它的轉置 `A^T` 是
+`n \times m` 矩陣，其 `(j,i)` 位置的元素為 `a_{ij}`。
+
+也就是
+
+$$
+(A^T)_{ji} = a_{ij}.
+$$
+
+所以 `A` 的每一行都會變成 `A^T` 的一列，而 `A` 的每一列都會變成
+`A^T` 的一行。
+</Definition>
+
+這不是一個神秘的新運算，只是把同一批元素用相反方向重新閱讀。
+
+<WorkedExample title="計算一個轉置">
+設
+
+$$
+A =
+\begin{bmatrix}
+1 & 4 & -2 \\
+0 & 3 & 5
+\end{bmatrix}.
+$$
+
+則
+
+$$
+A^T =
+\begin{bmatrix}
+1 & 0 \\
+4 & 3 \\
+-2 & 5
+\end{bmatrix}.
+$$
+
+原來的 `2 \times 3` 矩陣變成 `3 \times 2`，因為行與列的角色對調了。
+</WorkedExample>
+
+幾條基本恆等式，應該視作本節的核心語言：
+
+$$
+(A^T)^T = A,
+\qquad
+(A + B)^T = A^T + B^T,
+\qquad
+(cA)^T = cA^T.
+$$
+
+若乘積有定義，轉置會把次序反過來：
+
+$$
+(AB)^T = B^T A^T.
+$$
+
+這個「反序」不是小事，而是行乘列配對被轉向之後的必然結果。
+
+<WorkedExample title="轉置恆等式的例子">
+取
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+0 & 1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+3 & 0 \\
+4 & 5
+\end{bmatrix}.
+$$
+
+則
+
+$$
+A + B =
+\begin{bmatrix}
+4 & 2 \\
+4 & 6
+\end{bmatrix},
+\qquad
+(A + B)^T =
+\begin{bmatrix}
+4 & 4 \\
+2 & 6
+\end{bmatrix}.
+$$
+
+另一方面，
+
+$$
+A^T + B^T =
+\begin{bmatrix}
+1 & 0 \\
+2 & 1
+\end{bmatrix}
++
+\begin{bmatrix}
+3 & 4 \\
+0 & 5
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 & 4 \\
+2 & 6
+\end{bmatrix}.
+$$
+
+乘積亦然，只是次序一定要反過來：
+
+$$
+AB =
+\begin{bmatrix}
+11 & 10 \\
+4 & 5
+\end{bmatrix},
+\qquad
+(AB)^T =
+\begin{bmatrix}
+11 & 4 \\
+10 & 5
+\end{bmatrix},
+$$
+
+而
+
+$$
+B^T A^T =
+\begin{bmatrix}
+3 & 4 \\
+0 & 5
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+2 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+11 & 4 \\
+10 & 5
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+<TheoremCard title="轉置的基本性質">
+對所有尺寸相容的矩陣，
+
+1. `(A^T)^T = A`
+2. `(A + B)^T = A^T + B^T`
+3. `(cA)^T = cA^T`
+4. `(AC)^T = C^T A^T`
+</TheoremCard>
+
+乘積公式的證明值得細讀一次：比較 `(AC)^T` 和 `C^T A^T` 的對應元素，
+你會發現求和中的數字沒有改變，只是讀取方向變了。
+
+## 對稱矩陣與反對稱矩陣
+
+<Definition title="對稱矩陣與反對稱矩陣">
+設 `A` 為方陣。
+
+- 若 `A^T = A`，則 `A` 稱為對稱矩陣。
+- 若 `A^T = -A`，則 `A` 稱為反對稱矩陣。
+</Definition>
+
+對稱表示沿主對角線反射後不變。反對稱表示反射後整個矩陣變號。
+
+<WorkedExample title="辨認對稱性">
+矩陣
+
+$$
+\begin{bmatrix}
+2 & -1 & 4 \\
+-1 & 3 & 0 \\
+4 & 0 & 5
+\end{bmatrix}
+$$
+
+是對稱矩陣，因為 `(i,j)` 與 `(j,i)` 位置的元素相同。
+
+矩陣
+
+$$
+\begin{bmatrix}
+0 & 2 & -1 \\
+-2 & 0 & 4 \\
+1 & -4 & 0
+\end{bmatrix}
+$$
+
+是反對稱矩陣，因為轉置之後每個非對角元素都改變符號，而對角線保持 `0`。
+</WorkedExample>
+
+三個直接後果很重要：
+
+- 實數反對稱矩陣的對角元素全部都是 `0`
+- 零矩陣既對稱又反對稱
+- 單位矩陣是對稱矩陣
+
+第三項其實只是「對角矩陣在轉置下不變」的特例。
+
+<TheoremCard title="兩個常用的轉置型態">
+對每一個方陣 `A`，
+
+$$
+(A + A^T)^T = A + A^T,
+\qquad
+(A - A^T)^T = -(A - A^T).
+$$
+
+因此 `A + A^T` 是對稱矩陣，而 `A - A^T` 是反對稱矩陣。
+</TheoremCard>
+
+<ProofSketch title="為甚麼成立">
+直接套用轉置公式：
+
+$$
+(A + A^T)^T = A^T + (A^T)^T = A^T + A = A + A^T.
+$$
+
+至於差，
+
+$$
+(A - A^T)^T = A^T - (A^T)^T = A^T - A = -(A - A^T).
+$$
+</ProofSketch>
+
+上一個結果是最重要的結構定理的起點。
+
+<TheoremCard title="分解為對稱部分與反對稱部分">
+每一個方陣 `A` 都可以唯一寫成
+
+$$
+A = S + K,
+$$
+
+其中 `S` 是對稱矩陣，`K` 是反對稱矩陣。事實上，
+
+$$
+S = \frac{1}{2}(A + A^T),
+\qquad
+K = \frac{1}{2}(A - A^T).
+$$
+</TheoremCard>
+
+這個證明是本節最重要的推理範例之一，因為它把直覺變成了可檢查的公式。
+
+<WorkedExample title="把矩陣分解成兩部分">
+設
+
+$$
+A =
+\begin{bmatrix}
+1 & 0 & 1 \\
+2 & -1 & 3 \\
+4 & 2 & 0
+\end{bmatrix}.
+$$
+
+則
+
+$$
+A^T =
+\begin{bmatrix}
+1 & 2 & 4 \\
+0 & -1 & 2 \\
+1 & 3 & 0
+\end{bmatrix}.
+$$
+
+所以
+
+$$
+\frac{1}{2}(A + A^T)
+=
+\begin{bmatrix}
+1 & 1 & \frac{5}{2} \\
+1 & -1 & \frac{5}{2} \\
+\frac{5}{2} & \frac{5}{2} & 0
+\end{bmatrix},
+$$
+
+而
+
+$$
+\frac{1}{2}(A - A^T)
+=
+\begin{bmatrix}
+0 & -1 & -\frac{3}{2} \\
+1 & 0 & \frac{1}{2} \\
+\frac{3}{2} & -\frac{1}{2} & 0
+\end{bmatrix}.
+$$
+
+第一個矩陣是對稱矩陣，第二個矩陣是反對稱矩陣，而二者相加正好回到 `A`。
+</WorkedExample>
+
+還有一個非常有用的對稱型態，會在後面課題反覆出現。
+
+<TheoremCard title="含轉置的乘積是對稱的">
+只要乘積有定義，`A^T A` 和 `A A^T` 都是對稱矩陣。
+</TheoremCard>
+
+<ProofSketch title="一行證明">
+對 `A^T A`，
+
+$$
+(A^T A)^T = A^T (A^T)^T = A^T A.
+$$
+
+`A A^T` 的證明完全相同。
+</ProofSketch>
+
+這是轉置在後續的正交、投影和最小平方型論證裡反覆出現的原因之一。
+
+## 可交換與不可交換的矩陣
+
+<Definition title="可交換矩陣">
+若兩個同大小的矩陣 `A` 和 `B` 滿足
+
+$$
+AB = BA,
+$$
+
+則稱它們可交換。
+</Definition>
+
+對加法而言，可交換性是預設；對乘法而言，可交換性卻是特例。這是矩陣代
+數與純量代數最重要的差別之一。
+
+零矩陣與單位矩陣都會與任何同大小的方陣可交換。相同大小的對角矩陣彼此
+也可交換，因為它們的乘積仍是對角矩陣，而且對角元素相乘本身就交換。
+
+<WorkedExample title="一對不可交換的矩陣">
+取
+
+$$
+A =
+\begin{bmatrix}
+1 & 1 \\
+0 & 1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+1 & 0 \\
+1 & 1
+\end{bmatrix}.
+$$
+
+則
+
+$$
+AB =
+\begin{bmatrix}
+2 & 1 \\
+1 & 1
+\end{bmatrix},
+\qquad
+BA =
+\begin{bmatrix}
+1 & 1 \\
+1 & 2
+\end{bmatrix}.
+$$
+
+因此 `AB \ne BA`。
+</WorkedExample>
+
+這種例子不是小插曲，而是提醒我們：矩陣恆等式裡，因子的次序絕不能亂改。
+
+<TheoremCard title="反對稱矩陣的可交換測試">
+若 `A` 和 `B` 都是反對稱方陣，則
+
+$$
+AB \text{ 對稱 } \iff AB = BA.
+$$
+</TheoremCard>
+
+<ProofSketch title="為甚麼成立">
+因為 `A^T = -A` 與 `B^T = -B`，
+
+$$
+(AB)^T = B^T A^T = (-B)(-A) = BA.
+$$
+
+所以 `AB` 對稱，等價於 `(AB)^T = AB`，而這又等價於 `BA = AB`。
+</ProofSketch>
+
+<WorkedExample title="對稱矩陣與反對稱矩陣的組合">
+設
+
+$$
+S =
+\begin{bmatrix}
+2 & 0 \\
+0 & 3
+\end{bmatrix},
+\qquad
+K =
+\begin{bmatrix}
+0 & 1 \\
+-1 & 0
+\end{bmatrix}.
+$$
+
+這裡 `S` 是對稱矩陣，`K` 是反對稱矩陣，但二者不交換：
+
+$$
+SK =
+\begin{bmatrix}
+0 & 2 \\
+-3 & 0
+\end{bmatrix},
+\qquad
+KS =
+\begin{bmatrix}
+0 & 3 \\
+-2 & 0
+\end{bmatrix}.
+$$
+
+若某一對同類矩陣真的可交換，則它們的乘積便會繼續保留清楚的對稱型態。
+</WorkedExample>
+
+## 特殊矩陣
+
+特殊矩陣的定義方式很直接：看哪些位置必須是 `0`。這使它們比一般矩陣更
+容易閱讀與計算。
+
+<Definition title="對角矩陣、上三角矩陣、下三角矩陣">
+- 對角矩陣的所有非對角元素都是 `0`
+- 上三角矩陣的主對角線下方全部是 `0`
+- 下三角矩陣的主對角線上方全部是 `0`
+</Definition>
+
+<WorkedExample title="三角矩陣的轉置">
+若
+
+$$
+U =
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 4 & 5 \\
+0 & 0 & 6
+\end{bmatrix},
+$$
+
+則
+
+$$
+U^T =
+\begin{bmatrix}
+1 & 0 & 0 \\
+2 & 4 & 0 \\
+3 & 5 & 6
+\end{bmatrix}.
+$$
+
+所以上三角矩陣的轉置是下三角矩陣。
+</WorkedExample>
+
+幾個結構性事實要一起記：
+
+- 兩個對角矩陣相乘仍是對角矩陣
+- 兩個上三角矩陣相乘仍是上三角矩陣
+- 兩個下三角矩陣相乘仍是下三角矩陣
+
+對角矩陣尤其簡單：
+
+$$
+\operatorname{diag}(d_1,\dots,d_n)\,
+\operatorname{diag}(e_1,\dots,e_n)
+=
+\operatorname{diag}(d_1 e_1,\dots,d_n e_n).
+$$
+
+這也是為甚麼同大小的對角矩陣彼此都可交換。
+
+<CommonMistake title="不要把零結構和矩陣本身混淆">
+上三角矩陣可以在對角線上方有很多非零元素，但對角線下方一定是 `0`。對角
+矩陣更嚴格：所有非對角元素都必須是 `0`。
+</CommonMistake>
+
+## 分塊矩陣
+
+大矩陣若分成幾個小塊，往往更容易閱讀。分塊矩陣仍然只是矩陣，只是多了一
+層組織方式。
+
+<Definition title="分塊矩陣">
+若把矩陣用橫線和直線分隔成若干子矩陣，這些子矩陣就叫做 block（分塊）。
+</Definition>
+
+例如
+
+$$
+A =
+\begin{bmatrix}
+1 & 0 & 2 & 1 \\
+3 & 4 & 0 & -1 \\
+5 & 2 & 6 & 3 \\
+7 & 8 & 1 & 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+A_{11} & A_{12} \\
+A_{21} & A_{22}
+\end{bmatrix},
+$$
+
+其中
+
+$$
+A_{11} =
+\begin{bmatrix}
+1 & 0 \\
+3 & 4
+\end{bmatrix},
+\quad
+A_{12} =
+\begin{bmatrix}
+2 & 1 \\
+0 & -1
+\end{bmatrix},
+\quad
+A_{21} =
+\begin{bmatrix}
+5 & 2 \\
+7 & 8
+\end{bmatrix},
+\quad
+A_{22} =
+\begin{bmatrix}
+6 & 3 \\
+1 & 0
+\end{bmatrix}.
+$$
+
+在分塊層面，轉置只會把塊的位置互換，並且把每一塊本身也轉置：
+
+$$
+A^T =
+\begin{bmatrix}
+A_{11}^T & A_{21}^T \\
+A_{12}^T & A_{22}^T
+\end{bmatrix}.
+$$
+
+這其實就是同一條「行與列對調」原理，只是從元素層面推廣到分塊層面。
+
+<WorkedExample title="分塊乘法">
+若分塊大小相容，設
+
+$$
+M =
+\begin{bmatrix}
+A & B \\
+C & D
+\end{bmatrix},
+\qquad
+N =
+\begin{bmatrix}
+E & F \\
+G & H
+\end{bmatrix}.
+$$
+
+則
+
+$$
+MN =
+\begin{bmatrix}
+AE + BG & AF + BH \\
+CE + DG & CF + DH
+\end{bmatrix}.
+$$
+
+這個公式看起來就像 `2 \times 2` 的普通矩陣乘法，只不過每一個位置現在
+都是一個分塊。
+</WorkedExample>
+
+真正要留意的是相容性：只有當內部塊的尺寸對得上，分塊乘法才有意義。若分
+塊方式不配合，這種寫法就不能直接使用。
+
+## 常見錯誤
+
+<CommonMistake title="轉置乘積時，次序一定反轉">
+正確公式是 `(AB)^T = B^T A^T`，不是 `A^T B^T`。
+</CommonMistake>
+
+<CommonMistake title="對稱不等於可交換">
+對稱是單一矩陣的性質，可交換是兩個矩陣之間的性質。兩者不是同一件事。
+</CommonMistake>
+
+<CommonMistake title="實數反對稱矩陣的對角線一定是零">
+若 `A^T = -A`，每個對角元素都要等於自己的相反數，所以只能是 `0`。
+</CommonMistake>
+
+<CommonMistake title="分塊大小一定要相容">
+只有在塊與塊的尺寸能匹配時，才能把分塊矩陣當成一個整體來乘。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="若 `A` 是 `3 × 2` 矩陣，`A^T` 的大小是甚麼？">
+把行與列對調。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`A^T` 是 `2 × 3` 矩陣。
+</RevealSolution>
+
+<QuickCheck prompt="實數反對稱矩陣的對角元素必須是甚麼？">
+把 `A^T = -A` 套在對角位置。
+</QuickCheck>
+
+<RevealSolution title="答案">
+全部都必須是 `0`。
+</RevealSolution>
+
+<QuickCheck prompt="哪一條公式正確：`(AB)^T = A^T B^T` 還是 `(AB)^T = B^T A^T`？">
+記住轉置會反轉乘法次序。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`(AB)^T = B^T A^T`。
+</RevealSolution>
+
+<QuickCheck prompt="若 `S` 是對稱矩陣，`K` 是反對稱矩陣，則 `S^T` 和 `K^T` 各是多少？">
+直接讀定義。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`S^T = S`，`K^T = -K`。
+</RevealSolution>
+
+## 引導練習
+
+<QuickCheck prompt="把 `A = [[2,1],[4,3]]` 分解成對稱部分與反對稱部分。">
+使用 `S = 1/2 (A + A^T)` 及 `K = 1/2 (A - A^T)`。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+先算
+
+$$
+A^T =
+\begin{bmatrix}
+2 & 4 \\
+1 & 3
+\end{bmatrix}.
+$$
+
+再算
+
+$$
+S = \frac{1}{2}
+\begin{bmatrix}
+4 & 5 \\
+5 & 6
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & \frac{5}{2} \\
+\frac{5}{2} & 3
+\end{bmatrix},
+$$
+
+以及
+
+$$
+K = \frac{1}{2}
+\begin{bmatrix}
+0 & -3 \\
+3 & 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & -\frac{3}{2} \\
+\frac{3}{2} & 0
+\end{bmatrix}.
+$$
+
+檢查 `S` 是否對稱、`K` 是否反對稱，最後確認 `A = S + K`。
+</RevealSolution>
+
+<QuickCheck prompt="若 `A` 與 `B` 都是對稱矩陣，而 `AB = BA`，為甚麼 `AB` 也是對稱矩陣？">
+使用轉置公式與可交換假設。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+因為
+
+$$
+(AB)^T = B^T A^T = BA = AB.
+$$
+
+所以 `AB` 等於自己的轉置，正是對稱矩陣的定義。
+</RevealSolution>
+
+## 相關筆記
+
+本節建立在
+[3.1 矩陣乘法與單位矩陣](/zh-hk/notes/math1030/matrix-algebra/matrix-multiplication-and-identity)
+之上。若想看解集結構，下一節可讀
+[4.1 齊次方程組與零空間](/zh-hk/notes/math1030/solution-structure/homogeneous-systems-and-null-space)。
