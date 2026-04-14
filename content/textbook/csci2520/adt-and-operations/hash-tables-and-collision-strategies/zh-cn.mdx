@@ -229,3 +229,224 @@ Chaining 把 collision 放到 bucket 旁边的 linked list；open addressing
 则把 collision 变成 table 内部的 probing。前者较依赖 pointer structure，
 后者较依赖 occupancy 与 probe sequence 设计。
 </RevealSolution>
+
+## 更仔细地读 implementation
+
+Lecture 其实不是先讲 bucket，而是先讲 ADT contract。这个顺序很重要，因为
+hash table 首先是 dictionary，然后才是一种存放方式。
+
+<Definition title="Dictionary semantics of the table">
+Hash table 是一种 dictionary。对于每个 key，表应该支持 insert、lookup 和
+delete。如果同一个 key 再次插入，新的 value 应该覆盖旧的 association，而不
+是复制出第二份 key。
+</Definition>
+
+这个 overwrite 行为很容易被忽略，但它正是为什么这个 ADT 是 dictionary，
+而不是 multiset。
+
+<WorkedExample title="Enter 会更新已存在的 key">
+假设 table 已经存着：
+
+- `"cat" -> 3`
+- `"dog" -> 8`
+
+如果再执行 `Enter(table, "cat", 9)`，结果不应该出现两份 `"cat"`。正确结果是
+`"cat"` 对应的 association 被更新，之后 `Lookup(table, "cat")` 会返回 `9`。
+
+Lecture 里说 `Enter` inserts a particular value for a specified key，并且如果
+原本已经存在旧 value，就会 overwrite 旧 value，说的就是这件事。
+</WorkedExample>
+
+## 为什么 hashing 之后还要比较 key
+
+Hashing 只是缩小搜索范围，不是完成搜索。这个直觉在 collision 章节里最重要。
+
+如果两个 key 落到同一个 bucket，table 仍然要比较存进去的 key 和查询 key 是
+不是完全一样。否则就分不清是真命中，还是只是碰巧落在同一个 bucket。
+
+<WorkedExample title="一个 bucket 可以放多个完全不同的 key">
+假设 bucket `3` 里有：
+
+`("cow", value1) -> ("cat", value2) -> ("cod", value3)`
+
+如果 lookup 的 key 是 `"cat"`，hash 只会告诉你应该去 bucket `3`。接下来仍然
+要逐个比较 `"cow"`、`"cat"`，才能确认返回正确 value。
+</WorkedExample>
+
+## Chaining 的好处是把 collision structure 分开存
+
+最直观的 collision strategy 就是 chaining。每个 bucket 指向一条 linked list，
+所有 hash 到同一个 bucket 的 entry 都挂在同一条 chain 上。
+
+这种做法有一个实际好处：chain 里面的顺序不是 dictionary contract 的一部分。
+你可以把新 entry 放前、放后，或者按别的稳定规则插入，只要 lookup 和
+overwrite 行为正确，ADT 就仍然成立。
+
+<CommonMistake title="bucket 里的顺序不是 dictionary contract">
+有些同学会以为 chain 内部顺序本身就是语义的一部分。其实不是。正确的 contract
+是找到正确的 key-value pair；chain 的次序只是 implementation detail。
+</CommonMistake>
+
+<WorkedExample title="Chaining 下的插入和 lookup">
+假设 table 只有五个 bucket，而 hash rule 会让 `"ape"` 和 `"ant"` 撞进同一个
+bucket。
+
+1. 先插入 `"ape"`。
+2. 再插入 `"ant"`。
+3. 再插入 `"apple"`。
+4. lookup `"ant"`。
+
+如果 `"ape"` 和 `"ant"` 碰撞，它们会出现在同一条 bucket chain。lookup `"ant"`
+时，程序先 hash 一次，再只扫描该 chain，逐个比较 key，直到找到精确对应的
+entry。
+</WorkedExample>
+
+## Open addressing：不用链，而是继续 probing
+
+Tutorial 和 lecture 都讲了 open addressing。这种方法不是在 bucket 下面挂
+linked list，而是当首选 slot 已经被占用时，继续在 table 里寻找下一个位置。
+
+Collision 的成本因此转移到 probing rule 本身。
+
+- linear probing 会检查下一格，再下一格，一路向前；
+- quadratic probing 会跳平方步；
+- double hashing 会用第二个 hash function 产生 step size。
+
+<Definition title="Linear probing">
+Linear probing 是指如果首选 slot 已经满了，就按顺序检查下一格，然后再下一格，
+直到找到空位或者找到相同 key。
+</Definition>
+
+Lecture 明确指出，linear probing 很容易形成一长串连续 filled buckets。这个现象
+叫 primary clustering。cluster 越长，之后的 probe 就越容易撞到同一段区域，
+性能也就越差。
+
+Quadratic probing 就是针对这个问题。
+
+<Definition title="Quadratic probing">
+Quadratic probing 会用平方形式的 offset，例如 `i^2`。因为步长增长较快，它
+可以减少 primary clustering。
+</Definition>
+
+<WorkedExample title="Quadratic probing 的具体插入">
+Tutorial 给了一个 size `10` 的例子，hash rule 是 `h(k) = k % 10`。插入
+`{89, 18, 49, 58, 69}` 时，用 quadratic probing 会这样落位：
+
+- `89` 去 bucket `9`
+- `18` 去 bucket `8`
+- `49` hash 到 `9`，撞了之后 probe 到 `0`
+- `58` hash 到 `8`，先撞 `9`，再 probe 到 `2`
+- `69` hash 到 `9`，先撞 `0`，再 probe 到 `3`
+
+所以最后 occupied buckets 是：
+
+- `0 -> 49`
+- `2 -> 58`
+- `3 -> 69`
+- `8 -> 18`
+- `9 -> 89`
+
+这个例子很有用，因为它清楚显示：最终位置不只是看 raw hash value，还要看
+probe rule。
+</WorkedExample>
+
+<CommonMistake title="quadratic probing 不是完全没有限制">
+Quadratic probing 可以减轻 primary clustering，但不代表 table 可以无限填满。
+Lecture 的 load-factor 例子显示，当 `Nbuckets = 7`、`F(i) = i^2` 时，probe
+sequence 会重复，而且有些 slot 甚至完全不会被 probe 到。
+</CommonMistake>
+
+<WorkedExample title="为什么 probe sequence 会漏格">
+Lecture 的例子是 `Nbuckets = 7`、`h0 = 0`、`F(i) = i^2`，probe sequence 会是
+
+`0, 1, 4, 2, 2, 4, 1`
+
+重点不是算术技巧，而是要看见：probe rule 本身可能不会覆盖所有 bucket。
+所以 open addressing 一定要有 load-factor discipline，而不是盲目相信一个公式
+就能处理所有 collision。
+</WorkedExample>
+
+<Definition title="Double hashing">
+Double hashing 会用第二个 hash function 来决定 probe step。一般来说，它比
+linear probing 和 quadratic probing 更好分散 probe path，但代价是你要有两个
+hash function。
+</Definition>
+
+这就是 CSCI2520 很典型的 tradeoff：更精细的规则可以换来更好的分布，但实现
+也会更复杂。
+
+## Rehashing 是改 table 形状的代价
+
+当 bucket 数量改变时，hash function 也要跟着改。原本已经存进去的 entry，就要
+用新 rule 再插一次。这个过程叫 rehashing。
+
+Lecture 也提醒过，rehashing 对大多数应用来说并不常见，但概念上一定要理解，
+因为它说明 hash table 不是一个固定不变的 memory picture。
+
+<WorkedExample title="为什么 resize 之后一定要 rehash">
+如果 table 从一个 bucket 数改到另一个 bucket 数，旧的 bucket index 未必对新
+table 仍然有效。所有 entry 都要重新 hash 一次，算出新位置，再放回去。
+
+所以 resize 不是 copy bytes 那么简单，而是改变了 bucket index 的意义。
+</WorkedExample>
+
+## 怎么选 chaining、linear probing、quadratic probing、double hashing
+
+Source material 并不是叫你选一个“永远最好”的方案，而是要你看懂 tradeoff。
+
+- Chaining 容易理解，而且用 linked list 就能处理 collision。
+- Linear probing 简单，但容易出现 primary clustering。
+- Quadratic probing 可以减少 clustering，但对 load factor 更敏感。
+- Double hashing 通常 probe 分散得更好，但因为要第二个 hash function，所以更
+ 贵、更复杂。
+
+如果你在读 C code，最安全的问题不是“理论上哪个最快？”而是“这个 table 的
+size、load 和 update pattern，究竟更适合哪种策略？”
+
+## 读 code 时先问这几件事
+
+1. key 是什么，value 是什么？
+2. `Enter` 遇到已经存在的 key 时会怎样？
+3. lookup 之后有没有再比较 stored key？
+4. collision 是由 chain 处理，还是由 probe sequence 处理，或者两者都有？
+5. table 太满时会发生什么？
+
+如果这五个答案清楚，hash table implementation 就会容易得多。
+
+## 更多练习
+
+<QuickCheck prompt="为什么 `Enter` 在 key 已经存在时要覆盖旧 value？">
+请用 dictionary contract 来答，而不要只讲 code 行为。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+因为 ADT 是按 key 定义唯一 association 的。相同 key 再插入时，应该更新原本的
+association，否则 table 就不再有清楚的 key-to-value 对应。
+</RevealSolution>
+
+<QuickCheck prompt="Quadratic probing 相比 linear probing，Lecture 说减少了什么？">
+请直接说出 clustering 的名称。
+</QuickCheck>
+
+<RevealSolution title="答案">
+Quadratic probing 减少 primary clustering，也就是 linear probing 容易形成的长串
+连续 filled buckets。
+</RevealSolution>
+
+<QuickCheck prompt="用 tutorial 的 size 10 例子，`49` 和 `69` 用 quadratic probing 最后落在哪？">
+请用 probe sequence 来答。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+`49` 先 hash 到 `9`，撞了之后去 `0`。`69` 先 hash 到 `9`，再撞 `0`，最后去
+`3`。
+</RevealSolution>
+
+<QuickCheck prompt="为什么 lecture 说 double hashing 一般较好，但又不算免费？">
+请说明它额外需要什么。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+Double hashing 通常可以让 probe path 分散得更好，但代价是你要再提供一个
+second hash function。多出来的 hash 公式就是它的成本。
+</RevealSolution>
