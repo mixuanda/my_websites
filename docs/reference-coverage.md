@@ -14,6 +14,7 @@ As of April 14, 2026, the latest local source-processing checkpoints are:
 - `0526751` `Deepen augmented matrix notes`
 - `95f3ad7` `Deepen invertible matrix notes`
 - `f2c5513` `Deepen notes across math and CSCI units`
+- `0d5aaa5` `Deepen MATH1030 notes and assessment flow`
 
 Every push attempt for those checkpoints failed with the same external error:
 `ssh: Could not resolve hostname github.com: Temporary failure in name
@@ -34,6 +35,13 @@ The latest merged content passes also:
   Notes routes;
 - keeps the grouped `reference/MATH1025/**` backlog active after the initial
   foundations baseline.
+- deepened `math1030` unit `3.1 Matrix multiplication and identity matrices`
+  in EN, zh-HK, and zh-CN with stronger column-reading and composition flow;
+- deepened `math1030` unit `4.1 Homogeneous systems and null space` in EN,
+  zh-HK, and zh-CN with stronger free-variable, subspace, and nullity
+  structure;
+- expanded the `math1030` problem inventory and added a first Preview / Submit
+  attempt-tracking assessment foundation beneath the public Notes shell.
 
 The next resume point is a split backlog:
 
@@ -45,6 +53,8 @@ The next resume point is a split backlog:
    `reference/MATH1030/1030gi-n07-01.pdf` to `1030gi-n07-03.pdf`;
 4. return to the remaining Math1090 chapter-4 and proof-structure backlog only
    after the next Math1030 family lands cleanly.
+5. continue the thin public MATH1030 units `3.2` and `6.4` before treating the
+   chapter-6 and matrix-algebra backbone as stable.
 
 The tables below use these status labels:
 

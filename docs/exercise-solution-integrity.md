@@ -14,6 +14,7 @@ As of April 14, 2026, the latest local integrity-related checkpoints are:
 - `0526751` `Deepen augmented matrix notes`
 - `95f3ad7` `Deepen invertible matrix notes`
 - `f2c5513` `Deepen notes across math and CSCI units`
+- `0d5aaa5` `Deepen MATH1030 notes and assessment flow`
 
 The current local workspace also includes an uncommitted three-language rewrite
 of `math1030` units `2.4` and `6.2`, plus `math1090` unit `3.4`. Those
@@ -28,6 +29,32 @@ The next resume point is to keep exercise integrity coupled to the next
 assessment pass, especially the WeBWorK-inspired preview / submit workflow and
 the larger MATH1030 problem inventory now sitting under the thinner public
 units.
+
+### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
+
+This checkpoint kept the same note-shell visual language, but made the
+assessment flow behave more like a lightweight WeBWorK model.
+
+- Checkpoint name: attempt tracking + richer MATH1030 inventory
+- What was inspected:
+  the current problem bank, submit and preview routes, per-problem progress
+  needs, and the thin public MATH1030 units most likely to receive the next
+  checkpoint expansions
+- What was changed:
+  Preview and Submit are now structurally separate; problem progress tracks
+  attempts used, attempts remaining, best score, and solved state; section
+  summary now surfaces weak tags; and the `math1030` problem inventory is much
+  larger than before
+- What was verified:
+  lint and build passed after adding the new problem-progress route and richer
+  checkpoint summary flow
+- Remaining issues:
+  the same model still needs to spread to more units and courses, and the
+  targeted MATH1030 notes are deeper but still not yet at the desired reading
+  depth floor
+- Exact next target:
+  keep expanding thin MATH1030 public units while attaching the same Preview /
+  Submit and progress model to the next unit family
 
 ## Current findings
 

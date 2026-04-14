@@ -3,9 +3,11 @@ title: "3.2 Transpose and special matrices"
 description: "Use transpose, symmetry, non-commuting products, and block structure to read matrix shape and algebraic behavior."
 ---
 
-Once matrix multiplication is available, structure starts to matter. Some
-matrices are easier to understand because their entries line up in a special
-pattern. The transpose is one of the main tools for detecting that structure.
+Once matrix multiplication is available, the shape of a matrix starts to matter
+as much as its numerical entries. The transpose is the first tool in this
+section that lets us read a matrix by its geometry: rows become columns, and
+the main diagonal becomes the axis of reflection. That simple idea explains
+symmetry, skew-symmetry, commuting patterns, and block structure.
 
 ## Transpose swaps rows and columns
 
@@ -18,10 +20,13 @@ Equivalently,
 $$
 (A^T)_{ji} = a_{ij}.
 $$
+
+So every row of `A` becomes a column of `A^T`, and every column of `A`
+becomes a row.
 </Definition>
 
-So every row of `A` becomes a column of `A^T`, and every column of `A` becomes
-a row.
+This is not a new operation that changes the numbers in a mysterious way. It is
+purely a re-reading of the same entries in the opposite orientation.
 
 <WorkedExample title="Compute a transpose">
 Let
@@ -49,27 +54,131 @@ The `2 \times 3` matrix becomes a `3 \times 2` matrix because rows and columns
 swap roles.
 </WorkedExample>
 
-Two basic identities are worth learning early:
+Two basic identities should be treated as part of the definition-level
+vocabulary of the subject:
 
 $$
 (A^T)^T = A,
 \qquad
-(A + B)^T = A^T + B^T.
+(A + B)^T = A^T + B^T,
+\qquad
+(cA)^T = cA^T.
 $$
 
-When products are defined, transpose also reverses the order:
+When products are defined, transpose reverses the order:
 
 $$
 (AB)^T = B^T A^T.
 $$
 
-The reversal is not cosmetic. It reflects the fact that the row-column pairing
-has been turned around.
+That reversal is not a cosmetic detail. It reflects the fact that matrix
+multiplication is built from row-column pairings, and transposition switches the
+role of rows and columns.
+
+<WorkedExample title="Transpose identities in action">
+Take
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+0 & 1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+3 & 0 \\
+4 & 5
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+A + B =
+\begin{bmatrix}
+4 & 2 \\
+4 & 6
+\end{bmatrix},
+\qquad
+(A + B)^T =
+\begin{bmatrix}
+4 & 4 \\
+2 & 6
+\end{bmatrix}.
+$$
+
+On the other hand,
+
+$$
+A^T + B^T =
+\begin{bmatrix}
+1 & 0 \\
+2 & 1
+\end{bmatrix}
++
+\begin{bmatrix}
+3 & 4 \\
+0 & 5
+\end{bmatrix}
+=
+\begin{bmatrix}
+4 & 4 \\
+2 & 6
+\end{bmatrix}.
+$$
+
+The product rule is similar, but the order matters:
+
+$$
+AB =
+\begin{bmatrix}
+11 & 10 \\
+4 & 5
+\end{bmatrix},
+\qquad
+(AB)^T =
+\begin{bmatrix}
+11 & 4 \\
+10 & 5
+\end{bmatrix},
+$$
+
+while
+
+$$
+B^T A^T =
+\begin{bmatrix}
+3 & 4 \\
+0 & 5
+\end{bmatrix}
+\begin{bmatrix}
+1 & 0 \\
+2 & 1
+\end{bmatrix}
+=
+\begin{bmatrix}
+11 & 4 \\
+10 & 5
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+<TheoremCard title="Basic properties of transpose">
+For compatible matrices:
+
+1. `(A^T)^T = A`
+2. `(A + B)^T = A^T + B^T`
+3. `(cA)^T = cA^T`
+4. `(AC)^T = C^T A^T`
+</TheoremCard>
+
+The proof of the product rule is worth reading carefully once. To compare
+`(AC)^T` and `C^T A^T`, you compare their corresponding entries. The transpose
+does not change the numbers involved in the summation; it only changes the
+direction in which those numbers are arranged.
 
 ## Symmetric and skew-symmetric matrices
-
-Some square matrices agree with their transpose; others differ from it in a
-very controlled way.
 
 <Definition title="Symmetric and skew-symmetric matrices">
 Let `A` be a square matrix.
@@ -78,66 +187,185 @@ Let `A` be a square matrix.
 - `A` is skew-symmetric if `A^T = -A`.
 </Definition>
 
-For a symmetric matrix, reflecting across the main diagonal changes nothing. For
-a skew-symmetric matrix, reflection changes every entry by a minus sign.
+Symmetry says the matrix matches its reflection across the main diagonal.
+Skew-symmetry says the reflected matrix is the negative of the original.
 
-<WorkedExample title="Classify two matrices">
+<WorkedExample title="Recognize symmetry">
 The matrix
 
 $$
 \begin{bmatrix}
-2 & -1 \\
--1 & 3
+2 & -1 & 4 \\
+-1 & 3 & 0 \\
+4 & 0 & 5
 \end{bmatrix}
 $$
 
-is symmetric because transposing it leaves the entries unchanged.
+is symmetric, because the `(i,j)` and `(j,i)` entries agree.
 
 The matrix
 
 $$
 \begin{bmatrix}
-0 & 4 \\
--4 & 0
+0 & 2 & -1 \\
+-2 & 0 & 4 \\
+1 & -4 & 0
 \end{bmatrix}
 $$
 
-is skew-symmetric because
+is skew-symmetric, because the transpose changes every off-diagonal entry's
+sign and leaves the diagonal as `0`.
+</WorkedExample>
+
+Three quick consequences are especially useful:
+
+- every diagonal entry of a real skew-symmetric matrix is `0`
+- the zero matrix is both symmetric and skew-symmetric
+- the identity matrix is symmetric
+
+The third item is a special case of the fact that diagonal matrices are fixed
+by transpose.
+
+<TheoremCard title="Useful transpose-based identities">
+For every square matrix `A`,
+
+$$
+(A + A^T)^T = A + A^T,
+\qquad
+(A - A^T)^T = -(A - A^T).
+$$
+
+So `A + A^T` is symmetric and `A - A^T` is skew-symmetric.
+</TheoremCard>
+
+<ProofSketch title="Why the identities hold">
+Apply the basic transpose rules:
+
+$$
+(A + A^T)^T = A^T + (A^T)^T = A^T + A = A + A^T.
+$$
+
+For the difference,
+
+$$
+(A - A^T)^T = A^T - (A^T)^T = A^T - A = -(A - A^T).
+$$
+</ProofSketch>
+
+The previous result is the starting point for the most important structural
+fact in this section.
+
+<TheoremCard title="Decomposition into symmetric and skew-symmetric parts">
+Every square matrix `A` can be written uniquely as
+
+$$
+A = S + K,
+$$
+
+where `S` is symmetric and `K` is skew-symmetric. In fact,
+
+$$
+S = \frac{1}{2}(A + A^T),
+\qquad
+K = \frac{1}{2}(A - A^T).
+$$
+</TheoremCard>
+
+The proof is a good model for how the course turns rough intuition into a
+formal argument.
+
+<WorkedExample title="Decompose a matrix">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 0 & 1 \\
+2 & -1 & 3 \\
+4 & 2 & 0
+\end{bmatrix}.
+$$
+
+Then
 
 $$
 A^T =
 \begin{bmatrix}
-0 & -4 \\
-4 & 0
-\end{bmatrix}
-= -A.
+1 & 2 & 4 \\
+0 & -1 & 2 \\
+1 & 3 & 0
+\end{bmatrix}.
 $$
+
+So
+
+$$
+\frac{1}{2}(A + A^T)
+=
+\begin{bmatrix}
+1 & 1 & \frac{5}{2} \\
+1 & -1 & \frac{5}{2} \\
+\frac{5}{2} & \frac{5}{2} & 0
+\end{bmatrix},
+$$
+
+and
+
+$$
+\frac{1}{2}(A - A^T)
+=
+\begin{bmatrix}
+0 & -1 & -\frac{3}{2} \\
+1 & 0 & \frac{1}{2} \\
+\frac{3}{2} & -\frac{1}{2} & 0
+\end{bmatrix}.
+$$
+
+The first matrix is symmetric, the second is skew-symmetric, and their sum is
+`A`.
 </WorkedExample>
 
-Notice that every diagonal entry of a skew-symmetric real matrix must be `0`,
-because the diagonal entry must equal its own negative.
+There is also a very useful symmetric pattern that appears whenever a product is
+paired with its transpose.
 
-## Order matters: commuting versus non-commuting matrices
+<TheoremCard title="Products with a transpose are symmetric">
+If the product is defined, then both `A^T A` and `A A^T` are symmetric.
+</TheoremCard>
 
-The course notes emphasize that matrix multiplication is not commutative in
-general. Still, some pairs of matrices do commute.
+<ProofSketch title="One-line proof">
+For `A^T A`,
+
+$$
+(A^T A)^T = A^T (A^T)^T = A^T A.
+$$
+
+The same calculation works for `A A^T`.
+</ProofSketch>
+
+This identity is one of the main reasons transpose shows up again in later
+topics such as orthogonality, projections, and least-squares style arguments.
+
+## Commuting and non-commuting matrices
 
 <Definition title="Commuting matrices">
-Two square matrices `A` and `B` of the same size commute if
+Two matrices `A` and `B` of the same size commute if
 
 $$
 AB = BA.
 $$
 </Definition>
 
-Commuting matrices are special. They are not the default.
+For addition, commutativity is automatic. For multiplication, it is exceptional.
+This is one of the most important differences between scalar algebra and matrix
+algebra.
 
-<TheoremCard title="Matrix multiplication is not commutative in general">
-There exist square matrices `A` and `B` such that `AB \ne BA`.
-</TheoremCard>
+The zero matrix and the identity matrix commute with every square matrix of the
+same size. Diagonal matrices of the same size also commute with one another,
+because their products remain diagonal and the diagonal entries multiply in the
+ordinary commutative way.
 
-<WorkedExample title="A concrete non-commuting pair">
-Let
+<WorkedExample title="A non-commuting pair">
+Take
 
 $$
 A =
@@ -172,51 +400,252 @@ $$
 So `AB \ne BA`.
 </WorkedExample>
 
-This is why you must preserve order in every matrix identity. Reversing factors
-changes the statement.
+That kind of example is not a curiosity. It is the reason matrix identities must
+always preserve the order of factors.
 
-## Special matrices are easier to read because of their shape
+<TheoremCard title="A useful skew-symmetric commuting test">
+If `A` and `B` are skew-symmetric square matrices, then
 
-Several standard matrix families are defined by the locations of zero entries.
-These shapes matter because they simplify later computations.
+$$
+AB \text{ is symmetric } \iff AB = BA.
+$$
+</TheoremCard>
 
-- A diagonal matrix has nonzero entries allowed only on the main diagonal.
-- An upper-triangular matrix has `0` below the main diagonal.
-- A lower-triangular matrix has `0` above the main diagonal.
+<ProofSketch title="Why this is true">
+Because `A^T = -A` and `B^T = -B`,
 
-For such matrices, multiplication and invertibility often become easier to
-analyze because the zero pattern survives useful operations.
+$$
+(AB)^T = B^T A^T = (-B)(-A) = BA.
+$$
 
-## Block matrices group information on purpose
+So `AB` is symmetric exactly when `(AB)^T = AB`, and that happens exactly when
+`BA = AB`.
+</ProofSketch>
 
-Sometimes a large matrix is best read as smaller submatrices pasted together.
-That is called block notation.
+<WorkedExample title="Symmetric times skew-symmetric, with commutation">
+Let
+
+$$
+S =
+\begin{bmatrix}
+2 & 0 \\
+0 & 3
+\end{bmatrix},
+\qquad
+K =
+\begin{bmatrix}
+0 & 1 \\
+-1 & 0
+\end{bmatrix}.
+$$
+
+Here `S` is symmetric and `K` is skew-symmetric, but they do not commute:
+
+$$
+SK =
+\begin{bmatrix}
+0 & 2 \\
+-3 & 0
+\end{bmatrix},
+\qquad
+KS =
+\begin{bmatrix}
+0 & 3 \\
+-2 & 0
+\end{bmatrix}.
+$$
+
+If two matrices of this kind do commute, then their product is skew-symmetric,
+because
+
+$$
+(SK)^T = K^T S^T = (-K)S = -KS = -SK.
+$$
+</WorkedExample>
+
+## Special matrices
+
+Special matrices are defined by where the zero entries must be.
+That makes them much easier to read and often much easier to multiply.
+
+<Definition title="Diagonal, upper-triangular, and lower-triangular matrices">
+- A diagonal matrix has all off-diagonal entries equal to `0`.
+- An upper-triangular matrix has all entries below the main diagonal equal to `0`.
+- A lower-triangular matrix has all entries above the main diagonal equal to `0`.
+</Definition>
+
+<WorkedExample title="Transpose of a triangular matrix">
+If
+
+$$
+U =
+\begin{bmatrix}
+1 & 2 & 3 \\
+0 & 4 & 5 \\
+0 & 0 & 6
+\end{bmatrix},
+$$
+
+then
+
+$$
+U^T =
+\begin{bmatrix}
+1 & 0 & 0 \\
+2 & 4 & 0 \\
+3 & 5 & 6
+\end{bmatrix}.
+$$
+
+So the transpose of an upper-triangular matrix is lower-triangular.
+</WorkedExample>
+
+Two structural facts are worth keeping in mind:
+
+- the product of two diagonal matrices is diagonal
+- the product of two upper-triangular matrices is upper-triangular
+- the product of two lower-triangular matrices is lower-triangular
+
+For diagonal matrices, the product is especially simple:
+
+$$
+\operatorname{diag}(d_1,\dots,d_n)\,
+\operatorname{diag}(e_1,\dots,e_n)
+=
+\operatorname{diag}(d_1 e_1,\dots,d_n e_n).
+$$
+
+That is why diagonal matrices of the same size commute with each other.
+
+<CommonMistake title="Do not confuse the matrix with its zero pattern">
+An upper-triangular matrix may have many nonzero entries above the diagonal, but
+never below it. A diagonal matrix is more restrictive: every off-diagonal entry
+must be zero.
+</CommonMistake>
+
+## Block matrices
+
+Large matrices are often easier to read if we group entries into blocks. A block
+matrix is still just a matrix; the blocks are a way of organizing it.
+
+<Definition title="Block matrix">
+If a matrix is partitioned by drawing horizontal and vertical cuts, the resulting
+submatrices are called blocks.
+</Definition>
 
 For example,
 
 $$
+A =
+\begin{bmatrix}
+1 & 0 & 2 & 1 \\
+3 & 4 & 0 & -1 \\
+5 & 2 & 6 & 3 \\
+7 & 8 & 1 & 0
+\end{bmatrix}
+=
 \begin{bmatrix}
 A_{11} & A_{12} \\
 A_{21} & A_{22}
-\end{bmatrix}
+\end{bmatrix},
 $$
 
-is a block matrix made from four smaller blocks. Block notation is not a new
-kind of matrix. It is a disciplined way to see structure inside a large one.
+where
 
-When the sizes match correctly, block addition and block multiplication follow
-the same formal patterns as ordinary matrix operations. The advantage is that
-you can reason about large matrices one chunk at a time.
+$$
+A_{11} =
+\begin{bmatrix}
+1 & 0 \\
+3 & 4
+\end{bmatrix},
+\quad
+A_{12} =
+\begin{bmatrix}
+2 & 1 \\
+0 & -1
+\end{bmatrix},
+\quad
+A_{21} =
+\begin{bmatrix}
+5 & 2 \\
+7 & 8
+\end{bmatrix},
+\quad
+A_{22} =
+\begin{bmatrix}
+6 & 3 \\
+1 & 0
+\end{bmatrix}.
+$$
+
+At the block level, transpose simply swaps the blocks and transposes each block:
+
+$$
+A^T =
+\begin{bmatrix}
+A_{11}^T & A_{21}^T \\
+A_{12}^T & A_{22}^T
+\end{bmatrix}.
+$$
+
+This is the same row/column swap principle as before, just applied to grouped
+pieces instead of individual entries.
+
+<WorkedExample title="Block multiplication">
+Suppose the partition sizes are compatible, and write
+
+$$
+M =
+\begin{bmatrix}
+A & B \\
+C & D
+\end{bmatrix},
+\qquad
+N =
+\begin{bmatrix}
+E & F \\
+G & H
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+MN =
+\begin{bmatrix}
+AE + BG & AF + BH \\
+CE + DG & CF + DH
+\end{bmatrix}.
+$$
+
+The formula looks exactly like ordinary `2 \times 2` matrix multiplication, but
+each entry is now a block product.
+</WorkedExample>
+
+The key condition is compatibility: the inner block sizes must match so that
+each block product is meaningful. If the partitions do not align, block
+multiplication is not even defined.
 
 ## Common mistakes
 
-<CommonMistake title="Do not transpose a product in the same order">
-The correct identity is `(AB)^T = B^T A^T`, not `A^T B^T`. The order reverses.
+<CommonMistake title="Transpose reverses products">
+The correct identity is `(AB)^T = B^T A^T`, not `A^T B^T`.
 </CommonMistake>
 
-<CommonMistake title="Symmetric does not mean every pair of matrices commutes">
-Symmetry is a property of one matrix. Commuting is a property of a pair of
-matrices. They answer different questions.
+<CommonMistake title="Symmetric does not mean commuting">
+Symmetric is a property of one matrix. Commuting is a property of two matrices.
+They are different statements.
+</CommonMistake>
+
+<CommonMistake title="A skew-symmetric real matrix has a zero diagonal">
+If `A^T = -A`, then each diagonal entry must equal its own negative, so every
+diagonal entry is `0`.
+</CommonMistake>
+
+<CommonMistake title="Block sizes must line up">
+You may only multiply block matrices when the blocks are partitioned
+compatibly. Treating blocks as letters is only valid when the block products
+actually make sense.
 </CommonMistake>
 
 ## Quick checks
@@ -229,24 +658,92 @@ Swap rows and columns.
 `A^T` is `2 × 3`.
 </RevealSolution>
 
-<QuickCheck prompt="What can you say about the diagonal entries of a real skew-symmetric matrix?">
-Use the equation `A^T = -A` on the diagonal.
+<QuickCheck prompt="What must every diagonal entry of a real skew-symmetric matrix be?">
+Use `A^T = -A` on the diagonal.
 </QuickCheck>
 
 <RevealSolution title="Answer">
 Every diagonal entry must be `0`.
 </RevealSolution>
 
-## Exercise
+<QuickCheck prompt="Which identity is correct: `(AB)^T = A^T B^T` or `(AB)^T = B^T A^T`?">
+Remember that transpose reverses the order of multiplication.
+</QuickCheck>
 
-<QuickCheck prompt="Why is every diagonal matrix equal to its transpose?">
-Answer from the location of its possible nonzero entries.
+<RevealSolution title="Answer">
+`(AB)^T = B^T A^T`.
+</RevealSolution>
+
+<QuickCheck prompt="If `S` is symmetric and `K` is skew-symmetric, what is `S^T` and what is `K^T`?">
+Read the definitions directly.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`S^T = S` and `K^T = -K`.
+</RevealSolution>
+
+## Guided exercises
+
+<QuickCheck prompt="Find the symmetric and skew-symmetric parts of `A = [[2,1],[4,3]]`.">
+Use `S = 1/2 (A + A^T)` and `K = 1/2 (A - A^T)`.
 </QuickCheck>
 
 <RevealSolution title="Guided solution">
-In a diagonal matrix, every off-diagonal entry is already `0`. Transposing
-swaps off-diagonal positions, but `0` stays `0`, and each diagonal entry stays
-in the same place. So the whole matrix is unchanged by transposition.
+First compute
+
+$$
+A^T =
+\begin{bmatrix}
+2 & 4 \\
+1 & 3
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+S = \frac{1}{2}
+\begin{bmatrix}
+4 & 5 \\
+5 & 6
+\end{bmatrix}
+=
+\begin{bmatrix}
+2 & \frac{5}{2} \\
+\frac{5}{2} & 3
+\end{bmatrix},
+$$
+
+and
+
+$$
+K = \frac{1}{2}
+\begin{bmatrix}
+0 & -3 \\
+3 & 0
+\end{bmatrix}
+=
+\begin{bmatrix}
+0 & -\frac{3}{2} \\
+\frac{3}{2} & 0
+\end{bmatrix}.
+$$
+
+Check that `S` is symmetric, `K` is skew-symmetric, and `A = S + K`.
+</RevealSolution>
+
+<QuickCheck prompt="Let `A` and `B` be symmetric matrices. If `AB = BA`, why is `AB` symmetric?">
+Use the transpose identity and the commuting assumption.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Because
+
+$$
+(AB)^T = B^T A^T = BA = AB.
+$$
+
+So `AB` equals its transpose, which is exactly the definition of symmetric.
 </RevealSolution>
 
 ## Related notes

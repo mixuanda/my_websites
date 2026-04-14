@@ -147,6 +147,7 @@ README、導覽、breadcrumbs、CTA，都應以 **Notes**、**course notes**、
 - per-problem attempts / best score / solved status
 - section checkpoint progress
 - checkpoint-level summary 與 weak-tag remediation signals
+- 問題級 progress API 與 checkpoint summary API
 
 目前的 fill-in-the-blank 已開始走向輕量 WeBWorK 風格：
 
@@ -154,6 +155,8 @@ README、導覽、breadcrumbs、CTA，都應以 **Notes**、**course notes**、
 - problem-specific syntax guidance
 - configurable equivalence / tolerance policy
 - per-problem reveal policy，而不是單靠靜態 “show answer”
+
+目前這一層主要先覆蓋 `math1030`。後續會逐步擴到更多公開單元與課程。
 
 這個層次會受到會員權限控制：
 

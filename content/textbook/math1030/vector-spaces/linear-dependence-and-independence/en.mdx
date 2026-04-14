@@ -1,6 +1,6 @@
 ---
 title: "6.4 Linear dependence and independence"
-description: "Tell when a vector list has hidden redundancy and when every vector adds something new."
+description: "Detect redundancy in a list of vectors, test independence by direct relations and row reduction, and read the geometric meaning in low dimensions."
 ---
 
 ## Why this matters
@@ -189,6 +189,302 @@ Look for a direct scalar-multiple relation first.
 <RevealSolution title="Guided solution">
 `(2,4,6)=2(1,2,3)`, so
 `2(1,2,3)-(2,4,6)+0(1,0,1)=0` is nontrivial. The set is dependent.
+</RevealSolution>
+
+## Dependence means redundancy
+
+<TheoremCard title="Equivalent redundancy test">
+A list of vectors is linearly dependent if and only if one vector in the list
+can be written as a linear combination of the others.
+</TheoremCard>
+
+<CollapsibleProof title="Why dependence and redundancy are the same">
+If the list is dependent, then there is a nontrivial relation
+
+$$
+\alpha_1u_1+\cdots+\alpha_nu_n=0.
+$$
+
+Choose an index `k` with `\alpha_k \ne 0`. Then
+
+$$
+u_k = -\frac{\alpha_1}{\alpha_k}u_1 - \cdots - \frac{\alpha_{k-1}}{\alpha_k}u_{k-1}
+- \frac{\alpha_{k+1}}{\alpha_k}u_{k+1} - \cdots - \frac{\alpha_n}{\alpha_k}u_n.
+$$
+
+So one vector is redundant. The converse is immediate: if one vector is already
+a combination of the others, move it to the left-hand side to obtain a
+nontrivial relation.
+</CollapsibleProof>
+
+<WorkedExample title="A redundant vector can be removed without changing the span">
+Let
+
+$$
+u_1 = \begin{bmatrix}1\\2\\1\end{bmatrix},\qquad
+u_2 = \begin{bmatrix}0\\1\\1\end{bmatrix},\qquad
+u_3 = \begin{bmatrix}1\\3\\2\end{bmatrix}.
+$$
+
+Here `u_3 = u_1 + u_2`. So every vector of the form
+
+$$
+a u_1 + b u_2 + c u_3
+$$
+
+can be rewritten as
+
+$$
+(a+c)u_1 + (b+c)u_2.
+$$
+
+Therefore
+
+$$
+\operatorname{Span}\{u_1,u_2,u_3\} = \operatorname{Span}\{u_1,u_2\}.
+$$
+
+The third vector changes the description, but not the span itself.
+</WorkedExample>
+
+<TheoremCard title="A redundant vector can be removed without changing the span">
+If one vector in a list is a linear combination of the others, then deleting it
+does not change the span of the list.
+</TheoremCard>
+
+<CollapsibleProof title="Why the span stays the same">
+One inclusion is automatic: the shorter list is a subset of the longer list,
+so its span is contained in the larger span.
+
+For the other inclusion, replace the redundant vector by the combination of the
+remaining vectors and collect like terms. Every linear combination of the longer
+list becomes a linear combination of the shorter one.
+</CollapsibleProof>
+
+<CommonMistake title="Dependent does not mean the span gets smaller">
+A dependent list can still span a whole space. Dependence only says that at
+least one vector is unnecessary for generating the span.
+</CommonMistake>
+
+## Column-matrix criterion and null-space viewpoint
+
+Put the vectors into a matrix
+
+$$
+A = [u_1\ u_2\ \cdots\ u_n].
+$$
+
+Then the relation
+
+$$
+\alpha_1u_1+\cdots+\alpha_nu_n=0
+$$
+
+is exactly the homogeneous system `A\alpha=0`, where
+`\alpha=(\alpha_1,\ldots,\alpha_n)^T`.
+
+<TheoremCard title="Matrix test for dependence">
+The vectors `u_1,\dots,u_n` are linearly independent if and only if the
+homogeneous system `A\alpha=0` has only the trivial solution. Equivalently,
+the null space `N(A)` contains only `0`.
+</TheoremCard>
+
+<CollapsibleProof title="Why the homogeneous system controls dependence">
+If `A\alpha=0` has a nonzero solution, then the corresponding coefficients give
+a nontrivial linear relation among the columns of `A`, so the vectors are
+dependent.
+
+Conversely, if the vectors are dependent, then some nontrivial coefficients
+solve `A\alpha=0`. So the null space contains a nonzero vector.
+</CollapsibleProof>
+
+<WorkedExample title="Read a dependence relation from row reduction">
+Take
+
+$$
+A=
+\begin{bmatrix}
+1 & 0 & 1\\
+2 & 1 & 3\\
+1 & 1 & 2
+\end{bmatrix},
+$$
+
+whose columns are `u_1=(1,2,1)^T`, `u_2=(0,1,1)^T`, and `u_3=(1,3,2)^T`.
+Row reduction gives
+
+$$
+\begin{bmatrix}
+1 & 0 & 1\\
+2 & 1 & 3\\
+1 & 1 & 2
+\end{bmatrix}
+\xrightarrow{R_2-2R_1,\ R_3-R_1}
+\begin{bmatrix}
+1 & 0 & 1\\
+0 & 1 & 1\\
+0 & 1 & 1
+\end{bmatrix}
+\xrightarrow{R_3-R_2}
+\begin{bmatrix}
+1 & 0 & 1\\
+0 & 1 & 1\\
+0 & 0 & 0
+\end{bmatrix}.
+$$
+
+The third column is not a pivot column, so `\alpha_3` is free in `A\alpha=0`.
+Set `\alpha_3=1`. Then the reduced system gives `\alpha_1=-1` and
+`\alpha_2=-1`, so
+
+$$
+-u_1-u_2+u_3=0,
+$$
+
+or equivalently `u_3=u_1+u_2`.
+</WorkedExample>
+
+<TheoremCard title="Pivot criterion">
+After row reducing `A`, the list `u_1,\dots,u_n` is linearly independent if and
+only if every column is a pivot column. If one column is not a pivot column,
+then there is a free variable in `A\alpha=0`, so a nontrivial relation exists.
+</TheoremCard>
+
+<CommonMistake title="Row reduction is allowed because it preserves the homogeneous solution set">
+When you row reduce `A` for independence testing, you are not changing the
+columns themselves into new vectors you want to study. You are simplifying the
+equation `A\alpha=0`. Row-equivalent matrices have the same homogeneous
+solutions, so they have the same dependence relations.
+</CommonMistake>
+
+## Fast low-dimensional tests
+
+<TheoremCard title="Two nonzero vectors are independent exactly when neither is a scalar multiple of the other">
+For a pair `{u,v}` with both vectors nonzero, the set is linearly independent
+if and only if one vector is not a scalar multiple of the other.
+</TheoremCard>
+
+<CollapsibleProof title="Why two vectors reduce to a scalar-multiple test">
+If `au+bv=0` is a nontrivial relation, then at least one coefficient is
+nonzero. If `b\ne 0`, solve for
+
+$$
+v = -\frac{a}{b}u.
+$$
+
+If `a\ne 0`, solve for
+
+$$
+u = -\frac{b}{a}v.
+$$
+
+So dependence of two vectors means they lie on the same line through the origin.
+</CollapsibleProof>
+
+<WorkedExample title="Two vectors in `R^2`">
+Let
+
+$$
+u = \begin{bmatrix}1\\2\end{bmatrix},
+\qquad
+v = \begin{bmatrix}2\\4\end{bmatrix}.
+$$
+
+Since `v=2u`, the pair is dependent. Geometrically, both vectors point in the
+same direction.
+</WorkedExample>
+
+<WorkedExample title="Three vectors in `R^2` must be dependent">
+If `u_1,u_2,u_3 \in R^2`, then the matrix `A=[u_1\ u_2\ u_3]` has size `2\times 3`.
+After row reduction it can have at most two pivots, so one column is not a pivot
+column. Therefore `A\alpha=0` has a nontrivial solution and the three vectors
+are linearly dependent.
+</WorkedExample>
+
+<WorkedExample title="Three vectors in `R^3` that lie in one plane">
+If three vectors in `R^3` all lie in the plane `z=0`, then they all belong to
+the span of `e_1` and `e_2`. But that plane is already generated by two
+independent directions, so a third vector cannot add a new independent
+direction. The list is dependent.
+</WorkedExample>
+
+<TheoremCard title="Too many vectors in `R^m` force dependence">
+Any list of more than `m` vectors in `R^m` is linearly dependent.
+</TheoremCard>
+
+<CollapsibleProof title="Why more than `m` vectors cannot be independent in `R^m`">
+If `A` is an `m\times n` matrix with `n>m`, then row reduction can produce at
+most `m` pivot columns. So at least one column is not a pivot column. That
+means `A\alpha=0` has a free variable, hence a nontrivial solution. So the
+columns are dependent.
+</CollapsibleProof>
+
+## Quick checks
+
+<QuickCheck prompt="Is any list containing the zero vector automatically dependent?">
+Test the definition directly.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. Put coefficient `1` on the zero vector and `0` on every other vector. That
+already gives a nontrivial relation.
+</RevealSolution>
+
+<QuickCheck prompt="If `u_3 = u_1 + u_2`, does `\{u_1,u_2,u_3\}` remain independent?">
+Write the relation in the standard form `\alpha_1u_1+\alpha_2u_2+\alpha_3u_3=0`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. The relation `u_1 + u_2 - u_3 = 0` is nontrivial, so the set is dependent.
+</RevealSolution>
+
+<QuickCheck prompt="If a `4\times 4` matrix has four pivot columns, what does that say about its columns?">
+Use the matrix test.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The columns are linearly independent, because `A\alpha=0` has only the trivial
+solution.
+</RevealSolution>
+
+## Guided exercises
+
+<QuickCheck prompt="Decide whether `\{(1,1,0),(0,1,1),(1,2,1)\}` is independent, and if not, write one dependence relation.">
+Set the vectors as columns and look for a free variable after row reduction.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The third vector equals the sum of the first two:
+
+$$
+\begin{bmatrix}1\\1\\0\end{bmatrix}
++
+\begin{bmatrix}0\\1\\1\end{bmatrix}
+=
+\begin{bmatrix}1\\2\\1\end{bmatrix}.
+$$
+
+So `u_1 + u_2 - u_3 = 0`, and the set is dependent.
+</RevealSolution>
+
+<QuickCheck prompt="Explain why any subset of a linearly independent set is linearly independent.">
+Think about what would happen if the subset had its own relation.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+If a subset had a nontrivial relation, that same relation would also be a
+relation among the larger set after giving coefficient `0` to the vectors that
+were not used. That would make the larger set dependent. So a subset of an
+independent set must also be independent.
+</RevealSolution>
+
+<QuickCheck prompt="If one vector in a list is redundant, what should you try next?">
+Use the redundancy viewpoint from this page.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Try deleting the redundant vector. The span will stay the same, and the smaller
+list is easier to analyze for a basis later.
 </RevealSolution>
 
 ## Read this first
