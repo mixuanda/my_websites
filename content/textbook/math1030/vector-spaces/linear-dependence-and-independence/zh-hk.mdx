@@ -1,6 +1,6 @@
 ---
 title: "6.4 線性相依與線性獨立"
-description: "判斷一組向量有沒有多餘成分，以及每個向量是否都帶來新資訊。"
+description: "辨認向量列中的冗餘，透過定義與行化簡測試線性獨立，並讀懂低維幾何意義。"
 ---
 
 ## 為甚麼這一節重要
@@ -157,6 +157,288 @@ $$
 <RevealSolution title="引導解答">
 `(2,4,6)=2(1,2,3)`，所以
 `2(1,2,3)-(2,4,6)+0(1,0,1)=0` 是非平凡關係，故此集合線性相依。
+</RevealSolution>
+
+## 相依就是冗餘
+
+<TheoremCard title="等價的冗餘判準">
+一組向量線性相依，當且僅當其中一個向量可以寫成其餘向量的線性組
+合。
+</TheoremCard>
+
+<CollapsibleProof title="為甚麼相依與冗餘是一回事">
+若一組向量線性相依，則存在一條非平凡關係式
+
+$$
+\alpha_1u_1+\cdots+\alpha_nu_n=0.
+$$
+
+挑一個 `\alpha_k \ne 0` 的位置，便可解出
+
+$$
+u_k = -\frac{\alpha_1}{\alpha_k}u_1 - \cdots - \frac{\alpha_{k-1}}{\alpha_k}u_{k-1}
+- \frac{\alpha_{k+1}}{\alpha_k}u_{k+1} - \cdots - \frac{\alpha_n}{\alpha_k}u_n.
+$$
+
+所以其中一個向量是多餘的。反過來，若某個向量已可由其餘向量線性組
+合出來，移到等號左邊就得到一條非平凡關係式。
+</CollapsibleProof>
+
+<WorkedExample title="刪去冗餘向量，不會改變張成">
+令
+
+$$
+u_1 = \begin{bmatrix}1\\2\\1\end{bmatrix},\qquad
+u_2 = \begin{bmatrix}0\\1\\1\end{bmatrix},\qquad
+u_3 = \begin{bmatrix}1\\3\\2\end{bmatrix}.
+$$
+
+這裡 `u_3 = u_1 + u_2`。因此任何
+
+$$
+a u_1 + b u_2 + c u_3
+$$
+
+都可改寫成
+
+$$
+(a+c)u_1 + (b+c)u_2.
+$$
+
+所以
+
+$$
+\operatorname{Span}\{u_1,u_2,u_3\} = \operatorname{Span}\{u_1,u_2\}.
+$$
+
+第三個向量改變了描述方式，但沒有改變張成本身。
+</WorkedExample>
+
+<TheoremCard title="冗餘向量可以刪去，而不改變張成">
+若一組向量之中有一個向量是其餘向量的線性組合，刪去它之後，張成
+不會改變。
+</TheoremCard>
+
+<CollapsibleProof title="為甚麼張成保持不變">
+較短那一組是較長那一組的子集，所以它的張成一定包含在較大張成之
+內。反過來，冗餘向量可以用其他向量代替，整理同類項後，長一點的
+線性組合也會變成短一點那組的線性組合。
+</CollapsibleProof>
+
+<CommonMistake title="相依不代表張成變小">
+一組相依向量仍然可以張成整個空間。相依只表示至少有一個向量其實
+不需要。
+</CommonMistake>
+
+## 欄矩陣判準與零空間觀點
+
+把向量排成矩陣
+
+$$
+A = [u_1\ u_2\ \cdots\ u_n].
+$$
+
+則關係式
+
+$$
+\alpha_1u_1+\cdots+\alpha_nu_n=0
+$$
+
+正正就是齊次系統 `A\alpha=0`，其中
+`\alpha=(\alpha_1,\ldots,\alpha_n)^T`。
+
+<TheoremCard title="矩陣判據">
+`u_1,\dots,u_n` 線性獨立，當且僅當齊次系統 `A\alpha=0` 只有平凡解。
+等價地，`N(A)` 只包含 `0`。
+</TheoremCard>
+
+<CollapsibleProof title="為甚麼齊次系統決定依賴性">
+若 `A\alpha=0` 有一個非零解，該解的係數就構成一條非平凡線性關係
+式，所以這組向量相依。
+
+反過來，若向量相依，非平凡係數自然會解出 `A\alpha=0`。所以零空間
+中有非零向量。
+</CollapsibleProof>
+
+<WorkedExample title="從行化簡讀出一條關係式">
+考慮
+
+$$
+A=
+\begin{bmatrix}
+1 & 0 & 1\\
+2 & 1 & 3\\
+1 & 1 & 2
+\end{bmatrix},
+$$
+
+其三欄分別是 `u_1=(1,2,1)^T`、`u_2=(0,1,1)^T`、`u_3=(1,3,2)^T`。
+行化簡得
+
+$$
+\begin{bmatrix}
+1 & 0 & 1\\
+2 & 1 & 3\\
+1 & 1 & 2
+\end{bmatrix}
+\xrightarrow{R_2-2R_1,\ R_3-R_1}
+\begin{bmatrix}
+1 & 0 & 1\\
+0 & 1 & 1\\
+0 & 1 & 1
+\end{bmatrix}
+\xrightarrow{R_3-R_2}
+\begin{bmatrix}
+1 & 0 & 1\\
+0 & 1 & 1\\
+0 & 0 & 0
+\end{bmatrix}.
+$$
+
+第三欄不是主元欄，所以 `\alpha_3` 是自由變數。取 `\alpha_3=1`，
+便有 `\alpha_1=-1`、`\alpha_2=-1`，因此
+
+$$
+-u_1-u_2+u_3=0,
+$$
+
+也就是 `u_3=u_1+u_2`。
+</WorkedExample>
+
+<TheoremCard title="主元判據">
+把 `A` 行化簡之後，若每一欄都有主元，則 `u_1,\dots,u_n` 線性獨立。
+若有一欄不是主元欄，就會出現自由變數，因此存在非平凡關係式。
+</TheoremCard>
+
+<CommonMistake title="行化簡是為了看齊次系統，不是要改變原來的向量">
+做相依性測試時，行化簡 `A` 不是把原本的向量換成另一批想研究的新
+向量，而是在簡化方程 `A\alpha=0`。行等價矩陣有相同的齊次解集，
+所以它們有相同的依賴關係。
+</CommonMistake>
+
+## 低維快速判斷
+
+<TheoremCard title="兩個非零向量獨立，當且僅當它們不是彼此的純量倍數">
+對一組 `{u,v}`，若兩個向量都非零，則它們線性獨立，當且僅當其中一
+個不是另一個的純量倍數。
+</TheoremCard>
+
+<CollapsibleProof title="兩個向量為何只需看倍數關係">
+若 `au+bv=0` 是一條非平凡關係式，那麼 `a`、`b` 之中至少有一個
+不為 `0`。若 `b\ne 0`，可解出
+
+$$
+v = -\frac{a}{b}u.
+$$
+
+若 `a\ne 0`，可解出
+
+$$
+u = -\frac{b}{a}v.
+$$
+
+所以兩個向量相依，等價於它們同在過原點的一條直線上。
+</CollapsibleProof>
+
+<WorkedExample title="`R^2` 裡的兩個向量">
+令
+
+$$
+u = \begin{bmatrix}1\\2\end{bmatrix},
+\qquad
+v = \begin{bmatrix}2\\4\end{bmatrix}.
+$$
+
+因為 `v=2u`，所以這對向量相依。幾何上，它們指向同一個方向。
+</WorkedExample>
+
+<WorkedExample title="`R^2` 裡三個向量一定相依">
+若 `u_1,u_2,u_3 \in R^2`，則矩陣 `A=[u_1\ u_2\ u_3]` 是一個 `2\times 3`
+矩陣。行化簡後最多只有兩個主元，所以一定有一欄不是主元欄。這就
+表示 `A\alpha=0` 有自由變數，因此這三個向量相依。
+</WorkedExample>
+
+<WorkedExample title="`R^3` 裡位於同一平面的三個向量">
+若 `R^3` 中三個向量都落在平面 `z=0`，它們全都屬於 `e_1` 和 `e_2`
+的張成。但那個平面本身只需要兩個獨立方向來描述，所以第三個向量
+不可能再提供新的獨立方向。這組向量相依。
+</WorkedExample>
+
+<TheoremCard title="在 `R^m` 裡，太多向量一定相依">
+`R^m` 中任何多於 `m` 個向量的列表都一定線性相依。
+</TheoremCard>
+
+<CollapsibleProof title="為甚麼超過 `m` 個向量不可能全部獨立">
+若 `A` 是一個 `m\times n` 矩陣，而且 `n>m`，那麼行化簡後最多只
+能有 `m` 個主元欄，所以至少有一欄不是主元欄。這表示 `A\alpha=0`
+有自由變數，因此有非零解，也就是有非平凡關係式。
+</CollapsibleProof>
+
+## 快速檢查
+
+<QuickCheck prompt="任何包含零向量的向量列，都一定相依嗎？">
+直接從定義出發。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。把零向量的係數取為 `1`，其餘係數取為 `0`，就已經構成一條非平
+凡關係式。
+</RevealSolution>
+
+<QuickCheck prompt="若 `u_3 = u_1 + u_2`，`\\{u_1,u_2,u_3\\}` 還可能獨立嗎？">
+把它改寫成 `\\alpha_1u_1+\\alpha_2u_2+\\alpha_3u_3=0`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不可能。`u_1 + u_2 - u_3 = 0` 是一條非平凡關係式，所以這組向量相
+依。
+</RevealSolution>
+
+<QuickCheck prompt="若一個 `4\\times 4` 矩陣有四個主元列，這代表它的列向量有甚麼性質？">
+用矩陣判據回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+列向量線性獨立，因為 `A\\alpha=0` 只有平凡解。
+</RevealSolution>
+
+## 引導練習
+
+<QuickCheck prompt="判斷 `\\{(1,1,0),(0,1,1),(1,2,1)\\}` 是否獨立，若不獨立，寫出一條關係式。">
+把向量排成列，再做行化簡，看看有沒有自由變數。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+第三個向量等於前兩個向量之和：
+
+$$
+\\begin{bmatrix}1\\1\\0\\end{bmatrix}
++
+\\begin{bmatrix}0\\1\\1\\end{bmatrix}
+=
+\\begin{bmatrix}1\\2\\1\\end{bmatrix}.
+$$
+
+所以 `u_1+u_2-u_3=0`，這組向量相依。
+</RevealSolution>
+
+<QuickCheck prompt="解釋為甚麼線性獨立集合的任何子集也線性獨立。">
+想想若子集自己有關係式，會對整個集合造成甚麼影響。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+如果子集有一條非平凡關係式，把沒有用到的向量係數補成 `0`，同一條
+關係式也會變成整個大集合的關係式。那樣大集合就會相依，與原設前
+提矛盾。所以獨立集合的子集也獨立。
+</RevealSolution>
+
+<QuickCheck prompt="若一組向量裡有一個向量是多餘的，下一步通常應該做甚麼？">
+用本頁的冗餘觀點來想。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+試著刪去那個多餘向量。張成不會改變，而之後要找基底時，較短的列
+表通常更容易處理。
 </RevealSolution>
 
 ## 預備連結
