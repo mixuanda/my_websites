@@ -1,0 +1,306 @@
+---
+title: "9.4 Cauchy-Schwarz 与三角不等式"
+description: "把 Cauchy-Schwarz 与三角不等式当作内积空间中控制长度、夹角与等号条件的两条核心估计。"
+---
+
+内积给你长度与夹角的公式。接下来的问题是：这些公式究竟受到什么限制？
+
+答案主要由两条不等式统治：
+
+- Cauchy-Schwarz 不等式控制内积的大小，不会超过两个向量长度的乘积；
+- 三角不等式说明，由 `0` 走到 `u+v` 的直路，永远不会比先走 `u` 再走
+  `v` 更长。
+
+它们不是可有可无的技术细节，而是让欧氏几何可以代数化的核心估计。
+
+## Cauchy-Schwarz 不等式
+
+<TheoremCard title="Cauchy-Schwarz 不等式">
+对所有向量 `v,w\in\mathbb{R}^m`，
+
+$$
+|\langle v,w\rangle|\le\|v\|\,\|w\|.
+$$
+
+而且等号成立当且仅当 `v` 与 `w` 线性相关。
+</TheoremCard>
+
+这条不等式表示：内积的绝对值，不可能大过两个向量长度的乘积。正因如
+此，夹角公式
+
+$$
+\cos\theta=\frac{\langle v,w\rangle}{\|v\|\,\|w\|}
+$$
+
+才有意义，因为右边永远落在 `-1` 与 `1` 之间。
+
+<CollapsibleProof title="用二次多项式证明">
+考虑函数
+
+$$
+F(t)=\|tw-v\|^2.
+$$
+
+由于范数平方永远非负，所以对所有实数 `t` 都有 `F(t)\ge0`。把它展
+开得
+
+$$
+F(t)=t^2\langle w,w\rangle-2t\langle v,w\rangle+\langle v,v\rangle.
+$$
+
+这是一个对所有实数都非负的二次多项式，因此其判别式不能为正：
+
+$$
+4\langle v,w\rangle^2-4\|v\|^2\|w\|^2\le0.
+$$
+
+于是
+
+$$
+|\langle v,w\rangle|\le\|v\|\,\|w\|.
+$$
+
+而等号成立，当且仅当 `F(t)` 有实根，也就是存在某个实数 `t` 使
+`tw-v=0`；换句话说，`v` 与 `w` 线性相关。
+</CollapsibleProof>
+
+<WorkedExample title="数值检查 Cauchy-Schwarz">
+令
+
+$$
+v=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix},
+\qquad
+w=
+\begin{bmatrix}
+4\\5\\6
+\end{bmatrix}.
+$$
+
+则
+
+$$
+\langle v,w\rangle=32,
+\qquad
+\|v\|=\sqrt{14},
+\qquad
+\|w\|=\sqrt{77}.
+$$
+
+所以
+
+$$
+|\langle v,w\rangle|=32,
+\qquad
+\|v\|\,\|w\|=\sqrt{14\cdot77}=\sqrt{1078}\approx32.83.
+$$
+
+确实有
+
+$$
+32\le32.83.
+$$
+</WorkedExample>
+
+## 三角不等式
+
+<TheoremCard title="三角不等式">
+对所有向量 `u,v\in\mathbb{R}^m`，
+
+$$
+\|u+v\|\le\|u\|+\|v\|.
+$$
+
+而且等号成立当且仅当 `u` 与 `v` 其中一个是另一个的非负标量倍。
+</TheoremCard>
+
+几何意义很直接：三角形的一边，永远不会比另外两边的总和更长。
+
+<CollapsibleProof title="由 Cauchy-Schwarz 推出三角不等式">
+由
+
+$$
+\|u+v\|^2
+=\langle u+v,u+v\rangle
+=\|u\|^2+2\langle u,v\rangle+\|v\|^2
+$$
+
+及 Cauchy-Schwarz，
+
+$$
+\langle u,v\rangle\le|\langle u,v\rangle|\le\|u\|\,\|v\|,
+$$
+
+可得
+
+$$
+\|u+v\|^2\le\|u\|^2+2\|u\|\,\|v\|+\|v\|^2=(\|u\|+\|v\|)^2.
+$$
+
+两边取平方根便得到
+
+$$
+\|u+v\|\le\|u\|+\|v\|.
+$$
+</CollapsibleProof>
+
+<TheoremCard title="反向三角不等式">
+对所有向量 `u,v\in\mathbb{R}^m`，
+
+$$
+\|u-v\|\ge\bigl|\|u\|-\|v\|\bigr|.
+$$
+
+而等号条件与前面相同。
+</TheoremCard>
+
+这个版本在你需要下界而不是上界时，往往更容易用。
+
+## 等号条件很重要
+
+等号条件不是补充说明，而是告诉你估计何时会变得恰好。
+
+- 在 Cauchy-Schwarz 中，等号表示两个向量沿同一直线，因此其中一个是
+  另一个的标量倍；
+- 在三角不等式中，等号表示两个向量沿同一方向，而且比例非负，所以走
+  `u` 再走 `v` 真的是沿同一条直线前进。
+
+<WorkedExample title="三角不等式取等的情形">
+令
+
+$$
+u=
+\begin{bmatrix}
+2\\0
+\end{bmatrix},
+\qquad
+v=
+\begin{bmatrix}
+3\\0
+\end{bmatrix}.
+$$
+
+则 `v=\frac32u`，所以 `v` 是 `u` 的非负标量倍。于是
+
+$$
+\|u+v\|=\left\|
+\begin{bmatrix}
+5\\0
+\end{bmatrix}
+\right\|=5
+=2+3
+=\|u\|+\|v\|.
+$$
+
+所以等号成立。
+</WorkedExample>
+
+## 常见错误
+
+<CommonMistake title="Cauchy-Schwarz 取等不等于正交">
+正交表示 `\langle v,w\rangle=0`。Cauchy-Schwarz 取等表示
+
+$$
+|\langle v,w\rangle|=\|v\|\,\|w\|,
+$$
+
+它发生在两个向量线性相关时，而不是垂直时。这两种几何情形几乎是相反
+的。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="Cauchy-Schwarz 对 `|\langle v,w\rangle|` 给出什么估计？">
+直接写出不等式。
+</QuickCheck>
+
+<RevealSolution title="答案">
+
+$$
+|\langle v,w\rangle|\le\|v\|\,\|w\|.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="若 `u` 与 `v` 完全同方向，三角不等式可以取等吗？">
+假设其中一个是另一个的非负标量倍。
+</QuickCheck>
+
+<RevealSolution title="答案">
+可以。这正正就是三角不等式的取等情形。
+</RevealSolution>
+
+<QuickCheck prompt="若 `v\perp w`，Cauchy-Schwarz 会化成什么？">
+代入 `\langle v,w\rangle=0`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它会化成 `0\le\|v\|\,\|w\|`，自然成立。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="用 Cauchy-Schwarz 证明 `|\langle (1,2),(3,4)\rangle| \le \|(1,2)\|\,\|(3,4)\|`。">
+把两边数值都算出来。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+左边是
+
+$$
+|1\cdot3+2\cdot4|=11.
+$$
+
+右边是
+
+$$
+\sqrt{1^2+2^2}\sqrt{3^2+4^2}
+=\sqrt5\cdot5=5\sqrt5\approx11.18.
+$$
+
+因此 `11\le5\sqrt5`。
+</RevealSolution>
+
+<QuickCheck prompt="对 `u=(1,0)` 与 `v=(0,1)`，求 `\|u+v\|`，并与 `\|u\|+\|v\|` 比较。">
+这是直角情形。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+
+$$
+u+v=(1,1),
+\qquad
+\|u+v\|=\sqrt2.
+$$
+
+而
+
+$$
+\|u\|+\|v\|=1+1=2.
+$$
+
+所以 `\sqrt2\le2`，而且是不等号严格成立，因为两向量不是非负标量倍。
+</RevealSolution>
+
+<QuickCheck prompt="若 `\|u\|=7`、`\|v\|=3`，利用反向三角不等式求 `\|u-v\|` 的下界。">
+直接代公式。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+
+$$
+\|u-v\|\ge|\|u\|-\|v\||=|7-3|=4.
+$$
+</RevealSolution>
+
+## 相关笔记
+
+请先读
+[9.1 内积、范数与夹角](/zh-cn/notes/math1030/inner-products/inner-products-norms-and-angles)，
+因为本节所有不等式都直接建基于那里的定义。
+
+而
+[9.2 正交集与标准正交基](/zh-cn/notes/math1030/inner-products/orthogonal-sets-and-orthonormal-bases)
+与 [9.3 Gram-Schmidt 正交化](/zh-cn/notes/math1030/inner-products/gram-schmidt-orthogonalization)
+中的坐标公式与投影几何，也都依赖本节的估计。

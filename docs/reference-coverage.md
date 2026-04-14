@@ -53,15 +53,16 @@ The latest merged content passes also:
   through `8.3` in EN, zh-HK, and zh-CN, covering eigenspaces, similarity,
   diagonalization criteria, characteristic polynomials, multiplicities, and a
   first Cayley-Hamilton pass.
+- authored the public `math1030` inner-product / orthogonality chapter family
+  through `9.4` in EN, zh-HK, and zh-CN, covering norms, angles, orthogonal
+  and orthonormal bases, Gram-Schmidt, and the Cauchy-Schwarz / triangle
+  inequalities.
 
 The next resume point is a split backlog:
 
-1. open the inner-product / orthogonality family from
-   `reference/MATH1030/1030gi-n08-01.pdf` together with the parallel
-   master-note chapter;
-2. return to the remaining Math1090 chapter-4 and proof-structure backlog only
+1. return to the remaining Math1090 chapter-4 and proof-structure backlog only
    after the next Math1030 family lands cleanly.
-3. keep the remaining thinner matrix-algebra and solution-structure units in
+2. keep the remaining thinner matrix-algebra and solution-structure units in
    active review before treating the chapter-3 / chapter-4 backbone as stable.
 
 The tables below use these status labels:
@@ -214,7 +215,7 @@ instead of adding a brand-new route.
 ## Current public note boundary
 
 After the current implementation pass, the live MATH1030 notes extend through
-chapter 8 with explicit public pages for:
+chapter 9 with explicit public pages for:
 
 - systems and solution sets
 - matrix basics
@@ -233,6 +234,10 @@ chapter 8 with explicit public pages for:
 - eigenvalues, eigenvectors, and eigenspaces
 - diagonalization and similarity
 - characteristic polynomials, multiplicities, and diagonalization tests
+- inner products, norms, and angles
+- orthogonal sets, orthonormal bases, and coordinate formulas
+- Gram-Schmidt orthogonalization
+- Cauchy-Schwarz and triangle inequalities
 
 MATH1090 remains strongest through logic, sets, natural numbers, induction,
 integers, rationals, and the `sqrt(2)` / incompleteness boundary example. Later
@@ -271,7 +276,7 @@ These files are the main conceptual sources for authored note pages.
 
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| MATH1030 | `reference/MATH1030/MATH1030-Notes.pdf` | master notes | partially incorporated | partial | no | no | Public notes now cover chapters 1-8 through `8.3`. Remaining backlog includes advanced basis appendices, inner products, orthogonality, Gram-Schmidt, and inequalities. |
+| MATH1030 | `reference/MATH1030/MATH1030-Notes.pdf` | master notes | partially incorporated | partial | no | no | Public notes now cover chapters 1-9 through `9.4`. Remaining backlog includes advanced basis appendices, linear transformations, and later optional algebra material. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-01.pdf` | lecture note | incorporated | yes | no | no | Merged into `2.1 Matrix basics`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-02.pdf` | lecture note | incorporated | yes | no | no | Merged into `3.1 Matrix multiplication and identity matrices`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-03.pdf` | lecture note | incorporated | yes | no | no | Merged into `3.2 Transpose and special matrices`. |
@@ -317,7 +322,7 @@ These files are the main conceptual sources for authored note pages.
 | MATH1030 | `reference/MATH1030/1030gi-n07-01.pdf` | lecture note | incorporated | yes | no | no | Direct source for `8.1 Eigenvalues, eigenvectors, and eigenspaces`. |
 | MATH1030 | `reference/MATH1030/1030gi-n07-02.pdf` | lecture note | incorporated | yes | no | no | Direct source for `8.2 Diagonalization and similarity`. |
 | MATH1030 | `reference/MATH1030/1030gi-n07-03.pdf` | lecture note | incorporated | yes | no | no | Direct source for `8.3`, including multiplicities and the first Cayley-Hamilton pass. |
-| MATH1030 | `reference/MATH1030/1030gi-n08-01.pdf` | lecture note | pending | no | no | no | Inner products and norms not yet authored. |
+| MATH1030 | `reference/MATH1030/1030gi-n08-01.pdf` | lecture note | incorporated | yes | no | no | Direct source for the `9.1` to `9.4` inner-product and orthogonality sequence. |
 
 ### Supplementary exercises, tutorials, assignments, and practice sets
 
@@ -399,14 +404,13 @@ course remains mostly backlog rather than finished coverage.
 
 The next source-backed expansions with the clearest payoff are:
 
-1. Next missing source-backed chapter family: the MATH1030 inner-product /
-   orthogonality packet `1030gi-n08-01.pdf`.
-2. Then return to the remaining Math1090 chapter-4 and proof-structure
-   material while keeping the newly added Math1030 chapter-8 notes under QA.
-3. Keep refining thin but already public units, especially MATH1030 `3.1`,
+1. Next missing source-backed priority: return to the remaining Math1090
+   chapter-4 and proof-structure material while keeping the newly added
+   Math1030 chapter-8 and chapter-9 notes under QA.
+2. Keep refining thin but already public units, especially MATH1030 `3.1`,
    `4.1`, and the lighter MATH1090 set / function notes, only when they
    compete directly with a current source-backed chapter family.
-4. Continue the grouped Math1025 slide families only after the active Math1030
+3. Continue the grouped Math1025 slide families only after the active Math1030
    expansion wave stabilizes.
 
 ## Current blockers

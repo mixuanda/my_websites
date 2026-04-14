@@ -1,0 +1,360 @@
+---
+title: "9.1 Inner products, norms, and angles"
+description: "Define the standard inner product and norm on R^m, then connect those formulas to length, angle, and the first structural inequalities."
+---
+
+Up to this point, most of the course has studied linear structure: span,
+independence, basis, eigenvectors, and diagonalization. Inner products add
+geometry. They let you talk about length, perpendicularity, and angle inside
+the same vector spaces.
+
+The key idea is that geometry can be encoded algebraically by one scalar-valued
+operation.
+
+## Why this section matters
+
+When you write
+
+$$
+\langle v,w\rangle=v^Tw,
+$$
+
+you are not introducing a new symbol for decoration. You are introducing the
+operation that later controls orthogonality, projection, orthonormal bases, and
+the inequalities that make Euclidean geometry work in `\mathbb{R}^m`.
+
+<Definition title="Standard inner product">
+For vectors `v,w\in\mathbb{R}^m`, the **inner product** of `v` and `w` is
+
+$$
+\langle v,w\rangle
+=\sum_{i=1}^m v_iw_i
+=v^Tw.
+$$
+
+It is also called the **dot product**.
+</Definition>
+
+<WorkedExample title="Compute inner products directly">
+If
+
+$$
+v=
+\begin{bmatrix}
+1\\2
+\end{bmatrix},
+\qquad
+w=
+\begin{bmatrix}
+3\\4
+\end{bmatrix},
+$$
+
+then
+
+$$
+\langle v,w\rangle=1\cdot3+2\cdot4=11.
+$$
+
+If
+
+$$
+u=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix},
+\qquad
+z=
+\begin{bmatrix}
+4\\5\\6
+\end{bmatrix},
+$$
+
+then
+
+$$
+\langle u,z\rangle=1\cdot4+2\cdot5+3\cdot6=32.
+$$
+</WorkedExample>
+
+## Basic inner-product properties
+
+<TheoremCard title="Linearity, symmetry, and positivity">
+For vectors `u,v,w\in\mathbb{R}^m` and scalars `\alpha,\beta\in\mathbb{R}`,
+the standard inner product satisfies:
+
+1.
+
+$$
+\langle v+w,u\rangle=\langle v,u\rangle+\langle w,u\rangle;
+$$
+
+2.
+
+$$
+\langle \alpha v,w\rangle=\alpha\langle v,w\rangle;
+$$
+
+3.
+
+$$
+\langle v,w\rangle=\langle w,v\rangle;
+$$
+
+4.
+
+$$
+\langle v,v\rangle\ge0,
+$$
+
+and equality holds if and only if `v=0`.
+</TheoremCard>
+
+The first two properties say the inner product is linear. The third says it is
+symmetric. The fourth says the inner product measures genuine size rather than
+an arbitrary signed quantity.
+
+<CollapsibleProof title="Why positivity is the key structural axiom">
+By definition,
+
+$$
+\langle v,v\rangle=v_1^2+v_2^2+\cdots+v_m^2.
+$$
+
+A sum of squares cannot be negative. It equals `0` only when every square is
+`0`, which means every coordinate of `v` is `0`.
+</CollapsibleProof>
+
+## Norm and unit vectors
+
+<Definition title="Norm">
+For `v\in\mathbb{R}^m`, the **norm** of `v` is
+
+$$
+\|v\|=\sqrt{\langle v,v\rangle}.
+$$
+
+So the norm is the length induced by the inner product.
+</Definition>
+
+<TheoremCard title="Basic properties of the norm">
+For every `v\in\mathbb{R}^m` and every scalar `\alpha\in\mathbb{R}`:
+
+1.
+
+$$
+\|v\|\ge0,
+$$
+
+and `\|v\|=0` if and only if `v=0`;
+
+2.
+
+$$
+\|\alpha v\|=|\alpha|\,\|v\|.
+$$
+</TheoremCard>
+
+<Definition title="Unit vector">
+A vector `v` is a **unit vector** if
+
+$$
+\|v\|=1.
+$$
+
+If `v\neq0`, then
+
+$$
+\frac{v}{\|v\|}
+$$
+
+is the normalization of `v` to a unit vector.
+</Definition>
+
+<WorkedExample title="Compute a norm and normalize">
+Let
+
+$$
+v=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+\|v\|=\sqrt{1^2+2^2+3^2}=\sqrt{14}.
+$$
+
+So the corresponding unit vector is
+
+$$
+\frac{1}{\sqrt{14}}
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+## Inner product and norm determine each other
+
+The inner product determines the norm immediately through
+`\|v\|^2=\langle v,v\rangle`. The reverse relationship is also important.
+
+<TheoremCard title="Conversion formulas">
+For vectors `u,v\in\mathbb{R}^m`:
+
+1.
+
+$$
+\|u\pm v\|^2=\|u\|^2+\|v\|^2\pm2\langle u,v\rangle;
+$$
+
+2. the polarization identity is
+
+$$
+\langle u,v\rangle=\frac12\bigl(\|u+v\|^2-\|u\|^2-\|v\|^2\bigr);
+$$
+
+3. the parallelogram identity is
+
+$$
+\|u+v\|^2+\|u-v\|^2=2\|u\|^2+2\|v\|^2.
+$$
+</TheoremCard>
+
+These formulas explain why inner-product geometry is so rigid: once you know
+how length behaves, the inner product can be recovered from it.
+
+## Angles between vectors
+
+In `\mathbb{R}^2` and `\mathbb{R}^3`, the inner product can be rewritten in the
+familiar geometric form
+
+$$
+\langle x,y\rangle=\|x\|\,\|y\|\cos\theta,
+$$
+
+where `\theta` is the angle between the nonzero vectors `x` and `y`.
+
+So
+
+$$
+\theta=\arccos\!\left(\frac{\langle x,y\rangle}{\|x\|\,\|y\|}\right).
+$$
+
+In particular, `x` and `y` are perpendicular exactly when
+
+$$
+\langle x,y\rangle=0.
+$$
+
+This observation becomes the definition of orthogonality in arbitrary
+`\mathbb{R}^m`.
+
+## Common mistake
+
+<CommonMistake title="The inner product is a number, not a vector">
+Students sometimes see `v^Tw` and think the result is another vector because it
+comes from multiplying vectors. It is not. The inner product always produces a
+single scalar. That is why it can be used to measure angle and length.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="What is `\langle (1,2),(3,4)\rangle`?">
+Multiply matching coordinates and add.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`1\cdot3+2\cdot4=11`.
+</RevealSolution>
+
+<QuickCheck prompt="If `\|v\|=0`, what must v be?">
+Use the positivity theorem for the norm.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`v=0`. A vector has norm `0` exactly when it is the zero vector.
+</RevealSolution>
+
+<QuickCheck prompt="If `v\neq0`, why is `v/\|v\|` a unit vector?">
+Apply the scalar rule for norms.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+
+$$
+\left\|\frac{v}{\|v\|}\right\|
+=\frac{1}{\|v\|}\|v\|
+=1.
+$$
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Compute the norm of `\begin{bmatrix}3\\4\end{bmatrix}`.">
+Use `\|v\|=\sqrt{\langle v,v\rangle}`.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+
+$$
+\left\|
+\begin{bmatrix}
+3\\4
+\end{bmatrix}
+\right\|
+=\sqrt{3^2+4^2}
+=5.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Normalize `\begin{bmatrix}2\\-2\\1\end{bmatrix}` to a unit vector.">
+First compute its norm.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The norm is
+
+$$
+\sqrt{2^2+(-2)^2+1^2}=\sqrt9=3.
+$$
+
+So the normalized vector is
+
+$$
+\frac13
+\begin{bmatrix}
+2\\-2\\1
+\end{bmatrix}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Suppose nonzero vectors x and y satisfy `\langle x,y\rangle=0`. What can you say about their angle in `\mathbb{R}^2` or `\mathbb{R}^3`?">
+Use the cosine formula.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Since
+
+$$
+\langle x,y\rangle=\|x\|\,\|y\|\cos\theta
+$$
+
+and both norms are nonzero, we get `\cos\theta=0`. Hence `\theta=90^\circ`.
+</RevealSolution>
+
+## Related notes
+
+Continue with
+[9.2 Orthogonal sets and orthonormal bases](/en/notes/math1030/inner-products/orthogonal-sets-and-orthonormal-bases),
+where inner products are used to build useful bases and coordinate formulas.
+
+Later inequalities in
+[9.4 Cauchy-Schwarz and triangle inequalities](/en/notes/math1030/inner-products/cauchy-schwarz-and-triangle-inequalities)
+depend directly on the definitions introduced here.
+
+This chapter also continues the geometric thread opened in
+[6.5 Basis and dimension](/en/notes/math1030/vector-spaces/basis-and-dimension).

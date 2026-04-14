@@ -1,0 +1,358 @@
+---
+title: "9.1 內積、範數與夾角"
+description: "定義 R^m 上的標準內積與範數，再把這些公式連到長度、夾角與最基本的不等式結構。"
+---
+
+到目前為止，課程大部分都在處理線性結構：張成、線性無關、基底、特徵
+向量、對角化。內積把幾何帶回來。它讓你可以在同一個向量空間裡談長
+度、垂直與夾角。
+
+關鍵在於：這些幾何概念都可以由一個純量值運算編碼出來。
+
+## 為甚麼這一節重要
+
+當你寫下
+
+$$
+\langle v,w\rangle=v^Tw,
+$$
+
+你並不是引入一個新的符號作裝飾，而是在引入之後會控制正交性、投影、
+標準正交基與基本不等式的那個運算。
+
+<Definition title="標準內積">
+對向量 `v,w\in\mathbb{R}^m`，它們的 **內積** 定義為
+
+$$
+\langle v,w\rangle
+=\sum_{i=1}^m v_iw_i
+=v^Tw.
+$$
+
+它亦稱為 **點積**。
+</Definition>
+
+<WorkedExample title="直接計算內積">
+若
+
+$$
+v=
+\begin{bmatrix}
+1\\2
+\end{bmatrix},
+\qquad
+w=
+\begin{bmatrix}
+3\\4
+\end{bmatrix},
+$$
+
+則
+
+$$
+\langle v,w\rangle=1\cdot3+2\cdot4=11.
+$$
+
+若
+
+$$
+u=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix},
+\qquad
+z=
+\begin{bmatrix}
+4\\5\\6
+\end{bmatrix},
+$$
+
+則
+
+$$
+\langle u,z\rangle=1\cdot4+2\cdot5+3\cdot6=32.
+$$
+</WorkedExample>
+
+## 內積的基本性質
+
+<TheoremCard title="線性、對稱與正定性">
+對向量 `u,v,w\in\mathbb{R}^m` 及純量 `\alpha,\beta\in\mathbb{R}`，標
+準內積滿足：
+
+1.
+
+$$
+\langle v+w,u\rangle=\langle v,u\rangle+\langle w,u\rangle;
+$$
+
+2.
+
+$$
+\langle \alpha v,w\rangle=\alpha\langle v,w\rangle;
+$$
+
+3.
+
+$$
+\langle v,w\rangle=\langle w,v\rangle;
+$$
+
+4.
+
+$$
+\langle v,v\rangle\ge0,
+$$
+
+而且等號成立當且僅當 `v=0`。
+</TheoremCard>
+
+前兩條表示內積是線性的，第三條表示對稱，第四條表示它真的在量度某種
+大小，而不是任意帶符號的量。
+
+<CollapsibleProof title="為甚麼正定性是關鍵公理">
+由定義，
+
+$$
+\langle v,v\rangle=v_1^2+v_2^2+\cdots+v_m^2.
+$$
+
+平方和不可能為負，而且只有當每一項平方都是 `0` 時，整個和才會等於
+`0`。這等價於 `v` 的每個坐標都等於 `0`。
+</CollapsibleProof>
+
+## 範數與單位向量
+
+<Definition title="範數">
+對 `v\in\mathbb{R}^m`，向量 `v` 的 **範數** 定義為
+
+$$
+\|v\|=\sqrt{\langle v,v\rangle}.
+$$
+
+所以範數就是由內積誘導出來的長度。
+</Definition>
+
+<TheoremCard title="範數的基本性質">
+對每個 `v\in\mathbb{R}^m` 及每個純量 `\alpha\in\mathbb{R}`：
+
+1.
+
+$$
+\|v\|\ge0,
+$$
+
+而 `\|v\|=0` 當且僅當 `v=0`；
+
+2.
+
+$$
+\|\alpha v\|=|\alpha|\,\|v\|.
+$$
+</TheoremCard>
+
+<Definition title="單位向量">
+若向量 `v` 滿足
+
+$$
+\|v\|=1,
+$$
+
+則稱 `v` 為 **單位向量**。
+
+若 `v\neq0`，則
+
+$$
+\frac{v}{\|v\|}
+$$
+
+是把 `v` 正規化後得到的單位向量。
+</Definition>
+
+<WorkedExample title="計範數並做正規化">
+令
+
+$$
+v=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix}.
+$$
+
+則
+
+$$
+\|v\|=\sqrt{1^2+2^2+3^2}=\sqrt{14}.
+$$
+
+因此，對應的單位向量是
+
+$$
+\frac{1}{\sqrt{14}}
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+## 內積與範數互相決定
+
+內積當然會決定範數，因為 `\|v\|^2=\langle v,v\rangle`。反過來，範數
+其實亦足以把內積重新找回來。
+
+<TheoremCard title="轉換公式">
+對向量 `u,v\in\mathbb{R}^m`：
+
+1.
+
+$$
+\|u\pm v\|^2=\|u\|^2+\|v\|^2\pm2\langle u,v\rangle;
+$$
+
+2. 極化恆等式為
+
+$$
+\langle u,v\rangle=\frac12\bigl(\|u+v\|^2-\|u\|^2-\|v\|^2\bigr);
+$$
+
+3. 平行四邊形恆等式為
+
+$$
+\|u+v\|^2+\|u-v\|^2=2\|u\|^2+2\|v\|^2.
+$$
+</TheoremCard>
+
+這些公式說明：內積幾何之所以剛性很強，是因為一旦長度行為被固定，內
+積本身也會被固定。
+
+## 向量之間的夾角
+
+在 `\mathbb{R}^2` 與 `\mathbb{R}^3` 中，內積可以寫成熟悉的幾何形
+式
+
+$$
+\langle x,y\rangle=\|x\|\,\|y\|\cos\theta,
+$$
+
+其中 `\theta` 是非零向量 `x` 與 `y` 的夾角。
+
+因此
+
+$$
+\theta=\arccos\!\left(\frac{\langle x,y\rangle}{\|x\|\,\|y\|}\right).
+$$
+
+特別地，`x` 與 `y` 互相垂直，當且僅當
+
+$$
+\langle x,y\rangle=0.
+$$
+
+這個觀察之後便會在任意 `\mathbb{R}^m` 中變成正交的代數定義。
+
+## 常見錯誤
+
+<CommonMistake title="內積的結果是一個數，不是一個向量">
+學生有時看到 `v^Tw` 會以為，既然是由向量相乘得來，結果也應是一個向
+量。不是的。內積永遠輸出一個單一純量。正因如此，它才可以用來量度長
+度與夾角。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="` \langle (1,2),(3,4)\rangle ` 是多少？">
+逐項相乘後相加。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`1\cdot3+2\cdot4=11`。
+</RevealSolution>
+
+<QuickCheck prompt="若 `\|v\|=0`，那 v 必須是甚麼？">
+利用範數的正定性。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`v=0`。範數為 `0` 的向量只可能是零向量。
+</RevealSolution>
+
+<QuickCheck prompt="若 `v\neq0`，為甚麼 `v/\|v\|` 一定是單位向量？">
+使用純量倍數下的範數公式。
+</QuickCheck>
+
+<RevealSolution title="答案">
+
+$$
+\left\|\frac{v}{\|v\|}\right\|
+=\frac{1}{\|v\|}\|v\|
+=1.
+$$
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="計算 `\begin{bmatrix}3\\4\end{bmatrix}` 的範數。">
+用 `\|v\|=\sqrt{\langle v,v\rangle}`。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+
+$$
+\left\|
+\begin{bmatrix}
+3\\4
+\end{bmatrix}
+\right\|
+=\sqrt{3^2+4^2}
+=5.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="把 `\begin{bmatrix}2\\-2\\1\end{bmatrix}` 正規化成單位向量。">
+先算範數。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+其範數為
+
+$$
+\sqrt{2^2+(-2)^2+1^2}=\sqrt9=3.
+$$
+
+因此正規化後得
+
+$$
+\frac13
+\begin{bmatrix}
+2\\-2\\1
+\end{bmatrix}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="若非零向量 x 與 y 滿足 `\langle x,y\rangle=0`，那在 `\mathbb{R}^2` 或 `\mathbb{R}^3` 中它們的夾角是多少？">
+用餘弦公式。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+由
+
+$$
+\langle x,y\rangle=\|x\|\,\|y\|\cos\theta
+$$
+
+且兩個範數都非零，可得 `\cos\theta=0`，因此 `\theta=90^\circ`。
+</RevealSolution>
+
+## 相關筆記
+
+接着可讀
+[9.2 正交集與標準正交基](/zh-hk/notes/math1030/inner-products/orthogonal-sets-and-orthonormal-bases)，
+看看內積如何用來構造坐標公式與特別方便的基底。
+
+再下一節
+[9.4 Cauchy-Schwarz 與三角不等式](/zh-hk/notes/math1030/inner-products/cauchy-schwarz-and-triangle-inequalities)
+則會把本節引入的內積與範數公式推到兩條核心估計。
+
+本章亦延續了
+[6.5 基底與維數](/zh-hk/notes/math1030/vector-spaces/basis-and-dimension)
+所開展的幾何主線。

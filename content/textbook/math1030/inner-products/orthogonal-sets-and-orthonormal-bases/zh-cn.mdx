@@ -1,0 +1,331 @@
+---
+title: "9.2 正交集与标准正交基"
+description: "利用正交性建立正交基与标准正交基，然后在不每次重解线性系统的情况下直接读出坐标系数。"
+---
+
+一旦有了内积，便可以挑出一类几何上特别简洁的向量族：正交集。
+
+它们重要之处，在于正交性可以取代消元法。在正交基底中，坐标系数不需
+再每次重解一个线性系统，而可以直接由内积读出来。
+
+## 正交
+
+<Definition title="正交向量">
+若向量 `v,w\in\mathbb{R}^m` 满足
+
+$$
+\langle v,w\rangle=0,
+$$
+
+则称 `v` 与 `w` **正交**，记作
+
+$$
+v\perp w.
+$$
+</Definition>
+
+重要之处不是在图画上“看起来垂直”，而是在任意维度中都可由内积的代数
+条件来判定。
+
+<WorkedExample title="用内积检查正交">
+令
+
+$$
+v=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix},
+\qquad
+w=
+\begin{bmatrix}
+-1\\-1\\1
+\end{bmatrix}.
+$$
+
+则
+
+$$
+\langle v,w\rangle=1(-1)+2(-1)+3(1)=0.
+$$
+
+所以 `v` 与 `w` 正交。
+</WorkedExample>
+
+## 正交集
+
+<Definition title="正交集">
+有限集合 `S=\{v_1,\dots,v_k\}` 若满足：
+
+1. 集内每个向量都非零；
+2. 对任意 `i\neq j`，都有 `v_i\perp v_j`；
+
+则称 `S` 为 `\mathbb{R}^m` 中的一个 **正交集**。
+</Definition>
+
+这里要求非零，非常重要。若允许零向量，那么任何含有 `0` 的集合都会
+因 `\langle0,v\rangle=0` 而显得“正交”，这会令结构定理失去内容。
+
+<TheoremCard title="非零正交集自动线性无关">
+若 `S=\{v_1,\dots,v_k\}` 是 `\mathbb{R}^m` 中的一个正交集，则
+`S` 必线性无关。
+</TheoremCard>
+
+<CollapsibleProof title="为什么正交集必线性无关">
+假设
+
+$$
+\alpha_1v_1+\cdots+\alpha_kv_k=0.
+$$
+
+对两边取与 `v_i` 的内积。由于集合正交，所有交叉项都消失：
+
+$$
+0=\left\langle \alpha_1v_1+\cdots+\alpha_kv_k,\;v_i\right\rangle
+=\alpha_i\langle v_i,v_i\rangle
+=\alpha_i\|v_i\|^2.
+$$
+
+而 `v_i\neq0`，所以 `\|v_i\|^2>0`，只可能有 `\alpha_i=0`。对每个
+`i` 都成立，因此原本的线性关系只能是平凡关系。
+</CollapsibleProof>
+
+## 正交基中的坐标公式
+
+正交性的强大之处，在于它能把坐标系数公式化。
+
+<TheoremCard title="正交集中的系数公式">
+设 `S=\{v_1,\dots,v_k\}` 是正交集，而
+
+$$
+v=\alpha_1v_1+\cdots+\alpha_kv_k.
+$$
+
+则对每个 `i`，
+
+$$
+\alpha_i=\frac{\langle v,v_i\rangle}{\|v_i\|^2}.
+$$
+
+因此
+
+$$
+v=
+\frac{\langle v,v_1\rangle}{\|v_1\|^2}v_1
++\cdots+
+\frac{\langle v,v_k\rangle}{\|v_k\|^2}v_k.
+$$
+</TheoremCard>
+
+这是正交性的主要实用回报。你不需要再解一个系统去找系数。
+
+<WorkedExample title="用内积直接找坐标">
+令
+
+$$
+v_1=
+\begin{bmatrix}
+1\\1\\1
+\end{bmatrix},
+\quad
+v_2=
+\begin{bmatrix}
+1\\-1\\0
+\end{bmatrix},
+\quad
+v_3=
+\begin{bmatrix}
+1\\1\\-2
+\end{bmatrix}.
+$$
+
+这是一个正交集。令
+
+$$
+v=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix}.
+$$
+
+则
+
+$$
+\alpha_1=\frac{\langle v,v_1\rangle}{\|v_1\|^2}
+=\frac{6}{3}=2,
+$$
+
+$$
+\alpha_2=\frac{\langle v,v_2\rangle}{\|v_2\|^2}
+=\frac{-1}{2}=-\frac12,
+$$
+
+$$
+\alpha_3=\frac{\langle v,v_3\rangle}{\|v_3\|^2}
+=\frac{-3}{6}=-\frac12.
+$$
+
+所以
+
+$$
+v=2v_1-\frac12v_2-\frac12v_3.
+$$
+</WorkedExample>
+
+## 正交基与标准正交基
+
+<Definition title="正交基">
+设 `V` 是 `\mathbb{R}^m` 的子空间。若集合 `S` 同时满足：
+
+1. `S` 是 `V` 的一组基底；
+2. `S` 是正交集；
+
+则称 `S` 为 `V` 的 **正交基**。
+</Definition>
+
+由于非零正交集自动线性无关，所以若你已知一个正交集属于 `V`，要检查
+它是不是正交基，只需再检查它是否张成 `V`。
+
+<TheoremCard title="正交基判准">
+设 `V` 是 `\mathbb{R}^m` 的子空间。若 `S` 是 `V` 中的一个正交子集，
+则 `S` 是 `V` 的正交基，当且仅当 `S` 张成 `V`。
+</TheoremCard>
+
+<Definition title="标准正交基">
+集合 `S=\{v_1,\dots,v_k\}` 若既正交，而且每个向量都满足 `\|v_i\|=1`，
+则称 `S` 为 **标准正交**。等价写法是
+
+$$
+\langle v_i,v_j\rangle=
+\begin{cases}
+1,& i=j,\\
+0,& i\neq j.
+\end{cases}
+$$
+
+若这样的集合同样也是一组基底，便称为 **标准正交基**。
+</Definition>
+
+对标准正交基而言，坐标公式会再简化。
+
+<TheoremCard title="标准正交基中的坐标公式">
+若 `S=\{v_1,\dots,v_k\}` 是一个标准正交集，而
+
+$$
+v\in\operatorname{span}\{v_1,\dots,v_k\},
+$$
+
+则
+
+$$
+v=\langle v,v_1\rangle v_1+\cdots+\langle v,v_k\rangle v_k.
+$$
+</TheoremCard>
+
+因为每个向量的范数都是 `1`，分母自然消失。
+
+## 常见错误
+
+<CommonMistake title="正交不等于已经是基底">
+正交集一定线性无关，但它未必张成你关心的整个空间。正交性免费给你线
+性无关；它不会免费给你张成性。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="正交集可以包含零向量吗？">
+用定义回答，不要只看 `⟨0,v⟩=0`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不可以。按定义，正交集要求其中每个向量都非零。
+</RevealSolution>
+
+<QuickCheck prompt="为什么标准基向量 `e_1,\dots,e_m` 彼此正交？">
+计算它们之间的内积。
+</QuickCheck>
+
+<RevealSolution title="答案">
+若 `i\neq j`，则 `e_i^Te_j=0`，因为两个向量中的 `1` 出现在不同坐
+标位置，所以它们彼此正交。
+</RevealSolution>
+
+<QuickCheck prompt="若使用的是标准正交基，`v` 在 `v_i` 方向上的系数是多少？">
+利用标准正交坐标公式。
+</QuickCheck>
+
+<RevealSolution title="答案">
+系数就是 `\langle v,v_i\rangle`。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="证明 `\{(1,2),(-2,1)\}` 是 `\mathbb{R}^2` 的一组正交基。">
+先检查正交，再判断是否张成。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+其内积为
+
+$$
+(1,2)\cdot(-2,1)=-2+2=0,
+$$
+
+所以两向量正交。又因为 `\mathbb{R}^2` 中有两个非零正交向量，它们线
+性无关，因此便构成 `\mathbb{R}^2` 的一组基底。
+</RevealSolution>
+
+<QuickCheck prompt="令 `u_1=(1,0,1)`、`u_2=(1,-2,1)`。求 `v=(2,-2,2)` 在这组正交基下的系数。">
+直接使用正交系数公式。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+先算范数平方：
+
+$$
+\|u_1\|^2=2,\qquad \|u_2\|^2=6.
+$$
+
+然后
+
+$$
+\alpha_1=\frac{\langle v,u_1\rangle}{\|u_1\|^2}
+=\frac{4}{2}=2,
+\qquad
+\alpha_2=\frac{\langle v,u_2\rangle}{\|u_2\|^2}
+=\frac{6}{6}=1.
+$$
+
+所以
+
+$$
+v=2u_1+u_2.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="把正交基 `\{(3,4),(4,-3)\}` 规范化。">
+把每个向量除以自己的范数。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+两个向量的范数都等于 `5`，因此一组标准正交基为
+
+$$
+\left\{
+\left(\frac35,\frac45\right),
+\left(\frac45,-\frac35\right)
+\right\}.
+$$
+</RevealSolution>
+
+## 相关笔记
+
+应先读
+[9.1 内积、范数与夹角](/zh-cn/notes/math1030/inner-products/inner-products-norms-and-angles)，
+因为本节所有公式都建立在那里的内积与范数定义之上。
+
+之后可继续读
+[9.3 Gram-Schmidt 正交化](/zh-cn/notes/math1030/inner-products/gram-schmidt-orthogonalization)，
+看看任意基底如何系统地转成正交基。
+
+本节的基底语言也依赖
+[6.5 基底与维数](/zh-cn/notes/math1030/vector-spaces/basis-and-dimension)。

@@ -1,0 +1,358 @@
+---
+title: "9.1 内积、范数与夹角"
+description: "定义 R^m 上的标准内积与范数，再把这些公式连到长度、夹角与最基本的不等式结构。"
+---
+
+到目前为止，课程大部分都在处理线性结构：张成、线性无关、基底、特征
+向量、对角化。内积把几何带回来。它让你可以在同一个向量空间里谈长
+度、垂直与夹角。
+
+关键在于：这些几何概念都可以由一个标量值运算编码出来。
+
+## 为什么这一节重要
+
+当你写下
+
+$$
+\langle v,w\rangle=v^Tw,
+$$
+
+你并不是引入一个新的符号作装饰，而是在引入之后会控制正交性、投影、
+标准正交基与基本不等式的那个运算。
+
+<Definition title="标准内积">
+对向量 `v,w\in\mathbb{R}^m`，它们的 **内积** 定义为
+
+$$
+\langle v,w\rangle
+=\sum_{i=1}^m v_iw_i
+=v^Tw.
+$$
+
+它也称为 **点积**。
+</Definition>
+
+<WorkedExample title="直接计算内积">
+若
+
+$$
+v=
+\begin{bmatrix}
+1\\2
+\end{bmatrix},
+\qquad
+w=
+\begin{bmatrix}
+3\\4
+\end{bmatrix},
+$$
+
+则
+
+$$
+\langle v,w\rangle=1\cdot3+2\cdot4=11.
+$$
+
+若
+
+$$
+u=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix},
+\qquad
+z=
+\begin{bmatrix}
+4\\5\\6
+\end{bmatrix},
+$$
+
+则
+
+$$
+\langle u,z\rangle=1\cdot4+2\cdot5+3\cdot6=32.
+$$
+</WorkedExample>
+
+## 内积的基本性质
+
+<TheoremCard title="线性、对称与正定性">
+对向量 `u,v,w\in\mathbb{R}^m` 及标量 `\alpha,\beta\in\mathbb{R}`，标
+准内积满足：
+
+1.
+
+$$
+\langle v+w,u\rangle=\langle v,u\rangle+\langle w,u\rangle;
+$$
+
+2.
+
+$$
+\langle \alpha v,w\rangle=\alpha\langle v,w\rangle;
+$$
+
+3.
+
+$$
+\langle v,w\rangle=\langle w,v\rangle;
+$$
+
+4.
+
+$$
+\langle v,v\rangle\ge0,
+$$
+
+而且等号成立当且仅当 `v=0`。
+</TheoremCard>
+
+前两条表示内积是线性的，第三条表示对称，第四条表示它真的在量度某种
+大小，而不是任意带符号的量。
+
+<CollapsibleProof title="为什么正定性是关键公理">
+由定义，
+
+$$
+\langle v,v\rangle=v_1^2+v_2^2+\cdots+v_m^2.
+$$
+
+平方和不可能为负，而且只有当每一项平方都是 `0` 时，整个和才会等于
+`0`。这等价于 `v` 的每个坐标都等于 `0`。
+</CollapsibleProof>
+
+## 范数与单位向量
+
+<Definition title="范数">
+对 `v\in\mathbb{R}^m`，向量 `v` 的 **范数** 定义为
+
+$$
+\|v\|=\sqrt{\langle v,v\rangle}.
+$$
+
+所以范数就是由内积诱导出来的长度。
+</Definition>
+
+<TheoremCard title="范数的基本性质">
+对每个 `v\in\mathbb{R}^m` 及每个标量 `\alpha\in\mathbb{R}`：
+
+1.
+
+$$
+\|v\|\ge0,
+$$
+
+而 `\|v\|=0` 当且仅当 `v=0`；
+
+2.
+
+$$
+\|\alpha v\|=|\alpha|\,\|v\|.
+$$
+</TheoremCard>
+
+<Definition title="单位向量">
+若向量 `v` 满足
+
+$$
+\|v\|=1,
+$$
+
+则称 `v` 为 **单位向量**。
+
+若 `v\neq0`，则
+
+$$
+\frac{v}{\|v\|}
+$$
+
+是把 `v` 规范化后得到的单位向量。
+</Definition>
+
+<WorkedExample title="算范数并做规范化">
+令
+
+$$
+v=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix}.
+$$
+
+则
+
+$$
+\|v\|=\sqrt{1^2+2^2+3^2}=\sqrt{14}.
+$$
+
+因此，对应的单位向量是
+
+$$
+\frac{1}{\sqrt{14}}
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+## 内积与范数互相决定
+
+内积当然会决定范数，因为 `\|v\|^2=\langle v,v\rangle`。反过来，范数
+其实也足以把内积重新找回来。
+
+<TheoremCard title="转换公式">
+对向量 `u,v\in\mathbb{R}^m`：
+
+1.
+
+$$
+\|u\pm v\|^2=\|u\|^2+\|v\|^2\pm2\langle u,v\rangle;
+$$
+
+2. 极化恒等式为
+
+$$
+\langle u,v\rangle=\frac12\bigl(\|u+v\|^2-\|u\|^2-\|v\|^2\bigr);
+$$
+
+3. 平行四边形恒等式为
+
+$$
+\|u+v\|^2+\|u-v\|^2=2\|u\|^2+2\|v\|^2.
+$$
+</TheoremCard>
+
+这些公式说明：内积几何之所以刚性很强，是因为一旦长度行为被固定，内
+积本身也会被固定。
+
+## 向量之间的夹角
+
+在 `\mathbb{R}^2` 与 `\mathbb{R}^3` 中，内积可以写成熟悉的几何形
+式
+
+$$
+\langle x,y\rangle=\|x\|\,\|y\|\cos\theta,
+$$
+
+其中 `\theta` 是非零向量 `x` 与 `y` 的夹角。
+
+因此
+
+$$
+\theta=\arccos\!\left(\frac{\langle x,y\rangle}{\|x\|\,\|y\|}\right).
+$$
+
+特别地，`x` 与 `y` 互相垂直，当且仅当
+
+$$
+\langle x,y\rangle=0.
+$$
+
+这个观察之后便会在任意 `\mathbb{R}^m` 中变成正交的代数定义。
+
+## 常见错误
+
+<CommonMistake title="内积的结果是一个数，不是一个向量">
+学生有时看到 `v^Tw` 会以为，既然是由向量相乘得来，结果也应是一个向
+量。不是的。内积永远输出一个单一标量。正因如此，它才可以用来量度长
+度与夹角。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="` \langle (1,2),(3,4)\rangle ` 是多少？">
+逐项相乘后相加。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`1\cdot3+2\cdot4=11`。
+</RevealSolution>
+
+<QuickCheck prompt="若 `\|v\|=0`，那 v 必须是什么？">
+利用范数的正定性。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`v=0`。范数为 `0` 的向量只可能是零向量。
+</RevealSolution>
+
+<QuickCheck prompt="若 `v\neq0`，为什么 `v/\|v\|` 一定是单位向量？">
+使用标量倍数下的范数公式。
+</QuickCheck>
+
+<RevealSolution title="答案">
+
+$$
+\left\|\frac{v}{\|v\|}\right\|
+=\frac{1}{\|v\|}\|v\|
+=1.
+$$
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="计算 `\begin{bmatrix}3\\4\end{bmatrix}` 的范数。">
+用 `\|v\|=\sqrt{\langle v,v\rangle}`。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+
+$$
+\left\|
+\begin{bmatrix}
+3\\4
+\end{bmatrix}
+\right\|
+=\sqrt{3^2+4^2}
+=5.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="把 `\begin{bmatrix}2\\-2\\1\end{bmatrix}` 规范化成单位向量。">
+先算范数。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+其范数为
+
+$$
+\sqrt{2^2+(-2)^2+1^2}=\sqrt9=3.
+$$
+
+因此规范化后得
+
+$$
+\frac13
+\begin{bmatrix}
+2\\-2\\1
+\end{bmatrix}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="若非零向量 x 与 y 满足 `\langle x,y\rangle=0`，那在 `\mathbb{R}^2` 或 `\mathbb{R}^3` 中它们的夹角是多少？">
+用余弦公式。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+由
+
+$$
+\langle x,y\rangle=\|x\|\,\|y\|\cos\theta
+$$
+
+且两个范数都非零，可得 `\cos\theta=0`，因此 `\theta=90^\circ`。
+</RevealSolution>
+
+## 相关笔记
+
+接着可读
+[9.2 正交集与标准正交基](/zh-cn/notes/math1030/inner-products/orthogonal-sets-and-orthonormal-bases)，
+看看内积如何用来构造坐标公式与特别方便的基底。
+
+再下一节
+[9.4 Cauchy-Schwarz 与三角不等式](/zh-cn/notes/math1030/inner-products/cauchy-schwarz-and-triangle-inequalities)
+则会把本节引入的内积与范数公式推到两条核心估计。
+
+本章也延续了
+[6.5 基底与维数](/zh-cn/notes/math1030/vector-spaces/basis-and-dimension)
+所展开的几何主线。

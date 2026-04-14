@@ -47,7 +47,9 @@ The following units are currently present in EN, zh-HK, and zh-CN.
   7.1 determinants and cofactor expansion, 7.2 row operations / products /
   invertibility, 7.3 transpose / column operations / Cramer's rule, 8.1
   eigenvalues / eigenvectors / eigenspaces, 8.2 diagonalization / similarity,
-  8.3 characteristic polynomials / diagonalization tests
+  8.3 characteristic polynomials / diagonalization tests, 9.1 inner products /
+  norms / angles, 9.2 orthogonal sets / orthonormal bases, 9.3 Gram-Schmidt,
+  9.4 Cauchy-Schwarz / triangle inequalities
 
 ## Checkpoint log
 

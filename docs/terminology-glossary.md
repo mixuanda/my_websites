@@ -52,6 +52,12 @@ The table below covers the current source-backed note set in the implementation.
 | Eigenspace | eigenspace | 特徵空間 | 特征空间 | Tie it directly to the null space `N(A-λI)`. | MATH1030 eigenvalues |
 | Characteristic polynomial | characteristic polynomial | 特徵多項式 | 特征多项式 | Keep the formula `p_A(x)=det(A-xI)` explicit. | MATH1030 eigenvalues |
 | Diagonalizable matrix | diagonalizable matrix | 可對角化矩陣 | 可对角化矩阵 | Explain it through similarity to a diagonal matrix and a basis of eigenvectors. | MATH1030 eigenvalues |
+| Inner product | inner product | 內積 | 内积 | Keep the formula `⟨v,w⟩=v^Tw` visible in beginner-facing notes. | MATH1030 inner products |
+| Norm | norm | 範數 | 范数 | Tie it directly to `||v|| = sqrt(⟨v,v⟩)`. | MATH1030 inner products |
+| Unit vector | unit vector | 單位向量 | 单位向量 | Explain normalization explicitly. | MATH1030 inner products |
+| Orthogonal | orthogonal | 正交 | 正交 | Keep the definition `⟨v,w⟩=0` explicit. | MATH1030 inner products |
+| Orthonormal basis | orthonormal basis | 標準正交基 | 标准正交基 | State both orthogonality and norm-1 conditions. | MATH1030 inner products |
+| Gram-Schmidt process | Gram-Schmidt process | Gram-Schmidt 過程 | Gram-Schmidt 过程 | Keep the English surname pair in both Chinese variants. | MATH1030 inner products |
 | Vector space | vector space | 向量空間 | 向量空间 | Use the full term before shortening explanations. | MATH1030 vector spaces |
 | Subspace | subspace | 子空間 | 子空间 | Tie the term to the closure test in beginner-facing prose. | MATH1030 vector spaces |
 | Span | span | 張成 | 张成 | Avoid mixing it with “generate” unless you explain the relation. | MATH1030 vector spaces |

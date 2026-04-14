@@ -1420,6 +1420,146 @@ const math1030EigenvalueUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1030InnerProductUnits: TextbookUnitMeta[] = [
+  {
+    accessTier: "MEMBER",
+    chapterId: "inner-products",
+    chapterNumber: "9",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Define the standard inner product and norm on R^m, then connect those formulas to length, angle, and the first structural inequalities.",
+      "定義 R^m 上的標準內積與範數，再把這些公式連到長度、夾角與最基本的不等式結構。",
+      "定义 R^m 上的标准内积与范数，再把这些公式连到长度、夹角与最基本的不等式结构。"
+    ),
+    glossaryRefs: ["inner-product", "norm", "unit-vector"],
+    interactiveIds: [],
+    order: 22,
+    prerequisites: ["math1030.vector-spaces.vector-spaces"],
+    slug: "inner-products-norms-and-angles",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§9.1, theorem 9.2.1",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n08-01.pdf",
+      },
+    ],
+    title: text(
+      "9.1 Inner products, norms, and angles",
+      "9.1 內積、範數與夾角",
+      "9.1 内积、范数与夹角"
+    ),
+    unitId: "math1030.inner-products.inner-products-norms-and-angles",
+    unitNumber: "9.1",
+  },
+  {
+    accessTier: "MEMBER",
+    chapterId: "inner-products",
+    chapterNumber: "9",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use orthogonality to build orthogonal and orthonormal bases, then read coefficients without solving a linear system every time.",
+      "利用正交性建立正交基與標準正交基，然後在不每次重解線性系統的情況下直接讀出坐標係數。",
+      "利用正交性建立正交基与标准正交基，然后在不每次重解线性系统的情况下直接读出坐标系数。"
+    ),
+    glossaryRefs: ["inner-product", "orthogonal", "orthonormal-basis", "basis"],
+    interactiveIds: [],
+    order: 23,
+    prerequisites: [
+      "math1030.inner-products.inner-products-norms-and-angles",
+      "math1030.vector-spaces.basis-and-dimension",
+    ],
+    slug: "orthogonal-sets-and-orthonormal-bases",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§9.2",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n08-01.pdf",
+        note: "Orthogonality and coordinate formulas",
+      },
+    ],
+    title: text(
+      "9.2 Orthogonal sets and orthonormal bases",
+      "9.2 正交集與標準正交基",
+      "9.2 正交集与标准正交基"
+    ),
+    unitId: "math1030.inner-products.orthogonal-sets-and-orthonormal-bases",
+    unitNumber: "9.2",
+  },
+  {
+    accessTier: "MEMBER",
+    chapterId: "inner-products",
+    chapterNumber: "9",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Apply Gram-Schmidt to turn a basis into an orthogonal or orthonormal basis while preserving the same span.",
+      "把 Gram-Schmidt 過程用來把一組基底轉成正交基或標準正交基，同時保持張成空間不變。",
+      "把 Gram-Schmidt 过程用来把一组基底转成正交基或标准正交基，同时保持张成空间不变。"
+    ),
+    glossaryRefs: ["orthogonal", "orthonormal-basis", "gram-schmidt", "span"],
+    interactiveIds: [],
+    order: 24,
+    prerequisites: [
+      "math1030.inner-products.orthogonal-sets-and-orthonormal-bases",
+      "math1030.vector-spaces.basis-and-dimension",
+    ],
+    slug: "gram-schmidt-orthogonalization",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§9.3",
+      },
+    ],
+    title: text(
+      "9.3 Gram-Schmidt orthogonalization",
+      "9.3 Gram-Schmidt 正交化",
+      "9.3 Gram-Schmidt 正交化"
+    ),
+    unitId: "math1030.inner-products.gram-schmidt-orthogonalization",
+    unitNumber: "9.3",
+  },
+  {
+    accessTier: "MEMBER",
+    chapterId: "inner-products",
+    chapterNumber: "9",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Study Cauchy-Schwarz and triangle inequalities as the two core estimates that control length, angle, and equality cases in inner-product spaces.",
+      "把 Cauchy-Schwarz 與三角不等式當作內積空間中控制長度、夾角與等號條件的兩條核心估計。",
+      "把 Cauchy-Schwarz 与三角不等式当作内积空间中控制长度、夹角与等号条件的两条核心估计。"
+    ),
+    glossaryRefs: ["inner-product", "norm", "orthogonal"],
+    interactiveIds: [],
+    order: 25,
+    prerequisites: ["math1030.inner-products.inner-products-norms-and-angles"],
+    slug: "cauchy-schwarz-and-triangle-inequalities",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§9.4",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n08-01.pdf",
+        note: "Cauchy-Schwarz and triangle inequality statements and equality cases",
+      },
+    ],
+    title: text(
+      "9.4 Cauchy-Schwarz and triangle inequalities",
+      "9.4 Cauchy-Schwarz 與三角不等式",
+      "9.4 Cauchy-Schwarz 与三角不等式"
+    ),
+    unitId: "math1030.inner-products.cauchy-schwarz-and-triangle-inequalities",
+    unitNumber: "9.4",
+  },
+];
+
 const math1090: TextbookCourseMeta = {
   chapters: [
     {
@@ -1582,6 +1722,22 @@ const math1030: TextbookCourseMeta = {
         "特征值与对角化"
       ),
       units: math1030EigenvalueUnits,
+    },
+    {
+      course: "math1030",
+      id: "inner-products",
+      number: "9",
+      summary: text(
+        "Inner products, orthogonality, orthonormal bases, and Gram-Schmidt as the geometric layer after eigenvalues.",
+        "內積、正交性、標準正交基與 Gram-Schmidt，作為特徵值之後的幾何層次。",
+        "内积、正交性、标准正交基与 Gram-Schmidt，作为特征值之后的几何层次。"
+      ),
+      title: text(
+        "Inner products and orthogonality",
+        "內積與正交性",
+        "内积与正交性"
+      ),
+      units: math1030InnerProductUnits,
     },
   ],
   description: text(

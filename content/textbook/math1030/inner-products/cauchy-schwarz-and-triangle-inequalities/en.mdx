@@ -1,0 +1,317 @@
+---
+title: "9.4 Cauchy-Schwarz and triangle inequalities"
+description: "Study Cauchy-Schwarz and triangle inequalities as the two core estimates that control length, angle, and equality cases in inner-product spaces."
+---
+
+The inner product gives formulas for length and angle. The next question is:
+what restrictions do those formulas obey?
+
+Two answers dominate the subject:
+
+- the Cauchy-Schwarz inequality controls the size of an inner product by the
+  lengths of the two vectors;
+- the triangle inequality says the direct path from `0` to `u+v` is never
+  longer than taking the two steps through `u` and then `u+v`.
+
+These inequalities are not optional technicalities. They are the estimates that
+make Euclidean geometry work algebraically.
+
+## Cauchy-Schwarz inequality
+
+<TheoremCard title="Cauchy-Schwarz inequality">
+For all vectors `v,w\in\mathbb{R}^m`,
+
+$$
+|\langle v,w\rangle|\le\|v\|\,\|w\|.
+$$
+
+Equality holds if and only if `v` and `w` are linearly dependent.
+</TheoremCard>
+
+The inequality says an inner product can never be larger in magnitude than the
+product of the two lengths. That is exactly what makes the cosine formula
+
+$$
+\cos\theta=\frac{\langle v,w\rangle}{\|v\|\,\|w\|}
+$$
+
+meaningful: the right-hand side always stays between `-1` and `1`.
+
+<CollapsibleProof title="The quadratic-polynomial proof">
+Consider the function
+
+$$
+F(t)=\|tw-v\|^2.
+$$
+
+Since a norm-square is always nonnegative, `F(t)\ge0` for every real `t`.
+Expanding gives
+
+$$
+F(t)=t^2\langle w,w\rangle-2t\langle v,w\rangle+\langle v,v\rangle.
+$$
+
+This is a quadratic polynomial in `t` with nonpositive discriminant, so
+
+$$
+4\langle v,w\rangle^2-4\|v\|^2\|w\|^2\le0.
+$$
+
+Therefore
+
+$$
+|\langle v,w\rangle|\le\|v\|\,\|w\|.
+$$
+
+Equality occurs exactly when `F(t)` has a real root, meaning `tw-v=0` for some
+real `t`; that is, when `v` and `w` are linearly dependent.
+</CollapsibleProof>
+
+<WorkedExample title="Check Cauchy-Schwarz numerically">
+Let
+
+$$
+v=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix},
+\qquad
+w=
+\begin{bmatrix}
+4\\5\\6
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+\langle v,w\rangle=32,
+\qquad
+\|v\|=\sqrt{14},
+\qquad
+\|w\|=\sqrt{77}.
+$$
+
+So
+
+$$
+|\langle v,w\rangle|=32,
+\qquad
+\|v\|\,\|w\|=\sqrt{14\cdot77}=\sqrt{1078}\approx32.83.
+$$
+
+Indeed,
+
+$$
+32\le32.83.
+$$
+</WorkedExample>
+
+## Triangle inequality
+
+<TheoremCard title="Triangle inequality">
+For all vectors `u,v\in\mathbb{R}^m`,
+
+$$
+\|u+v\|\le\|u\|+\|v\|.
+$$
+
+Equality holds if and only if at least one of `u` and `v` is a nonnegative
+scalar multiple of the other.
+</TheoremCard>
+
+The geometric reading is direct: in Euclidean space, one side of a triangle is
+never longer than the sum of the other two sides.
+
+<CollapsibleProof title="Why Cauchy-Schwarz implies triangle inequality">
+Start with
+
+$$
+\|u+v\|^2
+=\langle u+v,u+v\rangle
+=\|u\|^2+2\langle u,v\rangle+\|v\|^2.
+$$
+
+By Cauchy-Schwarz,
+
+$$
+\langle u,v\rangle\le|\langle u,v\rangle|\le\|u\|\,\|v\|.
+$$
+
+Therefore
+
+$$
+\|u+v\|^2\le\|u\|^2+2\|u\|\,\|v\|+\|v\|^2=(\|u\|+\|v\|)^2.
+$$
+
+Taking square roots gives
+
+$$
+\|u+v\|\le\|u\|+\|v\|.
+$$
+</CollapsibleProof>
+
+<TheoremCard title="Reverse triangle inequality">
+For all vectors `u,v\in\mathbb{R}^m`,
+
+$$
+\|u-v\|\ge\bigl|\|u\|-\|v\|\bigr|.
+$$
+
+Equality holds under the same nonnegative-multiple condition.
+</TheoremCard>
+
+This version is often easier to use when you want a lower bound instead of an
+upper bound.
+
+## Equality cases matter
+
+The equalities are not side remarks. They tell you exactly when the estimate is
+tight.
+
+- In Cauchy-Schwarz, equality means the two vectors point in the same or
+  opposite direction, so one is a scalar multiple of the other.
+- In the triangle inequality, equality means the two vectors point in the same
+  direction with a nonnegative scalar factor, so walking along `u` and then `v`
+  really does trace one straight segment.
+
+<WorkedExample title="When triangle inequality becomes equality">
+Let
+
+$$
+u=
+\begin{bmatrix}
+2\\0
+\end{bmatrix},
+\qquad
+v=
+\begin{bmatrix}
+3\\0
+\end{bmatrix}.
+$$
+
+Then `v=\frac32u`, so `v` is a nonnegative scalar multiple of `u`. Hence
+
+$$
+\|u+v\|=\left\|
+\begin{bmatrix}
+5\\0
+\end{bmatrix}
+\right\|=5
+=2+3
+=\|u\|+\|v\|.
+$$
+
+So equality holds.
+</WorkedExample>
+
+## Common mistake
+
+<CommonMistake title="Equality in Cauchy-Schwarz is not the same as orthogonality">
+Orthogonality means `\langle v,w\rangle=0`. Equality in Cauchy-Schwarz means
+
+$$
+|\langle v,w\rangle|=\|v\|\,\|w\|,
+$$
+
+which happens when the vectors are linearly dependent, not when they are
+perpendicular. These are almost opposite geometric situations.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="What does Cauchy-Schwarz say about `|\langle v,w\rangle|`?">
+State the inequality directly.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+
+$$
+|\langle v,w\rangle|\le\|v\|\,\|w\|.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="If `u` and `v` point in exactly the same direction, can equality hold in the triangle inequality?">
+Assume one is a nonnegative scalar multiple of the other.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. That is exactly the equality case for the triangle inequality.
+</RevealSolution>
+
+<QuickCheck prompt="If `v\perp w`, what does Cauchy-Schwarz reduce to?">
+Use `\langle v,w\rangle=0`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It becomes `0\le\|v\|\,\|w\|`, which is automatically true.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Use Cauchy-Schwarz to show that `|\langle (1,2),(3,4)\rangle| \le \|(1,2)\|\,\|(3,4)\|`.">
+Compute both sides numerically.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The left-hand side is
+
+$$
+|1\cdot3+2\cdot4|=11.
+$$
+
+The right-hand side is
+
+$$
+\sqrt{1^2+2^2}\sqrt{3^2+4^2}
+=\sqrt5\cdot5=5\sqrt5\approx11.18.
+$$
+
+So indeed `11\le5\sqrt5`.
+</RevealSolution>
+
+<QuickCheck prompt="Find `\|u+v\|` and compare it with `\|u\|+\|v\|` for `u=(1,0)` and `v=(0,1)`.">
+This is the right-angle case.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+
+$$
+u+v=(1,1),
+\qquad
+\|u+v\|=\sqrt2.
+$$
+
+Also,
+
+$$
+\|u\|+\|v\|=1+1=2.
+$$
+
+So `\sqrt2\le2`, and the inequality is strict because the vectors are not
+nonnegative scalar multiples of each other.
+</RevealSolution>
+
+<QuickCheck prompt="Use the reverse triangle inequality to bound `\|u-v\|` from below when `\|u\|=7` and `\|v\|=3`.">
+Apply the formula directly.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+
+$$
+\|u-v\|\ge|\|u\|-\|v\||=|7-3|=4.
+$$
+</RevealSolution>
+
+## Related notes
+
+Read
+[9.1 Inner products, norms, and angles](/en/notes/math1030/inner-products/inner-products-norms-and-angles)
+first, because these inequalities are built directly from the inner-product and
+norm formulas.
+
+The coefficient formulas in
+[9.2 Orthogonal sets and orthonormal bases](/en/notes/math1030/inner-products/orthogonal-sets-and-orthonormal-bases)
+and the geometry of
+[9.3 Gram-Schmidt orthogonalization](/en/notes/math1030/inner-products/gram-schmidt-orthogonalization)
+both rely on the estimates proved here.

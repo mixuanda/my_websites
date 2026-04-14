@@ -526,6 +526,98 @@ export const glossaryEntries: GlossaryEntry[] = [
   },
   {
     definition: {
+      en: "The inner product of vectors v and w in R^m is the scalar v^T w, also called their dot product.",
+      "zh-cn": "R^m 中向量 v 与 w 的内积是标量 v^T w，也称为它们的点积。",
+      "zh-hk": "R^m 中向量 v 與 w 的內積是純量 v^T w，也稱為它們的點積。",
+    },
+    id: "inner-product",
+    notationNote: "The notes write the inner product as `⟨v,w⟩=v^Tw`.",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§9.1" },
+      { file: "reference/MATH1030/1030gi-n08-01.pdf" },
+    ],
+    termEn: "inner product",
+    termZhCn: "内积",
+    termZhHk: "內積",
+  },
+  {
+    definition: {
+      en: "The norm of a vector v is ||v|| = sqrt(⟨v,v⟩), the length induced by the inner product.",
+      "zh-cn": "向量 v 的范数是 ||v|| = sqrt(⟨v,v⟩)，也就是由内积诱导出来的长度。",
+      "zh-hk": "向量 v 的範數是 ||v|| = sqrt(⟨v,v⟩)，也就是由內積誘導出來的長度。",
+    },
+    id: "norm",
+    notationNote: "The notes use `||v||` for norm and `||v||^2=⟨v,v⟩` for norm-square.",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§9.1" },
+      { file: "reference/MATH1030/1030gi-n08-01.pdf", note: "Norm definition and basic properties" },
+    ],
+    termEn: "norm",
+    termZhCn: "范数",
+    termZhHk: "範數",
+  },
+  {
+    definition: {
+      en: "A unit vector is a vector of norm 1.",
+      "zh-cn": "单位向量是范数等于 1 的向量。",
+      "zh-hk": "單位向量是範數等於 1 的向量。",
+    },
+    id: "unit-vector",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§9.1" },
+      { file: "reference/MATH1030/1030gi-n08-01.pdf", note: "Normalization remarks" },
+    ],
+    termEn: "unit vector",
+    termZhCn: "单位向量",
+    termZhHk: "單位向量",
+  },
+  {
+    definition: {
+      en: "Vectors v and w are orthogonal when their inner product is 0.",
+      "zh-cn": "若向量 v 与 w 的内积为 0，则称它们互相正交。",
+      "zh-hk": "若向量 v 與 w 的內積為 0，則稱它們互相正交。",
+    },
+    id: "orthogonal",
+    notationNote: "The standard notation is `v ⟂ w`.",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§9.2" },
+      { file: "reference/MATH1030/1030gi-n08-01.pdf", note: "Orthogonality and angle discussion" },
+    ],
+    termEn: "orthogonal",
+    termZhCn: "正交",
+    termZhHk: "正交",
+  },
+  {
+    definition: {
+      en: "An orthonormal basis is a basis whose vectors are pairwise orthogonal and each have norm 1.",
+      "zh-cn": "标准正交基是这样一组基：向量彼此正交，而且每个向量的范数都等于 1。",
+      "zh-hk": "標準正交基是這樣一組基：向量彼此正交，而且每個向量的範數都等於 1。",
+    },
+    id: "orthonormal-basis",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§9.2" },
+      { file: "reference/MATH1030/1030gi-n08-01.pdf", note: "Orthogonal / orthonormal basis consequences" },
+    ],
+    termEn: "orthonormal basis",
+    termZhCn: "标准正交基",
+    termZhHk: "標準正交基",
+  },
+  {
+    definition: {
+      en: "The Gram-Schmidt process turns a linearly independent list into an orthogonal or orthonormal basis with the same span.",
+      "zh-cn": "Gram-Schmidt 过程把一组线性无关向量变成张成同一子空间的正交基或标准正交基。",
+      "zh-hk": "Gram-Schmidt 過程把一組線性無關向量變成張成同一子空間的正交基或標準正交基。",
+    },
+    id: "gram-schmidt",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§9.3" },
+    ],
+    termEn: "Gram-Schmidt process",
+    termZhCn: "Gram-Schmidt 过程",
+    termZhHk: "Gram-Schmidt 過程",
+  },
+  {
+    definition: {
       en: "A null space is the set of all vectors sent to 0 by a given matrix.",
       "zh-cn": "零空间是被某个矩阵送到 0 的所有向量组成的集合。",
       "zh-hk": "零空間是被某個矩陣送到 0 的所有向量組成的集合。",

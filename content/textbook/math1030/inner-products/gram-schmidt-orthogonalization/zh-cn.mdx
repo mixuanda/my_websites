@@ -1,0 +1,336 @@
+---
+title: "9.3 Gram-Schmidt 正交化"
+description: "把 Gram-Schmidt 过程用来把一组基底转成正交基或标准正交基，同时保持张成空间不变。"
+---
+
+正交基很有价值，但大部分一开始给你的基底都不是正交的。Gram-Schmidt
+过程正正就是用来修补这件事的标准方法。
+
+它从任意一组线性无关向量开始，逐步删去那些已经落在先前方向上的成
+分。留下来的新向量会互相正交，而且每一步都保留原本的张成空间。
+
+## Gram-Schmidt 背后的投影想法
+
+假设 `v_1,\dots,v_k` 已经是正交向量，而 `w` 是任意向量。若你想取出
+`w` 中那个同时垂直于所有 `v_i` 的部分，就要把 `w` 在各个 `v_i` 方
+向上的成分全部扣掉：
+
+$$
+w-
+\frac{\langle w,v_1\rangle}{\|v_1\|^2}v_1
+-\cdots-
+\frac{\langle w,v_k\rangle}{\|v_k\|^2}v_k.
+$$
+
+<TheoremCard title="正交余量定理">
+设 `S=\{v_1,\dots,v_k\}` 是 `\mathbb{R}^m` 中的一个正交集，而
+`w\in\mathbb{R}^m`。定义
+
+$$
+v=
+w-
+\frac{\langle w,v_1\rangle}{\|v_1\|^2}v_1
+-\cdots-
+\frac{\langle w,v_k\rangle}{\|v_k\|^2}v_k.
+$$
+
+则 `v` 会与每个 `v_i` 都正交。
+</TheoremCard>
+
+这条定理就是整个算法的引擎：它精确告诉你怎样从一个新向量中扣走“已
+有方向”的部分。
+
+## Gram-Schmidt 过程
+
+<TheoremCard title="Gram-Schmidt 正交化过程">
+设 `\{w_1,\dots,w_k\}` 是 `\mathbb{R}^m` 中的一组线性无关向量。定义
+
+$$
+v_1=w_1,
+$$
+
+并对 `\ell=2,\dots,k` 定义
+
+$$
+v_\ell=
+w_\ell
+-\frac{\langle w_\ell,v_1\rangle}{\|v_1\|^2}v_1
+-\cdots-
+\frac{\langle w_\ell,v_{\ell-1}\rangle}{\|v_{\ell-1}\|^2}v_{\ell-1}.
+$$
+
+则：
+
+1. `\{v_1,\dots,v_k\}` 是正交集；
+2. 对每个 `\ell`，
+
+$$
+\operatorname{span}\{w_1,\dots,w_\ell\}
+=
+\operatorname{span}\{v_1,\dots,v_\ell\}.
+$$
+
+特别地，最后得到的正交集与原本那组线性无关向量张成同一个子空间。
+</TheoremCard>
+
+第二点与第一点同样重要。Gram-Schmidt 并不是随便产生一些正交向量；
+它在每一步都保留了原来的张成空间。
+
+## 怎样阅读这个算法
+
+第一个向量完全不改：
+
+$$
+v_1=w_1.
+$$
+
+第二个向量，就是 `w_2` 中与 `v_1` 垂直的那部分。
+
+第三个向量，就是 `w_3` 中同时与 `v_1` 与 `v_2` 垂直的那部分。
+
+之后每一步都一样：把已经落在旧方向中的部分扣除，只留下新的正交方
+向。
+
+<WorkedExample title="在 R^3 中做一个短的 Gram-Schmidt 计算">
+从这组线性无关向量开始：
+
+$$
+w_1=
+\begin{bmatrix}
+1\\0\\1
+\end{bmatrix},
+\qquad
+w_2=
+\begin{bmatrix}
+1\\1\\1
+\end{bmatrix},
+\qquad
+w_3=
+\begin{bmatrix}
+0\\1\\2
+\end{bmatrix}.
+$$
+
+先设
+
+$$
+v_1=w_1=
+\begin{bmatrix}
+1\\0\\1
+\end{bmatrix}.
+$$
+
+接着计算
+
+$$
+\frac{\langle w_2,v_1\rangle}{\|v_1\|^2}
+=\frac{2}{2}=1,
+$$
+
+所以
+
+$$
+v_2=w_2-v_1=
+\begin{bmatrix}
+0\\1\\0
+\end{bmatrix}.
+$$
+
+再来
+
+$$
+\frac{\langle w_3,v_1\rangle}{\|v_1\|^2}
+=\frac{2}{2}=1,
+\qquad
+\frac{\langle w_3,v_2\rangle}{\|v_2\|^2}
+=\frac{1}{1}=1.
+$$
+
+因此
+
+$$
+v_3=w_3-v_1-v_2=
+\begin{bmatrix}
+-1\\0\\1
+\end{bmatrix}.
+$$
+
+最后得到的集合
+
+$$
+\left\{
+\begin{bmatrix}
+1\\0\\1
+\end{bmatrix},
+\begin{bmatrix}
+0\\1\\0
+\end{bmatrix},
+\begin{bmatrix}
+-1\\0\\1
+\end{bmatrix}
+\right\}
+$$
+
+是正交的，并且与原来那组向量张成同一个子空间。
+</WorkedExample>
+
+## 由正交基走向标准正交基
+
+Gram-Schmidt 给你的是正交基。若想得到标准正交基，只需把每个非零向
+量规范化：
+
+$$
+u_i=\frac{v_i}{\|v_i\|}.
+$$
+
+<TheoremCard title="每个子空间都有标准正交基">
+设 `V` 是 `\mathbb{R}^m` 的子空间。那么 `V` 一定有正交基；把它规范
+化之后，也一定有标准正交基。
+</TheoremCard>
+
+因此，标准正交基并不是偶然的特殊现象，而是每个有限维子空间都可获得
+的结构。
+
+<WorkedExample title="把 Gram-Schmidt 输出再规范化">
+沿用前面的三个向量：
+
+$$
+\|v_1\|=\sqrt2,\qquad
+\|v_2\|=1,\qquad
+\|v_3\|=\sqrt2.
+$$
+
+所以一组标准正交基为
+
+$$
+u_1=\frac{1}{\sqrt2}
+\begin{bmatrix}
+1\\0\\1
+\end{bmatrix},
+\qquad
+u_2=
+\begin{bmatrix}
+0\\1\\0
+\end{bmatrix},
+\qquad
+u_3=\frac{1}{\sqrt2}
+\begin{bmatrix}
+-1\\0\\1
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+## 常见错误
+
+<CommonMistake title="不要拿原本的 w-向量去扣投影">
+在递归公式中，每一步都必须用已经构造好的正交向量
+`v_1,\dots,v_{\ell-1}` 去扣投影，而不是用原来的
+`w_1,\dots,w_{\ell-1}`。若你对原本那组未正交化的向量扣投影，输出未
+必会变成正交。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="Gram-Schmidt 中的第一个向量 `v_1` 是什么？">
+直接看定义。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它就是 `v_1=w_1`。
+</RevealSolution>
+
+<QuickCheck prompt="除了变成正交之外，Gram-Schmidt 还保留了什么性质？">
+想想定理中的张成结论。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它保留了张成空间。每一步得到的新向量组，与原来向量组在该步之前张成
+的是同一个子空间。
+</RevealSolution>
+
+<QuickCheck prompt="怎样由正交基得到标准正交基？">
+用规范化。
+</QuickCheck>
+
+<RevealSolution title="答案">
+把每个非零基向量除以自己的范数即可。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="对 `w_1=(1,1,0)` 与 `w_2=(1,0,1)` 做 Gram-Schmidt 的前两步。">
+先设 `v_1=w_1`，再扣掉 `w_2` 在 `v_1` 方向上的部分。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+先有
+
+$$
+v_1=
+\begin{bmatrix}
+1\\1\\0
+\end{bmatrix}.
+$$
+
+再算
+
+$$
+\frac{\langle w_2,v_1\rangle}{\|v_1\|^2}
+=\frac{1}{2}.
+$$
+
+所以
+
+$$
+v_2=
+\begin{bmatrix}
+1\\0\\1
+\end{bmatrix}
+-\frac12
+\begin{bmatrix}
+1\\1\\0
+\end{bmatrix}
+=
+\begin{bmatrix}
+1/2\\-1/2\\1
+\end{bmatrix}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="为什么 Gram-Schmidt 要求原来那组 `w_1,\dots,w_k` 必须线性无关？">
+想想其中一步可能会发生什么。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+若原本的向量组线性相关，某一步新的向量就可能完全落在先前向量的张成
+空间内，扣除投影后便变成 `0`。而零向量不能属于正交基。
+</RevealSolution>
+
+<QuickCheck prompt="假设 Gram-Schmidt 得到正交向量 `v_1,v_2`，其范数分别是 3 与 4。相应的标准正交向量是什么？">
+逐个规范化。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+它们分别是
+
+$$
+u_1=\frac{v_1}{3},
+\qquad
+u_2=\frac{v_2}{4}.
+$$
+</RevealSolution>
+
+## 相关笔记
+
+应先读
+[9.2 正交集与标准正交基](/zh-cn/notes/math1030/inner-products/orthogonal-sets-and-orthonormal-bases)，
+因为 Gram-Schmidt 正是建立在正交坐标公式上。
+
+本节的存在性结论，也是把
+[6.2 子空间](/zh-cn/notes/math1030/vector-spaces/subspaces)
+与 [6.5 基底与维数](/zh-cn/notes/math1030/vector-spaces/basis-and-dimension)
+推向更几何版本的重要工具。
+
+下一节
+[9.4 Cauchy-Schwarz 与三角不等式](/zh-cn/notes/math1030/inner-products/cauchy-schwarz-and-triangle-inequalities)
+则会说明这些投影步骤背后的估计原理。

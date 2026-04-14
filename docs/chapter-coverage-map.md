@@ -23,9 +23,10 @@ structure material into the live note set deliberately.
 
 ## Math1030
 
-The current public notes now reach the eigenvalue / diagonalization sequence.
-The next work is to move from that chapter into inner products /
-orthogonality, while keeping older thin units under review.
+The current public notes now reach the inner-product / orthogonality sequence.
+The next work is no longer a missing Math1030 core chapter family. Instead, the
+priority shifts to QA on the newly added higher chapters and then back to the
+remaining Math1090 backlog.
 
 | Course | Chapter | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
@@ -37,7 +38,7 @@ orthogonality, while keeping older thin units under review.
 | `math1030` | 6 Vector spaces, span, basis, rank | Authored through `6.6` | Strong | The main backbone is live; appendix-style basis results remain backlog. |
 | `math1030` | 7 Determinants | Authored through `7.3` | Strong | `7.3` deliberately absorbs the local appendix path to cofactors, adjoints, and Cramer's rule. |
 | `math1030` | 8 Eigenvalues and diagonalization | Authored through `8.3` | Strong | `8.3` includes multiplicities, the distinct-eigenvalue test, and a first Cayley-Hamilton pass. |
-| `math1030` | 9 Inner products and orthogonality | Unauthored | Usable | `1030gi-n08-01.pdf` plus the master-note chapter. |
+| `math1030` | 9 Inner products and orthogonality | Authored through `9.4` | Strong | `9.4` completes the chapter with Cauchy-Schwarz and triangle inequalities after orthogonal bases and Gram-Schmidt. |
 
 ## Math1025
 
@@ -60,7 +61,7 @@ future addition.
 
 ## Next steps
 
-The next content cycle should move into the strongest missing Math1030 chapter
-family: inner products / orthogonality. After that, return to the remaining
-Math1090 chapter-4 backlog and keep Math1025 expansion controlled and
-source-backed.
+The next content cycle should return to the remaining Math1090 chapter-4 and
+proof-structure backlog, while keeping Math1025 expansion controlled and
+source-backed and using the newer Math1030 higher chapters for export / theme /
+exercise QA.

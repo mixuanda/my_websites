@@ -1,0 +1,342 @@
+---
+title: "9.3 Gram-Schmidt orthogonalization"
+description: "Apply Gram-Schmidt to turn a basis into an orthogonal or orthonormal basis while preserving the same span."
+---
+
+An orthogonal basis is valuable, but most bases are not orthogonal when they are
+first given to you. Gram-Schmidt is the standard procedure that repairs that
+problem.
+
+It starts from any linearly independent list and systematically removes the
+components that point in already-used directions. What remains is orthogonal,
+and the span is preserved at every step.
+
+## The projection idea behind Gram-Schmidt
+
+Suppose `v_1,\dots,v_k` are already orthogonal and `w` is any vector. If you
+want the part of `w` that is perpendicular to every `v_i`, you subtract the
+components of `w` along those vectors:
+
+$$
+w-
+\frac{\langle w,v_1\rangle}{\|v_1\|^2}v_1
+-\cdots-
+\frac{\langle w,v_k\rangle}{\|v_k\|^2}v_k.
+$$
+
+<TheoremCard title="Orthogonal remainder theorem">
+Let `S=\{v_1,\dots,v_k\}` be an orthogonal subset of `\mathbb{R}^m`, and let
+`w\in\mathbb{R}^m`. Define
+
+$$
+v=
+w-
+\frac{\langle w,v_1\rangle}{\|v_1\|^2}v_1
+-\cdots-
+\frac{\langle w,v_k\rangle}{\|v_k\|^2}v_k.
+$$
+
+Then `v` is perpendicular to each `v_i`.
+</TheoremCard>
+
+This theorem is the engine of the algorithm. It tells you exactly how to build a
+new vector orthogonal to all the old ones.
+
+## Gram-Schmidt process
+
+<TheoremCard title="Gram-Schmidt orthogonalization process">
+Let `\{w_1,\dots,w_k\}` be a linearly independent subset of `\mathbb{R}^m`.
+Define
+
+$$
+v_1=w_1,
+$$
+
+and for `\ell=2,\dots,k`,
+
+$$
+v_\ell=
+w_\ell
+-\frac{\langle w_\ell,v_1\rangle}{\|v_1\|^2}v_1
+-\cdots-
+\frac{\langle w_\ell,v_{\ell-1}\rangle}{\|v_{\ell-1}\|^2}v_{\ell-1}.
+$$
+
+Then:
+
+1. `\{v_1,\dots,v_k\}` is orthogonal;
+2. for each `\ell`,
+
+$$
+\operatorname{span}\{w_1,\dots,w_\ell\}
+=
+\operatorname{span}\{v_1,\dots,v_\ell\}.
+$$
+
+In particular, the final orthogonal set spans the same subspace as the original
+linearly independent set.
+</TheoremCard>
+
+The second conclusion matters as much as the first. Gram-Schmidt does not merely
+produce some orthogonal vectors. It preserves the exact subspace you started
+with.
+
+## How to read the algorithm
+
+The first vector is unchanged:
+
+$$
+v_1=w_1.
+$$
+
+The second vector is the part of `w_2` orthogonal to `v_1`.
+
+The third vector is the part of `w_3` orthogonal to both `v_1` and `v_2`.
+
+And so on. Each step removes everything already accounted for by the earlier
+orthogonal directions.
+
+<WorkedExample title="A short Gram-Schmidt computation in R^3">
+Start with the linearly independent vectors
+
+$$
+w_1=
+\begin{bmatrix}
+1\\0\\1
+\end{bmatrix},
+\qquad
+w_2=
+\begin{bmatrix}
+1\\1\\1
+\end{bmatrix},
+\qquad
+w_3=
+\begin{bmatrix}
+0\\1\\2
+\end{bmatrix}.
+$$
+
+Set
+
+$$
+v_1=w_1=
+\begin{bmatrix}
+1\\0\\1
+\end{bmatrix}.
+$$
+
+Now compute
+
+$$
+\frac{\langle w_2,v_1\rangle}{\|v_1\|^2}
+=\frac{2}{2}=1,
+$$
+
+so
+
+$$
+v_2=w_2-v_1=
+\begin{bmatrix}
+0\\1\\0
+\end{bmatrix}.
+$$
+
+Next,
+
+$$
+\frac{\langle w_3,v_1\rangle}{\|v_1\|^2}
+=\frac{2}{2}=1,
+\qquad
+\frac{\langle w_3,v_2\rangle}{\|v_2\|^2}
+=\frac{1}{1}=1.
+$$
+
+Therefore
+
+$$
+v_3=w_3-v_1-v_2=
+\begin{bmatrix}
+-1\\0\\1
+\end{bmatrix}.
+$$
+
+The resulting set
+
+$$
+\left\{
+\begin{bmatrix}
+1\\0\\1
+\end{bmatrix},
+\begin{bmatrix}
+0\\1\\0
+\end{bmatrix},
+\begin{bmatrix}
+-1\\0\\1
+\end{bmatrix}
+\right\}
+$$
+
+is orthogonal and spans the same subspace as the original list.
+</WorkedExample>
+
+## From orthogonal to orthonormal
+
+Gram-Schmidt gives an orthogonal basis. To get an orthonormal basis, normalize
+each nonzero vector:
+
+$$
+u_i=\frac{v_i}{\|v_i\|}.
+$$
+
+<TheoremCard title="Every subspace has an orthonormal basis">
+Let `V` be a subspace of `\mathbb{R}^m`. Then `V` has an orthogonal basis, and
+after normalization it also has an orthonormal basis.
+</TheoremCard>
+
+So orthonormal bases are not rare or special accidents. Every finite-dimensional
+subspace of `\mathbb{R}^m` admits one.
+
+<WorkedExample title="Normalize the Gram-Schmidt output">
+Using the vectors from the previous example:
+
+$$
+\|v_1\|=\sqrt2,\qquad
+\|v_2\|=1,\qquad
+\|v_3\|=\sqrt2.
+$$
+
+So an orthonormal basis is
+
+$$
+u_1=\frac{1}{\sqrt2}
+\begin{bmatrix}
+1\\0\\1
+\end{bmatrix},
+\qquad
+u_2=
+\begin{bmatrix}
+0\\1\\0
+\end{bmatrix},
+\qquad
+u_3=\frac{1}{\sqrt2}
+\begin{bmatrix}
+-1\\0\\1
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+## Common mistake
+
+<CommonMistake title="Do not subtract projections onto the original w-vectors">
+In the recursive formula, each new vector must be built using the already
+constructed orthogonal vectors `v_1,\dots,v_{\ell-1}`, not the original
+`w_1,\dots,w_{\ell-1}`. If you subtract components along the original
+non-orthogonal vectors, the output need not become orthogonal.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="What is the first Gram-Schmidt vector v_1?">
+Look at the definition.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is just `v_1=w_1`.
+</RevealSolution>
+
+<QuickCheck prompt="What property does Gram-Schmidt preserve besides orthogonality?">
+Think about the span conclusion in the theorem.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It preserves span. After each step, the new vectors span exactly the same
+subspace as the original vectors up to that step.
+</RevealSolution>
+
+<QuickCheck prompt="How do you turn an orthogonal basis into an orthonormal basis?">
+Use normalization.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Divide each nonzero basis vector by its norm.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Apply the first two steps of Gram-Schmidt to `w_1=(1,1,0)` and `w_2=(1,0,1)`.">
+Compute `v_1=w_1`, then subtract the component of `w_2` along `v_1`.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+First,
+
+$$
+v_1=
+\begin{bmatrix}
+1\\1\\0
+\end{bmatrix}.
+$$
+
+Now
+
+$$
+\frac{\langle w_2,v_1\rangle}{\|v_1\|^2}
+=\frac{1}{2}.
+$$
+
+So
+
+$$
+v_2=
+\begin{bmatrix}
+1\\0\\1
+\end{bmatrix}
+-\frac12
+\begin{bmatrix}
+1\\1\\0
+\end{bmatrix}
+=
+\begin{bmatrix}
+1/2\\-1/2\\1
+\end{bmatrix}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Why does Gram-Schmidt require the original list `w_1,\dots,w_k` to be linearly independent?">
+Think about what could happen to one of the new vectors.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+If the original list is dependent, one of the later vectors could lie entirely
+in the span of the earlier ones. Then the orthogonal remainder would be `0`,
+which cannot belong to an orthogonal basis.
+</RevealSolution>
+
+<QuickCheck prompt="Suppose Gram-Schmidt gives orthogonal vectors `v_1,v_2` with norms 3 and 4. What are the corresponding orthonormal vectors?">
+Normalize each one separately.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+They are
+
+$$
+u_1=\frac{v_1}{3},
+\qquad
+u_2=\frac{v_2}{4}.
+$$
+</RevealSolution>
+
+## Related notes
+
+Read
+[9.2 Orthogonal sets and orthonormal bases](/en/notes/math1030/inner-products/orthogonal-sets-and-orthonormal-bases)
+first, because Gram-Schmidt is built from the orthogonal coefficient formula.
+
+The existence theorem here is one of the main practical tools for working with
+subspaces introduced earlier in
+[6.2 Subspaces](/en/notes/math1030/vector-spaces/subspaces)
+and [6.5 Basis and dimension](/en/notes/math1030/vector-spaces/basis-and-dimension).
+
+The equality cases in the next note,
+[9.4 Cauchy-Schwarz and triangle inequalities](/en/notes/math1030/inner-products/cauchy-schwarz-and-triangle-inequalities),
+explain why the projection steps here behave geometrically.

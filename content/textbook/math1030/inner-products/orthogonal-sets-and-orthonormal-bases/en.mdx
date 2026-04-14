@@ -1,0 +1,337 @@
+---
+title: "9.2 Orthogonal sets and orthonormal bases"
+description: "Use orthogonality to build orthogonal and orthonormal bases, then read coefficients without solving a linear system every time."
+---
+
+Once an inner product is available, you can single out vector families whose
+geometry is especially simple. Orthogonal sets are the first major example.
+
+They matter because orthogonality replaces elimination. In an orthogonal basis,
+coordinates can be read off directly from inner products instead of solving a
+new linear system every time.
+
+## Orthogonality
+
+<Definition title="Orthogonal vectors">
+Two vectors `v,w\in\mathbb{R}^m` are **orthogonal** if
+
+$$
+\langle v,w\rangle=0.
+$$
+
+This is written as
+
+$$
+v\perp w.
+$$
+</Definition>
+
+The point is not merely that the vectors look perpendicular in a picture. The
+definition works in every dimension because it is stated algebraically through
+the inner product.
+
+<WorkedExample title="Check orthogonality by inner product">
+Let
+
+$$
+v=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix},
+\qquad
+w=
+\begin{bmatrix}
+-1\\-1\\1
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+\langle v,w\rangle=1(-1)+2(-1)+3(1)=0.
+$$
+
+So `v` and `w` are orthogonal.
+</WorkedExample>
+
+## Orthogonal sets
+
+<Definition title="Orthogonal set">
+A finite set `S=\{v_1,\dots,v_k\}` in `\mathbb{R}^m` is **orthogonal** if:
+
+1. every vector in the set is nonzero;
+2. `v_i\perp v_j` whenever `i\neq j`.
+</Definition>
+
+The nonzero requirement matters. If zero were allowed, every set containing `0`
+would be vacuously orthogonal, which would destroy the structural theorems.
+
+<TheoremCard title="Orthogonal nonzero sets are automatically linearly independent">
+If `S=\{v_1,\dots,v_k\}` is an orthogonal subset of `\mathbb{R}^m`, then
+`S` is linearly independent.
+</TheoremCard>
+
+<CollapsibleProof title="Why orthogonal sets are independent">
+Suppose
+
+$$
+\alpha_1v_1+\cdots+\alpha_kv_k=0.
+$$
+
+Take the inner product with `v_i`. Every cross term disappears because the set
+is orthogonal:
+
+$$
+0=\left\langle \alpha_1v_1+\cdots+\alpha_kv_k,\;v_i\right\rangle
+=\alpha_i\langle v_i,v_i\rangle
+=\alpha_i\|v_i\|^2.
+$$
+
+Since `v_i\neq0`, we have `\|v_i\|^2>0`, so `\alpha_i=0`. This holds for every
+`i`, so the relation is trivial.
+</CollapsibleProof>
+
+## Coordinates in an orthogonal basis
+
+Orthogonality is powerful because it makes coordinates explicit.
+
+<TheoremCard title="Coefficient formula in an orthogonal set">
+Suppose `S=\{v_1,\dots,v_k\}` is an orthogonal set and
+
+$$
+v=\alpha_1v_1+\cdots+\alpha_kv_k.
+$$
+
+Then for each `i`,
+
+$$
+\alpha_i=\frac{\langle v,v_i\rangle}{\|v_i\|^2}.
+$$
+
+Hence
+
+$$
+v=
+\frac{\langle v,v_1\rangle}{\|v_1\|^2}v_1
++\cdots+
+\frac{\langle v,v_k\rangle}{\|v_k\|^2}v_k.
+$$
+</TheoremCard>
+
+This formula is one of the main practical rewards of orthogonality. There is no
+need to solve a system to recover the coefficients.
+
+<WorkedExample title="Recover coordinates from inner products">
+Let
+
+$$
+v_1=
+\begin{bmatrix}
+1\\1\\1
+\end{bmatrix},
+\quad
+v_2=
+\begin{bmatrix}
+1\\-1\\0
+\end{bmatrix},
+\quad
+v_3=
+\begin{bmatrix}
+1\\1\\-2
+\end{bmatrix}.
+$$
+
+This is an orthogonal set. Let
+
+$$
+v=
+\begin{bmatrix}
+1\\2\\3
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+\alpha_1=\frac{\langle v,v_1\rangle}{\|v_1\|^2}
+=\frac{6}{3}=2,
+$$
+
+$$
+\alpha_2=\frac{\langle v,v_2\rangle}{\|v_2\|^2}
+=\frac{-1}{2}=-\frac12,
+$$
+
+$$
+\alpha_3=\frac{\langle v,v_3\rangle}{\|v_3\|^2}
+=\frac{-3}{6}=-\frac12.
+$$
+
+So
+
+$$
+v=2v_1-\frac12v_2-\frac12v_3.
+$$
+</WorkedExample>
+
+## Orthogonal and orthonormal bases
+
+<Definition title="Orthogonal basis">
+Let `V` be a subspace of `\mathbb{R}^m`. A subset `S` of `V` is an
+**orthogonal basis** for `V` if `S` is both:
+
+1. a basis of `V`;
+2. an orthogonal set.
+</Definition>
+
+Because orthogonal nonzero sets are automatically linearly independent, to check
+that an orthogonal set is an orthogonal basis you only need to check that it
+spans the subspace.
+
+<TheoremCard title="Orthogonal basis criterion">
+Let `V` be a subspace of `\mathbb{R}^m`. If `S` is an orthogonal subset of `V`,
+then `S` is an orthogonal basis for `V` if and only if `S` spans `V`.
+</TheoremCard>
+
+<Definition title="Orthonormal basis">
+A set `S=\{v_1,\dots,v_k\}` is **orthonormal** if it is orthogonal and every
+vector has norm `1`. Equivalently,
+
+$$
+\langle v_i,v_j\rangle=
+\begin{cases}
+1,& i=j,\\
+0,& i\neq j.
+\end{cases}
+$$
+
+An orthonormal set that is also a basis is an **orthonormal basis**.
+</Definition>
+
+For orthonormal bases, the coordinate formula becomes even cleaner.
+
+<TheoremCard title="Coordinate formula in an orthonormal basis">
+If `S=\{v_1,\dots,v_k\}` is an orthonormal set and
+
+$$
+v\in\operatorname{span}\{v_1,\dots,v_k\},
+$$
+
+then
+
+$$
+v=\langle v,v_1\rangle v_1+\cdots+\langle v,v_k\rangle v_k.
+$$
+</TheoremCard>
+
+The denominators disappear because every norm is `1`.
+
+## Common mistake
+
+<CommonMistake title="Orthogonal does not mean 'already a basis'">
+An orthogonal set is automatically linearly independent, but it may still fail
+to span the space you care about. Orthogonality gives independence for free; it
+does not give spanning for free.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="Can an orthogonal set contain the zero vector?">
+Use the definition, not only the equation `⟨0,v⟩=0`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. By definition, an orthogonal set requires every vector in the set to be
+nonzero.
+</RevealSolution>
+
+<QuickCheck prompt="Why are the standard basis vectors e_1,\dots,e_m orthogonal?">
+Compute their pairwise inner products.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+If `i\neq j`, then `e_i^Te_j=0` because the `1` entries occur in different
+coordinates. So the standard basis vectors are pairwise orthogonal.
+</RevealSolution>
+
+<QuickCheck prompt="If an orthonormal basis is used, what is the coefficient of v_i in the expansion of v?">
+Use the orthonormal coordinate formula.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is `\langle v,v_i\rangle`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Show that `\{(1,2),(-2,1)\}` is an orthogonal basis of `\mathbb{R}^2`.">
+Check orthogonality first, then spanning.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The inner product is
+
+$$
+(1,2)\cdot(-2,1)=-2+2=0,
+$$
+
+so the vectors are orthogonal. Since there are two nonzero orthogonal vectors in
+`\mathbb{R}^2`, they are linearly independent and therefore form a basis of
+`\mathbb{R}^2`.
+</RevealSolution>
+
+<QuickCheck prompt="Let `u_1=(1,0,1)` and `u_2=(1,-2,1)`. Find the coefficients of `v=(2,-2,2)` in this orthogonal basis.">
+Use the orthogonal coefficient formula directly.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+First compute the norms:
+
+$$
+\|u_1\|^2=2,\qquad \|u_2\|^2=6.
+$$
+
+Then
+
+$$
+\alpha_1=\frac{\langle v,u_1\rangle}{\|u_1\|^2}
+=\frac{4}{2}=2,
+\qquad
+\alpha_2=\frac{\langle v,u_2\rangle}{\|u_2\|^2}
+=\frac{6}{6}=1.
+$$
+
+So
+
+$$
+v=2u_1+u_2.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Normalize the orthogonal basis `\{(3,4),(4,-3)\}`.">
+Divide each vector by its norm.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Each vector has norm `5`, so an orthonormal basis is
+
+$$
+\left\{
+\left(\frac35,\frac45\right),
+\left(\frac45,-\frac35\right)
+\right\}.
+$$
+</RevealSolution>
+
+## Related notes
+
+Read
+[9.1 Inner products, norms, and angles](/en/notes/math1030/inner-products/inner-products-norms-and-angles)
+first if the inner-product formulas themselves are not yet automatic.
+
+Continue with
+[9.3 Gram-Schmidt orthogonalization](/en/notes/math1030/inner-products/gram-schmidt-orthogonalization)
+to see how arbitrary bases are converted into orthogonal ones.
+
+The basis language here also depends on
+[6.5 Basis and dimension](/en/notes/math1030/vector-spaces/basis-and-dimension).

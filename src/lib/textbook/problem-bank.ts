@@ -1318,6 +1318,222 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["characteristic-polynomial", "eigenvalue", "root-test"],
   },
+  "checkpoint.math1030.inner-product-orthogonal": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.inner-product-orthogonal",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "inner-products",
+    unitId: "math1030.inner-products.inner-products-norms-and-angles",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "What condition is equivalent to saying that two vectors v and w are orthogonal in R^m?",
+      "在 R^m 中，哪個條件與「向量 v 與 w 正交」等價？",
+      "在 R^m 中，哪个条件与“向量 v 与 w 正交”等价？"
+    ),
+    choices: [
+      { id: "a", text: text("⟨v,w⟩=0", "⟨v,w⟩=0", "⟨v,w⟩=0") },
+      { id: "b", text: text("||v||=||w||", "||v||=||w||", "||v||=||w||") },
+      { id: "c", text: text("v+w=0", "v+w=0", "v+w=0") },
+      { id: "d", text: text("det([v w])=1", "det([v w])=1", "det([v w])=1") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Orthogonality is defined through the inner product, not through equal length.",
+        "正交係以內積去定義，並不是以長度是否相同去定義。",
+        "正交是以内积去定义，并不是以长度是否相同去定义。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "By definition, two vectors are orthogonal exactly when their inner product is 0.",
+        "按定義，兩個向量正交，當且僅當它們的內積等於 0。",
+        "按定义，两个向量正交，当且仅当它们的内积等于 0。"
+      ),
+    ],
+    skillTags: ["inner-product", "orthogonal"],
+  },
+  "checkpoint.math1030.orthonormal-coefficient": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.orthonormal-coefficient",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "inner-products",
+    unitId: "math1030.inner-products.orthogonal-sets-and-orthonormal-bases",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Fill in the blank: if {v1,...,vk} is orthonormal and v lies in its span, then the coefficient of vi in the expansion of v is ____.",
+      "填空：若 {v1,...,vk} 是標準正交集，而 v 落在它們的張成空間內，則 v 在 vi 方向上的係數是 ____。",
+      "填空：若 {v1,...,vk} 是标准正交集，而 v 落在它们的张成空间内，则 v 在 vi 方向上的系数是 ____。"
+    ),
+    correctAnswer: {
+      value: "<v,vi>",
+      equivalentValues: ["⟨v,vi⟩", "inner product of v and vi", "⟨v,v_i⟩", "<v,v_i>"],
+      equivalence: [{ type: "trimmed" }, { type: "symbolic" }, { type: "case-insensitive" }],
+    },
+    hints: [
+      text(
+        "In an orthonormal basis, the denominator ||vi||^2 disappears because it equals 1.",
+        "在標準正交基中，分母 ||vi||^2 會消失，因為它等於 1。",
+        "在标准正交基中，分母 ||vi||^2 会消失，因为它等于 1。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    syntaxGuidance: text(
+      "A short symbolic answer such as `⟨v,v_i⟩` or `<v,vi>` is enough.",
+      "輸入 `⟨v,v_i⟩` 或 `<v,vi>` 呢種簡短符號答案已足夠。",
+      "输入 `⟨v,v_i⟩` 或 `<v,vi>` 这种简短符号答案已足够。"
+    ),
+    solutionSteps: [
+      text(
+        "For an orthogonal basis, the coefficient is ⟨v,vi⟩ / ||vi||^2.",
+        "對正交基而言，係數公式是 ⟨v,vi⟩ / ||vi||^2。",
+        "对正交基而言，系数公式是 ⟨v,vi⟩ / ||vi||^2。"
+      ),
+      text(
+        "If the basis is orthonormal, then ||vi||=1, so ||vi||^2=1.",
+        "若基底是標準正交，則 ||vi||=1，所以 ||vi||^2=1。",
+        "若基底是标准正交，则 ||vi||=1，所以 ||vi||^2=1。"
+      ),
+      text(
+        "Therefore the coefficient is just ⟨v,vi⟩.",
+        "因此，係數就直接是 ⟨v,vi⟩。",
+        "因此，系数就直接是 ⟨v,vi⟩。"
+      ),
+    ],
+    skillTags: ["orthonormal-basis", "inner-product", "coordinates"],
+  },
+  "checkpoint.math1030.gram-schmidt-span": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.gram-schmidt-span",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "inner-products",
+    unitId: "math1030.inner-products.gram-schmidt-orthogonalization",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Besides producing orthogonal vectors, what does Gram-Schmidt preserve at each step?",
+      "除咗產生正交向量之外，Gram-Schmidt 在每一步還保留了甚麼？",
+      "除了产生正交向量之外，Gram-Schmidt 在每一步还保留了什么？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("The span of the vectors processed so far.", "到目前為止那些向量所張成的空間。", "到目前为止那些向量所张成的空间。"),
+      },
+      {
+        id: "b",
+        text: text("Every original coordinate entry exactly.", "每個原始坐標項都完全不變。", "每个原始坐标项都完全不变。"),
+      },
+      {
+        id: "c",
+        text: text("The determinant of the matrix formed by the vectors.", "由這些向量組成矩陣的行列式。", "由这些向量组成矩阵的行列式。"),
+      },
+      {
+        id: "d",
+        text: text("The norm of each original vector.", "每個原始向量的範數。", "每个原始向量的范数。"),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The process changes the vectors, but it keeps the same subspace available for spanning.",
+        "這個過程會改變向量，但會保留同一個可張成的子空間。",
+        "这个过程会改变向量，但会保留同一个可张成的子空间。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "At step ℓ, Gram-Schmidt replaces wℓ by the part of wℓ that is orthogonal to the earlier vectors.",
+        "在第 ℓ 步，Gram-Schmidt 會把 wℓ 換成與前面向量正交的那部分。",
+        "在第 ℓ 步，Gram-Schmidt 会把 wℓ 换成与前面向量正交的那部分。"
+      ),
+      text(
+        "That new vector lies in the span of w1,...,wℓ, and conversely wℓ lies in the span of the new orthogonal list.",
+        "新向量仍然落在 w1,...,wℓ 的張成空間內；反過來，wℓ 也可由新正交向量組表示。",
+        "新向量仍然落在 w1,...,wℓ 的张成空间内；反过来，wℓ 也可由新正交向量组表示。"
+      ),
+      text(
+        "So the span is preserved at every stage.",
+        "因此，每一步都保留相同的張成空間。",
+        "因此，每一步都保留相同的张成空间。"
+      ),
+    ],
+    skillTags: ["gram-schmidt", "span", "orthogonal-basis"],
+  },
+  "checkpoint.math1030.cauchy-schwarz-bound": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.cauchy-schwarz-bound",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "inner-products",
+    unitId: "math1030.inner-products.cauchy-schwarz-and-triangle-inequalities",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "What does the Cauchy-Schwarz inequality say about the inner product of v and w?",
+      "Cauchy-Schwarz 不等式對 v 與 w 的內積給出甚麼估計？",
+      "Cauchy-Schwarz 不等式对 v 与 w 的内积给出什么估计？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("|⟨v,w⟩| ≤ ||v|| ||w||", "|⟨v,w⟩| ≤ ||v|| ||w||", "|⟨v,w⟩| ≤ ||v|| ||w||"),
+      },
+      {
+        id: "b",
+        text: text("|⟨v,w⟩| ≥ ||v|| + ||w||", "|⟨v,w⟩| ≥ ||v|| + ||w||", "|⟨v,w⟩| ≥ ||v|| + ||w||"),
+      },
+      {
+        id: "c",
+        text: text("⟨v,w⟩ = ||v+w||", "⟨v,w⟩ = ||v+w||", "⟨v,w⟩ = ||v+w||"),
+      },
+      {
+        id: "d",
+        text: text("||v-w|| = ||v|| ||w||", "||v-w|| = ||v|| ||w||", "||v-w|| = ||v|| ||w||"),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The inequality compares the absolute value of the inner product with the product of the two lengths.",
+        "這條不等式是把內積的絕對值，拿去和兩個長度的乘積比較。",
+        "这条不等式是把内积的绝对值，拿去和两个长度的乘积比较。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "Cauchy-Schwarz states that the size of the inner product cannot exceed the product of the norms.",
+        "Cauchy-Schwarz 表示內積的大小，不會超過兩個範數的乘積。",
+        "Cauchy-Schwarz 表示内积的大小，不会超过两个范数的乘积。"
+      ),
+      text(
+        "So the correct inequality is |⟨v,w⟩| ≤ ||v|| ||w||.",
+        "所以正確估計是 |⟨v,w⟩| ≤ ||v|| ||w||。",
+        "所以正确估计是 |⟨v,w⟩| ≤ ||v|| ||w||。"
+      ),
+    ],
+    skillTags: ["cauchy-schwarz", "inner-product", "norm"],
+  },
   "checkpoint.csci2520.pointer-assignment-vs-dereference": {
     accessTier: "FREE",
     id: "checkpoint.csci2520.pointer-assignment-vs-dereference",
