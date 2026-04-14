@@ -1303,6 +1303,123 @@ const math1030DeterminantUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1030EigenvalueUnits: TextbookUnitMeta[] = [
+  {
+    accessTier: "MEMBER",
+    chapterId: "eigenvalues",
+    chapterNumber: "8",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Define eigenvalues through the equation Av=λv, then recast the same idea as a null-space and determinant question so the structure becomes computable.",
+      "由方程 Av=λv 定義特徵值與特徵向量，再把同一個概念改寫成零空間與行列式問題，令整個結構變得可計算。",
+      "由方程 Av=λv 定义特征值与特征向量，再把同一个概念改写成零空间与行列式问题，让整个结构变得可计算。"
+    ),
+    glossaryRefs: ["eigenvalue", "eigenvector", "eigenspace", "determinant"],
+    interactiveIds: [],
+    order: 19,
+    prerequisites: [
+      "math1030.determinants.row-operations-products-and-invertibility",
+      "math1030.vector-spaces.basis-and-dimension",
+    ],
+    slug: "eigenvalues-eigenvectors-and-eigenspaces",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§8.1, theorem 8.1.1 and eigenspace definition",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n07-01.pdf",
+      },
+    ],
+    title: text(
+      "8.1 Eigenvalues, eigenvectors, and eigenspaces",
+      "8.1 特徵值、特徵向量與特徵空間",
+      "8.1 特征值、特征向量与特征空间"
+    ),
+    unitId: "math1030.eigenvalues.eigenvalues-eigenvectors-and-eigenspaces",
+    unitNumber: "8.1",
+  },
+  {
+    accessTier: "MEMBER",
+    chapterId: "eigenvalues",
+    chapterNumber: "8",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Treat diagonalization as a basis change built from eigenvectors, then use similarity to explain when a matrix can be simplified without changing its essential eigenvalue data.",
+      "把對角化理解成由特徵向量組成的基變換，再用相似關係說明何時矩陣可以在不改變核心特徵值資料的情況下被簡化。",
+      "把对角化理解成由特征向量组成的基变换，再用相似关系说明何时矩阵可以在不改变核心特征值资料的情况下被简化。"
+    ),
+    glossaryRefs: ["eigenvalue", "eigenvector", "diagonalizable-matrix", "basis"],
+    interactiveIds: [],
+    order: 20,
+    prerequisites: [
+      "math1030.eigenvalues.eigenvalues-eigenvectors-and-eigenspaces",
+      "math1030.vector-spaces.basis-and-dimension",
+    ],
+    slug: "diagonalization-and-similarity",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§8.2, §8.3.1",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n07-02.pdf",
+      },
+    ],
+    title: text(
+      "8.2 Diagonalization and similarity",
+      "8.2 對角化與相似",
+      "8.2 对角化与相似"
+    ),
+    unitId: "math1030.eigenvalues.diagonalization-and-similarity",
+    unitNumber: "8.2",
+  },
+  {
+    accessTier: "MEMBER",
+    chapterId: "eigenvalues",
+    chapterNumber: "8",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use characteristic polynomials, algebraic and geometric multiplicity, and the distinct-eigenvalue test to decide when eigenvalue data is enough for diagonalization.",
+      "用特徵多項式、代數與幾何重數，以及「互異特徵值」測試去判斷何時特徵值資料已足夠推出可對角化。",
+      "用特征多项式、代数与几何重数，以及“互异特征值”测试去判断何时特征值资料已足够推出可对角化。"
+    ),
+    glossaryRefs: [
+      "eigenvalue",
+      "eigenspace",
+      "characteristic-polynomial",
+      "diagonalizable-matrix",
+    ],
+    interactiveIds: [],
+    order: 21,
+    prerequisites: [
+      "math1030.eigenvalues.eigenvalues-eigenvectors-and-eigenspaces",
+      "math1030.eigenvalues.diagonalization-and-similarity",
+      "math1030.determinants.determinants-and-cofactor-expansion",
+    ],
+    slug: "characteristic-polynomials-and-diagonalization-tests",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§8.1.3-§8.3.1",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n07-03.pdf",
+      },
+    ],
+    title: text(
+      "8.3 Characteristic polynomials and diagonalization tests",
+      "8.3 特徵多項式與對角化測試",
+      "8.3 特征多项式与对角化测试"
+    ),
+    unitId: "math1030.eigenvalues.characteristic-polynomials-and-diagonalization-tests",
+    unitNumber: "8.3",
+  },
+];
+
 const math1090: TextbookCourseMeta = {
   chapters: [
     {
@@ -1449,6 +1566,22 @@ const math1030: TextbookCourseMeta = {
       ),
       title: text("Determinants", "行列式", "行列式"),
       units: math1030DeterminantUnits,
+    },
+    {
+      course: "math1030",
+      id: "eigenvalues",
+      number: "8",
+      summary: text(
+        "Eigenvalues, eigenspaces, similarity, and diagonalization as the next structural layer after determinants.",
+        "特徵值、特徵空間、相似與對角化，作為行列式之後的下一層結構。",
+        "特征值、特征空间、相似与对角化，作为行列式之后的下一层结构。"
+      ),
+      title: text(
+        "Eigenvalues and diagonalization",
+        "特徵值與對角化",
+        "特征值与对角化"
+      ),
+      units: math1030EigenvalueUnits,
     },
   ],
   description: text(

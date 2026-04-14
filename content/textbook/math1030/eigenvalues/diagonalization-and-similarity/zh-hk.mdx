@@ -1,0 +1,370 @@
+---
+title: "8.2 對角化與相似"
+description: "把對角化理解成由特徵向量組成的基變換，再用相似關係說明何時矩陣可以在不改變核心特徵值資料的情況下被簡化。"
+---
+
+單一個特徵向量已經有用；若有整組可形成基底的特徵向量，情況就會徹底
+改變。
+
+若一個方陣擁有足夠多線性無關的特徵向量，就可以找到一個座標系，使它
+在該座標系下變成對角矩陣。到那時候，矩陣的冪、逆矩陣與不少結構問題
+都會變得幾乎不需要計算。
+
+## 為甚麼對角化重要
+
+設一個矩陣作用於 `\mathbb{R}^n`。在標準基底下，這個作用可能很複
+雜，因為不同坐標會互相混合。若改用由特徵向量組成的新基底，則矩陣對
+每個基向量的作用就只剩下純量乘法。
+
+而對角矩陣正正就是這樣工作的。
+
+<Definition title="相似">
+兩個 `n\times n` 矩陣 `A` 與 `B` 若存在可逆矩陣 `S` 使得
+
+$$
+S^{-1}AS=B,
+$$
+
+便稱 `A` 與 `B` **相似**。
+
+相似的意思，是 `A` 與 `B` 其實代表同一個線性變換，只不過採用了不
+同基底。
+</Definition>
+
+<Definition title="對角化與可對角化">
+設 `A` 是 `n\times n` 矩陣。
+
+若存在可逆矩陣 `S` 與純量 `\lambda_1,\dots,\lambda_n` 使得
+
+$$
+S^{-1}AS=\operatorname{diag}(\lambda_1,\dots,\lambda_n),
+$$
+
+則稱 `A` **可對角化**，而上述等式稱為 `A` 的一個 **對角化**。
+</Definition>
+
+因此，對角化只是相似的一個特別情況：目標矩陣剛好是對角矩陣。
+
+## 特徵向量正是對角化矩陣的列
+
+<TheoremCard title="對角化的刻畫">
+設 `A` 是 `n\times n` 矩陣，並令
+
+$$
+S=[v_1\ v_2\ \cdots\ v_n]
+$$
+
+是一個由列向量 `v_1,\dots,v_n` 組成的可逆矩陣。
+
+下列敘述等價：
+
+1. 每個 `v_j` 都是 `A` 的特徵向量，而對應特徵值為 `\lambda_j`；
+2.
+
+$$
+S^{-1}AS=\operatorname{diag}(\lambda_1,\dots,\lambda_n)
+$$
+</TheoremCard>
+
+這條定理是對角化的核心。換基矩陣的列並不是隨便挑的，它們必須是特徵
+向量。
+
+等價地，若記 `D=\operatorname{diag}(\lambda_1,\dots,\lambda_n)`，
+則
+
+$$
+AS=SD.
+$$
+
+這條式子的意思是：
+
+- `AS` 的第一列是 `Av_1`，而 `SD` 的第一列是 `\lambda_1v_1`；
+- `AS` 的第二列是 `Av_2`，而 `SD` 的第二列是 `\lambda_2v_2`；
+- 其餘各列同理。
+
+所以單一條矩陣等式 `AS=SD`，其實一次過包住了所有特徵向量方程。
+
+<TheoremCard title="甚麼時候矩陣可對角化">
+`n\times n` 矩陣 `A` 可對角化，當且僅當它擁有 `n` 個線性無關的特徵
+向量。
+</TheoremCard>
+
+這條判準才是你應該記住的版本。對角化不是靠運氣猜一個矩陣 `S`，而
+是要找出一整組能形成基底的特徵向量。
+
+## 第一批對角化例子
+
+<WorkedExample title="一個可對角化的上三角矩陣">
+令
+
+$$
+A=
+\begin{bmatrix}
+1&1&1\\
+0&2&2\\
+0&0&3
+\end{bmatrix}.
+$$
+
+假設已知它有特徵向量
+
+$$
+u_1=
+\begin{bmatrix}
+1\\0\\0
+\end{bmatrix},
+\qquad
+u_2=
+\begin{bmatrix}
+1\\1\\0
+\end{bmatrix},
+\qquad
+u_3=
+\begin{bmatrix}
+3\\4\\2
+\end{bmatrix},
+$$
+
+分別對應特徵值 `1`、`2`、`3`。
+
+若令
+
+$$
+U=[u_1\ u_2\ u_3],
+$$
+
+則三個向量線性無關，所以 `U` 可逆。因此
+
+$$
+U^{-1}AU=\operatorname{diag}(1,2,3).
+$$
+
+原矩陣本身並不是對角矩陣，但在特徵向量基底下，它就變成對角矩陣。
+</WorkedExample>
+
+<WorkedExample title="一個不可對角化的矩陣">
+考慮
+
+$$
+J=
+\begin{bmatrix}
+1&4\\
+0&1
+\end{bmatrix}.
+$$
+
+它的唯一特徵值是 `1`，因為
+
+$$
+\det(J-\lambda I)=
+\begin{vmatrix}
+1-\lambda&4\\
+0&1-\lambda
+\end{vmatrix}
+=(1-\lambda)^2.
+$$
+
+現在求 `(J-I)x=0`：
+
+$$
+J-I=
+\begin{bmatrix}
+0&4\\
+0&0
+\end{bmatrix}.
+$$
+
+所以 `x_2=0`，`x_1` 自由。其特徵空間為
+
+$$
+\operatorname{span}\left\{
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+\right\},
+$$
+
+只有一維。對 `2\times2` 矩陣來說，要可對角化便必須有兩個線性無關的
+特徵向量，所以 `J` 不可對角化。
+</WorkedExample>
+
+## 相似矩陣會保留特徵值資料
+
+相似不是任意的共軛操作；它會保留矩陣的核心特徵值結構。
+
+<TheoremCard title="相似矩陣有相同特徵多項式">
+若 `A` 與 `B` 相似，則
+
+$$
+p_A(x)=p_B(x).
+$$
+
+特別地，`A` 與 `B` 有相同的特徵值。
+</TheoremCard>
+
+這正是對角化有意義的原因。由 `A` 得到的對角矩陣並不是另一個無關的
+光譜對象，而是同一個線性變換在另一組基底下的寫法，只不過那組基底會
+把特徵值直接暴露在對角線上。
+
+<CommonMistake title="特徵多項式相同，不代表一定相似">
+相似會推出特徵多項式相同，但反過來並不成立。兩個矩陣可以有相同特徵
+多項式，卻仍然不相似。
+
+例如
+
+$$
+\begin{bmatrix}
+0&1\\
+0&0
+\end{bmatrix}
+\qquad\text{與}\qquad
+\begin{bmatrix}
+0&0\\
+0&0
+\end{bmatrix}
+$$
+
+都有特徵多項式 `x^2`，但前者並不與零矩陣相似。
+</CommonMistake>
+
+## 對角化令冪與逆矩陣變得容易
+
+假設
+
+$$
+A=SDS^{-1},
+\qquad
+D=\operatorname{diag}(\lambda_1,\dots,\lambda_n).
+$$
+
+則矩陣代數會大幅簡化。
+
+<TheoremCard title="可對角化矩陣的冪、逆與轉置">
+若 `A=SDS^{-1}` 且 `D` 是對角矩陣，則對每個正整數 `m`，
+
+$$
+A^m=SD^mS^{-1}.
+$$
+
+若 `A` 可逆，則 `D` 的每個對角線項都非零，而且
+
+$$
+A^{-1}=SD^{-1}S^{-1}.
+$$
+
+另外，`A^T` 亦可對角化，並且與 `A` 具有相同的特徵值。
+</TheoremCard>
+
+關鍵在於對角矩陣的冪很好算：
+
+$$
+\operatorname{diag}(\lambda_1,\dots,\lambda_n)^m
+=\operatorname{diag}(\lambda_1^m,\dots,\lambda_n^m).
+$$
+
+<WorkedExample title="用對角化計算矩陣冪">
+令
+
+$$
+A=
+\begin{bmatrix}
+2&1&1\\
+1&2&1\\
+1&1&2
+\end{bmatrix}.
+$$
+
+若已知
+
+$$
+A=S\operatorname{diag}(4,1,1)S^{-1},
+$$
+
+則
+
+$$
+A^m=S\operatorname{diag}(4^m,1,1)S^{-1}.
+$$
+
+因此真正困難的步驟只在於把矩陣對角化一次。之後所有正整數次方都只需
+把 `4` 改成 `4^m`，而重複的 `1` 保持不變即可。
+</WorkedExample>
+
+## 快速檢查
+
+<QuickCheck prompt="對角化矩陣 S 的各列必須是甚麼？">
+想想方程 `AS=SD`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它們必須是 `A` 的特徵向量。`S` 的第 `j` 列是對應於 `D` 第 `j` 個
+對角線項的特徵向量。
+</RevealSolution>
+
+<QuickCheck prompt="一個 `3\times3` 矩陣若只有兩個線性無關的特徵向量，可以可對角化嗎？">
+用刻畫定理回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不可以。`3\times3` 矩陣可對角化，當且僅當它有三個線性無關的特徵向
+量。
+</RevealSolution>
+
+<QuickCheck prompt="若 A 與 D 相似，而 D 是對角矩陣，則 A 與 D 的特徵值是否相同？">
+利用相似定理。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。相似矩陣有相同的特徵多項式，因此也有相同的特徵值。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="若 A 有特徵向量 `v_1,v_2,v_3`，對應特徵值 `2,5,-1`，且三者線性無關，那在 A 的一個對角化中會出現哪個對角矩陣？">
+把對角線順序與特徵向量順序對齊。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+若 `S=[v_1\ v_2\ v_3]`，則
+
+$$
+S^{-1}AS=\operatorname{diag}(2,5,-1).
+$$
+
+對角線各項必須按 `S` 的列次序與相應特徵值一一對應。
+</RevealSolution>
+
+<QuickCheck prompt="解釋為甚麼 `\begin{bmatrix}1&1\\0&1\end{bmatrix}` 不可對角化。">
+檢查它到底有多少個線性無關特徵向量。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+它的特徵多項式是 `(1-\lambda)^2`，所以唯一特徵值是 `1`。求
+`(A-I)x=0` 後，只得到一維特徵空間。對 `2\times2` 矩陣而言，要可對角
+化便需要兩個線性無關特徵向量，因此它失敗。
+</RevealSolution>
+
+<QuickCheck prompt="若 `A=SDS^{-1}`，而 `D=\operatorname{diag}(2,-1)`，求 `A^3`。">
+用可對角化矩陣的冪公式。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+
+$$
+A^3=SD^3S^{-1}
+=S\operatorname{diag}(2^3,(-1)^3)S^{-1}
+=S\operatorname{diag}(8,-1)S^{-1}.
+$$
+</RevealSolution>
+
+## 相關筆記
+
+若你對特徵值與零空間的關係仍未穩固，應先回看
+[8.1 特徵值、特徵向量與特徵空間](/zh-hk/notes/math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces)。
+
+接着可讀
+[8.3 特徵多項式與對角化測試](/zh-hk/notes/math1030/eigenvalues/characteristic-polynomials-and-diagonalization-tests)，
+因為那一節會提供判斷「是否有足夠特徵向量」的多項式工具。
+
+本節使用的基底語言亦依賴
+[6.5 基底與維數](/zh-hk/notes/math1030/vector-spaces/basis-and-dimension)。

@@ -1148,6 +1148,176 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["determinant", "cramers-rule", "invertible-system"],
   },
+  "checkpoint.math1030.eigenvalue-zero-invertibility": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.eigenvalue-zero-invertibility",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "eigenvalues",
+    unitId: "math1030.eigenvalues.eigenvalues-eigenvectors-and-eigenspaces",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Which statement is equivalent to saying that 0 is an eigenvalue of a square matrix A?",
+      "下列哪一項與「0 是方陣 A 的一個特徵值」等價？",
+      "下列哪一项与“0 是方阵 A 的一个特征值”等价？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("A is invertible.", "A 可逆。", "A 可逆。"),
+      },
+      {
+        id: "b",
+        text: text("A is singular.", "A 不可逆。", "A 不可逆。"),
+      },
+      {
+        id: "c",
+        text: text("Every nonzero vector is an eigenvector of A.", "A 的每個非零向量都是特徵向量。", "A 的每个非零向量都是特征向量。"),
+      },
+      {
+        id: "d",
+        text: text("det(A)=1.", "det(A)=1。", "det(A)=1。"),
+      },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "Use the equivalence between λ being an eigenvalue and A-λI being noninvertible.",
+        "利用「λ 是特徵值」與「A-λI 不可逆」之間的等價關係。",
+        "利用“λ 是特征值”与“A-λI 不可逆”之间的等价关系。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "0 is an eigenvalue exactly when det(A-0I)=det(A)=0.",
+        "0 是特徵值，當且僅當 det(A-0I)=det(A)=0。",
+        "0 是特征值，当且仅当 det(A-0I)=det(A)=0。"
+      ),
+      text(
+        "A square matrix with determinant 0 is not invertible.",
+        "方陣若行列式為 0，便不可逆。",
+        "方阵若行列式为 0，便不可逆。"
+      ),
+    ],
+    skillTags: ["eigenvalue", "invertibility", "determinant"],
+  },
+  "checkpoint.math1030.diagonalizable-basis": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.diagonalizable-basis",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "eigenvalues",
+    unitId: "math1030.eigenvalues.diagonalization-and-similarity",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "What is the correct criterion for an n×n matrix A to be diagonalizable?",
+      "對一個 n×n 矩陣 A 來說，哪一項才是正確的可對角化判準？",
+      "对一个 n×n 矩阵 A 来说，哪一项才是正确的可对角化判准？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("A has n linearly independent eigenvectors.", "A 有 n 個線性無關的特徵向量。", "A 有 n 个线性无关的特征向量。"),
+      },
+      {
+        id: "b",
+        text: text("A has at least one eigenvalue.", "A 至少有一個特徵值。", "A 至少有一个特征值。"),
+      },
+      {
+        id: "c",
+        text: text("A is upper triangular.", "A 是上三角矩陣。", "A 是上三角矩阵。"),
+      },
+      {
+        id: "d",
+        text: text("det(A)=1.", "det(A)=1。", "det(A)=1。"),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Diagonalization is a basis change, so ask what the columns of the change-of-basis matrix must be.",
+        "對角化本質上是一個基變換，所以要問換基矩陣的各列必須是甚麼。",
+        "对角化本质上是一个基变换，所以要问换基矩阵的各列必须是什么。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "If S^{-1}AS is diagonal, then the columns of S must be eigenvectors of A.",
+        "若 S^{-1}AS 是對角矩陣，則 S 的各列必須是 A 的特徵向量。",
+        "若 S^{-1}AS 是对角矩阵，则 S 的各列必须是 A 的特征向量。"
+      ),
+      text(
+        "S must also be invertible, so those eigenvectors must be linearly independent and form a basis.",
+        "而 S 亦必須可逆，所以這些特徵向量必須線性無關並形成一組基底。",
+        "而 S 也必须可逆，所以这些特征向量必须线性无关并形成一组基底。"
+      ),
+    ],
+    skillTags: ["diagonalization", "eigenvector", "basis"],
+  },
+  "checkpoint.math1030.characteristic-root": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.characteristic-root",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "eigenvalues",
+    unitId: "math1030.eigenvalues.characteristic-polynomials-and-diagonalization-tests",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Fill in the blank: λ is an eigenvalue of A exactly when p_A(λ)= ____.",
+      "填空：λ 是 A 的特徵值，當且僅當 p_A(λ)= ____。",
+      "填空：λ 是 A 的特征值，当且仅当 p_A(λ)= ____。"
+    ),
+    correctAnswer: {
+      value: "0",
+      equivalentValues: ["zero"],
+      equivalence: [{ type: "trimmed" }, { type: "case-insensitive" }],
+    },
+    hints: [
+      text(
+        "The characteristic polynomial packages the determinant test det(A-λI)=0.",
+        "特徵多項式其實只是把 det(A-λI)=0 的測試打包起來。",
+        "特征多项式其实只是把 det(A-λI)=0 的测试打包起来。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    syntaxGuidance: text(
+      "A one-symbol answer is enough.",
+      "輸入一個符號答案就足夠。",
+      "输入一个符号答案就足够。"
+    ),
+    solutionSteps: [
+      text(
+        "By definition, p_A(x)=det(A-xI).",
+        "按定義，p_A(x)=det(A-xI)。",
+        "按定义，p_A(x)=det(A-xI)。"
+      ),
+      text(
+        "A scalar λ is an eigenvalue exactly when det(A-λI)=0.",
+        "純量 λ 是特徵值，當且僅當 det(A-λI)=0。",
+        "标量 λ 是特征值，当且仅当 det(A-λI)=0。"
+      ),
+      text(
+        "So p_A(λ)=0 is the exact root condition.",
+        "因此 p_A(λ)=0 正正就是特徵值的根條件。",
+        "因此 p_A(λ)=0 正正就是特征值的根条件。"
+      ),
+    ],
+    skillTags: ["characteristic-polynomial", "eigenvalue", "root-test"],
+  },
   "checkpoint.csci2520.pointer-assignment-vs-dereference": {
     accessTier: "FREE",
     id: "checkpoint.csci2520.pointer-assignment-vs-dereference",

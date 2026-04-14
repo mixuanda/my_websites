@@ -47,6 +47,11 @@ The table below covers the current source-backed note set in the implementation.
 | Cofactor | cofactor | 餘因子 | 余因子 | Keep the sign factor `(-1)^{i+j}` visible. | MATH1030 determinants |
 | Adjoint matrix | adjoint matrix | 伴隨矩陣 | 伴随矩阵 | Note that many books say “adjugate”; keep `adj(A)` notation stable. | MATH1030 determinants |
 | Cramer's rule | Cramer's rule | 克拉默法則 | 克拉默法则 | Use only for square invertible systems. | MATH1030 determinants |
+| Eigenvalue | eigenvalue | 特徵值 | 特征值 | Keep the equation `Av=λv` visible when defining the term. | MATH1030 eigenvalues |
+| Eigenvector | eigenvector | 特徵向量 | 特征向量 | Always keep the “nonzero vector” requirement explicit. | MATH1030 eigenvalues |
+| Eigenspace | eigenspace | 特徵空間 | 特征空间 | Tie it directly to the null space `N(A-λI)`. | MATH1030 eigenvalues |
+| Characteristic polynomial | characteristic polynomial | 特徵多項式 | 特征多项式 | Keep the formula `p_A(x)=det(A-xI)` explicit. | MATH1030 eigenvalues |
+| Diagonalizable matrix | diagonalizable matrix | 可對角化矩陣 | 可对角化矩阵 | Explain it through similarity to a diagonal matrix and a basis of eigenvectors. | MATH1030 eigenvalues |
 | Vector space | vector space | 向量空間 | 向量空间 | Use the full term before shortening explanations. | MATH1030 vector spaces |
 | Subspace | subspace | 子空間 | 子空间 | Tie the term to the closure test in beginner-facing prose. | MATH1030 vector spaces |
 | Span | span | 張成 | 张成 | Avoid mixing it with “generate” unless you explain the relation. | MATH1030 vector spaces |

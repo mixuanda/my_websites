@@ -1,0 +1,408 @@
+---
+title: "8.3 特徵多項式與對角化測試"
+description: "用特徵多項式、代數與幾何重數，以及「互異特徵值」測試去判斷何時特徵值資料已足夠推出可對角化。"
+---
+
+上一節的零空間判準
+
+$$
+\det(A-\lambda I)=0
+$$
+
+已經告訴你如何測試一個候選數 `\lambda` 是否為特徵值。下一步，是把這
+個測試包成一個單一的多項式，而它的根正正就是矩陣的特徵值。
+
+這個多項式強大到足以限制矩陣到底可以有多少個特徵值、描述重複特徵值
+的情況，並給出可對角化的實用判準。
+
+## 特徵多項式
+
+<Definition title="特徵多項式">
+設 `A` 是 `n\times n` 矩陣。多項式
+
+$$
+p_A(x)=\det(A-xI_n)
+$$
+
+稱為 `A` 的 **特徵多項式**。
+</Definition>
+
+變數 `x` 在這裡只是未定元。一旦你把某個純量 `\lambda` 代入去，
+`p_A(\lambda)` 便會變成 `A-\lambda I` 的行列式。
+
+<TheoremCard title="特徵值正好就是特徵多項式的根">
+設 `A` 是 `n\times n` 矩陣，而 `\lambda` 是純量。下列兩件事等價：
+
+1. `\lambda` 是 `A` 的特徵值；
+2. `\lambda` 是 `p_A(x)` 的根。
+</TheoremCard>
+
+這其實只是把上一節的行列式判準整理成較有系統的寫法：
+
+$$
+\lambda\text{ 是特徵值}
+\iff
+\det(A-\lambda I)=0
+\iff
+p_A(\lambda)=0.
+$$
+
+<TheoremCard title="特徵多項式的基本形狀">
+若 `A` 是 `n\times n` 矩陣，則 `p_A(x)` 是一個 `n` 次多項式，其最高
+次項係數是 `(-1)^n`，而常數項是 `\det(A)`。
+</TheoremCard>
+
+因此，特徵多項式絕不是任意的表達式。它的次數由矩陣大小固定，而其常
+數項已經記住了矩陣的行列式。
+
+## 第一批例子
+
+<WorkedExample title="一個 2×2 特徵多項式">
+令
+
+$$
+A=
+\begin{bmatrix}
+3&2\\
+3&-2
+\end{bmatrix}.
+$$
+
+則
+
+$$
+p_A(x)=
+\det
+\begin{bmatrix}
+3-x&2\\
+3&-2-x
+\end{bmatrix}
+=(3-x)(-2-x)-6.
+$$
+
+化簡後得
+
+$$
+p_A(x)=x^2-x-12=(x-4)(x+3).
+$$
+
+因此特徵值是 `4` 與 `-3`。
+</WorkedExample>
+
+<WorkedExample title="一個重根例子">
+令
+
+$$
+B=
+\begin{bmatrix}
+2&3\\
+0&2
+\end{bmatrix}.
+$$
+
+則
+
+$$
+p_B(x)=
+\det
+\begin{bmatrix}
+2-x&3\\
+0&2-x
+\end{bmatrix}
+=(2-x)^2=(x-2)^2.
+$$
+
+所以 `2` 是唯一特徵值，但它以重數 `2` 出現。
+</WorkedExample>
+
+## 代數重數與幾何重數
+
+一旦根可以重複，便需要更精細的語言。
+
+<Definition title="代數重數與幾何重數">
+設特徵多項式分解為
+
+$$
+p_A(x)=(-1)^n(x-\lambda_1)^{m_1}\cdots(x-\lambda_s)^{m_s},
+$$
+
+其中 `\lambda_1,\dots,\lambda_s` 是互異的根。
+
+1. 指數 `m_i` 稱為 `\lambda_i` 的 **代數重數**。
+2. 特徵空間 `E_A(\lambda_i)` 的維數稱為 `\lambda_i` 的
+   **幾何重數**。
+</Definition>
+
+代數重數來自多項式本身；幾何重數來自零空間 `N(A-\lambda I)`。它們衡
+量的不是同一件事，而且未必相等。
+
+<TheoremCard title="重數不等式">
+若 `\lambda` 是 `n\times n` 矩陣 `A` 的特徵值，則
+
+$$
+1\le m_g(\lambda)\le m_a(\lambda)\le n.
+$$
+</TheoremCard>
+
+因此，每個特徵空間至少有一維，但它的維數永遠不會超過相應特徵值的代
+數重數。
+
+<WorkedExample title="重根，但特徵空間太小">
+對
+
+$$
+B=
+\begin{bmatrix}
+2&3\\
+0&2
+\end{bmatrix},
+$$
+
+特徵多項式是 `(x-2)^2`，所以特徵值 `2` 的代數重數是 `2`。
+
+現在解 `(B-2I)x=0`：
+
+$$
+B-2I=
+\begin{bmatrix}
+0&3\\
+0&0
+\end{bmatrix}.
+$$
+
+因此 `x_2=0`，`x_1` 自由。特徵空間為
+
+$$
+\operatorname{span}\left\{
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+\right\},
+$$
+
+只得一維。也就是說
+
+$$
+m_a(2)=2,\qquad m_g(2)=1.
+$$
+
+這個不相等正正就是它不可對角化的原因。
+</WorkedExample>
+
+## 互異特徵值會強迫線性無關
+
+<TheoremCard title="互異特徵值所對應的特徵向量必線性無關">
+若 `v_1,\dots,v_k` 是 `A` 的特徵向量，而它們分別對應於互不相同的
+特徵值 `\lambda_1,\dots,\lambda_k`，則
+
+$$
+v_1,\dots,v_k
+$$
+
+必定線性無關。
+</TheoremCard>
+
+這條定理立即帶來兩個重要推論。
+
+<TheoremCard title="互異特徵值的數目上界">
+一個 `n\times n` 矩陣最多只可擁有 `n` 個互異特徵值。
+</TheoremCard>
+
+<TheoremCard title="互異特徵值測試可對角化">
+若一個 `n\times n` 矩陣恰好有 `n` 個互異特徵值，則它必定可對角化。
+</TheoremCard>
+
+其逆命題是假的。可對角化矩陣仍然可以有重複特徵值。最簡單例子就是單
+位矩陣：它只有特徵值 `1`，但本身早已是對角矩陣。
+
+## 更精確的可對角化判準
+
+互異特徵值是一個充分條件，但不是唯一條件。
+
+<TheoremCard title="特徵空間維數總和判準">
+設實 `n\times n` 矩陣 `A` 的所有互異實特徵值為
+`\lambda_1,\dots,\lambda_s`。則 `A` 可對角化，當且僅當
+
+$$
+\dim E_A(\lambda_1)+\cdots+\dim E_A(\lambda_s)=n.
+$$
+</TheoremCard>
+
+這條判準的意思是：只要所有特徵空間合起來已提供足夠多線性無關特徵向
+量，可以湊成整個空間的一組基底，那矩陣便能被對角化。
+
+<WorkedExample title="特徵值重複，但仍然可對角化">
+令
+
+$$
+A=
+\begin{bmatrix}
+2&1&1\\
+1&2&1\\
+1&1&2
+\end{bmatrix}.
+$$
+
+它的特徵值是 `4` 與 `1`，而 `1` 在代數上是重根。但 `4` 的特徵空間
+是一維，而 `1` 的特徵空間是二維，因此
+
+$$
+1+2=3,
+$$
+
+剛好等於矩陣大小，所以 `A` 仍然可對角化。
+</WorkedExample>
+
+## Cayley-Hamilton 定理給出一條多項式恆等式
+
+源筆記再向前走一步，把特徵多項式重新代回矩陣本身。
+
+<TheoremCard title="Cayley-Hamilton 定理">
+若
+
+$$
+p_A(x)=c_0+c_1x+c_2x^2+\cdots+c_nx^n,
+$$
+
+則
+
+$$
+c_0I+c_1A+c_2A^2+\cdots+c_nA^n=0.
+$$
+
+等價寫法是 `p_A(A)=0`。
+</TheoremCard>
+
+對可對角化矩陣來說，這條定理很好理解：若 `A=SDS^{-1}`，那麼把多項
+式 `p_A` 套到 `A` 上，等於把它逐項套到 `D` 的對角線各項上，而每個
+對角線項本身都是 `A` 的特徵值，因此也是 `p_A` 的根。
+
+實際後果是：高次冪 `A^m` 可以改寫成較低冪 `I,A,\dots,A^{n-1}` 的線
+性組合。
+
+<WorkedExample title="一條小型 Cayley-Hamilton 恆等式">
+令
+
+$$
+A=
+\begin{bmatrix}
+1&4\\
+0&1
+\end{bmatrix}.
+$$
+
+其特徵多項式為
+
+$$
+p_A(x)=(1-x)^2=x^2-2x+1.
+$$
+
+因此 Cayley-Hamilton 告訴你
+
+$$
+A^2-2A+I=0.
+$$
+
+所以所有更高次冪，都可以用這條二次關係繼續化簡。
+</WorkedExample>
+
+## 常見錯誤
+
+<CommonMistake title="重複特徵值不等於『一定不可對角化』">
+重複特徵值只表示某個特徵值的代數重數大於 `1`。可對角化與否，取決於
+相應特徵空間是否仍然提供足夠多線性無關特徵向量。重根是一個警號，但
+不是最終判決。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="` \begin{bmatrix}2&0\\0&5\end{bmatrix} ` 的特徵多項式是甚麼？">
+用 `p_A(x)=\det(A-xI)`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+
+$$
+p_A(x)=
+\begin{vmatrix}
+2-x&0\\
+0&5-x
+\end{vmatrix}
+=(2-x)(5-x).
+$$
+</RevealSolution>
+
+<QuickCheck prompt="若一個 `n\times n` 矩陣有 `n` 個互異特徵值，你可以立刻得出甚麼結論？">
+利用互異特徵值定理。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它必定可對角化，因為互異特徵值所對應的特徵向量必線性無關。
+</RevealSolution>
+
+<QuickCheck prompt="幾何重數會否大過代數重數？">
+用重數不等式回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不會。對每個特徵值 `\lambda`，都有
+
+$$
+m_g(\lambda)\le m_a(\lambda).
+$$
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="求 `\begin{bmatrix}0&1\\-2&3\end{bmatrix}` 的特徵多項式，並列出其特徵值。">
+先算 `\det(A-xI)`，再因式分解。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+
+$$
+p_A(x)=
+\begin{vmatrix}
+-x&1\\
+-2&3-x
+\end{vmatrix}
+=x^2-3x+2=(x-1)(x-2).
+$$
+
+所以特徵值是 `1` 與 `2`。
+</RevealSolution>
+
+<QuickCheck prompt="一個 `4\times4` 矩陣有四個互異特徵值。若從每個特徵值各選一個特徵向量，這四個向量張成空間的維數是多少？">
+利用互異特徵值下的線性無關性。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+這四個特徵向量線性無關，因此它們張成的空間維數是 `4`。所以它們本身
+已構成 `\mathbb{R}^4` 的一組基底。
+</RevealSolution>
+
+<QuickCheck prompt="若 `p_A(x)=x^3-6x^2+11x-6`，Cayley-Hamilton 會給出甚麼矩陣恆等式？">
+把未定元 `x` 改成矩陣 `A`。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+
+$$
+A^3-6A^2+11A-6I=0.
+$$
+
+這就是對應的 Cayley-Hamilton 恆等式。
+</RevealSolution>
+
+## 相關筆記
+
+請把
+[8.1 特徵值、特徵向量與特徵空間](/zh-hk/notes/math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces)
+打開，因為特徵值與零空間的關係是這一節的基礎。
+
+同時也應保留
+[8.2 對角化與相似](/zh-hk/notes/math1030/eigenvalues/diagonalization-and-similarity)
+在旁，因為本節提供的多項式工具正是用來判斷那一節的對角化是否成立。
+
+而 `p_A(x)=\det(A-xI)` 的行列式部分，則依賴
+[7.1 行列式與餘因子展開](/zh-hk/notes/math1030/determinants/determinants-and-cofactor-expansion)。

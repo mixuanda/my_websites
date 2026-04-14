@@ -1,0 +1,383 @@
+---
+title: "8.2 Diagonalization and similarity"
+description: "Treat diagonalization as a basis change built from eigenvectors, then use similarity to explain when a matrix can be simplified without changing its essential eigenvalue data."
+---
+
+One eigenvector is useful. A whole basis of eigenvectors is transformative.
+
+If a square matrix has enough linearly independent eigenvectors, then there is a
+coordinate system in which the matrix becomes diagonal. In that coordinate
+system, powers, inverses, and many structural questions become almost trivial.
+
+## Why diagonalization matters
+
+Suppose a matrix acts on `\mathbb{R}^n`. In the standard basis, the action may
+look complicated because different coordinates mix together. But if you build a
+new basis from eigenvectors, then the action along each basis vector becomes
+pure scalar multiplication.
+
+That is exactly what a diagonal matrix does.
+
+<Definition title="Similarity">
+Two `n\times n` matrices `A` and `B` are **similar** if there exists an
+nonsingular matrix `S` such that
+
+$$
+S^{-1}AS=B.
+$$
+
+Similarity means that `A` and `B` represent the same linear transformation in
+two different bases.
+</Definition>
+
+<Definition title="Diagonalization and diagonalizability">
+Let `A` be an `n\times n` matrix.
+
+If there exists an invertible matrix `S` and scalars
+`\lambda_1,\dots,\lambda_n` such that
+
+$$
+S^{-1}AS=\operatorname{diag}(\lambda_1,\dots,\lambda_n),
+$$
+
+then we say that `A` is **diagonalizable** and that the displayed equality is a
+**diagonalization** of `A`.
+</Definition>
+
+So diagonalization is a special case of similarity in which the target matrix is
+diagonal.
+
+## Eigenvectors are exactly what fill the diagonalization matrix
+
+<TheoremCard title="Characterization of diagonalization">
+Let `A` be an `n\times n` matrix, and let
+
+$$
+S=[v_1\ v_2\ \cdots\ v_n]
+$$
+
+be an invertible matrix built from column vectors `v_1,\dots,v_n`.
+
+Then the following are equivalent:
+
+1. each `v_j` is an eigenvector of `A` with eigenvalue `\lambda_j`;
+2.
+
+$$
+S^{-1}AS=\operatorname{diag}(\lambda_1,\dots,\lambda_n).
+$$
+</TheoremCard>
+
+This theorem is the heart of diagonalization. The columns of the change-of-basis
+matrix are not arbitrary. They must be eigenvectors.
+
+Equivalently, if `D=\operatorname{diag}(\lambda_1,\dots,\lambda_n)`, then
+
+$$
+AS=SD.
+$$
+
+That equation says:
+
+- the first column of `AS` is `Av_1`, while the first column of `SD` is
+  `\lambda_1v_1`;
+- the second column of `AS` is `Av_2`, while the second column of `SD` is
+  `\lambda_2v_2`;
+- and so on.
+
+So the single matrix identity `AS=SD` packages all eigenvector equations at
+once.
+
+<TheoremCard title="When is a matrix diagonalizable?">
+An `n\times n` matrix `A` is diagonalizable if and only if it has `n` linearly
+independent eigenvectors.
+</TheoremCard>
+
+This criterion is the one you should remember. Diagonalization is not about
+guessing a lucky matrix `S`; it is about finding a full basis of eigenvectors.
+
+## First diagonalization examples
+
+<WorkedExample title="A diagonalizable upper-triangular matrix">
+Let
+
+$$
+A=
+\begin{bmatrix}
+1&1&1\\
+0&2&2\\
+0&0&3
+\end{bmatrix}.
+$$
+
+Suppose we have eigenvectors
+
+$$
+u_1=
+\begin{bmatrix}
+1\\0\\0
+\end{bmatrix},
+\qquad
+u_2=
+\begin{bmatrix}
+1\\1\\0
+\end{bmatrix},
+\qquad
+u_3=
+\begin{bmatrix}
+3\\4\\2
+\end{bmatrix},
+$$
+
+with eigenvalues `1`, `2`, and `3`, respectively.
+
+If we set
+
+$$
+U=[u_1\ u_2\ u_3],
+$$
+
+then the three vectors are linearly independent, so `U` is invertible. Hence
+
+$$
+U^{-1}AU=\operatorname{diag}(1,2,3).
+$$
+
+The original matrix is not diagonal, but it becomes diagonal in the eigenvector
+basis.
+</WorkedExample>
+
+<WorkedExample title="A matrix that is not diagonalizable">
+Consider
+
+$$
+J=
+\begin{bmatrix}
+1&4\\
+0&1
+\end{bmatrix}.
+$$
+
+Its only eigenvalue is `1`, because
+
+$$
+\det(J-\lambda I)=
+\begin{vmatrix}
+1-\lambda&4\\
+0&1-\lambda
+\end{vmatrix}
+=(1-\lambda)^2.
+$$
+
+Now solve `(J-I)x=0`:
+
+$$
+J-I=
+\begin{bmatrix}
+0&4\\
+0&0
+\end{bmatrix}.
+$$
+
+So `x_2=0` and `x_1` is free. The eigenspace is therefore
+
+$$
+\operatorname{span}\left\{
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+\right\},
+$$
+
+which is only one-dimensional. A `2\times2` matrix needs two linearly
+independent eigenvectors to be diagonalizable, so `J` is not diagonalizable.
+</WorkedExample>
+
+## Similar matrices preserve eigenvalue data
+
+Similarity is not arbitrary conjugation. It preserves the essential eigenvalue
+structure of a matrix.
+
+<TheoremCard title="Similar matrices have the same characteristic polynomial">
+If `A` and `B` are similar, then
+
+$$
+p_A(x)=p_B(x).
+$$
+
+In particular, `A` and `B` have the same eigenvalues.
+</TheoremCard>
+
+This is what makes diagonalization meaningful. The diagonal matrix obtained from
+`A` is not a different spectral object. It is the same linear transformation
+written in a basis that exposes its eigenvalues visibly on the diagonal.
+
+<CommonMistake title="Having the same characteristic polynomial is not enough for similarity">
+Similarity implies equal characteristic polynomials, but the converse is false.
+Two matrices can share the same characteristic polynomial and still fail to be
+similar.
+
+For example,
+
+$$
+\begin{bmatrix}
+0&1\\
+0&0
+\end{bmatrix}
+\qquad\text{and}\qquad
+\begin{bmatrix}
+0&0\\
+0&0
+\end{bmatrix}
+$$
+
+both have characteristic polynomial `x^2`, but the first matrix is not similar
+to the zero matrix.
+</CommonMistake>
+
+## Diagonalization makes powers and inverses easy
+
+Suppose
+
+$$
+A=SDS^{-1},
+\qquad
+D=\operatorname{diag}(\lambda_1,\dots,\lambda_n).
+$$
+
+Then matrix algebra becomes much simpler.
+
+<TheoremCard title="Powers, inverse, and transpose of a diagonalizable matrix">
+If `A=SDS^{-1}` with `D` diagonal, then for each positive integer `m`,
+
+$$
+A^m=SD^mS^{-1}.
+$$
+
+If `A` is invertible, then every diagonal entry of `D` is nonzero and
+
+$$
+A^{-1}=SD^{-1}S^{-1}.
+$$
+
+Also, `A^T` is diagonalizable and has the same eigenvalues as `A`.
+</TheoremCard>
+
+The key point is that diagonal matrices are easy to power:
+
+$$
+\operatorname{diag}(\lambda_1,\dots,\lambda_n)^m
+=\operatorname{diag}(\lambda_1^m,\dots,\lambda_n^m).
+$$
+
+<WorkedExample title="Compute a power through diagonalization">
+Let
+
+$$
+A=
+\begin{bmatrix}
+2&1&1\\
+1&2&1\\
+1&1&2
+\end{bmatrix}.
+$$
+
+Suppose `A` is diagonalized as
+
+$$
+A=S\operatorname{diag}(4,1,1)S^{-1}.
+$$
+
+Then
+
+$$
+A^m=S\operatorname{diag}(4^m,1,1)S^{-1}.
+$$
+
+So the hard part is finding the diagonalization once. After that, every positive
+power is controlled by replacing `4` with `4^m` and leaving the repeated `1`
+entries alone.
+</WorkedExample>
+
+## Quick check
+
+<QuickCheck prompt="What must the columns of a diagonalizing matrix S be?">
+Think about the equation `AS=SD`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+They must be eigenvectors of `A`. The `j`th column of `S` is an eigenvector
+corresponding to the `j`th diagonal entry of `D`.
+</RevealSolution>
+
+<QuickCheck prompt="Can a 3×3 matrix be diagonalizable with only two linearly independent eigenvectors?">
+Use the characterization theorem.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. A `3\times3` matrix is diagonalizable exactly when it has three linearly
+independent eigenvectors.
+</RevealSolution>
+
+<QuickCheck prompt="If A is similar to D and D is diagonal, do A and D have the same eigenvalues?">
+Use the similarity theorem.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. Similar matrices have the same characteristic polynomial and therefore the
+same eigenvalues.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Suppose A has eigenvectors `v_1,v_2,v_3` with eigenvalues `2,5,-1`, and these vectors are linearly independent. What diagonal matrix appears in a diagonalization of A?">
+Order the diagonal entries to match the chosen order of the eigenvectors.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+If `S=[v_1\ v_2\ v_3]`, then
+
+$$
+S^{-1}AS=\operatorname{diag}(2,5,-1).
+$$
+
+The diagonal entries must match the eigenvalues attached to the columns of `S`
+in the same order.
+</RevealSolution>
+
+<QuickCheck prompt="Why is `\begin{bmatrix}1&1\\0&1\end{bmatrix}` not diagonalizable?">
+Check how many linearly independent eigenvectors it has.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Its characteristic polynomial is `(1-\lambda)^2`, so the only eigenvalue is
+`1`. Solving `(A-I)x=0` gives only a one-dimensional eigenspace. A `2\times2`
+matrix needs two linearly independent eigenvectors to be diagonalizable, so it
+fails.
+</RevealSolution>
+
+<QuickCheck prompt="If `A=SDS^{-1}` with `D=\operatorname{diag}(2,-1)`, what is `A^3`?">
+Use the power rule for diagonalizable matrices.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+
+$$
+A^3=SD^3S^{-1}
+=S\operatorname{diag}(2^3,(-1)^3)S^{-1}
+=S\operatorname{diag}(8,-1)S^{-1}.
+$$
+</RevealSolution>
+
+## Related notes
+
+Read
+[8.1 Eigenvalues, eigenvectors, and eigenspaces](/en/notes/math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces)
+first if the homogeneous-system viewpoint is not yet solid.
+
+Continue with
+[8.3 Characteristic polynomials and diagonalization tests](/en/notes/math1030/eigenvalues/characteristic-polynomials-and-diagonalization-tests)
+for the polynomial tools that decide whether enough eigenvectors exist.
+
+The basis language here also depends on
+[6.5 Basis and dimension](/en/notes/math1030/vector-spaces/basis-and-dimension).

@@ -12,7 +12,7 @@ These units are already present in code and should remain source-backed.
 
 - `math1090`: 1.1, 1.2, 1.3, 2.1, 2.2, 3.1, 3.2, 3.3, 3.4, 3.5, 4.1
 - `math1030`: 1.1, 2.1, 2.2, 2.3, 2.4, 3.1, 3.2, 4.1, 5.1, 6.1, 6.2, 6.3,
-  6.4, 6.5, 6.6, 7.1, 7.2, 7.3
+  6.4, 6.5, 6.6, 7.1, 7.2, 7.3, 8.1, 8.2, 8.3
 - `math1025`: baseline foundations pair only
 - `csci2520`: programming foundations `0.1`, ADT operations `1.1`, hashing
   `1.2`, and complexity `2.1`
@@ -77,7 +77,8 @@ The current weak spots are:
 
 The MATH1030 sources are strongest in systems, matrices, elimination,
 invertibility, the first vector-space sequence through basis and dimension,
-and the determinant chapter family that follows.
+the determinant chapter family, and the eigenvalue / diagonalization family
+that follows.
 
 ### Available materials
 
@@ -136,14 +137,14 @@ The current weak spots are:
 - Coverage is strong for systems of equations, augmented matrices, row
   operations, Gaussian elimination, solution-set types, invertibility, vector
   spaces, subspaces, span, linear independence, basis, dimension, determinants,
-  transpose / column determinant formulas, and the local adjoint / Cramer's
-  rule appendix material.
+  transpose / column determinant formulas, the local adjoint / Cramer's rule
+  appendix material, eigenvalues, eigenspaces, diagonalization, similarity,
+  characteristic polynomials, and the first diagonalization tests.
 - The master notes appear to continue beyond the current authored boundary,
   but later topics are not yet mapped tightly enough to subsection-level note
   plans.
-- `MISSING_SOURCE`: linear transformations, eigenvalues, diagonalization, and
-  inner-product topics still need tighter source mapping before they become
-  detailed public notes.
+- `MISSING_SOURCE`: linear transformations and inner-product topics still need
+  tighter source mapping before they become detailed public notes.
 - `MISSING_SOURCE`: later problem sets are less densely represented than the
   early matrix and vector-space chapters.
 
@@ -245,9 +246,9 @@ traceable.
 
 ## Next steps
 
-Map the eigenvalue and inner-product families page by page before writing the
-next Math1030 notes, then return to the remaining Math1090 chapter-4 and
-proof-structure backlog. Keep Math1025 expansion narrow and source-backed
-while the main Math1090 / Math1030 spine remains the priority, and continue
-building out the early CSCI2520 route family before the course jumps further
-into complexity and later chapters.
+Map the inner-product family page by page before writing the next Math1030
+notes, then return to the remaining Math1090 chapter-4 and proof-structure
+backlog. Keep Math1025 expansion narrow and source-backed while the main
+Math1090 / Math1030 spine remains the priority, and continue building out the
+early CSCI2520 route family before the course jumps further into complexity and
+later chapters.

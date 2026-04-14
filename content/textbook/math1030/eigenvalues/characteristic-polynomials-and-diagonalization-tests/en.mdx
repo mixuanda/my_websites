@@ -1,0 +1,423 @@
+---
+title: "8.3 Characteristic polynomials and diagonalization tests"
+description: "Use characteristic polynomials, algebraic and geometric multiplicity, and the distinct-eigenvalue test to decide when eigenvalue data is enough for diagonalization."
+---
+
+The null-space criterion
+
+$$
+\det(A-\lambda I)=0
+$$
+
+tells you how to test a proposed eigenvalue. The next step is to package that
+test into one polynomial whose roots are exactly the eigenvalues of the matrix.
+
+That polynomial is strong enough to limit how many eigenvalues a matrix can
+have, describe repeated eigenvalues, and give practical tests for
+diagonalization.
+
+## Characteristic polynomial
+
+<Definition title="Characteristic polynomial">
+Let `A` be an `n\times n` matrix. The polynomial
+
+$$
+p_A(x)=\det(A-xI_n)
+$$
+
+is called the **characteristic polynomial** of `A`.
+</Definition>
+
+The variable `x` is only an indeterminate. Once you substitute a scalar
+`\lambda`, the value `p_A(\lambda)` becomes the determinant of `A-\lambda I`.
+
+<TheoremCard title="Eigenvalues are exactly the roots of the characteristic polynomial">
+Let `A` be an `n\times n` matrix and `\lambda` a scalar. Then the following are
+equivalent:
+
+1. `\lambda` is an eigenvalue of `A`;
+2. `\lambda` is a root of `p_A(x)`.
+</TheoremCard>
+
+This theorem is just the determinant test from the previous note written in a
+more organized way:
+
+$$
+\lambda\text{ is an eigenvalue}
+\iff
+\det(A-\lambda I)=0
+\iff
+p_A(\lambda)=0.
+$$
+
+<TheoremCard title="Basic shape of the characteristic polynomial">
+If `A` is an `n\times n` matrix, then `p_A(x)` is a degree-`n` polynomial whose
+leading coefficient is `(-1)^n` and whose constant term is `\det(A)`.
+</TheoremCard>
+
+So the characteristic polynomial is never an arbitrary expression. Its degree is
+fixed by the matrix size, and its constant term already remembers the
+determinant.
+
+## First examples
+
+<WorkedExample title="A 2×2 characteristic polynomial">
+Let
+
+$$
+A=
+\begin{bmatrix}
+3&2\\
+3&-2
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+p_A(x)=
+\det
+\begin{bmatrix}
+3-x&2\\
+3&-2-x
+\end{bmatrix}
+=(3-x)(-2-x)-6.
+$$
+
+Simplifying gives
+
+$$
+p_A(x)=x^2-x-12=(x-4)(x+3).
+$$
+
+Therefore the eigenvalues are `4` and `-3`.
+</WorkedExample>
+
+<WorkedExample title="A repeated root">
+Let
+
+$$
+B=
+\begin{bmatrix}
+2&3\\
+0&2
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+p_B(x)=
+\det
+\begin{bmatrix}
+2-x&3\\
+0&2-x
+\end{bmatrix}
+=(2-x)^2=(x-2)^2.
+$$
+
+So `2` is the only eigenvalue, but it appears with multiplicity `2`.
+</WorkedExample>
+
+## Algebraic and geometric multiplicity
+
+Repeated roots need extra language.
+
+<Definition title="Algebraic multiplicity and geometric multiplicity">
+Suppose the characteristic polynomial factors as
+
+$$
+p_A(x)=(-1)^n(x-\lambda_1)^{m_1}\cdots(x-\lambda_s)^{m_s},
+$$
+
+where `\lambda_1,\dots,\lambda_s` are distinct roots.
+
+1. The exponent `m_i` is the **algebraic multiplicity** of `\lambda_i`.
+2. The dimension of the eigenspace `E_A(\lambda_i)` is the
+   **geometric multiplicity** of `\lambda_i`.
+</Definition>
+
+Algebraic multiplicity comes from the polynomial. Geometric multiplicity comes
+from the null space `N(A-\lambda I)`. They measure different things, and they do
+not always agree.
+
+<TheoremCard title="Multiplicity inequality">
+If `\lambda` is an eigenvalue of an `n\times n` matrix `A`, then
+
+$$
+1\le m_g(\lambda)\le m_a(\lambda)\le n.
+$$
+</TheoremCard>
+
+So every eigenspace has dimension at least `1`, but it can never be larger than
+the algebraic multiplicity of its eigenvalue.
+
+<WorkedExample title="A repeated eigenvalue with too small an eigenspace">
+For
+
+$$
+B=
+\begin{bmatrix}
+2&3\\
+0&2
+\end{bmatrix},
+$$
+
+the characteristic polynomial is `(x-2)^2`, so the eigenvalue `2` has algebraic
+multiplicity `2`.
+
+Now solve `(B-2I)x=0`:
+
+$$
+B-2I=
+\begin{bmatrix}
+0&3\\
+0&0
+\end{bmatrix}.
+$$
+
+So `x_2=0` and `x_1` is free. The eigenspace is
+
+$$
+\operatorname{span}\left\{
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+\right\},
+$$
+
+which has dimension `1`. Therefore
+
+$$
+m_a(2)=2,\qquad m_g(2)=1.
+$$
+
+This mismatch is exactly why the matrix is not diagonalizable.
+</WorkedExample>
+
+## Distinct eigenvalues force independence
+
+<TheoremCard title="Eigenvectors of distinct eigenvalues are linearly independent">
+If `v_1,\dots,v_k` are eigenvectors of `A` corresponding to pairwise distinct
+eigenvalues `\lambda_1,\dots,\lambda_k`, then
+
+$$
+v_1,\dots,v_k
+$$
+
+are linearly independent.
+</TheoremCard>
+
+This theorem has two major consequences.
+
+<TheoremCard title="Upper bound on the number of distinct eigenvalues">
+An `n\times n` matrix can have at most `n` distinct eigenvalues.
+</TheoremCard>
+
+<TheoremCard title="Distinct eigenvalue test for diagonalizability">
+If an `n\times n` matrix has exactly `n` distinct eigenvalues, then it is
+diagonalizable.
+</TheoremCard>
+
+The converse is false. A diagonalizable matrix may still have repeated
+eigenvalues. The identity matrix is the simplest example: every vector is an
+eigenvector with eigenvalue `1`, yet the matrix is already diagonal.
+
+## A sharper diagonalization criterion
+
+Distinct eigenvalues are a sufficient test, but not the only one.
+
+<TheoremCard title="Dimension-sum test for diagonalizability">
+Suppose a real `n\times n` matrix `A` has distinct real eigenvalues
+`\lambda_1,\dots,\lambda_s`. Then `A` is diagonalizable if and only if
+
+$$
+\dim E_A(\lambda_1)+\cdots+\dim E_A(\lambda_s)=n.
+$$
+</TheoremCard>
+
+This criterion says that diagonalization succeeds exactly when the eigenspaces
+together contribute enough independent eigenvectors to form a basis of the whole
+space.
+
+<WorkedExample title="Repeated eigenvalue but still diagonalizable">
+Let
+
+$$
+A=
+\begin{bmatrix}
+2&1&1\\
+1&2&1\\
+1&1&2
+\end{bmatrix}.
+$$
+
+Its eigenvalues are `4` and `1`, with `1` repeated algebraically. But the
+eigenspace for `4` is one-dimensional, while the eigenspace for `1` is
+two-dimensional. Therefore
+
+$$
+1+2=3,
+$$
+
+which matches the matrix size. So `A` is diagonalizable even though one
+eigenvalue is repeated.
+</WorkedExample>
+
+## Cayley-Hamilton gives a polynomial identity
+
+The source notes continue one step further and relate the characteristic
+polynomial back to the matrix itself.
+
+<TheoremCard title="Cayley-Hamilton theorem">
+If
+
+$$
+p_A(x)=c_0+c_1x+c_2x^2+\cdots+c_nx^n,
+$$
+
+then
+
+$$
+c_0I+c_1A+c_2A^2+\cdots+c_nA^n=0.
+$$
+
+Equivalently, `p_A(A)=0`.
+</TheoremCard>
+
+For diagonalizable matrices this is easy to believe: once `A` is written as
+`SDS^{-1}`, the identity reduces to applying the scalar polynomial `p_A` to each
+diagonal entry of `D`, and every diagonal entry is an eigenvalue, hence a root
+of `p_A`.
+
+The practical consequence is that high powers of `A` can be rewritten in terms
+of lower powers `I,A,\dots,A^{n-1}`.
+
+<WorkedExample title="A small Cayley-Hamilton identity">
+Let
+
+$$
+A=
+\begin{bmatrix}
+1&4\\
+0&1
+\end{bmatrix}.
+$$
+
+Its characteristic polynomial is
+
+$$
+p_A(x)=(1-x)^2=x^2-2x+1.
+$$
+
+Therefore Cayley-Hamilton says
+
+$$
+A^2-2A+I=0.
+$$
+
+So every higher power of `A` can be reduced using this quadratic relation.
+</WorkedExample>
+
+## Common mistake
+
+<CommonMistake title="Repeated eigenvalue does not automatically mean 'not diagonalizable'">
+A repeated eigenvalue only tells you the algebraic multiplicity is greater than
+`1`. Diagonalizability depends on whether the corresponding eigenspaces still
+supply enough linearly independent eigenvectors. Repetition is a warning sign,
+not a final verdict.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="What is the characteristic polynomial of `\begin{bmatrix}2&0\\0&5\end{bmatrix}`?">
+Use `p_A(x)=\det(A-xI)`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+
+$$
+p_A(x)=
+\begin{vmatrix}
+2-x&0\\
+0&5-x
+\end{vmatrix}
+=(2-x)(5-x).
+$$
+</RevealSolution>
+
+<QuickCheck prompt="If an `n\times n` matrix has n distinct eigenvalues, what can you conclude immediately?">
+Use the distinct-eigenvalue theorem.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is diagonalizable, because eigenvectors corresponding to distinct eigenvalues
+are linearly independent.
+</RevealSolution>
+
+<QuickCheck prompt="Can geometric multiplicity ever exceed algebraic multiplicity?">
+Use the multiplicity inequality.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. For every eigenvalue `\lambda`,
+
+$$
+m_g(\lambda)\le m_a(\lambda).
+$$
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Find the characteristic polynomial of `\begin{bmatrix}0&1\\-2&3\end{bmatrix}` and list its eigenvalues.">
+Compute `\det(A-xI)` and factor the result.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+
+$$
+p_A(x)=
+\begin{vmatrix}
+-x&1\\
+-2&3-x
+\end{vmatrix}
+=x^2-3x+2=(x-1)(x-2).
+$$
+
+So the eigenvalues are `1` and `2`.
+</RevealSolution>
+
+<QuickCheck prompt="A 4×4 matrix has four distinct eigenvalues. What is the dimension of the span of one chosen eigenvector from each eigenvalue?">
+Use linear independence of eigenvectors with distinct eigenvalues.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The four chosen eigenvectors are linearly independent, so their span has
+dimension `4`. Therefore they already form a basis of `\mathbb{R}^4`.
+</RevealSolution>
+
+<QuickCheck prompt="Suppose `p_A(x)=x^3-6x^2+11x-6`. What matrix identity does Cayley-Hamilton give?">
+Replace the variable `x` by the matrix `A`.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+
+$$
+A^3-6A^2+11A-6I=0.
+$$
+
+That is the Cayley-Hamilton identity for this characteristic polynomial.
+</RevealSolution>
+
+## Related notes
+
+Keep
+[8.1 Eigenvalues, eigenvectors, and eigenspaces](/en/notes/math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces)
+open for the null-space interpretation of eigenvalues.
+
+Keep
+[8.2 Diagonalization and similarity](/en/notes/math1030/eigenvalues/diagonalization-and-similarity)
+nearby, because this note supplies the polynomial tests that feed that chapter.
+
+The determinant machinery inside `p_A(x)=\det(A-xI)` depends on
+[7.1 Determinants and cofactor expansion](/en/notes/math1030/determinants/determinants-and-cofactor-expansion).

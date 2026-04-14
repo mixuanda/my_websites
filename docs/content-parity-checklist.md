@@ -45,7 +45,9 @@ The following units are currently present in EN, zh-HK, and zh-CN.
   6.2 subspaces, 6.3 linear combinations and span, 6.4 linear dependence and
   independence, 6.5 basis and dimension, 6.6 column space / row space / rank,
   7.1 determinants and cofactor expansion, 7.2 row operations / products /
-  invertibility, 7.3 transpose / column operations / Cramer's rule
+  invertibility, 7.3 transpose / column operations / Cramer's rule, 8.1
+  eigenvalues / eigenvectors / eigenspaces, 8.2 diagonalization / similarity,
+  8.3 characteristic polynomials / diagonalization tests
 
 ## Checkpoint log
 
@@ -181,7 +183,7 @@ Run this checklist on every localized unit.
 
 The following gaps remain active.
 
-- Later `math1090` units and the post-determinant `math1030` chapters are not
+- Later `math1090` units and the post-eigenvalue `math1030` chapters are not
   authored yet, so parity is limited to the current source-backed note set.
 - zh-HK wording still needs a dedicated Hong Kong terminology review beyond the
   newer number-system and vector-space units.

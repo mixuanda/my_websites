@@ -448,6 +448,84 @@ export const glossaryEntries: GlossaryEntry[] = [
   },
   {
     definition: {
+      en: "An eigenvalue of A is a scalar λ for which there exists a nonzero vector v satisfying Av=λv.",
+      "zh-cn": "矩阵 A 的特征值 λ 是这样一个标量：存在非零向量 v 使得 Av=λv。",
+      "zh-hk": "矩陣 A 的特徵值 λ 是這樣一個純量：存在非零向量 v 使得 Av=λv。",
+    },
+    id: "eigenvalue",
+    notationNote: "The same equation `Av=λv` defines the matching eigenvector as well.",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§8.1" },
+      { file: "reference/MATH1030/1030gi-n07-01.pdf" },
+    ],
+    termEn: "eigenvalue",
+    termZhCn: "特征值",
+    termZhHk: "特徵值",
+  },
+  {
+    definition: {
+      en: "An eigenvector of A is a nonzero vector v that is sent to a scalar multiple of itself, Av=λv, for some eigenvalue λ.",
+      "zh-cn": "矩阵 A 的特征向量是一个非零向量 v，它满足 Av=λv，也就是被 A 送到它自己的某个标量倍。",
+      "zh-hk": "矩陣 A 的特徵向量是一個非零向量 v，它滿足 Av=λv，也就是被 A 送到它自己的某個純量倍。",
+    },
+    id: "eigenvector",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§8.1" },
+      { file: "reference/MATH1030/1030gi-n07-01.pdf" },
+    ],
+    termEn: "eigenvector",
+    termZhCn: "特征向量",
+    termZhHk: "特徵向量",
+  },
+  {
+    definition: {
+      en: "The eigenspace E_A(λ) is the null space of A-λI, so it contains all eigenvectors for λ together with the zero vector.",
+      "zh-cn": "特征空间 E_A(λ) 就是 A-λI 的零空间，因此它包含 λ 的所有特征向量以及零向量。",
+      "zh-hk": "特徵空間 E_A(λ) 就是 A-λI 的零空間，因此它包含 λ 的所有特徵向量以及零向量。",
+    },
+    id: "eigenspace",
+    notationNote: "`E_A(λ)=N(A-λI)` is the standard structural identity used in these notes.",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§8.1" },
+      { file: "reference/MATH1030/1030gi-n07-01.pdf", note: "Null-space viewpoint on eigenvalues" },
+    ],
+    termEn: "eigenspace",
+    termZhCn: "特征空间",
+    termZhHk: "特徵空間",
+  },
+  {
+    definition: {
+      en: "A characteristic polynomial is p_A(x)=det(A-xI), whose roots are exactly the eigenvalues of A.",
+      "zh-cn": "特征多项式是 p_A(x)=det(A-xI)，它的根恰好就是 A 的特征值。",
+      "zh-hk": "特徵多項式是 p_A(x)=det(A-xI)，它的根恰好就是 A 的特徵值。",
+    },
+    id: "characteristic-polynomial",
+    notationNote: "The notes use `p_A(x)` for the characteristic polynomial of `A`.",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§8.1, §8.2" },
+      { file: "reference/MATH1030/1030gi-n07-03.pdf" },
+    ],
+    termEn: "characteristic polynomial",
+    termZhCn: "特征多项式",
+    termZhHk: "特徵多項式",
+  },
+  {
+    definition: {
+      en: "A diagonalizable matrix is one that is similar to a diagonal matrix, equivalently one that has enough linearly independent eigenvectors to form a basis.",
+      "zh-cn": "可对角化矩阵是与某个对角矩阵相似的矩阵；等价地，它拥有足够多线性无关的特征向量来组成一组基。",
+      "zh-hk": "可對角化矩陣是與某個對角矩陣相似的矩陣；等價地，它擁有足夠多線性無關的特徵向量來組成一組基。",
+    },
+    id: "diagonalizable-matrix",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§8.3" },
+      { file: "reference/MATH1030/1030gi-n07-02.pdf", note: "Diagonalization characterization" },
+    ],
+    termEn: "diagonalizable matrix",
+    termZhCn: "可对角化矩阵",
+    termZhHk: "可對角化矩陣",
+  },
+  {
+    definition: {
       en: "A null space is the set of all vectors sent to 0 by a given matrix.",
       "zh-cn": "零空间是被某个矩阵送到 0 的所有向量组成的集合。",
       "zh-hk": "零空間是被某個矩陣送到 0 的所有向量組成的集合。",

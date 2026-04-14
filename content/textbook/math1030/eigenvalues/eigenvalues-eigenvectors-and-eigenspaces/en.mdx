@@ -1,0 +1,520 @@
+---
+title: "8.1 Eigenvalues, eigenvectors, and eigenspaces"
+description: "Define eigenvalues through the equation Av=λv, then recast the same idea as a null-space and determinant question so the structure becomes computable."
+---
+
+Determinants tell you whether a square matrix is invertible. Eigenvalues ask a
+different question: which vectors keep their direction when the matrix acts on
+them?
+
+Most vectors are bent into new directions by matrix multiplication. An
+eigenvector is exceptional. It is only stretched, shrunk, or reversed by a
+scalar factor. That is why eigenvalues reveal the internal geometry of a
+matrix rather than only its solvability properties.
+
+## Why this section matters
+
+When you solve `Ax=b`, you focus on the whole system. When you study
+eigenvalues, you focus on the special vectors `v` for which the matrix action
+collapses to the simpler rule
+
+$$
+Av=\lambda v.
+$$
+
+If you can recognize those vectors, then later you can simplify powers of
+matrices, understand diagonalization, and describe invariant directions.
+
+<Definition title="Eigenvalue and eigenvector">
+Let `A` be an `n\times n` square matrix. Let `\lambda` be a scalar, and let
+`v` be a nonzero column vector in `\mathbb{R}^n`.
+
+We say that `v` is an **eigenvector** of `A` with **eigenvalue** `\lambda` if
+
+$$
+Av=\lambda v.
+$$
+
+The vector `v` must be nonzero. The zero vector satisfies `A0=\lambda0` for
+every scalar, so it would destroy the meaning of the definition if we allowed
+it.
+</Definition>
+
+The point is that the matrix action and scalar multiplication agree on that
+vector. The direction of `v` is preserved, although the magnitude may change
+and the sign may flip.
+
+## Immediate consequences of the definition
+
+<TheoremCard title="A fixed eigenvector has only one eigenvalue">
+Let `A` be a square matrix, and let `v` be a nonzero vector. If
+
+$$
+Av=\lambda v
+\qquad\text{and}\qquad
+Av=\mu v,
+$$
+
+then `\lambda=\mu`.
+</TheoremCard>
+
+The reason is simple. Subtract the two equations:
+
+$$
+(\lambda-\mu)v=0.
+$$
+
+Since `v\neq0`, the scalar factor must be `0`, so `\lambda=\mu`.
+
+<TheoremCard title="Nonzero scalar multiples stay in the same eigen-direction">
+If `v` is an eigenvector of `A` with eigenvalue `\lambda`, then every nonzero
+scalar multiple `cv` is also an eigenvector of `A` with eigenvalue `\lambda`.
+</TheoremCard>
+
+That is why an eigenvector never comes alone. It naturally represents a whole
+line through the origin.
+
+<TheoremCard title="Linear combinations with a common eigenvalue">
+Suppose `u_1,\dots,u_k` are eigenvectors of `A`, all with the same eigenvalue
+`\lambda`. Then every nonzero linear combination
+
+$$
+\alpha_1u_1+\cdots+\alpha_ku_k
+$$
+
+is also an eigenvector of `A` with eigenvalue `\lambda`.
+</TheoremCard>
+
+This is the first hint that eigenvectors belonging to the same eigenvalue form a
+subspace once the zero vector is added back in.
+
+## First examples
+
+<WorkedExample title="A 2×2 matrix with two distinct eigenvalues">
+Let
+
+$$
+A=
+\begin{bmatrix}
+13&30\\
+-6&-14
+\end{bmatrix}.
+$$
+
+Check the vector
+
+$$
+u_1=
+\begin{bmatrix}
+5\\
+-2
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+Au_1=
+\begin{bmatrix}
+13&30\\
+-6&-14
+\end{bmatrix}
+\begin{bmatrix}
+5\\
+-2
+\end{bmatrix}
+=
+\begin{bmatrix}
+5\\
+-2
+\end{bmatrix}
+=1\cdot u_1.
+$$
+
+So `u_1` is an eigenvector with eigenvalue `1`.
+
+Now try
+
+$$
+u_2=
+\begin{bmatrix}
+2\\
+-1
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+Au_2=
+\begin{bmatrix}
+-4\\
+2
+\end{bmatrix}
+=-2
+\begin{bmatrix}
+2\\
+-1
+\end{bmatrix}
+=-2u_2.
+$$
+
+So `u_2` is an eigenvector with eigenvalue `-2`.
+</WorkedExample>
+
+<WorkedExample title="One eigenvalue can have more than one direction">
+Let
+
+$$
+B=
+\begin{bmatrix}
+2&1&1\\
+1&2&1\\
+1&1&2
+\end{bmatrix}.
+$$
+
+The vector
+
+$$
+u_1=
+\begin{bmatrix}
+1\\1\\1
+\end{bmatrix}
+$$
+
+satisfies `Bu_1=4u_1`, so `4` is one eigenvalue.
+
+Now consider
+
+$$
+u_2=
+\begin{bmatrix}
+1\\-1\\0
+\end{bmatrix},
+\qquad
+u_3=
+\begin{bmatrix}
+1\\0\\-1
+\end{bmatrix}.
+$$
+
+Both satisfy
+
+$$
+Bu_2=u_2,
+\qquad
+Bu_3=u_3.
+$$
+
+So the same eigenvalue `1` has at least two linearly independent eigenvectors.
+That does not contradict the uniqueness theorem above. The theorem says one
+fixed nonzero vector cannot correspond to two different eigenvalues. It does not
+say one eigenvalue can have only one eigenvector direction.
+</WorkedExample>
+
+## Eigenvalues are a null-space question
+
+The equation `Av=\lambda v` becomes much easier to analyze when you move all
+terms to one side:
+
+$$
+Av-\lambda v=0.
+$$
+
+Since `\lambda v=\lambda I_nv`, this is equivalent to
+
+$$
+(A-\lambda I_n)v=0.
+$$
+
+<TheoremCard title="Eigenvalue criterion via a homogeneous system">
+Let `A` be an `n\times n` matrix, `\lambda` a scalar, and `v\neq0`.
+
+Then the following are equivalent:
+
+1. `v` is an eigenvector of `A` with eigenvalue `\lambda`.
+2. `v` is a nontrivial solution of the homogeneous system
+
+$$
+(A-\lambda I_n)x=0.
+$$
+</TheoremCard>
+
+This recasts the eigenvalue problem as an ordinary linear-system problem. The
+vector `v` must live in the null space of `A-\lambda I`.
+
+<Definition title="Eigenspace">
+Let `A` be an `n\times n` matrix, and let `\lambda` be an eigenvalue of `A`.
+The **eigenspace** of `A` corresponding to `\lambda` is
+
+$$
+E_A(\lambda)=N(A-\lambda I_n).
+$$
+
+So the eigenspace contains all eigenvectors for `\lambda` together with the
+zero vector.
+</Definition>
+
+Because it is a null space, `E_A(\lambda)` is automatically a subspace.
+
+## Equivalent formulations for an eigenvalue
+
+Once the null-space formulation is in place, the invertibility dictionary
+immediately gives several equivalent tests.
+
+<TheoremCard title="Equivalent tests for λ to be an eigenvalue">
+Let `A` be an `n\times n` matrix and `\lambda` a scalar. The following
+statements are equivalent:
+
+1. `\lambda` is an eigenvalue of `A`.
+2. `(A-\lambda I_n)x=0` has a nontrivial solution.
+3. `N(A-\lambda I_n)\neq\{0\}`.
+4. `A-\lambda I_n` is not invertible.
+5. `\det(A-\lambda I_n)=0`.
+</TheoremCard>
+
+This theorem is the bridge from eigenvalues back to determinants. It is also
+the theorem that later produces the characteristic polynomial.
+
+<WorkedExample title="Find eigenvalues and eigenspaces by row reduction">
+Let
+
+$$
+C=
+\begin{bmatrix}
+3&2\\
+3&-2
+\end{bmatrix}.
+$$
+
+To find the eigenvalues, solve
+
+$$
+\det(C-\lambda I)=0.
+$$
+
+We get
+
+$$
+\det
+\begin{bmatrix}
+3-\lambda&2\\
+3&-2-\lambda
+\end{bmatrix}
+=(3-\lambda)(-2-\lambda)-6
+=\lambda^2-\lambda-12.
+$$
+
+So the eigenvalues are the roots:
+
+$$
+\lambda=4,\qquad \lambda=-3.
+$$
+
+For `\lambda=4`,
+
+$$
+C-4I=
+\begin{bmatrix}
+-1&2\\
+3&-6
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+1&-2\\
+0&0
+\end{bmatrix}.
+$$
+
+Thus `x_1=2x_2`, so one basis vector is
+
+$$
+\begin{bmatrix}
+2\\1
+\end{bmatrix}.
+$$
+
+For `\lambda=-3`,
+
+$$
+C+3I=
+\begin{bmatrix}
+6&2\\
+3&1
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+3&1\\
+0&0
+\end{bmatrix}.
+$$
+
+Thus `3x_1+x_2=0`, so one basis vector is
+
+$$
+\begin{bmatrix}
+1\\-3
+\end{bmatrix}.
+$$
+
+Therefore
+
+$$
+E_C(4)=\operatorname{span}\left\{
+\begin{bmatrix}
+2\\1
+\end{bmatrix}
+\right\},
+\qquad
+E_C(-3)=\operatorname{span}\left\{
+\begin{bmatrix}
+1\\-3
+\end{bmatrix}
+\right\}.
+$$
+</WorkedExample>
+
+## Important properties
+
+<TheoremCard title="Zero as an eigenvalue detects noninvertibility">
+For a square matrix `A`, the following are equivalent:
+
+1. `0` is an eigenvalue of `A`.
+2. `A` is not invertible.
+
+Equivalently, `A` is invertible if and only if `0` is not an eigenvalue.
+</TheoremCard>
+
+This is just the previous equivalence theorem with `\lambda=0`.
+
+<TheoremCard title="Eigenvalues under simple matrix operations">
+If `\lambda` is an eigenvalue of `A`, then:
+
+1. `k\lambda` is an eigenvalue of `kA`;
+2. `\lambda^m` is an eigenvalue of `A^m` for every nonnegative integer `m`;
+3. `\lambda` is an eigenvalue of `A^T`;
+4. if `A` is invertible, then `\lambda^{-1}` is an eigenvalue of `A^{-1}`.
+</TheoremCard>
+
+These statements are not mysterious. They all come from applying the relevant
+matrix operation to the defining equation `Av=\lambda v`.
+
+## Common mistake
+
+<CommonMistake title="The zero vector is never an eigenvector">
+Students often notice that `A0=\lambda0` for every scalar and conclude that the
+zero vector is an eigenvector for every eigenvalue. That is exactly why the
+definition excludes `0`. An eigenvector must point in a genuine direction, and
+the zero vector has no direction to preserve.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="If `v` is an eigenvector of `A` with eigenvalue `\lambda`, is `3v` also an eigenvector of `A`?">
+Assume `v\neq0`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. Since `A(3v)=3Av=3\lambda v=\lambda(3v)`, the vector `3v` is also an
+eigenvector with the same eigenvalue `\lambda`.
+</RevealSolution>
+
+<QuickCheck prompt="Why does `0` being an eigenvalue force `A` to be noninvertible?">
+Use the system `(A-0I)x=0`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+If `0` is an eigenvalue, then `Ax=0` has a nontrivial solution. That means the
+null space of `A` is nontrivial, so `A` is not invertible.
+</RevealSolution>
+
+<QuickCheck prompt="What is the eigenspace `E_A(\lambda)` in null-space language?">
+Use the definition introduced above.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+
+$$
+E_A(\lambda)=N(A-\lambda I_n).
+$$
+
+It is the null space of `A-\lambda I_n`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Show that `\begin{bmatrix}1\\1\end{bmatrix}` is an eigenvector of `\begin{bmatrix}2&1\\1&2\end{bmatrix}` and find its eigenvalue.">
+Multiply first, then compare the output with the original vector.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+
+$$
+\begin{bmatrix}
+2&1\\
+1&2
+\end{bmatrix}
+\begin{bmatrix}
+1\\1
+\end{bmatrix}
+=
+\begin{bmatrix}
+3\\3
+\end{bmatrix}
+=3
+\begin{bmatrix}
+1\\1
+\end{bmatrix}.
+$$
+
+So the vector is an eigenvector and the eigenvalue is `3`.
+</RevealSolution>
+
+<QuickCheck prompt="Find the eigenspace of `A=\begin{bmatrix}1&0\\0&4\end{bmatrix}` for the eigenvalue `4`.">
+Solve `(A-4I)x=0`.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+
+$$
+A-4I=
+\begin{bmatrix}
+-3&0\\
+0&0
+\end{bmatrix}.
+$$
+
+So `x_1=0` and `x_2` is free. Hence
+
+$$
+E_A(4)=\operatorname{span}\left\{
+\begin{bmatrix}
+0\\1
+\end{bmatrix}
+\right\}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="If `A` is invertible, can `0` appear as an eigenvalue of `A^T`?">
+Use the transpose property and the invertibility criterion together.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+No. If `0` were an eigenvalue of `A^T`, then `A^T` would be noninvertible. But
+`A` is invertible if and only if `A^T` is invertible, so this is impossible.
+</RevealSolution>
+
+## Related notes
+
+Keep
+[7.2 Row operations, products, and invertibility](/en/notes/math1030/determinants/row-operations-products-and-invertibility)
+nearby, because the test `\det(A-\lambda I)=0` depends directly on determinant
+and invertibility reasoning.
+
+Continue with
+[8.2 Diagonalization and similarity](/en/notes/math1030/eigenvalues/diagonalization-and-similarity)
+to see how a full basis of eigenvectors changes the whole shape of a matrix.
+
+The subspace viewpoint here also leans on
+[6.5 Basis and dimension](/en/notes/math1030/vector-spaces/basis-and-dimension).

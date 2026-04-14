@@ -1,0 +1,512 @@
+---
+title: "8.1 特征值、特征向量与特征空间"
+description: "由方程 Av=λv 定义特征值与特征向量，再把同一个概念改写成零空间与行列式问题，让整个结构变得可计算。"
+---
+
+行列式会告诉你一个方阵是否可逆。特征值问的是另一个问题：哪些向量在
+矩阵作用之下仍然保持原来的方向。
+
+大部分向量经过矩阵乘法后，方向都会被改变。特征向量则是例外。它只会
+被拉长、缩短，或者反向，而不会偏离本身张成的直线。这就是为什么特征
+值揭示的是矩阵的内部几何，而不只是方程组能否求解。
+
+## 为什么这一节重要
+
+当你解 `Ax=b` 时，你关心的是整个系统。当你研究特征值时，你关心的是
+那些特别的向量 `v`，使得矩阵作用退化成较简单的规则
+
+$$
+Av=\lambda v.
+$$
+
+一旦找出这些向量，之后便能更容易处理矩阵的幂、理解对角化，并描述哪
+些方向在变换下是不变的。
+
+<Definition title="特征值与特征向量">
+设 `A` 是一个 `n\times n` 方阵。设 `\lambda` 是一个标量，而 `v` 是
+`\mathbb{R}^n` 中的非零列向量。
+
+若
+
+$$
+Av=\lambda v,
+$$
+
+便称 `v` 是 `A` 对应于 **特征值** `\lambda` 的 **特征向量**。
+
+这里必须要求 `v` 非零。因为零向量对每个标量都满足 `A0=\lambda0`，
+若把它允许进来，定义便会失去内容。
+</Definition>
+
+重点在于，矩阵作用与标量乘法在这个向量上完全一致。`v` 的方向被保
+留，改变的只是长度与符号。
+
+## 由定义立刻得到的结论
+
+<TheoremCard title="同一个特征向量只会对应一个特征值">
+设 `A` 是方阵，而 `v` 是非零向量。若
+
+$$
+Av=\lambda v
+\qquad\text{且}\qquad
+Av=\mu v,
+$$
+
+则 `\lambda=\mu`。
+</TheoremCard>
+
+原因很直接。把两式相减：
+
+$$
+(\lambda-\mu)v=0.
+$$
+
+由于 `v\neq0`，只可能是标量系数本身为 `0`，所以 `\lambda=\mu`。
+
+<TheoremCard title="特征向量的非零倍数仍是特征向量">
+若 `v` 是 `A` 对应于特征值 `\lambda` 的特征向量，则每个非零标量倍
+`cv` 也是 `A` 的特征向量，而且对应同一个特征值 `\lambda`。
+</TheoremCard>
+
+因此，特征向量从来不会只以单个向量出现；它自然代表一条穿过原点的
+直线。
+
+<TheoremCard title="同一特征值下的线性组合">
+设 `u_1,\dots,u_k` 都是 `A` 的特征向量，而且都对应同一个特征值
+`\lambda`。则每个非零线性组合
+
+$$
+\alpha_1u_1+\cdots+\alpha_ku_k
+$$
+
+仍然是 `A` 对应于 `\lambda` 的特征向量。
+</TheoremCard>
+
+这已经暗示：一旦把零向量加回去，对应同一个特征值的所有特征向量会形
+成一个子空间。
+
+## 第一批例子
+
+<WorkedExample title="一个 2×2 矩阵有两个不同特征值">
+令
+
+$$
+A=
+\begin{bmatrix}
+13&30\\
+-6&-14
+\end{bmatrix}.
+$$
+
+先看向量
+
+$$
+u_1=
+\begin{bmatrix}
+5\\
+-2
+\end{bmatrix}.
+$$
+
+计算得
+
+$$
+Au_1=
+\begin{bmatrix}
+13&30\\
+-6&-14
+\end{bmatrix}
+\begin{bmatrix}
+5\\
+-2
+\end{bmatrix}
+=
+\begin{bmatrix}
+5\\
+-2
+\end{bmatrix}
+=1\cdot u_1.
+$$
+
+所以 `u_1` 是特征向量，而对应特征值为 `1`。
+
+再看
+
+$$
+u_2=
+\begin{bmatrix}
+2\\
+-1
+\end{bmatrix}.
+$$
+
+则
+
+$$
+Au_2=
+\begin{bmatrix}
+-4\\
+2
+\end{bmatrix}
+=-2
+\begin{bmatrix}
+2\\
+-1
+\end{bmatrix}
+=-2u_2.
+$$
+
+所以 `u_2` 对应的特征值是 `-2`。
+</WorkedExample>
+
+<WorkedExample title="同一个特征值可以对应多个方向">
+令
+
+$$
+B=
+\begin{bmatrix}
+2&1&1\\
+1&2&1\\
+1&1&2
+\end{bmatrix}.
+$$
+
+向量
+
+$$
+u_1=
+\begin{bmatrix}
+1\\1\\1
+\end{bmatrix}
+$$
+
+满足 `Bu_1=4u_1`，所以 `4` 是其中一个特征值。
+
+再看
+
+$$
+u_2=
+\begin{bmatrix}
+1\\-1\\0
+\end{bmatrix},
+\qquad
+u_3=
+\begin{bmatrix}
+1\\0\\-1
+\end{bmatrix}.
+$$
+
+二者都满足
+
+$$
+Bu_2=u_2,
+\qquad
+Bu_3=u_3.
+$$
+
+所以同一个特征值 `1` 至少已有两个线性无关的特征向量。这并不违反前
+面的唯一性定理。那条定理只说：固定一个非零向量之后，它不能同时对应
+两个不同特征值。它没有说：一个特征值只会有一个方向。
+</WorkedExample>
+
+## 特征值其实是一个零空间问题
+
+方程 `Av=\lambda v` 若把所有项移到同一边，便变成
+
+$$
+Av-\lambda v=0.
+$$
+
+由于 `\lambda v=\lambda I_nv`，这等价于
+
+$$
+(A-\lambda I_n)v=0.
+$$
+
+<TheoremCard title="用齐次系统描述特征值">
+设 `A` 是 `n\times n` 矩阵，`\lambda` 是标量，而 `v\neq0`。
+
+下列两件事等价：
+
+1. `v` 是 `A` 对应于特征值 `\lambda` 的特征向量。
+2. `v` 是齐次系统
+
+$$
+(A-\lambda I_n)x=0
+$$
+
+的一个非平凡解。
+</TheoremCard>
+
+于是，特征值问题便被改写成普通的线性系统问题。向量 `v` 必须落在
+`A-\lambda I` 的零空间内。
+
+<Definition title="特征空间">
+设 `A` 是 `n\times n` 矩阵，而 `\lambda` 是 `A` 的一个特征值。则
+`A` 对应于 `\lambda` 的 **特征空间** 定义为
+
+$$
+E_A(\lambda)=N(A-\lambda I_n).
+$$
+
+因此，特征空间包含所有对应于 `\lambda` 的特征向量，以及零向量。
+</Definition>
+
+因为它本身是一个零空间，所以 `E_A(\lambda)` 自动是一个子空间。
+
+## 特征值的等价刻画
+
+一旦有了零空间版本，前面学过的可逆性词典便可以直接搬过来。
+
+<TheoremCard title="判断 λ 是否为特征值的等价条件">
+设 `A` 是 `n\times n` 矩阵，而 `\lambda` 是标量。下列叙述等价：
+
+1. `\lambda` 是 `A` 的特征值。
+2. `(A-\lambda I_n)x=0` 有非平凡解。
+3. `N(A-\lambda I_n)\neq\{0\}`。
+4. `A-\lambda I_n` 不可逆。
+5. `\det(A-\lambda I_n)=0`。
+</TheoremCard>
+
+这条定理把特征值与行列式直接接起来，之后便会导向特征多项式。
+
+<WorkedExample title="用行化简找特征值与特征空间">
+令
+
+$$
+C=
+\begin{bmatrix}
+3&2\\
+3&-2
+\end{bmatrix}.
+$$
+
+先解
+
+$$
+\det(C-\lambda I)=0.
+$$
+
+得到
+
+$$
+\det
+\begin{bmatrix}
+3-\lambda&2\\
+3&-2-\lambda
+\end{bmatrix}
+=(3-\lambda)(-2-\lambda)-6
+=\lambda^2-\lambda-12.
+$$
+
+因此特征值为
+
+$$
+\lambda=4,\qquad \lambda=-3.
+$$
+
+对 `\lambda=4`，
+
+$$
+C-4I=
+\begin{bmatrix}
+-1&2\\
+3&-6
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+1&-2\\
+0&0
+\end{bmatrix}.
+$$
+
+所以 `x_1=2x_2`，可取一组基为
+
+$$
+\begin{bmatrix}
+2\\1
+\end{bmatrix}.
+$$
+
+对 `\lambda=-3`，
+
+$$
+C+3I=
+\begin{bmatrix}
+6&2\\
+3&1
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+3&1\\
+0&0
+\end{bmatrix}.
+$$
+
+所以 `3x_1+x_2=0`，可取一组基为
+
+$$
+\begin{bmatrix}
+1\\-3
+\end{bmatrix}.
+$$
+
+因此
+
+$$
+E_C(4)=\operatorname{span}\left\{
+\begin{bmatrix}
+2\\1
+\end{bmatrix}
+\right\},
+\qquad
+E_C(-3)=\operatorname{span}\left\{
+\begin{bmatrix}
+1\\-3
+\end{bmatrix}
+\right\}.
+$$
+</WorkedExample>
+
+## 重要性质
+
+<TheoremCard title="0 是否为特征值，正好等同于可逆与否">
+对方阵 `A`，下列两件事等价：
+
+1. `0` 是 `A` 的特征值。
+2. `A` 不可逆。
+
+等价地，`A` 可逆当且仅当 `0` 不是它的特征值。
+</TheoremCard>
+
+这其实只是把前面的等价条件代入 `\lambda=0`。
+
+<TheoremCard title="简单矩阵运算下的特征值变化">
+若 `\lambda` 是 `A` 的特征值，则：
+
+1. `k\lambda` 是 `kA` 的特征值；
+2. 对每个非负整数 `m`，`\lambda^m` 是 `A^m` 的特征值；
+3. `\lambda` 也是 `A^T` 的特征值；
+4. 若 `A` 可逆，则 `\lambda^{-1}` 是 `A^{-1}` 的特征值。
+</TheoremCard>
+
+这些性质都不神秘。它们只是把相应的矩阵运算直接套在方程 `Av=\lambda
+v` 上。
+
+## 常见错误
+
+<CommonMistake title="零向量永远不是特征向量">
+学生常会留意到 `A0=\lambda0` 对所有标量都成立，于是误以为零向量是所
+有特征值的特征向量。正因如此，定义才必须排除零向量。特征向量代表的
+是某个真正的方向，而零向量没有方向可言。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="若 `v` 是 `A` 对应于特征值 `\lambda` 的特征向量，则 `3v` 也是吗？">
+假设 `v\neq0`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。因为 `A(3v)=3Av=3\lambda v=\lambda(3v)`，所以 `3v` 仍是对应于
+`\lambda` 的特征向量。
+</RevealSolution>
+
+<QuickCheck prompt="为什么 `0` 是特征值会迫使 `A` 不可逆？">
+利用系统 `(A-0I)x=0` 去理解。
+</QuickCheck>
+
+<RevealSolution title="答案">
+若 `0` 是特征值，则 `Ax=0` 有非平凡解。这表示 `A` 的零空间非平
+凡，因此 `A` 不可逆。
+</RevealSolution>
+
+<QuickCheck prompt="用零空间语言写出 `E_A(\lambda)`。">
+直接使用刚才的定义。
+</QuickCheck>
+
+<RevealSolution title="答案">
+
+$$
+E_A(\lambda)=N(A-\lambda I_n).
+$$
+
+它就是 `A-\lambda I_n` 的零空间。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="证明 `\begin{bmatrix}1\\1\end{bmatrix}` 是 `\begin{bmatrix}2&1\\1&2\end{bmatrix}` 的特征向量，并找出其特征值。">
+先做矩阵乘法，再与原向量比较。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+
+$$
+\begin{bmatrix}
+2&1\\
+1&2
+\end{bmatrix}
+\begin{bmatrix}
+1\\1
+\end{bmatrix}
+=
+\begin{bmatrix}
+3\\3
+\end{bmatrix}
+=3
+\begin{bmatrix}
+1\\1
+\end{bmatrix}.
+$$
+
+所以这个向量是特征向量，而对应特征值是 `3`。
+</RevealSolution>
+
+<QuickCheck prompt="求 `A=\begin{bmatrix}1&0\\0&4\end{bmatrix}` 对应于特征值 `4` 的特征空间。">
+解 `(A-4I)x=0`。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+
+$$
+A-4I=
+\begin{bmatrix}
+-3&0\\
+0&0
+\end{bmatrix}.
+$$
+
+因此 `x_1=0`，`x_2` 自由，所以
+
+$$
+E_A(4)=\operatorname{span}\left\{
+\begin{bmatrix}
+0\\1
+\end{bmatrix}
+\right\}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="若 `A` 可逆，则 `0` 会否成为 `A^T` 的特征值？">
+把转置性质与可逆性判准合起来想。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+不会。若 `0` 是 `A^T` 的特征值，则 `A^T` 不可逆。但 `A` 可逆当且仅
+当 `A^T` 可逆，所以这是不可能的。
+</RevealSolution>
+
+## 相关笔记
+
+请把
+[7.2 行变换、乘积与可逆性](/zh-cn/notes/math1030/determinants/row-operations-products-and-invertibility)
+放在旁边，因为测试 `\det(A-\lambda I)=0` 直接依赖行列式与可逆性的理
+解。
+
+接着可读
+[8.2 对角化与相似](/zh-cn/notes/math1030/eigenvalues/diagonalization-and-similarity)，
+看看一整组特征向量如何改变矩阵的整体形状。
+
+本节的子空间观点也依赖
+[6.5 基底与维数](/zh-cn/notes/math1030/vector-spaces/basis-and-dimension)。

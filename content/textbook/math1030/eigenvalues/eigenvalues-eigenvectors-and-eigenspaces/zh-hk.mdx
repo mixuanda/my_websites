@@ -1,0 +1,512 @@
+---
+title: "8.1 特徵值、特徵向量與特徵空間"
+description: "由方程 Av=λv 定義特徵值與特徵向量，再把同一個概念改寫成零空間與行列式問題，令整個結構變得可計算。"
+---
+
+行列式會告訴你一個方陣是否可逆。特徵值問的是另一個問題：哪些向量在
+矩陣作用之下仍然保持原來的方向。
+
+大部分向量經過矩陣乘法後，方向都會被改變。特徵向量則是例外。它只會
+被拉長、縮短，或者反向，而不會偏離本身張成的直線。這就是為甚麼特徵
+值揭示的是矩陣的內部幾何，而不只是方程組可否解。
+
+## 為甚麼這一節重要
+
+當你解 `Ax=b` 時，你關心的是整個系統。當你研究特徵值時，你關心的是
+那些特別的向量 `v`，使得矩陣作用退化成較簡單的規則
+
+$$
+Av=\lambda v.
+$$
+
+一旦找出這些向量，之後便能更容易處理矩陣的冪、理解對角化，並描述哪
+些方向在變換下是不變的。
+
+<Definition title="特徵值與特徵向量">
+設 `A` 是一個 `n\times n` 方陣。設 `\lambda` 是一個純量，而 `v` 是
+`\mathbb{R}^n` 中的非零列向量。
+
+若
+
+$$
+Av=\lambda v,
+$$
+
+便稱 `v` 是 `A` 對應於 **特徵值** `\lambda` 的 **特徵向量**。
+
+這裡必須要求 `v` 非零。因為零向量對每個純量都滿足 `A0=\lambda0`，
+若把它容許進來，定義便會失去內容。
+</Definition>
+
+重點在於，矩陣作用與純量乘法在這個向量上完全一致。`v` 的方向被保
+留，改變的只是長度與符號。
+
+## 由定義立刻得到的結論
+
+<TheoremCard title="同一個特徵向量只會對應一個特徵值">
+設 `A` 是方陣，而 `v` 是非零向量。若
+
+$$
+Av=\lambda v
+\qquad\text{且}\qquad
+Av=\mu v,
+$$
+
+則 `\lambda=\mu`。
+</TheoremCard>
+
+原因很直接。把兩式相減：
+
+$$
+(\lambda-\mu)v=0.
+$$
+
+由於 `v\neq0`，只可能是純量係數本身為 `0`，所以 `\lambda=\mu`。
+
+<TheoremCard title="特徵向量的非零倍數仍是特徵向量">
+若 `v` 是 `A` 對應於特徵值 `\lambda` 的特徵向量，則每個非零純量倍
+`cv` 也是 `A` 的特徵向量，而且對應同一個特徵值 `\lambda`。
+</TheoremCard>
+
+因此，特徵向量從來不會只以單一向量出現；它自然代表一條穿過原點的
+直線。
+
+<TheoremCard title="同一特徵值下的線性組合">
+設 `u_1,\dots,u_k` 都是 `A` 的特徵向量，而且都對應同一個特徵值
+`\lambda`。則每個非零線性組合
+
+$$
+\alpha_1u_1+\cdots+\alpha_ku_k
+$$
+
+仍然是 `A` 對應於 `\lambda` 的特徵向量。
+</TheoremCard>
+
+這已經暗示：一旦把零向量加回去，對應同一個特徵值的所有特徵向量會形
+成一個子空間。
+
+## 第一批例子
+
+<WorkedExample title="一個 2×2 矩陣有兩個不同特徵值">
+令
+
+$$
+A=
+\begin{bmatrix}
+13&30\\
+-6&-14
+\end{bmatrix}.
+$$
+
+先看向量
+
+$$
+u_1=
+\begin{bmatrix}
+5\\
+-2
+\end{bmatrix}.
+$$
+
+計算得
+
+$$
+Au_1=
+\begin{bmatrix}
+13&30\\
+-6&-14
+\end{bmatrix}
+\begin{bmatrix}
+5\\
+-2
+\end{bmatrix}
+=
+\begin{bmatrix}
+5\\
+-2
+\end{bmatrix}
+=1\cdot u_1.
+$$
+
+所以 `u_1` 是特徵向量，而對應特徵值為 `1`。
+
+再看
+
+$$
+u_2=
+\begin{bmatrix}
+2\\
+-1
+\end{bmatrix}.
+$$
+
+則
+
+$$
+Au_2=
+\begin{bmatrix}
+-4\\
+2
+\end{bmatrix}
+=-2
+\begin{bmatrix}
+2\\
+-1
+\end{bmatrix}
+=-2u_2.
+$$
+
+所以 `u_2` 對應的特徵值是 `-2`。
+</WorkedExample>
+
+<WorkedExample title="同一個特徵值可以對應多於一個方向">
+令
+
+$$
+B=
+\begin{bmatrix}
+2&1&1\\
+1&2&1\\
+1&1&2
+\end{bmatrix}.
+$$
+
+向量
+
+$$
+u_1=
+\begin{bmatrix}
+1\\1\\1
+\end{bmatrix}
+$$
+
+滿足 `Bu_1=4u_1`，所以 `4` 是其中一個特徵值。
+
+再看
+
+$$
+u_2=
+\begin{bmatrix}
+1\\-1\\0
+\end{bmatrix},
+\qquad
+u_3=
+\begin{bmatrix}
+1\\0\\-1
+\end{bmatrix}.
+$$
+
+二者都滿足
+
+$$
+Bu_2=u_2,
+\qquad
+Bu_3=u_3.
+$$
+
+所以同一個特徵值 `1` 至少已有兩個線性無關的特徵向量。這並不違反前
+面的唯一性定理。那條定理只說：固定一個非零向量之後，它不能同時對應
+兩個不同特徵值。它沒有說：一個特徵值只會有一個方向。
+</WorkedExample>
+
+## 特徵值其實是一個零空間問題
+
+方程 `Av=\lambda v` 若把所有項移到同一邊，便變成
+
+$$
+Av-\lambda v=0.
+$$
+
+由於 `\lambda v=\lambda I_nv`，這等價於
+
+$$
+(A-\lambda I_n)v=0.
+$$
+
+<TheoremCard title="用齊次系統描述特徵值">
+設 `A` 是 `n\times n` 矩陣，`\lambda` 是純量，而 `v\neq0`。
+
+下列兩件事等價：
+
+1. `v` 是 `A` 對應於特徵值 `\lambda` 的特徵向量。
+2. `v` 是齊次系統
+
+$$
+(A-\lambda I_n)x=0
+$$
+
+的一個非平凡解。
+</TheoremCard>
+
+於是，特徵值問題便被改寫成普通的線性系統問題。向量 `v` 必須落在
+`A-\lambda I` 的零空間內。
+
+<Definition title="特徵空間">
+設 `A` 是 `n\times n` 矩陣，而 `\lambda` 是 `A` 的一個特徵值。則
+`A` 對應於 `\lambda` 的 **特徵空間** 定義為
+
+$$
+E_A(\lambda)=N(A-\lambda I_n).
+$$
+
+因此，特徵空間包含所有對應於 `\lambda` 的特徵向量，以及零向量。
+</Definition>
+
+因為它本身是一個零空間，所以 `E_A(\lambda)` 自動是一個子空間。
+
+## 特徵值的等價刻畫
+
+一旦有了零空間的版本，前面學過的可逆性詞典便可以直接搬過來。
+
+<TheoremCard title="判斷 λ 是否為特徵值的等價條件">
+設 `A` 是 `n\times n` 矩陣，而 `\lambda` 是純量。下列敘述等價：
+
+1. `\lambda` 是 `A` 的特徵值。
+2. `(A-\lambda I_n)x=0` 有非平凡解。
+3. `N(A-\lambda I_n)\neq\{0\}`。
+4. `A-\lambda I_n` 不可逆。
+5. `\det(A-\lambda I_n)=0`。
+</TheoremCard>
+
+這條定理把特徵值與行列式直接接起來，之後便會導向特徵多項式。
+
+<WorkedExample title="用行化簡找特徵值與特徵空間">
+令
+
+$$
+C=
+\begin{bmatrix}
+3&2\\
+3&-2
+\end{bmatrix}.
+$$
+
+先解
+
+$$
+\det(C-\lambda I)=0.
+$$
+
+得到
+
+$$
+\det
+\begin{bmatrix}
+3-\lambda&2\\
+3&-2-\lambda
+\end{bmatrix}
+=(3-\lambda)(-2-\lambda)-6
+=\lambda^2-\lambda-12.
+$$
+
+因此特徵值為
+
+$$
+\lambda=4,\qquad \lambda=-3.
+$$
+
+對 `\lambda=4`，
+
+$$
+C-4I=
+\begin{bmatrix}
+-1&2\\
+3&-6
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+1&-2\\
+0&0
+\end{bmatrix}.
+$$
+
+所以 `x_1=2x_2`，可取一組基為
+
+$$
+\begin{bmatrix}
+2\\1
+\end{bmatrix}.
+$$
+
+對 `\lambda=-3`，
+
+$$
+C+3I=
+\begin{bmatrix}
+6&2\\
+3&1
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+3&1\\
+0&0
+\end{bmatrix}.
+$$
+
+所以 `3x_1+x_2=0`，可取一組基為
+
+$$
+\begin{bmatrix}
+1\\-3
+\end{bmatrix}.
+$$
+
+因此
+
+$$
+E_C(4)=\operatorname{span}\left\{
+\begin{bmatrix}
+2\\1
+\end{bmatrix}
+\right\},
+\qquad
+E_C(-3)=\operatorname{span}\left\{
+\begin{bmatrix}
+1\\-3
+\end{bmatrix}
+\right\}.
+$$
+</WorkedExample>
+
+## 重要性質
+
+<TheoremCard title="0 是否為特徵值，正好等同於可逆與否">
+對方陣 `A`，下列兩件事等價：
+
+1. `0` 是 `A` 的特徵值。
+2. `A` 不可逆。
+
+等價地，`A` 可逆當且僅當 `0` 不是它的特徵值。
+</TheoremCard>
+
+這其實只是把前面的等價條件代入 `\lambda=0`。
+
+<TheoremCard title="簡單矩陣運算下的特徵值變化">
+若 `\lambda` 是 `A` 的特徵值，則：
+
+1. `k\lambda` 是 `kA` 的特徵值；
+2. 對每個非負整數 `m`，`\lambda^m` 是 `A^m` 的特徵值；
+3. `\lambda` 也是 `A^T` 的特徵值；
+4. 若 `A` 可逆，則 `\lambda^{-1}` 是 `A^{-1}` 的特徵值。
+</TheoremCard>
+
+這些性質都不神秘。它們只是把相應的矩陣運算直接套在方程 `Av=\lambda
+v` 上。
+
+## 常見錯誤
+
+<CommonMistake title="零向量永遠不是特徵向量">
+學生常會留意到 `A0=\lambda0` 對所有純量都成立，於是誤以為零向量是所
+有特徵值的特徵向量。正因如此，定義才必須排除零向量。特徵向量代表的
+是某個真正的方向，而零向量沒有方向可言。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="若 `v` 是 `A` 對應於特徵值 `\lambda` 的特徵向量，則 `3v` 也是嗎？">
+假設 `v\neq0`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。因為 `A(3v)=3Av=3\lambda v=\lambda(3v)`，所以 `3v` 仍是對應於
+`\lambda` 的特徵向量。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼 `0` 是特徵值會迫使 `A` 不可逆？">
+利用系統 `(A-0I)x=0` 去理解。
+</QuickCheck>
+
+<RevealSolution title="答案">
+若 `0` 是特徵值，則 `Ax=0` 有非平凡解。這表示 `A` 的零空間非平
+凡，因此 `A` 不可逆。
+</RevealSolution>
+
+<QuickCheck prompt="用零空間語言寫出 `E_A(\lambda)`。">
+直接使用剛才的定義。
+</QuickCheck>
+
+<RevealSolution title="答案">
+
+$$
+E_A(\lambda)=N(A-\lambda I_n).
+$$
+
+它就是 `A-\lambda I_n` 的零空間。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="證明 `\begin{bmatrix}1\\1\end{bmatrix}` 是 `\begin{bmatrix}2&1\\1&2\end{bmatrix}` 的特徵向量，並找出其特徵值。">
+先做矩陣乘法，再與原向量比較。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+
+$$
+\begin{bmatrix}
+2&1\\
+1&2
+\end{bmatrix}
+\begin{bmatrix}
+1\\1
+\end{bmatrix}
+=
+\begin{bmatrix}
+3\\3
+\end{bmatrix}
+=3
+\begin{bmatrix}
+1\\1
+\end{bmatrix}.
+$$
+
+所以這個向量是特徵向量，而對應特徵值是 `3`。
+</RevealSolution>
+
+<QuickCheck prompt="求 `A=\begin{bmatrix}1&0\\0&4\end{bmatrix}` 對應於特徵值 `4` 的特徵空間。">
+解 `(A-4I)x=0`。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+
+$$
+A-4I=
+\begin{bmatrix}
+-3&0\\
+0&0
+\end{bmatrix}.
+$$
+
+因此 `x_1=0`，`x_2` 自由，所以
+
+$$
+E_A(4)=\operatorname{span}\left\{
+\begin{bmatrix}
+0\\1
+\end{bmatrix}
+\right\}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="若 `A` 可逆，則 `0` 會否成為 `A^T` 的特徵值？">
+把轉置性質與可逆性判準合起來想。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+不會。若 `0` 是 `A^T` 的特徵值，則 `A^T` 不可逆。但 `A` 可逆當且僅
+當 `A^T` 可逆，所以這是不可能的。
+</RevealSolution>
+
+## 相關筆記
+
+請把
+[7.2 行變換、乘積與可逆性](/zh-hk/notes/math1030/determinants/row-operations-products-and-invertibility)
+放在旁邊，因為測試 `\det(A-\lambda I)=0` 直接依賴行列式與可逆性的理
+解。
+
+接着可讀
+[8.2 對角化與相似](/zh-hk/notes/math1030/eigenvalues/diagonalization-and-similarity)，
+看看一整組特徵向量如何改變矩陣的整體形狀。
+
+本節的子空間觀點也依賴
+[6.5 基底與維數](/zh-hk/notes/math1030/vector-spaces/basis-and-dimension)。

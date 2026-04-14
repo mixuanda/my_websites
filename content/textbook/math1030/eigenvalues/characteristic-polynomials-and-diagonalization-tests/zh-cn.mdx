@@ -1,0 +1,408 @@
+---
+title: "8.3 特征多项式与对角化测试"
+description: "用特征多项式、代数与几何重数，以及“互异特征值”测试去判断何时特征值资料已足够推出可对角化。"
+---
+
+上一节的零空间判准
+
+$$
+\det(A-\lambda I)=0
+$$
+
+已经告诉你如何测试一个候选数 `\lambda` 是否为特征值。下一步，是把这
+个测试包成一个单一的多项式，而它的根正正就是矩阵的特征值。
+
+这个多项式强大到足以限制矩阵到底可以有多少个特征值、描述重复特征值
+的情形，并给出可对角化的实用判准。
+
+## 特征多项式
+
+<Definition title="特征多项式">
+设 `A` 是 `n\times n` 矩阵。多项式
+
+$$
+p_A(x)=\det(A-xI_n)
+$$
+
+称为 `A` 的 **特征多项式**。
+</Definition>
+
+变量 `x` 在这里只是未定元。一旦你把某个标量 `\lambda` 代入进去，
+`p_A(\lambda)` 便会变成 `A-\lambda I` 的行列式。
+
+<TheoremCard title="特征值正好就是特征多项式的根">
+设 `A` 是 `n\times n` 矩阵，而 `\lambda` 是标量。下列两件事等价：
+
+1. `\lambda` 是 `A` 的特征值；
+2. `\lambda` 是 `p_A(x)` 的根。
+</TheoremCard>
+
+这其实只是把上一节的行列式判准整理成较有系统的写法：
+
+$$
+\lambda\text{ 是特征值}
+\iff
+\det(A-\lambda I)=0
+\iff
+p_A(\lambda)=0.
+$$
+
+<TheoremCard title="特征多项式的基本形状">
+若 `A` 是 `n\times n` 矩阵，则 `p_A(x)` 是一个 `n` 次多项式，其最高
+次项系数是 `(-1)^n`，而常数项是 `\det(A)`。
+</TheoremCard>
+
+因此，特征多项式绝不是任意的表达式。它的次数由矩阵大小固定，而其常
+数项已经记住了矩阵的行列式。
+
+## 第一批例子
+
+<WorkedExample title="一个 2×2 特征多项式">
+令
+
+$$
+A=
+\begin{bmatrix}
+3&2\\
+3&-2
+\end{bmatrix}.
+$$
+
+则
+
+$$
+p_A(x)=
+\det
+\begin{bmatrix}
+3-x&2\\
+3&-2-x
+\end{bmatrix}
+=(3-x)(-2-x)-6.
+$$
+
+化简后得
+
+$$
+p_A(x)=x^2-x-12=(x-4)(x+3).
+$$
+
+因此特征值是 `4` 与 `-3`。
+</WorkedExample>
+
+<WorkedExample title="一个重根例子">
+令
+
+$$
+B=
+\begin{bmatrix}
+2&3\\
+0&2
+\end{bmatrix}.
+$$
+
+则
+
+$$
+p_B(x)=
+\det
+\begin{bmatrix}
+2-x&3\\
+0&2-x
+\end{bmatrix}
+=(2-x)^2=(x-2)^2.
+$$
+
+所以 `2` 是唯一特征值，但它以重数 `2` 出现。
+</WorkedExample>
+
+## 代数重数与几何重数
+
+一旦根可以重复，便需要更精细的语言。
+
+<Definition title="代数重数与几何重数">
+设特征多项式分解为
+
+$$
+p_A(x)=(-1)^n(x-\lambda_1)^{m_1}\cdots(x-\lambda_s)^{m_s},
+$$
+
+其中 `\lambda_1,\dots,\lambda_s` 是互异的根。
+
+1. 指数 `m_i` 称为 `\lambda_i` 的 **代数重数**。
+2. 特征空间 `E_A(\lambda_i)` 的维数称为 `\lambda_i` 的
+   **几何重数**。
+</Definition>
+
+代数重数来自多项式本身；几何重数来自零空间 `N(A-\lambda I)`。它们衡
+量的不是同一件事，而且未必相等。
+
+<TheoremCard title="重数不等式">
+若 `\lambda` 是 `n\times n` 矩阵 `A` 的特征值，则
+
+$$
+1\le m_g(\lambda)\le m_a(\lambda)\le n.
+$$
+</TheoremCard>
+
+因此，每个特征空间至少有一维，但它的维数永远不会超过相应特征值的代
+数重数。
+
+<WorkedExample title="重根，但特征空间太小">
+对
+
+$$
+B=
+\begin{bmatrix}
+2&3\\
+0&2
+\end{bmatrix},
+$$
+
+特征多项式是 `(x-2)^2`，所以特征值 `2` 的代数重数是 `2`。
+
+现在解 `(B-2I)x=0`：
+
+$$
+B-2I=
+\begin{bmatrix}
+0&3\\
+0&0
+\end{bmatrix}.
+$$
+
+因此 `x_2=0`，`x_1` 自由。特征空间为
+
+$$
+\operatorname{span}\left\{
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+\right\},
+$$
+
+只有一维。也就是说
+
+$$
+m_a(2)=2,\qquad m_g(2)=1.
+$$
+
+这个不相等正正就是它不可对角化的原因。
+</WorkedExample>
+
+## 互异特征值会强迫线性无关
+
+<TheoremCard title="互异特征值所对应的特征向量必线性无关">
+若 `v_1,\dots,v_k` 是 `A` 的特征向量，而它们分别对应于互不相同的
+特征值 `\lambda_1,\dots,\lambda_k`，则
+
+$$
+v_1,\dots,v_k
+$$
+
+必定线性无关。
+</TheoremCard>
+
+这条定理立即带来两个重要推论。
+
+<TheoremCard title="互异特征值的数目上界">
+一个 `n\times n` 矩阵最多只可拥有 `n` 个互异特征值。
+</TheoremCard>
+
+<TheoremCard title="互异特征值测试可对角化">
+若一个 `n\times n` 矩阵恰好有 `n` 个互异特征值，则它必定可对角化。
+</TheoremCard>
+
+其逆命题是假的。可对角化矩阵仍然可以有重复特征值。最简单例子就是单
+位矩阵：它只有特征值 `1`，但本身早已是对角矩阵。
+
+## 更精确的可对角化判准
+
+互异特征值是一个充分条件，但不是唯一条件。
+
+<TheoremCard title="特征空间维数总和判准">
+设实 `n\times n` 矩阵 `A` 的所有互异实特征值为
+`\lambda_1,\dots,\lambda_s`。则 `A` 可对角化，当且仅当
+
+$$
+\dim E_A(\lambda_1)+\cdots+\dim E_A(\lambda_s)=n.
+$$
+</TheoremCard>
+
+这条判准的意思是：只要所有特征空间合起来已经提供足够多线性无关特征
+向量，可以凑成整个空间的一组基底，那矩阵便能被对角化。
+
+<WorkedExample title="特征值重复，但仍然可对角化">
+令
+
+$$
+A=
+\begin{bmatrix}
+2&1&1\\
+1&2&1\\
+1&1&2
+\end{bmatrix}.
+$$
+
+它的特征值是 `4` 与 `1`，而 `1` 在代数上是重根。但 `4` 的特征空间
+是一维，而 `1` 的特征空间是二维，因此
+
+$$
+1+2=3,
+$$
+
+刚好等于矩阵大小，所以 `A` 仍然可对角化。
+</WorkedExample>
+
+## Cayley-Hamilton 定理给出一条多项式恒等式
+
+源笔记再向前走一步，把特征多项式重新代回矩阵本身。
+
+<TheoremCard title="Cayley-Hamilton 定理">
+若
+
+$$
+p_A(x)=c_0+c_1x+c_2x^2+\cdots+c_nx^n,
+$$
+
+则
+
+$$
+c_0I+c_1A+c_2A^2+\cdots+c_nA^n=0.
+$$
+
+等价写法是 `p_A(A)=0`。
+</TheoremCard>
+
+对可对角化矩阵来说，这条定理很好理解：若 `A=SDS^{-1}`，那么把多项
+式 `p_A` 套到 `A` 上，等于把它逐项套到 `D` 的对角线各项上，而每个
+对角线项本身都是 `A` 的特征值，因此也是 `p_A` 的根。
+
+实际后果是：高次幂 `A^m` 可以改写成较低幂 `I,A,\dots,A^{n-1}` 的线
+性组合。
+
+<WorkedExample title="一条小型 Cayley-Hamilton 恒等式">
+令
+
+$$
+A=
+\begin{bmatrix}
+1&4\\
+0&1
+\end{bmatrix}.
+$$
+
+其特征多项式为
+
+$$
+p_A(x)=(1-x)^2=x^2-2x+1.
+$$
+
+因此 Cayley-Hamilton 告诉你
+
+$$
+A^2-2A+I=0.
+$$
+
+所以所有更高次幂，都可以用这条二次关系继续化简。
+</WorkedExample>
+
+## 常见错误
+
+<CommonMistake title="重复特征值不等于“一定不可对角化”">
+重复特征值只表示某个特征值的代数重数大于 `1`。可对角化与否，取决于
+相应特征空间是否仍然提供足够多线性无关特征向量。重根是一个警号，但
+不是最终判决。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="` \begin{bmatrix}2&0\\0&5\end{bmatrix} ` 的特征多项式是什么？">
+用 `p_A(x)=\det(A-xI)`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+
+$$
+p_A(x)=
+\begin{vmatrix}
+2-x&0\\
+0&5-x
+\end{vmatrix}
+=(2-x)(5-x).
+$$
+</RevealSolution>
+
+<QuickCheck prompt="若一个 `n\times n` 矩阵有 `n` 个互异特征值，你可以立刻得出什么结论？">
+利用互异特征值定理。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它必定可对角化，因为互异特征值所对应的特征向量必线性无关。
+</RevealSolution>
+
+<QuickCheck prompt="几何重数会否大过代数重数？">
+用重数不等式回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不会。对每个特征值 `\lambda`，都有
+
+$$
+m_g(\lambda)\le m_a(\lambda).
+$$
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="求 `\begin{bmatrix}0&1\\-2&3\end{bmatrix}` 的特征多项式，并列出其特征值。">
+先算 `\det(A-xI)`，再因式分解。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+
+$$
+p_A(x)=
+\begin{vmatrix}
+-x&1\\
+-2&3-x
+\end{vmatrix}
+=x^2-3x+2=(x-1)(x-2).
+$$
+
+所以特征值是 `1` 与 `2`。
+</RevealSolution>
+
+<QuickCheck prompt="一个 `4\times4` 矩阵有四个互异特征值。若从每个特征值各选一个特征向量，这四个向量张成空间的维数是多少？">
+利用互异特征值下的线性无关性。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+这四个特征向量线性无关，因此它们张成的空间维数是 `4`。所以它们本身
+已构成 `\mathbb{R}^4` 的一组基底。
+</RevealSolution>
+
+<QuickCheck prompt="若 `p_A(x)=x^3-6x^2+11x-6`，Cayley-Hamilton 会给出什么矩阵恒等式？">
+把未定元 `x` 改成矩阵 `A`。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+
+$$
+A^3-6A^2+11A-6I=0.
+$$
+
+这就是对应的 Cayley-Hamilton 恒等式。
+</RevealSolution>
+
+## 相关笔记
+
+请把
+[8.1 特征值、特征向量与特征空间](/zh-cn/notes/math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces)
+打开，因为特征值与零空间的关系是这一节的基础。
+
+同时也应保留
+[8.2 对角化与相似](/zh-cn/notes/math1030/eigenvalues/diagonalization-and-similarity)
+在旁，因为本节提供的多项式工具正是用来判断那一节的对角化是否成立。
+
+而 `p_A(x)=\det(A-xI)` 的行列式部分，则依赖
+[7.1 行列式与余因子展开](/zh-cn/notes/math1030/determinants/determinants-and-cofactor-expansion)。

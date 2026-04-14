@@ -1,0 +1,370 @@
+---
+title: "8.2 对角化与相似"
+description: "把对角化理解成由特征向量组成的基变换，再用相似关系说明何时矩阵可以在不改变核心特征值资料的情况下被简化。"
+---
+
+单个特征向量已经有用；若有整组可形成基底的特征向量，情况就会彻底改
+变。
+
+若一个方阵拥有足够多线性无关的特征向量，就可以找到一个坐标系，使它
+在该坐标系下变成对角矩阵。到那时，矩阵的幂、逆矩阵与不少结构问题都
+会变得几乎不需要计算。
+
+## 为什么对角化重要
+
+设一个矩阵作用于 `\mathbb{R}^n`。在标准基底下，这个作用可能很复
+杂，因为不同坐标会互相混合。若改用由特征向量组成的新基底，则矩阵对
+每个基向量的作用就只剩下标量乘法。
+
+而对角矩阵正正就是这样工作的。
+
+<Definition title="相似">
+两个 `n\times n` 矩阵 `A` 与 `B` 若存在可逆矩阵 `S` 使得
+
+$$
+S^{-1}AS=B,
+$$
+
+便称 `A` 与 `B` **相似**。
+
+相似的意思，是 `A` 与 `B` 其实代表同一个线性变换，只不过采用了不
+同基底。
+</Definition>
+
+<Definition title="对角化与可对角化">
+设 `A` 是 `n\times n` 矩阵。
+
+若存在可逆矩阵 `S` 与标量 `\lambda_1,\dots,\lambda_n` 使得
+
+$$
+S^{-1}AS=\operatorname{diag}(\lambda_1,\dots,\lambda_n),
+$$
+
+则称 `A` **可对角化**，而上述等式称为 `A` 的一个 **对角化**。
+</Definition>
+
+因此，对角化只是相似的一个特别情况：目标矩阵刚好是对角矩阵。
+
+## 特征向量正是对角化矩阵的列
+
+<TheoremCard title="对角化的刻画">
+设 `A` 是 `n\times n` 矩阵，并令
+
+$$
+S=[v_1\ v_2\ \cdots\ v_n]
+$$
+
+是一个由列向量 `v_1,\dots,v_n` 组成的可逆矩阵。
+
+下列叙述等价：
+
+1. 每个 `v_j` 都是 `A` 的特征向量，而对应特征值为 `\lambda_j`；
+2.
+
+$$
+S^{-1}AS=\operatorname{diag}(\lambda_1,\dots,\lambda_n)
+$$
+</TheoremCard>
+
+这条定理是对角化的核心。换基矩阵的列并不是随便挑的，它们必须是特征
+向量。
+
+等价地，若记 `D=\operatorname{diag}(\lambda_1,\dots,\lambda_n)`，
+则
+
+$$
+AS=SD.
+$$
+
+这条式子的意思是：
+
+- `AS` 的第一列是 `Av_1`，而 `SD` 的第一列是 `\lambda_1v_1`；
+- `AS` 的第二列是 `Av_2`，而 `SD` 的第二列是 `\lambda_2v_2`；
+- 其余各列同理。
+
+所以单一条矩阵等式 `AS=SD`，其实一次性包住了所有特征向量方程。
+
+<TheoremCard title="什么时候矩阵可对角化">
+`n\times n` 矩阵 `A` 可对角化，当且仅当它拥有 `n` 个线性无关的特征
+向量。
+</TheoremCard>
+
+这条判准才是你应该记住的版本。对角化不是靠运气猜一个矩阵 `S`，而
+是要找出一整组能形成基底的特征向量。
+
+## 第一批对角化例子
+
+<WorkedExample title="一个可对角化的上三角矩阵">
+令
+
+$$
+A=
+\begin{bmatrix}
+1&1&1\\
+0&2&2\\
+0&0&3
+\end{bmatrix}.
+$$
+
+假设已知它有特征向量
+
+$$
+u_1=
+\begin{bmatrix}
+1\\0\\0
+\end{bmatrix},
+\qquad
+u_2=
+\begin{bmatrix}
+1\\1\\0
+\end{bmatrix},
+\qquad
+u_3=
+\begin{bmatrix}
+3\\4\\2
+\end{bmatrix},
+$$
+
+分别对应特征值 `1`、`2`、`3`。
+
+若令
+
+$$
+U=[u_1\ u_2\ u_3],
+$$
+
+则三个向量线性无关，所以 `U` 可逆。因此
+
+$$
+U^{-1}AU=\operatorname{diag}(1,2,3).
+$$
+
+原矩阵本身并不是对角矩阵，但在特征向量基底下，它就变成对角矩阵。
+</WorkedExample>
+
+<WorkedExample title="一个不可对角化的矩阵">
+考虑
+
+$$
+J=
+\begin{bmatrix}
+1&4\\
+0&1
+\end{bmatrix}.
+$$
+
+它的唯一特征值是 `1`，因为
+
+$$
+\det(J-\lambda I)=
+\begin{vmatrix}
+1-\lambda&4\\
+0&1-\lambda
+\end{vmatrix}
+=(1-\lambda)^2.
+$$
+
+现在求 `(J-I)x=0`：
+
+$$
+J-I=
+\begin{bmatrix}
+0&4\\
+0&0
+\end{bmatrix}.
+$$
+
+所以 `x_2=0`，`x_1` 自由。其特征空间为
+
+$$
+\operatorname{span}\left\{
+\begin{bmatrix}
+1\\0
+\end{bmatrix}
+\right\},
+$$
+
+只有一维。对 `2\times2` 矩阵来说，要可对角化便必须有两个线性无关的
+特征向量，所以 `J` 不可对角化。
+</WorkedExample>
+
+## 相似矩阵会保留特征值资料
+
+相似不是任意的共轭操作；它会保留矩阵的核心特征值结构。
+
+<TheoremCard title="相似矩阵有相同特征多项式">
+若 `A` 与 `B` 相似，则
+
+$$
+p_A(x)=p_B(x).
+$$
+
+特别地，`A` 与 `B` 有相同的特征值。
+</TheoremCard>
+
+这正是对角化有意义的原因。由 `A` 得到的对角矩阵并不是另一个无关的
+光谱对象，而是同一个线性变换在另一组基底下的写法，只不过那组基底会
+把特征值直接暴露在对角线上。
+
+<CommonMistake title="特征多项式相同，不代表一定相似">
+相似会推出特征多项式相同，但反过来并不成立。两个矩阵可以有相同特征
+多项式，却仍然不相似。
+
+例如
+
+$$
+\begin{bmatrix}
+0&1\\
+0&0
+\end{bmatrix}
+\qquad\text{与}\qquad
+\begin{bmatrix}
+0&0\\
+0&0
+\end{bmatrix}
+$$
+
+都有特征多项式 `x^2`，但前者并不与零矩阵相似。
+</CommonMistake>
+
+## 对角化令幂与逆矩阵变得容易
+
+假设
+
+$$
+A=SDS^{-1},
+\qquad
+D=\operatorname{diag}(\lambda_1,\dots,\lambda_n).
+$$
+
+则矩阵代数会大幅简化。
+
+<TheoremCard title="可对角化矩阵的幂、逆与转置">
+若 `A=SDS^{-1}` 且 `D` 是对角矩阵，则对每个正整数 `m`，
+
+$$
+A^m=SD^mS^{-1}.
+$$
+
+若 `A` 可逆，则 `D` 的每个对角线项都非零，而且
+
+$$
+A^{-1}=SD^{-1}S^{-1}.
+$$
+
+另外，`A^T` 也可对角化，并且与 `A` 具有相同的特征值。
+</TheoremCard>
+
+关键在于对角矩阵的幂很好算：
+
+$$
+\operatorname{diag}(\lambda_1,\dots,\lambda_n)^m
+=\operatorname{diag}(\lambda_1^m,\dots,\lambda_n^m).
+$$
+
+<WorkedExample title="用对角化计算矩阵幂">
+令
+
+$$
+A=
+\begin{bmatrix}
+2&1&1\\
+1&2&1\\
+1&1&2
+\end{bmatrix}.
+$$
+
+若已知
+
+$$
+A=S\operatorname{diag}(4,1,1)S^{-1},
+$$
+
+则
+
+$$
+A^m=S\operatorname{diag}(4^m,1,1)S^{-1}.
+$$
+
+因此真正困难的步骤只在于把矩阵对角化一次。之后所有正整数次方都只需
+把 `4` 改成 `4^m`，而重复的 `1` 保持不变即可。
+</WorkedExample>
+
+## 快速检查
+
+<QuickCheck prompt="对角化矩阵 S 的各列必须是什么？">
+想想方程 `AS=SD`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它们必须是 `A` 的特征向量。`S` 的第 `j` 列是对应于 `D` 第 `j` 个
+对角线项的特征向量。
+</RevealSolution>
+
+<QuickCheck prompt="一个 `3\times3` 矩阵若只有两个线性无关的特征向量，可以可对角化吗？">
+用刻画定理回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不可以。`3\times3` 矩阵可对角化，当且仅当它有三个线性无关的特征向
+量。
+</RevealSolution>
+
+<QuickCheck prompt="若 A 与 D 相似，而 D 是对角矩阵，则 A 与 D 的特征值是否相同？">
+利用相似定理。
+</QuickCheck>
+
+<RevealSolution title="答案">
+是。相似矩阵有相同的特征多项式，因此也有相同的特征值。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="若 A 有特征向量 `v_1,v_2,v_3`，对应特征值 `2,5,-1`，且三者线性无关，那在 A 的一个对角化中会出现哪个对角矩阵？">
+把对角线顺序与特征向量顺序对齐。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+若 `S=[v_1\ v_2\ v_3]`，则
+
+$$
+S^{-1}AS=\operatorname{diag}(2,5,-1).
+$$
+
+对角线各项必须按 `S` 的列次序与相应特征值一一对应。
+</RevealSolution>
+
+<QuickCheck prompt="解释为什么 `\begin{bmatrix}1&1\\0&1\end{bmatrix}` 不可对角化。">
+检查它到底有多少个线性无关特征向量。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+它的特征多项式是 `(1-\lambda)^2`，所以唯一特征值是 `1`。求
+`(A-I)x=0` 后，只得到一维特征空间。对 `2\times2` 矩阵而言，要可对角
+化便需要两个线性无关特征向量，因此它失败。
+</RevealSolution>
+
+<QuickCheck prompt="若 `A=SDS^{-1}`，而 `D=\operatorname{diag}(2,-1)`，求 `A^3`。">
+用可对角化矩阵的幂公式。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+
+$$
+A^3=SD^3S^{-1}
+=S\operatorname{diag}(2^3,(-1)^3)S^{-1}
+=S\operatorname{diag}(8,-1)S^{-1}.
+$$
+</RevealSolution>
+
+## 相关笔记
+
+若你对特征值与零空间的关系仍未稳固，应先回看
+[8.1 特征值、特征向量与特征空间](/zh-cn/notes/math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces)。
+
+接着可读
+[8.3 特征多项式与对角化测试](/zh-cn/notes/math1030/eigenvalues/characteristic-polynomials-and-diagonalization-tests)，
+因为那一节会提供判断“是否有足够特征向量”的多项式工具。
+
+本节使用的基底语言也依赖
+[6.5 基底与维数](/zh-cn/notes/math1030/vector-spaces/basis-and-dimension)。
