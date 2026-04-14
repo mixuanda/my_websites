@@ -96,15 +96,39 @@ export function getStaticTextbookParams() {
   }));
 }
 
-export function estimateReadingTimeMinutes(rawMdx: string) {
-  const textOnly = rawMdx
+export function estimateReadingTimeMinutes(rawMdx: string, locale: Locale) {
+  const codeBlocks = rawMdx.match(/```[\s\S]*?```/g) ?? [];
+  const displayMathBlocks = rawMdx.match(/\$\$[\s\S]*?\$\$/g) ?? [];
+  const inlineMath = rawMdx.match(/\$[^$\n]+\$/g) ?? [];
+
+  const codeLines = codeBlocks.reduce(
+    (total, block) => total + block.split("\n").filter((line) => line.trim().length > 0).length,
+    0
+  );
+
+  const prose = rawMdx
     .replace(/```[\s\S]*?```/g, " ")
+    .replace(/\$\$[\s\S]*?\$\$/g, " ")
+    .replace(/\$[^$\n]+\$/g, " ")
     .replace(/<[^>]+>/g, " ")
-    .replace(/\$[^$]+\$/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 
-  const words = textOnly.length > 0 ? textOnly.split(" ").length : 0;
-  const minutes = Math.max(1, Math.ceil(words / 180));
-  return minutes;
+  const latinWords = prose.match(/\b[\w'-]+\b/g)?.length ?? 0;
+  const cjkChars = prose.match(/[\p{Script=Han}]/gu)?.length ?? 0;
+
+  const latinMinutes = latinWords / 180;
+  const cjkMinutes = cjkChars / 260;
+  const codeMinutes = codeLines / 12;
+  const displayMathMinutes = displayMathBlocks.length * 0.18;
+  const inlineMathMinutes = inlineMath.length * 0.03;
+
+  const localeBias =
+    locale === "en"
+      ? latinMinutes + cjkMinutes
+      : Math.max(cjkMinutes, latinMinutes * 0.65) + latinMinutes * 0.35;
+
+  const totalMinutes = localeBias + codeMinutes + displayMathMinutes + inlineMathMinutes;
+
+  return Math.max(1, Math.ceil(totalMinutes));
 }

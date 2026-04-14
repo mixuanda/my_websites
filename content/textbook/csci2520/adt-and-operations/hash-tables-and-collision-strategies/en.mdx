@@ -1,0 +1,257 @@
+---
+title: "1.2 Hash tables and collision strategies"
+description: "Use dictionary operations, hash functions, collisions, and chaining to see why hash tables trade ordered structure for fast average-case access."
+---
+
+Once ADTs, pointers, and basic node structures are in place, the next question
+is how to support dictionary-style operations efficiently. A hash table is one
+of the standard answers: instead of preserving sorted order, it applies a hash
+function to jump directly to a bucket.
+
+That jump is powerful, but it is never perfect. The whole chapter exists to
+explain what the jump can guarantee, where collisions come from, and how the
+implementation recovers when multiple keys land in the same location.
+
+## The ADT viewpoint comes first
+
+The hashtable tutorial starts from operations, not from buckets:
+
+- insert a value under a key,
+- look up the value for a key,
+- delete an existing key-value entry.
+
+So the logical object is a dictionary or symbol table. The hash table is only
+one implementation strategy for that ADT.
+
+<Definition title="Hashtable as a dictionary ADT">
+A hashtable stores key-value pairs and supports dictionary operations such as
+insert, lookup, and delete by mapping each key to a bucket index.
+</Definition>
+
+This definition already implies two different design questions:
+
+- how keys are converted into bucket indices,
+- what the implementation does when two keys map to the same index.
+
+## What a hash function is supposed to do
+
+<Definition title="Hash function">
+A hash function maps a key into an integer index in a fixed range, usually
+`[0, H_SIZE)`.
+</Definition>
+
+The local tutorial material emphasizes four properties of a good hash function:
+
+- it must always return a legal bucket index,
+- it should reduce collisions,
+- it should distribute keys reasonably evenly,
+- it should be quick to compute.
+
+The last point matters because a beautifully distributed hash rule is not very
+useful if every lookup spends too long computing the bucket index itself.
+
+<WorkedExample title="A simple string hash idea">
+For a string key, one very simple classroom rule is:
+
+```c
+int Hash(char *s, int nBuckets) {
+   int h = 0;
+   while (*s != '\0') {
+      h += *s;
+      s++;
+   }
+   return h % nBuckets;
+}
+```
+
+This kind of rule is easy to compute, but it is also easy to fool. Different
+keys with the same character-sum pattern can collide often. So the example is
+useful for reasoning, even if a production hash table would want something
+stronger.
+</WorkedExample>
+
+<InteractiveWidget id="hash-bucket-lab" />
+
+## Collision is unavoidable, not exceptional
+
+The most important conceptual shift is that collisions are not a rare bug. They
+are a normal consequence of sending a large key space into a fixed set of
+buckets.
+
+<Definition title="Collision">
+A collision happens when two different keys are mapped to the same bucket
+index.
+</Definition>
+
+If the bucket count is fixed and the key space is large, collisions are
+inevitable. So the real implementation question is not “how do we avoid every
+collision?” but “how do we recover from collisions without breaking dictionary
+correctness?”
+
+## Chaining keeps colliding keys in one bucket list
+
+The lecture material treats chaining as the most direct recovery method.
+
+<Definition title="Chaining">
+With chaining, each bucket stores a linked list of all entries whose keys hash
+to that bucket.
+</Definition>
+
+This design fits the pointer-and-node model from the previous section very
+naturally.
+
+```c
+typedef struct cellT {
+   char *key;
+   void *value;
+   struct cellT *next;
+} cellT;
+```
+
+Each bucket head points to the first node in its chain. Lookup therefore has
+two layers:
+
+1. hash the key to choose a bucket,
+2. scan only that bucket’s chain instead of the whole table.
+
+<WorkedExample title="What lookup does under chaining">
+Suppose `Hash("cat") = 3`, and bucket `3` stores the chain
+
+`("cow", value1) -> ("cat", value2) -> ("cod", value3)`.
+
+To execute `Lookup(table, "cat")`, the implementation:
+
+1. computes bucket `3`,
+2. moves along the linked list in bucket `3`,
+3. compares keys until `"cat"` is found,
+4. returns `value2`.
+
+The collision does not destroy correctness. It only makes that one bucket take
+longer to search.
+</WorkedExample>
+
+## Open addressing uses probing instead of linked chains
+
+The tutorial also introduces open addressing. Instead of storing a linked list
+in each bucket, the table keeps probing other slots when the preferred one is
+occupied.
+
+Typical probing styles include:
+
+- linear probing,
+- quadratic probing,
+- double hashing.
+
+The key difference from chaining is where the extra work lives:
+
+- chaining keeps multiple entries in a bucket-side list,
+- open addressing keeps searching for another empty slot in the main table.
+
+This means deletion, clustering, and probe-sequence design become central
+implementation issues.
+
+<TheoremCard title="Collision handling is part of correctness, not only performance">
+If the collision strategy is wrong, the table can return the wrong answer or
+lose entries entirely, even if the hash function itself is valid.
+</TheoremCard>
+
+That is why the collision policy belongs in the conceptual explanation, not as
+an implementation afterthought.
+
+## Why load factor matters
+
+Even a good hash function degrades if the table is too full.
+
+The load factor is usually written as
+
+$$
+\alpha = \frac{\text{number of stored entries}}{\text{number of buckets}}.
+$$
+
+As `\alpha` grows:
+
+- chains become longer under chaining,
+- probe sequences become longer under open addressing,
+- average-case lookup moves away from the ideal constant-time picture.
+
+So resizing is not just a practical optimization. It is part of protecting the
+performance model promised by the data structure.
+
+## Generic pointers make the ADT reusable
+
+The local hashtable lecture also uses `void *` values. This is a deliberate ADT
+decision.
+
+```c
+typedef struct hashtableCDT *hashtableADT;
+
+hashtableADT EmptyHashtable();
+void Enter(hashtableADT table, char *key, void *value);
+void *Lookup(hashtableADT table, char *key);
+```
+
+The table does not need to know the concrete value type. It only stores the
+association between a key and an opaque pointer to some client-owned data.
+
+That makes the same hashtable ADT usable for many different applications, as
+long as the client also knows how to interpret the returned pointer correctly.
+
+## Common mistakes
+
+<CommonMistake title="A collision does not mean two keys are equal">
+If `Hash(key1) == Hash(key2)`, that only means the keys land in the same bucket.
+It does not mean the keys are identical.
+</CommonMistake>
+
+<CommonMistake title="A valid hash range is necessary but not sufficient">
+A hash function that always returns a legal bucket index can still be bad if it
+clusters many unrelated keys into the same few buckets.
+</CommonMistake>
+
+<CommonMistake title="Average-case speed depends on keeping the table healthy">
+Saying “hash table lookup is O(1)” silently assumes a reasonable hash function
+and a controlled load factor. It is not a license to ignore collisions.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="What is a collision in hashing?">
+Answer in terms of keys and bucket indices.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+A collision happens when two different keys are mapped to the same bucket
+index.
+</RevealSolution>
+
+<QuickCheck prompt="Under chaining, what extra work happens after computing the bucket index?">
+Focus on where the implementation looks next.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It scans the linked list stored in that bucket until it finds the matching key
+or reaches the end of the chain.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Why does a hashtable still need key comparison after hashing?">
+Use collision reasoning, not only a slogan about speed.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Hashing only narrows the search to a bucket. Because different keys may collide
+into the same bucket, the implementation must still compare stored keys to the
+target key to confirm it found the correct entry.
+</RevealSolution>
+
+<QuickCheck prompt="Explain one tradeoff between chaining and open addressing.">
+Answer in terms of where the collision-handling work is stored.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Chaining stores colliding entries in an auxiliary linked structure attached to
+the bucket, while open addressing keeps probing alternative slots inside the
+main table. Chaining uses extra pointer structure; open addressing relies more
+heavily on table occupancy and probe design.
+</RevealSolution>

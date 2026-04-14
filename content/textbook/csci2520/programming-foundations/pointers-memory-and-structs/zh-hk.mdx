@@ -1,0 +1,253 @@
+---
+title: "0.1 Pointer、記憶體與 struct"
+description: "重溫資料結構課會反覆用到的 C 工具：address、dereference、malloc、typedef 與 struct 佈局。"
+---
+
+CSCI2520 雖然唔要求你只用 C 作答，但課堂確實經常用 C 去解釋資料結構。原
+因好直接：pointer、heap allocation 同 data layout 可以將資料結構在記憶
+體中的行為直接展示出來。
+
+呢一節唔係一般程式語言教學，而係為咗令後面讀 stack、queue、hash table
+實作時，不會因為睇唔明 C 而失去整個概念。
+
+## 點解資料結構課要先重溫呢啲工具
+
+本地 tutorial 材料強調：考試和書面作業唔限制你一定用某種語言。但 lecture
+與 tutorial 仍然用 C 去說明：
+
+- pointer 實際儲存乜嘢；
+- 節點點樣用 `malloc` 建立；
+- `struct` 點樣將欄位組織成一個 record；
+- `typedef` 點樣協助 ADT 介面隱藏底層表示。
+
+如果呢幾樣讀錯，問題唔止係 syntax，而係你會睇唔到資料結構究竟點樣喺記
+憶體裡運作。
+
+## Pointer 儲存的是地址，不是值
+
+<Definition title="Pointer">
+Pointer 變量儲存的是某個物件的地址，而不是該物件本身的值。
+</Definition>
+
+Tutorial 1 特別分清楚兩個符號：
+
+- `&x` 表示「`x` 的地址」；
+- `*p` 表示「pointer `p` 所指向地址中的值」。
+
+呢兩個概念一定唔可以混淆。Pointer 不是 object 本身，而係 object 所在位置
+的記錄。
+
+<WorkedExample title="逐行讀一個 pointer trace">
+考慮 tutorial 裡的例子：
+
+```c
+int firstvalue = 5, secondvalue = 15;
+int *p1, *p2;
+
+p1 = &firstvalue;
+p2 = &secondvalue;
+*p1 = 10;
+*p2 = *p1;
+p1 = p2;
+*p1 = 20;
+```
+
+應該逐行理解：
+
+1. `p1` 先指向 `firstvalue`，`p2` 指向 `secondvalue`；
+2. `*p1 = 10` 將 `firstvalue` 改成 `10`；
+3. `*p2 = *p1` 把 `10` 複製去 `secondvalue`；
+4. `p1 = p2` 並不是複製整數，而是把 `p1` 重新指向 `secondvalue`；
+5. `*p1 = 20` 現在就會改變 `secondvalue`。
+
+最後得到：
+
+- `firstvalue = 10`
+- `secondvalue = 20`
+</WorkedExample>
+
+<InteractiveWidget id="pointer-state-tracer" />
+
+讀 pointer trace 時，最好一直分開兩條線去想：
+
+- 每個 pointer 現在指向哪裡？
+- 那個地址裡面現在存的是甚麼值？
+
+## Dereference 是經地址去讀或寫
+
+當 pointer 已經持有合法地址之後，dereference 才有意義。
+
+```c
+int x = 7;
+int *p = &x;
+*p = 12;
+```
+
+最後 `x` 會變成 `12`。`*p = 12` 不是建立一個新整數，而是經 `p` 所記錄
+的地址，直接寫入原本的物件。
+
+<CommonMistake title="把 pointer 賦值同經 pointer 賦值混淆">
+`p = q` 會改變 `p` 儲存的地址。
+
+`*p = *q` 會把 `q` 指向位置中的值複製到 `p` 指向位置中。
+
+兩句看起來很像，但實際作用完全不同。
+</CommonMistake>
+
+## `malloc` 在 heap 上分配空間
+
+資料結構實作經常需要動態建立節點，而不是預先知道總共要幾多格。呢個時候
+就要靠 `malloc`。
+
+<Definition title="用 `malloc` 做 heap allocation">
+`malloc(n)` 會向 runtime 請求 `n` bytes 的空間，並回傳該區塊起始位置的
+pointer。
+</Definition>
+
+典型寫法係：
+
+```c
+struct node *x;
+x = malloc(sizeof(struct node));
+```
+
+而家 `x` 就指向一段足以容納一個 `struct node` 的新空間。
+
+但要記住兩件事：
+
+- `malloc` 只會給你空間，不會自動填好欄位；
+- 真實程式最終仍然要處理 `free` 與 ownership 問題。
+
+<WorkedExample title="點解 linked structure 離不開 `malloc`">
+假設 stack 用 linked list 表示。每次 `push`，都可能要建立一個新節點。因
+為節點數量事前未知，固定 local variable 根本唔夠，必須靠 `malloc` 逐個
+向 heap 申請新節點。
+</WorkedExample>
+
+## `typedef` 令介面更易讀
+
+Tutorial 亦重溫 `typedef`，因為 ADT 介面經常要用簡短名稱去遮蔽又長又底層
+的 pointer type。
+
+```c
+typedef struct node *nodePtr;
+typedef int stackElementT;
+```
+
+`typedef` 不會建立新 runtime 物件；它只會建立新的型別名稱。好處是：
+
+- function prototype 變短；
+- header file 更易掃描；
+- ADT 邊界更清楚。
+
+當課堂寫 `stackADT` 時，這個名字本身就是 abstraction 的一部分。它要求
+client 將這個物件理解為「一個 stack」，而不是「某個具體 struct 的 pointer」。
+
+## `struct` 把相關欄位組成一個 record
+
+<Definition title="Structure">
+`struct` 可以把多個欄位組成同一個 record type。
+</Definition>
+
+例如：
+
+```c
+struct node {
+   int data;
+   struct node *next;
+};
+```
+
+這就是 linked-list node 的典型形狀：一個欄位放 payload，一個欄位記錄下一
+個 node 的地址。
+
+重點不只是語法上的分組，而是它令你能夠精確建模資料結構需要維持的狀態。
+
+<WorkedExample title="Queue node 點樣支持 queue 操作">
+若 queue 使用 linked node，常見寫法是
+
+```c
+struct cellT {
+   queueElementT element;
+   struct cellT *next;
+};
+```
+
+而 queue 物件本身通常還會保存：
+
+- `head` pointer
+- `tail` pointer
+- 可能還有長度欄位
+
+所以 `enqueue`、`dequeue` 同 `QueueLength()` 等 ADT 操作，實際上就是在更
+新少量 pointer 欄位。
+</WorkedExample>
+
+## 呢幾樣工具點樣直接連到 ADT 設計
+
+課堂的 C 語言 review 同 ADT lecture 並不是兩條分開的線。
+
+- Pointer 令一個 object 可以指向另一個 object；
+- `malloc` 令節點可以按操作需要而動態建立；
+- `struct` 令多個相關欄位可以被當作一個整體維持；
+- `typedef` 令 ADT 介面可以把實作細節藏起來。
+
+所以當課堂說 ADT 要暴露「what」而隱藏「how」時，上面幾個工具正正就是
+C 裡面實現這種分離的方法。
+
+## 常見錯誤
+
+<CommonMistake title="未初始化的 pointer 不是合法物件">
+寫 `int *p;` 只代表建立了一個 pointer 變量，並不代表它已經指向安全的空
+間。在賦值之前就去 dereference，屬於未定義行為。
+</CommonMistake>
+
+<CommonMistake title="`malloc` 不會替你建好節點內容">
+`malloc` 只提供 raw storage。節點欄位仍然要由你自己逐一初始化。
+</CommonMistake>
+
+<CommonMistake title="兩個 pointer 可以看到同一個 object">
+若兩個 pointer 指向同一塊記憶體，經其中一個 pointer 寫入資料，另一個
+pointer 之後讀到的也會是更新後的結果。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="`p = q` 同 `*p = *q` 有甚麼分別？">
+用地址與值去回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`p = q` 會複製地址到 `p`；`*p = *q` 會複製 `q` 指向位置中的值到 `p`
+所指向的位置。
+</RevealSolution>
+
+<QuickCheck prompt="點解 `malloc(sizeof(struct node))` 比手寫 byte 數更可靠？">
+想想結構欄位若之後改變會發生甚麼。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因為 `sizeof(struct node)` 會自動跟隨真正結構大小。如果欄位之後改動，
+allocation 大小仍然正確。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="追蹤這段 code 的最後結果：`int x=1,y=2; int *p=&x; int *q=&y; *p=*q; q=p; *q=9;`">
+先分清楚值複製同地址重定向。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+`*p=*q` 先令 `x` 變成 `2`。之後 `q=p` 令 `q` 也指向 `x`。最後 `*q=9`
+是經 `q` 改寫 `x`，所以最終 `x=9`、`y=2`。
+</RevealSolution>
+
+<QuickCheck prompt="解釋點解 linked-list node 幾乎一定要有指向下一個 node 的 pointer。">
+把答案連到 traversal 同動態增長。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+如果冇 `next` pointer，一個 node 就無法連到下一個 node，list 亦無法沿着
+鏈結逐步走訪。動態增加 node 時，也會失去把新 node 接到既有 structure 的
+方法。
+</RevealSolution>

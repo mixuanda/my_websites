@@ -100,7 +100,7 @@ export default async function UnitPage({ params }: UnitPageProps) {
   const checkpointProblems = getProblemsForUnit(bundle.meta.unitId).filter((problem) =>
     canAccessTier(entitlements, problem.accessTier)
   );
-  const readingTime = estimateReadingTimeMinutes(bundle.doc.body.raw);
+  const readingTime = estimateReadingTimeMinutes(bundle.doc.body.raw, locale);
 
   if (!chapterMeta) {
     notFound();

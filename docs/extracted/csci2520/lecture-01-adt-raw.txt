@@ -1,0 +1,1271 @@
+NJQJ
+bx|W
+^5]%g
+[Content_Types].xml 
+^k2#z 
+[mb`
+_rels/.rels 
+"QlT
+#V0;f
+tableStyles.xml
+}-CQ$
+<qOys
+*,~@
+[Content_Types].xmlPK
+_rels/.relsPK
+tableStyles.xmlPK
+[Content_Types].xml|
+}{&i
+V~n^
+Z	)9k
+/Ju"(
+'*e$
+_rels/.rels
+AN{c
+38yG
+drs/slideMasters/slideMaster1.xml
+,R#j~"9
+xAR,
+S,9r
+~u}w
+	6xN<
+N*Mo.@<i
+@S/@
+WV^97}
+jP&:Y
+ ('d
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideMasters/slideMaster1.xmlPK
+Click to edit Master title style
+Click to edit Master text styles
+Second level
+Third level
+Fourth level
+Fifth level
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+w x;(
+-vHJ
+fxeL;
+a:hH-
+E;WV
+2a;3
+]<.n
+]8N>
+WL>;(d
+eX1j\
+KxC/
+9Df"Wk[uhE
+|#($
+9$KV
+yrF 
+CAq(
+[@]s3s
+/WRh
+nkCW
+drs/downrev.xmlD
+rq~6
+yK1E_k
+xy1>
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+w x;(
+E_aW
+,lI#
+y7SV
+YVfA:
+>7R[
+YC9V
+3%eme
+OTC8F
+~2Q}f
+drs/downrev.xmlD
+	n[y
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+Eg(9q
+9,6=
+E@<.
+ACkI
+\{KA
+"y[]g
+CQDy2/b
+I2:I
+{,;X)p
+v!W-C
+6T^A
+F-[2
+h-#\
+oWPG
+mF$$
+o1xo;
+;];>9=
+?-A{
+p}xm
+drs/downrev.xmlD
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+[Content_Types].xml
+_rels/.rels
+theme/theme/themeManager.xml
+sQ}#
+theme/theme/theme1.xml
+w toc'v
+dnu:
+Q/ c
+ni^%3
+dHGN4
+M<U8
+Th_B
+-heJ
+)V+qki
+K:oO
+d6Y>
+:\YX
+DTI\
+Yi+hei
+xqQc
+<{2Eah
+theme/theme/_rels/themeManager.xml.rels
+6?$Q
+K(M&$R(.1
+[Content_Types].xmlPK
+_rels/.relsPK
+theme/theme/themeManager.xmlPK
+theme/theme/theme1.xmlPK
+theme/theme/_rels/themeManager.xml.relsPK
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:clrMap xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" bg1="lt1" tx1="dk1" bg2="lt2" tx2="dk2" accent1="accent1" accent2="accent2" accent3="accent3" accent4="accent4" accent5="accent5" accent6="accent6" hlink="hlink" folHlink="folHlink"/>
+[Content_Types].xml|
+XQ{j
+IF#{
+_rels/.rels
+~`Or[
+drs/slideLayouts/slideLayout1.xml
+)&1Z
+FLRUr
++:-'O
+?hL^
+~ADXR
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideLayouts/slideLayout1.xmlPK
+[Content_Types].xml|
+XQ{j
+IF#{
+_rels/.rels
+~`Or[
+drs/slideLayouts/slideLayout1.xml
+Dhn*
+^/?~
+TE4k0
+k'DL
+;:ng6
+7V!O
+MLa7xa
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideLayouts/slideLayout1.xmlPK
+[Content_Types].xml|
+XQ{j
+IF#{
+_rels/.rels
+~`Or[
+drs/slideLayouts/slideLayout1.xml
+P(rx
+eR+1
+"`(;c
+:I2.~
+rL,3
+`3X$
+2l]h
+?ENGb
+/kv/%
+,dq5
++$(jRM
+ZZJU
+*z*}
+lpI[J$
+b-e2	]
+/Q4)
+>E(O
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideLayouts/slideLayout1.xmlPK
+[Content_Types].xml|
+XQ{j
+IF#{
+_rels/.rels
+~`Or[
+drs/slideLayouts/slideLayout1.xml
+:mx~O
+&+XE
+Vxp'
+|*X:
+qG;)
+81Mv
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideLayouts/slideLayout1.xmlPK
+[Content_Types].xml|
+XQ{j
+IF#{
+_rels/.rels
+~`Or[
+drs/slideLayouts/slideLayout1.xml
+%hgU
+`?9K4l	X
+ S]d
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideLayouts/slideLayout1.xmlPK
+[Content_Types].xml|
+XQ{j
+IF#{
+_rels/.rels
+~`Or[
+drs/slideLayouts/slideLayout1.xml
+wIII
+m<Wm
+GG3ID
+0m&X
+!\6(&
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideLayouts/slideLayout1.xmlPK
+[Content_Types].xml|
+XQ{j
+IF#{
+_rels/.rels
+~`Or[
+drs/slideLayouts/slideLayout1.xml
+3`c>
+9[	]eJ
+Qy_&
+v[FU
+B9,}P
+Wfj69
+6E[xd&wy
+p@6C
+!Z:wn6RN
+?:dE
+"WM;
+C)C.R
+:Uh`I<
+8w4U
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideLayouts/slideLayout1.xmlPK
+[Content_Types].xml|
+XQ{j
+IF#{
+_rels/.rels
+~`Or[
+drs/slideLayouts/slideLayout1.xml
+'-%j
+Wy^2
+X<)r
+^zY1
+~}'M
+a-abh6
+o$O28
+Px.%
+3%3"x
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideLayouts/slideLayout1.xmlPK
+[Content_Types].xml|
+XQ{j
+IF#{
+_rels/.rels
+~`Or[
+drs/slideLayouts/slideLayout1.xml
+;XygM
+bkilY
+b%+n?
+^.K!?
+r}mXY
+2]#N
+Ggo}N;
+i?J}r
+x;c_
+;9".1
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideLayouts/slideLayout1.xmlPK
+[Content_Types].xml|
+XQ{j
+IF#{
+_rels/.rels
+~`Or[
+drs/slideLayouts/slideLayout1.xml
+s[zU
+=Gy[
+:tJ$ (
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideLayouts/slideLayout1.xmlPK
+[Content_Types].xml|
+XQ{j
+IF#{
+_rels/.rels
+~`Or[
+drs/slideLayouts/slideLayout1.xml
+M/y!N>
+(jw8;
+,lh-
+OhAV
+Gof?
+I|8N
+,KR4@u
+ZpmV
+JLKXU
+Mpm(P
+6D-*hj;
+eOxzB8Or
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideLayouts/slideLayout1.xmlPK
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+%Yrb#
+wFIk
+W(]3
+K};h4o
+jVIz
+p+8	A
+]Fc/
+jUaN2U
+`_C	%D,MI
+%TCO
+7.enU
+pL9[
+[@CX5
+?(tu
+6eJT92
+Z|OS67
+mkZ_
+drs/downrev.xmlD
+/cKW
+F8|n
+	bCA
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+w x;(
+$E_aW
+ipFIc
+Q%:q
+O%C}f*
+CMV(
+0,n(
+(e>g
+\+UX
+]k:_
+drs/downrev.xmlD
+p,QA
+.XL9
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+EN6\U
+E5*#
+h7hw)
+{Ag:
+Bhl)
+`al4z~
+ZfW.2
+T'GB
+X"Pk
+	)QwGVwGD]Ldn
+)[-QZ
+tCgK
+y8FOn
+^GT`Ks$P
+K+Qr
+%ejdc
+9ip`
+Z|WS,H
+oCz?
+drs/downrev.xmlD
+*Rw7
+r:+A
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+Click to edit Master text styles
+Second level
+Third level
+Fourth level
+Fifth level
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+w x;(
+*IOaJn
+CLO<;Kd
+}mA9
+7(_i4
+u'UV	
+hm?sJ
++g39
+D&np
+D_2;U
+hbafn
+w5'K
+De?N
+\+UZ
+io9@r=9
+drs/downrev.xmlD
+k+qA
+MiUc*
+fM~f;6
+5jO>
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+Z0")
+^okA
+n+%S
+2WE%/S
+	%yJoyK_
+tmL3
+TYV9
+oK]?7"
+sS`c
+JLDU
+o%Pb4
+#h)c
+:|#7
+\69*
+ld86`
+mRA8
+"![;E
+:cu%`a
+m[[_
+~l{q
+drs/downrev.xmlD
+.ty8
+[P!"[
+9=t8
+4}How
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+[Content_Types].xml
+_rels/.rels
+theme/theme/themeManager.xml
+sQ}#
+theme/theme/theme1.xml
+t#eg
+*&	A
+&|Z-
+eV% 
+#!+0
+pREr
+]\O*
+'4}[
+\}HU
+skB'
+B\$c<"
+X1g}
+R79Y
+[xL2
+E)`#
+~<:BC6
+hAP]
+4vna
+2%M0
+theme/theme/_rels/themeManager.xml.rels
+6?$Q
+K(M&$R(.1
+[Content_Types].xmlPK
+_rels/.relsPK
+theme/theme/themeManager.xmlPK
+theme/theme/theme1.xmlPK
+theme/theme/_rels/themeManager.xml.relsPK
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<a:clrMap xmlns:a="http://schemas.openxmlformats.org/drawingml/2006/main" bg1="lt1" tx1="dk1" bg2="lt2" tx2="dk2" accent1="accent1" accent2="accent2" accent3="accent3" accent4="accent4" accent5="accent5" accent6="accent6" hlink="hlink" folHlink="folHlink"/>
+[Content_Types].xml|
+}{&i
+V~n^
+Z	)9k
+/Ju"(
+'*e$
+_rels/.rels
+AN{c
+38yG
+drs/slideMasters/slideMaster1.xml
+M<&S5
+VD<c
+	j!}
+Vjf L
+q+XU
+3Zsz
+Vj\v
+{!vz
+z5dQ'
+a:iN#
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/slideMasters/slideMaster1.xmlPK
+CSCI2520
+Data Structures & Applications
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+cAw(
+drs/shapexml.xml
+sjDp
+%Se-
+QCkI.`+y
+9ntP
+p'x0
+\MVI<
+z8pZ
+)'i2O
+Y7H'
+_vVUu
+-.+8+
+OA[[v(hS
+{_Kt
+*j!|"~
+^Up?
+=>`|
+drs/downrev.xmlD
+A;+a2
+F7S,
+[Content_Types].xmlPK
+_rels/.relsPK
+cAw(
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+Abstract Data Types
+Abstract Data Type
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+ J	u+
+A\;m
+bOO-
+QoZA>
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+What is a Data Type?
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+J(B!
+",")g
+z6-Y
+QdI(
+vEI$
+c=(3
+HoeuM
+B%b4
+O0/X
+z(MT
+2TdY
+`w]dI
+)s>.`
+	rZ;
+A:Mq
+93iNK
+7x|9
+u[$e~
+drs/downrev.xmlD
+m-aS
+,I8Q
+%41v
+/R^]
+w%a*
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+\mYA
+M#WQ
+*li_Q
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+Ed]<
+Yo{S
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+-245
+Data Type: Examples
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+')//
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+true
+false
+Data Type: Examples
+Data Type
+Example: Rational Number
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+POiz
+Z^_-0
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+j(R )
+!)9i
+`9>1
+rrS$A
+M4-VQ
+ESS%
+HVUM
+ M'q
+V#N'
+Eb5[
+cB)T
+{{>A|b
+@R#e
+{[Q<
+drs/downrev.xmlD
+A[j\z
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+addition
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+YU5e
+0y6*d
+(Ei6
+F~iCJ
+;\*:@
+%	$5R
+BIY9
+`qU~(n7
+drs/downrev.xmlD
+H^ArK
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+multiplication
+Rational Number in C
+ADT Interface: rational.h
+ADT Interface: rational.h
+rationalADT: Implementation 
+#include "rational.h"
+struct rationalCDT {
+   int p, q;   // rational number = p/q
+rationalADT r_num(int a, int b) {
+   rationalADT x;
+   x = (rationalADT)malloc(sizeof(*x));
+   x->p = a;
+   x->q = b;
+   return x;
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+,&IJZO(
+pgyY
+`T#c
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+\mYA
+M#WQ
+*li_Q
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+;9o1
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+X;Ss
+AWd1
+H_6W
+nw=O
+IW@.
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+rational.c 
+rationalADT: Implementation
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+2)]Y
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+& &  
+rational.c
+Using an ADT: calculate.c
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+<?[`n
+d1L]G
+1E_I
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+Name of the ADT
+ADT Variables
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+\mYA
+M#WQ
+*li_Q
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+result
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+6}{,
+`;q"
+gY!-
+vwZ/*
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+X,`y
+|v}5
+1|y-W
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+result = r_add(x, y);
+t = r_num(6, 7);
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+26-U
+b~}5
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+Ed]<
+Yo{S
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+result
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+RVQq?~
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+15/14
+result
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+XH{6%
+l:Ms`
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+result = r_mult(result, t);
+Using an ADT: calculate.c
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+9*hR
+uQMW
+N@TO
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+The Whole Program
+& &  
+rational.h
+calculate.c
+rational.c (Implementation 1)
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+d|{3
+rTP1
+ref_<
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+ADT Definition/Specification
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+uA"U
+Fo10y
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+ADT Implementation
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+,)8S
+bn3)CQ
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+ADT Application Program
+H?H?H?H?`T`T0*H?
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+yC1I_I
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+H?H?H?H?`T`T0*H?
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+1f]6d"J'
+z:}:%s
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+Users do not need to know the content of rational.c.
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+<~8U
+;rmJ%g
+{\f*/
+[[O{=
+57\Zf
+A4Z%A
+fK'%
+/ {h
+p44]
+drs/downrev.xmlD
++u'-v.=
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+ADT: Usage, Interface, and Implementation
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+rq}5
+	nZ>
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+A programmer who implements an ADT is flexible to change its underlying representation.
+It is always possible to have Implementation 2, Implementation 3, Implementation 4, etc. for rationalADT, as long as the interface remains the same.
+Any change of representation does not affect the user programs.
+[Content_Types].xml
+hB.} 
+5$^1
+F~_|'
+_rels/.rels
+[ILc
+0XFo;
+drs/shapexml.xml
+<	?l
+c*cR+1	O
+;Q2{
+<w*#
+98*e'
+*uXW+C
+s#|&
+p]vt
+C|?a
+e'Xfi
+k<JF
+Yz` <yA
+om/f8
+2+dA
+Jwlf
+drs/downrev.xmlD
+-A,UZ
+3EX-//
+O	n;9W
+^Zl]Zh
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/shapexml.xmlPK
+drs/downrev.xmlPK
+ADT: Usage, Interface, and Implementation
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+Q;-B
+ftFg
+vVB6
+!G	}
+yh{2
+~U{#a
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+An ADT interface acts as a wall that protects the implementation and the user from each other.
+Even if an ADT user knows the internal representation, (s)he is still not allowed to access it.
+Suppose an ADT user knows (by stealth) that rationalADT is done by our implementation.
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+:M!FWK
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+*elZD
+]>'ofB
+1&i;
+=X	F
+xRTqZ
+W%aZ
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+Compilation error!
+[Content_Types].xml|
++jS8 
+<7p]V
+&g0eS
+_rels/.relsl
+`ANa
+drs/downrev.xmlD
+z+NZDQ
+[Content_Types].xmlPK
+_rels/.relsPK
+drs/downrev.xmlPK
+calculate.c(6) : error C2037: left of 'p' specifies undefined struct/union 'rationalCDT'
+W=LTA
+<*/B
+<Y/`
+jw7U
+'@g{R
+Y%f+B
+TSe3
+CSC2100C Data Structures
+yclaw
+jcheng
+Microsoft Office PowerPoint
+cckRJB
+JZc{kZ
+BBBRJJ
+JRkZRJ
+sss119
+cksJB9
+BB9kkkRRZ
+B99{
+ss{BJR
+RZkskc
+{skB99
+)19RRRRRRkcc
+BBB{{
+ss{ccZ
+ZZcskk
+ksskkc
+ks{11)
+cckZRJ
+kssRRRccZ
+ZZZRRR
+RZZRRR
+ZZcBBB
+RRRZZZ
+ZZZJBB
+ZZcRRR
+On-screen Show (4:3)
+CUHK
+Arial
+Calibri
+Courier New
+Symbol
+Arial Unicode MS
+Times New Roman
+Office Theme
+Microsoft 
+ 3.0
+CSCI2520 Data Structures & Applications
+Abstract Data Type
+What is a Data Type?
+Data Type: Examples
+Data Type: Examples
+Data Type
+Example: Rational Number
+Rational Number in C
+ADT Interface: rational.h
+ADT Interface: rational.h
+rationalADT: Implementation 
+rationalADT: Implementation
+Using an ADT: calculate.c
+ADT Variables
+Using an ADT: calculate.c
+The Whole Program
+ADT: Usage, Interface, and Implementation
+ADT: Usage, Interface, and Implementation
+Fonts Used
+Theme
+Embedded OLE Servers
+Slide Titles
+jcheng

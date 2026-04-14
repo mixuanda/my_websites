@@ -64,6 +64,76 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "追踪 ADT 操作语义"
     ),
   },
+  "pointer-state-tracer": {
+    sampleStates: [
+      {
+        label: text("Before pointer reassignment", "重定向之前", "重定向之前"),
+        value: text(
+          "p1 points to firstvalue, p2 points to secondvalue, and writing through p1 changes firstvalue.",
+          "p1 指向 firstvalue，p2 指向 secondvalue，而經 p1 寫入會改變 firstvalue。",
+          "p1 指向 firstvalue，p2 指向 secondvalue，而经 p1 写入会改变 firstvalue。"
+        ),
+      },
+      {
+        label: text("After p1 = p2", "做完 p1 = p2 之後", "做完 p1 = p2 之后"),
+        value: text(
+          "Both pointers now refer to secondvalue, so the final write changes secondvalue instead of firstvalue.",
+          "兩個 pointer 都改為指向 secondvalue，所以最後一次寫入會改變 secondvalue。",
+          "两个 pointer 都改为指向 secondvalue，所以最后一次写入会改变 secondvalue。"
+        ),
+      },
+    ],
+    summary: text(
+      "The tracer lets you change the starting integers, then replay the pointer tutorial step by step.",
+      "這個 tracer 讓你改動初始整數，再逐步重播 pointer tutorial 的狀態變化。",
+      "这个 tracer 让你改动初始整数，再逐步重播 pointer tutorial 的状态变化。"
+    ),
+    steps: [
+      text("Set the initial integer values.", "先設定初始整數值。", "先设定初始整数值。"),
+      text("Step through the pointer assignments and dereferences.", "逐步查看 pointer 指派與 dereference。", "逐步查看 pointer 指派与 dereference。"),
+      text("Check whether you are moving an address or writing through an address.", "分清楚你是在移動地址，還是在經地址寫值。", "分清楚你是在移动地址，还是在经地址写值。"),
+    ],
+    title: text(
+      "Trace one pointer state sequence",
+      "追蹤一條 pointer 狀態序列",
+      "追踪一条 pointer 状态序列"
+    ),
+  },
+  "hash-bucket-lab": {
+    sampleStates: [
+      {
+        label: text("Four keys in seven buckets", "七個 bucket 裡的四個 key", "七个 bucket 里的四个 key"),
+        value: text(
+          "The lab hashes `cat`, `dog`, `cow`, and `cod`, then shows which keys collide into the same bucket chain.",
+          "工具會對 `cat`、`dog`、`cow`、`cod` 做 hashing，並顯示哪些 key 落入同一條 bucket chain。",
+          "工具会对 `cat`、`dog`、`cow`、`cod` 做 hashing，并显示哪些 key 落入同一条 bucket chain。"
+        ),
+      },
+      {
+        label: text("Collision count", "Collision 數量", "Collision 数量"),
+        value: text(
+          "Changing the bucket count shows how the same keys can collide more or less often under the same simple hash rule.",
+          "改變 bucket 數量之後，可看到同一組 key 在相同 hash 規則下碰撞次數如何改變。",
+          "改变 bucket 数量之后，可看到同一组 key 在相同 hash 规则下碰撞次数如何改变。"
+        ),
+      },
+    ],
+    summary: text(
+      "The lab maps sample keys into buckets with a simple hash rule so you can see collisions and chaining directly.",
+      "這個 lab 用一條簡單 hash 規則把 key 映射到 bucket，讓你直接看到 collision 與 chaining。",
+      "这个 lab 用一条简单 hash 规则把 key 映射到 bucket，让你直接看到 collision 与 chaining。"
+    ),
+    steps: [
+      text("Choose a bucket count.", "先選一個 bucket 數量。", "先选一个 bucket 数量。"),
+      text("Enter a comma-separated key list.", "輸入用逗號分隔的 key 串列。", "输入用逗号分隔的 key 串列。"),
+      text("Compare bucket assignments and collision counts.", "比較各 key 的 bucket 分派與 collision 數量。", "比较各 key 的 bucket 分派与 collision 数量。"),
+    ],
+    title: text(
+      "Test a simple hash-and-bucket model",
+      "測試一個簡單的 hash-and-bucket 模型",
+      "测试一个简单的 hash-and-bucket 模型"
+    ),
+  },
   "complexity-growth-comparator": {
     sampleStates: [
       {

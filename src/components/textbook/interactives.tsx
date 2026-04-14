@@ -61,6 +61,13 @@ const interactiveLabels = {
   growthClass: text("Growth class", "增長級別", "增长级别"),
   estimatedCost: text("Estimated primitive steps", "估計基本步數", "估计基本步数"),
   interpretation: text("Interpretation", "如何理解", "如何理解"),
+  step: text("Step", "步驟", "步骤"),
+  pointsTo: text("Points to", "指向", "指向"),
+  storedValue: text("Stored value", "儲存值", "储存值"),
+  bucketCount: text("Bucket count", "Bucket 數量", "Bucket 数量"),
+  keys: text("Keys", "Keys", "Keys"),
+  bucketIndex: text("Bucket index", "Bucket 編號", "Bucket 编号"),
+  collisionCount: text("Collision count", "Collision 數量", "Collision 数量"),
 } as const;
 
 function MatrixView({
@@ -1554,6 +1561,251 @@ function runAdtOperations(mode: AdtMode, commandsText: string) {
   return trace;
 }
 
+function PointerStateTracer({ locale }: { locale: Locale }) {
+  const [firstText, setFirstText] = useState("5");
+  const [secondText, setSecondText] = useState("15");
+  const first = Number.parseInt(firstText, 10) || 0;
+  const second = Number.parseInt(secondText, 10) || 0;
+
+  const steps = useMemo(() => {
+    const states = [];
+    let firstvalue = first;
+    let secondvalue = second;
+    let p1 = "unassigned";
+    let p2 = "unassigned";
+
+    states.push({
+      code: "int firstvalue = ...; int secondvalue = ...; int *p1, *p2;",
+      explanation: text(
+        "Two integers exist, but neither pointer holds a valid address yet.",
+        "兩個整數已存在，但兩個 pointer 仍未持有合法地址。",
+        "两个整数已存在，但两个 pointer 仍未持有合法地址。"
+      ),
+      firstvalue,
+      p1,
+      p2,
+      secondvalue,
+    });
+
+    p1 = "&firstvalue";
+    states.push({
+      code: "p1 = &firstvalue;",
+      explanation: text(
+        "p1 now stores the address of firstvalue.",
+        "p1 現在儲存 firstvalue 的地址。",
+        "p1 现在保存 firstvalue 的地址。"
+      ),
+      firstvalue,
+      p1,
+      p2,
+      secondvalue,
+    });
+
+    p2 = "&secondvalue";
+    states.push({
+      code: "p2 = &secondvalue;",
+      explanation: text(
+        "p2 now stores the address of secondvalue.",
+        "p2 現在儲存 secondvalue 的地址。",
+        "p2 现在保存 secondvalue 的地址。"
+      ),
+      firstvalue,
+      p1,
+      p2,
+      secondvalue,
+    });
+
+    firstvalue = 10;
+    states.push({
+      code: "*p1 = 10;",
+      explanation: text(
+        "Writing through p1 changes firstvalue because p1 points there.",
+        "經 p1 寫入會改變 firstvalue，因為 p1 正指向它。",
+        "经 p1 写入会改变 firstvalue，因为 p1 正指向它。"
+      ),
+      firstvalue,
+      p1,
+      p2,
+      secondvalue,
+    });
+
+    secondvalue = firstvalue;
+    states.push({
+      code: "*p2 = *p1;",
+      explanation: text(
+        "This copies the pointed-to value, not the address.",
+        "這一步複製的是值，不是地址。",
+        "这一步复制的是值，不是地址。"
+      ),
+      firstvalue,
+      p1,
+      p2,
+      secondvalue,
+    });
+
+    p1 = p2;
+    states.push({
+      code: "p1 = p2;",
+      explanation: text(
+        "Now both pointers store the same address.",
+        "現在兩個 pointer 儲存同一個地址。",
+        "现在两个 pointer 保存同一个地址。"
+      ),
+      firstvalue,
+      p1,
+      p2,
+      secondvalue,
+    });
+
+    secondvalue = 20;
+    states.push({
+      code: "*p1 = 20;",
+      explanation: text(
+        "Because p1 was redirected, the final write changes secondvalue.",
+        "由於 p1 已被重定向，最後一次寫入改變的是 secondvalue。",
+        "由于 p1 已被重定向，最后一次写入改变的是 secondvalue。"
+      ),
+      firstvalue,
+      p1,
+      p2,
+      secondvalue,
+    });
+
+    return states;
+  }, [first, second]);
+
+  const [stepIndex, setStepIndex] = useState(0);
+  const current = steps[stepIndex];
+
+  return (
+    <InteractiveShell icon={<StepForward className="h-5 w-5" />} locale={locale} widgetId="pointer-state-tracer">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,240px)_minmax(0,1fr)]">
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <label className="text-sm font-medium">
+            firstvalue
+            <Input className="mt-2" onChange={(event) => setFirstText(event.target.value)} value={firstText} />
+          </label>
+          <label className="mt-4 block text-sm font-medium">
+            secondvalue
+            <Input className="mt-2" onChange={(event) => setSecondText(event.target.value)} value={secondText} />
+          </label>
+        </GlassPanel>
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+            {getLocalizedText(interactiveLabels.step, locale)} {stepIndex + 1}
+          </p>
+          <pre className="mt-2 overflow-x-auto rounded-lg bg-slate-950/90 p-4 font-mono text-xs leading-6 text-slate-100">
+            <code>{current.code}</code>
+          </pre>
+          <div className="mt-4 grid gap-2 text-sm">
+            <p>firstvalue = {current.firstvalue}</p>
+            <p>secondvalue = {current.secondvalue}</p>
+            <p>p1 {getLocalizedText(interactiveLabels.pointsTo, locale)} {current.p1}</p>
+            <p>p2 {getLocalizedText(interactiveLabels.pointsTo, locale)} {current.p2}</p>
+          </div>
+          <p className="mt-4 text-sm text-muted-foreground">
+            {getLocalizedText(current.explanation, locale)}
+          </p>
+          <div className="mt-4 flex gap-2">
+            <Button onClick={() => setStepIndex((value) => Math.max(0, value - 1))} size="sm" variant="outline">
+              {getLocalizedText(interactiveLabels.previous, locale)}
+            </Button>
+            <Button onClick={() => setStepIndex((value) => Math.min(steps.length - 1, value + 1))} size="sm">
+              {getLocalizedText(interactiveLabels.next, locale)}
+            </Button>
+          </div>
+        </GlassPanel>
+      </div>
+    </InteractiveShell>
+  );
+}
+
+function hashKeySimple(key: string, bucketCount: number) {
+  const total = Array.from(key).reduce((sum, ch) => sum + ch.charCodeAt(0), 0);
+  return total % bucketCount;
+}
+
+function HashBucketLab({ locale }: { locale: Locale }) {
+  const [bucketCountText, setBucketCountText] = useState("7");
+  const [keysText, setKeysText] = useState("cat,dog,cow,cod");
+  const bucketCount = Math.max(1, Number.parseInt(bucketCountText, 10) || 1);
+  const keys = keysText
+    .split(",")
+    .map((item) => item.trim())
+    .filter(Boolean);
+
+  const rows = keys.map((key) => ({
+    bucket: hashKeySimple(key, bucketCount),
+    key,
+  }));
+  const buckets = Array.from({ length: bucketCount }, (_, index) => ({
+    index,
+    keys: rows.filter((row) => row.bucket === index).map((row) => row.key),
+  }));
+  const collisionCount = buckets.reduce(
+    (sum, bucket) => sum + Math.max(bucket.keys.length - 1, 0),
+    0
+  );
+
+  return (
+    <InteractiveShell icon={<Braces className="h-5 w-5" />} locale={locale} widgetId="hash-bucket-lab">
+      <div className="grid gap-4 xl:grid-cols-[minmax(0,260px)_minmax(0,1fr)]">
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <label className="text-sm font-medium">
+            {getLocalizedText(interactiveLabels.bucketCount, locale)}
+            <Input className="mt-2" onChange={(event) => setBucketCountText(event.target.value)} value={bucketCountText} />
+          </label>
+          <label className="mt-4 block text-sm font-medium">
+            {getLocalizedText(interactiveLabels.keys, locale)}
+            <textarea
+              className="mt-2 min-h-28 w-full rounded-lg border border-border/60 bg-background/70 p-3 font-mono text-sm"
+              onChange={(event) => setKeysText(event.target.value)}
+              value={keysText}
+            />
+          </label>
+          <p className="mt-4 text-sm text-muted-foreground">
+            {getLocalizedText(interactiveLabels.collisionCount, locale)}: {collisionCount}
+          </p>
+        </GlassPanel>
+        <div className="grid gap-4">
+          <GlassPanel className="border border-border/60 bg-background/30 p-4">
+            <div className="overflow-x-auto">
+              <table className="min-w-[320px] text-sm">
+                <thead>
+                  <tr className="text-left text-muted-foreground">
+                    <th className="py-1 pr-4">{getLocalizedText(interactiveLabels.keys, locale)}</th>
+                    <th className="py-1">{getLocalizedText(interactiveLabels.bucketIndex, locale)}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {rows.map((row) => (
+                    <tr key={`${row.key}-${row.bucket}`} className="border-t border-border/40">
+                      <td className="py-1 pr-4 font-mono">{row.key}</td>
+                      <td className="py-1">{row.bucket}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </GlassPanel>
+          <div className="grid gap-3 md:grid-cols-2">
+            {buckets.map((bucket) => (
+              <GlassPanel key={`bucket-${bucket.index}`} className="border border-border/60 bg-background/30 p-4">
+                <p className="text-sm font-semibold">
+                  {getLocalizedText(interactiveLabels.bucketIndex, locale)} {bucket.index}
+                </p>
+                <p className="mt-2 font-mono text-sm">
+                  {bucket.keys.length ? bucket.keys.join(" → ") : "∅"}
+                </p>
+              </GlassPanel>
+            ))}
+          </div>
+        </div>
+      </div>
+    </InteractiveShell>
+  );
+}
+
 function AdtStackQueueStepper({ locale }: { locale: Locale }) {
   const [step, setStep] = useState(0);
   const [mode, setMode] = useState<AdtMode>("stack");
@@ -1860,10 +2112,12 @@ function ComplexityGrowthComparator({ locale }: { locale: Locale }) {
 const interactiveComponents = {
   "adt-stack-queue-stepper": AdtStackQueueStepper,
   "complexity-growth-comparator": ComplexityGrowthComparator,
+  "hash-bucket-lab": HashBucketLab,
   "independence-checker": IndependenceChecker,
   "invertibility-row-reduction-demo": InvertibilityRowReductionDemo,
   "induction-stepper": InductionStepper,
   "matrix-multiplication-visualizer": MatrixMultiplicationVisualizer,
+  "pointer-state-tracer": PointerStateTracer,
   "quantifier-negation-stepper": QuantifierNegationStepper,
   "row-reduction-stepper": RowReductionStepper,
   "set-operation-explorer": SetOperationExplorer,

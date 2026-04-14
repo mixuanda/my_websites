@@ -14,6 +14,8 @@ These units are already present in code and should remain source-backed.
 - `math1030`: 1.1, 2.1, 2.2, 2.3, 2.4, 3.1, 3.2, 4.1, 5.1, 6.1, 6.2, 6.3,
   6.4, 6.5, 6.6
 - `math1025`: baseline foundations pair only
+- `csci2520`: programming foundations `0.1`, ADT operations `1.1`, hashing
+  `1.2`, and complexity `2.1`
 
 `math1025` now has a small authored tree under `content/textbook`, but most of
 its slide families are still only source backlog rather than complete public
@@ -183,6 +185,49 @@ The current weak spots are straightforward:
 - The next Math1025 work must stay source-backed and chapter-scoped rather than
   pretending the course is already broadly complete.
 
+## CSCI2520
+
+The CSCI2520 tree is now active public content rather than a placeholder, but
+the authored route family still covers only the earliest foundations.
+
+### Available materials
+
+The current local files for CSCI2520 include:
+
+- `reference/CSCI2520/2520ds_00_intro.ppt`
+- `reference/CSCI2520/2520ds_01_adt.ppt`
+- `reference/CSCI2520/2520ds_02_stack.ppt`
+- `reference/CSCI2520/2520ds_03_queue.ppt`
+- `reference/CSCI2520/2520ds_04a_hashtable.ppt`
+- `reference/CSCI2520/2520ds_04b_functionPointer.ppt`
+- `reference/CSCI2520/2520ds_05_list (1).ppt`
+- `reference/CSCI2520/2520ds_06_complexity (1).ppt`
+- `reference/CSCI2520/2520ds_07_sorting (1).ppt`
+- `reference/CSCI2520/2520ds_07_sorting2 (1).pptx`
+- `reference/CSCI2520/csci2520_tuto1_c_programming.pptx`
+- `reference/CSCI2520/csci2520_tuto2_stack_and_queue.pptx`
+- `reference/CSCI2520/csci2520_tuto3_hashtable.pptx`
+- later tutorial and lecture assets on trees, graphs, dynamic programming, and heaps
+
+### Duplicate or conflicting materials
+
+- `*:Zone.Identifier` files are sidecar metadata only.
+- Many lecture assets are legacy `.ppt` binaries, so extraction quality is less
+  reliable than the `.pptx` tutorial files.
+- `docs/extracted/csci2520/**` now contains text extraction from the current
+  tutorial deck files and selected legacy lecture decks to support note
+  authoring.
+
+### Weak or incomplete coverage
+
+- The public route family now has a real lead-in before complexity:
+  programming foundations, ADT semantics, stack/queue behavior, hashing, and
+  one complexity note.
+- Later material on lists, sorting, trees, graphs, dynamic programming, and
+  heaps remains source-backed backlog rather than finished public notes.
+- The new CSCI units are structurally correct, but some of them are still below
+  the desired 10–30 minute reading-depth target and need another content pass.
+
 ## Audit rules for content authors
 
 Use this audit during authoring so the public notes stay conservative and
@@ -201,4 +246,6 @@ traceable.
 Map the determinant, eigenvalue, and inner-product families page by page before
 writing new Math1030 notes, then return to the remaining Math1090 chapter-4
 and proof-structure backlog. Keep Math1025 expansion narrow and source-backed
-while the main Math1090 / Math1030 spine remains the priority.
+while the main Math1090 / Math1030 spine remains the priority, and continue
+building out the early CSCI2520 route family before the course jumps further
+into complexity and later chapters.

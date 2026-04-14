@@ -1,0 +1,231 @@
+---
+title: "1.2 Hash table 与 collision 策略"
+description: "用 dictionary 操作、hash function、collision 与 chaining 去理解 hash table 为何以有序结构换取平均情况下的快速访问。"
+---
+
+当 ADT、pointer 与基本 node 结构已经建立之后，下一个问题就是：怎样高效
+支持 dictionary 类操作？Hash table 是其中一个标准答案。它不保留排序结构，
+而是先用 hash function 把 key 跳到某个 bucket。
+
+这个跳转很有力，但永远不会完美。整章内容都在解释：这个跳转可以保证什么、
+collision 怎样出现，以及当多个 key 撞进同一位置时，实现怎样补救。
+
+## 仍然要先从 ADT 角度开始
+
+Hashtable tutorial 仍然先从操作出发，而不是先从 bucket 出发：
+
+- 为某个 key 插入 value；
+- 按 key 找回 value；
+- 删除已有的 key-value entry。
+
+所以逻辑对象首先是 dictionary 或 symbol table。Hash table 只是实现这个
+ADT 的其中一种方法。
+
+<Definition title="Hashtable 作为 dictionary ADT">
+Hashtable 存储 key-value pair，并用 bucket index 来支持 insert、lookup、
+delete 等 dictionary 操作。
+</Definition>
+
+这个定义已经暗示两条设计线：
+
+- key 怎样被转成 bucket index；
+- 如果两个 key 去到同一个 index，实作会怎样处理。
+
+## Hash function 应该做什么
+
+<Definition title="Hash function">
+Hash function 会把 key 映射成固定范围内的整数 index，通常是
+`[0, H_SIZE)`。
+</Definition>
+
+本地 tutorial 特别强调一个好 hash function 应具备四点：
+
+- 永远返回合法 bucket index；
+- 尽量减少 collision；
+- 尽量平均分散 key；
+- 计算本身要足够快。
+
+最后一点不能忽略，因为如果 hash 规则本身太慢，就算分散效果好，lookup
+也未必值得。
+
+<WorkedExample title="一个简单的字符串 hash 例子">
+对字符串 key，课堂常用的入门写法可以是：
+
+```c
+int Hash(char *s, int nBuckets) {
+   int h = 0;
+   while (*s != '\0') {
+      h += *s;
+      s++;
+   }
+   return h % nBuckets;
+}
+```
+
+这类规则容易算，但也容易撞。若两个 key 的字符总和接近，collision
+就可能频繁出现。所以它适合教学，但未必是最稳健的实战方案。
+</WorkedExample>
+
+<InteractiveWidget id="hash-bucket-lab" />
+
+## Collision 不是例外，而是常态
+
+<Definition title="Collision">
+若两个不同 key 被映射到同一个 bucket index，便称为 collision。
+</Definition>
+
+只要 bucket 数量有限，而 key 空间足够大，collision 就几乎无可避免。所以
+真正要问的不是“如何完全避免 collision”，而是“有 collision 时仍然如何
+保持 dictionary 正确”。
+
+## Chaining：在 bucket 下面挂一条链
+
+Lecture material 用 chaining 作为最直观的补救方法。
+
+<Definition title="Chaining">
+Chaining 会让每个 bucket 指向一条 linked list，把所有 hash 到同一 bucket
+的 key-value entry 串在一起。
+</Definition>
+
+这个做法与上一节的 pointer / node 模型完全配合：
+
+```c
+typedef struct cellT {
+   char *key;
+   void *value;
+   struct cellT *next;
+} cellT;
+```
+
+因此 lookup 可以分成两层：
+
+1. 先 hash key，选出 bucket；
+2. 再只扫描该 bucket 下面的 linked list。
+
+<WorkedExample title="Chaining 下的 lookup">
+假设 `Hash("cat") = 3`，而 bucket `3` 的 chain 是
+
+`("cow", value1) -> ("cat", value2) -> ("cod", value3)`。
+
+当执行 `Lookup(table, "cat")` 时，程序会：
+
+1. 先算出 bucket `3`；
+2. 沿 bucket `3` 的 linked list 扫描；
+3. 逐个比较 key；
+4. 找到 `"cat"` 时返回 `value2`。
+
+Collision 并没有破坏正确性，只是让该 bucket 的搜索稍微变慢。
+</WorkedExample>
+
+## Open addressing：不用链，而是继续 probing
+
+Tutorial 也介绍 open addressing。它不是在 bucket 下面挂 linked list，
+而是在首选 slot 被占用时，继续到 table 内其他位置 probing。
+
+常见 probing 方式包括：
+
+- linear probing；
+- quadratic probing；
+- double hashing。
+
+与 chaining 最大的区别是：额外工作发生在哪里。
+
+- chaining 把 collision 放到 bucket 旁边的 linked structure；
+- open addressing 把 collision 变成 table 内部的续搜。
+
+所以 deletion、clustering 与 probe sequence 设计就变得很重要。
+
+<TheoremCard title="Collision handling 是正确性的一部分">
+如果 collision 策略设计错，即使 hash function 本身合法，table 仍然可能
+返回错误结果，甚至丢失 entry。
+</TheoremCard>
+
+## Load factor 为什么重要
+
+即使 hash function 本身不差，只要 table 太满，效能都会变坏。
+
+Load factor 通常写成
+
+$$
+\alpha = \frac{\text{存储中的 entry 数量}}{\text{bucket 数量}}
+$$
+
+当 `\alpha` 上升时：
+
+- chaining 的链会变长；
+- open addressing 的 probe sequence 会变长；
+- 平均情况下的 lookup 会慢慢偏离理想的常数时间。
+
+所以 resize 不只是工程细节，也是保护 hashtable 效能模型的一部分。
+
+## Generic pointer 让 ADT 可复用
+
+本地 hashtable lecture 使用 `void *` 作为 value，这是一个重要的 ADT
+设计选择。
+
+```c
+typedef struct hashtableCDT *hashtableADT;
+
+hashtableADT EmptyHashtable();
+void Enter(hashtableADT table, char *key, void *value);
+void *Lookup(hashtableADT table, char *key);
+```
+
+Table 本身不需要知道 value 的具体类型。它只需要维持 key 与某个 opaque
+pointer 之间的关联，而真正怎样解释那个 pointer，则由 client 决定。
+
+## 常见错误
+
+<CommonMistake title="Hash 相同不代表 key 相同">
+若 `Hash(key1) == Hash(key2)`，只代表两个 key 去到同一个 bucket，不代表
+两者本身相同。
+</CommonMistake>
+
+<CommonMistake title="Hash 范围合法，不代表 hash function 已经好">
+一个 function 即使永远返回合法 bucket index，仍然可能因为分布太集中而很差。
+</CommonMistake>
+
+<CommonMistake title="`O(1)` 平均情况不是忽视 collision 的借口">
+说 hash table lookup 是 `O(1)`，背后其实隐含了合理的 hash function 与受控
+的 load factor。不能因此忽视 collision。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="Hashing 里的 collision 是什么？">
+用 key 与 bucket index 来回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+Collision 就是两个不同 key 被映射到同一个 bucket index。
+</RevealSolution>
+
+<QuickCheck prompt="Chaining 下，算完 bucket 之后下一步要做什么？">
+想想程序会去哪里继续找。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它会沿该 bucket 下面的 linked list 继续扫描，直到找到 matching key 或者
+链结结束。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="为什么 hashtable 在 hashing 之后，仍然要做 key comparison？">
+请从 collision 角度回答。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+Hashing 只是把搜索范围缩到某个 bucket。因为不同 key 仍然可能 collision，
+所以实作仍然要逐个比较 bucket 内的实际 key，才能确认找到的是正确 entry。
+</RevealSolution>
+
+<QuickCheck prompt="解释 chaining 与 open addressing 的一个取舍。">
+用额外工作发生在哪里来说明。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+Chaining 把 collision 放到 bucket 旁边的 linked list；open addressing
+则把 collision 变成 table 内部的 probing。前者较依赖 pointer structure，
+后者较依赖 occupancy 与 probe sequence 设计。
+</RevealSolution>

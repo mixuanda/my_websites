@@ -10,8 +10,9 @@
 - 會員制只負責解鎖更深的筆記與評量，不改變整個網站的 Notes 外層
 
 目前主軸是 `MATH1090` 與 `MATH1030`。架構已預留未來課程，例如
-`MATH1025`。`MATH1010` 目前沒有對應的 `reference/` 來源樹，所以只做
-架構預留，不做內容承諾。
+`MATH1025`。此外，`CSCI2520` 現在亦已進入 Notes 體系，但仍在早期搭建階段。
+`MATH1010` 目前沒有對應的 `reference/` 來源樹，所以只做架構預留，不做
+內容承諾。
 
 ## 目前產品是什麼
 
@@ -19,8 +20,7 @@
 
 - 公開 Notes 體驗：三語系課程筆記、章節導覽、先備關係、匯出
 - 數學內容主線：`math1090`、`math1030`
-- 未來課程與相鄰內容：`math1025` 目前已有內部內容骨架；catalog
-  也仍保留少量其他課程樣本，例如 `csci2520`
+- 已起步但仍需大幅擴寫的相鄰課程：`math1025`、`csci2520`
 - 會員與權限：Free / Member，加上一個伺服器端 Admin bypass
 - 內部實作命名空間：程式碼與內容路徑仍使用 `textbook`
   這個內部名稱，但公開頁面一律應以 **Notes** 呈現
@@ -58,7 +58,7 @@
 - 已公開、持續擴寫的主線：
   `math1090`、`math1030`
 - 已建立骨架、但仍需繼續依 `reference/` 深化：
-  `math1025`
+  `math1025`、`csci2520`
 - 僅做未來架構保留、目前沒有來源支撐：
   `math1010`
 
@@ -273,6 +273,19 @@ Admin bypass 是**伺服器端**做的，不是前端隱藏按鈕而已。
 - `src/components/SiteLanguageSwitcher.tsx`
 - `src/components/textbook/LanguageSwitcher.tsx`
 - `src/lib/textbook/i18n.ts`
+
+## 閱讀時間估算
+
+每個 note page 的 **Estimated reading time** 現在不再只是簡單英文分詞數。
+目前的估算會同時考慮：
+
+- 英文單詞量
+- CJK 文字量
+- 程式碼區塊
+- 顯示數學與行內數學
+
+所以對中文筆記、數學密集頁，以及帶程式碼的 CSCI 筆記會比舊模型更接近真實
+閱讀負擔。
 
 ## 匯出
 

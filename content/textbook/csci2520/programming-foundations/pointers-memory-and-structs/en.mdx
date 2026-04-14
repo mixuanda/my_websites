@@ -1,0 +1,275 @@
+---
+title: "0.1 Pointers, memory, and structs"
+description: "Review the C tools that the data-structure course assumes: addresses, dereferencing, heap allocation, typedef, and struct layout."
+---
+
+CSCI2520 does not require you to love C as a language, but it does require you
+to read C examples accurately. The course uses C because pointers, heap
+allocation, and low-level data layout make data-structure behavior visible in a
+way that high-level languages often hide.
+
+This note therefore has one narrow purpose: make the core C toolkit readable
+enough that later stack, queue, and hash-table code does not feel like magic.
+
+## Why this review matters in a data-structure course
+
+The local tutorial material says the course does not emphasize any one
+programming language. That is true at the assessment level. But the lecture and
+tutorial slides still rely on C examples to explain:
+
+- what a pointer stores,
+- how a node is allocated,
+- how a structure groups fields,
+- why ADT implementations hide representation details.
+
+If you misread any of those, you do not merely get a syntax error. You lose the
+ability to see what the data structure is doing in memory.
+
+## Pointers store addresses, not values
+
+<Definition title="Pointer">
+A pointer variable stores the address of another object.
+
+If `p` is a pointer to an integer, then `p` stores where that integer lives in
+memory, not the integer value itself.
+</Definition>
+
+The tutorial review distinguishes two operators:
+
+- `&x` means “the address of `x`”;
+- `*p` means “the value stored at the address inside `p`”.
+
+Those two ideas must not be blurred together. A pointer is not the same thing
+as the object it points to.
+
+<WorkedExample title="Read a pointer trace line by line">
+Consider the tutorial-style code:
+
+```c
+int firstvalue = 5, secondvalue = 15;
+int *p1, *p2;
+
+p1 = &firstvalue;
+p2 = &secondvalue;
+*p1 = 10;
+*p2 = *p1;
+p1 = p2;
+*p1 = 20;
+```
+
+Read it carefully.
+
+1. `p1` first points to `firstvalue`, and `p2` points to `secondvalue`.
+2. `*p1 = 10` changes `firstvalue` to `10`.
+3. `*p2 = *p1` copies the value `10` into `secondvalue`.
+4. `p1 = p2` does **not** copy an integer; it changes where `p1` points.
+5. `*p1 = 20` now changes `secondvalue`, because `p1` has been redirected there.
+
+So the final values are:
+
+- `firstvalue = 10`
+- `secondvalue = 20`
+</WorkedExample>
+
+<InteractiveWidget id="pointer-state-tracer" />
+
+The key discipline is to separate two questions:
+
+- what address is each pointer holding?
+- what value lives at that address right now?
+
+## Dereferencing changes the pointed-to object
+
+Once a pointer has been assigned a valid address, dereferencing it lets you read
+or modify the object stored there.
+
+```c
+int x = 7;
+int *p = &x;
+*p = 12;
+```
+
+After the final line, `x` is `12`. The statement `*p = 12` does not create a
+new integer. It writes through the pointer into the existing object.
+
+<CommonMistake title="Assigning a pointer is not the same as assigning through a pointer">
+`p = q` changes which address `p` stores.
+
+`*p = *q` copies the pointed-to value.
+
+Those two statements may appear similar, but they do completely different jobs.
+</CommonMistake>
+
+## `malloc` allocates storage on the heap
+
+The tutorial review also emphasizes `malloc`, because many data structures
+create nodes dynamically rather than in fixed-size arrays.
+
+<Definition title="Heap allocation with `malloc`">
+`malloc(n)` asks the runtime for `n` bytes of storage and returns a pointer to
+the beginning of that block.
+</Definition>
+
+In C, the usual pattern is:
+
+```c
+struct node *x;
+x = malloc(sizeof(struct node));
+```
+
+Now `x` points to newly allocated memory large enough to store one `struct
+node`.
+
+Two follow-up rules matter immediately:
+
+- always check that the returned pointer is used consistently with its type;
+- always know which part of the program is responsible for eventually freeing
+  that memory.
+
+Even when a short classroom example omits `free`, a real implementation cannot
+ignore ownership forever.
+
+<WorkedExample title="Why dynamic allocation matters for linked structures">
+Suppose a stack is implemented as a linked list. Each `push` operation may need
+to create one new node. The total number of nodes is not known in advance, so a
+fixed local variable is not enough. `malloc` is the bridge between the logical
+operation “create a new node” and the physical action “reserve memory for one
+more node.”
+</WorkedExample>
+
+## `typedef` shortens repeated types
+
+The tutorial review also includes `typedef`, because data-structure interfaces
+often hide long pointer types behind short aliases.
+
+```c
+typedef struct node *nodePtr;
+typedef int stackElementT;
+```
+
+This does not create a new runtime object. It creates a new type name for the
+compiler and for human readers.
+
+The gain is clarity:
+
+- function prototypes become shorter,
+- interface files become easier to scan,
+- the ADT boundary becomes more readable.
+
+When the course writes `stackADT`, the name itself is part of the abstraction.
+It tells you that the client should think in terms of “a stack object,” not “a
+pointer to some particular structure layout.”
+
+## `struct` groups related fields into one record
+
+<Definition title="Structure">
+A `struct` groups multiple fields under one named record type.
+</Definition>
+
+For example:
+
+```c
+struct node {
+   int data;
+   struct node *next;
+};
+```
+
+This is the standard shape for a linked-list node. One field stores the current
+payload, and one field stores the address of the next node.
+
+The point is not only syntactic grouping. A `struct` lets you model the exact
+pieces of state that an ADT implementation must preserve.
+
+<WorkedExample title="Read a queue node structure">
+If a queue uses linked nodes, a minimal structure might be
+
+```c
+struct cellT {
+   queueElementT element;
+   struct cellT *next;
+};
+```
+
+The queue object itself may then store:
+
+- a pointer to the head node,
+- a pointer to the tail node,
+- optionally a stored length counter.
+
+That means the abstract queue operations `enqueue`, `dequeue`, and
+`QueueLength()` are implemented by updating a small, explicit collection of
+pointer fields.
+</WorkedExample>
+
+## How this feeds directly into ADT design
+
+The earlier C lecture and the ADT lecture fit together tightly.
+
+- Pointers let one object refer to another.
+- `malloc` lets nodes be created when the operation needs them.
+- `struct` lets the implementation store several related fields together.
+- `typedef` helps the interface hide representation details.
+
+So when the course says an ADT should expose the “what” and hide the “how,” the
+language tools above are exactly what make that separation possible in C.
+
+## Common mistakes
+
+<CommonMistake title="An uninitialized pointer is not a valid object">
+Declaring `int *p;` creates a pointer variable, but it does not make it point to
+safe storage. Dereferencing such a pointer before assignment is undefined
+behavior.
+</CommonMistake>
+
+<CommonMistake title="`malloc` does not build a node for you">
+`malloc` gives raw storage only. You still have to initialize the fields of the
+new structure explicitly.
+</CommonMistake>
+
+<CommonMistake title="A `struct` field update may affect later pointer traces">
+If two pointers reach the same structure, updating a field through one pointer
+changes what the other pointer will see as well.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="What is the difference between `p = q` and `*p = *q`?">
+Answer in terms of addresses versus pointed-to values.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`p = q` copies an address into `p`, while `*p = *q` copies the value stored at
+`q`'s address into the object pointed to by `p`.
+</RevealSolution>
+
+<QuickCheck prompt="Why is `malloc(sizeof(struct node))` more reliable than writing a raw byte count by hand?">
+Think about portability and maintenance.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`sizeof(struct node)` automatically matches the actual structure layout, so the
+allocation stays correct even if the fields of the structure later change.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Trace the final values of `x` and `y` in this code: `int x=1, y=2; int *p=&x; int *q=&y; *p=*q; q=p; *q=9;`">
+Separate pointer reassignment from writes through the pointer.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+After `*p=*q`, `x` becomes `2`. Then `q=p` makes `q` point to `x` as well.
+Finally `*q=9` writes through `q` into `x`. So the final values are `x=9` and
+`y=2`.
+</RevealSolution>
+
+<QuickCheck prompt="Explain why a linked-list node type almost always needs a pointer field to the next node.">
+Tie the answer to traversal and dynamic growth.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Without a `next` pointer, one node would not be able to refer to the following
+node. That would make traversal impossible and would prevent the list from
+growing one dynamically allocated node at a time.
+</RevealSolution>

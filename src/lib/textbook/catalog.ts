@@ -422,6 +422,36 @@ const math1090OrderUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const csci2520ProgrammingFoundationUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "programming-foundations",
+    chapterNumber: "0",
+    course: "csci2520",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Review the C language tools that the course uses to explain data-structure behavior: pointers, malloc, typedef, and struct layout.",
+      "重溫課程用來解釋資料結構行為的 C 語言工具：pointer、malloc、typedef 與 struct 佈局。",
+      "重温课程用来解释资料结构行为的 C 语言工具：pointer、malloc、typedef 与 struct 布局。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: ["pointer-state-tracer"],
+    order: 0,
+    prerequisites: [],
+    slug: "pointers-memory-and-structs",
+    sourceRefs: [
+      { file: "reference/CSCI2520/csci2520_tuto1_c_programming.pptx" },
+      { file: "reference/CSCI2520/2520ds_00_intro.ppt" },
+    ],
+    title: text(
+      "0.1 Pointers, memory, and structs",
+      "0.1 Pointer、記憶體與 struct",
+      "0.1 Pointer、内存与 struct"
+    ),
+    unitId: "csci2520.programming-foundations.pointers-memory-and-structs",
+    unitNumber: "0.1",
+  },
+];
+
 const csci2520AdtUnits: TextbookUnitMeta[] = [
   {
     chapterId: "adt-and-operations",
@@ -451,6 +481,37 @@ const csci2520AdtUnits: TextbookUnitMeta[] = [
     ),
     unitId: "csci2520.adt-and-operations.stack-queue-and-function-operations",
     unitNumber: "1.1",
+  },
+  {
+    chapterId: "adt-and-operations",
+    chapterNumber: "1",
+    course: "csci2520",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use dictionary operations, hash functions, collisions, and chaining to understand why hash tables trade ordered structure for fast average-case access.",
+      "用 dictionary 操作、hash function、collision 與 chaining 去理解 hash table 為何以有序結構換取平均情況下的快速存取。",
+      "用 dictionary 操作、hash function、collision 与 chaining 去理解 hash table 为何以有序结构换取平均情况下的快速存取。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: ["hash-bucket-lab"],
+    order: 2,
+    prerequisites: [
+      "csci2520.programming-foundations.pointers-memory-and-structs",
+      "csci2520.adt-and-operations.stack-queue-and-function-operations",
+    ],
+    slug: "hash-tables-and-collision-strategies",
+    sourceRefs: [
+      { file: "reference/CSCI2520/2520ds_04a_hashtable.ppt" },
+      { file: "reference/CSCI2520/2520ds_04b_functionPointer.ppt" },
+      { file: "reference/CSCI2520/csci2520_tuto3_hashtable.pptx" },
+    ],
+    title: text(
+      "1.2 Hash tables and collision strategies",
+      "1.2 Hash table 與 collision 策略",
+      "1.2 Hash table 与 collision 策略"
+    ),
+    unitId: "csci2520.adt-and-operations.hash-tables-and-collision-strategies",
+    unitNumber: "1.2",
   },
 ];
 
@@ -1277,12 +1338,28 @@ const csci2520: TextbookCourseMeta = {
   chapters: [
     {
       course: "csci2520",
+      id: "programming-foundations",
+      number: "0",
+      summary: text(
+        "Language and memory tools used throughout the data-structure notes.",
+        "資料結構筆記會反覆用到的語言與記憶體工具。",
+        "资料结构笔记会反复用到的语言与内存工具。"
+      ),
+      title: text(
+        "Programming foundations",
+        "程式基礎",
+        "程序基础"
+      ),
+      units: csci2520ProgrammingFoundationUnits,
+    },
+    {
+      course: "csci2520",
       id: "adt-and-operations",
       number: "1",
       summary: text(
-        "From ADT contracts to operation behavior in stack/queue implementations.",
-        "由 ADT 規格走向 stack/queue 實作中的操作行為。",
-        "由 ADT 规格走向 stack/queue 实作中的操作行为。"
+        "From ADT contracts to stack/queue behavior and dictionary-style hashing operations.",
+        "由 ADT 規格走向 stack/queue 行為，再進入 dictionary 形式的 hashing 操作。",
+        "由 ADT 规格走向 stack/queue 行为，再进入 dictionary 形式的 hashing 操作。"
       ),
       title: text("ADT and operation semantics", "ADT 與操作語義", "ADT 与操作语义"),
       units: csci2520AdtUnits,
