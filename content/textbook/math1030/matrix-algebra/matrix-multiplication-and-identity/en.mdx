@@ -345,6 +345,62 @@ This is why the identity matrix behaves so naturally. The columns of `I_n` are
 `e_1, e_2, \ldots, e_n`, so right-multiplying by `I_n` simply reproduces the
 columns of `A` one by one.
 
+This also explains why a compatible zero matrix on the right forces the product
+to be zero: every column of the zero matrix is the zero vector, so every column
+of the product is `A0 = 0`.
+
+## The first algebra laws worth remembering
+
+Once multiplication is defined, the next issue is how it interacts with the
+other matrix operations you already know.
+
+Whenever the sizes are compatible, matrix multiplication satisfies:
+
+$$
+A(B + C) = AB + AC,
+\qquad
+(A + B)C = AC + BC,
+$$
+
+and scalar multiplication may be moved in or out:
+
+$$
+(cA)B = c(AB) = A(cB).
+$$
+
+The zero matrix is the simplest sanity check for these rules. If `0` is a
+compatible zero matrix, then
+
+$$
+A0 = 0,
+\qquad
+0A = 0.
+$$
+
+The reason is that every row-by-column product uses only zero entries from the
+zero matrix, so every output entry is zero as well.
+
+These identities are basic, but they matter because later arguments about
+inverse matrices, row operations, and block-matrix computation assume them
+silently. If you do not know them explicitly, longer calculations become much
+harder to audit.
+
+<TheoremCard title="The identity matrix is unique">
+If `E` is an `n \times n` matrix such that
+
+$$
+EA = A \qquad \text{and} \qquad AE = A
+$$
+
+for every compatible `n \times n` matrix `A`, then `E = I_n`.
+</TheoremCard>
+
+<CollapsibleProof title="Why no second identity matrix can exist">
+Take `A = I_n`. Then the defining property of `E` gives `EI_n = I_n`.
+But right-multiplying any matrix by `I_n` leaves it unchanged, so `EI_n = E`.
+Therefore `E = I_n`.
+</CollapsibleProof>
+
 ## Common mistakes
 
 <CommonMistake title="Matrix multiplication is not entrywise multiplication">

@@ -240,6 +240,11 @@ The reason is not mysterious. A free variable may be assigned any real value,
 and each different assignment gives a different solution vector unless the
 parameter disappears completely.
 
+This also gives a short theorem that is worth stating explicitly: if a
+homogeneous system has more variables than pivot equations, then at least one
+free variable remains, and the system must therefore have infinitely many
+solutions.
+
 <WorkedExample title="One free variable already produces a whole line of solutions">
 Suppose row reduction shows that
 
@@ -312,6 +317,41 @@ still left after the pivot equations have imposed all their constraints.
 Each free variable contributes one independent parameter. So the dimension of
 the null space is exactly the number of free variables in the reduced
 homogeneous system.
+
+In rank language, this becomes
+
+$$
+\operatorname{nullity}(A) = n - \operatorname{rank}(A),
+$$
+
+but even before that theorem is named formally, you should already read nullity
+as "the number of independent null-space directions left by the system."
+
+## How to read a basis for the null space from RREF
+
+In practice, the basis vectors of `N(A)` come directly from the free-variable
+description of the reduced system.
+
+The workflow is:
+
+1. row-reduce `A`,
+2. identify pivot and free variables,
+3. set one free variable to `1` and the others to `0`,
+4. solve for the pivot variables,
+5. repeat once for each free variable.
+
+The vectors produced this way form a basis candidate for the null space because
+each one records one independent direction of freedom.
+
+There is also a geometric distinction worth keeping clear:
+
+- a homogeneous solution set is always a subspace, so it passes through the
+  origin;
+- a nonhomogeneous consistent solution set is usually a translate of that
+  subspace by a particular solution.
+
+That difference is exactly why `N(A)` is the structural core of the system,
+while `x_p + N(A)` describes the full solution set of `Ax = b`.
 
 ## Homogeneous solutions and column dependence
 
