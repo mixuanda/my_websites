@@ -23,19 +23,19 @@ structure material into the live note set deliberately.
 
 ## Math1030
 
-The current public notes reach the first vector-space sequence. The next work is
-split between deepening thin existing units and opening the determinant /
-eigenvalue / inner-product backlog.
+The current public notes now reach the determinant sequence. The next work is
+to move from determinants into eigenvalues / diagonalization, then into inner
+products / orthogonality, while keeping older thin units under review.
 
 | Course | Chapter | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
 | `math1030` | 1 Systems overview | Authored | Strong | `1.1` is still shorter than the source packet. |
 | `math1030` | 2 Matrices, elimination, solution types | Authored | Strong | `2.4` now has a fuller rewrite and safer augmented-matrix markup. |
-| `math1030` | 3 Matrix algebra | Authored | Strong | Still needs a public-source-clutter cleanup pass. |
-| `math1030` | 4 Homogeneous systems and null space | Authored | Strong | Structurally solid; still needs full export QA. |
+| `math1030` | 3 Matrix algebra | Authored | Strong | `3.1` and `3.2` are now at article depth; later cleanup is mostly cosmetic. |
+| `math1030` | 4 Homogeneous systems and null space | Authored | Strong | `4.1` is now much fuller; later work is mainly export and examples QA. |
 | `math1030` | 5 Invertibility | Authored | Strong | `5.1` is much deeper now, but appendix proofs remain partial. |
-| `math1030` | 6 Vector spaces, span, basis, rank | Authored through `6.6` | Strong | `6.1`, `6.2`, and `6.3` have now been deepened; `6.4` remains the next thin public unit. |
-| `math1030` | 7 Determinants | Unauthored | Usable | `1030gi-n06-01.pdf` to `1030gi-n06-03.pdf`. |
+| `math1030` | 6 Vector spaces, span, basis, rank | Authored through `6.6` | Strong | The main backbone is live; appendix-style basis results remain backlog. |
+| `math1030` | 7 Determinants | Authored through `7.3` | Strong | `7.3` deliberately absorbs the local appendix path to cofactors, adjoints, and Cramer's rule. |
 | `math1030` | 8 Eigenvalues and diagonalization | Unauthored | Usable | `1030gi-n07-01.pdf` to `1030gi-n07-03.pdf`. |
 | `math1030` | 9 Inner products and orthogonality | Unauthored | Usable | `1030gi-n08-01.pdf` plus the master-note chapter. |
 
@@ -61,6 +61,6 @@ future addition.
 ## Next steps
 
 The next content cycle should move into the strongest missing Math1030 chapter
-families: determinants first, then eigenvalues / diagonalization, then inner
-products / orthogonality. After that, return to the remaining Math1090 chapter
-4 backlog and keep Math1025 expansion controlled and source-backed.
+families: eigenvalues / diagonalization first, then inner products /
+orthogonality. After that, return to the remaining Math1090 chapter-4 backlog
+and keep Math1025 expansion controlled and source-backed.

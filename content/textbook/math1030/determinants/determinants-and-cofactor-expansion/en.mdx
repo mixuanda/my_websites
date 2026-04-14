@@ -1,0 +1,423 @@
+---
+title: "7.1 Determinants and cofactor expansion"
+description: "Define determinants carefully through minors and cofactors, then learn how cofactor expansion turns one scalar into a precise summary of square-matrix structure."
+---
+
+Determinants attach one number to a square matrix. That number is not just a
+decoration. Later it tells you whether the matrix is invertible, how row and
+column operations affect the matrix, and how to solve certain square systems by
+formula.
+
+The price of that power is that the definition is more delicate than matrix
+addition or scalar multiplication. A determinant is defined only for square
+matrices, and it is built recursively from smaller determinants.
+
+## Why this section matters
+
+If you only memorize the `2 \times 2` formula
+
+$$
+\det\begin{bmatrix}a&b\\c&d\end{bmatrix}=ad-bc,
+$$
+
+you will miss the actual structure. The point of this section is to explain
+where that formula comes from, why the sign pattern alternates, and why
+expanding along a clever row or column can make a hard computation manageable.
+
+<Definition title="Submatrix, minor, and cofactor">
+Let `A=[a_{ij}]` be an `n\times n` matrix.
+
+For fixed `i` and `j`, delete row `i` and column `j`. The resulting
+`(n-1)\times(n-1)` matrix is written `A(i\mid j)`.
+
+The **minor** of the entry `a_{ij}` is
+
+$$
+M_{ij}=\det(A(i\mid j)).
+$$
+
+The **cofactor** of the entry `a_{ij}` is
+
+$$
+A_{ij}=(-1)^{i+j}M_{ij}.
+$$
+
+The factor `(-1)^{i+j}` creates the checkerboard sign pattern
+
+$$
+\begin{bmatrix}
++ & - & + & \cdots\\
+- & + & - & \cdots\\
++ & - & + & \cdots\\
+\vdots & \vdots & \vdots & \ddots
+\end{bmatrix}.
+$$
+</Definition>
+
+<Definition title="Determinant by cofactor expansion">
+If `A=[a_{11}]` is a `1\times 1` matrix, define
+
+$$
+\det(A)=a_{11}.
+$$
+
+If `A=[a_{ij}]` is an `n\times n` matrix with `n>1`, define its determinant by
+expanding along the first row:
+
+$$
+\det(A)=a_{11}A_{11}+a_{12}A_{12}+\cdots+a_{1n}A_{1n}.
+$$
+
+Equivalently,
+
+$$
+\det(A)=a_{11}M_{11}-a_{12}M_{12}+\cdots+(-1)^{1+n}a_{1n}M_{1n}.
+$$
+</Definition>
+
+The definition is recursive. A `4\times4` determinant is reduced to several
+`3\times3` determinants, each of those is reduced to `2\times2`
+determinants, and those finally reduce to `1\times1` determinants.
+
+## First examples
+
+<WorkedExample title="The familiar 2×2 formula comes from the definition">
+Let
+
+$$
+A=\begin{bmatrix}a_{11}&a_{12}\\a_{21}&a_{22}\end{bmatrix}.
+$$
+
+The first-row cofactors are
+
+$$
+A_{11}=(-1)^{1+1}a_{22}=a_{22},
+\qquad
+A_{12}=(-1)^{1+2}a_{21}=-a_{21}.
+$$
+
+So
+
+$$
+\det(A)=a_{11}A_{11}+a_{12}A_{12}
+=a_{11}a_{22}-a_{12}a_{21}.
+$$
+
+The usual `ad-bc` rule is therefore not a separate theorem. It is the
+`2\times2` case of the recursive definition.
+</WorkedExample>
+
+<WorkedExample title="A 3×3 determinant by cofactor expansion">
+Let
+
+$$
+B=
+\begin{bmatrix}
+3&2&-1\\
+4&1&6\\
+-3&-1&2
+\end{bmatrix}.
+$$
+
+Expand along the first row:
+
+$$
+\det(B)=3
+\begin{vmatrix}
+1&6\\
+-1&2
+\end{vmatrix}
+-2
+\begin{vmatrix}
+4&6\\
+-3&2
+\end{vmatrix}
+(-1)
+\begin{vmatrix}
+4&1\\
+-3&-1
+\end{vmatrix}.
+$$
+
+Compute the `2\times2` determinants:
+
+$$
+\begin{vmatrix}
+1&6\\
+-1&2
+\end{vmatrix}=1\cdot2-6(-1)=8,
+$$
+
+$$
+\begin{vmatrix}
+4&6\\
+-3&2
+\end{vmatrix}=4\cdot2-6(-3)=26,
+$$
+
+$$
+\begin{vmatrix}
+4&1\\
+-3&-1
+\end{vmatrix}=4(-1)-1(-3)=-1.
+$$
+
+Therefore
+
+$$
+\det(B)=3(8)-2(26)+(-1)(-1)=24-52+1=-27.
+$$
+</WorkedExample>
+
+## Expand where the zeros are
+
+Direct expansion is usually expensive. The whole point of cofactor expansion is
+that you may choose the row or column that makes the work smallest.
+
+<TheoremCard title="Cofactor expansion along any row">
+For any fixed row `i` of an `n\times n` matrix `A=[a_{ij}]`,
+
+$$
+\det(A)=a_{i1}A_{i1}+a_{i2}A_{i2}+\cdots+a_{in}A_{in}.
+$$
+
+Equivalently,
+
+$$
+\det(A)=\sum_{j=1}^n (-1)^{i+j}a_{ij}M_{ij}.
+$$
+
+So the definition uses the first row, but the same determinant can be expanded
+along any row.
+</TheoremCard>
+
+<WorkedExample title="Choose the row that kills the most work">
+Let
+
+$$
+C=
+\begin{bmatrix}
+1&9&7&7\\
+0&5&2&5\\
+1&9&8&0\\
+1&9&8&3
+\end{bmatrix}.
+$$
+
+Expanding along the second row is much better than expanding along the first,
+because the entry in the first position is already `0`:
+
+$$
+\det(C)=
+0\cdot A_{21}
++5A_{22}
++2A_{23}
++5A_{24}.
+$$
+
+Only three `3\times3` determinants appear instead of four. In practice, the
+best row or column is the one with the most zeros or the simplest entries.
+</WorkedExample>
+
+## Fast consequences of the definition
+
+Several useful theorems fall out almost immediately once you are allowed to
+expand along a convenient row or column.
+
+<TheoremCard title="A zero row or a zero column forces determinant 0">
+If a square matrix has an entire row of zeros, then its determinant is `0`.
+Likewise, if it has an entire column of zeros, then its determinant is `0`.
+</TheoremCard>
+
+The row statement is immediate: expand along that zero row. The column
+statement says the same geometry from the column viewpoint and is also a direct
+consequence of expansion.
+
+<TheoremCard title="A row or column with one nonzero entry collapses the problem">
+Suppose a square matrix `C` has at most one nonzero entry in row `k`, and that
+entry is `c_{k\ell}`. Then
+
+$$
+\det(C)=c_{k\ell}(-1)^{k+\ell}\det(C(k\mid \ell)).
+$$
+
+The same conclusion holds if column `\ell` has at most one nonzero entry and it
+occurs in row `k`.
+</TheoremCard>
+
+This theorem is the formal version of the beginner's instinct: if one row or
+column is almost all zeros, exploit it immediately.
+
+<TheoremCard title="Triangular matrices are easy">
+If `T` is upper triangular or lower triangular, then
+
+$$
+\det(T)=t_{11}t_{22}\cdots t_{nn},
+$$
+
+the product of its diagonal entries.
+</TheoremCard>
+
+This is why row reduction is so important later. If you can turn a matrix into
+triangular form while keeping careful track of how the determinant changes, then
+the final determinant is easy to read.
+
+<WorkedExample title="Triangular determinants read off the diagonal">
+For
+
+$$
+T=
+\begin{bmatrix}
+2&3&4\\
+0&5&7\\
+0&0&-1
+\end{bmatrix},
+$$
+
+we do not need a full expansion. Since `T` is upper triangular,
+
+$$
+\det(T)=2\cdot5\cdot(-1)=-10.
+$$
+
+The entries above the diagonal matter for the matrix itself, but not for the
+determinant formula in this triangular case.
+</WorkedExample>
+
+## Multilinearity and alternating behavior
+
+The determinant is not linear in the whole matrix at once, but it is linear in
+each individual row when the other rows are held fixed.
+
+<TheoremCard title="Multilinearity in one row">
+Fix all rows of a square matrix except row `p`. If the new row is
+
+$$
+\alpha u+\beta v,
+$$
+
+then the determinant splits as
+
+$$
+\det(\text{same rows except }\alpha u+\beta v)
+=\alpha\det(\text{same rows except }u)
++\beta\det(\text{same rows except }v).
+$$
+
+So the determinant is linear in each row separately.
+</TheoremCard>
+
+<TheoremCard title="Repeated rows force determinant 0">
+If a square matrix has two identical rows, then its determinant is `0`.
+</TheoremCard>
+
+This fact is one of the basic reasons determinants measure independence rather
+than mere size. Repeating one row means the matrix no longer contributes a new
+direction, so the signed area or signed volume collapses.
+
+<CollapsibleProof title="Why repeated rows force the determinant to vanish">
+If two rows are identical, then swapping those rows leaves the matrix unchanged.
+But the determinant changes sign under a row swap, a fact proved in the next
+note. So the determinant must satisfy
+
+$$
+\det(A)=-\det(A),
+$$
+
+which forces `\det(A)=0`.
+
+Even before you know the row-swap theorem formally, you can see the same idea
+through multilinearity: one row can be written as the same row plus zero, so
+the signed contribution cancels.
+</CollapsibleProof>
+
+## Common mistake
+
+<CommonMistake title="A determinant belongs to a square matrix only">
+It is tempting to ask for the determinant of a `2\times3` or `3\times2` matrix.
+Do not do that. Determinants are defined only for square matrices, because the
+recursive minor construction must always delete one row and one column from a
+square matrix and stay square.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="What is `\det\begin{bmatrix}4\end{bmatrix}`?">
+Remember the base case of the recursive definition.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is `4`. A `1\times1` determinant equals its only entry.
+</RevealSolution>
+
+<QuickCheck prompt="Why is it wise to expand a determinant along a row with many zeros?">
+Think about how many minors survive in the expansion sum.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Every zero entry contributes `0` times its cofactor, so the expansion contains
+fewer nonzero terms and therefore fewer smaller determinants to compute.
+</RevealSolution>
+
+<QuickCheck prompt="If a diagonal matrix has diagonal entries `2`, `-1`, and `5`, what is its determinant?">
+Use the triangular-matrix rule.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`2(-1)(5)=-10`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Compute `\det\begin{bmatrix}1&2\\3&4\end{bmatrix}` from the cofactor definition.">
+Write the two cofactors in the first row explicitly before multiplying.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The cofactors are `A_{11}=4` and `A_{12}=-3`. Therefore
+
+$$
+\det\begin{bmatrix}1&2\\3&4\end{bmatrix}=1(4)+2(-3)=-2.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Find the determinant of `\begin{bmatrix}2&0&1\\0&3&0\\4&0&5\end{bmatrix}` by expanding along the best row or column.">
+Pick the row or column with the greatest number of zeros.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Expand along the second row:
+
+$$
+\det=
+3(-1)^{2+2}
+\begin{vmatrix}
+2&1\\
+4&5
+\end{vmatrix}
+=3(10-4)=18.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Explain why a matrix with one zero row cannot be invertible.">
+Connect the determinant theorem here with the invertibility theorem from the next note.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+A zero row forces determinant `0`. The next note proves that an invertible
+matrix must have nonzero determinant. So a matrix with a zero row cannot be
+invertible.
+</RevealSolution>
+
+## Related notes
+
+Read [2.1 Matrix basics](/en/notes/math1030/matrices/matrix-basics) to review
+square matrices and indexing language.
+
+Continue with
+[7.2 Row operations, products, and invertibility](/en/notes/math1030/determinants/row-operations-products-and-invertibility)
+to see how determinants behave under elimination.
+
+Keep [5.1 Invertible matrices](/en/notes/math1030/invertibility/invertible-matrices)
+nearby, because determinants soon become one more equivalent test for
+invertibility.

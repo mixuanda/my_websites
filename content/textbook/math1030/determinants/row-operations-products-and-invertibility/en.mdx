@@ -1,0 +1,389 @@
+---
+title: "7.2 Row operations, products, and invertibility"
+description: "Track exactly how row operations change determinants, then connect that behavior to multiplicativity, inverse matrices, and invertibility tests."
+---
+
+The previous note defines determinants by cofactor expansion. That definition is
+correct, but it is not the way you want to compute every determinant by hand.
+The real power comes from combining determinants with row operations.
+
+This note answers three questions:
+
+- how does each elementary row operation affect the determinant;
+- why does `\det(AB)=\det(A)\det(B)` hold for square matrices;
+- why is `\det(A)\neq0` exactly the same as saying that `A` is invertible.
+
+## Why row operations matter
+
+Row reduction changes a matrix into a friendlier one. The determinant is useful
+only if we know precisely how much that friendly matrix differs from the
+original.
+
+<TheoremCard title="How the three row operations change determinant">
+Let `A` be a square matrix.
+
+1. If `B` is obtained from `A` by swapping two rows once, then
+
+$$
+\det(B)=-\det(A).
+$$
+
+2. If `B` is obtained from `A` by multiplying one row by a nonzero scalar
+   `\beta`, then
+
+$$
+\det(B)=\beta\det(A).
+$$
+
+3. If `B` is obtained from `A` by replacing one row with itself plus a multiple
+   of another row, then
+
+$$
+\det(B)=\det(A).
+$$
+</TheoremCard>
+
+These are exact formulas, not rough heuristics. They are the bookkeeping rules
+that let elimination and determinants work together.
+
+## A row-reduction algorithm for determinants
+
+Suppose you row-reduce a square matrix `A` to an upper triangular matrix `U`.
+Then:
+
+1. track how many row swaps you used;
+2. track every row-scaling factor you introduced;
+3. leave row-addition steps alone, because they do not change the determinant;
+4. read `\det(U)` from the diagonal product.
+
+Then undo the sign and scaling changes to recover `\det(A)`.
+
+<WorkedExample title="Evaluate a determinant by row reduction">
+Let
+
+$$
+A=
+\begin{bmatrix}
+1&2&3\\
+2&5&7\\
+3&8&10
+\end{bmatrix}.
+$$
+
+Apply row operations:
+
+$$
+\begin{bmatrix}
+1&2&3\\
+2&5&7\\
+3&8&10
+\end{bmatrix}
+\xrightarrow{R_2-2R_1,\ R_3-3R_1}
+\begin{bmatrix}
+1&2&3\\
+0&1&1\\
+0&2&1
+\end{bmatrix}
+\xrightarrow{R_3-2R_2}
+\begin{bmatrix}
+1&2&3\\
+0&1&1\\
+0&0&-1
+\end{bmatrix}.
+$$
+
+Only row-addition operations were used, so the determinant did not change
+during the reduction. The final matrix is upper triangular, so
+
+$$
+\det(A)=1\cdot1\cdot(-1)=-1.
+$$
+</WorkedExample>
+
+<WorkedExample title="A row swap changes the sign">
+Let
+
+$$
+B=
+\begin{bmatrix}
+0&1\\
+4&3
+\end{bmatrix}.
+$$
+
+Swap the two rows:
+
+$$
+\begin{bmatrix}
+0&1\\
+4&3
+\end{bmatrix}
+\xrightarrow{R_1\leftrightarrow R_2}
+\begin{bmatrix}
+4&3\\
+0&1
+\end{bmatrix}.
+$$
+
+The new matrix is triangular, so its determinant is `4`. Because one row swap
+was used,
+
+$$
+\det(B)=-4.
+$$
+
+That agrees with the direct `2\times2` calculation:
+
+$$
+\det(B)=0\cdot3-1\cdot4=-4.
+$$
+</WorkedExample>
+
+## Multiplicativity is the structural theorem
+
+<TheoremCard title="Determinant of a product">
+If `A` and `B` are square matrices of the same size, then
+
+$$
+\det(AB)=\det(A)\det(B).
+$$
+</TheoremCard>
+
+This theorem is deeper than it first looks. Matrix multiplication is not
+commutative, and usually `AB\neq BA`. Even so,
+
+$$
+\det(AB)=\det(A)\det(B)=\det(B)\det(A)=\det(BA).
+$$
+
+So determinants forget some of the order-sensitive detail of matrix
+multiplication while preserving a very important scalar invariant.
+
+<CollapsibleProof title="Why row-operation matrices lead to multiplicativity">
+Every elementary row operation can be encoded by an elementary matrix `E`, and
+for such matrices we know
+
+$$
+\det(EA)=\det(E)\det(A).
+$$
+
+If `A` is invertible, it can be written as a product of elementary matrices.
+That reduces the product theorem to repeated use of the elementary case. If `A`
+is singular, then both sides are `0`, so the same formula still holds.
+</CollapsibleProof>
+
+## Determinant and invertibility say the same thing
+
+<TheoremCard title="Invertibility test by determinant">
+For a square matrix `A`, the following are equivalent:
+
+1. `A` is invertible.
+2. `\det(A)\neq0`.
+</TheoremCard>
+
+This turns determinants into a full invertibility test, not merely a numerical
+summary.
+
+If a row-reduced form of `A` has a zero row, then its determinant is `0`, so
+`A` is not invertible. If row reduction reaches the identity matrix, then the
+diagonal product is nonzero, so `A` is invertible.
+
+<TheoremCard title="Inverse and powers">
+If `A` is invertible, then
+
+$$
+\det(A^{-1})=\frac{1}{\det(A)}.
+$$
+
+More generally, for every positive integer `m`,
+
+$$
+\det(A^m)=(\det(A))^m.
+$$
+
+If `A` is invertible, the same power rule remains true for negative integers as
+well.
+</TheoremCard>
+
+<WorkedExample title="Find the parameter that makes a matrix singular">
+Let
+
+$$
+A=
+\begin{bmatrix}
+2&1&0&1\\
+0&1&1&1\\
+1&0&0&x\\
+0&2&3&1
+\end{bmatrix}.
+$$
+
+Expand along the first column:
+
+$$
+\det(A)=
+2
+\begin{vmatrix}
+1&1&1\\
+0&0&x\\
+2&3&1
+\end{vmatrix}
++
+\begin{vmatrix}
+1&0&1\\
+1&1&1\\
+2&3&1
+\end{vmatrix}.
+$$
+
+The first `3\times3` determinant is easiest by expanding along its second row:
+
+$$
+\begin{vmatrix}
+1&1&1\\
+0&0&x\\
+2&3&1
+\end{vmatrix}
+=-x
+\begin{vmatrix}
+1&1\\
+2&3
+\end{vmatrix}
+=-x.
+$$
+
+The second determinant equals `-1`, so
+
+$$
+\det(A)=2(-x)+(-1)=-2x-1.
+$$
+
+Therefore `A` is singular exactly when `\det(A)=0`, that is,
+
+$$
+x=-\frac12.
+$$
+</WorkedExample>
+
+## A practical checklist for hand computation
+
+When you compute a determinant by elimination, keep the following discipline.
+
+- Use row-addition steps as freely as you like; they preserve the determinant.
+- Delay row scaling unless it creates a major simplification, because each
+  scaling factor must later be divided back out.
+- Count row swaps carefully; each one flips the sign once.
+- Stop as soon as you reach an upper triangular matrix or a zero row.
+
+This is exactly the same kind of discipline you already use in solving linear
+systems. The difference is that the final goal is a scalar, not a solution
+vector.
+
+## Common mistake
+
+<CommonMistake title="Row-equivalent matrices do not usually have the same determinant">
+Students often remember that row-equivalent matrices describe the same solution
+set for a linear system and then incorrectly conclude that they must have the
+same determinant. That is false.
+
+Only row-addition steps preserve the determinant. Row swaps change its sign, and
+row scaling multiplies it by the scaling factor.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="If one row of A is multiplied by 5, what happens to `\det(A)`?">
+Use the row-scaling rule directly.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The determinant is multiplied by `5`.
+</RevealSolution>
+
+<QuickCheck prompt="If A has a zero row after row reduction, what can you conclude about `\det(A)`?">
+Think about the determinant of the echelon form first.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`\det(A)=0`. A row-echelon form with a zero row is singular, so its determinant
+is `0`, and therefore the original matrix also has determinant `0`.
+</RevealSolution>
+
+<QuickCheck prompt="Can a square matrix with determinant `0` be invertible?">
+Use the equivalence theorem.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. A square matrix is invertible exactly when its determinant is nonzero.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Use row reduction to compute `\det\begin{bmatrix}1&1&0\\2&3&1\\0&1&4\end{bmatrix}`.">
+Try to avoid row scaling so the bookkeeping stays short.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Subtract `2R_1` from `R_2`:
+
+$$
+\begin{bmatrix}
+1&1&0\\
+2&3&1\\
+0&1&4
+\end{bmatrix}
+\xrightarrow{R_2-2R_1}
+\begin{bmatrix}
+1&1&0\\
+0&1&1\\
+0&1&4
+\end{bmatrix}
+\xrightarrow{R_3-R_2}
+\begin{bmatrix}
+1&1&0\\
+0&1&1\\
+0&0&3
+\end{bmatrix}.
+$$
+
+Only row-addition steps were used, so
+
+$$
+\det=1\cdot1\cdot3=3.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Suppose `\det(A)=4` and `\det(B)=-3` for two `3\times3` matrices. What is `\det(AB)`?">
+Use multiplicativity.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+
+$$
+\det(AB)=\det(A)\det(B)=4(-3)=-12.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="If `\det(A)=6`, what is `\det(A^{-1})`?">
+Assume A is invertible.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+
+$$
+\det(A^{-1})=\frac{1}{\det(A)}=\frac16.
+$$
+</RevealSolution>
+
+## Related notes
+
+Return to
+[7.1 Determinants and cofactor expansion](/en/notes/math1030/determinants/determinants-and-cofactor-expansion)
+if the basic definition still feels too symbolic.
+
+Continue with
+[7.3 Transpose, column operations, and Cramer's rule](/en/notes/math1030/determinants/transpose-column-operations-and-cramers-rule)
+to see the column viewpoint and the adjoint formula.
+
+Keep [5.1 Invertible matrices](/en/notes/math1030/invertibility/invertible-matrices)
+in view, because this note upgrades that chapter with a determinant criterion.

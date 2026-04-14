@@ -1,0 +1,379 @@
+---
+title: "7.2 行變換、乘積與可逆性"
+description: "精確追蹤行變換如何改變行列式，再把這種行為連到乘積公式、逆矩陣與可逆性測試。"
+---
+
+上一節用餘因子展開定義了行列式。那個定義是正確的，但並不是每次都
+值得直接照着做的計算方法。真正強大的地方，在於把行列式與行變換放
+在一起看。
+
+這一節要回答三個問題：
+
+- 每一種基本行變換會怎樣改變行列式；
+- 為甚麼對方陣有 `\det(AB)=\det(A)\det(B)`；
+- 為甚麼 `\det(A)\neq0` 與 `A` 可逆其實是同一句話。
+
+## 為甚麼行變換重要
+
+行化簡的作用，是把矩陣變成一個更容易處理的矩陣。若行列式要有用，
+就必須知道這個「更容易處理的矩陣」與原矩陣之間，究竟差了多少。
+
+<TheoremCard title="三種基本行變換對行列式的影響">
+設 `A` 是一個方陣。
+
+1. 若 `B` 是由 `A` 交換一次兩行得到，則
+
+$$
+\det(B)=-\det(A).
+$$
+
+2. 若 `B` 是由 `A` 把某一行乘上非零純量 `\beta` 得到，則
+
+$$
+\det(B)=\beta\det(A).
+$$
+
+3. 若 `B` 是由 `A` 把某一行改成「原本那一行加上另一行的倍數」得
+   到，則
+
+$$
+\det(B)=\det(A).
+$$
+</TheoremCard>
+
+這些都是精確公式，不是粗略印象。它們正正就是讓消元法與行列式可以
+一起工作的記帳規則。
+
+## 用行化簡計算行列式
+
+假設你把一個方陣 `A` 化簡成上三角矩陣 `U`。那麼：
+
+1. 記錄一共用了多少次換行；
+2. 記錄有沒有把某一行乘上純量，以及乘了甚麼；
+3. 行加法不用額外處理，因為它不改變行列式；
+4. 最後從 `U` 的對角線乘積讀出 `\det(U)`。
+
+然後再把換號與縮放因素補回去，便得到 `\det(A)`。
+
+<WorkedExample title="用行化簡計算一個行列式">
+令
+
+$$
+A=
+\begin{bmatrix}
+1&2&3\\
+2&5&7\\
+3&8&10
+\end{bmatrix}.
+$$
+
+做行變換：
+
+$$
+\begin{bmatrix}
+1&2&3\\
+2&5&7\\
+3&8&10
+\end{bmatrix}
+\xrightarrow{R_2-2R_1,\ R_3-3R_1}
+\begin{bmatrix}
+1&2&3\\
+0&1&1\\
+0&2&1
+\end{bmatrix}
+\xrightarrow{R_3-2R_2}
+\begin{bmatrix}
+1&2&3\\
+0&1&1\\
+0&0&-1
+\end{bmatrix}.
+$$
+
+整個過程只用了「某行加上另一行倍數」這類行變換，所以行列式沒有改
+變。最後矩陣已是上三角，因此
+
+$$
+\det(A)=1\cdot1\cdot(-1)=-1.
+$$
+</WorkedExample>
+
+<WorkedExample title="換行一次就會變號">
+令
+
+$$
+B=
+\begin{bmatrix}
+0&1\\
+4&3
+\end{bmatrix}.
+$$
+
+交換兩行：
+
+$$
+\begin{bmatrix}
+0&1\\
+4&3
+\end{bmatrix}
+\xrightarrow{R_1\leftrightarrow R_2}
+\begin{bmatrix}
+4&3\\
+0&1
+\end{bmatrix}.
+$$
+
+新矩陣是三角矩陣，所以它的行列式是 `4`。由於只交換了一次兩行，
+
+$$
+\det(B)=-4.
+$$
+
+這與直接用 `2\times2` 公式計算得到的結果一致：
+
+$$
+\det(B)=0\cdot3-1\cdot4=-4.
+$$
+</WorkedExample>
+
+## 乘積公式是結構定理
+
+<TheoremCard title="乘積的行列式">
+若 `A` 與 `B` 是同尺寸的方陣，則
+
+$$
+\det(AB)=\det(A)\det(B).
+$$
+</TheoremCard>
+
+這條定理比表面看起來深得多。矩陣乘法並不交換，通常 `AB\neq BA`。
+即使如此，
+
+$$
+\det(AB)=\det(A)\det(B)=\det(B)\det(A)=\det(BA)
+$$
+
+所以行列式會忘記一部分乘法次序敏感的細節，但同時保留一個非常重要
+的純量不變量。
+
+<CollapsibleProof title="為甚麼由基本矩陣可推出乘積公式">
+每個基本行變換都可以由一個基本矩陣 `E` 表示，而對這些矩陣我們已知
+
+$$
+\det(EA)=\det(E)\det(A).
+$$
+
+若 `A` 可逆，便可以把它寫成若干基本矩陣的乘積，於是乘積公式就能由
+基本情況反覆套用得到。若 `A` 奇異，兩邊都會變成 `0`，公式仍然成
+立。
+</CollapsibleProof>
+
+## 行列式與可逆性其實是同一件事
+
+<TheoremCard title="用行列式判斷可逆性">
+對任何方陣 `A`，下列兩件事等價：
+
+1. `A` 可逆。
+2. `\det(A)\neq0`。
+</TheoremCard>
+
+因此，行列式不只是數值摘要，它本身就是一個完整的可逆性測試。
+
+若 `A` 的行階梯形有零行，那行列式就必為 `0`，所以 `A` 不可逆。若
+行化簡最終得到的是單位矩陣，那對角線乘積非零，因此 `A` 可逆。
+
+<TheoremCard title="逆矩陣與冪次的行列式">
+若 `A` 可逆，則
+
+$$
+\det(A^{-1})=\frac{1}{\det(A)}.
+$$
+
+更一般地，對每個正整數 `m`，
+
+$$
+\det(A^m)=(\det(A))^m.
+$$
+
+若 `A` 可逆，這條冪次公式對負整數亦成立。
+</TheoremCard>
+
+<WorkedExample title="找出令矩陣變成奇異的參數">
+令
+
+$$
+A=
+\begin{bmatrix}
+2&1&0&1\\
+0&1&1&1\\
+1&0&0&x\\
+0&2&3&1
+\end{bmatrix}.
+$$
+
+沿第一列展開：
+
+$$
+\det(A)=
+2
+\begin{vmatrix}
+1&1&1\\
+0&0&x\\
+2&3&1
+\end{vmatrix}
++
+\begin{vmatrix}
+1&0&1\\
+1&1&1\\
+2&3&1
+\end{vmatrix}.
+$$
+
+第一個 `3\times3` 行列式沿第二行展開最方便：
+
+$$
+\begin{vmatrix}
+1&1&1\\
+0&0&x\\
+2&3&1
+\end{vmatrix}
+=-x
+\begin{vmatrix}
+1&1\\
+2&3
+\end{vmatrix}
+=-x.
+$$
+
+第二個行列式等於 `-1`，所以
+
+$$
+\det(A)=2(-x)+(-1)=-2x-1.
+$$
+
+因此 `A` 奇異當且僅當 `\det(A)=0`，亦即
+
+$$
+x=-\frac12.
+$$
+</WorkedExample>
+
+## 手算時的實用清單
+
+若你要用消元法計行列式，請保持以下紀律。
+
+- 行加法可以放心用，因為它不改變行列式；
+- 除非能帶來大幅簡化，否則不要太早做縮放，因為之後要把縮放因素補
+  回去；
+- 每一次換行都要清楚記錄，因為每次都會變號；
+- 一到上三角或出現零行，就應停下來讀值。
+
+這跟你解線性系統時的紀律其實一樣。不同之處只在於，最終目標不再是
+解向量，而是一個純量。
+
+## 常見錯誤
+
+<CommonMistake title="行等價不代表行列式相同">
+學生常常記得：行等價矩陣對應同一個線性系統的解集。然後便錯誤地推
+出：它們的行列式也應相同。這是假的。
+
+只有第三類行變換會保留行列式。換行會改號，而把一行乘上純量會把行
+列式一起乘上那個純量。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="若把 A 的其中一行乘上 5，`\det(A)` 會怎樣變？">
+直接使用縮放那條規則。
+</QuickCheck>
+
+<RevealSolution title="答案">
+行列式會乘上 `5`。
+</RevealSolution>
+
+<QuickCheck prompt="若 A 行化簡後出現零行，對 `\det(A)` 可以下甚麼結論？">
+先想階梯形本身的行列式。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`\det(A)=0`。含零行的行階梯形是奇異的，所以其行列式是 `0`，因此原
+矩陣的行列式也必為 `0`。
+</RevealSolution>
+
+<QuickCheck prompt="行列式等於 `0` 的方陣可以可逆嗎？">
+用等價定理回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不可以。方陣可逆，當且僅當它的行列式非零。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="用行化簡計算 `\det\begin{bmatrix}1&1&0\\2&3&1\\0&1&4\end{bmatrix}`。">
+盡量避免行縮放，令記帳最短。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+先做 `R_2-2R_1`：
+
+$$
+\begin{bmatrix}
+1&1&0\\
+2&3&1\\
+0&1&4
+\end{bmatrix}
+\xrightarrow{R_2-2R_1}
+\begin{bmatrix}
+1&1&0\\
+0&1&1\\
+0&1&4
+\end{bmatrix}
+\xrightarrow{R_3-R_2}
+\begin{bmatrix}
+1&1&0\\
+0&1&1\\
+0&0&3
+\end{bmatrix}.
+$$
+
+整個過程只用了行加法，因此
+
+$$
+\det=1\cdot1\cdot3=3.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="若 `\det(A)=4` 而 `\det(B)=-3`，其中 A、B 都是 `3\times3` 方陣，求 `\det(AB)`。">
+用乘積公式。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+
+$$
+\det(AB)=\det(A)\det(B)=4(-3)=-12.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="若 `\det(A)=6`，求 `\det(A^{-1})`。">
+假設 A 可逆。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+
+$$
+\det(A^{-1})=\frac{1}{\det(A)}=\frac16.
+$$
+</RevealSolution>
+
+## 相關筆記
+
+若你對基本定義仍覺得太符號化，可先回看
+[7.1 行列式與餘因子展開](/zh-hk/notes/math1030/determinants/determinants-and-cofactor-expansion)。
+
+之後可繼續讀
+[7.3 轉置、列變換與克拉默法則](/zh-hk/notes/math1030/determinants/transpose-column-operations-and-cramers-rule)，
+從列的角度重看行列式。
+
+另外亦應把
+[5.1 可逆矩陣](/zh-hk/notes/math1030/invertibility/invertible-matrices)
+放在旁邊，因為本節等於用行列式補上了那一章的可逆性判準。

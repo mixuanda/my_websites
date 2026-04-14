@@ -42,6 +42,11 @@ The table below covers the current source-backed note set in the implementation.
 | RREF | reduced row-echelon form | 最簡行階梯形 | 最简行阶梯形 | Keep the acronym `RREF` in all languages. | MATH1030 notes |
 | Solution set | solution set | 解集 | 解集 | Explain whether the set has one, many, or no solutions. | MATH1030 notes |
 | Invertible matrix | invertible matrix | 可逆矩陣 | 可逆矩阵 | Keep the link to the inverse matrix explicit. | MATH1030 notes |
+| Determinant | determinant | 行列式 | 行列式 | Tie it to signed scaling and invertibility, not only to a formula. | MATH1030 determinants |
+| Minor | minor | 子式 | 子式 | Keep the delete-row-and-column construction explicit. | MATH1030 determinants |
+| Cofactor | cofactor | 餘因子 | 余因子 | Keep the sign factor `(-1)^{i+j}` visible. | MATH1030 determinants |
+| Adjoint matrix | adjoint matrix | 伴隨矩陣 | 伴随矩阵 | Note that many books say “adjugate”; keep `adj(A)` notation stable. | MATH1030 determinants |
+| Cramer's rule | Cramer's rule | 克拉默法則 | 克拉默法则 | Use only for square invertible systems. | MATH1030 determinants |
 | Vector space | vector space | 向量空間 | 向量空间 | Use the full term before shortening explanations. | MATH1030 vector spaces |
 | Subspace | subspace | 子空間 | 子空间 | Tie the term to the closure test in beginner-facing prose. | MATH1030 vector spaces |
 | Span | span | 張成 | 张成 | Avoid mixing it with “generate” unless you explain the relation. | MATH1030 vector spaces |

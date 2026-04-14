@@ -1,0 +1,411 @@
+---
+title: "7.1 行列式与余因子展开"
+description: "先用子式与余因子仔细定义行列式，再理解余因子展开如何把一个标量变成方阵结构的精确摘要。"
+---
+
+行列式会为一个方阵配上一个数。这个数并不是装饰。之后它会告诉你矩
+阵是否可逆、行与列变换怎样影响矩阵，以及某些方形线性系统如何用公
+式解出。
+
+代价是，行列式的定义比矩阵加法或数乘细致得多。行列式只对方阵定
+义，而且它是由较小尺寸的行列式递归建出来的。
+
+## 为什么这一节重要
+
+如果你只背
+
+$$
+\det\begin{bmatrix}a&b\\c&d\end{bmatrix}=ad-bc,
+$$
+
+你就会错过真正的结构。这一节要做的，是说明这个公式从何而来、为什
+么符号会交替，以及为什么沿着一条选得好的行或列展开，可以把一个困
+难计算变得可控制。
+
+<Definition title="子矩阵、子式与余因子">
+设 `A=[a_{ij}]` 是一个 `n\times n` 矩阵。
+
+固定 `i` 与 `j`，删去第 `i` 行与第 `j` 列，得到的
+`(n-1)\times(n-1)` 矩阵记作 `A(i\mid j)`。
+
+项 `a_{ij}` 的 **子式** 定义为
+
+$$
+M_{ij}=\det(A(i\mid j)).
+$$
+
+项 `a_{ij}` 的 **余因子** 定义为
+
+$$
+A_{ij}=(-1)^{i+j}M_{ij}.
+$$
+
+因子 `(-1)^{i+j}` 产生棋盘式的正负号：
+
+$$
+\begin{bmatrix}
++ & - & + & \cdots\\
+- & + & - & \cdots\\
++ & - & + & \cdots\\
+\vdots & \vdots & \vdots & \ddots
+\end{bmatrix}.
+$$
+</Definition>
+
+<Definition title="用余因子展开定义行列式">
+若 `A=[a_{11}]` 是 `1\times1` 矩阵，就定义
+
+$$
+\det(A)=a_{11}.
+$$
+
+若 `A=[a_{ij}]` 是 `n\times n` 矩阵且 `n>1`，就沿第一行作展开：
+
+$$
+\det(A)=a_{11}A_{11}+a_{12}A_{12}+\cdots+a_{1n}A_{1n}.
+$$
+
+等价地，
+
+$$
+\det(A)=a_{11}M_{11}-a_{12}M_{12}+\cdots+(-1)^{1+n}a_{1n}M_{1n}.
+$$
+</Definition>
+
+这个定义是递归的。`4\times4` 行列式会被拆成几个 `3\times3` 行列
+式，而每个 `3\times3` 行列式又会被拆成 `2\times2` 行列式，最后再
+回到 `1\times1` 的基本情况。
+
+## 第一批例子
+
+<WorkedExample title="熟悉的 2×2 公式其实来自定义">
+设
+
+$$
+A=\begin{bmatrix}a_{11}&a_{12}\\a_{21}&a_{22}\end{bmatrix}.
+$$
+
+第一行的余因子是
+
+$$
+A_{11}=(-1)^{1+1}a_{22}=a_{22},
+\qquad
+A_{12}=(-1)^{1+2}a_{21}=-a_{21}.
+$$
+
+所以
+
+$$
+\det(A)=a_{11}A_{11}+a_{12}A_{12}
+=a_{11}a_{22}-a_{12}a_{21}.
+$$
+
+因此常见的 `ad-bc` 公式并不是另一条独立定理，而是递归定义在
+`2\times2` 情况下的具体写法。
+</WorkedExample>
+
+<WorkedExample title="用余因子展开计算一个 3×3 行列式">
+令
+
+$$
+B=
+\begin{bmatrix}
+3&2&-1\\
+4&1&6\\
+-3&-1&2
+\end{bmatrix}.
+$$
+
+沿第一行展开：
+
+$$
+\det(B)=3
+\begin{vmatrix}
+1&6\\
+-1&2
+\end{vmatrix}
+-2
+\begin{vmatrix}
+4&6\\
+-3&2
+\end{vmatrix}
+(-1)
+\begin{vmatrix}
+4&1\\
+-3&-1
+\end{vmatrix}.
+$$
+
+先算三个 `2\times2` 行列式：
+
+$$
+\begin{vmatrix}
+1&6\\
+-1&2
+\end{vmatrix}=1\cdot2-6(-1)=8,
+$$
+
+$$
+\begin{vmatrix}
+4&6\\
+-3&2
+\end{vmatrix}=4\cdot2-6(-3)=26,
+$$
+
+$$
+\begin{vmatrix}
+4&1\\
+-3&-1
+\end{vmatrix}=4(-1)-1(-3)=-1.
+$$
+
+因此
+
+$$
+\det(B)=3(8)-2(26)+(-1)(-1)=24-52+1=-27.
+$$
+</WorkedExample>
+
+## 沿着零较多的行去展开
+
+直接展开通常很贵。余因子展开真正有用之处，在于你可以挑选一条最省
+工的行或列。
+
+<TheoremCard title="可沿任意一行作余因子展开">
+对任意固定的第 `i` 行，若 `A=[a_{ij}]` 是 `n\times n` 矩阵，则
+
+$$
+\det(A)=a_{i1}A_{i1}+a_{i2}A_{i2}+\cdots+a_{in}A_{in}.
+$$
+
+等价地，
+
+$$
+\det(A)=\sum_{j=1}^n (-1)^{i+j}a_{ij}M_{ij}.
+$$
+
+所以虽然定义是沿第一行写出的，但同一个行列式其实可以沿任何一行展
+开。
+</TheoremCard>
+
+<WorkedExample title="选一条可以消掉最多工作的行">
+令
+
+$$
+C=
+\begin{bmatrix}
+1&9&7&7\\
+0&5&2&5\\
+1&9&8&0\\
+1&9&8&3
+\end{bmatrix}.
+$$
+
+沿第二行展开比沿第一行展开更好，因为第二行第一项本身已经是 `0`：
+
+$$
+\det(C)=
+0\cdot A_{21}
++5A_{22}
++2A_{23}
++5A_{24}.
+$$
+
+这样只剩三个 `3\times3` 行列式，而不是四个。实际计算时，最好的那
+条行或列通常就是零最多、或者数字最简单的那一条。
+</WorkedExample>
+
+## 从定义直接得到的快结论
+
+只要允许你沿适当的行或列展开，不少实用定理都会立即出现。
+
+<TheoremCard title="有零行或零列，行列式就是 0">
+若一个方阵有一整行都是 `0`，则其行列式等于 `0`。同样地，若它有一
+整列都是 `0`，行列式也等于 `0`。
+</TheoremCard>
+
+零行的说法是立刻可见的：直接沿那一行展开即可。零列的说法则是同一
+个结构从列的角度再看一次。
+
+<TheoremCard title="某行或某列只有一个非零项时，可以立刻缩小尺寸">
+若方阵 `C` 的第 `k` 行最多只有一个非零项，而该项位于 `(k,\ell)`，
+则
+
+$$
+\det(C)=c_{k\ell}(-1)^{k+\ell}\det(C(k\mid \ell)).
+$$
+
+若第 `\ell` 列最多只有一个非零项，而且该非零项位于第 `k` 行，也有
+同样的结论。
+</TheoremCard>
+
+这条定理正式表达了初学者常用的直觉：若某行或某列几乎全是零，就应
+该立即利用它。
+
+<TheoremCard title="三角矩阵的行列式很容易读">
+若 `T` 是上三角或下三角矩阵，则
+
+$$
+\det(T)=t_{11}t_{22}\cdots t_{nn},
+$$
+
+也就是对角线各项的乘积。
+</TheoremCard>
+
+这就是之后我们如此重视行化简的原因。若你能把矩阵化到三角形，同时
+又准确记录行列式怎样改变，那最终的值就会很容易读出。
+
+<WorkedExample title="三角矩阵只需看对角线">
+对
+
+$$
+T=
+\begin{bmatrix}
+2&3&4\\
+0&5&7\\
+0&0&-1
+\end{bmatrix},
+$$
+
+不需要做完整展开。因为 `T` 是上三角矩阵，
+
+$$
+\det(T)=2\cdot5\cdot(-1)=-10.
+$$
+
+对角线以上的数字对矩阵本身当然重要，但在这种三角情况下，它们不会
+影响行列式公式。
+</WorkedExample>
+
+## 多重线性与交替性
+
+行列式并不是对整个矩阵一次性线性的，但若把其他各行固定，它对其中
+一行是线性的。
+
+<TheoremCard title="固定其他各行后，行列式对某一行是线性的">
+固定某个方阵除了第 `p` 行以外的所有行。若新的第 `p` 行是
+
+$$
+\alpha u+\beta v,
+$$
+
+那么行列式便会拆成
+
+$$
+\det(\text{相同其他各行，但第 p 行是 }\alpha u+\beta v)
+=\alpha\det(\text{相同其他各行，但第 p 行是 }u)
++\beta\det(\text{相同其他各行，但第 p 行是 }v).
+$$
+
+所以行列式是对每一行分别线性的。
+</TheoremCard>
+
+<TheoremCard title="若有两行相同，行列式必为 0">
+若一个方阵有两行完全相同，则它的行列式等于 `0`。
+</TheoremCard>
+
+这件事揭示了行列式衡量的是独立性，而不只是大小。若你重复了一行，
+矩阵便没有提供新的方向，带符号面积或带符号体积就会塌缩。
+
+<CollapsibleProof title="为什么重复的两行会逼出 0">
+若两行一样，交换那两行之后矩阵其实没有变。可是下一节会证明，交换
+两行会令行列式变号。因此行列式必须满足
+
+$$
+\det(A)=-\det(A),
+$$
+
+所以 `\det(A)=0`。
+
+即使你暂时未正式使用“换行变号”定理，也能从多重线性的角度感受到这
+件事：重复的行会造成线性上的抵消。
+</CollapsibleProof>
+
+## 常见错误
+
+<CommonMistake title="行列式只属于方阵">
+很多人会不自觉地问一个 `2\times3` 或 `3\times2` 矩阵的行列式是什
+么。不要这样做。行列式只对方阵定义，因为递归的子式构造必须每次都
+从一个方阵删去一行一列，并且仍然保持是方阵。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="` \det\begin{bmatrix}4\end{bmatrix} ` 是多少？">
+回想递归定义的基本情况。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它等于 `4`。`1\times1` 行列式就是它唯一的项。
+</RevealSolution>
+
+<QuickCheck prompt="为什么沿着零较多的行去展开会比较聪明？">
+想想展开式中会剩下多少个非零项。
+</QuickCheck>
+
+<RevealSolution title="答案">
+每个零项都会带来 `0` 倍的余因子，所以展开式留下来的非零项较少，要
+算的较小行列式也较少。
+</RevealSolution>
+
+<QuickCheck prompt="若一个对角矩阵的对角线项是 `2`、`-1`、`5`，它的行列式是多少？">
+用三角矩阵公式。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`2(-1)(5)=-10`。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="用余因子定义计算 `\det\begin{bmatrix}1&2\\3&4\end{bmatrix}`。">
+先把第一行的两个余因子写出来，再代回去。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+余因子是 `A_{11}=4` 与 `A_{12}=-3`。因此
+
+$$
+\det\begin{bmatrix}1&2\\3&4\end{bmatrix}=1(4)+2(-3)=-2.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="用最合适的行或列展开，求 `\det\begin{bmatrix}2&0&1\\0&3&0\\4&0&5\end{bmatrix}`。">
+先找零最多的一行或一列。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+沿第二行展开：
+
+$$
+\det=
+3(-1)^{2+2}
+\begin{vmatrix}
+2&1\\
+4&5
+\end{vmatrix}
+=3(10-4)=18.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="解释为什么有一条零行的矩阵不可能可逆。">
+把本节结论与下一节的可逆性判准连起来。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+零行会逼出行列式等于 `0`。下一节会证明，可逆矩阵恰好就是行列式非
+零的方阵，所以有零行的矩阵不可能可逆。
+</RevealSolution>
+
+## 相关笔记
+
+可先回到 [2.1 矩阵基础](/zh-cn/notes/math1030/matrices/matrix-basics)
+复习方阵与索引记号。
+
+接着读
+[7.2 行变换、乘积与可逆性](/zh-cn/notes/math1030/determinants/row-operations-products-and-invertibility)，
+看看行列式如何与消元法接上。
+
+也可把
+[5.1 可逆矩阵](/zh-cn/notes/math1030/invertibility/invertible-matrices)
+一并放在旁边，因为之后行列式会成为另一个可逆性判准。

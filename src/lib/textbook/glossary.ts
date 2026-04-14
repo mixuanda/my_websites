@@ -368,6 +368,86 @@ export const glossaryEntries: GlossaryEntry[] = [
   },
   {
     definition: {
+      en: "The determinant of a square matrix is the scalar that records how the matrix changes signed area, signed volume, and invertibility.",
+      "zh-cn": "方阵的行列式是一个标量，用来记录这个矩阵怎样改变带符号面积、带符号体积，以及是否可逆。",
+      "zh-hk": "方陣的行列式是一個純量，用來記錄這個矩陣怎樣改變帶符號面積、帶符號體積，以及是否可逆。",
+    },
+    id: "determinant",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§7.1-§7.2" },
+      { file: "reference/MATH1030/1030gi-n06-01.pdf" },
+    ],
+    termEn: "determinant",
+    termZhCn: "行列式",
+    termZhHk: "行列式",
+  },
+  {
+    definition: {
+      en: "The minor M_ij is the determinant of the smaller matrix obtained by deleting row i and column j.",
+      "zh-cn": "子式 M_ij 是删去第 i 行和第 j 列以后所得到较小方阵的行列式。",
+      "zh-hk": "子式 M_ij 是刪去第 i 行和第 j 列以後所得到較小方陣的行列式。",
+    },
+    id: "minor",
+    notationNote: "`M_{ij}` denotes the minor attached to entry `a_{ij}`.",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§7.1" },
+      { file: "reference/MATH1030/1030gi-n06-01.pdf", note: "Sub-matrix and determinant expansion definitions" },
+    ],
+    termEn: "minor",
+    termZhCn: "子式",
+    termZhHk: "子式",
+  },
+  {
+    definition: {
+      en: "The cofactor A_ij is the signed minor (-1)^(i+j) M_ij used in determinant expansion and adjoint formulas.",
+      "zh-cn": "余因子 A_ij 是带符号的子式 (-1)^(i+j) M_ij，用在行列式展开与伴随矩阵公式里。",
+      "zh-hk": "餘因子 A_ij 是帶符號的子式 (-1)^(i+j) M_ij，用在行列式展開與伴隨矩陣公式裡。",
+    },
+    id: "cofactor",
+    notationNote: "`A_{ij}=(-1)^{i+j}M_{ij}` is the cofactor of entry `a_{ij}`.",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§7.1, §7.4" },
+      { file: "reference/MATH1030/1030gi-n06-01.pdf", note: "Expansion along rows" },
+      { file: "reference/MATH1030/1030gi-n06-03.pdf", note: "Appendix on cofactors and adjoint" },
+    ],
+    termEn: "cofactor",
+    termZhCn: "余因子",
+    termZhHk: "餘因子",
+  },
+  {
+    definition: {
+      en: "The adjoint matrix adj(A) is the transpose of the cofactor matrix, and for det(A) ≠ 0 it gives the inverse formula A^(-1) = (1/det(A)) adj(A).",
+      "zh-cn": "伴随矩阵 adj(A) 是余因子矩阵的转置；当 det(A) ≠ 0 时，它给出逆矩阵公式 A^(-1) = (1/det(A)) adj(A)。",
+      "zh-hk": "伴隨矩陣 adj(A) 是餘因子矩陣的轉置；當 det(A) ≠ 0 時，它給出逆矩陣公式 A^(-1) = (1/det(A)) adj(A)。",
+    },
+    id: "adjoint-matrix",
+    notationNote: "Many textbooks now say 'adjugate'; this note set keeps the source's `adj(A)` notation and 'adjoint matrix' wording.",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§7.4.1" },
+      { file: "reference/MATH1030/1030gi-n06-03.pdf", note: "Appendix on adjoint and inverse" },
+    ],
+    termEn: "adjoint matrix",
+    termZhCn: "伴随矩阵",
+    termZhHk: "伴隨矩陣",
+  },
+  {
+    definition: {
+      en: "Cramer's rule solves an invertible square system Ax=b by replacing one column at a time with b and dividing determinants.",
+      "zh-cn": "克拉默法则通过把可逆方阵系统 Ax=b 的某一列依次换成 b，再比较行列式来求各坐标。",
+      "zh-hk": "克拉默法則透過把可逆方陣系統 Ax=b 的某一列依次換成 b，再比較行列式來求各座標。",
+    },
+    id: "cramers-rule",
+    notationNote: "For an invertible matrix A, the rule reads `x_j = det(M_j)/det(A)`.",
+    sourceRefs: [
+      { file: "reference/MATH1030/MATH1030-Notes.pdf", pages: "§7.4.2" },
+      { file: "reference/MATH1030/1030gi-n06-03.pdf", note: "Appendix deriving Cramer's rule" },
+    ],
+    termEn: "Cramer's rule",
+    termZhCn: "克拉默法则",
+    termZhHk: "克拉默法則",
+  },
+  {
+    definition: {
       en: "A null space is the set of all vectors sent to 0 by a given matrix.",
       "zh-cn": "零空间是被某个矩阵送到 0 的所有向量组成的集合。",
       "zh-hk": "零空間是被某個矩陣送到 0 的所有向量組成的集合。",

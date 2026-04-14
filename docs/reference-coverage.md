@@ -45,18 +45,21 @@ The latest merged content passes also:
 - deepened `math1030` unit `6.4 Linear dependence and independence` across all
   three locales so the dependence chapter now carries redundancy, null-space,
   pivot, and low-dimensional tests at real note depth.
+- authored the public `math1030` determinant chapter family through `7.3` in
+  EN, zh-HK, and zh-CN, covering cofactor expansion, row and column
+  determinant rules, multiplicativity, the invertibility criterion, adjoints,
+  and Cramer's rule.
 
 The next resume point is a split backlog:
 
-1. continue deepening the remaining thin public `math1030` units, especially
-   `3.1` and `4.1`, until they reach the target reading depth;
-2. after that, author the determinant chapter family from
-   `reference/MATH1030/1030gi-n06-01.pdf` to `1030gi-n06-03.pdf`;
-3. continue into the eigenvalue / diagonalization family from
+1. continue into the eigenvalue / diagonalization family from
    `reference/MATH1030/1030gi-n07-01.pdf` to `1030gi-n07-03.pdf`;
-4. return to the remaining Math1090 chapter-4 and proof-structure backlog only
+2. then open the inner-product / orthogonality family from
+   `reference/MATH1030/1030gi-n08-01.pdf` together with the parallel
+   master-note chapter;
+3. return to the remaining Math1090 chapter-4 and proof-structure backlog only
    after the next Math1030 family lands cleanly.
-5. keep the remaining thinner matrix-algebra and solution-structure units in
+4. keep the remaining thinner matrix-algebra and solution-structure units in
    active review before treating the chapter-3 / chapter-4 backbone as stable.
 
 The tables below use these status labels:
@@ -209,7 +212,7 @@ instead of adding a brand-new route.
 ## Current public note boundary
 
 After the current implementation pass, the live MATH1030 notes extend through
-chapters 1 to 6 with explicit public pages for:
+chapter 7 with explicit public pages for:
 
 - systems and solution sets
 - matrix basics
@@ -222,6 +225,9 @@ chapters 1 to 6 with explicit public pages for:
 - invertible matrices
 - vector spaces, subspaces, span, dependence, basis, column space, row space,
   and rank
+- determinants and cofactor expansion
+- row operations, products, and invertibility through determinants
+- transpose, column operations, adjoints, and Cramer's rule
 
 MATH1090 remains strongest through logic, sets, natural numbers, induction,
 integers, rationals, and the `sqrt(2)` / incompleteness boundary example. Later
@@ -260,7 +266,7 @@ These files are the main conceptual sources for authored note pages.
 
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| MATH1030 | `reference/MATH1030/MATH1030-Notes.pdf` | master notes | partially incorporated | partial | no | no | Public notes now cover chapters 1-6 through `6.6`. Remaining backlog includes advanced basis appendices, determinants, eigenvalues, diagonalization, inner products, orthogonality, Gram-Schmidt, and inequalities. |
+| MATH1030 | `reference/MATH1030/MATH1030-Notes.pdf` | master notes | partially incorporated | partial | no | no | Public notes now cover chapters 1-7 through `7.3`. Remaining backlog includes advanced basis appendices, eigenvalues, diagonalization, inner products, orthogonality, Gram-Schmidt, and inequalities. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-01.pdf` | lecture note | incorporated | yes | no | no | Merged into `2.1 Matrix basics`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-02.pdf` | lecture note | incorporated | yes | no | no | Merged into `3.1 Matrix multiplication and identity matrices`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-03.pdf` | lecture note | incorporated | yes | no | no | Merged into `3.2 Transpose and special matrices`. |
@@ -300,9 +306,9 @@ These files are the main conceptual sources for authored note pages.
 | MATH1030 | `reference/MATH1030/1030gi-n05-05.pdf` | lecture note | partially incorporated | partial | no | no | Some dimension shortcuts appear in `6.5`, but the full necessary / sufficient theorem package is not yet explicit. |
 | MATH1030 | `reference/MATH1030/1030gi-n05-05p.pdf` | optional appendix | pending | no | no | no | Dimension inequalities for comparable subspaces remain backlog. |
 | MATH1030 | `reference/MATH1030/1030gi-n05-07.pdf` | lecture note | pending | no | no | no | Basis and dimension for matrix subspaces are source-backed but not yet authored. |
-| MATH1030 | `reference/MATH1030/1030gi-n06-01.pdf` | lecture note | pending | no | no | no | Determinants chapter not yet authored. |
-| MATH1030 | `reference/MATH1030/1030gi-n06-02.pdf` | lecture note | pending | no | no | no | Determinants and row operations remain backlog. |
-| MATH1030 | `reference/MATH1030/1030gi-n06-03.pdf` | lecture note | pending | no | no | no | Determinants with transpose / column operations remain backlog. |
+| MATH1030 | `reference/MATH1030/1030gi-n06-01.pdf` | lecture note | incorporated | yes | no | no | Direct source for `7.1 Determinants and cofactor expansion`. |
+| MATH1030 | `reference/MATH1030/1030gi-n06-02.pdf` | lecture note | incorporated | yes | no | no | Direct source for `7.2 Row operations, products, and invertibility`. |
+| MATH1030 | `reference/MATH1030/1030gi-n06-03.pdf` | lecture note | incorporated | yes | no | no | Direct source for `7.3`, including the local appendix path to adjoints and Cramer's rule. |
 | MATH1030 | `reference/MATH1030/1030gi-n07-01.pdf` | lecture note | pending | no | no | no | Eigenvalues and eigenvectors not yet authored. |
 | MATH1030 | `reference/MATH1030/1030gi-n07-02.pdf` | lecture note | pending | no | no | no | Diagonalization not yet authored. |
 | MATH1030 | `reference/MATH1030/1030gi-n07-03.pdf` | lecture note | pending | no | no | no | Characteristic polynomials not yet authored. |
@@ -388,16 +394,14 @@ course remains mostly backlog rather than finished coverage.
 
 The next source-backed expansions with the clearest payoff are:
 
-1. Next missing source-backed chapter family: MATH1030 determinants from
-   `1030gi-n06-01.pdf` to `1030gi-n06-03.pdf`.
-2. After determinants, move directly to the MATH1030 eigenvalue /
+1. Next missing source-backed chapter family: the MATH1030 eigenvalue /
    diagonalization packet `1030gi-n07-01.pdf` to `1030gi-n07-03.pdf`.
-3. Then open the MATH1030 inner-product / orthogonality packet
+2. Then open the MATH1030 inner-product / orthogonality packet
    `1030gi-n08-01.pdf` together with the parallel master-note chapter.
-4. Keep refining thin but already public units, especially MATH1030 `6.4` and
-   the lighter MATH1090 set / function notes, only when they compete directly
-   with a current source-backed chapter family.
-5. Continue the grouped Math1025 slide families only after the active Math1030
+3. Keep refining thin but already public units, especially MATH1030 `3.1`,
+   `4.1`, and the lighter MATH1090 set / function notes, only when they
+   compete directly with a current source-backed chapter family.
+4. Continue the grouped Math1025 slide families only after the active Math1030
    expansion wave stabilizes.
 
 ## Current blockers

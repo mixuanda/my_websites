@@ -993,6 +993,161 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["linear-dependence", "scalar-multiple"],
   },
+  "checkpoint.math1030.triangular-determinant-product": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.triangular-determinant-product",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "determinants",
+    unitId: "math1030.determinants.determinants-and-cofactor-expansion",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "If A is an upper triangular 4×4 matrix with diagonal entries 2, -3, 5, and 7, what is det(A)?",
+      "若 A 是一個 4×4 上三角矩陣，其對角線項為 2、-3、5、7，det(A) 是多少？",
+      "若 A 是一个 4×4 上三角矩阵，其对角线项为 2、-3、5、7，det(A) 是多少？"
+    ),
+    choices: [
+      { id: "a", text: text("11", "11", "11") },
+      { id: "b", text: text("-210", "-210", "-210") },
+      { id: "c", text: text("17", "17", "17") },
+      { id: "d", text: text("0", "0", "0") },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "For a triangular matrix, you do not need a full cofactor expansion. Read the diagonal.",
+        "對三角矩陣而言，唔需要完整做餘因子展開；直接睇對角線。",
+        "对三角矩阵而言，不需要完整做余因子展开；直接看对角线。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "An upper triangular matrix has determinant equal to the product of its diagonal entries.",
+        "上三角矩陣嘅行列式，等於對角線各項之積。",
+        "上三角矩阵的行列式，等于对角线各项之积。"
+      ),
+      text(
+        "So det(A)=2·(-3)·5·7.",
+        "所以 det(A)=2·(-3)·5·7。",
+        "所以 det(A)=2·(-3)·5·7。"
+      ),
+      text(
+        "That product is -210.",
+        "計出來就是 -210。",
+        "算出来就是 -210。"
+      ),
+    ],
+    skillTags: ["determinant", "triangular-matrix", "cofactor-expansion"],
+  },
+  "checkpoint.math1030.row-swap-determinant-sign": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.row-swap-determinant-sign",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "determinants",
+    unitId: "math1030.determinants.row-operations-products-and-invertibility",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "A matrix B is obtained from A by swapping two rows once. Which equation must hold?",
+      "若矩陣 B 由 A 交換一次兩行得到，以下哪個等式一定成立？",
+      "若矩阵 B 由 A 交换一次两行得到，以下哪个等式一定成立？"
+    ),
+    choices: [
+      { id: "a", text: text("det(B)=det(A)", "det(B)=det(A)", "det(B)=det(A)") },
+      { id: "b", text: text("det(B)=-det(A)", "det(B)=-det(A)", "det(B)=-det(A)") },
+      { id: "c", text: text("det(B)=2det(A)", "det(B)=2det(A)", "det(B)=2det(A)") },
+      { id: "d", text: text("det(B)=det(A)^2", "det(B)=det(A)^2", "det(B)=det(A)^2") },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "A single row swap reverses orientation but does not change the absolute size factor.",
+        "一次交換兩行會反轉方向，但唔會改變絕對伸縮量。",
+        "一次交换两行会反转方向，但不会改变绝对伸缩量。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "Swapping two rows is the determinant-changing row operation that flips the sign.",
+        "交換兩行係唯一會直接翻轉符號嘅基本行變換。",
+        "交换两行是唯一会直接翻转符号的基本行变换。"
+      ),
+      text(
+        "Therefore the new determinant is the negative of the old one.",
+        "因此，新行列式等於舊行列式乘上 -1。",
+        "因此，新行列式等于旧行列式乘上 -1。"
+      ),
+    ],
+    skillTags: ["determinant", "row-operation", "sign-change"],
+  },
+  "checkpoint.math1030.cramers-rule-coordinate": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.cramers-rule-coordinate",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "determinants",
+    unitId: "math1030.determinants.transpose-column-operations-and-cramers-rule",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Fill in the blank: for an invertible square system Ax=b, Cramer's rule says x_j = ____.",
+      "填空：對可逆方陣系統 Ax=b，克拉默法則指出 x_j = ____。",
+      "填空：对可逆方阵系统 Ax=b，克拉默法则指出 x_j = ____。"
+    ),
+    correctAnswer: {
+      value: "det(M_j)/det(A)",
+      equivalentValues: [
+        "\\frac{\\det(M_j)}{\\det(A)}",
+        "det(Mj)/det(A)",
+        "|M_j|/|A|",
+      ],
+      equivalence: [{ type: "trimmed" }, { type: "symbolic" }],
+    },
+    hints: [
+      text(
+        "Replace the j-th column of A by b, take that determinant, and divide by det(A).",
+        "將 A 的第 j 列換成 b，先取該矩陣行列式，再除以 det(A)。",
+        "将 A 的第 j 列换成 b，先取该矩阵行列式，再除以 det(A)。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    syntaxGuidance: text(
+      "A compact symbolic answer such as `det(M_j)/det(A)` is enough.",
+      "輸入 `det(M_j)/det(A)` 呢種簡短符號答案已經足夠。",
+      "输入 `det(M_j)/det(A)` 这种简短符号答案已经足够。"
+    ),
+    solutionSteps: [
+      text(
+        "Cramer's rule applies only when A is square and invertible, so det(A)≠0.",
+        "克拉默法則只適用於 A 是方陣而且可逆，所以 det(A)≠0。",
+        "克拉默法则只适用于 A 是方阵而且可逆，所以 det(A)≠0。"
+      ),
+      text(
+        "Build M_j by replacing the j-th column of A with the right-hand side vector b.",
+        "先把 A 的第 j 列換成右邊向量 b，得到 M_j。",
+        "先把 A 的第 j 列换成右边向量 b，得到 M_j。"
+      ),
+      text(
+        "Then x_j is the ratio det(M_j)/det(A).",
+        "之後 x_j 就係 det(M_j)/det(A)。",
+        "之后 x_j 就是 det(M_j)/det(A)。"
+      ),
+    ],
+    skillTags: ["determinant", "cramers-rule", "invertible-system"],
+  },
   "checkpoint.csci2520.pointer-assignment-vs-dereference": {
     accessTier: "FREE",
     id: "checkpoint.csci2520.pointer-assignment-vs-dereference",

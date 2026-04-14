@@ -1,0 +1,453 @@
+---
+title: "7.3 轉置、列變換與克拉默法則"
+description: "用轉置與列變換從第二個角度去讀行列式，再以伴隨矩陣、逆矩陣公式與克拉默法則收束整章。"
+---
+
+上一節主要從「行」的角度研究行列式。這一節要把圖像橫過來看。
+
+轉置會把行與列互換。一旦這種對稱被建立起來，沿列展開與列變換就會
+像沿行展開與行變換一樣合法。最後，本章再以兩個經典公式作收束：伴
+隨矩陣與克拉默法則。
+
+## 轉置不會改變行列式
+
+<TheoremCard title="轉置矩陣的行列式">
+對每個方陣 `A`，
+
+$$
+\det(A^T)=\det(A).
+$$
+</TheoremCard>
+
+這條定理在觀念上很重要。行列式雖然是沿行去定義的，但它並沒有暗中偏
+愛「行」而排斥「列」。轉置只是把兩種視角互換，最終得到的純量不會改
+變。
+
+<TheoremCard title="可沿任意一列作餘因子展開">
+若 `A=[a_{ij}]` 是方陣，而你固定第 `j` 列，則
+
+$$
+\det(A)=a_{1j}A_{1j}+a_{2j}A_{2j}+\cdots+a_{nj}A_{nj}.
+$$
+
+等價地，
+
+$$
+\det(A)=\sum_{i=1}^n (-1)^{i+j}a_{ij}M_{ij}.
+$$
+</TheoremCard>
+
+因此，你可以沿行展開，也可以沿列展開。真正重要的不是方向，而是你
+選中的那條行或列是否能令子式最容易計。
+
+<WorkedExample title="沿着零較多的列去展開">
+令
+
+$$
+A=
+\begin{bmatrix}
+1&7&0\\
+6&9&8\\
+0&1&5
+\end{bmatrix}.
+$$
+
+第三列有一個零，所以沿第三列展開：
+
+$$
+\det(A)=
+0\cdot A_{13}
++8A_{23}
++5A_{33}.
+$$
+
+因此
+
+$$
+\det(A)
+=-8
+\begin{vmatrix}
+1&7\\
+0&1
+\end{vmatrix}
++5
+\begin{vmatrix}
+1&7\\
+6&9
+\end{vmatrix}
+=-8(1)+5(9-42)=-173.
+$$
+
+同一個答案當然也可以用行展開得到，但挑對列會令算式短很多。
+</WorkedExample>
+
+## 列變換遵守同一套模式
+
+由於轉置不改變行列式，每一條關於行變換的規則，都有一條完全對應的
+列變換版本。
+
+<TheoremCard title="列變換對行列式的影響">
+設 `B` 是由方陣 `A` 做一次基本列變換得到。
+
+1. 交換兩列，行列式乘上 `-1`。
+2. 把某一列乘上 `\beta`，行列式也乘上 `\beta`。
+3. 把某一列改成「原本那一列加上另一列的倍數」，行列式不變。
+</TheoremCard>
+
+<WorkedExample title="用列變換製造零">
+考慮
+
+$$
+C=
+\begin{bmatrix}
+3&2&-1\\
+4&1&6\\
+-3&-1&2
+\end{bmatrix}.
+$$
+
+做列變換 `-C_2+C_1` 與 `C_3+C_1`：
+
+$$
+\begin{bmatrix}
+3&2&-1\\
+4&1&6\\
+-3&-1&2
+\end{bmatrix}
+\longrightarrow
+\begin{bmatrix}
+1&2&0\\
+3&1&9\\
+-2&-1&-1
+\end{bmatrix}.
+$$
+
+這兩步都只是「某列加上另一列倍數」，所以行列式沒有改變。現在沿第三
+列展開：
+
+$$
+\det(C)=
+9
+\begin{vmatrix}
+1&2\\
+-2&-1
+\end{vmatrix}
+-1
+\begin{vmatrix}
+1&2\\
+3&1
+\end{vmatrix}
+=9(3)-(-5)=22.
+$$
+
+關鍵不是列變換一定比行變換優勝，而是你應該用那個能最快製造零、又
+最少記帳的方向。
+</WorkedExample>
+
+## 伴隨矩陣把所有餘因子一次過收集起來
+
+單一個餘因子可以處理一次展開；伴隨矩陣則把所有餘因子集中到同一個
+矩陣內。
+
+<Definition title="伴隨矩陣">
+對 `n\times n` 矩陣 `A=[a_{ij}]`，先寫出它的餘因子矩陣：
+
+$$
+\begin{bmatrix}
+A_{11}&A_{12}&\cdots&A_{1n}\\
+A_{21}&A_{22}&\cdots&A_{2n}\\
+\vdots&\vdots&\ddots&\vdots\\
+A_{n1}&A_{n2}&\cdots&A_{nn}
+\end{bmatrix}.
+$$
+
+把這個餘因子矩陣轉置，便得到 **伴隨矩陣**
+
+$$
+\operatorname{adj}(A)=
+\begin{bmatrix}
+A_{11}&A_{21}&\cdots&A_{n1}\\
+A_{12}&A_{22}&\cdots&A_{n2}\\
+\vdots&\vdots&\ddots&\vdots\\
+A_{1n}&A_{2n}&\cdots&A_{nn}
+\end{bmatrix}.
+$$
+</Definition>
+
+<TheoremCard title="伴隨矩陣恆等式與逆矩陣公式">
+對每個方陣 `A`，
+
+$$
+A\,\operatorname{adj}(A)=\det(A)I.
+$$
+
+若 `\det(A)\neq0`，則 `A` 可逆，而且
+
+$$
+A^{-1}=\frac{1}{\det(A)}\operatorname{adj}(A).
+$$
+</TheoremCard>
+
+這條公式在觀念上非常漂亮，但在數值計算上通常不如行化簡有效。它最
+重要的作用，是把逆矩陣與餘因子展開之間的代數結構完整顯示出來。
+
+<WorkedExample title="由伴隨矩陣重建 2×2 逆矩陣公式">
+令
+
+$$
+A=
+\begin{bmatrix}
+a&b\\
+c&d
+\end{bmatrix},
+\qquad
+\det(A)=ad-bc\neq0.
+$$
+
+其餘因子矩陣是
+
+$$
+\begin{bmatrix}
+d&-c\\
+-b&a
+\end{bmatrix},
+$$
+
+所以
+
+$$
+\operatorname{adj}(A)=
+\begin{bmatrix}
+d&-b\\
+-c&a
+\end{bmatrix}.
+$$
+
+因此
+
+$$
+A^{-1}=
+\frac{1}{ad-bc}
+\begin{bmatrix}
+d&-b\\
+-c&a
+\end{bmatrix}.
+$$
+
+平時熟悉的 `2\times2` 逆矩陣公式，實際上就是伴隨矩陣恆等式在最小方
+陣情況下的寫法。
+</WorkedExample>
+
+## 克拉默法則是逐個座標求解
+
+<TheoremCard title="克拉默法則">
+令 `A` 是可逆的 `n\times n` 矩陣，並令 `b\in\mathbb{R}^n`。對每個
+`j`，把 `A` 的第 `j` 列改成 `b`，得到矩陣 `M_j`。
+
+若 `x` 是系統
+
+$$
+Ax=b
+$$
+
+的唯一解，則
+
+$$
+x_j=\frac{\det(M_j)}{\det(A)}.
+$$
+</TheoremCard>
+
+克拉默法則漂亮之處，在於每個座標都由一個行列式比值單獨表示出來。它
+對大系統通常不是最快的方法，但對理解「方陣可逆系統的每個座標究竟怎
+樣依賴係數矩陣與右邊向量」非常有力。
+
+<WorkedExample title="用克拉默法則解一個 2×2 系統">
+求解
+
+$$
+\begin{cases}
+2x_1+x_2=5,\\
+x_1+3x_2=7.
+\end{cases}
+$$
+
+寫成
+
+$$
+A=
+\begin{bmatrix}
+2&1\\
+1&3
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+5\\
+7
+\end{bmatrix}.
+$$
+
+先算
+
+$$
+\det(A)=2\cdot3-1\cdot1=5.
+$$
+
+把第一列換成 `b`：
+
+$$
+M_1=
+\begin{bmatrix}
+5&1\\
+7&3
+\end{bmatrix},
+\qquad
+\det(M_1)=15-7=8.
+$$
+
+把第二列換成 `b`：
+
+$$
+M_2=
+\begin{bmatrix}
+2&5\\
+1&7
+\end{bmatrix},
+\qquad
+\det(M_2)=14-5=9.
+$$
+
+因此
+
+$$
+x_1=\frac{8}{5},
+\qquad
+x_2=\frac{9}{5}.
+$$
+</WorkedExample>
+
+## 常見錯誤
+
+<CommonMistake title="克拉默法則不是所有線性系統都可用">
+克拉默法則要求係數矩陣必須是方陣，而且其行列式非零。若系統是長方
+形矩陣，或者係數矩陣本身奇異，克拉默法則便不能使用。即使條件滿足，
+對大系統來說，它通常亦比高斯消元慢。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="轉置會改變方陣的行列式嗎？">
+直接說出定理。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不會。`\det(A^T)=\det(A)`。
+</RevealSolution>
+
+<QuickCheck prompt="哪一種列變換會保留行列式？">
+想想第三類行變換的列版本。
+</QuickCheck>
+
+<RevealSolution title="答案">
+把某一列改成「原本那一列加上另一列的倍數」，會保留行列式。
+</RevealSolution>
+
+<QuickCheck prompt="甚麼時候可以用克拉默法則？">
+說出對 A 的結構要求。
+</QuickCheck>
+
+<RevealSolution title="答案">
+當係數矩陣是方陣而且可逆，也就是說它的行列式非零時，才可使用克拉
+默法則。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="用列展開計算 `\det\begin{bmatrix}1&0&2\\3&4&5\\0&0&6\end{bmatrix}`。">
+選零最多的列。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+沿第二列展開：
+
+$$
+\det=
+4(-1)^{2+2}
+\begin{vmatrix}
+1&2\\
+0&6
+\end{vmatrix}
+=4(6)=24.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="對 `A=\begin{bmatrix}1&2\\3&4\end{bmatrix}`，寫出 `\operatorname{adj}(A)`。">
+先算四個餘因子，再轉置餘因子矩陣。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+餘因子是 `A_{11}=4`、`A_{12}=-3`、`A_{21}=-2`、`A_{22}=1`，因此
+
+$$
+\operatorname{adj}(A)=
+\begin{bmatrix}
+4&-2\\
+-3&1
+\end{bmatrix}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="用克拉默法則求系統 `x_1+x_2=3`、`2x_1-x_2=0` 的 `x_1`。">
+只需要 `\det(A)` 與 `\det(M_1)`。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+此時
+
+$$
+A=
+\begin{bmatrix}
+1&1\\
+2&-1
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+3\\
+0
+\end{bmatrix}.
+$$
+
+所以
+
+$$
+\det(A)=-1-2=-3,
+\qquad
+M_1=
+\begin{bmatrix}
+3&1\\
+0&-1
+\end{bmatrix},
+\qquad
+\det(M_1)=-3.
+$$
+
+因此
+
+$$
+x_1=\frac{\det(M_1)}{\det(A)}=1.
+$$
+</RevealSolution>
+
+## 相關筆記
+
+若你對行變換的記帳仍未穩固，可先回看
+[7.2 行變換、乘積與可逆性](/zh-hk/notes/math1030/determinants/row-operations-products-and-invertibility)。
+
+同時亦應保留
+[3.2 轉置與特殊矩陣](/zh-hk/notes/math1030/matrix-algebra/transpose-and-special-matrices)
+在旁，因為本節把那一章的轉置觀點推到行列式。
+
+若要回到線性系統語言，可連回
+[1.1 方程與解集](/zh-hk/notes/math1030/systems/equations-solution-sets)
+與 [2.3 高斯消元與 RREF](/zh-hk/notes/math1030/matrices/gaussian-elimination-rref)。

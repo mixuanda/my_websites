@@ -1,0 +1,464 @@
+---
+title: "7.3 Transpose, column operations, and Cramer's rule"
+description: "Use transpose and column operations to read determinants from a second angle, then finish the chapter with adjoints, inverse formulas, and Cramer's rule."
+---
+
+The previous note studies determinants from the row-operation viewpoint. This
+note turns the picture sideways.
+
+Transpose lets us move information between rows and columns. Once that symmetry
+is in place, column expansion and column operations become just as legitimate as
+their row versions. The chapter then closes with two classical formulas:
+adjoints and Cramer's rule.
+
+## Transpose does not change determinant
+
+<TheoremCard title="Determinant of a transpose">
+For every square matrix `A`,
+
+$$
+\det(A^T)=\det(A).
+$$
+</TheoremCard>
+
+This theorem is conceptually important. A determinant is defined by expanding
+along rows, but it does not secretly prefer rows over columns. Transpose swaps
+the two viewpoints without changing the final scalar.
+
+<TheoremCard title="Cofactor expansion along any column">
+For any fixed column `j` of a square matrix `A=[a_{ij}]`,
+
+$$
+\det(A)=a_{1j}A_{1j}+a_{2j}A_{2j}+\cdots+a_{nj}A_{nj}.
+$$
+
+Equivalently,
+
+$$
+\det(A)=\sum_{i=1}^n (-1)^{i+j}a_{ij}M_{ij}.
+$$
+</TheoremCard>
+
+So you may expand along a row or along a column. The right choice is whichever
+one produces the cleanest minors.
+
+<WorkedExample title="A column expansion with many zeros">
+Let
+
+$$
+A=
+\begin{bmatrix}
+1&7&0\\
+6&9&8\\
+0&1&5
+\end{bmatrix}.
+$$
+
+The third column has one zero, so expand along that column:
+
+$$
+\det(A)=
+0\cdot A_{13}
++8A_{23}
++5A_{33}.
+$$
+
+That gives
+
+$$
+\det(A)
+=-8
+\begin{vmatrix}
+1&7\\
+0&1
+\end{vmatrix}
++5
+\begin{vmatrix}
+1&7\\
+6&9
+\end{vmatrix}
+=-8(1)+5(9-42)=-173.
+$$
+
+The same answer would come from row expansion, but the chosen column makes the
+arithmetic shorter.
+</WorkedExample>
+
+## Column operations obey the same pattern
+
+Because transpose preserves determinant, every row-operation rule has a column
+version.
+
+<TheoremCard title="How column operations change determinant">
+Let `B` be obtained from a square matrix `A` by one elementary column
+operation.
+
+1. Swapping two columns multiplies the determinant by `-1`.
+2. Multiplying one column by `\beta` multiplies the determinant by `\beta`.
+3. Replacing one column with itself plus a multiple of another column leaves the
+   determinant unchanged.
+</TheoremCard>
+
+<WorkedExample title="Use column operations to create zeros">
+Consider
+
+$$
+C=
+\begin{bmatrix}
+3&2&-1\\
+4&1&6\\
+-3&-1&2
+\end{bmatrix}.
+$$
+
+Apply the column operations `-C_2+C_1` and `C_3+C_1`:
+
+$$
+\begin{bmatrix}
+3&2&-1\\
+4&1&6\\
+-3&-1&2
+\end{bmatrix}
+\longrightarrow
+\begin{bmatrix}
+1&2&0\\
+3&1&9\\
+-2&-1&-1
+\end{bmatrix}.
+$$
+
+These are column-addition operations, so the determinant is unchanged. Now
+expand along the third column:
+
+$$
+\det(C)=
+9
+\begin{vmatrix}
+1&2\\
+-2&-1
+\end{vmatrix}
+-1
+\begin{vmatrix}
+1&2\\
+3&1
+\end{vmatrix}
+=9(3)-(-5)=22.
+$$
+
+The point is not that column operations are always superior. The point is that
+you may use whichever direction creates more zeros with less bookkeeping.
+</WorkedExample>
+
+## Adjoint matrices package all cofactors at once
+
+The cofactor of one entry helps in one expansion. The adjoint matrix collects
+all cofactors into one object.
+
+<Definition title="Adjoint matrix">
+For an `n\times n` matrix `A=[a_{ij}]`, first form the cofactor matrix
+
+$$
+\begin{bmatrix}
+A_{11}&A_{12}&\cdots&A_{1n}\\
+A_{21}&A_{22}&\cdots&A_{2n}\\
+\vdots&\vdots&\ddots&\vdots\\
+A_{n1}&A_{n2}&\cdots&A_{nn}
+\end{bmatrix}.
+$$
+
+The **adjoint matrix** is the transpose of that cofactor matrix:
+
+$$
+\operatorname{adj}(A)=
+\begin{bmatrix}
+A_{11}&A_{21}&\cdots&A_{n1}\\
+A_{12}&A_{22}&\cdots&A_{n2}\\
+\vdots&\vdots&\ddots&\vdots\\
+A_{1n}&A_{2n}&\cdots&A_{nn}
+\end{bmatrix}.
+$$
+</Definition>
+
+<TheoremCard title="Adjoint identity and inverse formula">
+For every square matrix `A`,
+
+$$
+A\,\operatorname{adj}(A)=\det(A)I.
+$$
+
+If `\det(A)\neq0`, then `A` is invertible and
+
+$$
+A^{-1}=\frac{1}{\det(A)}\operatorname{adj}(A).
+$$
+</TheoremCard>
+
+This formula is conceptually clean, but in numerical work it is usually less
+efficient than row reduction. Its value is that it exposes the algebraic
+structure of inverse matrices.
+
+<WorkedExample title="Recover the 2×2 inverse formula from the adjoint">
+Let
+
+$$
+A=
+\begin{bmatrix}
+a&b\\
+c&d
+\end{bmatrix},
+\qquad
+\det(A)=ad-bc\neq0.
+$$
+
+The cofactor matrix is
+
+$$
+\begin{bmatrix}
+d&-c\\
+-b&a
+\end{bmatrix},
+$$
+
+so
+
+$$
+\operatorname{adj}(A)=
+\begin{bmatrix}
+d&-b\\
+-c&a
+\end{bmatrix}.
+$$
+
+Therefore
+
+$$
+A^{-1}=
+\frac{1}{ad-bc}
+\begin{bmatrix}
+d&-b\\
+-c&a
+\end{bmatrix}.
+$$
+
+The familiar inverse formula is really the adjoint identity written in the
+`2\times2` case.
+</WorkedExample>
+
+## Cramer's rule solves one coordinate at a time
+
+<TheoremCard title="Cramer's rule">
+Let `A` be an invertible `n\times n` matrix and let `b\in\mathbb{R}^n`. For
+each `j`, let `M_j` be the matrix obtained by replacing the `j`th column of
+`A` with `b`.
+
+If `x` is the unique solution of
+
+$$
+Ax=b,
+$$
+
+then
+
+$$
+x_j=\frac{\det(M_j)}{\det(A)}.
+$$
+</TheoremCard>
+
+Cramer's rule is beautiful because each coordinate is isolated by one
+determinant ratio. It is not the fastest method for large systems, but it is a
+clean theoretical formula for square invertible systems.
+
+<WorkedExample title="Solve a 2×2 system with Cramer's rule">
+Solve
+
+$$
+\begin{cases}
+2x_1+x_2=5,\\
+x_1+3x_2=7.
+\end{cases}
+$$
+
+Write
+
+$$
+A=
+\begin{bmatrix}
+2&1\\
+1&3
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+5\\
+7
+\end{bmatrix}.
+$$
+
+First compute
+
+$$
+\det(A)=2\cdot3-1\cdot1=5.
+$$
+
+Replace the first column by `b`:
+
+$$
+M_1=
+\begin{bmatrix}
+5&1\\
+7&3
+\end{bmatrix},
+\qquad
+\det(M_1)=15-7=8.
+$$
+
+Replace the second column by `b`:
+
+$$
+M_2=
+\begin{bmatrix}
+2&5\\
+1&7
+\end{bmatrix},
+\qquad
+\det(M_2)=14-5=9.
+$$
+
+So
+
+$$
+x_1=\frac{8}{5},
+\qquad
+x_2=\frac{9}{5}.
+$$
+</WorkedExample>
+
+## Common mistake
+
+<CommonMistake title="Cramer's rule is not a universal system solver">
+Cramer's rule requires a square coefficient matrix and a nonzero determinant.
+If the system is rectangular or singular, the rule is not available. Even when
+it applies, it is usually less efficient than Gaussian elimination for large
+systems.
+</CommonMistake>
+
+## Quick check
+
+<QuickCheck prompt="Does transpose change the determinant of a square matrix?">
+State the theorem directly.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. `\det(A^T)=\det(A)`.
+</RevealSolution>
+
+<QuickCheck prompt="What column operation leaves the determinant unchanged?">
+Think of the column analogue of a type-III row operation.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Adding a scalar multiple of one column to another column leaves the determinant
+unchanged.
+</RevealSolution>
+
+<QuickCheck prompt="When may Cramer's rule be used?">
+Identify the structural hypotheses on A.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+When the coefficient matrix is square and invertible, equivalently when its
+determinant is nonzero.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Use a column expansion to compute `\det\begin{bmatrix}1&0&2\\3&4&5\\0&0&6\end{bmatrix}`.">
+Choose the column with the most zeros.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Expand along the second column:
+
+$$
+\det=
+4(-1)^{2+2}
+\begin{vmatrix}
+1&2\\
+0&6
+\end{vmatrix}
+=4(6)=24.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="For `A=\begin{bmatrix}1&2\\3&4\end{bmatrix}`, write down `\operatorname{adj}(A)`.">
+Compute the four cofactors first, then transpose the cofactor matrix.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The cofactors are `A_{11}=4`, `A_{12}=-3`, `A_{21}=-2`, and `A_{22}=1`. Hence
+
+$$
+\operatorname{adj}(A)=
+\begin{bmatrix}
+4&-2\\
+-3&1
+\end{bmatrix}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Use Cramer's rule to find x_1 for the system `x_1+x_2=3`, `2x_1-x_2=0`.">
+You only need `\det(A)` and `\det(M_1)`.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Here
+
+$$
+A=
+\begin{bmatrix}
+1&1\\
+2&-1
+\end{bmatrix},
+\qquad
+b=
+\begin{bmatrix}
+3\\
+0
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+\det(A)=-1-2=-3,
+\qquad
+M_1=
+\begin{bmatrix}
+3&1\\
+0&-1
+\end{bmatrix},
+\qquad
+\det(M_1)=-3.
+$$
+
+So
+
+$$
+x_1=\frac{\det(M_1)}{\det(A)}=1.
+$$
+</RevealSolution>
+
+## Related notes
+
+Return to
+[7.2 Row operations, products, and invertibility](/en/notes/math1030/determinants/row-operations-products-and-invertibility)
+if the row-operation bookkeeping is still shaky.
+
+Keep
+[3.2 Transpose and special matrices](/en/notes/math1030/matrix-algebra/transpose-and-special-matrices)
+nearby, because the transpose theorem here extends that earlier structural
+chapter.
+
+For system language, connect this note back to
+[1.1 Equations and solution sets](/en/notes/math1030/systems/equations-solution-sets)
+and [2.3 Gaussian elimination and RREF](/en/notes/math1030/matrices/gaussian-elimination-rref).

@@ -1188,6 +1188,121 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1030DeterminantUnits: TextbookUnitMeta[] = [
+  {
+    accessTier: "MEMBER",
+    chapterId: "determinants",
+    chapterNumber: "7",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Define determinants carefully through minors and cofactors, then learn how cofactor expansion turns one scalar into a precise summary of square-matrix structure.",
+      "先用子式與餘因子仔細定義行列式，再理解餘因子展開如何把一個純量變成方陣結構的精確摘要。",
+      "先用子式与余因子仔细定义行列式，再理解余因子展开如何把一个标量变成方阵结构的精确摘要。"
+    ),
+    glossaryRefs: ["determinant", "minor", "cofactor"],
+    interactiveIds: [],
+    order: 16,
+    prerequisites: ["math1030.matrices.matrix-basics"],
+    slug: "determinants-and-cofactor-expansion",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§7.1, §7.2.1-§7.2.2",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n06-01.pdf",
+      },
+    ],
+    title: text(
+      "7.1 Determinants and cofactor expansion",
+      "7.1 行列式與餘因子展開",
+      "7.1 行列式与余因子展开"
+    ),
+    unitId: "math1030.determinants.determinants-and-cofactor-expansion",
+    unitNumber: "7.1",
+  },
+  {
+    accessTier: "MEMBER",
+    chapterId: "determinants",
+    chapterNumber: "7",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Track exactly how row operations change determinants, then connect that behavior to multiplicativity, inverse matrices, and invertibility tests.",
+      "精確追蹤行變換如何改變行列式，再把這種行為連到乘積公式、逆矩陣與可逆性測試。",
+      "精确追踪行变换如何改变行列式，再把这种行为连到乘积公式、逆矩阵与可逆性测试。"
+    ),
+    glossaryRefs: ["determinant", "row-operation", "invertible-matrix"],
+    interactiveIds: [],
+    order: 17,
+    prerequisites: [
+      "math1030.determinants.determinants-and-cofactor-expansion",
+      "math1030.invertibility.invertible-matrices",
+    ],
+    slug: "row-operations-products-and-invertibility",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§7.2.4-§7.2.10",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n06-02.pdf",
+      },
+    ],
+    title: text(
+      "7.2 Row operations, products, and invertibility",
+      "7.2 行變換、乘積與可逆性",
+      "7.2 行变换、乘积与可逆性"
+    ),
+    unitId: "math1030.determinants.row-operations-products-and-invertibility",
+    unitNumber: "7.2",
+  },
+  {
+    accessTier: "MEMBER",
+    chapterId: "determinants",
+    chapterNumber: "7",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use transpose and column operations to read determinants from a second angle, then finish the chapter with adjoints, inverse formulas, and Cramer's rule.",
+      "用轉置與列變換從第二個角度去讀行列式，再以伴隨矩陣、逆矩陣公式與克拉默法則收束整章。",
+      "用转置与列变换从第二个角度去读行列式，再以伴随矩阵、逆矩阵公式与克拉默法则收束整章。"
+    ),
+    glossaryRefs: [
+      "determinant",
+      "transpose",
+      "cofactor",
+      "adjoint-matrix",
+      "cramers-rule",
+    ],
+    interactiveIds: [],
+    order: 18,
+    prerequisites: [
+      "math1030.determinants.determinants-and-cofactor-expansion",
+      "math1030.determinants.row-operations-products-and-invertibility",
+      "math1030.matrix-algebra.transpose-and-special-matrices",
+    ],
+    slug: "transpose-column-operations-and-cramers-rule",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§7.2.3, §7.2.11, §7.4.1-§7.4.2",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n06-03.pdf",
+      },
+    ],
+    title: text(
+      "7.3 Transpose, column operations, and Cramer's rule",
+      "7.3 轉置、列變換與克拉默法則",
+      "7.3 转置、列变换与克拉默法则"
+    ),
+    unitId: "math1030.determinants.transpose-column-operations-and-cramers-rule",
+    unitNumber: "7.3",
+  },
+];
+
 const math1090: TextbookCourseMeta = {
   chapters: [
     {
@@ -1322,6 +1437,18 @@ const math1030: TextbookCourseMeta = {
       ),
       title: text("Vector spaces", "向量空間", "向量空间"),
       units: math1030VectorSpaceUnits,
+    },
+    {
+      course: "math1030",
+      id: "determinants",
+      number: "7",
+      summary: text(
+        "Determinants, cofactor formulas, and the structural algebra that connects row operations, transpose, and invertibility.",
+        "行列式、餘因子公式，以及把行變換、轉置與可逆性連起來的結構化代數。",
+        "行列式、余因子公式，以及把行变换、转置与可逆性连起来的结构化代数。"
+      ),
+      title: text("Determinants", "行列式", "行列式"),
+      units: math1030DeterminantUnits,
     },
   ],
   description: text(
