@@ -221,6 +221,22 @@ pointer 之后读到的也会是更新后的结果。
 `p = q` 会复制地址到 `p`；`*p = *q` 会把 `q` 指向位置中的值复制到 `p`
 所指向的位置。
 </RevealSolution>
+## 一个完整的 memory 流程
+
+lecture 里的 `rationalADT` 例子和 tutorial 里的 student 例子，其实都在
+讲同一件事：如果你在 heap 上开了空间，就要知道 object 之后怎样被使用，
+以及什么时候要收回来。
+
+可以把整个流程记成四步：
+
+1. 先 `malloc` 一块空间；
+2. 再用 field assignment 或 `fscanf` 初始化；
+3. 使用期间保持 pointer 有效；
+4. 用完之后 `free`，如果还有 file，也要 `fclose`。
+
+这个流程不只是程序风格，而是资料结构程序最重要的安全习惯。当你以后看到
+stack node、queue node、或者 hashtable cell，都应该马上问：这个 object 从
+哪里来？又要去哪里？
 
 <QuickCheck prompt="为什么 `malloc(sizeof(struct node))` 比手写 byte 数更可靠？">
 想想结构字段如果之后变化会发生什么。

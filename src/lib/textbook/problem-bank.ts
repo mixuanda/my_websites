@@ -993,6 +993,252 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["linear-dependence", "scalar-multiple"],
   },
+  "checkpoint.csci2520.pointer-assignment-vs-dereference": {
+    accessTier: "FREE",
+    id: "checkpoint.csci2520.pointer-assignment-vs-dereference",
+    type: "MCQ",
+    courseId: "csci2520",
+    chapterId: "programming-foundations",
+    unitId: "csci2520.programming-foundations.pointers-memory-and-structs",
+    inputMode: "text",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "Which statement correctly describes the difference between `p = q` and `*p = *q`?",
+      "哪一項正確描述了 `p = q` 與 `*p = *q` 的差別？",
+      "哪一项正确描述了 `p = q` 与 `*p = *q` 的差别？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`p = q` copies an address, while `*p = *q` copies a pointed-to value.",
+          "`p = q` 複製地址，而 `*p = *q` 複製被指向的值。",
+          "`p = q` 复制地址，而 `*p = *q` 复制被指向的值。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "Both statements do exactly the same thing.",
+          "兩句做的是完全一樣的事。",
+          "两句做的是完全一样的事。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "`*p = *q` changes only the pointers, not the stored data.",
+          "`*p = *q` 只會改變 pointer，不會改變資料。",
+          "`*p = *q` 只会改变 pointer，不会改变数据。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "`p = q` allocates fresh memory on the heap.",
+          "`p = q` 會在 heap 上配置新記憶體。",
+          "`p = q` 会在 heap 上分配新内存。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Separate the address stored in the pointer from the value stored at that address.",
+        "先分清楚 pointer 裡的地址與該地址中的值。",
+        "先分清楚 pointer 里的地址与该地址中的值。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "`p = q` changes what address p stores.",
+        "`p = q` 會改變 p 儲存的地址。",
+        "`p = q` 会改变 p 保存的地址。"
+      ),
+      text(
+        "`*p = *q` leaves the addresses alone and copies the value at q's address into p's target.",
+        "`*p = *q` 不會改變地址，而是把 q 指向位置的值複製到 p 所指向的位置。",
+        "`*p = *q` 不会改变地址，而是把 q 指向位置的值复制到 p 所指向的位置。"
+      ),
+    ],
+    skillTags: ["pointers", "addresses", "dereference"],
+  },
+  "checkpoint.csci2520.malloc-heap": {
+    accessTier: "FREE",
+    id: "checkpoint.csci2520.malloc-heap",
+    type: "FILL_IN_BLANK",
+    courseId: "csci2520",
+    chapterId: "programming-foundations",
+    unitId: "csci2520.programming-foundations.pointers-memory-and-structs",
+    inputMode: "text",
+    maxAttempts: 4,
+    points: 1,
+    prompt: text(
+      "Fill in the blank: `malloc` allocates storage on the ____.",
+      "填空：`malloc` 會在 ____ 上配置儲存空間。",
+      "填空：`malloc` 会在 ____ 上分配存储空间。"
+    ),
+    correctAnswer: {
+      value: "heap",
+      equivalentValues: ["the heap"],
+      equivalence: [{ type: "trimmed" }, { type: "case-insensitive" }],
+    },
+    hints: [
+      text(
+        "This is the dynamically managed memory region, not the stack frame of one function call.",
+        "呢個係動態管理的記憶體區域，不是單一函式呼叫的 stack frame。",
+        "这个是动态管理的内存区域，不是单个函数调用的 stack frame。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter one short word only.",
+      "請輸入一個簡短詞語。",
+      "请输入一个简短词语。"
+    ),
+    solutionSteps: [
+      text(
+        "`malloc` asks the runtime for dynamically managed storage.",
+        "`malloc` 會向 runtime 申請動態管理的記憶體。",
+        "`malloc` 会向 runtime 申请动态管理的内存。"
+      ),
+      text(
+        "That storage lives on the heap, not in the local stack frame of the current function.",
+        "這段記憶體位於 heap，而不是當前函式的本地 stack frame。",
+        "这段内存位于 heap，而不是当前函数的本地 stack frame。"
+      ),
+    ],
+    skillTags: ["malloc", "heap", "memory-model"],
+  },
+  "checkpoint.csci2520.collision-definition": {
+    accessTier: "FREE",
+    id: "checkpoint.csci2520.collision-definition",
+    type: "MCQ",
+    courseId: "csci2520",
+    chapterId: "adt-and-operations",
+    unitId: "csci2520.adt-and-operations.hash-tables-and-collision-strategies",
+    inputMode: "text",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "What is a collision in hashing?",
+      "Hashing 裡的 collision 是甚麼？",
+      "Hashing 里的 collision 是什么？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "Two different keys map to the same bucket index.",
+          "兩個不同 key 被映射到同一個 bucket index。",
+          "两个不同 key 被映射到同一个 bucket index。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "A key maps to two different indices at the same time.",
+          "同一個 key 同時映射到兩個不同 index。",
+          "同一个 key 同时映射到两个不同 index。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "The table becomes full and cannot store any more entries.",
+          "整個 table 填滿，不能再插入 entry。",
+          "整个 table 填满，不能再插入 entry。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "The hash function returns a negative integer.",
+          "Hash function 回傳負整數。",
+          "Hash function 返回负整数。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Think in terms of different keys and one shared bucket slot.",
+        "用「不同 key，共用同一 bucket」去想。",
+        "用“不同 key，共用同一 bucket”去想。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "A collision occurs when distinct keys are sent to the same bucket index.",
+        "Collision 指不同 key 被送去同一個 bucket index。",
+        "Collision 指不同 key 被送去同一个 bucket index。"
+      ),
+      text(
+        "The implementation must then resolve that conflict without losing dictionary correctness.",
+        "實作之後必須處理這個衝突，同時保持 dictionary 的正確性。",
+        "实作之后必须处理这个冲突，同时保持 dictionary 的正确性。"
+      ),
+    ],
+    skillTags: ["hashtable", "collision", "hash-function"],
+  },
+  "checkpoint.csci2520.chaining-lookup": {
+    accessTier: "FREE",
+    id: "checkpoint.csci2520.chaining-lookup",
+    type: "FILL_IN_BLANK",
+    courseId: "csci2520",
+    chapterId: "adt-and-operations",
+    unitId: "csci2520.adt-and-operations.hash-tables-and-collision-strategies",
+    inputMode: "text",
+    maxAttempts: 4,
+    points: 1,
+    prompt: text(
+      "Fill in the blank: under chaining, once the bucket is chosen, lookup continues by scanning the bucket's ____.",
+      "填空：在 chaining 下，選定 bucket 之後，lookup 會沿着 bucket 的 ____ 繼續掃描。",
+      "填空：在 chaining 下，选定 bucket 之后，lookup 会沿着 bucket 的 ____ 继续扫描。"
+    ),
+    correctAnswer: {
+      value: "linked list",
+      equivalentValues: ["chain", "list"],
+      equivalence: [{ type: "trimmed" }, { type: "case-insensitive" }],
+    },
+    hints: [
+      text(
+        "The extra entries are stored beside the bucket, not by probing new array slots.",
+        "額外 entry 是掛在 bucket 旁邊，不是靠 probing 新 array slot。",
+        "额外 entry 是挂在 bucket 旁边，不是靠 probing 新 array slot。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter a short phrase such as `linked list` or `chain`.",
+      "輸入如 `linked list` 或 `chain` 這樣的短語即可。",
+      "输入如 `linked list` 或 `chain` 这样的短语即可。"
+    ),
+    solutionSteps: [
+      text(
+        "Chaining stores colliding entries in a linked structure attached to the bucket.",
+        "Chaining 會把 collision 的 entry 放到該 bucket 附帶的 linked structure 裡。",
+        "Chaining 会把 collision 的 entry 放到该 bucket 附带的 linked structure 里。"
+      ),
+      text(
+        "So after hashing chooses the bucket, lookup scans that chain to find the matching key.",
+        "所以 hash 選定 bucket 之後，lookup 要沿着該 chain 掃描去找 matching key。",
+        "所以 hash 选定 bucket 之后，lookup 要沿着该 chain 扫描去找 matching key。"
+      ),
+    ],
+    skillTags: ["hashtable", "chaining", "lookup"],
+  },
 };
 
 export function getProblemById(problemId: string) {
