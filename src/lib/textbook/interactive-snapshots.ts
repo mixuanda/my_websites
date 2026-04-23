@@ -561,6 +561,174 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "把一个方程组翻成矩阵"
     ),
   },
+  "dedekind-cut-explorer": {
+    sampleStates: [
+      {
+        label: text("Rational cut at 3/2", "3/2 的有理 cut", "3/2 的有理 cut"),
+        value: text(
+          "A = {q in Q : q < 3/2} has no largest element, while B = {q in Q : q >= 3/2} starts with a least element 3/2.",
+          "A = {q in Q : q < 3/2} 沒有最大元，而 B = {q in Q : q >= 3/2} 則由最小元 3/2 開始。",
+          "A = {q in Q : q < 3/2} 没有最大元，而 B = {q in Q : q >= 3/2} 则由最小元 3/2 开始。"
+        ),
+      },
+      {
+        label: text("Irrational cut at sqrt(2)", "sqrt(2) 的無理 cut", "sqrt(2) 的无理 cut"),
+        value: text(
+          "For A = {q in Q : q < sqrt(2)}, the right side B = {q in Q : q > sqrt(2)} has no least rational element, which is why the cut represents an irrational real number.",
+          "對 A = {q in Q : q < sqrt(2)} 而言，右側 B = {q in Q : q > sqrt(2)} 沒有最小的有理元，這正是它代表無理實數的原因。",
+          "对 A = {q in Q : q < sqrt(2)} 而言，右侧 B = {q in Q : q > sqrt(2)} 没有最小的有理元，这正是它代表无理实数的原因。"
+        ),
+      },
+    ],
+    staticDiagramNote: text(
+      "Export as two static number-line panels: one split at 3/2 and one split near sqrt(2), with sample rationals marked on the left set A and the right set B.",
+      "匯出時可用兩條靜態數線：一條在 3/2 處切開，一條在 sqrt(2) 附近切開，並把示例有理數標成左側的 A 與右側的 B。",
+      "导出时可用两条静态数线：一条在 3/2 处切开，一条在 sqrt(2) 附近切开，并把示例有理数标成左侧的 A 与右侧的 B。"
+    ),
+    summary: text(
+      "The explorer splits sample rationals into the left and right sides of a Dedekind cut so readers can see the structural difference between rational and irrational cuts.",
+      "這個工具把示例有理數分到 Dedekind cut 的左右兩側，讓讀者直接看見有理 cut 與無理 cut 在結構上的差異。",
+      "这个工具把示例有理数分到 Dedekind cut 的左右两侧，让读者直接看见有理 cut 与无理 cut 在结构上的差异。"
+    ),
+    steps: [
+      text("Choose a boundary such as 3/2 or sqrt(2).", "先選擇一條邊界，例如 3/2 或 sqrt(2)。", "先选择一条边界，例如 3/2 或 sqrt(2)。"),
+      text("Check which sample rationals fall into A and which fall into B.", "檢查哪些示例有理數落入 A，哪些落入 B。", "检查哪些示例有理数落入 A，哪些落入 B。"),
+      text("Ask whether B begins with a smallest rational element or not.", "再問右側的 B 是否由某個最小的有理數開始。", "再问右侧的 B 是否由某个最小的有理数开始。"),
+    ],
+    title: text(
+      "Inspect the two sides of a Dedekind cut",
+      "觀察 Dedekind cut 的兩側",
+      "观察 Dedekind cut 的两侧"
+    ),
+  },
+  "decimal-approximation-builder": {
+    sampleStates: [
+      {
+        label: text("Whole-number fence", "整數級圍欄", "整数级围栏"),
+        value: text(
+          "Before any decimal digit is used, the target lies between 10 and 11 in the lecture-note example, or between 1 and 2 for sqrt(2).",
+          "在還未使用任何小數位時，講義例子只知道目標落在 10 與 11 之間；對 sqrt(2) 則只知道它在 1 與 2 之間。",
+          "在还未使用任何小数位时，讲义例子只知道目标落在 10 与 11 之间；对 sqrt(2) 则只知道它在 1 与 2 之间。"
+        ),
+      },
+      {
+        label: text("After three decimal digits", "取到三位小數之後", "取到三位小数之后"),
+        value: text(
+          "At step 3 for sqrt(2), the number is trapped between 1.414 and 1.415, so the interval width has already shrunk to 0.001.",
+          "對 sqrt(2) 而言，到第 3 步時數值已被夾在 1.414 與 1.415 之間，因此區間寬度已縮到 0.001。",
+          "对 sqrt(2) 而言，到第 3 步时数值已被夹在 1.414 与 1.415 之间，因此区间宽度已缩到 0.001。"
+        ),
+      },
+    ],
+    staticDiagramNote: text(
+      "Export as a staircase of nested intervals, where each extra decimal digit replaces a wider interval by a narrower one inside it.",
+      "匯出時可把它畫成一串巢狀區間：每增加一位小數，就用更窄的區間取代原來較寬的區間。",
+      "导出时可把它画成一串嵌套区间：每增加一位小数，就用更窄的区间取代原来较宽的区间。"
+    ),
+    summary: text(
+      "The builder turns a decimal expansion into successive lower and upper rational bounds, making the approximation process visible one digit at a time.",
+      "這個工具把小數展開轉成逐步收緊的上下有理界，讓近似過程可以按數位一步一步看見。",
+      "这个工具把小数展开转成逐步收紧的上下有理界，让近似过程可以按数位一步一步看见。"
+    ),
+    steps: [
+      text("Start with the whole-number interval.", "先從整數級的區間開始。", "先从整数级的区间开始。"),
+      text("Add one more decimal digit to create a tighter lower and upper bound.", "每加入一位小數，就得到更緊的下界與上界。", "每加入一位小数，就得到更紧的下界与上界。"),
+      text("Compare the new interval width with the previous step.", "把新的區間寬度與前一步比較。", "把新的区间宽度与前一步比较。"),
+    ],
+    title: text(
+      "Build decimal approximations as shrinking intervals",
+      "把小數近似看成收窄中的區間",
+      "把小数近似看成收窄中的区间"
+    ),
+  },
+  "sequence-limit-explorer": {
+    sampleStates: [
+      {
+        label: text("Convergent tail for 1/n", "1/n 的收斂尾部", "1/n 的收敛尾部"),
+        value: text(
+          "With candidate limit 0 and epsilon = 0.2, taking N = 5 works because every term after n > 5 satisfies 1/n < 0.2.",
+          "當候選極限是 0 且 epsilon = 0.2 時，取 N = 5 就足夠，因為所有 n > 5 的項都滿足 1/n < 0.2。",
+          "当候选极限是 0 且 epsilon = 0.2 时，取 N = 5 就足够，因为所有 n > 5 的项都满足 1/n < 0.2。"
+        ),
+      },
+      {
+        label: text("Oscillation for (-1)^n", "(-1)^n 的震盪", "(-1)^n 的振荡"),
+        value: text(
+          "With candidate limit 0, the terms keep jumping between -1 and 1, so no matter how far you go there is no single tail trapped inside a small epsilon-band around 0.",
+          "當候選極限是 0 時，各項會一直在 -1 與 1 之間跳動，所以無論走得多後，都找不到整條尾部被困在 0 附近小 epsilon 帶內。",
+          "当候选极限是 0 时，各项会一直在 -1 与 1 之间跳动，所以无论走得多后，都找不到整条尾部被困在 0 附近小 epsilon 带内。"
+        ),
+      },
+    ],
+    staticDiagramNote: text(
+      "Export as a term table together with one highlighted epsilon-band and the first usable tail index N when the sequence converges.",
+      "匯出時可保留數列表格，再配上一條被標出的 epsilon 帶，以及收斂情況下第一個可用的尾部起點 N。",
+      "导出时可保留数列表格，再配上一条被标出的 epsilon 带，以及收敛情况下第一个可用的尾部起点 N。"
+    ),
+    summary: text(
+      "The explorer compares convergent and non-convergent sequences by asking whether the tail can be trapped inside a chosen epsilon-band around the candidate limit.",
+      "這個工具用「尾部能否被某條 epsilon 帶困住」來比較收斂與不收斂的數列。",
+      "这个工具用“尾部能否被某条 epsilon 带困住”来比较收敛与不收敛的数列。"
+    ),
+    steps: [
+      text("Choose a sequence and a candidate limit L.", "先選一條數列與一個候選極限 L。", "先选一条数列与一个候选极限 L。"),
+      text("Choose epsilon and inspect which early terms already lie inside the band.", "再選 epsilon，觀察前面幾項有哪些已經落在帶內。", "再选 epsilon，观察前面几项有哪些已经落在带内。"),
+      text("Decide whether some tail index N makes every later term stay inside the band.", "最後判斷是否存在某個尾部起點 N，使之後所有項都留在帶內。", "最后判断是否存在某个尾部起点 N，使之后所有项都留在带内。"),
+    ],
+    title: text(
+      "Test whether a sequence tail stays inside an epsilon-band",
+      "測試數列尾部能否留在 epsilon 帶內",
+      "测试数列尾部能否留在 epsilon 带内"
+    ),
+  },
+  "delta-epsilon-limit-explorer": {
+    sampleIO: [
+      {
+        input: text(
+          "For f(x) = 2x + 1 near a = 3, choose epsilon = 0.5, so delta = 0.25. Test x = 3.12.",
+          "對 f(x) = 2x + 1 且 a = 3，選 epsilon = 0.5，因此 delta = 0.25。再測試 x = 3.12。",
+          "对 f(x) = 2x + 1 且 a = 3，选 epsilon = 0.5，因此 delta = 0.25。再测试 x = 3.12。"
+        ),
+        output: text(
+          "Because 0 < |3.12 - 3| = 0.12 < 0.25 and |f(3.12) - 7| = 0.24 < 0.5, this sample x obeys the delta-epsilon implication.",
+          "因為 0 < |3.12 - 3| = 0.12 < 0.25，且 |f(3.12) - 7| = 0.24 < 0.5，所以這個樣本 x 確實符合 delta-epsilon 的蘊含式。",
+          "因为 0 < |3.12 - 3| = 0.12 < 0.25，且 |f(3.12) - 7| = 0.24 < 0.5，所以这个样本 x 确实符合 delta-epsilon 的蕴含式。"
+        ),
+      },
+      {
+        input: text(
+          "For (x^2 - 4)/(x - 2) near a = 2, choose epsilon = 0.25, so delta = 0.25. Test x = 1.9.",
+          "對 (x^2 - 4)/(x - 2) 且 a = 2，選 epsilon = 0.25，因此 delta = 0.25。再測試 x = 1.9。",
+          "对 (x^2 - 4)/(x - 2) 且 a = 2，选 epsilon = 0.25，因此 delta = 0.25。再测试 x = 1.9。"
+        ),
+        output: text(
+          "Here 0 < |1.9 - 2| = 0.1 < 0.25 and |f(1.9) - 4| = 0.1 < 0.25, so even with a hole at x = 2 the nearby values still fit the target limit 4.",
+          "此時 0 < |1.9 - 2| = 0.1 < 0.25，且 |f(1.9) - 4| = 0.1 < 0.25，所以即使 x = 2 有空點，附近函數值仍符合目標極限 4。",
+          "此时 0 < |1.9 - 2| = 0.1 < 0.25，且 |f(1.9) - 4| = 0.1 < 0.25，所以即使 x = 2 有空点，附近函数值仍符合目标极限 4。"
+        ),
+      },
+    ],
+    staticDiagramNote: text(
+      "Export as two aligned interval strips: the first marks the allowed x-neighbourhood around a, and the second marks the epsilon-band around L together with one tested sample point.",
+      "匯出時可保留兩條對齊的靜態區間帶：第一條標出 a 周圍允許的 x 鄰域，第二條標出 L 周圍的 epsilon 帶，並附上一個被測試的樣本點。",
+      "导出时可保留两条对齐的静态区间带：第一条标出 a 周围允许的 x 邻域，第二条标出 L 周围的 epsilon 带，并附上一个被测试的样本点。"
+    ),
+    summary: text(
+      "The explorer links the x-side delta-condition and the y-side epsilon-condition so readers can see the formal implication as two coordinated geometric tests.",
+      "這個工具把 x 端的 delta 條件與 y 端的 epsilon 條件連在一起，讓讀者把正式定義看成兩個互相配合的幾何檢查。",
+      "这个工具把 x 端的 delta 条件与 y 端的 epsilon 条件连在一起，让读者把正式定义看成两个互相配合的几何检查。"
+    ),
+    steps: [
+      text("Choose a function example and an epsilon value.", "先選一個函數例子與一個 epsilon 值。", "先选一个函数例子与一个 epsilon 值。"),
+      text("Read off the matching delta suggested by the example.", "讀出例子對應的 delta。", "读出例子对应的 delta。"),
+      text("Test one sample x on the x-strip and then on the f(x)-strip to see the implication work in both places.", "把同一個樣本 x 先放到 x 軸區間帶，再放到 f(x) 區間帶，觀察蘊含式如何在兩邊同時成立。", "把同一个样本 x 先放到 x 轴区间带，再放到 f(x) 区间带，观察蕴含式如何在两边同时成立。"),
+    ],
+    title: text(
+      "Check one delta-epsilon implication geometrically",
+      "用幾何方式檢查一次 delta-epsilon 蘊含",
+      "用几何方式检查一次 delta-epsilon 蕴含"
+    ),
+  },
   "truth-table-builder": {
     sampleStates: [
       {

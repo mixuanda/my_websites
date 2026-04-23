@@ -1,0 +1,316 @@
+---
+title: "5.2 Cauchy sequences and another model of the reals"
+description: "Introduce Cauchy sequences as an internal convergence test and use equivalence classes of rational Cauchy sequences to sketch a second construction of R."
+---
+
+The previous note defined convergence by comparing sequence terms with a
+previously known limit `L`. This note asks a harder question:
+
+What if we want to recognize convergence **before** we already know the limit as
+an existing real number?
+
+That question leads to the notion of a **Cauchy sequence** and to a second
+construction of the real numbers.
+
+## Why we need an internal test for convergence
+
+The lecture notes motivate the new definition with a sequence of rational
+numbers whose terms appear to close in on some point of the line:
+
+$$
+1,\qquad
+1+\frac12,\qquad
+1+\frac12+\frac1{3\cdot 2},\qquad
+1+\frac12+\frac1{3\cdot 2}+\frac1{4\cdot 3\cdot 2\cdot 1},\ \ldots
+$$
+
+Visually, the terms seem to gather around a limiting point. But if we are
+trying to **construct** the real numbers from the rationals, then we do not yet
+have the right to name that limiting point as an already available element of
+`R`.
+
+So instead of asking whether the sequence is close to some external point `L`,
+we ask whether the terms are getting close to **each other**.
+
+## The definition of Cauchy sequence
+
+<Definition title="Cauchy sequence">
+A sequence `(x_n)` is **Cauchy** if for every `\varepsilon>0`, there exists
+`N` such that
+
+$$
+|x_n-x_m|<\varepsilon
+$$
+
+for all `n,m>N`.
+</Definition>
+
+This definition has the same quantifier shape as the limit definition, but the
+comparison target has changed:
+
+- for an ordinary limit, you compare `x_n` with a fixed number `L`;
+- for a Cauchy condition, you compare late terms of the sequence with one
+  another.
+
+So a Cauchy sequence is one whose tail fits into narrower and narrower bands.
+
+<CommonMistake title="Cauchy does not mean monotone">
+A Cauchy sequence does not have to move only upward or only downward. The
+definition says nothing about monotonicity. It only says that late terms become
+uniformly close to one another.
+</CommonMistake>
+
+## Why convergent sequences are automatically Cauchy
+
+The notes record the following proposition.
+
+<TheoremCard title="If a sequence converges, then it is Cauchy">
+Suppose `(x_n)` has a limit `L`. Then `(x_n)` is a Cauchy sequence.
+</TheoremCard>
+
+Although the source leaves the proof as an exercise, the idea is short and very
+important.
+
+<CollapsibleProof title="Proof idea using the triangle inequality">
+Assume `x_n\to L`, and let `\varepsilon>0` be given.
+
+Because `x_n\to L`, there exists `N` such that for every `n>N`,
+
+$$
+|x_n-L|<\frac{\varepsilon}{2}.
+$$
+
+Then whenever `n,m>N`, the triangle inequality gives
+
+$$
+|x_n-x_m|
+=
+|(x_n-L)+(L-x_m)|
+\le |x_n-L|+|x_m-L|
+<
+\frac{\varepsilon}{2}+\frac{\varepsilon}{2}
+=\varepsilon.
+$$
+
+So `(x_n)` is Cauchy.
+</CollapsibleProof>
+
+This theorem says that genuine convergence always forces the sequence tail to
+compress.
+
+## Equivalent Cauchy sequences
+
+If Cauchy sequences are going to represent real numbers, then different
+sequences that “head toward the same place” should count as the same real.
+
+<Definition title="Equivalent Cauchy sequences">
+Two Cauchy sequences `(x_n)` and `(y_n)` are **equivalent** if for every
+`\varepsilon>0`, there exists `N` such that
+
+$$
+|x_n-y_m|<\varepsilon
+$$
+
+for all `n,m>N`.
+</Definition>
+
+This condition says that the two tails eventually lie arbitrarily close to one
+another. Intuitively, they are describing the same limiting point on the line.
+
+The notes then state that this notion of equivalence is really an equivalence
+relation on the set of Cauchy sequences. The triangle inequality is the key tool
+for checking symmetry and transitivity.
+
+## The alternative construction of `R`
+
+Now the lecture notes turn the idea into a definition.
+
+<Definition title="Reals as equivalence classes of rational Cauchy sequences">
+Let `R` be the set of equivalence classes of Cauchy sequences of rational
+numbers. These equivalence classes form another model of the real numbers.
+</Definition>
+
+This is a big shift in viewpoint:
+
+- in the Dedekind-cut model, a real number is a left/right split of `Q`;
+- in the Cauchy-sequence model, a real number is a whole family of rational
+  sequences that become indistinguishable in the limit.
+
+Neither model is “more real” than the other. They are two rigorous ways to
+build the same number system.
+
+## How rationals sit inside the model
+
+Exercise 54 asks how to think of rational numbers inside this construction. The
+answer is natural: a rational `q` is represented by the constant Cauchy sequence
+
+$$
+(q,q,q,q,\ldots).
+$$
+
+<WorkedExample title="Representatives of `1/2`">
+The real number `1/2` can be represented by the constant sequence
+
+$$
+\left(\frac12,\frac12,\frac12,\ldots\right).
+$$
+
+It can also be represented by other rational Cauchy sequences that converge to
+the same point, for example
+
+$$
+\left(\frac12+\frac11,\frac12+\frac12,\frac12+\frac13,\frac12+\frac14,\ldots\right).
+$$
+
+The second sequence is not constant, but its terms get arbitrarily close to
+`1/2`, so it belongs to the same equivalence class.
+</WorkedExample>
+
+The real number is therefore **not** any one representative sequence by itself.
+It is the full equivalence class.
+
+<CommonMistake title="A real number is an equivalence class, not a favourite representative">
+Once this model is adopted, changing from one representative Cauchy sequence to
+another equivalent one does not change the real number. The representative is a
+description, not the object itself.
+</CommonMistake>
+
+## Why boundedness matters
+
+The notes take for granted the lemma that every Cauchy sequence is bounded. That
+fact is crucial because it allows multiplication to work cleanly.
+
+If `(x_n)` and `(y_n)` are Cauchy, then the notes prove:
+
+- `(x_n+y_n)` is Cauchy;
+- `(x_ny_n)` is Cauchy.
+
+For multiplication, one needs a common bound `M` so that
+
+$$
+|x_my_m-x_ny_n|
+\le
+|x_m|\cdot |y_m-y_n|+|y_n|\cdot |x_m-x_n|
+\le
+M|y_m-y_n|+M|x_m-x_n|.
+$$
+
+Once the two original sequences are Cauchy, the right-hand side can be made as
+small as desired.
+
+## Operations and order on equivalence classes
+
+After establishing that termwise sums and products of Cauchy sequences stay
+Cauchy, the notes define addition and multiplication on equivalence classes.
+
+So if `[(x_n)]` and `[(y_n)]` are real numbers in this model, then:
+
+$$
+[(x_n)] + [(y_n)] := [(x_n+y_n)],
+$$
+
+$$
+[(x_n)] \cdot [(y_n)] := [(x_ny_n)].
+$$
+
+The notes also define an order by eventual comparison of representatives: one
+class is below another when sufficiently late terms of a representative of the
+first lie below sufficiently late terms of a representative of the second.
+
+The serious work is then to check that all these definitions are
+well-defined. That means the answer does not depend on which representative
+sequences you chose.
+
+## The conclusion of the construction
+
+<TheoremCard title="The reals form a complete ordered field">
+The lecture notes conclude that the real numbers obtained from rational Cauchy
+sequences form a complete ordered field.
+</TheoremCard>
+
+The course does not prove every detail in class. Some parts are left as
+exercises, including the well-definedness of operations and the final proof of
+completeness. But conceptually the message is clear:
+
+- Cauchy sequences capture the idea of internal convergence;
+- equivalence classes prevent different approximating sequences from giving
+  different names to the same real;
+- completeness is built in, because every Cauchy sequence should already have a
+  place to land in the completed system.
+
+## Quick checks
+
+<QuickCheck prompt="What is the difference between the definitions of ‘convergent’ and ‘Cauchy’?">
+Focus on what each definition compares `x_n` with.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+A convergent sequence compares each late term `x_n` with a fixed limit `L`,
+while a Cauchy sequence compares late terms `x_n` and `x_m` directly with one
+another.
+</RevealSolution>
+
+<QuickCheck prompt="How does the rational number q appear inside the Cauchy-sequence model of R?">
+Think of the simplest possible Cauchy sequence.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It appears as the equivalence class of the constant sequence
+`(q,q,q,q,\ldots)`.
+</RevealSolution>
+
+<QuickCheck prompt="Why is boundedness useful when proving that products of Cauchy sequences are Cauchy?">
+Look at the estimate for `|x_my_m-x_ny_n|`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Boundedness lets us replace `|x_m|` and `|y_n|` by a common constant `M`, so the
+product difference can be controlled by the small Cauchy differences
+`|x_m-x_n|` and `|y_m-y_n|`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Show that every constant rational sequence is Cauchy.">
+Use the fact that all pairwise differences are zero.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Let `x_n=q` for all `n`, where `q\in Q`. Then for every `n,m`,
+
+$$
+|x_n-x_m|=|q-q|=0.
+$$
+
+So for any `\varepsilon>0`, every `N` works. Hence every constant rational
+sequence is Cauchy.
+</RevealSolution>
+
+<QuickCheck prompt="Why should two equivalent Cauchy sequences be thought of as the same real number?">
+Explain it in terms of their tails.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Because equivalence means that for every tolerance `\varepsilon>0`, the tails of
+the two sequences eventually lie within `\varepsilon` of one another. So the two
+sequences cannot be distinguished by their limiting behavior; they describe the
+same point of the completed number line.
+</RevealSolution>
+
+<QuickCheck prompt="Suppose a sequence converges to L. Which theorem from this note tells you something immediately about the distances |x_n-x_m| for large n,m?">
+Name the theorem and the conclusion.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The theorem says that every convergent sequence is Cauchy. Therefore, once `n`
+and `m` are large enough, the distance `|x_n-x_m|` must be small.
+</RevealSolution>
+
+## Related notes
+
+Read this after
+[5.1 Sequences and epsilon-N limits](/en/notes/math1090/sequences-and-limits/sequences-and-epsilon-n-limits)
+and
+[4.3 Completeness and gaps in Q](/en/notes/math1090/order-and-completeness/completeness-and-gaps-in-q).
+Then continue to
+[5.3 Delta-epsilon limits, limit laws, and continuity](/en/notes/math1090/sequences-and-limits/delta-epsilon-limits-limit-laws-and-continuity).

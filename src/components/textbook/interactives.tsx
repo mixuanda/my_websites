@@ -62,6 +62,17 @@ const interactiveLabels = {
   estimatedCost: text("Estimated primitive steps", "估計基本步數", "估计基本步数"),
   interpretation: text("Interpretation", "如何理解", "如何理解"),
   step: text("Step", "步驟", "步骤"),
+  lowerBound: text("Lower bound", "下界近似", "下界近似"),
+  upperBound: text("Upper bound", "上界近似", "上界近似"),
+  intervalWidth: text("Interval width", "區間寬度", "区间宽度"),
+  candidateLimit: text("Candidate limit L", "候選極限 L", "候选极限 L"),
+  epsilonValue: text("Epsilon ε", "Epsilon ε", "Epsilon ε"),
+  tailIndex: text("Tail index N", "尾部起點 N", "尾部起点 N"),
+  termIndex: text("Term index n", "項序 n", "项序 n"),
+  termValue: text("Term x_n", "數列項 x_n", "数列项 x_n"),
+  bandCheck: text("Band check |x_n - L| < ε", "帶內測試 |x_n - L| < ε", "带内测试 |x_n - L| < ε"),
+  yes: text("Yes", "是", "是"),
+  no: text("No", "否", "否"),
   pointsTo: text("Points to", "指向", "指向"),
   storedValue: text("Stored value", "儲存值", "储存值"),
   bucketCount: text("Bucket count", "Bucket 數量", "Bucket 数量"),
@@ -2109,9 +2120,780 @@ function ComplexityGrowthComparator({ locale }: { locale: Locale }) {
   );
 }
 
+function formatDecimal(value: number, digits = 3) {
+  return value.toFixed(digits).replace(/\.?0+$/, "");
+}
+
+function percentWithin(value: number, min: number, max: number) {
+  if (max <= min) {
+    return 50;
+  }
+
+  return ((value - min) / (max - min)) * 100;
+}
+
+function IntervalStrip({
+  center,
+  innerMax,
+  innerMin,
+  label,
+  max,
+  min,
+  point,
+  pointLabel,
+}: {
+  center: number;
+  innerMax: number;
+  innerMin: number;
+  label: string;
+  max: number;
+  min: number;
+  point: number;
+  pointLabel: string;
+}) {
+  const rangeLeft = percentWithin(innerMin, min, max);
+  const rangeRight = percentWithin(innerMax, min, max);
+  const centerPct = percentWithin(center, min, max);
+  const pointPct = percentWithin(point, min, max);
+
+  return (
+    <GlassPanel className="border border-border/60 bg-background/30 p-4">
+      <p className="text-sm font-medium">{label}</p>
+      <div className="relative mt-4 h-16 overflow-hidden rounded-xl border border-border/50 bg-background/60 px-4">
+        <div className="absolute inset-x-4 top-8 h-px bg-border/70" />
+        <div
+          className="absolute top-[26px] h-5 rounded-full bg-primary/15"
+          style={{
+            left: `calc(${rangeLeft}% + 1rem)`,
+            width: `calc(${Math.max(rangeRight - rangeLeft, 0)}% - 0rem)`,
+          }}
+        />
+        <div
+          className="absolute top-3 h-10 border-l border-primary/80"
+          style={{ left: `calc(${centerPct}% + 1rem)` }}
+        />
+        <div
+          className="absolute top-[19px] h-4 w-4 -translate-x-1/2 rounded-full border border-amber-500 bg-amber-500/20"
+          style={{ left: `calc(${pointPct}% + 1rem)` }}
+        />
+        <p
+          className="absolute top-0 -translate-x-1/2 text-[11px] font-mono text-primary"
+          style={{ left: `calc(${centerPct}% + 1rem)` }}
+        >
+          {formatDecimal(center)}
+        </p>
+        <p
+          className="absolute bottom-1 -translate-x-1/2 text-[11px] font-mono text-amber-700 dark:text-amber-300"
+          style={{ left: `calc(${pointPct}% + 1rem)` }}
+        >
+          {pointLabel}
+        </p>
+      </div>
+    </GlassPanel>
+  );
+}
+
+function DedekindCutExplorer({ locale }: { locale: Locale }) {
+  const targets = [
+    {
+      boundary: text("3/2", "3/2", "3/2"),
+      id: "rational",
+      label: text("Rational cut at 3/2", "3/2 的有理 cut", "3/2 的有理 cut"),
+      note: text(
+        "Because 3/2 is itself rational, the right side B has a minimum element 3/2. This is exactly what a rational cut looks like.",
+        "因為 3/2 本身就是有理數，所以右側 B 有最小元 3/2。這正是有理 cut 的樣子。",
+        "因为 3/2 本身就是有理数，所以右侧 B 有最小元 3/2。这正是有理 cut 的样子。"
+      ),
+      predicate: text("q >= 3/2", "q >= 3/2", "q >= 3/2"),
+      value: 1.5,
+    },
+    {
+      boundary: text("sqrt(2)", "sqrt(2)", "sqrt(2)"),
+      id: "sqrt2",
+      label: text("Irrational boundary at sqrt(2)", "sqrt(2) 的無理邊界", "sqrt(2) 的无理边界"),
+      note: text(
+        "No rational equals sqrt(2), so the rationals to the right never start with a smallest one. This is the signature of an irrational cut.",
+        "沒有任何有理數等於 sqrt(2)，所以右側有理數永遠不會從某個最小元開始。這正是無理 cut 的特徵。",
+        "没有任何有理数等于 sqrt(2)，所以右侧有理数永远不会从某个最小元开始。这正是无理 cut 的特征。"
+      ),
+      predicate: text("q > sqrt(2)", "q > sqrt(2)", "q > sqrt(2)"),
+      value: Math.SQRT2,
+    },
+  ] as const;
+  const sampleRationals = [
+    { label: "1", value: 1 },
+    { label: "6/5", value: 6 / 5 },
+    { label: "7/5", value: 7 / 5 },
+    { label: "10/7", value: 10 / 7 },
+    { label: "3/2", value: 3 / 2 },
+    { label: "8/5", value: 8 / 5 },
+    { label: "17/10", value: 17 / 10 },
+  ] as const;
+  const [selectedId, setSelectedId] = useState<(typeof targets)[number]["id"]>("sqrt2");
+  const selectedTarget =
+    targets.find((target) => target.id === selectedId) ?? targets[0];
+  const leftSet = sampleRationals.filter((value) => value.value < selectedTarget.value);
+  const rightSet = sampleRationals.filter((value) => value.value >= selectedTarget.value);
+  const numberLineMin = 0.95;
+  const numberLineMax = 1.75;
+
+  return (
+    <InteractiveShell icon={<ArrowLeftRight className="h-5 w-5" />} locale={locale} widgetId="dedekind-cut-explorer">
+      <div className="flex flex-wrap gap-2">
+        {targets.map((target) => (
+          <Button
+            key={target.id}
+            onClick={() => setSelectedId(target.id)}
+            size="sm"
+            type="button"
+            variant={selectedId === target.id ? "default" : "outline"}
+          >
+            {getLocalizedText(target.label, locale)}
+          </Button>
+        ))}
+      </div>
+
+      <GlassPanel className="mt-4 border border-border/60 bg-background/30 p-4">
+        <p className="text-sm text-muted-foreground">
+          {getLocalizedText(interactiveLabels.focus, locale)}
+        </p>
+        <p className="mt-2 text-sm leading-7">
+          {getLocalizedText(selectedTarget.note, locale)}
+        </p>
+        <div className="mt-4 grid gap-3 md:grid-cols-2">
+          <p className="rounded-xl border border-border/50 bg-background/60 p-3 font-mono text-sm">
+            A = {"{ q ∈ Q | q < "}
+            {getLocalizedText(selectedTarget.boundary, locale)}
+            {" }"}
+          </p>
+          <p className="rounded-xl border border-border/50 bg-background/60 p-3 font-mono text-sm">
+            B = {"{ q ∈ Q | "}
+            {getLocalizedText(selectedTarget.predicate, locale)}
+            {" }"}
+          </p>
+        </div>
+      </GlassPanel>
+
+      <div className="relative mt-5 h-28 overflow-hidden rounded-xl border border-border/60 bg-background/30 px-4">
+        <div className="absolute inset-x-4 top-12 h-px bg-border/70" />
+        {sampleRationals.map((value) => {
+          const isLeft = value.value < selectedTarget.value;
+          const position = percentWithin(value.value, numberLineMin, numberLineMax);
+
+          return (
+            <div
+              key={value.label}
+              className="absolute top-8 -translate-x-1/2 text-center"
+              style={{ left: `calc(${position}% + 1rem)` }}
+            >
+              <div
+                className={cn(
+                  "mx-auto h-3 w-3 rounded-full border",
+                  isLeft
+                    ? "border-emerald-600 bg-emerald-500/20"
+                    : "border-amber-600 bg-amber-500/20"
+                )}
+              />
+              <p className="mt-2 text-xs font-mono">{value.label}</p>
+              <p className="text-[11px] text-muted-foreground">{isLeft ? "A" : "B"}</p>
+            </div>
+          );
+        })}
+        <div
+          className="absolute top-3 h-14 border-l border-primary/80"
+          style={{
+            left: `calc(${percentWithin(selectedTarget.value, numberLineMin, numberLineMax)}% + 1rem)`,
+          }}
+        />
+        <p
+          className="absolute top-1 -translate-x-1/2 text-xs font-semibold text-primary"
+          style={{
+            left: `calc(${percentWithin(selectedTarget.value, numberLineMin, numberLineMax)}% + 1rem)`,
+          }}
+        >
+          {getLocalizedText(selectedTarget.boundary, locale)}
+        </p>
+      </div>
+
+      <div className="mt-5 grid gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <p className="text-sm font-semibold">
+            {getLocalizedText(interactiveLabels.setA, locale)}
+          </p>
+          <p className="mt-2 font-mono text-sm">
+            {leftSet.map((value) => value.label).join(", ")}
+          </p>
+          <p className="mt-3 text-sm text-muted-foreground">
+            {selectedId === "sqrt2"
+              ? getLocalizedText(
+                  text(
+                    "Every displayed element is strictly left of sqrt(2), and more rationals can always be inserted still closer to the boundary.",
+                    "每個顯示出的元素都嚴格落在 sqrt(2) 左邊，而且永遠可以再插入更靠近邊界的有理數。",
+                    "每个显示出的元素都严格落在 sqrt(2) 左边，而且永远可以再插入更靠近边界的有理数。"
+                  ),
+                  locale
+                )
+              : getLocalizedText(
+                  text(
+                    "Even for a rational cut, A still has no maximum because 3/2 itself stays on the right side.",
+                    "即使是有理 cut，A 仍然沒有最大元，因為 3/2 本身留在右側。",
+                    "即使是有理 cut，A 仍然没有最大元，因为 3/2 本身留在右侧。"
+                  ),
+                  locale
+                )}
+          </p>
+        </GlassPanel>
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <p className="text-sm font-semibold">
+            {getLocalizedText(interactiveLabels.setB, locale)}
+          </p>
+          <p className="mt-2 font-mono text-sm">
+            {rightSet.length ? rightSet.map((value) => value.label).join(", ") : "∅"}
+          </p>
+          <p className="mt-3 text-sm text-muted-foreground">
+            {getLocalizedText(selectedTarget.note, locale)}
+          </p>
+        </GlassPanel>
+      </div>
+    </InteractiveShell>
+  );
+}
+
+function DecimalApproximationBuilder({ locale }: { locale: Locale }) {
+  const examples = [
+    {
+      digits: "435290",
+      id: "source-decimal",
+      label: text("10.435290...", "10.435290...", "10.435290..."),
+      note: text(
+        "This mirrors the lecture-note example: each extra digit produces a tighter lower and upper rational fence.",
+        "這對應講義中的例子：每多一個數位，就得到更緊的上下有理圍欄。",
+        "这对应讲义中的例子：每多一个数位，就得到更紧的上下有理围栏。"
+      ),
+      whole: 10,
+    },
+    {
+      digits: "414213",
+      id: "sqrt2",
+      label: text("sqrt(2) ≈ 1.414213...", "sqrt(2) ≈ 1.414213...", "sqrt(2) ≈ 1.414213..."),
+      note: text(
+        "Using sqrt(2) makes the link to irrational numbers explicit: no finite decimal stage reaches the exact number, but the intervals keep shrinking around it.",
+        "用 sqrt(2) 這個例子，可以直接看見無理數：沒有任何有限小數階段會到達它本身，但區間會一直收窄包住它。",
+        "用 sqrt(2) 这个例子，可以直接看见无理数：没有任何有限小数阶段会到达它本身，但区间会一直收窄包住它。"
+      ),
+      whole: 1,
+    },
+  ] as const;
+  const [selectedId, setSelectedId] = useState<(typeof examples)[number]["id"]>("sqrt2");
+  const [depth, setDepth] = useState(3);
+  const selectedExample =
+    examples.find((example) => example.id === selectedId) ?? examples[0];
+  const maxDepth = Math.min(5, selectedExample.digits.length);
+  const currentDepth = Math.min(depth, maxDepth);
+
+  const rows = Array.from({ length: currentDepth + 1 }, (_, index) => {
+    if (index === 0) {
+      return {
+        depth: 0,
+        lower: selectedExample.whole,
+        upper: selectedExample.whole + 1,
+      };
+    }
+
+    const prefix = selectedExample.digits.slice(0, index);
+    const nextPrefix = String(Number.parseInt(prefix, 10) + 1).padStart(index, "0");
+
+    return {
+      depth: index,
+      lower: Number(`${selectedExample.whole}.${prefix}`),
+      upper: Number(`${selectedExample.whole}.${nextPrefix}`),
+    };
+  });
+  const current = rows[rows.length - 1];
+  const baseMin = selectedExample.whole;
+  const baseMax = selectedExample.whole + 1;
+
+  return (
+    <InteractiveShell icon={<StepForward className="h-5 w-5" />} locale={locale} widgetId="decimal-approximation-builder">
+      <div className="flex flex-wrap gap-2">
+        {examples.map((example) => (
+          <Button
+            key={example.id}
+            onClick={() => {
+              setSelectedId(example.id);
+              setDepth(3);
+            }}
+            size="sm"
+            type="button"
+            variant={selectedId === example.id ? "default" : "outline"}
+          >
+            {getLocalizedText(example.label, locale)}
+          </Button>
+        ))}
+      </div>
+
+      <div className="mt-4 flex gap-2">
+        <Button
+          onClick={() => setDepth((value) => Math.max(0, value - 1))}
+          size="sm"
+          type="button"
+          variant="outline"
+        >
+          {getLocalizedText(interactiveLabels.previous, locale)}
+        </Button>
+        <Button
+          onClick={() => setDepth((value) => Math.min(maxDepth, value + 1))}
+          size="sm"
+          type="button"
+        >
+          {getLocalizedText(interactiveLabels.next, locale)}
+        </Button>
+      </div>
+
+      <GlassPanel className="mt-4 border border-border/60 bg-background/30 p-4">
+        <p className="text-sm leading-7 text-muted-foreground">
+          {getLocalizedText(selectedExample.note, locale)}
+        </p>
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <div className="rounded-xl border border-border/50 bg-background/60 p-3">
+            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              {getLocalizedText(interactiveLabels.step, locale)}
+            </p>
+            <p className="mt-2 text-lg font-semibold">{currentDepth}</p>
+          </div>
+          <div className="rounded-xl border border-border/50 bg-background/60 p-3">
+            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              {getLocalizedText(interactiveLabels.lowerBound, locale)}
+            </p>
+            <p className="mt-2 font-mono text-lg">{formatDecimal(current.lower, currentDepth + 1)}</p>
+          </div>
+          <div className="rounded-xl border border-border/50 bg-background/60 p-3">
+            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              {getLocalizedText(interactiveLabels.upperBound, locale)}
+            </p>
+            <p className="mt-2 font-mono text-lg">{formatDecimal(current.upper, currentDepth + 1)}</p>
+          </div>
+        </div>
+      </GlassPanel>
+
+      <div className="mt-5 space-y-3">
+        {rows.map((row) => {
+          const left = percentWithin(row.lower, baseMin, baseMax);
+          const right = percentWithin(row.upper, baseMin, baseMax);
+          const isCurrent = row.depth === currentDepth;
+
+          return (
+            <GlassPanel
+              key={`decimal-row-${row.depth}`}
+              className={cn(
+                "border border-border/60 bg-background/30 p-4",
+                isCurrent && "border-primary/40"
+              )}
+            >
+              <div className="flex flex-wrap items-center justify-between gap-3 text-sm">
+                <p className="font-semibold">
+                  {getLocalizedText(interactiveLabels.step, locale)} {row.depth}
+                </p>
+                <p className="font-mono">
+                  {formatDecimal(row.lower, row.depth + 1)} &lt; x &lt; {formatDecimal(row.upper, row.depth + 1)}
+                </p>
+              </div>
+              <div className="relative mt-4 h-6 overflow-hidden rounded-full bg-background/60">
+                <div
+                  className={cn(
+                    "absolute top-1 h-4 rounded-full",
+                    isCurrent ? "bg-primary/50" : "bg-primary/20"
+                  )}
+                  style={{
+                    left: `${left}%`,
+                    width: `${Math.max(right - left, 1)}%`,
+                  }}
+                />
+              </div>
+              <p className="mt-3 text-sm text-muted-foreground">
+                {getLocalizedText(interactiveLabels.intervalWidth, locale)} ={" "}
+                {formatDecimal(row.upper - row.lower, row.depth + 2)}
+              </p>
+            </GlassPanel>
+          );
+        })}
+      </div>
+    </InteractiveShell>
+  );
+}
+
+function SequenceLimitExplorer({ locale }: { locale: Locale }) {
+  const epsilonOptions = [0.5, 0.2, 0.1, 0.05] as const;
+  const sequences = [
+    {
+      candidate: 0,
+      hasLimit: true,
+      id: "one-over-n",
+      label: text("1/n tends to 0", "1/n 趨向 0", "1/n 趋向 0"),
+      note: text(
+        "The terms shrink steadily, so once you choose epsilon you can eventually trap every later term inside the band around 0.",
+        "各項穩定縮小，所以一旦選定 epsilon，到了某個位置之後，所有後面的項都會落在 0 周圍的帶內。",
+        "各项稳定缩小，所以一旦选定 epsilon，到了某个位置之后，所有后面的项都会落在 0 周围的带内。"
+      ),
+      term: (n: number) => 1 / n,
+    },
+    {
+      candidate: 5 / 3,
+      hasLimit: true,
+      id: "rational-ratio",
+      label: text("(5n+2)/(3n-7) tends to 5/3", "(5n+2)/(3n-7) 趨向 5/3", "(5n+2)/(3n-7) 趋向 5/3"),
+      note: text(
+        "This example is less obvious term by term, but the same epsilon-N logic applies: the tail eventually sits inside every band around 5/3.",
+        "這個例子逐項看起來較不直觀，但 epsilon-N 的邏輯完全相同：尾部最終會落入 5/3 周圍的每一條帶。",
+        "这个例子逐项看起来较不直观，但 epsilon-N 的逻辑完全相同：尾部最终会落入 5/3 周围的每一条带。"
+      ),
+      term: (n: number) => (5 * n + 2) / (3 * n - 7),
+    },
+    {
+      candidate: 0,
+      hasLimit: false,
+      id: "alternating",
+      label: text("(-1)^n does not settle down", "(-1)^n 不會安定下來", "(-1)^n 不会安定下来"),
+      note: text(
+        "Odd and even terms keep jumping between -1 and 1, so no single number can capture the whole tail.",
+        "奇數項和偶數項會一直在 -1 與 1 之間跳動，所以不存在一個單一數字可以抓住整條尾部。",
+        "奇数项和偶数项会一直在 -1 与 1 之间跳动，所以不存在一个单一数字可以抓住整条尾部。"
+      ),
+      term: (n: number) => (n % 2 === 0 ? 1 : -1),
+    },
+  ] as const;
+  const [selectedId, setSelectedId] = useState<(typeof sequences)[number]["id"]>("one-over-n");
+  const [epsilon, setEpsilon] = useState<(typeof epsilonOptions)[number]>(0.2);
+  const selectedSequence =
+    sequences.find((sequence) => sequence.id === selectedId) ?? sequences[0];
+  const rows = Array.from({ length: 12 }, (_, index) => {
+    const n = index + 1;
+    const value = selectedSequence.term(n);
+
+    return {
+      inside: Math.abs(value - selectedSequence.candidate) < epsilon,
+      n,
+      value,
+    };
+  });
+  const firstGoodN = (() => {
+    for (let candidateN = 0; candidateN <= 60; candidateN += 1) {
+      let okay = true;
+
+      for (let n = candidateN + 1; n <= 60; n += 1) {
+        if (Math.abs(selectedSequence.term(n) - selectedSequence.candidate) >= epsilon) {
+          okay = false;
+          break;
+        }
+      }
+
+      if (okay) {
+        return candidateN;
+      }
+    }
+
+    return null;
+  })();
+
+  return (
+    <InteractiveShell icon={<ChartColumnBig className="h-5 w-5" />} locale={locale} widgetId="sequence-limit-explorer">
+      <div className="flex flex-wrap gap-2">
+        {sequences.map((sequence) => (
+          <Button
+            key={sequence.id}
+            onClick={() => setSelectedId(sequence.id)}
+            size="sm"
+            type="button"
+            variant={selectedId === sequence.id ? "default" : "outline"}
+          >
+            {getLocalizedText(sequence.label, locale)}
+          </Button>
+        ))}
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {epsilonOptions.map((option) => (
+          <Button
+            key={`epsilon-${option}`}
+            onClick={() => setEpsilon(option)}
+            size="sm"
+            type="button"
+            variant={epsilon === option ? "default" : "outline"}
+          >
+            ε = {option}
+          </Button>
+        ))}
+      </div>
+
+      <GlassPanel className="mt-4 border border-border/60 bg-background/30 p-4">
+        <p className="text-sm leading-7 text-muted-foreground">
+          {getLocalizedText(selectedSequence.note, locale)}
+        </p>
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <div className="rounded-xl border border-border/50 bg-background/60 p-3">
+            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              {getLocalizedText(interactiveLabels.candidateLimit, locale)}
+            </p>
+            <p className="mt-2 font-mono text-lg">{formatDecimal(selectedSequence.candidate)}</p>
+          </div>
+          <div className="rounded-xl border border-border/50 bg-background/60 p-3">
+            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              {getLocalizedText(interactiveLabels.epsilonValue, locale)}
+            </p>
+            <p className="mt-2 font-mono text-lg">{epsilon}</p>
+          </div>
+          <div className="rounded-xl border border-border/50 bg-background/60 p-3">
+            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+              {getLocalizedText(interactiveLabels.tailIndex, locale)}
+            </p>
+            <p className="mt-2 text-lg font-semibold">
+              {firstGoodN === null ? "—" : firstGoodN}
+            </p>
+          </div>
+        </div>
+      </GlassPanel>
+
+      <div className="mt-5 overflow-x-auto">
+        <table className="min-w-[420px] text-sm">
+          <thead>
+            <tr className="text-left text-muted-foreground">
+              <th className="border-b border-border/50 py-2 pr-4">
+                {getLocalizedText(interactiveLabels.termIndex, locale)}
+              </th>
+              <th className="border-b border-border/50 py-2 pr-4">
+                {getLocalizedText(interactiveLabels.termValue, locale)}
+              </th>
+              <th className="border-b border-border/50 py-2">
+                {getLocalizedText(interactiveLabels.bandCheck, locale)}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={`sequence-row-${row.n}`} className="border-b border-border/30">
+                <td className="py-2 pr-4 font-mono">{row.n}</td>
+                <td className="py-2 pr-4 font-mono">{formatDecimal(row.value, 4)}</td>
+                <td className="py-2">
+                  <span
+                    className={cn(
+                      "inline-flex rounded-full px-2 py-1 text-xs font-medium",
+                      row.inside
+                        ? "bg-emerald-500/15 text-emerald-700 dark:text-emerald-300"
+                        : "bg-amber-500/15 text-amber-700 dark:text-amber-300"
+                    )}
+                  >
+                    {row.inside
+                      ? getLocalizedText(interactiveLabels.yes, locale)
+                      : getLocalizedText(interactiveLabels.no, locale)}
+                  </span>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <GlassPanel className="mt-4 border border-border/60 bg-background/30 p-4 text-sm">
+        <p>
+          <strong>{getLocalizedText(interactiveLabels.verdict, locale)}:</strong>{" "}
+          {firstGoodN === null
+            ? getLocalizedText(
+                text(
+                  "Within the first 60 terms, no tail stays inside the chosen epsilon-band. That matches the idea that this example does not converge to the displayed candidate limit.",
+                  "在前 60 項裡，沒有任何一段尾部會一直留在所選 epsilon 帶內。這和這個例子不收斂到當前候選極限的直覺一致。",
+                  "在前 60 项里，没有任何一段尾部会一直留在所选 epsilon 带内。这和这个例子不收敛到当前候选极限的直觉一致。"
+                ),
+                locale
+              )
+            : getLocalizedText(
+                text(
+                  `Starting after N = ${firstGoodN}, every checked term stays inside the band around L.`,
+                  `從 N = ${firstGoodN} 之後開始，每個被檢查的項都留在 L 周圍的帶內。`,
+                  `从 N = ${firstGoodN} 之后开始，每个被检查的项都留在 L 周围的带内。`
+                ),
+                locale
+              )}
+        </p>
+      </GlassPanel>
+    </InteractiveShell>
+  );
+}
+
+function DeltaEpsilonLimitExplorer({ locale }: { locale: Locale }) {
+  const epsilonOptions = [1, 0.5, 0.25, 0.1] as const;
+  const examples = [
+    {
+      a: 3,
+      deltaFor: (epsilon: number) => epsilon / 2,
+      evaluate: (x: number) => 2 * x + 1,
+      id: "linear",
+      label: text("2x + 1 near x = 3", "2x + 1 在 x = 3 附近", "2x + 1 在 x = 3 附近"),
+      limit: 7,
+      sampleXs: [2.4, 2.8, 3.12, 3.4],
+    },
+    {
+      a: 2,
+      deltaFor: (epsilon: number) => epsilon,
+      evaluate: (x: number) => (x * x - 4) / (x - 2),
+      id: "hole",
+      label: text("((x^2 - 4)/(x - 2)) near x = 2", "((x^2 - 4)/(x - 2)) 在 x = 2 附近", "((x^2 - 4)/(x - 2)) 在 x = 2 附近"),
+      limit: 4,
+      sampleXs: [1.5, 1.9, 2.1, 2.45],
+    },
+  ] as const;
+  const [selectedId, setSelectedId] = useState<(typeof examples)[number]["id"]>("linear");
+  const [epsilon, setEpsilon] = useState<(typeof epsilonOptions)[number]>(0.5);
+  const selectedExample =
+    examples.find((example) => example.id === selectedId) ?? examples[0];
+  const [sampleIndex, setSampleIndex] = useState(1);
+  const delta = selectedExample.deltaFor(epsilon);
+  const sampleX =
+    selectedExample.sampleXs[Math.min(sampleIndex, selectedExample.sampleXs.length - 1)] ??
+    selectedExample.sampleXs[0];
+  const sampleY = selectedExample.evaluate(sampleX);
+  const xCondition = Math.abs(sampleX - selectedExample.a) > 0 && Math.abs(sampleX - selectedExample.a) < delta;
+  const yCondition = Math.abs(sampleY - selectedExample.limit) < epsilon;
+  const xMin = selectedExample.a - 1.2;
+  const xMax = selectedExample.a + 1.2;
+  const yMin = selectedExample.limit - 2.5;
+  const yMax = selectedExample.limit + 2.5;
+
+  return (
+    <InteractiveShell icon={<Sigma className="h-5 w-5" />} locale={locale} widgetId="delta-epsilon-limit-explorer">
+      <div className="flex flex-wrap gap-2">
+        {examples.map((example) => (
+          <Button
+            key={example.id}
+            onClick={() => {
+              setSelectedId(example.id);
+              setSampleIndex(1);
+            }}
+            size="sm"
+            type="button"
+            variant={selectedId === example.id ? "default" : "outline"}
+          >
+            {getLocalizedText(example.label, locale)}
+          </Button>
+        ))}
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {epsilonOptions.map((option) => (
+          <Button
+            key={`delta-epsilon-${option}`}
+            onClick={() => setEpsilon(option)}
+            size="sm"
+            type="button"
+            variant={epsilon === option ? "default" : "outline"}
+          >
+            ε = {option}
+          </Button>
+        ))}
+      </div>
+
+      <div className="mt-4 flex flex-wrap gap-2">
+        {selectedExample.sampleXs.map((value, index) => (
+          <Button
+            key={`sample-x-${value}`}
+            onClick={() => setSampleIndex(index)}
+            size="sm"
+            type="button"
+            variant={sampleX === value ? "default" : "outline"}
+          >
+            x = {formatDecimal(value, 2)}
+          </Button>
+        ))}
+      </div>
+
+      <div className="mt-5 grid gap-4 xl:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <IntervalStrip
+          center={selectedExample.a}
+          innerMax={selectedExample.a + delta}
+          innerMin={selectedExample.a - delta}
+          label={getLocalizedText(
+            text(
+              `0 < |x - a| < δ, with δ = ${formatDecimal(delta, 3)}`,
+              `0 < |x - a| < δ，其中 δ = ${formatDecimal(delta, 3)}`,
+              `0 < |x - a| < δ，其中 δ = ${formatDecimal(delta, 3)}`
+            ),
+            locale
+          )}
+          max={xMax}
+          min={xMin}
+          point={sampleX}
+          pointLabel={`x = ${formatDecimal(sampleX, 2)}`}
+        />
+        <IntervalStrip
+          center={selectedExample.limit}
+          innerMax={selectedExample.limit + epsilon}
+          innerMin={selectedExample.limit - epsilon}
+          label={getLocalizedText(
+            text(
+              `|f(x) - L| < ε, with ε = ${epsilon}`,
+              `|f(x) - L| < ε，其中 ε = ${epsilon}`,
+              `|f(x) - L| < ε，其中 ε = ${epsilon}`
+            ),
+            locale
+          )}
+          max={yMax}
+          min={yMin}
+          point={sampleY}
+          pointLabel={`f(x) = ${formatDecimal(sampleY, 2)}`}
+        />
+      </div>
+
+      <div className="mt-5 grid gap-4 md:grid-cols-2">
+        <GlassPanel className="border border-border/60 bg-background/30 p-4 text-sm">
+          <p>
+            <strong>0 &lt; |x - a| &lt; δ</strong>
+          </p>
+          <p className="mt-2 font-mono">
+            |{formatDecimal(sampleX, 3)} - {formatDecimal(selectedExample.a, 3)}| ={" "}
+            {formatDecimal(Math.abs(sampleX - selectedExample.a), 3)}
+          </p>
+          <p className="mt-2 text-muted-foreground">
+            {xCondition
+              ? getLocalizedText(
+                  text("The chosen x really lies inside the delta-neighbourhood.", "所選 x 的確落在 delta 鄰域內。", "所选 x 的确落在 delta 邻域内。"),
+                  locale
+                )
+              : getLocalizedText(
+                  text("This x is outside the allowed delta-neighbourhood, so the implication says nothing yet.", "這個 x 不在允許的 delta 鄰域內，所以蘊含式暫時不能告訴我們任何事。", "这个 x 不在允许的 delta 邻域内，所以蕴含式暂时不能告诉我们任何事。"),
+                  locale
+                )}
+          </p>
+        </GlassPanel>
+        <GlassPanel className="border border-border/60 bg-background/30 p-4 text-sm">
+          <p>
+            <strong>|f(x) - L| &lt; ε</strong>
+          </p>
+          <p className="mt-2 font-mono">
+            |{formatDecimal(sampleY, 3)} - {formatDecimal(selectedExample.limit, 3)}| ={" "}
+            {formatDecimal(Math.abs(sampleY - selectedExample.limit), 3)}
+          </p>
+          <p className="mt-2 text-muted-foreground">
+            {yCondition
+              ? getLocalizedText(
+                  text("The function value lands inside the epsilon-band around L.", "函數值落在 L 周圍的 epsilon 帶內。", "函数值落在 L 周围的 epsilon 带内。"),
+                  locale
+                )
+              : getLocalizedText(
+                  text("The function value is still outside the epsilon-band, so this sample does not yet certify the limit condition.", "函數值仍然在 epsilon 帶外，所以這個樣本還不能驗證極限定義。", "函数值仍然在 epsilon 带外，所以这个样本还不能验证极限定义。"),
+                  locale
+                )}
+          </p>
+        </GlassPanel>
+      </div>
+    </InteractiveShell>
+  );
+}
+
 const interactiveComponents = {
   "adt-stack-queue-stepper": AdtStackQueueStepper,
   "complexity-growth-comparator": ComplexityGrowthComparator,
+  "decimal-approximation-builder": DecimalApproximationBuilder,
+  "dedekind-cut-explorer": DedekindCutExplorer,
+  "delta-epsilon-limit-explorer": DeltaEpsilonLimitExplorer,
   "hash-bucket-lab": HashBucketLab,
   "independence-checker": IndependenceChecker,
   "invertibility-row-reduction-demo": InvertibilityRowReductionDemo,
@@ -2120,6 +2902,7 @@ const interactiveComponents = {
   "pointer-state-tracer": PointerStateTracer,
   "quantifier-negation-stepper": QuantifierNegationStepper,
   "row-reduction-stepper": RowReductionStepper,
+  "sequence-limit-explorer": SequenceLimitExplorer,
   "set-operation-explorer": SetOperationExplorer,
   "solution-set-classifier": SolutionSetClassifier,
   "span-explorer": SpanExplorer,

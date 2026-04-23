@@ -38,7 +38,13 @@ The following units are currently present in EN, zh-HK, and zh-CN.
   1.3 quantifiers and negation, 2.1 sets and set operations, 2.2 functions and
   relations, 3.1 natural numbers and Peano axioms, 3.2 induction and recursive
   arithmetic, 3.3 integers from equivalence classes, 3.4 rationals and
-  well-defined operations, 3.5 gaps in `Q` and `sqrt(2)`
+  well-defined operations, 3.5 gaps in `Q` and `sqrt(2)`, 4.1 total orders and
+  ordered fields, 4.2 upper bounds / supremum / infimum, 4.3 completeness and
+  gaps in `Q`, 4.4 axioms for the reals and first approximations, 4.5 Dedekind
+  cuts and the embedding of `Q`, 4.6 decimal expansions and irrational
+  numbers, 5.1 sequences and epsilon-`N` limits, 5.2 Cauchy sequences and
+  another model of the reals, 5.3 delta-epsilon limits / limit laws /
+  continuity
 - `math1030`: 1.1 equations and solution sets, 2.1 matrix basics,
   2.2 augmented matrices and row operations, 2.3 Gaussian elimination and
   RREF, 2.4 solution-set types, 5.1 invertible matrices, 6.1 vector spaces,
@@ -185,8 +191,9 @@ Run this checklist on every localized unit.
 
 The following gaps remain active.
 
-- Later `math1090` units and the post-eigenvalue `math1030` chapters are not
-  authored yet, so parity is limited to the current source-backed note set.
+- Later Math1090 material beyond `4.4` and the post-eigenvalue `math1030`
+  chapters are not authored yet, so parity is limited to the current
+  source-backed note set.
 - zh-HK wording still needs a dedicated Hong Kong terminology review beyond the
   newer number-system and vector-space units.
 - TXT and PDF export need a final visual QA pass on all localized units.

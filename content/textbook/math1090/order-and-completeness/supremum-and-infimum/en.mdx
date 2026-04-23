@@ -1,0 +1,199 @@
+---
+title: "4.2 Upper bounds, supremum, and infimum"
+description: "Distinguish maxima and minima from upper and lower bounds, then learn how supremum and infimum capture the correct extremal language."
+---
+
+## Why we need precise language for extremes
+
+Once a set is ordered, the interesting questions usually happen near its
+extremes. Does the set have a largest element? If not, is there still a
+smallest number sitting above all of it? Is there a best lower barrier from the
+left?
+
+The lecture notes introduce a chain of ideas:
+
+- maximum and minimum talk about elements that lie **inside** the set;
+- upper and lower bounds may lie **outside** the set;
+- supremum and infimum identify the *best possible* such bounds.
+
+If you mix these ideas together, later arguments about completeness become hard
+to read. So this note separates them carefully.
+
+## Maximum and minimum versus upper and lower bounds
+
+<Definition title="Maximum, minimum, upper bound, and lower bound">
+Let `Y` be a subset of an ordered set `X`.
+
+- A **maximum** of `Y` is an element `m\in Y` such that `y\le m` for every
+  `y\in Y`.
+- A **minimum** of `Y` is an element `n\in Y` such that `n\le y` for every
+  `y\in Y`.
+- An **upper bound** of `Y` is an element `u\in X` such that `y\le u` for every
+  `y\in Y`.
+- A **lower bound** of `Y` is an element `\ell\in X` such that `\ell\le y` for
+  every `y\in Y`.
+</Definition>
+
+The difference is subtle but essential: a maximum or minimum must belong to the
+set, while an upper or lower bound only has to belong to the ambient ordered
+set.
+
+<WorkedExample title="A finite set in Z">
+Let `Y=\{1,2,3\}\subseteq Z`.
+
+- The maximum is `3`.
+- The minimum is `1`.
+- Every integer `u\ge 3` is an upper bound.
+- Every integer `\ell\le 1` is a lower bound.
+
+So the set has many upper and lower bounds, but only one maximum and one
+minimum.
+</WorkedExample>
+
+<WorkedExample title="A set can have bounds without extremal elements">
+Consider `Q_{>0}` as a subset of `Q`.
+
+The number `0` is a lower bound of `Q_{>0}`, but it is not an element of the
+set. In fact, `Q_{>0}` has **no minimum**, because for every positive rational
+`q`, the smaller rational `q/2` is still positive.
+</WorkedExample>
+
+This example is a warning: lower bound and minimum are not interchangeable.
+
+## Supremum and infimum
+
+Some upper bounds are better than others. The supremum is the smallest upper
+bound; the infimum is the largest lower bound.
+
+<Definition title="Supremum and infimum">
+Let `Y` be a nonempty subset of an ordered set `X`.
+
+- A number `s\in X` is the **supremum** of `Y`, written `s=\sup(Y)`, if
+  `s` is an upper bound of `Y` and every upper bound `u` of `Y` satisfies
+  `s\le u`.
+- A number `t\in X` is the **infimum** of `Y`, written `t=\inf(Y)`, if
+  `t` is a lower bound of `Y` and every lower bound `\ell` of `Y` satisfies
+  `\ell\le t`.
+</Definition>
+
+The ambient set matters. The same subset can have a supremum in `R` but fail to
+have one in `Q`.
+
+<WorkedExample title="The open interval (0,1)">
+Take `Y=(0,1)\subseteq R`.
+
+- `Y` has no maximum, because `1` is not in the set and every element is still
+  smaller than some larger element of `Y`.
+- `\sup(Y)=1`.
+- `Y` has no minimum.
+- `\inf(Y)=0`.
+
+So both extremal bounds exist even though neither belongs to the set.
+</WorkedExample>
+
+## Why supremum and infimum are unique
+
+<TheoremCard title="A subset has at most one supremum and at most one infimum">
+If `Y\subseteq X` has a supremum, then that supremum is unique. The same holds
+for infimum.
+</TheoremCard>
+
+The reason is short but important. Suppose `s` and `s'` are both suprema of
+`Y`. Since `s` is an upper bound and `s'` is the *least* upper bound, we get
+`s'\le s`. Reversing the roles gives `s\le s'`. By antisymmetry, `s=s'`.
+
+Exactly the same argument works for infimum.
+
+## The approximation viewpoint
+
+The definition of supremum can be turned into a more usable test.
+
+> `s=\sup(Y)` if and only if `s` is an upper bound of `Y` and for every
+> `\varepsilon>0` there exists `y\in Y` such that `s-\varepsilon<y\le s`.
+
+This says that a supremum is not just an upper wall; points of the set can come
+arbitrarily close to it from below.
+
+<CollapsibleProof title="Why the approximation property is equivalent">
+Assume first that `s=\sup(Y)`. Then `s` is an upper bound. If some
+`s-\varepsilon` were also an upper bound, it would be a smaller upper bound
+than `s`, contradicting the least-upper-bound property. So for every
+`\varepsilon>0`, some `y\in Y` must satisfy `s-\varepsilon<y`.
+
+Conversely, suppose `s` is an upper bound and every `s-\varepsilon` is exceeded
+by some point of `Y`. If `u<s`, set `\varepsilon=s-u`. Then there exists
+`y\in Y` with `u<y\le s`, so `u` is not an upper bound. Therefore no number
+smaller than `s` can be an upper bound, which means `s=\sup(Y)`.
+</CollapsibleProof>
+
+## Common mistakes
+
+<CommonMistake title="Maximum is stronger than supremum">
+A maximum must belong to the set. A supremum only has to be the least upper
+bound in the ambient ordered set. The open interval `(0,1)` has supremum `1`
+but no maximum.
+</CommonMistake>
+
+<CommonMistake title="The ambient ordered set matters">
+When you write `\sup(Y)`, you are working inside some ordered set. A subset of
+`Q` can have a supremum in `R` without having one in `Q`. Later, this is
+exactly how we see that `Q` is not complete.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="For Y=(0,1), does Y have a maximum? What are sup(Y) and inf(Y)?">
+Keep the inside/outside distinction clear.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`Y` has no maximum and no minimum. Its supremum is `1`, and its infimum is `0`.
+</RevealSolution>
+
+<QuickCheck prompt="If a set A has a maximum m, what is sup(A)?">
+Compare the definitions directly.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`\sup(A)=m`. A maximum is already an upper bound inside the set, and no smaller
+number can still be an upper bound.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Let A={1-1/n : n in N}. Find sup(A), inf(A), and decide whether A has a maximum.">
+List the first few terms and look at the trend.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The set is
+
+$$
+\left\{0,\frac12,\frac23,\frac34,\dots\right\}.
+$$
+
+It increases and stays below `1`, so `\sup(A)=1`. Since `1\notin A`, the set
+has no maximum. The smallest element is `0`, so `\inf(A)=0`, and `0` is also
+the minimum.
+</RevealSolution>
+
+<QuickCheck prompt="Show that if B is nonempty and bounded below, then inf(B) = -sup(-B).">
+Translate lower-bound statements for B into upper-bound statements for -B.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+A number `\ell` is a lower bound of `B` exactly when `-\ell` is an upper bound
+of `-B`. So the largest lower bound of `B` corresponds to the smallest upper
+bound of `-B`. Therefore
+
+$$
+\inf(B)=-\sup(-B).
+$$
+</RevealSolution>
+
+## Related notes
+
+Read this after
+[4.1 Total orders and ordered fields](/en/notes/math1090/order-and-completeness/order-bounds-and-completeness)
+and continue to
+[4.3 Completeness and gaps in Q](/en/notes/math1090/order-and-completeness/completeness-and-gaps-in-q).

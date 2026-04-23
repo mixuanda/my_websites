@@ -1,0 +1,185 @@
+---
+title: "4.2 上下界、上確界與下確界"
+description: "分清最大值、最小值與上界、下界，再理解上確界與下確界如何提供真正需要的極值語言。"
+---
+
+## 為甚麼極值要講得這麼精確
+
+一旦一個集合帶有次序，最有意思的問題往往都發生在它的邊界附近：它
+有沒有最大元素？如果沒有，是否仍有一個最小的「上方障礙」？左邊又
+有沒有最好的下界？
+
+lecture notes 在這裡引入了一條很重要的概念鏈：
+
+- maximum 與 minimum 講的是**集合內部**的元素；
+- upper bound 與 lower bound 可以落在**集合外部**；
+- supremum 與 infimum 則是所有這類界之中「最好」的那一個。
+
+若把這些概念混在一起，後面的完備性論證就很難讀清楚，所以這一節要
+先把它們分開。
+
+## 最大值、最小值與上下界
+
+<Definition title="最大值、最小值、上界與下界">
+設 `Y` 是有序集 `X` 的子集。
+
+- 若 `m\in Y` 且對所有 `y\in Y` 都有 `y\le m`，則 `m` 是 `Y` 的
+  **最大值**。
+- 若 `n\in Y` 且對所有 `y\in Y` 都有 `n\le y`，則 `n` 是 `Y` 的
+  **最小值**。
+- 若 `u\in X` 且對所有 `y\in Y` 都有 `y\le u`，則 `u` 是 `Y` 的
+  **上界**。
+- 若 `\ell\in X` 且對所有 `y\in Y` 都有 `\ell\le y`，則 `\ell` 是 `Y`
+  的 **下界**。
+</Definition>
+
+關鍵差別在於：最大值、最小值必須屬於集合本身；上界、下界只需要屬於
+外面的環境有序集。
+
+<WorkedExample title="Z 裡的一個有限集合">
+設 `Y=\{1,2,3\}\subseteq Z`。
+
+- 最大值是 `3`；
+- 最小值是 `1`；
+- 每個 `u\ge 3` 的整數都是上界；
+- 每個 `\ell\le 1` 的整數都是下界。
+
+所以這個集合有很多上界與下界，但最大值與最小值各只有一個。
+</WorkedExample>
+
+<WorkedExample title="有界不代表有極值元素">
+把 `Q_{>0}` 視為 `Q` 的子集。
+
+`0` 是 `Q_{>0}` 的下界，但 `0` 並不屬於這個集合。事實上，`Q_{>0}`
+**沒有最小值**，因為對每個正有理數 `q`，更小的 `q/2` 仍然是正有理數。
+</WorkedExample>
+
+這個例子提醒你：lower bound 與 minimum 不是同一回事。
+
+## 上確界與下確界
+
+有些上界比另一些更好。supremum 是最小上界；infimum 是最大下界。
+
+<Definition title="上確界與下確界">
+設 `Y` 是有序集 `X` 的非空子集。
+
+- `s\in X` 稱為 `Y` 的 **上確界**，記作 `s=\sup(Y)`，如果 `s` 是 `Y`
+  的上界，而且每個上界 `u` 都滿足 `s\le u`。
+- `t\in X` 稱為 `Y` 的 **下確界**，記作 `t=\inf(Y)`，如果 `t` 是 `Y`
+  的下界，而且每個下界 `\ell` 都滿足 `\ell\le t`。
+</Definition>
+
+這裡的環境集合非常重要。同一個子集，可能在 `R` 裡有 supremum，但在
+`Q` 裡沒有。
+
+<WorkedExample title="開區間 (0,1)">
+取 `Y=(0,1)\subseteq R`。
+
+- `Y` 沒有最大值，因為 `1` 不在集合內，而且每個元素右邊仍可找到更大
+  的集合元素；
+- `\sup(Y)=1`；
+- `Y` 沒有最小值；
+- `\inf(Y)=0`。
+
+因此，兩個極端的界都存在，但都不屬於集合本身。
+</WorkedExample>
+
+## 為甚麼上確界與下確界是唯一的
+
+<TheoremCard title="一個集合至多只有一個上確界與一個下確界">
+若 `Y\subseteq X` 有上確界，那個上確界必定唯一；下確界也一樣。
+</TheoremCard>
+
+理由很短，但很重要。若 `s` 與 `s'` 都是 `Y` 的 supremum，則 `s` 是上
+界，而 `s'` 作為「最小上界」就必須滿足 `s'\le s`。反過來同理得到
+`s\le s'`。由反對稱性便得 `s=s'`。
+
+對 infimum 的論證完全相同。
+
+## 用逼近去理解上確界
+
+supremum 的定義還可以改寫成更常用的判準：
+
+> `s=\sup(Y)` 當且僅當 `s` 是 `Y` 的上界，而且對每個 `\varepsilon>0`，
+> 都存在 `y\in Y` 使 `s-\varepsilon<y\le s`。
+
+這告訴你：supremum 不只是上方一堵牆，而是集合中的點可以由下方任意
+逼近它。
+
+<CollapsibleProof title="為甚麼這個逼近判準等價">
+先假設 `s=\sup(Y)`。那麼 `s` 當然是上界。若某個 `s-\varepsilon` 也是上
+界，它就會比 `s` 更小，與「最小上界」矛盾。因此每個 `s-\varepsilon`
+都必須被某個 `y\in Y` 超過。
+
+反過來，若 `s` 是上界，而每個 `s-\varepsilon` 都會被 `Y` 的某點超過，
+則任何 `u<s` 都不可能是上界。只要取 `\varepsilon=s-u`，便有某個
+`y\in Y` 滿足 `u<y\le s`。所以沒有比 `s` 更小的上界，故 `s=\sup(Y)`。
+</CollapsibleProof>
+
+## 常見錯誤
+
+<CommonMistake title="maximum 比 supremum 更強">
+maximum 必須屬於集合本身；supremum 只需要在環境有序集中充當最小上
+界。開區間 `(0,1)` 的 supremum 是 `1`，但它沒有 maximum。
+</CommonMistake>
+
+<CommonMistake title="環境有序集不可忽略">
+寫 `\sup(Y)` 時，你其實是在某個具體有序集裡工作。`Q` 的子集在 `R`
+裡可能有 supremum，但在 `Q` 裡沒有。後面證明 `Q` 不完備時，正是利用
+這一點。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="對 Y=(0,1)，它有沒有最大值？sup(Y) 與 inf(Y) 分別是甚麼？">
+分清集合內元素與外部界。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`Y` 沒有最大值，也沒有最小值；它的 supremum 是 `1`，infimum 是 `0`。
+</RevealSolution>
+
+<QuickCheck prompt="若集合 A 有最大值 m，則 sup(A) 是甚麼？">
+直接對照定義。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`\sup(A)=m`。因為 maximum 本身就是上界，而且不可能存在更小的上界。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="設 A={1-1/n : n in N}。求 sup(A)、inf(A)，並判斷 A 是否有最大值。">
+先寫出前幾項，再看趨勢。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+集合是
+
+$$
+\left\{0,\frac12,\frac23,\frac34,\dots\right\}.
+$$
+
+它遞增而且始終小於 `1`，所以 `\sup(A)=1`。由於 `1\notin A`，故沒有最
+大值。最小元素是 `0`，因此 `\inf(A)=0`，而且 `0` 同時是最小值。
+</RevealSolution>
+
+<QuickCheck prompt="證明：若 B 非空且下有界，則 inf(B) = -sup(-B)。">
+把 B 的下界語句翻成 -B 的上界語句。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+`\ell` 是 `B` 的下界，當且僅當 `-\ell` 是 `-B` 的上界。因此，`B` 的最
+大下界恰好對應到 `-B` 的最小上界，所以
+
+$$
+\inf(B)=-\sup(-B).
+$$
+</RevealSolution>
+
+## 相關筆記
+
+可先讀
+[4.1 全序與有序域](/zh-hk/notes/math1090/order-and-completeness/order-bounds-and-completeness)，
+然後接著讀
+[4.3 完備性與 Q 的缺口](/zh-hk/notes/math1090/order-and-completeness/completeness-and-gaps-in-q)。

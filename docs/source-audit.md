@@ -10,7 +10,8 @@ claims.
 The current live note set stays inside the strongest audited coverage zones.
 These units are already present in code and should remain source-backed.
 
-- `math1090`: 1.1, 1.2, 1.3, 2.1, 2.2, 3.1, 3.2, 3.3, 3.4, 3.5, 4.1
+- `math1090`: 1.1, 1.2, 1.3, 2.1, 2.2, 3.1, 3.2, 3.3, 3.4, 3.5, 4.1, 4.2,
+  4.3, 4.4, 4.5, 4.6, 5.1, 5.2, 5.3
 - `math1030`: 1.1, 2.1, 2.2, 2.3, 2.4, 3.1, 3.2, 4.1, 5.1, 6.1, 6.2, 6.3,
   6.4, 6.5, 6.6, 7.1, 7.2, 7.3, 8.1, 8.2, 8.3, 9.1, 9.2, 9.3, 9.4
 - `math1025`: baseline foundations pair only
@@ -23,9 +24,9 @@ notes.
 
 ## MATH1090
 
-The MATH1090 sources are strongest in the early logic, sets, and number
-construction spine. Coverage is good through the current `sqrt(2)` unit and
-then becomes noticeably thinner.
+The MATH1090 sources are strongest in the logic, sets, number-construction,
+order/completeness, and first limits material that now extends through the
+chapter-5 `delta`-`epsilon` family in the public Notes area.
 
 ### Available materials
 
@@ -33,6 +34,7 @@ The current local files for MATH1090 are:
 
 - `reference/MATH1090/MATH1090_Lecture_Notes_Feb27.pdf`
 - `reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf`
+- `reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf`
 - `reference/MATH1090/MATH1090_midterm_review_notes_master.pdf`
 - `reference/MATH1090/MATH1090_midterm_review_notes_final.pdf`
 - `reference/MATH1090/MATH1090_midterm_review_notes_final.tex`
@@ -60,18 +62,19 @@ artifacts that should not be treated as separate sources.
 
 The current weak spots are:
 
-- Coverage is strong for logic, quantifiers, sets, functions, relations,
-  natural numbers, induction, integers, rationals, and the `sqrt(2)` gap in
-  `Q`.
-- Coverage becomes thinner after the currently authored `3.5` note, but the
-  April 10 lecture packet and the review materials do support a next chapter on
-  total order, upper and lower bounds, supremum / infimum, and incompleteness
-  of `Q`.
-- `MISSING_SOURCE`: material well beyond the audited `§4.7` boundary and the
-  later completeness constructions still needs tighter page-by-page mapping
-  before it becomes detailed public notes.
-- `MISSING_SOURCE`: the homework sequence is incomplete. Only `HW1` and `HW8`
-  are locally available.
+- Coverage is now strong for logic, quantifiers, sets, functions, relations,
+  natural numbers, induction, integers, rationals, the `sqrt(2)` gap in `Q`,
+  the full late chapter-4 family through Dedekind cuts and decimal
+  expansions, and the first limits family: sequences, Cauchy sequences,
+  delta-epsilon limits, limit laws, sequential characterization, and
+  continuity.
+- The April 10 lecture packet is now substantially processed into public notes.
+  The remaining MATH1090 gap is not a missing conceptual chapter, but weak or
+  secondary support material such as poorly extracting homework / review
+  overlap.
+- The homework sequence is still incomplete. Only `HW1` and `HW8` are locally
+  available, so exercise design should continue to lean mainly on lecture-note
+  exercises, worksheets, and the review packet.
 
 ## MATH1030
 
@@ -248,6 +251,7 @@ traceable.
 
 ## Next steps
 
-Return to the remaining Math1090 chapter-4 and proof-structure backlog next,
-while keeping Math1025 expansion narrow and source-backed and continuing to use
-the newer Math1030 higher chapters for export, rendering, and exercise QA.
+Move next to the post-`§4.7` Math1090 backlog deliberately, while keeping
+Math1025 expansion narrow and source-backed and continuing to use the newer
+Math1030 higher chapters plus the new Math1090 chapter-4 family for export,
+rendering, and exercise QA.

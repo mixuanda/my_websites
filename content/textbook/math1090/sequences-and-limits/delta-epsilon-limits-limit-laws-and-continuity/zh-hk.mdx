@@ -1,0 +1,499 @@
+---
+title: "5.3 Delta-epsilon 極限、極限定律與連續性"
+description: "由序列極限走向函數極限，學會 delta-epsilon 定義，並整理不存在判準、極限定律、順序判別與連續性。"
+---
+
+第 5 章現在由序列轉向函數。新的困難在於：序列是透過離散的索引 `n` 向
+前走，但函數的自變數 `x` 可以由左、由右，以無窮多種實數方式逼近一個
+點 `a`。
+
+這就是為甚麼 lecture notes 要引入 `\delta`-`\varepsilon` 定義。
+
+## 由序列極限走向函數極限
+
+上一章的
+
+$$
+\lim_{n\to\infty}x_n=L
+$$
+
+意思是：只要把索引取得夠後，序列值就能進入 `L` 周圍任意窄的誤差帶。
+
+對函數來說，我們想表達同樣的思想：
+
+當 `x` 靠近 `a` 時，`f(x)` 靠近 `L`。
+
+但這裡已經不能再說「把 `n` 取得夠大」。我們需要新的量去描述「`x` 與
+`a` 夠接近」，這個角色就是 `\delta`。
+
+## Open intervals 與 punctured domains
+
+notes 先指明要處理哪類定義域。
+
+<Definition title="Open interval">
+**Open interval** 是 `R` 的下列形式子集：
+
+$$
+(b,c)=\{x\in R\mid b<x<c\},
+$$
+
+$$
+(-\infty,c)=\{x\in R\mid x<c\},
+$$
+
+$$
+(b,\infty)=\{x\in R\mid b<x\},
+$$
+
+其中 `b,c\in R` 且 `b<c`。
+</Definition>
+
+要討論 `a` 附近的函數極限時，notes 考慮的是在某個 open interval 裡，把
+點 `a` 移除後的函數。這一點很重要：極限研究的是 **a 附近** 發生甚麼，
+而未必是 `a` 本身的函數值。
+
+## 正式的 delta-epsilon 定義
+
+<Definition title="函數在一點的極限">
+設 `I` 是一個包含 `a\in R` 的 open interval，並令
+`f:I\setminus\{a\}\to R`。若對每個 `\varepsilon>0`，都存在
+`\delta>0` 使得
+
+$$
+0<|x-a|<\delta \implies |f(x)-L|<\varepsilon,
+$$
+
+則我們說
+
+$$
+\lim_{x\to a}f(x)=L.
+$$
+</Definition>
+
+這個蘊含式要慢慢讀：
+
+- `0<|x-a|<\delta` 表示 `x` 已進入 `a` 周圍的 punctured neighborhood；
+- `|f(x)-L|<\varepsilon` 表示函數值進入 `L` 周圍的 `\varepsilon`-帶。
+
+所以整個定義的意思是：
+
+> 對每個你要求的輸出精度 `\varepsilon`，都能找到一個足夠小的輸入範圍
+> `\delta`，使得只要 `x` 落在那範圍內，`f(x)` 就會落在 `L` 周圍的誤差
+> 帶內。
+
+<CommonMistake title="函數極限定義不理會 a 點本身的值">
+條件中的 `0<|x-a|` 把 `x=a` 排除了。所以 `f(a)` 可以未定義，也可以和
+`L` 不同，而極限仍然可以存在。
+</CommonMistake>
+
+## 第一個例子：`\lim_{x\to 3}(2x+1)=7`
+
+Example 19 是最基本的 linear 函數例子。
+
+<WorkedExample title="取 `\delta=\varepsilon/2`">
+令 `f(x)=2x+1`、`a=3`、`L=7`。則
+
+$$
+|f(x)-7|
+=
+|(2x+1)-7|
+=
+|2x-6|
+=
+2|x-3|.
+$$
+
+所以要使 `|f(x)-7|<\varepsilon`，只需保證
+
+$$
+|x-3|<\frac{\varepsilon}{2}.
+$$
+
+故可取
+
+$$
+\delta=\frac{\varepsilon}{2}.
+$$
+
+這樣一來，只要 `0<|x-3|<\delta`，
+
+$$
+|f(x)-7|=2|x-3|<2\delta=2\cdot \frac{\varepsilon}{2}=\varepsilon.
+$$
+
+因此
+
+$$
+\lim_{x\to 3}(2x+1)=7.
+$$
+</WorkedExample>
+
+這個例子展示了最標準的證明模式：
+
+1. 由 `|f(x)-L|` 開始；
+2. 把它化成與 `|x-a|` 有關的式子；
+3. 然後倒推出一個可行的 `\delta`。
+
+## notes 裡另外兩個基本例子
+
+<WorkedExample title="Constant functions">
+若 `f(x)=c` 對所有 `x` 都成立，則
+
+$$
+|f(x)-c|=|c-c|=0<\varepsilon
+$$
+
+對任意 `\varepsilon>0` 和任意 `x` 都成立。
+
+所以任何正數都可以當作 `\delta`，而
+
+$$
+\lim_{x\to a}c=c.
+$$
+</WorkedExample>
+
+<WorkedExample title="有一個 hole 的函數">
+考慮
+
+$$
+f:(0,\infty)\setminus\{2\}\to R,\qquad
+f(x)=\frac{x^2-4}{x-2}.
+$$
+
+雖然這條公式在 `x=2` 未定義，但對 `x\ne 2`，可化簡成
+
+$$
+f(x)=x+2.
+$$
+
+所以在 `x=2` 附近，
+
+$$
+|f(x)-4|=|(x+2)-4|=|x-2|.
+$$
+
+因此取 `\delta=\varepsilon` 即可。只要 `0<|x-2|<\delta`，便有
+
+$$
+|f(x)-4|<\varepsilon.
+$$
+
+故
+
+$$
+\lim_{x\to 2}\frac{x^2-4}{x-2}=4,
+$$
+
+即使 `f(2)` 根本不存在。
+</WorkedExample>
+
+![把 delta 鄰域映到 epsilon 帶](/images/textbook/math1090/delta-epsilon-linear-limit.png)
+
+*圖：`\delta`-`\varepsilon` 定義把 `a` 附近的輸入鄰域，連到 `L` 周圍的
+輸出誤差帶。證明工作的核心，就是選出一個足夠好的 `\delta`，讓這個蘊含
+式總能成立。*
+
+## 用互動方式看清這個定義
+
+下面的 explorer 讓你在 source 的例子之間切換、選擇 `\varepsilon`，再試
+不同樣本輸入 `x`。核心就是把
+
+$$
+0<|x-a|<\delta \implies |f(x)-L|<\varepsilon
+$$
+
+看成輸入區間與輸出誤差帶之間的一個對應。
+
+<InteractiveWidget id="delta-epsilon-limit-explorer" />
+
+## 極限如何失敗？
+
+notes 接着說明：如何證明某個候選極限**不存在**。
+
+若要證明 `\lim_{x\to a}f(x)\ne L`，就要找到一個固定的 `\varepsilon>0`，
+使得不論 `\delta` 取得多小，總能找到某個 `x` 滿足 `0<|x-a|<\delta`，
+但同時
+
+$$
+|f(x)-L|\ge \varepsilon.
+$$
+
+Example 22 用的是
+
+$$
+f(x)=\frac{|x|}{x},
+$$
+
+它在 `x>0` 時等於 `1`，在 `x<0` 時等於 `-1`。
+
+<WorkedExample title="為甚麼 `|x|/x` 在 `0` 沒有極限">
+取 `\varepsilon=1`。任意給定 `\delta>0`，令
+
+$$
+x_1=\frac{\delta}{2}>0,
+\qquad
+x_2=-\frac{\delta}{2}<0.
+$$
+
+兩者都滿足 `|x_i|<\delta`，但
+
+$$
+f(x_1)=1,\qquad f(x_2)=-1.
+$$
+
+沒有任何單一實數 `L` 能同時和 `1`、`-1` 都相距小於 `1`。因此該函數在
+`0` 沒有極限。
+</WorkedExample>
+
+這就是一種典型失敗方式：左邊逼近與右邊逼近給出互不相容的行為。
+
+## 極限定律
+
+一旦若干基本極限已知，notes 便教你如何由舊極限組合出新極限。
+
+<TheoremCard title="極限定律">
+若 `\lim_{x\to a}f(x)=L` 且 `\lim_{x\to a}g(x)=M`，則：
+
+- `\lim_{x\to a}(f(x)+g(x))=L+M`；
+- `\lim_{x\to a}(f(x)g(x))=LM`；
+- 若 `M\ne 0`，則
+
+$$
+\lim_{x\to a}\frac{f(x)}{g(x)}=\frac{L}{M}.
+$$
+</TheoremCard>
+
+加法定律最能展示思路：把總誤差 `\varepsilon` 分成兩半，再用 triangle
+inequality，
+
+$$
+|f(x)+g(x)-(L+M)|\le |f(x)-L|+|g(x)-M|.
+$$
+
+乘法定律則多一步，要先證明 `|f(x)|` 在 `a` 附近是有界的。
+
+<WorkedExample title="利用加法定律">
+notes 考慮 `f(x)=2x+1` 與 `g(x)=\sqrt{x}` 在 `x=4` 附近。若已知
+
+$$
+\lim_{x\to 4}(2x+1)=9,
+\qquad
+\lim_{x\to 4}\sqrt{x}=2,
+$$
+
+那麼加法定律立即給出
+
+$$
+\lim_{x\to 4}\bigl((2x+1)+\sqrt{x}\bigr)=9+2=11.
+$$
+</WorkedExample>
+
+## 順序判別：用序列刻畫函數極限
+
+Theorem 3 把函數極限再度連回序列極限。
+
+<TheoremCard title="函數極限的 sequential characterization">
+設 `f:I\setminus\{a\}\to R`。則
+
+$$
+\lim_{x\to a}f(x)=L
+$$
+
+當且僅當對每個滿足 `x_n\in I\setminus\{a\}` 且 `x_n\to a` 的序列
+`(x_n)`，都有
+
+$$
+\lim_{n\to\infty}f(x_n)=L.
+$$
+</TheoremCard>
+
+這個定理非常實用，因為它提供了兩種方法：
+
+1. 若要證明極限存在，就檢查所有逼近 `a` 的序列；
+2. 若要證明極限不存在，只要找兩條逼近 `a` 的序列，令函數值出現互不相
+   容的極限即可。
+
+Example 25 正是這樣重新處理 `f(x)=\sin(1/x)`。
+
+<WorkedExample title="用兩條序列證明 `\sin(1/x)` 在 `0` 沒有極限">
+取
+
+$$
+x_n=\frac{1}{2\pi n},
+\qquad
+y_n=\frac{1}{2\pi n+\pi/2}.
+$$
+
+則 `x_n\to 0` 且 `y_n\to 0`，但
+
+$$
+f(x_n)=\sin(2\pi n)=0\to 0,
+$$
+
+而
+
+$$
+f(y_n)=\sin(2\pi n+\pi/2)=1\to 1.
+$$
+
+由於兩條同樣逼近 `0` 的序列給出不同的函數值極限，所以
+`\lim_{x\to 0}\sin(1/x)` 不存在。
+</WorkedExample>
+
+## 連續性
+
+極限最重要的用途之一，就是把「函數是連續的」這個直覺說得精確。
+
+<Definition title="一點的連續性">
+設 `f:I\to R` 且 `a\in I`。若
+
+$$
+\lim_{x\to a}f(x)=f(a),
+$$
+
+則稱 `f` 在 `a` **連續**。
+
+等價地，用 `\varepsilon`-`\delta` 語言可寫成：
+
+$$
+\forall \varepsilon>0\ \exists \delta>0\text{ 使得 }
+|x-a|<\delta \implies |f(x)-f(a)|<\varepsilon.
+$$
+</Definition>
+
+請留意：這次條件裡不再有 `0<|x-a|`。因為連續性真的會檢查 `x=a` 時的
+函數值。
+
+notes 的不連續例子是
+
+$$
+f(x)=
+\begin{cases}
+0,& x\ne 0,\\
+1,& x=0.
+\end{cases}
+$$
+
+這裡 `x` 在 `0` 附近時的函數值都接近 `0`，但 `f(0)=1`，所以它在 `0`
+不連續。
+
+<CommonMistake title="有極限不代表自動連續">
+hole 那個例子已經說明：一個函數可以在 `a` 有極限，但在 `a` 未定義。連
+續性還要多加一個條件，就是函數值存在並且等於那個極限。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="為甚麼函數極限定義要寫成 `0 < |x-a| < \delta`，而不是只寫 `|x-a| < \delta`？">
+想一想在極限問題裡，a 點本身是否一定重要。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因為極限考察的是 `a` 附近的點，不一定是 `a` 本身。`0<|x-a|` 把 `x=a`
+排除出去。
+</RevealSolution>
+
+<QuickCheck prompt="在證明 `\lim_{x\to 3}(2x+1)=7` 時，對任意 epsilon 應選甚麼 delta？">
+利用 `|f(x)-7|=2|x-3|`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+取 `\delta=\varepsilon/2` 即可。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼 `\frac{x^2-4}{x-2}` 可以在 `x=2` 有極限，雖然公式在那裡未定義？">
+回想極限定義實際檢查的是甚麼。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因為定義只檢查 `0<|x-2|<\delta` 的點，並不要求在 `x=2` 本身有函數值。
+所以有一個 hole 並不妨礙極限存在。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="證明 `\lim_{x\to 4}\sqrt{x}=2`。">
+先把 `|\sqrt{x}-2|` 有理化，同時控制分母不要太小。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+利用
+
+$$
+|\sqrt{x}-2|
+=
+\frac{|x-4|}{\sqrt{x}+2}.
+$$
+
+取
+
+$$
+\delta=\min(1,2\varepsilon).
+$$
+
+若 `0<|x-4|<\delta`，則特別有 `x\in(3,5)`，故 `\sqrt{x}+2>2`。因此
+
+$$
+|\sqrt{x}-2|
+=
+\frac{|x-4|}{\sqrt{x}+2}
+<
+\frac{|x-4|}{2}
+<
+\frac{\delta}{2}
+\le \varepsilon.
+$$
+
+所以 `\lim_{x\to 4}\sqrt{x}=2`。
+</RevealSolution>
+
+<QuickCheck prompt="用 sequential characterization 再證明一次 `\lim_{x\to 0}\sin(1/x)` 不存在。">
+你只需要兩條精心選擇的序列。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+取
+
+$$
+x_n=\frac{1}{2\pi n},
+\qquad
+y_n=\frac{1}{2\pi n+\pi/2}.
+$$
+
+兩條序列都收斂到 `0`。但
+
+$$
+\sin(1/x_n)=\sin(2\pi n)=0,
+$$
+
+而
+
+$$
+\sin(1/y_n)=\sin(2\pi n+\pi/2)=1.
+$$
+
+由於函數值序列有不同極限，故函數在 `0` 的極限不存在。
+</RevealSolution>
+
+<QuickCheck prompt="若已知 `\lim_{x\to a}f(x)` 存在，要再加上甚麼條件，才可推出 f 在 a 連續？">
+直接對照極限與連續性的定義。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+還要有 `f(a)` 已定義，並且滿足
+
+$$
+\lim_{x\to a}f(x)=f(a).
+$$
+
+這個等式正是 `f` 在 `a` 連續的定義。
+</RevealSolution>
+
+## 相關筆記
+
+建議先讀
+[5.1 序列與 epsilon-N 極限](/zh-hk/notes/math1090/sequences-and-limits/sequences-and-epsilon-n-limits)
+及
+[5.2 Cauchy 序列與另一個實數模型](/zh-hk/notes/math1090/sequences-and-limits/cauchy-sequences-and-another-real-construction)。
+若想回看完備性的次序背景，可重讀
+[4.3 完備性與 Q 的缺口](/zh-hk/notes/math1090/order-and-completeness/completeness-and-gaps-in-q)。

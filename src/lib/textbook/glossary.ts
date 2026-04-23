@@ -694,6 +694,66 @@ export const glossaryEntries: GlossaryEntry[] = [
   },
   {
     definition: {
+      en: "A total order is a partial order in which any two elements can be compared: for every x and y, either x <= y or y <= x.",
+      "zh-cn": "全序是在任意两个元素都可比较的偏序：对每个 x 和 y，都有 x <= y 或 y <= x。",
+      "zh-hk": "全序是在任意兩個元素都可比較的偏序：對每個 x 和 y，都有 x <= y 或 y <= x。",
+    },
+    id: "total-order",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§4.1-§4.2" },
+      { file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex", pages: "§4.2" },
+    ],
+    termEn: "total order",
+    termZhCn: "全序",
+    termZhHk: "全序",
+  },
+  {
+    definition: {
+      en: "An ordered field is a field equipped with a total order that is compatible with addition and with multiplication by nonnegative elements.",
+      "zh-cn": "有序域是带有全序的域，而且这个次序与加法及非负元素的乘法相容。",
+      "zh-hk": "有序域是帶有全序的域，而且這個次序與加法及非負元素的乘法相容。",
+    },
+    id: "ordered-field",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§4.3" },
+      { file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex", pages: "§4.2, §4.6" },
+    ],
+    termEn: "ordered field",
+    termZhCn: "有序域",
+    termZhHk: "有序域",
+  },
+  {
+    definition: {
+      en: "An upper bound of a subset Y is an element that lies above every element of Y in the ambient ordered set.",
+      "zh-cn": "子集 Y 的上界，是指在所处有序集中位于 Y 每个元素之上的元素。",
+      "zh-hk": "子集 Y 的上界，是指在所處有序集中位於 Y 每個元素之上的元素。",
+    },
+    id: "upper-bound",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§4.4" },
+      { file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex", pages: "§4.3-§4.4" },
+    ],
+    termEn: "upper bound",
+    termZhCn: "上界",
+    termZhHk: "上界",
+  },
+  {
+    definition: {
+      en: "A lower bound of a subset Y is an element that lies below every element of Y in the ambient ordered set.",
+      "zh-cn": "子集 Y 的下界，是指在所处有序集中位于 Y 每个元素之下的元素。",
+      "zh-hk": "子集 Y 的下界，是指在所處有序集中位於 Y 每個元素之下的元素。",
+    },
+    id: "lower-bound",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§4.4" },
+      { file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex", pages: "§4.3-§4.4" },
+    ],
+    termEn: "lower bound",
+    termZhCn: "下界",
+    termZhHk: "下界",
+  },
+  {
+    definition: {
       en: "The supremum of a set is its least upper bound: it is an upper bound, and no smaller upper bound exists.",
       "zh-cn": "上确界是一个集合的最小上界：它本身是上界，而且没有更小的上界。",
       "zh-hk": "上確界是一個集合的最小上界：它本身是上界，而且沒有更小的上界。",
@@ -707,6 +767,152 @@ export const glossaryEntries: GlossaryEntry[] = [
     termEn: "supremum",
     termZhCn: "上确界",
     termZhHk: "上確界",
+  },
+  {
+    definition: {
+      en: "The infimum of a set is its greatest lower bound: it is a lower bound, and no larger lower bound exists.",
+      "zh-cn": "下确界是一个集合的最大下界：它本身是下界，而且没有更大的下界。",
+      "zh-hk": "下確界是一個集合的最大下界：它本身是下界，而且沒有更大的下界。",
+    },
+    id: "infimum",
+    notationNote: "`inf(X)` denotes the infimum of the set X.",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§4.4" },
+      { file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex", pages: "§4.3-§4.4" },
+    ],
+    termEn: "infimum",
+    termZhCn: "下确界",
+    termZhHk: "下確界",
+  },
+  {
+    definition: {
+      en: "Completeness means that every nonempty subset with an upper bound has a supremum, and every nonempty subset with a lower bound has an infimum.",
+      "zh-cn": "完备性是指：每个有上界的非空子集都有上确界，每个有下界的非空子集都有下确界。",
+      "zh-hk": "完備性是指：每個有上界的非空子集都有上確界，每個有下界的非空子集都有下確界。",
+    },
+    id: "completeness",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§4.5-§4.6" },
+      { file: "reference/MATH1090/MATH1090_midterm_review_notes_final.tex", pages: "§4.5-§4.6" },
+    ],
+    termEn: "completeness",
+    termZhCn: "完备性",
+    termZhHk: "完備性",
+  },
+  {
+    definition: {
+      en: "A Dedekind cut is a nonempty proper subset A of Q that is downward closed and has no greatest element, so it records all rationals lying to the left of one real-number boundary.",
+      "zh-cn": "Dedekind cut 是 Q 的一个非空真子集 A；它向下封闭，而且没有最大元，因此它记录了某个实数边界左边的所有有理数。",
+      "zh-hk": "Dedekind cut 是 Q 的一個非空真子集 A；它向下封閉，而且沒有最大元，因此它記錄了某個實數邊界左邊的所有有理數。",
+    },
+    id: "dedekind-cut",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§4.8-§4.9" },
+    ],
+    termEn: "Dedekind cut",
+    termZhCn: "Dedekind cut",
+    termZhHk: "Dedekind cut",
+  },
+  {
+    definition: {
+      en: "A decimal expansion writes a real number through an integer part together with an infinite base-10 digit string that produces tighter and tighter rational approximations.",
+      "zh-cn": "小数展开用整数部分和一个无限的十进制数字串来表示实数，并给出越来越紧的有理近似。",
+      "zh-hk": "小數展開用整數部分和一個無限的十進制數字串來表示實數，並給出越來越緊的有理近似。",
+    },
+    id: "decimal-expansion",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§4.10" },
+    ],
+    termEn: "decimal expansion",
+    termZhCn: "小数展开",
+    termZhHk: "小數展開",
+  },
+  {
+    definition: {
+      en: "A sequence in a set X is a function from N to X, so each natural number index n picks out one term x_n.",
+      "zh-cn": "集合 X 中的序列是一个从 N 到 X 的函数，因此每个自然数指标 n 都对应一个项 x_n。",
+      "zh-hk": "集合 X 中的序列是一個從 N 到 X 的函數，因此每個自然數指標 n 都對應一個項 x_n。",
+    },
+    id: "sequence",
+    notationNote: "Sequences are often written `(x_n)`.",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§4.12" },
+    ],
+    termEn: "sequence",
+    termZhCn: "序列",
+    termZhHk: "序列",
+  },
+  {
+    definition: {
+      en: "A sequence limit L is a number such that the terms x_n eventually lie within every epsilon-neighbourhood of L.",
+      "zh-cn": "序列极限 L 是这样一个数：对每个 epsilon 邻域，序列项 x_n 从某一项以后都会落在其中。",
+      "zh-hk": "序列極限 L 是這樣一個數：對每個 epsilon 鄰域，序列項 x_n 從某一項以後都會落在其中。",
+    },
+    id: "sequence-limit",
+    notationNote: "We write `lim_(n→∞) x_n = L`.",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§4.12" },
+    ],
+    termEn: "sequence limit",
+    termZhCn: "序列极限",
+    termZhHk: "序列極限",
+  },
+  {
+    definition: {
+      en: "A Cauchy sequence is a sequence whose terms eventually become arbitrarily close to one another, even before a limit is explicitly named.",
+      "zh-cn": "Cauchy 序列是这样一种序列：即使还没有明确说出极限，它的各项最终也会彼此任意接近。",
+      "zh-hk": "Cauchy 序列是這樣一種序列：即使還沒有明確說出極限，它的各項最終也會彼此任意接近。",
+    },
+    id: "cauchy-sequence",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§4.13" },
+    ],
+    termEn: "Cauchy sequence",
+    termZhCn: "Cauchy 序列",
+    termZhHk: "Cauchy 序列",
+  },
+  {
+    definition: {
+      en: "An open interval is a set such as (b,c), (-∞,c), or (b,∞), where endpoints are not included.",
+      "zh-cn": "开区间是像 (b,c)、(-∞,c) 或 (b,∞) 这样的集合，其中端点不被包括进去。",
+      "zh-hk": "開區間是像 (b,c)、(-∞,c) 或 (b,∞) 這樣的集合，其中端點不被包括進去。",
+    },
+    id: "open-interval",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§5.2.1" },
+    ],
+    termEn: "open interval",
+    termZhCn: "开区间",
+    termZhHk: "開區間",
+  },
+  {
+    definition: {
+      en: "A delta-epsilon limit of a function means that for every epsilon band around L, there is a delta neighbourhood around a that forces f(x) into that band whenever 0 < |x-a| < delta.",
+      "zh-cn": "函数的 delta-epsilon 极限是指：对 L 周围的每个 epsilon 带，都存在 a 周围的一个 delta 邻域，只要 0 < |x-a| < delta，就会迫使 f(x) 落入那个带中。",
+      "zh-hk": "函數的 delta-epsilon 極限是指：對 L 周圍的每個 epsilon 帶，都存在 a 周圍的一個 delta 鄰域，只要 0 < |x-a| < delta，就會迫使 f(x) 落入那個帶中。",
+    },
+    id: "delta-epsilon-limit",
+    notationNote: "We write `lim_(x→a) f(x) = L`.",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§5.1-§5.2" },
+    ],
+    termEn: "delta-epsilon limit",
+    termZhCn: "delta-epsilon 极限",
+    termZhHk: "delta-epsilon 極限",
+  },
+  {
+    definition: {
+      en: "A function is continuous at a when its limit at a exists and equals the value f(a).",
+      "zh-cn": "若函数在 a 处的极限存在，并且等于函数值 f(a)，那么它在 a 处连续。",
+      "zh-hk": "若函數在 a 處的極限存在，並且等於函數值 f(a)，那麼它在 a 處連續。",
+    },
+    id: "continuity",
+    sourceRefs: [
+      { file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf", pages: "§5.6" },
+    ],
+    termEn: "continuity",
+    termZhCn: "连续性",
+    termZhHk: "連續性",
   },
   {
     cantoneseNote: "香港多數直接讀作「向量空間」。",

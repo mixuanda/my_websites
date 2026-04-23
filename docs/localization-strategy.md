@@ -78,13 +78,14 @@ later. Do not treat them as translation clutter.
 
 The following units currently exist in EN, zh-HK, and zh-CN.
 
-- `math1090`: 1.1, 1.2, 1.3, 2.1, 2.2, 3.1, 3.2, 3.3, 3.4, 3.5
+- `math1090`: 1.1, 1.2, 1.3, 2.1, 2.2, 3.1, 3.2, 3.3, 3.4, 3.5, 4.1, 4.2,
+  4.3, 4.4, 4.5, 4.6, 5.1, 5.2, 5.3
 - `math1030`: 1.1, 2.1, 2.2, 2.3, 2.4, 5.1, 6.1, 6.2, 6.3, 6.4, 6.5, 6.6,
   7.1, 7.2, 7.3, 8.1, 8.2, 8.3, 9.1, 9.2, 9.3, 9.4
 
 ## Next steps
 
 Keep future public wording inside the Notes frame, maintain three-language
-parity whenever you expand checkpoint or billing flows, and keep future-course
-architecture generic enough for Math1025 without pretending that unfinished
-course families are complete.
+parity whenever you expand checkpoint or billing flows, and treat the new
+Math1090 `4.5`-`5.3` family as the current baseline for localization QA rather
+than as pending backlog.

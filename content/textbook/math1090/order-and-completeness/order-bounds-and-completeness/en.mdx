@@ -1,152 +1,211 @@
 ---
-title: "4.1 Order, bounds, and completeness"
-description: "Use total order and least-upper-bound language to explain precisely why R is complete and Q is not."
+title: "4.1 Total orders and ordered fields"
+description: "Separate total order from partial order, then see how the familiar order on Z and Q works together with field operations."
 ---
 
-## Why this chapter is the turning point
+## Why order needs its own note
 
-Earlier chapters built number systems by construction. This section changes the
-question: not only what numbers are, but what *order structure* those numbers
-support. The concepts of upper bounds, lower bounds, supremum, and infimum are
-not vocabulary decoration. They are the technical bridge from algebraic
-manipulation to analysis.
+Earlier chapters focused on *building* `N`, `Z`, and `Q`, then defining their
+operations carefully. Chapter 4 changes the viewpoint. We now ask not only what
+the numbers are, but also what sort of **order structure** they carry.
 
-## Ordered sets and total order
+That shift matters because later concepts such as bounds, supremum, limits, and
+completeness all depend on the order relation. Before talking about “least
+upper bounds,” we need to know what kind of order we are even using.
+
+## Partial order versus total order
 
 <Definition title="Total order">
-A set `S` with relation `\le` is totally ordered if for all `a,b,c\in S`:
+A set `X` with relation `\le` is **totally ordered** if:
 
-1. `a\le a` (reflexive),
-2. `a\le b` and `b\le a` imply `a=b` (antisymmetric),
-3. `a\le b` and `b\le c` imply `a\le c` (transitive),
-4. either `a\le b` or `b\le a` (comparability).
+1. `x\le x` for every `x\in X`,
+2. `x\le y` and `y\le x` imply `x=y`,
+3. `x\le y` and `y\le z` imply `x\le z`,
+4. for every `x,y\in X`, either `x\le y` or `y\le x`.
+
+The first three conditions say that `\le` is a partial order. The fourth
+condition is the extra comparability condition that makes the order total.
 </Definition>
 
-Comparability is the extra ingredient that separates total order from partial
-order. In `R`, any two real numbers can be compared.
+The crucial new feature is comparability. In a total order, there are no two
+elements left floating without comparison.
 
-## Upper/lower bounds and bounded sets
-
-<Definition title="Upper bound and lower bound">
-Let `A\subseteq R`.
-
-- `u` is an upper bound of `A` if `x\le u` for all `x\in A`.
-- `\ell` is a lower bound of `A` if `\ell\le x` for all `x\in A`.
-
-If upper bounds exist, `A` is bounded above. If lower bounds exist, it is
-bounded below.
-</Definition>
-
-<WorkedExample title="A set with many upper bounds">
-Take `A=(0,1)`. Every number `u\ge 1` is an upper bound. The value `1` is
-special because it is the *smallest* upper bound.
+<WorkedExample title="A standard total order">
+The usual order on `{1,2,3,4}` is total. For any two elements, one lies at or
+to the left of the other, so comparison is never ambiguous.
 </WorkedExample>
 
-<CommonMistake title="Maximum is not the same as supremum">
-Students often think a supremum must belong to the set. Not true.
-For `A=(0,1)`, `\sup A=1`, but `1\notin A`.
-</CommonMistake>
+<WorkedExample title="A partial order that is not total">
+Let `X={1,2,3,6}` and declare `x\le y` when `x` divides `y`.
 
-## Supremum and infimum
+This is a partial order, but not a total order. The elements `2` and `3` are
+incomparable: `2` does not divide `3`, and `3` does not divide `2`.
+</WorkedExample>
 
-<Definition title="Supremum and infimum">
-Let `A\subseteq R` be nonempty.
+This example is important because it shows that “ordered” does not automatically
+mean “every pair is comparable.” That extra property has to be checked.
 
-- `s=\sup A` means: (i) `s` is an upper bound of `A`; (ii) any upper bound
-  `u` satisfies `s\le u`.
-- `t=\inf A` means: (i) `t` is a lower bound of `A`; (ii) any lower bound
-  `\ell` satisfies `\ell\le t`.
-</Definition>
+## Restricted order on a subset
 
-Equivalent approximation property for supremum:
+Once an ambient set is totally ordered, every subset inherits that order.
 
-> `s=\sup A` iff `s` is an upper bound and for every `\varepsilon>0` there
-> exists `a\in A` with `s-\varepsilon<a\le s`.
-
-This turns order language into a usable proof tool.
-
-<CollapsibleProof title="Why the approximation property is equivalent">
-If `s` is least upper bound, then `s-\varepsilon` cannot be an upper bound,
-otherwise it would be smaller than `s`; thus some `a\in A` exceeds
-`s-\varepsilon`.
-
-Conversely, if every `s-\varepsilon` is exceeded by some point of `A`, then no
-number `<s` can be an upper bound. So `s` is the least upper bound.
-</CollapsibleProof>
-
-## Completeness axiom
-
-<TheoremCard title="Least-upper-bound property of R">
-Every nonempty subset `A\subseteq R` that is bounded above has a supremum in
-`R`.
+<TheoremCard title="Restricted order stays total">
+If `(X,\le)` is totally ordered and `Y\subseteq X`, then `Y` becomes totally
+ordered when we use the same comparison rule on elements of `Y`.
 </TheoremCard>
 
-This is what “`R` is complete” means in order language. It is not true in `Q`.
-
-<WorkedExample title="A rational set without rational supremum">
-Let
+Why does this matter? Because later we will study subsets such as
 
 $$
-A=\{q\in Q : q>0,\ q^2<2\}.
+S=\{q\in Q\mid q^2<2\}
 $$
 
-Inside `R`, `\sup A=\sqrt2`. But `\sqrt2\notin Q`, so `A` has no supremum in
-`Q`. Therefore `Q` fails the least-upper-bound property.
+inside a larger ordered set. We do not invent a new order on `S`; we restrict
+the one already living on `Q`.
+
+## The standard order on `Z` and `Q`
+
+For integers and rationals, the familiar order can be written in a way that fits
+the algebra already built in earlier chapters:
+
+$$
+x\le y \quad \text{iff} \quad 0\le y-x.
+$$
+
+So comparison is translated into a statement about the sign of a difference.
+This is useful because sign, addition, and multiplication are already part of
+the algebraic language of `Z` and `Q`.
+
+<TheoremCard title="The standard order on `Z` and `Q` is total">
+With the usual notion of positivity, the standard order on `Z` and on `Q` is a
+total order.
+</TheoremCard>
+
+The reason is structural: for any difference `y-x`, exactly one of three things
+happens. It is positive, it is zero, or it is negative. Those three cases give
+`x<y`, `x=y`, or `x>y`, so every pair is comparable.
+
+## Order and operations must cooperate
+
+The order is not an isolated decoration. It has to behave properly with the
+field operations.
+
+<Definition title="Order-compatible algebra facts">
+For rational numbers `x,y,z`:
+
+- if `x\le y`, then `x+z\le y+z`;
+- if `x\ge 0` and `y\ge 0`, then `xy\ge 0`.
+</Definition>
+
+The first rule says translation preserves order. The second says multiplying
+nonnegative quantities cannot suddenly create a negative result.
+
+<WorkedExample title="Why translation invariance matters">
+If `1/3\le 1/2`, then adding `2` to both sides gives
+
+$$
+2+\frac13 \le 2+\frac12.
+$$
+
+This is not a new theorem each time. It is the same structural rule applied to
+different numbers.
 </WorkedExample>
 
-## How this controls future analysis
+Without these compatibility rules, the order would not interact correctly with
+the algebra. Later arguments about intervals, bounds, and absolute values would
+fall apart.
 
-- Monotone convergence arguments use bounded monotone sequences and supremum.
-- Continuity proofs use interval and order completeness repeatedly.
-- Existence theorems are often hidden completeness arguments.
+## Fields and ordered fields
 
-So this chapter is foundational, not optional.
+The lecture notes summarize almost everything we know about `Q` by packaging the
+operations together.
+
+<Definition title="Field">
+A **field** is a set with distinguished elements `0` and `1`, together with
+addition and multiplication, such that:
+
+- addition and multiplication are associative and commutative,
+- multiplication distributes over addition,
+- every element has an additive inverse,
+- every nonzero element has a multiplicative inverse.
+</Definition>
+
+This definition remembers the algebra, but it says nothing about order.
+
+<Definition title="Ordered field">
+An **ordered field** is a field equipped with a total order `\le` such that:
+
+- `x\le y` implies `x+z\le y+z`,
+- `x\ge 0` and `y\ge 0` imply `xy\ge 0`.
+</Definition>
+
+So an ordered field is not just “a field plus a comparison symbol.” It is a
+field whose algebra and order fit together coherently.
+
+The rational numbers `Q` are an ordered field. The real numbers `R` will also
+be an ordered field, but chapter 4 will show that `R` has one more crucial
+property beyond this: completeness.
+
+<CommonMistake title="A total order is more than a left-to-right picture">
+Students often think a total order is just “something that can be drawn on a
+line.” The real point is the comparability axiom. A partial order can still
+have a clear diagram or hierarchy and yet fail to compare some pairs.
+</CommonMistake>
+
+<CommonMistake title="A field is not automatically an ordered field">
+The field axioms only describe algebraic operations. To become an ordered
+field, the set also needs a total order, and that order must respect addition
+and multiplication in the precise way stated above.
+</CommonMistake>
 
 ## Quick checks
 
-<QuickCheck prompt="If A has a maximum m, what is sup A?">
-Use the definition directly.
+<QuickCheck prompt="Why is divisibility on positive integers not a total order?">
+Look for two incomparable elements.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-`\sup A=m`. A maximum is an upper bound that belongs to `A`, and no smaller
-upper bound can exist.
+Because some pairs cannot be compared. For example, `2` does not divide `3`,
+and `3` does not divide `2`, so the comparability condition fails.
 </RevealSolution>
 
-<QuickCheck prompt="Can a nonempty set be bounded above but not bounded below? Give one example.">
-Think of half-lines.
+<QuickCheck prompt="If `x\le y`, why does `x-z\le y-z` also hold?">
+Rewrite subtraction as addition.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-Yes. Example: `A=[0,\infty)` is bounded below (by `0`) but not bounded above.
-The reverse example is `(-\infty,0]`.
+Because `x-z = x+(-z)` and `y-z = y+(-z)`. The order-compatibility rule for
+addition says adding the same number to both sides preserves the inequality.
 </RevealSolution>
 
 ## Exercises
 
-<QuickCheck prompt="Find sup and inf of A={1-1/n : n in N}. Does A have a maximum?">
-Write first few terms and identify the limit behavior.
+<QuickCheck prompt="Explain why every subset of a totally ordered set inherits a total order.">
+Take two elements of the subset and compare them in the ambient set.
 </QuickCheck>
 
 <RevealSolution title="Guided solution">
-`A=\{0,1/2,2/3,3/4,\ldots\}`. Values increase and stay below `1`, so
-`\sup A=1`. Since `1\notin A`, no maximum exists. Also `\inf A=0`, and `0` is
-actually the minimum.
+Let `y_1,y_2\in Y\subseteq X`. Since `X` is totally ordered, either
+`y_1\le y_2` or `y_2\le y_1` in `X`. The restricted order on `Y` uses the same
+comparison, so the same alternative holds in `Y`. The other order axioms were
+already true in `X`, so they remain true on the subset.
 </RevealSolution>
 
-<QuickCheck prompt="Show that if B is nonempty and bounded below, then inf B = -sup(-B).">
-Translate lower-bound statements into upper-bound statements for `-B`.
+<QuickCheck prompt="Why is `Q_{>0}` not a field?">
+Check closure and inverses against the field axioms.
 </QuickCheck>
 
 <RevealSolution title="Guided solution">
-`\ell` is a lower bound of `B` iff `-\ell` is an upper bound of `-B`.
-Least-lower-bound and least-upper-bound conditions then translate exactly, so
-`\inf B=-\sup(-B)`.
+The positive rationals are closed under multiplication and have multiplicative
+inverses, but they do not have additive inverses inside the same set. If
+`q>0`, then `-q` is not in `Q_{>0}`. So the field axioms fail.
 </RevealSolution>
 
-## Prerequisite links
+## Related notes
 
 Read this after
 [3.4 Rationals and well-defined operations](/en/notes/math1090/numbers/rationals-and-well-defined-operations)
 and
 [3.5 Gaps in Q and sqrt(2)](/en/notes/math1090/numbers/gaps-in-q-and-sqrt2).
+Then continue to
+[4.2 Upper bounds, supremum, and infimum](/en/notes/math1090/order-and-completeness/supremum-and-infimum).

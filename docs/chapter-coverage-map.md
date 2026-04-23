@@ -8,18 +8,19 @@ authored, what is thin and needs another pass, and what is only present in
 
 ## Math1090
 
-The current public notes now reach the first order-and-completeness unit. The
-next work is to deepen that chapter further and fold later review / proof
-structure material into the live note set deliberately.
+The current public notes now cover the full source-backed late-April Math1090
+spine: the order / completeness family through Dedekind cuts and decimal
+expansions, plus a first sequences / limits family through Cauchy sequences,
+delta-epsilon limits, limit laws, and continuity.
 
 | Course | Chapter | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
 | `math1090` | 1 Logic | Authored in EN, zh-HK, zh-CN | Strong | Needs tone / depth review only. |
 | `math1090` | 2 Sets, functions, relations | Authored in EN, zh-HK, zh-CN | Strong | `2.1` and `2.2` are still thinner than the source density. |
 | `math1090` | 3 Naturals, integers, rationals | Authored through `3.5` | Strong | `3.4` now has a fuller quotient-construction rewrite. |
-| `math1090` | 4 Orders, bounds, completeness, reals | Authored baseline exists | Strong | `4.1` is live in three languages; later completeness / real-number sections remain backlog. |
-| `math1090` | 5 Proof templates and review structure | Unauthored | Usable but secondary | Better treated as embedded pedagogy or appendix notes after the remaining chapter-4 work. |
-| `math1090` | 6 Rapid review / appendices | Unauthored | Secondary | Internal support material, not the next public priority. |
+| `math1090` | 4 Orders, bounds, completeness, reals | Authored through `4.6` | Strong through `§4.11` | `4.1`-`4.6` now cover total order / ordered field, bounds and `sup` / `inf`, completeness, the `Q`-gap at `sqrt(2)`, axiomatic / first-approximation motivation, Dedekind cuts, decimal expansions, and irrational numbers. |
+| `math1090` | 5 Sequences and first limits | Authored through `5.3` | Strong through `§5.6` | Public notes now cover sequence limits, Cauchy sequences, the Cauchy-sequence model of `R`, delta-epsilon limits, limit laws, sequential characterization, and continuity in EN / zh-HK / zh-CN. |
+| `math1090` | 6 Review / appendices | Unauthored | Secondary / overlap | Remaining review-packet material is better treated as appendix-style reinforcement rather than the next public priority. |
 
 ## Math1030
 
@@ -61,7 +62,7 @@ future addition.
 
 ## Next steps
 
-The next content cycle should return to the remaining Math1090 chapter-4 and
-proof-structure backlog, while keeping Math1025 expansion controlled and
-source-backed and using the newer Math1030 higher chapters for export / theme /
-exercise QA.
+The next content cycle should shift from missing-source-backed Math1090 authoring
+to QA: export fidelity, rendering checks, exercise / reveal integrity, and
+theme / layout review across the new `4.5`-`5.3` family, while keeping
+Math1025 expansion controlled and source-backed.

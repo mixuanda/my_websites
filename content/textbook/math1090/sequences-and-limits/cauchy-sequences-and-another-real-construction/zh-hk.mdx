@@ -1,0 +1,293 @@
+---
+title: "5.2 Cauchy 序列與另一個實數模型"
+description: "把 Cauchy 序列理解為一種內部收斂判準，並用有理 Cauchy 序列的等價類去勾勒另一個 R 的構造。"
+---
+
+上一頁用一個已知的極限 `L` 來定義收斂。這一頁要問一個更深的問題：
+
+如果我們還未先知道那個極限是一個現成存在的實數，能否仍然看出一個序列
+正在「收斂」？
+
+這個問題把我們帶到 **Cauchy 序列**，亦帶到實數的第二種構造方式。
+
+## 為甚麼需要一個內部的收斂測試？
+
+lecture notes 用下面這個有理數序列去說明動機：
+
+$$
+1,\qquad
+1+\frac12,\qquad
+1+\frac12+\frac1{3\cdot 2},\qquad
+1+\frac12+\frac1{3\cdot 2}+\frac1{4\cdot 3\cdot 2\cdot 1},\ \ldots
+$$
+
+從圖像上看，這些項似乎愈來愈貼近數線上的某個點。但如果我們正在嘗試由
+`Q` 去**構造**實數，就不能一開始便假設那個極限點已經是某個現成的 `R`
+ 裡元素。
+
+因此，我們不先問「它是否接近某個外在的 `L`」，而是先問：
+
+這個序列的後面那些項，是否彼此愈來愈接近？
+
+## Cauchy 序列的定義
+
+<Definition title="Cauchy 序列">
+序列 `(x_n)` 稱為 **Cauchy**，如果對每個 `\varepsilon>0`，都存在 `N`
+使得當 `n,m>N` 時，
+
+$$
+|x_n-x_m|<\varepsilon.
+$$
+</Definition>
+
+這個定義和普通極限定義有相同的量詞骨架，但比較對象變了：
+
+- 在一般收斂定義裡，你拿 `x_n` 去和固定的 `L` 比較；
+- 在 Cauchy 定義裡，你拿晚期的 `x_n` 和 `x_m` 彼此比較。
+
+所以 Cauchy 序列描述的是：尾部會被壓進愈來愈窄的區域內。
+
+<CommonMistake title="Cauchy 不等於單調">
+Cauchy 序列不一定單調增加，也不一定單調減少。定義只要求晚期各項彼此
+接近，並沒有要求它必須單方向移動。
+</CommonMistake>
+
+## 為甚麼收斂一定推出 Cauchy？
+
+notes 記錄了以下命題。
+
+<TheoremCard title="收斂序列一定是 Cauchy 序列">
+若 `(x_n)` 收斂到某個極限 `L`，那麼 `(x_n)` 一定是 Cauchy 序列。
+</TheoremCard>
+
+source 把證明留作練習，但思路非常重要，而且不長。
+
+<CollapsibleProof title="利用 triangle inequality 的證明思路">
+假設 `x_n\to L`，任取 `\varepsilon>0`。
+
+由於 `x_n\to L`，存在 `N` 使得對所有 `n>N`，
+
+$$
+|x_n-L|<\frac{\varepsilon}{2}.
+$$
+
+那麼只要 `n,m>N`，由 triangle inequality 得
+
+$$
+|x_n-x_m|
+=
+|(x_n-L)+(L-x_m)|
+\le |x_n-L|+|x_m-L|
+<
+\frac{\varepsilon}{2}+\frac{\varepsilon}{2}
+=\varepsilon.
+$$
+
+因此 `(x_n)` 是 Cauchy。
+</CollapsibleProof>
+
+這個命題表示：真正的收斂一定會令序列尾部壓縮起來。
+
+## 等價的 Cauchy 序列
+
+如果 Cauchy 序列要代表實數，那麼兩個「其實指向同一點」的序列，應該要
+被視作同一個實數。
+
+<Definition title="等價的 Cauchy 序列">
+兩個 Cauchy 序列 `(x_n)` 與 `(y_n)` 稱為**等價**，如果對每個
+`\varepsilon>0`，都存在 `N` 使得對所有 `n,m>N`，
+
+$$
+|x_n-y_m|<\varepsilon.
+$$
+</Definition>
+
+這表示：兩個序列的尾部最終可以彼此靠得任意近。直觀上，它們是在描述數
+線上的同一個極限點。
+
+notes 接着指出，這個等價關係的確是一個 equivalence relation，而 triangle
+inequality 是驗證對稱性與傳遞性的核心工具。
+
+## 用等價類構造 `R`
+
+現在 lecture notes 把這個想法變成正式定義。
+
+<Definition title="把實數定義為有理 Cauchy 序列的等價類">
+令 `R` 為所有有理 Cauchy 序列的等價類所成的集合。這些等價類提供了另
+一個實數模型。
+</Definition>
+
+這是一個重要的觀點轉換：
+
+- 在 Dedekind cut 模型裡，實數是把 `Q` 分成左右兩邊的切割；
+- 在 Cauchy 模型裡，實數是一整個「彼此不可區分」的逼近序列家族。
+
+兩個模型都同樣嚴格，亦都在構造同一個實數系統。
+
+## 有理數如何嵌入這個模型？
+
+Exercise 54 問：在這個構造中，我們應如何理解有理數本身？最自然的答案
+是：有理數 `q` 由 constant sequence
+
+$$
+(q,q,q,q,\ldots)
+$$
+
+所代表。
+
+<WorkedExample title="`1/2` 的不同代表元">
+實數 `1/2` 可以由 constant sequence
+
+$$
+\left(\frac12,\frac12,\frac12,\ldots\right)
+$$
+
+來代表。
+
+它亦可以由其他收斂到同一點的有理 Cauchy 序列代表，例如
+
+$$
+\left(\frac12+\frac11,\frac12+\frac12,\frac12+\frac13,\frac12+\frac14,\ldots\right).
+$$
+
+第二條序列不是常數，但它的項愈來愈接近 `1/2`，所以它和 constant
+sequence 屬於同一個等價類。
+</WorkedExample>
+
+因此，一個實數不是某條單獨代表序列本身，而是整個等價類。
+
+<CommonMistake title="實數本身不是你最喜歡的那個代表序列">
+在這個模型中，改換到另一條等價的 Cauchy 序列，並不會改變那個實數。代
+表序列只是描述方式，不是最終對象本身。
+</CommonMistake>
+
+## 為甚麼 boundedness 很重要？
+
+notes 把「每條 Cauchy 序列都是 bounded」這個 lemma 當作已知。這件事
+非常重要，因為它讓乘法得以順利定義。
+
+若 `(x_n)` 和 `(y_n)` 都是 Cauchy，notes 證明：
+
+- `(x_n+y_n)` 仍是 Cauchy；
+- `(x_ny_n)` 仍是 Cauchy。
+
+對乘法來說，需要一個共同上界 `M`，使得
+
+$$
+|x_my_m-x_ny_n|
+\le
+|x_m|\cdot |y_m-y_n|+|y_n|\cdot |x_m-x_n|
+\le
+M|y_m-y_n|+M|x_m-x_n|.
+$$
+
+一旦原來兩條序列本身是 Cauchy，右邊便能被壓得任意小。
+
+## 等價類上的運算與次序
+
+在知道逐項相加、逐項相乘仍會留在 Cauchy 世界之後，notes 便在等價類上
+定義加法與乘法。
+
+若 `[(x_n)]` 和 `[(y_n)]` 是此模型中的兩個實數，則
+
+$$
+[(x_n)] + [(y_n)] := [(x_n+y_n)],
+$$
+
+$$
+[(x_n)] \cdot [(y_n)] := [(x_ny_n)].
+$$
+
+notes 亦用代表元在尾部的最終比較來定義次序：若第一個等價類的晚期項最
+終都低於第二個等價類的晚期項，就把前者視作不大於後者。
+
+真正嚴格的工作，是要檢查這些定義都是 well-defined。也就是說，換了別
+的等價代表元，運算與比較結果都不會改變。
+
+## 這個構造最後得到甚麼？
+
+<TheoremCard title="實數形成一個完備有序域">
+lecture notes 的結論是：由有理 Cauchy 序列等價類得到的實數，形成一個
+完備有序域。
+</TheoremCard>
+
+課堂裡沒有把每個細節都證到最尾。有些部分留作練習，例如運算的
+well-definedness 和最後的完備性驗證。不過概念上的主線很清楚：
+
+- Cauchy 序列抓住了「內部收斂」；
+- 等價類避免不同逼近序列替同一個實數起不同名字；
+- 完備性被建進這個完成過的系統之中。
+
+## 快速檢查
+
+<QuickCheck prompt="『收斂』與『Cauchy』兩個定義的主要分別是甚麼？">
+集中在 `x_n` 是和甚麼比較。
+</QuickCheck>
+
+<RevealSolution title="答案">
+收斂是把晚期項 `x_n` 和固定的極限 `L` 比較；Cauchy 則是把晚期項
+`x_n` 和 `x_m` 彼此比較。
+</RevealSolution>
+
+<QuickCheck prompt="在 Cauchy 序列模型中，有理數 q 是怎樣出現的？">
+想想最簡單的 Cauchy 序列。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它由 constant sequence `(q,q,q,q,\ldots)` 的等價類表示。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼證明『Cauchy 序列的乘積仍是 Cauchy』時需要 boundedness？">
+看 `|x_my_m-x_ny_n|` 的估計式。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因為 boundedness 讓我們可以用同一個常數 `M` 去控制 `|x_m|` 和 `|y_n|`，
+從而把乘積差距化成 `|x_m-x_n|` 與 `|y_m-y_n|` 這兩個可由 Cauchy 條件
+控制的量。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="證明每條 constant 有理序列都是 Cauchy。">
+利用任意兩項之差都等於零。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+若對所有 `n` 都有 `x_n=q`，其中 `q\in Q`，則任意 `n,m` 皆有
+
+$$
+|x_n-x_m|=|q-q|=0.
+$$
+
+因此不論給甚麼 `\varepsilon>0`，任何 `N` 都可行。故 constant 有理序
+列一定是 Cauchy。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼兩條等價的 Cauchy 序列應被視為同一個實數？">
+用它們尾部之間的距離來解釋。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+因為等價表示：對任意誤差 `\varepsilon>0`，兩條序列的尾部最終都可以彼
+此靠近到 `\varepsilon` 以內。它們在極限行為上不可分辨，所以應代表同
+一個完成後的數線點。
+</RevealSolution>
+
+<QuickCheck prompt="若一條序列收斂到 L，這一頁哪個定理立即告訴你：大 n、大 m 時 `|x_n-x_m|` 會很小？">
+說出定理名稱及其結論。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+是「收斂序列一定是 Cauchy 序列」這個定理。它告訴你：只要 `n,m` 夠
+大，`|x_n-x_m|` 必定可以變得很小。
+</RevealSolution>
+
+## 相關筆記
+
+建議先讀
+[5.1 序列與 epsilon-N 極限](/zh-hk/notes/math1090/sequences-and-limits/sequences-and-epsilon-n-limits)
+及
+[4.3 完備性與 Q 的缺口](/zh-hk/notes/math1090/order-and-completeness/completeness-and-gaps-in-q)。
+之後可接着讀
+[5.3 Delta-epsilon 極限、極限定律與連續性](/zh-hk/notes/math1090/sequences-and-limits/delta-epsilon-limits-limit-laws-and-continuity)。

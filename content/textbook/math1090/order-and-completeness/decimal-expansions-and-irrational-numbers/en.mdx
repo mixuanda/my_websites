@@ -1,0 +1,242 @@
+---
+title: "4.6 Decimal expansions and irrational numbers"
+description: "Turn infinite decimal intuition into a Dedekind cut, then use sqrt(2) to see how irrational numbers live inside the completed real number system."
+---
+
+Once Dedekind cuts are available, the lecture notes return to the familiar
+language of decimal expansions and ask a natural question:
+
+How does a decimal such as `10.4352902543...` determine a real number?
+
+The answer is that a decimal expansion produces a **nested family of rational
+approximations**, and those approximations can be turned into a cut.
+
+## Decimal expansions give lower and upper fences
+
+Consider the decimal
+
+$$
+x=10.4352902543\ldots
+$$
+
+The notes form the sequence of lower bounds
+
+$$
+S=\{10,\ 10.4,\ 10.43,\ 10.435,\ \ldots\}
+$$
+
+and the sequence of upper bounds
+
+$$
+T=\{11,\ 10.5,\ 10.44,\ 10.436,\ \ldots\}.
+$$
+
+The idea is simple:
+
+- the lower list truncates the decimal and stays below the target,
+- the upper list moves one step above the truncation and stays above the target.
+
+So the real number is trapped inside narrower and narrower rational intervals.
+
+<WorkedExample title="Nested intervals for `sqrt(2)`">
+Even without using the source decimal `10.435...`, the same method can be seen
+clearly with `sqrt(2)`:
+
+$$
+1<\sqrt{2}<2,
+$$
+
+$$
+1.4<\sqrt{2}<1.5,
+$$
+
+$$
+1.41<\sqrt{2}<1.42,
+$$
+
+$$
+1.414<\sqrt{2}<1.415.
+$$
+
+Each extra digit shrinks the interval and gives a better rational fence.
+</WorkedExample>
+
+![Nested rational intervals approaching sqrt(2)](/images/textbook/math1090/decimal-nested-intervals-sqrt2.png)
+
+*Figure. A decimal expansion does not merely list digits. It creates a chain of
+smaller and smaller rational intervals containing the target number.*
+
+## Turning a decimal expansion into a cut
+
+The notes define
+
+$$
+A=\{q\in Q\mid \exists s\in S\text{ such that }q<s\}
+$$
+
+and
+
+$$
+B=\{q\in Q\mid \exists t\in T\text{ such that }q>t\}.
+$$
+
+Intuitively:
+
+- `A` contains every rational that is definitely to the left of some lower
+  approximation,
+- `B` contains every rational that is definitely to the right of some upper
+  approximation.
+
+The claim is that `(A,B)` forms a Dedekind cut, and that this cut is the real
+number represented by the decimal expansion.
+
+So decimal notation is not being discarded. It is being absorbed into the
+cut-based model.
+
+## Why decimal strings are useful but not the primary definition
+
+The previous note already hinted at the main problem with taking decimal strings
+as the primary definition of real numbers:
+
+- the same real number can have more than one decimal expansion,
+- for example `0.999...=1`.
+
+So decimal notation is excellent for intuition and approximation, but it needs a
+deeper structural interpretation. Dedekind cuts supply that interpretation.
+
+<CommonMistake title="A finite truncation is not the real number itself">
+The decimal `1.414` is not `sqrt(2)`. It is only a rational approximation from
+below. Likewise `1.415` is not the exact number either; it is an upper fence.
+The real number is the boundary captured by the whole infinite approximation
+process.
+</CommonMistake>
+
+## Build the interval chain interactively
+
+Use the builder below to reveal one more decimal digit at a time and watch the
+lower bound, upper bound, and interval width update together.
+
+<InteractiveWidget id="decimal-approximation-builder" />
+
+## Irrational numbers inside `R`
+
+Once the real numbers are constructed, the notes define:
+
+<Definition title="Irrational number">
+An **irrational number** is an element of `R\setminus Q`.
+</Definition>
+
+This definition is short, but its meaning is deep. An irrational number is not
+“mysterious” or “unfinished”. It is a perfectly legitimate real number that is
+simply not represented by any rational cut.
+
+## The real number `sqrt(2)`
+
+The notes then describe the classical example
+
+$$
+A=\{r\in Q\mid r\le 0 \text{ or } r^2<2\},
+$$
+
+$$
+B=Q\setminus A=\{r\in Q\mid r>0 \text{ and } r^2>2\}.
+$$
+
+This cut defines the real number called `sqrt(2)`.
+
+The key idea is that the boundary between “rationals whose square is still
+below `2`” and “rationals whose square is already above `2`” is exactly the
+positive number whose square should be `2`.
+
+<WorkedExample title="Why `sqrt(2)` is irrational in this model">
+Earlier in the course, you proved that no rational number has square `2`. So
+the boundary determined by the condition `r^2<2` cannot be a rational cut.
+
+That means the corresponding real number exists in the completed system `R`,
+but not in the embedded copy of `Q`. Hence it is irrational.
+</WorkedExample>
+
+This is one of the cleanest illustrations of why the real numbers are needed at
+all: the rational numbers describe the two sides of the boundary, but they do
+not contain the boundary point itself.
+
+## What decimals and irrationals are teaching you together
+
+The notes are making two compatible claims.
+
+1. A real number can be approximated arbitrarily well by rationals.
+2. Some real numbers are nevertheless not rational.
+
+Those statements do not conflict. In fact, they are exactly what makes the real
+number system powerful. Irrational numbers can be reached by rational
+approximations without ever turning into rational numbers themselves.
+
+## Quick checks
+
+<QuickCheck prompt="What do the sets S and T do for a decimal expansion?">
+Answer in terms of lower and upper rational approximations.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`S` collects lower rational approximations to the decimal, while `T` collects
+upper rational approximations. Together they trap the real number inside
+shrinking rational intervals.
+</RevealSolution>
+
+<QuickCheck prompt="Why does the identity `0.999...=1` show that decimal strings are not ideal as the primary definition of reals?">
+Focus on uniqueness of representation.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Because two different decimal strings can describe the same real number. So raw
+decimal strings need an additional equivalence rule or a more structural
+definition behind them.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Write the first four lower and upper rational fences suggested by the decimal `3.14159...`.">
+Begin with the integer interval and then reveal one more digit at each step.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+One possible chain is
+
+$$
+3<x<4,
+$$
+
+$$
+3.1<x<3.2,
+$$
+
+$$
+3.14<x<3.15,
+$$
+
+$$
+3.141<x<3.142.
+$$
+
+Each step traps the target in a narrower rational interval.
+</RevealSolution>
+
+<QuickCheck prompt="Why does the cut determined by `r^2<2` define an irrational number rather than a rational one?">
+Use what was already proved about rational squares.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+If the cut were rational, then its boundary would be some rational number `q`
+with `q^2=2`. But earlier results show that no rational has square `2`.
+Therefore the cut cannot be rational, so the corresponding real number is
+irrational.
+</RevealSolution>
+
+## Related notes
+
+Read this after
+[4.5 Dedekind cuts and the embedding of Q](/en/notes/math1090/order-and-completeness/dedekind-cuts-and-embedding-of-q)
+and
+[3.5 Gaps in Q and why sqrt(2) is not rational](/en/notes/math1090/numbers/gaps-in-q-and-sqrt2).
+Then continue to
+[5.1 Sequences and epsilon-N limits](/en/notes/math1090/sequences-and-limits/sequences-and-epsilon-n-limits).

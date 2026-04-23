@@ -1,0 +1,281 @@
+---
+title: "4.5 Dedekind 分割與 Q 的嵌入"
+description: "把近似的想法變成嚴格對象：Dedekind 分割、Q 在 R 裡的副本，以及最初的次序與運算定義。"
+---
+
+## 為甚麼現在要引入分割？
+
+上一頁的核心圖像是：
+
+- 一個實數應該決定 `Q` 裡哪些有理數在它左邊；
+- 它也應該決定哪些有理數在它右邊；
+- 這個實數本身可以看成左右兩邊之間的邊界。
+
+lecture notes 在 §4.8 做的事，就是把這個圖像正式化。關鍵一步是：我們
+不再先假設實數已經存在，再去問哪些有理數比它小；相反，我們**直接用**
+`Q` 裡左邊那一半去定義這個實數。
+
+這就是 **Dedekind 分割** 的基本想法。
+
+## 兩個等價定義
+
+<Definition title="用一對集合定義 Dedekind 分割">
+一個 **Dedekind 分割** 是 `Q` 的兩個非空子集 `(A,B)`，滿足：
+
+- `Q=A\cup B`；
+- 對每個 `a\in A` 和 `b\in B`，都有 `a<b`；
+- `A` 沒有最大元素。
+</Definition>
+
+換句話說，`A` 是整個左半邊，`B` 是整個右半邊。兩邊沒有重疊，也沒有漏
+掉任何有理數，而左半邊不能把邊界本身當成最後一點收進去。
+
+<Definition title="用單一子集定義 Dedekind 分割">
+等價地，若 `A\subset Q` 滿足：
+
+- `A\ne\varnothing` 且 `A\ne Q`；
+- 每當 `x\in A` 且 `y\in Q` 滿足 `y<x`，就有 `y\in A`；
+- 對每個 `x\in A`，都存在 `y\in A` 使得 `x<y`；
+
+那麼 `A` 就稱為一個 Dedekind 分割。
+</Definition>
+
+第二種寫法通常更方便。因為只要知道左邊集合 `A`，右邊就自動是
+`Q\setminus A`。所以一個分割其實就是：哪些有理數已經被判定在這條邊
+界左邊。
+
+## 每個條件到底在做甚麼
+
+定義很短，但每一條都不是裝飾。
+
+- `A\ne\varnothing` 和 `A\ne Q` 排除了沒有左邊或沒有右邊的假分割。
+- 向下封閉表示：若某個有理數已經在左邊，那麼更小的有理數也一定在左
+  邊。
+- 「沒有最大元素」表示：邊界本身不會被收成 `A` 的最後一點；你永遠可
+  以在左邊再往右走一點點。
+
+最後這條最微妙，也最重要。它正是避免同一個有理數被表示兩次的關鍵。
+
+<WorkedExample title="`q=3/2` 的分割">
+令
+
+$$
+A=\{x\in Q\mid x<3/2\},
+\qquad
+B=\{x\in Q\mid x\ge 3/2\}.
+$$
+
+那麼 `A` 與 `B` 都非空，`A` 的每個元素都小於 `B` 的每個元素，而 `A`
+沒有最大元素。
+
+要看最後一點，只要任取 `x<3/2`，再定義
+
+$$
+y=\frac{x+3/2}{2}.
+$$
+
+則 `x<y<3/2`，所以 `y\in A`，而 `x` 不可能是最大元素。因此 `(A,B)` 是
+一個 Dedekind 分割。它就是把有理數 `3/2` 放進 cut 模型後得到的實數。
+</WorkedExample>
+
+## 有理分割與 `Q` 的嵌入
+
+lecture notes 把 `(A,B)` 稱為**有理 Dedekind 分割**，如果 `B` 有最小元
+素。在這種情況下，邊界其實已經由某個有理數實現。
+
+若 `\min(B)=q`，那就必定有
+
+$$
+A=\{x\in Q\mid x<q\}.
+$$
+
+這就帶來記號
+
+$$
+q_R=\{x\in Q\mid x<q\}.
+$$
+
+所以每個有理數 `q` 都給出一個 Dedekind 分割 `q_R`，而映射
+
+$$
+i:Q\to R,\qquad i(q)=q_R
+$$
+
+就把 `Q` 嵌入到 cut 模型的實數系統裡。
+
+<TheoremCard title="有理數作為 cut 模型中的一部分">
+有理 Dedekind 分割與有理數一一對應。建立這個嵌入後，我們通常直接把
+`q` 與它對應的分割 `q_R` 視為同一個對象。特別地，`0_R` 與 `1_R` 就分
+別扮演 `0` 與 `1`。
+</TheoremCard>
+
+這一點在概念上很重要。Dedekind 分割不是把有理數丟掉重來，而是在 `Q`
+裡補上原本缺失的邊界。
+
+<CommonMistake title="把 `x<q` 寫成 `x\le q`">
+集合 `\{x\in Q\mid x\le q\}` 非空、真包含於 `Q`，而且向下封閉，但它不
+滿足「沒有最大元素」這條，因為 `q` 本身就是它的最大元素。若把它也當
+成合法表示，那同一個有理數就會有兩個名字：`q_R` 與 `\{x\le q\}`。所
+以嚴格不等號不是形式細節，而是用來消除歧義的。
+</CommonMistake>
+
+## 分割上的次序與最初的運算
+
+光是定義出所有分割組成的集合 `R` 還不夠。為了回應上一頁的目標，
+lecture notes 還要在 `R` 上定義次序與算術。
+
+對次序來說，最自然的規則是：
+
+$$
+A\le A' \quad\text{當且僅當}\quad A\subseteq A'.
+$$
+
+這正是左邊集合應有的比較方式。若 `A` 左邊的每個有理數也都在 `A'` 左
+邊，那麼 `A` 代表的邊界不可能在 `A'` 的右邊。
+
+對加法，notes 定義
+
+$$
+A+A'=\{a+a' \mid a\in A,\ a'\in A'\}.
+$$
+
+直觀上，兩個邊界的和，其左邊應由「第一個邊界左邊的有理數」加上「第
+二個邊界左邊的有理數」所產生。
+
+對乘法，notes 先處理非負分割，再藉由符號規則延伸到一般情況。當
+`0_R\le A` 且 `0_R\le A'` 時，它使用
+
+$$
+A\cdot A'
+=
+\{aa' \mid a\in A,\ a'\in A',\ a\ge 0,\ a'\ge 0\}\cup\{x\in Q\mid x<0\}.
+$$
+
+這比加法更技術性，但精神一樣：只用已經在左右邊界內部的有理資料來建
+立新邊界的左邊。
+
+<WorkedExample title="為甚麼 `1_R+1_R=2_R`">
+寫成
+
+$$
+1_R=\{x\in Q\mid x<1\}.
+$$
+
+若 `a<1` 且 `a'<1`，則 `a+a'<2`，所以 `1_R+1_R` 的每個元素都屬於
+`2_R`。
+
+反過來，若 `x<2`，則 `x/2<1`，而且
+
+$$
+x=\frac{x}{2}+\frac{x}{2}.
+$$
+
+因此 `2_R` 的每個有理數也都在 `1_R+1_R` 裡。故
+
+$$
+1_R+1_R=2_R.
+$$
+
+這個例子說明：cut 上的算術確實延伸了原本的有理數算術，而不是另造一套
+奇怪的新規則。
+</WorkedExample>
+
+<TheoremCard title="cut 模型實現了 4.4 的目標">
+lecture notes 在 Dedekind 分割上定義 `+`、`\cdot` 與 `\le`，然後證明得
+到的結構是一個完備有序域，而且包含嵌入進去的 `Q`。
+</TheoremCard>
+
+完整證明並不短，但總結非常乾淨：Dedekind 分割正好完成了第 4 章對實數
+模型提出的要求。
+
+## 在數線上看這條邊界
+
+![一條在 sqrt(2) 的 Dedekind 分割](/images/textbook/math1090/dedekind-cut-sqrt2.png)
+
+*圖：一個分割會把邊界左邊的所有有理數都收進左集合。當邊界是 `sqrt(2)`
+時，右邊沒有最小的有理數。*
+
+## 用互動方式比較有理 cut 與無理 cut
+
+下面的 explorer 把有理邊界 `3/2` 與無理邊界 `sqrt(2)` 並排放在一起。最
+值得觀察的是：右邊那一側究竟會不會由某個最小的有理數開始。
+
+<InteractiveWidget id="dedekind-cut-explorer" />
+
+## 常見錯誤
+
+<CommonMistake title="成對寫法與單集合寫法不是兩套不同理論">
+它們只是同一個對象的兩種視角。`(A,B)` 明確寫出左右兩邊，而單集合寫法
+只保留左邊，再用 `Q\setminus A` 恢復右邊。
+</CommonMistake>
+
+<CommonMistake title="分割的次序不是拿兩個集合裡所有元素逐個比較">
+`A\le A'` 的意思是 `A\subseteq A'`。它**不是**說 `A` 的每個元素都小於
+`A'` 的每個元素。事實上，若一個邊界在另一個邊界左邊，這兩個左集合通
+常會有大量重疊。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="`0_R` 是甚麼分割？">
+直接套用 `q_R=\{x\in Q\mid x<q\}`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+
+$$
+0_R=\{x\in Q\mid x<0\},
+$$
+
+也就是所有負有理數組成的集合。
+</RevealSolution>
+
+<QuickCheck prompt="若 `A\subseteq A'`，哪一個邊界在左邊？">
+用 cut 的次序語言回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+若 `A\subseteq A'`，那就有 `A\le A'`。因此 `A` 代表的邊界在 `A'` 代
+表的邊界左邊或與之相同。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="證明：對每個有理數 `q`，集合 `q_R=\{x\in Q\mid x<q\}` 都是一個 Dedekind 分割。">
+逐條檢查單集合版本的三個條件。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+`q_R` 非空，因為 `q-1<q`，所以 `q-1\in q_R`。它也不是整個 `Q`，因為
+`q\notin q_R`。
+
+它向下封閉：若 `x<q` 且 `y<x`，則當然 `y<q`，故 `y\in q_R`。
+
+它沒有最大元素：若 `x<q`，則
+
+$$
+\frac{x+q}{2}
+$$
+
+仍然是有理數，而且滿足 `x<(x+q)/2<q`，所以 `(x+q)/2\in q_R`。於是
+`q_R` 的每個元素右邊都還能找到更大的元素留在 `q_R` 裡。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼 `C=\{x\in Q\mid x\le 2\}` 不是 Dedekind 分割？雖然它非空、真包含於 `Q`，而且向下封閉。">
+指出到底是哪條失敗，以及這條為甚麼重要。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+`C` 失敗在「沒有最大元素」這條，因為 `2` 就是它的最大元素。這條之所
+以重要，是因為 `\{x<2\}` 已經把有理數 `2` 表示為一個 cut；若
+`\{x\le 2\}` 也算合法，那同一條有理邊界就會有兩個不同表示。
+</RevealSolution>
+
+## 相關筆記
+
+請先讀
+[4.4 實數公理與第一次近似構造](/zh-hk/notes/math1090/order-and-completeness/axioms-for-the-reals-and-first-approximations)。
+然後繼續讀
+[4.6 小數展開與無理數](/zh-hk/notes/math1090/order-and-completeness/decimal-expansions-and-irrational-numbers)，
+那一頁會把 Dedekind 分割重新連到熟悉的小數記號，並用 `\sqrt2` 介紹無
+理數。

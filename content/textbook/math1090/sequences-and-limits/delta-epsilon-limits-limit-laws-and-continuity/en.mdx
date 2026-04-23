@@ -1,0 +1,506 @@
+---
+title: "5.3 Delta-epsilon limits, limit laws, and continuity"
+description: "Move from sequence limits to function limits, learn the delta-epsilon definition, and organize the first toolkit of nonexistence tests, limit laws, sequential criteria, and continuity."
+---
+
+Chapter 5 now shifts from sequences to functions. The new difficulty is that a
+sequence approaches its limit through the discrete parameter `n`, while a
+function argument `x` can move toward a point `a` through infinitely many nearby
+real values from both sides.
+
+That is why the lecture notes introduce the `\delta`-`\varepsilon` definition.
+
+## From sequence limits to function limits
+
+In the previous chapter, the definition of
+
+$$
+\lim_{n\to\infty}x_n=L
+$$
+
+said that every small tolerance around `L` can be achieved by going far enough
+out in the sequence.
+
+For functions, we want an analogous sentence:
+
+as `x` approaches `a`, the function value `f(x)` approaches `L`.
+
+But now “going far enough out” no longer makes sense. We need a new way to say
+that `x` is close enough to `a`. That role is played by `\delta`.
+
+## Open intervals and punctured domains
+
+The notes first specify the kind of domains they want to use.
+
+<Definition title="Open interval">
+An **open interval** is a subset of `R` of one of the forms
+
+$$
+(b,c)=\{x\in R\mid b<x<c\},
+$$
+
+$$
+(-\infty,c)=\{x\in R\mid x<c\},
+$$
+
+$$
+(b,\infty)=\{x\in R\mid b<x\},
+$$
+
+where `b,c\in R` and `b<c`.
+</Definition>
+
+To define a limit at a point `a`, the notes consider functions defined on an
+open interval with the point `a` removed. That removal is important: a limit is
+about what happens **near** `a`, not necessarily what happens **at** `a`.
+
+## The formal delta-epsilon definition
+
+<Definition title="Limit of a function at a point">
+Suppose `I` is an open interval containing `a\in R`, and let
+`f:I\setminus\{a\}\to R`. We say
+
+$$
+\lim_{x\to a}f(x)=L
+$$
+
+if and only if for every `\varepsilon>0`, there exists `\delta>0` such that
+
+$$
+0<|x-a|<\delta \implies |f(x)-L|<\varepsilon.
+$$
+</Definition>
+
+Read the implication carefully:
+
+- `0<|x-a|<\delta` means `x` is close to `a`, but not equal to `a`;
+- `|f(x)-L|<\varepsilon` means the function value lands inside the
+  `\varepsilon`-band around `L`.
+
+So the definition says:
+
+> every requested output accuracy `\varepsilon` can be guaranteed by forcing the
+> input `x` into a sufficiently small punctured neighborhood of `a`.
+
+<CommonMistake title="The limit definition ignores the value at a">
+The condition `0<|x-a|` removes the point `a` itself. So `f(a)` may be
+undefined, or may differ from `L`, while the limit still exists.
+</CommonMistake>
+
+## First example: `\lim_{x\to 3}(2x+1)=7`
+
+Example 19 in the notes is the basic linear test case.
+
+<WorkedExample title="Choosing `\delta=\varepsilon/2`">
+Let `f(x)=2x+1`, `a=3`, and `L=7`. Then
+
+$$
+|f(x)-7|
+=
+|(2x+1)-7|
+=
+|2x-6|
+=
+2|x-3|.
+$$
+
+So in order to force `|f(x)-7|<\varepsilon`, it is enough to make
+
+$$
+|x-3|<\frac{\varepsilon}{2}.
+$$
+
+Therefore choose
+
+$$
+\delta=\frac{\varepsilon}{2}.
+$$
+
+Then whenever `0<|x-3|<\delta`,
+
+$$
+|f(x)-7|=2|x-3|<2\delta=2\cdot \frac{\varepsilon}{2}=\varepsilon.
+$$
+
+Hence
+
+$$
+\lim_{x\to 3}(2x+1)=7.
+$$
+</WorkedExample>
+
+This example shows the standard proof pattern:
+
+1. start with `|f(x)-L|`,
+2. simplify it into an expression involving `|x-a|`,
+3. choose `\delta` to make that expression smaller than `\varepsilon`.
+
+## Two more basic examples from the notes
+
+<WorkedExample title="Constant functions">
+If `f(x)=c` for all `x`, then
+
+$$
+|f(x)-c|=|c-c|=0<\varepsilon
+$$
+
+for every `\varepsilon>0` and every `x`.
+
+So any positive number can be chosen as `\delta`, and
+
+$$
+\lim_{x\to a}c=c.
+$$
+</WorkedExample>
+
+<WorkedExample title="A function with a hole">
+Consider
+
+$$
+f:(0,\infty)\setminus\{2\}\to R,\qquad
+f(x)=\frac{x^2-4}{x-2}.
+$$
+
+The formula is undefined at `x=2`, but for `x\ne 2` it simplifies to
+
+$$
+f(x)=x+2.
+$$
+
+So near `x=2`,
+
+$$
+|f(x)-4|=|(x+2)-4|=|x-2|.
+$$
+
+Therefore choosing `\delta=\varepsilon` works. If `0<|x-2|<\delta`, then
+
+$$
+|f(x)-4|<\varepsilon.
+$$
+
+Hence
+
+$$
+\lim_{x\to 2}\frac{x^2-4}{x-2}=4,
+$$
+
+even though `f(2)` is not defined.
+</WorkedExample>
+
+![A delta-neighbourhood mapped into an epsilon-band](/images/textbook/math1090/delta-epsilon-linear-limit.png)
+
+*Figure. The `\delta`-`\varepsilon` definition links an input neighborhood of
+`a` to an output band around `L`. The proof task is to choose `\delta` so that
+this implication always succeeds.*
+
+## Explore the definition interactively
+
+The explorer below lets you choose one of the source examples, select
+`\varepsilon`, and test sample inputs `x`. The point is to see the implication
+
+$$
+0<|x-a|<\delta \implies |f(x)-L|<\varepsilon
+$$
+
+as a relationship between an input strip and an output band.
+
+<InteractiveWidget id="delta-epsilon-limit-explorer" />
+
+## How limits can fail to exist
+
+The notes next explain how to show that a proposed limit does **not** exist.
+
+To prove `\lim_{x\to a}f(x)\ne L`, one must find a single `\varepsilon>0` such
+that no matter how small `\delta` is chosen, some point `x` with
+`0<|x-a|<\delta` still satisfies
+
+$$
+|f(x)-L|\ge \varepsilon.
+$$
+
+Example 22 uses
+
+$$
+f(x)=\frac{|x|}{x},
+$$
+
+which equals `1` for `x>0` and `-1` for `x<0`.
+
+<WorkedExample title="Why `|x|/x` has no limit at `0`">
+Take `\varepsilon=1`. For any `\delta>0`, choose
+
+$$
+x_1=\frac{\delta}{2}>0,
+\qquad
+x_2=-\frac{\delta}{2}<0.
+$$
+
+Then both satisfy `|x_i|<\delta`, but
+
+$$
+f(x_1)=1,\qquad f(x_2)=-1.
+$$
+
+No single real number `L` can lie within distance `1` of both `1` and `-1`.
+Therefore the function has no limit at `0`.
+</WorkedExample>
+
+This example captures a common failure mode: left-hand and right-hand behavior
+do not agree.
+
+## Algebra of limits
+
+Once some basic limits are known, the notes show how to build new ones from old
+ones.
+
+<TheoremCard title="Limit laws">
+If `\lim_{x\to a}f(x)=L` and `\lim_{x\to a}g(x)=M`, then:
+
+- `\lim_{x\to a}(f(x)+g(x))=L+M`,
+- `\lim_{x\to a}(f(x)g(x))=LM`,
+- if `M\ne 0`, then
+
+$$
+\lim_{x\to a}\frac{f(x)}{g(x)}=\frac{L}{M}.
+$$
+</TheoremCard>
+
+The proof of the sum law is the cleanest illustration: split the allowed error
+`\varepsilon` into two halves and use the triangle inequality,
+
+$$
+|f(x)+g(x)-(L+M)|\le |f(x)-L|+|g(x)-M|.
+$$
+
+The product law needs one extra idea: before estimating the product error, one
+must first show that `|f(x)|` stays bounded near `a`.
+
+<WorkedExample title="Using the sum law">
+The notes consider `f(x)=2x+1` and `g(x)=\sqrt{x}` near `x=4`. Once the basic
+limits
+
+$$
+\lim_{x\to 4}(2x+1)=9,
+\qquad
+\lim_{x\to 4}\sqrt{x}=2
+$$
+
+are known, the sum law gives
+
+$$
+\lim_{x\to 4}\bigl((2x+1)+\sqrt{x}\bigr)=9+2=11.
+$$
+</WorkedExample>
+
+## The sequential characterization
+
+Theorem 3 in the notes connects function limits back to sequence limits.
+
+<TheoremCard title="Sequential characterization of function limits">
+Let `f:I\setminus\{a\}\to R`. Then
+
+$$
+\lim_{x\to a}f(x)=L
+$$
+
+if and only if for every sequence `(x_n)` with `x_n\in I\setminus\{a\}` for all
+`n` and `x_n\to a`, we have
+
+$$
+\lim_{n\to\infty}f(x_n)=L.
+$$
+</TheoremCard>
+
+This theorem is extremely useful because it gives two complementary methods:
+
+1. to prove a limit exists, check every sequence approaching `a`;
+2. to prove a limit does not exist, find two sequences approaching `a` that
+   give incompatible output behavior.
+
+Example 25 applies this idea to `f(x)=\sin(1/x)` near `0`.
+
+<WorkedExample title="Two sequences proving that `\sin(1/x)` has no limit at `0`">
+Take
+
+$$
+x_n=\frac{1}{2\pi n},
+\qquad
+y_n=\frac{1}{2\pi n+\pi/2}.
+$$
+
+Then `x_n\to 0` and `y_n\to 0`, but
+
+$$
+f(x_n)=\sin(2\pi n)=0\to 0,
+$$
+
+while
+
+$$
+f(y_n)=\sin(2\pi n+\pi/2)=1\to 1.
+$$
+
+Since two sequences approaching the same point produce different limiting
+function values, `\lim_{x\to 0}\sin(1/x)` does not exist.
+</WorkedExample>
+
+## Continuity
+
+One of the main purposes of limits is to make the idea of continuity precise.
+
+<Definition title="Continuity at a point">
+Let `f:I\to R` and `a\in I`. The function `f` is **continuous at `a`** if
+
+$$
+\lim_{x\to a}f(x)=f(a).
+$$
+
+Equivalently, in `\varepsilon`-`\delta` language:
+
+$$
+\forall \varepsilon>0\ \exists \delta>0\text{ such that }
+|x-a|<\delta \implies |f(x)-f(a)|<\varepsilon.
+$$
+</Definition>
+
+Notice what changed: the condition `0<|x-a|` disappeared. Continuity really does
+care about the function value at the point.
+
+The notes give a discontinuous example:
+
+$$
+f(x)=
+\begin{cases}
+0,& x\ne 0,\\
+1,& x=0.
+\end{cases}
+$$
+
+Here the nearby values are all `0`, so the limit near `0` is not `f(0)=1`.
+Therefore the function is discontinuous at `0`.
+
+<CommonMistake title="A function can have a limit at a without being defined at a">
+The hole example shows this clearly. Limits are about nearby values. Continuity
+adds the extra requirement that the function is defined at the point and that
+its value agrees with the limit.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Why does the function-limit definition use `0 < |x-a| < \delta` instead of only `|x-a| < \delta`?">
+Think about whether the value at `a` should matter for the limit.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Because the limit concerns points near `a`, not necessarily the point `a`
+itself. The strict inequality `0<|x-a|` removes `x=a` from the condition.
+</RevealSolution>
+
+<QuickCheck prompt="For the proof that `\lim_{x\to 3}(2x+1)=7`, what choice of delta works for a given epsilon?">
+Use the identity `|f(x)-7|=2|x-3|`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Choose `\delta=\varepsilon/2`.
+</RevealSolution>
+
+<QuickCheck prompt="Why can `\frac{x^2-4}{x-2}` have a limit at `x=2` even though the formula is undefined there?">
+Recall what the limit definition does and does not inspect.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Because the definition only checks points with `0<|x-2|<\delta`. It never asks
+for a value at `x=2` itself, so a hole at the point does not prevent the limit
+from existing.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Prove that `\lim_{x\to 4}\sqrt{x}=2`.">
+Rationalize `|\sqrt{x}-2|` and also keep x near 4 so the denominator stays away
+from zero.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+We use
+
+$$
+|\sqrt{x}-2|
+=
+\frac{|x-4|}{\sqrt{x}+2}.
+$$
+
+Choose
+
+$$
+\delta=\min(1,2\varepsilon).
+$$
+
+If `0<|x-4|<\delta`, then in particular `x\in(3,5)`, so `\sqrt{x}+2>2`. Hence
+
+$$
+|\sqrt{x}-2|
+=
+\frac{|x-4|}{\sqrt{x}+2}
+<
+\frac{|x-4|}{2}
+<
+\frac{\delta}{2}
+\le \varepsilon.
+$$
+
+Therefore `\lim_{x\to 4}\sqrt{x}=2`.
+</RevealSolution>
+
+<QuickCheck prompt="Use the sequential characterization to show again that `\lim_{x\to 0}\sin(1/x)` does not exist.">
+You only need two carefully chosen sequences.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Take
+
+$$
+x_n=\frac{1}{2\pi n},
+\qquad
+y_n=\frac{1}{2\pi n+\pi/2}.
+$$
+
+Both sequences approach `0`. But
+
+$$
+\sin(1/x_n)=\sin(2\pi n)=0
+$$
+
+for all `n`, while
+
+$$
+\sin(1/y_n)=\sin(2\pi n+\pi/2)=1
+$$
+
+for all `n`. Since the image sequences have different limits, the function limit
+at `0` cannot exist.
+</RevealSolution>
+
+<QuickCheck prompt="What extra condition must be added to ‘the limit of f(x) as x approaches a exists’ in order to conclude that f is continuous at a?">
+Compare the definitions of limit and continuity.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+You must also have `f(a)` defined and equal to the limit:
+
+$$
+\lim_{x\to a}f(x)=f(a).
+$$
+
+That equality is exactly the definition of continuity at `a`.
+</RevealSolution>
+
+## Related notes
+
+Read this after
+[5.1 Sequences and epsilon-N limits](/en/notes/math1090/sequences-and-limits/sequences-and-epsilon-n-limits)
+and
+[5.2 Cauchy sequences and another model of the reals](/en/notes/math1090/sequences-and-limits/cauchy-sequences-and-another-real-construction).
+For the order-theoretic background behind completeness, see
+[4.3 Completeness and gaps in Q](/en/notes/math1090/order-and-completeness/completeness-and-gaps-in-q).

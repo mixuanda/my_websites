@@ -1,0 +1,346 @@
+---
+title: "5.1 Sequences and epsilon-N limits"
+description: "Treat sequences as functions on N, then learn how the epsilon-N definition captures convergence in a precise beginner-readable way."
+---
+
+This note starts chapter 5 by slowing down and making the first limit definition
+fully explicit. Before talking about limits of functions, the lecture notes
+first study limits of **sequences**. That is the right order: a sequence moves
+along the number line in discrete steps, so it is the cleanest place to learn
+how a formal limit definition works.
+
+## A sequence is a function, not just a pattern
+
+Many students first meet sequences as lists such as
+
+$$
+1,2,3,4,\ldots
+$$
+
+or
+
+$$
+1,\frac12,\frac13,\frac14,\ldots
+$$
+
+The lecture notes ask you to reinterpret that familiar idea in a more precise
+way.
+
+<Definition title="Sequence in a set">
+Let `X` be a set. A **sequence in `X`** is a function
+
+$$
+N\to X.
+$$
+
+If the image of `n\in N` is written `x_n`, then the sequence is denoted
+`(x_n)`.
+</Definition>
+
+So a sequence is not required to come from a simple formula. The only formal
+requirement is that each natural number `n` is assigned an element `x_n` of the
+target set.
+
+<Definition title="Rational and real sequences">
+A **sequence of rational numbers** is a map `N\to Q`. A **sequence of real
+numbers** is a map `N\to R`.
+</Definition>
+
+This functional viewpoint matters later. It reminds you that a sequence has a
+domain, a codomain, and an indexing variable. The dots `\ldots` are only
+informal shorthand.
+
+## Why limits of sequences come before limits of functions
+
+For a sequence, approaching the limit means going further and further out in the
+index `n`. There is only one direction to move: toward larger natural numbers.
+
+That is much simpler than the function-limit situation, where `x` can approach a
+point `a` from the left and the right and through infinitely many real values in
+between.
+
+So chapter 5 begins with the discrete version:
+
+- choose a candidate limit `L`,
+- choose an error tolerance `\varepsilon>0`,
+- ask whether the terms eventually stay inside the band of radius
+  `\varepsilon` around `L`.
+
+## The formal definition
+
+<Definition title="Limit of a real sequence">
+A sequence `(x_n)` of real numbers has **limit** `L\in R` if for every positive
+real number `\varepsilon>0`, there exists `N\in N` such that for all `n>N`,
+
+$$
+|L-x_n|<\varepsilon.
+$$
+
+In that case we write
+
+$$
+L=\lim_{n\to\infty}x_n
+$$
+
+or say that `(x_n)` **converges** to `L`.
+</Definition>
+
+Exercise 51 in the source asks you to write the definition symbolically. Here it
+is in compact form:
+
+$$
+\lim_{n\to\infty}x_n=L
+\iff
+\forall \varepsilon>0\ \exists N\in N\ \forall n>N,\ |x_n-L|<\varepsilon.
+$$
+
+## How to read the quantifiers correctly
+
+The definition is easier once you separate its jobs.
+
+1. `\forall \varepsilon>0`: you do not get to choose only one error bar. The
+   sequence must eventually fit inside **every** positive tolerance band.
+2. `\exists N\in N`: after seeing the chosen `\varepsilon`, you are allowed to
+   pick a tail-starting point `N`.
+3. `\forall n>N`: once you pass that point, **every later term** must stay
+   inside the band.
+
+So convergence is an eventual-tail statement. The first few terms may behave
+badly. That does not matter. What matters is the behavior far enough out in the
+sequence.
+
+<CommonMistake title="N may depend on epsilon, but not on n">
+When proving convergence, you are allowed to choose `N` after the tolerance
+`\varepsilon` is given. But once `N` is fixed, the inequality must hold for
+every `n>N`. You are not allowed to choose a different `N` for each later term.
+</CommonMistake>
+
+<CommonMistake title="Convergence is not about early terms">
+Changing finitely many initial terms of a sequence never changes whether the
+sequence converges, because the definition only cares about the tail `n>N`.
+</CommonMistake>
+
+## First worked example: `1/n \to 0`
+
+Example 17 in the notes says that
+
+$$
+\frac11,\frac12,\frac13,\frac14,\ldots
+$$
+
+has limit `0`. Let us write the proof in full.
+
+<WorkedExample title="Proving that `\lim_{n\to\infty} 1/n = 0`">
+Let `\varepsilon>0` be given. We want `|1/n-0|<\varepsilon`, that is,
+
+$$
+\frac1n<\varepsilon.
+$$
+
+This is guaranteed once
+
+$$
+n>\frac1\varepsilon.
+$$
+
+So choose a natural number `N` with `N>1/\varepsilon`. Then every `n>N`
+satisfies
+
+$$
+\left|\frac1n-0\right|=\frac1n<\varepsilon.
+$$
+
+Therefore
+
+$$
+\lim_{n\to\infty}\frac1n=0.
+$$
+</WorkedExample>
+
+This proof is typical. Start from the quantity you need to make small, simplify
+it, and then choose `N` large enough.
+
+## Second worked example: `\frac{5n+2}{3n-7} \to \frac53`
+
+Example 18 in the notes gives a rational-function sequence and proves its
+limit.
+
+<WorkedExample title="Proving that `\lim_{n\to\infty}\frac{5n+2}{3n-7}=\frac53`">
+We compute
+
+$$
+\left|\frac{5n+2}{3n-7}-\frac53\right|
+=
+\left|\frac{3(5n+2)-5(3n-7)}{3(3n-7)}\right|
+=
+\left|\frac{41}{3(3n-7)}\right|.
+$$
+
+For large `n`, the denominator is positive, so
+
+$$
+\left|\frac{41}{3(3n-7)}\right|=\frac{41}{3(3n-7)}.
+$$
+
+Now pick `N` large enough that `3n-7\ge 2n` whenever `n>N`. Then
+
+$$
+\frac{41}{3(3n-7)}\le \frac{41}{6n}.
+$$
+
+So it is enough to ensure
+
+$$
+\frac{41}{6n}<\varepsilon.
+$$
+
+Choose `N` so large that both `3n-7\ge 2n` and `n>41/(6\varepsilon)` hold for
+all `n>N`. Then
+
+$$
+\left|\frac{5n+2}{3n-7}-\frac53\right|<\varepsilon.
+$$
+
+Hence
+
+$$
+\lim_{n\to\infty}\frac{5n+2}{3n-7}=\frac53.
+$$
+</WorkedExample>
+
+The algebra looks longer, but the logical structure is exactly the same as for
+`1/n`: rewrite the error term and make it small by forcing `n` to be large.
+
+## A simple but important special case
+
+Exercise 52 asks for the limit of the constant sequence `x_n=0`.
+
+<WorkedExample title="Constant sequences converge to their constant value">
+Let `x_n=0` for all `n`. Then for every `\varepsilon>0`,
+
+$$
+|x_n-0|=0<\varepsilon
+$$
+
+for every natural number `n`.
+
+So any natural number can serve as `N`, and
+
+$$
+\lim_{n\to\infty}x_n=0.
+$$
+</WorkedExample>
+
+This small example is worth keeping in mind because it shows what the definition
+looks like when the error term is already zero.
+
+## What convergence means geometrically
+
+If `\lim_{n\to\infty}x_n=L`, then no matter how narrow a band you draw around
+`L`, the tail of the sequence eventually stays inside it.
+
+Equivalently:
+
+- you may reject finitely many early terms;
+- afterward the sequence cannot keep escaping the chosen `\varepsilon`-band.
+
+That is why convergence is stronger than “having many terms near `L`”. The
+definition requires **all sufficiently late terms** to be near `L`.
+
+![A sequence tail entering an epsilon-band](/images/textbook/math1090/sequence-limit-epsilon-band.png)
+
+*Figure. Convergence means more than seeing some terms near `L`. After a large
+enough index `N`, the whole tail must remain inside the chosen
+`\varepsilon`-band.*
+
+## Compare tails interactively
+
+Use the explorer below to change the candidate sequence and the tolerance
+`\varepsilon`. The useful quantity is the first index `N` after which the shown
+tail stays inside the `\varepsilon`-band around the proposed limit.
+
+<InteractiveWidget id="sequence-limit-explorer" />
+
+## Quick checks
+
+<QuickCheck prompt="In the definition of `\lim_{n\to\infty}x_n=L`, what is the role of N?">
+Answer in terms of the tail of the sequence.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`N` marks the point after which every later term must lie within the chosen
+`\varepsilon`-band around `L`. It is a tail-starting index.
+</RevealSolution>
+
+<QuickCheck prompt="Why does changing the first ten terms of a convergent sequence never destroy convergence?">
+Look at which indices the definition actually controls.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Because convergence only asks for a property of all terms with `n>N` for some
+large `N`. Changing finitely many initial terms does not change the eventual
+tail behavior.
+</RevealSolution>
+
+<QuickCheck prompt="For the sequence `x_n=0`, can the same N work for every epsilon?">
+Use the fact that the error term is always zero.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Yes. Since `|x_n-0|=0<\varepsilon` for every `\varepsilon>0` and every `n`, any
+natural number can be used as `N`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Write the sequence-limit definition entirely in symbols.">
+Do not omit the order of the quantifiers.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The symbolic form is
+
+$$
+\lim_{n\to\infty}x_n=L
+\iff
+\forall \varepsilon>0\ \exists N\in N\ \forall n>N,\ |x_n-L|<\varepsilon.
+$$
+
+The order matters: first the tolerance is chosen, then `N`, then every later
+term is checked.
+</RevealSolution>
+
+<QuickCheck prompt="Show directly from the definition that `\lim_{n\to\infty} 1/(2n)=0`.">
+Compare it with the proof for `1/n`.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Let `\varepsilon>0`. We want
+
+$$
+\left|\frac{1}{2n}-0\right|=\frac{1}{2n}<\varepsilon.
+$$
+
+This is true once `n>1/(2\varepsilon)`. Choose a natural number `N` with
+`N>1/(2\varepsilon)`. Then every `n>N` satisfies `1/(2n)<\varepsilon`, so
+`1/(2n)\to 0`.
+</RevealSolution>
+
+<QuickCheck prompt="Why is it not enough for infinitely many terms of a sequence to lie close to L?">
+Contrast “infinitely many” with “all sufficiently late”.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Because convergence requires the whole tail to stay close to `L`, not merely a
+subcollection of terms. A sequence can visit points near `L` infinitely often
+and still keep escaping far away at later indices.
+</RevealSolution>
+
+## Related notes
+
+Read this after
+[4.6 Decimal expansions and irrational numbers](/en/notes/math1090/order-and-completeness/decimal-expansions-and-irrational-numbers)
+and
+[4.3 Completeness and gaps in Q](/en/notes/math1090/order-and-completeness/completeness-and-gaps-in-q).
+Then continue to
+[5.2 Cauchy sequences and another model of the reals](/en/notes/math1090/sequences-and-limits/cauchy-sequences-and-another-real-construction).

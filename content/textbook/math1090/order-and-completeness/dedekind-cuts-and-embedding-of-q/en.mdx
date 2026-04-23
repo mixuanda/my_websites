@@ -1,0 +1,294 @@
+---
+title: "4.5 Dedekind cuts and the embedding of Q"
+description: "Turn the approximation idea into a rigorous object: Dedekind cuts, the copy of Q inside R, and the first definitions of order and arithmetic."
+---
+
+## Why cuts are the next step
+
+The previous note ended with a picture:
+
+- a real number should determine everything in `Q` that lies to its left;
+- it should also determine everything in `Q` that lies to its right;
+- the real number itself should behave like the boundary between those two
+  camps.
+
+Section 4.8 of the lecture notes turns that picture into a formal definition.
+The important move is this: instead of assuming the real number already exists
+and then asking what lies below it, we *define* the real number by the left-hand
+part of `Q` itself.
+
+That is the basic idea of a **Dedekind cut**.
+
+## Two equivalent definitions
+
+<Definition title="Dedekind cut as a pair">
+A **Dedekind cut** is a pair `(A,B)` of nonempty subsets of `Q` such that:
+
+- `Q=A\cup B`;
+- for every `a\in A` and `b\in B`, we have `a<b`;
+- `A` has no maximum element.
+</Definition>
+
+In words, `A` is the entire left side of the boundary, and `B` is the entire
+right side. There is no overlap, nothing is missing, and the left side does not
+contain its own last point.
+
+<Definition title="Dedekind cut as a single subset">
+Equivalently, a subset `A\subset Q` is called a Dedekind cut if:
+
+- `A\ne\varnothing` and `A\ne Q`;
+- whenever `x\in A` and `y\in Q` satisfy `y<x`, then `y\in A`;
+- for every `x\in A`, there exists `y\in A` with `x<y`.
+</Definition>
+
+The second form is often easier to use. Once the left set `A` is known, the
+right set is automatically `Q\setminus A`. So the cut is completely determined
+by which rationals count as "already to the left of the boundary".
+
+## What each condition is doing
+
+The definition is short, but every clause has a job.
+
+- `A\ne\varnothing` and `A\ne Q` prevent a fake cut with no left side or no
+  right side.
+- Downward closure says that if a rational is already on the left, then every
+  smaller rational must also be on the left.
+- The "no maximum" condition says the boundary itself is not stored as the last
+  element of `A`; there is always room to move a little farther right while
+  staying on the left.
+
+This last point is the subtle one. It is exactly what prevents one rational
+number from being represented twice.
+
+<WorkedExample title="The cut for `q=3/2`">
+Let
+
+$$
+A=\{x\in Q\mid x<3/2\},
+\qquad
+B=\{x\in Q\mid x\ge 3/2\}.
+$$
+
+Then `A` and `B` are both nonempty, every element of `A` is smaller than every
+element of `B`, and `A` has no maximum.
+
+To see the last point, start with any `x<3/2` and define
+
+$$
+y=\frac{x+3/2}{2}.
+$$
+
+Then `x<y<3/2`, so `y\in A` and `x` was not maximal. Thus `(A,B)` is a
+Dedekind cut. This cut is the rational number `3/2` viewed inside the real
+number system built from cuts.
+</WorkedExample>
+
+## Rational cuts and the embedding of `Q`
+
+The lecture notes call a cut `(A,B)` **rational** if `B` has a minimum
+element. In that case the boundary is already achieved by a rational number.
+
+If `\min(B)=q`, then necessarily
+
+$$
+A=\{x\in Q\mid x<q\}.
+$$
+
+That motivates the notation
+
+$$
+q_R=\{x\in Q\mid x<q\}.
+$$
+
+So each rational number `q` gives a Dedekind cut `q_R`, and the map
+
+$$
+i:Q\to R,\qquad i(q)=q_R
+$$
+
+embeds `Q` into the cut model of the reals.
+
+<TheoremCard title="The rational numbers sit inside the cut model">
+Rational Dedekind cuts are in bijection with rational numbers. After this
+embedding is established, it is standard to identify `q` with its cut `q_R`.
+In particular, `0_R` and `1_R` play the roles of `0` and `1` inside `R`.
+</TheoremCard>
+
+This matters conceptually. The cut construction is not trying to throw away the
+rationals and start from scratch. It is enlarging `Q` by adding new boundaries
+that were missing before.
+
+<CommonMistake title="Using `x\le q` instead of `x<q`">
+The set `\{x\in Q\mid x\le q\}` is nonempty, proper, and downward closed, but
+it fails the "no maximum" condition because `q` itself is the largest element.
+If we allowed that set as well as `q_R`, then the same rational number would be
+represented in two different ways. The strict inequality is not cosmetic; it
+removes that ambiguity.
+</CommonMistake>
+
+## Order and the first operations on cuts
+
+Defining the set `R` of all cuts is not enough. To match the target from the
+previous note, the lecture notes must also define order and arithmetic on `R`.
+
+For order, the natural rule is:
+
+$$
+A\le A' \quad\text{if and only if}\quad A\subseteq A'.
+$$
+
+This is exactly the right comparison for left sets. If every rational already on
+the left of `A` is also on the left of `A'`, then the boundary represented by
+`A` cannot lie to the right of the boundary represented by `A'`.
+
+For addition, the notes define
+
+$$
+A+A'=\{a+a' \mid a\in A,\ a'\in A'\}.
+$$
+
+The idea is that the left side of a sum should consist of rational numbers that
+can already be reached by adding something strictly left of the first boundary
+to something strictly left of the second boundary.
+
+For multiplication, the notes first handle the case of nonnegative cuts and then
+extend the definition by sign rules. When `0_R\le A` and `0_R\le A'`, they use
+
+$$
+A\cdot A'
+=
+\{aa' \mid a\in A,\ a'\in A',\ a\ge 0,\ a'\ge 0\}\cup\{x\in Q\mid x<0\}.
+$$
+
+This is more technical than addition, but the guiding idea is the same: build
+the left side of the product from rational data that already lies to the left.
+
+<WorkedExample title="Why `1_R+1_R=2_R`">
+Write
+
+$$
+1_R=\{x\in Q\mid x<1\}.
+$$
+
+If `a<1` and `a'<1`, then `a+a'<2`, so every element of `1_R+1_R` lies in
+`2_R`.
+
+Conversely, if `x<2`, then `x/2<1`, and
+
+$$
+x=\frac{x}{2}+\frac{x}{2}.
+$$
+
+So every rational in `2_R` lies in `1_R+1_R`. Hence
+
+$$
+1_R+1_R=2_R.
+$$
+
+This example shows that the cut definition really extends the ordinary rational
+operations rather than inventing new arithmetic.
+</WorkedExample>
+
+<TheoremCard title="The cut model reaches the target from 4.4">
+The lecture notes define `+`, `\cdot`, and `\le` on Dedekind cuts and then show
+that the resulting structure is a complete ordered field containing the embedded
+copy of `Q`.
+</TheoremCard>
+
+The proofs are not short, but the overall message is clean: Dedekind cuts do
+exactly what chapter 4 asked a model of the real numbers to do.
+
+## Seeing the boundary on the number line
+
+![A Dedekind cut at sqrt(2)](/images/textbook/math1090/dedekind-cut-sqrt2.png)
+
+*Figure. A cut stores every rational to the left of a boundary. When the
+boundary is `sqrt(2)`, the right side has no smallest rational element.*
+
+## Compare rational and irrational cuts interactively
+
+The explorer below places the rational boundary `3/2` next to the irrational
+boundary `sqrt(2)`. The key structural question is whether the right-hand side
+starts with a least rational element.
+
+<InteractiveWidget id="dedekind-cut-explorer" />
+
+## Common mistakes
+
+<CommonMistake title="The pair version and the subset version are not two different theories">
+They describe the same object from two angles. The pair `(A,B)` records both
+sides of the boundary explicitly, while the subset form keeps only the left
+side and recovers the right side as `Q\setminus A`.
+</CommonMistake>
+
+<CommonMistake title="Order on cuts is not a comparison between every element of two sets">
+The statement `A\le A'` means `A\subseteq A'`. It does *not* mean that every
+element of `A` is less than every element of `A'`. The two left sets usually
+overlap heavily, especially when one boundary lies to the left of the other.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="What is the cut `0_R`?">
+Write it directly from the definition `q_R=\{x\in Q\mid x<q\}`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+
+$$
+0_R=\{x\in Q\mid x<0\},
+$$
+
+so it is the set of all negative rational numbers.
+</RevealSolution>
+
+<QuickCheck prompt="If `A\subseteq A'`, which boundary lies to the left?">
+Answer in terms of the cut order.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+If `A\subseteq A'`, then `A\le A'`. The boundary represented by `A` lies at or
+to the left of the boundary represented by `A'`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Show that `q_R=\{x\in Q\mid x<q\}` is a Dedekind cut for every rational number `q`.">
+Check the three conditions in the subset definition.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The set `q_R` is nonempty because `q-1<q`, so `q-1\in q_R`. It is not all of
+`Q` because `q\notin q_R`.
+
+It is downward closed: if `x<q` and `y<x`, then certainly `y<q`, so `y\in q_R`.
+
+It has no maximum: if `x<q`, then
+
+$$
+\frac{x+q}{2}
+$$
+
+is rational and satisfies `x<(x+q)/2<q`, so `(x+q)/2\in q_R`. Therefore every
+element of `q_R` can be improved by a larger element still in `q_R`.
+</RevealSolution>
+
+<QuickCheck prompt="Why is `C=\{x\in Q\mid x\le 2\}` not a Dedekind cut, even though it is nonempty, proper, and downward closed?">
+Identify the exact condition that fails and explain why it matters.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The set `C` fails the no-maximum condition because `2` is its largest element.
+That failure matters because `\{x<2\}` already represents the rational number
+`2` as a cut. If `\{x\le 2\}` were also allowed, the same rational boundary
+would receive two different names.
+</RevealSolution>
+
+## Related notes
+
+Read this after
+[4.4 Axioms for the reals and first approximations](/en/notes/math1090/order-and-completeness/axioms-for-the-reals-and-first-approximations).
+Then continue with
+[4.6 Decimal expansions and irrational numbers](/en/notes/math1090/order-and-completeness/decimal-expansions-and-irrational-numbers),
+which reconnects cuts with familiar decimal notation and introduces `\sqrt2`
+as an irrational cut.

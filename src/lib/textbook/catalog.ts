@@ -393,32 +393,309 @@ const math1090OrderUnits: TextbookUnitMeta[] = [
     course: "math1090",
     coverageStatus: "SOURCE_BACKED",
     description: text(
-      "Study total order, upper/lower bounds, supremum/infimum, and why completeness is the structural gap between Q and R.",
-      "學習全序、上下界、上確界/下確界，以及完備性為何是 Q 與 R 之間的關鍵結構差異。",
-      "学习全序、上下界、上确界/下确界，以及完备性为何是 Q 与 R 之间的关键结构差异。"
+      "Separate total order from partial order, then see how the familiar order on Z and Q works together with field operations.",
+      "先把全序與偏序分開，再理解 Z 與 Q 的熟悉次序如何與域運算配合。",
+      "先把全序与偏序分开，再理解 Z 与 Q 的熟悉次序如何与域运算配合。"
     ),
-    glossaryRefs: ["set"],
+    glossaryRefs: ["total-order", "ordered-field"],
     interactiveIds: [],
     order: 11,
     prerequisites: ["math1090.numbers.gaps-in-q-and-sqrt2"],
     slug: "order-bounds-and-completeness",
     sourceRefs: [
       {
-        file: "reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf",
-        pages: "§4.1-§4.7",
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "§4.1-§4.3",
       },
       {
         file: "reference/MATH1090/MATH1090_midterm_review_notes_final.pdf",
-        note: "Order, bounds, supremum/infimum and completeness review",
+        note: "4.2-4.3 order and ordered-field review",
       },
     ],
     title: text(
-      "4.1 Order, bounds, and completeness",
-      "4.1 序、界與完備性",
-      "4.1 序、界与完备性"
+      "4.1 Total orders and ordered fields",
+      "4.1 全序與有序域",
+      "4.1 全序与有序域"
     ),
     unitId: "math1090.order-and-completeness.order-bounds-and-completeness",
     unitNumber: "4.1",
+  },
+  {
+    chapterId: "order-and-completeness",
+    chapterNumber: "4",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Distinguish maxima and minima from upper and lower bounds, then learn how supremum and infimum capture the correct extremal language.",
+      "分清最大值、最小值與上界、下界，再理解上確界與下確界如何提供真正需要的極值語言。",
+      "分清最大值、最小值与上界、下界，再理解上确界与下确界如何提供真正需要的极值语言。"
+    ),
+    glossaryRefs: ["upper-bound", "lower-bound", "supremum", "infimum"],
+    interactiveIds: [],
+    order: 12,
+    prerequisites: ["math1090.order-and-completeness.order-bounds-and-completeness"],
+    slug: "supremum-and-infimum",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "§4.4 and Exercise 41",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_midterm_review_notes_final.pdf",
+        note: "4.3-4.4 bounds, supremum, and infimum review",
+      },
+    ],
+    title: text(
+      "4.2 Upper bounds, supremum, and infimum",
+      "4.2 上下界、上確界與下確界",
+      "4.2 上下界、上确界与下确界"
+    ),
+    unitId: "math1090.order-and-completeness.supremum-and-infimum",
+    unitNumber: "4.2",
+  },
+  {
+    chapterId: "order-and-completeness",
+    chapterNumber: "4",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Define completeness precisely and use the set of rationals below sqrt(2) to see why Q still has genuine gaps.",
+      "精確定義完備性，並用 `sqrt(2)` 下方那個有理數集合去看出 Q 仍然有真正的缺口。",
+      "精确定义完备性，并用 `sqrt(2)` 下方那个有理数集合看出 Q 仍然有真正的缺口。"
+    ),
+    glossaryRefs: ["completeness", "supremum", "infimum"],
+    interactiveIds: [],
+    order: 13,
+    prerequisites: [
+      "math1090.numbers.gaps-in-q-and-sqrt2",
+      "math1090.order-and-completeness.supremum-and-infimum",
+    ],
+    slug: "completeness-and-gaps-in-q",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "§4.5 and Exercises 42-44",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_midterm_review_notes_final.pdf",
+        note: "4.4-4.5 completeness and Q-gap review",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_Worksheet5.pdf",
+        note: "Exercise 4",
+      },
+    ],
+    title: text(
+      "4.3 Completeness and gaps in Q",
+      "4.3 完備性與 Q 的缺口",
+      "4.3 完备性与 Q 的缺口"
+    ),
+    unitId: "math1090.order-and-completeness.completeness-and-gaps-in-q",
+    unitNumber: "4.3",
+  },
+  {
+    chapterId: "order-and-completeness",
+    chapterNumber: "4",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Treat the reals as the target complete ordered field, then use decimal approximations to motivate the first construction idea.",
+      "把實數視為目標中的完備有序域，然後用小數近似去建立第一次構造的動機。",
+      "把实数视为目标中的完备有序域，然后用小数近似建立第一次构造的动机。"
+    ),
+    glossaryRefs: ["ordered-field", "completeness"],
+    interactiveIds: [],
+    order: 14,
+    prerequisites: ["math1090.order-and-completeness.completeness-and-gaps-in-q"],
+    slug: "axioms-for-the-reals-and-first-approximations",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "§4.6-§4.7",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_midterm_review_notes_final.pdf",
+        note: "4.6-4.7 axiomatic and first-construction review",
+      },
+    ],
+    title: text(
+      "4.4 Axioms for the reals and first approximations",
+      "4.4 實數公理與第一次近似構造",
+      "4.4 实数公理与第一次近似构造"
+    ),
+    unitId:
+      "math1090.order-and-completeness.axioms-for-the-reals-and-first-approximations",
+    unitNumber: "4.4",
+  },
+  {
+    chapterId: "order-and-completeness",
+    chapterNumber: "4",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Define a real number as a left/right split of Q, see why rational cuts embed Q faithfully, and understand how order and arithmetic are rebuilt on cuts.",
+      "把實數定義成 Q 的左右分割，理解有理 cut 為何能忠實嵌入 Q，並看清序與運算如何在 cut 上重建。",
+      "把实数定义成 Q 的左右分割，理解有理 cut 为何能忠实嵌入 Q，并看清序与运算如何在 cut 上重建。"
+    ),
+    glossaryRefs: ["dedekind-cut", "ordered-field", "completeness"],
+    interactiveIds: ["dedekind-cut-explorer"],
+    order: 15,
+    prerequisites: [
+      "math1090.order-and-completeness.axioms-for-the-reals-and-first-approximations",
+    ],
+    slug: "dedekind-cuts-and-embedding-of-q",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "§4.8-§4.9 and Exercises 45-48",
+      },
+    ],
+    title: text(
+      "4.5 Dedekind cuts and the embedding of Q",
+      "4.5 Dedekind cut 與 Q 的嵌入",
+      "4.5 Dedekind cut 与 Q 的嵌入"
+    ),
+    unitId:
+      "math1090.order-and-completeness.dedekind-cuts-and-embedding-of-q",
+    unitNumber: "4.5",
+  },
+  {
+    chapterId: "order-and-completeness",
+    chapterNumber: "4",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Turn infinite decimal intuition into a cut, then use sqrt(2) to see how irrational numbers live inside the completed number system.",
+      "把無限小數的直覺轉成 cut，並用 sqrt(2) 看清無理數如何住在完成後的數系裡。",
+      "把无限小数的直觉转成 cut，并用 sqrt(2) 看清无理数如何住在完成后的数系里。"
+    ),
+    glossaryRefs: ["decimal-expansion", "irrational-number", "dedekind-cut"],
+    interactiveIds: ["decimal-approximation-builder"],
+    order: 16,
+    prerequisites: [
+      "math1090.order-and-completeness.dedekind-cuts-and-embedding-of-q",
+    ],
+    slug: "decimal-expansions-and-irrational-numbers",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "§4.10-§4.11 and Exercise 50",
+      },
+      {
+        file: "reference/MATH1090/MATH1090_Worksheet5.pdf",
+        note: "Exercises 3-4",
+      },
+    ],
+    title: text(
+      "4.6 Decimal expansions and irrational numbers",
+      "4.6 小數展開與無理數",
+      "4.6 小数展开与无理数"
+    ),
+    unitId:
+      "math1090.order-and-completeness.decimal-expansions-and-irrational-numbers",
+    unitNumber: "4.6",
+  },
+];
+
+const math1090SequencesUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "sequences-and-limits",
+    chapterNumber: "5",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Treat a sequence as a function on N, then learn the epsilon-N definition of convergence through concrete examples.",
+      "把序列視作定義在 N 上的函數，再透過具體例子學會 epsilon-N 的收斂定義。",
+      "把序列视作定义在 N 上的函数，再透过具体例子学会 epsilon-N 的收敛定义。"
+    ),
+    glossaryRefs: ["sequence", "sequence-limit"],
+    interactiveIds: ["sequence-limit-explorer"],
+    order: 17,
+    prerequisites: [
+      "math1090.order-and-completeness.decimal-expansions-and-irrational-numbers",
+    ],
+    slug: "sequences-and-epsilon-n-limits",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "§4.12 and Exercises 51-52",
+      },
+    ],
+    title: text(
+      "5.1 Sequences and epsilon-N limits",
+      "5.1 序列與 epsilon-N 極限",
+      "5.1 序列与 epsilon-N 极限"
+    ),
+    unitId: "math1090.sequences-and-limits.sequences-and-epsilon-n-limits",
+    unitNumber: "5.1",
+  },
+  {
+    chapterId: "sequences-and-limits",
+    chapterNumber: "5",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "See why Cauchy sequences capture internal convergence, then sketch how equivalence classes of rational Cauchy sequences give another model of R.",
+      "理解 Cauchy 序列如何抓住內部收斂，再勾勒有理 Cauchy 序列的等價類如何給出另一個 R 的模型。",
+      "理解 Cauchy 序列如何抓住内部收敛，再勾勒有理 Cauchy 序列的等价类如何给出另一个 R 的模型。"
+    ),
+    glossaryRefs: ["cauchy-sequence", "sequence-limit", "completeness"],
+    interactiveIds: [],
+    order: 18,
+    prerequisites: ["math1090.sequences-and-limits.sequences-and-epsilon-n-limits"],
+    slug: "cauchy-sequences-and-another-real-construction",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "§4.13 and Exercises 53-56",
+      },
+    ],
+    title: text(
+      "5.2 Cauchy sequences and another model of the reals",
+      "5.2 Cauchy 序列與另一個實數模型",
+      "5.2 Cauchy 序列与另一个实数模型"
+    ),
+    unitId:
+      "math1090.sequences-and-limits.cauchy-sequences-and-another-real-construction",
+    unitNumber: "5.2",
+  },
+  {
+    chapterId: "sequences-and-limits",
+    chapterNumber: "5",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Move from sequence limits to function limits, learn the delta-epsilon definition, and organize the first toolkit of failure tests, limit laws, and continuity.",
+      "由序列極限走向函數極限，學會 delta-epsilon 定義，並整理第一套判別不存在、極限定律與連續性的工具。",
+      "由序列极限走向函数极限，学会 delta-epsilon 定义，并整理第一套判别不存在、极限定律与连续性的工具。"
+    ),
+    glossaryRefs: [
+      "open-interval",
+      "delta-epsilon-limit",
+      "continuity",
+      "sequence-limit",
+    ],
+    interactiveIds: ["delta-epsilon-limit-explorer"],
+    order: 19,
+    prerequisites: [
+      "math1090.sequences-and-limits.sequences-and-epsilon-n-limits",
+      "math1090.sequences-and-limits.cauchy-sequences-and-another-real-construction",
+    ],
+    slug: "delta-epsilon-limits-limit-laws-and-continuity",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "Chapter 5 (§5.1-§5.6) and Exercises 57-61",
+      },
+    ],
+    title: text(
+      "5.3 Delta-epsilon limits, limit laws, and continuity",
+      "5.3 Delta-epsilon 極限、極限定律與連續性",
+      "5.3 Delta-epsilon 极限、极限定律与连续性"
+    ),
+    unitId:
+      "math1090.sequences-and-limits.delta-epsilon-limits-limit-laws-and-continuity",
+    unitNumber: "5.3",
   },
 ];
 
@@ -1610,11 +1887,27 @@ const math1090: TextbookCourseMeta = {
       title: text("Order and completeness", "序與完備性", "序与完备性"),
       units: math1090OrderUnits,
     },
+    {
+      course: "math1090",
+      id: "sequences-and-limits",
+      number: "5",
+      summary: text(
+        "Sequences, Cauchy convergence, and the first delta-epsilon treatment of function limits.",
+        "序列、Cauchy 收斂，以及函數極限的第一輪 delta-epsilon 處理。",
+        "序列、Cauchy 收敛，以及函数极限的第一轮 delta-epsilon 处理。"
+      ),
+      title: text(
+        "Sequences and first limits",
+        "序列與最初的極限理論",
+        "序列与最初的极限理论"
+      ),
+      units: math1090SequencesUnits,
+    },
   ],
   description: text(
-    "Rigorous course notes on logic, sets, and number construction, written in short linked sections with careful proofs and examples.",
-    "以嚴謹課程筆記方式整理的邏輯、集合與數系構造筆記，按互相關聯的小節撰寫，重視證明與例子。",
-    "以严谨课程笔记方式整理的逻辑、集合与数系构造笔记，按相互关联的小节撰写，重视证明与例子。"
+    "Rigorous course notes on logic, sets, number construction, the real numbers, and the first theory of limits, written in linked sections with careful proofs and examples.",
+    "以嚴謹課程筆記方式整理的邏輯、集合、數系構造、實數與最初極限理論筆記，按互相關聯的小節撰寫，重視證明與例子。",
+    "以严谨课程笔记方式整理的逻辑、集合、数系构造、实数与最初极限理论笔记，按相互关联的小节撰写，重视证明与例子。"
   ),
   id: "math1090",
   shortTitle: text("Set theory", "集合論", "集合论"),

@@ -1,0 +1,224 @@
+---
+title: "4.4 Axioms for the reals and first approximations"
+description: "Treat the reals as the target complete ordered field, then use decimal approximations to motivate the first construction idea."
+---
+
+## Why define the reals before constructing them?
+
+In earlier chapters, the pattern was:
+
+1. decide what structure we want,
+2. build a model that has that structure,
+3. check the construction carefully.
+
+The lecture notes now do the same for the real numbers. Before giving a formal
+construction, they first say what the reals are supposed to *be* from a
+structural point of view.
+
+That is good mathematical practice. If you do not know the target properties
+first, then even a beautiful construction can feel unmotivated.
+
+## The formal target
+
+<Definition title="Model of the real numbers">
+A set `R` is a **model of the real numbers** if it is equipped with:
+
+- elements `0,1\in R`,
+- binary operations `+` and `\cdot`,
+- a total order `\le`,
+
+such that:
+
+- `(R,0,1,+,\cdot,\le)` is an ordered field;
+- `(R,\le)` is complete.
+</Definition>
+
+This definition compresses the whole chapter into one sentence:
+
+> the reals are an ordered field with no missing least upper bounds or greatest
+> lower bounds.
+
+<WorkedExample title="Why Q is not yet a model of the reals">
+The rational numbers already satisfy the ordered-field part. What fails is
+completeness.
+
+The set
+
+$$
+S=\{x\in Q\mid x^2<2\}
+$$
+
+is nonempty and bounded above in `Q`, but it has no rational supremum. So `Q`
+is close to the target, yet still not the real-number system.
+</WorkedExample>
+
+## Why decimal expansions are not the full story
+
+A first instinct is to say:
+
+"A real number is just an infinite decimal expansion."
+
+That instinct is useful, but the notes warn that it is not yet the cleanest
+definition.
+
+There are at least two reasons.
+
+- The same real number can have more than one decimal expansion, as in
+  `0.9999\ldots = 1`.
+- Decimal expansions force a specific base, such as base 10, even though the
+  idea of the real numbers should not depend on that arbitrary choice.
+
+So the notes do not reject decimal intuition. Instead, they use it as a guide
+toward a more structural construction.
+
+## The approximation idea
+
+Suppose a real number is written informally as
+
+$$
+r=10.234890234809234\ldots
+$$
+
+Then we can approximate `r` from below and above by rational numbers:
+
+$$
+10<r<11,
+$$
+
+$$
+10.2<r<10.3,
+$$
+
+$$
+10.23<r<10.24,
+$$
+
+and so on.
+
+This is the key insight of section 4.7: even if we do not yet have a final
+construction, a real number can already be understood through the rational
+approximations that trap it more and more tightly.
+
+<WorkedExample title="Lower and upper rational fences">
+For a decimal expansion such as `r=3.1415\ldots`, the first few rational fences
+look like
+
+$$
+3<r<4,\qquad 3.1<r<3.2,\qquad 3.14<r<3.15.
+$$
+
+Each extra digit gives a narrower rational interval containing `r`.
+</WorkedExample>
+
+## Dividing the rationals into two camps
+
+From this approximation viewpoint, the real number `r` determines two sets of
+rationals:
+
+$$
+A=\{q\in Q\mid q<r\},
+\qquad
+B=\{q\in Q\mid q>r\}.
+$$
+
+The important idea is not the notation itself. The important idea is that a
+real number can be read as a boundary that separates the rationals into a left
+camp and a right camp.
+
+That is exactly the motivation behind the Dedekind-cut construction in the next
+part of the lecture notes. Section 4.7 is still motivational rather than fully
+formal, but it already tells you what kind of object a real number should be:
+something that organizes the rationals by comparison.
+
+## What section 4.7 does and does not do
+
+<TheoremCard title="Section 4.7 is a construction strategy, not yet the finished construction">
+The goal of section 4.7 is to explain *why* a real number should be describable
+through rational approximations and left/right rational sets. The fully formal
+Dedekind-cut definition comes only afterward.
+</TheoremCard>
+
+This distinction matters. If you treat section 4.7 as already giving the final
+definition, you miss the role of the next step. The notes are building
+motivation first, then turning that motivation into a rigorous object.
+
+<CommonMistake title="Infinite decimal strings are not automatically a finished definition">
+An infinite decimal expansion gives excellent intuition, but by itself it does
+not settle issues such as multiple expansions for the same number or the base
+dependence of the notation. That is why the notes move from decimal intuition to
+a structural construction.
+</CommonMistake>
+
+<CommonMistake title="Section 4.7 is not yet the full Dedekind-cut theory">
+At this stage, the notes are telling you how to *think* about a real number: as
+something determined by rational approximations and a left/right split of `Q`.
+The formal cut definition and the verification of field properties come later.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Which property does Q fail, so that it cannot be a model of the real numbers?">
+Compare Q with the formal definition above.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`Q` fails completeness. It is an ordered field, but not every nonempty bounded
+subset of `Q` has its supremum and infimum inside `Q`.
+</RevealSolution>
+
+<QuickCheck prompt="What information do the inequalities 10.23 < r < 10.24 give you about r?">
+State it in terms of rational approximation.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+They place `r` inside a narrow rational interval. In other words, they give a
+lower rational approximation and an upper rational approximation that trap `r`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="For a real number written informally as 3.14159..., write the first four lower/upper rational intervals suggested by its decimal expansion.">
+Start with the integer part and then reveal one more digit at a time.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+One possible sequence is
+
+$$
+3<r<4,
+$$
+
+$$
+3.1<r<3.2,
+$$
+
+$$
+3.14<r<3.15,
+$$
+
+$$
+3.141<r<3.142.
+$$
+
+Each step keeps `r` between two rationals while shrinking the interval.
+</RevealSolution>
+
+<QuickCheck prompt="Why does the identity 0.999... = 1 show that raw decimal strings are not an ideal primary definition of the reals?">
+Focus on uniqueness of representation.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Because two different decimal strings can represent the same real number. If raw
+strings were the definition, then `0.999...` and `1.000...` would appear to be
+different objects even though they describe the same number. So one needs an
+additional equivalence rule or a more structural definition.
+</RevealSolution>
+
+## Related notes
+
+Read this after
+[4.3 Completeness and gaps in Q](/en/notes/math1090/order-and-completeness/completeness-and-gaps-in-q).
+Then continue with
+[4.5 Dedekind cuts and the embedding of Q](/en/notes/math1090/order-and-completeness/dedekind-cuts-and-embedding-of-q),
+where the informal left/right split of `Q` becomes the first fully rigorous
+construction of the real numbers in the public Notes sequence.

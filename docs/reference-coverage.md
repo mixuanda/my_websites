@@ -7,7 +7,7 @@ another authored note, deferred, or blocked.
 
 ## Latest resume state
 
-As of April 14, 2026, the latest local source-processing checkpoints are:
+As of April 24, 2026, the latest local source-processing checkpoints are:
 
 - `9085148` `Fix note block prompt rendering`
 - `49345a4` `Fix set note reveal integrity`
@@ -57,13 +57,24 @@ The latest merged content passes also:
   through `9.4` in EN, zh-HK, and zh-CN, covering norms, angles, orthogonal
   and orthonormal bases, Gram-Schmidt, and the Cauchy-Schwarz / triangle
   inequalities.
+- split the public `math1090` order / completeness chapter into a four-unit
+  EN / zh-HK / zh-CN family through `§4.7`, covering total orders, ordered
+  fields, upper and lower bounds, supremum / infimum, completeness, the
+  classical `Q`-gap at `sqrt(2)`, and the first axiomatic / approximation
+  viewpoint on the reals.
+- completed the source-backed late Math1090 family in EN, zh-HK, and zh-CN
+  through `4.5`, `4.6`, and `5.1`-`5.3`, covering Dedekind cuts, decimal
+  expansions, irrational numbers, sequence limits, Cauchy sequences, the
+  Cauchy-sequence model of `R`, delta-epsilon limits, limit laws, sequential
+  characterization, and continuity, with new pedagogically justified
+  interactives and static illustration assets.
 
-The next resume point is a split backlog:
+The next resume point is now QA rather than missing Math1090 content:
 
-1. return to the remaining Math1090 chapter-4 and proof-structure backlog only
-   after the next Math1030 family lands cleanly.
-2. keep the remaining thinner matrix-algebra and solution-structure units in
-   active review before treating the chapter-3 / chapter-4 backbone as stable.
+1. keep export, rendering, and exercise QA active on the new Math1090 `4.5`
+   through `5.3` family.
+2. keep export, rendering, and exercise QA active on the recently added higher
+   Math1030 chapters.
 
 The tables below use these status labels:
 
@@ -239,10 +250,12 @@ chapter 9 with explicit public pages for:
 - Gram-Schmidt orthogonalization
 - Cauchy-Schwarz and triangle inequalities
 
-MATH1090 remains strongest through logic, sets, natural numbers, induction,
-integers, rationals, and the `sqrt(2)` / incompleteness boundary example. Later
-order, real-number, and analysis-preparatory material is present in
-`reference/`, but is not yet fully authored into public notes.
+MATH1090 now reaches a six-unit reals sequence plus a three-unit first-limits
+sequence with explicit public pages for total orders and ordered fields; upper
+/ lower bounds, supremum, and infimum; completeness and gaps in `Q`; the
+axiomatic / first-approximation view of the reals; Dedekind cuts; decimal
+expansions and irrational numbers; sequence limits; Cauchy sequences; and the
+first delta-epsilon / continuity family.
 
 ## MATH1090 coverage
 
@@ -252,9 +265,10 @@ below.
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Feb27.pdf` | lecture notes | incorporated | yes | no | no | Direct source for logic, truth tables, quantifiers, sets, functions, and relations. |
-| MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf` | lecture notes | partially incorporated | partial | no | no | Current public notes use `§3.1-§4.7`; later real-number, sequence, limit, and continuity sections still need explicit note pages. |
-| MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_final.tex` | review source | partially incorporated | partial | yes | no | Used for headings, proof structure, and terminology. Later review sections on order, real numbers, and analysis prep remain backlog. |
-| MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_final.pdf` | review packet | partially incorporated | partial | yes | no | Reinforces current authored units and contains later order / completeness / proof-template material not yet surfaced publicly. |
+| MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf` | lecture notes | partially incorporated | partial | no | no | Primary source for the current public `§3.*` number-construction notes and an earlier version of the chapter-4 backbone. Later real-number and analysis-preparatory sections remain backlog. |
+| MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf` | lecture notes | incorporated | yes | no | no | Direct source for the public `4.1`-`4.6` and `5.1`-`5.3` family: cuts, decimals, irrationals, sequence limits, Cauchy sequences, delta-epsilon limits, limit laws, sequential characterization, and continuity. |
+| MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_final.tex` | review source | partially incorporated | partial | yes | no | Used for headings, terminology, proof structure, and the new chapter-4 note family through `§4.7`. Later proof-template and appendix sections remain backlog. |
+| MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_final.pdf` | review packet | partially incorporated | partial | yes | no | Reinforces the authored logic-through-`§4.7` units and still contains later proof-template / rapid-review material not yet surfaced publicly. |
 | MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_master.pdf` | review packet | overlap | partial | yes | no | Editorial variant of the final review packet; do not treat as a separate public-content stream. |
 | MATH1090 | `reference/MATH1090/MATH1090_HW1.pdf` | homework | incorporated | yes | yes | no | Supports propositional logic practice already merged into public notes. |
 | MATH1090 | `reference/MATH1090/MATH1090 HW8.pdf` | homework | blocked | no | no | yes | Extraction quality is weak and the surrounding later-course material is not yet mapped tightly enough to author from this file alone. |
@@ -262,7 +276,7 @@ below.
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet2.pdf` | worksheet | incorporated | yes | yes | no | Supports quantifiers and negation. |
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet3.pdf` | worksheet | incorporated | yes | yes | no | Supports sets, Venn-diagram language, and function / relation examples. |
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet4.pdf` | worksheet | incorporated | yes | yes | no | Supports naturals, induction, and integer-construction notes. |
-| MATH1090 | `reference/MATH1090/MATH1090_Worksheet5.pdf` | worksheet | incorporated | yes | yes | no | Supports rationals, well-defined relations on `Q`, and the `sqrt(2)` gap note. |
+| MATH1090 | `reference/MATH1090/MATH1090_Worksheet5.pdf` | worksheet | incorporated | yes | yes | no | Supports rationals, well-defined relations on `Q`, the `sqrt(2)` gap note, and chapter-4 completeness / gap exercises. |
 
 ## MATH1030 coverage
 
@@ -554,3 +568,35 @@ existing invertibility note instead of creating a detached new route.
 - Added CSCI2520 chapter 2 baseline unit on complexity growth with a new interactive comparator.
 - Added first MATH1025 baseline units (`0.1` and `1.1`) in EN/zh-HK/zh-CN from chapter-0/chapter-1 slide references.
 - Kept remaining MATH1025 chapters (`ch2`-`ch11`) and CSCI2520 chapters beyond current authored units in active backlog for continued source-backed authoring cycles.
+
+### 2026-04-24 checkpoint 10: split Math1090 chapter 4 into a public note family
+
+- Reworked the previous merged `math1090` chapter-4 note into a textbook-like
+  four-unit sequence in EN, zh-HK, and zh-CN: `4.1` total orders and ordered
+  fields, `4.2` upper / lower bounds with `sup` / `inf`, `4.3` completeness and
+  gaps in `Q`, and `4.4` axioms for the reals with the first approximation
+  strategy.
+- Updated textbook metadata and glossary coverage so the Notes sidebar,
+  breadcrumbs, previous / next navigation, related-term popovers, and export
+  routes all recognize the expanded family.
+- Synchronized coverage and parity docs so the current public boundary now
+  matches the repository reality through `§4.7`.
+- Exact next target: continue from the post-`§4.7` Apr10 backlog rather than
+  re-splitting chapter 4 again.
+
+### 2026-04-24 checkpoint 11: finish the source-backed late Math1090 family
+
+- Extended the public Math1090 notes in EN, zh-HK, and zh-CN with `4.5`
+  Dedekind cuts and the embedding of `Q`, `4.6` decimal expansions and
+  irrational numbers, `5.1` sequences and epsilon-`N` limits, `5.2` Cauchy
+  sequences and another model of the reals, and `5.3` delta-epsilon limits,
+  limit laws, and continuity.
+- Added Math1090-specific interactives for cuts, decimal approximation,
+  sequence limits, and delta-epsilon limits, plus static explanatory figure
+  assets for the same concepts.
+- Updated textbook metadata, glossary coverage, and localization / parity
+  tracking so the public boundary now matches the repository reality through
+  the source-backed chapter-5 limit material.
+- Exact next target: stay on QA, export fidelity, and formatting / exercise
+  integrity for the new Math1090 family rather than opening another missing
+  content batch first.

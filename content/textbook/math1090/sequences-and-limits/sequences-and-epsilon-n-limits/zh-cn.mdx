@@ -1,0 +1,338 @@
+---
+title: "5.1 序列与 epsilon-N 极限"
+description: "把序列视作定义在 N 上的函数，然后用初学者也能跟上的方式学会 epsilon-N 的极限定义。"
+---
+
+这一页开始第 5 章。lecture notes 先不急着谈函数极限，而是先把
+**序列极限**讲清楚。这个安排很合理，因为序列只沿着自然数 `n` 一步一
+步向前走，所以它是学习正式极限定义最干净的入口。
+
+## 序列是一个函数，不只是一串数字
+
+很多人第一次见到序列时，会把它理解成像
+
+$$
+1,2,3,4,\ldots
+$$
+
+或者
+
+$$
+1,\frac12,\frac13,\frac14,\ldots
+$$
+
+这样的列表。lecture notes 要你把这个熟悉观念再说得更精确。
+
+<Definition title="集合中的序列">
+设 `X` 是一个集合。`X` 中的一个**序列**，就是一个函数
+
+$$
+N\to X.
+$$
+
+若 `n\in N` 的像记作 `x_n`，我们就把这个序列记作 `(x_n)`。
+</Definition>
+
+所以，一个序列未必一定由某条简单公式产生。正式要求只有一个：每个自
+然数 `n` 都要对应到 `X` 中某个元素 `x_n`。
+
+<Definition title="有理序列与实序列">
+**有理数序列**是映射 `N\to Q`。**实数序列**是映射 `N\to R`。
+</Definition>
+
+这个函数观点之所以重要，是因为它提醒你：序列有定义域、有值域，也有索
+引变量。`...` 只是非正式缩写，不是数学定义本身。
+
+## 为什么先学序列极限？
+
+对序列来说，“靠近极限”的意思是把索引 `n` 取到越来越大。方向只有一
+个：往更大的自然数走。
+
+这比函数极限简单得多。对函数而言，`x` 可以从左、从右，以无穷多种实数
+方式靠近某个点 `a`。所以第 5 章先处理离散版本：
+
+- 先猜一个候选极限 `L`；
+- 再给一个容许误差 `\varepsilon>0`；
+- 然后问：序列的尾部会不会最终一直留在 `L` 周围半径 `\varepsilon` 的
+  带内？
+
+## 正式定义
+
+<Definition title="实数序列的极限">
+一个实数序列 `(x_n)` 的**极限**是 `L\in R`，如果对每个正实数
+`\varepsilon>0`，都存在 `N\in N` 使得当 `n>N` 时，
+
+$$
+|L-x_n|<\varepsilon.
+$$
+
+在这种情况下，我们写作
+
+$$
+L=\lim_{n\to\infty}x_n
+$$
+
+或者说 `(x_n)` **收敛**到 `L`。
+</Definition>
+
+source 里的 Exercise 51 要你把这个定义写成符号形式。完整写法是
+
+$$
+\lim_{n\to\infty}x_n=L
+\iff
+\forall \varepsilon>0\ \exists N\in N\ \forall n>N,\ |x_n-L|<\varepsilon.
+$$
+
+## 怎样正确阅读这串量词
+
+把定义拆开之后，会清楚很多。
+
+1. `\forall \varepsilon>0`：不是只要对某一个误差带成立，而是对**每一
+   个**正误差带都要成立。
+2. `\exists N\in N`：当别人先指定了 `\varepsilon` 之后，你可以按这个
+   `\varepsilon` 去选一个尾部起点 `N`。
+3. `\forall n>N`：一旦越过这个 `N`，之后**每一项**都要留在该误差带
+   内。
+
+因此，收敛是一个关于尾部的陈述。前面有限多项可以表现得很差，问题不
+大；关键在于足够后面的项有没有稳定地留在 `L` 附近。
+
+<CommonMistake title="N 可以依赖 epsilon，但不可以依赖 n">
+证明收敛时，你可以在给定 `\varepsilon` 之后选 `N`。但一旦 `N` 定了，
+不等式就要对所有 `n>N` 同时成立。你不可以对不同的 `n` 再另外挑不同
+的 `N`。
+</CommonMistake>
+
+<CommonMistake title="收敛不是看前面几项">
+改动有限多个起始项，不会改变一个序列是否收敛，因为定义真正控制的是
+某个 `N` 之后的整段尾部。
+</CommonMistake>
+
+## 第一个例子：`1/n \to 0`
+
+Example 17 说明
+
+$$
+\frac11,\frac12,\frac13,\frac14,\ldots
+$$
+
+的极限是 `0`。以下把证明完整写出。
+
+<WorkedExample title="证明 `\lim_{n\to\infty} 1/n = 0`">
+任取 `\varepsilon>0`。我们想要
+
+$$
+\left|\frac1n-0\right|<\varepsilon,
+$$
+
+也就是
+
+$$
+\frac1n<\varepsilon.
+$$
+
+这只要在
+
+$$
+n>\frac1\varepsilon
+$$
+
+时便成立。
+
+因此取一个自然数 `N` 使 `N>1/\varepsilon`。则每当 `n>N`，
+
+$$
+\left|\frac1n-0\right|=\frac1n<\varepsilon.
+$$
+
+故
+
+$$
+\lim_{n\to\infty}\frac1n=0.
+$$
+</WorkedExample>
+
+这就是最典型的极限证明套路：先由 `|x_n-L|` 出发，把它化简，再迫使 `n`
+足够大。
+
+## 第二个例子：`\frac{5n+2}{3n-7} \to \frac53`
+
+Example 18 给出一个有理函数型的序列。
+
+<WorkedExample title="证明 `\lim_{n\to\infty}\frac{5n+2}{3n-7}=\frac53`">
+先计算
+
+$$
+\left|\frac{5n+2}{3n-7}-\frac53\right|
+=
+\left|\frac{3(5n+2)-5(3n-7)}{3(3n-7)}\right|
+=
+\left|\frac{41}{3(3n-7)}\right|.
+$$
+
+当 `n` 足够大时，分母为正，所以
+
+$$
+\left|\frac{41}{3(3n-7)}\right|=\frac{41}{3(3n-7)}.
+$$
+
+再取 `N` 足够大，使得 `n>N` 时有 `3n-7\ge 2n`。于是
+
+$$
+\frac{41}{3(3n-7)}\le \frac{41}{6n}.
+$$
+
+所以只要再令
+
+$$
+\frac{41}{6n}<\varepsilon
+$$
+
+便足够。
+
+换言之，我们可以把 `N` 取得更大，令 `n>N` 时同时满足
+`3n-7\ge 2n` 与 `n>41/(6\varepsilon)`。那么
+
+$$
+\left|\frac{5n+2}{3n-7}-\frac53\right|<\varepsilon.
+$$
+
+因此
+
+$$
+\lim_{n\to\infty}\frac{5n+2}{3n-7}=\frac53.
+$$
+</WorkedExample>
+
+虽然这个例子的代数计算较长，但逻辑结构和 `1/n` 完全一样：把误差项改
+写成一个随 `n` 变大而变小的量。
+
+## 一个简单但重要的特例
+
+Exercise 52 问 constant sequence `x_n=0` 的极限。
+
+<WorkedExample title="常数序列收敛到其常数值">
+若对所有 `n` 都有 `x_n=0`，那么对每个 `\varepsilon>0`，
+
+$$
+|x_n-0|=0<\varepsilon
+$$
+
+对所有自然数 `n` 都成立。
+
+因此任何自然数都可以当作 `N`，所以
+
+$$
+\lim_{n\to\infty}x_n=0.
+$$
+</WorkedExample>
+
+这个小例子值得记住，因为它让你看到：当误差本身恒等于零时，定义是如何
+被立即满足的。
+
+## 从几何角度看收敛
+
+若 `\lim_{n\to\infty}x_n=L`，那就表示不论你在 `L` 周围画一个多窄的误
+差带，序列的尾部最终都会整段留在这个带内。
+
+等价地说：
+
+- 你可以容许有限多个初始项不受控制；
+- 但在某个位置之后，序列不能再反复跑出 `\varepsilon`-带外。
+
+这就是为什么“有很多项接近 `L`”仍然不够。收敛要求的是：**所有充分后
+面的项**都要接近 `L`。
+
+![序列尾部进入 epsilon 带](/images/textbook/math1090/sequence-limit-epsilon-band.png)
+
+*图：收敛不只表示“看见一些项靠近 `L`”。真正的要求是：从某个足够大的
+`N` 之后，整条尾部都要留在所选的 `\varepsilon` 带内。*
+
+## 互动地比较尾部行为
+
+下面的 explorer 可以让你切换不同序列、不同 `\varepsilon`，并查看第一
+个有效的 `N`。真正要看的重点是：从那个 `N` 之后，表格中的尾部是否一
+直留在候选极限周围的 `\varepsilon`-带内。
+
+<InteractiveWidget id="sequence-limit-explorer" />
+
+## 快速检查
+
+<QuickCheck prompt="在 `\lim_{n\to\infty}x_n=L` 的定义里，N 的角色是什么？">
+用“尾部”的语言回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`N` 是尾部开始的位置。它保证：从 `N` 之后，每一项都必须落在所选
+`\varepsilon`-带内。
+</RevealSolution>
+
+<QuickCheck prompt="为什么把一个收敛序列的头十项改掉，不会破坏其收敛性？">
+想想定义真正控制的是哪些索引。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因为收敛只要求某个 `N` 之后的所有项满足条件。改动有限多个起始项，不
+会改变那段尾部的最终行为。
+</RevealSolution>
+
+<QuickCheck prompt="对于序列 `x_n=0`，是否可以用同一个 N 应付所有 epsilon？">
+利用误差恒等于零这件事。
+</QuickCheck>
+
+<RevealSolution title="答案">
+可以。因为 `|x_n-0|=0<\varepsilon` 对所有 `\varepsilon>0` 和所有 `n`
+都成立，所以任何自然数都可当作 `N`。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="把序列极限的定义完整写成符号形式。">
+不要漏掉量词次序。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+符号形式是
+
+$$
+\lim_{n\to\infty}x_n=L
+\iff
+\forall \varepsilon>0\ \exists N\in N\ \forall n>N,\ |x_n-L|<\varepsilon.
+$$
+
+量词的次序很重要：先给 `\varepsilon`，再选 `N`，最后检查所有 `n>N`。
+</RevealSolution>
+
+<QuickCheck prompt="直接用定义证明 `\lim_{n\to\infty} 1/(2n)=0`。">
+把它和 `1/n` 的证明对照。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+任取 `\varepsilon>0`。我们要
+
+$$
+\left|\frac1{2n}-0\right|=\frac1{2n}<\varepsilon.
+$$
+
+这在 `n>1/(2\varepsilon)` 时成立。故只要取自然数 `N` 使
+`N>1/(2\varepsilon)`，那么当 `n>N` 时就有 `1/(2n)<\varepsilon`。所
+以 `1/(2n)\to 0`。
+</RevealSolution>
+
+<QuickCheck prompt="为什么『有无限多项接近 L』仍不足以推出收敛？">
+把“无限多项”和“所有充分后面的项”作比较。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+因为收敛要求整段尾部都接近 `L`，而不只是某个无穷子列接近 `L`。一个
+序列可以无限多次走近 `L`，同时又在之后的其他索引反复跑远。
+</RevealSolution>
+
+## 相关笔记
+
+建议先读
+[4.6 小数展开与无理数](/zh-cn/notes/math1090/order-and-completeness/decimal-expansions-and-irrational-numbers)
+及
+[4.3 完备性与 Q 的缺口](/zh-cn/notes/math1090/order-and-completeness/completeness-and-gaps-in-q)。
+之后可接着读
+[5.2 Cauchy 序列与另一个实数模型](/zh-cn/notes/math1090/sequences-and-limits/cauchy-sequences-and-another-real-construction)。

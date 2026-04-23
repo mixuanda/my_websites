@@ -24,11 +24,22 @@ The table below covers the current source-backed note set in the implementation.
 | Integer | integer | 整數 | 整数 | Keep the equivalence-class construction visible when needed. | MATH1090 numbers |
 | Rational number | rational number | 有理數 | 有理数 | Pair with “well-defined” language in construction notes. | MATH1090 numbers |
 | Well-defined | well-defined | 良定 | 良定 | Use when a formula does not depend on the chosen representative. | MATH1090 numbers |
+| Total order | total order | 全序 | 全序 | Keep the comparability axiom explicit; do not blur it into a generic partial order. | MATH1090 reals |
+| Ordered field | ordered field | 有序域 | 有序域 | Keep compatibility with addition and multiplication visible, not only the word “field.” | MATH1090 reals |
 | Upper bound | upper bound | 上界 | 上界 | Keep it distinct from maximum. | MATH1090 reals |
 | Lower bound | lower bound | 下界 | 下界 | Keep it distinct from minimum. | MATH1090 reals |
 | Supremum | supremum | 上確界 | 上确界 | Keep the least-upper-bound wording explicit. | MATH1090 reals |
 | Infimum | infimum | 下確界 | 下确界 | Keep the greatest-lower-bound wording explicit. | MATH1090 reals |
+| Completeness | completeness | 完備性 | 完备性 | Use for the least-upper-bound / greatest-lower-bound property itself. | MATH1090 reals |
 | Complete ordered set | complete ordered set | 完備有序集 | 完备有序集 | Do not shorten this to a vague “complete system.” | MATH1090 reals |
+| Dedekind cut | Dedekind cut | Dedekind 分割 | Dedekind 分割 | Keep the left-set / right-set boundary interpretation explicit. | MATH1090 reals |
+| Decimal expansion | decimal expansion | 小數展開 | 小数展开 | Treat it as an approximation chain, not only as notation. | MATH1090 reals |
+| Sequence | sequence | 序列 | 序列 | Keep the function viewpoint `N -> X` explicit when first defining it. | MATH1090 limits |
+| Sequence limit | sequence limit | 序列極限 | 序列极限 | Keep the “all sufficiently late terms” wording explicit. | MATH1090 limits |
+| Cauchy sequence | Cauchy sequence | Cauchy 序列 | Cauchy 序列 | Stress internal closeness of late terms, not monotonicity. | MATH1090 limits |
+| Open interval | open interval | 開區間 | 开区间 | Keep endpoint exclusion explicit. | MATH1090 limits |
+| Delta-epsilon limit | delta-epsilon limit | delta-epsilon 極限 | delta-epsilon 极限 | Frame it as an input-neighborhood to output-band implication. | MATH1090 limits |
+| Continuity | continuity | 連續性 | 连续性 | Define it through `lim_(x→a) f(x) = f(a)`. | MATH1090 limits |
 | Irrational number | irrational number | 無理數 | 无理数 | Avoid replacing it with vague “not rational” wording in definitions. | MATH1090 numbers |
 | System of linear equations | system of linear equations | 線性方程組 | 线性方程组 | Read as a full system, not isolated equations. | MATH1030 notes |
 | Matrix | matrix | 矩陣 | 矩阵 | Hong Kong teaching normally uses “矩陣”. | MATH1030 notes |

@@ -1,0 +1,212 @@
+---
+title: "4.3 完備性與 Q 的缺口"
+description: "精確定義完備性，並用 `sqrt(2)` 下方那個有理數集合去看出 Q 仍然有真正的缺口。"
+---
+
+## 完備性是一種存在性要求
+
+上一節介紹了 supremum 與 infimum。完備性要問的是：在「應該」存在這些
+極值界的情況下，它們是否真的存在？
+
+這是 `Q` 與 `R` 真正分開的第一個地方。從代數角度看，`Q` 已經很強：
+它是一個域，也有熟悉的全序。但從次序結構看，`Q` 仍然會漏掉某些本該
+出現的邊界點。
+
+## 定義
+
+<Definition title="完備有序集">
+有序集 `X` 稱為**完備**，如果：
+
+- 每個在 `X` 中有上界的非空子集 `Y\subseteq X` 都有 supremum；
+- 每個在 `X` 中有下界的非空子集 `Y\subseteq X` 都有 infimum。
+</Definition>
+
+所以，完備性不是說元素很多，而是說：只要某個非空有界子集理應擁有最
+小上界或最大下界，這些界就真的存在於同一個環境集合裡。
+
+<WorkedExample title="有限全序集一定完備">
+若 `X` 是有限有序集，則其每個非空子集都已經有最大元素與最小元素。這
+兩個元素自然就是 supremum 與 infimum。
+
+因此，有限有序集之所以完備，是因為所需的極端元素本來就在集合裡被取
+到。
+</WorkedExample>
+
+真正有趣的問題，是像 `Q`、`R` 這樣的無限有序集。
+
+## 有理數裡的經典反例
+
+標準反例是
+
+$$
+S=\{x\in Q\mid x^2<2\}.
+$$
+
+這個集合非空，因為 `1\in S`。它也在 `Q` 中上有界，例如 `2` 就是一個
+上界。
+
+若 `Q` 是完備的，會發生甚麼？那麼 `S` 應該在 `Q` 中有 supremum。以下
+整個論證正是在說：沒有任何有理數可以充當這個角色。
+
+<TheoremCard title="Q 不是完備的">
+有序集 `(Q,\le)` 不是完備的。
+</TheoremCard>
+
+## 為甚麼沒有有理數能當作 sup(S)
+
+證明分成三種情況，按候選有理數 `s` 的平方來看。
+
+### 情況一：`s^2<2`
+
+這表示 `s` 仍然太小。lecture notes 告訴你，我們甚至可以稍微往右走一
+點，仍然留在 `S` 裡。
+
+<CollapsibleProof title="為甚麼 s^2<2 不可能是上界">
+設 `s\in Q` 且 `s^2<2`。
+
+若 `s\le 0`，則 `1>s` 而且 `1^2<2`，所以 `s` 當然不是上界。
+
+現在假設 `s>0`。令
+
+$$
+M=2-s^2>0.
+$$
+
+我們想找一個很小的有理數 `\varepsilon>0`，使 `r=s+\varepsilon` 仍滿
+足 `r^2<2`。展開可得
+
+$$
+r^2=s^2+2s\varepsilon+\varepsilon^2.
+$$
+
+因此，只要令
+
+$$
+\varepsilon(2s+\varepsilon)<M
+$$
+
+就夠了。
+
+取 `\varepsilon` 小到同時滿足 `0<\varepsilon<2s` 與
+`\varepsilon<M/(4s)`。則 `2s+\varepsilon<4s`，所以
+
+$$
+\varepsilon(2s+\varepsilon)<4s\varepsilon<M.
+$$
+
+於是 `r^2<2`，故 `r\in S` 且 `r>s`。因此 `s` 不可能是 `S` 的上界。
+</CollapsibleProof>
+
+### 情況二：`s^2>2`
+
+這時 `s` 的確是上界，但它太大了，不可能是**最小**上界。notes 證明我
+們可以略為向左移動，同時仍保持它是上界。
+
+<CollapsibleProof title="為甚麼 s^2>2 不可能是 supremum">
+設 `s\in Q` 且 `s^2>2`。取一個很小的正有理數 `\varepsilon`，令
+`r=s-\varepsilon`。
+
+我們希望仍有 `r^2>2`。展開得
+
+$$
+r^2=s^2-2s\varepsilon+\varepsilon^2.
+$$
+
+所以只要令
+
+$$
+2s\varepsilon-\varepsilon^2<s^2-2
+$$
+
+即可。
+
+由於 `s^2-2>0`，總能選到足夠小的有理數 `\varepsilon>0` 使上式成立。
+於是 `r^2>2`，所以依前面的界判準，`r` 仍然是 `S` 的上界。但現在
+`r<s`，表示 `s` 根本不是最小上界。
+</CollapsibleProof>
+
+### 情況三：`s^2=2`
+
+這在 `Q` 裡根本不可能，因為前一章已經證明 `sqrt(2)` 是無理數。
+
+把三種情況合起來：
+
+- `s^2<2` 時，`s` 甚至不是上界；
+- `s^2>2` 時，`s` 雖是上界，卻不是最小上界；
+- `s^2=2` 在 `Q` 中不會發生。
+
+因此，`S` 在 `Q` 中沒有 supremum。
+
+## 稠密不等於完備
+
+很多人此時會直覺地說：
+
+「可是在任意兩個有理數之間，都還能找到更多有理數；這樣還不夠嗎？」
+
+這句話把兩件事混在一起了：
+
+- **稠密**是指：兩個不同有理數之間，總能再找到另一個有理數；
+- **完備**是指：每個非空有界子集，都在同一個環境裡擁有正確的最小上
+  界與最大下界。
+
+集合 `S` 正好說明：即使邊界附近有無窮多個有理逼近，也仍可能缺少真正
+的 supremum。
+
+<CommonMistake title="逼近不等於真的擁有邊界點">
+`Q` 中確實有愈來愈接近 `sqrt(2)` 的有理數，但這並不代表 `Q` 已經包含
+了 `S` 的最小上界。愈來愈好的近似，仍然弱於真正擁有那個邊界點。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="為甚麼 2 是 S={x in Q : x^2 < 2} 的上界？">
+若 x>2，x^2 會變成甚麼？
+</QuickCheck>
+
+<RevealSolution title="答案">
+若 `x>2`，則 `x^2>4>2`，所以這樣的 `x` 不可能屬於 `S`。因此 `S` 的每
+個元素都不超過 `2`，故 `2` 是上界。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼 Q 的稠密性不能推出 Q 的完備性？">
+用一句嚴謹的話回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+稠密性只保證相鄰有理數之間還能再插入有理數；完備性則要求每個非空有
+界子集都在 `Q` 內擁有最小上界。集合 `S={x\in Q\mid x^2<2}` 雖有無窮
+多接近邊界的有理近似，卻仍然沒有有理 supremum。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="解釋為甚麼每個有限有序集都是完備的。">
+利用有限非空子集一定能取到最大與最小元素。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+取有限有序集 `X` 的任一非空子集 `Y`。由於 `Y` 有限，我們總能逐一比
+較並找出最大的元素與最小的元素。這兩個元素分別就是 `Y` 的 maximum
+與 minimum，因此也就是 `\sup(Y)` 與 `\inf(Y)`。所以有限有序集一定完
+備。
+</RevealSolution>
+
+<QuickCheck prompt="假設 Q 是完備的，那麼集合 S={x in Q : x^2 < 2} 會被迫滿足甚麼？為甚麼這不可能？">
+直接把完備性的定義套到這個反例上。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+若 `Q` 完備，則每個在 `Q` 中上有界的非空子集都必有 supremum。集合
+`S` 非空且上有界，所以它必須有某個有理數 `s` 滿足 `s=\sup(S)`。但上
+面的三情況論證說明，沒有任何有理數可以做到這件事。因此 `Q` 不可能
+是完備的。
+</RevealSolution>
+
+## 相關筆記
+
+可先讀
+[3.5 Q 的缺口與 sqrt(2)](/zh-hk/notes/math1090/numbers/gaps-in-q-and-sqrt2)
+及
+[4.2 上下界、上確界與下確界](/zh-hk/notes/math1090/order-and-completeness/supremum-and-infimum)。
+之後可接著讀
+[4.4 實數公理與第一次近似構造](/zh-hk/notes/math1090/order-and-completeness/axioms-for-the-reals-and-first-approximations)。

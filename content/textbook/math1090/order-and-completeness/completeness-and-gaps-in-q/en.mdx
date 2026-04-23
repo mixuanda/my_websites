@@ -1,0 +1,221 @@
+---
+title: "4.3 Completeness and gaps in Q"
+description: "Define completeness precisely and use the set of rationals below sqrt(2) to see why Q still has genuine gaps."
+---
+
+## Completeness is an existence property
+
+The previous note introduced supremum and infimum. Completeness asks whether
+those extremal bounds actually exist whenever they *should* exist.
+
+This is the first point where `Q` and `R` separate decisively. Algebraically,
+`Q` already looks very strong: it is a field, and it comes with a familiar total
+order. But order-theoretically, `Q` still misses some boundary points.
+
+## The definition
+
+<Definition title="Complete ordered set">
+An ordered set `X` is **complete** if:
+
+- every nonempty subset `Y\subseteq X` that is bounded above has a supremum in
+  `X`;
+- every nonempty subset `Y\subseteq X` that is bounded below has an infimum in
+  `X`.
+</Definition>
+
+So completeness is not about having many elements. It is about never losing the
+least upper bound or greatest lower bound when those bounds ought to be there.
+
+<WorkedExample title="Finite ordered sets are complete">
+If `X` is a finite ordered set, every nonempty subset already has a largest and
+smallest element. Those elements automatically serve as supremum and infimum.
+
+So finite ordered sets are complete for a simple reason: the relevant extremes
+are already attained inside the set.
+</WorkedExample>
+
+The interesting question is what happens for infinite ordered sets such as `Q`
+and `R`.
+
+## The rational counterexample
+
+The standard counterexample is
+
+$$
+S=\{x\in Q\mid x^2<2\}.
+$$
+
+This set is not empty, because `1\in S`. It is also bounded above in `Q`; for
+instance `2` is an upper bound.
+
+What would happen if `Q` were complete? Then `S` would have a rational
+supremum. The whole argument below shows that no rational number can play that
+role.
+
+<TheoremCard title="Q is not complete">
+The ordered set `(Q,\le)` is not complete.
+</TheoremCard>
+
+## Why no rational number can be sup(S)
+
+The proof splits into three cases according to the square of a rational
+candidate `s`.
+
+### Case 1: `s^2<2`
+
+Then `s` is still too small. In fact, the lecture notes show that one can move a
+little to the right and remain inside `S`.
+
+<CollapsibleProof title="Why s^2<2 cannot be an upper bound">
+Assume `s\in Q` and `s^2<2`.
+
+If `s\le 0`, then `1>s` and `1^2<2`, so `s` is not an upper bound.
+
+Now assume `s>0`. Let
+
+$$
+M=2-s^2>0.
+$$
+
+We want a small rational `\varepsilon>0` such that `r=s+\varepsilon` still
+satisfies `r^2<2`. Expanding gives
+
+$$
+r^2=s^2+2s\varepsilon+\varepsilon^2.
+$$
+
+So it is enough to make
+
+$$
+\varepsilon(2s+\varepsilon)<M.
+$$
+
+Choose `\varepsilon` so small that `0<\varepsilon<2s` and
+`\varepsilon<M/(4s)`. Then `2s+\varepsilon<4s`, hence
+
+$$
+\varepsilon(2s+\varepsilon)<4s\varepsilon<M.
+$$
+
+Therefore `r^2<2`, so `r\in S` and `r>s`. Thus `s` cannot be an upper bound of
+`S`.
+</CollapsibleProof>
+
+### Case 2: `s^2>2`
+
+Now `s` really is an upper bound, but it is too large to be the *least* upper
+bound. The notes show that we can move slightly left while staying above `S`.
+
+<CollapsibleProof title="Why s^2>2 cannot be the supremum">
+Assume `s\in Q` and `s^2>2`. Take a small positive rational `\varepsilon` and
+set `r=s-\varepsilon`.
+
+We want `r^2>2` to remain true. Expanding gives
+
+$$
+r^2=s^2-2s\varepsilon+\varepsilon^2.
+$$
+
+So it is enough to choose `\varepsilon` small enough that
+
+$$
+2s\varepsilon-\varepsilon^2<s^2-2.
+$$
+
+Because `s^2-2>0`, this can be done with sufficiently small rational
+`\varepsilon>0`. Then `r^2>2`, so by the previous bound argument `r` is still
+an upper bound of `S`. But now `r<s`, which means `s` was not the least upper
+bound after all.
+</CollapsibleProof>
+
+### Case 3: `s^2=2`
+
+This is impossible in `Q`, because the previous chapter proved that `sqrt(2)` is
+irrational.
+
+Putting the three cases together:
+
+- `s^2<2` means `s` is not even an upper bound;
+- `s^2>2` means `s` is an upper bound, but not the least one;
+- `s^2=2` cannot happen in `Q`.
+
+So `S` has no supremum in `Q`.
+
+## Density is not the same as completeness
+
+It is tempting to object:
+
+"But there are infinitely many rationals between any two rationals. Surely the
+gap can be filled by approximations."
+
+That objection confuses two ideas.
+
+- **Density** says that between two distinct rationals, another rational can be
+  found.
+- **Completeness** says that every bounded nonempty set has the correct least
+  upper bound and greatest lower bound inside the ambient ordered set.
+
+The set `S` shows that you can have endless rational approximations to a missing
+boundary and still fail completeness.
+
+<CommonMistake title="Approximation does not equal possession">
+`Q` contains rationals arbitrarily close to `sqrt(2)`. That does not mean `Q`
+contains the least upper bound of `S`. A sequence of better and better
+approximations is weaker than actually having the boundary point.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Why is 2 an upper bound of S={x in Q : x^2 < 2}?">
+If x>2, what happens to x^2?
+</QuickCheck>
+
+<RevealSolution title="Answer">
+If `x>2`, then `x^2>4>2`, so such an `x` cannot belong to `S`. Therefore every
+member of `S` lies at most `2`, so `2` is an upper bound.
+</RevealSolution>
+
+<QuickCheck prompt="Why does the density of Q not imply completeness of Q?">
+Answer in one careful sentence.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Density only says there are rationals between nearby rationals, while
+completeness requires least upper bounds for all bounded nonempty subsets; the
+set `S={x\in Q\mid x^2<2}` has arbitrarily good rational approximations to its
+boundary but no rational supremum.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Explain why every finite ordered set is complete.">
+Use the fact that nonempty finite subsets always attain their largest and
+smallest elements.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Take any nonempty subset `Y` of a finite ordered set `X`. Because `Y` is finite,
+one can compare its elements and find a largest and smallest element. Those are
+respectively the maximum and minimum of `Y`, so they also serve as supremum and
+infimum. Hence every finite ordered set is complete.
+</RevealSolution>
+
+<QuickCheck prompt="Suppose Q were complete. What would that force for the set S={x in Q : x^2 < 2}, and why is that impossible?">
+Connect the definition of completeness directly to the counterexample.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+If `Q` were complete, then every nonempty subset of `Q` with an upper bound
+would have a supremum in `Q`. The set `S` is nonempty and bounded above, so it
+would have some `s\in Q` with `s=\sup(S)`. But the three-case argument shows no
+rational `s` can do that. So completeness of `Q` is impossible.
+</RevealSolution>
+
+## Related notes
+
+Read this after
+[3.5 Gaps in Q and sqrt(2)](/en/notes/math1090/numbers/gaps-in-q-and-sqrt2)
+and
+[4.2 Upper bounds, supremum, and infimum](/en/notes/math1090/order-and-completeness/supremum-and-infimum).
+Then continue to
+[4.4 Axioms for the reals and first approximations](/en/notes/math1090/order-and-completeness/axioms-for-the-reals-and-first-approximations).
