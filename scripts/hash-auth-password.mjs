@@ -3,6 +3,7 @@ const HASH_VERSION = "v1";
 const HASH_ALGORITHM = "sha256";
 const DEFAULT_ITERATIONS = 310000;
 const DEFAULT_KEY_LENGTH = 32;
+const MIN_PASSWORD_LENGTH = 8;
 
 function bytesToBase64Url(bytes) {
   let binary = "";
@@ -38,8 +39,8 @@ async function derivePasswordKey(password, salt, iterations, keyLength) {
 
 const password = process.argv[2];
 
-if (!password || password.length < 12) {
-  console.error("Usage: node scripts/hash-auth-password.mjs '<password of at least 12 chars>'");
+if (!password || password.length < MIN_PASSWORD_LENGTH) {
+  console.error(`Usage: node scripts/hash-auth-password.mjs '<password of at least ${MIN_PASSWORD_LENGTH} chars>'`);
   process.exit(1);
 }
 

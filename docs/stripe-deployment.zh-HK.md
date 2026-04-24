@@ -17,6 +17,8 @@
 - Product：`prod_UOWCjYRGt8Z2Yc`（`Notes Membership`）
 - 月費 HKD 20：`price_1TPjAE906oPVRv7kzcP3UNsk`
 - 年費 HKD 200：`price_1TPjAG906oPVRv7kr2IpEaO7`
+- Production domain：`https://www.evanalysis.top`
+- Webhook endpoint：`https://www.evanalysis.top/api/billing/webhook`
 
 ## B. 設定環境變數（部署平台）
 

@@ -1,8 +1,13 @@
+import { firestore } from "@/lib/firebase-admin";
+import { isAdminEmail } from "@/lib/membership/config";
+
 const HASH_PREFIX = "pbkdf2";
 const HASH_VERSION = "v1";
 const HASH_ALGORITHM = "sha256";
 const DEFAULT_ITERATIONS = 310000;
 const DEFAULT_KEY_LENGTH = 32;
+const MIN_PASSWORD_LENGTH = 8;
+const REGISTERED_CREDENTIAL_COLLECTION = "credentialUsers";
 
 export interface PasswordAuthUser {
   email: string;
@@ -13,8 +18,31 @@ export interface PasswordAuthUser {
   role?: "admin" | "member" | "user";
 }
 
+export interface RegisteredCredentialUser extends PasswordAuthUser {
+  createdAt: string;
+  id: string;
+  updatedAt: string;
+}
+
 function normalizeEmail(email: string) {
   return email.trim().toLowerCase();
+}
+
+function hashString(value: string) {
+  let hash = 5381;
+  for (let index = 0; index < value.length; index += 1) {
+    hash = (hash * 33) ^ value.charCodeAt(index);
+  }
+
+  return Math.abs(hash).toString(36);
+}
+
+function getRegisteredCredentialId(email: string) {
+  return `credential_${hashString(normalizeEmail(email))}`;
+}
+
+function isValidRegistrationEmail(email: string) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
 function getCrypto() {
@@ -172,8 +200,17 @@ export function getPasswordAuthUsers(): PasswordAuthUser[] {
   return Array.from(uniqueUsers.values());
 }
 
+const memoryRegisteredCredentialUsers = new Map<string, RegisteredCredentialUser>();
+
+export function isRegistrationEnabled() {
+  return (
+    process.env.AUTH_REGISTRATION_ENABLED === "true" ||
+    process.env.NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED === "true"
+  );
+}
+
 export function isPasswordAuthConfigured() {
-  return getPasswordAuthUsers().length > 0;
+  return getPasswordAuthUsers().length > 0 || isRegistrationEnabled();
 }
 
 export function hasPasswordAuthUser(email?: string | null) {
@@ -188,9 +225,126 @@ export function getPasswordAuthUser(email?: string | null) {
   return getPasswordAuthUsers().find((user) => user.email === normalized) ?? null;
 }
 
+function normalizeRegisteredCredentialUser(
+  data: Partial<RegisteredCredentialUser> & { email?: string | null }
+): RegisteredCredentialUser | null {
+  if (!data.email || !data.passwordHash) return null;
+  const email = normalizeEmail(data.email);
+  const now = new Date().toISOString();
+
+  return {
+    createdAt: data.createdAt ?? now,
+    email,
+    id: data.id ?? getRegisteredCredentialId(email),
+    image: data.image,
+    name: data.name ?? email,
+    passwordHash: data.passwordHash,
+    role: data.role === "member" || data.role === "admin" ? data.role : "user",
+    updatedAt: data.updatedAt ?? now,
+  };
+}
+
+export async function getRegisteredPasswordAuthUser(email?: string | null) {
+  if (!email) return null;
+  const normalized = normalizeEmail(email);
+  const memoryUser = memoryRegisteredCredentialUsers.get(normalized);
+  if (memoryUser) return memoryUser;
+
+  if (!firestore) return null;
+
+  const snapshot = await firestore
+    .collection(REGISTERED_CREDENTIAL_COLLECTION)
+    .doc(getRegisteredCredentialId(normalized))
+    .get();
+
+  if (!snapshot.exists) return null;
+
+  const user = normalizeRegisteredCredentialUser(
+    snapshot.data() as Partial<RegisteredCredentialUser>
+  );
+  if (user) {
+    memoryRegisteredCredentialUsers.set(user.email, user);
+  }
+
+  return user;
+}
+
+export async function hasRegisteredPasswordAuthUser(email?: string | null) {
+  return Boolean(await getRegisteredPasswordAuthUser(email));
+}
+
+export async function listRegisteredPasswordAuthUsers(limit = 200) {
+  if (!firestore) {
+    return Array.from(memoryRegisteredCredentialUsers.values()).slice(0, limit);
+  }
+
+  const snapshot = await firestore
+    .collection(REGISTERED_CREDENTIAL_COLLECTION)
+    .orderBy("createdAt", "desc")
+    .limit(limit)
+    .get();
+
+  return snapshot.docs
+    .map((doc) =>
+      normalizeRegisteredCredentialUser(doc.data() as Partial<RegisteredCredentialUser>)
+    )
+    .filter((user): user is RegisteredCredentialUser => Boolean(user));
+}
+
+export async function registerPasswordAuthUser(input: {
+  email: string;
+  name?: string | null;
+  password: string;
+}) {
+  if (!isRegistrationEnabled()) {
+    throw new Error("registration_disabled");
+  }
+
+  const email = normalizeEmail(input.email);
+  const name = input.name?.trim().slice(0, 120) || email;
+
+  if (!isValidRegistrationEmail(email)) {
+    throw new Error("invalid_email");
+  }
+
+  if (input.password.length < MIN_PASSWORD_LENGTH) {
+    throw new Error("weak_password");
+  }
+
+  if (isAdminEmail(email)) {
+    throw new Error("admin_email_reserved");
+  }
+
+  if (hasPasswordAuthUser(email) || (await hasRegisteredPasswordAuthUser(email))) {
+    throw new Error("email_already_registered");
+  }
+
+  const now = new Date().toISOString();
+  const user: RegisteredCredentialUser = {
+    createdAt: now,
+    email,
+    id: getRegisteredCredentialId(email),
+    name,
+    passwordHash: await createPasswordHash(input.password),
+    role: "user",
+    updatedAt: now,
+  };
+
+  memoryRegisteredCredentialUsers.set(email, user);
+
+  if (firestore) {
+    await firestore
+      .collection(REGISTERED_CREDENTIAL_COLLECTION)
+      .doc(user.id)
+      .set(user, { merge: false });
+  }
+
+  return user;
+}
+
 export async function createPasswordHash(password: string) {
-  if (!password || password.length < 12) {
-    throw new Error("Password must be at least 12 characters long.");
+  if (!password || password.length < MIN_PASSWORD_LENGTH) {
+    throw new Error(`Password must be at least ${MIN_PASSWORD_LENGTH} characters long.`);
   }
 
   const salt = getCrypto().getRandomValues(new Uint8Array(16));
@@ -231,16 +385,18 @@ export async function authorizePasswordUser(email: unknown, password: unknown) {
   }
 
   const user = getPasswordAuthUser(email);
-  if (!user) return null;
+  const registeredUser = user ? null : await getRegisteredPasswordAuthUser(email);
+  const authUser = user ?? registeredUser;
+  if (!authUser) return null;
 
-  const passwordValid = await verifyPassword(password, user.passwordHash);
+  const passwordValid = await verifyPassword(password, authUser.passwordHash);
   if (!passwordValid) return null;
 
   return {
-    email: user.email,
-    id: user.id,
-    image: user.image,
-    name: user.name ?? user.email,
-    role: user.role ?? "user",
+    email: authUser.email,
+    id: authUser.id,
+    image: authUser.image,
+    name: authUser.name ?? authUser.email,
+    role: authUser.role ?? "user",
   };
 }

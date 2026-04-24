@@ -12,6 +12,8 @@ function LoginPageContent() {
   const [credentialError, setCredentialError] = useState<string | null>(null);
   const [email, setEmail] = useState("");
   const [loadingProvider, setLoadingProvider] = useState<string | null>(null);
+  const [mode, setMode] = useState<"login" | "register">("login");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -26,6 +28,7 @@ function LoginPageContent() {
     availableProviders.includes("credentials") || availableProviders.includes("password");
   const showGithub = availableProviders.includes("github");
   const showGoogle = availableProviders.includes("google");
+  const registrationEnabled = process.env.NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED === "true";
 
   const handleSignIn = async (provider: string) => {
     setCredentialError(null);
@@ -57,6 +60,43 @@ function LoginPageContent() {
     router.refresh();
   };
 
+  const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setCredentialError(null);
+    setLoadingProvider("register");
+
+    try {
+      const response = await fetch("/api/auth/register", {
+        body: JSON.stringify({ email, name, password }),
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      });
+      const data = (await response.json()) as { error?: string };
+
+      if (!response.ok) {
+        throw new Error(data.error ?? "账号创建失败。");
+      }
+
+      const result = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
+        redirectTo: callbackUrl,
+      });
+
+      if (!result?.ok) {
+        throw new Error("账号已创建，但自动登录失败。请重新登录。");
+      }
+
+      router.push(result.url || callbackUrl);
+      router.refresh();
+    } catch (error) {
+      setCredentialError(error instanceof Error ? error.message : "账号创建失败。");
+    } finally {
+      setLoadingProvider(null);
+    }
+  };
+
   return (
     <div className="max-w-md mx-auto mt-20">
       <GlassCard className="p-8">
@@ -69,7 +109,25 @@ function LoginPageContent() {
 
         <div className="space-y-3">
           {showCredentials && (
-            <form onSubmit={handleCredentialSignIn} className="space-y-3">
+            <form
+              onSubmit={mode === "register" ? handleRegister : handleCredentialSignIn}
+              className="space-y-3"
+            >
+              {mode === "register" ? (
+                <div className="space-y-2">
+                  <label className="text-sm font-medium" htmlFor="login-name">
+                    显示名称
+                  </label>
+                  <Input
+                    id="login-name"
+                    autoComplete="name"
+                    onChange={(event) => setName(event.target.value)}
+                    placeholder="你的名字"
+                    type="text"
+                    value={name}
+                  />
+                </div>
+              ) : null}
               <div className="space-y-2">
                 <label className="text-sm font-medium" htmlFor="login-email">
                   邮箱
@@ -91,8 +149,9 @@ function LoginPageContent() {
                 </label>
                 <Input
                   id="login-password"
-                  autoComplete="current-password"
+                  autoComplete={mode === "register" ? "new-password" : "current-password"}
                   onChange={(event) => setPassword(event.target.value)}
+                  minLength={8}
                   required
                   type="password"
                   value={password}
@@ -110,8 +169,21 @@ function LoginPageContent() {
                 variant="default"
               >
                 <LockKeyhole className="w-4 h-4 mr-2" />
-                使用站点账号登录
+                {mode === "register" ? "创建站点账号" : "使用站点账号登录"}
               </Button>
+              {registrationEnabled ? (
+                <button
+                  className="w-full text-sm text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
+                  disabled={isLoading}
+                  onClick={() => {
+                    setCredentialError(null);
+                    setMode((current) => (current === "login" ? "register" : "login"));
+                  }}
+                  type="button"
+                >
+                  {mode === "register" ? "已有账号？返回登录" : "没有账号？注册一个站点账号"}
+                </button>
+              ) : null}
             </form>
           )}
 

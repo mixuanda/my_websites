@@ -1,5 +1,6 @@
 import { existsSync } from "node:fs";
 import { join } from "node:path";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { firebaseEnabled } from "@/lib/firebase-admin";
 import { getAdminEmails } from "@/lib/membership/config";
@@ -60,6 +61,11 @@ export default function AdminPage() {
             </code>
             。
           </p>
+          <div className="mt-4">
+            <Link className="rounded-md border px-3 py-2 text-sm hover:bg-muted" href="/admin/users">
+              打开用户管理
+            </Link>
+          </div>
         </section>
 
         <section className="rounded-xl border bg-card p-5 text-center">

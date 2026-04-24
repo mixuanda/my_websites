@@ -50,6 +50,7 @@ interface ProfileResponse {
     authProvidersConfigured: boolean;
     passwordUserCount: number;
     persistence: "firestore" | "memory";
+    registrationEnabled: boolean;
   };
   billing: {
     configuredPlanCount: number;
@@ -409,7 +410,10 @@ export default function SettingsPage() {
           </div>
           <div className="rounded-lg bg-muted/50 p-3">
             <p className="text-xs text-muted-foreground">站点账号</p>
-            <p className="font-medium">{backend?.passwordUserCount ?? 0} 个</p>
+            <p className="font-medium">
+              {backend?.passwordUserCount ?? 0} 个
+              {backend?.registrationEnabled ? "，开放注册" : ""}
+            </p>
           </div>
         </div>
       </GlassCard>

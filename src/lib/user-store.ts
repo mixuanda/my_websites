@@ -1,7 +1,11 @@
 import type { Account, Session, User } from "next-auth";
 import { firestore } from "@/lib/firebase-admin";
 import { isAdminEmail } from "@/lib/membership/config";
-import { getPasswordAuthUser, hasPasswordAuthUser } from "@/lib/password-auth";
+import {
+  getPasswordAuthUser,
+  hasPasswordAuthUser,
+  hasRegisteredPasswordAuthUser,
+} from "@/lib/password-auth";
 
 export type SiteUserRole = "admin" | "member" | "user";
 export type SiteUserTheme = "system" | "light" | "dark";
@@ -194,12 +198,13 @@ export async function upsertUserProfile(input: {
 
 export async function recordUserLogin(user: User, account?: Account | null) {
   const passwordUser = getPasswordAuthUser(user.email);
+  const credentialRole = (user as { role?: SiteUserRole }).role ?? passwordUser?.role;
   const profile = await upsertUserProfile({
     email: user.email,
     id: user.id ?? passwordUser?.id,
     image: user.image ?? passwordUser?.image,
     name: user.name ?? passwordUser?.name,
-    role: passwordUser?.role,
+    role: credentialRole,
   });
 
   if (!profile) return null;
@@ -322,5 +327,30 @@ export async function getLinkedAccounts(session: Session | null): Promise<Linked
     });
   }
 
+  if (!hasPasswordAuthUser(profile.email) && (await hasRegisteredPasswordAuthUser(profile.email))) {
+    accounts.unshift({
+      id: "credentials",
+      provider: "credentials",
+      providerAccountId: profile.email,
+      type: "credentials",
+    });
+  }
+
   return accounts;
+}
+
+export async function listUserProfiles(limit = 200) {
+  if (!firestore) {
+    return Array.from(memoryUsersById.values()).slice(0, limit);
+  }
+
+  const snapshot = await firestore
+    .collection("users")
+    .orderBy("updatedAt", "desc")
+    .limit(limit)
+    .get();
+
+  return snapshot.docs
+    .map((doc) => normalizeProfile(doc.id, doc.data() as Partial<SiteUserProfile>))
+    .filter((profile): profile is SiteUserProfile => Boolean(profile));
 }

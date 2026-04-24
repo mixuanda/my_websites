@@ -10,6 +10,7 @@ import {
   authorizePasswordUser,
   getPasswordAuthUsers,
   isPasswordAuthConfigured,
+  isRegistrationEnabled,
 } from "./password-auth";
 import { recordUserLogin } from "./user-store";
 
@@ -143,4 +144,5 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 export const authBackendStatus = {
   hasConfiguredProvider: providers.length > 0,
   passwordUserCount: configuredPasswordUsers.length,
+  registrationEnabled: isRegistrationEnabled(),
 };

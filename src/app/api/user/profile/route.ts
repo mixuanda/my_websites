@@ -46,6 +46,7 @@ export async function GET() {
         authProvidersConfigured: authBackendStatus.hasConfiguredProvider,
         passwordUserCount: authBackendStatus.passwordUserCount,
         persistence: usingFirestore ? "firestore" : "memory",
+        registrationEnabled: authBackendStatus.registrationEnabled,
       },
       billing: {
         configuredPlanCount: getConfiguredBillingPlans().length,
