@@ -8,8 +8,24 @@ import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/s
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Home, User, FolderKanban, FileText, BookOpen, Sun, Moon, Eye } from "lucide-react";
+import {
+  BookOpen,
+  Eye,
+  FileText,
+  FolderKanban,
+  Home,
+  LogIn,
+  LogOut,
+  Menu,
+  Moon,
+  Settings,
+  ShieldCheck,
+  Sun,
+  User,
+  UserPlus,
+} from "lucide-react";
 import { useEffect, useState, useSyncExternalStore } from "react";
+import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { getRouteLocale, getSiteText, resolveSiteLocale, siteUiText } from "@/lib/site-i18n";
 import { defaultLocale } from "@/lib/textbook/i18n";
@@ -56,6 +72,116 @@ function getThemeReadySnapshot() {
 
 function getThemeReadyServerSnapshot() {
   return false;
+}
+
+interface SidebarProfile {
+  email: string;
+  name?: string | null;
+  role: "admin" | "member" | "user";
+}
+
+function AccountActions({
+  locale,
+  onNavigate,
+  pathname,
+}: {
+  locale: Locale;
+  onNavigate: () => void;
+  pathname: string;
+}) {
+  const [profile, setProfile] = useState<SidebarProfile | null>(null);
+  const [loaded, setLoaded] = useState(false);
+  const callbackUrl = pathname || "/";
+  const loginHref = `/login?callbackUrl=${encodeURIComponent(callbackUrl)}`;
+  const registerHref = `/login?mode=register&callbackUrl=${encodeURIComponent(callbackUrl)}`;
+
+  useEffect(() => {
+    let active = true;
+
+    async function loadProfile() {
+      try {
+        const response = await fetch("/api/user/profile", {
+          cache: "no-store",
+          headers: { accept: "application/json" },
+        });
+
+        if (!active) return;
+
+        if (!response.ok) {
+          setProfile(null);
+          return;
+        }
+
+        const data = (await response.json()) as { profile?: SidebarProfile | null };
+        setProfile(data.profile ?? null);
+      } catch {
+        if (active) setProfile(null);
+      } finally {
+        if (active) setLoaded(true);
+      }
+    }
+
+    loadProfile();
+
+    return () => {
+      active = false;
+    };
+  }, [pathname]);
+
+  if (!loaded) {
+    return <div className="h-[84px]" aria-hidden="true" />;
+  }
+
+  if (!profile) {
+    return (
+      <div className="space-y-2">
+        <Button asChild size="sm" className="w-full justify-start gap-3">
+          <Link href={loginHref} onClick={onNavigate}>
+            <LogIn className="w-4 h-4" />
+            <span>{getSiteText(siteUiText.signIn, locale)}</span>
+          </Link>
+        </Button>
+        <Button asChild size="sm" variant="outline" className="w-full justify-start gap-3">
+          <Link href={registerHref} onClick={onNavigate}>
+            <UserPlus className="w-4 h-4" />
+            <span>{getSiteText(siteUiText.register, locale)}</span>
+          </Link>
+        </Button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="space-y-2">
+      <div className="rounded-lg border bg-muted/30 px-3 py-2">
+        <p className="truncate text-sm font-medium">{profile.name || profile.email}</p>
+        <p className="truncate text-xs text-muted-foreground">{profile.email}</p>
+      </div>
+      <Button asChild size="sm" variant="ghost" className="w-full justify-start gap-3">
+        <Link href="/settings" onClick={onNavigate}>
+          <Settings className="w-4 h-4" />
+          <span>{getSiteText(siteUiText.accountSettings, locale)}</span>
+        </Link>
+      </Button>
+      {profile.role === "admin" ? (
+        <Button asChild size="sm" variant="ghost" className="w-full justify-start gap-3">
+          <Link href="/admin/users" onClick={onNavigate}>
+            <ShieldCheck className="w-4 h-4" />
+            <span>{getSiteText(siteUiText.adminPanel, locale)}</span>
+          </Link>
+        </Button>
+      ) : null}
+      <Button
+        size="sm"
+        variant="ghost"
+        className="w-full justify-start gap-3 text-destructive hover:text-destructive"
+        onClick={() => signOut({ callbackUrl: "/" })}
+      >
+        <LogOut className="w-4 h-4" />
+        <span>{getSiteText(siteUiText.signOut, locale)}</span>
+      </Button>
+    </div>
+  );
 }
 
 interface SidebarContentProps {
@@ -139,6 +265,8 @@ function SidebarContent({
       <Separator className="bg-border/70" />
 
       <div className="p-4 space-y-2">
+        <AccountActions locale={locale} onNavigate={onNavigate} pathname={pathname} />
+        <Separator className="bg-border/70" />
         <SiteLanguageSwitcher locale={locale} onLocaleChange={onLocaleChange} />
         <Button
           variant="ghost"

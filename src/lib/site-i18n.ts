@@ -23,6 +23,16 @@ export const siteUiText = {
     "zh-cn": "笔记栏目仍在按课程持续扩写。",
     "zh-hk": "筆記欄目仍在按課程持續擴寫。",
   },
+  accountSettings: {
+    en: "Account settings",
+    "zh-cn": "账号设置",
+    "zh-hk": "帳號設定",
+  },
+  adminPanel: {
+    en: "Admin",
+    "zh-cn": "管理后台",
+    "zh-hk": "管理後台",
+  },
   highContrast: {
     en: "High contrast",
     "zh-cn": "高对比度",
@@ -37,6 +47,21 @@ export const siteUiText = {
     en: "Main menu",
     "zh-cn": "主菜单",
     "zh-hk": "主選單",
+  },
+  register: {
+    en: "Register",
+    "zh-cn": "注册",
+    "zh-hk": "註冊",
+  },
+  signIn: {
+    en: "Sign in",
+    "zh-cn": "登录",
+    "zh-hk": "登入",
+  },
+  signOut: {
+    en: "Sign out",
+    "zh-cn": "退出登录",
+    "zh-hk": "登出",
   },
   notes: {
     en: "Notes",

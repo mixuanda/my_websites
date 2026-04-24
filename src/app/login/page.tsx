@@ -1,6 +1,6 @@
 "use client";
 
-import { type FormEvent, Suspense, useState } from "react";
+import { type FormEvent, Suspense, useEffect, useState } from "react";
 import { GlassCard } from "@/components/glass";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -29,6 +29,12 @@ function LoginPageContent() {
   const showGithub = availableProviders.includes("github");
   const showGoogle = availableProviders.includes("google");
   const registrationEnabled = process.env.NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED === "true";
+
+  useEffect(() => {
+    if (registrationEnabled && searchParams.get("mode") === "register") {
+      setMode("register");
+    }
+  }, [registrationEnabled, searchParams]);
 
   const handleSignIn = async (provider: string) => {
     setCredentialError(null);
