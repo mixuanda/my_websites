@@ -123,9 +123,13 @@ export default async function CoursePage({ params }: CoursePageProps) {
             </div>
           </GlassCard>
 
+          <div className="xl:hidden">
+            <TextbookCourseSidebar courseMeta={courseMeta} locale={locale} />
+          </div>
+
           <div className="space-y-6">
             {courseMeta.chapters.map((chapter) => (
-              <GlassCard key={chapter.id} className="p-6">
+              <GlassCard key={chapter.id} id={chapter.id} className="scroll-mt-24 p-6">
                 <div className="flex flex-wrap items-start justify-between gap-4">
                   <div className="max-w-3xl">
                     <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
@@ -176,10 +180,6 @@ export default async function CoursePage({ params }: CoursePageProps) {
                 </div>
               </GlassCard>
             ))}
-          </div>
-
-          <div className="xl:hidden">
-            <TextbookCourseSidebar courseMeta={courseMeta} locale={locale} />
           </div>
         </div>
       </div>

@@ -150,6 +150,16 @@ export const uiText = {
     "zh-cn": "系列总览",
     "zh-hk": "系列總覽",
   },
+  courseContents: {
+    en: "Course contents",
+    "zh-cn": "课程目录",
+    "zh-hk": "課程目錄",
+  },
+  currentSection: {
+    en: "Current section",
+    "zh-cn": "当前小节",
+    "zh-hk": "目前小節",
+  },
   diagramNote: {
     en: "Diagram note",
     "zh-cn": "图示说明",
@@ -434,6 +444,11 @@ export const uiText = {
     en: "More notes in this series",
     "zh-cn": "本系列更多笔记",
     "zh-hk": "本系列更多筆記",
+  },
+  sectionCountUnit: {
+    en: "sections",
+    "zh-cn": "节",
+    "zh-hk": "節",
   },
   premium: {
     en: "Member",

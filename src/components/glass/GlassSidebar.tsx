@@ -219,7 +219,7 @@ function SidebarContent({
     : getSiteText(siteUiText.switchToDarkMode, locale);
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full min-h-0 flex-col">
       <div className="p-6 text-center">
         <Avatar className="w-24 h-24 mx-auto mb-4 ring-2 ring-border/70">
           <AvatarImage src="/avatar.png" alt="Avatar" />
@@ -233,7 +233,7 @@ function SidebarContent({
 
       <Separator className="bg-border/70" />
 
-      <nav className="flex-1 p-4">
+      <nav className="min-h-0 flex-1 overflow-y-auto p-4">
         <ul className="space-y-2">
           {navItems.map((item) => {
             const isActive =
@@ -264,7 +264,7 @@ function SidebarContent({
 
       <Separator className="bg-border/70" />
 
-      <div className="p-4 space-y-2">
+      <div className="shrink-0 p-4 space-y-2">
         <AccountActions locale={locale} onNavigate={onNavigate} pathname={pathname} />
         <Separator className="bg-border/70" />
         <SiteLanguageSwitcher locale={locale} onLocaleChange={onLocaleChange} />
@@ -291,7 +291,7 @@ function SidebarContent({
         </Button>
       </div>
 
-      <div className="p-4 text-center text-xs text-muted-foreground space-y-1">
+      <div className="shrink-0 p-4 text-center text-xs text-muted-foreground space-y-1">
         <p>© 2026 Evanalysis</p>
         <p>{getSiteText(siteUiText.footerNote, locale)}</p>
       </div>

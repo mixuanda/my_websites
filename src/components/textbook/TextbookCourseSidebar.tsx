@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight } from "lucide-react";
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { isMembershipGatingEnabled } from "@/lib/membership/entitlements";
 import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
@@ -20,15 +20,18 @@ export function TextbookCourseSidebar({
   locale,
 }: TextbookCourseSidebarProps) {
   const membershipGatingEnabled = isMembershipGatingEnabled();
+  const currentChapterId = courseMeta.chapters.find((chapter) =>
+    chapter.units.some((unit) => unit.unitId === currentUnitId)
+  )?.id;
 
   return (
     <div className="space-y-4 xl:sticky xl:top-24">
       <GlassCard className="p-5">
         <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-          {getLocalizedText(uiText.noteCollections, locale)}
+          {getLocalizedText(uiText.courseContents, locale)}
         </p>
         <h2 className="mt-2 text-xl font-semibold">{courseMeta.title[locale]}</h2>
-        <p className="mt-3 text-sm leading-7 text-muted-foreground">
+        <p className="mt-3 text-sm leading-6 text-muted-foreground">
           {courseMeta.description[locale]}
         </p>
         <div className="mt-4 space-y-3">
@@ -47,49 +50,97 @@ export function TextbookCourseSidebar({
               {getLocalizedText(uiText.courseOverview, locale)}
             </Link>
           </div>
-        </div>
-      </GlassCard>
-
-      {courseMeta.chapters.map((chapter) => (
-        <GlassPanel key={chapter.id} className="p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-            {getLocalizedText(uiText.chapter, locale)} {chapter.number}
-          </p>
-          <h3 className="mt-2 text-base font-semibold">{chapter.title[locale]}</h3>
-          <p className="mt-2 text-sm leading-6 text-muted-foreground">
-            {chapter.summary[locale]}
-          </p>
-          <div className="mt-4 space-y-2">
-            {chapter.units.map((unit) => {
-              const isActive = unit.unitId === currentUnitId;
+          <div className="flex flex-wrap gap-2 pt-1">
+            {courseMeta.chapters.map((chapter) => {
+              const firstUnit = chapter.units[0];
+              const chapterHref = currentUnitId
+                ? firstUnit
+                  ? getUnitHref(locale, firstUnit)
+                  : getCourseHref(locale, courseMeta.id)
+                : `${getCourseHref(locale, courseMeta.id)}#${chapter.id}`;
+              const isCurrentChapter = chapter.id === currentChapterId;
 
               return (
                 <Link
-                  key={unit.unitId}
-                  href={getUnitHref(locale, unit)}
+                  key={chapter.id}
+                  aria-current={isCurrentChapter ? "location" : undefined}
                   className={cn(
-                    "group flex items-start justify-between gap-3 rounded-xl border px-3 py-3 transition-colors",
-                    isActive
-                      ? "border-primary/70 bg-primary/15"
-                      : "border-border/60 bg-background/25 hover:bg-background/45"
+                    "rounded-full border px-3 py-1 text-xs transition-colors",
+                    isCurrentChapter
+                      ? "border-primary/70 bg-primary/15 text-foreground"
+                      : "border-border/60 text-muted-foreground hover:bg-background/50 hover:text-foreground"
                   )}
+                  href={chapterHref}
                 >
-                  <div className="min-w-0">
-                    <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-                      {unit.unitNumber}
-                    </p>
-                    <p className="mt-1 text-sm leading-6">{unit.title[locale]}</p>
-                    {membershipGatingEnabled && unit.accessTier === "MEMBER" ? (
-                      <p className="mt-1 text-xs text-muted-foreground">
-                        {getLocalizedText(uiText.premium, locale)}
-                      </p>
-                    ) : null}
-                  </div>
-                  <ChevronRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+                  {chapter.number}
                 </Link>
               );
             })}
           </div>
+        </div>
+      </GlassCard>
+
+      {courseMeta.chapters.map((chapter) => (
+        <GlassPanel key={chapter.id} className="p-0">
+          <details
+            className="group"
+            open={currentChapterId ? chapter.id === currentChapterId : false}
+          >
+            <summary className="flex cursor-pointer list-none items-start justify-between gap-3 rounded-xl px-4 py-4 transition-colors hover:bg-background/35 [&::-webkit-details-marker]:hidden">
+              <span className="min-w-0">
+                <span className="block text-xs font-semibold uppercase tracking-[0.22em] text-muted-foreground">
+                  {getLocalizedText(uiText.chapter, locale)} {chapter.number}
+                </span>
+                <span className="mt-1 block text-sm font-semibold leading-6">
+                  {chapter.title[locale]}
+                </span>
+                <span className="mt-1 block text-xs text-muted-foreground">
+                  {chapter.units.length} {getLocalizedText(uiText.sectionCountUnit, locale)}
+                </span>
+              </span>
+              <ChevronDown className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-open:rotate-180" />
+            </summary>
+
+            <div className="space-y-2 border-t border-border/60 px-3 py-3">
+              {chapter.units.map((unit) => {
+                const isActive = unit.unitId === currentUnitId;
+
+                return (
+                  <Link
+                    key={unit.unitId}
+                    aria-current={isActive ? "page" : undefined}
+                    href={getUnitHref(locale, unit)}
+                    className={cn(
+                      "group/unit flex items-start justify-between gap-3 rounded-lg border px-3 py-2.5 transition-colors",
+                      isActive
+                        ? "border-primary/70 bg-primary/15"
+                        : "border-transparent bg-background/20 hover:border-border/60 hover:bg-background/45"
+                    )}
+                  >
+                    <span className="min-w-0">
+                      <span className="text-xs uppercase tracking-[0.18em] text-muted-foreground">
+                        {unit.unitNumber}
+                      </span>
+                      <span className="mt-1 block text-sm leading-6">
+                        {unit.title[locale]}
+                      </span>
+                      {isActive ? (
+                        <span className="mt-1 block text-xs font-medium text-primary">
+                          {getLocalizedText(uiText.currentSection, locale)}
+                        </span>
+                      ) : null}
+                      {membershipGatingEnabled && unit.accessTier === "MEMBER" ? (
+                        <span className="mt-1 block text-xs text-muted-foreground">
+                          {getLocalizedText(uiText.premium, locale)}
+                        </span>
+                      ) : null}
+                    </span>
+                    <ChevronRight className="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover/unit:translate-x-0.5" />
+                  </Link>
+                );
+              })}
+            </div>
+          </details>
         </GlassPanel>
       ))}
     </div>
