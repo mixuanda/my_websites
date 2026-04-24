@@ -12,7 +12,7 @@ The previous note ended with a picture:
 - the real number itself should behave like the boundary between those two
   camps.
 
-Section 4.8 of the lecture notes turns that picture into a formal definition.
+The next step is to turn that picture into a formal definition.
 The important move is this: instead of assuming the real number already exists
 and then asking what lies below it, we *define* the real number by the left-hand
 part of `Q` itself.
@@ -85,8 +85,8 @@ number system built from cuts.
 
 ## Rational cuts and the embedding of `Q`
 
-The lecture notes call a cut `(A,B)` **rational** if `B` has a minimum
-element. In that case the boundary is already achieved by a rational number.
+Call a cut `(A,B)` **rational** if `B` has a minimum element. In that case the
+boundary is already achieved by a rational number.
 
 If `\min(B)=q`, then necessarily
 
@@ -129,7 +129,7 @@ removes that ambiguity.
 ## Order and the first operations on cuts
 
 Defining the set `R` of all cuts is not enough. To match the target from the
-previous note, the lecture notes must also define order and arithmetic on `R`.
+previous note, we must also define order and arithmetic on `R`.
 
 For order, the natural rule is:
 
@@ -141,7 +141,7 @@ This is exactly the right comparison for left sets. If every rational already on
 the left of `A` is also on the left of `A'`, then the boundary represented by
 `A` cannot lie to the right of the boundary represented by `A'`.
 
-For addition, the notes define
+For addition, define
 
 $$
 A+A'=\{a+a' \mid a\in A,\ a'\in A'\}.
@@ -151,7 +151,7 @@ The idea is that the left side of a sum should consist of rational numbers that
 can already be reached by adding something strictly left of the first boundary
 to something strictly left of the second boundary.
 
-For multiplication, the notes first handle the case of nonnegative cuts and then
+For multiplication, first handle the case of nonnegative cuts and then
 extend the definition by sign rules. When `0_R\le A` and `0_R\le A'`, they use
 
 $$
@@ -190,7 +190,7 @@ operations rather than inventing new arithmetic.
 </WorkedExample>
 
 <TheoremCard title="The cut model reaches the target from 4.4">
-The lecture notes define `+`, `\cdot`, and `\le` on Dedekind cuts and then show
+Define `+`, `\cdot`, and `\le` on Dedekind cuts and then check
 that the resulting structure is a complete ordered field containing the embedded
 copy of `Q`.
 </TheoremCard>

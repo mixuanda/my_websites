@@ -41,6 +41,20 @@ remaining Math1090 backlog.
 | `math1030` | 8 Eigenvalues and diagonalization | Authored through `8.3` | Strong | `8.3` includes multiplicities, the distinct-eigenvalue test, and a first Cayley-Hamilton pass. |
 | `math1030` | 9 Inner products and orthogonality | Authored through `9.4` | Strong | `9.4` completes the chapter with Cauchy-Schwarz and triangle inequalities after orthogonal bases and Gram-Schmidt. |
 
+## CSCI2520
+
+The repository contains CSCI2520 source material, not CSCI2120 source material.
+The public Notes tree has therefore been expanded under `csci2520` only.
+
+| Course | Chapter | Public state | Source state | Notes |
+| --- | --- | --- | --- | --- |
+| `csci2520` | 0 Programming foundations | Authored in EN, zh-HK, zh-CN | Strong tutorial source | Pointer, `malloc`, `typedef`, and `struct` review are live with an embedded pointer tracer. |
+| `csci2520` | 1 ADT and operation semantics | Authored through `1.2` | Strong | Stack / queue contracts, function pointers, hash tables, collisions, chaining, probing, and rehashing are live. |
+| `csci2520` | 2 Lists and recursion | Authored through `2.1` | Usable, mixed `.ppt` and `.pptx` extraction | New list note covers head-tail ADTs, recursion, iteration, and representation cost. |
+| `csci2520` | 3 Complexity and sorting | Authored through `3.2` | Strong for complexity / selection / linear-time sorting | Existing complexity unit is now paired with selection, quickselect, counting sort, and radix sort. |
+| `csci2520` | 4 Trees and BSTs | Authored through `4.1` | Strong tutorial source plus legacy lecture extraction | New unit covers traversals, reconstruction, BST invariant, successor, and deletion cases. |
+| `csci2520` | 5 Graphs and priority queues | Authored through `5.2` | Strong tutorial source plus legacy lecture extraction | New units cover DFS, BFS, MSTs, Dijkstra-style shortest paths, topological sort, heaps, and Huffman coding. |
+
 ## Math1025
 
 Math1025 is no longer a purely future placeholder. The repo already exposes a
@@ -60,9 +74,15 @@ No `reference/MATH1010/**` source tree is currently present in the repository.
 Do not invent a public course plan beyond reserving the architecture for a
 future addition.
 
+## CSCI2120
+
+No `reference/CSCI2120/**` or `content/textbook/csci2120/**` tree is currently
+present in the repository. The current CSCI expansion is intentionally scoped
+to the actual checked-in `CSCI2520` materials.
+
 ## Next steps
 
-The next content cycle should shift from missing-source-backed Math1090 authoring
-to QA: export fidelity, rendering checks, exercise / reveal integrity, and
-theme / layout review across the new `4.5`-`5.3` family, while keeping
-Math1025 expansion controlled and source-backed.
+The next content cycle should focus on QA across the now-broader public Notes
+tree: export fidelity, rendering checks, exercise / reveal integrity, and
+theme / layout review across Math1090, Math1030, and the expanded CSCI2520
+sequence. Math1025 expansion should remain controlled and source-backed.

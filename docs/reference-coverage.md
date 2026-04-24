@@ -76,6 +76,28 @@ The next resume point is now QA rather than missing Math1090 content:
 2. keep export, rendering, and exercise QA active on the recently added higher
    Math1030 chapters.
 
+Current QA progress from April 24, 2026:
+
+- fixed broken zh-HK related-note links that had been translated into
+  `/zh-hk/這些筆記/**` instead of the public `/zh-hk/notes/**` route;
+- removed public source-process phrasing such as "source notes", "lecture
+  notes", "worksheet", and `源材料` from the audited MATH1090 / MATH1030 note
+  prose where it was describing authoring provenance rather than mathematics;
+- repaired remaining English related-note labels in localized MATH1030
+  `solution-set-types` and `invertible-matrices` pages;
+- confirmed by script that authored internal note links resolve to existing
+  `content/textbook/**` units.
+- expanded the public `csci2520` sequence from four units to nine
+  three-language note units, adding list / recursion, selection and
+  non-comparison sorting, binary trees / BSTs, graph traversal / MST /
+  shortest-path reasoning, and topological sort / heap / Huffman coding.
+- replaced the PPT extraction helper's external `python-pptx` dependency with
+  a standard-library `.pptx` reader and extracted the later CSCI2520 tutorial
+  decks into `docs/extracted/csci2520/**`.
+- confirmed that the repository has no checked-in `CSCI2120` reference or
+  content tree; this run therefore treats the user-requested CSCI course as the
+  present `CSCI2520` material and records the absence explicitly.
+
 The tables below use these status labels:
 
 - `incorporated`: already represented in public notes or in shared glossary and
@@ -256,6 +278,13 @@ sequence with explicit public pages for total orders and ordered fields; upper
 axiomatic / first-approximation view of the reals; Dedekind cuts; decimal
 expansions and irrational numbers; sequence limits; Cauchy sequences; and the
 first delta-epsilon / continuity family.
+
+CSCI2520 now has explicit public note pages in EN, zh-HK, and zh-CN for C
+memory foundations; ADT semantics; stack / queue behavior; hash tables and
+collision handling; list recursion; complexity growth; selection, quickselect,
+counting sort, and radix sort; binary trees and BST operations; graph
+traversal, MST, and Dijkstra-style shortest paths; and topological sorting,
+heaps, and Huffman coding.
 
 ## MATH1090 coverage
 
@@ -600,3 +629,19 @@ existing invertibility note instead of creating a detached new route.
 - Exact next target: stay on QA, export fidelity, and formatting / exercise
   integrity for the new Math1090 family rather than opening another missing
   content batch first.
+
+### 2026-04-24 checkpoint 12: expand CSCI2520 toward near-complete public coverage
+
+- Repaired the local PPT extraction helper so `.pptx` tutorial decks can be
+  extracted with only Python standard-library modules.
+- Extracted later CSCI2520 tutorial decks and selected legacy lecture decks
+  into `docs/extracted/csci2520/**`.
+- Added five three-language CSCI2520 units under public Notes:
+  `2.1` lists as recursive ADTs, `3.2` selection / quickselect / linear-time
+  sorting, `4.1` binary trees and BST operations, `5.1` graph traversal / MST /
+  shortest paths, and `5.2` topological sort / heaps / Huffman coding.
+- Updated `src/lib/textbook/catalog.ts` so the CSCI2520 sidebar now reaches
+  lists, sorting, trees, graphs, topological sorting, and heap-based coding.
+- Recorded that no checked-in CSCI2120 source tree exists; do not claim public
+  CSCI2120 completion until repository sources are present.
+- Validation so far: `npm run contentlayer` generated 181 documents.

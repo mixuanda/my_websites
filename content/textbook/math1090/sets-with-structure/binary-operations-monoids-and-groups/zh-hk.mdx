@@ -1,0 +1,578 @@
+---
+title: "7.1-7.2 二元運算、么半群與群"
+description: "由裸集合轉向帶運算的集合，學習么半群、單位元、群、逆元、襪鞋性質與消去律。"
+---
+
+第 7 章開始轉換視角。
+
+集合論讓我們用函數、關係和基數比較集合。但很多數學對象之所以有趣，不
+只是因為它們包含哪些元素，而是因為那些元素上還帶有額外結構。
+
+例如，只看基數時，集合 `{5, dog}` 和 `{0,1}` 都只有兩個元素。但
+`{0,1}` 可以配上熟悉的加法和乘法規則；相反，`5 + dog` 在未指定額外結
+構之前沒有明確意義。
+
+本章的目標，就是把這些額外結構說清楚。
+
+## 帶結構的集合
+
+許多基本例子都符合這個模式：自然數帶有加法與乘法，平面帶有向量加法，
+置換帶有合成。
+
+共同模式是：
+
+1. 先有一個集合；
+2. 在集合上指定某些運算、關係、函數或特殊元素；
+3. 寫下這些額外資料要滿足的公理；
+4. 只由公理推出定理。
+
+這是現代數學的一個基本習慣。與其在每個例子中重複證明同一類事實，不如
+先定義一種結構，再證明所有具有該結構的例子都必須滿足甚麼。
+
+## 二元運算
+
+<Definition title="二元運算">
+設 `X` 是集合。`X` 上的一個 **二元運算** 是一個函數
+
+$$
+*:X\times X\to X.
+$$
+
+對 `a,b\in X`，通常寫 `a*b`，而不是 `*(a,b)`。
+</Definition>
+
+這個定義有兩個重點。
+
+第一，運算從 `X` 中取兩個輸入。第二，輸出仍然必須屬於 `X`。第二點常
+被稱為封閉性；在這門課的寫法中，它已經包含在函數型別
+`X\times X\to X` 裡。
+
+<CommonMistake title="一條公式不會自動成為每個集合上的二元運算">
+減法是 `Z` 上的二元運算，因為 `a-b\in Z` 對所有 `a,b\in Z` 都成立。
+但若要求結果仍留在 `N` 中，減法就不是 `N` 上的二元運算，因為 `2-5` 不
+是自然數。
+</CommonMistake>
+
+## Boolean integers
+
+定義
+
+$$
+B=\{0,1\}.
+$$
+
+在這個集合上，加法規則為
+
+$$
+0+0=0,\qquad 0+1=1,\qquad 1+0=1,\qquad 1+1=0,
+$$
+
+乘法規則為
+
+$$
+0\cdot 0=0,\qquad 0\cdot 1=0,\qquad
+1\cdot 0=0,\qquad 1\cdot 1=1.
+$$
+
+<Definition title="Boolean integers">
+**Boolean integers** 是三元組
+
+$$
+(B,+,\cdot),
+$$
+
+其中 `B=\{0,1\}`，而 `+` 與 `\cdot` 是上面顯示的兩個二元運算。
+</Definition>
+
+重點不在名稱，而在於：即使集合很小，只要指定運算，也可以有非平凡結構。
+
+<WorkedExample title="在 `B` 中解 `x+y=0`">
+一個有用練習是證明
+
+$$
+\forall x\in B,\ \exists y\in B\ (x+y=0).
+$$
+
+只需檢查 `x` 的兩個可能值。
+
+若 `x=0`，取 `y=0`，因為 `0+0=0`。
+
+若 `x=1`，取 `y=1`，因為 `1+1=0`。
+
+所以在這個加法規則下，`B` 的每個元素都有加法逆元。
+</WorkedExample>
+
+## 更多二元運算例子
+
+常見例子包括：
+
+- `+` 和 `\times` 是 `N` 上的二元運算；
+- `+` 和 `\times` 是 `Z` 上的二元運算；
+- 對任意集合 `X`，函數集合 `X^X` 上的合成是二元運算。
+
+最後一個例子值得仔細讀。若 `f:X\to X` 且 `g:X\to X`，則
+
+$$
+g\circ f:X\to X.
+$$
+
+所以合成把 `X^X` 的兩個元素合併，並得到 `X^X` 的另一個元素。
+
+<WorkedExample title="合成作為二元運算">
+設 `X=\{a,b\}`。`X^X` 的元素是所有從 `X` 到自身的函數。
+
+若 `f,g\in X^X`，則 `g\circ f` 仍然是 `X` 到自身的函數。因此合成定義了
+
+$$
+\circ:X^X\times X^X\to X^X.
+$$
+
+這裡被合併的元素是函數，不是 `X` 本身的元素。
+</WorkedExample>
+
+## 么半群
+
+第 7 章首先研究的結構是 monoid。
+
+<Definition title="么半群">
+一個 **么半群** `(M,*)` 是一個集合 `M`，連同一個二元運算
+
+$$
+*:M\times M\to M
+$$
+
+使得：
+
+- 對所有 `a,b,c\in M`，
+
+  $$
+  (a*b)*c=a*(b*c)
+  $$
+
+  （結合律）；
+
+- 存在 `e\in M`，使得對所有 `a\in M`，
+
+  $$
+  a*e=e*a=a
+  $$
+
+  （單位元存在）。
+</Definition>
+
+結合律說明三個元素連乘時括號位置不影響結果。單位元則是一個從左邊或右
+邊合併也不改變元素的元素。
+
+標準例子包括：
+
+- `(N,+)` 是么半群，單位元為 `0`；
+- `(N,\times)` 是么半群，單位元為 `1`；
+- `(Z,+)` 是么半群，單位元為 `0`；
+- `(Z,\times)` 是么半群，單位元為 `1`；
+- 對任意集合 `X`，`X^X` 在合成下是么半群，單位元為 `id_X`；
+- `(B,+)` 是么半群；
+- `(B,\cdot)` 是么半群。
+
+<WorkedExample title="檢查 `(N,+)` 是么半群">
+`+` 是 `N` 上的二元運算。
+
+結合律成立：
+
+$$
+(a+b)+c=a+(b+c)
+$$
+
+對所有自然數 `a,b,c` 成立。
+
+單位元是 `0`，因為
+
+$$
+a+0=0+a=a.
+$$
+
+所以 `(N,+)` 是么半群。
+</WorkedExample>
+
+<WorkedExample title="檢查函數合成么半群">
+設 `X` 是任意集合。`X^X` 的元素是函數 `X\to X`。
+
+合成滿足結合律：
+
+$$
+(h\circ g)\circ f=h\circ(g\circ f).
+$$
+
+恆等函數 `id_X` 滿足
+
+$$
+f\circ id_X=f,\qquad id_X\circ f=f.
+$$
+
+所以 `X^X` 在合成下是么半群。
+</WorkedExample>
+
+## 不是么半群的例子
+
+也要看一些失敗例子。
+
+<WorkedExample title="`(Z^+,+)` 不是么半群">
+若 `Z^+` 表示正整數，則加法封閉且滿足結合律。但 `Z^+` 裡沒有加法單位
+元。
+
+加法單位元必須是 `0`，因為 `a+0=a`。但 `0\notin Z^+`。所以
+`(Z^+,+)` 不是么半群。
+</WorkedExample>
+
+<WorkedExample title="`(Z,-)` 不是么半群">
+減法是 `Z` 上的二元運算，但不滿足結合律。例如
+
+$$
+(5-3)-1=1,
+$$
+
+而
+
+$$
+5-(3-1)=3.
+$$
+
+結果不同，所以結合律失敗，`(Z,-)` 不是么半群。
+</WorkedExample>
+
+<CommonMistake title="有單位元仍然不夠">
+一個運算可能看起來有單位元，但若不滿足結合律，仍然不是么半群。結合律
+和單位元是兩個獨立要求。
+</CommonMistake>
+
+## 單位元唯一
+
+<TheoremCard title="單位元唯一性">
+一個么半群恰好只有一個單位元。
+</TheoremCard>
+
+<CollapsibleProof title="證明">
+假設 `e` 和 `e'` 都是單位元。因為 `e` 是單位元，
+
+$$
+e*e'=e'.
+$$
+
+因為 `e'` 是單位元，
+
+$$
+e*e'=e.
+$$
+
+所以
+
+$$
+e=e*e'=e',
+$$
+
+故單位元唯一。
+</CollapsibleProof>
+
+這個證明很短，原因是單位元律可以左右兩邊使用。兩個候選單位元必須互相
+不改變對方，因而被迫相等。
+
+## 群
+
+么半群很有用，但條件較弱。群額外要求每個元素都可以被「復原」。
+
+<Definition title="群">
+一個 **群** 是一個集合 `G`，連同一個元素 `e\in G` 和一個二元運算
+
+$$
+(a,b)\longmapsto a\cdot b
+$$
+
+使得：
+
+- 對所有 `a\in G`，
+
+  $$
+  e\cdot a=a=a\cdot e;
+  $$
+
+- 對所有 `a,b,c\in G`，
+
+  $$
+  (a\cdot b)\cdot c=a\cdot(b\cdot c);
+  $$
+
+- 對每個 `a\in G`，存在逆元 `a^{-1}\in G`，使得
+
+  $$
+  a\cdot a^{-1}=e
+  \qquad\text{且}\qquad
+  a^{-1}\cdot a=e.
+  $$
+</Definition>
+
+群的自然動機之一是形式化對稱性。對稱操作應該可以合成、有一個甚麼都
+不做的操作，並且可以反向復原。
+
+在這個標準讀法下，每個群在忘記逆元公理之後都是么半群。群更強，不是因
+為它有另一套結合律或單位元，而是因為每個元素都有逆元。
+
+<CommonMistake title="群不是任意帶二元運算的集合">
+運算必須滿足結合律，必須有雙邊單位元，而且每個元素都必須有逆元。任何
+一條失敗，也不是群。
+</CommonMistake>
+
+## 群的例子
+
+基本例子包括：
+
+- `(Z,+)`；
+- `(Q,+)`；
+- `(Q^+,\cdot)`，其中 `Q^+` 表示正有理數。
+
+<WorkedExample title="為甚麼 `(Z,+)` 是群">
+單位元是 `0`。
+
+對每個整數 `a`，逆元是 `-a`，因為
+
+$$
+a+(-a)=0=(-a)+a.
+$$
+
+加法滿足結合律，所以 `(Z,+)` 是群。
+</WorkedExample>
+
+<WorkedExample title="為甚麼 `(Q^+,\cdot)` 是群">
+單位元是 `1`。
+
+對每個正有理數 `q`，逆元是 `1/q`，它仍然是正有理數，且
+
+$$
+q\cdot \frac1q=1=\frac1q\cdot q.
+$$
+
+乘法滿足結合律，所以 `(Q^+,\cdot)` 是群。
+</WorkedExample>
+
+<CommonMistake title="`(Z,\times)` 是么半群，但不是群">
+`Z` 上乘法的單位元是 `1`，且乘法滿足結合律。但大多數整數在 `Z` 中沒有
+乘法逆元。例如不存在整數 `b` 使得 `2b=1`。
+</CommonMistake>
+
+## 逆元唯一
+
+<TheoremCard title="逆元唯一性">
+對每個 `a\in G`，逆元 `a^{-1}` 是唯一的。
+</TheoremCard>
+
+<CollapsibleProof title="證明">
+假設 `b` 和 `c` 都是 `a` 的逆元。則
+
+$$
+a*b=e,\qquad b*a=e,
+$$
+
+且
+
+$$
+a*c=e,\qquad c*a=e.
+$$
+
+利用單位元與結合律，
+
+$$
+b=b*e=b*(a*c)=(b*a)*c=e*c=c.
+$$
+
+所以 `b=c`。
+</CollapsibleProof>
+
+這個證明說明了為甚麼逆元記號是合理的：只要逆元存在，它就是唯一的，所
+以 `a^{-1}` 不會有歧義。
+
+## 襪鞋性質
+
+乘積逆元公式常被稱為 socks-shoes property：要復原兩個連續
+操作，先復原第二個，再復原第一個。
+
+<TheoremCard title="襪鞋性質">
+對群中元素 `a,b`，
+
+$$
+(a*b)^{-1}=b^{-1}*a^{-1}.
+$$
+</TheoremCard>
+
+<CollapsibleProof title="證明">
+計算：
+
+$$
+(a*b)*(b^{-1}*a^{-1})
+=a*(b*b^{-1})*a^{-1}
+=a*e*a^{-1}
+=a*a^{-1}
+=e.
+$$
+
+由逆元唯一性，`a*b` 的逆元必為 `b^{-1}*a^{-1}`。
+</CollapsibleProof>
+
+順序反轉是必要的。在非交換群中，`a^{-1}*b^{-1}` 未必能復原 `a*b`。
+
+## 消去律
+
+<TheoremCard title="消去律">
+在群中：
+
+- 若 `a*b=a*c`，則 `b=c`；
+- 若 `b*a=c*a`，則 `b=c`。
+</TheoremCard>
+
+<CollapsibleProof title="左消去證明">
+假設
+
+$$
+a*b=a*c.
+$$
+
+左乘 `a^{-1}`：
+
+$$
+a^{-1}*(a*b)=a^{-1}*(a*c).
+$$
+
+由結合律，
+
+$$
+(a^{-1}*a)*b=(a^{-1}*a)*c.
+$$
+
+因為 `a^{-1}*a=e`，得到
+
+$$
+e*b=e*c,
+$$
+
+所以 `b=c`。
+</CollapsibleProof>
+
+右消去的證明類似，只是改為右乘 `a^{-1}`。
+
+## 互動檢查運算律
+
+下面的 checker 是定義的輔助工具：可用來測試小型運算表的封閉性、結合
+律、單位元與逆元行為。真正的數學內容仍然是上面的公理。
+
+![比較 monoid 與 group 的公理表](/images/textbook/math1090/monoid-group-law-table.png)
+
+*圖示。monoid 與 group 的分別不是名稱，而是除結合律外，單位元與逆元公理是否成立。*
+
+<InteractiveWidget id="monoid-group-law-checker" />
+
+## 快速檢查
+
+<QuickCheck prompt="一條規則 `*` 要成為集合 `X` 上的二元運算，必須滿足甚麼輸入與輸出要求？">
+用函數型別回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它必須是一個函數 `*:X\times X\to X`。也就是說，它取兩個 `X` 的元素作
+為輸入，並輸出一個仍在 `X` 中的元素。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼 `(Z,-)` 不是么半群？">
+指出失敗的公理，並給一個具體計算。
+</QuickCheck>
+
+<RevealSolution title="答案">
+減法不滿足結合律。例如
+
+$$
+(5-3)-1=1
+$$
+
+但
+
+$$
+5-(3-1)=3.
+$$
+
+兩者不同，所以 `(Z,-)` 不是么半群。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼 `(Z,\times)` 不是群？">
+集中看逆元。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`Z` 上乘法滿足結合律並有單位元 `1`，但不是每個整數都有乘法逆元。例如
+不存在整數 `b` 使 `2b=1`。
+</RevealSolution>
+
+<QuickCheck prompt="在群中，`a*b` 的逆元是甚麼？">
+留意順序。
+</QuickCheck>
+
+<RevealSolution title="答案">
+逆元是
+
+$$
+(a*b)^{-1}=b^{-1}*a^{-1}.
+$$
+
+順序會反轉。
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="直接證明 `(B,+)` 是么半群，其中 `+` 是 上面的 Boolean 加法。">
+檢查結合律並指出單位元。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+單位元是 `0`，因為 `0+0=0`、`0+1=1`、`1+0=1`，所以對兩個
+`x\in B` 都有 `x+0=0+x=x`。
+
+結合律可由有限情況 `x,y,z\in\{0,1\}` 直接檢查。Boolean 加法就是模 `2`
+加法，所以 `(x+y)+z` 與 `x+(y+z)` 都記錄 `x,y,z` 中 `1` 的個數奇偶性，
+因此相等。
+</RevealSolution>
+
+<QuickCheck prompt="證明么半群的單位元唯一。">
+使用兩個可能的單位元 `e` 與 `e'`。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+若 `e` 和 `e'` 都是單位元，則因為 `e'` 是單位元，`e*e'=e`；又因為
+`e` 是單位元，`e*e'=e'`。所以 `e=e'`。
+</RevealSolution>
+
+<QuickCheck prompt="證明群中的左消去律：若 `a*b=a*c`，則 `b=c`。">
+使用 `a` 的逆元。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+由 `a*b=a*c` 出發，左乘 `a^{-1}`：
+
+$$
+a^{-1}*(a*b)=a^{-1}*(a*c).
+$$
+
+結合律給出
+
+$$
+(a^{-1}*a)*b=(a^{-1}*a)*c.
+$$
+
+因為 `a^{-1}*a=e`，得到 `e*b=e*c`，所以 `b=c`。
+</RevealSolution>
+
+## 相關筆記
+
+可先讀
+[2.2 函數與關係](/zh-hk/notes/math1090/sets/functions-relations)
+和
+[6.4-6.7 區間、Cantor 集、稠密性與良序](/zh-hk/notes/math1090/big-sets/intervals-cantor-set-density-and-well-ordering)。
+這一節也會用到
+[1.2 量詞與否定](/zh-hk/notes/math1090/logic/quantifiers-negation)
+以及
+[3.4 有理數與良定義運算](/zh-hk/notes/math1090/numbers/rationals-and-well-defined-operations)
+中的證明習慣。

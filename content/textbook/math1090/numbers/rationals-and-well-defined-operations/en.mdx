@@ -158,6 +158,39 @@ It is often useful to remember that a rational number is not tied to a preferred
 representative. The class `[(a, b)]` does not become a different number just
 because you multiply both coordinates by the same nonzero integer.
 
+## Reduced representatives and the Euclidean algorithm
+
+The quotient construction explains why many pairs represent the same rational
+number. For calculation, however, it is still useful to choose a clean
+representative. If `a` and `b` have a greatest common divisor `g>0`, then
+
+$$
+[(a,b)]=[(a/g,b/g)].
+$$
+
+The Euclidean algorithm gives a systematic way to find this `g` by repeated
+division with remainder. This is not a new definition of rational numbers; it is
+a practical method for choosing a simpler representative inside the same
+equivalence class.
+
+<WorkedExample title="Reducing a representative with the Euclidean algorithm">
+Consider `[(84,30)]`. The Euclidean algorithm gives
+
+$$
+84=2\cdot 30+24,\qquad
+30=1\cdot 24+6,\qquad
+24=4\cdot 6+0.
+$$
+
+So `\gcd(84,30)=6`, and
+
+$$
+[(84,30)]=[(14,5)].
+$$
+
+Both pairs represent the same rational number because `84\cdot 5=30\cdot 14`.
+</WorkedExample>
+
 ## Operations on `Q`
 
 Once the classes are defined, the next task is to define addition and

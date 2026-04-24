@@ -69,11 +69,12 @@ export default function Home() {
                 <Badge variant="secondary">笔记</Badge>
               </div>
               <h2 className="text-2xl md:text-3xl font-bold">
-                math1090 / math1030 课程笔记主线
+                Math1090 与 Math1030 课程笔记
               </h2>
               <p className="mt-4 text-muted-foreground leading-8">
-                当前主线是按章节和小节持续扩写的课程笔记。页面保持文章式阅读，
-                只在需要时嵌入互动说明，并支持把当前小节导出成静态学习材料。
+                这里按章节和小节整理严谨的数学笔记。每一节都以文章式阅读为主，
+                互动演示只用于解释定义、证明思路或计算过程；需要离线复习时，
+                当前小节也可以导出为静态学习材料。
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2">

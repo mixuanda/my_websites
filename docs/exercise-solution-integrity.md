@@ -30,6 +30,20 @@ assessment pass, especially the WeBWorK-inspired preview / submit workflow and
 the larger MATH1030 problem inventory now sitting under the thinner public
 units.
 
+April 24, 2026 QA update:
+
+- representative MATH1090 `4.5`-`5.3` and higher MATH1030 chapters were scanned
+  for `QuickCheck` / `RevealSolution` parity; the audited files keep paired
+  counts and no broken related-note route survived the pass;
+- localized related-note labels were repaired where zh-HK / zh-CN pages still
+  showed English section titles;
+- the next integrity check should remain export-focused: confirm every revealed
+  solution appears immediately after the matching prompt in sampled TXT and PDF
+  exports.
+- the new CSCI2520 units were authored with the visible prompt plus immediate
+  `RevealSolution` pattern; each new note has paired quick checks and guided
+  exercise solutions in EN, zh-HK, and zh-CN.
+
 ### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
 
 This checkpoint kept the same note-shell visual language, but made the

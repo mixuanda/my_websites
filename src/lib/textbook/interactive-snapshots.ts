@@ -729,6 +729,166 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "用几何方式检查一次 delta-epsilon 蕴含"
     ),
   },
+  "cardinality-comparison-lab": {
+    sampleStates: [
+      {
+        label: text("Bijection", "雙射", "双射"),
+        value: text(
+          "A map a -> 1, b -> 2, c -> 3 proves that two three-element sets have the same cardinality.",
+          "映射 a -> 1、b -> 2、c -> 3 證明兩個三元素集合有相同基數。",
+          "映射 a -> 1、b -> 2、c -> 3 证明两个三元素集合有相同基数。"
+        ),
+      },
+      {
+        label: text("Diagonal enumeration", "對角枚舉", "对角枚举"),
+        value: text(
+          "Scanning positive rationals by p+q reaches every rational entry in the grid.",
+          "按 p+q 掃描正有理數格點會到達每個有理數位置。",
+          "按 p+q 扫描正有理数格点会到达每个有理数位置。"
+        ),
+      },
+    ],
+    staticDiagramNote: text(
+      "Export as a small map table: one finite bijection, one proper injection, one integer enumeration, and one rational diagonal scan.",
+      "匯出時保留小型映射表：一個有限雙射、一個真正單射、一個整數枚舉，以及一個有理數對角掃描。",
+      "导出时保留小型映射表：一个有限双射、一个真正单射、一个整数枚举，以及一个有理数对角扫描。"
+    ),
+    summary: text(
+      "The lab compares equality of cardinality, injection-only comparison, and countable enumeration using concrete maps.",
+      "這個工具用具體映射比較基數相等、只由單射得到的大小比較，以及可數枚舉。",
+      "这个工具用具体映射比较基数相等、只由单射得到的大小比较，以及可数枚举。"
+    ),
+    steps: [
+      text("Choose a comparison example.", "先選一個大小比較例子。", "先选一个大小比较例子。"),
+      text("Read whether the displayed map is a bijection, injection, or enumeration.", "判斷顯示的映射是雙射、單射還是枚舉。", "判断显示的映射是双射、单射还是枚举。"),
+      text("Connect the map property to the cardinality statement.", "把映射性質連到相應的基數陳述。", "把映射性质连到相应的基数陈述。"),
+    ],
+    title: text(
+      "Compare set sizes by maps",
+      "用映射比較集合大小",
+      "用映射比较集合大小"
+    ),
+  },
+  "cantor-diagonal-lab": {
+    sampleStates: [
+      {
+        label: text("Diagonal set", "對角集合", "对角集合"),
+        value: text(
+          "T is defined by reversing membership on the diagonal: n belongs to T exactly when n is not in f(n).",
+          "T 透過反轉對角線上的隸屬關係定義：n 屬於 T 當且僅當 n 不屬於 f(n)。",
+          "T 通过反转对角线上的隶属关系定义：n 属于 T 当且仅当 n 不属于 f(n)。"
+        ),
+      },
+      {
+        label: text("Contradiction", "矛盾", "矛盾"),
+        value: text(
+          "If f(y) were T, then y in T would be equivalent to y notin T.",
+          "若 f(y) 是 T，則 y 屬於 T 會等價於 y 不屬於 T。",
+          "若 f(y) 是 T，则 y 属于 T 会等价于 y 不属于 T。"
+        ),
+      },
+    ],
+    staticDiagramNote: text(
+      "Export as a finite diagonal table plus the formal rule T = {n in N : n notin f(n)}.",
+      "匯出時保留有限對角表，並列出正式規則 T = {n in N : n notin f(n)}。",
+      "导出时保留有限对角表，并列出正式规则 T = {n in N : n notin f(n)}。"
+    ),
+    summary: text(
+      "The lab turns Cantor's diagonal argument into a table that shows why no list can contain every subset.",
+      "這個工具把 Cantor 對角論證變成表格，顯示為甚麼任何列表都不能包含所有子集。",
+      "这个工具把 Cantor 对角论证变成表格，显示为什么任何列表都不能包含所有子集。"
+    ),
+    steps: [
+      text("Read each listed subset f(n).", "先讀取每個列出的子集 f(n)。", "先读取每个列出的子集 f(n)。"),
+      text("Reverse the diagonal membership decision to build T.", "反轉對角線上的隸屬判斷來建立 T。", "反转对角线上的隶属判断来建立 T。"),
+      text("Observe that T differs from f(n) at least at n.", "觀察 T 至少在 n 這個位置不同於 f(n)。", "观察 T 至少在 n 这个位置不同于 f(n)。"),
+    ],
+    title: text(
+      "Build Cantor's diagonal set",
+      "建立 Cantor 的對角集合",
+      "建立 Cantor 的对角集合"
+    ),
+  },
+  "cantor-set-stage-viewer": {
+    sampleStates: [
+      {
+        label: text("Stage 1", "第 1 階段", "第 1 阶段"),
+        value: text(
+          "Remove the open middle third (1/3, 2/3), leaving two closed intervals.",
+          "移除開中三分之一 (1/3, 2/3)，留下兩個閉區間。",
+          "移除开中三分之一 (1/3, 2/3)，留下两个闭区间。"
+        ),
+      },
+      {
+        label: text("Ternary rule", "三進制規則", "三进制规则"),
+        value: text(
+          "The surviving points are exactly those with a ternary expansion using only 0 and 2.",
+          "留下來的點正是可用只含 0 與 2 的三進制展開表示的點。",
+          "留下来的点正是可用只含 0 与 2 的三进制展开表示的点。"
+        ),
+      },
+    ],
+    staticDiagramNote: text(
+      "Export as the first four Cantor-set stages, the removed-length geometric series, and the ternary digit rule.",
+      "匯出時保留 Cantor set 前四個階段、被移除長度的幾何級數，以及三進制數字規則。",
+      "导出时保留 Cantor set 前四个阶段、被移除长度的几何级数，以及三进制数字规则。"
+    ),
+    summary: text(
+      "The viewer shows how repeated middle-third removal creates a set that is small by length but large by cardinality.",
+      "這個工具顯示反覆移除中三分之一如何產生一個長度很小、但基數很大的集合。",
+      "这个工具显示反复移除中三分之一如何产生一个长度很小、但基数很大的集合。"
+    ),
+    steps: [
+      text("Move through stages C0, C1, C2, and C3.", "依次查看 C0、C1、C2、C3。", "依次查看 C0、C1、C2、C3。"),
+      text("Count the remaining intervals and compare the removed length.", "數剩餘區間，並比較已移除長度。", "数剩余区间，并比较已移除长度。"),
+      text("Connect the geometric construction to ternary expansions.", "把幾何構造連到三進制展開。", "把几何构造连到三进制展开。"),
+    ],
+    title: text(
+      "Step through the Cantor set construction",
+      "逐步查看 Cantor set 構造",
+      "逐步查看 Cantor set 构造"
+    ),
+  },
+  "monoid-group-law-checker": {
+    sampleStates: [
+      {
+        label: text("Monoid but not group", "是 monoid 但不是群", "是 monoid 但不是群"),
+        value: text(
+          "(N,+) has associativity and identity 0, but 1 has no natural-number additive inverse.",
+          "(N,+) 有結合律與單位元 0，但 1 沒有自然數加法逆元。",
+          "(N,+) 有结合律与单位元 0，但 1 没有自然数加法逆元。"
+        ),
+      },
+      {
+        label: text("Group", "群", "群"),
+        value: text(
+          "(Z,+) is a group because every integer a has inverse -a.",
+          "(Z,+) 是群，因為每個整數 a 都有逆元 -a。",
+          "(Z,+) 是群，因为每个整数 a 都有逆元 -a。"
+        ),
+      },
+    ],
+    staticDiagramNote: text(
+      "Export as a law-check table listing associativity, identity, and inverse status for (Z,+), (N,+), (Z,-), and Boolean addition.",
+      "匯出時保留 law-check 表格，列出 (Z,+)、(N,+)、(Z,-) 與 Boolean 加法的結合律、單位元與逆元狀態。",
+      "导出时保留 law-check 表格，列出 (Z,+)、(N,+)、(Z,-) 与 Boolean 加法的结合律、单位元与逆元状态。"
+    ),
+    summary: text(
+      "The checker compares binary operations by the exact laws needed for monoids and groups.",
+      "這個檢查器按 monoid 與 group 所需的精確公理比較二元運算。",
+      "这个检查器按 monoid 与 group 所需的精确公理比较二元运算。"
+    ),
+    steps: [
+      text("Choose one set with one binary operation.", "先選一個帶二元運算的集合。", "先选一个带二元运算的集合。"),
+      text("Check associativity and identity before asking about inverses.", "先檢查結合律與單位元，再問逆元。", "先检查结合律与单位元，再问逆元。"),
+      text("Classify the structure as not a monoid, a monoid, or a group.", "把結構分類為不是 monoid、monoid 或 group。", "把结构分类为不是 monoid、monoid 或 group。"),
+    ],
+    title: text(
+      "Check monoid and group laws",
+      "檢查 monoid 與 group 公理",
+      "检查 monoid 与 group 公理"
+    ),
+  },
   "truth-table-builder": {
     sampleStates: [
       {

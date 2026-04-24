@@ -1,0 +1,121 @@
+---
+title: "5.1 Graph traversal, spanning trees, and shortest paths"
+description: "Read graphs through vertices and edges, then compare DFS, BFS, MST algorithms, and Dijkstra-style shortest-path reasoning."
+---
+
+A graph is a structure for representing relationships that are not naturally
+linear. Once the course reaches graphs, the main skill is to separate the
+abstract object from the representation and then choose the traversal or
+optimization method that matches the question.
+
+## Graph vocabulary
+
+<Definition title="Graph">
+A graph consists of vertices and edges. Edges may be directed or undirected,
+and they may also carry weights.
+</Definition>
+
+Directed edges have orientation: `(u, v)` is not the same as `(v, u)`.
+Weighted edges carry a cost, distance, or capacity. Those two features change
+which algorithms make sense.
+
+The local lecture material also distinguishes paths, simple paths, cycles,
+acyclic graphs, connectivity, and degree. These terms are not decoration; they
+decide whether an algorithm is even applicable.
+
+## Representations
+
+The two most common representations are adjacency matrices and adjacency lists.
+
+- An adjacency matrix gives constant-time edge lookup, but it uses space
+  proportional to the square of the number of vertices.
+- An adjacency list stores neighbors of each vertex, making it more natural for
+  sparse graphs where the number of edges is much smaller than `V^2`.
+
+When analyzing graph algorithms, always state the representation or express the
+cost using both `V` and `E`.
+
+## Depth first search
+
+DFS explores as far as possible along a branch before backtracking. The
+tutorial traces this with a stack of current nodes and a visited array.
+
+<Definition title="Depth first search">
+DFS visits a start vertex, recursively or explicitly explores one unvisited
+neighbor path as far as possible, then backtracks when no unvisited neighbor is
+available.
+</Definition>
+
+DFS is useful for reachability, connected components, cycle-related reasoning,
+and DFS-based topological sorting.
+
+## Breadth first search
+
+BFS visits vertices by distance layers from the starting vertex. The tutorial
+uses a queue rather than a stack.
+
+<Definition title="Breadth first search">
+BFS visits the start vertex, then all vertices at distance one, then all
+vertices at distance two, and so on, using a queue to preserve layer order.
+</Definition>
+
+In an unweighted graph, BFS gives shortest path distances measured by number of
+edges. DFS does not guarantee that.
+
+## Minimum spanning trees
+
+For a connected undirected weighted graph, a spanning tree contains all
+vertices and exactly `V - 1` edges. A minimum spanning tree minimizes the total
+edge weight.
+
+Kruskal's algorithm sorts edges by weight and adds the next lightest edge that
+does not create a cycle. Prim's algorithm grows one tree, repeatedly adding the
+lightest edge that connects the current tree to a new vertex.
+
+<TheoremCard title="What MST algorithms protect">
+Both Kruskal's and Prim's algorithms preserve acyclicity while adding the
+cheapest safe edge according to their current view of the graph.
+</TheoremCard>
+
+## Dijkstra-style shortest paths
+
+Dijkstra's algorithm solves a different problem: shortest paths from a start
+vertex to other vertices in a weighted graph with nonnegative edge weights. It
+keeps the best known cost to each vertex, repeatedly finalizes the unvisited
+vertex with smallest current cost, and relaxes outgoing edges from that vertex.
+
+The meaning of "visited" is strong: once a vertex is finalized, the shortest
+path to it has been found.
+
+<QuickCheck prompt="Which traversal uses a queue: DFS or BFS?">
+Think about layer order.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+BFS uses a queue. DFS usually uses recursion or an explicit stack.
+</RevealSolution>
+
+<QuickCheck prompt="Why does an MST have exactly V minus 1 edges?">
+Assume the graph is connected and the spanning subgraph is a tree.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Every tree with `V` vertices has exactly `V - 1` edges. A spanning tree is a
+tree that contains all vertices.
+</RevealSolution>
+
+## Exercises
+
+1. Explain when an adjacency list is preferable to an adjacency matrix.
+2. Explain why BFS gives shortest paths in unweighted graphs.
+3. Distinguish the MST problem from the single-source shortest path problem.
+
+<RevealSolution title="Guided solutions">
+1. Use an adjacency list when the graph is sparse, because it avoids storing a
+   mostly empty `V` by `V` matrix.
+2. BFS visits vertices in increasing edge-distance layers, so the first time a
+   vertex is reached is by a shortest unweighted path.
+3. MST minimizes the total weight of a tree connecting all vertices. Shortest
+   paths minimize path cost from one source to each target.
+</RevealSolution>
+

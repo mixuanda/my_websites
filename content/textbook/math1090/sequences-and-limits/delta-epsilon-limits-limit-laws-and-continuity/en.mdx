@@ -8,7 +8,7 @@ sequence approaches its limit through the discrete parameter `n`, while a
 function argument `x` can move toward a point `a` through infinitely many nearby
 real values from both sides.
 
-That is why the lecture notes introduce the `\delta`-`\varepsilon` definition.
+This is why the `\delta`-`\varepsilon` definition is needed.
 
 ## From sequence limits to function limits
 
@@ -30,7 +30,7 @@ that `x` is close enough to `a`. That role is played by `\delta`.
 
 ## Open intervals and punctured domains
 
-The notes first specify the kind of domains they want to use.
+First specify the kind of domains involved.
 
 <Definition title="Open interval">
 An **open interval** is a subset of `R` of one of the forms
@@ -50,7 +50,7 @@ $$
 where `b,c\in R` and `b<c`.
 </Definition>
 
-To define a limit at a point `a`, the notes consider functions defined on an
+To define a limit at a point `a`, consider functions defined on an
 open interval with the point `a` removed. That removal is important: a limit is
 about what happens **near** `a`, not necessarily what happens **at** `a`.
 
@@ -89,7 +89,7 @@ undefined, or may differ from `L`, while the limit still exists.
 
 ## First example: `\lim_{x\to 3}(2x+1)=7`
 
-Example 19 in the notes is the basic linear test case.
+The basic linear test case is the function `f(x)=2x+3` at `a=1`.
 
 <WorkedExample title="Choosing `\delta=\varepsilon/2`">
 Let `f(x)=2x+1`, `a=3`, and `L=7`. Then
@@ -135,7 +135,7 @@ This example shows the standard proof pattern:
 2. simplify it into an expression involving `|x-a|`,
 3. choose `\delta` to make that expression smaller than `\varepsilon`.
 
-## Two more basic examples from the notes
+## Two more basic examples
 
 <WorkedExample title="Constant functions">
 If `f(x)=c` for all `x`, then
@@ -196,7 +196,7 @@ this implication always succeeds.*
 
 ## Explore the definition interactively
 
-The explorer below lets you choose one of the source examples, select
+The explorer below lets you choose one of the examples, select
 `\varepsilon`, and test sample inputs `x`. The point is to see the implication
 
 $$
@@ -209,7 +209,7 @@ as a relationship between an input strip and an output band.
 
 ## How limits can fail to exist
 
-The notes next explain how to show that a proposed limit does **not** exist.
+Next, consider how to show that a proposed limit does **not** exist.
 
 To prove `\lim_{x\to a}f(x)\ne L`, one must find a single `\varepsilon>0` such
 that no matter how small `\delta` is chosen, some point `x` with
@@ -251,7 +251,7 @@ do not agree.
 
 ## Algebra of limits
 
-Once some basic limits are known, the notes show how to build new ones from old
+Once some basic limits are known, limit laws show how to build new ones from old
 ones.
 
 <TheoremCard title="Limit laws">
@@ -277,7 +277,7 @@ The product law needs one extra idea: before estimating the product error, one
 must first show that `|f(x)|` stays bounded near `a`.
 
 <WorkedExample title="Using the sum law">
-The notes consider `f(x)=2x+1` and `g(x)=\sqrt{x}` near `x=4`. Once the basic
+Consider `f(x)=2x+1` and `g(x)=\sqrt{x}` near `x=4`. Once the basic
 limits
 
 $$
@@ -295,7 +295,7 @@ $$
 
 ## The sequential characterization
 
-Theorem 3 in the notes connects function limits back to sequence limits.
+The sequential criterion connects function limits back to sequence limits.
 
 <TheoremCard title="Sequential characterization of function limits">
 Let `f:I\setminus\{a\}\to R`. Then
@@ -367,7 +367,7 @@ $$
 Notice what changed: the condition `0<|x-a|` disappeared. Continuity really does
 care about the function value at the point.
 
-The notes give a discontinuous example:
+A standard discontinuous example is:
 
 $$
 f(x)=

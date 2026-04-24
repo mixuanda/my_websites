@@ -31,6 +31,20 @@ export / theme QA on the richer chapter-6 Math1030 notes, while keeping the
 inline-math renderer and export output aligned with the newer `2.4`, `6.1`,
 `6.2`, and `6.3` notation cleanup.
 
+April 24, 2026 QA update:
+
+- corrected the zh-HK public route text in related-note links from
+  `/zh-hk/這些筆記/**` back to `/zh-hk/notes/**`;
+- verified all authored `/[locale]/notes/[course]/[chapter]/[unit]` links in
+  `content/textbook/**` point to existing note units;
+- removed public authoring-source phrasing from audited math note prose so the
+  rendered pages read as clean course notes instead of process commentary.
+- added five CSCI2520 note units in EN, zh-HK, and zh-CN; the new files use
+  existing `Definition`, `TheoremCard`, `WorkedExample`, `QuickCheck`, and
+  `RevealSolution` blocks without introducing new component types.
+- `npm run contentlayer` passed after the CSCI2520 expansion and regenerated
+  181 documents.
+
 ## Current findings
 
 The current rendering pass confirmed that the repository already wires

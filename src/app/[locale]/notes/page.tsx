@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { ArrowRight, BookOpen, Languages, SquareLibrary, Waypoints } from "lucide-react";
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
+import { isMembershipGatingEnabled } from "@/lib/membership/entitlements";
 import { getCourseList } from "@/lib/textbook/content";
 import { getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
 import { getCourseHref, getMembershipHref } from "@/lib/textbook/routes";
@@ -68,6 +69,7 @@ export default async function NotesIndexPage({
   }
 
   const courses = getCourseList();
+  const membershipGatingEnabled = isMembershipGatingEnabled();
 
   return (
     <div className="mx-auto max-w-7xl space-y-8">
@@ -103,15 +105,17 @@ export default async function NotesIndexPage({
                 {getLocalizedText(heroCopy.languages, locale)}
               </div>
             </GlassPanel>
-            <GlassPanel className="min-w-52 p-4">
-              <Link
-                href={getMembershipHref(locale)}
-                className="flex items-center gap-2 text-foreground transition-colors hover:text-primary"
-              >
-                <BookOpen className="h-4 w-4 text-primary" />
-                {getLocalizedText(uiText.upgradeMembership, locale)}
-              </Link>
-            </GlassPanel>
+            {membershipGatingEnabled ? (
+              <GlassPanel className="min-w-52 p-4">
+                <Link
+                  href={getMembershipHref(locale)}
+                  className="flex items-center gap-2 text-foreground transition-colors hover:text-primary"
+                >
+                  <BookOpen className="h-4 w-4 text-primary" />
+                  {getLocalizedText(uiText.upgradeMembership, locale)}
+                </Link>
+              </GlassPanel>
+            ) : null}
           </div>
         </div>
       </GlassCard>

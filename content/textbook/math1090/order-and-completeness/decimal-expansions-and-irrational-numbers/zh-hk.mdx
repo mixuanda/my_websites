@@ -14,7 +14,7 @@ description: "比較 Dedekind 分割與熟悉的小數展開，並用定義 sqrt
 上做出來的就是實數。
 
 <TheoremCard title="完備有序域在同構意義下只有一個">
-lecture notes 指出：作為完備有序域，實數是唯一的。所以 Dedekind 分割不
+一個重要事實是：作為完備有序域，實數是唯一的。所以 Dedekind 分割不
 是熟悉實數線的競爭版本，而是它的一個嚴格模型。
 </TheoremCard>
 
@@ -29,7 +29,7 @@ $$
 x=10.4352902543\ldots
 $$
 
-notes 先從它造出兩族有理數。
+先從它造出兩族有理數。
 
 先看由下逼近：
 
@@ -55,7 +55,7 @@ $$
 B=\{q\in Q\mid \exists t\in T\text{ 使得 }q>t\}.
 $$
 
-notes 的主張是：`(A,B)` 就是一個 Dedekind 分割。也就是說，一個熟悉的
+主張是：`(A,B)` 就是一個 Dedekind 分割。也就是說，一個熟悉的
 小數展開可以被轉換成上一頁引入的那種邊界對象。
 
 <WorkedExample title="最初幾層的小數圍欄">
@@ -105,7 +105,7 @@ $$
 
 ## 由分割反推出小數展開
 
-notes 的 Exercise 49 要求你反過來做：給定一個 Dedekind 分割，如何產生
+一個反向練習是：給定一個 Dedekind 分割，如何產生
 對應的小數展開？
 
 想法其實很系統。
@@ -166,7 +166,7 @@ $$
 
 ## 定義 `\sqrt2` 的那個分割
 
-Exercise 50 給出了一個具體例子。考慮
+一個具體例子是。考慮
 
 $$
 A=\{r\in Q\mid r\le 0\text{ 或 }r^2<2\},
@@ -178,7 +178,7 @@ $$
 B=Q\setminus A=\{r\in Q\mid r>0\text{ 且 }r^2>2\}.
 $$
 
-lecture notes 把這個對應的分割辨認為平方等於 `2` 的正實數。
+這個對應的分割就是平方等於 `2` 的正實數。
 
 <WorkedExample title="為甚麼這個分割代表 `\sqrt2`">
 首先，`A` 非空，因為 `0\in A` 且 `1\in A`。它也不是整個 `Q`，因為
@@ -195,7 +195,7 @@ lecture notes 把這個對應的分割辨認為平方等於 `2` 的正實數。
 `(x+\varepsilon)^2<2`。於是 `x+\varepsilon\in A`，而且 `x<x+\varepsilon`。
 
 所以 `A` 確實是一個 Dedekind 分割。按構造，它就是平方等於 `2` 的正實
-數，notes 把它記作 `\sqrt2`。
+數，把它記作 `\sqrt2`。
 </WorkedExample>
 
 由於第 3 章已證明沒有任何有理數的平方會等於 `2`，這個分割不可能是有理
@@ -207,7 +207,7 @@ lecture notes 把這個對應的分割辨認為平方等於 `2` 的正實數。
 </CommonMistake>
 
 <CommonMistake title="小數展開在這裡是結果，不是原始定義">
-notes 並沒有否定小數記號，而是在解釋它。先有作為嚴格對象的分割，然後
+這裏並沒有否定小數記號，而是在解釋它。先有作為嚴格對象的分割，然後
 才由分割透過反覆逼近恢復出小數展開。
 </CommonMistake>
 
@@ -239,7 +239,7 @@ $$
 ## 練習
 
 <QuickCheck prompt="從非正式小數 `2.718...` 出發，寫出前四個下方逼近、前四個上方逼近，並定義對應的 `A` 與 `B`。">
-完全照 notes 的模式去寫。
+完全照同一個模式去寫。
 </QuickCheck>
 
 <RevealSolution title="引導解答">

@@ -44,6 +44,62 @@ description: "把歸納法當作證明模式，並讀懂加法與乘法的遞歸
 的命題。要做那一步，你還是要用歸納法。
 </CommonMistake>
 
+## 遞歸乘法
+
+乘法也可以用同一種遞歸方式引入。加法已經定義好之後，乘法可以理解為由
+第二個輸入控制的重複加法。
+
+<Definition title="乘法的遞歸定義">
+對自然數 `a` 和 `b`，乘法定義為：
+
+- `a · 0 = 0`
+- `a · S(b) = (a · b) + a`
+</Definition>
+
+基本情況說明：把 `a` 加零次得到 `0`。遞歸步驟說明：如果已經知道
+`a · b`，那麼乘以後繼 `S(b)` 就是在原來結果上再加一個 `a`。
+
+<WorkedExample title="由定義計算 `3 · 2`">
+把 `2` 寫成 `S(S(0))`。那麼
+
+$$
+3\cdot 2
+=3\cdot S(S(0))
+=(3\cdot S(0))+3
+$$
+
+而
+
+$$
+3\cdot S(0)=(3\cdot 0)+3=0+3=3.
+$$
+
+因此
+
+$$
+3\cdot 2=3+3=6.
+$$
+
+熟悉的「三取兩次」其實是由這個遞歸規則重新得到的。
+</WorkedExample>
+
+## 歸納法真正證明甚麼
+
+遞歸定義能夠支撐普通代數定律，是因為背後有歸納原理。典型證明具有以下
+形式。
+
+<TheoremCard title="歸納原理">
+設 `P(n)` 是關於自然數 `n` 的命題。如果：
+
+1. `P(0)` 成立；
+2. 只要 `P(n)` 成立，就能推出 `P(S(n))` 成立；
+
+那麼 `P(n)` 對每個 `n\in N` 都成立。
+</TheoremCard>
+
+基本情況把命題固定在起點 `0`。歸納步驟證明真值會在做一次後繼時被保留。
+兩者合起來，排除了命題一開始成立但後面突然失敗的可能。
+
 ## 先看互動步驟
 
 下面的步驟器把一個歸納證明拆成基本情況、歸納假設、歸納步驟和結論。
@@ -53,7 +109,7 @@ description: "把歸納法當作證明模式，並讀懂加法與乘法的遞歸
 ## 證明草圖
 
 <CollapsibleProof title="為甚麼 `S(a) + b = S(a + b)` 可由歸納法得到">
-我們對 `b in N` 證明這個命題。
+我們對 `b\in N` 證明這個命題。
 
 基本情況：當 `b = 0`，
 
@@ -70,6 +126,66 @@ description: "把歸納法當作證明模式，並讀懂加法與乘法的遞歸
 所以只要對 `b` 成立，它就對 `S(b)` 也成立。
 </CollapsibleProof>
 
+<CollapsibleProof title="為甚麼 `a · S(b) = a · b + a` 是定義而不是定理">
+對乘法來說，公式
+
+$$
+a\cdot S(b)=(a\cdot b)+a
+$$
+
+不是在乘法已知之後才證明出來的定理，而是乘法本身的遞歸步驟。之後的
+代數定律，例如分配律，才是需要用歸納法證明的命題。
+</CollapsibleProof>
+
+## 代數定律是在定義之後證明的
+
+加法與乘法用遞歸方式定義之後，熟悉的算術定律就成為需要證明的定理。
+
+<TheoremCard title="用歸納法證明的算術定律例子">
+對自然數 `a`、`b`、`c`，可以證明：
+
+$$
+a+b=b+a,
+$$
+
+$$
+a\cdot(b+c)=a\cdot b+a\cdot c,
+$$
+
+以及
+
+$$
+a\cdot b=b\cdot a.
+$$
+</TheoremCard>
+
+重點是邏輯順序：先定義運算，再證明它們具有我們熟悉的運算性質。
+
+<CollapsibleProof title="分配律的證明結構">
+固定 `a` 和 `b`，對 `c` 用歸納法證明
+
+$$
+P(c):\quad a\cdot(b+c)=a\cdot b+a\cdot c.
+$$
+
+當 `c=0` 時，使用 `b+0=b`、`a\cdot 0=0` 以及加法單位元。
+
+歸納步驟中，假設 `P(c)` 成立。然後使用遞歸規則
+
+$$
+b+S(c)=S(b+c)
+$$
+
+和
+
+$$
+a\cdot S(d)=a\cdot d+a
+$$
+
+把左邊改寫到可以套用歸納假設。剩下的項再用加法結合律整理；而加法結合律
+本身也是較早用歸納法證明的定理。
+</CollapsibleProof>
+
 ## 快問快答
 
 <QuickCheck prompt="加法的遞歸定義中，基本情況是哪一句？">
@@ -78,6 +194,22 @@ description: "把歸納法當作證明模式，並讀懂加法與乘法的遞歸
 
 <RevealSolution title="答案">
 基本情況是 `a + 0 = a`。
+</RevealSolution>
+
+<QuickCheck prompt="乘法的遞歸定義中，基本情況是哪一句？">
+看第二個輸入。
+</QuickCheck>
+
+<RevealSolution title="答案">
+基本情況是 `a · 0 = 0`。
+</RevealSolution>
+
+<QuickCheck prompt="按遞歸規則，`a · S(b)` 等於甚麼？">
+用前一個乘法值來表達下一步。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它等於 `(a · b) + a`。
 </RevealSolution>
 
 <QuickCheck prompt="在歸納證明中，歸納假設是甚麼？">

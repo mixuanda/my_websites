@@ -1,0 +1,919 @@
+# Slide 1
+CSCI2520 Data Structures and Applications
+Sorting in Linear Time
+
+# Slide 2
+Can We Sort in Linear Time?
+Merge sort, heapsort and quicksort are all 
+comparison
+ sorts.
+Recall that any comparison sorts must 
+make 
+Ω
+(
+n 
+log 
+n
+) 
+comparisons in worst cases.
+To sort faster than this lower bound, we try to sort 
+without
+ any comparisons.
+We are going to discussion two examples of such algorithms, namely 
+counting
+ sort and 
+radix
+ sort.
+Page 
+2
+
+# Slide 3
+Facts About Counting Sort
+It is not a comparison sort.
+Restricts elements in range from 0 
+to
+K
+.
+Runs in linear time 
+when 
+K
+ = O(
+N
+)
+.
+
+Stable
+It is often 
+used as a 
+subroutine
+ in radix sort.
+
+Does 
+NOT
+ sort in 
+place.
+Page 
+3
+
+# Slide 4
+Step 1: Counting
+We prepare an array 
+C
+ for counting the occurrences of each element in range 0 
+to 
+K
+.
+The 
+length of the 
+array required is 
+K
+.
+We go through each element stored in the original array 
+A
+ and 
+calculate
+ the count, saving in 
+C
+.
+Page 
+4
+2
+1
+2
+2
+0
+3
+0
+5
+3
+2
+3
+0
+5
+1
+5
+2
+A
+C
+0
+1
+2
+3
+4
+5
+
+# Slide 5
+Step 2: Accumulation
+Compute the 
+accumulative
+ count on 
+C
+, giving 
+C
+’.
+The count in 
+C
+'[
+i
+] is the number of elements that are 
+equal or smaller 
+than 
+i
+.
+Page 
+5
+2
+1
+2
+2
+0
+3
+C
+0
+1
+2
+3
+4
+5
+2
+3
+5
+7
+7
+10
+C
+’
+0
+1
+2
+3
+4
+5
+
+# Slide 6
+Step 3: Place Elements
+The last step is put the elements in 
+A
+ in the sorted order in a new array 
+B
+ using 
+C
+'.
+We process each element in 
+A
+ in 
+reversed
+ order (we'll see why later).
+Lookup the position 
+j
+ from 
+C
+’ and copy the value of the element to 
+B
+[
+j
+ – 1]
+. 
+Copy
+contents
+of 
+B
+ to 
+A
+ to finalize the sorting.
+Page 
+6
+2
+3
+5
+7
+7
+10
+C
+’
+0
+1
+2
+3
+4
+5
+0
+5
+3
+2
+3
+0
+5
+1
+5
+2
+A
+0
+0
+1
+2
+2
+3
+3
+5
+5
+5
+B
+
+# Slide 7
+Counting Sort: Code
+Predict the value 
+of 
+K 
+or find it by checking the elements in 
+A
+.
+Line 7-8: counting 
+Θ
+(
+N
+); 
+line 9-10: accumulation 
+Θ
+(
+K
+)
+Line 11-14: place and sort 
+Θ
+(
+N
+)
+Page 
+7
+  1 
+#define K 
+10
+  2 
+  3 
+void
+ csort(
+int
+ n, 
+int
+ *a, 
+int
+ *b, 
+int
+ k){
+  4     
+int
+ i;
+  5     
+int
+ *c = (
+int
+ *)malloc(k
+, 
+sizeof
+(
+int
+));
+  6 
+  7     
+for
+ (i = 
+0
+; i < n; i++)
+  8         c[a[i]]++;
+  9     
+for
+ (i = 
+1
+; i < k; i++)
+ 10         c[i] = c[i] + c[i - 
+1
+];
+ 11     
+for
+ (i = n - 
+1
+; i >= 
+0
+; i--)
+ 12         b[--c[a[i]]] = a[i];
+ 13     free(c);
+ 14 }
+
+# Slide 8
+Counting Sort: Code (2)
+We need a 
+driver
+ function to prepare 
+B
+ and copy 
+B
+ back to 
+A
+.
+If you need to 
+calculate 
+K
+, 
+you can put your code here.
+The 
+complexity
+ of counting sort is 
+Θ
+(
+N
+ + 
+K
+). 
+If 
+K
+ = 
+O
+(
+N
+), then 
+T
+(
+N
+) = 
+O
+(
+N
+).
+Page 
+8
+ 16 
+void
+ countingsort(
+int
+ n, 
+int
+ *a){
+ 17     
+int
+ i;
+ 18     
+int
+ *b = (
+int
+ *)malloc(n * sizeof(
+int
+));
+ 19 
+ 20     csort(n, a, b, K);
+ 21 
+ 22     
+for
+ (i = 
+0
+; i < n; i++)
+ 23         a[i] = b[i];
+ 24 
+ 25     free(b);
+ 26 }
+
+# Slide 9
+Stability
+Elements with same keys appear in the output array in the 
+same (
+relative
+) order
+.
+This is why we process the array 
+A
+ in reversed order.
+This is an 
+important
+ property when we use counting sort as subroutine in radix sort.
+Page 
+9
+0
+5
+1
+3
+2
+3
+0
+5
+2
+1
+5
+3
+2
+A
+0
+0
+1
+2
+2
+3
+3
+5
+1
+5
+2
+5
+3
+B
+for
+ (i = n - 
+1
+; i >= 
+0
+; i--)
+     b[--c[a[i]]] = a[i];
+
+# Slide 10
+Radix Sort
+Human
+ sorts numbers digit by digit and words alphabet by alphabet.
+Idea
+: most significant digits (MSD) 
+dominate
+ less significant digits (LSD).
+Don't forget that you 
+still
+ have to sort against every digit to get the sorting job done.
+Question
+: Sort MSD first or sort LSD 
+first?
+Page 
+10
+Imagine: you have a set of number cards, when you sort by the more significant digits first, you need to put aside the sorted piles. This creates problem when you program in a similar fashion.
+
+# Slide 11
+Radix Sort (2)
+LSD radix sort solves the problem of card sorting on the least significant 
+digit first
+.
+The cards in 
+bin 0
+ (smaller digits) 
+precedes
+ the cards in 
+the 
+bin 1
+.
+The entire deck is sorted again on the second-least significant digit.
+The process continues until the cards have been sorted on 
+all 
+D
+digits
+.
+ 
+Important
+: The digit sort must 
+be 
+stable
+.
+Page 
+11
+
+# Slide 12
+Radix Sort: Example
+Page 
+12
+Original
+Digit 0
+Digit 1
+Digit 2
+329
+72
+0
+7
+2
+0
+3
+29
+457
+35
+5
+3
+2
+9
+3
+55
+657
+43
+6
+4
+3
+6
+4
+36
+839
+45
+7
+8
+3
+9
+4
+57
+436
+65
+7
+3
+5
+5
+6
+57
+720
+32
+9
+4
+5
+7
+7
+20
+355
+83
+9
+6
+5
+7
+8
+39
+
+# Slide 13
+Radix Sort: Code
+For illustration (
+ONLY
+), 
+we code radix sort on 
+base 10
+.
+In practice, we would use a 
+group of bits
+ instead, so that the digit extraction can be done using bitwise 
+operators.
+Page 
+13
+  5 
+#define R 
+10
+  6 
+#define D 
+3
+...
+ 36 
+void
+ radixsort(
+int 
+n, 
+int
+ *a){
+ 37     
+int
+ i;
+ 38 
+ 39     
+for
+ (i = 
+0
+; i < D; i++){
+ 40         csort(n, a, i);
+ 41         printf(
+"i=
+%d\n
+"
+, i);
+ 42         print_array(n, a);
+ 43     }
+ 44 }
+
+# Slide 14
+Radix Sort: Code (2)
+We modify the original counting sort so that we 
+can consider a 
+specified 
+digit to be the key.
+Page 
+14
+  9 
+void
+ csort(
+int
+ n, 
+int
+ *a, 
+int
+ d){
+ 10     
+int
+ i, r = 
+1
+;
+ 11     
+int
+ *b = (
+int
+ *)malloc(n * 
+sizeof
+(
+int
+));
+ 12     
+int
+ *c = (
+int
+ *)calloc(R, 
+sizeof
+(
+int
+));
+ 13 
+ 14     
+for
+ (i = 
+0
+; i < d; i++)
+ 15         r *= R; 
+// calculate R^d
+ 16     
+for
+ (i = 
+0
+; i < n; i++)
+ 17         c[(a[i] / r) % R]++; 
+// counting
+ 18     
+for
+ (i = 
+1
+; i < R; i++)
+ 19         c[i] = c[i] + c[i - 
+1
+];
+ 20     
+for
+ (i = n - 
+1
+; i >= 
+0
+; i--)
+ 21         b[--c[(a[i] / r) % R]] = a[i];
+ 22     
+for
+ (i = 
+0
+; i < n; i++)
+ 23         a[i] = b[i];
+ 24 
+ 25/6   free(b); free(c);
+ 27 }
+
+# Slide 15
+Radix Sort: Correctness
+Page 
+15
+PROOF
+Suppose the list of 
+numbers 
+L
+D
+are sorted on 
+digits 
+D
+, 
+D
+- 1, ..., 1, then we 
+sort 
+L
+D
+using a stable sorting algorithm on 
+digit 
+D
++ 1.
+Consider two numbers 
+a
+ and 
+b
+on 
+L
+D
+with 
+a
+ precedes 
+b
+, then we know the last 
+d
+ digits of 
+a
+ is less than or equal to that of 
+b 
+(by assumption).
+Consider 
+the (
+D
++ 1)-digit of 
+a
+ and 
+b
+,
+If 
+a
+D
++1
+ > 
+b
+D
++1
+, after this round, 
+a
+ will be placed 
+after
+b
+.
+If
+ a
+D
++1
+ = 
+b
+D
++1
+, after this round, 
+a
+precedes
+b
+ (by stability).
+If 
+a
+D
++1
+ < 
+b
+D
++1
+, after this round, 
+a
+precedes
+b
+ (
+by 
+D
++ 1 digit)
+Therefore
+, 
+L
+D
++1
+is sorted on 
+digit 
+D
++ 1
+, 
+D
+, 
+..., 1.
+By 
+induction, radix sort is correct. 
+
+# Slide 16
+Radix Sort: Analysis
+Given 
+N
+D
+-digits 
+number in which each digit can take on up 
+to 
+K
+possible values, radix sort correctly sorts these numbers in 
+Θ
+(
+D
+(
+N
+ + 
+K
+)).
+There 
+are 
+D
+counting sorts which each takes 
+Θ
+(
+N
+ + 
+K
+).
+However, in general, it is hard to 
+bound
+ the numbers by the number of digits. 
+It is easier to express in terms of 
+bits
+ as we use binary representation for numbers in computers.
+Page 
+16
+Given 
+N
+B
+-bits 
+numbers and any positive 
+integer 
+R 
+≤ 
+B
+, 
+radix sort sorts in 
+Θ
+((
+B
+/
+R
+)(
+N
+ + 2
+R
+)).
+Example: 32-bit word has 4 8-bit digits
+. 
+B
+= 32
+, 
+R
+= 8
+, 
+K
+ = 2
+R
+- 1 = 255, 
+and 
+D
+ = 
+B
+/
+R
+= 4.
+
+# Slide 17
+Final Q: Radix Sort or Quicksort?
+If 
+B
+ = 
+O
+(lg 
+N
+) 
+and we 
+choose 
+R
+≈ 
+log 
+N
+, 
+then radix sort's running time is 
+Θ
+(
+N
+), 
+which is better than the average running time 
+Θ
+(
+N
+ lg 
+N
+) 
+in quicksort.
+Although radix sort may make fewer passes than quicksort over the 
+n
+ keys, each pass of radix sort may take significant 
+longer 
+There are several 
+loops 
+in the counting sort subroutine.
+Drawback
+: Radix sort that uses counting sort as a subroutine 
+does not sort 
+in place.
+It is known that quicksort often use hardware 
+caches
+ more efficiently than radix sort.
+If stability is not an issue: use 
+quicksort
+Page 
+17
+
+# Slide 18
+Summary
+Counting
+sort : sort by counting frequencies of the keys. Stable but does not sort in-place. 
+Θ
+(
+N
+ + 
+K
+)
+Radix
+sort: execute stable sort digit by digit. Begin with least significant digit requires little memory overheads. 
+Θ
+((
+B
+/
+R
+)(
+N
+ + 2
+R
+))
+Page 
+18

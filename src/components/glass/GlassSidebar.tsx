@@ -4,12 +4,12 @@ import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { SiteLanguageSwitcher } from "@/components/SiteLanguageSwitcher";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, Home, User, FolderKanban, FileText, BookOpen, Sun, Moon, Eye } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { useTheme } from "next-themes";
 import { getRouteLocale, getSiteText, resolveSiteLocale, siteUiText } from "@/lib/site-i18n";
 import { defaultLocale } from "@/lib/textbook/i18n";
@@ -45,6 +45,19 @@ interface GlassSidebarProps {
   onHighContrastChange?: (value: boolean) => void;
 }
 
+function subscribeThemeReady(onStoreChange: () => void) {
+  queueMicrotask(onStoreChange);
+  return () => {};
+}
+
+function getThemeReadySnapshot() {
+  return true;
+}
+
+function getThemeReadyServerSnapshot() {
+  return false;
+}
+
 interface SidebarContentProps {
   highContrast: boolean;
   locale: Locale;
@@ -54,6 +67,7 @@ interface SidebarContentProps {
   pathname: string;
   resolvedTheme?: string;
   setTheme: (theme: string) => void;
+  themeReady: boolean;
 }
 
 function SidebarContent({
@@ -65,9 +79,10 @@ function SidebarContent({
   pathname,
   resolvedTheme,
   setTheme,
+  themeReady,
 }: SidebarContentProps) {
   const navItems = getNavItems(locale);
-  const isDarkTheme = resolvedTheme === "dark";
+  const isDarkTheme = themeReady && resolvedTheme === "dark";
   const themeIcon = isDarkTheme ? (
     <Sun className="w-4 h-4" />
   ) : (
@@ -162,6 +177,11 @@ export function GlassSidebar({
 }: GlassSidebarProps) {
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
+  const themeReady = useSyncExternalStore(
+    subscribeThemeReady,
+    getThemeReadySnapshot,
+    getThemeReadyServerSnapshot
+  );
   const [locale, setLocale] = useState<Locale>(
     getRouteLocale(pathname) ?? defaultLocale
   );
@@ -191,6 +211,7 @@ export function GlassSidebar({
           pathname={pathname}
           resolvedTheme={resolvedTheme}
           setTheme={setTheme}
+          themeReady={themeReady}
         />
       </aside>
 
@@ -205,7 +226,11 @@ export function GlassSidebar({
       >
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon">
+            <Button
+              aria-label={getSiteText(siteUiText.mainMenu, locale)}
+              variant="ghost"
+              size="icon"
+            >
               <Menu className="w-5 h-5" />
             </Button>
           </SheetTrigger>
@@ -218,6 +243,9 @@ export function GlassSidebar({
                 : "bg-sidebar/95 backdrop-blur-2xl border-r border-border/60"
             )}
           >
+            <SheetTitle className="sr-only">
+              {getSiteText(siteUiText.mainMenu, locale)}
+            </SheetTitle>
             <SidebarContent
               highContrast={highContrast}
               locale={locale}
@@ -227,6 +255,7 @@ export function GlassSidebar({
               pathname={pathname}
               resolvedTheme={resolvedTheme}
               setTheme={setTheme}
+              themeReady={themeReady}
             />
           </SheetContent>
         </Sheet>

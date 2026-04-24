@@ -4,41 +4,41 @@ description: "仔細定義命題，準確閱讀布林連接詞與優先次序，
 ---
 
 邏輯先從已經足夠完整、可以判斷真假的陳述開始。這個分別很重要：
-一旦句子仲未封閉，就唔可以當作命題處理。
+一旦句子還未封閉，就不可以當作命題處理。
 
 ## 命題與真假值
 
 <Definition title="命題">
-命題係一個有確定真假值嘅陳述。佢不是真，就是假，沒有第三種情況。
+命題是一個有確定真假值的陳述。它不是真，就是假，沒有第三種情況。
 </Definition>
 
-呢個定義嘅目的唔係令邏輯變得抽象，而係分清楚哪些句子已經可以檢驗，
-哪些句子仲未完整。
+這個定義的目的不是令邏輯變得抽象，而是分清楚哪些句子已經可以檢驗，
+哪些句子還未完整。
 
 例子：
 
-- `2 + 2 = 4` 係命題。
-- `每個偶數都可以被 2 整除` 係命題。
-- `請打開門。` 不是命題，因為佢係命令。
-- 若未指定 `x`，`x + 1 = 3` 仲未係命題。
+- `2 + 2 = 4` 是命題。
+- `每個偶數都可以被 2 整除` 是命題。
+- `請打開門。` 不是命題，因為它是命令。
+- 若未指定 `x`，`x + 1 = 3` 還未是命題。
 
-<CommonMistake title="含有自由變量嘅公式唔會自動變成命題">
-如果句子的真假仍然依賴未指定嘅變量，咁佢仍然係開放句，唔係完整陳述。
-要先賦值，或者之後用量詞綁定佢。
+<CommonMistake title="含有自由變量的公式不會自動變成命題">
+如果句子的真假仍然依賴未指定的變量，那麼它仍然是開放句，不是完整陳述。
+要先賦值，或者之後用量詞綁定它。
 </CommonMistake>
 
-<WorkedExample title="判斷哪些句子係命題">
+<WorkedExample title="判斷哪些句子是命題">
 考慮以下三句：
 
-1. `7` 係質數。
+1. `7` 是質數。
 2. `x^2 + 1 > 0`。
 3. `請交功課。`
 
-第 1 句係命題，而且係真。第 2 句唔係命題，因為要睇 `x` 取咩值。
-第 3 句唔係命題，因為佢係請求，不是主張。
+第 1 句是命題，而且是真。第 2 句不是命題，因為要看 `x` 取甚麼值。
+第 3 句不是命題，因為它是請求，不是主張。
 
-<RevealSolution title="點解要分清楚">
-邏輯分析只可以喺句子足夠完整時開始。未封閉嘅句子，唔適合直接做真值表分析。
+<RevealSolution title="為甚麼要分清楚">
+邏輯分析只可以在句子足夠完整時開始。未封閉的句子，不適合直接做真值表分析。
 </RevealSolution>
 </WorkedExample>
 
@@ -54,7 +54,7 @@ description: "仔細定義命題，準確閱讀布林連接詞與優先次序，
 | `P → Q` | 若 `P`，則 `Q` | 只有 `P` 真而 `Q` 假時為假 |
 | `P ↔ Q` | `P` 當且僅當 `Q` | 兩邊真假一致時才真 |
 
-呢啲唔係純粹嘅口語縮寫，而係邏輯語言嘅基本符號，用嚟拼出更複雜嘅陳述。
+這些不是純粹的口語縮寫，而是邏輯語言的基本符號，用來拼出更複雜的陳述。
 
 運算次序亦都固定：
 
@@ -71,21 +71,21 @@ $$
 (¬A ∧ B) ∨ C.
 $$
 
-即係話：或者 `A` 為假而 `B` 為真，或者 `C` 為真。
+也就是話：或者 `A` 為假而 `B` 為真，或者 `C` 為真。
 
 如果你想表達其他意思，就一定要明確加括號。
 
-<RevealSolution title="點解括號唔係裝飾">
-邏輯公式係精確對象。括號唔係裝飾，而係決定句子真正內容嘅一部分。
+<RevealSolution title="為甚麼括號不是裝飾">
+邏輯公式是精確對象。括號不是裝飾，而是決定句子真正內容的一部分。
 </RevealSolution>
 </WorkedExample>
 
 ## 真值表與邏輯等價
 
-當你知道各個命題嘅真假值之後，就可以計算複合公式嘅真假。真值表就係用嚟記錄呢件事。
+當你知道各個命題的真假值之後，就可以計算複合公式的真假。真值表就是用來記錄這件事。
 
 <TheoremCard title="常用等價式">
-以下幾條等價式係基本工具，應該盡量熟記：
+以下幾條等價式是基本工具，應該盡量熟記：
 
 $$
 P → Q \equiv ¬P ∨ Q
@@ -108,10 +108,10 @@ $$
 $$
 </TheoremCard>
 
-呢啲唔係哲學命題，而係真值表恒等式。
+這些不是哲學命題，而是真值表恒等式。
 
 <WorkedExample title="用真值表檢查蘊含">
-`P → Q` 只會喺一種情況下為假：`P` 真而 `Q` 假。其餘情況都為真。
+`P → Q` 只會在一種情況下為假：`P` 真而 `Q` 假。其餘情況都為真。
 
 | `P` | `Q` | `P → Q` |
 | --- | --- | --- |
@@ -120,30 +120,30 @@ $$
 | `F` | `T` | `T` |
 | `F` | `F` | `T` |
 
-所以 `P → Q` 唔係話 `P` 同 `Q` 都真，而係排除咗「前件真、後件假」呢種情況。
+所以 `P → Q` 不是話 `P` 同 `Q` 都真，而是排除咗「前件真、後件假」這種情況。
 
-<RevealSolution title="呢點好重要">
-好多人會將 `P → Q` 讀成因果句。喺邏輯入面，佢唔係故事式嘅因果，而係真值條件。
+<RevealSolution title="這點好重要">
+許多人會將 `P → Q` 讀成因果句。在邏輯之中，它不是故事式的因果，而是真值條件。
 </RevealSolution>
 </WorkedExample>
 
 ## 推理規則
 
-課程入面會反覆用到幾種有效推理模式。
+課程之中會反覆用到幾種有效推理模式。
 
 <TheoremCard title="常見推理模式">
-如果 `P → Q` 同 `P` 都真，咁 `Q` 一定真。呢個叫 modus ponens。
+如果 `P → Q` 同 `P` 都真，那麼 `Q` 一定真。這個叫 modus ponens。
 
-如果 `P → Q` 同 `¬Q` 都真，咁 `¬P` 一定真。呢個叫 modus tollens。
+如果 `P → Q` 同 `¬Q` 都真，那麼 `¬P` 一定真。這個叫 modus tollens。
 
-如果 `P → Q` 同 `Q → R` 都真，咁 `P → R` 都真。呢個叫 hypothetical syllogism。
+如果 `P → Q` 同 `Q → R` 都真，那麼 `P → R` 都真。這個叫 hypothetical syllogism。
 
-如果 `P ∨ Q` 同 `¬P` 都真，咁 `Q` 一定真。呢個叫 disjunctive syllogism。
+如果 `P ∨ Q` 同 `¬P` 都真，那麼 `Q` 一定真。這個叫 disjunctive syllogism。
 </TheoremCard>
 
-呢啲模式之所以重要，係因為佢哋好似合法運算：前提真，結論就一定真。
+這些模式之所以重要，是因為它們似乎合法運算：前提真，結論就一定真。
 
-<WorkedExample title="一條有效嘅推理鏈">
+<WorkedExample title="一條有效的推理鏈">
 假設你知道
 
 $$
@@ -154,37 +154,38 @@ $$
 
 所以結論 `C` 由前提邏輯上跟得出。
 
-<RevealSolution title="如何辨認呢類推理">
-呢個係 modus ponens 用兩次：先由 `A` 推 `B`，再由 `B` 推 `C`。
+<RevealSolution title="如何辨認這類推理">
+這個是 modus ponens 用兩次：先由 `A` 推 `B`，再由 `B` 推 `C`。
 </RevealSolution>
 </WorkedExample>
 
-<CommonMistake title="唔好混淆有效同無效模式">
-由 `P → Q` 同 `Q`，你唔可以推出 `P`。呢個謬誤叫 affirming the consequent。
+<CommonMistake title="不好混淆有效同無效模式">
+由 `P → Q` 同 `Q`，你不可以推出 `P`。這個謬誤叫 affirming the consequent。
 
-由 `P → Q` 同 `¬P`，你唔可以推出 `¬Q`。呢個謬誤叫 denying the antecedent。
+由 `P → Q` 同 `¬P`，你不可以推出 `¬Q`。這個謬誤叫 denying the antecedent。
 </CommonMistake>
 
 ## 快速檢查
 
-<QuickCheck prompt="以下哪些係命題：`2 + 2 = 4`、`請打開窗戶。`、`x + 1 = 3`？">
-`2 + 2 = 4` 係命題。`請打開窗戶。` 不是。`x + 1 = 3` 要先指定 `x` 先算命題。
+<QuickCheck prompt="以下哪些是命題：`2 + 2 = 4`、`請打開窗戶。`、`x + 1 = 3`？">
+檢查每一句在原本寫法下是否已經有確定真假值。
 </QuickCheck>
 
 <RevealSolution title="答案">
-只有第一句喺原本寫法下有確定真假值。
+只有第一句在原本寫法下有確定真假值。`2 + 2 = 4` 是命題；`請打開窗戶。`
+是命令；`x + 1 = 3` 要先指定 `x` 先算命題。
 </RevealSolution>
 
-<QuickCheck prompt="根據標準次序，`¬A ∧ B ∨ C` 要加咩括號？">
-記住 `¬` 最先，然後係 `∧` 同 `∨`。
+<QuickCheck prompt="根據標準次序，`¬A ∧ B ∨ C` 要加甚麼括號？">
+記住 `¬` 最先，然後是 `∧` 同 `∨`。
 </QuickCheck>
 
 <RevealSolution title="答案">
-佢表示 `(¬A ∧ B) ∨ C`。
+它表示 `(¬A ∧ B) ∨ C`。
 </RevealSolution>
 
 <QuickCheck prompt="`P → Q` 同 `¬P ∨ Q`、`P ∧ Q`，邊個等價？">
-睇蘊含嘅真假條件。
+看蘊含的真假條件。
 </QuickCheck>
 
 <RevealSolution title="答案">
@@ -192,20 +193,20 @@ $$
 </RevealSolution>
 
 <QuickCheck prompt="推理 `P → Q`、`Q`，所以 `P` 有效嗎？">
-試想 `P` 其實係假嘅情況。
+試想 `P` 其實是假的情況。
 </QuickCheck>
 
 <RevealSolution title="答案">
-無效。呢個謬誤叫 affirming the consequent。
+無效。這個謬誤叫 affirming the consequent。
 </RevealSolution>
 
 ## 嵌入式檢查
 
-用互動表試驗你自己寫出嚟嘅公式。
+用互動表試驗你自己寫出來的公式。
 
 <InteractiveWidget id="truth-table-builder" />
 
-## 先讀呢一頁
+## 先讀這一頁
 
-如果你想睇量詞版本，請讀
+如果你想看量詞版本，請讀
 [1.3 量詞與否定](/zh-hk/notes/math1090/logic/quantifiers-negation)。

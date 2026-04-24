@@ -1,0 +1,112 @@
+---
+title: "5.2 Topological sort、heap 與 Huffman coding"
+description: "把 DAG ordering、priority-queue operations 與 Huffman coding 看成結構限制加 greedy choice 的連續例子。"
+---
+
+最後一份 CSCI2520 tutorial 把三個看似分開的題目放在一起：topological
+sorting、heaps、Huffman coding。它們的共同點是每一個問題都有明確的
+structural constraint。
+
+- Topological order 必須尊重所有 directed prerequisite edges。
+- Heap 同時要滿足 shape condition 和 heap-order condition。
+- Huffman tree 會反覆合併兩個最低 frequency 的部分。
+
+## Topological order
+
+<Definition title="Topological order">
+對 directed acyclic graph `G = (V, E)`，topological order 是 vertices 的一個
+ordering，使得每條 directed edge `(u, v)` 都滿足 `u` 出現在 `v` 之前。
+</Definition>
+
+DAG condition 是必須的。若有 directed cycle，每個 vertex 都要在下一個之前，
+繞一圈後就等於要求某 vertex 在自己之前，這不可能。
+
+## Kahn's algorithm
+
+Kahn's algorithm 反覆選擇沒有 incoming edges 的 vertex，output 它，然後移除
+它的 outgoing edges。安全放在最前面的 vertices，正是那些 prerequisites 已
+經全部滿足的 vertices。
+
+<WorkedExample title="Kahn's algorithm 如何偵測 cycle">
+若 algorithm 還有 vertices 未 output，但沒有任何 vertex indegree 為 zero，
+則剩餘 directed subgraph 含有 cycle。此時沒有合法的下一個 vertex，所以
+topological order 不存在。
+</WorkedExample>
+
+## DFS-based topological sorting
+
+Tutorial 也給 DFS 方法：從 unvisited vertices 做 DFS，當某 vertex 的 DFS
+完成時，把它加到 output list 的 front。Finishing time 重要，因為一個 vertex
+應該排在它能 reach 的 vertices 前面。
+
+Kahn's algorithm 從「沒有未完成 prerequisites」出發；DFS method 從「descendants
+已完成」出發。
+
+## Heaps
+
+<Definition title="Min heap">
+Min heap 是 complete binary tree，並滿足 heap-order property：每個 node 都
+小於或等於它的 children。
+</Definition>
+
+Tutorial 給出 min heap 的基本成本：
+
+- `insert`: `O(log n)`;
+- `findmin`: `O(1)`;
+- `delmin`: `O(log n)`;
+- `build_heap`: `O(n)`.
+
+Complete-tree structure 令 heap 可以用 array 緊密儲存；heap-order property
+解釋了為甚麼 minimum 一定在 root。
+
+<TheoremCard title="為甚麼 heap operations 是 logarithmic">
+Complete binary tree 的 height 是 `O(log n)`。Insertion 和 deletion 只沿
+一條 root-to-leaf 或 leaf-to-root path 修補 heap order，所以成本是 logarithmic。
+</TheoremCard>
+
+## Huffman coding
+
+Huffman coding 使用 min heap，反覆合併兩個 least frequent symbols 或
+subtrees。結果是一棵 binary prefix-code tree，讓 frequent symbols 有較短
+codes。
+
+Tutorial 的 frequency example 顯示 algorithm pattern：先 build heap，再
+重複 `delmin` 兩次、建立 combined node、把新 node insert 回 heap。
+
+## Merging sorted lists
+
+同一個 priority-queue idea 也可用於 merge 多個 sorted lists。兩個 lists 時，
+比較兩個 heads 即可；很多 lists 時，我們要在所有 current heads 裡找最小，
+heap 可以有效維護這個 minimum。
+
+<QuickCheck prompt="為甚麼 directed cycle 沒有 topological order？">
+沿著 cycle 追 before relation。
+</QuickCheck>
+
+<RevealSolution title="答案">
+每條 edge 都要求一個 vertex 在下一個之前。繞成 cycle 後，就會要求某 vertex
+在自己之前，這不可能。
+</RevealSolution>
+
+<QuickCheck prompt="Min heap 的 minimum 在哪裡？">
+用 heap-order property。
+</QuickCheck>
+
+<RevealSolution title="答案">
+在 root。
+</RevealSolution>
+
+## 練習
+
+1. 解釋 Kahn's algorithm 和 DFS-based topological sorting 的差異。
+2. 為甚麼 min heap 的 `findmin` 是 constant time？
+3. 解釋 Huffman coding 為甚麼反覆合併兩個 smallest frequency nodes。
+
+<RevealSolution title="引導解答">
+1. Kahn's algorithm output indegree-zero vertices 並移除 outgoing edges；
+   DFS-based sorting 按 finishing time 放置 vertices。
+2. Heap-order property 把 minimum 放在 root，所以直接讀 root 即可。
+3. 合併 least frequent nodes 讓 rare symbols 深一些，保留短 code 給 frequent
+   symbols。
+</RevealSolution>
+

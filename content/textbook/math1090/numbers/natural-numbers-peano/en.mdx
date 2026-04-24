@@ -12,7 +12,7 @@ $$
 
 already says everything important.
 
-The source notes take a more serious view. They ask what structure actually
+A rigorous treatment asks what structure actually
 makes the natural numbers behave the way they do. The answer is not the shape of
 the symbols, but the presence of a distinguished starting point, a successor
 operation, and an induction principle.
@@ -80,13 +80,13 @@ successor map twice to `0`." The notation is convenient, but the structure comes
 first.
 </WorkedExample>
 
-This is why the notes sometimes return to successor notation when they want the
+This is why successor notation remains useful when we want the
 definition to remain visible instead of being hidden behind familiar symbols.
 
 ## Induction is not an extra trick
 
 Students often meet induction as a proof technique after they already believe
-the natural numbers are understood. The source notes reverse that perspective.
+the natural numbers are understood. A construction-first perspective reverses that order.
 
 The induction principle is part of the definition of what the natural numbers
 are. In that sense, induction is not merely a useful method for proving
@@ -115,8 +115,10 @@ $$
 This structure does not satisfy the Peano axioms.
 
 First, `0` is a successor because `S(2)=0`, so axiom 3 fails.
-Second, induction fails as well: the subset `\{0,1,2\}` loops back on itself
-instead of extending in a one-way chain from `0`.
+This is already enough to reject the structure as a model of the natural
+numbers. The example should not be read as an induction-axiom failure: from
+`0`, repeated successors still visit the whole finite set. The problem is that
+the successor map loops back and makes `0` a successor.
 
 So although the symbols look familiar, this structure is not a model of the
 natural numbers.
@@ -125,6 +127,46 @@ natural numbers.
 This example is important because it shows why the Peano axioms are not
 ornamental. They exclude structures that resemble counting in superficial ways
 but do not behave like `N`.
+
+## Optional model: von Neumann natural numbers
+
+The Peano axioms describe what the natural numbers must do, but they do not
+force us to use any particular internal representation. One standard set-theoretic
+model is the **von Neumann construction**:
+
+$$
+0:=\varnothing,\qquad
+1:=\{0\},\qquad
+2:=\{0,1\},\qquad
+3:=\{0,1,2\}.
+$$
+
+In general,
+
+$$
+S(n)=n\cup\{n\}.
+$$
+
+So each natural number is the set of all earlier natural numbers. In this model,
+membership mirrors order: `m\in n` exactly when `m<n`.
+
+<WorkedExample title="Why `2` becomes `{0,1}`">
+Starting with `0=\varnothing`, the successor rule gives
+
+$$
+1=S(0)=0\cup\{0\}=\{0\},
+$$
+
+and then
+
+$$
+2=S(1)=1\cup\{1\}=\{0,1\}.
+$$
+
+This does not mean the everyday numeral `2` has changed its meaning. It means
+we have built a concrete set-theoretic representative that satisfies the same
+successor pattern.
+</WorkedExample>
 
 ## Why the axioms are more informative than the dots
 

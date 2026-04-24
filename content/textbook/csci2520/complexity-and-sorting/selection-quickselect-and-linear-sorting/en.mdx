@@ -1,0 +1,145 @@
+---
+title: "3.2 Selection, quickselect, and linear-time sorting"
+description: "Separate sorting from selection, then understand why counting sort and radix sort can beat the comparison-sorting lower bound only under extra assumptions."
+---
+
+The selection problem asks for the kth smallest element, not for a fully sorted
+array. That distinction matters. Sorting always solves selection, but it often
+does more work than the question requires.
+
+This section connects three ideas from the local tutorial and sorting slides:
+partial selection, quickselect, and non-comparison sorting.
+
+## The selection problem
+
+<Definition title="Selection problem">
+Given a list of `n` elements and an integer `k`, the selection problem asks for
+the kth smallest element.
+</Definition>
+
+The simplest special case is the minimum. Scanning once is enough, so the cost
+is `O(n)`. But the general kth smallest problem is more subtle, because we need
+enough order information to know which element has rank `k`.
+
+## Two naive approaches
+
+The tutorial gives two natural approaches.
+
+First, sort the whole array and read the kth position. This is easy to reason
+about, but if the sorting algorithm is comparison-based, the typical cost is at
+least around `O(n log n)`.
+
+Second, repeatedly find and remove the smallest element until the kth round.
+This is partial selection sort. It avoids completing the entire sort, but each
+round still scans a remaining suffix.
+
+<WorkedExample title="Partial selection cost">
+To find the 4th smallest element by repeated minimum selection, we scan the
+array to find the minimum, remove it, and repeat three more times.
+
+For small `k`, this is much less work than full selection sort. For large `k`,
+it approaches the same quadratic behavior.
+</WorkedExample>
+
+## Quickselect uses the quicksort partition idea differently
+
+Quicksort partitions and then recursively sorts both sides. Quickselect uses
+the same partition idea, but it recurses into only one side.
+
+After partitioning around a pivot, the pivot has a rank position relative to the
+current subarray. If that rank is exactly `k`, we are done. If the desired rank
+is smaller, recurse only on the left side. If it is larger, recurse only on the
+right side with an adjusted rank.
+
+<TheoremCard title="Why quickselect can avoid full sorting">
+After partitioning, only one side can contain the desired kth smallest element.
+The other side may remain unsorted, because its internal order is irrelevant to
+the answer.
+</TheoremCard>
+
+The important word is "can". Pivot choices still matter. A bad pivot sequence
+can make quickselect behave quadratically, while good or randomized pivot
+choices give much better expected behavior.
+
+## Comparison sorting has a lower bound
+
+The linear-time sorting slides remind us that merge sort, heapsort, and
+quicksort are comparison sorts. In the worst case, comparison sorting needs
+`Omega(n log n)` comparisons. To beat that barrier, an algorithm must use extra
+information about the keys instead of relying only on pairwise comparisons.
+
+## Counting sort
+
+<Definition title="Counting sort">
+Counting sort sorts integer keys by counting how many times each key appears in
+a bounded range, then using cumulative counts to place elements.
+</Definition>
+
+The range assumption is essential. If keys lie in `0` to `K`, we need a count
+array whose size depends on `K`.
+
+The algorithm has three conceptual steps:
+
+1. count occurrences of each key;
+2. accumulate the counts so each entry tells how many keys are at most that
+   value;
+3. place each input element into the output position determined by the
+   cumulative counts.
+
+Counting sort is linear when `K = O(n)`, but it is not in-place and it is not a
+general-purpose comparison sort.
+
+## Radix sort
+
+Radix sort sorts numbers digit by digit. The slides emphasize that it commonly
+uses a stable sorting routine such as counting sort as a subroutine.
+
+Stability is not optional here. If a later digit pass destroys the order created
+by an earlier digit pass, the final result can be wrong.
+
+<WorkedExample title="Why stability matters in radix sort">
+Suppose two numbers have the same current digit. A stable subroutine keeps them
+in the order established by previous digit passes. That preserved order is the
+memory that lets digit-by-digit sorting assemble the final sorted order.
+</WorkedExample>
+
+## Common mistakes
+
+- Solving selection by sorting without noticing the extra work.
+- Claiming quickselect is always linear without stating pivot assumptions.
+- Saying counting sort is `O(n)` while ignoring the key range `K`.
+- Using a non-stable subroutine inside radix sort.
+
+<QuickCheck prompt="Why is full sorting more work than selection?">
+Compare the requested output.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Selection asks for one ranked element. Sorting asks for the complete order of
+all elements, which contains more information than a single kth item.
+</RevealSolution>
+
+<QuickCheck prompt="What extra assumption lets counting sort run in linear time?">
+Think about the count array.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The key range must be bounded so that the count array is not larger than a
+constant multiple of the input size; commonly this is stated as `K = O(n)`.
+</RevealSolution>
+
+## Exercises
+
+1. Explain why quickselect recurses on only one partition side.
+2. Give a case where partial selection sort is reasonable.
+3. Explain why radix sort usually needs a stable subroutine.
+
+<RevealSolution title="Guided solutions">
+1. Once the pivot rank is known, the kth element must lie on exactly one side
+   unless the pivot itself has the desired rank.
+2. It is reasonable when `k` is small and only a few minimum-selection rounds
+   are needed.
+3. Stability preserves the ordering created by previous digit passes; without
+   it, later passes can scramble earlier digit information.
+</RevealSolution>
+

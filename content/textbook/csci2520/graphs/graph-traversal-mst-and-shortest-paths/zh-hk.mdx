@@ -1,0 +1,108 @@
+---
+title: "5.1 Graph traversal、spanning tree 與 shortest path"
+description: "由 vertices 與 edges 讀 graph，再比較 DFS、BFS、MST algorithms 與 Dijkstra-style shortest-path reasoning。"
+---
+
+Graph 用來表示不自然排成直線的關係。進入 graph 後，最重要的是分清 abstract
+object 和 representation，再按問題選 traversal 或 optimization method。
+
+## Graph vocabulary
+
+<Definition title="Graph">
+Graph 由 vertices 和 edges 組成。Edges 可以是 directed 或 undirected，也
+可以有 weights。
+</Definition>
+
+Directed edge 有方向，`(u, v)` 不等於 `(v, u)`。Weighted edge 有 cost、
+distance 或 capacity。這些特徵會改變可用 algorithm。
+
+Lecture 還區分 path、simple path、cycle、acyclic graph、connectivity 和
+degree。這些詞會決定 algorithm 是否適用。
+
+## Representations
+
+常見 representation 有 adjacency matrix 和 adjacency list。
+
+- Adjacency matrix 查 edge 很直接，但 space 與 vertices 數平方有關。
+- Adjacency list 儲存每個 vertex 的 neighbors，對 sparse graph 較自然。
+
+分析 graph algorithms 時，要說明 representation，或者用 `V` 和 `E` 表示成本。
+
+## Depth first search
+
+DFS 會沿一條 branch 盡量深入，不能再走才 backtrack。Tutorial 用 current
+stack 和 visited array 追蹤這件事。
+
+<Definition title="Depth first search">
+DFS 從 start vertex 開始，沿 unvisited neighbor path 盡量深入，沒有 unvisited
+neighbor 時才 backtrack。
+</Definition>
+
+DFS 常用於 reachability、connected components、cycle reasoning，以及
+DFS-based topological sorting。
+
+## Breadth first search
+
+BFS 按距離 layer visit vertices。Tutorial 用 queue，而不是 stack。
+
+<Definition title="Breadth first search">
+BFS 先 visit start vertex，再 visit distance one 的 vertices，再 distance
+two，如此類推，並用 queue 保存 layer order。
+</Definition>
+
+在 unweighted graph 中，BFS 給出用 edge 數量衡量的 shortest path distance；
+DFS 不保證這點。
+
+## Minimum spanning trees
+
+對 connected undirected weighted graph，spanning tree 包含所有 vertices 和
+剛好 `V - 1` 條 edges。Minimum spanning tree 令 total edge weight 最小。
+
+Kruskal's algorithm 先按 edge weight 排序，逐條加入不會形成 cycle 的最輕
+edge。Prim's algorithm 則由一棵 tree 開始，每次加入連到新 vertex 的最輕
+edge。
+
+<TheoremCard title="MST algorithms 保護甚麼">
+Kruskal 和 Prim 都一邊保持 acyclic，一邊加入當前視角下安全的最便宜 edge。
+</TheoremCard>
+
+## Dijkstra-style shortest paths
+
+Dijkstra 解另一個問題：在 nonnegative weighted graph 中，由一個 start vertex
+到其他 vertices 的 shortest paths。它保存每個 vertex 的 current best cost，
+每次 finalize current cost 最小的 unvisited vertex，然後 relax 它的 outgoing
+edges。
+
+Visited 的意思很強：一個 vertex finalized 後，到它的 shortest path 已經確定。
+
+<QuickCheck prompt="DFS 和 BFS 哪一個使用 queue？">
+想 layer order。
+</QuickCheck>
+
+<RevealSolution title="答案">
+BFS 使用 queue；DFS 通常用 recursion 或 explicit stack。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼 MST 有剛好 V minus 1 條 edges？">
+假設 spanning subgraph 是 tree。
+</QuickCheck>
+
+<RevealSolution title="答案">
+每棵有 `V` 個 vertices 的 tree 都有 `V - 1` 條 edges；spanning tree 是包含
+所有 vertices 的 tree。
+</RevealSolution>
+
+## 練習
+
+1. 解釋何時 adjacency list 比 adjacency matrix 更合適。
+2. 解釋為甚麼 BFS 在 unweighted graph 中給出 shortest paths。
+3. 分清 MST problem 和 single-source shortest path problem。
+
+<RevealSolution title="引導解答">
+1. Sparse graph 較適合 adjacency list，因為它不需要儲存大量不存在的 edges。
+2. BFS 按 edge-distance layer visit vertices，所以第一次到達某 vertex 時
+   已經是 shortest unweighted path。
+3. MST 最小化連接所有 vertices 的 tree total weight；shortest paths 最小化
+   由一個 source 到各 target 的 path cost。
+</RevealSolution>
+

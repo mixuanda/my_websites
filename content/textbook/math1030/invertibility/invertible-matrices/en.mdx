@@ -90,8 +90,8 @@ off-diagonal zeros stay zero. Multiplying `D` by `D^{-1}` gives `I_3`.
 
 ## Row reduction and the inverse
 
-The most practical way to test invertibility is to row-reduce. The source notes
-make the key point in two steps:
+The most practical way to test invertibility is to row-reduce. The key point
+has two parts:
 
 1. row-operation matrices are invertible, with inverse given by the reverse row
    operation;
@@ -138,8 +138,9 @@ right block becomes the inverse.
 
 ## Equivalent formulations
 
-The source material builds a dictionary of equivalent conditions. This is the
-main bridge between algebra, row reduction, and systems of linear equations.
+Invertibility is useful because it has a dictionary of equivalent conditions.
+This is the main bridge between algebra, row reduction, and systems of linear
+equations.
 
 <TheoremCard title="Equivalent ways to recognize invertibility">
 Let `A` be a `p \times p` matrix. Then the following statements are equivalent:
@@ -167,9 +168,9 @@ linear system by a matrix inverse.
 
 ## Row-equivalence through invertible matrices
 
-The next source packet pushes the row-operation viewpoint one step further.
-Instead of thinking about row-equivalence as a long list of elementary moves,
-it packages the whole list into one invertible matrix on the left.
+We can push the row-operation viewpoint one step further. Instead of thinking
+about row-equivalence as a long list of elementary moves, package the whole
+list into one invertible matrix on the left.
 
 <TheoremCard title="Row-equivalence is left multiplication by an invertible matrix">
 Suppose `A` and `B` are matrices with `p` rows. Then the following are
@@ -280,9 +281,9 @@ column relations are forced by the others.
 
 ## Why the reduced row-echelon form is unique
 
-The appendix to the source notes proves that the reduced row-echelon form in a
-row-equivalence class is unique. That fact is easy to overlook, but it is what
-makes later definitions mathematically legitimate.
+The reduced row-echelon form in a row-equivalence class is unique. That fact is
+easy to overlook, but it is what makes later definitions mathematically
+legitimate.
 
 <TheoremCard title="A row-equivalence class has exactly one reduced row-echelon form">
 Suppose `A` is a matrix, and suppose `B` and `C` are both reduced
@@ -294,7 +295,7 @@ B = C.
 $$
 </TheoremCard>
 
-The appendix proves this by induction on the rank. The basic strategy is:
+A standard proof uses induction on the rank. The basic strategy is:
 
 1. compare the pivot columns from left to right,
 2. use preserved linear relations to force the same pivot positions, and then

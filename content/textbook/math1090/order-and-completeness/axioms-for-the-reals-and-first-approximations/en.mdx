@@ -11,7 +11,7 @@ In earlier chapters, the pattern was:
 2. build a model that has that structure,
 3. check the construction carefully.
 
-The lecture notes now do the same for the real numbers. Before giving a formal
+Do the same for the real numbers. Before giving a formal
 construction, they first say what the reals are supposed to *be* from a
 structural point of view.
 
@@ -38,6 +38,16 @@ This definition compresses the whole chapter into one sentence:
 > the reals are an ordered field with no missing least upper bounds or greatest
 > lower bounds.
 
+<TheoremCard title="Uniqueness of the real numbers">
+Any two complete ordered fields are isomorphic as ordered fields.
+</TheoremCard>
+
+This theorem explains why the course can move between different constructions
+of `R`. Dedekind cuts and Cauchy sequences look different internally, but once
+both constructions satisfy the complete ordered field axioms, they represent
+the same real number system up to the unique structure that matters here:
+addition, multiplication, and order.
+
 <WorkedExample title="Why Q is not yet a model of the reals">
 The rational numbers already satisfy the ordered-field part. What fails is
 completeness.
@@ -58,7 +68,7 @@ A first instinct is to say:
 
 "A real number is just an infinite decimal expansion."
 
-That instinct is useful, but the notes warn that it is not yet the cleanest
+That instinct is useful, but it is not yet the cleanest
 definition.
 
 There are at least two reasons.
@@ -68,7 +78,7 @@ There are at least two reasons.
 - Decimal expansions force a specific base, such as base 10, even though the
   idea of the real numbers should not depend on that arbitrary choice.
 
-So the notes do not reject decimal intuition. Instead, they use it as a guide
+So we should not reject decimal intuition. Instead, use it as a guide
 toward a more structural construction.
 
 ## The approximation idea
@@ -126,31 +136,31 @@ real number can be read as a boundary that separates the rationals into a left
 camp and a right camp.
 
 That is exactly the motivation behind the Dedekind-cut construction in the next
-part of the lecture notes. Section 4.7 is still motivational rather than fully
+part of the construction. This stage is still motivational rather than fully
 formal, but it already tells you what kind of object a real number should be:
 something that organizes the rationals by comparison.
 
 ## What section 4.7 does and does not do
 
-<TheoremCard title="Section 4.7 is a construction strategy, not yet the finished construction">
+<TheoremCard title="This is a construction strategy, not yet the finished construction">
 The goal of section 4.7 is to explain *why* a real number should be describable
 through rational approximations and left/right rational sets. The fully formal
 Dedekind-cut definition comes only afterward.
 </TheoremCard>
 
 This distinction matters. If you treat section 4.7 as already giving the final
-definition, you miss the role of the next step. The notes are building
+definition, you miss the role of the next step. The argument is building
 motivation first, then turning that motivation into a rigorous object.
 
 <CommonMistake title="Infinite decimal strings are not automatically a finished definition">
 An infinite decimal expansion gives excellent intuition, but by itself it does
 not settle issues such as multiple expansions for the same number or the base
-dependence of the notation. That is why the notes move from decimal intuition to
+dependence of the notation. That is why we move from decimal intuition to
 a structural construction.
 </CommonMistake>
 
-<CommonMistake title="Section 4.7 is not yet the full Dedekind-cut theory">
-At this stage, the notes are telling you how to *think* about a real number: as
+<CommonMistake title="This is not yet the full Dedekind-cut theory">
+At this stage, the goal is to learn how to *think* about a real number: as
 something determined by rational approximations and a left/right split of `Q`.
 The formal cut definition and the verification of field properties come later.
 </CommonMistake>

@@ -1,0 +1,506 @@
+---
+title: "6.1.2-6.3 Cantor's theorem, continuum, and choice"
+description: "Use Cantor's theorem to prove that the reals are uncountable, state the continuum hypothesis, and introduce choice functions, the axiom of choice, and Zorn's lemma."
+---
+
+The previous note compared sizes of sets using bijections and injections. This
+note begins with the first genuinely large-set theorem of the chapter:
+Cantor's theorem. It shows that every set is strictly smaller than its power
+set.
+
+That result immediately gives a proof that the real numbers are uncountable.
+The same pages then move to two foundational statements: the continuum
+hypothesis and the axiom of choice. The course does not prove their deep
+metamathematical facts, but it states clearly how they enter the theory.
+
+## Power sets and Cantor's theorem
+
+<Definition title="Power set notation">
+For a set `X`, the notation `2^X` denotes the set of all subsets of `X`.
+
+Thus
+
+$$
+T\in 2^X
+$$
+
+means exactly that `T\subseteq X`.
+</Definition>
+
+The notation `2^X` is suggestive: if `X` has `n` elements, then its power set
+has `2^n` subsets. Cantor's theorem says that the power set is larger not only
+for finite sets, but for every set.
+
+<TheoremCard title="Cantor's theorem">
+Let `X` be a set. Then
+
+$$
+|X|<|2^X|.
+$$
+</TheoremCard>
+
+The proof has two parts.
+
+First, there is an injection
+
+$$
+X\to 2^X,\qquad x\mapsto \{x\}.
+$$
+
+So `|X|\le |2^X|`.
+
+Second, there is no bijection from `X` to `2^X`. Suppose, for contradiction,
+that `f:X\to 2^X` were a bijection. Define the diagonal set
+
+$$
+T=\{x\in X\mid x\notin f(x)\}.
+$$
+
+Since `T` is a subset of `X`, we have `T\in 2^X`. If `f` were surjective, there
+would be some `y\in X` such that
+
+$$
+f(y)=T.
+$$
+
+Now ask whether `y\in T`.
+
+- If `y\in T`, then by definition of `T`, `y\notin f(y)=T`, a contradiction.
+- If `y\notin T`, then by definition of `T`, `y\in f(y)=T`, again a
+  contradiction.
+
+Both cases are impossible. Therefore no bijection `X\to 2^X` exists, and hence
+`|X|<|2^X|`.
+
+<CollapsibleProof title="Why this is a diagonal argument">
+The set `T` is built by looking at the membership question for each element
+against its assigned subset: is `x` an element of `f(x)`? Then `T` deliberately
+chooses the opposite answer at every position. This guarantees that `T` differs
+from every proposed value `f(x)` at least at the element `x`.
+</CollapsibleProof>
+
+## A diagonal lab
+
+The widget below is meant to support the proof, not replace it. Use it to see
+how the set `T` is forced to disagree with each attempted list of subsets.
+
+![Cantor diagonal set construction](/images/textbook/math1090/cantor-diagonal-set.png)
+
+*Figure. The diagonal set is constructed by reversing the membership decision
+on the diagonal, so it cannot equal any row of the proposed list.*
+
+<InteractiveWidget id="cantor-diagonal-lab" />
+
+## The real numbers are uncountable
+
+<TheoremCard title="The reals are uncountable">
+The set `R` of real numbers is uncountable. In particular,
+
+$$
+|N|<|R|.
+$$
+</TheoremCard>
+
+The proof uses Cantor's theorem and an injection from
+`2^N` into `R`.
+
+By Cantor's theorem,
+
+$$
+|N|<|2^N|.
+$$
+
+So it is enough to show
+
+$$
+|2^N|\le |R|.
+$$
+
+Given a subset `S\subseteq N`, encode it by a sequence of zeros and ones:
+
+$$
+a_n=
+\begin{cases}
+1, & n\in S,\\
+0, & n\notin S.
+\end{cases}
+$$
+
+Then define
+
+$$
+\phi(S)=\sum_{n=0}^{\infty}\frac{a_n}{3^{n+1}}\in [0,1].
+$$
+
+This sends each subset of `N` to a real number.
+
+<WorkedExample title="Encoding a subset of N">
+If
+
+$$
+S=\{0,2,5,\ldots\},
+$$
+
+then the beginning of the sequence is
+
+$$
+a_0=1,\quad a_1=0,\quad a_2=1,\quad a_3=0,\quad a_4=0,\quad a_5=1.
+$$
+
+The corresponding real number begins as
+
+$$
+\phi(S)=\frac13+\frac1{3^3}+\frac1{3^6}+\cdots .
+$$
+
+The proof does not need to describe this number by a decimal expansion. It only
+needs the fact that the infinite series determines a real number.
+</WorkedExample>
+
+Why use base `3` rather than base `2`? Base `3` is useful so that distinct
+zero-one sequences cannot be cancelled by the tail.
+
+If `S\ne S'`, let `k` be the first index where the two associated sequences
+differ. At index `k`, the two sums differ by exactly
+
+$$
+\frac1{3^{k+1}}.
+$$
+
+The total possible contribution from all later terms is smaller than that
+leading difference. Therefore the two real numbers are not equal. Hence
+`\phi` is injective, and `|2^N|\le |R|`.
+
+Combining this with Cantor's theorem gives
+
+$$
+|N|<|2^N|\le |R|,
+$$
+
+so `R` is uncountable.
+
+<CommonMistake title="The proof only needs an injection into R">
+To prove `|2^N|\le |R|`, we do not need every real number to be hit by `\phi`.
+We only need distinct subsets of `N` to produce distinct real numbers.
+</CommonMistake>
+
+## The continuum hypothesis
+
+<TheoremCard title="Continuum hypothesis">
+The continuum hypothesis says that there is no set `S` such that
+
+$$
+|N|<|S|<|R|.
+$$
+</TheoremCard>
+
+This is a natural guess after seeing that `R` is larger than `N`: perhaps there
+is no intermediate size between the countably infinite cardinality and the
+cardinality of the continuum.
+
+This guess has a surprising formal status. The
+continuum hypothesis is independent of the usual axioms of set theory, ZFC.
+Godel showed in 1940 that it is consistent with ZFC, and Cohen showed in 1963,
+using forcing, that its negation is also consistent with ZFC. Therefore it can
+neither be proved nor disproved from the standard axioms alone.
+
+For this course, the important point is not to prove those results. It is to
+recognize that cardinal arithmetic quickly reaches foundational questions where
+axioms matter.
+
+## Choice functions and the axiom of choice
+
+Before stating the axiom of choice, define how to take a union of a
+set whose elements are themselves sets:
+
+$$
+\bigcup S=\{x\mid \exists X\in S\text{ such that }x\in X\}.
+$$
+
+<Definition title="Choice function">
+Let `S` be a set whose elements are nonempty sets. A **choice function** for
+`S` is a function
+
+$$
+f:S\to \bigcup S
+$$
+
+such that
+
+$$
+f(X)\in X
+$$
+
+for every `X\in S`.
+</Definition>
+
+A choice function chooses one element from each set in the family `S`.
+
+If `S` contained the empty set, no choice function could exist, because there is
+no element to choose from the empty set. That is why the definition assumes that
+the members of `S` are nonempty.
+
+<TheoremCard title="Axiom of choice">
+Let `S` be a set whose elements are nonempty sets. Then `S` has a choice
+function.
+</TheoremCard>
+
+This is an axiom, not a theorem. Like the continuum
+hypothesis, its truth or falsehood is independent of the other axioms of set
+theory.
+
+<WorkedExample title="What a choice function does">
+Let
+
+$$
+S=\{\{1,2\},\{3,4,5\},\{6\}\}.
+$$
+
+A choice function might choose
+
+$$
+f(\{1,2\})=1,\qquad f(\{3,4,5\})=4,\qquad f(\{6\})=6.
+$$
+
+The function does not have to choose the smallest element. It only has to choose
+one member of each nonempty set.
+</WorkedExample>
+
+## Surjections and cardinal inequalities
+
+<TheoremCard title="Surjections give reverse cardinal inequalities with choice">
+Let `f:X\to Y` be a surjective function. Then
+
+$$
+|X|\ge |Y|.
+$$
+</TheoremCard>
+
+To prove this, we need an injection `g:Y\to X`.
+
+For each `y\in Y`, the fiber
+
+$$
+f^{-1}(y)\subseteq X
+$$
+
+is nonempty because `f` is surjective. Let
+
+$$
+S=\{f^{-1}(y)\mid y\in Y\}.
+$$
+
+This is a set of nonempty subsets of `X`. By the axiom of choice, choose one
+element from each fiber. Define
+
+$$
+g(y)=\text{the chosen element of }f^{-1}(y).
+$$
+
+Then `g:Y\to X` is injective. Indeed, if `g(y)=g(y')`, then the same element of
+`X` lies in both fibers, so
+
+$$
+f(g(y))=y
+\qquad\text{and}\qquad
+f(g(y'))=y'.
+$$
+
+Since `g(y)=g(y')`, it follows that `y=y'`.
+
+This explains the earlier warning: the implication from surjection to reverse
+cardinal inequality uses choice when infinitely many fibers may need to be
+selected simultaneously.
+
+## Countable unions of countable sets
+
+<TheoremCard title="A countable union of countable sets is countable">
+If `{A_n}_{n\in N}` is a countable family of countable sets, then
+
+$$
+A=\bigcup_{n\in N} A_n
+$$
+
+is countable.
+</TheoremCard>
+
+The proof is organized by surjections. Since each `A_n` is
+countable, choose a surjection
+
+$$
+f_n:N\to A_n.
+$$
+
+If `A_n` is finite, one may repeat the last element indefinitely to obtain such
+a surjection. The axiom of choice is used to choose the whole family of maps
+`{f_n}` simultaneously.
+
+Now define
+
+$$
+F:N\times N\to A,\qquad F(n,m)=f_n(m).
+$$
+
+This map is surjective: every element of the union lies in some `A_n`, and then
+is hit by the corresponding `f_n`.
+
+Finally, `N\times N` is countable by a diagonal argument analogous to the proof
+that `Q` is countable. Therefore there is a surjection
+
+$$
+N\to N\times N.
+$$
+
+Composing gives a surjection `N\to A`, so `A` is countable.
+
+<CommonMistake title="Countable union is not the same as arbitrary union">
+The theorem here is about a countable family `{A_n}`. It does not say that an
+arbitrary union of countable sets must be countable.
+</CommonMistake>
+
+## Chains, maximal elements, and Zorn's lemma
+
+The final part of the assigned pages states Zorn's lemma, which is equivalent
+to the axiom of choice.
+
+<Definition title="Chain">
+Let `X` be a partially ordered set. A **chain** `S\subseteq X` is a totally
+ordered subset: for every `a,b\in S`, either
+
+$$
+a\le b
+\qquad\text{or}\qquad
+b\le a.
+$$
+</Definition>
+
+<Definition title="Maximal element">
+An element `m\in X` is called a **maximal element** if there is no `x\in X`
+with
+
+$$
+x>m.
+$$
+</Definition>
+
+A maximal element need not be greater than all other elements. This is different
+from a maximum, which must satisfy `m\ge x` for every `x\in X`.
+
+<WorkedExample title="Maximal is weaker than maximum">
+In a partially ordered set, two elements may be incomparable. If neither is
+above the other, both can be maximal in a small subset even though neither is a
+maximum.
+
+So "maximal" means "cannot be extended upward from here," not "dominates every
+element."
+</WorkedExample>
+
+<TheoremCard title="Zorn's lemma">
+The axiom of choice is equivalent to the following statement:
+
+if `X` is a nonempty partially ordered set in which every chain has an upper
+bound in `X`, then `X` has a maximal element.
+</TheoremCard>
+
+The course states this result as a foundational tool. Its full proof belongs to
+a more advanced treatment, but the definitions should be read carefully now:
+Zorn's lemma is about partial orders, chains, upper bounds for chains, and the
+existence of maximal elements.
+
+## Common mistakes and subtle points
+
+<CommonMistake title="Do not treat Cantor's theorem as only finite arithmetic">
+For finite sets, `2^n>n` is familiar. Cantor's theorem is stronger: it applies
+to every set, including infinite sets.
+</CommonMistake>
+
+<CommonMistake title="Do not confuse maximal with maximum">
+A maximum is above every element. A maximal element merely has no strictly
+larger element above it. In partial orders these are different ideas.
+</CommonMistake>
+
+<CommonMistake title="Do not hide the role of choice">
+Choosing one element from each of infinitely many nonempty sets is exactly the
+kind of step the axiom of choice is designed to justify.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="In Cantor's theorem, what is the diagonal set T?">
+State it in terms of whether x belongs to f(x).
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is
+
+$$
+T=\{x\in X\mid x\notin f(x)\}.
+$$
+
+It is built to disagree with each proposed subset `f(x)` at the element `x`.
+</RevealSolution>
+
+<QuickCheck prompt="Why is base 3 used in the injection from 2^N to R?">
+Think about the first differing index and the possible tail contribution.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Base `3` makes the first differing term larger than the total possible
+remaining tail. Therefore two different zero-one sequences cannot define the
+same real number by cancellation.
+</RevealSolution>
+
+<QuickCheck prompt="What does a choice function choose?">
+Mention both the family of sets and the chosen element.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+For each nonempty set `X` in a family `S`, a choice function chooses one element
+`f(X)\in X`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Show why the singleton map x -> {x} is injective.">
+Assume two singleton sets are equal.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+If
+
+$$
+\{x_1\}=\{x_2\},
+$$
+
+then the unique element of the left singleton is the unique element of the right
+singleton. Hence `x_1=x_2`. Therefore `x\mapsto \{x\}` is injective.
+</RevealSolution>
+
+<QuickCheck prompt="Explain why a surjective map f:X to Y gives nonempty fibers f^{-1}(y).">
+Use the definition of surjective.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Surjectivity says that for every `y\in Y`, there exists `x\in X` such that
+`f(x)=y`. That means exactly that `x\in f^{-1}(y)`, so the fiber is nonempty.
+</RevealSolution>
+
+<QuickCheck prompt="In Zorn's lemma, why is it not enough to talk only about maximum elements?">
+Recall that the order is partial, not necessarily total.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+In a partial order, some elements may be incomparable. A maximum would need to
+be above every element, which may not exist. Zorn's lemma guarantees a maximal
+element under its hypotheses: an element with no strictly larger element above
+it.
+</RevealSolution>
+
+## Related notes
+
+Read this after
+[6.1 Cardinality, countability, and cardinal inequalities](/en/notes/math1090/big-sets/cardinality-countability-and-cardinal-inequalities)
+and
+[2.2 Functions and relations](/en/notes/math1090/sets/functions-relations).
+The next course section begins with intervals, so this note closes the big-set
+foundations used in Chapter 6.1-6.3.

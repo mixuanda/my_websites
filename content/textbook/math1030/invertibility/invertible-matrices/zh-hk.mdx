@@ -77,7 +77,7 @@ $$
 
 ## 行化簡同逆矩陣
 
-實際計算逆矩陣時，最可靠嘅方法係行化簡。課程源材料的核心想法有兩步：
+實際計算逆矩陣時，最可靠的方法是行化簡。核心想法有兩步：
 
 1. 行變換矩陣本身係可逆嘅，而且其逆就係反向行變換矩陣；
 2. 一個方陣可逆，當且僅當佢可以被行化簡到 `I_p`。
@@ -117,7 +117,7 @@ $$
 
 ## 等價表述
 
-源材料整理出一個非常重要嘅「字典」：可逆性可以用好多唔同語言去描述。
+可逆性有一個非常重要的「字典」：它可以用許多不同語言來描述。
 
 <TheoremCard title="識別可逆矩陣嘅等價條件">
 設 `A` 係一個 `p \times p` 矩陣。以下敘述等價：
@@ -141,8 +141,8 @@ $$
 
 ## 由可逆矩陣角度理解行等價
 
-下一份源材料再向前推一步：唔再只係把行等價理解成一連串行變換，而係把
-成個過程打包成左邊乘上一個可逆矩陣。
+現在把行變換觀點再向前推一步：不只把行等價理解成一連串行變換，而是把
+整個過程打包成左邊乘上一個可逆矩陣。
 
 <TheoremCard title="行等價等同於左乘一個可逆矩陣">
 設 `A` 同 `B` 係有 `p` 行嘅矩陣。以下敘述等價：
@@ -246,8 +246,8 @@ $$
 
 ## 點解 RREF 係唯一嘅
 
-源材料附錄證明：每個行等價類之中，最簡行階梯形其實只得一個。呢件事好容
-易被忽略，但佢正正令後面嘅定義變得數學上站得住腳。
+每個行等價類之中，最簡行階梯形其實只有一個。這件事很容易被忽略，但它
+正正令後面的定義變得數學上站得住腳。
 
 <TheoremCard title="每個行等價類只有一個最簡行階梯形">
 設 `A` 係一個矩陣，`B` 同 `C` 都係 reduced row-echelon form。若 `B`
@@ -258,7 +258,7 @@ B = C.
 $$
 </TheoremCard>
 
-附錄的證明係對秩做數學歸納。核心策略係：
+標準證明會對秩做數學歸納。核心策略是：
 
 1. 由左至右比較樞紐列；
 2. 用「線性關係被保留」去迫出相同嘅樞紐位置；
@@ -446,7 +446,7 @@ $$
 ## 先讀呢幾頁
 
 呢一頁特別依賴
-[2.3 Gaussian elimination and RREF](/zh-hk/notes/math1030/matrices/gaussian-elimination-rref)、
-[3.1 Matrix multiplication and identity matrices](/zh-hk/notes/math1030/matrix-algebra/matrix-multiplication-and-identity)
+[2.3 高斯消元與 RREF](/zh-hk/notes/math1030/matrices/gaussian-elimination-rref)、
+[3.1 矩陣乘法與單位矩陣](/zh-hk/notes/math1030/matrix-algebra/matrix-multiplication-and-identity)
 同
-[3.2 Transpose and special matrices](/zh-hk/notes/math1030/matrix-algebra/transpose-and-special-matrices)。
+[3.2 轉置與特殊矩陣](/zh-hk/notes/math1030/matrix-algebra/transpose-and-special-matrices)。

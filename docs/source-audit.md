@@ -16,7 +16,8 @@ These units are already present in code and should remain source-backed.
   6.4, 6.5, 6.6, 7.1, 7.2, 7.3, 8.1, 8.2, 8.3, 9.1, 9.2, 9.3, 9.4
 - `math1025`: baseline foundations pair only
 - `csci2520`: programming foundations `0.1`, ADT operations `1.1`, hashing
-  `1.2`, and complexity `2.1`
+  `1.2`, lists / recursion `2.1`, complexity and selection / sorting `3.1`
+  to `3.2`, trees / BSTs `4.1`, and graph / heap material `5.1` to `5.2`
 
 `math1025` now has a small authored tree under `content/textbook`, but most of
 its slide families are still only source backlog rather than complete public
@@ -195,8 +196,11 @@ The current weak spots are straightforward:
 
 ## CSCI2520
 
-The CSCI2520 tree is now active public content rather than a placeholder, but
-the authored route family still covers only the earliest foundations.
+The CSCI2520 tree is now active public content rather than a placeholder. The
+current route family covers the main data-structures spine from C memory
+foundations through ADTs, hashing, lists, complexity, selection, linear-time
+sorting, binary trees, graph traversal, MST / shortest-path reasoning,
+topological sorting, heaps, and a first Huffman-coding pass.
 
 ### Available materials
 
@@ -212,10 +216,21 @@ The current local files for CSCI2520 include:
 - `reference/CSCI2520/2520ds_06_complexity (1).ppt`
 - `reference/CSCI2520/2520ds_07_sorting (1).ppt`
 - `reference/CSCI2520/2520ds_07_sorting2 (1).pptx`
+- `reference/CSCI2520/2520ds_08_trees (1).ppt`
+- `reference/CSCI2520/2520ds_08_trees2 (1).ppt`
+- `reference/CSCI2520/2520ds_09_graph (1).ppt`
+- `reference/CSCI2520/2520ds_10_heap.ppt`
+- `reference/CSCI2520/2520ds_10_heap2.ppt`
+- `reference/CSCI2520/2520ds_10_heap2huffmanCoding.pdf`
 - `reference/CSCI2520/csci2520_tuto1_c_programming.pptx`
 - `reference/CSCI2520/csci2520_tuto2_stack_and_queue.pptx`
 - `reference/CSCI2520/csci2520_tuto3_hashtable.pptx`
-- later tutorial and lecture assets on trees, graphs, dynamic programming, and heaps
+- `reference/CSCI2520/csci2520_tuto4_recursion (1).pptx`
+- `reference/CSCI2520/csci2520_tuto6_selection_problem (1).pptx`
+- `reference/CSCI2520/csci2520_tuto7_binary_tree (1).pptx`
+- `reference/CSCI2520/csci2520_tuto8_dynamic_selection.pptx`
+- `reference/CSCI2520/csci2520_tuto9_graph.pptx`
+- `reference/CSCI2520/csci2520_tuto10_topo_sort_and_heap.pptx`
 
 ### Duplicate or conflicting materials
 
@@ -225,16 +240,19 @@ The current local files for CSCI2520 include:
 - `docs/extracted/csci2520/**` now contains text extraction from the current
   tutorial deck files and selected legacy lecture decks to support note
   authoring.
+- `CSCI2120` was requested by name in the working prompt, but the repository
+  contains no `reference/CSCI2120/**` or `content/textbook/csci2120/**` tree.
+  Do not claim CSCI2120 coverage unless those files are added.
 
 ### Weak or incomplete coverage
 
-- The public route family now has a real lead-in before complexity:
-  programming foundations, ADT semantics, stack/queue behavior, hashing, and
-  one complexity note.
-- Later material on lists, sorting, trees, graphs, dynamic programming, and
-  heaps remains source-backed backlog rather than finished public notes.
-- The new CSCI units are structurally correct, but some of them are still below
-  the desired 10–30 minute reading-depth target and need another content pass.
+- The public route family now covers the main CSCI2520 sequence with nine
+  three-language units.
+- Legacy `.ppt` extraction remains weaker than `.pptx` extraction, so list,
+  tree, graph, and heap pages should still be treated as high-confidence
+  lecture-note syntheses rather than line-by-line slide transcriptions.
+- Dynamic selection and later optional graph / heap exercises remain a useful
+  future depth pass, but the public course no longer stops at early foundations.
 
 ## Audit rules for content authors
 

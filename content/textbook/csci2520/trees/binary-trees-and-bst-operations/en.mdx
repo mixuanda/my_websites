@@ -1,0 +1,137 @@
+---
+title: "4.1 Binary trees and BST operations"
+description: "Use traversal orders, reconstruction logic, and binary-search-tree invariants to read tree algorithms rigorously."
+---
+
+Tree material is easy to memorize badly. You can recite preorder, inorder, and
+postorder without understanding what information each order preserves. The
+course uses binary-tree traversal and BST operations to force a more careful
+reading of structure.
+
+## Binary tree terminology
+
+<Definition title="Binary tree">
+A binary tree is a tree in which each node has at most two children, designated
+as left child and right child when they exist.
+</Definition>
+
+The left-right distinction is structural. Two trees can have the same node set
+and the same parent-child edges but still differ if left and right children are
+swapped.
+
+## Traversal orders
+
+For a binary tree with root `R`, left subtree `L`, and right subtree `T`:
+
+- preorder visits `R`, then `L`, then `T`;
+- inorder visits `L`, then `R`, then `T`;
+- postorder visits `L`, then `T`, then `R`.
+
+These are not three arbitrary lists. They encode different kinds of
+information.
+
+<WorkedExample title="Why inorder alone is not enough">
+The sequence `(B, A, C)` can come from different trees. For example, `A` may be
+the root with `B` on the left and `C` on the right, but other shapes can also
+produce the same inorder list. Inorder alone records left-root-right order, not
+the root hierarchy.
+</WorkedExample>
+
+## Reconstruction needs two compatible traversals
+
+The tutorial emphasizes the standard reconstruction method:
+
+1. use preorder or postorder to identify the root;
+2. use inorder to split the nodes into left and right subtrees;
+3. repeat recursively on the two subtrees.
+
+Preorder plus inorder is enough when keys are distinct. Postorder plus inorder
+works similarly. Preorder plus postorder alone usually does not determine a
+unique binary tree.
+
+## Binary search trees
+
+<Definition title="Binary search tree">
+A binary search tree is a binary tree with unique keys such that, at every
+node, all keys in the left subtree are smaller than the node key and all keys in
+the right subtree are larger than the node key.
+</Definition>
+
+The BST invariant is local at every node, but its consequence is global. If a
+node has key `x`, every key deep inside its left subtree must still be less than
+`x`, not merely less than its immediate parent.
+
+<TheoremCard title="Inorder traversal of a BST is sorted">
+If a binary tree satisfies the BST invariant, then an inorder traversal visits
+the keys in increasing order.
+</TheoremCard>
+
+This theorem is why BST questions often ask for inorder successors and ranked
+traversals.
+
+## Inorder successor
+
+The inorder successor of a node is the next node visited by inorder traversal.
+The tutorial identifies two cases:
+
+- if the node has a right subtree, the successor is the minimum node in that
+  right subtree;
+- otherwise, move upward until you find the lowest ancestor for which the
+  current node lies in the ancestor's left subtree.
+
+The second case requires parent information or an equivalent way to retrace the
+search path from the root.
+
+<WorkedExample title="Why the right-subtree case works">
+If a node has a right subtree, every key there is larger than the node. The
+smallest key in that right subtree is therefore the next larger key, so it is
+the inorder successor.
+</WorkedExample>
+
+## Deletion and replacement
+
+BST deletion has three cases:
+
+- deleting a leaf removes it directly;
+- deleting a node with one child connects the parent to that child;
+- deleting a node with two children replaces the key with either the maximum of
+  the left subtree or the minimum of the right subtree, then deletes that
+  replacement from its old position.
+
+Both replacement strategies preserve the BST invariant when implemented
+carefully.
+
+<QuickCheck prompt="Why is inorder traversal of a BST useful?">
+State the order of visited keys.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It visits keys in sorted increasing order.
+</RevealSolution>
+
+<QuickCheck prompt="If a BST node has a right subtree, where is its inorder successor?">
+Use the smaller larger-key idea.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is the minimum node in the right subtree.
+</RevealSolution>
+
+## Exercises
+
+1. Explain why preorder plus inorder can reconstruct a binary tree with
+   distinct keys.
+2. Give the two cases for finding an inorder successor.
+3. Explain why replacing a two-child deleted node by the right-subtree minimum
+   preserves the BST invariant.
+
+<RevealSolution title="Guided solutions">
+1. Preorder identifies the current root. Inorder splits the remaining keys into
+   left and right subtrees. Recursion repeats the same logic.
+2. Use the right-subtree minimum if the right subtree exists; otherwise climb
+   to the first ancestor for which the node lies in the left branch.
+3. The right-subtree minimum is larger than everything in the left subtree and
+   no larger than the other keys in the right subtree, so it can occupy the
+   deleted node's position.
+</RevealSolution>
+

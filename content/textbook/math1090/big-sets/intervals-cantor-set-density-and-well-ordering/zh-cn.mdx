@@ -1,0 +1,549 @@
+---
+title: "6.4-6.7 区间、Cantor 集、稠密性与良序"
+description: "比较实数线子集的几种严格大小观念：区间基数、Cantor 集、稠密性，以及良序。"
+---
+
+第 6 章前面已经用双射、单射、满射、可数性和选择公理来比较集合大小。本
+章最后几节要强调一件事：
+
+“大”在数学里没有单一意思。
+
+一个区间可以在长度上很短，但在基数上和 `R` 一样大。Cantor 集可以由
+`[0,1]` 移走总长度为 `1` 的开区间后留下，却仍然有和实数线一样多的点。
+有理数是可数的，但在 `R` 中稠密。自然数在通常次序下是良序的；整数和正
+有理数在通常次序下则不是。
+
+这些说法并不矛盾。它们是在回答不同结构下的不同问题。
+
+## 闭区间与半闭区间
+
+前面的笔记已经使用过 `(a,b)` 这类开区间。现在加入闭区
+间。
+
+<Definition title="闭区间">
+设 `a,b\in R` 且 `a\le b`。由 `a` 到 `b` 的 **闭区间** 定义为
+
+$$
+[a,b]=\{x\in R\mid a\le x\le b\}.
+$$
+</Definition>
+
+端点是否包括在内很重要：
+
+- `(a,b)` 不包括两个端点；
+- `[a,b]` 包括两个端点；
+- `[a,b)` 包括 `a` 但不包括 `b`；
+- `(a,b]` 不包括 `a` 但包括 `b`；
+- `[a,\infty)` 与 `(-\infty,b]` 也按同样方式理解。
+
+这个端点约定会立即出现在 Cantor 集的构造里：每一步保留下来的是闭区间，
+所以端点不会被移走。
+
+<CommonMistake title="不要把区间括号当成装饰">
+`(0,1)` 和 `[0,1]` 作为 `R` 的子集并不相同。它们有相同基数，但不是同
+一个集合。证明时要先分清楚：你是在证明集合相等、基数相等，还是关于长
+度的命题。
+</CommonMistake>
+
+## 区间与基数
+
+一個重要事實是 `(0,1)` 和 `R` 有相同基数。
+
+<TheoremCard title="区间 `(0,1)` 的基数等于 `|R|`">
+存在一个双射
+
+$$
+f:(0,1)\to R,\qquad
+f(x)=\frac{2x-1}{x(x-1)}.
+$$
+
+notes 把验证这个函数确实是双射留作练习。
+</TheoremCard>
+
+这个命题刻意打破直觉。`(0,1)` 看起来有限而且很短，`R` 则向左右两边无
+界。但基数不量度长度；它只问元素能否一一配对。
+
+<WorkedExample title="有界性不控制基数">
+开区间 `(0,1)` 在通常距离下有界，而 `R` 无界。但上面的函数给出两者之
+间的一一对应。
+
+因此
+
+$$
+|(0,1)|=|R|
+$$
+
+的意思不是它们有相同长度，而是它们之间存在双射。
+</WorkedExample>
+
+一个有用练习是证明所有区间都有相同基数。对非退化的有限开区间，第一
+步通常是用线性变换
+
+$$
+x\longmapsto \frac{x-a}{b-a}
+$$
+
+把 `(a,b)` 双射到 `(0,1)`。半无限和无限区间则可再用类似上面命题的显
+式双射与 `(0,1)` 比较。
+
+这里的重点是：区间长度和区间基数是两种不同的量度。
+
+## Cantor 集的构造
+
+Cantor 集用来把这个区别推得更远。
+
+先令
+
+$$
+C_0=[0,1].
+$$
+
+之后每一步，都从上一阶段留下的每一个区间移走开的中间三分之一。
+
+- 第 `0` 阶段：
+
+  $$
+  C_0=[0,1].
+  $$
+
+- 第 `1` 阶段：移走 `(1/3,2/3)`，留下
+
+  $$
+  C_1=\left[0,\frac13\right]\cup \left[\frac23,1\right].
+  $$
+
+- 第 `2` 阶段：从 `C_1` 的两段区间各自移走中间三分之一，留下
+
+  $$
+  C_2=
+  \left[0,\frac19\right]\cup
+  \left[\frac29,\frac13\right]\cup
+  \left[\frac23,\frac79\right]\cup
+  \left[\frac89,1\right].
+  $$
+
+- 第 `n` 阶段：`C_n` 是 `2^n` 个闭区间的并集，每个闭区间长度为
+  `(1/3)^n`。
+
+<Definition title="Cantor 集">
+**Cantor 集** 定义为共同交集
+
+$$
+C=\bigcap_{n=0}^{\infty} C_n.
+$$
+</Definition>
+
+这些集合是嵌套的：
+
+$$
+C_0\supset C_1\supset C_2\supset \cdots .
+$$
+
+所以一个点属于 `C`，意思是它在每一阶段都没有被移走。
+
+<WorkedExample title="端点会留下来">
+第 1 阶段移走的是开区间 `(1/3,2/3)`，所以 `1/3` 和 `2/3` 仍然留下。
+
+后面每一阶段也一样，留下的是闭区间。因而像
+
+$$
+0,\quad 1,\quad \frac13,\quad \frac23,\quad \frac19,\quad \frac29
+$$
+
+这些在某阶段作为端点出现的点，不会在那一阶段被移走。
+</WorkedExample>
+
+## 三进制展开与 `C` 的成员
+
+接着用三进制描述同一个集合。
+
+每个 `x\in[0,1]` 都可以写成三进制展开
+
+$$
+x=\sum_{k=1}^{\infty}\frac{a_k}{3^k}
+=(0.a_1a_2a_3\ldots)_3,
+\qquad a_k\in\{0,1,2\}.
+$$
+
+如同十进制，表示法不一定唯一。例如十进制有 `0.999...=1`，三进制有
+
+$$
+(0.0222\ldots)_3=(0.1)_3.
+$$
+
+notes 约定：可以选非终止展开时，就选非终止展开。按此约定：
+
+- 第 1 阶段移走的正是第一个三进制数字必须为 `1` 的数；
+- 第 2 阶段移走的是第二个三进制数字必须为 `1` 的数；
+- Cantor 集正是 `[0,1]` 中能用只含 `0` 和 `2` 的三进制展开表示的数。
+
+<TheoremCard title="Cantor 集的三进制描述">
+在非终止三进制展开的约定下，`x\in[0,1]` 属于 `C` 当且仅当它有三进制
+展开
+
+$$
+x=(0.a_1a_2a_3\ldots)_3
+$$
+
+且每个数字 `a_k` 都是 `0` 或 `2`。
+</TheoremCard>
+
+这个描述把几何上的移除过程，改写成一条数字规则：能活过所有阶段，就是
+三进制展开永远不用数字 `1`。
+
+## 长度上的悖论感
+
+构造过程移走很多区间。第 `1` 阶段移走一个长度 `1/3` 的区间；第 `2` 阶
+段移走两个长度 `1/9` 的区间；第 `n` 阶段移走
+
+$$
+2^{n-1}
+$$
+
+个区间，每个长度为
+
+$$
+\left(\frac13\right)^n.
+$$
+
+所以总移走长度是
+
+$$
+L=\sum_{n=1}^{\infty}\frac{2^{n-1}}{3^n}
+=
+\frac13\sum_{k=0}^{\infty}\left(\frac23\right)^k
+=
+\frac{1/3}{1-2/3}
+=1.
+$$
+
+原本 `[0,1]` 的长度也是 `1`。从长度角度看，Cantor 集似乎已经没有长度剩
+下。但长度仍然不是基数。
+
+## Cantor 集的基数等于 `|R|`
+
+事实上，Cantor 集不只是非空，而且不可数，甚至和整条实数线有同样基数。
+
+<TheoremCard title="Cantor 集与 `R` 有相同基数">
+令 `S` 为所有无限二进制序列的集合：
+
+$$
+(s_1,s_2,s_3,\ldots),\qquad s_k\in\{0,1\}.
+$$
+
+定义
+
+$$
+f:S\to C,\qquad
+f((s_1,s_2,s_3,\ldots))
+=
+\sum_{k=1}^{\infty}\frac{2s_k}{3^k}.
+$$
+
+这个函数把二进制序列送到一个三进制展开：若 `s_k=0`，第 `k` 位是 `0`；
+若 `s_k=1`，第 `k` 位是 `2`。因此其像必定落在 `C` 里。
+
+这个映射是一个双射。因为无限二进制序列的集合有基数
+`|2^N|`，而这个基数等于 `|R|`，所以
+
+$$
+|C|=|R|.
+$$
+</TheoremCard>
+
+<CommonMistake title="零长度不代表可数">
+Cantor 集看起来像碎尘，因为每个尺度都有开区间被移走。但基数定理说明：
+它仍然有和实数线一样多的点。长度和基数是不同量度。
+</CommonMistake>
+
+## 观察构造阶段
+
+下面的 stage viewer 只是辅助理解，不取代定义。用它来对照区间图像、
+`C_n` 的公式，以及三进制数字规则。
+
+![Cantor set 构造的最初几个阶段](/images/textbook/math1090/cantor-set-stages.png)
+
+*图示。每一阶段都从上一阶段留下的每个区间中移除中间三分之一。*
+
+<InteractiveWidget id="cantor-set-stage-viewer" />
+
+## 实数线中的稠密性
+
+下一节引入另一种“大”的观念。
+
+<Definition title="`R` 中的稠密子集">
+子集 `S\subset R` 称为 **稠密**，若对每个 `r\in R` 和每个
+`\epsilon>0`，都存在 `s\in S` 使得
+
+$$
+|r-s|<\epsilon.
+$$
+</Definition>
+
+这个定义不问 `S` 有多少元素。它问的是：`S` 的元素能否任意精确地逼近每
+个实数。
+
+## 整数不稠密
+
+<TheoremCard title="`Z` 在 `R` 中不稠密">
+取
+
+$$
+r=\frac12,\qquad \epsilon=\frac14.
+$$
+
+对任意整数 `n`，
+
+$$
+\left|n-\frac12\right|\ge \frac12>\frac14.
+$$
+
+所以没有任何整数落在 `1/2` 的 `1/4` 距离以内。故 `Z` 在 `R` 中不稠密。
+</TheoremCard>
+
+要证明一个集合不稠密，只需要找到一个无法逼近的点和一个失败的容许误差。
+不需要检查所有实数。
+
+## 有理数稠密
+
+<TheoremCard title="`Q` 在 `R` 中稠密">
+设 `r\in R` 且 `\epsilon>0`。由 Archimedean property，可取 `n\in N`
+使
+
+$$
+n>\frac1\epsilon,
+\qquad\text{所以}\qquad
+\frac1n<\epsilon.
+$$
+
+取满足
+
+$$
+m_0\le nr
+$$
+
+的最大整数 `m_0`。那么
+
+$$
+m_0\le nr<m_0+1.
+$$
+
+除以 `n` 得
+
+$$
+0\le r-\frac{m_0}{n}<\frac1n<\epsilon.
+$$
+
+因此
+
+$$
+q=\frac{m_0}{n}\in Q
+$$
+
+满足 `|r-q|<\epsilon`。所以 `Q` 在 `R` 中稠密。
+</TheoremCard>
+
+这个证明精确说明了稠密性的意思：不论要求多小的误差，都能找到一个有理
+近似落入那个误差范围。
+
+<CommonMistake title="稠密不代表不可数">
+有理数在 `R` 中稠密，但 `Q` 是可数的。稠密性量度逼近能力，不量度基数。
+</CommonMistake>
+
+同样定义也可限制在实数线的一个子集内。
+
+<Definition title="在子集内稠密">
+设 `T\subset R`。子集 `S\subset T` 称为 **在 `T` 中稠密**，若对每个
+`t\in T` 和每个 `\epsilon>0`，都存在 `s\in S` 使得
+
+$$
+|t-s|<\epsilon.
+$$
+</Definition>
+
+## 良序
+
+第 6 章最后由大小与逼近转到次序。
+
+<Definition title="良序集">
+设 `(X,\le)` 是全序集。若每个非空子集 `S\subset X` 都有最小元素，则称
+`(X,\le)` 为 **良序集**。
+</Definition>
+
+全序只保证任意两个元素可比较。良序还要求每个非空子集合都有第一个元素。
+
+<WorkedExample title="自然数的有限初段">
+在 von Neumann 构造里，自然数 `n` 被视为
+
+$$
+n=\{0,1,\ldots,n-1\}.
+$$
+
+用包含关系排序时，这就是通常自然数次序在有限初段上的限制。每个非空子
+集都有最小元素，所以每个有限的 `n` 都是良序的。
+</WorkedExample>
+
+<TheoremCard title="自然数是良序的">
+`N` 的通常次序是良序：每个非空子集 `S\subset N` 都有最小元素。
+</TheoremCard>
+
+证明可以用反证法和归纳法。若某个非空 `S\subset N` 没有最小元素，则可
+用归纳法推出 `0\notin S`、`1\notin S`、`2\notin S`，如此类推。最后
+得到没有任何自然数属于 `S`，与 `S` 非空矛盾。
+
+## 不是良序的通常次序
+
+<TheoremCard title="`Z` 的通常次序不是良序">
+子集 `Z\subset Z` 本身没有最小元素。对任意 `n\in Z`，`n-1` 仍在 `Z`
+中且 `n-1<n`。所以没有任何元素可以是第一个。
+</TheoremCard>
+
+<TheoremCard title="`Q^+` 的通常次序不是良序">
+子集 `Q^+` 本身没有最小元素。对任意正有理数 `q`，`q/2` 仍是正有理数，
+而且 `q/2<q`。
+</TheoremCard>
+
+第二个例子特别重要：所有元素都是正的，失败原因不是负数，而是有一条永
+远可以往下走的链。
+
+<CommonMistake title="最小元素不是下界">
+`Q^+` 在 `R` 中有下界，例如 `0`，但 `0\notin Q^+`。一个集合的最小元
+素必须属于那个集合本身。
+</CommonMistake>
+
+## 可数集可以被良序化
+
+notes 接着区分两件事：
+
+- 某个指定次序可能不是良序；
+- 同一个底层集合仍可能有另一个良序。
+
+<TheoremCard title="每个可数集都可以被良序化">
+若 `X` 有限，写成
+
+$$
+X=\{x_1,\ldots,x_n\},
+$$
+
+并按指标排序。
+
+若 `X` 可数无限，取一个双射
+
+$$
+f:N\to X.
+$$
+
+定义
+
+$$
+x\le_X y
+\quad\text{当且仅当}\quad
+f^{-1}(x)\le f^{-1}(y)
+\quad\text{在 }N\text{ 中成立}.
+$$
+
+这样就把 `N` 的良序搬到 `X` 上。
+</TheoremCard>
+
+例如 `Z` 在通常次序下不是良序，但 `Z` 是可数的，所以只要选一个枚举，
+就可以给它另一个良序。
+
+## 良序定理
+
+本章最后把良序和选择公理连起来。
+
+<TheoremCard title="良序定理">
+选择公理等价于以下命题：
+
+每个集合 `X` 都可以被良序化。
+</TheoremCard>
+
+其中一个方向很直接。若每个集合都可以良序化，给定一族非空集合，先良序
+化它们的并集，再从每个集合取其最小元素，就得到一个选择函数。
+
+另一个方向由选择公理出发，从 `X` 的每个非空子集选一个元素，然后尝试逐
+步选出“下一个未使用元素”来建立次序。这个方向比较技术性，因为严格
+完成这个构造需要 transfinite recursion，本课不展开。
+
+<CommonMistake title="良序定理不是说通常次序可行">
+`R`、`Z`、`Q^+` 的通常次序可以不是良序。良序定理说的是：在选择公理下，
+存在某个良序。它不保证那个良序熟悉或容易计算。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="Cantor 构造第 n 阶段剩下多少个区间？每个区间长度是多少？">
+两个答案都用 `n` 表示。
+</QuickCheck>
+
+<RevealSolution title="答案">
+第 `n` 阶段，`C_n` 是 `2^n` 个闭区间的并集，每个区间长度为 `(1/3)^n`。
+</RevealSolution>
+
+<QuickCheck prompt="为什么证明 `Z` 不稠密时，只看 `r=1/2` 和 `epsilon=1/4` 已经足够？">
+使用“不稠密”的定义。
+</QuickCheck>
+
+<RevealSolution title="答案">
+要否定稠密性，只需找到一个实数和一个正误差，使得候选集合没有任何元素
+落在该误差内。`1/2` 和半径 `1/4` 正好给出 `Z` 的空隙。
+</RevealSolution>
+
+<QuickCheck prompt="为什么 `Q` 可以在 `R` 中稠密，同时又是可数的？">
+指出这里比较的是哪两种不同概念。
+</QuickCheck>
+
+<RevealSolution title="答案">
+可数性是基数性质；稠密性是逼近性质。`Q` 是可数的，但 Archimedean 证
+明说明有理数可以任意精确地逼近每个实数。
+</RevealSolution>
+
+<QuickCheck prompt="为什么 `Z` 的通常次序不是良序？">
+找出一个非空但没有最小元素的子集。
+</QuickCheck>
+
+<RevealSolution title="答案">
+子集 `Z` 本身没有最小元素。若 `n` 是最小元素，则 `n-1` 也是整数而且比
+`n` 小，矛盾。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="用三进制描述判断 `(0.202020...)_3` 是否属于 Cantor 集。">
+说明哪些数字是关键。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+这个三进制展开只使用数字 `0` 和 `2`。按本节约定，它会通过每一阶段的
+中间三分之一移除。因此它属于 Cantor 集。
+</RevealSolution>
+
+<QuickCheck prompt="证明 `Q^+` 在通常次序下不是良序。">
+使用同一個三進制想法。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+任取 `q\in Q^+`。则 `q/2\in Q^+` 且 `q/2<q`。所以没有任何正有理数可以
+是 `Q^+` 的最小元素。由于 `Q^+` 是自身的一个非空子集，通常次序不是良
+序。
+</RevealSolution>
+
+<QuickCheck prompt="设 `X` 可数无限，且 `f:N\to X` 是双射。为什么搬运过去的次序会令 `X` 成为良序？">
+使用 `N` 的良序性。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+对任意非空 `S\subset X`，其原像 `f^{-1}(S)` 是 `N` 的非空子集。因为
+`N` 是良序的，`f^{-1}(S)` 有最小元素 `m`。于是 `f(m)` 就是 `S` 在搬运
+次序下的最小元素。
+</RevealSolution>
+
+## 相关笔记
+
+可先读
+[2.2 函数与关系](/zh-cn/notes/math1090/sets/functions-relations)、
+[4.2 上确界与下确界](/zh-cn/notes/math1090/order-and-completeness/supremum-and-infimum)，
+以及
+[4.3 完备性与 Q 的缺口](/zh-cn/notes/math1090/order-and-completeness/completeness-and-gaps-in-q)。
+然后接着读
+[7.1-7.2 二元运算、幺半群与群](/zh-cn/notes/math1090/sets-with-structure/binary-operations-monoids-and-groups)。

@@ -44,6 +44,62 @@ description: "把归纳法当作证明模式，并读懂加法与乘法的递归
 的命题。要做那一步，你还是要用归纳法。
 </CommonMistake>
 
+## 递归乘法
+
+乘法也可以用同一种递归方式引入。加法已经定义好之后，乘法可以理解为由
+第二个输入控制的重复加法。
+
+<Definition title="乘法的递归定义">
+对自然数 `a` 和 `b`，乘法定义为：
+
+- `a · 0 = 0`
+- `a · S(b) = (a · b) + a`
+</Definition>
+
+基本情况说明：把 `a` 加零次得到 `0`。递归步骤说明：如果已经知道
+`a · b`，那么乘以后继 `S(b)` 就是在原来结果上再加一个 `a`。
+
+<WorkedExample title="由定义计算 `3 · 2`">
+把 `2` 写成 `S(S(0))`。那么
+
+$$
+3\cdot 2
+=3\cdot S(S(0))
+=(3\cdot S(0))+3
+$$
+
+而
+
+$$
+3\cdot S(0)=(3\cdot 0)+3=0+3=3.
+$$
+
+因此
+
+$$
+3\cdot 2=3+3=6.
+$$
+
+熟悉的“三取两次”其实是由这个递归规则重新得到的。
+</WorkedExample>
+
+## 归纳法真正证明什么
+
+递归定义能够支撑普通代数定律，是因为背后有归纳原理。典型证明具有以下
+形式。
+
+<TheoremCard title="归纳原理">
+设 `P(n)` 是关于自然数 `n` 的命题。如果：
+
+1. `P(0)` 成立；
+2. 只要 `P(n)` 成立，就能推出 `P(S(n))` 成立；
+
+那么 `P(n)` 对每个 `n\in N` 都成立。
+</TheoremCard>
+
+基本情况把命题固定在起点 `0`。归纳步骤证明真值会在做一次后继时被保留。
+两者合起来，排除了命题一开始成立但后面突然失败的可能。
+
 ## 先看互动步骤
 
 下面的步骤器把一个归纳证明拆成基本情况、归纳假设、归纳步骤和结论。
@@ -53,7 +109,7 @@ description: "把归纳法当作证明模式，并读懂加法与乘法的递归
 ## 证明草图
 
 <CollapsibleProof title="为什么 `S(a) + b = S(a + b)` 可由归纳法得到">
-我们对 `b in N` 证明这个命题。
+我们对 `b\in N` 证明这个命题。
 
 基本情况：当 `b = 0`，
 
@@ -70,6 +126,66 @@ description: "把归纳法当作证明模式，并读懂加法与乘法的递归
 所以只要对 `b` 成立，它就对 `S(b)` 也成立。
 </CollapsibleProof>
 
+<CollapsibleProof title="为什么 `a · S(b) = a · b + a` 是定义而不是定理">
+对乘法来说，公式
+
+$$
+a\cdot S(b)=(a\cdot b)+a
+$$
+
+不是在乘法已知之后才证明出来的定理，而是乘法本身的递归步骤。之后的
+代数定律，例如分配律，才是需要用归纳法证明的命题。
+</CollapsibleProof>
+
+## 代数定律是在定义之后证明的
+
+加法与乘法用递归方式定义之后，熟悉的算术定律就成为需要证明的定理。
+
+<TheoremCard title="用归纳法证明的算术定律例子">
+对自然数 `a`、`b`、`c`，可以证明：
+
+$$
+a+b=b+a,
+$$
+
+$$
+a\cdot(b+c)=a\cdot b+a\cdot c,
+$$
+
+以及
+
+$$
+a\cdot b=b\cdot a.
+$$
+</TheoremCard>
+
+重点是逻辑顺序：先定义运算，再证明它们具有我们熟悉的运算性质。
+
+<CollapsibleProof title="分配律的证明结构">
+固定 `a` 和 `b`，对 `c` 用归纳法证明
+
+$$
+P(c):\quad a\cdot(b+c)=a\cdot b+a\cdot c.
+$$
+
+当 `c=0` 时，使用 `b+0=b`、`a\cdot 0=0` 以及加法单位元。
+
+归纳步骤中，假设 `P(c)` 成立。然后使用递归规则
+
+$$
+b+S(c)=S(b+c)
+$$
+
+和
+
+$$
+a\cdot S(d)=a\cdot d+a
+$$
+
+把左边改写到可以套用归纳假设。剩下的项再用加法结合律整理；而加法结合律
+本身也是较早用归纳法证明的定理。
+</CollapsibleProof>
+
 ## 快问快答
 
 <QuickCheck prompt="加法的递归定义中，基本情况是哪一句？">
@@ -78,6 +194,22 @@ description: "把归纳法当作证明模式，并读懂加法与乘法的递归
 
 <RevealSolution title="答案">
 基本情况是 `a + 0 = a`。
+</RevealSolution>
+
+<QuickCheck prompt="乘法的递归定义中，基本情况是哪一句？">
+看第二个输入。
+</QuickCheck>
+
+<RevealSolution title="答案">
+基本情况是 `a · 0 = 0`。
+</RevealSolution>
+
+<QuickCheck prompt="按递归规则，`a · S(b)` 等于什么？">
+用前一个乘法值来表达下一步。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它等于 `(a · b) + a`。
 </RevealSolution>
 
 <QuickCheck prompt="在归纳证明中，归纳假设是什么？">

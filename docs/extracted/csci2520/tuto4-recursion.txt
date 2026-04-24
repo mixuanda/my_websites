@@ -1,0 +1,180 @@
+# Slide 1
+CSCI2520 Tutorial
+Recursion
+Pan Zhenyu
+zypan24@cse.cuhk.edu.hk
+Slide Ack: modified based on the slides from Li Hui
+
+# Slide 2
+Outline
+Recursion
+GCD of Two Integers
+Hanota Problem
+CSCI2520 Tutorial 4
+
+# Slide 3
+Recursive Functions
+A 
+recursive function
+ is a function that makes a call to itself.
+Any recursive function will include the following three basic elements.
+A 
+test
+ to stop or continue the recursion.
+An 
+end case
+ that terminates the recursion.
+A 
+recursive call
+ that continues the recursion.
+CSCI2520 Tutorial 4
+3
+func
+ fact(n):
+    if n == 0 then
+        return 1
+    return n * fact(n-1)
+A 
+test
+ to stop or continue
+An 
+end case
+ to terminate the recursion
+A 
+recursive call
+ to continue recursion
+
+# Slide 4
+Recursion
+Recursion
+ is a method where the solution to a problem depends on solutions to 
+smaller instances of the same problem
+.
+Recursion usually leads to more 
+elegant
+ and 
+simpler
+ solutions, although it incurs larger memory and time overhead.
+An important recursive problem-solving skill is 
+divide-and-conquer
+.
+Divide
+ the problem into smaller pieces.
+Tackle
+ each sub-task either directly or by recursion.
+Combine
+ the solutions of the parts to form the solution of the whole
+CSCI2520 Tutorial 4
+
+# Slide 5
+Maximum
+Element
+Please
+implement
+a
+function
+that
+return
+the
+maximum
+element
+inside
+array
+a
+with
+range
+[l,
+r)
+=> max(a[l], a[l+1], …, a[r-1])
+CSCI2520 Tutorial 4
+
+# Slide 6
+Greatest Common Divisor
+The greatest common divisor (GCD) of 
+two or more 
+integers, when at least one of them is not zero, is the largest positive integer that divides the numbers without a remainder.
+For example, the GCD of 8 and 12 is 4.
+CSCI2520 Tutorial 4
+
+# Slide 7
+GCD of Two Integers
+Observation: 
+gcd
+(a, b) = 
+gcd
+(a, 
+a+b
+), because
+A common divisor of a and b is also a common divisor of a and 
+a+b
+A common divisor of a and 
+a+b
+ is also a common divisor of a and b
+Question 1: how to reduce the problem size recursively?
+Question 2: what is the end case?
+CSCI2520 Tutorial 4
+
+# Slide 8
+GCD of Two Integers
+End case
+gcd
+(a, 0) = a
+Recursive call
+Assume without loss of generality that a>b
+Version 1: 
+gcd
+(a, b) = 
+gcd
+(b, a-b)
+Version 2: 
+gcd
+(a, b) = 
+gcd
+(b, 
+a%b
+)
+For example, 
+gcd
+(48, 18) = 
+gcd
+(18, 12) = 
+gcd
+(12, 6) = 
+gcd
+(6, 0) = 6
+CSCI2520 Tutorial 4
+
+# Slide 9
+Exercise 1
+Finish the implementation of the following function which calculates the GCD of two positive integers.
+Hint: what if a<b?
+CSCI2520 Tutorial 4
+func
+GCDOfTwoNum
+(
+a: 
+int
+, 
+b: 
+int
+);
+
+# Slide 10
+Exercise 1 Solution
+CSCI2520 Tutorial 4
+
+# Slide 11
+Hanota Problem
+CSCI2520 Tutorial 4
+
+# Slide 12
+Hanota Problem
+ Solution
+CSCI2520 Tutorial 4
+
+# Slide 13
+Summary
+CSCI2520 Tutorial 4
+Recursion
+GCD of Two Integers
+Hanota Problem

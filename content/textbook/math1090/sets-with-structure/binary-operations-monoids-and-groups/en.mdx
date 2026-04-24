@@ -1,0 +1,601 @@
+---
+title: "7.1-7.2 Binary operations, monoids, and groups"
+description: "Move from bare sets to sets with operations, then study monoids, identity elements, groups, inverses, the socks-shoes law, and cancellation."
+---
+
+Chapter 7 begins with a change in viewpoint.
+
+Set theory lets us compare sets by functions, relations, and cardinalities. But
+many mathematical objects are not interesting merely because of which elements
+they contain. They are interesting because the set carries extra structure.
+
+For example, from the point of view of bare cardinality, the set `{5, dog}` and
+the set `{0,1}` both have two elements. But `{0,1}` also supports familiar
+operations such as addition and multiplication modulo `2`, while `5 + dog` is
+not meaningful unless extra structure has been specified.
+
+The point of this chapter is to make that extra structure explicit.
+
+## Sets with structure
+
+Many mathematical objects can be read as sets with
+additional data: natural numbers with addition and multiplication, the plane with
+vector addition, and permutations with composition.
+
+The common pattern is:
+
+1. start with a set;
+2. specify some operation, relation, function, or distinguished element on that
+   set;
+3. state axioms that this extra data must satisfy;
+4. prove theorems from those axioms.
+
+This is one of the central habits of modern mathematics. Instead of proving the
+same fact separately for many examples, define a structure once and prove what
+all examples of that structure must satisfy.
+
+## Binary operations
+
+<Definition title="Binary operation">
+Let `X` be a set. A **binary operation** on `X` is a function
+
+$$
+*:X\times X\to X.
+$$
+
+For `a,b\in X`, we usually write `a*b` instead of `*(a,b)`.
+</Definition>
+
+There are two important parts to this definition.
+
+First, the operation takes two inputs from `X`. Second, the output must again
+belong to `X`. That second requirement is often called closure, although in this
+course it is already built into the function type `X\times X\to X`.
+
+<CommonMistake title="A formula is not automatically a binary operation on every set">
+Subtraction is a binary operation on `Z`, because `a-b\in Z` whenever
+`a,b\in Z`. But subtraction is not a binary operation on `N` if `N` is required
+to stay closed under the operation, because `2-5` is not a natural number.
+</CommonMistake>
+
+## Boolean integers
+
+Define
+
+$$
+B=\{0,1\}.
+$$
+
+On this set, addition is given by
+
+$$
+0+0=0,\qquad 0+1=1,\qquad 1+0=1,\qquad 1+1=0,
+$$
+
+and multiplication is given by
+
+$$
+0\cdot 0=0,\qquad 0\cdot 1=0,\qquad
+1\cdot 0=0,\qquad 1\cdot 1=1.
+$$
+
+<Definition title="Boolean integers">
+The **Boolean integers** are the triple
+
+$$
+(B,+,\cdot),
+$$
+
+where `B=\{0,1\}` and `+`, `\cdot` are the two binary operations displayed
+above.
+</Definition>
+
+The main point is not the name. The point is that a small set can carry
+nontrivial structure once operations are specified.
+
+<WorkedExample title="Solving `x+y=0` in `B`">
+A useful exercise is to prove
+
+$$
+\forall x\in B,\ \exists y\in B\ (x+y=0).
+$$
+
+Check the two possible values of `x`.
+
+If `x=0`, choose `y=0`, since `0+0=0`.
+
+If `x=1`, choose `y=1`, since `1+1=0`.
+
+Thus every element of `B` has an additive inverse with respect to this addition
+rule.
+</WorkedExample>
+
+## More examples of binary operations
+
+The familiar examples are:
+
+- `+` and `\times` are binary operations on `N`;
+- `+` and `\times` are binary operations on `Z`;
+- for any set `X`, composition is a binary operation on the set `X^X` of all
+  functions `X\to X`.
+
+The last example is worth reading carefully. If `f:X\to X` and `g:X\to X`, then
+
+$$
+g\circ f:X\to X.
+$$
+
+So composition combines two elements of `X^X` and returns another element of
+`X^X`.
+
+<WorkedExample title="Composition as a binary operation">
+Let `X=\{a,b\}`. An element of `X^X` is a function from `X` to itself.
+
+If `f,g\in X^X`, then `g\circ f` is again a function from `X` to itself. Hence
+composition defines
+
+$$
+\circ:X^X\times X^X\to X^X.
+$$
+
+The elements being combined are functions, not elements of `X`.
+</WorkedExample>
+
+## Monoids
+
+The first structure studied in Chapter 7 is a monoid.
+
+<Definition title="Monoid">
+A **monoid** `(M,*)` is a set `M` together with a binary operation
+
+$$
+*:M\times M\to M
+$$
+
+such that:
+
+- for all `a,b,c\in M`,
+
+  $$
+  (a*b)*c=a*(b*c)
+  $$
+
+  (associativity);
+
+- there exists `e\in M` such that for all `a\in M`,
+
+  $$
+  a*e=e*a=a
+  $$
+
+  (existence of an identity element).
+</Definition>
+
+Associativity tells us that parentheses do not matter when multiplying three
+elements in a row. The identity element tells us that there is an element that
+does nothing when combined on either side.
+
+The standard examples are:
+
+- `(N,+)` is a monoid with identity `0`;
+- `(N,\times)` is a monoid with identity `1`;
+- `(Z,+)` is a monoid with identity `0`;
+- `(Z,\times)` is a monoid with identity `1`;
+- for any set `X`, `X^X` under composition is a monoid with identity `id_X`;
+- `(B,+)` is a monoid;
+- `(B,\cdot)` is a monoid.
+
+<WorkedExample title="Checking that `(N,+)` is a monoid">
+The operation `+` is a binary operation on `N`.
+
+Associativity holds:
+
+$$
+(a+b)+c=a+(b+c)
+$$
+
+for all natural numbers `a,b,c`.
+
+The identity is `0`, because
+
+$$
+a+0=0+a=a.
+$$
+
+Therefore `(N,+)` is a monoid.
+</WorkedExample>
+
+<WorkedExample title="Checking the composition monoid">
+Let `X` be any set. The elements of `X^X` are functions `X\to X`.
+
+Composition is associative:
+
+$$
+(h\circ g)\circ f=h\circ(g\circ f).
+$$
+
+The identity function `id_X` satisfies
+
+$$
+f\circ id_X=f,\qquad id_X\circ f=f.
+$$
+
+Therefore `X^X` under composition is a monoid.
+</WorkedExample>
+
+## Non-examples of monoids
+
+It is just as important to see operations that fail the definition.
+
+<WorkedExample title="`(Z^+,+)` is not a monoid">
+If `Z^+` denotes the positive integers, then addition is closed and associative.
+But there is no identity element inside `Z^+`.
+
+The additive identity would have to be `0`, because `a+0=a`. But `0\notin Z^+`.
+So `(Z^+,+)` is not a monoid.
+</WorkedExample>
+
+<WorkedExample title="`(Z,-)` is not a monoid">
+Subtraction is a binary operation on `Z`, but it is not associative. For example,
+
+$$
+(5-3)-1=1,
+$$
+
+while
+
+$$
+5-(3-1)=3.
+$$
+
+Since these are not equal, associativity fails. Therefore `(Z,-)` is not a
+monoid.
+</WorkedExample>
+
+<CommonMistake title="Having an identity is not enough">
+An operation can have a plausible identity and still fail to be a monoid if it
+is not associative. Associativity and identity are separate requirements.
+</CommonMistake>
+
+## The identity element is unique
+
+<TheoremCard title="Uniqueness of identity">
+A monoid has exactly one identity element.
+</TheoremCard>
+
+<CollapsibleProof title="Proof">
+Suppose `e` and `e'` are both identity elements. Since `e` is an identity,
+
+$$
+e*e'=e'.
+$$
+
+Since `e'` is an identity,
+
+$$
+e*e'=e.
+$$
+
+Therefore
+
+$$
+e=e*e'=e',
+$$
+
+so the identity element is unique.
+</CollapsibleProof>
+
+The proof is short because the identity law works on both sides. Each identity
+must leave the other one unchanged, forcing them to be equal.
+
+## Groups
+
+Monoids are useful but weak. A group adds the requirement that every element can
+be undone.
+
+<Definition title="Group">
+A **group** is a set `G` equipped with an element `e\in G` and a binary
+operation
+
+$$
+(a,b)\longmapsto a\cdot b
+$$
+
+such that:
+
+- for all `a\in G`,
+
+  $$
+  e\cdot a=a=a\cdot e;
+  $$
+
+- for all `a,b,c\in G`,
+
+  $$
+  (a\cdot b)\cdot c=a\cdot(b\cdot c);
+  $$
+
+- for every `a\in G`, there exists an inverse element `a^{-1}\in G` satisfying
+
+  $$
+  a\cdot a^{-1}=e
+  \qquad\text{and}\qquad
+  a^{-1}\cdot a=e.
+  $$
+</Definition>
+
+Groups are a natural way to formalize symmetry. A symmetry
+operation should be composable, have a do-nothing operation, and be reversible.
+
+Under this standard reading, every group is a monoid after forgetting the inverse
+axiom. What makes a group stronger is not a different identity or a different
+associativity law, but the existence of inverses.
+
+<CommonMistake title="A group is not just any set with a binary operation">
+The operation must be associative, there must be a two-sided identity, and every
+element must have an inverse. If any one of these fails, the structure is not a
+group.
+</CommonMistake>
+
+## Examples of groups
+
+The basic examples are:
+
+- `(Z,+)`;
+- `(Q,+)`;
+- `(Q^+,\cdot)`, where `Q^+` denotes the positive rationals.
+
+<WorkedExample title="Why `(Z,+)` is a group">
+The identity element is `0`.
+
+For every integer `a`, the inverse is `-a`, since
+
+$$
+a+(-a)=0=(-a)+a.
+$$
+
+Addition is associative, so `(Z,+)` is a group.
+</WorkedExample>
+
+<WorkedExample title="Why `(Q^+,\cdot)` is a group">
+The identity element is `1`.
+
+For every positive rational `q`, the inverse is `1/q`, which is again a positive
+rational. Then
+
+$$
+q\cdot \frac1q=1=\frac1q\cdot q.
+$$
+
+Multiplication is associative, so `(Q^+,\cdot)` is a group.
+</WorkedExample>
+
+<CommonMistake title="`(Z,\times)` is a monoid but not a group">
+The identity for multiplication on `Z` is `1`, and multiplication is
+associative. But most integers do not have multiplicative inverses in `Z`.
+For example, there is no integer `b` such that `2b=1`.
+</CommonMistake>
+
+## Uniqueness of inverses
+
+<TheoremCard title="Uniqueness of inverses">
+For each `a\in G`, the inverse `a^{-1}` is unique.
+</TheoremCard>
+
+<CollapsibleProof title="Proof">
+Suppose `b` and `c` are both inverses of `a`. Then
+
+$$
+a*b=e,\qquad b*a=e,
+$$
+
+and
+
+$$
+a*c=e,\qquad c*a=e.
+$$
+
+Using the identity and associativity,
+
+$$
+b=b*e=b*(a*c)=(b*a)*c=e*c=c.
+$$
+
+So `b=c`.
+</CollapsibleProof>
+
+The proof shows why inverse notation is legitimate. If an inverse exists, there
+is only one such element, so writing `a^{-1}` is unambiguous.
+
+## Socks-shoes property
+
+The inverse-of-a-product rule is often called the socks-shoes property:
+to undo two operations, undo the second one first.
+
+<TheoremCard title="Socks-shoes property">
+For elements `a,b` in a group,
+
+$$
+(a*b)^{-1}=b^{-1}*a^{-1}.
+$$
+</TheoremCard>
+
+<CollapsibleProof title="Proof">
+Compute:
+
+$$
+(a*b)*(b^{-1}*a^{-1})
+=a*(b*b^{-1})*a^{-1}
+=a*e*a^{-1}
+=a*a^{-1}
+=e.
+$$
+
+By uniqueness of inverses, the inverse of `a*b` must be `b^{-1}*a^{-1}`.
+</CollapsibleProof>
+
+The order reversal is essential. In a non-commutative group, `a^{-1}*b^{-1}`
+need not undo `a*b`.
+
+## Cancellation laws
+
+<TheoremCard title="Cancellation laws">
+In a group:
+
+- if `a*b=a*c`, then `b=c`;
+- if `b*a=c*a`, then `b=c`.
+</TheoremCard>
+
+<CollapsibleProof title="Left cancellation">
+Assume
+
+$$
+a*b=a*c.
+$$
+
+Multiply on the left by `a^{-1}`:
+
+$$
+a^{-1}*(a*b)=a^{-1}*(a*c).
+$$
+
+By associativity,
+
+$$
+(a^{-1}*a)*b=(a^{-1}*a)*c.
+$$
+
+Since `a^{-1}*a=e`, this becomes
+
+$$
+e*b=e*c,
+$$
+
+and hence `b=c`.
+</CollapsibleProof>
+
+The proof of right cancellation is analogous, multiplying on the right by
+`a^{-1}`.
+
+## Check laws interactively
+
+The checker below is a support tool for the definitions: use it to test closure,
+associativity, identity, and inverse behavior for small operation tables. The
+mathematics remains the axioms above.
+
+![A law table comparing monoids and groups](/images/textbook/math1090/monoid-group-law-table.png)
+
+*Figure. The distinction between monoid and group is not a naming convention:
+it is controlled by identity and inverse laws in addition to associativity.*
+
+<InteractiveWidget id="monoid-group-law-checker" />
+
+## Quick checks
+
+<QuickCheck prompt="What must be true for a rule `*` to be a binary operation on a set `X`?">
+State the input and output requirement.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It must be a function `*:X\times X\to X`. Thus it takes two elements of `X` as
+input and returns an element of `X`.
+</RevealSolution>
+
+<QuickCheck prompt="Why is `(Z,-)` not a monoid?">
+Name the failed axiom and give a concrete calculation.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Subtraction is not associative. For instance,
+
+$$
+(5-3)-1=1
+$$
+
+but
+
+$$
+5-(3-1)=3.
+$$
+
+Since the two results differ, `(Z,-)` is not a monoid.
+</RevealSolution>
+
+<QuickCheck prompt="Why is `(Z,\times)` not a group?">
+Focus on inverses.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Although multiplication on `Z` is associative and has identity `1`, not every
+integer has a multiplicative inverse in `Z`. For example, no integer `b`
+satisfies `2b=1`.
+</RevealSolution>
+
+<QuickCheck prompt="What is the inverse of `a*b` in a group?">
+Pay attention to the order.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The inverse is
+
+$$
+(a*b)^{-1}=b^{-1}*a^{-1}.
+$$
+
+The order reverses.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Show directly that `(B,+)` is a monoid using the Boolean addition rule above.">
+Check associativity and identify the identity.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The identity is `0`, since `0+0=0`, `0+1=1`, `1+0=1`, and therefore
+`x+0=0+x=x` for both `x\in B`.
+
+Associativity can be checked by the finite cases `x,y,z\in\{0,1\}`. Boolean
+addition is addition modulo `2`, so both `(x+y)+z` and `x+(y+z)` record the
+parity of the number of `1`s among `x,y,z`. Hence they agree.
+</RevealSolution>
+
+<QuickCheck prompt="Prove that the identity element in a monoid is unique.">
+Use two possible identities `e` and `e'`.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+If `e` and `e'` are both identities, then `e*e'=e` because `e'` is an identity,
+and `e*e'=e'` because `e` is an identity. Therefore `e=e'`.
+</RevealSolution>
+
+<QuickCheck prompt="Prove left cancellation in a group: if `a*b=a*c`, then `b=c`.">
+Use the inverse of `a`.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Starting from `a*b=a*c`, multiply on the left by `a^{-1}`:
+
+$$
+a^{-1}*(a*b)=a^{-1}*(a*c).
+$$
+
+Associativity gives
+
+$$
+(a^{-1}*a)*b=(a^{-1}*a)*c.
+$$
+
+Since `a^{-1}*a=e`, we get `e*b=e*c`, hence `b=c`.
+</RevealSolution>
+
+## Related notes
+
+Read this after
+[2.2 Functions and relations](/en/notes/math1090/sets/functions-relations)
+and
+[6.4-6.7 Intervals, Cantor set, density, and well-ordering](/en/notes/math1090/big-sets/intervals-cantor-set-density-and-well-ordering).
+It also uses proof habits from
+[1.2 Quantifiers and negation](/en/notes/math1090/logic/quantifiers-negation)
+and
+[3.4 Rationals and well-defined operations](/en/notes/math1090/numbers/rationals-and-well-defined-operations).

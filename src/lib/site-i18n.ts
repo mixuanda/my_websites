@@ -33,6 +33,11 @@ export const siteUiText = {
     "zh-cn": "首页",
     "zh-hk": "首頁",
   },
+  mainMenu: {
+    en: "Main menu",
+    "zh-cn": "主菜单",
+    "zh-hk": "主選單",
+  },
   notes: {
     en: "Notes",
     "zh-cn": "笔记",

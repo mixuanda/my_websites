@@ -100,6 +100,12 @@ export type ExportBlock =
       type: "paragraph";
     }
   | {
+      alt: string;
+      caption?: string;
+      src: string;
+      type: "image";
+    }
+  | {
       display?: boolean;
       type: "math";
       value: string;
@@ -119,6 +125,7 @@ export type ExportBlock =
       type: "table";
     }
   | {
+      id: string;
       snapshot: InteractiveExportSnapshot;
       type: "interactiveSnapshot";
     }

@@ -2,13 +2,14 @@ import path from "node:path";
 import {
   Document,
   Font,
+  Image as PdfImage,
   Page,
   StyleSheet,
   Text,
   View,
   renderToBuffer,
 } from "@react-pdf/renderer";
-import { getCoverageLabel, getLocalizedText, uiText } from "./i18n";
+import { getLocalizedText, uiText } from "./i18n";
 import type { ExportBlock, ExportableTextbookUnit } from "./types";
 
 const PDF_FONT_FAMILY = "NotoSansCJK";
@@ -41,6 +42,19 @@ const styles = StyleSheet.create({
   cardTitle: {
     fontSize: 12,
     marginBottom: 6,
+  },
+  image: {
+    marginBottom: 6,
+    maxHeight: 280,
+    objectFit: "contain",
+    width: "100%",
+  },
+  imageFrame: {
+    borderColor: "#d4d4d8",
+    borderRadius: 8,
+    borderWidth: 1,
+    marginBottom: 12,
+    padding: 8,
   },
   heading1: {
     fontSize: 22,
@@ -144,6 +158,22 @@ const exportBlockLabels = {
   },
 } as const;
 
+function resolveImageSource(src: string) {
+  if (/^https?:\/\//.test(src)) {
+    return src;
+  }
+
+  if (src.endsWith(".svg")) {
+    return null;
+  }
+
+  if (src.startsWith("/")) {
+    return path.join(process.cwd(), "public", src.slice(1));
+  }
+
+  return path.join(process.cwd(), src);
+}
+
 function renderBlocks(
   blocks: ExportBlock[],
   locale: ExportableTextbookUnit["locale"],
@@ -178,6 +208,25 @@ function renderBlocks(
         <Text key={`math-${depth}-${index}`} style={styles.math}>
           {block.value}
         </Text>
+      );
+    }
+
+    if (block.type === "image") {
+      const resolvedSource = resolveImageSource(block.src);
+
+      return (
+        <View key={`image-${depth}-${index}`} style={styles.imageFrame}>
+          {resolvedSource ? (
+            <PdfImage src={resolvedSource} style={styles.image} />
+          ) : null}
+          <Text style={styles.cardLabel}>{block.alt || block.src}</Text>
+          {block.caption ? (
+            <Text style={styles.bodyText}>{block.caption}</Text>
+          ) : null}
+          {!resolvedSource ? (
+            <Text style={styles.bodyText}>{block.src}</Text>
+          ) : null}
+        </View>
       );
     }
 
@@ -282,7 +331,9 @@ function TextbookUnitPdf({ unit }: { unit: ExportableTextbookUnit }) {
       <Page size="A4" style={styles.page}>
         <Text style={styles.title}>{unit.title}</Text>
         <Text style={styles.meta}>{`${unit.course.toUpperCase()} · ${unit.unitNumber}`}</Text>
-        <Text style={styles.meta}>{getCoverageLabel(unit.coverageStatus, unit.locale)}</Text>
+        {unit.coverageStatus === "MISSING_SOURCE" ? (
+          <Text style={styles.meta}>{getLocalizedText(uiText.missingSource, unit.locale)}</Text>
+        ) : null}
         <Text style={styles.bodyText}>{unit.description}</Text>
         {unit.prerequisites.length > 0 ? (
           <View style={{ marginBottom: 8 }}>

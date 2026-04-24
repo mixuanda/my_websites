@@ -14,7 +14,11 @@ import { UnitCheckpoint } from "@/components/textbook/UnitCheckpoint";
 import { UnitExportMenu } from "@/components/textbook/UnitExportMenu";
 import { UnitProgressToggle } from "@/components/textbook/UnitProgressToggle";
 import { auth } from "@/lib/auth";
-import { canAccessTier, getUserEntitlements } from "@/lib/membership/entitlements";
+import {
+  canAccessTier,
+  getUserEntitlements,
+  isMembershipGatingEnabled,
+} from "@/lib/membership/entitlements";
 import {
   getCourseMeta,
   getLocalizedGlossaryEntries,
@@ -96,6 +100,7 @@ export default async function UnitPage({ params }: UnitPageProps) {
   const unitHref = getUnitHref(locale, bundle.meta);
   const session = await auth();
   const entitlements = await getUserEntitlements(session);
+  const membershipGatingEnabled = isMembershipGatingEnabled();
   const canAccessPremium = canAccessTier(entitlements, bundle.meta.accessTier);
   const checkpointProblems = getProblemsForUnit(bundle.meta.unitId).filter((problem) =>
     canAccessTier(entitlements, problem.accessTier)
@@ -137,15 +142,17 @@ export default async function UnitPage({ params }: UnitPageProps) {
               <div className="max-w-3xl">
                 <div className="flex flex-wrap gap-2">
                   <Badge variant="secondary">{bundle.meta.unitNumber}</Badge>
-                  <Badge variant="outline">
-                    {getCoverageLabel(bundle.meta.coverageStatus, locale)}
-                  </Badge>
+                  {bundle.meta.coverageStatus === "MISSING_SOURCE" ? (
+                    <Badge variant="outline">
+                      {getCoverageLabel(bundle.meta.coverageStatus, locale)}
+                    </Badge>
+                  ) : null}
                   {bundle.meta.interactiveIds.length > 0 ? (
                     <Badge variant="outline">
                       {getLocalizedText(uiText.interactiveUnits, locale)}
                     </Badge>
                   ) : null}
-                  {bundle.meta.accessTier === "MEMBER" ? (
+                  {membershipGatingEnabled && bundle.meta.accessTier === "MEMBER" ? (
                     <Badge variant="outline">{getLocalizedText(uiText.premium, locale)}</Badge>
                   ) : null}
                   <Badge variant="outline">

@@ -1,64 +1,64 @@
 ---
 title: "2.2 函數與關係"
-description: "把函數同關係視為積集嘅子集，再用呢套語言理解像、原像、反函數、偏序同等價類。"
+description: "把函數與關係視為積集的子集，再用這套語言理解像、原像、反函數、偏序與等價類。"
 ---
 
-呢一單元係由集合語言走去後面幾乎所有主題嘅橋樑。函數、關係、同商構造
-都係由同一個想法開始：先睇積集，再指定邊啲有序對被允許。
+這一單元是由集合語言通往後面幾乎所有主題的橋樑。函數、關係、以及商構造
+都是由同一個想法開始：先看積集，再指定哪些有序對被允許。
 
-重點唔止係識詞，而係要明白每個定義究竟喺講乜。因為後面會用同一套語言去
-構造 `N`、`Z`、`Q`，同埋各種順序與等價類。
+重點不止是認識詞語，而是要明白每個定義究竟在說明甚麼。因為後面會用同一套語言去
+構造 `N`、`Z`、`Q`，以及各種順序與等價類。
 
-## 函數係特別嘅關係
+## 函數是特別的關係
 
 <Definition title="函數">
-由 `X` 到 `Y` 嘅函數，係 `X \times Y` 嘅一個子集，並且要求 `X` 中每個 `x`
+由 `X` 到 `Y` 的函數，是 `X \times Y` 的一個子集，並且要求 `X` 中每個 `x`
 都只會配對到 `Y` 中唯一一個 `y`。
 </Definition>
 
-呢就係本地筆記一直採用嘅集合論定義。
+這就是這裏採用的集合論定義。
 
 同一件事可以用幾種方式去讀：
 
-- `X` 係 domain，即輸入集合。
-- `Y` 係 target，即可能輸出嘅集合。
-- graph 係所有有序對 `(x, y)` 組成嘅集合。
-- image 係實際會出現嘅輸出。
-- preimage 係會落入某個輸出集合嘅輸入。
+- `X` 是 domain，即輸入集合。
+- `Y` 是 target，即可能輸出的集合。
+- graph 是所有有序對 `(x, y)` 組成的集合。
+- image 是實際會出現的輸出。
+- preimage 是會落入某個輸出集合的輸入。
 
-<CommonMistake title="函數唔可以令一個輸入對應多個輸出">
-關係可以令一個輸入連到多個輸出，但函數唔可以。每個輸入都必須有且只有一個輸出。
+<CommonMistake title="函數不可以令一個輸入對應多個輸出">
+關係可以令一個輸入連到多個輸出，但函數不可以。每個輸入都必須有且只有一個輸出。
 </CommonMistake>
 
 <CommonMistake title="domain 會受語境影響">
-`1/x` 唔係一個不加限定就完整嘅函數。佢可以係 `R \setminus \{0\}` 上嘅函數，
-或者 `Q \setminus \{0\}` 上嘅函數；但無論點，都唔可以包含 `0`。
+`1/x` 不是一個不加限定就完整的函數。它可以是 `R \setminus \{0\}` 上的函數，
+或者 `Q \setminus \{0\}` 上的函數；但無論如何，也不可以包含 `0`。
 </CommonMistake>
 
-## 點樣小心咁讀一個函數
+## 如何小心那麼讀一個函數
 
 <WorkedExample title="平方函數會有重複輸出">
 考慮 `f(x) = x^2`。
 
-咁 `f(-2) = 4` 同 `f(2) = 4`，即係唔同輸入可以有同一個輸出。呢個係允許嘅。
+那麼 `f(-2) = 4` 同 `f(2) = 4`，也就是不同輸入可以有同一個輸出。這個是允許的。
 
-唔允許嘅係同一個輸入有兩個唔同輸出。
+不允許的是同一個輸入有兩個不同輸出。
 
-例如，把 `y^2 = x` 當成由 `x` 去 `y` 嘅規則時，`x = 4` 會有 `y = 2` 同
-`y = -2`，所以唔係函數。
+例如，把 `y^2 = x` 視為由 `x` 去 `y` 的規則時，`x = 4` 會有 `y = 2` 同
+`y = -2`，所以不是函數。
 
-<RevealSolution title="要記住嘅觀念">
-函數嘅 graph 係一個非常特別嘅積集子集：每一條垂直線喺可行輸入位置只會撞到一次。
+<RevealSolution title="要記住的觀念">
+函數的 graph 是一個非常特別的積集子集：每一條垂直線在可行的輸入位置只會撞到一次。
 </RevealSolution>
 </WorkedExample>
 
-## 像、原像同合成
+## 像、原像與合成
 
-對 `f : X \to Y`，course 入面會用 image 呢個詞講三件相關但唔同嘅事：
+對 `f : X \to Y`，本課程中會用 image 這個詞說明三件相關但不同的事：
 
-- `f(x)` 係單一輸入 `x` 嘅像。
-- 若 `A \subset X`，則 `f(A) = {f(x) \mid x \in A}` 係集合嘅像。
-- `f(X)` 係整個函數嘅像，即實際出現過嘅輸出。
+- `f(x)` 是單一輸入 `x` 的像。
+- 若 `A \subset X`，則 `f(A) = {f(x) \mid x \in A}` 是集合的像。
+- `f(X)` 是整個函數的像，即實際出現過的輸出。
 
 原像定義為
 
@@ -66,7 +66,7 @@ $$
 f^{-1}(B) = \{x \in X \mid f(x) \in B\}.
 $$
 
-就算 `f` 冇逆函數，`f^{-1}(B)` 都仍然有意義。
+就算 `f` 沒有逆函數，`f^{-1}(B)` 仍然有意義。
 
 合成定義為
 
@@ -74,7 +74,7 @@ $$
 (g \circ f)(x) = g(f(x)).
 $$
 
-次序好重要：`g \circ f` 即係「先做 `f`，再做 `g`」。
+次序好重要：`g \circ f` 也就是「先做 `f`，再做 `g`」。
 
 <WorkedExample title="比較 `f(x)=x^2` 的像與原像">
 設 `f : R \to R` 由 `f(x) = x^2` 定義，而
@@ -83,7 +83,7 @@ $$
 A = \{-2, -1, 0, 1, 2\}, \qquad B = \{0, 1, 4\}.
 $$
 
-咁
+那麼
 
 $$
 f(A) = \{0, 1, 4\}.
@@ -95,7 +95,7 @@ $$
 f^{-1}(B) = \{-2, -1, 0, 1, 2\},
 $$
 
-因為 `A` 入面每個元素都會落入 `B`。
+因為 `A` 之中每個元素也會落入 `B`。
 
 如果改用 `C = \{4\}`，就有
 
@@ -103,76 +103,76 @@ $$
 f^{-1}(C) = \{-2, 2\}.
 $$
 
-<RevealSolution title="點解呢個區別咁重要">
-像答嘅係「呢批輸入會產生咩輸出？」；原像答嘅係「邊啲輸入會落入呢個輸出集合？」。
-兩者係唔同問題。
+<RevealSolution title="為甚麼這個區別那麼重要">
+像答的是「這批輸入會產生甚麼輸出？」；原像答的是「哪些輸入會落入這個輸出集合？」。
+兩者是不同問題。
 </RevealSolution>
 </WorkedExample>
 
 ## 單射、滿射、雙射
 
 <Definition title="三個常用詞">
-- 單射：唔同輸入唔會撞車。
-- 滿射：目標集合每個值都會被打到。
-- 雙射：同時單射同滿射。
+- 單射：不同輸入不會碰撞。
+- 滿射：目標集合每個值也會被命中。
+- 雙射：同時單射與滿射。
 </Definition>
 
-等價說法都好有用：
+等價說法也很有用：
 
 - `f` 單射 iff `f(x1) = f(x2)` 蘊含 `x1 = x2`
 - `f` 滿射 iff `f(X) = Y`
-- `f` 雙射 iff 每個目標值都剛好被打到一次
+- `f` 雙射 iff 每個目標值都剛好被命中一次
 
-本地筆記之所以成日用呢幾個詞，係因為佢哋直接決定逆函數存唔存在。
+這裏之所以經常使用這幾個詞，是因為它們直接決定逆函數存不存在。
 
 <TheoremCard title="逆函數存在當且僅當雙射">
-對函數 `f : X \to Y`，逆函數存在，當且僅當 `f` 係雙射。
+對函數 `f : X \to Y`，逆函數存在，當且僅當 `f` 是雙射。
 </TheoremCard>
 
-<CollapsibleProof title="點解雙射會有逆">
-如果 `f` 係單射又滿射，咁對每個 `y \in Y` 都存在唯一一個 `x \in X`
+<CollapsibleProof title="為甚麼雙射會有逆">
+如果 `f` 是單射又滿射，那麼對每個 `y \in Y` 都存在唯一一個 `x \in X`
 使 `f(x)=y`。
 
-呢個唯一性讓我哋可以定義一個新函數 `g : Y \to X`，令 `g(y)` 就係滿足
-`f(x)=y` 嘅唯一 `x`。
+這個唯一性讓我們可以定義一個新函數 `g : Y \to X`，令 `g(y)` 就是滿足
+`f(x)=y` 的唯一 `x`。
 
-按定義，`g(f(x)) = x` 同 `f(g(y)) = y`，所以 `g` 就係 `f` 嘅逆函數。
+按定義，`g(f(x)) = x` 同 `f(g(y)) = y`，所以 `g` 就是 `f` 的逆函數。
 </CollapsibleProof>
 
 <WorkedExample title="單射同非單射例子">
-`n \mapsto n + 1`（定義喺 `Z` 上）係單射亦係滿射，所以係雙射。
+`n \mapsto n + 1`（定義在 `Z` 上）是單射亦是滿射，所以是雙射。
 
-`x \mapsto x^2`（定義喺 `R` 上）唔係單射，因為 `1` 同 `-1` 有同一個像。
+`x \mapsto x^2`（定義在 `R` 上）不是單射，因為 `1` 同 `-1` 有同一個像。
 
-`x \mapsto e^x`（定義喺 `R` 上）係單射，但唔係滿射去 `R`，因為佢打唔到非正數。
+`x \mapsto e^x`（定義在 `R` 上）是單射，但不是滿射去 `R`，因為它打不到非正數。
 
-<RevealSolution title="先睇乜嘢最有效">
-測單射時，搵兩個唔同輸入但同一輸出。測滿射時，搵一個目標值永遠打唔到。
+<RevealSolution title="先看甚麼最有效">
+測單射時，找兩個不同輸入但同一輸出。測滿射時，找一個目標值永遠打不到。
 </RevealSolution>
 </WorkedExample>
 
-<CommonMistake title="唔好將原像同逆函數混淆">
-`f^{-1}(B)` 永遠有意義，只要 `B` 係 target 嘅子集。真正嘅逆函數 `f^{-1}` 只喺 `f` 係雙射時先存在。
+<CommonMistake title="不好將原像同逆函數混淆">
+`f^{-1}(B)` 永遠有意義，只要 `B` 是 target 的子集。真正的逆函數 `f^{-1}` 只在 `f` 是雙射時先存在。
 </CommonMistake>
 
 ## 左逆同右逆
 
-worksheet 入面有一個好有用嘅區分。
+相關練習中有一個好有用的區分。
 
 - 左逆 `h` 代表 `h \circ f = id`
 - 右逆 `g` 代表 `f \circ g = id`
 
-一般情況下，兩者唔一定相同。
+一般情況下，兩者不一定相同。
 
-<WorkedExample title="一個有左逆但冇右逆嘅映射">
+<WorkedExample title="一個有左逆但沒有右逆的映射">
 設 `X = {a, b, c}`，`Y = {α, β, γ, δ}`。定義
 
 $$
 f_1(a)=α,\qquad f_1(b)=β,\qquad f_1(c)=γ.
 $$
 
-呢個映射係單射但唔係滿射，因為 `δ` 冇被打到。
-所以佢可以有左逆，但唔可以有右逆。
+這個映射是單射但不是滿射，因為 `δ` 沒有被命中。
+所以它可以有左逆，但不可以有右逆。
 
 例如定義 `h : Y \to X`：
 
@@ -180,107 +180,107 @@ $$
 h(α)=a,\qquad h(β)=b,\qquad h(γ)=c,\qquad h(δ)=a.
 $$
 
-咁就有 `h \circ f_1 = id_X`。
+那麼就有 `h \circ f_1 = id_X`。
 
-<RevealSolution title="點解缺少輸出會阻止右逆">
-如果存在 `f_1 \circ g = id_Y`，咁每個 `y \in Y` 都一定要係 `f_1` 嘅輸出。但 `δ` 冇出現，
-所以唔可能有右逆。
+<RevealSolution title="為甚麼缺少輸出會阻止右逆">
+如果存在 `f_1 \circ g = id_Y`，那麼每個 `y \in Y` 都一定要是 `f_1` 的輸出。但 `δ` 沒有出現，
+所以不可能有右逆。
 </RevealSolution>
 </WorkedExample>
 
-<WorkedExample title="一個有右逆但冇左逆嘅映射">
+<WorkedExample title="一個有右逆但沒有左逆的映射">
 定義 `f_2 : Y \to X` 如下：
 
 $$
 f_2(α)=a,\qquad f_2(β)=a,\qquad f_2(γ)=b,\qquad f_2(δ)=c.
 $$
 
-呢個映射係滿射但唔係單射，所以可以有右逆但冇左逆。
+這個映射是滿射但不是單射，所以可以有右逆但沒有左逆。
 
-一個右逆係 `g : X \to Y`，令
+一個右逆是 `g : X \to Y`，令
 
 $$
 g(a)=α,\qquad g(b)=γ,\qquad g(c)=δ.
 $$
 
-咁就有 `f_2 \circ g = id_X`。
+那麼就有 `f_2 \circ g = id_X`。
 
-<RevealSolution title="點解撞車會阻止左逆">
-如果存在左逆，兩個不同輸入但同一輸出會喺左逆之後被迫變成同一個元素，呢個唔可能。
+<RevealSolution title="為甚麼碰撞會阻止左逆">
+如果存在左逆，兩個不同輸入但同一輸出會在左逆之後被迫變成同一個元素，這個不可能。
 </RevealSolution>
 </WorkedExample>
 
 ## 關係
 
 <Definition title="關係">
-`X` 同 `Y` 之間嘅關係，係 `X \times Y` 嘅任何子集。
+`X` 同 `Y` 之間的關係，是 `X \times Y` 的任何子集。
 
-如果 `X = Y`，我哋就直接叫佢做 `X` 上嘅關係。
+如果 `X = Y`，我們就直接叫它做 `X` 上的關係。
 </Definition>
 
-寫 `xRy` 即係 `(x, y) \in R`。
+寫 `xRy` 也就是 `(x, y) \in R`。
 
-關係係比函數更一般嘅概念。函數只係一種特殊關係，附帶「每個輸入剛好一個輸出」呢條附加規則。
+關係是比函數更一般的概念。函數只是一種特殊關係，附帶「每個輸入剛好一個輸出」這條附加規則。
 
 對 `R \subset X \times Y`：
 
-- domain 係同至少一個 `y` 有關聯嘅 `x`
-- image / range 係被至少一個 `x` 命中嘅 `y`
+- domain 是同至少一個 `y` 有關聯的 `x`
+- image / range 是被至少一個 `x` 命中的 `y`
 
-<WorkedExample title="關係未必係函數">
-設 `X` 係國家集合，`Y` 係城市集合。
+<WorkedExample title="關係未必是函數">
+設 `X` 是國家集合，`Y` 是城市集合。
 
-「`y` 係 `x` 嘅首都」呢個關係係 `X \times Y` 上嘅關係。佢係咪函數，要睇時代同國家。
+「`y` 是 `x` 的首都」這個關係是 `X \times Y` 上的關係。它是否函數，要看時代與國家。
 
-`y^2 = x`（定義喺 `Z \times Z` 上）亦都係關係，但如果當做由 `x` 去 `y` 嘅規則，就唔係函數，
+`y^2 = x`（定義在 `Z \times Z` 上）也是關係，但如果視為由 `x` 去 `y` 的規則，就不是函數，
 因為一個輸入可以有多個輸出。
 
-<RevealSolution title="點解關係語言仍然有用">
-關係可以處理「有連結，但唔要求唯一性」呢種情況。順序同等價類之後都要用到呢個語言。
+<RevealSolution title="為甚麼關係語言仍然有用">
+關係可以處理「有連結，但不要求唯一性」這種情況。順序與等價類之後都要用到這個語言。
 </RevealSolution>
 </WorkedExample>
 
 ## 同一個集合上的關係
 
-`X \times X` 上嘅關係尤其重要。
+`X \times X` 上的關係尤其重要。
 
 <TheoremCard title="四個常用性質">
-一個 `X` 上嘅關係可以有以下性質：
+一個 `X` 上的關係可以有以下性質：
 
 - Reflexive：每個 `x` 都有 `xRx`
 - Symmetric：`xRy` 蘊含 `yRx`
-- Antisymmetric：如果 `xRy` 同 `yRx`，咁就要 `x = y`
-- Transitive：如果 `xRy` 同 `yRz`，咁就要 `xRz`
+- Antisymmetric：如果 `xRy` 同 `yRx`，那麼就要 `x = y`
+- Transitive：如果 `xRy` 同 `yRz`，那麼就要 `xRz`
 </TheoremCard>
 
-兩種特別重要嘅關係係：
+兩種特別重要的關係是：
 
 - partial order：reflexive + antisymmetric + transitive
 - equivalence relation：reflexive + symmetric + transitive
 
-`symmetric` 同 `antisymmetric` 好容易混淆，但佢哋意思完全唔同：
+`symmetric` 同 `antisymmetric` 好容易混淆，但它們意思完全不同：
 
 - symmetric：見到單向箭咀就要兩邊都有
-- antisymmetric：如果兩邊都有，咁兩個元素就必須相等
+- antisymmetric：如果兩邊都有，那麼兩個元素就必須相等
 
-<WorkedExample title="整除關係係偏序">
-喺正整數上寫 `a \mid b` 表示 `a` 整除 `b`。
+<WorkedExample title="整除關係是偏序">
+在正整數上寫 `a \mid b` 表示 `a` 整除 `b`。
 
-呢個關係係 reflexive，因為每個數都整除自己。
-佢係 antisymmetric，因為如果 `a \mid b` 同 `b \mid a`，喺正整數入面就有 `a = b`。
-佢亦係 transitive，因為整除可以沿鏈傳遞。
+這個關係是 reflexive，因為每個數都整除自己。
+它是 antisymmetric，因為如果 `a \mid b` 同 `b \mid a`，在正整數之中就有 `a = b`。
+它亦是 transitive，因為整除可以沿鏈傳遞。
 
-所以整除係 partial order。
+所以整除是 partial order。
 
-<RevealSolution title="點解呢個概念重要">
-偏序唔只係一個名詞。佢幫我哋整理「包含」「細化」「整除」呢啲有結構嘅關係。
+<RevealSolution title="為甚麼這個概念重要">
+偏序不只是一個名詞。它幫我們整理「包含」「細化」「整除」這些有結構的關係。
 </RevealSolution>
 </WorkedExample>
 
-<WorkedExample title="一個簡單嘅等價關係">
-模 `m` 同餘係 `Z` 上嘅等價關係。
+<WorkedExample title="一個簡單的等價關係">
+模 `m` 同餘是 `Z` 上的等價關係。
 
-意思係兩個整數如果有相同餘數，就屬於同一個 class。
+意思是兩個整數如果有相同餘數，就屬於同一個 class。
 
 例如模 `3`，整數可以分成三類：
 
@@ -288,14 +288,14 @@ $$
 - 餘 `1`
 - 餘 `2`
 
-呢啲 classes 會分割整個集合。
+這些 classes 會分割整個集合。
 </WorkedExample>
 
 ## 等價類同商集
 
 <Definition title="等價類">
-設 `R` 係 `X` 上嘅等價關係。對 `x \in X`，
-`x` 嘅等價類定義為
+設 `R` 是 `X` 上的等價關係。對 `x \in X`，
+`x` 的等價類定義為
 
 $$
 [x]_R = \{y \in X \mid yRx\}.
@@ -304,49 +304,49 @@ $$
 </Definition>
 
 <Definition title="商集">
-如果 `\sim` 係 `X` 上嘅等價關係，咁所有等價類組成嘅集合記作 `X / \sim`。
+如果 `\sim` 是 `X` 上的等價關係，那麼所有等價類組成的集合記作 `X / \sim`。
 </Definition>
 
-等價類就係 quotient construction 嘅核心。與其逐個代表元去跟，不如直接將所有等價代表包成一個對象。
+等價類就是 quotient construction 的核心。與其逐個代表元去跟，不如直接將所有等價代表包成一個對象。
 
 <TheoremCard title="等價類會分割集合">
-如果 `R` 係 `X` 上嘅等價關係，咁等價類會覆蓋整個集合，而且任何兩個等價類只會相等或者互相不相交。
+如果 `R` 是 `X` 上的等價關係，那麼等價類會覆蓋整個集合，而且任何兩個等價類只會相等或者互相不相交。
 </TheoremCard>
 
-<CollapsibleProof title="點解等價類唔會部分重疊">
-每個 `x \in X` 都屬於自己嘅 class `[x]_R`，所以 classes 會覆蓋整個集合。
+<CollapsibleProof title="為甚麼等價類不會部分重疊">
+每個 `x \in X` 都屬於自己的 class `[x]_R`，所以 classes 會覆蓋整個集合。
 
-如果兩個 class 喺某個 `z` 相遇，咁由反射性、對稱性同傳遞性，可以推出兩個 class 其實係同一個。
+如果兩個 class 在某個 `z` 相遇，那麼由反射性、對稱性同傳遞性，可以推出兩個 class 其實是同一個。
 </CollapsibleProof>
 
-呢個就係後面用等價類構造整數同有理數嘅原因。
+這個就是後面用等價類構造整數同有理數的原因。
 
 ## 常見錯誤
 
-<CommonMistake title="唔好將原像同逆函數混淆">
-`f^{-1}(B)` 永遠有意義，只要 `B` 係 target 嘅子集。真正嘅逆函數 `f^{-1}` 只喺 `f` 係雙射時先存在。
+<CommonMistake title="不好將原像同逆函數混淆">
+`f^{-1}(B)` 永遠有意義，只要 `B` 是 target 的子集。真正的逆函數 `f^{-1}` 只在 `f` 是雙射時先存在。
 </CommonMistake>
 
-<CommonMistake title="對稱唔等於反對稱">
-`≤` 係反對稱但唔係對稱。等號係對稱又反對稱，而整除係反對稱但唔係對稱。
+<CommonMistake title="對稱不等於反對稱">
+`≤` 是反對稱但不是對稱。等號是對稱又反對稱，而整除是反對稱但不是對稱。
 </CommonMistake>
 
-<CommonMistake title="關係唔做函數可以有兩種錯法">
-佢可以令同一個輸入對應多個輸出，亦可以令某啲輸入完全冇輸出。
+<CommonMistake title="關係不做函數可以有兩種錯法">
+它可以令同一個輸入對應多個輸出，亦可以令某些輸入完全沒有輸出。
 </CommonMistake>
 
 ## 小檢查
 
-<QuickCheck prompt="`x ≤ y` 喺實數上係關係嗎？係函數嗎？">
-先問佢係唔係 `R \times R` 嘅子集，再問每個輸入有冇唯一輸出。
+<QuickCheck prompt="`x ≤ y` 在實數上是關係嗎？是函數嗎？">
+先問它是不是 `R \times R` 的子集，再問每個輸入有沒有唯一輸出。
 </QuickCheck>
 
 <RevealSolution title="答案">
-佢係關係，因為佢係 `R \times R` 嘅子集；但佢唔係函數，因為同一個輸入 `x`
-可以對應好多個 `y`。
+它是關係，因為它是 `R \times R` 的子集；但它不是函數，因為同一個輸入 `x`
+可以對應許多個 `y`。
 </RevealSolution>
 
-<QuickCheck prompt="`f^{-1}(B)` 喺 `f` 唔係雙射時仲有冇意義？">
+<QuickCheck prompt="`f^{-1}(B)` 在 `f` 不是雙射時還有沒有意義？">
 分清 preimage 同 inverse function。
 </QuickCheck>
 
@@ -354,21 +354,21 @@ $$
 有。原像永遠有意義。
 </RevealSolution>
 
-<QuickCheck prompt="如果一個關係係 reflexive、symmetric、transitive，佢叫乜？">
-回想會將集合分成 class 嘅嗰種關係。
+<QuickCheck prompt="如果一個關係是 reflexive、symmetric、transitive，它叫甚麼？">
+回想會將集合分成 class 的那種關係。
 </QuickCheck>
 
 <RevealSolution title="答案">
-佢係等價關係。
+它是等價關係。
 </RevealSolution>
 
-## 點解呢一單元重要
+## 為甚麼這一單元重要
 
-後面章節會不停用到呢啲概念：
+後面章節會不停用到這些概念：
 
 - `N` 會透過集合語言同 induction 構造
 - `Z` 同 `Q` 會透過等價類構造
-- 數字上嘅 `≤` 係 partial order
-- quotient set 解釋咗點解同一個對象可以有好多代表元
+- 數字上的 `≤` 是 partial order
+- quotient set 解釋咗為甚麼同一個對象可以有許多代表元
 
-如果呢一單元清楚，後面嘅構造會容易好多，因為符號唔再喺暗中做事。
+如果這一單元清楚，後面的構造會容易許多，因為符號不再在暗中做事。

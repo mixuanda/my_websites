@@ -22,6 +22,13 @@ export interface UserEntitlements {
 
 const memoryMembershipByUser = new Map<string, MembershipRecord>();
 
+export function isMembershipGatingEnabled() {
+  return (
+    process.env.NOTES_MEMBERSHIP_GATING === "true" ||
+    process.env.NEXT_PUBLIC_NOTES_MEMBERSHIP_GATING === "true"
+  );
+}
+
 function getSessionUser(session: Session | null) {
   const user = session?.user as { email?: string | null; id?: string } | undefined;
   return {
@@ -133,6 +140,10 @@ export async function getUserEntitlements(session: Session | null): Promise<User
 }
 
 export function canAccessTier(entitlements: UserEntitlements, requiredTier?: AccessTier) {
+  if (!isMembershipGatingEnabled()) {
+    return true;
+  }
+
   if (!requiredTier || requiredTier === "FREE") {
     return true;
   }

@@ -1,0 +1,463 @@
+---
+title: "6.1 Cardinality, countability, and cardinal inequalities"
+description: "Compare sizes of sets by bijections and injections, prove that Z and Q are countable, and read the Cantor-Bernstein theorem as the antisymmetry principle for cardinal size."
+---
+
+Chapter 6 begins with a change of viewpoint. Earlier chapters built and studied
+particular number systems. Here the question is broader: how can we compare the
+sizes of sets, especially when the sets are infinite?
+
+For finite sets, counting elements is enough. For infinite sets, the useful
+notion is not ordinary counting but the existence of carefully chosen functions.
+A bijection says that two sets have exactly matching elements. An injection says
+that one set can be faithfully coded inside another.
+
+## Same cardinality
+
+<Definition title="Same cardinality">
+Let `X` and `Y` be sets. We say that `X` and `Y` have the **same cardinality**,
+and write
+
+$$
+|X|=|Y|,
+$$
+
+if there exists a bijection `f:X\to Y`.
+</Definition>
+
+This definition deliberately avoids saying that the elements have to look
+similar. The two sets may have very different kinds of elements. What matters is
+whether every element of `X` can be paired with exactly one element of `Y`, and
+every element of `Y` is paired with exactly one element of `X`.
+
+For finite sets this agrees with ordinary counting. If a set can be put in
+bijection with a set of `n` labels, then it has `n` elements.
+
+<Definition title="Finite set">
+A set `X` is **finite** if
+
+$$
+|X|=|n|
+$$
+
+for some natural number `n`.
+
+In that case we usually write simply `|X|=n`.
+</Definition>
+
+The notation `|X|` is therefore not a number in the usual sense for every set.
+It is a symbol for the size, or cardinality, of `X`. For finite sets this size
+is represented by a natural number. For infinite sets, we compare sizes through
+maps.
+
+## Countable and uncountable sets
+
+<Definition title="Countable and uncountable">
+A set `X` is **countable** if it is finite or if
+
+$$
+|X|=|N|.
+$$
+
+A set which is not countable is called **uncountable**.
+</Definition>
+
+Thus a countably infinite set is one whose elements can be listed in a sequence
+without omission and without repetition:
+
+$$
+x_0,x_1,x_2,\ldots
+$$
+
+depending on the indexing convention for `N`. The exact starting index is not
+important. What matters is that there is a bijection from the natural numbers to
+the set.
+
+<CommonMistake title="Countable does not mean finite">
+In this chapter, countable includes finite sets and sets with the same
+cardinality as `N`. The word "countable" is therefore broader than "finite".
+</CommonMistake>
+
+## The integers are countable
+
+A useful exercise is to prove that
+
+$$
+|N|=|Z|.
+$$
+
+The key idea is that the integers can be arranged in a single infinite list.
+
+<WorkedExample title="Enumerating the integers">
+One convenient ordering is
+
+$$
+0,1,-1,2,-2,3,-3,\ldots .
+$$
+
+This list reaches every integer exactly once. It therefore gives a bijection
+from `N` to `Z` after choosing the corresponding indexing convention.
+
+For example, with `N=\{0,1,2,\ldots\}`, define
+
+$$
+f(0)=0,\qquad f(2k-1)=k,\qquad f(2k)=-k
+$$
+
+for `k\ge 1`. Then `f:N\to Z` is bijective.
+
+<CollapsibleProof title="Why this proves countability">
+Every positive integer appears at an odd index, every negative integer appears
+at an even positive index, and `0` appears at index `0`. No two different
+indices give the same integer, so the list is a genuine enumeration.
+</CollapsibleProof>
+</WorkedExample>
+
+The example is important because it shows the first surprise about infinite
+sets: a proper-looking enlargement of `N` can still have the same cardinality
+as `N`.
+
+## The rationals are countable
+
+<TheoremCard title="The rationals are countable">
+The set `Q` of rational numbers is countable.
+</TheoremCard>
+
+The proof first treats the positive rationals. It is enough
+to enumerate `Q_+`, because then one may interleave positive rationals, negative
+rationals, and zero.
+
+The positive rational numbers can be organized by numerator and denominator. A
+positive rational in lowest terms has the form
+
+$$
+\frac{p}{q}
+$$
+
+where `p,q\in N` are positive and share no common factor greater than `1`.
+Place this rational at row `p` and column `q` in an infinite grid. Then traverse
+the grid by diagonals:
+
+$$
+p+q=2,\quad p+q=3,\quad p+q=4,\quad \ldots
+$$
+
+and record the reduced fractions encountered along the way.
+
+<WorkedExample title="The first few positive rationals by diagonals">
+Following the diagonals and keeping only fractions in lowest terms gives a list
+beginning like
+
+$$
+1,\ \frac12,\ 2,\ \frac13,\ 3,\ \frac14,\ \frac23,\ \frac32,\ 4,\ldots .
+$$
+
+The exact displayed beginning is less important than the mechanism: every
+positive rational `p/q` in lowest terms appears on the diagonal `p+q`, and that
+diagonal is reached after finitely many previous diagonals.
+</WorkedExample>
+
+![A diagonal scan of positive rational numbers](/images/textbook/math1090/cardinality-diagonal-grid.png)
+
+*Figure. The diagonal scan is not a decorative picture; it is the mechanism that
+turns a two-dimensional grid of positive rationals into one sequence.*
+
+Why does this produce a bijection with `Q_+`?
+
+- It is surjective because every positive rational has a lowest-term
+  representative `p/q`, hence occurs somewhere in the grid.
+- It is injective because using lowest terms prevents repetitions such as
+  `1/1`, `2/2`, and `3/3` from all being recorded as the same rational.
+
+Once `Q_+` is listed, the full set `Q` can be listed by alternating signs and
+including zero:
+
+$$
+0,\ q_1,\ -q_1,\ q_2,\ -q_2,\ q_3,\ -q_3,\ldots .
+$$
+
+So `Q` is countable.
+
+<CommonMistake title="A dense set can still be countable">
+The rationals are dense in the real line, but density is not cardinality. The
+diagonal enumeration shows that the rationals can still be placed into one
+sequence.
+</CommonMistake>
+
+## Comparing cardinalities by injections
+
+Bijections decide equality of cardinality. To compare unequal sizes, we
+use injections.
+
+<Definition title="Cardinal inequality">
+Let `X` and `Y` be sets. We write
+
+$$
+|X|\le |Y|
+$$
+
+if there exists an injection `f:X\to Y`.
+
+We write
+
+$$
+|X|<|Y|
+$$
+
+if `|X|\le |Y|` and `|X|\ne |Y|`.
+</Definition>
+
+An injection from `X` to `Y` means that `Y` has enough room to store a distinct
+code for every element of `X`. This is why it is the correct analogue of
+"less than or equal to" for cardinalities.
+
+<WorkedExample title="A simple cardinal inequality">
+The inclusion map
+
+$$
+i:N\to Z,\qquad i(n)=n
+$$
+
+is injective. Therefore `|N|\le |Z|`.
+
+This alone does not prove equality. Equality requires a bijection, or two
+opposite injections together with Cantor-Bernstein.
+</WorkedExample>
+
+## Cardinal inequality behaves like a partial order
+
+<TheoremCard title="Cardinal inequalities form a partial-order pattern">
+The relation `\le` on cardinalities is reflexive, antisymmetric, and
+transitive. Consequently `<` is irreflexive and transitive.
+</TheoremCard>
+
+Here is the proof structure.
+
+**Reflexivity.** The identity map
+
+$$
+id_X:X\to X
+$$
+
+is injective, so `|X|\le |X|`.
+
+**Transitivity.** If `f:X\to Y` and `g:Y\to Z` are injections, then
+
+$$
+g\circ f:X\to Z
+$$
+
+is also an injection. Thus `|X|\le |Y|` and `|Y|\le |Z|` imply
+`|X|\le |Z|`.
+
+**Antisymmetry.** This is exactly the Cantor-Bernstein theorem.
+
+<CommonMistake title="There is no set of all sets">
+Strictly speaking, `\le` is not a relation on one giant set of all sets, because
+there is no such set. The point is that the partial-order properties hold for
+any collection of cardinalities that one is comparing.
+</CommonMistake>
+
+## Cantor-Bernstein theorem
+
+<TheoremCard title="Cantor-Bernstein theorem">
+Let `X` and `Y` be sets. If
+
+$$
+|X|\le |Y|
+\qquad\text{and}\qquad
+|Y|\le |X|,
+$$
+
+then
+
+$$
+|X|=|Y|.
+$$
+</TheoremCard>
+
+In words: if `X` injects into `Y` and `Y` injects into `X`, then the two sets
+actually have the same cardinality. This looks intuitively obvious, but the
+proof is more delicate than the finite case.
+
+Here is the standard sketch. Suppose
+
+$$
+f:X\to Y,\qquad g:Y\to X
+$$
+
+are injections. Since `g` embeds `Y` into `X`, the image `g(Y)` is a copy of
+`Y` sitting inside `X`. The proof builds nested subsets
+
+$$
+A_0\supset B_0\supset A_1\supset B_1\supset\cdots
+$$
+
+of `X` by
+
+$$
+A_0=X,\qquad B_0=g(Y),
+$$
+
+and
+
+$$
+A_{n+1}=g(f(A_n)),\qquad B_{n+1}=g(f(B_n)).
+$$
+
+The map `g\circ f:X\to X` carries each difference layer
+
+$$
+A_n\setminus B_n
+$$
+
+bijectively onto the next difference layer
+
+$$
+A_{n+1}\setminus B_{n+1}.
+$$
+
+The desired bijection `h:X\to Y` is then assembled by using `f` on the layers
+where `f` should be used, and using `g^{-1}` on the remaining part:
+
+$$
+h(x)=
+\begin{cases}
+f(x), & x\in A_n\setminus B_n\text{ for some }n,\\
+g^{-1}(x), & \text{otherwise.}
+\end{cases}
+$$
+
+The point of the construction is not that one can guess the bijection by
+inspection. The point is that the two injections provide enough structure to
+divide `X` into pieces and define a genuine bijection piece by piece.
+
+<CollapsibleProof title="Why the piecewise definition is plausible">
+If `x` is not in any layer `A_n\setminus B_n`, then in particular it is not in
+`A_0\setminus B_0=X\setminus g(Y)`. Hence `x\in g(Y)`, so `g^{-1}(x)` is
+defined on that remaining part.
+
+The layer condition prevents the two pieces of the definition from colliding.
+The proof checks injectivity by showing that a collision between an
+`f`-value and a `g^{-1}`-value would force an element into the next forbidden
+layer. It checks surjectivity by starting with `y\in Y`, looking at `g(y)\in X`,
+and deciding whether `g(y)` lies in one of the layers.
+</CollapsibleProof>
+
+## A supporting comparison lab
+
+The widget below is secondary to the proof language. Use it as a way to compare
+what bijections, injections, and two-sided injections are saying before reading
+the formal statements again.
+
+<InteractiveWidget id="cardinality-comparison-lab" />
+
+## Common mistakes and subtle points
+
+<CommonMistake title="Do not prove equality from one injection">
+An injection `X\to Y` proves `|X|\le |Y|`. It does not by itself prove
+`|X|=|Y|`. Equality requires a bijection, or injections in both directions plus
+Cantor-Bernstein.
+</CommonMistake>
+
+<CommonMistake title="Do not count unreduced fractions as different rationals">
+The symbols `1/1`, `2/2`, and `3/3` describe the same rational number. The
+countability proof for `Q_+` avoids duplicates by using lowest terms.
+</CommonMistake>
+
+<CommonMistake title="A surjection points in the opposite comparison direction">
+If `f:X\to Y` is surjective, it is tempting to conclude immediately that
+`|Y|\le |X|`. That conclusion is true with the axiom of choice, but the argument
+postpone the proof until choice functions are introduced.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="What kind of function proves that two sets have the same cardinality?">
+Name the function property and say what it does to elements.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+A bijection proves same cardinality. It pairs every element of the first set
+with exactly one element of the second set and misses nothing.
+</RevealSolution>
+
+<QuickCheck prompt="Why does the diagonal argument for Q+ not get stuck on any particular positive rational p/q?">
+Think about the diagonal containing that fraction.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+If `p/q` is in lowest terms, it lies on the diagonal `p+q`. Since the diagonal
+traversal eventually reaches every finite value of `p+q`, the fraction is
+eventually listed.
+</RevealSolution>
+
+<QuickCheck prompt="If there are injections X to Y and Y to X, what theorem lets us conclude same cardinality?">
+This is the antisymmetry part of cardinal comparison.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The Cantor-Bernstein theorem. It says that two opposite cardinal inequalities
+force `|X|=|Y|`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Give an explicit enumeration of Z and explain why it has no repetitions.">
+Start with 0, then alternate positive and negative integers.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Use
+
+$$
+0,1,-1,2,-2,3,-3,\ldots .
+$$
+
+Every positive integer `k` appears once, every negative integer `-k` appears
+once, and `0` appears once. The positions are distinct, so no integer is
+repeated.
+</RevealSolution>
+
+<QuickCheck prompt="Explain why the composition of two injections is injective.">
+Use the definition of injective twice.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Let `f:X\to Y` and `g:Y\to Z` be injective. If
+
+$$
+(g\circ f)(x_1)=(g\circ f)(x_2),
+$$
+
+then `g(f(x_1))=g(f(x_2))`. Since `g` is injective, `f(x_1)=f(x_2)`. Since
+`f` is injective, `x_1=x_2`. Hence `g\circ f` is injective.
+</RevealSolution>
+
+<QuickCheck prompt="Why does countability of Q+ imply countability of Q?">
+Account for zero and negative rationals.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+If
+
+$$
+q_1,q_2,q_3,\ldots
+$$
+
+lists `Q_+`, then
+
+$$
+0,q_1,-q_1,q_2,-q_2,q_3,-q_3,\ldots
+$$
+
+lists all rational numbers. This gives an enumeration of `Q`.
+</RevealSolution>
+
+## Related notes
+
+Read this after
+[2.2 Functions and relations](/en/notes/math1090/sets/functions-relations),
+especially the sections on injections, surjections, bijections, and partial
+orders. Then continue to
+[6.1.2-6.3 Cantor's theorem, continuum, and choice](/en/notes/math1090/big-sets/cantor-theorem-continuum-and-choice).

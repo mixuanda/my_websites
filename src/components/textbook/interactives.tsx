@@ -2888,8 +2888,336 @@ function DeltaEpsilonLimitExplorer({ locale }: { locale: Locale }) {
   );
 }
 
+function CardinalityComparisonLab({ locale }: { locale: Locale }) {
+  const cases = [
+    {
+      id: "finite-bijection",
+      label: text("Three objects vs three labels", "三個物件對三個標籤", "三个物件对三个标签"),
+      relation: text("|X| = |Y|", "|X| = |Y|", "|X| = |Y|"),
+      map: text("a -> 1, b -> 2, c -> 3", "a -> 1, b -> 2, c -> 3", "a -> 1, b -> 2, c -> 3"),
+      why: text(
+        "Every element of X is used once and every element of Y is hit once, so the displayed function is a bijection.",
+        "X 的每個元素都用了一次，Y 的每個元素亦被命中一次，所以這個函數是雙射。",
+        "X 的每个元素都用了一次，Y 的每个元素也被命中一次，所以这个函数是双射。"
+      ),
+    },
+    {
+      id: "injection-only",
+      label: text("A proper injection", "真正的單射例子", "真正的单射例子"),
+      relation: text("|{0,1,2}| <= |{0,1,2,3}|", "|{0,1,2}| <= |{0,1,2,3}|", "|{0,1,2}| <= |{0,1,2,3}|"),
+      map: text("0 -> 0, 1 -> 1, 2 -> 2", "0 -> 0, 1 -> 1, 2 -> 2", "0 -> 0, 1 -> 1, 2 -> 2"),
+      why: text(
+        "The map is injective, but 3 is not hit. This proves <=, not equality.",
+        "這個映射是單射，但 3 沒有被命中。它證明的是 <=，不是相等。",
+        "这个映射是单射，但 3 没有被命中。它证明的是 <=，不是相等。"
+      ),
+    },
+    {
+      id: "integers-countable",
+      label: text("Enumerating Z", "枚舉 Z", "枚举 Z"),
+      relation: text("|N| = |Z|", "|N| = |Z|", "|N| = |Z|"),
+      map: text("0, 1, -1, 2, -2, 3, -3, ...", "0, 1, -1, 2, -2, 3, -3, ...", "0, 1, -1, 2, -2, 3, -3, ..."),
+      why: text(
+        "A single sequence can list every integer exactly once, so Z is countable.",
+        "一條序列可以把每個整數恰好列出一次，所以 Z 是可數的。",
+        "一条序列可以把每个整数恰好列出一次，所以 Z 是可数的。"
+      ),
+    },
+    {
+      id: "positive-rationals",
+      label: text("Diagonal scan of positive rationals", "正有理數的對角掃描", "正有理数的对角扫描"),
+      relation: text("|N| = |Q^+|", "|N| = |Q^+|", "|N| = |Q^+|"),
+      map: text("1/1, 1/2, 2/1, 1/3, 3/1, 1/4, 2/3, 3/2, 4/1, ...", "1/1, 1/2, 2/1, 1/3, 3/1, 1/4, 2/3, 3/2, 4/1, ...", "1/1, 1/2, 2/1, 1/3, 3/1, 1/4, 2/3, 3/2, 4/1, ..."),
+      why: text(
+        "Scanning by p+q reaches every positive rational; reduced duplicates can be skipped without losing countability.",
+        "按 p+q 掃描會到達每個正有理數；遇到未約分的重複項可跳過，不會影響可數性。",
+        "按 p+q 扫描会到达每个正有理数；遇到未约分的重复项可跳过，不会影响可数性。"
+      ),
+    },
+  ] as const;
+  const [selected, setSelected] = useState<(typeof cases)[number]["id"]>("finite-bijection");
+  const current = cases.find((item) => item.id === selected) ?? cases[0];
+
+  return (
+    <InteractiveShell icon={<ArrowLeftRight className="h-5 w-5" />} locale={locale} widgetId="cardinality-comparison-lab">
+      <div className="flex flex-wrap gap-2">
+        {cases.map((item) => (
+          <Button
+            key={item.id}
+            onClick={() => setSelected(item.id)}
+            size="sm"
+            type="button"
+            variant={selected === item.id ? "default" : "outline"}
+          >
+            {getLocalizedText(item.label, locale)}
+          </Button>
+        ))}
+      </div>
+      <div className="mt-5 grid gap-4 md:grid-cols-3">
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+            {getLocalizedText(interactiveLabels.relation, locale)}
+          </p>
+          <p className="mt-3 font-mono text-lg">{getLocalizedText(current.relation, locale)}</p>
+        </GlassPanel>
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+            {getLocalizedText(interactiveLabels.pointsTo, locale)}
+          </p>
+          <p className="mt-3 font-mono text-sm leading-7">{getLocalizedText(current.map, locale)}</p>
+        </GlassPanel>
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+            {getLocalizedText(interactiveLabels.why, locale)}
+          </p>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
+            {getLocalizedText(current.why, locale)}
+          </p>
+        </GlassPanel>
+      </div>
+    </InteractiveShell>
+  );
+}
+
+function CantorDiagonalLab({ locale }: { locale: Locale }) {
+  const rows = [
+    { index: 0, values: [0, 2, 4] },
+    { index: 1, values: [0, 1, 3, 5] },
+    { index: 2, values: [2, 3] },
+    { index: 3, values: [0, 4] },
+    { index: 4, values: [1, 4, 5] },
+    { index: 5, values: [] },
+  ] as const;
+  const diagonal = rows.map((row) => ({
+    index: row.index,
+    inListedSet: (row.values as readonly number[]).includes(row.index),
+    inDiagonalSet: !(row.values as readonly number[]).includes(row.index),
+  }));
+  const diagonalSet = diagonal
+    .filter((row) => row.inDiagonalSet)
+    .map((row) => row.index)
+    .join(", ");
+
+  return (
+    <InteractiveShell icon={<ListChecks className="h-5 w-5" />} locale={locale} widgetId="cantor-diagonal-lab">
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse text-sm">
+              <thead>
+                <tr className="text-left text-muted-foreground">
+                  <th className="border-b border-border/50 py-2 pr-4">n</th>
+                  <th className="border-b border-border/50 py-2 pr-4">f(n)</th>
+                  <th className="border-b border-border/50 py-2 pr-4">n in f(n)?</th>
+                  <th className="border-b border-border/50 py-2">n in T?</th>
+                </tr>
+              </thead>
+              <tbody>
+                {diagonal.map((row) => {
+                  const source = rows[row.index];
+                  return (
+                    <tr key={`cantor-row-${row.index}`} className="border-b border-border/30">
+                      <td className="py-2 pr-4 font-mono">{row.index}</td>
+                      <td className="py-2 pr-4 font-mono">{`{${source.values.join(", ")}}`}</td>
+                      <td className="py-2 pr-4">{row.inListedSet ? getLocalizedText(interactiveLabels.yes, locale) : getLocalizedText(interactiveLabels.no, locale)}</td>
+                      <td className="py-2">{row.inDiagonalSet ? getLocalizedText(interactiveLabels.yes, locale) : getLocalizedText(interactiveLabels.no, locale)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </GlassPanel>
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <p className="text-sm font-semibold">
+            T = {"{"}{diagonalSet}{"}"}
+          </p>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
+            {getLocalizedText(
+              text(
+                "This finite table only illustrates the rule. In the proof, T = {n in N : n notin f(n)} differs from every listed f(n) exactly at row n, so no list can contain all subsets of N.",
+                "這張有限表只示範規則。正式證明中，T = {n in N : n notin f(n)} 會在第 n 行恰好不同於 f(n)，所以任何列表都不可能包含 N 的所有子集。",
+                "这张有限表只示范规则。正式证明中，T = {n in N : n notin f(n)} 会在第 n 行恰好不同于 f(n)，所以任何列表都不可能包含 N 的所有子集。"
+              ),
+              locale
+            )}
+          </p>
+        </GlassPanel>
+      </div>
+    </InteractiveShell>
+  );
+}
+
+function CantorSetStageViewer({ locale }: { locale: Locale }) {
+  const stages = [
+    { intervals: [[0, 1]], label: "C_0", removed: "0" },
+    { intervals: [[0, 1 / 3], [2 / 3, 1]], label: "C_1", removed: "1/3" },
+    { intervals: [[0, 1 / 9], [2 / 9, 1 / 3], [2 / 3, 7 / 9], [8 / 9, 1]], label: "C_2", removed: "1/3 + 2/9" },
+    {
+      intervals: [
+        [0, 1 / 27],
+        [2 / 27, 1 / 9],
+        [2 / 9, 7 / 27],
+        [8 / 27, 1 / 3],
+        [2 / 3, 19 / 27],
+        [20 / 27, 7 / 9],
+        [8 / 9, 25 / 27],
+        [26 / 27, 1],
+      ],
+      label: "C_3",
+      removed: "1/3 + 2/9 + 4/27",
+    },
+  ] as const;
+  const [stage, setStage] = useState(0);
+  const current = stages[stage];
+
+  return (
+    <InteractiveShell icon={<Braces className="h-5 w-5" />} locale={locale} widgetId="cantor-set-stage-viewer">
+      <div className="flex flex-wrap gap-2">
+        {stages.map((item, index) => (
+          <Button
+            key={item.label}
+            onClick={() => setStage(index)}
+            size="sm"
+            type="button"
+            variant={stage === index ? "default" : "outline"}
+          >
+            {item.label}
+          </Button>
+        ))}
+      </div>
+      <GlassPanel className="mt-5 border border-border/60 bg-background/30 p-4">
+        <div className="relative h-16 rounded-xl border border-border/50 bg-background/70">
+          {current.intervals.map(([start, end], index) => (
+            <div
+              key={`${current.label}-${index}`}
+              className="absolute top-5 h-6 rounded bg-primary/65"
+              style={{
+                left: `${start * 100}%`,
+                width: `${(end - start) * 100}%`,
+              }}
+            />
+          ))}
+        </div>
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">Stage</p>
+            <p className="mt-2 font-mono">{current.label}</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+              {getLocalizedText(text("Remaining intervals", "剩餘區間", "剩余区间"), locale)}
+            </p>
+            <p className="mt-2 font-mono">{current.intervals.length}</p>
+          </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+              {getLocalizedText(text("Removed length so far", "已移除長度", "已移除长度"), locale)}
+            </p>
+            <p className="mt-2 font-mono">{current.removed}</p>
+          </div>
+        </div>
+        <p className="mt-4 text-sm leading-7 text-muted-foreground">
+          {getLocalizedText(
+            text(
+              "The limit set keeps exactly those points that can be written in ternary using only the digits 0 and 2.",
+              "極限集合保留的正是可以只用三進制數字 0 與 2 表示的點。",
+              "极限集合保留的正是可以只用三进制数字 0 与 2 表示的点。"
+            ),
+            locale
+          )}
+        </p>
+      </GlassPanel>
+    </InteractiveShell>
+  );
+}
+
+function MonoidGroupLawChecker({ locale }: { locale: Locale }) {
+  const cases = [
+    {
+      id: "z-plus",
+      label: text("(Z,+)", "(Z,+)", "(Z,+)"),
+      checks: [
+        { label: text("Associative", "結合律", "结合律"), passes: true, note: text("(a+b)+c = a+(b+c).", "(a+b)+c = a+(b+c)。", "(a+b)+c = a+(b+c)。") },
+        { label: text("Identity", "單位元", "单位元"), passes: true, note: text("0 is the identity.", "0 是單位元。", "0 是单位元。") },
+        { label: text("Inverse", "逆元", "逆元"), passes: true, note: text("The inverse of a is -a.", "a 的逆元是 -a。", "a 的逆元是 -a。") },
+      ],
+      verdict: text("This is a group.", "這是一個群。", "这是一个群。"),
+    },
+    {
+      id: "n-plus",
+      label: text("(N,+)", "(N,+)", "(N,+)"),
+      checks: [
+        { label: text("Associative", "結合律", "结合律"), passes: true, note: text("Addition is associative.", "加法有結合律。", "加法有结合律。") },
+        { label: text("Identity", "單位元", "单位元"), passes: true, note: text("0 is the identity.", "0 是單位元。", "0 是单位元。") },
+        { label: text("Inverse", "逆元", "逆元"), passes: false, note: text("1 has no natural-number additive inverse.", "1 沒有自然數加法逆元。", "1 没有自然数加法逆元。") },
+      ],
+      verdict: text("This is a monoid, but not a group.", "這是一個 monoid，但不是群。", "这是一个 monoid，但不是群。"),
+    },
+    {
+      id: "z-minus",
+      label: text("(Z,-)", "(Z,-)", "(Z,-)"),
+      checks: [
+        { label: text("Associative", "結合律", "结合律"), passes: false, note: text("(3-2)-1 = 0, but 3-(2-1) = 2.", "(3-2)-1 = 0，但 3-(2-1) = 2。", "(3-2)-1 = 0，但 3-(2-1) = 2。") },
+        { label: text("Identity", "單位元", "单位元"), passes: false, note: text("0 is a right identity, but not a two-sided identity.", "0 是右單位元，但不是雙邊單位元。", "0 是右单位元，但不是双边单位元。") },
+        { label: text("Inverse", "逆元", "逆元"), passes: false, note: text("Without a monoid identity, the group question already fails.", "沒有 monoid 單位元，群結構已經失敗。", "没有 monoid 单位元，群结构已经失败。") },
+      ],
+      verdict: text("This is not a monoid.", "這不是 monoid。", "这不是 monoid。"),
+    },
+    {
+      id: "boolean-plus",
+      label: text("(B,+ mod 2)", "(B,+ mod 2)", "(B,+ mod 2)"),
+      checks: [
+        { label: text("Associative", "結合律", "结合律"), passes: true, note: text("The two-element addition table is associative.", "二元素加法表滿足結合律。", "二元素加法表满足结合律。") },
+        { label: text("Identity", "單位元", "单位元"), passes: true, note: text("0 is the identity.", "0 是單位元。", "0 是单位元。") },
+        { label: text("Inverse", "逆元", "逆元"), passes: true, note: text("Each element is its own inverse.", "每個元素都是自己的逆元。", "每个元素都是自己的逆元。") },
+      ],
+      verdict: text("This is a group.", "這是一個群。", "这是一个群。"),
+    },
+  ] as const;
+  const [selected, setSelected] = useState<(typeof cases)[number]["id"]>("z-plus");
+  const current = cases.find((item) => item.id === selected) ?? cases[0];
+
+  return (
+    <InteractiveShell icon={<Sigma className="h-5 w-5" />} locale={locale} widgetId="monoid-group-law-checker">
+      <div className="flex flex-wrap gap-2">
+        {cases.map((item) => (
+          <Button
+            key={item.id}
+            onClick={() => setSelected(item.id)}
+            size="sm"
+            type="button"
+            variant={selected === item.id ? "default" : "outline"}
+          >
+            {getLocalizedText(item.label, locale)}
+          </Button>
+        ))}
+      </div>
+      <GlassPanel className="mt-4 border border-border/60 bg-background/30 p-4">
+        <p className="text-sm font-semibold">{getLocalizedText(current.verdict, locale)}</p>
+      </GlassPanel>
+      <div className="mt-4 grid gap-3 md:grid-cols-3">
+        {current.checks.map((check) => (
+          <GlassPanel key={check.label.en} className="border border-border/60 bg-background/30 p-4">
+            <p className="text-sm font-semibold">{getLocalizedText(check.label, locale)}</p>
+            <p className={cn("mt-2 text-sm font-medium", check.passes ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400")}>
+              {check.passes ? getLocalizedText(interactiveLabels.yes, locale) : getLocalizedText(interactiveLabels.no, locale)}
+            </p>
+            <p className="mt-2 text-sm leading-7 text-muted-foreground">
+              {getLocalizedText(check.note, locale)}
+            </p>
+          </GlassPanel>
+        ))}
+      </div>
+    </InteractiveShell>
+  );
+}
+
 const interactiveComponents = {
   "adt-stack-queue-stepper": AdtStackQueueStepper,
+  "cantor-diagonal-lab": CantorDiagonalLab,
+  "cantor-set-stage-viewer": CantorSetStageViewer,
+  "cardinality-comparison-lab": CardinalityComparisonLab,
   "complexity-growth-comparator": ComplexityGrowthComparator,
   "decimal-approximation-builder": DecimalApproximationBuilder,
   "dedekind-cut-explorer": DedekindCutExplorer,
@@ -2899,6 +3227,7 @@ const interactiveComponents = {
   "invertibility-row-reduction-demo": InvertibilityRowReductionDemo,
   "induction-stepper": InductionStepper,
   "matrix-multiplication-visualizer": MatrixMultiplicationVisualizer,
+  "monoid-group-law-checker": MonoidGroupLawChecker,
   "pointer-state-tracer": PointerStateTracer,
   "quantifier-negation-stepper": QuantifierNegationStepper,
   "row-reduction-stepper": RowReductionStepper,

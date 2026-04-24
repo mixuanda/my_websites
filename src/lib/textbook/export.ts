@@ -1,5 +1,5 @@
 import { getInteractiveSnapshot } from "./interactive-snapshots";
-import { getCoverageLabel, getLocalizedText, localeNames, uiText } from "./i18n";
+import { getLocalizedText, localeNames, uiText } from "./i18n";
 import type {
   ExportBlock,
   ExportableTextbookUnit,
@@ -21,6 +21,8 @@ const checklistTitle = {
   "zh-hk": "檢查清單",
 } as const;
 
+const tagAttributesPattern = `((?:"[^"]*"|'[^']*'|[^'">])*)`;
+
 function extractAttribute(attributes: string, attribute: string) {
   return (
     attributes.match(new RegExp(`${attribute}="([^"]+)"`))?.[1] ??
@@ -32,7 +34,10 @@ function extractAttribute(attributes: string, attribute: string) {
 function stripInlineMarkdown(value: string) {
   return value
     .replace(/\[([^\]]+)\]\(([^)]+)\)/g, "$1 ($2)")
-    .replace(/[*_~`]/g, "")
+    .replace(/`([^`]*)`/g, "$1")
+    .replace(/\*\*([^*]+)\*\*/g, "$1")
+    .replace(/__([^_]+)__/g, "$1")
+    .replace(/~~([^~]+)~~/g, "$1")
     .trim();
 }
 
@@ -54,7 +59,7 @@ function normalizeTextbookMdxSource(source: string): string {
 
   for (const tag of blockTagMap) {
     const matcher = new RegExp(
-      `<${tag.name}\\s+([^>]*)>([\\s\\S]*?)<\\/${tag.name}>`,
+      `<${tag.name}\\s+${tagAttributesPattern}>([\\s\\S]*?)<\\/${tag.name}>`,
       "g"
     );
 
@@ -68,7 +73,10 @@ function normalizeTextbookMdxSource(source: string): string {
   }
 
   normalized = normalized.replace(
-    /<CommonMistake\s+([^>]*)>([\s\S]*?)<\/CommonMistake>/g,
+    new RegExp(
+      `<CommonMistake\\s+${tagAttributesPattern}>([\\s\\S]*?)<\\/CommonMistake>`,
+      "g"
+    ),
     (_, attributes: string, body: string) => {
       const title = extractAttribute(attributes, "title") || "Common mistake";
       return `### ${title}\n${body.trim()}`;
@@ -76,7 +84,10 @@ function normalizeTextbookMdxSource(source: string): string {
   );
 
   normalized = normalized.replace(
-    /<CollapsibleProof\s+([^>]*)>([\s\S]*?)<\/CollapsibleProof>/g,
+    new RegExp(
+      `<CollapsibleProof\\s+${tagAttributesPattern}>([\\s\\S]*?)<\\/CollapsibleProof>`,
+      "g"
+    ),
     (_, attributes: string, body: string) => {
       const title = extractAttribute(attributes, "title") || "Proof";
       return `[[BLOCK:solution|${title}]]\n${body.trim()}\n[[/BLOCK]]`;
@@ -84,7 +95,10 @@ function normalizeTextbookMdxSource(source: string): string {
   );
 
   normalized = normalized.replace(
-    /<Callout\s+([^>]*)>([\s\S]*?)<\/Callout>/g,
+    new RegExp(
+      `<Callout\\s+${tagAttributesPattern}>([\\s\\S]*?)<\\/Callout>`,
+      "g"
+    ),
     (_, attributes: string, body: string) => {
       const title =
         extractAttribute(attributes, "title") ||
@@ -95,7 +109,7 @@ function normalizeTextbookMdxSource(source: string): string {
   );
 
   normalized = normalized.replace(
-    /<InteractiveWidget\s+([^>]*)\/>/g,
+    new RegExp(`<InteractiveWidget\\s+${tagAttributesPattern}\\s*\\/>`, "g"),
     (_, attributes: string) => {
       const id = extractAttribute(attributes, "id");
       return `[[INTERACTIVE:${id}]]`;
@@ -103,7 +117,10 @@ function normalizeTextbookMdxSource(source: string): string {
   );
 
   normalized = normalized.replace(
-    /<InteractiveWidget\s+([^>]*)><\/InteractiveWidget>/g,
+    new RegExp(
+      `<InteractiveWidget\\s+${tagAttributesPattern}><\\/InteractiveWidget>`,
+      "g"
+    ),
     (_, attributes: string) => {
       const id = extractAttribute(attributes, "id");
       return `[[INTERACTIVE:${id}]]`;
@@ -165,14 +182,41 @@ function parseBlocks(markdown: string, locale: Locale): ExportBlock[] {
     const interactiveMatch = trimmed.match(/^\[\[INTERACTIVE:(.+)\]\]$/);
     if (interactiveMatch) {
       flushParagraph();
-      const snapshot = getInteractiveSnapshot(interactiveMatch[1], locale);
+      const id = interactiveMatch[1];
+      const snapshot = getInteractiveSnapshot(id, locale);
 
       if (snapshot) {
         blocks.push({
+          id,
           snapshot,
           type: "interactiveSnapshot",
         });
       }
+      continue;
+    }
+
+    const imageMatch = trimmed.match(/^!\[([^\]]*)\]\(([^)]+)\)$/);
+    if (imageMatch) {
+      flushParagraph();
+      let caption: string | undefined;
+      let lookahead = index + 1;
+
+      while (lookahead < lines.length && !lines[lookahead].trim()) {
+        lookahead += 1;
+      }
+
+      const captionMatch = lines[lookahead]?.trim().match(/^\*([^*]+)\*$/);
+      if (captionMatch) {
+        caption = stripInlineMarkdown(captionMatch[1]);
+        index = lookahead;
+      }
+
+      blocks.push({
+        alt: stripInlineMarkdown(imageMatch[1]),
+        caption,
+        src: imageMatch[2],
+        type: "image",
+      });
       continue;
     }
 
@@ -288,6 +332,26 @@ function parseBlocks(markdown: string, locale: Locale): ExportBlock[] {
   return blocks;
 }
 
+function collectInteractiveIds(blocks: ExportBlock[], ids = new Set<string>()) {
+  for (const block of blocks) {
+    if (block.type === "interactiveSnapshot") {
+      ids.add(block.id);
+    }
+
+    if (
+      block.type === "definition" ||
+      block.type === "example" ||
+      block.type === "exercise" ||
+      block.type === "solution" ||
+      block.type === "theorem"
+    ) {
+      collectInteractiveIds(block.content, ids);
+    }
+  }
+
+  return ids;
+}
+
 export function buildUnitExportBlocks(
   meta: TextbookUnitMeta,
   locale: Locale,
@@ -295,12 +359,24 @@ export function buildUnitExportBlocks(
 ) {
   const normalized = normalizeTextbookMdxSource(source);
   const blocks = parseBlocks(normalized, locale);
+  const seenInteractiveIds = collectInteractiveIds(blocks);
+  const missingInteractiveBlocks = meta.interactiveIds
+    .filter((id) => !seenInteractiveIds.has(id))
+    .map((id) => {
+      const snapshot = getInteractiveSnapshot(id, locale);
+      return snapshot
+        ? ({
+            id,
+            snapshot,
+            type: "interactiveSnapshot" as const,
+          } satisfies ExportBlock)
+        : null;
+    })
+    .filter((block): block is Extract<ExportBlock, { type: "interactiveSnapshot" }> =>
+      Boolean(block)
+    );
 
-  if (meta.interactiveIds.length === 0) {
-    return blocks;
-  }
-
-  return blocks;
+  return [...blocks, ...missingInteractiveBlocks];
 }
 
 const exportBlockLabels = {
@@ -342,6 +418,14 @@ function renderBlockToText(block: ExportBlock, locale: Locale, depth = 0): strin
 
   if (block.type === "math") {
     return block.display ? `$$\n${block.value}\n$$` : block.value;
+  }
+
+  if (block.type === "image") {
+    return [
+      `[Image] ${block.alt || block.src}`,
+      block.src,
+      ...(block.caption ? [block.caption] : []),
+    ].join("\n");
   }
 
   if (block.type === "separator") {
@@ -391,10 +475,13 @@ export function buildTextbookTxt(unit: ExportableTextbookUnit) {
     unit.title,
     `${unit.course.toUpperCase()} · ${unit.unitNumber}`,
     getLocalizedText(localeNames[unit.locale], unit.locale),
-    getCoverageLabel(unit.coverageStatus, unit.locale),
     "",
     unit.description,
   ];
+
+  if (unit.coverageStatus === "MISSING_SOURCE") {
+    metadataLines.splice(3, 0, getLocalizedText(uiText.missingSource, unit.locale));
+  }
 
   if (unit.prerequisites.length > 0) {
     metadataLines.push(

@@ -1,0 +1,120 @@
+---
+title: "5.2 Topological sort, heaps, and Huffman coding"
+description: "Study DAG ordering, priority-queue operations, and Huffman coding as connected examples of structural constraints plus greedy choices."
+---
+
+The final CSCI2520 tutorial packet joins three ideas that at first look
+separate: topological sorting, heaps, and Huffman coding. The connection is
+that each problem is governed by a structural constraint.
+
+- A topological order must respect every directed prerequisite edge.
+- A heap must satisfy both a shape condition and a heap-order condition.
+- A Huffman tree repeatedly combines the two lowest-frequency pieces.
+
+## Topological order
+
+<Definition title="Topological order">
+For a directed acyclic graph `G = (V, E)`, a topological order is an ordering of
+the vertices such that for every directed edge `(u, v)`, vertex `u` appears
+before vertex `v`.
+</Definition>
+
+The DAG condition is essential. If a directed cycle exists, each vertex in the
+cycle must come before the next one, and eventually one vertex must come before
+itself. No linear order can satisfy that.
+
+## Kahn's algorithm
+
+Kahn's algorithm repeatedly chooses a vertex with no incoming edges, outputs it,
+and removes its outgoing edges. The safe first vertices are precisely those
+whose prerequisites have already been satisfied.
+
+<WorkedExample title="How Kahn's algorithm detects a cycle">
+If the algorithm still has vertices left but no vertex has indegree zero, then
+the remaining directed subgraph contains a cycle. There is no legal next
+vertex, so no topological order exists.
+</WorkedExample>
+
+## DFS-based topological sorting
+
+The tutorial also gives a DFS method: run DFS from unvisited vertices, and add
+each vertex to the front of the output list when its DFS finishes. Finishing
+time matters because a vertex should appear before every vertex reachable from
+it.
+
+Kahn's algorithm reasons from missing prerequisites. DFS topological sorting
+reasons from completed descendants.
+
+## Heaps
+
+<Definition title="Min heap">
+A min heap is a complete binary tree satisfying the heap-order property: each
+node is less than or equal to its children.
+</Definition>
+
+The tutorial states the basic costs for a min heap:
+
+- `insert`: `O(log n)`;
+- `findmin`: `O(1)`;
+- `delmin`: `O(log n)`;
+- `build_heap`: `O(n)`.
+
+The complete-tree structure lets heaps be stored compactly in arrays. The
+heap-order property explains why the minimum is always at the root.
+
+<TheoremCard title="Why heap operations are logarithmic">
+In a complete binary tree, the height is `O(log n)`. Insertion and deletion
+repair heap order along one root-to-leaf or leaf-to-root path, so they take
+logarithmic time.
+</TheoremCard>
+
+## Huffman coding
+
+Huffman coding uses a min heap to repeatedly combine the two least frequent
+symbols or subtrees. The result is a binary prefix-code tree that gives shorter
+codes to more frequent symbols.
+
+The tutorial's frequency example shows the algorithmic pattern clearly:
+build a heap of frequencies, repeatedly `delmin` twice, create a combined node,
+and insert the new node back into the heap.
+
+## Merging sorted lists
+
+The same priority-queue idea helps merge many sorted lists. With two lists, we
+compare the two heads. With many lists, we need the smallest current head among
+all lists; a heap maintains that minimum efficiently.
+
+<QuickCheck prompt="Why can a directed cycle not have a topological order?">
+Follow the before relation around the cycle.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Each edge requires one vertex to appear before the next. Around a cycle this
+eventually requires a vertex to appear before itself, which is impossible.
+</RevealSolution>
+
+<QuickCheck prompt="Where is the minimum stored in a min heap?">
+Use the heap-order property.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+At the root.
+</RevealSolution>
+
+## Exercises
+
+1. Explain the difference between Kahn's algorithm and DFS-based topological
+   sorting.
+2. Why is `findmin` constant time in a min heap?
+3. Explain why Huffman coding repeatedly combines the two smallest frequency
+   nodes.
+
+<RevealSolution title="Guided solutions">
+1. Kahn's algorithm outputs indegree-zero vertices and removes their outgoing
+   edges. DFS-based sorting places vertices by finishing time.
+2. The heap-order property puts the minimum at the root, so reading it is
+   direct.
+3. Combining the two least frequent nodes keeps rare symbols deeper in the
+   tree and protects short codes for frequent symbols.
+</RevealSolution>
+

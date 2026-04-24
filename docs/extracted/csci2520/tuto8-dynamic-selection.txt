@@ -1,0 +1,497 @@
+# Slide 1
+CSCI2520 Tutorial 8:
+Dynamic Selection
+Pan Zhenyu
+zypan24@cse.cuhk.edu.hk
+Slide Ack: modified based on the slides from Li Hui
+
+# Slide 2
+Outline
+Dynamic Set
+Selection Revisited
+Dynamic Selection
+CSCI2520 Tutorial 8
+
+# Slide 3
+Dynamic Set
+Sets are as fundamental to computer science as they are to mathematics.
+Sets manipulated by algorithms can 
+grow
+, 
+shrink
+, or otherwise 
+change
+ over time.
+We call such sets 
+dynamic
+.
+CSCI2520 Tutorial 8
+
+# Slide 4
+Dynamic Set
+Initialize
+Insert
+Delete
+Search
+Selection
+Array
+Sorted Array
+Hashtable
+Balanced
+ BST
+CSCI2520 Tutorial 8
+with known index or pointer instead of key
+
+# Slide 5
+Dynamic Set
+Initialize
+Insert
+Delete
+Search
+Selection
+Array
+O(n)
+O(1)
+O(
+1
+)
+O(n)
+?
+Sorted Array
+Hashtable
+Balanced
+ BST
+CSCI2520 Tutorial 8
+
+# Slide 6
+Dynamic Set
+Initialize
+Insert
+Delete
+Search
+Selection
+Array
+O(n)
+O(1)
+O(
+1
+)
+O(n)
+?
+Sorted Array
+O(
+nlogn
+)
+O(n)
+O(n)
+O(
+logn
+)
+O(1)
+Hashtable
+Balanced
+ BST
+CSCI2520 Tutorial 8
+merge sort or others
+binary search
+
+# Slide 7
+Dynamic Set
+Initialize
+Insert
+Delete
+Search
+Selection
+Array
+O(n)
+O(1)
+O(
+1
+)
+O(n)
+?
+Sorted Array
+O(
+nlogn
+)
+O(n)
+O(n)
+O(
+logn
+)
+O(1)
+Hashtable
+O(n)
+O(1)
+O(1)
+O(1)
+O(n)
+Balanced
+ BST
+CSCI2520 Tutorial 8
+Hashtable
+ is completely better than array?
+
+# Slide 8
+Dynamic Set
+Initialize
+Insert
+Delete
+Search
+Selection
+Array
+O(n)
+O(1)
+O(
+1
+)
+O(n)
+?
+Sorted Array
+O(
+nlogn
+)
+O(n)
+O(n)
+O(
+logn
+)
+O(1)
+Hashtable
+O(n)
+O(1)
+O(1)
+O(1)
+O(n)
+Balanced
+ BST
+O(
+nlogn
+)
+O(
+logn
+)
+O(
+logn
+)
+O(
+logn
+)
+?
+CSCI2520 Tutorial 8
+Balanced BST is not the best for all operations! Balanced BST is not so bad for all operations!
+
+# Slide 9
+Selection Revisited
+Finding the kth smallest element in an array.
+Two naive approaches
+Sort the array and look up: O(
+nlogn
+)
+Partial selection sort: O(
+nk
+)
+Quickselect
+Average case: O(n)
+Worst case: O(n
+2
+)
+CSCI2520 Tutorial 8
+
+# Slide 10
+Dynamic Selection
+For selection,
+What if we need to do it with several k for several times?
+CSCI2520 Tutorial 8
+
+# Slide 11
+Dynamic Selection
+For selection,
+What if we need to do it with several k for several times? 
+Sort it!
+What if we need to insert and delete elements in the set frequently?
+CSCI2520 Tutorial 8
+
+# Slide 12
+Dynamic Selection
+For selection,
+What if we need to do it with several k for several times? 
+Sort it!
+What if we need to insert and delete elements in the set frequently?
+Augment
+ balanced BST!
+Balanced BST is faster than sorted/unsorted array in terms of insertion and deletion.
+Balanced BST is also more “ordered” than 
+hashtable
+.
+CSCI2520 Tutorial 8
+
+# Slide 13
+Dynamic Selection
+To find the 7th smallest element, should both subtrees of “36” be checked?
+What information will be helpful?
+CSCI2520 Tutorial 8
+36
+49
+14
+25
+2
+50
+38
+1
+13
+37
+
+# Slide 14
+Dynamic Selection
+To find the 7th smallest element, should both subtrees of “36” be checked?
+What information will be helpful?
+CSCI2520 Tutorial 8
+36
+49
+14
+25
+2
+50
+38
+1
+13
+37
+1
+1
+3
+5
+1
+1
+1
+2
+4
+10
+
+# Slide 15
+Exercise 1
+Implement the following function
+The definition of 
+bstCDT
+ is as follows
+CSCI2520 Tutorial 8
+treeNodeADT
+ FindKthElement(t: 
+bstADT
+, k: 
+int
+)
+class
+bstCDT
+:
+    root: 
+treeNodeADT
+    left: 
+bstADT
+    right: 
+bstADT
+    size:
+ int
+
+# Slide 16
+Exercise 1 Solution
+CSCI2520 Tutorial 8
+treeNodeADT
+FindKthElement
+(
+t: 
+bstADT
+, 
+k: 
+int
+):
+    i: 
+int
+if
+ (
+t
+.left
+ != 
+NULL
+)
+i
+ = size(
+t
+.left
+) + 1
+else
+i
+ = 1
+if
+ (
+k
+ == 
+i
+)
+return
+t
+.root
+else
+if
+ (
+k
+ < 
+i
+)
+return
+FindKthElement
+(
+t
+.left
+, 
+k
+)
+else
+return
+FindKthElement
+(
+t
+.right
+, 
+k
+ - 
+i
+)
+A 
+test
+ to stop or continue
+An 
+end case
+a 
+recursive call
+a 
+recursive call
+
+# Slide 17
+Dynamic Selection
+The complexity is 
+O(
+logn
+) 
+(bounded by tree depth)
+Question: why not keep the ranks themselves in the nodes? The complexity is still O(
+logn
+) …
+CSCI2520 Tutorial 8
+
+# Slide 18
+Dynamic Selection
+The complexity is 
+O(
+logn
+) 
+(bounded by tree depth)
+Question: why not keep the ranks themselves in the nodes? The complexity is still O(
+logn
+) …
+They are hard to maintain when insertion or deletion happens …
+Question: How to update 
+substree
+ sizes when inserting or deleting?
+CSCI2520 Tutorial 8
+
+# Slide 19
+Dynamic Selection
+Insert “24”
+CSCI2520 Tutorial 8
+36
+49
+14
+25
+2
+50
+38
+1
+13
+37
+24
+1
+1
+3
+6
+2
+1
+1
+2
+4
+11
+1
+
+# Slide 20
+Dynamic Selection
+Don’t forget that 
+rotations
+ may be required?
+But it’s still easy!
+CSCI2520 Tutorial 8
+14
+2
+2
+1
+4
+8
+3
+2
+1
+3
+5
+8
+2
+14
+
+# Slide 21
+Summary
+Initialize
+Insert
+Delete
+Search
+Selection
+Array
+O(n)
+O(1)
+O(n)
+O(n)
+avg
+: O(n)
+worst: O(n
+2
+)
+Sorted Array
+O(
+nlogn
+)
+O(n)
+O(n)
+O(
+logn
+)
+O(1)
+Hashtable
+O(n)
+O(1)
+O(1)
+O(1)
+O(n)
+Balanced
+ BST
+O(
+nlogn
+)
+O(
+logn
+)
+O(
+logn
+)
+O(
+logn
+)
+O(
+logn
+)
+CSCI2520 Tutorial 8

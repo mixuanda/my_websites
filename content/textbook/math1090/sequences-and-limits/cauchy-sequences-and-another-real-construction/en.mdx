@@ -14,7 +14,7 @@ construction of the real numbers.
 
 ## Why we need an internal test for convergence
 
-The lecture notes motivate the new definition with a sequence of rational
+A good motivation for the new definition is a sequence of rational
 numbers whose terms appear to close in on some point of the line:
 
 $$
@@ -62,13 +62,13 @@ uniformly close to one another.
 
 ## Why convergent sequences are automatically Cauchy
 
-The notes record the following proposition.
+The key proposition is the following.
 
 <TheoremCard title="If a sequence converges, then it is Cauchy">
 Suppose `(x_n)` has a limit `L`. Then `(x_n)` is a Cauchy sequence.
 </TheoremCard>
 
-Although the source leaves the proof as an exercise, the idea is short and very
+The proof idea is short and very
 important.
 
 <CollapsibleProof title="Proof idea using the triangle inequality">
@@ -117,13 +117,13 @@ for all `n,m>N`.
 This condition says that the two tails eventually lie arbitrarily close to one
 another. Intuitively, they are describing the same limiting point on the line.
 
-The notes then state that this notion of equivalence is really an equivalence
+This notion of equivalence is really an equivalence
 relation on the set of Cauchy sequences. The triangle inequality is the key tool
 for checking symmetry and transitivity.
 
 ## The alternative construction of `R`
 
-Now the lecture notes turn the idea into a definition.
+Now turn the idea into a definition.
 
 <Definition title="Reals as equivalence classes of rational Cauchy sequences">
 Let `R` be the set of equivalence classes of Cauchy sequences of rational
@@ -141,7 +141,7 @@ build the same number system.
 
 ## How rationals sit inside the model
 
-Exercise 54 asks how to think of rational numbers inside this construction. The
+It remains to say how rational numbers sit inside this construction. The
 answer is natural: a rational `q` is represented by the constant Cauchy sequence
 
 $$
@@ -177,10 +177,10 @@ description, not the object itself.
 
 ## Why boundedness matters
 
-The notes take for granted the lemma that every Cauchy sequence is bounded. That
+Every Cauchy sequence is bounded. That
 fact is crucial because it allows multiplication to work cleanly.
 
-If `(x_n)` and `(y_n)` are Cauchy, then the notes prove:
+If `(x_n)` and `(y_n)` are Cauchy, then:
 
 - `(x_n+y_n)` is Cauchy;
 - `(x_ny_n)` is Cauchy.
@@ -201,7 +201,7 @@ small as desired.
 ## Operations and order on equivalence classes
 
 After establishing that termwise sums and products of Cauchy sequences stay
-Cauchy, the notes define addition and multiplication on equivalence classes.
+Cauchy, define addition and multiplication on equivalence classes.
 
 So if `[(x_n)]` and `[(y_n)]` are real numbers in this model, then:
 
@@ -213,7 +213,7 @@ $$
 [(x_n)] \cdot [(y_n)] := [(x_ny_n)].
 $$
 
-The notes also define an order by eventual comparison of representatives: one
+Order is defined by eventual comparison of representatives: one
 class is below another when sufficiently late terms of a representative of the
 first lie below sufficiently late terms of a representative of the second.
 
@@ -224,11 +224,11 @@ sequences you chose.
 ## The conclusion of the construction
 
 <TheoremCard title="The reals form a complete ordered field">
-The lecture notes conclude that the real numbers obtained from rational Cauchy
+The real numbers obtained from rational Cauchy
 sequences form a complete ordered field.
 </TheoremCard>
 
-The course does not prove every detail in class. Some parts are left as
+These notes do not expand every technical detail here. Some parts remain as
 exercises, including the well-definedness of operations and the final proof of
 completeness. But conceptually the message is clear:
 

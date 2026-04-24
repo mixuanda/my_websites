@@ -14,7 +14,7 @@ description: "比较 Dedekind 分割与熟悉的小数展开，并用定义 sqrt
 上做出来的就是实数。
 
 <TheoremCard title="完备有序域在同构意义下只有一个">
-lecture notes 指出：作为完备有序域，实数是唯一的。所以 Dedekind 分割不
+一個重要事實是：作为完备有序域，实数是唯一的。所以 Dedekind 分割不
 是熟悉实数线的竞争版本，而是它的一个严格模型。
 </TheoremCard>
 
@@ -55,8 +55,8 @@ $$
 B=\{q\in Q\mid \exists t\in T\text{ 使得 }q>t\}.
 $$
 
-notes 的主张是：`(A,B)` 就是一个 Dedekind 分割。也就是说，一个熟悉的
-小数展开可以被转换成上一页引入的那种边界对象。
+关键主张是：`(A,B)` 就是一个 Dedekind 分割。也就是说，一个熟悉的小数
+展开可以被转换成上一页引入的那种边界对象。
 
 <WorkedExample title="最初几层的小数围栏">
 由上面的展开，我们立刻得到一串嵌套的有理区间：
@@ -105,7 +105,7 @@ $$
 
 ## 由分割反推出小数展开
 
-notes 的 Exercise 49 要求你反过来做：给定一个 Dedekind 分割，如何产生
+一个反向练习是：给定一个 Dedekind 分割，如何产生
 对应的小数展开？
 
 想法其实很系统。
@@ -166,7 +166,7 @@ $$
 
 ## 定义 `\sqrt2` 的那个分割
 
-Exercise 50 给出了一个具体例子。考虑
+一个具体例子是。考虑
 
 $$
 A=\{r\in Q\mid r\le 0\text{ 或 }r^2<2\},
@@ -178,7 +178,7 @@ $$
 B=Q\setminus A=\{r\in Q\mid r>0\text{ 且 }r^2>2\}.
 $$
 
-lecture notes 把这个对应的分割识别为平方等于 `2` 的正实数。
+这个对应的分割就是平方等于 `2` 的正实数。
 
 <WorkedExample title="为什么这个分割代表 `\sqrt2`">
 首先，`A` 非空，因为 `0\in A` 且 `1\in A`。它也不是整个 `Q`，因为
@@ -239,7 +239,7 @@ $$
 ## 练习
 
 <QuickCheck prompt="从非正式小数 `2.718...` 出发，写出前四个下方逼近、前四个上方逼近，并定义对应的 `A` 与 `B`。">
-完全照 notes 的模式去写。
+完全照上面的模式去写。
 </QuickCheck>
 
 <RevealSolution title="引导解答">

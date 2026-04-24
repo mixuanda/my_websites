@@ -1,0 +1,147 @@
+---
+title: "2.1 Lists as recursive ADTs"
+description: "Read lists through their head-tail contract, then use iteration and recursion to implement list operations without confusing the ADT with its representation."
+---
+
+Lists are the first place where the course makes recursion feel like a data
+structure idea rather than only a programming trick. A list is not merely an
+array drawn with brackets. It has a contract: either it is empty, or it has a
+head element together with a tail that is itself a list.
+
+That recursive definition is the reason list code often has a simple shape:
+handle the empty list, then do one piece of work at the head and recurse on the
+tail.
+
+## The list contract
+
+<Definition title="List ADT">
+A list is an ordered sequence of elements. In the head-tail view, every
+non-empty list can be written as `CreateList(head, tail)`, where `head` is one
+element and `tail` is another list.
+</Definition>
+
+The lecture slides emphasize three operations first:
+
+- `CreateList(head, tail)`: build a list from one element and another list;
+- `ListHead(list)`: return the first element;
+- `ListTail(list)`: return the list after the first element.
+
+The distinction between head and tail is not cosmetic. The head is an element.
+The tail is a list. For example, if `L = [3, 6, 4, -3, 0]`, then
+`ListHead(L) = 3`, but `ListTail(L) = [6, 4, -3, 0]`.
+
+<WorkedExample title="Constructing a list from the empty list">
+The list `[3, 4, 5]` can be built as
+
+```c
+CreateList(3, CreateList(4, CreateList(5, EmptyList())))
+```
+
+Read from the inside out: create `[5]`, then place `4` in front, then place
+`3` in front.
+</WorkedExample>
+
+## Why recursion fits lists naturally
+
+The recursive structure of a list gives a direct recipe for many functions.
+
+```c
+int ListLength(listADT list) {
+   if (ListIsEmpty(list)) {
+      return 0;
+   }
+   return 1 + ListLength(ListTail(list));
+}
+```
+
+The end case is the empty list. The recursive call is on the tail, which is
+strictly smaller than the original list. If either part is missing, the function
+is not a safe recursive definition.
+
+<TheoremCard title="List recursion is safe when the tail is smaller">
+For a finite list, repeatedly replacing the list by its tail eventually reaches
+the empty list. Therefore a recursive function that calls itself only on
+`ListTail(list)` and handles `EmptyList()` terminates.
+</TheoremCard>
+
+The same idea explains `NthElement`. The 0th element is the head; the nth
+element is the `(n-1)`th element of the tail.
+
+## Iteration and recursion express the same invariant differently
+
+The slides give both iterative and recursive list-length code. The iterative
+version walks a cursor through successive tails.
+
+```c
+int ListLength(listADT list) {
+   int count = 0;
+   for (listADT L = list; !ListIsEmpty(L); L = ListTail(L)) {
+      count++;
+   }
+   return count;
+}
+```
+
+The recursive version stores the unfinished work on the call stack. The
+iterative version stores it in local variables. Both are correct only because
+each step moves from the current list to its tail.
+
+## Representation matters for cost
+
+An array-based list can implement the same ADT, but `CreateList` may need to
+copy all tail elements into a new array. A linked representation stores one
+head and one pointer to the tail. Then `CreateList` can be constant time,
+because it allocates one new cell and points it at the existing tail.
+
+That difference is the main lesson: the ADT tells us what operations mean; the
+representation determines how expensive those operations are.
+
+<Definition title="Linked-list representation">
+A linked-list cell stores one element and a pointer to the rest of the list.
+The pointer field is the representation-level version of the tail.
+</Definition>
+
+## Common mistakes
+
+- Treating `ListTail(L)` as an element instead of a list.
+- Forgetting the empty-list case before calling `ListHead`.
+- Assuming array and linked representations have the same cost.
+- Writing recursive code that calls itself on the same list rather than a
+  smaller tail.
+
+<QuickCheck prompt="If L is [7, 2, 9], what are ListHead(L) and ListTail(L)?">
+Use the head-tail contract, not array indexing language.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`ListHead(L) = 7`, and `ListTail(L) = [2, 9]`.
+</RevealSolution>
+
+<QuickCheck prompt="Why does the recursive ListLength function terminate on finite lists?">
+Look at the argument passed to the recursive call.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Each recursive call uses the tail of the current list. The tail is shorter, and
+after finitely many tail steps the empty list is reached.
+</RevealSolution>
+
+## Exercises
+
+1. Write the recursive idea for `DisplayList`: print the head, then display the
+   tail if it is not empty.
+2. Explain why `ListConcat(list1, list2)` should return `list2` when `list1`
+   is empty.
+3. Compare the cost of `CreateList` under an array representation and under a
+   linked representation.
+
+<RevealSolution title="Guided solutions">
+1. The end case is the empty list. For a non-empty list, print
+   `ListHead(list)` and recursively display `ListTail(list)`.
+2. Concatenating an empty prefix changes nothing; all elements must come from
+   `list2`.
+3. Array `CreateList` may copy the tail, so it can be linear in the tail
+   length. Linked `CreateList` can allocate one node and point it to the
+   existing tail, so it can be constant time.
+</RevealSolution>
+

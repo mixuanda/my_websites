@@ -4,6 +4,7 @@ import { ArrowRight, ChevronRight, Download, Sparkles } from "lucide-react";
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { TextbookCourseSidebar } from "@/components/textbook/TextbookCourseSidebar";
+import { isMembershipGatingEnabled } from "@/lib/membership/entitlements";
 import { getCourseMeta, textbookCatalog } from "@/lib/textbook/catalog";
 import { getCoverageLabel, getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
 import { getCoursesHref, getUnitHref } from "@/lib/textbook/routes";
@@ -73,6 +74,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
 
   const safeCourse = course as CourseId;
   const courseMeta = getCourseMeta(safeCourse);
+  const membershipGatingEnabled = isMembershipGatingEnabled();
 
   return (
     <div className="mx-auto max-w-7xl">
@@ -141,15 +143,17 @@ export default async function CoursePage({ params }: CoursePageProps) {
                       <div className="flex-1">
                         <div className="flex flex-wrap items-center gap-2">
                           <Badge variant="secondary">{unit.unitNumber}</Badge>
-                          <Badge variant="outline">
-                            {getCoverageLabel(unit.coverageStatus, locale)}
-                          </Badge>
+                          {unit.coverageStatus === "MISSING_SOURCE" ? (
+                            <Badge variant="outline">
+                              {getCoverageLabel(unit.coverageStatus, locale)}
+                            </Badge>
+                          ) : null}
                           {unit.interactiveIds.length > 0 ? (
                             <Badge variant="outline">
                               {getLocalizedText(uiText.interactiveUnits, locale)}
                             </Badge>
                           ) : null}
-                          {unit.accessTier === "MEMBER" ? (
+                          {membershipGatingEnabled && unit.accessTier === "MEMBER" ? (
                             <Badge variant="outline">{getLocalizedText(uiText.premium, locale)}</Badge>
                           ) : null}
                         </div>

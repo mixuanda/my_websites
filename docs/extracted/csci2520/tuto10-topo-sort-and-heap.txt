@@ -1,0 +1,1019 @@
+# Slide 1
+CSCI2520 Tutorial 10:
+Topological Sort and Heap
+LI
+Hui
+hli@
+cse.cuhk.edu.hk
+Slide Ack: modified based on the slides from CHEN 
+Gengjie
+ and LI Jinfeng
+
+# Slide 2
+Outline
+Topological Sort
+Kahn's Algorithm
+DFS-based Algorithm
+Heap
+Huffman Coding
+Merge Sorted List
+CSCI2520 Tutorial 9
+
+# Slide 3
+Topological Sort
+Given a DAG G = (V , E), find an ordering of V, such that, for each edge (u, v) ∈ E, u precedes v in the ordering. The ordering is called a 
+topological order
+.
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 4
+Topological Sort
+Any ordering in which all the arrows go to the right is a valid solution (may not unique).
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+A
+B
+C
+D
+E
+F
+A
+B
+C
+D
+F
+E
+Both are valid!
+
+# Slide 5
+Topological Sort
+Any ordering in which an arrow goes to the 
+left
+ is not a valid solution.
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+A
+B
+C
+D
+E
+F
+Invalid!
+
+# Slide 6
+Toposort
+ Examples
+Getting dressed
+Certain garments must be donned before others (e.g., socks before shoes). 
+Other items may be put on in any order (e.g., socks and pants).
+CSCI2520 Tutorial 9
+
+# Slide 7
+Toposort
+ Examples
+Taking courses
+In order to take a course, you must take 
+all
+ of its prerequisites first
+In computer science,
+Instruction scheduling
+Determining the order of compilation tasks
+CSCI2520 Tutorial 9
+
+# Slide 8
+Why DAG?
+A directed graph with a cycle cannot be topologically sorted.
+Question: why? Any ordering of B, C and D causes at least an arrow going to the left.
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 9
+How to do it?
+Hints:
+Which one can be safely put as the first?
+Or, DFS?
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 10
+Kahn's Algorithm
+Choose vertices in the same order as the eventual topological sort
+Recursively find vertices without incoming edges
+CSCI2520 Tutorial 9
+
+# Slide 11
+Kahn's Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+A has no incoming vertex
+
+# Slide 12
+Kahn's Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 13
+Kahn's Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 14
+Kahn's Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+Both are OK
+Both are OK
+
+# Slide 15
+Kahn's Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 16
+Kahn's Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 17
+Kahn's Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 18
+Kahn's Algorithm Pseudocode
+L ← Empty list that will contain the sorted elements
+S ← Set of all nodes with no incoming edges
+while
+ S is non-empty do
+        remove a node n from S
+        add n to tail of L
+for
+ each node m with an edge e from n to m 
+do
+                remove edge e from the graph
+if
+ m has no other incoming edges then
+                        insert m into S
+if
+ graph has edges then
+        return error (graph has at least one cycle)
+else 
+        return L (a topologically sorted order)
+CSCI2520 Tutorial 9
+
+# Slide 19
+Kahn's Algorithm Details
+How to obtain in-degree information? Go through all edges in each round?
+CSCI2520 Tutorial 9
+
+# Slide 20
+Kahn's Algorithm Details
+How to obtain in-degree information? Go through all edges in each round? We can record and maintain an in-degree array…
+CSCI2520 Tutorial 9
+
+# Slide 21
+Kahn's Algorithm Details
+Which graph representation fits this algorithm better, adjacency matrix or adjacency list?
+CSCI2520 Tutorial 9
+
+# Slide 22
+Kahn's Algorithm Details
+Which graph representation fits this algorithm better, adjacency matrix or adjacency list? Adjacency list!
+CSCI2520 Tutorial 9
+Adjacency matrix
+Adjacency list
+Is there an edge from 
+v
+i
+ to 
+v
+j
+?
+M[
+i
+][j] == 1
+?
+O
+(1)
+Traverse 
+L[i]
+O
+(
+d
+)
+Find all vertices adjacent to 
+v
+i
+.
+Traverse row
+O
+(
+n
+)
+Traverse 
+L[
+i
+]
+O
+(
+d
+)
+How many edges are there in a graph?
+Traverse 
+M
+O
+(
+n
+2
+)
+Traverse 
+L
+O
+(
+n
+ + 
+e
+)
+
+# Slide 23
+DFS-based Algorithm
+Initiate DFS from arbitrary unvisited vertice
+s
+ until all vertices are visited.
+Add a vertex into the front of the output list when its DFS is 
+finished
+.
+CSCI2520 Tutorial 9
+
+# Slide 24
+DFS-based Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+dfs
+(B)
+Output List:
+Initiate DFS from B
+
+# Slide 25
+DFS-based Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+dfs
+(B)
+dfs
+(C)
+Output List:
+
+# Slide 26
+DFS-based Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+dfs
+(B)
+dfs
+(C)
+dfs
+(F)
+Output List:
+
+# Slide 27
+DFS-based Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+dfs
+(B)
+dfs
+(C)
+DFS starting from F is finished
+Output List:
+F
+
+# Slide 28
+DFS-based Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+dfs
+(B)
+dfs
+(C)
+dfs
+(E)
+Output List:
+F
+
+# Slide 29
+DFS-based Algorithm
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+dfs
+(B)
+dfs
+(C)
+Output List:
+E
+DFS starting from E is finished
+F
+
+# Slide 30
+DFS-based Algorithm
+CSCI2520 Tutorial 9
+dfs
+(B)
+dfs
+(C)
+dfs
+(D)
+Output List:
+E
+F
+A
+B
+D
+C
+E
+F
+
+# Slide 31
+DFS-based Algorithm
+CSCI2520 Tutorial 9
+dfs
+(B)
+dfs
+(C)
+Output List:
+D
+E
+F
+DFS starting from D is finished
+A
+B
+D
+C
+E
+F
+
+# Slide 32
+DFS-based Algorithm
+CSCI2520 Tutorial 9
+dfs
+(B)
+Output List:
+C
+D
+E
+DFS starting from C is finished
+F
+A
+B
+D
+C
+E
+F
+
+# Slide 33
+DFS-based Algorithm
+CSCI2520 Tutorial 9
+Output List:
+B
+C
+D
+E
+A
+B
+D
+C
+E
+F
+F
+DFS starting from B is finished
+
+# Slide 34
+DFS-based Algorithm
+CSCI2520 Tutorial 9
+Output List:
+B
+C
+D
+E
+A
+B
+D
+C
+E
+F
+F
+Initiate DFS from A
+
+# Slide 35
+DFS-based Algorithm
+CSCI2520 Tutorial 9
+Output List:
+A
+B
+C
+D
+A
+B
+D
+C
+E
+F
+E
+DFS starting from A is finished
+F
+
+# Slide 36
+DFS-based Algorithm Pseudocode
+L ← Empty list that will contain the sorted nodes
+while
+ there are unmarked nodes 
+do
+        select an unmarked node n
+        visit(n) 
+function
+ visit(node n)
+if
+ n has a temporary mark 
+then
+                stop (graph has at least one cycle)
+if
+ n is not marked (i.e. has not been visited yet) 
+then
+                mark n 
+temporarily
+for
+ each node m with an edge from n to m 
+do
+                                visit(m)
+                mark n 
+permanently
+                add n to head of L
+CSCI2520 Tutorial 9
+
+# Slide 37
+DFS-based Algorithm
+Why it is correct?
+CSCI2520 Tutorial 9
+
+# Slide 38
+DFS-based Algorithm
+Why it is correct? When vertex 
+v
+ is added, all vertices depending on 
+v
+ are already in the output list: they were added
+CSCI2520 Tutorial 9
+
+# Slide 39
+Practices
+https://leetcode.com/problems/course-schedule/#/description
+https://leetcode.com/problems/course-schedule-ii/#/description
+CSCI2520 Tutorial 9
+
+# Slide 40
+Heap
+Two properties (min heap is assumed):
+structure property: complete binary tree
+heap-order property: Each node is smaller than or equal to its children
+Basic operations:
+insert: O(?)
+findmin
+: O(?)
+delmin
+: O(?)
+build_heap
+: O(?)
+40
+
+# Slide 41
+Heap
+Two properties (min heap is assumed):
+structure property: complete binary tree
+heap-order property: Each node is smaller than or equal to its children
+Basic operations:
+insert: O(
+logn
+)
+findmin
+: O(1)
+delmin
+: O(
+logn
+)
+build_heap
+: O(n)
+41
+
+# Slide 42
+Huffman Coding
+To save storage space
+To reduce data transmission cost
+A type of statistical coding
+Based on binary trees and min heaps
+42
+
+# Slide 43
+Exercise
+Suppose that we have a 100,000 character data file to store. The file contains only 6 characters, appearing with the following frequencies:
+Build Huffman code tree and decide their codes.
+How many storage saved compared to ASCII code and shortest fixed-length code?
+a
+b
+c
+d
+e
+f
+Frequency (%)
+45
+13
+12
+16
+9
+5
+43
+
+# Slide 44
+f
+5
+e
+9
+d
+16
+c
+12
+b
+13
+a
+45
+45
+13
+12
+9
+16
+5
+Exercise 1.1 Solution
+build_heap
+: Initial
+44
+
+# Slide 45
+c
+12
+b
+13
+d
+16
+f
+5
+e
+9
+a
+45
+45
+9
+5
+13
+16
+12
+Exercise 1.1 Solution
+build_heap
+:
+trickle_down
+(13, 12)
+45
+
+# Slide 46
+5
+9
+12
+13
+16
+45
+a
+45
+b
+13
+d
+16
+c
+12
+e
+9
+f
+5
+Exercise 1.1 Solution
+build_heap
+:
+trickle_down
+(45)
+46
+
+# Slide 47
+12
+13
+45
+16
+d
+16
+c
+12
+b
+13
+a
+45
+f
+5
+e
+9
+14
+Exercise 1.1 Solution
+delmin
+ two times
+47
+
+# Slide 48
+12
+13
+45
+14
+16
+f
+5
+e
+9
+14
+d
+16
+c
+12
+b
+13
+a
+45
+Exercise 1.1 Solution
+insert the new node
+48
+
+# Slide 49
+14
+16
+45
+f
+5
+e
+9
+14
+d
+16
+a
+45
+c
+12
+b
+13
+25
+delmin
+ two times
+49
+
+# Slide 50
+14
+16
+45
+25
+f
+5
+e
+9
+14
+d
+16
+a
+45
+c
+12
+b
+13
+25
+insert the new node
+50
+
+# Slide 51
+25
+45
+f
+5
+e
+9
+14
+d
+16
+a
+45
+c
+12
+b
+13
+25
+30
+delmin
+ two times
+51
+
+# Slide 52
+25
+45
+30
+f
+5
+e
+9
+14
+d
+16
+a
+45
+c
+12
+b
+13
+25
+30
+insert the new node
+52
+
+# Slide 53
+f
+4
+e
+9
+14
+d
+16
+a
+45
+c
+12
+b
+13
+25
+30
+55
+delmin
+ two times
+53
+
+# Slide 54
+f
+4
+e
+9
+14
+d
+16
+a
+45
+c
+12
+b
+13
+25
+30
+55
+60
+after ……
+54
+
+# Slide 55
+f
+4
+e
+9
+14
+d
+16
+a
+45
+c
+12
+b
+13
+25
+30
+55
+60
+0
+0
+0
+0
+0
+1
+1
+1
+1
+Char
+Coding
+a
+0
+b
+101
+c
+100
+d
+111
+e
+1100
+f
+1111
+1
+Exercise 1.1 Solution
+55
+
+# Slide 56
+Exercise 1.2 Solution
+How many storage saved compared to ASCII                   code and shortest fixed-length code?
+Huffman: 100,000 × (0.45×1 + 0.13×3 + 0.12×3 + 0.16×3+ 0.09×4 + 0.05×4) = 224,000 bits
+ASCII: 100,000 × 8 = 800,000 bits
+Fixed-length: 100,000 × ceil(log
+2
+6) = 300,000 bits
+Savings are trivial and omitted here …
+Char
+Code
+Freq
+a
+0
+45
+b
+101
+13
+c
+100
+12
+d
+111
+16
+e
+1100
+9
+f
+1111
+5
+56
+
+# Slide 57
+Huffman Coding
+Question: why the decoding is unique?
+Question: can we compress an image with Huffman coding?
+57
+
+# Slide 58
+Merge Sorted List
+Task: merge k sorted linked lists and obtain a sorted list.
+Simpler task first: if k = 2?
+Question: what is the complexity of your algorithm? (Suppose their sizes are n
+1
+ and n
+2
+ respectively, and total length is n)
+58
+
+# Slide 59
+Merge Sorted List
+Task: merge k sorted linked lists and obtain a sorted list.
+Simpler task first: if k = 2? 
+Recursively add the smaller head of the two lists to the output list until one list becomes empty, then append the remaining non-empty list to the output list.
+Question: what is the complexity of your algorithm? 
+O(n
+1 
++ n
+2
+)
+59
+
+# Slide 60
+Merge Sorted List
+Task: merge k sorted linked lists and obtain a sorted list.
+How to do this? 
+Recursively add the smallest head of any list to the output list until only one list is not empty and then append?
+Question: what is the complexity of your algorithm? How to obtain the smallest head?
+60
+
+# Slide 61
+Merge Sorted List
+Task: merge k sorted linked lists and obtain a sorted list (total amount of elements is 
+n
+).
+How to do this? 
+Recursively add the smallest head of any list to the output list until only one list is not empty and then append?
+Question: what is the complexity of your algorithm? How to obtain the smallest head? 
+If going through all list heads, 
+; with heap, O(
+nlogk
+).
+Concatenate all lists and sorting: 
+O(
+nlogn
+)
+61
+
+# Slide 62
+Summary
+Topological Sort
+Kahn's Algorithm
+DFS-based Algorithm
+Heap
+Huffman Coding
+Merge Sorted List
+62

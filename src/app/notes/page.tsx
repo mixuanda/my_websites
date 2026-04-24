@@ -38,11 +38,11 @@ export default function NotesPage() {
                 <Badge variant="secondary">课程笔记</Badge>
               </div>
               <h2 className="mt-4 text-2xl font-semibold">
-                Notes 主线：课程、小节、与持续扩写
+                按课程和小节阅读数学笔记
               </h2>
               <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                当前公开主线是按课程与小节组织的 Notes。重点仍然是严谨的课程笔记，
-                互动只在真正帮助理解时出现，而不是把页面做成独立学习 app。
+                课程内容按章节拆成独立笔记页。阅读体验以清晰推导、定义、
+                例题和练习为中心；互动组件只在它能帮助看懂概念或计算时出现。
               </p>
           </div>
           <div className="space-y-3">

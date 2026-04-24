@@ -2,7 +2,13 @@
 
 import { GlassSidebar } from "@/components/glass";
 import { cn } from "@/lib/utils";
-import { useEffect, useState, createContext, useContext } from "react";
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useSyncExternalStore,
+} from "react";
 
 interface LayoutContextType {
   highContrast: boolean;
@@ -21,15 +27,54 @@ interface MainLayoutProps {
 }
 
 const HIGH_CONTRAST_STORAGE_KEY = "site-high-contrast";
+const HIGH_CONTRAST_CHANGE_EVENT = "site-high-contrast-change";
+
+function getHighContrastSnapshot() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return window.localStorage.getItem(HIGH_CONTRAST_STORAGE_KEY) === "true";
+}
+
+function getHighContrastServerSnapshot() {
+  return false;
+}
+
+function subscribeHighContrast(onStoreChange: () => void) {
+  if (typeof window === "undefined") {
+    return () => {};
+  }
+
+  const handleStorage = (event: StorageEvent) => {
+    if (event.key === HIGH_CONTRAST_STORAGE_KEY) {
+      onStoreChange();
+    }
+  };
+
+  window.addEventListener("storage", handleStorage);
+  window.addEventListener(HIGH_CONTRAST_CHANGE_EVENT, onStoreChange);
+
+  return () => {
+    window.removeEventListener("storage", handleStorage);
+    window.removeEventListener(HIGH_CONTRAST_CHANGE_EVENT, onStoreChange);
+  };
+}
 
 export function MainLayout({ children }: MainLayoutProps) {
-  const [highContrast, setHighContrast] = useState(() => {
+  const highContrast = useSyncExternalStore(
+    subscribeHighContrast,
+    getHighContrastSnapshot,
+    getHighContrastServerSnapshot
+  );
+  const setHighContrast = useCallback((value: boolean) => {
     if (typeof window === "undefined") {
-      return false;
+      return;
     }
 
-    return window.localStorage.getItem(HIGH_CONTRAST_STORAGE_KEY) === "true";
-  });
+    window.localStorage.setItem(HIGH_CONTRAST_STORAGE_KEY, String(value));
+    window.dispatchEvent(new Event(HIGH_CONTRAST_CHANGE_EVENT));
+  }, []);
 
   useEffect(() => {
     if (typeof document === "undefined" || typeof window === "undefined") {
@@ -37,7 +82,6 @@ export function MainLayout({ children }: MainLayoutProps) {
     }
 
     document.documentElement.dataset.contrast = highContrast ? "high" : "normal";
-    window.localStorage.setItem(HIGH_CONTRAST_STORAGE_KEY, String(highContrast));
   }, [highContrast]);
 
   return (

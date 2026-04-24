@@ -24,9 +24,27 @@ That reaction mixes up two different ideas.
 - Complete means that certain bounded sets really do have least upper bounds
   inside the number system you are working in.
 
-The notes use `Q` to show that density does not guarantee completeness.
+The set `Q` shows that density does not guarantee completeness.
 Rationals can be packed closely together and still miss an important boundary
 point.
+
+## A warning from geometric series
+
+Infinite processes can have rational partial information while pointing toward
+a boundary that is not captured by any finite stage. A simple geometric series
+already shows the pattern:
+
+$$
+1+\frac12+\frac14+\cdots+\frac{1}{2^n}
+$$
+
+has rational partial sums, and those partial sums approach `2`. Each finite
+sum is still below `2`, but the boundary is read from the whole infinite
+process, not from one finite partial sum.
+
+This example is not a proof that `sqrt(2)` is missing from `Q`. It prepares the
+right habit: distinguish a sequence of better rational approximations from the
+limit or least upper bound that those approximations are trying to reach.
 
 ## The key order-language
 
@@ -83,7 +101,7 @@ rational upper bounds, there is no least one.
 
 ## Why `sqrt(2)` is not rational
 
-The source notes first recall the standard contradiction proof.
+First recall the standard contradiction proof.
 
 <CollapsibleProof title="Proof that `sqrt(2)` does not belong to `Q`">
 Assume, for contradiction, that `sqrt(2)` is rational.
@@ -135,7 +153,7 @@ The set `S` is bounded above in `Q`, but there is no rational number that serves
 as its least upper bound.
 </TheoremCard>
 
-The notes justify this by splitting every rational candidate `s` into three
+This is justified by splitting every rational candidate `s` into three
 cases.
 
 <CollapsibleProof title="Why no rational candidate can be `sup(S)`">
@@ -144,14 +162,14 @@ through the square `s^2`.
 
 Case 1: `s^2 < 2`.
 
-Then `s` is still inside the set `S`, so it cannot be an upper bound. The notes
+Then `s` is still inside the set `S`, so it cannot be an upper bound. We
 show more: you can move a little to the right and still remain in `S`. So a
 number with `s^2 < 2` is definitely too small to be the supremum.
 
 Case 2: `s^2 > 2`.
 
 Then `s` is an upper bound, but it is too large to be the least upper bound.
-The notes show that you can move a little to the left and still stay above all
+One can move a little to the left and still stay above all
 elements of `S`. So a number with `s^2 > 2` cannot be the supremum either.
 
 Case 3: `s^2 = 2`.
@@ -170,7 +188,7 @@ It tells you that `Q` is missing some order-theoretic limits. A bounded set of
 rational numbers can get closer and closer to a boundary without ever finding a
 rational least upper bound.
 
-That is what the notes mean when they say that `Q` is not complete.
+That is what it means to say that `Q` is not complete.
 
 ## Common mistake
 
@@ -187,12 +205,12 @@ ambient ordered set.
 ## Quick checks
 
 <QuickCheck prompt="Why is a rational number `s` with `s^2 < 2` not an upper bound for `S`?">
-Use the source-note idea that you can move a little to the right and still keep
+Use the idea that you can move a little to the right and still keep
 the square below `2`.
 </QuickCheck>
 
 <RevealSolution title="Answer">
-Because such an `s` is still too small. The notes show that there exists a
+Because such an `s` is still too small. There exists a
 rational `r > s` with `r^2 < 2`, so `r` also belongs to `S`. That means `s`
 cannot be above the whole set.
 </RevealSolution>

@@ -45,6 +45,67 @@ The formulas tell you how the operation is defined. They do not automatically
 prove a claim about all natural numbers. For that, you still need induction.
 </CommonMistake>
 
+## Recursive multiplication
+
+Multiplication is introduced in the same recursive style. Once addition is
+available, multiplication can be read as repeated addition controlled by the
+second input.
+
+<Definition title="Recursive definition of multiplication">
+For natural numbers `a` and `b`, multiplication is defined by:
+
+- `a · 0 = 0`
+- `a · S(b) = (a · b) + a`
+</Definition>
+
+The base case says that adding `a` zero times gives `0`. The step says that if
+you already know `a · b`, then multiplying by the successor `S(b)` adds one
+more copy of `a`.
+
+<WorkedExample title="Compute `3 · 2` from the definition">
+Write `2 = S(S(0))`. Then
+
+$$
+3\cdot 2
+=3\cdot S(S(0))
+=(3\cdot S(0))+3
+$$
+
+and
+
+$$
+3\cdot S(0)=(3\cdot 0)+3=0+3=3.
+$$
+
+Therefore
+
+$$
+3\cdot 2=3+3=6.
+$$
+
+The familiar interpretation “three, taken two times” is recovered from the
+recursive rule.
+</WorkedExample>
+
+## What induction proves
+
+The induction principle is the reason recursive definitions can support
+ordinary algebraic laws. A typical proof has the following shape.
+
+<TheoremCard title="Induction principle">
+Let `P(n)` be a statement about a natural number `n`. If:
+
+1. `P(0)` is true, and
+2. whenever `P(n)` is true, `P(S(n))` is also true,
+
+then `P(n)` is true for every `n\in N`.
+</TheoremCard>
+
+The base case attaches the statement to the starting point `0`. The induction
+step proves that truth is preserved when we move one successor forward. The two
+parts together rule out the possibility that the statement holds at first but
+then fails later.
+
 ## Watch the proof pattern
 
 The stepper below separates one induction proof into the base case, the
@@ -55,7 +116,7 @@ induction hypothesis, the induction step, and the conclusion.
 ## A proof sketch
 
 <CollapsibleProof title="Why `S(a) + b = S(a + b)` follows by induction on `b`">
-We prove the statement for all `b in N`.
+We prove the statement for all `b\in N`.
 
 Base case: when `b = 0`,
 
@@ -72,6 +133,72 @@ Induction step: assume `S(a) + b = S(a + b)`. Then
 So the statement holds for `S(b)` whenever it holds for `b`.
 </CollapsibleProof>
 
+<CollapsibleProof title="Why `a · S(b) = a · b + a` is not a theorem but a definition">
+For multiplication, the formula
+
+$$
+a\cdot S(b)=(a\cdot b)+a
+$$
+
+is not something proved after multiplication is already known. It is the
+recursive step that defines multiplication. Later algebraic laws, such as
+distributivity, are the statements that require induction.
+</CollapsibleProof>
+
+## Algebraic laws come after the definitions
+
+Once addition and multiplication have been defined recursively, the familiar
+laws of arithmetic become theorems.
+
+<TheoremCard title="Examples of arithmetic laws proved by induction">
+For natural numbers `a`, `b`, and `c`, one proves:
+
+$$
+a+b=b+a,
+$$
+
+$$
+a\cdot(b+c)=a\cdot b+a\cdot c,
+$$
+
+and
+
+$$
+a\cdot b=b\cdot a.
+$$
+</TheoremCard>
+
+The important point is the order of logic: we first define the operations, then
+prove that they behave like the operations we already know.
+
+<CollapsibleProof title="Proof structure for distributivity">
+Fix `a` and `b`, and prove the statement
+
+$$
+P(c):\quad a\cdot(b+c)=a\cdot b+a\cdot c
+$$
+
+by induction on `c`.
+
+For `c=0`, use `b+0=b`, `a\cdot 0=0`, and the additive identity.
+
+For the step, assume `P(c)`. Then use the recursive rules
+
+$$
+b+S(c)=S(b+c)
+$$
+
+and
+
+$$
+a\cdot S(d)=a\cdot d+a
+$$
+
+to rewrite the left side until the induction hypothesis applies. The remaining
+terms are rearranged using the associativity of addition, which is itself one
+of the earlier induction theorems.
+</CollapsibleProof>
+
 ## Quick checks
 
 <QuickCheck prompt="What is the base case in the recursive definition of addition?">
@@ -80,6 +207,22 @@ Think about which input is fixed first.
 
 <RevealSolution title="Answer">
 The base case is `a + 0 = a`.
+</RevealSolution>
+
+<QuickCheck prompt="What is the base case in the recursive definition of multiplication?">
+Look at the second input.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The base case is `a · 0 = 0`.
+</RevealSolution>
+
+<QuickCheck prompt="Using the recursive rule, what is `a · S(b)`?">
+State the next multiplication value in terms of the previous one.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is `(a · b) + a`.
 </RevealSolution>
 
 <QuickCheck prompt="In an induction proof, what is the induction hypothesis?">

@@ -7,7 +7,7 @@ description: "由序列極限走向函數極限，學會 delta-epsilon 定義，
 前走，但函數的自變數 `x` 可以由左、由右，以無窮多種實數方式逼近一個
 點 `a`。
 
-這就是為甚麼 lecture notes 要引入 `\delta`-`\varepsilon` 定義。
+這就是為甚麼需要引入 `\delta`-`\varepsilon` 定義。
 
 ## 由序列極限走向函數極限
 
@@ -28,7 +28,7 @@ $$
 
 ## Open intervals 與 punctured domains
 
-notes 先指明要處理哪類定義域。
+先指明要處理哪類定義域。
 
 <Definition title="Open interval">
 **Open interval** 是 `R` 的下列形式子集：
@@ -48,7 +48,7 @@ $$
 其中 `b,c\in R` 且 `b<c`。
 </Definition>
 
-要討論 `a` 附近的函數極限時，notes 考慮的是在某個 open interval 裡，把
+要討論 `a` 附近的函數極限時，考慮的是在某個 open interval 裡，把
 點 `a` 移除後的函數。這一點很重要：極限研究的是 **a 附近** 發生甚麼，
 而未必是 `a` 本身的函數值。
 
@@ -134,7 +134,7 @@ $$
 2. 把它化成與 `|x-a|` 有關的式子；
 3. 然後倒推出一個可行的 `\delta`。
 
-## notes 裡另外兩個基本例子
+## 另外兩個基本例子
 
 <WorkedExample title="Constant functions">
 若 `f(x)=c` 對所有 `x` 都成立，則
@@ -195,7 +195,7 @@ $$
 
 ## 用互動方式看清這個定義
 
-下面的 explorer 讓你在 source 的例子之間切換、選擇 `\varepsilon`，再試
+下面的互動演示讓你在典型例子之間切換、選擇 `\varepsilon`，再試
 不同樣本輸入 `x`。核心就是把
 
 $$
@@ -208,7 +208,7 @@ $$
 
 ## 極限如何失敗？
 
-notes 接着說明：如何證明某個候選極限**不存在**。
+接著說明：如何證明某個候選極限**不存在**。
 
 若要證明 `\lim_{x\to a}f(x)\ne L`，就要找到一個固定的 `\varepsilon>0`，
 使得不論 `\delta` 取得多小，總能找到某個 `x` 滿足 `0<|x-a|<\delta`，
@@ -249,7 +249,7 @@ $$
 
 ## 極限定律
 
-一旦若干基本極限已知，notes 便教你如何由舊極限組合出新極限。
+一旦若干基本極限已知，極限定律就說明如何由舊極限組合出新極限。
 
 <TheoremCard title="極限定律">
 若 `\lim_{x\to a}f(x)=L` 且 `\lim_{x\to a}g(x)=M`，則：
@@ -273,7 +273,7 @@ $$
 乘法定律則多一步，要先證明 `|f(x)|` 在 `a` 附近是有界的。
 
 <WorkedExample title="利用加法定律">
-notes 考慮 `f(x)=2x+1` 與 `g(x)=\sqrt{x}` 在 `x=4` 附近。若已知
+考慮 `f(x)=2x+1` 與 `g(x)=\sqrt{x}` 在 `x=4` 附近。若已知
 
 $$
 \lim_{x\to 4}(2x+1)=9,
@@ -364,7 +364,7 @@ $$
 請留意：這次條件裡不再有 `0<|x-a|`。因為連續性真的會檢查 `x=a` 時的
 函數值。
 
-notes 的不連續例子是
+一個標準不連續例子是
 
 $$
 f(x)=

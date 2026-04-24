@@ -699,6 +699,134 @@ const math1090SequencesUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1090BigSetsUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "big-sets",
+    chapterNumber: "6",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Compare finite and infinite set sizes by bijections, injections, and explicit countable enumerations.",
+      "用雙射、單射與明確的可數枚舉比較有限與無限集合大小。",
+      "用双射、单射与明确的可数枚举比较有限与无限集合大小。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: ["cardinality-comparison-lab"],
+    order: 20,
+    prerequisites: ["math1090.sets.functions-relations"],
+    slug: "cardinality-countability-and-cardinal-inequalities",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "§6.1, §6.1.1, Exercises 62 and Cantor-Bernstein sketch",
+      },
+    ],
+    title: text(
+      "6.1 Cardinality, countability, and cardinal inequalities",
+      "6.1 基數、可數性與基數不等式",
+      "6.1 基数、可数性与基数不等式"
+    ),
+    unitId:
+      "math1090.big-sets.cardinality-countability-and-cardinal-inequalities",
+    unitNumber: "6.1",
+  },
+  {
+    chapterId: "big-sets",
+    chapterNumber: "6",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use Cantor's theorem to prove that power sets are strictly larger, then place continuum and choice principles in context.",
+      "用 Cantor 定理證明冪集嚴格更大，再把 continuum hypothesis 與選擇公理放入脈絡。",
+      "用 Cantor 定理证明幂集严格更大，再把 continuum hypothesis 与选择公理放入脉络。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: ["cantor-diagonal-lab"],
+    order: 21,
+    prerequisites: [
+      "math1090.big-sets.cardinality-countability-and-cardinal-inequalities",
+    ],
+    slug: "cantor-theorem-continuum-and-choice",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "§6.1.2-§6.3.1, Theorems 6-8, Propositions 25-26",
+      },
+    ],
+    title: text(
+      "6.2 Cantor's theorem, continuum, and choice",
+      "6.2 Cantor 定理、連續統與選擇公理",
+      "6.2 Cantor 定理、连续统与选择公理"
+    ),
+    unitId: "math1090.big-sets.cantor-theorem-continuum-and-choice",
+    unitNumber: "6.2",
+  },
+  {
+    chapterId: "big-sets",
+    chapterNumber: "6",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Study intervals, the Cantor set, density, and well-ordering as different ways of measuring size and order.",
+      "研究區間、Cantor set、稠密性與良序，分清不同的大小與次序概念。",
+      "研究区间、Cantor set、稠密性与良序，分清不同的大小与次序概念。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: ["cantor-set-stage-viewer"],
+    order: 22,
+    prerequisites: ["math1090.big-sets.cantor-theorem-continuum-and-choice"],
+    slug: "intervals-cantor-set-density-and-well-ordering",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "§6.4-§6.7, Theorem 9, Propositions 27-34",
+      },
+    ],
+    title: text(
+      "6.3 Intervals, Cantor set, density, and well-ordering",
+      "6.3 區間、Cantor set、稠密性與良序",
+      "6.3 区间、Cantor set、稠密性与良序"
+    ),
+    unitId:
+      "math1090.big-sets.intervals-cantor-set-density-and-well-ordering",
+    unitNumber: "6.3",
+  },
+];
+
+const math1090StructuredSetsUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "sets-with-structure",
+    chapterNumber: "7",
+    course: "math1090",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Move from bare sets to binary operations, then separate monoids from groups by their algebraic laws.",
+      "由純集合走向二元運算，再用代數公理分清 monoid 與 group。",
+      "由纯集合走向二元运算，再用代数公理分清 monoid 与 group。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: ["monoid-group-law-checker"],
+    order: 23,
+    prerequisites: [
+      "math1090.big-sets.intervals-cantor-set-density-and-well-ordering",
+    ],
+    slug: "binary-operations-monoids-and-groups",
+    sourceRefs: [
+      {
+        file: "reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf",
+        pages: "Chapter 7, §7.1-§7.2, Exercises 65-68, Propositions 35-38",
+      },
+    ],
+    title: text(
+      "7.1 Binary operations, monoids, and groups",
+      "7.1 二元運算、monoid 與 group",
+      "7.1 二元运算、monoid 与 group"
+    ),
+    unitId: "math1090.sets-with-structure.binary-operations-monoids-and-groups",
+    unitNumber: "7.1",
+  },
+];
+
 const csci2520ProgrammingFoundationUnits: TextbookUnitMeta[] = [
   {
     chapterId: "programming-foundations",
@@ -792,10 +920,40 @@ const csci2520AdtUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const csci2520ListRecursionUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "lists-and-recursion",
+    chapterNumber: "2",
+    course: "csci2520",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Read lists as recursive head-tail ADTs, then compare iterative and recursive operation implementations.",
+      "把 list 讀成遞歸的 head-tail ADT，再比較 iterative 與 recursive 操作實作。",
+      "把 list 读成递归的 head-tail ADT，再比较 iterative 与 recursive 操作实作。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 3,
+    prerequisites: ["csci2520.adt-and-operations.stack-queue-and-function-operations"],
+    slug: "lists-as-recursive-adts",
+    sourceRefs: [
+      { file: "reference/CSCI2520/2520ds_05_list (1).ppt" },
+      { file: "reference/CSCI2520/csci2520_tuto4_recursion (1).pptx" },
+    ],
+    title: text(
+      "2.1 Lists as recursive ADTs",
+      "2.1 作為遞歸 ADT 的 list",
+      "2.1 作为递归 ADT 的 list"
+    ),
+    unitId: "csci2520.lists-and-recursion.lists-as-recursive-adts",
+    unitNumber: "2.1",
+  },
+];
+
 const csci2520ComplexityUnits: TextbookUnitMeta[] = [
   {
     chapterId: "complexity-and-sorting",
-    chapterNumber: "2",
+    chapterNumber: "3",
     course: "csci2520",
     coverageStatus: "SOURCE_BACKED",
     description: text(
@@ -805,7 +963,7 @@ const csci2520ComplexityUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: [],
     interactiveIds: ["complexity-growth-comparator"],
-    order: 2,
+    order: 4,
     prerequisites: ["csci2520.adt-and-operations.stack-queue-and-function-operations"],
     slug: "complexity-growth-and-cost",
     sourceRefs: [
@@ -815,12 +973,131 @@ const csci2520ComplexityUnits: TextbookUnitMeta[] = [
       { file: "reference/CSCI2520/2520ds_07_sorting2 (1).pptx" },
     ],
     title: text(
-      "2.1 Complexity growth and algorithmic cost",
-      "2.1 複雜度增長與演算法成本",
-      "2.1 复杂度增长与算法成本"
+      "3.1 Complexity growth and algorithmic cost",
+      "3.1 複雜度增長與演算法成本",
+      "3.1 复杂度增长与算法成本"
     ),
     unitId: "csci2520.complexity-and-sorting.complexity-growth-and-cost",
-    unitNumber: "2.1",
+    unitNumber: "3.1",
+  },
+  {
+    chapterId: "complexity-and-sorting",
+    chapterNumber: "3",
+    course: "csci2520",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Separate selection from full sorting, then use quickselect, counting sort, and radix sort to understand when extra structure improves complexity.",
+      "分清 selection 與完整 sorting，再用 quickselect、counting sort、radix sort 理解額外結構何時改善複雜度。",
+      "分清 selection 与完整 sorting，再用 quickselect、counting sort、radix sort 理解额外结构何时改善复杂度。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 5,
+    prerequisites: ["csci2520.complexity-and-sorting.complexity-growth-and-cost"],
+    slug: "selection-quickselect-and-linear-sorting",
+    sourceRefs: [
+      { file: "reference/CSCI2520/csci2520_tuto6_selection_problem (1).pptx" },
+      { file: "reference/CSCI2520/csci2520_tuto8_dynamic_selection.pptx" },
+      { file: "reference/CSCI2520/2520ds_07_sorting2 (1).pptx" },
+    ],
+    title: text(
+      "3.2 Selection, quickselect, and linear-time sorting",
+      "3.2 Selection、quickselect 與 linear-time sorting",
+      "3.2 Selection、quickselect 与 linear-time sorting"
+    ),
+    unitId: "csci2520.complexity-and-sorting.selection-quickselect-and-linear-sorting",
+    unitNumber: "3.2",
+  },
+];
+
+const csci2520TreeUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "trees",
+    chapterNumber: "4",
+    course: "csci2520",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use traversal order, reconstruction, and BST invariants to reason about binary tree algorithms.",
+      "用 traversal order、reconstruction 與 BST invariant 推理 binary tree algorithms。",
+      "用 traversal order、reconstruction 与 BST invariant 推理 binary tree algorithms。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 6,
+    prerequisites: ["csci2520.lists-and-recursion.lists-as-recursive-adts"],
+    slug: "binary-trees-and-bst-operations",
+    sourceRefs: [
+      { file: "reference/CSCI2520/2520ds_08_trees (1).ppt" },
+      { file: "reference/CSCI2520/2520ds_08_trees2 (1).ppt" },
+      { file: "reference/CSCI2520/csci2520_tuto7_binary_tree (1).pptx" },
+    ],
+    title: text(
+      "4.1 Binary trees and BST operations",
+      "4.1 Binary tree 與 BST 操作",
+      "4.1 Binary tree 与 BST 操作"
+    ),
+    unitId: "csci2520.trees.binary-trees-and-bst-operations",
+    unitNumber: "4.1",
+  },
+];
+
+const csci2520GraphUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "graphs",
+    chapterNumber: "5",
+    course: "csci2520",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Compare graph representations, DFS, BFS, spanning-tree algorithms, and shortest-path reasoning.",
+      "比較 graph representations、DFS、BFS、spanning-tree algorithms 與 shortest-path reasoning。",
+      "比较 graph representations、DFS、BFS、spanning-tree algorithms 与 shortest-path reasoning。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 7,
+    prerequisites: ["csci2520.trees.binary-trees-and-bst-operations"],
+    slug: "graph-traversal-mst-and-shortest-paths",
+    sourceRefs: [
+      { file: "reference/CSCI2520/2520ds_09_graph (1).ppt" },
+      { file: "reference/CSCI2520/supplementtoDFS_BFS.ppt" },
+      { file: "reference/CSCI2520/csci2520_tuto9_graph.pptx" },
+    ],
+    title: text(
+      "5.1 Graph traversal, spanning trees, and shortest paths",
+      "5.1 Graph traversal、spanning tree 與 shortest path",
+      "5.1 Graph traversal、spanning tree 与 shortest path"
+    ),
+    unitId: "csci2520.graphs.graph-traversal-mst-and-shortest-paths",
+    unitNumber: "5.1",
+  },
+  {
+    chapterId: "graphs",
+    chapterNumber: "5",
+    course: "csci2520",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Study DAG ordering, heap priority queues, Huffman coding, and sorted-list merging as structural greedy algorithms.",
+      "把 DAG ordering、heap priority queue、Huffman coding 與 sorted-list merging 當作有結構限制的 greedy algorithms 來學。",
+      "把 DAG ordering、heap priority queue、Huffman coding 与 sorted-list merging 当作有结构限制的 greedy algorithms 来学。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 8,
+    prerequisites: ["csci2520.graphs.graph-traversal-mst-and-shortest-paths"],
+    slug: "topological-sort-heaps-and-huffman-coding",
+    sourceRefs: [
+      { file: "reference/CSCI2520/2520ds_10_heap.ppt" },
+      { file: "reference/CSCI2520/2520ds_10_heap2.ppt" },
+      { file: "reference/CSCI2520/2520ds_10_heap2huffmanCoding.pdf" },
+      { file: "reference/CSCI2520/csci2520_tuto10_topo_sort_and_heap.pptx" },
+    ],
+    title: text(
+      "5.2 Topological sort, heaps, and Huffman coding",
+      "5.2 Topological sort、heap 與 Huffman coding",
+      "5.2 Topological sort、heap 与 Huffman coding"
+    ),
+    unitId: "csci2520.graphs.topological-sort-heaps-and-huffman-coding",
+    unitNumber: "5.2",
   },
 ];
 
@@ -1903,11 +2180,35 @@ const math1090: TextbookCourseMeta = {
       ),
       units: math1090SequencesUnits,
     },
+    {
+      course: "math1090",
+      id: "big-sets",
+      number: "6",
+      summary: text(
+        "Cardinality, countability, Cantor's theorem, choice principles, intervals, Cantor set, density, and well-ordering.",
+        "基數、可數性、Cantor 定理、選擇原則、區間、Cantor set、稠密性與良序。",
+        "基数、可数性、Cantor 定理、选择原则、区间、Cantor set、稠密性与良序。"
+      ),
+      title: text("Big sets", "大型集合", "大型集合"),
+      units: math1090BigSetsUnits,
+    },
+    {
+      course: "math1090",
+      id: "sets-with-structure",
+      number: "7",
+      summary: text(
+        "Binary operations and the first algebraic structures built on top of sets.",
+        "二元運算，以及建立在集合之上的第一批代數結構。",
+        "二元运算，以及建立在集合之上的第一批代数结构。"
+      ),
+      title: text("Sets with structure", "帶結構的集合", "带结构的集合"),
+      units: math1090StructuredSetsUnits,
+    },
   ],
   description: text(
-    "Rigorous course notes on logic, sets, number construction, the real numbers, and the first theory of limits, written in linked sections with careful proofs and examples.",
-    "以嚴謹課程筆記方式整理的邏輯、集合、數系構造、實數與最初極限理論筆記，按互相關聯的小節撰寫，重視證明與例子。",
-    "以严谨课程笔记方式整理的逻辑、集合、数系构造、实数与最初极限理论笔记，按相互关联的小节撰写，重视证明与例子。"
+    "Rigorous course notes on logic, sets, number construction, the real numbers, limits, cardinality, and the first algebraic structures, written in linked sections with careful proofs and examples.",
+    "以嚴謹課程筆記方式整理的邏輯、集合、數系構造、實數、極限、基數與第一批代數結構筆記，按互相關聯的小節撰寫，重視證明與例子。",
+    "以严谨课程笔记方式整理的逻辑、集合、数系构造、实数、极限、基数与第一批代数结构笔记，按相互关联的小节撰写，重视证明与例子。"
   ),
   id: "math1090",
   shortTitle: text("Set theory", "集合論", "集合论"),
@@ -2075,8 +2376,20 @@ const csci2520: TextbookCourseMeta = {
     },
     {
       course: "csci2520",
-      id: "complexity-and-sorting",
+      id: "lists-and-recursion",
       number: "2",
+      summary: text(
+        "Recursive list contracts, head-tail reasoning, and representation-aware operation cost.",
+        "遞歸 list 契約、head-tail 推理，以及受 representation 影響的操作成本。",
+        "递归 list 契约、head-tail 推理，以及受 representation 影响的操作成本。"
+      ),
+      title: text("Lists and recursion", "List 與 recursion", "List 与 recursion"),
+      units: csci2520ListRecursionUnits,
+    },
+    {
+      course: "csci2520",
+      id: "complexity-and-sorting",
+      number: "3",
       summary: text(
         "Asymptotic growth, cost comparison, and sorting-oriented complexity reasoning.",
         "漸進增長、成本比較與面向排序的複雜度推理。",
@@ -2084,6 +2397,30 @@ const csci2520: TextbookCourseMeta = {
       ),
       title: text("Complexity and sorting", "複雜度與排序", "复杂度与排序"),
       units: csci2520ComplexityUnits,
+    },
+    {
+      course: "csci2520",
+      id: "trees",
+      number: "4",
+      summary: text(
+        "Binary tree traversal, reconstruction, and binary-search-tree operations.",
+        "Binary tree traversal、reconstruction 與 binary-search-tree operations。",
+        "Binary tree traversal、reconstruction 与 binary-search-tree operations。"
+      ),
+      title: text("Trees and BSTs", "Trees 與 BST", "Trees 与 BST"),
+      units: csci2520TreeUnits,
+    },
+    {
+      course: "csci2520",
+      id: "graphs",
+      number: "5",
+      summary: text(
+        "Graph traversals, spanning trees, shortest paths, topological sorting, heaps, and Huffman coding.",
+        "Graph traversal、spanning tree、shortest path、topological sorting、heap 與 Huffman coding。",
+        "Graph traversal、spanning tree、shortest path、topological sorting、heap 与 Huffman coding。"
+      ),
+      title: text("Graphs and priority queues", "Graph 與 priority queue", "Graph 与 priority queue"),
+      units: csci2520GraphUnits,
     },
   ],
   description: text(
@@ -2112,9 +2449,9 @@ const math1025: TextbookCourseMeta = {
     },
   ],
   description: text(
-    "MATH1025 preparatory notes built from repository slide chapters, expanded progressively with proof-aware worked examples.",
-    "以 repository 投影片章節為基礎逐步擴寫的 MATH1025 筆記，重視證明意識與例題步驟。",
-    "以 repository 投影片章节为基础逐步扩写的 MATH1025 笔记，重视证明意识与例题步骤。"
+    "Preparatory notes for algebraic technique, trigonometry, and proof-aware worked examples.",
+    "整理代數技巧、三角內容與帶證明意識例題的預備筆記。",
+    "整理代数技巧、三角内容与带证明意识例题的预备笔记。"
   ),
   id: "math1025",
   shortTitle: text("Preparatory mathematics", "預備數學", "预备数学"),

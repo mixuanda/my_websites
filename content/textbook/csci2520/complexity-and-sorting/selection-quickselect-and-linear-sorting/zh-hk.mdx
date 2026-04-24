@@ -1,0 +1,124 @@
+---
+title: "3.2 Selection、quickselect 與 linear-time sorting"
+description: "分清 sorting 與 selection，再理解 counting sort 和 radix sort 只在額外假設下才可突破 comparison sorting 下界。"
+---
+
+Selection problem 問的是第 k 小元素，不是完整排序。這個分別很重要：
+sorting 一定可以解 selection，但它通常做了題目沒有要求的額外工作。
+
+本節把 tutorial 和 sorting slides 裡的三條線連起來：partial selection、
+quickselect、以及 non-comparison sorting。
+
+## Selection problem
+
+<Definition title="Selection problem">
+給定 `n` 個元素和整數 `k`，selection problem 要找第 k 小元素。
+</Definition>
+
+最簡單的特例是 minimum。掃描一次即可，所以成本是 `O(n)`。一般第 k 小問題
+較細緻，因為我們需要足夠的次序資訊去判斷哪個元素 rank 是 `k`。
+
+## 兩個 naive approach
+
+第一，先 sort 整個 array，再讀第 k 個位置。這容易理解，但若用 comparison
+sorting，通常成本至少接近 `O(n log n)`。
+
+第二，重複找最小值並移除，直到第 k 輪。這就是 partial selection sort。
+它避免完整排序，但每一輪仍要掃描剩餘部分。
+
+<WorkedExample title="Partial selection 的成本">
+要找第 4 小元素，可以找最小值、移除，再重複三次。
+
+當 `k` 很小，這比完整 selection sort 少很多工作；當 `k` 很大，成本就會
+接近二次。
+</WorkedExample>
+
+## Quickselect 只遞歸一邊
+
+Quicksort partition 後會 sort 左右兩邊；quickselect 使用同一個 partition
+idea，但只進入其中一邊。
+
+Partition 之後，pivot 在目前 subarray 裡的 rank 已知。如果 rank 正好是
+`k`，便完成；若目標 rank 更小，只去左邊；若更大，只去右邊並調整 rank。
+
+<TheoremCard title="Quickselect 為何不需要完整排序">
+Partition 後，第 k 小元素只可能在一邊，或就是 pivot。另一邊的內部次序與
+答案無關，因此不需要 sort。
+</TheoremCard>
+
+但 pivot choice 仍然重要。壞 pivot 可以令 quickselect 變成 quadratic；
+好的或 randomized pivot 才給出較佳 expected behavior。
+
+## Comparison sorting 的下界
+
+Linear-time sorting slides 提醒我們：merge sort、heapsort、quicksort 都是
+comparison sorts。Worst case 中，comparison sorting 需要
+`Omega(n log n)` comparisons。要突破這個障礙，就要利用 key 的額外結構，而
+不是只靠 pairwise comparisons。
+
+## Counting sort
+
+<Definition title="Counting sort">
+Counting sort 先統計有限 integer key range 中每個 key 出現次數，再用
+cumulative counts 放置元素。
+</Definition>
+
+Range assumption 是核心。如果 key 位於 `0` 到 `K`，我們需要大小與 `K`
+有關的 count array。
+
+Counting sort 的三步是：
+
+1. count 每個 key 的 occurrence；
+2. 把 count 累積，使 entry 表示小於等於該 key 的元素數；
+3. 用 cumulative count 把 input 放到 output。
+
+當 `K = O(n)` 時，counting sort 是 linear；但它不是 in-place，也不是一般
+comparison sort。
+
+## Radix sort
+
+Radix sort 逐 digit 排序，通常使用 stable sorting subroutine，例如 counting
+sort。Stability 不是裝飾：如果後一輪 digit pass 打亂前一輪建立的次序，
+最後結果就可能錯。
+
+<WorkedExample title="Radix sort 為何需要 stability">
+若兩個數在目前 digit 相同，stable subroutine 會保留 previous digit pass
+建立的相對次序。這份保留的次序正是 digit-by-digit sorting 的記憶。
+</WorkedExample>
+
+## 常見錯誤
+
+- 用完整排序解 selection，卻沒有說明多做了哪些工作。
+- 說 quickselect 永遠 linear，但沒有講 pivot assumption。
+- 說 counting sort 是 `O(n)`，卻忽略 key range `K`。
+- 在 radix sort 裡使用不 stable 的 subroutine。
+
+<QuickCheck prompt="為甚麼 full sorting 比 selection 做更多工作？">
+比較題目要求的 output。
+</QuickCheck>
+
+<RevealSolution title="答案">
+Selection 只要一個 ranked element；sorting 要知道所有元素的完整次序。
+</RevealSolution>
+
+<QuickCheck prompt="Counting sort 線性時間需要甚麼額外假設？">
+想 count array 的大小。
+</QuickCheck>
+
+<RevealSolution title="答案">
+Key range 必須受控；常見寫法是 `K = O(n)`。
+</RevealSolution>
+
+## 練習
+
+1. 解釋為甚麼 quickselect 只 recurse 一邊。
+2. 給出 partial selection sort 合理的情況。
+3. 解釋 radix sort 為甚麼通常要 stable subroutine。
+
+<RevealSolution title="引導解答">
+1. Pivot rank 已知後，第 k 小只可能在其中一邊，除非 pivot 本身就是答案。
+2. 當 `k` 很小，只需要少量 minimum-selection rounds 時，它可以合理。
+3. Stability 保存 previous digit passes 的次序；否則後面 pass 會破壞早前
+   digit 資訊。
+</RevealSolution>
+

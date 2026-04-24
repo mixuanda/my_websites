@@ -1,0 +1,836 @@
+# Slide 1
+CSCI2520 Tutorial 9:
+Graph
+Pan Zhenyu
+zypan24@cse.cuhk.edu.hk
+Slide Ack: modified based on the slides from Li Hui
+
+# Slide 2
+Outline
+Graph Traversal
+DFS
+BFS
+Minimum Spanning Tree
+Prim’s
+Kruskal
+Shortest Path
+Dijkstra
+CSCI2520 Tutorial 9
+
+# Slide 3
+Depth First Search (DFS)
+DFS is an algorithm for traversing or searching tree or graph data structures.
+1. Select a root node
+2. Explores as far as possible along each branch before backtracking
+Usually use a stack to keep track of node path
+Use a bool array to tag visited
+CSCI2520 Tutorial 9
+
+# Slide 4
+Depth First Search
+Start at node A
+Current stack [A]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 5
+Depth First Search
+Current node B
+Current stack [A, B]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 6
+Depth First Search
+Current node C
+Current stack [A, B, C]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 7
+Depth First Search
+Current node F
+Current stack [A, B, C, F]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 8
+Depth First Search
+Current node F
+Current stack [A, B, C, 
+F
+]
+F don’t have children! Backtracking
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 9
+Depth First Search
+Current node C
+Current stack [A, B, C]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 10
+Depth First Search
+Current node D
+Current stack [A, B, C, D]
+Find other children of C
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 11
+Depth First Search
+Current node E
+Current stack [A, B, C, D, E]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 12
+Depth First Search
+Current node E
+Current stack [A, B, C, D, 
+E
+]
+Backtracking
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 13
+Depth First Search
+Current node D
+Current stack [A, B, C, 
+D
+]
+Backtracking
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+F
+E
+
+# Slide 14
+Depth First Search
+Current node C
+Current stack [A, B, 
+C
+]
+Backtracking
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+F
+E
+
+# Slide 15
+Depth First Search
+Current node B
+Current stack [A, 
+B
+]
+Backtracking
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+F
+E
+
+# Slide 16
+Depth First Search
+Current node A
+Current stack [A]
+Backtracking
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+F
+E
+
+# Slide 17
+Depth First Search
+Stack is empty, DFS done!
+Current stack []
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 18
+Exercise 1
+Implement the following function
+The definition of 
+nodeCDT
+ is as follows
+CSCI2520 Tutorial 8
+Func
+ DepthFirstSearch(nodes: 
+list
+)
+struct
+nodeCDT
+ {
+    id: 
+int
+    neighbors: 
+list
+# neighbors’ Node ID
+}
+
+# Slide 19
+Exercise 1 Solution
+CSCI2520 Tutorial 8
+Func
+ DepthFirstSearch(nodes: 
+list
+):
+for
+int
+i
+ = 0 to (
+nodes.size
+() – 1):
+        visited[
+i
+] = 
+false
+	 i = i + 1
+visit(0)
+visited: 
+list 
+# list of Boolean
+Func 
+visit(curr: 
+int
+):
+    visited[curr] = 
+true
+ 	n: 
+nodeADT
+ = nodes[curr];
+# do something
+for
+ neighbor_id 
+in
+ n.neighbors)
+if
+ (!visited[neighbor_id]):
+            visit(neighbor_id)
+
+# Slide 20
+Breadth First Search (BFS)
+BFS is an algorithm for traversing or searching tree or graph data structures.
+1. Select a root node
+2. Explores all nodes at the present depth prior to moving on at the next depth level
+Usually use a queue to keep track of children
+Use a bool array to tag visited
+CSCI2520 Tutorial 9
+
+# Slide 21
+Breadth
+ First Search
+Start at node A
+Current queue [A]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 22
+Breadth
+ First Search
+Current node A
+Current queue [
+A
+, B, D]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 23
+Breadth
+ First Search
+Current node B
+Current queue [
+B
+, D, C]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 24
+Breadth
+ First Search
+Current node D
+Current queue [
+D
+, C, E]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 25
+Breadth
+ First Search
+Current node C
+Current queue [
+C
+, E, F]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 26
+Breadth
+ First Search
+Current node 
+E
+Current queue [E, F]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 27
+Breadth
+ First Search
+Current node 
+F
+Current queue [F]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 28
+Breadth
+ First Search
+Queue is empty, BFS done!
+Current queue []
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+F
+
+# Slide 29
+Exercise 2
+CSCI2520 Tutorial 8
+Implement the following function
+The definition of 
+nodeCDT
+ is as follows
+Func
+BreadthFirstSearch
+(nodes: 
+list
+)
+struct
+nodeCDT
+ {
+    id: 
+int
+    neighbors: 
+list
+# neighbors’ Node ID
+}
+
+# Slide 30
+Exercise 2 Solution
+CSCI2520 Tutorial 8
+Func
+ BreadthFirstSearch(nodes: 
+list
+)
+:
+visited: 
+list 
+# list of Boolean
+for
+int
+i
+ = 0 to (
+nodes.size
+() – 1):
+        visited[
+i
+] = 
+false
+i
+ = 
+i
+ + 1
+    Queue<nodeADT> q
+    q.enqueue(nodes[0])
+while
+ (!q.isEmpty()):
+ 	 n: 
+nodeADT
+ = q.
+pop()
+// do something
+for
+neighbor_id
+ in 
+n.neighbors
+:
+if
+ (!visited[
+neighbor_id
+]):
+q.enqueue
+(nodes[
+neighbor_id
+])
+visited[n.id] = 
+true
+
+# Slide 31
+Prim’s Algorithm (MST)
+Prim’s algorithm is a greedy algorithm that’s finds a MST for a weighted undirected graph.
+Building this tree one vertex at a time
+1. Start from an arbitrary vertex
+2. Adding the cheapest possible connection from the tree to another vertex
+CSCI2520 Tutorial 9
+
+# Slide 32
+CSCI2520 Tutorial 9
+
+# Slide 33
+Prim’s Algorithm (MST)
+Consider the following graph
+Start at node A
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 34
+Prim’s Algorithm (MST)
+Start at node A
+Edge priority queue
+[(A-B, 1), (A-D, 5)]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 35
+Prim’s Algorithm (MST)
+Append B to MST
+Edge priority queue
+[(B-D, 2), (B-C, 3), (A-D, 5)]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 36
+Prim’s Algorithm (MST)
+Append D to MST
+Edge priority queue
+[(B-C, 3), (A-D, 5), (D-E, 6), (D-C, 7)]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 37
+Prim’s Algorithm (MST)
+Append C to MST
+Edge priority queue
+[(A-D, 5), (D-E, 6), (D-C, 7), (C-E, 8)]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 38
+Prim’s Algorithm (MST)
+Append E to MST (ignore edge (A-D, 5))
+Edge priority queue
+[(A-D, 5), (D-E, 6), (D-C, 7), (C-E, 8)]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 39
+Prim’s Algorithm (MST)
+Ignore the rest edges. Find MST Done!
+Edge priority queue
+[]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 40
+Kruskal’s Algorithm (MST)
+Find an MST of an undirected weighted graph.
+A greedy algorithm
+1. Sort the edges.
+2. In each step it adds the next lowest-weight edge that will not form a cycle to the minimum spanning forest.
+CSCI2520 Tutorial 9
+
+# Slide 41
+Kruskal’s Algorithm (MST)
+Sort the edges.
+[(A-B), (B-D), (B-C), (A-D), (D-E), (C-D), (C-E)]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 42
+Kruskal’s Algorithm (MST)
+Add edge (A-B)
+[
+(A-B)
+, (B-D), (B-C), (A-D), (D-E), (C-D), (C-E)]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 43
+Kruskal’s Algorithm (MST)
+Add edge (B-D)
+[
+(A-B)
+, 
+(B-D)
+, (B-C), (A-D), (D-E), (C-D), (C-E)]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 44
+Kruskal’s Algorithm (MST)
+Add edge (B-C)
+[
+(A-B)
+, 
+(B-D)
+, 
+(B-C)
+, (A-D), (D-E), (C-D), (C-E)]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 45
+Kruskal’s Algorithm (MST)
+Add edge (D-E)
+[
+(A-B)
+, 
+(B-D)
+, 
+(B-C)
+, 
+(A-D)
+, 
+(D-E)
+, (C-D), (C-E)]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 46
+Kruskal’s Algorithm (MST)
+All Node find, MST Done!
+[
+(A-B)
+, 
+(B-D)
+, 
+(B-C)
+, 
+(A-D)
+, 
+(D-E)
+, 
+(C-D)
+, 
+(C-E)
+]
+CSCI2520 Tutorial 9
+A
+B
+D
+C
+E
+1
+3
+7
+5
+2
+6
+8
+
+# Slide 47
+Dijkstra (Shortest Path)
+Finding the shortest paths between nodes in a weighted graph.
+While not all vertices are visited
+Pick the unvisited vertex 
+v
+ whose current best cost is minimum.
+For any other vertex 
+u
+ that can be reached cheaper via 
+v
+Update the current best cost and path of 
+u
+.
+CSCI2520 Tutorial 9
+
+# Slide 48
+Exercise 3
+Given a n*m matrix and each node has a weight. You are required to find a path starting from top-left point M[1][1] to the bottom-right point M[n][m] meanwhile minimize path weight. Some node cannot be visit.
+CSCI2520 Tutorial 8
+1
+2
+5
+4
+1
+N
+1
+2
+1
+1
+N
+1
+
+# Slide 49
+Exercise 3 Solution
+We can construct a graph contains n*m nodes 
+Connect v[
+i
+][j] with v[
+i
+][j+1] and v[i+1][j]
+Avoid the node in boundary and the node cannot be visited
+Run Dijkstra from v[1][1], get the result v[n][m].
+CSCI2520 Tutorial 8
+1
+2
+5
+4
+1
+N
+1
+2
+1
+1
+N
+1
+
+# Slide 50
+Exercise 4
+CSCI2520 Tutorial 8
+
+# Slide 51
+Summary
+Graph Traversal
+DFS
+BFS
+Minimum Spanning Tree
+Prim’s
+Kruskal
+Shortest Path
+Dijkstra
+CSCI2520 Tutorial 9

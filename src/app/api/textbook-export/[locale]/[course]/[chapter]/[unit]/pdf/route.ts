@@ -1,7 +1,9 @@
 import { getLocalizedTextbookUnitExport } from "@/lib/textbook/content";
 import { buildTextbookPdf } from "@/lib/textbook/export-pdf";
 import { isLocale } from "@/lib/textbook/i18n";
-import { textbookCatalog } from "@/lib/textbook/catalog";
+import { getUnitMetaByRoute, textbookCatalog } from "@/lib/textbook/catalog";
+import { auth } from "@/lib/auth";
+import { canAccessTier, getUserEntitlements } from "@/lib/membership/entitlements";
 import type { CourseId } from "@/lib/textbook/types";
 
 export const runtime = "nodejs";
@@ -31,6 +33,15 @@ export async function GET(_: Request, { params }: RouteContext) {
 
   if (!exportableUnit) {
     return new Response("Textbook unit not found", { status: 404 });
+  }
+
+  const unitMeta = getUnitMetaByRoute(course as CourseId, chapter, unit);
+  const entitlements = await getUserEntitlements(await auth());
+
+  if (unitMeta && !canAccessTier(entitlements, unitMeta.accessTier)) {
+    return new Response("This note export is not available for this account.", {
+      status: 403,
+    });
   }
 
   const pdf = await buildTextbookPdf(exportableUnit);

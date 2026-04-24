@@ -1,0 +1,120 @@
+---
+title: "4.1 Binary tree 與 BST 操作"
+description: "用 traversal order、reconstruction logic 與 binary-search-tree invariant 嚴謹閱讀 tree algorithms。"
+---
+
+Tree 很容易被背壞。你可以背 preorder、inorder、postorder，但仍然不理解每
+一種 order 保存了甚麼結構資訊。課程用 binary-tree traversal 和 BST
+operations，要求我們更細心地讀結構。
+
+## Binary tree 術語
+
+<Definition title="Binary tree">
+Binary tree 是每個 node 最多有兩個 children 的 tree；存在時會分成 left
+child 和 right child。
+</Definition>
+
+Left-right distinction 是結構的一部分。即使 node set 一樣、parent-child
+關係看似相近，左右 child 交換後也可能是不同的 binary tree。
+
+## Traversal orders
+
+對 root `R`、left subtree `L`、right subtree `T`：
+
+- preorder：先 `R`，再 `L`，再 `T`；
+- inorder：先 `L`，再 `R`，再 `T`；
+- postorder：先 `L`，再 `T`，再 `R`。
+
+這三個不是任意 list，而是保存不同資訊。
+
+<WorkedExample title="為甚麼 inorder alone 不夠">
+Sequence `(B, A, C)` 可以來自不同 tree。`A` 可以是 root，`B` 在左、`C` 在
+右；但其他 shape 也可能有同樣 inorder。Inorder alone 記錄 left-root-right
+次序，未必記錄 root hierarchy。
+</WorkedExample>
+
+## Reconstruction 需要兩個 compatible traversals
+
+Tutorial 的標準方法是：
+
+1. 用 preorder 或 postorder 找 root；
+2. 用 inorder 把 nodes 分成 left subtree 和 right subtree；
+3. 對兩邊 recursively 重複。
+
+若 keys distinct，preorder plus inorder 足夠；postorder plus inorder 也
+類似。Preorder plus postorder alone 通常不能唯一決定 binary tree。
+
+## Binary search tree
+
+<Definition title="Binary search tree">
+BST 是一棵 binary tree，所有 keys unique，且每個 node 都滿足：left subtree
+內所有 key 小於 node key，right subtree 內所有 key 大於 node key。
+</Definition>
+
+BST invariant 在每個 node local 地檢查，但後果是 global 的。某 node key
+為 `x` 時，整個 left subtree 深處的每個 key 都必須小於 `x`。
+
+<TheoremCard title="BST 的 inorder traversal 是 sorted">
+若 binary tree 滿足 BST invariant，inorder traversal 會按 increasing order
+visit keys。
+</TheoremCard>
+
+這解釋了為甚麼 BST 題目常常問 inorder successor 或 ranked traversal。
+
+## Inorder successor
+
+Inorder successor 是 inorder traversal 中下一個 node。Tutorial 分成兩種情況：
+
+- 若 node 有 right subtree，successor 是 right subtree 裡的 minimum node；
+- 否則，向上找 lowest ancestor，使 current node 位於那個 ancestor 的 left
+  subtree。
+
+第二種情況需要 parent pointer，或者能從 root 重新追蹤 search path。
+
+<WorkedExample title="Right-subtree case 為何成立">
+若 node 有 right subtree，right subtree 裡每個 key 都比 node 大。當中最小
+的 key 就是下一個更大的 key，所以是 inorder successor。
+</WorkedExample>
+
+## Deletion and replacement
+
+BST deletion 有三種情況：
+
+- 刪 leaf：直接移除；
+- 刪只有一個 child 的 node：把 parent 接到那個 child；
+- 刪有兩個 children 的 node：用 left subtree maximum 或 right subtree
+  minimum 取代，然後把 replacement 從原位置刪掉。
+
+兩種 replacement strategy 只要實作小心，都可保留 BST invariant。
+
+<QuickCheck prompt="BST 的 inorder traversal 有甚麼用？">
+說出 visited keys 的次序。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它會按 increasing sorted order visit keys。
+</RevealSolution>
+
+<QuickCheck prompt="若 BST node 有 right subtree，它的 inorder successor 在哪裡？">
+想下一個更大的 key。
+</QuickCheck>
+
+<RevealSolution title="答案">
+在 right subtree 裡的 minimum node。
+</RevealSolution>
+
+## 練習
+
+1. 解釋 preorder plus inorder 為何可以 reconstruct distinct-key binary tree。
+2. 列出找 inorder successor 的兩種情況。
+3. 解釋用 right-subtree minimum 取代 two-child deleted node 為何保留 BST invariant。
+
+<RevealSolution title="引導解答">
+1. Preorder 給出 current root；inorder 把剩餘 keys 分成 left 和 right
+   subtrees；recursion 重複同一邏輯。
+2. 有 right subtree 就取 right-subtree minimum；否則向上找第一個把 current
+   node 放在 left branch 裡的 ancestor。
+3. Right-subtree minimum 大於 left subtree 所有 keys，且不大於 right subtree
+   其他 keys，所以可放在 deleted node 的位置。
+</RevealSolution>
+

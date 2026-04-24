@@ -30,6 +30,18 @@ The current local workspace also includes a shared `QuickCheck` renderer update
 that makes prompt cards visible by default. When the next unit is expanded, the
 three locales should be re-checked with that visible-prompt behavior in mind.
 
+April 24, 2026 parity update:
+
+- zh-HK related-note links were normalized back to the public `/zh-hk/notes/**`
+  route after a bad localized path appeared in several Math1090 pages;
+- localized MATH1030 related-note labels now avoid leftover English titles in
+  `solution-set-types` and `invertible-matrices`;
+- public math prose was cleaned so source-tracking remains internal while the
+  live pages read as serious note articles.
+- CSCI2520 was expanded in synchronized EN / zh-HK / zh-CN files for lists,
+  selection and non-comparison sorting, binary trees / BSTs, graph traversal,
+  topological sorting, heaps, and Huffman coding.
+
 ## Current parity status
 
 The following units are currently present in EN, zh-HK, and zh-CN.
@@ -47,15 +59,23 @@ The following units are currently present in EN, zh-HK, and zh-CN.
   continuity
 - `math1030`: 1.1 equations and solution sets, 2.1 matrix basics,
   2.2 augmented matrices and row operations, 2.3 Gaussian elimination and
-  RREF, 2.4 solution-set types, 5.1 invertible matrices, 6.1 vector spaces,
-  6.2 subspaces, 6.3 linear combinations and span, 6.4 linear dependence and
-  independence, 6.5 basis and dimension, 6.6 column space / row space / rank,
-  7.1 determinants and cofactor expansion, 7.2 row operations / products /
-  invertibility, 7.3 transpose / column operations / Cramer's rule, 8.1
-  eigenvalues / eigenvectors / eigenspaces, 8.2 diagonalization / similarity,
-  8.3 characteristic polynomials / diagonalization tests, 9.1 inner products /
+  RREF, 2.4 solution-set types, 3.1 matrix multiplication and identity
+  matrices, 3.2 transpose and special matrices, 4.1 homogeneous systems and
+  null space, 5.1 invertible matrices, 6.1 vector spaces, 6.2 subspaces, 6.3
+  linear combinations and span, 6.4 linear dependence and independence, 6.5
+  basis and dimension, 6.6 column space / row space / rank, 7.1 determinants
+  and cofactor expansion, 7.2 row operations / products / invertibility, 7.3
+  transpose / column operations / Cramer's rule, 8.1 eigenvalues /
+  eigenvectors / eigenspaces, 8.2 diagonalization / similarity, 8.3
+  characteristic polynomials / diagonalization tests, 9.1 inner products /
   norms / angles, 9.2 orthogonal sets / orthonormal bases, 9.3 Gram-Schmidt,
   9.4 Cauchy-Schwarz / triangle inequalities
+- `csci2520`: 0.1 pointers / memory / structs, 1.1 ADT operations, 1.2 hash
+  tables and collision strategies, 2.1 lists as recursive ADTs, 3.1
+  complexity growth and algorithmic cost, 3.2 selection / quickselect /
+  linear-time sorting, 4.1 binary trees and BST operations, 5.1 graph
+  traversal / spanning trees / shortest paths, 5.2 topological sort / heaps /
+  Huffman coding
 
 ## Checkpoint log
 

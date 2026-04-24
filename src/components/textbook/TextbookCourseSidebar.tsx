@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { GlassCard, GlassPanel } from "@/components/glass";
+import { isMembershipGatingEnabled } from "@/lib/membership/entitlements";
 import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
 import { getCoursesHref, getCourseHref, getUnitHref } from "@/lib/textbook/routes";
 import type { Locale, TextbookCourseMeta } from "@/lib/textbook/types";
@@ -18,6 +19,8 @@ export function TextbookCourseSidebar({
   currentUnitId,
   locale,
 }: TextbookCourseSidebarProps) {
+  const membershipGatingEnabled = isMembershipGatingEnabled();
+
   return (
     <div className="space-y-4 xl:sticky xl:top-24">
       <GlassCard className="p-5">
@@ -76,7 +79,7 @@ export function TextbookCourseSidebar({
                       {unit.unitNumber}
                     </p>
                     <p className="mt-1 text-sm leading-6">{unit.title[locale]}</p>
-                    {unit.accessTier === "MEMBER" ? (
+                    {membershipGatingEnabled && unit.accessTier === "MEMBER" ? (
                       <p className="mt-1 text-xs text-muted-foreground">
                         {getLocalizedText(uiText.premium, locale)}
                       </p>

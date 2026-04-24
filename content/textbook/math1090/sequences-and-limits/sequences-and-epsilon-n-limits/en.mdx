@@ -4,7 +4,7 @@ description: "Treat sequences as functions on N, then learn how the epsilon-N de
 ---
 
 This note starts chapter 5 by slowing down and making the first limit definition
-fully explicit. Before talking about limits of functions, the lecture notes
+fully explicit. Before talking about limits of functions, first
 first study limits of **sequences**. That is the right order: a sequence moves
 along the number line in discrete steps, so it is the cleanest place to learn
 how a formal limit definition works.
@@ -23,7 +23,7 @@ $$
 1,\frac12,\frac13,\frac14,\ldots
 $$
 
-The lecture notes ask you to reinterpret that familiar idea in a more precise
+The familiar idea must be reinterpreted in a more precise
 way.
 
 <Definition title="Sequence in a set">
@@ -85,7 +85,7 @@ $$
 or say that `(x_n)` **converges** to `L`.
 </Definition>
 
-Exercise 51 in the source asks you to write the definition symbolically. Here it
+A natural exercise is to write the definition symbolically. Here it
 is in compact form:
 
 $$
@@ -122,7 +122,7 @@ sequence converges, because the definition only cares about the tail `n>N`.
 
 ## First worked example: `1/n \to 0`
 
-Example 17 in the notes says that
+A basic example is that
 
 $$
 \frac11,\frac12,\frac13,\frac14,\ldots
@@ -162,7 +162,7 @@ it, and then choose `N` large enough.
 
 ## Second worked example: `\frac{5n+2}{3n-7} \to \frac53`
 
-Example 18 in the notes gives a rational-function sequence and proves its
+A slightly richer example uses a rational-function sequence and proves its
 limit.
 
 <WorkedExample title="Proving that `\lim_{n\to\infty}\frac{5n+2}{3n-7}=\frac53`">
@@ -213,7 +213,7 @@ The algebra looks longer, but the logical structure is exactly the same as for
 
 ## A simple but important special case
 
-Exercise 52 asks for the limit of the constant sequence `x_n=0`.
+For the constant sequence `x_n=0`, the limit is immediate.
 
 <WorkedExample title="Constant sequences converge to their constant value">
 Let `x_n=0` for all `n`. Then for every `\varepsilon>0`,
