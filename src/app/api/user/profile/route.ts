@@ -1,5 +1,14 @@
 import { auth, authBackendStatus } from "@/lib/auth";
 import {
+  getMembershipRecordByEmail,
+  getMembershipRecordByUserId,
+  getUserEntitlements,
+} from "@/lib/membership/entitlements";
+import {
+  getBillingConfigStatus,
+  getConfiguredBillingPlans,
+} from "@/lib/membership/plans";
+import {
   getSessionProfile,
   updateUserProfile,
   type SiteUserLocale,
@@ -25,6 +34,12 @@ export async function GET() {
     }
 
     const profile = await getSessionProfile(session);
+    const entitlements = await getUserEntitlements(session);
+    const user = session.user as { email?: string | null; id?: string } | undefined;
+    const membership =
+      (await getMembershipRecordByUserId(user?.id)) ??
+      (await getMembershipRecordByEmail(user?.email));
+    const billingConfig = getBillingConfigStatus();
 
     return NextResponse.json({
       backend: {
@@ -32,6 +47,17 @@ export async function GET() {
         passwordUserCount: authBackendStatus.passwordUserCount,
         persistence: usingFirestore ? "firestore" : "memory",
       },
+      billing: {
+        configuredPlanCount: getConfiguredBillingPlans().length,
+        ready:
+          getConfiguredBillingPlans().length > 0 &&
+          billingConfig.secretKeyConfigured &&
+          billingConfig.webhookSecretConfigured,
+        secretKeyConfigured: billingConfig.secretKeyConfigured,
+        webhookSecretConfigured: billingConfig.webhookSecretConfigured,
+      },
+      entitlements,
+      membership,
       profile,
     });
   } catch (error) {

@@ -3,7 +3,13 @@ import { firestore } from "@/lib/firebase-admin";
 import { isAdminEmail } from "./config";
 import type { AccessTier } from "@/lib/textbook/types";
 
-export type MembershipStatus = "inactive" | "active" | "past_due" | "canceled";
+export type MembershipStatus =
+  | "inactive"
+  | "active"
+  | "trialing"
+  | "past_due"
+  | "canceled"
+  | "unpaid";
 
 export interface MembershipRecord {
   customerId?: string;
@@ -38,7 +44,7 @@ function getSessionUser(session: Session | null) {
 }
 
 function activeFromStatus(status: MembershipStatus) {
-  return status === "active";
+  return status === "active" || status === "trialing";
 }
 
 export async function getMembershipRecordByUserId(userId?: string) {

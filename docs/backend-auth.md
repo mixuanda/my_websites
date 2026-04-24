@@ -109,6 +109,7 @@ NextAuth 也兼容 `AUTH_GITHUB_ID`、`AUTH_GITHUB_SECRET`、`AUTH_GOOGLE_ID`、
 - 普通用户不能通过设置页提升角色或修改会员状态。
 - 公开页面不展示后端内部追踪信息。
 - 管理员可访问 `/api/admin/system-status` 查看安全诊断：admin 白名单数量、Firebase 持久化状态、Stripe secret/webhook/price 配置状态，以及 Stripe price 是否是 recurring price。
+- 所有访客可访问 `/api/billing/status` 做安全的付款配置健康检查；该接口只返回布林状态和 plan 是否配置，不泄露 secret 或完整 price metadata。
 
 ## 当前会员等级模型
 
@@ -123,6 +124,13 @@ NextAuth 也兼容 `AUTH_GITHUB_ID`、`AUTH_GITHUB_SECRET`、`AUTH_GOOGLE_ID`、
 - `STRIPE_WEBHOOK_SECRET` 已配置，确保付款后能够同步会员资格。
 
 如果 Stripe 账户只有一次性 price，而没有 recurring price，网站不会展示订阅按钮，因为当前会员系统使用 Stripe subscription checkout。
+
+当前 live Stripe 已建立 `Notes Membership` 产品：
+
+- 月费 HKD 20：`price_1TPjAE906oPVRv7kzcP3UNsk`
+- 年费 HKD 200：`price_1TPjAG906oPVRv7kr2IpEaO7`
+
+这两个 price 已写入 Vercel production env。付款闭环还需要 `STRIPE_SECRET_KEY` 与 `STRIPE_WEBHOOK_SECRET`。
 
 ## 生产检查
 

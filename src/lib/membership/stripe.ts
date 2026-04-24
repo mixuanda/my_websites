@@ -8,7 +8,7 @@ export function getStripeClient() {
   }
 
   return new Stripe(apiKey, {
-    apiVersion: "2025-08-27.basil",
+    apiVersion: "2026-04-22.dahlia",
   });
 }
 

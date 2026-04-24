@@ -4,7 +4,13 @@ import { getStripeClient } from "@/lib/membership/stripe";
 import { setMembershipByEmail, setMembershipByUserId, type MembershipRecord } from "@/lib/membership/entitlements";
 
 function toMembershipStatus(status?: string): MembershipRecord["status"] {
-  if (status === "active" || status === "past_due" || status === "canceled") {
+  if (
+    status === "active" ||
+    status === "trialing" ||
+    status === "past_due" ||
+    status === "canceled" ||
+    status === "unpaid"
+  ) {
     return status;
   }
   return "inactive";

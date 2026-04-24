@@ -10,6 +10,8 @@ import { Input } from "@/components/ui/input";
 import {
   ArrowLeft,
   Check,
+  CreditCard,
+  Crown,
   Database,
   Github,
   Link2,
@@ -49,6 +51,25 @@ interface ProfileResponse {
     passwordUserCount: number;
     persistence: "firestore" | "memory";
   };
+  billing: {
+    configuredPlanCount: number;
+    ready: boolean;
+    secretKeyConfigured: boolean;
+    webhookSecretConfigured: boolean;
+  };
+  entitlements: {
+    isAdmin: boolean;
+    isMember: boolean;
+    tier: "FREE" | "MEMBER";
+  };
+  membership: {
+    customerId?: string;
+    email?: string;
+    priceId?: string;
+    status: "inactive" | "active" | "trialing" | "past_due" | "canceled" | "unpaid";
+    subscriptionId?: string;
+    updatedAt: string;
+  } | null;
   profile: UserProfile | null;
 }
 
@@ -81,8 +102,11 @@ export default function SettingsPage() {
   const router = useRouter();
   const [accounts, setAccounts] = useState<Account[]>([]);
   const [backend, setBackend] = useState<ProfileResponse["backend"] | null>(null);
+  const [billing, setBilling] = useState<ProfileResponse["billing"] | null>(null);
+  const [entitlements, setEntitlements] = useState<ProfileResponse["entitlements"] | null>(null);
   const [loading, setLoading] = useState(true);
   const [linking, setLinking] = useState<string | null>(null);
+  const [membership, setMembership] = useState<ProfileResponse["membership"]>(null);
   const [profile, setProfile] = useState<UserProfile | null>(null);
   const [profileForm, setProfileForm] = useState({
     name: "",
@@ -109,6 +133,9 @@ export default function SettingsPage() {
       const res = await fetch("/api/user/profile");
       const data = (await res.json()) as ProfileResponse;
       setBackend(data.backend ?? null);
+      setBilling(data.billing ?? null);
+      setEntitlements(data.entitlements ?? null);
+      setMembership(data.membership ?? null);
       setProfile(data.profile ?? null);
       if (data.profile) {
         setProfileForm({
@@ -169,6 +196,12 @@ export default function SettingsPage() {
 
   const linkedProviders = accounts.map((a) => a.provider);
   const unlinkedProviders = availableProviders.filter((p) => !linkedProviders.includes(p));
+  const accessLabel = entitlements?.isAdmin
+    ? "Admin"
+    : entitlements?.isMember
+      ? "Member"
+      : "Free";
+  const membershipCenterHref = `/${profile?.preferredLocale ?? "zh-hk"}/notes/membership`;
 
   if (status === "loading" || loading) {
     return (
@@ -226,6 +259,47 @@ export default function SettingsPage() {
               <p className="mt-1 text-xs text-muted-foreground">用户 ID: {profile.id}</p>
             ) : null}
           </div>
+        </div>
+      </GlassCard>
+
+      {/* Membership */}
+      <GlassCard className="p-6">
+        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+          <Crown className="w-5 h-5" />
+          会员与权限
+        </h3>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="rounded-lg bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">当前等级</p>
+            <p className="font-medium">{accessLabel}</p>
+          </div>
+          <div className="rounded-lg bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">订阅状态</p>
+            <p className="font-medium">
+              {entitlements?.isAdmin
+                ? "管理员免付款"
+                : membership?.status ?? "未订阅"}
+            </p>
+          </div>
+          <div className="rounded-lg bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">付款配置</p>
+            <p className="font-medium">{billing?.ready ? "可用" : "未完成"}</p>
+          </div>
+        </div>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+          <div className="text-xs text-muted-foreground">
+            {membership?.subscriptionId
+              ? `Stripe subscription: ${membership.subscriptionId}`
+              : billing?.ready
+                ? "可以前往会员中心开始或管理订阅。"
+                : "付款系统还需要完成 Stripe secret、webhook 与 recurring price 配置。"}
+          </div>
+          <Button asChild variant="outline">
+            <a href={membershipCenterHref}>
+              <CreditCard className="w-4 h-4 mr-2" />
+              会员中心
+            </a>
+          </Button>
         </div>
       </GlassCard>
 

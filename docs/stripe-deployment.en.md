@@ -12,6 +12,12 @@ This document explains how to deploy the membership subscription flow (Free / Me
    - Yearly: map to `STRIPE_PRICE_ID_MEMBER_YEARLY` (`price_...`)
 5. Current membership checkout uses Stripe subscriptions, so one-time prices cannot replace recurring prices.
 
+Current live Stripe resources:
+
+- Product: `prod_UOWCjYRGt8Z2Yc` (`Notes Membership`)
+- Monthly HKD 20: `price_1TPjAE906oPVRv7kzcP3UNsk`
+- Yearly HKD 200: `price_1TPjAG906oPVRv7kr2IpEaO7`
+
 ## B. Configure environment variables in deployment
 
 Set the following in your platform:
@@ -24,6 +30,8 @@ Set the following in your platform:
 - `APP_URL`: production base URL (e.g. `https://your-domain.com`)
 - `ADMIN_EMAILS`: comma-separated admin emails
 
+Do not use the temporary `rk_live_...` key created by Stripe CLI login as the long-term production key. CLI keys can be permission-limited or expire. For production, create or copy a durable live secret key or restricted key in Stripe Dashboard, then store it as `STRIPE_SECRET_KEY` in the deployment platform.
+
 ## C. Create webhook endpoint
 
 1. Stripe Dashboard → Developers → Webhooks.
@@ -35,6 +43,7 @@ Set the following in your platform:
    - `customer.subscription.updated`
    - `customer.subscription.deleted`
 4. Copy signing secret (`whsec_...`) into `STRIPE_WEBHOOK_SECRET`.
+5. Prefer endpoint API version `2026-04-22.dahlia`.
 
 ## D. Local test flow
 
@@ -52,8 +61,9 @@ Set the following in your platform:
    - `stripe.secretKeyConfigured=true`
    - `stripe.webhookSecretConfigured=true`
    - at least one `stripe.plans[].price.status=ready`
-3. That account should access premium note units and premium checkpoint APIs without payment.
-4. Confirm premium submit APIs do not return `403` for that admin account.
+3. Without signing in, `/api/billing/status` can be used as a safe public configuration check. It only returns booleans and plan configured status, not secrets.
+4. That account should access premium note units and premium checkpoint APIs without payment.
+5. Confirm premium submit APIs do not return `403` for that admin account.
 
 ## F. Troubleshooting
 
