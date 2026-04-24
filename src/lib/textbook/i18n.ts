@@ -245,6 +245,11 @@ export const uiText = {
     "zh-cn": "这个账号目前还没有关联 Stripe 账单档案。",
     "zh-hk": "這個帳號目前還沒有關聯 Stripe 帳單檔案。",
   },
+  billingUnavailable: {
+    en: "Membership payment is not available yet because the Stripe subscription plan or webhook is not fully configured.",
+    "zh-cn": "会员付款暂不可用，因为 Stripe 订阅方案或 webhook 尚未完整配置。",
+    "zh-hk": "會員付款暫不可用，因為 Stripe 訂閱方案或 webhook 尚未完整配置。",
+  },
   notCorrectYet: {
     en: "Not correct yet.",
     "zh-cn": "还没答对。",
@@ -464,6 +469,11 @@ export const uiText = {
     en: "We could not open the billing flow right now. Try again in a moment.",
     "zh-cn": "目前无法打开账单流程，请稍后再试。",
     "zh-hk": "目前無法打開帳單流程，請稍後再試。",
+  },
+  billingPlanNotConfigured: {
+    en: "This membership billing plan is not configured yet.",
+    "zh-cn": "这个会员账单方案尚未配置。",
+    "zh-hk": "這個會員帳單方案尚未配置。",
   },
   gradingRetry: {
     en: "We could not grade your answer right now. Try again.",

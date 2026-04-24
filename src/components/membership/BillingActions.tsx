@@ -15,6 +15,8 @@ function getBillingErrorMessage(errorCode: string | undefined, locale: Locale) {
       return getLocalizedText(uiText.membershipAlreadyActive, locale);
     case "billing_profile_missing":
       return getLocalizedText(uiText.noBillingProfile, locale);
+    case "plan_not_configured":
+      return getLocalizedText(uiText.billingPlanNotConfigured, locale);
     default:
       return getLocalizedText(uiText.billingActionFailed, locale);
   }
@@ -24,11 +26,13 @@ export function BillingActions({
   canManageBilling,
   canSubscribe,
   locale,
+  monthlyEnabled,
   yearlyEnabled,
 }: {
   canManageBilling: boolean;
   canSubscribe: boolean;
   locale: Locale;
+  monthlyEnabled: boolean;
   yearlyEnabled: boolean;
 }) {
   const [loadingPlan, setLoadingPlan] = useState<"monthly" | "yearly" | null>(null);
@@ -100,14 +104,16 @@ export function BillingActions({
     <div className="flex flex-wrap gap-3">
       {canSubscribe ? (
         <>
-          <Button
-            disabled={Boolean(loadingPlan)}
-            onClick={() => startCheckout("monthly")}
-          >
-            {loadingPlan === "monthly"
-              ? getLocalizedText(uiText.openCheckout, locale)
-              : getLocalizedText(uiText.subscribeMonthly, locale)}
-          </Button>
+          {monthlyEnabled ? (
+            <Button
+              disabled={Boolean(loadingPlan)}
+              onClick={() => startCheckout("monthly")}
+            >
+              {loadingPlan === "monthly"
+                ? getLocalizedText(uiText.openCheckout, locale)
+                : getLocalizedText(uiText.subscribeMonthly, locale)}
+            </Button>
+          ) : null}
           {yearlyEnabled ? (
             <Button
               disabled={Boolean(loadingPlan)}

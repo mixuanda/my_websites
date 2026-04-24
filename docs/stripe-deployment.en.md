@@ -10,6 +10,7 @@ This document explains how to deploy the membership subscription flow (Free / Me
    - Monthly: map to `STRIPE_PRICE_ID_MEMBER_MONTHLY` (`price_...`)
 4. Optionally create yearly recurring price:
    - Yearly: map to `STRIPE_PRICE_ID_MEMBER_YEARLY` (`price_...`)
+5. Current membership checkout uses Stripe subscriptions, so one-time prices cannot replace recurring prices.
 
 ## B. Configure environment variables in deployment
 
@@ -46,8 +47,13 @@ Set the following in your platform:
 ## E. Verify admin bypass
 
 1. Add a signed-in email to `ADMIN_EMAILS`.
-2. That account should access premium note units and premium checkpoint APIs without payment.
-3. Confirm premium submit APIs do not return `403` for that admin account.
+2. Open `/api/admin/system-status` and confirm:
+   - `admin.configured=true`
+   - `stripe.secretKeyConfigured=true`
+   - `stripe.webhookSecretConfigured=true`
+   - at least one `stripe.plans[].price.status=ready`
+3. That account should access premium note units and premium checkpoint APIs without payment.
+4. Confirm premium submit APIs do not return `403` for that admin account.
 
 ## F. Troubleshooting
 

@@ -10,6 +10,7 @@
    - 月費：`STRIPE_PRICE_ID_MEMBER_MONTHLY` 對應 `price_...`
 4. 如要年費，再建另一個 recurring price：
    - 年費：`STRIPE_PRICE_ID_MEMBER_YEARLY` 對應 `price_...`
+5. 注意：目前網站會員流程使用 Stripe subscription checkout，不能用 one-time price 代替 recurring price。
 
 ## B. 設定環境變數（部署平台）
 
@@ -46,8 +47,13 @@
 ## E. Admin bypass 驗證
 
 1. 登入一個 email 並加入 `ADMIN_EMAILS`。
-2. 該帳號應可直接讀取 premium 單元與 premium checkpoint。
-3. 驗證 API：premium 題目提交不應被 403 擋下。
+2. 打開 `/api/admin/system-status`，確認：
+   - `admin.configured=true`
+   - `stripe.secretKeyConfigured=true`
+   - `stripe.webhookSecretConfigured=true`
+   - 至少一個 `stripe.plans[].price.status=ready`
+3. 該帳號應可直接讀取 premium 單元與 premium checkpoint。
+4. 驗證 API：premium 題目提交不應被 403 擋下。
 
 ## F. 常見問題
 

@@ -108,6 +108,21 @@ NextAuth 也兼容 `AUTH_GITHUB_ID`、`AUTH_GITHUB_SECRET`、`AUTH_GOOGLE_ID`、
 - 会员由 Stripe webhook 写入用户 `membership` 字段。
 - 普通用户不能通过设置页提升角色或修改会员状态。
 - 公开页面不展示后端内部追踪信息。
+- 管理员可访问 `/api/admin/system-status` 查看安全诊断：admin 白名单数量、Firebase 持久化状态、Stripe secret/webhook/price 配置状态，以及 Stripe price 是否是 recurring price。
+
+## 当前会员等级模型
+
+- `FREE`：公开核心笔记、部分例题和部分 quick checks。
+- `MEMBER`：进阶笔记单元、会员 checkpoint、深入引导解答和完整学习支持。该等级需要 Stripe recurring subscription price。
+- `ADMIN`：服务端 `ADMIN_EMAILS` 白名单，不需要付款，拥有完整访问权。
+
+会员付款入口只会在以下条件同时满足时显示：
+
+- `STRIPE_SECRET_KEY` 已配置。
+- 至少一个会员 price id 已配置。
+- `STRIPE_WEBHOOK_SECRET` 已配置，确保付款后能够同步会员资格。
+
+如果 Stripe 账户只有一次性 price，而没有 recurring price，网站不会展示订阅按钮，因为当前会员系统使用 Stripe subscription checkout。
 
 ## 生产检查
 
@@ -118,3 +133,4 @@ NextAuth 也兼容 `AUTH_GITHUB_ID`、`AUTH_GITHUB_SECRET`、`AUTH_GOOGLE_ID`、
 - Firestore 服务账号已配置，否则受保护数据不会持久化。
 - `ADMIN_EMAILS` 只包含可信邮箱。
 - Stripe webhook 已配置并能写入会员资格。
+- Stripe 会员 price 必须是 recurring price；一次性 price 不能用于当前 subscription checkout。

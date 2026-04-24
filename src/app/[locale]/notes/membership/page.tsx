@@ -8,6 +8,12 @@ import {
   getMembershipRecordByUserId,
   getUserEntitlements,
 } from "@/lib/membership/entitlements";
+import {
+  getBillingConfigStatus,
+  getBillingPlan,
+  hasConfiguredBillingPlan,
+  membershipTiers,
+} from "@/lib/membership/plans";
 import { getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
 import { getMembershipHref, getNotesHref } from "@/lib/textbook/routes";
 import type { LocalizedText } from "@/lib/textbook/types";
@@ -93,6 +99,13 @@ export default async function LocalizedMembershipPage({
   const membership =
     (await getMembershipRecordByUserId(user?.id)) ??
     (await getMembershipRecordByEmail(user?.email));
+  const billingConfig = getBillingConfigStatus();
+  const monthlyEnabled = Boolean(getBillingPlan("monthly")?.priceId);
+  const yearlyEnabled = Boolean(getBillingPlan("yearly")?.priceId);
+  const billingReady =
+    hasConfiguredBillingPlan() &&
+    billingConfig.secretKeyConfigured &&
+    billingConfig.webhookSecretConfigured;
   const callbackUrl = getMembershipHref(locale);
   const currentAccess = entitlements.isAdmin
     ? "Admin"
@@ -113,11 +126,16 @@ export default async function LocalizedMembershipPage({
         <h2 className="text-xl font-semibold">
           {getLocalizedText(membershipCopy.accessModel, locale)}
         </h2>
-        <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
-          <li>{getLocalizedText(membershipCopy.freeBullet, locale)}</li>
-          <li>{getLocalizedText(membershipCopy.memberBullet, locale)}</li>
-          <li>{getLocalizedText(membershipCopy.adminBullet, locale)}</li>
-        </ul>
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          {membershipTiers.map((tier) => (
+            <div key={tier.id} className="rounded-lg border bg-muted/20 p-4">
+              <p className="font-semibold">{getLocalizedText(tier.label, locale)}</p>
+              <p className="mt-2 text-sm text-muted-foreground">
+                {getLocalizedText(tier.description, locale)}
+              </p>
+            </div>
+          ))}
+        </div>
       </section>
 
       <section className="rounded-xl border p-6">
@@ -149,16 +167,22 @@ export default async function LocalizedMembershipPage({
                 {getLocalizedText(membershipCopy.memberStatus, locale)}
               </p>
             ) : null}
-            {!entitlements.isAdmin && !membership?.customerId ? (
+            {!entitlements.isAdmin && entitlements.isMember && !membership?.customerId ? (
               <p className="text-sm text-muted-foreground">
                 {getLocalizedText(uiText.noBillingProfile, locale)}
               </p>
             ) : null}
+            {!entitlements.isAdmin && !entitlements.isMember && !billingReady ? (
+              <p className="rounded-lg border border-amber-300/50 bg-amber-50 px-4 py-3 text-sm text-amber-950 dark:border-amber-900/60 dark:bg-amber-950/20 dark:text-amber-100">
+                {getLocalizedText(uiText.billingUnavailable, locale)}
+              </p>
+            ) : null}
             <BillingActions
               canManageBilling={Boolean(membership?.customerId) && !entitlements.isAdmin}
-              canSubscribe={!entitlements.isAdmin && !entitlements.isMember}
+              canSubscribe={!entitlements.isAdmin && !entitlements.isMember && billingReady}
               locale={locale}
-              yearlyEnabled={Boolean(process.env.STRIPE_PRICE_ID_MEMBER_YEARLY)}
+              monthlyEnabled={monthlyEnabled}
+              yearlyEnabled={yearlyEnabled}
             />
           </div>
         )}

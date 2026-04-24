@@ -5,6 +5,8 @@
 登录、用户资料、账号绑定、会员权限和 Firestore 持久化的当前实现记录在
 [`docs/backend-auth.md`](./backend-auth.md)。后台内容管理不应绕过该登录与权限层。
 
+管理員登入後可以使用 `/api/admin/system-status` 進行安全自檢，查看 Admin 白名單、Firebase、Stripe secret、Stripe webhook、會員 gating、recurring price 是否就緒。該 API 不會向非管理員公開。
+
 ## 目录
 
 - [TinaCMS 编辑器](#tinacms-编辑器)

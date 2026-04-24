@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { getStripeClient, getAppUrl } from "@/lib/membership/stripe";
 import { getUserEntitlements } from "@/lib/membership/entitlements";
+import { getBillingPlan, type BillingPlanId } from "@/lib/membership/plans";
 import { defaultLocale, isLocale } from "@/lib/textbook/i18n";
 import { getMembershipCancelHref, getMembershipSuccessHref } from "@/lib/textbook/routes";
 
@@ -34,18 +35,16 @@ export async function POST(request: Request) {
 
     const payload = (await request.json()) as {
       locale?: string;
-      plan?: "monthly" | "yearly";
+      plan?: BillingPlanId;
     };
     const locale = payload.locale && isLocale(payload.locale) ? payload.locale : defaultLocale;
     const plan = payload.plan === "yearly" ? "yearly" : "monthly";
-    const priceId =
-      plan === "yearly"
-        ? process.env.STRIPE_PRICE_ID_MEMBER_YEARLY
-        : process.env.STRIPE_PRICE_ID_MEMBER_MONTHLY;
+    const billingPlan = getBillingPlan(plan);
+    const priceId = billingPlan?.priceId;
 
     if (!priceId) {
       return NextResponse.json(
-        { error: "Stripe price ID is missing.", errorCode: "price_not_configured" },
+        { error: "Stripe price ID is missing for this plan.", errorCode: "plan_not_configured" },
         { status: 500 }
       );
     }
@@ -60,6 +59,7 @@ export async function POST(request: Request) {
       metadata: {
         locale,
         plan,
+        planInterval: billingPlan.interval,
         priceId,
         userEmail: user.email,
         userId: user.id ?? "",
@@ -68,6 +68,7 @@ export async function POST(request: Request) {
       subscription_data: {
         metadata: {
           plan,
+          planInterval: billingPlan.interval,
           priceId,
           userEmail: user.email,
           userId: user.id ?? "",
