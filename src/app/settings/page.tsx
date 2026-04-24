@@ -6,7 +6,21 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { Button } from "@/components/ui/button";
-import { Github, Mail, Link2, Unlink, User, ArrowLeft, Loader2, Check } from "lucide-react";
+import { Input } from "@/components/ui/input";
+import {
+  ArrowLeft,
+  Check,
+  Database,
+  Github,
+  Link2,
+  Loader2,
+  LockKeyhole,
+  Mail,
+  Save,
+  ShieldCheck,
+  Unlink,
+  User,
+} from "lucide-react";
 
 interface Account {
   id: string;
@@ -15,7 +29,35 @@ interface Account {
   type: string;
 }
 
+interface UserProfile {
+  createdAt: string;
+  email: string;
+  id: string;
+  image?: string | null;
+  lastLoginAt?: string;
+  loginCount: number;
+  name?: string | null;
+  preferredLocale: "en" | "zh-hk" | "zh-cn";
+  role: "admin" | "member" | "user";
+  theme: "system" | "light" | "dark";
+  updatedAt: string;
+}
+
+interface ProfileResponse {
+  backend: {
+    authProvidersConfigured: boolean;
+    passwordUserCount: number;
+    persistence: "firestore" | "memory";
+  };
+  profile: UserProfile | null;
+}
+
 const providerInfo: Record<string, { name: string; icon: React.ReactNode; color: string }> = {
+  credentials: {
+    name: "站点账号",
+    icon: <LockKeyhole className="w-5 h-5" />,
+    color: "bg-blue-700 hover:bg-blue-800",
+  },
   github: {
     name: "GitHub",
     icon: <Github className="w-5 h-5" />,
@@ -32,14 +74,23 @@ const providerInfo: Record<string, { name: string; icon: React.ReactNode; color:
 const availableProviders = (process.env.NEXT_PUBLIC_AUTH_PROVIDERS || "github,google")
   .split(",")
   .map((p) => p.trim())
-  .filter((p) => p !== "passkey");
+  .filter((p) => !["credentials", "password", "passkey"].includes(p));
 
 export default function SettingsPage() {
   const { data: session, status } = useSession();
   const router = useRouter();
   const [accounts, setAccounts] = useState<Account[]>([]);
+  const [backend, setBackend] = useState<ProfileResponse["backend"] | null>(null);
   const [loading, setLoading] = useState(true);
   const [linking, setLinking] = useState<string | null>(null);
+  const [profile, setProfile] = useState<UserProfile | null>(null);
+  const [profileForm, setProfileForm] = useState({
+    name: "",
+    preferredLocale: "en" as UserProfile["preferredLocale"],
+    theme: "system" as UserProfile["theme"],
+  });
+  const [profileMessage, setProfileMessage] = useState<string | null>(null);
+  const [savingProfile, setSavingProfile] = useState(false);
 
   useEffect(() => {
     if (status === "unauthenticated") {
@@ -49,9 +100,27 @@ export default function SettingsPage() {
 
   useEffect(() => {
     if (session?.user) {
-      fetchAccounts();
+      Promise.all([fetchProfile(), fetchAccounts()]).finally(() => setLoading(false));
     }
   }, [session]);
+
+  const fetchProfile = async () => {
+    try {
+      const res = await fetch("/api/user/profile");
+      const data = (await res.json()) as ProfileResponse;
+      setBackend(data.backend ?? null);
+      setProfile(data.profile ?? null);
+      if (data.profile) {
+        setProfileForm({
+          name: data.profile.name ?? "",
+          preferredLocale: data.profile.preferredLocale,
+          theme: data.profile.theme,
+        });
+      }
+    } catch (error) {
+      console.error("Failed to fetch profile:", error);
+    }
+  };
 
   const fetchAccounts = async () => {
     try {
@@ -60,8 +129,6 @@ export default function SettingsPage() {
       setAccounts(data.accounts || []);
     } catch (error) {
       console.error("Failed to fetch accounts:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -70,6 +137,34 @@ export default function SettingsPage() {
     // 使用 signIn 并设置 redirect: false，然后手动处理
     // 这会创建新的 account 记录并链接到当前用户（基于 email）
     await signIn(provider, { callbackUrl: "/settings" });
+  };
+
+  const handleSaveProfile = async () => {
+    setSavingProfile(true);
+    setProfileMessage(null);
+
+    try {
+      const res = await fetch("/api/user/profile", {
+        body: JSON.stringify(profileForm),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "PATCH",
+      });
+
+      if (!res.ok) {
+        throw new Error(`Profile update failed: ${res.status}`);
+      }
+
+      const data = (await res.json()) as { profile: UserProfile };
+      setProfile(data.profile);
+      setProfileMessage("账号资料已更新。");
+    } catch (error) {
+      console.error("Failed to save profile:", error);
+      setProfileMessage("保存失败，请稍后重试。");
+    } finally {
+      setSavingProfile(false);
+    }
   };
 
   const linkedProviders = accounts.map((a) => a.provider);
@@ -107,9 +202,9 @@ export default function SettingsPage() {
       {/* User Info */}
       <GlassCard className="p-6">
         <div className="flex items-center gap-4">
-          {session.user.image ? (
+          {profile?.image || session.user.image ? (
             <Image
-              src={session.user.image}
+              src={profile?.image || session.user.image || ""}
               alt="Avatar"
               width={64}
               height={64}
@@ -120,9 +215,127 @@ export default function SettingsPage() {
               <User className="w-8 h-8 text-muted-foreground" />
             </div>
           )}
-          <div>
-            <h2 className="text-xl font-semibold">{session.user.name || "用户"}</h2>
-            <p className="text-muted-foreground">{session.user.email}</p>
+          <div className="min-w-0">
+            <h2 className="text-xl font-semibold truncate">
+              {profile?.name || session.user.name || "用户"}
+            </h2>
+            <p className="text-muted-foreground truncate">
+              {profile?.email || session.user.email}
+            </p>
+            {profile ? (
+              <p className="mt-1 text-xs text-muted-foreground">用户 ID: {profile.id}</p>
+            ) : null}
+          </div>
+        </div>
+      </GlassCard>
+
+      {/* Profile Preferences */}
+      <GlassCard className="p-6">
+        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+          <ShieldCheck className="w-5 h-5" />
+          用户资料与偏好
+        </h3>
+        <div className="grid gap-4 md:grid-cols-2">
+          <div className="space-y-2 md:col-span-2">
+            <label className="text-sm font-medium" htmlFor="profile-name">
+              显示名称
+            </label>
+            <Input
+              id="profile-name"
+              onChange={(event) =>
+                setProfileForm((current) => ({
+                  ...current,
+                  name: event.target.value,
+                }))
+              }
+              value={profileForm.name}
+            />
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium" htmlFor="profile-locale">
+              默认语言
+            </label>
+            <select
+              id="profile-locale"
+              className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm"
+              onChange={(event) =>
+                setProfileForm((current) => ({
+                  ...current,
+                  preferredLocale: event.target.value as UserProfile["preferredLocale"],
+                }))
+              }
+              value={profileForm.preferredLocale}
+            >
+              <option value="en">English</option>
+              <option value="zh-hk">繁體中文</option>
+              <option value="zh-cn">简体中文</option>
+            </select>
+          </div>
+          <div className="space-y-2">
+            <label className="text-sm font-medium" htmlFor="profile-theme">
+              默认主题
+            </label>
+            <select
+              id="profile-theme"
+              className="h-10 w-full rounded-md border border-input bg-background px-3 text-sm"
+              onChange={(event) =>
+                setProfileForm((current) => ({
+                  ...current,
+                  theme: event.target.value as UserProfile["theme"],
+                }))
+              }
+              value={profileForm.theme}
+            >
+              <option value="system">跟随系统</option>
+              <option value="light">浅色</option>
+              <option value="dark">深色</option>
+            </select>
+          </div>
+        </div>
+        <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
+          <div className="text-xs text-muted-foreground">
+            {profile?.lastLoginAt
+              ? `上次登录：${new Date(profile.lastLoginAt).toLocaleString()}`
+              : "此账号还没有记录登录时间。"}
+          </div>
+          <Button onClick={handleSaveProfile} disabled={savingProfile}>
+            {savingProfile ? (
+              <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+            ) : (
+              <Save className="w-4 h-4 mr-2" />
+            )}
+            保存资料
+          </Button>
+        </div>
+        {profileMessage ? (
+          <p className="mt-3 rounded-md border border-border bg-muted/40 px-3 py-2 text-sm text-muted-foreground">
+            {profileMessage}
+          </p>
+        ) : null}
+      </GlassCard>
+
+      {/* Backend Status */}
+      <GlassCard className="p-6">
+        <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+          <Database className="w-5 h-5" />
+          后端状态
+        </h3>
+        <div className="grid gap-3 sm:grid-cols-3">
+          <div className="rounded-lg bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">数据持久化</p>
+            <p className="font-medium">
+              {backend?.persistence === "firestore" ? "Firestore" : "内存模式"}
+            </p>
+          </div>
+          <div className="rounded-lg bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">认证 Provider</p>
+            <p className="font-medium">
+              {backend?.authProvidersConfigured ? "已配置" : "未配置"}
+            </p>
+          </div>
+          <div className="rounded-lg bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">站点账号</p>
+            <p className="font-medium">{backend?.passwordUserCount ?? 0} 个</p>
           </div>
         </div>
       </GlassCard>
@@ -204,7 +417,7 @@ export default function SettingsPage() {
       {/* Info */}
       <GlassPanel className="p-4">
         <p className="text-xs text-muted-foreground text-center">
-          💡 绑定多个账号后，使用任意一个都可以登录到相同的账户。账号绑定基于邮箱地址匹配。
+          绑定多个 OAuth 账号后，使用任意一个都可以登录到相同的账户。站点账号由后端环境变量控制，不在前端创建。
         </p>
       </GlassPanel>
 

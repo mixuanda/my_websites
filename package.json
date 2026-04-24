@@ -15,6 +15,7 @@
     "tina:build": "tinacms build",
     "tina:build:auto": "if [ -n \"$TINA_TOKEN\" ] && [ -n \"${NEXT_PUBLIC_TINA_CLIENT_ID:-$TINA_CLIENT_ID}\" ]; then tinacms build; else tinacms build --local --skip-cloud-checks --skip-search-index; fi",
     "tina:dev": "tinacms dev -c 'next dev'",
+    "auth:hash-password": "node scripts/hash-auth-password.mjs",
     "storyboard:generate": "node tools/storyboard/generate-storyboards.mjs",
     "storyboard:pilot-evaluate": "node tools/storyboard/evaluate-pilot.mjs"
   },

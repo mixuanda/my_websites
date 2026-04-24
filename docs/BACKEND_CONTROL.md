@@ -2,6 +2,9 @@
 
 本指南说明如何使用 TinaCMS 进行内容管理和后台控制。
 
+登录、用户资料、账号绑定、会员权限和 Firestore 持久化的当前实现记录在
+[`docs/backend-auth.md`](./backend-auth.md)。后台内容管理不应绕过该登录与权限层。
+
 ## 目录
 
 - [TinaCMS 编辑器](#tinacms-编辑器)
