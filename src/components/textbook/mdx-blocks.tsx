@@ -52,6 +52,72 @@ const blockLabels = {
   },
 } as const satisfies Record<string, LocalizedText>;
 
+const linearSystemFigureLabels = {
+  caption: {
+    en: "Three geometric possibilities for two-variable linear systems",
+    "zh-cn": "二元线性方程组的三种几何可能",
+    "zh-hk": "二元線性方程組的三種幾何可能",
+  },
+  unique: {
+    en: "one solution",
+    "zh-cn": "唯一解",
+    "zh-hk": "唯一解",
+  },
+  none: {
+    en: "no solution",
+    "zh-cn": "无解",
+    "zh-hk": "無解",
+  },
+  infinite: {
+    en: "infinitely many",
+    "zh-cn": "无限多解",
+    "zh-hk": "無限多解",
+  },
+  point: {
+    en: "intersection point",
+    "zh-cn": "交点",
+    "zh-hk": "交點",
+  },
+  parallel: {
+    en: "parallel distinct lines",
+    "zh-cn": "平行而不同的直线",
+    "zh-hk": "平行而不同的直線",
+  },
+  same: {
+    en: "same line",
+    "zh-cn": "同一条直线",
+    "zh-hk": "同一條直線",
+  },
+} as const satisfies Record<string, LocalizedText>;
+
+const matrixAnatomyLabels = {
+  caption: {
+    en: "Matrix anatomy: size, rows, columns, and one named entry",
+    "zh-cn": "矩阵结构图：大小、行、列，以及一个指定元素",
+    "zh-hk": "矩陣結構圖：大小、行、列，以及一個指定元素",
+  },
+  row: {
+    en: "row 2",
+    "zh-cn": "第 2 行",
+    "zh-hk": "第 2 行",
+  },
+  column: {
+    en: "column 3",
+    "zh-cn": "第 3 列",
+    "zh-hk": "第 3 列",
+  },
+  entry: {
+    en: "entry a_23 = 4",
+    "zh-cn": "元素 a_23 = 4",
+    "zh-hk": "元素 a_23 = 4",
+  },
+  size: {
+    en: "2 rows by 3 columns, so the size is 2 x 3",
+    "zh-cn": "2 行、3 列，所以大小是 2 x 3",
+    "zh-hk": "2 行、3 列，所以大小是 2 x 3",
+  },
+} as const satisfies Record<string, LocalizedText>;
+
 const fileLikePattern = /\.[A-Za-z0-9]{2,4}\b|[/#]/;
 const mathIndicatorPattern =
   /\\[A-Za-z]+|[_^=+\-*/<>≤≥→∨∧¬∈∉⊆⊂⊇⊃≈≠×÷∩∪∅]/;
@@ -102,7 +168,7 @@ function renderInlineMath(expression: string) {
   }
 }
 
-function InlineRichText({ text }: { text: string }) {
+export function TextbookInlineRichText({ text }: { text: string }) {
   const nodes = useMemo(() => {
     const parts: React.ReactNode[] = [];
     const matcher = /(`([^`]+)`)|(\$([^$]+)\$)/g;
@@ -223,6 +289,162 @@ export function TextbookInlineCode({
   );
 }
 
+export function LinearSystemGeometryFigure({ locale }: { locale: Locale }) {
+  const panels = [
+    {
+      id: "unique",
+      label: getLocalizedText(linearSystemFigureLabels.unique, locale),
+      detail: getLocalizedText(linearSystemFigureLabels.point, locale),
+      lines: (
+        <>
+          <line className="stroke-cyan-500" x1="22" x2="138" y1="112" y2="32" />
+          <line className="stroke-emerald-500" x1="22" x2="138" y1="36" y2="114" />
+          <circle className="fill-foreground" cx="80" cy="72" r="4" />
+        </>
+      ),
+    },
+    {
+      id: "none",
+      label: getLocalizedText(linearSystemFigureLabels.none, locale),
+      detail: getLocalizedText(linearSystemFigureLabels.parallel, locale),
+      lines: (
+        <>
+          <line className="stroke-cyan-500" x1="24" x2="138" y1="96" y2="42" />
+          <line className="stroke-emerald-500" x1="18" x2="132" y1="120" y2="66" />
+        </>
+      ),
+    },
+    {
+      id: "infinite",
+      label: getLocalizedText(linearSystemFigureLabels.infinite, locale),
+      detail: getLocalizedText(linearSystemFigureLabels.same, locale),
+      lines: (
+        <>
+          <line className="stroke-cyan-500" x1="20" x2="140" y1="112" y2="38" />
+          <line className="stroke-emerald-500" strokeDasharray="6 6" x1="20" x2="140" y1="112" y2="38" />
+        </>
+      ),
+    },
+  ];
+
+  return (
+    <GlassPanel className="my-6 border border-border/70 p-4">
+      <figure>
+        <figcaption className="mb-4 text-sm font-medium text-muted-foreground">
+          {getLocalizedText(linearSystemFigureLabels.caption, locale)}
+        </figcaption>
+        <div className="grid gap-3 md:grid-cols-3">
+          {panels.map((panel) => (
+            <div
+              className="rounded-lg border border-border/60 bg-background/45 p-3"
+              key={panel.id}
+            >
+              <svg
+                aria-hidden="true"
+                className="h-36 w-full overflow-visible"
+                viewBox="0 0 160 140"
+              >
+                <line className="stroke-muted-foreground/30" x1="16" x2="146" y1="120" y2="120" />
+                <line className="stroke-muted-foreground/30" x1="28" x2="28" y1="16" y2="126" />
+                <g className="stroke-2" strokeLinecap="round">
+                  {panel.lines}
+                </g>
+              </svg>
+              <p className="text-sm font-semibold">{panel.label}</p>
+              <p className="mt-1 text-xs leading-5 text-muted-foreground">{panel.detail}</p>
+            </div>
+          ))}
+        </div>
+      </figure>
+    </GlassPanel>
+  );
+}
+
+export function MatrixAnatomyFigure({ locale }: { locale: Locale }) {
+  const entries = [
+    [1, 2, 0],
+    [3, -1, 4],
+  ];
+
+  return (
+    <GlassPanel className="my-6 border border-border/70 p-4">
+      <figure>
+        <figcaption className="mb-4 text-sm font-medium text-muted-foreground">
+          {getLocalizedText(matrixAnatomyLabels.caption, locale)}
+        </figcaption>
+        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(220px,0.75fr)]">
+          <svg
+            aria-label={getLocalizedText(matrixAnatomyLabels.caption, locale)}
+            className="h-auto w-full"
+            role="img"
+            viewBox="0 0 520 260"
+          >
+            <rect className="fill-background stroke-border" height="224" rx="14" width="482" x="18" y="18" />
+            {entries.map((row, rowIndex) =>
+              row.map((value, columnIndex) => {
+                const x = 92 + columnIndex * 86;
+                const y = 68 + rowIndex * 70;
+                const isFocus = rowIndex === 1 && columnIndex === 2;
+
+                return (
+                  <g key={`${rowIndex}-${columnIndex}`}>
+                    <rect
+                      className={cn(
+                        "stroke-border",
+                        rowIndex === 1 || columnIndex === 2
+                          ? "fill-primary/10"
+                          : "fill-card/70",
+                        isFocus && "fill-emerald-500/20 stroke-emerald-500"
+                      )}
+                      height="54"
+                      rx="8"
+                      width="70"
+                      x={x}
+                      y={y}
+                    />
+                    <text
+                      className="fill-foreground font-mono text-lg"
+                      textAnchor="middle"
+                      x={x + 35}
+                      y={y + 34}
+                    >
+                      {value}
+                    </text>
+                  </g>
+                );
+              })
+            )}
+            <path className="fill-none stroke-muted-foreground" d="M78 54 C58 72 58 168 78 188" strokeWidth="3" />
+            <path className="fill-none stroke-muted-foreground" d="M366 54 C386 72 386 168 366 188" strokeWidth="3" />
+            <path className="stroke-cyan-500" d="M58 166 H394" strokeDasharray="7 7" strokeWidth="3" />
+            <path className="stroke-emerald-500" d="M299 46 V206" strokeDasharray="7 7" strokeWidth="3" />
+            <text className="fill-cyan-700 text-sm font-semibold dark:fill-cyan-300" x="40" y="154">
+              {getLocalizedText(matrixAnatomyLabels.row, locale)}
+            </text>
+            <text className="fill-emerald-700 text-sm font-semibold dark:fill-emerald-300" x="328" y="42">
+              {getLocalizedText(matrixAnatomyLabels.column, locale)}
+            </text>
+            <line className="stroke-emerald-500" strokeWidth="2" x1="322" x2="405" y1="166" y2="214" />
+            <text className="fill-foreground text-sm font-semibold" x="330" y="232">
+              {getLocalizedText(matrixAnatomyLabels.entry, locale)}
+            </text>
+          </svg>
+          <div className="rounded-lg border border-border/60 bg-background/40 p-4 text-sm leading-7">
+            <p className="font-semibold">{getLocalizedText(matrixAnatomyLabels.size, locale)}</p>
+            <p className="mt-3 text-muted-foreground">
+              {locale === "en"
+                ? "The first subscript chooses the row. The second subscript chooses the column."
+                : locale === "zh-hk"
+                  ? "第一個下標選行，第二個下標選列。"
+                  : "第一个下标选行，第二个下标选列。"}
+            </p>
+          </div>
+        </div>
+      </figure>
+    </GlassPanel>
+  );
+}
+
 function BlockFrame({
   accentClassName,
   children,
@@ -246,7 +468,7 @@ function BlockFrame({
           </p>
           {title ? (
             <h4 className="mt-1 text-lg font-semibold leading-7">
-              <InlineRichText text={title} />
+              <TextbookInlineRichText text={title} />
             </h4>
           ) : null}
           <div className="mt-3 space-y-3 text-sm leading-7 text-foreground/95">
@@ -367,7 +589,7 @@ function ToggleBlock({
           </p>
           {title ? (
             <h4 className="mt-1 text-lg font-semibold leading-7">
-              <InlineRichText text={title} />
+              <TextbookInlineRichText text={title} />
             </h4>
           ) : null}
         </div>

@@ -377,6 +377,20 @@ That is exactly what well-definedness forbids. A statement about rational
 numbers must survive the change of representatives.
 </WorkedExample>
 
+## Interactive check: representative-sensitive rules
+
+The quickest way to understand this issue is to compare several proposed rules
+against different representatives of the same two rational numbers. In the
+panel below, the rational numbers remain `1/2` and `1/3`; only their
+representatives change.
+
+<InteractiveWidget id="rational-representative-lab" />
+
+A genuine relation on `Q` must give the same truth value after every legal
+change of representatives. If the output changes merely because `1/2` was
+written as `(1,2)` instead of `(2,4)` or `(-1,-2)`, the formula has not
+descended to the quotient.
+
 ## Common mistakes
 
 <CommonMistake title="A quotient class is not one preferred fraction">
@@ -457,6 +471,53 @@ which is false.
 
 So the rule depends on the chosen representative and therefore does not define
 an order relation on `Q`.
+</RevealSolution>
+
+<QuickCheck prompt="Suppose `a=bk+c` with `0\leq c<b`. Prove that `\gcd(a,b)=\gcd(b,c)`.">
+Show that the two pairs have exactly the same common divisors.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Let `d` be a common divisor of `a` and `b`. Since `c=a-bk`, the same `d`
+divides `c`, so `d` is a common divisor of `b` and `c`.
+
+Conversely, if `d` divides both `b` and `c`, then `d` divides `bk+c=a`, so
+`d` is a common divisor of `a` and `b`.
+
+Thus the two pairs have the same common divisors, and therefore the same
+greatest common divisor:
+
+$$
+\gcd(a,b)=\gcd(b,c).
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Prove the multiplication formula on `Q` is well-defined: if `(a,b)\sim_Q(a',b')` and `(c,d)\sim_Q(c',d')`, then `(ac,bd)\sim_Q(a'c',b'd')`.">
+Translate each equivalence into a cross-product equality.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+From `(a,b)\sim_Q(a',b')` and `(c,d)\sim_Q(c',d')`, we know
+
+$$
+ab'=ba',
+\qquad
+cd'=dc'.
+$$
+
+To prove `(ac,bd)\sim_Q(a'c',b'd')`, we must show
+
+$$
+(ac)(b'd')=(bd)(a'c').
+$$
+
+But
+
+$$
+(ac)(b'd')=(ab')(cd')=(ba')(dc')=(bd)(a'c').
+$$
+
+So multiplication does not depend on the chosen representatives.
 </RevealSolution>
 
 ## Related notes

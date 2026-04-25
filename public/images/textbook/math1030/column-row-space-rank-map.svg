@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Column space, row space, and rank from one row reduction</title>
+  <desc id="desc">A static study diagram comparing the original matrix A with its RREF R. Pivot positions are read from R, column-space basis vectors come from A, row-space basis vectors come from the nonzero rows of R, and both dimensions equal rank 2.</desc>
+  <defs>
+    <style>
+      .bg { fill: #f8fafc; }
+      .panel { fill: #ffffff; stroke: #cbd5e1; stroke-width: 2; rx: 16; }
+      .panel-soft { fill: #f1f5f9; stroke: #cbd5e1; stroke-width: 2; rx: 14; }
+      .title { fill: #0f172a; font: 700 30px Arial, sans-serif; }
+      .subtitle { fill: #334155; font: 500 17px Arial, sans-serif; }
+      .section { fill: #0f172a; font: 700 22px Arial, sans-serif; }
+      .label { fill: #334155; font: 600 16px Arial, sans-serif; }
+      .small { fill: #475569; font: 500 14px Arial, sans-serif; }
+      .math { fill: #0f172a; font: 500 20px "Courier New", monospace; }
+      .math-small { fill: #0f172a; font: 500 17px "Courier New", monospace; }
+      .pivot { fill: #dcfce7; stroke: #16a34a; stroke-width: 2; }
+      .nonpivot { fill: #fee2e2; stroke: #ef4444; stroke-width: 2; }
+      .rowbasis { fill: #dbeafe; stroke: #2563eb; stroke-width: 2; }
+      .rank { fill: #fef3c7; stroke: #d97706; stroke-width: 2; }
+      .arrow { stroke: #64748b; stroke-width: 3; fill: none; marker-end: url(#arrowhead); }
+      .arrow-green { stroke: #16a34a; stroke-width: 3; fill: none; marker-end: url(#arrowhead-green); }
+      .arrow-blue { stroke: #2563eb; stroke-width: 3; fill: none; marker-end: url(#arrowhead-blue); }
+      .brace { stroke: #475569; stroke-width: 2; fill: none; }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#64748b" />
+    </marker>
+    <marker id="arrowhead-green" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#16a34a" />
+    </marker>
+    <marker id="arrowhead-blue" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#2563eb" />
+    </marker>
+  </defs>
+
+  <rect class="bg" width="1200" height="760" />
+
+  <text x="60" y="64" class="title">Column space, row space, and rank from one row reduction</text>
+  <text x="60" y="96" class="subtitle">Read pivot positions from RREF, but choose basis vectors from the space that row reduction actually preserves.</text>
+
+  <rect x="60" y="130" width="495" height="305" class="panel" />
+  <text x="90" y="174" class="section">Original matrix A</text>
+  <text x="90" y="206" class="small">Its columns live in R^3, so C(A) is a subspace of R^3.</text>
+
+  <text x="94" y="258" class="math">A =</text>
+  <text x="152" y="240" class="math">[ 1  2  1  3 ]</text>
+  <text x="152" y="274" class="math">[ 0  1  1  1 ]</text>
+  <text x="152" y="308" class="math">[ 1  3  2  4 ]</text>
+
+  <rect x="196" y="217" width="36" height="104" class="pivot" />
+  <rect x="246" y="217" width="36" height="104" class="pivot" />
+  <rect x="296" y="217" width="36" height="104" class="nonpivot" />
+  <rect x="346" y="217" width="36" height="104" class="nonpivot" />
+
+  <text x="96" y="365" class="label">Column-space basis:</text>
+  <text x="96" y="394" class="math-small">{ c1, c2 } from A, not from R</text>
+
+  <rect x="610" y="130" width="530" height="305" class="panel" />
+  <text x="640" y="174" class="section">RREF R</text>
+  <text x="640" y="206" class="small">Its nonzero rows preserve R(A), and its pivot positions locate independent columns.</text>
+
+  <text x="644" y="258" class="math">R =</text>
+  <text x="702" y="240" class="math">[ 1  0 -1  1 ]</text>
+  <text x="702" y="274" class="math">[ 0  1  1  1 ]</text>
+  <text x="702" y="308" class="math">[ 0  0  0  0 ]</text>
+
+  <rect x="746" y="217" width="36" height="104" class="pivot" />
+  <rect x="796" y="217" width="36" height="104" class="pivot" />
+  <rect x="690" y="221" width="285" height="27" class="rowbasis" />
+  <rect x="690" y="255" width="285" height="27" class="rowbasis" />
+
+  <text x="640" y="365" class="label">Row-space basis:</text>
+  <text x="640" y="394" class="math-small">{ (1,0,-1,1), (0,1,1,1) }</text>
+
+  <path d="M555 280 C575 280 590 280 610 280" class="arrow" />
+  <text x="560" y="254" class="small">row-reduce</text>
+
+  <rect x="60" y="480" width="1080" height="210" class="panel-soft" />
+  <text x="90" y="524" class="section">How to read the diagram</text>
+
+  <circle cx="110" cy="565" r="12" fill="#dcfce7" stroke="#16a34a" stroke-width="2" />
+  <text x="135" y="571" class="label">Pivot columns 1 and 2 are detected in R.</text>
+  <path d="M315 558 C275 520 250 440 235 325" class="arrow-green" />
+
+  <circle cx="110" cy="610" r="12" fill="#dbeafe" stroke="#2563eb" stroke-width="2" />
+  <text x="135" y="616" class="label">Nonzero rows of R form a basis for R(A), because row operations preserve row space.</text>
+  <path d="M635 604 C740 550 815 475 835 323" class="arrow-blue" />
+
+  <rect x="865" y="528" width="220" height="98" class="rank" />
+  <text x="893" y="568" class="section">rank(A) = 2</text>
+  <text x="893" y="598" class="small">dim C(A) = dim R(A) = 2</text>
+
+  <text x="90" y="660" class="small">Key warning: RREF columns explain relations among columns, but the column-space basis vectors themselves must be taken from the original matrix A.</text>
+</svg>

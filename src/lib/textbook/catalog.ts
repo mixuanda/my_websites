@@ -284,7 +284,7 @@ const math1090NumbersUnits: TextbookUnitMeta[] = [
       "用自然数对的等价类构造整数，并把每个等价类读成一个有符号数。"
     ),
     glossaryRefs: ["integer", "equivalence-class"],
-    interactiveIds: [],
+    interactiveIds: ["integer-equivalence-explorer"],
     order: 8,
     prerequisites: ["math1090.numbers.induction-and-recursive-arithmetic"],
     slug: "integers-from-equivalence-classes",
@@ -321,7 +321,7 @@ const math1090NumbersUnits: TextbookUnitMeta[] = [
       "把有理数定义成等价类，并检查常用公式不会依赖你选哪个代表元。"
     ),
     glossaryRefs: ["rational-number", "well-defined-operation", "equivalence-class"],
-    interactiveIds: [],
+    interactiveIds: ["rational-representative-lab"],
     order: 9,
     prerequisites: ["math1090.numbers.integers-from-equivalence-classes"],
     slug: "rationals-and-well-defined-operations",
@@ -1203,7 +1203,7 @@ const math1030MatricesUnits: TextbookUnitMeta[] = [
       "在做行化简前先建立矩阵直觉：大小、元素、行、列，以及运算意义。"
     ),
     glossaryRefs: ["matrix"],
-    interactiveIds: ["matrix-multiplication-visualizer"],
+    interactiveIds: ["matrix-reading-trainer", "matrix-multiplication-visualizer"],
     order: 2,
     prerequisites: [],
     slug: "matrix-basics",
@@ -1418,6 +1418,45 @@ const math1030MatrixAlgebraUnits: TextbookUnitMeta[] = [
     unitId: "math1030.matrix-algebra.transpose-and-special-matrices",
     unitNumber: "3.2",
   },
+  {
+    chapterId: "matrix-algebra",
+    chapterNumber: "3",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Represent elementary row operations as left multiplication by elementary matrices, then use reverse row operations to understand invertibility.",
+      "把初等行變換表示成左乘初等矩陣，再用反向行變換理解可逆性。",
+      "把初等行变换表示成左乘初等矩阵，再用反向行变换理解可逆性。"
+    ),
+    glossaryRefs: ["row-operation", "identity-matrix", "invertible-matrix", "matrix"],
+    interactiveIds: [],
+    order: 8,
+    prerequisites: [
+      "math1030.matrices.augmented-matrices-row-operations",
+      "math1030.matrix-algebra.matrix-multiplication-and-identity",
+    ],
+    slug: "row-operation-matrices",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/1030gi-n01-08.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-se0708.pdf",
+        note: "Supplementary row-operation exercises",
+      },
+      {
+        file: "reference/MATH1030/Practice Set 3_Matrix Algebra and Linear Equation System.pdf",
+        note: "Matrix algebra and row-operation practice",
+      },
+    ],
+    title: text(
+      "3.3 Row-operation matrices",
+      "3.3 行變換矩陣",
+      "3.3 行变换矩阵"
+    ),
+    unitId: "math1030.matrix-algebra.row-operation-matrices",
+    unitNumber: "3.3",
+  },
 ];
 
 const math1030SolutionStructureUnits: TextbookUnitMeta[] = [
@@ -1433,7 +1472,7 @@ const math1030SolutionStructureUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["solution-set", "null-space", "matrix"],
     interactiveIds: [],
-    order: 8,
+    order: 9,
     prerequisites: ["math1030.matrices.solution-set-types"],
     slug: "homogeneous-systems-and-null-space",
     sourceRefs: [
@@ -1459,6 +1498,44 @@ const math1030SolutionStructureUnits: TextbookUnitMeta[] = [
     unitId: "math1030.solution-structure.homogeneous-systems-and-null-space",
     unitNumber: "4.1",
   },
+  {
+    chapterId: "solution-structure",
+    chapterNumber: "4",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use set notation, membership, solution sets, null spaces, spans, and set equality carefully in linear algebra arguments.",
+      "仔細使用集合記號、屬於關係、解集、零空間、張成與集合相等，支撐線性代數中的論證。",
+      "仔细使用集合记号、属于关系、解集、零空间、张成与集合相等，支撑线性代数中的论证。"
+    ),
+    glossaryRefs: ["set", "solution-set", "null-space", "span"],
+    interactiveIds: [],
+    order: 10,
+    prerequisites: [
+      "math1030.systems.equations-solution-sets",
+      "math1030.solution-structure.homogeneous-systems-and-null-space",
+    ],
+    slug: "set-language-and-solution-sets",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/1030gi-n04-01.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n04-02.pdf",
+      },
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§1.1, §2.3, §4.1-§4.2, §6.3",
+      },
+    ],
+    title: text(
+      "4.2 Set language and solution sets",
+      "4.2 集合語言與解集",
+      "4.2 集合语言与解集"
+    ),
+    unitId: "math1030.solution-structure.set-language-and-solution-sets",
+    unitNumber: "4.2",
+  },
 ];
 
 const math1030InvertibilityUnits: TextbookUnitMeta[] = [
@@ -1475,7 +1552,7 @@ const math1030InvertibilityUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["invertible-matrix", "nonsingular-matrix", "row-operation", "matrix"],
     interactiveIds: ["invertibility-row-reduction-demo"],
-    order: 9,
+    order: 11,
     prerequisites: [
       "math1030.matrices.gaussian-elimination-rref",
       "math1030.matrix-algebra.matrix-multiplication-and-identity",
@@ -1534,7 +1611,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["vector-space"],
     interactiveIds: [],
-    order: 10,
+    order: 12,
     prerequisites: [],
     slug: "vector-spaces",
     sourceRefs: [
@@ -1568,7 +1645,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["vector-space", "subspace"],
     interactiveIds: ["subspace-checker"],
-    order: 11,
+    order: 13,
     prerequisites: ["math1030.vector-spaces.vector-spaces"],
     slug: "subspaces",
     sourceRefs: [
@@ -1605,13 +1682,19 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["linear-combination", "span"],
     interactiveIds: ["span-explorer"],
-    order: 12,
+    order: 14,
     prerequisites: ["math1030.vector-spaces.vector-spaces"],
     slug: "linear-combinations-and-span",
     sourceRefs: [
       {
         file: "reference/MATH1030/MATH1030-Notes.pdf",
         pages: "§6.3",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-05.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n02-05.pdf",
       },
       {
         file: "reference/MATH1030/1030gi-n05-03.pdf",
@@ -1642,13 +1725,19 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["linear-independence", "linear-combination", "span"],
     interactiveIds: ["independence-checker"],
-    order: 13,
+    order: 15,
     prerequisites: ["math1030.vector-spaces.linear-combinations-and-span"],
     slug: "linear-dependence-and-independence",
     sourceRefs: [
       {
         file: "reference/MATH1030/MATH1030-Notes.pdf",
         pages: "§6.4",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-06.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n02-06.pdf",
       },
       {
         file: "reference/MATH1030/math1030_assignment4_review_solutions.pdf",
@@ -1680,7 +1769,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["basis", "dimension", "linear-independence", "span"],
     interactiveIds: ["span-explorer", "independence-checker"],
-    order: 14,
+    order: 16,
     prerequisites: ["math1030.vector-spaces.linear-dependence-and-independence"],
     slug: "basis-and-dimension",
     sourceRefs: [
@@ -1693,6 +1782,17 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
       },
       {
         file: "reference/MATH1030/1030gi-n05-02.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n05-03.pdf",
+        note: "Minimal spanning set extraction",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n05-05.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n05-05p.pdf",
+        note: "Comparable subspace dimension criterion",
       },
     ],
     title: text(
@@ -1716,7 +1816,7 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["column-space", "row-space", "rank", "rref"],
     interactiveIds: [],
-    order: 15,
+    order: 17,
     prerequisites: [
       "math1030.matrices.gaussian-elimination-rref",
       "math1030.matrix-algebra.transpose-and-special-matrices",
@@ -1740,6 +1840,46 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     unitId: "math1030.vector-spaces.column-space-row-space-rank",
     unitNumber: "6.6",
   },
+  {
+    accessTier: "MEMBER",
+    chapterId: "vector-spaces",
+    chapterNumber: "6",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Extend span, basis, and dimension from column-vector subspaces to matrix subspaces such as all matrices, upper triangular matrices, and skew-symmetric matrices.",
+      "把張成、基底與維數由列向量子空間推廣到矩陣子空間，例如全矩陣空間、上三角矩陣與反對稱矩陣。",
+      "把张成、基与维数由列向量子空间推广到矩阵子空间，例如全矩阵空间、上三角矩阵与反对称矩阵。"
+    ),
+    glossaryRefs: ["matrix", "subspace", "basis", "dimension"],
+    interactiveIds: [],
+    order: 18,
+    prerequisites: [
+      "math1030.matrix-algebra.transpose-and-special-matrices",
+      "math1030.vector-spaces.basis-and-dimension",
+    ],
+    slug: "matrix-subspaces-basis-dimension",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/1030gi-n05-07.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-08.pdf",
+        note: "Standard matrix units and matrix-space viewpoint",
+      },
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§6.1, §6.5",
+      },
+    ],
+    title: text(
+      "6.7 Matrix subspaces, basis, and dimension",
+      "6.7 矩陣子空間、基底與維數",
+      "6.7 矩阵子空间、基与维数"
+    ),
+    unitId: "math1030.vector-spaces.matrix-subspaces-basis-dimension",
+    unitNumber: "6.7",
+  },
 ];
 
 const math1030DeterminantUnits: TextbookUnitMeta[] = [
@@ -1756,7 +1896,7 @@ const math1030DeterminantUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["determinant", "minor", "cofactor"],
     interactiveIds: [],
-    order: 16,
+    order: 19,
     prerequisites: ["math1030.matrices.matrix-basics"],
     slug: "determinants-and-cofactor-expansion",
     sourceRefs: [
@@ -1789,7 +1929,7 @@ const math1030DeterminantUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["determinant", "row-operation", "invertible-matrix"],
     interactiveIds: [],
-    order: 17,
+    order: 20,
     prerequisites: [
       "math1030.determinants.determinants-and-cofactor-expansion",
       "math1030.invertibility.invertible-matrices",
@@ -1831,7 +1971,7 @@ const math1030DeterminantUnits: TextbookUnitMeta[] = [
       "cramers-rule",
     ],
     interactiveIds: [],
-    order: 18,
+    order: 21,
     prerequisites: [
       "math1030.determinants.determinants-and-cofactor-expansion",
       "math1030.determinants.row-operations-products-and-invertibility",
@@ -1871,7 +2011,7 @@ const math1030EigenvalueUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["eigenvalue", "eigenvector", "eigenspace", "determinant"],
     interactiveIds: [],
-    order: 19,
+    order: 22,
     prerequisites: [
       "math1030.determinants.row-operations-products-and-invertibility",
       "math1030.vector-spaces.basis-and-dimension",
@@ -1907,7 +2047,7 @@ const math1030EigenvalueUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["eigenvalue", "eigenvector", "diagonalizable-matrix", "basis"],
     interactiveIds: [],
-    order: 20,
+    order: 23,
     prerequisites: [
       "math1030.eigenvalues.eigenvalues-eigenvectors-and-eigenspaces",
       "math1030.vector-spaces.basis-and-dimension",
@@ -1948,7 +2088,7 @@ const math1030EigenvalueUnits: TextbookUnitMeta[] = [
       "diagonalizable-matrix",
     ],
     interactiveIds: [],
-    order: 21,
+    order: 24,
     prerequisites: [
       "math1030.eigenvalues.eigenvalues-eigenvectors-and-eigenspaces",
       "math1030.eigenvalues.diagonalization-and-similarity",
@@ -1988,7 +2128,7 @@ const math1030InnerProductUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["inner-product", "norm", "unit-vector"],
     interactiveIds: [],
-    order: 22,
+    order: 25,
     prerequisites: ["math1030.vector-spaces.vector-spaces"],
     slug: "inner-products-norms-and-angles",
     sourceRefs: [
@@ -2021,7 +2161,7 @@ const math1030InnerProductUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["inner-product", "orthogonal", "orthonormal-basis", "basis"],
     interactiveIds: [],
-    order: 23,
+    order: 26,
     prerequisites: [
       "math1030.inner-products.inner-products-norms-and-angles",
       "math1030.vector-spaces.basis-and-dimension",
@@ -2058,7 +2198,7 @@ const math1030InnerProductUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["orthogonal", "orthonormal-basis", "gram-schmidt", "span"],
     interactiveIds: [],
-    order: 24,
+    order: 27,
     prerequisites: [
       "math1030.inner-products.orthogonal-sets-and-orthonormal-bases",
       "math1030.vector-spaces.basis-and-dimension",
@@ -2091,7 +2231,7 @@ const math1030InnerProductUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["inner-product", "norm", "orthogonal"],
     interactiveIds: [],
-    order: 25,
+    order: 28,
     prerequisites: ["math1030.inner-products.inner-products-norms-and-angles"],
     slug: "cauchy-schwarz-and-triangle-inequalities",
     sourceRefs: [

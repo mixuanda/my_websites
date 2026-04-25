@@ -14,6 +14,27 @@ This note develops those equivalences carefully. The goal is not only to know
 what the symbol `A^{-1}` means, but also to recognize when it exists and how to
 use it without guessing.
 
+## Before you start
+
+Invertibility uses several earlier ideas at the same time. Before reading this
+section, you should be comfortable with the following habits.
+
+- Matrix multiplication is order-sensitive: in general `AB` and `BA` are
+  different expressions.
+- The identity matrix `I_p` is the matrix that leaves every compatible vector
+  unchanged.
+- Row reduction is a controlled sequence of reversible row operations when
+  each elementary operation is legal.
+- The homogeneous system `Ax = 0` detects hidden freedom in the columns of
+  `A`.
+- A system `Ax = b` has a unique solution exactly when there is no free
+  variable after reduction.
+
+The main new idea is that these earlier facts are not isolated. For a square
+matrix, they collapse into one theorem package: being invertible, row-reducing
+to the identity, having no nonzero null-space vector, and solving every system
+uniquely all say the same thing in different languages.
+
 ## Left and right inverses
 
 Before the square case, it is useful to separate two one-sided notions.
@@ -28,6 +49,17 @@ Let `A` be a `p \times q` matrix.
 These definitions matter because matrix multiplication is not commutative. For
 rectangular matrices, a left inverse and a right inverse need not both exist.
 The square case is special.
+
+The dimensions also explain the names. If `H` is a left inverse, then `H`
+sits on the left of `A` in `HA = I_q`. If `G` is a right inverse, then `G`
+sits on the right of `A` in `AG = I_p`. These are different requirements
+because the two products have different sizes and different meanings.
+
+<CommonMistake title="Do not treat one-sided inverse statements as symmetric">
+From `HA = I_q` you cannot simply reverse the order and conclude `AH = I_p`.
+Matrix multiplication has direction. The square invertible case is powerful
+precisely because both directions hold at once.
+</CommonMistake>
 
 <Definition title="Invertible matrix">
 Let `A` be a `p \times p` square matrix. We say that `A` is **invertible** if
@@ -165,6 +197,84 @@ Two of these statements are especially important in practice.
 
 That is why invertibility is the exact algebraic condition behind solving a
 linear system by a matrix inverse.
+
+## How to use the invertibility dictionary
+
+The equivalent statements above are not meant to be memorized as a long list.
+They are a toolkit. In a problem, choose the statement that is closest to the
+information you already have.
+
+- If you are given a row-reduction computation, read pivot positions: a square
+  matrix is invertible exactly when every column is a pivot column.
+- If you are given `A^{-1}` or a one-sided inverse for a square matrix, use
+  algebraic multiplication with the identity matrix.
+- If you are given a nonzero vector `v` with `Av = 0`, use the null-space
+  condition to prove that `A` is not invertible.
+- If you are asked about all systems `Ax = b`, translate the question into
+  "does every `b` have exactly one preimage under `A`?"
+
+<WorkedExample title="A nonzero null-space vector proves non-invertibility">
+Suppose `A` is a square matrix and
+
+$$
+v =
+\begin{bmatrix}
+1 \\ -2 \\ 1
+\end{bmatrix}
+\ne 0,
+\qquad
+Av = 0.
+$$
+
+Then `A` cannot be invertible. Indeed, if `A^{-1}` existed, multiplying
+`Av = 0` on the left by `A^{-1}` would give
+
+$$
+A^{-1}Av = A^{-1}0.
+$$
+
+The left side is `v`, while the right side is `0`. This would force `v = 0`,
+contradicting the given vector. Therefore the existence of one nonzero
+solution of `Ax = 0` already proves that `A` is singular.
+</WorkedExample>
+
+<WorkedExample title="Use an inverse to solve a system">
+Suppose
+
+$$
+A^{-1} =
+\begin{bmatrix}
+2 & -1 \\
+0 & 3
+\end{bmatrix},
+\qquad
+b =
+\begin{bmatrix}
+5 \\ -1
+\end{bmatrix}.
+$$
+
+If `Ax = b`, then multiply both sides by `A^{-1}`:
+
+$$
+x = A^{-1}b
+=
+\begin{bmatrix}
+2 & -1 \\
+0 & 3
+\end{bmatrix}
+\begin{bmatrix}
+5 \\ -1
+\end{bmatrix}
+=
+\begin{bmatrix}
+11 \\ -3
+\end{bmatrix}.
+$$
+
+The inverse is not just a symbol for undoing `A`; it is an explicit formula for
+the unique solution.
+</WorkedExample>
 
 ## Row-equivalence through invertible matrices
 
@@ -350,6 +460,25 @@ The transpose result is useful when you want to turn a statement about columns
 into a statement about rows. The power rule is useful when a repeated
 transformation appears in a calculation.
 
+## How to approach invertibility problems
+
+When a question asks whether a matrix is invertible, do not start by trying
+random inverse entries. First decide which evidence is cheapest.
+
+1. Check that the matrix is square. Non-square matrices do not have a two-sided
+   inverse in the sense of this section.
+2. If entries are given, row-reduce and look for a pivot in every column.
+3. If a determinant is already available later in the course, use
+   `det(A) \ne 0`; before determinants, use pivots, rank, or null space.
+4. If a candidate inverse is given, multiply in the required order and verify
+   the identity matrix.
+5. If a nonzero null-space vector or a column relation is given, conclude
+   non-invertibility immediately.
+
+This approach keeps the work tied to the theorem package. The point is not to
+perform the longest possible computation; it is to choose a valid equivalent
+condition and apply it cleanly.
+
 ## Worked example
 
 <WorkedExample title="Find an inverse by row reduction">
@@ -465,6 +594,15 @@ Answer in one sentence using the phrase “well defined.”
 <RevealSolution title="Answer">
 Rank is well defined only because every matrix has one and only one RREF, so
 the number of pivots does not depend on which reduction path you choose.
+</RevealSolution>
+
+<QuickCheck prompt="Suppose `v \ne 0` and `Av = 0`. Can `A` be invertible?">
+Use the null-space condition, not row reduction.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. An invertible matrix has `N(A) = \{0\}`. A nonzero vector satisfying
+`Av = 0` proves that the null space is nontrivial, so `A` is not invertible.
 </RevealSolution>
 
 ## Exercise

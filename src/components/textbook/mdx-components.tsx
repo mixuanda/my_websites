@@ -4,6 +4,8 @@ import {
   CollapsibleProof,
   CommonMistake,
   Definition,
+  LinearSystemGeometryFigure,
+  MatrixAnatomyFigure,
   QuickCheck,
   RevealSolution,
   TextbookInlineCode,
@@ -25,6 +27,12 @@ export function createTextbookMdxComponents(locale: Locale): MDXComponents {
     ),
     InteractiveWidget: (props: { id: string }) => (
       <InteractiveWidget locale={locale} {...props} />
+    ),
+    LinearSystemGeometryFigure: () => (
+      <LinearSystemGeometryFigure locale={locale} />
+    ),
+    MatrixAnatomyFigure: () => (
+      <MatrixAnatomyFigure locale={locale} />
     ),
     code: (props: { children?: React.ReactNode; className?: string }) => (
       <TextbookInlineCode {...props} />

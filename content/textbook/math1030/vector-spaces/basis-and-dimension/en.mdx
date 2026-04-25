@@ -112,6 +112,31 @@ This statement is what makes dimension well-defined. Without it, the phrase
 "the number of vectors in a basis" would depend on which basis you picked, and
 dimension would not be a stable idea.
 
+The reason behind the theorem is the following counting principle.
+
+<TheoremCard title="Too many vectors in a spanned space force dependence">
+Suppose `\{v_1,\ldots,v_m\}` spans a vector space `V`. Then any collection of
+more than `m` vectors in `V` is linearly dependent.
+</TheoremCard>
+
+Here is the idea. If `u_1,\ldots,u_n` are vectors in `V` with `n > m`, then each
+`u_j` can be written as a linear combination of `v_1,\ldots,v_m`. A linear
+relation
+
+$$
+c_1u_1+\cdots+c_nu_n=0
+$$
+
+then becomes a homogeneous system with `m` equations and `n` unknowns. Since
+there are more unknowns than equations, a non-trivial solution exists. That
+non-trivial solution gives a non-trivial linear relation among the `u_j`, so the
+`u_j` are dependent.
+
+This also explains why two different bases of the same space must have the same
+size. If one basis had more vectors than the other, the larger one would be a
+linearly dependent set inside a space spanned by the smaller one, contradicting
+the definition of basis.
+
 ## Dimension is a count of independent directions
 
 <Definition title="Dimension">
@@ -124,6 +149,8 @@ Dimension tells you how many genuinely independent directions the space has.
 - `dim(R^m) = m`
 - `dim(M_{mn}) = mn`
 - `dim(P_n) = n + 1`
+- the space of all real polynomials has infinite dimension, because no finite
+  list can span all powers `1,x,x^2,\ldots`.
 
 The zero space is the exceptional case:
 
@@ -204,6 +231,65 @@ If `dim(V) = m`, then:
 This is why dimension is powerful. It turns a long two-part basis test into a
 one-part check when the number of vectors already matches the dimension.
 
+A useful way to package the shortcut is the following three-way criterion. Suppose
+`u_1,\ldots,u_n` are vectors in a subspace `W`. Consider the three statements:
+
+1. `dim(W)=n`.
+2. `u_1,\ldots,u_n` are linearly independent.
+3. `Span\{u_1,\ldots,u_n\}=W`.
+
+If any two of these statements are true, then the third is automatically true,
+and `\{u_1,\ldots,u_n\}` is a basis for `W`.
+
+This is often the cleanest way to write a solution. Instead of proving both
+independence and spanning from scratch, you first identify the dimension and then
+prove whichever of independence or spanning is easier.
+
+<WorkedExample title="Using dimension to avoid a second calculation in `R^3`">
+Let
+
+$$
+u_1=\begin{bmatrix}1\\2\\2\end{bmatrix},\quad
+u_2=\begin{bmatrix}2\\3\\4\end{bmatrix},\quad
+u_3=\begin{bmatrix}3\\8\\7\end{bmatrix}.
+$$
+
+We want to show that these three vectors form a basis for `R^3`.
+
+First test linear independence. The equation
+
+$$
+c_1u_1+c_2u_2+c_3u_3=0
+$$
+
+has coefficient matrix
+
+$$
+\begin{bmatrix}
+1 & 2 & 3\\
+2 & 3 & 8\\
+2 & 4 & 7
+\end{bmatrix}.
+$$
+
+Row reduction gives an echelon form with a pivot in every column, for example
+
+$$
+\begin{bmatrix}
+1 & 2 & 3\\
+0 & 1 & -2\\
+0 & 0 & 1
+\end{bmatrix}.
+$$
+
+Therefore the homogeneous equation has only the trivial solution, and
+`u_1,u_2,u_3` are linearly independent.
+
+Since `dim(R^3)=3`, three linearly independent vectors in `R^3` automatically
+span `R^3`. Hence the vectors form a basis. The point is that the spanning part
+is not ignored; it is supplied by the dimension theorem.
+</WorkedExample>
+
 Try a few typical dependence patterns before you use that shortcut.
 
 <InteractiveWidget id="independence-checker" />
@@ -219,6 +305,226 @@ When you are asked whether a set is a basis, work in this order:
 
 For example, in `R^3`, three independent vectors already form a basis. You do
 not need a second long spanning calculation after that.
+
+The same idea also gives two important repair operations.
+
+<TheoremCard title="Extension and reduction consequences">
+If `dim(V)=m>0`, then:
+
+1. no set of fewer than `m` vectors can span `V`;
+2. every linearly independent set with fewer than `m` vectors can be extended to
+   a basis of `V`;
+3. every spanning set with more than `m` vectors can be reduced to a basis of
+   `V` by deleting redundant vectors.
+</TheoremCard>
+
+These consequences are not separate tricks. They all say the same thing:
+dimension is the exact size of a just-right list. A list that is too short cannot
+cover the whole space; an independent list that is too short can still accept
+more directions; a spanning list that is too long must contain unnecessary
+vectors.
+
+## Null spaces: a rank-nullity basis test
+
+For a homogeneous system, the dimension shortcut becomes especially concrete.
+Let `A` be a `p \times q` matrix with rank `r`. Then
+
+$$
+dim(N(A)) = q-r.
+$$
+
+So vectors `u_1,\ldots,u_n` form a basis for `N(A)` exactly when all three checks
+hold:
+
+1. each vector is actually in the null space, so `Au_j=0`;
+2. the number of proposed vectors is correct, so `n=q-r`;
+3. the proposed vectors are linearly independent.
+
+This avoids proving the full set equality
+`N(A)=Span\{u_1,\ldots,u_n\}` directly.
+
+<WorkedExample title="Testing a proposed basis for a null space">
+Let
+
+$$
+A=
+\begin{bmatrix}
+1&2&0&1\\
+1&1&1&-1\\
+3&1&5&-7
+\end{bmatrix},
+\qquad
+W=N(A),
+$$
+
+and
+
+$$
+u_1=\begin{bmatrix}1\\-1\\1\\1\end{bmatrix},
+\qquad
+u_2=\begin{bmatrix}5\\-3\\-1\\1\end{bmatrix}.
+$$
+
+First check membership. Direct multiplication gives `Au_1=0` and `Au_2=0`, so
+both vectors lie in `W`.
+
+Next compute the dimension of `W`. A row-reduced form of `A` is
+
+$$
+\begin{bmatrix}
+1&0&2&-3\\
+0&1&-1&2\\
+0&0&0&0
+\end{bmatrix},
+$$
+
+so `rank(A)=2`. Since `A` has four columns,
+
+$$
+dim(N(A))=4-2=2.
+$$
+
+Finally check independence. Put the proposed vectors into a matrix:
+
+$$
+U=[u_1\ u_2]
+=
+\begin{bmatrix}
+1&5\\
+-1&-3\\
+1&-1\\
+1&1
+\end{bmatrix}.
+$$
+
+Row reduction gives a pivot in each column, so `u_1,u_2` are linearly
+independent. We now have membership, the correct dimension count, and
+independence. Therefore `u_1,u_2` form a basis for `N(A)`.
+</WorkedExample>
+
+The failure modes are just as important:
+
+- if some `u_j` does not satisfy `Au_j=0`, the list cannot be a basis for
+  `N(A)`;
+- if the list has fewer or more than `q-r` vectors, the size is wrong;
+- if the list has the correct size but is dependent, it still fails to be a
+  basis.
+
+## Extracting a minimal spanning set
+
+Sometimes the input is not a clean proposed basis. You may be given a long list
+of vectors and asked for the dimension of its span. The efficient method is to
+extract a basis from the original list.
+
+<TheoremCard title="Pivot columns give a minimal spanning set">
+Let
+
+$$
+W=\operatorname{Span}\{u_1,\ldots,u_q\}\subseteq R^n,
+\qquad
+U=[u_1\ u_2\ \cdots\ u_q].
+$$
+
+Row-reduce `U`. If the pivot columns of the reduced matrix occur in positions
+`d_1,\ldots,d_r`, then
+
+$$
+\{u_{d_1},\ldots,u_{d_r}\}
+$$
+
+is a basis for `W`, and `dim(W)=r`.
+</TheoremCard>
+
+The positions are read from a row-reduced form, but the basis vectors themselves
+come from the original list. This is the same rule used for column space.
+
+<WorkedExample title="Extracting a basis from a generating list">
+Let `W=Span\{u_1,u_2,u_3\}`, where
+
+$$
+u_1=\begin{bmatrix}0\\-1\\2\end{bmatrix},
+\quad
+u_2=\begin{bmatrix}1\\-2\\7\end{bmatrix},
+\quad
+u_3=\begin{bmatrix}-2\\3\\-12\end{bmatrix}.
+$$
+
+Put the vectors into the columns of `U`:
+
+$$
+U=
+\begin{bmatrix}
+0&1&-2\\
+-1&-2&3\\
+2&7&-12
+\end{bmatrix}
+\sim
+\begin{bmatrix}
+1&0&1\\
+0&1&-2\\
+0&0&0
+\end{bmatrix}.
+$$
+
+The pivot columns are columns `1` and `2`, so
+
+$$
+\{u_1,u_2\}
+$$
+
+is a basis for `W`, and `dim(W)=2`. The non-pivot column also tells us the
+redundancy relation:
+
+$$
+u_3=u_1-2u_2.
+$$
+</WorkedExample>
+
+## Subspaces with the same dimension
+
+Dimension also controls when one subspace can equal another. If `V` and `W` are
+subspaces of the same ambient space and `V \subseteq W`, then
+
+$$
+dim(V) \le dim(W).
+$$
+
+Moreover,
+
+$$
+dim(V)=dim(W) \quad\text{if and only if}\quad V=W.
+$$
+
+The containment hypothesis matters. Equal dimension alone does not force two
+subspaces to be equal. For example, two different lines through the origin in
+`R^2` both have dimension 1, but neither line contains the other. The theorem
+applies when one subspace is already known to sit inside the other.
+
+<WorkedExample title="Using dimension to prove equality of subspaces">
+Let
+
+$$
+V=Span\left\{
+\begin{bmatrix}1\\0\\0\end{bmatrix},
+\begin{bmatrix}0\\1\\0\end{bmatrix}
+\right\}
+$$
+
+and let
+
+$$
+W=\left\{
+\begin{bmatrix}x\\y\\0\end{bmatrix}:x,y\in R
+\right\}.
+$$
+
+Every vector in `V` has third coordinate zero, so `V \subseteq W`. We also know
+from the earlier plane example that `dim(W)=2`. Since the two displayed
+generators of `V` are linearly independent, `dim(V)=2` as well.
+
+Thus `V` is a subspace of `W` and both have dimension 2. The comparable-subspace
+theorem gives `V=W`.
+</WorkedExample>
 
 ## Common mistake
 

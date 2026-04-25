@@ -1,5 +1,6 @@
 "use client";
 
+import { TextbookInlineRichText } from "@/components/textbook/mdx-blocks";
 import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
 import type { Locale, ProblemProgress } from "@/lib/textbook/types";
 import type { ProblemSubmissionResult, SectionMastery } from "@/lib/textbook/types";
@@ -43,7 +44,8 @@ export function FeedbackPanel({
       </p>
       {!result.correct && result.hint ? (
         <p className="mt-2">
-          {getLocalizedText(uiText.hint, locale)}: {result.hint}
+          {getLocalizedText(uiText.hint, locale)}:{" "}
+          <TextbookInlineRichText text={result.hint} />
         </p>
       ) : null}
       {!result.correct && result.solutionLocked ? (
@@ -52,7 +54,7 @@ export function FeedbackPanel({
       {result.showCorrectAnswer && result.correctAnswerPreview ? (
         <p className="mt-2">
           {getLocalizedText(uiText.correctAnswer, locale)}:{" "}
-          <span className="font-mono">{result.correctAnswerPreview}</span>
+          <TextbookInlineRichText text={result.correctAnswerPreview} />
         </p>
       ) : null}
       {progress ? (

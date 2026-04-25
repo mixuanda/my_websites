@@ -1,0 +1,349 @@
+---
+title: "3.3 行變換矩陣"
+description: "把初等行變換轉化為左乘初等矩陣，並用反向行變換理解這些矩陣為何可逆。"
+---
+
+行變換最初是矩陣上的操作步驟：交換兩行、把一行乘以非零純量、把一行的倍數
+加到另一行。這些操作已經可以用來解方程組，因為它們保留解集。
+
+但同一件事還有一個更有結構的讀法：每一個初等行變換，都等同於左乘某個特別
+的方陣。這個觀點很重要，因為它把一串行變換轉成普通的矩陣等式。之後討論
+行化簡、可逆性、秩、行列式和基底時，這正是程序性操作和代數結構之間的橋。
+
+## 核心想法：先把行變換作用在單位矩陣上
+
+假設一個行變換 `\rho` 作用於有 `p` 行的矩陣。先從單位矩陣 `I_p` 開始，
+對 `I_p` 做同一個行變換，所得矩陣記作 `E_\rho`。
+
+<Definition title="行變換矩陣">
+與 `p` 行矩陣上的行變換 `\rho` 對應的 **行變換矩陣**，就是把 `\rho`
+作用在 `I_p` 上所得的 `p \times p` 矩陣。
+
+換句話說，
+
+$$
+E_\rho = \rho(I_p).
+$$
+</Definition>
+
+這個定義有用，是因為以下定理。
+
+<TheoremCard title="行變換等同於左乘矩陣">
+設 `A` 是任何有 `p` 行的矩陣，並以 `\rho(A)` 表示對 `A` 做行變換
+`\rho` 後得到的矩陣。則
+
+$$
+\rho(A) = E_\rho A.
+$$
+
+所以，對 `A` 做一個行變換，等同於用同一個行變換在 `I_p` 上得到的
+行變換矩陣左乘 `A`。
+</TheoremCard>
+
+這裏必須是左乘。行變換改變的是行，會把新行寫成舊行的線性組合；左乘正是把
+`A` 的新行寫成舊行的線性組合。右乘則會混合列，不是同一件事。
+
+## 三個基本例子
+
+三種合法行變換，對應三種行變換矩陣。
+
+<WorkedExample title="行加法">
+對有三行的矩陣，考慮
+
+$$
+\rho:\quad R_2 \leftarrow R_2 + 3R_1.
+$$
+
+把它作用在 `I_3` 上：
+
+$$
+I_3 =
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}
+\quad\longmapsto\quad
+E_\rho =
+\begin{bmatrix}
+1 & 0 & 0\\
+3 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}.
+$$
+
+因此，對任何有三行的矩陣 `A`，
+
+$$
+E_\rho A
+$$
+
+就是把 `A` 的第 `2` 行改成「第 `2` 行加上 `3` 倍第 `1` 行」後所得的矩陣。
+</WorkedExample>
+
+<WorkedExample title="行倍乘">
+對
+
+$$
+\rho:\quad R_3 \leftarrow -2R_3,
+$$
+
+對應的行變換矩陣是
+
+$$
+E_\rho =
+\begin{bmatrix}
+1 & 0 & 0\\
+0 & 1 & 0\\
+0 & 0 & -2
+\end{bmatrix}.
+$$
+
+行倍乘要求純量非零，這一點在矩陣上也看得出來：如果倍數是 `0`，所得矩陣會
+出現零行，不能反向恢復。
+</WorkedExample>
+
+<WorkedExample title="交換兩行">
+對
+
+$$
+\rho:\quad R_1 \leftrightarrow R_3,
+$$
+
+我們得到
+
+$$
+E_\rho =
+\begin{bmatrix}
+0 & 0 & 1\\
+0 & 1 & 0\\
+1 & 0 & 0
+\end{bmatrix}.
+$$
+
+左乘這個矩陣，就會交換任何相容矩陣的第 `1` 行和第 `3` 行。
+</WorkedExample>
+
+## 一串行變換就是一個矩陣乘積
+
+真正的用途不只是表示單一步驟，而是把整串行變換寫成一個矩陣乘積。
+
+<TheoremCard title="一串行變換的乘積表示">
+假設
+
+$$
+A_1 \xrightarrow{\rho_1} A_2 \xrightarrow{\rho_2} A_3
+\xrightarrow{\rho_3} \cdots \xrightarrow{\rho_k} A_{k+1}.
+$$
+
+則
+
+$$
+A_{k+1}
+= E_{\rho_k}E_{\rho_{k-1}}\cdots E_{\rho_2}E_{\rho_1}A_1.
+$$
+</TheoremCard>
+
+這個公式中的次序很重要。第一個行變換最靠近 `A_1`，因為它最先作用：
+
+$$
+A_2 = E_{\rho_1}A_1,
+\qquad
+A_3 = E_{\rho_2}A_2 = E_{\rho_2}E_{\rho_1}A_1.
+$$
+
+<WorkedExample title="合併兩個行變換">
+令
+
+$$
+A =
+\begin{bmatrix}
+1 & 0 & 1\\
+0 & 2 & 1\\
+1 & 0 & 0
+\end{bmatrix}.
+$$
+
+依次做
+
+$$
+\rho_1:\ R_2 \leftarrow R_2 + R_1,
+\qquad
+\rho_2:\ R_1 \leftarrow R_1 + 2R_2.
+$$
+
+對應的行變換矩陣是
+
+$$
+E_{\rho_1} =
+\begin{bmatrix}
+1 & 0 & 0\\
+1 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix},
+\qquad
+E_{\rho_2} =
+\begin{bmatrix}
+1 & 2 & 0\\
+0 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}.
+$$
+
+兩個操作完成後，結果就是
+
+$$
+E_{\rho_2}E_{\rho_1}A.
+$$
+
+若不想直接相乘 `E_{\rho_2}E_{\rho_1}`，也可以把同一串行變換按同一次序作用在
+`I_3` 上，所得矩陣就是合併後的左乘矩陣。
+</WorkedExample>
+
+## 反向行變換與逆矩陣
+
+每個初等行變換都有反向操作：
+
+- `R_j \leftarrow R_j + cR_i` 的反向操作是
+  `R_j \leftarrow R_j - cR_i`；
+- `R_i \leftarrow cR_i`（其中 `c \ne 0`）的反向操作是
+  `R_i \leftarrow (1/c)R_i`；
+- 交換兩行的反向操作仍然是同一次交換。
+
+這給出一個乾淨的矩陣敘述。
+
+<TheoremCard title="行變換矩陣都是可逆矩陣">
+每個行變換矩陣都是可逆的。它的逆矩陣，就是反向行變換所對應的行變換矩陣。
+</TheoremCard>
+
+例如，若
+
+$$
+E =
+\begin{bmatrix}
+1 & 0 & 0\\
+3 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+表示 `R_2 \leftarrow R_2 + 3R_1`，則
+
+$$
+E^{-1} =
+\begin{bmatrix}
+1 & 0 & 0\\
+-3 & 1 & 0\\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+表示 `R_2 \leftarrow R_2 - 3R_1`。
+
+這就是行變換可逆的代數原因，也解釋了為甚麼行化簡和可逆矩陣有密切關係。
+
+## 為甚麼這個觀點之後會有用？
+
+如果 `B` 與 `A` 行等價，則存在一串有限的行變換把 `A` 變成 `B`。因此存在
+某個行變換矩陣的乘積 `E`，使得
+
+$$
+B = EA.
+$$
+
+由於每個行變換矩陣都可逆，乘積 `E` 也可逆。因此行等價既可以用操作步驟來
+描述，也可以用左邊乘上一個可逆矩陣的等式來描述。
+
+這個觀點會在多個地方使用：
+
+- 一個方陣若行等價於 `I_n`，它就是若干行變換矩陣的乘積；
+- 行變換保留齊次方程組的解資訊，因為它等同於左乘可逆矩陣；
+- 行列式關於行變換的規則，可以透過初等矩陣來表述；
+- 秩和基底的論證可以使用行化簡，同時清楚知道原矩陣的列本身通常已被改變。
+
+## 常見錯誤
+
+<CommonMistake title="不要乘錯方向">
+行變換由左乘表示。右乘會混合列，而不是混合行。
+</CommonMistake>
+
+<CommonMistake title="不要把乘積次序反過來">
+如果 `\rho_1` 先於 `\rho_2` 作用，合併矩陣是
+`E_{\rho_2}E_{\rho_1}`，不是 `E_{\rho_1}E_{\rho_2}`。
+</CommonMistake>
+
+<CommonMistake title="不能把某一行乘以零">
+行倍乘要求純量非零。把一行乘以 `0` 不能反向恢復，也不會產生可逆的
+行變換矩陣。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="對有三行的矩陣，`E = \begin{bmatrix} 1&0&0\\0&1&0\\5&0&1 \end{bmatrix}` 表示哪個行變換？">
+看 `I_3` 的哪一行被改變。
+</QuickCheck>
+
+<RevealSolution title="答案">
+只有第 `3` 行被改變，而且它變成「第 `3` 行加上 `5` 倍第 `1` 行」。因此
+
+$$
+R_3 \leftarrow R_3 + 5R_1.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="`R_2 \leftarrow R_2 - 4R_1` 的反向行變換是甚麼？">
+把加上的倍數抵消。
+</QuickCheck>
+
+<RevealSolution title="答案">
+反向操作是
+
+$$
+R_2 \leftarrow R_2 + 4R_1.
+$$
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="寫出有三行矩陣上 `R_1 \leftrightarrow R_2` 的行變換矩陣。">
+把這個交換作用在 `I_3` 上。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+交換 `I_3` 的前兩行，得到
+
+$$
+\begin{bmatrix}
+0 & 1 & 0\\
+1 & 0 & 0\\
+0 & 0 & 1
+\end{bmatrix}.
+$$
+
+這就是左乘時交換第 `1` 行和第 `2` 行的矩陣。
+</RevealSolution>
+
+<QuickCheck prompt="假設 `B` 由 `A` 經以下兩步得到：先做 `R_2 \leftarrow R_2 + R_1`，再做 `R_3 \leftarrow 2R_3`。把 `B` 寫成涉及 `A` 的矩陣乘積。">
+按照作用次序命名兩個行變換矩陣。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+令 `E_1` 是 `R_2 \leftarrow R_2 + R_1` 的行變換矩陣，令 `E_2` 是
+`R_3 \leftarrow 2R_3` 的行變換矩陣。因為 `E_1` 先作用，而 `E_2` 後作用，
+
+$$
+B = E_2E_1A.
+$$
+</RevealSolution>
+
+## 相關筆記
+
+這一頁建立在
+[2.2 增廣矩陣與行變換](/zh-hk/notes/math1030/matrices/augmented-matrices-row-operations)
+和
+[3.1 矩陣乘法與單位矩陣](/zh-hk/notes/math1030/matrix-algebra/matrix-multiplication-and-identity)
+之上。它也準備了
+[5.1 可逆矩陣](/zh-hk/notes/math1030/invertibility/invertible-matrices)
+和
+[7.2 行變換、乘積與可逆性](/zh-hk/notes/math1030/determinants/row-operations-products-and-invertibility)
+中使用的行化簡代數觀點。

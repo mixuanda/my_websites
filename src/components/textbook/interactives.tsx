@@ -5,6 +5,7 @@ import { ArrowLeftRight, Braces, ChartColumnBig, ListChecks, Sigma, StepForward 
 import { GlassPanel } from "@/components/glass";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { TextbookInlineRichText } from "@/components/textbook/mdx-blocks";
 import { getInteractiveSnapshot } from "@/lib/textbook/interactive-snapshots";
 import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
 import type { Locale, LocalizedText } from "@/lib/textbook/types";
@@ -79,14 +80,21 @@ const interactiveLabels = {
   keys: text("Keys", "Keys", "Keys"),
   bucketIndex: text("Bucket index", "Bucket 編號", "Bucket 编号"),
   collisionCount: text("Collision count", "Collision 數量", "Collision 数量"),
+  answer: text("Answer", "答案", "答案"),
+  task: text("Task", "任務", "任务"),
+  reveal: text("Show reasoning", "顯示思路", "显示思路"),
 } as const;
 
 function MatrixView({
   data,
   highlightCell,
+  highlightColumn,
+  highlightRow,
 }: {
   data: ReadonlyArray<ReadonlyArray<number>>;
   highlightCell?: [number, number];
+  highlightColumn?: number;
+  highlightRow?: number;
 }) {
   return (
     <div className="inline-flex overflow-hidden rounded-xl border border-border/60 bg-background/20">
@@ -97,12 +105,15 @@ function MatrixView({
               {row.map((value, cellIndex) => {
                 const isHighlighted =
                   highlightCell?.[0] === rowIndex && highlightCell?.[1] === cellIndex;
+                const isContextHighlighted =
+                  highlightRow === rowIndex || highlightColumn === cellIndex;
 
                 return (
                   <td
                     key={`cell-${rowIndex}-${cellIndex}`}
                     className={cn(
                       "min-w-12 border border-border/60 px-3 py-2 text-center font-mono text-sm",
+                      isContextHighlighted && "bg-primary/10 text-foreground",
                       isHighlighted && "bg-primary/15 text-foreground"
                     )}
                   >
@@ -427,6 +438,241 @@ function InductionStepper({ locale }: { locale: Locale }) {
             {getLocalizedText(interactiveLabels.reset, locale)}
           </Button>
         </div>
+      </div>
+    </InteractiveShell>
+  );
+}
+
+function naturalInput(value: string) {
+  const parsed = Number(value);
+
+  if (!Number.isFinite(parsed)) {
+    return 0;
+  }
+
+  return Math.max(0, Math.trunc(parsed));
+}
+
+function IntegerEquivalenceExplorer({ locale }: { locale: Locale }) {
+  const [a, setA] = useState(2);
+  const [b, setB] = useState(5);
+  const [shift, setShift] = useState(3);
+  const [targetA, setTargetA] = useState(4);
+  const [targetB, setTargetB] = useState(7);
+  const shiftedA = a + shift;
+  const shiftedB = b + shift;
+  const classValue = a - b;
+  const targetValue = targetA - targetB;
+  const targetEquivalent = a + targetB === b + targetA;
+
+  const labels = {
+    chosenPair: text("Chosen representative", "已選代表元", "已选代表元"),
+    shiftedPair: text("Shifted representative", "平移後代表元", "平移后代表元"),
+    targetPair: text("Test another pair", "測試另一個對子", "测试另一个对子"),
+    formalDifference: text("Formal difference", "形式差值", "形式差值"),
+    equivalenceTest: text("Equivalence test", "等價測試", "等价测试"),
+    sameClass: text("Same class", "同一等價類", "同一等价类"),
+    differentClass: text("Different class", "不同等價類", "不同等价类"),
+    sign: text("Sign of the class", "等價類的符號", "等价类的符号"),
+    positive: text("positive", "正", "正"),
+    negative: text("negative", "負", "负"),
+    zero: text("zero", "零", "零"),
+  } as const;
+
+  const sign =
+    classValue > 0
+      ? labels.positive
+      : classValue < 0
+        ? labels.negative
+        : labels.zero;
+
+  return (
+    <InteractiveShell icon={<Braces className="h-5 w-5" />} locale={locale} widgetId="integer-equivalence-explorer">
+      <div className="grid gap-4 lg:grid-cols-3">
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">{getLocalizedText(labels.chosenPair, locale)}</p>
+          <div className="mt-3 grid grid-cols-2 gap-3">
+            <Input
+              aria-label="a"
+              inputMode="numeric"
+              min={0}
+              onChange={(event) => setA(naturalInput(event.target.value))}
+              type="number"
+              value={a}
+            />
+            <Input
+              aria-label="b"
+              inputMode="numeric"
+              min={0}
+              onChange={(event) => setB(naturalInput(event.target.value))}
+              type="number"
+              value={b}
+            />
+          </div>
+          <p className="mt-3 font-mono text-sm">{`(${a}, ${b})`}</p>
+          <p className="mt-2 text-sm leading-7 text-muted-foreground">
+            {getLocalizedText(labels.formalDifference, locale)}:{" "}
+            <span className="whitespace-nowrap font-mono">{a} - {b} = {classValue}</span>
+          </p>
+        </GlassPanel>
+
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">{getLocalizedText(labels.shiftedPair, locale)}</p>
+          <Input
+            aria-label="shift"
+            className="mt-3"
+            inputMode="numeric"
+            min={0}
+            onChange={(event) => setShift(naturalInput(event.target.value))}
+            type="number"
+            value={shift}
+          />
+          <p className="mt-3 font-mono text-sm">{`(${a}, ${b}) -> (${shiftedA}, ${shiftedB})`}</p>
+          <p className="mt-2 text-sm leading-7 text-muted-foreground">
+            <span className="whitespace-nowrap font-mono">{shiftedA} - {shiftedB} = {shiftedA - shiftedB}</span>
+          </p>
+        </GlassPanel>
+
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">{getLocalizedText(labels.targetPair, locale)}</p>
+          <div className="mt-3 grid grid-cols-2 gap-3">
+            <Input
+              aria-label="target a"
+              inputMode="numeric"
+              min={0}
+              onChange={(event) => setTargetA(naturalInput(event.target.value))}
+              type="number"
+              value={targetA}
+            />
+            <Input
+              aria-label="target b"
+              inputMode="numeric"
+              min={0}
+              onChange={(event) => setTargetB(naturalInput(event.target.value))}
+              type="number"
+              value={targetB}
+            />
+          </div>
+          <p className="mt-3 font-mono text-sm">{`(${targetA}, ${targetB})`}</p>
+          <p className="mt-2 text-sm leading-7 text-muted-foreground">
+            {getLocalizedText(labels.formalDifference, locale)}:{" "}
+            <span className="whitespace-nowrap font-mono">{targetA} - {targetB} = {targetValue}</span>
+          </p>
+        </GlassPanel>
+      </div>
+
+      <GlassPanel className="mt-4 border border-border/60 bg-background/30 p-4">
+        <p className="text-sm font-semibold">{getLocalizedText(labels.equivalenceTest, locale)}</p>
+        <p className="mt-2 whitespace-nowrap font-mono text-sm">
+          {`${a} + ${targetB} ${targetEquivalent ? "=" : "≠"} ${b} + ${targetA}`}
+        </p>
+        <p className={cn("mt-2 text-sm font-medium", targetEquivalent ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400")}>
+          {getLocalizedText(targetEquivalent ? labels.sameClass : labels.differentClass, locale)}
+        </p>
+        <p className="mt-2 text-sm leading-7 text-muted-foreground">
+          {getLocalizedText(labels.sign, locale)}: {getLocalizedText(sign, locale)}
+        </p>
+      </GlassPanel>
+    </InteractiveShell>
+  );
+}
+
+function RationalRepresentativeLab({ locale }: { locale: Locale }) {
+  const leftOptions = [
+    { label: "(1, 2)", p: 1, q: 2 },
+    { label: "(2, 4)", p: 2, q: 4 },
+    { label: "(-1, -2)", p: -1, q: -2 },
+  ] as const;
+  const rightOptions = [
+    { label: "(1, 3)", p: 1, q: 3 },
+    { label: "(2, 6)", p: 2, q: 6 },
+    { label: "(-1, -3)", p: -1, q: -3 },
+  ] as const;
+  const [leftIndex, setLeftIndex] = useState(0);
+  const [rightIndex, setRightIndex] = useState(0);
+  const left = leftOptions[leftIndex];
+  const right = rightOptions[rightIndex];
+  const rawCrossDifference = left.p * right.q - right.p * left.q;
+  const denominatorSignCorrection = right.q * left.q;
+  const correctedValue = rawCrossDifference * denominatorSignCorrection;
+  const rules = [
+    {
+      expression: `${left.p} > ${right.p}`,
+      label: text("Numerator-only rule: p > m", "只看分子：p > m", "只看分子：p > m"),
+      value: left.p > right.p,
+    },
+    {
+      expression: `${left.p}·${right.q} - ${right.p}·${left.q} = ${rawCrossDifference}`,
+      label: text("Raw cross-difference: pn - mq > 0", "原始交叉差：pn - mq > 0", "原始交叉差：pn - mq > 0"),
+      value: rawCrossDifference > 0,
+    },
+    {
+      expression: `(${rawCrossDifference})·(${denominatorSignCorrection}) = ${correctedValue}`,
+      label: text("Sign-corrected test: (pn - mq)nq > 0", "修正分母符號：(pn - mq)nq > 0", "修正分母符号：(pn - mq)nq > 0"),
+      value: correctedValue > 0,
+    },
+  ] as const;
+  const labels = {
+    left: text("Represent 1/2 as", "把 1/2 表示為", "把 1/2 表示为"),
+    right: text("Represent 1/3 as", "把 1/3 表示為", "把 1/3 表示为"),
+    expected: text("The rational comparison itself is fixed: 1/2 > 1/3.", "有理數本身的比較固定不變：1/2 > 1/3。", "有理数本身的比较固定不变：1/2 > 1/3。"),
+    trueValue: text("true", "真", "真"),
+    falseValue: text("false", "假", "假"),
+  } as const;
+
+  return (
+    <InteractiveShell icon={<ListChecks className="h-5 w-5" />} locale={locale} widgetId="rational-representative-lab">
+      <div className="grid gap-4 lg:grid-cols-2">
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">{getLocalizedText(labels.left, locale)}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {leftOptions.map((option, index) => (
+              <Button
+                key={option.label}
+                onClick={() => setLeftIndex(index)}
+                size="sm"
+                type="button"
+                variant={leftIndex === index ? "default" : "outline"}
+              >
+                {option.label}
+              </Button>
+            ))}
+          </div>
+        </GlassPanel>
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">{getLocalizedText(labels.right, locale)}</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {rightOptions.map((option, index) => (
+              <Button
+                key={option.label}
+                onClick={() => setRightIndex(index)}
+                size="sm"
+                type="button"
+                variant={rightIndex === index ? "default" : "outline"}
+              >
+                {option.label}
+              </Button>
+            ))}
+          </div>
+        </GlassPanel>
+      </div>
+
+      <GlassPanel className="mt-4 border border-border/60 bg-background/30 p-4">
+        <p className="text-sm leading-7 text-muted-foreground">
+          {getLocalizedText(labels.expected, locale)}
+        </p>
+      </GlassPanel>
+
+      <div className="mt-4 grid gap-3 lg:grid-cols-3">
+        {rules.map((rule) => (
+          <GlassPanel key={rule.label.en} className="bg-card/50">
+            <p className="text-sm font-semibold">{getLocalizedText(rule.label, locale)}</p>
+            <p className="mt-2 font-mono text-sm">{rule.expression}</p>
+            <p className={cn("mt-2 text-sm font-medium", rule.value ? "text-emerald-600 dark:text-emerald-400" : "text-amber-600 dark:text-amber-400")}>
+              {getLocalizedText(rule.value ? labels.trueValue : labels.falseValue, locale)}
+            </p>
+          </GlassPanel>
+        ))}
       </div>
     </InteractiveShell>
   );
@@ -935,6 +1181,164 @@ function SystemAugmentedMatrixExplorer({ locale }: { locale: Locale }) {
             />
           </div>
         </GlassPanel>
+      </div>
+    </InteractiveShell>
+  );
+}
+
+const matrixReadingTasks: Array<{
+  answer: LocalizedText;
+  focus: LocalizedText;
+  highlightCell?: [number, number];
+  highlightColumn?: number;
+  highlightRow?: number;
+  prompt: LocalizedText;
+}> = [
+  {
+    answer: text(
+      "The matrix has 2 rows and 3 columns, so its size is `2 x 3`.",
+      "矩陣有 2 行 3 列，所以大小是 `2 x 3`。",
+      "矩阵有 2 行 3 列，所以大小是 `2 x 3`。"
+    ),
+    focus: text(
+      "Count rows first. Count columns second. Do not reverse the order.",
+      "先數行，再數列。不要把順序倒轉。",
+      "先数行，再数列。不要把顺序倒转。"
+    ),
+    prompt: text(
+      "What is the size of this matrix?",
+      "這個矩陣的大小是多少？",
+      "这个矩阵的大小是多少？"
+    ),
+  },
+  {
+    answer: text(
+      "`a_23 = 4`, because row 2 and column 3 meet at the entry `4`.",
+      "`a_23 = 4`，因為第 2 行與第 3 列交會的位置是 `4`。",
+      "`a_23 = 4`，因为第 2 行与第 3 列交会的位置是 `4`。"
+    ),
+    focus: text(
+      "The first subscript names the row. The second subscript names the column.",
+      "第一個下標表示行，第二個下標表示列。",
+      "第一个下标表示行，第二个下标表示列。"
+    ),
+    highlightCell: [1, 2] as [number, number],
+    highlightColumn: 2,
+    highlightRow: 1,
+    prompt: text(
+      "Find the entry `a_23`.",
+      "找出元素 `a_23`。",
+      "找出元素 `a_23`。"
+    ),
+  },
+  {
+    answer: text(
+      "Column 2 contains the coefficients of `x_2`: `2` in the first equation and `-1` in the second equation.",
+      "第 2 列收集 `x_2` 的係數：第一條方程是 `2`，第二條方程是 `-1`。",
+      "第 2 列收集 `x_2` 的系数：第一条方程是 `2`，第二条方程是 `-1`。"
+    ),
+    focus: text(
+      "The variable order is `(x_1,x_2,x_3)`, so column 2 belongs to `x_2`.",
+      "變量次序是 `(x_1,x_2,x_3)`，所以第 2 列屬於 `x_2`。",
+      "变量次序是 `(x_1,x_2,x_3)`，所以第 2 列属于 `x_2`。"
+    ),
+    highlightColumn: 1,
+    prompt: text(
+      "If the variable order is `(x_1,x_2,x_3)`, which numbers are the coefficients of `x_2`?",
+      "若變量次序是 `(x_1,x_2,x_3)`，哪些數字是 `x_2` 的係數？",
+      "若变量次序是 `(x_1,x_2,x_3)`，哪些数字是 `x_2` 的系数？"
+    ),
+  },
+  {
+    answer: text(
+      "Row 1 records `1x_1 + 2x_2 + 0x_3`. In a coefficient matrix, one equation becomes one row.",
+      "第 1 行記錄 `1x_1 + 2x_2 + 0x_3`。在係數矩陣中，一條方程變成一行。",
+      "第 1 行记录 `1x_1 + 2x_2 + 0x_3`。在系数矩阵中，一条方程变成一行。"
+    ),
+    focus: text(
+      "Read across a row when you want one equation.",
+      "想讀一條方程時，要橫向讀一整行。",
+      "想读一条方程时，要横向读一整行。"
+    ),
+    highlightRow: 0,
+    prompt: text(
+      "What does the first row record if this is a coefficient matrix?",
+      "若這是一個係數矩陣，第一行記錄了甚麼？",
+      "若这是一个系数矩阵，第一行记录了什么？"
+    ),
+  },
+];
+
+function MatrixReadingTrainer({ locale }: { locale: Locale }) {
+  const [taskIndex, setTaskIndex] = useState(0);
+  const [showReasoning, setShowReasoning] = useState(false);
+  const current = matrixReadingTasks[taskIndex];
+
+  return (
+    <InteractiveShell icon={<ListChecks className="h-5 w-5" />} locale={locale} widgetId="matrix-reading-trainer">
+      <div className="grid gap-4 lg:grid-cols-[minmax(0,0.9fr)_minmax(280px,1.1fr)]">
+        <div className="space-y-4">
+          <div className="overflow-x-auto">
+            <MatrixView
+              data={[[1, 2, 0], [3, -1, 4]]}
+              highlightCell={current.highlightCell}
+              highlightColumn={current.highlightColumn}
+              highlightRow={current.highlightRow}
+            />
+          </div>
+          <GlassPanel className="bg-card/50">
+            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+              {getLocalizedText(interactiveLabels.focus, locale)}
+            </p>
+            <p className="mt-2 text-sm leading-7">
+              <TextbookInlineRichText text={getLocalizedText(current.focus, locale)} />
+            </p>
+          </GlassPanel>
+        </div>
+        <div className="space-y-4">
+          <div className="flex flex-wrap gap-2">
+            {matrixReadingTasks.map((_, index) => (
+              <Button
+                key={`matrix-reading-task-${index}`}
+                onClick={() => {
+                  setTaskIndex(index);
+                  setShowReasoning(false);
+                }}
+                size="sm"
+                type="button"
+                variant={taskIndex === index ? "default" : "outline"}
+              >
+                {getLocalizedText(interactiveLabels.task, locale)} {index + 1}
+              </Button>
+            ))}
+          </div>
+          <GlassPanel className="bg-card/50">
+            <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+              {getLocalizedText(interactiveLabels.tryItYourself, locale)}
+            </p>
+            <p className="mt-2 text-sm leading-7">
+              <TextbookInlineRichText text={getLocalizedText(current.prompt, locale)} />
+            </p>
+          </GlassPanel>
+          <Button
+            onClick={() => setShowReasoning((value) => !value)}
+            size="sm"
+            type="button"
+            variant="outline"
+          >
+            {getLocalizedText(interactiveLabels.reveal, locale)}
+          </Button>
+          {showReasoning ? (
+            <GlassPanel className="border border-emerald-400/35 bg-card/55">
+              <p className="text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                {getLocalizedText(interactiveLabels.answer, locale)}
+              </p>
+              <p className="mt-2 text-sm leading-7">
+                <TextbookInlineRichText text={getLocalizedText(current.answer, locale)} />
+              </p>
+            </GlassPanel>
+          ) : null}
+        </div>
       </div>
     </InteractiveShell>
   );
@@ -3226,10 +3630,13 @@ const interactiveComponents = {
   "independence-checker": IndependenceChecker,
   "invertibility-row-reduction-demo": InvertibilityRowReductionDemo,
   "induction-stepper": InductionStepper,
+  "integer-equivalence-explorer": IntegerEquivalenceExplorer,
+  "matrix-reading-trainer": MatrixReadingTrainer,
   "matrix-multiplication-visualizer": MatrixMultiplicationVisualizer,
   "monoid-group-law-checker": MonoidGroupLawChecker,
   "pointer-state-tracer": PointerStateTracer,
   "quantifier-negation-stepper": QuantifierNegationStepper,
+  "rational-representative-lab": RationalRepresentativeLab,
   "row-reduction-stepper": RowReductionStepper,
   "sequence-limit-explorer": SequenceLimitExplorer,
   "set-operation-explorer": SetOperationExplorer,

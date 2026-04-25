@@ -1,0 +1,307 @@
+---
+title: "4.2 集合語言與解集"
+description: "仔細使用集合記號、屬於關係、解集、零空間、張成與集合相等，支撐線性代數中的論證。"
+---
+
+線性代數研究的往往不是單一向量，而是一整個向量或矩陣的集合：一個方程組的
+所有解、一組向量的所有線性組合、滿足某條矩陣方程的所有矩陣，或者被某個矩
+陣送到零向量的所有向量。
+
+集合語言就是精確表達這些對象的語法。若沒有它，「同一個解集」、「屬於零
+空間」、「這些向量張成同一個子空間」這些說法就會太含糊，難以支撐證明。
+
+## 為甚麼線性代數需要集合
+
+做行化簡時，我們不是要保留方程的外觀，而是要保留**解的集合**。兩個方程
+組可以看起來不同，卻有完全相同的解。
+
+同樣地，把一組張成向量縮短時，我們不是要保留原來的列表，而是要保留由這
+個列表能夠生成的向量集合。
+
+<Definition title="屬於">
+若物件 `x` 是集合 `S` 的元素，記作
+
+$$
+x \in S.
+$$
+
+若 `x` 不是 `S` 的元素，記作
+
+$$
+x \notin S.
+$$
+</Definition>
+
+符號 `\in` 應讀作「屬於」。它不同於子集語言。一個向量可以屬於某個集合；
+一個較小的集合可以是另一個集合的子集。
+
+## Ambient space
+
+寫下一個線性代數集合之前，先確認正在收集哪一類物件。
+
+- `R^n` 是所有有 `n` 個分量的實列向量所成的集合。
+- `M_{m,n}(R)` 是所有實 `m \times n` 矩陣所成的集合。
+- `P_n` 是所有次數不超過 `n` 的實係數多項式所成的集合。
+
+ambient space 很重要。式子
+
+$$
+\{x : Ax=b\}
+$$
+
+若沒有說明 `x` 的大小與類型，就不夠完整。較嚴謹的寫法是
+
+$$
+\{x\in R^n : Ax=b\}.
+$$
+
+冒號左邊說明物件住在哪個集合；冒號右邊說明挑選這些物件的條件。
+
+## 解集
+
+設 `A` 是 `m \times n` 矩陣，且 `b\in R^m`。
+
+<Definition title="線性方程組的解集">
+方程 `Ax=b` 的解集是
+
+$$
+S(A,b)=\{x\in R^n : Ax=b\}.
+$$
+</Definition>
+
+因此 `t\in S(A,b)` 有精確意思：
+
+$$
+t\in R^n
+\qquad\text{且}\qquad
+At=b.
+$$
+
+這個記號也能處理三種熟悉情況。
+
+- 若方程組有唯一解 `x_0`，則 `S(A,b)=\{x_0\}`。
+- 若方程組不一致，則 `S(A,b)=\varnothing`。
+- 若方程組有無限多個解，則 `S(A,b)` 通常用參數式描述。
+
+<WorkedExample title="讀懂參數式解集">
+假設某個方程組的解可寫成
+
+$$
+x=
+\begin{bmatrix}1\\0\\2\end{bmatrix}
++s\begin{bmatrix}1\\1\\0\end{bmatrix}
++t\begin{bmatrix}-1\\0\\1\end{bmatrix},
+\qquad s,t\in R.
+$$
+
+作為集合，這就是
+
+$$
+\left\{
+\begin{bmatrix}1\\0\\2\end{bmatrix}
++s\begin{bmatrix}1\\1\\0\end{bmatrix}
++t\begin{bmatrix}-1\\0\\1\end{bmatrix}
+: s,t\in R
+\right\}.
+$$
+
+固定向量是一個特解；兩個方向向量記錄了可以自由加入而仍留在解集中的方向。
+</WorkedExample>
+
+## 零空間與張成都是集合
+
+課程中有兩種集合構造反覆出現。
+
+<Definition title="零空間">
+對 `m \times n` 矩陣 `A`，
+
+$$
+N(A)=\{x\in R^n : Ax=0\}.
+$$
+</Definition>
+
+這就是齊次方程組 `Ax=0` 的解集。
+
+<Definition title="張成">
+若 `u_1,\dots,u_q` 是同一個向量空間中的向量，則
+
+$$
+\operatorname{Span}\{u_1,\dots,u_q\}
+=
+\{\alpha_1u_1+\cdots+\alpha_qu_q : \alpha_1,\dots,\alpha_q\in R\}.
+$$
+</Definition>
+
+張成是一個集合，不是原來的列表。重排向量不會改變張成；加入一個本來已經
+是舊向量線性組合的向量，也不會改變張成。
+
+## 集合相等需要兩個方向
+
+<Definition title="集合相等">
+兩個集合 `S` 與 `T` 相等，是指每一邊的元素都屬於另一邊：
+
+$$
+S=T
+\quad\Longleftrightarrow\quad
+\bigl(x\in S \text{ if and only if } x\in T\bigr)
+\text{ 對所有物件 }x\text{ 成立}.
+$$
+</Definition>
+
+在證明中，這通常變成兩個包含關係：
+
+1. 證明 `S` 的每個元素都屬於 `T`；
+2. 證明 `T` 的每個元素都屬於 `S`。
+
+只證明第一個方向，只能得到 `S\subseteq T`，不能得到相等。
+
+## 一個核心張成論證
+
+下面的論證在線性代數中會不斷出現，只是常常藏在較大的計算裡。
+
+<TheoremCard title="加入冗餘向量不會改變張成">
+若 `v` 是 `u_1,\dots,u_q` 的線性組合，則
+
+$$
+\operatorname{Span}\{u_1,\dots,u_q,v\}
+=
+\operatorname{Span}\{u_1,\dots,u_q\}.
+$$
+</TheoremCard>
+
+<CollapsibleProof title="用集合相等證明">
+寫
+
+$$
+v=\beta_1u_1+\cdots+\beta_qu_q.
+$$
+
+令
+
+$$
+S=\operatorname{Span}\{u_1,\dots,u_q,v\},
+\qquad
+T=\operatorname{Span}\{u_1,\dots,u_q\}.
+$$
+
+先取任意 `x\in S`。則存在純量 `a_1,\dots,a_q,c`，使得
+
+$$
+x=a_1u_1+\cdots+a_qu_q+cv.
+$$
+
+代入 `v` 的公式：
+
+$$
+x=(a_1+c\beta_1)u_1+\cdots+(a_q+c\beta_q)u_q.
+$$
+
+所以 `x\in T`。
+
+反過來，若 `y\in T`，則
+
+$$
+y=d_1u_1+\cdots+d_qu_q
+=d_1u_1+\cdots+d_qu_q+0v,
+$$
+
+所以 `y\in S`。因此 `S=T`。
+</CollapsibleProof>
+
+這不是某個數值例子的技巧，而是說明為甚麼從張成列表中刪去冗餘向量是合法
+的。
+
+## 例子：證明兩個 span 相等
+
+令
+
+$$
+u_1=\begin{bmatrix}1\\0\\1\end{bmatrix},
+\qquad
+u_2=\begin{bmatrix}0\\1\\1\end{bmatrix},
+\qquad
+v=\begin{bmatrix}2\\3\\5\end{bmatrix}.
+$$
+
+因為
+
+$$
+v=2u_1+3u_2,
+$$
+
+上面的定理給出
+
+$$
+\operatorname{Span}\{u_1,u_2,v\}
+=
+\operatorname{Span}\{u_1,u_2\}.
+$$
+
+向量 `v` 可能仍然有計算上的用途，但它沒有擴大可生成的向量集合。
+
+## 常見錯誤
+
+<CommonMistake title="混淆向量與只含該向量的集合">
+向量 `x_0` 與單元素集合 `\{x_0\}` 是不同物件。若方程組有唯一解，解是
+`x_0`，但解集是 `\{x_0\}`。
+</CommonMistake>
+
+<CommonMistake title="忘記 ambient space">
+條件 `Ax=0` 本身沒有說明 `x` 是 `R^n` 中的向量、矩陣變量，還是其他物件。
+當語境未固定時，要寫出 ambient set。
+</CommonMistake>
+
+<CommonMistake title="只證明一個包含方向">
+要證明 `S=T`，只證明 `S` 的每個元素屬於 `T` 並不足夠。還要證明 `T` 的
+每個元素也屬於 `S`。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="如果 `S(A,b)=\varnothing`，這對方程組 `Ax=b` 表示甚麼？">
+把空集合翻譯回解的語言。
+</QuickCheck>
+
+<RevealSolution title="答案">
+這表示方程組沒有解。也就是說，`Ax=b` 不一致。
+</RevealSolution>
+
+<QuickCheck prompt="假設 `w=3u_1-u_2`。把 `w` 加入列表 `\{u_1,u_2\}` 會否改變張成？">
+使用冗餘向量定理。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不會。因為 `w` 已經是 `u_1` 與 `u_2` 的線性組合，
+
+$$
+\operatorname{Span}\{u_1,u_2,w\}
+=
+\operatorname{Span}\{u_1,u_2\}.
+$$
+</RevealSolution>
+
+## 練習
+
+<QuickCheck prompt="令 `S=\operatorname{Span}\{(1,0),(0,1),(1,1)\}` 且 `T=R^2`。證明 `S=T`。">
+即使其中一個方向看似明顯，也要寫出兩個包含方向。
+</QuickCheck>
+
+<RevealSolution title="引導解答">
+首先，`S` 的每個向量都是 `R^2` 中向量的線性組合，所以 `S\subseteq R^2`。
+
+反過來，取任意 `(a,b)\in R^2`。則
+
+$$
+(a,b)=a(1,0)+b(0,1)+0(1,1),
+$$
+
+所以 `(a,b)\in S`。因此 `R^2\subseteq S`，從而 `S=T`。
+</RevealSolution>
+
+## 先讀這些
+
+本節延伸
+[1.1 方程與解集](/zh-hk/notes/math1030/systems/equations-solution-sets)，
+並準備
+[6.3 線性組合與張成](/zh-hk/notes/math1030/vector-spaces/linear-combinations-and-span)
+中使用的集合相等論證。

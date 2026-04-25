@@ -44,6 +44,17 @@ April 24, 2026 QA update:
   `RevealSolution` blocks without introducing new component types.
 - `npm run contentlayer` passed after the CSCI2520 expansion and regenerated
   181 documents.
+- the latest MATH1090 `3.3` / `3.4` pass rendered new interactive widgets,
+  theorem/proof blocks, and added exercises in EN, zh-HK, and zh-CN; export
+  checks confirmed the new widgets degrade into static study snapshots in TXT,
+  and PDF export routes returned `application/pdf`.
+- the April 25 MATH1030 gap pass added EN / zh-HK / zh-CN units for `4.2` and
+  `6.7`, expanded `6.5`, and inserted one static SVG diagram into `6.6`; these
+  pages use existing MDX block types and should be included in the next export
+  and visual QA sample.
+- the next April 25 pass added `3.3 Row-operation matrices` and algorithmic
+  expansions to `6.3`, `6.4`, and `6.5`, again using existing theorem,
+  proof, worked-example, quick-check, and reveal-solution block types.
 
 ## Current findings
 
@@ -169,3 +180,51 @@ Current checkpoint resolution:
 - Current resume point: once DNS and a platform-matched Node / esbuild setup
   are available, run representative page QA on the expanded `5.1` note and
   continue to the next MATH1030 backlog unit
+
+### 2026-04-25 checkpoint 6: MATH1030 TOC and checkpoint math rendering
+
+- Checkpoint name: MATH1030 TOC and checkpoint math rendering
+- What was inspected: the shared note TOC, MATH1030 note pages, and checkpoint
+  prompt / answer rendering components
+- What was changed: `Toc` now defaults to `h2` / `h3` article headings and no
+  longer collects `h4` titles from definition, theorem, example, proof,
+  quick-check, or solution cards; checkpoint prompts, choices, preview text,
+  hints, correct-answer previews, and solution steps now render inline math
+  through the shared textbook rich-text renderer
+- Visual note: `math1030` `1.1` now embeds a compact geometric line-system
+  figure for unique / none / infinitely-many solution types across EN, zh-HK,
+  and zh-CN
+- Remaining issues: browser QA should confirm the simplified TOC on a long
+  MATH1030 page and the rendered checkpoint math on a representative free page
+  plus a representative member-gated page
+
+### 2026-04-25 checkpoint 7: MATH1030 2.1 complete-section structure
+
+- Checkpoint name: MATH1030 `2.1 Matrix basics` structure and figure pass
+- What was inspected: the localized matrix-basics MDX files, the shared MDX
+  block registry, the matrix interactive registry, the static interactive
+  export snapshots, and the checkpoint problem bank
+- What was changed: the note now follows a fuller course-section shape with
+  prerequisite preparation, matrix anatomy figure, guided matrix-reading
+  interaction, textbook examples, a beginner-facing problem-solving routine,
+  and a larger checkpoint set
+- Rendering note: the added figure is a shared MDX block rather than a
+  locale-specific image, so labels localize through the same EN / zh-HK /
+  zh-CN component path and export can still degrade the interaction separately
+- Remaining issues: run browser QA on EN, zh-HK, and zh-CN pages after the
+  contentlayer and production build refresh
+
+### 2026-04-25 checkpoint 8: MATH1030 5.1 single-chapter expansion
+
+- Checkpoint name: MATH1030 `5.1 Invertible matrices` single-chapter depth pass
+- What was inspected: the one-unit `invertibility` chapter, the localized
+  invertible-matrices MDX files, the existing row-reduction interactions, and
+  the checkpoint problem bank
+- What was changed: added a prerequisite section, one-sided inverse warning,
+  theorem-dictionary workflow, null-space proof of non-invertibility,
+  inverse-solve worked example, and a problem-solving routine before the
+  row-reduction example
+- Rendering note: the new material uses existing theorem, mistake, example,
+  quick-check, and reveal blocks only; no new visual component was needed
+- Remaining issues: run member-page browser QA and export checks after
+  contentlayer and production build refresh

@@ -225,6 +225,79 @@ All of these pairs represent the same integer, namely the one we would usually
 think of as `-3`.
 </WorkedExample>
 
+## Interactive check: changing representatives
+
+At this point, it is useful to test the defining relation directly. The
+following panel keeps the class fixed while you change representatives and asks
+whether a second pair lies in the same class.
+
+<InteractiveWidget id="integer-equivalence-explorer" />
+
+The important lesson is that equality in `Z` is not componentwise equality of
+pairs. It is equality of equivalence classes. Two very different looking pairs
+can be the same integer if the cross-sum condition `a+d=b+c` holds.
+
+## Subtraction and multiplication
+
+The same quotient viewpoint also gives formulas for the ordinary arithmetic of
+signed integers. Since `[(a,b)]` represents the formal difference `a-b`, we
+should define subtraction by
+
+$$
+[(a,b)]-[(c,d)] := [(a+d,b+c)].
+$$
+
+This matches the formal calculation
+
+$$
+(a-b)-(c-d)=(a+d)-(b+c).
+$$
+
+Multiplication is slightly more delicate, because the signs interact:
+
+$$
+(a-b)(c-d)=ac+bd-(ad+bc).
+$$
+
+So the product is defined by
+
+$$
+[(a,b)]\cdot[(c,d)] := [(ac+bd,ad+bc)].
+$$
+
+<TheoremCard title="The multiplication formula must be well-defined">
+If `(a,b)\sim_Z(a',b')` and `(c,d)\sim_Z(c',d')`, then
+
+$$
+(ac+bd,ad+bc)\sim_Z(a'c'+b'd',a'd'+b'c').
+$$
+
+Therefore the product class does not depend on the representatives chosen.
+</TheoremCard>
+
+<CollapsibleProof title="Proof structure for the well-definedness check">
+The hypotheses mean
+
+$$
+a+b'=b+a',
+\qquad
+c+d'=d+c'.
+$$
+
+To prove that the two proposed product representatives are equivalent, the
+definition of `\sim_Z` asks us to show
+
+$$
+(ac+bd)+(a'd'+b'c')=(ad+bc)+(a'c'+b'd').
+$$
+
+This equality is obtained by expanding the two hypothesis equations, using
+distributivity in `N`, and rearranging terms by associativity and commutativity.
+The point is not the arithmetic trick itself; the point is the required proof
+pattern: change representatives first, then show the output representatives
+remain equivalent.
+</CollapsibleProof>
+
 ## Common mistakes
 
 <CommonMistake title="The integer is not the pair">
@@ -293,6 +366,44 @@ $$
 
 Since `4>1`, the class is positive. In ordinary notation, it represents the
 integer `3`.
+</RevealSolution>
+
+<QuickCheck prompt="Use the subtraction formula to compute `[(5,1)]-[(2,4)]`. Which ordinary integer does the result represent?">
+Apply `[(a,b)]-[(c,d)] = [(a+d,b+c)]`, then read the formal difference.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The formula gives
+
+$$
+[(5,1)]-[(2,4)]=[(5+4,1+2)]=[(9,3)].
+$$
+
+The representative `(9,3)` has formal difference `9-3=6`, so the result
+represents the ordinary integer `6`.
+</RevealSolution>
+
+<QuickCheck prompt="Compute `[(3,1)]\cdot[(2,5)]` using the quotient formula for integer multiplication.">
+Use `[(a,b)]\cdot[(c,d)] = [(ac+bd,ad+bc)]`.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Here
+
+$$
+ac+bd=3\cdot2+1\cdot5=11,
+\qquad
+ad+bc=3\cdot5+1\cdot2=17.
+$$
+
+Thus
+
+$$
+[(3,1)]\cdot[(2,5)]=[(11,17)].
+$$
+
+The representative `(11,17)` has formal difference `-6`, matching the ordinary
+calculation `(3-1)(2-5)=2\cdot(-3)=-6`.
 </RevealSolution>
 
 ## Read this first

@@ -17,7 +17,7 @@ delta-epsilon limits, limit laws, and continuity.
 | --- | --- | --- | --- | --- |
 | `math1090` | 1 Logic | Authored in EN, zh-HK, zh-CN | Strong | Needs tone / depth review only. |
 | `math1090` | 2 Sets, functions, relations | Authored in EN, zh-HK, zh-CN | Strong | `2.1` and `2.2` are still thinner than the source density. |
-| `math1090` | 3 Naturals, integers, rationals | Authored through `3.5` | Strong | `3.4` now has a fuller quotient-construction rewrite. |
+| `math1090` | 3 Naturals, integers, rationals | Authored through `3.5` | Strong | `3.3` and `3.4` now include quotient-construction interactives, expanded integer / rational operation exercises, and checkpoint questions. |
 | `math1090` | 4 Orders, bounds, completeness, reals | Authored through `4.6` | Strong through `§4.11` | `4.1`-`4.6` now cover total order / ordered field, bounds and `sup` / `inf`, completeness, the `Q`-gap at `sqrt(2)`, axiomatic / first-approximation motivation, Dedekind cuts, decimal expansions, and irrational numbers. |
 | `math1090` | 5 Sequences and first limits | Authored through `5.3` | Strong through `§5.6` | Public notes now cover sequence limits, Cauchy sequences, the Cauchy-sequence model of `R`, delta-epsilon limits, limit laws, sequential characterization, and continuity in EN / zh-HK / zh-CN. |
 | `math1090` | 6 Review / appendices | Unauthored | Secondary / overlap | Remaining review-packet material is better treated as appendix-style reinforcement rather than the next public priority. |
@@ -31,12 +31,12 @@ remaining Math1090 backlog.
 
 | Course | Chapter | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
-| `math1030` | 1 Systems overview | Authored | Strong | `1.1` is still shorter than the source packet. |
-| `math1030` | 2 Matrices, elimination, solution types | Authored | Strong | `2.4` now has a fuller rewrite and safer augmented-matrix markup. |
-| `math1030` | 3 Matrix algebra | Authored | Strong | `3.1` and `3.2` are now at article depth; later cleanup is mostly cosmetic. |
-| `math1030` | 4 Homogeneous systems and null space | Authored | Strong | `4.1` is now much fuller; later work is mainly export and examples QA. |
-| `math1030` | 5 Invertibility | Authored | Strong | `5.1` is much deeper now, but appendix proofs remain partial. |
-| `math1030` | 6 Vector spaces, span, basis, rank | Authored through `6.6` | Strong | The main backbone is live; appendix-style basis results remain backlog. |
+| `math1030` | 1 Systems overview | Authored | Strong | `1.1` now has a line-system visual and a checkpoint problem, but can still absorb more tutorial-style exercises. |
+| `math1030` | 2 Matrices, elimination, solution types | Authored | Strong | Every chapter-2 unit now has checkpoint coverage; `2.1` has extra coefficient-position explanation. |
+| `math1030` | 3 Matrix algebra | Authored through `3.3` | Strong | `3.3` now adds row-operation matrices, left multiplication by elementary matrices, reverse row operations, and the bridge to invertibility. |
+| `math1030` | 4 Homogeneous systems, null space, and set language | Authored through `4.2` | Strong | `4.2` now adds set membership, solution-set notation, null spaces, span, set equality proofs, and redundant-vector arguments from the `n04-*` notes. |
+| `math1030` | 5 Invertibility | Authored | Strong | `5.1` now includes prerequisite preparation, one-sided inverse warnings, an invertibility-dictionary workflow, null-space noninvertibility tests, inverse-solve examples, and expanded checkpoint questions; appendix proofs remain partial. |
+| `math1030` | 6 Vector spaces, span, basis, rank | Authored through `6.7` | Strong | `6.3` now has the span-membership algorithm, `6.4` has the homogeneous-system dependence algorithm, `6.5` includes dimension counting, minimal-spanning-set extraction, and comparable-subspace criteria; `6.6` has a static rank map; `6.7` covers matrix subspaces, bases, and dimension. Remaining work is mostly optional proof appendices and deeper exercise/export QA. |
 | `math1030` | 7 Determinants | Authored through `7.3` | Strong | `7.3` deliberately absorbs the local appendix path to cofactors, adjoints, and Cramer's rule. |
 | `math1030` | 8 Eigenvalues and diagonalization | Authored through `8.3` | Strong | `8.3` includes multiplicities, the distinct-eigenvalue test, and a first Cayley-Hamilton pass. |
 | `math1030` | 9 Inner products and orthogonality | Authored through `9.4` | Strong | `9.4` completes the chapter with Cauchy-Schwarz and triangle inequalities after orthogonal bases and Gram-Schmidt. |
@@ -85,4 +85,7 @@ to the actual checked-in `CSCI2520` materials.
 The next content cycle should focus on QA across the now-broader public Notes
 tree: export fidelity, rendering checks, exercise / reveal integrity, and
 theme / layout review across Math1090, Math1030, and the expanded CSCI2520
-sequence. Math1025 expansion should remain controlled and source-backed.
+sequence. For MATH1030, the remaining content backlog is now mostly appendix
+proof material and local refinements to older homogeneous-system viewpoints
+rather than missing core chapter directories. Math1025 expansion should remain
+controlled and source-backed.

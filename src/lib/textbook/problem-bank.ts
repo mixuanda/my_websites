@@ -174,6 +174,150 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["quantifiers", "negation", "logic-equivalence"],
   },
+  "checkpoint.math1090.integer-equivalence-class": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.integer-equivalence-class",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "numbers",
+    unitId: "math1090.numbers.integers-from-equivalence-classes",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Which pair is equivalent to `(2,5)` under the integer relation `(a,b)~(c,d)` iff `a+d=b+c`?",
+      "在整數關係 `(a,b)~(c,d)` 當且僅當 `a+d=b+c` 下，哪一個對子與 `(2,5)` 等價？",
+      "在整数关系 `(a,b)~(c,d)` 当且仅当 `a+d=b+c` 下，哪一个对子与 `(2,5)` 等价？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("`(4,7)`", "`(4,7)`", "`(4,7)`"),
+      },
+      {
+        id: "b",
+        text: text("`(5,2)`", "`(5,2)`", "`(5,2)`"),
+      },
+      {
+        id: "c",
+        text: text("`(2,4)`", "`(2,4)`", "`(2,4)`"),
+      },
+      {
+        id: "d",
+        text: text("`(0,0)`", "`(0,0)`", "`(0,0)`"),
+      },
+    ],
+    correctAnswer: {
+      choiceId: "a",
+    },
+    hints: [
+      text(
+        "Do not compare coordinates directly. Test the cross-sum condition.",
+        "不要逐個坐標比較，要測試交叉和條件。",
+        "不要逐个坐标比较，要测试交叉和条件。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "For `(2,5)` and `(4,7)`, compare `2+7` with `5+4`.",
+        "對 `(2,5)` 與 `(4,7)`，比較 `2+7` 和 `5+4`。",
+        "对 `(2,5)` 与 `(4,7)`，比较 `2+7` 和 `5+4`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The relation says `(a,b)` and `(c,d)` are equivalent exactly when `a+d=b+c`.",
+        "這條關係說 `(a,b)` 與 `(c,d)` 等價，正正就是 `a+d=b+c`。",
+        "这条关系说 `(a,b)` 与 `(c,d)` 等价，正是 `a+d=b+c`。"
+      ),
+      text(
+        "For `(2,5)` and `(4,7)`, the two cross sums are `2+7=9` and `5+4=9`.",
+        "對 `(2,5)` 和 `(4,7)`，兩個交叉和是 `2+7=9` 與 `5+4=9`。",
+        "对 `(2,5)` 和 `(4,7)`，两个交叉和是 `2+7=9` 与 `5+4=9`。"
+      ),
+      text(
+        "Therefore `(4,7)` lies in the same equivalence class as `(2,5)`.",
+        "因此 `(4,7)` 與 `(2,5)` 屬於同一個等價類。",
+        "因此 `(4,7)` 与 `(2,5)` 属于同一个等价类。"
+      ),
+    ],
+    skillTags: ["equivalence-classes", "integers", "quotient-construction"],
+  },
+  "checkpoint.math1090.rational-representatives": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.rational-representatives",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "numbers",
+    unitId: "math1090.numbers.rationals-and-well-defined-operations",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "For representatives `(p,q)` and `(m,n)` of two rational numbers, which proposed comparison is designed to survive sign changes in denominators?",
+      "對兩個有理數的代表元 `(p,q)` 與 `(m,n)`，哪一個候選比較是為了在分母符號改變後仍保持不變而設計的？",
+      "对两个有理数的代表元 `(p,q)` 与 `(m,n)`，哪一个候选比较是为了在分母符号改变后仍保持不变而设计的？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("`p > m`", "`p > m`", "`p > m`"),
+      },
+      {
+        id: "b",
+        text: text("`pn-mq > 0` only", "只看 `pn-mq > 0`", "只看 `pn-mq > 0`"),
+      },
+      {
+        id: "c",
+        text: text("`(pn-mq)nq > 0`", "`(pn-mq)nq > 0`", "`(pn-mq)nq > 0`"),
+      },
+      {
+        id: "d",
+        text: text("`q=n`", "`q=n`", "`q=n`"),
+      },
+    ],
+    correctAnswer: {
+      choiceId: "c",
+    },
+    hints: [
+      text(
+        "A valid rule must account for the sign of the product of denominators.",
+        "有效規則必須同時處理分母乘積的符號。",
+        "有效规则必须同时处理分母乘积的符号。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Compare what happens when `1/2` is written as `(1,2)` and as `(-1,-2)`.",
+        "比較 `1/2` 寫成 `(1,2)` 以及 `(-1,-2)` 時會發生甚麼。",
+        "比较 `1/2` 写成 `(1,2)` 以及 `(-1,-2)` 时会发生什么。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "`p>m` depends only on chosen numerators, so equivalent representatives can change its truth value.",
+        "`p>m` 只依賴所選分子，因此等價代表元可以改變其真假值。",
+        "`p>m` 只依赖所选分子，因此等价代表元可以改变其真假值。"
+      ),
+      text(
+        "`pn-mq>0` still ignores whether the product `nq` is positive or negative.",
+        "`pn-mq>0` 仍然忽略了分母乘積 `nq` 是正還是負。",
+        "`pn-mq>0` 仍然忽略了分母乘积 `nq` 是正还是负。"
+      ),
+      text(
+        "Multiplying by `nq` gives the sign-corrected expression `(pn-mq)nq`, which is the candidate used in the note.",
+        "乘上 `nq` 會得到修正分母符號的表達式 `(pn-mq)nq`，這就是本節使用的候選規則。",
+        "乘上 `nq` 会得到修正分母符号的表达式 `(pn-mq)nq`，这就是本节使用的候选规则。"
+      ),
+    ],
+    skillTags: ["well-defined", "rationals", "representatives"],
+  },
   "checkpoint.math1030.invertible-rank": {
     accessTier: "MEMBER",
     id: "checkpoint.math1030.invertible-rank",
@@ -255,6 +399,136 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
     ],
     skillTags: ["invertible-matrix", "rank", "equivalent-statements"],
+  },
+  "checkpoint.math1030.invertible-null-vector": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.invertible-null-vector",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "invertibility",
+    unitId: "math1030.invertibility.invertible-matrices",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Suppose `A` is square and there is a nonzero vector `v` such that `Av=0`. What can you conclude?",
+      "假設 `A` 是方陣，且存在非零向量 `v` 使得 `Av=0`。可以推出甚麼？",
+      "假设 `A` 是方阵，且存在非零向量 `v` 使得 `Av=0`。可以推出什么？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "A is invertible.",
+          "A 可逆。",
+          "A 可逆。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "A is not invertible.",
+          "A 不可逆。",
+          "A 不可逆。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "A must be the identity matrix.",
+          "A 必定是單位矩陣。",
+          "A 必定是单位矩阵。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "The equation `Ax=0` has no solution.",
+          "方程 `Ax=0` 無解。",
+          "方程 `Ax=0` 无解。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "An invertible square matrix has only the trivial solution to `Ax=0`.",
+        "可逆方陣的 `Ax=0` 只有平凡解。",
+        "可逆方阵的 `Ax=0` 只有平凡解。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "If `A` were invertible, multiplying `Av=0` by `A^{-1}` would give `v=0`.",
+        "若 `A` 可逆，把 `Av=0` 左乘 `A^{-1}` 會得到 `v=0`。",
+        "若 `A` 可逆，把 `Av=0` 左乘 `A^{-1}` 会得到 `v=0`。"
+      ),
+      text(
+        "This contradicts the given condition `v≠0`.",
+        "這與已知條件 `v≠0` 矛盾。",
+        "这与已知条件 `v≠0` 矛盾。"
+      ),
+      text(
+        "Therefore `A` is not invertible.",
+        "因此 `A` 不可逆。",
+        "因此 `A` 不可逆。"
+      ),
+    ],
+    skillTags: ["invertible-matrix", "null-space", "nontrivial-solution"],
+  },
+  "checkpoint.math1030.inverse-solve-system": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.inverse-solve-system",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "invertibility",
+    unitId: "math1030.invertibility.invertible-matrices",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Let `A^{-1}=[[2,-1],[0,3]]` and `b=[5,-1]^T`. If `Ax=b`, what is `x`?",
+      "設 `A^{-1}=[[2,-1],[0,3]]` 且 `b=[5,-1]^T`。若 `Ax=b`，`x` 是甚麼？",
+      "设 `A^{-1}=[[2,-1],[0,3]]` 且 `b=[5,-1]^T`。若 `Ax=b`，`x` 是什么？"
+    ),
+    choices: [
+      { id: "a", text: text("`[11,-3]^T`", "`[11,-3]^T`", "`[11,-3]^T`") },
+      { id: "b", text: text("`[9,-3]^T`", "`[9,-3]^T`", "`[9,-3]^T`") },
+      { id: "c", text: text("`[10,-1]^T`", "`[10,-1]^T`", "`[10,-1]^T`") },
+      { id: "d", text: text("`[5,-1]^T`", "`[5,-1]^T`", "`[5,-1]^T`") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Multiply `Ax=b` on the left by `A^{-1}`; the solution is `x=A^{-1}b`.",
+        "把 `Ax=b` 左乘 `A^{-1}`；解是 `x=A^{-1}b`。",
+        "把 `Ax=b` 左乘 `A^{-1}`；解是 `x=A^{-1}b`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "Since `A` is invertible, `Ax=b` implies `x=A^{-1}b`.",
+        "因為 `A` 可逆，`Ax=b` 推出 `x=A^{-1}b`。",
+        "因为 `A` 可逆，`Ax=b` 推出 `x=A^{-1}b`。"
+      ),
+      text(
+        "Compute the first entry: 2·5 + (-1)·(-1) = 11.",
+        "計算第一個元素：2·5 + (-1)·(-1) = 11。",
+        "计算第一个元素：2·5 + (-1)·(-1) = 11。"
+      ),
+      text(
+        "Compute the second entry: 0·5 + 3·(-1) = -3.",
+        "計算第二個元素：0·5 + 3·(-1) = -3。",
+        "计算第二个元素：0·5 + 3·(-1) = -3。"
+      ),
+    ],
+    skillTags: ["invertible-matrix", "inverse", "linear-system"],
   },
   "checkpoint.math1030.null-space-dimension": {
     accessTier: "MEMBER",
@@ -1533,6 +1807,1409 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
     ],
     skillTags: ["cauchy-schwarz", "inner-product", "norm"],
+  },
+  "checkpoint.math1030.solution-set-parametric-line": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.solution-set-parametric-line",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "systems",
+    unitId: "math1030.systems.equations-solution-sets",
+    inputMode: "math-expression",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "Fill in the blank: for the system `x_1 - 2x_2 = 3`, if `x_2=t`, then `x_1 = ____`.",
+      "填空：對方程組 `x_1 - 2x_2 = 3`，若 `x_2=t`，則 `x_1 = ____`。",
+      "填空：对方程组 `x_1 - 2x_2 = 3`，若 `x_2=t`，则 `x_1 = ____`。"
+    ),
+    correctAnswer: {
+      value: "3+2t",
+      equivalentValues: ["2t+3", "3 + 2t", "2 t + 3"],
+      equivalence: [{ type: "trimmed" }, { type: "symbolic" }],
+    },
+    hints: [
+      text(
+        "Solve the equation for `x_1` after substituting `x_2=t`.",
+        "代入 `x_2=t` 後，把方程解成 `x_1` 的形式。",
+        "代入 `x_2=t` 后，把方程解成 `x_1` 的形式。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter a short expression in `t`, such as `3+2t`.",
+      "請輸入含 `t` 的簡短式子，例如 `3+2t`。",
+      "请输入含 `t` 的简短式子，例如 `3+2t`。"
+    ),
+    solutionSteps: [
+      text(
+        "Substitute `x_2=t` into `x_1 - 2x_2 = 3`.",
+        "把 `x_2=t` 代入 `x_1 - 2x_2 = 3`。",
+        "把 `x_2=t` 代入 `x_1 - 2x_2 = 3`。"
+      ),
+      text(
+        "This gives `x_1 - 2t = 3`, so `x_1 = 3+2t`.",
+        "得到 `x_1 - 2t = 3`，所以 `x_1 = 3+2t`。",
+        "得到 `x_1 - 2t = 3`，所以 `x_1 = 3+2t`。"
+      ),
+    ],
+    skillTags: ["solution-set", "parameter", "linear-system"],
+  },
+  "checkpoint.math1030.matrix-size-notation": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.matrix-size-notation",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "matrices",
+    unitId: "math1030.matrices.matrix-basics",
+    inputMode: "text",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "Fill in the blank: a matrix with 4 rows and 3 columns has size ____.",
+      "填空：一個有 4 行、3 列的矩陣，其大小是 ____。",
+      "填空：一个有 4 行、3 列的矩阵，其大小是 ____。"
+    ),
+    correctAnswer: {
+      value: "4x3",
+      equivalentValues: ["4×3", "4 x 3", "4 by 3", "4 rows by 3 columns"],
+      equivalence: [{ type: "trimmed" }, { type: "case-insensitive" }],
+    },
+    hints: [
+      text(
+        "Matrix size is always read as rows by columns.",
+        "矩陣大小永遠按「行數乘列數」讀。",
+        "矩阵大小永远按“行数乘列数”读。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Use the form `m x n` or `m×n`.",
+      "可用 `m x n` 或 `m×n` 形式。",
+      "可用 `m x n` 或 `m×n` 形式。"
+    ),
+    solutionSteps: [
+      text(
+        "The first number records the number of rows.",
+        "第一個數記錄行數。",
+        "第一个数记录行数。"
+      ),
+      text(
+        "The second number records the number of columns, so the size is `4x3`.",
+        "第二個數記錄列數，所以大小是 `4x3`。",
+        "第二个数记录列数，所以大小是 `4x3`。"
+      ),
+    ],
+    skillTags: ["matrix-basics", "matrix-dimensions"],
+  },
+  "checkpoint.math1030.matrix-entry-a23": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.matrix-entry-a23",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrices",
+    unitId: "math1030.matrices.matrix-basics",
+    inputMode: "text",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "Let `A = [[1,2,0],[3,-1,4]]`. What is `a_23`?",
+      "設 `A = [[1,2,0],[3,-1,4]]`。`a_23` 是多少？",
+      "设 `A = [[1,2,0],[3,-1,4]]`。`a_23` 是多少？"
+    ),
+    choices: [
+      { id: "a", text: text("`0`", "`0`", "`0`") },
+      { id: "b", text: text("`3`", "`3`", "`3`") },
+      { id: "c", text: text("`4`", "`4`", "`4`") },
+      { id: "d", text: text("`-1`", "`-1`", "`-1`") },
+    ],
+    correctAnswer: { choiceId: "c" },
+    hints: [
+      text(
+        "The first subscript is the row number and the second subscript is the column number.",
+        "第一個下標是行號，第二個下標是列號。",
+        "第一个下标是行号，第二个下标是列号。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "`a_23` means the entry in row 2 and column 3.",
+        "`a_23` 表示第 2 行第 3 列的元素。",
+        "`a_23` 表示第 2 行第 3 列的元素。"
+      ),
+      text(
+        "Row 2 is `[3,-1,4]`, so the column 3 entry is `4`.",
+        "第 2 行是 `[3,-1,4]`，所以第 3 列的元素是 `4`。",
+        "第 2 行是 `[3,-1,4]`，所以第 3 列的元素是 `4`。"
+      ),
+    ],
+    skillTags: ["matrix-basics", "entry-notation"],
+  },
+  "checkpoint.math1030.matrix-missing-zero-coefficient": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.matrix-missing-zero-coefficient",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "matrices",
+    unitId: "math1030.matrices.matrix-basics",
+    inputMode: "math-expression",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "Using variable order `(x_1,x_2,x_3)`, the equation `2x_1 - x_3 = 5` has coefficient ____ in column 2.",
+      "按變量次序 `(x_1,x_2,x_3)`，方程 `2x_1 - x_3 = 5` 在第 2 列的係數是 ____。",
+      "按变量次序 `(x_1,x_2,x_3)`，方程 `2x_1 - x_3 = 5` 在第 2 列的系数是 ____。"
+    ),
+    correctAnswer: {
+      value: "0",
+      equivalentValues: ["0.0"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "Column 2 belongs to `x_2` under the stated variable order.",
+        "在指定變量次序下，第 2 列屬於 `x_2`。",
+        "在指定变量次序下，第 2 列属于 `x_2`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter a single number.",
+      "請輸入一個數字。",
+      "请输入一个数字。"
+    ),
+    solutionSteps: [
+      text(
+        "Rewrite the equation with the missing variable shown: `2x_1 + 0x_2 - x_3 = 5`.",
+        "把缺失的變量寫出來：`2x_1 + 0x_2 - x_3 = 5`。",
+        "把缺失的变量写出来：`2x_1 + 0x_2 - x_3 = 5`。"
+      ),
+      text(
+        "Therefore the column 2 coefficient is `0`; the zero cannot be omitted from the coefficient matrix.",
+        "因此第 2 列的係數是 `0`；在係數矩陣中不能省略這個零。",
+        "因此第 2 列的系数是 `0`；在系数矩阵中不能省略这个零。"
+      ),
+    ],
+    skillTags: ["matrix-basics", "coefficient-matrix", "linear-system"],
+  },
+  "checkpoint.math1030.matrix-addition-defined": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.matrix-addition-defined",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrices",
+    unitId: "math1030.matrices.matrix-basics",
+    inputMode: "text",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "True or false: every `2 x 3` matrix can be added to every `3 x 2` matrix.",
+      "判斷：每個 `2 x 3` 矩陣都可以和每個 `3 x 2` 矩陣相加。",
+      "判断：每个 `2 x 3` 矩阵都可以和每个 `3 x 2` 矩阵相加。"
+    ),
+    choices: [
+      { id: "a", text: text("True", "正確", "正确") },
+      { id: "b", text: text("False", "錯誤", "错误") },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "Matrix addition is entrywise, so corresponding positions must exist in both matrices.",
+        "矩陣加法是逐項相加，所以兩個矩陣都必須有相同的對應位置。",
+        "矩阵加法是逐项相加，所以两个矩阵都必须有相同的对应位置。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "A `2 x 3` matrix has 2 rows and 3 columns.",
+        "`2 x 3` 矩陣有 2 行 3 列。",
+        "`2 x 3` 矩阵有 2 行 3 列。"
+      ),
+      text(
+        "A `3 x 2` matrix has 3 rows and 2 columns. The sizes do not match, so addition is not defined.",
+        "`3 x 2` 矩陣有 3 行 2 列。兩者大小不相同，所以加法未定義。",
+        "`3 x 2` 矩阵有 3 行 2 列。两者大小不相同，所以加法未定义。"
+      ),
+    ],
+    skillTags: ["matrix-basics", "matrix-addition", "definedness"],
+  },
+  "checkpoint.math1030.invalid-row-operation-zero": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.invalid-row-operation-zero",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrices",
+    unitId: "math1030.matrices.augmented-matrices-row-operations",
+    inputMode: "text",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "Which proposed row operation is not an elementary row operation?",
+      "以下哪一個候選行變換不是基本行變換？",
+      "以下哪一个候选行变换不是基本行变换？"
+    ),
+    choices: [
+      { id: "a", text: text("Swap two rows.", "交換兩行。", "交换两行。") },
+      { id: "b", text: text("Multiply a row by `0`.", "把一行乘以 `0`。", "把一行乘以 `0`。") },
+      { id: "c", text: text("Multiply a row by a nonzero scalar.", "把一行乘以非零常數。", "把一行乘以非零常数。") },
+      { id: "d", text: text("Add a multiple of one row to another row.", "把某行的倍數加到另一行。", "把某行的倍数加到另一行。") },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "Elementary row operations must be reversible.",
+        "基本行變換必須可以逆轉。",
+        "基本行变换必须可以逆转。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Multiplying a row by `0` destroys information in that row.",
+        "把一行乘以 `0` 會刪去該行原本的資訊。",
+        "把一行乘以 `0` 会删去该行原本的信息。"
+      ),
+      text(
+        "Because the move cannot be reversed, it does not preserve the solution set in general.",
+        "因為這一步不能逆轉，所以一般不會保留解集。",
+        "因为这一步不能逆转，所以一般不会保留解集。"
+      ),
+    ],
+    skillTags: ["row-operations", "equivalent-systems", "reversibility"],
+  },
+  "checkpoint.math1030.rref-contradiction-row": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.rref-contradiction-row",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrices",
+    unitId: "math1030.matrices.solution-set-types",
+    inputMode: "text",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "In an augmented matrix, what does a row `[0 0 0 | 5]` mean?",
+      "在增廣矩陣中，一行 `[0 0 0 | 5]` 代表甚麼？",
+      "在增广矩阵中，一行 `[0 0 0 | 5]` 代表什么？"
+    ),
+    choices: [
+      { id: "a", text: text("There is a free variable.", "存在自由變量。", "存在自由变量。") },
+      { id: "b", text: text("The system has a unique solution.", "方程組有唯一解。", "方程组有唯一解。") },
+      { id: "c", text: text("The system is inconsistent.", "方程組不一致。", "方程组不一致。") },
+      { id: "d", text: text("The row can be ignored because it starts with zeros.", "這行可忽略，因為左邊全是零。", "这行可忽略，因为左边全是零。") },
+    ],
+    correctAnswer: { choiceId: "c" },
+    hints: [
+      text(
+        "Translate the row back into an equation.",
+        "把這一行翻譯回方程。",
+        "把这一行翻译回方程。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The row `[0 0 0 | 5]` says `0x_1+0x_2+0x_3=5`.",
+        "這行表示 `0x_1+0x_2+0x_3=5`。",
+        "这行表示 `0x_1+0x_2+0x_3=5`。"
+      ),
+      text(
+        "That is the impossible equation `0=5`, so no vector can solve the system.",
+        "這就是不可能成立的方程 `0=5`，所以沒有向量可以滿足整個系統。",
+        "这就是不可能成立的方程 `0=5`，所以没有向量可以满足整个系统。"
+      ),
+    ],
+    skillTags: ["rref", "inconsistent-system", "solution-types"],
+  },
+  "checkpoint.math1030.vector-space-zero-vector": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.vector-space-zero-vector",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.vector-spaces",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "True or false: every vector space must contain a zero vector.",
+      "判斷正誤：每個向量空間都必須包含零向量。",
+      "判断正误：每个向量空间都必须包含零向量。"
+    ),
+    choices: [
+      { id: "true", text: text("True", "正確", "正确") },
+      { id: "false", text: text("False", "錯誤", "错误") },
+    ],
+    correctAnswer: { choiceId: "true" },
+    hints: [
+      text(
+        "One of the vector-space axioms is the existence of an additive identity.",
+        "向量空間公理之一是加法單位元的存在。",
+        "向量空间公理之一是加法单位元的存在。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "A vector space has an additive identity, usually denoted `0`.",
+        "向量空間有一個加法單位元，通常記作 `0`。",
+        "向量空间有一个加法单位元，通常记作 `0`。"
+      ),
+      text(
+        "Therefore every vector space contains its zero vector.",
+        "因此每個向量空間都包含它自己的零向量。",
+        "因此每个向量空间都包含它自己的零向量。"
+      ),
+    ],
+    skillTags: ["vector-space", "zero-vector", "axioms", "true-false"],
+  },
+  "checkpoint.math1030.affine-line-not-subspace": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.affine-line-not-subspace",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.subspaces",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "True or false: `W={(x,y) in R^2 : x+y=1}` is a subspace of `R^2`.",
+      "判斷正誤：`W={(x,y) in R^2 : x+y=1}` 是 `R^2` 的子空間。",
+      "判断正误：`W={(x,y) in R^2 : x+y=1}` 是 `R^2` 的子空间。"
+    ),
+    choices: [
+      { id: "true", text: text("True", "正確", "正确") },
+      { id: "false", text: text("False", "錯誤", "错误") },
+    ],
+    correctAnswer: { choiceId: "false" },
+    hints: [
+      text(
+        "First test whether the zero vector belongs to the set.",
+        "先檢查零向量是否屬於這個集合。",
+        "先检查零向量是否属于这个集合。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "The zero vector `(0,0)` gives `x+y=0`, not `1`.",
+        "零向量 `(0,0)` 令 `x+y=0`，不是 `1`。",
+        "零向量 `(0,0)` 令 `x+y=0`，不是 `1`。"
+      ),
+      text(
+        "A subspace must contain the zero vector, so `W` is not a subspace.",
+        "子空間必須包含零向量，所以 `W` 不是子空間。",
+        "子空间必须包含零向量，所以 `W` 不是子空间。"
+      ),
+    ],
+    skillTags: ["subspace-test", "zero-vector", "true-false"],
+  },
+  "checkpoint.math1030.linear-combination-coordinate": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.linear-combination-coordinate",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.linear-combinations-and-span",
+    inputMode: "vector",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Fill in the blank: `2(1,0)+3(0,1)=____`.",
+      "填空：`2(1,0)+3(0,1)=____`。",
+      "填空：`2(1,0)+3(0,1)=____`。"
+    ),
+    correctAnswer: {
+      value: "(2,3)",
+      equivalentValues: ["(2, 3)", "[2,3]", "[2, 3]", "2,3", "2, 3"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "Scale each vector first, then add corresponding coordinates.",
+        "先把每個向量做數乘，再逐個坐標相加。",
+        "先把每个向量做数乘，再逐个坐标相加。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    syntaxGuidance: text(
+      "Enter an ordered pair such as `(2,3)`.",
+      "請輸入有序對，例如 `(2,3)`。",
+      "请输入有序对，例如 `(2,3)`。"
+    ),
+    solutionSteps: [
+      text(
+        "`2(1,0)=(2,0)` and `3(0,1)=(0,3)`.",
+        "`2(1,0)=(2,0)`，而 `3(0,1)=(0,3)`。",
+        "`2(1,0)=(2,0)`，而 `3(0,1)=(0,3)`。"
+      ),
+      text(
+        "Adding coordinates gives `(2,0)+(0,3)=(2,3)`.",
+        "逐坐標相加得到 `(2,0)+(0,3)=(2,3)`。",
+        "逐坐标相加得到 `(2,0)+(0,3)=(2,3)`。"
+      ),
+    ],
+    skillTags: ["linear-combination", "span", "coordinates"],
+  },
+  "checkpoint.math1030.basis-p2-dimension": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.basis-p2-dimension",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.basis-and-dimension",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "How many vectors must a basis of the polynomial space `P_2` have?",
+      "多項式空間 `P_2` 的一組基底必須有多少個向量？",
+      "多项式空间 `P_2` 的一组基底必须有多少个向量？"
+    ),
+    choices: [
+      { id: "a", text: text("2", "2", "2") },
+      { id: "b", text: text("3", "3", "3") },
+      { id: "c", text: text("4", "4", "4") },
+      { id: "d", text: text("Infinitely many", "無限多個", "无限多个") },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "`P_2` consists of polynomials `a+bx+cx^2`.",
+        "`P_2` 由形如 `a+bx+cx^2` 的多項式組成。",
+        "`P_2` 由形如 `a+bx+cx^2` 的多项式组成。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "Every polynomial in `P_2` is determined by three coefficients: constant, `x`, and `x^2`.",
+        "`P_2` 中每個多項式由三個係數決定：常數項、`x` 項、`x^2` 項。",
+        "`P_2` 中每个多项式由三个系数决定：常数项、`x` 项、`x^2` 项。"
+      ),
+      text(
+        "The standard basis is `{1,x,x^2}`, which has three vectors.",
+        "標準基底是 `{1,x,x^2}`，共有三個向量。",
+        "标准基底是 `{1,x,x^2}`，共有三个向量。"
+      ),
+    ],
+    skillTags: ["basis", "dimension", "polynomial-space"],
+  },
+  "checkpoint.math1030.solution-vector-definition": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.solution-vector-definition",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "systems",
+    unitId: "math1030.systems.equations-solution-sets",
+    inputMode: "text",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "For a system in variables `x_1,...,x_n`, what does it mean for `(s_1,...,s_n)` to be a solution?",
+      "對於變量為 `x_1,...,x_n` 的方程組，`(s_1,...,s_n)` 是一個解是甚麼意思？",
+      "对于变量为 `x_1,...,x_n` 的方程组，`(s_1,...,s_n)` 是一个解是什么意思？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "The numbers make every equation true when substituted in the stated order.",
+          "按指定次序代入後，這些數使每條方程都成立。",
+          "按指定次序代入后，这些数使每条方程都成立。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "The numbers only need to satisfy the first equation.",
+          "這些數只需要滿足第一條方程。",
+          "这些数只需要满足第一条方程。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "The numbers may be written in any order.",
+          "這些數可以用任何次序書寫。",
+          "这些数可以用任何次序书写。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "The system must have no other solution.",
+          "方程組必須沒有其他解。",
+          "方程组必须没有其他解。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The tuple records one proposed value for each variable, and all equations in the system must be checked.",
+        "這個有序組為每個變量記錄一個候選值，而且必須檢查方程組中的所有方程。",
+        "这个有序组为每个变量记录一个候选值，而且必须检查方程组中的所有方程。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "A solution is not just a number; it is an ordered list matching the declared variable order.",
+        "一個解不只是一個數，而是配合已聲明變量次序的有序列表。",
+        "一个解不只是一个数，而是配合已声明变量顺序的有序列表。"
+      ),
+      text(
+        "After substituting `x_i=s_i` for every variable, every equation in the system must become a true statement.",
+        "把每個變量代成 `x_i=s_i` 後，方程組中的每條方程都必須變成真命題。",
+        "把每个变量代成 `x_i=s_i` 后，方程组中的每条方程都必须变成真命题。"
+      ),
+    ],
+    skillTags: ["linear-system", "solution-set", "ordered-tuples"],
+  },
+  "checkpoint.math1030.free-variable-parametric-solution": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.free-variable-parametric-solution",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "systems",
+    unitId: "math1030.systems.equations-solution-sets",
+    inputMode: "math-expression",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "For `x_1-5x_4=1`, if the free variable is `x_4=t`, then `x_1=____`.",
+      "對方程 `x_1-5x_4=1`，若自由變量是 `x_4=t`，則 `x_1=____`。",
+      "对方程 `x_1-5x_4=1`，若自由变量是 `x_4=t`，则 `x_1=____`。"
+    ),
+    correctAnswer: {
+      value: "1+5t",
+      equivalentValues: ["5t+1", "1 + 5t", "5 t + 1"],
+      equivalence: [{ type: "trimmed" }, { type: "symbolic" }],
+    },
+    hints: [
+      text(
+        "Move the term involving the free variable to the right-hand side.",
+        "把含自由變量的項移到右邊。",
+        "把含自由变量的项移到右边。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter a short expression in `t`, such as `1+5t`.",
+      "請輸入含 `t` 的簡短式子，例如 `1+5t`。",
+      "请输入含 `t` 的简短式子，例如 `1+5t`。"
+    ),
+    solutionSteps: [
+      text(
+        "Substitute `x_4=t` into `x_1-5x_4=1`.",
+        "把 `x_4=t` 代入 `x_1-5x_4=1`。",
+        "把 `x_4=t` 代入 `x_1-5x_4=1`。"
+      ),
+      text(
+        "Then `x_1-5t=1`, so `x_1=1+5t`.",
+        "得到 `x_1-5t=1`，所以 `x_1=1+5t`。",
+        "得到 `x_1-5t=1`，所以 `x_1=1+5t`。"
+      ),
+    ],
+    skillTags: ["linear-system", "free-variable", "parametric-form"],
+  },
+  "checkpoint.math1030.row-operation-reversibility": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.row-operation-reversibility",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrices",
+    unitId: "math1030.matrices.augmented-matrices-row-operations",
+    inputMode: "text",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "If a row operation replaces `R_3` by `R_3+2R_1`, which operation reverses it?",
+      "若某個行變換把 `R_3` 換成 `R_3+2R_1`，哪個行變換可以把它逆轉？",
+      "若某个行变换把 `R_3` 换成 `R_3+2R_1`，哪个行变换可以把它逆转？"
+    ),
+    choices: [
+      { id: "a", text: text("Replace `R_3` by `R_3-2R_1`.", "把 `R_3` 換成 `R_3-2R_1`。", "把 `R_3` 换成 `R_3-2R_1`。") },
+      { id: "b", text: text("Replace `R_1` by `R_1-2R_3`.", "把 `R_1` 換成 `R_1-2R_3`。", "把 `R_1` 换成 `R_1-2R_3`。") },
+      { id: "c", text: text("Multiply `R_3` by `0`.", "把 `R_3` 乘以 `0`。", "把 `R_3` 乘以 `0`。") },
+      { id: "d", text: text("Swap `R_1` and `R_3`.", "交換 `R_1` 和 `R_3`。", "交换 `R_1` 和 `R_3`。") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "To undo adding a multiple of another row, add the opposite multiple of that same row.",
+        "要逆轉「加上另一行的倍數」，就加上同一行的相反倍數。",
+        "要逆转“加上另一行的倍数”，就加上同一行的相反倍数。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "After the first operation, the new third row is old `R_3+2R_1`.",
+        "第一步之後，新的第三行是舊的 `R_3+2R_1`。",
+        "第一步之后，新的第三行是旧的 `R_3+2R_1`。"
+      ),
+      text(
+        "Subtracting `2R_1` from that row gives `(old R_3+2R_1)-2R_1=old R_3`.",
+        "再從該行減去 `2R_1`，得到 `(舊 R_3+2R_1)-2R_1=舊 R_3`。",
+        "再从该行减去 `2R_1`，得到 `(旧 R_3+2R_1)-2R_1=旧 R_3`。"
+      ),
+    ],
+    skillTags: ["row-operations", "equivalent-systems", "reversibility"],
+  },
+  "checkpoint.math1030.rref-free-variable-column": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.rref-free-variable-column",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrices",
+    unitId: "math1030.matrices.gaussian-elimination-rref",
+    inputMode: "text",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "In the RREF coefficient matrix `[[1,0,3],[0,1,-2]]`, which variable is free?",
+      "在最簡行階梯係數矩陣 `[[1,0,3],[0,1,-2]]` 中，哪個變量是自由變量？",
+      "在最简行阶梯系数矩阵 `[[1,0,3],[0,1,-2]]` 中，哪个变量是自由变量？"
+    ),
+    choices: [
+      { id: "a", text: text("`x_1`", "`x_1`", "`x_1`") },
+      { id: "b", text: text("`x_2`", "`x_2`", "`x_2`") },
+      { id: "c", text: text("`x_3`", "`x_3`", "`x_3`") },
+      { id: "d", text: text("No variable is free.", "沒有自由變量。", "没有自由变量。") },
+    ],
+    correctAnswer: { choiceId: "c" },
+    hints: [
+      text(
+        "Pivot columns contain leading 1s. Non-pivot variable columns correspond to free variables.",
+        "樞軸列含有首 1；非樞軸變量列對應自由變量。",
+        "主元列含有首 1；非主元变量列对应自由变量。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The leading 1s are in columns 1 and 2.",
+        "首 1 位於第 1 列和第 2 列。",
+        "首 1 位于第 1 列和第 2 列。"
+      ),
+      text(
+        "Column 3 has no pivot, so `x_3` is the free variable.",
+        "第 3 列沒有樞軸，所以 `x_3` 是自由變量。",
+        "第 3 列没有主元，所以 `x_3` 是自由变量。"
+      ),
+    ],
+    skillTags: ["rref", "pivot-columns", "free-variable"],
+  },
+  "checkpoint.math1030.transpose-symmetric-sum": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.transpose-symmetric-sum",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrix-algebra",
+    unitId: "math1030.matrix-algebra.transpose-and-special-matrices",
+    inputMode: "text",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "For any square matrix `A`, what can be said about `A + A^T`?",
+      "對任意方陣 `A`，關於 `A + A^T` 可以說甚麼？",
+      "对任意方阵 `A`，关于 `A + A^T` 可以说什么？"
+    ),
+    choices: [
+      { id: "a", text: text("It is symmetric.", "它是對稱矩陣。", "它是对称矩阵。") },
+      { id: "b", text: text("It is skew-symmetric.", "它是反對稱矩陣。", "它是反对称矩阵。") },
+      { id: "c", text: text("It is always the zero matrix.", "它永遠是零矩陣。", "它永远是零矩阵。") },
+      { id: "d", text: text("It is defined only when `A` is diagonal.", "只有當 `A` 是對角矩陣時才有定義。", "只有当 `A` 是对角矩阵时才有定义。") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Transpose the whole expression and use `(A^T)^T=A`.",
+        "把整個式子轉置，並使用 `(A^T)^T=A`。",
+        "把整个式子转置，并使用 `(A^T)^T=A`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "`(A+A^T)^T=A^T+(A^T)^T`.",
+        "`(A+A^T)^T=A^T+(A^T)^T`。",
+        "`(A+A^T)^T=A^T+(A^T)^T`。"
+      ),
+      text(
+        "Since `(A^T)^T=A`, the transpose equals `A^T+A=A+A^T`, so the matrix is symmetric.",
+        "因為 `(A^T)^T=A`，轉置後等於 `A^T+A=A+A^T`，所以它是對稱矩陣。",
+        "因为 `(A^T)^T=A`，转置后等于 `A^T+A=A+A^T`，所以它是对称矩阵。"
+      ),
+    ],
+    skillTags: ["transpose", "symmetric-matrix", "matrix-algebra"],
+  },
+  "checkpoint.math1030.null-space-set-notation": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.null-space-set-notation",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "solution-structure",
+    unitId: "math1030.solution-structure.homogeneous-systems-and-null-space",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "If `A` is a `5 x 8` matrix, which expression correctly describes `N(A)`?",
+      "若 `A` 是 `5 x 8` 矩陣，哪個式子正確描述 `N(A)`？",
+      "若 `A` 是 `5 x 8` 矩阵，哪个式子正确描述 `N(A)`？"
+    ),
+    choices: [
+      { id: "a", text: text("`{x in R^8 : Ax=0_5}`", "`{x in R^8 : Ax=0_5}`", "`{x in R^8 : Ax=0_5}`") },
+      { id: "b", text: text("`{x in R^5 : Ax=0_8}`", "`{x in R^5 : Ax=0_8}`", "`{x in R^5 : Ax=0_8}`") },
+      { id: "c", text: text("`{Ax=0_5 : x in R^8}`", "`{Ax=0_5 : x in R^8}`", "`{Ax=0_5 : x in R^8}`") },
+      { id: "d", text: text("`{x in R^8 : A=0_5}`", "`{x in R^8 : A=0_5}`", "`{x in R^8 : A=0_5}`") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The vectors in the null space are input vectors for `A`, so their length is the number of columns.",
+        "零空間中的向量是 `A` 的輸入向量，所以其長度等於列數。",
+        "零空间中的向量是 `A` 的输入向量，所以其长度等于列数。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "A `5 x 8` matrix maps vectors in `R^8` to vectors in `R^5`.",
+        "`5 x 8` 矩陣把 `R^8` 中的向量映到 `R^5` 中的向量。",
+        "`5 x 8` 矩阵把 `R^8` 中的向量映到 `R^5` 中的向量。"
+      ),
+      text(
+        "Therefore `N(A)` consists of all `x in R^8` such that `Ax` is the zero vector `0_5`.",
+        "因此 `N(A)` 由所有滿足 `Ax=0_5` 的 `x in R^8` 組成。",
+        "因此 `N(A)` 由所有满足 `Ax=0_5` 的 `x in R^8` 组成。"
+      ),
+    ],
+    skillTags: ["null-space", "set-notation", "homogeneous-system"],
+  },
+  "checkpoint.math1030.elementary-matrix-row-addition": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.elementary-matrix-row-addition",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrix-algebra",
+    unitId: "math1030.matrix-algebra.row-operation-matrices",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "For `3 x 3` matrices, which elementary matrix represents `R_2 <- R_2 + 3R_1`?",
+      "對 `3 x 3` 矩陣，哪個初等矩陣表示 `R_2 <- R_2 + 3R_1`？",
+      "对 `3 x 3` 矩阵，哪个初等矩阵表示 `R_2 <- R_2 + 3R_1`？"
+    ),
+    choices: [
+      { id: "a", text: text("`[[1,0,0],[3,1,0],[0,0,1]]`", "`[[1,0,0],[3,1,0],[0,0,1]]`", "`[[1,0,0],[3,1,0],[0,0,1]]`") },
+      { id: "b", text: text("`[[1,3,0],[0,1,0],[0,0,1]]`", "`[[1,3,0],[0,1,0],[0,0,1]]`", "`[[1,3,0],[0,1,0],[0,0,1]]`") },
+      { id: "c", text: text("`[[1,0,0],[0,3,0],[0,0,1]]`", "`[[1,0,0],[0,3,0],[0,0,1]]`", "`[[1,0,0],[0,3,0],[0,0,1]]`") },
+      { id: "d", text: text("`[[0,1,0],[1,0,0],[0,0,1]]`", "`[[0,1,0],[1,0,0],[0,0,1]]`", "`[[0,1,0],[1,0,0],[0,0,1]]`") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Apply the row operation to `I_3`; only row 2 changes.",
+        "把行變換作用在 `I_3` 上；只有第 2 行改變。",
+        "把行变换作用在 `I_3` 上；只有第 2 行改变。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "Start from `I_3`.",
+        "從 `I_3` 開始。",
+        "从 `I_3` 开始。"
+      ),
+      text(
+        "`R_2 <- R_2 + 3R_1` changes row 2 from `[0,1,0]` to `[3,1,0]`.",
+        "`R_2 <- R_2 + 3R_1` 把第 2 行由 `[0,1,0]` 改成 `[3,1,0]`。",
+        "`R_2 <- R_2 + 3R_1` 把第 2 行由 `[0,1,0]` 改成 `[3,1,0]`。"
+      ),
+      text(
+        "Therefore the elementary matrix is `[[1,0,0],[3,1,0],[0,0,1]]`.",
+        "因此初等矩陣是 `[[1,0,0],[3,1,0],[0,0,1]]`。",
+        "因此初等矩阵是 `[[1,0,0],[3,1,0],[0,0,1]]`。"
+      ),
+    ],
+    skillTags: ["elementary-matrix", "row-operation", "matrix-multiplication"],
+  },
+  "checkpoint.math1030.span-nonmembership-inconsistent": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.span-nonmembership-inconsistent",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.linear-combinations-and-span",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "If the system `[u_1 u_2]c=v` is inconsistent, what can you conclude?",
+      "若系統 `[u_1 u_2]c=v` 不一致，可以推出甚麼？",
+      "若系统 `[u_1 u_2]c=v` 不一致，可以推出什么？"
+    ),
+    choices: [
+      { id: "a", text: text("`v` is not in `Span{u_1,u_2}`.", "`v` 不屬於 `Span{u_1,u_2}`。", "`v` 不属于 `Span{u_1,u_2}`。") },
+      { id: "b", text: text("`v` is automatically the zero vector.", "`v` 必定是零向量。", "`v` 必定是零向量。") },
+      { id: "c", text: text("`u_1,u_2` must be independent.", "`u_1,u_2` 必定線性獨立。", "`u_1,u_2` 必定线性独立。") },
+      { id: "d", text: text("Every vector is in the span.", "所有向量都屬於這個張成。", "所有向量都属于这个张成。") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Membership in the span means there exist coefficients solving the system.",
+        "屬於張成表示存在係數能解這個系統。",
+        "属于张成表示存在系数能解这个系统。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "The equation `[u_1 u_2]c=v` asks whether `v=c_1u_1+c_2u_2`.",
+        "方程 `[u_1 u_2]c=v` 正是在問是否有 `v=c_1u_1+c_2u_2`。",
+        "方程 `[u_1 u_2]c=v` 正是在问是否有 `v=c_1u_1+c_2u_2`。"
+      ),
+      text(
+        "If it is inconsistent, no such coefficients exist.",
+        "若它不一致，就不存在這樣的係數。",
+        "若它不一致，就不存在这样的系数。"
+      ),
+    ],
+    skillTags: ["span", "linear-combination", "consistency"],
+  },
+  "checkpoint.math1030.dependence-relation-free-variable": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.dependence-relation-free-variable",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.linear-dependence-and-independence",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "If `A=[u_1 u_2 u_3]` and solving `Ac=0` gives `c=(-1,-1,1)^T`, which relation follows?",
+      "若 `A=[u_1 u_2 u_3]` 且 `Ac=0` 有解 `c=(-1,-1,1)^T`，可推出哪條關係？",
+      "若 `A=[u_1 u_2 u_3]` 且 `Ac=0` 有解 `c=(-1,-1,1)^T`，可推出哪条关系？"
+    ),
+    choices: [
+      { id: "a", text: text("`-u_1-u_2+u_3=0`", "`-u_1-u_2+u_3=0`", "`-u_1-u_2+u_3=0`") },
+      { id: "b", text: text("`u_1+u_2+u_3=0`", "`u_1+u_2+u_3=0`", "`u_1+u_2+u_3=0`") },
+      { id: "c", text: text("`u_1-u_2-u_3=0`", "`u_1-u_2-u_3=0`", "`u_1-u_2-u_3=0`") },
+      { id: "d", text: text("No relation follows.", "不能推出任何關係。", "不能推出任何关系。") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The entries of `c` are the coefficients of `u_1,u_2,u_3`.",
+        "`c` 的各個分量就是 `u_1,u_2,u_3` 的係數。",
+        "`c` 的各个分量就是 `u_1,u_2,u_3` 的系数。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "`Ac=0` means `c_1u_1+c_2u_2+c_3u_3=0`.",
+        "`Ac=0` 表示 `c_1u_1+c_2u_2+c_3u_3=0`。",
+        "`Ac=0` 表示 `c_1u_1+c_2u_2+c_3u_3=0`。"
+      ),
+      text(
+        "Substituting `c=(-1,-1,1)^T` gives `-u_1-u_2+u_3=0`.",
+        "代入 `c=(-1,-1,1)^T`，得到 `-u_1-u_2+u_3=0`。",
+        "代入 `c=(-1,-1,1)^T`，得到 `-u_1-u_2+u_3=0`。"
+      ),
+    ],
+    skillTags: ["linear-dependence", "homogeneous-system", "rref"],
+  },
+  "checkpoint.math1030.minimal-spanning-pivot-columns": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.minimal-spanning-pivot-columns",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.basis-and-dimension",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "If the pivot columns of the RREF of `U=[u_1 ... u_5]` are columns 1, 3, and 4, which original vectors form the extracted basis for `Span{u_1,...,u_5}`?",
+      "若 `U=[u_1 ... u_5]` 的 RREF 主元欄是第 1、3、4 欄，哪些原向量形成抽出的基底？",
+      "若 `U=[u_1 ... u_5]` 的 RREF 主元列是第 1、3、4 列，哪些原向量形成抽出的基？"
+    ),
+    choices: [
+      { id: "a", text: text("`u_1,u_3,u_4`", "`u_1,u_3,u_4`", "`u_1,u_3,u_4`") },
+      { id: "b", text: text("columns 1, 3, and 4 of the RREF matrix", "RREF 矩陣的第 1、3、4 欄", "RREF 矩阵的第 1、3、4 列") },
+      { id: "c", text: text("`u_2,u_5`", "`u_2,u_5`", "`u_2,u_5`") },
+      { id: "d", text: text("all five original vectors", "全部五個原向量", "全部五个原向量") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Use pivot positions from RREF, but take the basis vectors from the original matrix.",
+        "主元位置從 RREF 讀出，但基底向量要取自原矩陣。",
+        "主元位置从 RREF 读出，但基向量要取自原矩阵。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "Pivot positions identify which original columns are independent and span the same column space.",
+        "主元位置指出哪些原始列向量線性獨立，並張成同一個列空間。",
+        "主元位置指出哪些原始列向量线性独立，并张成同一个列空间。"
+      ),
+      text(
+        "Therefore the extracted basis is `u_1,u_3,u_4`.",
+        "因此抽出的基底是 `u_1,u_3,u_4`。",
+        "因此抽出的基是 `u_1,u_3,u_4`。"
+      ),
+    ],
+    skillTags: ["basis", "dimension", "minimal-spanning-set", "rref"],
+  },
+  "checkpoint.math1030.set-equality-two-inclusions": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.set-equality-two-inclusions",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "solution-structure",
+    unitId: "math1030.solution-structure.set-language-and-solution-sets",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "To prove two solution sets `S` and `T` are equal, which pair of statements is usually enough?",
+      "要證明兩個解集 `S` 和 `T` 相等，通常證明哪一對陳述就足夠？",
+      "要证明两个解集 `S` 和 `T` 相等，通常证明哪一对陈述就足够？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("`S subset T` and `T subset S`", "`S subset T` 和 `T subset S`", "`S subset T` 和 `T subset S`"),
+      },
+      {
+        id: "b",
+        text: text("`S` and `T` have similar-looking formulas.", "`S` 和 `T` 的公式看起來相似。", "`S` 和 `T` 的公式看起来相似。"),
+      },
+      {
+        id: "c",
+        text: text("One example belongs to both sets.", "有一個例子同時屬於兩個集合。", "有一个例子同时属于两个集合。"),
+      },
+      {
+        id: "d",
+        text: text("`S` is nonempty.", "`S` 非空。", "`S` 非空。"),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Set equality is usually proved by proving both containments.",
+        "集合相等通常要證明兩個方向的包含關係。",
+        "集合相等通常要证明两个方向的包含关系。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "If every element of `S` is in `T`, then `S subset T`.",
+        "如果 `S` 的每個元素都屬於 `T`，則 `S subset T`。",
+        "如果 `S` 的每个元素都属于 `T`，则 `S subset T`。"
+      ),
+      text(
+        "If every element of `T` is in `S`, then `T subset S`.",
+        "如果 `T` 的每個元素都屬於 `S`，則 `T subset S`。",
+        "如果 `T` 的每个元素都属于 `S`，则 `T subset S`。"
+      ),
+      text(
+        "Together, the two containments say the sets have exactly the same elements.",
+        "兩個包含關係合起來，表示兩個集合有完全相同的元素。",
+        "两个包含关系合起来，表示两个集合有完全相同的元素。"
+      ),
+    ],
+    skillTags: ["set-equality", "solution-set", "proof"],
+  },
+  "checkpoint.math1030.span-membership-set-language": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.span-membership-set-language",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "solution-structure",
+    unitId: "math1030.solution-structure.set-language-and-solution-sets",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Which statement correctly says that `b` lies in the span of `v_1` and `v_2`?",
+      "哪一個陳述正確表示 `b` 屬於 `v_1` 和 `v_2` 的張成？",
+      "哪一个陈述正确表示 `b` 属于 `v_1` 和 `v_2` 的张成？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("There exist scalars `c_1,c_2` such that `b=c_1v_1+c_2v_2`.", "存在純量 `c_1,c_2` 使得 `b=c_1v_1+c_2v_2`。", "存在标量 `c_1,c_2` 使得 `b=c_1v_1+c_2v_2`。"),
+      },
+      {
+        id: "b",
+        text: text("`b` is one of the vectors `v_1` or `v_2`.", "`b` 必須是 `v_1` 或 `v_2` 其中之一。", "`b` 必须是 `v_1` 或 `v_2` 其中之一。"),
+      },
+      {
+        id: "c",
+        text: text("`b` must be nonzero.", "`b` 必須非零。", "`b` 必须非零。"),
+      },
+      {
+        id: "d",
+        text: text("The two vectors must be orthogonal.", "兩個向量必須正交。", "两个向量必须正交。"),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Membership in a span means being expressible as a linear combination.",
+        "屬於一個張成，意思是可以寫成相應向量的線性組合。",
+        "属于一个张成，意思是可以写成相应向量的线性组合。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "`Span{v_1,v_2}` is the set of all vectors `c_1v_1+c_2v_2`.",
+        "`Span{v_1,v_2}` 是所有形如 `c_1v_1+c_2v_2` 的向量所成的集合。",
+        "`Span{v_1,v_2}` 是所有形如 `c_1v_1+c_2v_2` 的向量所成的集合。"
+      ),
+      text(
+        "Therefore proving membership means producing, or proving the existence of, suitable coefficients.",
+        "因此證明屬於該張成，就是給出或證明存在合適的係數。",
+        "因此证明属于该张成，就是给出或证明存在合适的系数。"
+      ),
+    ],
+    skillTags: ["span", "set-membership", "linear-combination"],
+  },
+  "checkpoint.math1030.m22-dimension": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.m22-dimension",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.matrix-subspaces-basis-dimension",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Fill in the blank: the dimension of the full matrix space `M_{2,2}` is ____.",
+      "填空：全矩陣空間 `M_{2,2}` 的維數是 ____。",
+      "填空：全矩阵空间 `M_{2,2}` 的维数是 ____。"
+    ),
+    correctAnswer: {
+      value: "4",
+      equivalentValues: ["four"],
+      equivalence: [{ type: "trimmed" }, { type: "case-insensitive" }],
+    },
+    hints: [
+      text(
+        "Count how many independent matrix entries a general `2 x 2` matrix has.",
+        "數一數一般 `2 x 2` 矩陣有多少個可獨立選擇的元素。",
+        "数一数一般 `2 x 2` 矩阵有多少个可独立选择的元素。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "A general `2 x 2` matrix has entries `a,b,c,d`.",
+        "一般 `2 x 2` 矩陣有元素 `a,b,c,d`。",
+        "一般 `2 x 2` 矩阵有元素 `a,b,c,d`。"
+      ),
+      text(
+        "The four standard matrix units `E_11,E_12,E_21,E_22` form a basis.",
+        "四個標準矩陣單位 `E_11,E_12,E_21,E_22` 構成一組基底。",
+        "四个标准矩阵单位 `E_11,E_12,E_21,E_22` 构成一组基。"
+      ),
+      text(
+        "Hence `dim M_{2,2}=4`.",
+        "因此 `dim M_{2,2}=4`。",
+        "因此 `dim M_{2,2}=4`。"
+      ),
+    ],
+    skillTags: ["matrix-space", "basis", "dimension"],
+  },
+  "checkpoint.math1030.skew-symmetric-3x3-dimension": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.skew-symmetric-3x3-dimension",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.matrix-subspaces-basis-dimension",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "What is the dimension of the subspace of `3 x 3` skew-symmetric matrices?",
+      "`3 x 3` 反對稱矩陣所成子空間的維數是多少？",
+      "`3 x 3` 反对称矩阵所成子空间的维数是多少？"
+    ),
+    choices: [
+      { id: "a", text: text("2", "2", "2") },
+      { id: "b", text: text("3", "3", "3") },
+      { id: "c", text: text("6", "6", "6") },
+      { id: "d", text: text("9", "9", "9") },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "A skew-symmetric matrix satisfies `A^T=-A`, so the diagonal is zero and entries above the diagonal determine the entries below it.",
+        "反對稱矩陣滿足 `A^T=-A`，所以對角線為零，而上三角元素決定下三角元素。",
+        "反对称矩阵满足 `A^T=-A`，所以对角线为零，而上三角元素决定下三角元素。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "In a `3 x 3` skew-symmetric matrix, the diagonal entries must be zero.",
+        "在 `3 x 3` 反對稱矩陣中，對角線元素必須為零。",
+        "在 `3 x 3` 反对称矩阵中，对角线元素必须为零。"
+      ),
+      text(
+        "The independent entries are the three positions above the diagonal.",
+        "可獨立選擇的是對角線上方的三個位置。",
+        "可独立选择的是对角线上方的三个位置。"
+      ),
+      text(
+        "Therefore the dimension is `3`.",
+        "因此維數是 `3`。",
+        "因此维数是 `3`。"
+      ),
+    ],
+    skillTags: ["skew-symmetric-matrix", "matrix-subspace", "dimension"],
+  },
+  "checkpoint.math1030.inverse-product-order": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.inverse-product-order",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "invertibility",
+    unitId: "math1030.invertibility.invertible-matrices",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "If `A` and `B` are invertible square matrices of the same size, what is `(AB)^{-1}`?",
+      "若 `A` 和 `B` 是同大小的可逆方陣，`(AB)^{-1}` 是甚麼？",
+      "若 `A` 和 `B` 是同大小的可逆方阵，`(AB)^{-1}` 是什么？"
+    ),
+    choices: [
+      { id: "a", text: text("`A^{-1}B^{-1}`", "`A^{-1}B^{-1}`", "`A^{-1}B^{-1}`") },
+      { id: "b", text: text("`B^{-1}A^{-1}`", "`B^{-1}A^{-1}`", "`B^{-1}A^{-1}`") },
+      { id: "c", text: text("`AB`", "`AB`", "`AB`") },
+      { id: "d", text: text("`A^{-1}+B^{-1}`", "`A^{-1}+B^{-1}`", "`A^{-1}+B^{-1}`") },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "The inverse must multiply with `AB` to give the identity; test the cancellation order.",
+        "逆矩陣必須與 `AB` 相乘後得到單位矩陣；檢查抵消的次序。",
+        "逆矩阵必须与 `AB` 相乘后得到单位矩阵；检查抵消的顺序。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "Compute `(AB)(B^{-1}A^{-1})`.",
+        "計算 `(AB)(B^{-1}A^{-1})`。",
+        "计算 `(AB)(B^{-1}A^{-1})`。"
+      ),
+      text(
+        "Associativity gives `A(BB^{-1})A^{-1}=AIA^{-1}=I`.",
+        "由結合律得到 `A(BB^{-1})A^{-1}=AIA^{-1}=I`。",
+        "由结合律得到 `A(BB^{-1})A^{-1}=AIA^{-1}=I`。"
+      ),
+      text(
+        "The order reverses, so `(AB)^{-1}=B^{-1}A^{-1}`.",
+        "次序會反轉，所以 `(AB)^{-1}=B^{-1}A^{-1}`。",
+        "顺序会反转，所以 `(AB)^{-1}=B^{-1}A^{-1}`。"
+      ),
+    ],
+    skillTags: ["inverse", "matrix-product", "invertible-matrix"],
+  },
+  "checkpoint.math1030.linear-combination-coefficients": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.linear-combination-coefficients",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.linear-combinations-and-span",
+    inputMode: "vector",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Fill in the blank: if `v=4a_1+8a_2+5a_3+3a_4+2a_5`, then the coefficient vector is ____.",
+      "填空：若 `v=4a_1+8a_2+5a_3+3a_4+2a_5`，則係數向量是 ____。",
+      "填空：若 `v=4a_1+8a_2+5a_3+3a_4+2a_5`，则系数向量是 ____。"
+    ),
+    correctAnswer: {
+      value: "(4,8,5,3,2)",
+      equivalentValues: ["(4, 8, 5, 3, 2)", "[4,8,5,3,2]", "[4, 8, 5, 3, 2]", "4,8,5,3,2", "4, 8, 5, 3, 2"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "Read off the scalar multiplying each vector in the displayed order.",
+        "按顯示次序讀出每個向量前面的純量。",
+        "按显示顺序读出每个向量前面的标量。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    syntaxGuidance: text(
+      "Enter a 5-tuple such as `(4,8,5,3,2)`.",
+      "請輸入一個 5 元有序組，例如 `(4,8,5,3,2)`。",
+      "请输入一个 5 元有序组，例如 `(4,8,5,3,2)`。"
+    ),
+    solutionSteps: [
+      text(
+        "The coefficient of `a_1` is 4, the coefficient of `a_2` is 8, and so on.",
+        "`a_1` 的係數是 4，`a_2` 的係數是 8，如此類推。",
+        "`a_1` 的系数是 4，`a_2` 的系数是 8，如此类推。"
+      ),
+      text(
+        "Keeping the order `a_1,a_2,a_3,a_4,a_5`, the coefficient vector is `(4,8,5,3,2)`.",
+        "保持 `a_1,a_2,a_3,a_4,a_5` 的次序，係數向量是 `(4,8,5,3,2)`。",
+        "保持 `a_1,a_2,a_3,a_4,a_5` 的顺序，系数向量是 `(4,8,5,3,2)`。"
+      ),
+    ],
+    skillTags: ["linear-combination", "coordinates", "span"],
+  },
+  "checkpoint.math1030.subspace-closure-test": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.subspace-closure-test",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.subspaces",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Which condition is enough, together with non-emptiness, to prove that a subset `W` of a vector space is a subspace?",
+      "除了非空以外，哪個條件足以證明向量空間的子集 `W` 是子空間？",
+      "除了非空以外，哪个条件足以证明向量空间的子集 `W` 是子空间？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "For all `u,v in W` and scalars `α,β`, the vector `αu+βv` is in `W`.",
+          "對所有 `u,v in W` 及純量 `α,β`，向量 `αu+βv` 都在 `W` 中。",
+          "对所有 `u,v in W` 及标量 `α,β`，向量 `αu+βv` 都在 `W` 中。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "`W` contains at least two vectors.",
+          "`W` 至少包含兩個向量。",
+          "`W` 至少包含两个向量。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "Every vector in `W` has positive entries.",
+          "`W` 中每個向量的坐標都是正數。",
+          "`W` 中每个向量的坐标都是正数。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "`W` is described by exactly one equation.",
+          "`W` 剛好由一條方程描述。",
+          "`W` 正好由一条方程描述。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "A subspace must be stable under all linear combinations of its own vectors.",
+        "子空間必須對其內部向量的一切線性組合保持封閉。",
+        "子空间必须对其内部向量的一切线性组合保持封闭。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "The one-step subspace test combines closure under addition and closure under scalar multiplication.",
+        "一步子空間測試把加法封閉和數乘封閉合併起來。",
+        "一步子空间测试把加法封闭和数乘封闭合并起来。"
+      ),
+      text(
+        "If every linear combination `αu+βv` of vectors from `W` remains in `W`, then `W` is closed under the vector-space operations.",
+        "若 `W` 中向量的一切線性組合 `αu+βv` 仍在 `W` 中，則 `W` 對向量空間運算封閉。",
+        "若 `W` 中向量的一切线性组合 `αu+βv` 仍在 `W` 中，则 `W` 对向量空间运算封闭。"
+      ),
+    ],
+    skillTags: ["subspace-test", "closure", "linear-combination"],
   },
   "checkpoint.csci2520.pointer-assignment-vs-dereference": {
     accessTier: "FREE",

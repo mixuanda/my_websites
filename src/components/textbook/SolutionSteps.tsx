@@ -1,5 +1,6 @@
 "use client";
 
+import { TextbookInlineRichText } from "@/components/textbook/mdx-blocks";
 import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
 import type { Locale, LocalizedText } from "@/lib/textbook/types";
 
@@ -18,7 +19,7 @@ export function SolutionSteps({
       <ol className="list-decimal space-y-2 pl-5 text-sm">
         {steps.map((step, index) => (
           <li key={`${index}-${step.en.slice(0, 20)}`}>
-            {getLocalizedText(step, locale)}
+            <TextbookInlineRichText text={getLocalizedText(step, locale)} />
           </li>
         ))}
       </ol>

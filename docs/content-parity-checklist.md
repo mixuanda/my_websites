@@ -41,6 +41,39 @@ April 24, 2026 parity update:
 - CSCI2520 was expanded in synchronized EN / zh-HK / zh-CN files for lists,
   selection and non-comparison sorting, binary trees / BSTs, graph traversal,
   topological sorting, heaps, and Huffman coding.
+- MATH1090 `3.3` and `3.4` were expanded in synchronized EN / zh-HK / zh-CN
+  files with matching interactive placements, added exercise / solution pairs,
+  and shared checkpoint questions.
+
+April 25, 2026 MATH1030 exercise / TOC update:
+
+- MATH1030 now has at least one checkpoint problem attached to every public
+  unit, including the previously uncovered systems, matrix-basics,
+  augmented-matrix, solution-type, and vector-space units.
+- Practice prompt, choice, hint, and solution strings now use the shared inline
+  math renderer so WebWork-like checkpoint text does not display raw math
+  markup.
+- The page TOC now defaults to article-level headings through `h3`, so
+  definition, theorem, example, quick-check, and solution card titles no longer
+  overwhelm the contents list.
+- `docs/math-notes-authoring-memory.md` records the durable expectation that
+  future MATH1030 / MATH1090 units should combine textbook-style prose,
+  purposeful interaction, useful visuals, and source-backed exercises.
+- `math1030` `2.1 Matrix basics` now has parallel EN / zh-HK / zh-CN additions:
+  prerequisite preparation, a matrix anatomy figure, a matrix-reading
+  interaction, a problem-solving routine, and expanded checkpoint questions.
+- `math1030` `5.1 Invertible matrices` now has parallel EN / zh-HK / zh-CN
+  additions: prerequisite preparation, one-sided inverse warnings, a practical
+  invertibility-dictionary workflow, nonzero-null-vector examples, inverse
+  solving examples, and extra checkpoint questions.
+- `math1030` `4.2 Set language and solution sets` and `6.7 Matrix subspaces,
+  bases, and dimension` were added in synchronized EN / zh-HK / zh-CN files;
+  `6.5` received parallel dimension-theorem expansions, and `6.6` received a
+  shared static rank map in all three languages.
+- `math1030` `3.3 Row-operation matrices` was added in synchronized EN /
+  zh-HK / zh-CN files; `6.3`, `6.4`, and `6.5` received parallel algorithmic
+  additions for span membership, dependence via homogeneous systems, and
+  minimal spanning set extraction.
 
 ## Current parity status
 
@@ -60,12 +93,15 @@ The following units are currently present in EN, zh-HK, and zh-CN.
 - `math1030`: 1.1 equations and solution sets, 2.1 matrix basics,
   2.2 augmented matrices and row operations, 2.3 Gaussian elimination and
   RREF, 2.4 solution-set types, 3.1 matrix multiplication and identity
-  matrices, 3.2 transpose and special matrices, 4.1 homogeneous systems and
-  null space, 5.1 invertible matrices, 6.1 vector spaces, 6.2 subspaces, 6.3
+  matrices, 3.2 transpose and special matrices, 3.3 row-operation matrices,
+  4.1 homogeneous systems and
+  null space, 4.2 set language and solution sets, 5.1 invertible matrices, 6.1
+  vector spaces, 6.2 subspaces, 6.3
   linear combinations and span, 6.4 linear dependence and independence, 6.5
-  basis and dimension, 6.6 column space / row space / rank, 7.1 determinants
-  and cofactor expansion, 7.2 row operations / products / invertibility, 7.3
-  transpose / column operations / Cramer's rule, 8.1 eigenvalues /
+  basis and dimension, 6.6 column space / row space / rank, 6.7 matrix
+  subspaces / bases / dimension, 7.1 determinants and cofactor expansion, 7.2
+  row operations / products / invertibility, 7.3 transpose / column operations
+  / Cramer's rule, 8.1 eigenvalues /
   eigenvectors / eigenspaces, 8.2 diagonalization / similarity, 8.3
   characteristic polynomials / diagonalization tests, 9.1 inner products /
   norms / angles, 9.2 orthogonal sets / orthonormal bases, 9.3 Gram-Schmidt,

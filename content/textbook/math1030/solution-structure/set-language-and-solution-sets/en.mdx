@@ -1,0 +1,324 @@
+---
+title: "4.2 Set language and solution sets"
+description: "Use set notation, membership, solution sets, null spaces, spans, and set equality carefully in linear algebra arguments."
+---
+
+Linear algebra does not only study individual vectors. It often studies whole
+collections of vectors or matrices at once: all solutions of a system, all
+linear combinations of a list, all matrices satisfying an equation, or all
+vectors killed by a matrix.
+
+Set language is the grammar that lets us say these things precisely. Without
+it, phrases such as "the same solution set", "belongs to the null space", and
+"these vectors span the same subspace" stay too vague to support proofs.
+
+## Why sets enter linear algebra
+
+When you row-reduce a system, you are not trying to preserve the visible list of
+equations. You are trying to preserve the **collection of solutions**. Two
+systems may look different and still have exactly the same solutions.
+
+Likewise, when you replace a spanning list by a shorter one, you are not trying
+to preserve the list. You are trying to preserve the set of vectors that can be
+built from the list.
+
+<Definition title="Membership">
+If an object `x` is an element of a set `S`, we write
+
+$$
+x \in S.
+$$
+
+If `x` is not an element of `S`, we write
+
+$$
+x \notin S.
+$$
+</Definition>
+
+The symbol `\in` should be read as "belongs to". It is not the same as subset
+language. A vector may belong to a set; a smaller collection may be a subset of
+a larger collection.
+
+## Ambient spaces
+
+Before writing a set in linear algebra, identify the kind of object being
+collected.
+
+- `R^n` is the set of real column vectors with `n` entries.
+- `M_{m,n}(R)` is the set of real `m \times n` matrices.
+- `P_n` is the set of real polynomials of degree at most `n`.
+
+This ambient space matters. The expression
+
+$$
+\{x : Ax=b\}
+$$
+
+is incomplete unless we know the size and type of `x`. A careful version is
+
+$$
+\{x\in R^n : Ax=b\}.
+$$
+
+The part before the colon tells us where the objects live. The part after the
+colon gives the condition used to select them.
+
+## Solution sets
+
+Let `A` be an `m \times n` matrix and let `b\in R^m`.
+
+<Definition title="Solution set of a linear system">
+The solution set of `Ax=b` is
+
+$$
+S(A,b)=\{x\in R^n : Ax=b\}.
+$$
+</Definition>
+
+So a statement such as `t\in S(A,b)` has exact meaning:
+
+$$
+t\in R^n
+\qquad\text{and}\qquad
+At=b.
+$$
+
+This notation also handles the three familiar possibilities.
+
+- If the system has a unique solution `x_0`, then `S(A,b)=\{x_0\}`.
+- If the system is inconsistent, then `S(A,b)=\varnothing`.
+- If the system has infinitely many solutions, then `S(A,b)` is often written
+  parametrically.
+
+<WorkedExample title="Reading a parameterized solution set">
+Suppose the solutions of a system are described by
+
+$$
+x=
+\begin{bmatrix}1\\0\\2\end{bmatrix}
++s\begin{bmatrix}1\\1\\0\end{bmatrix}
++t\begin{bmatrix}-1\\0\\1\end{bmatrix},
+\qquad s,t\in R.
+$$
+
+As a set, this is
+
+$$
+\left\{
+\begin{bmatrix}1\\0\\2\end{bmatrix}
++s\begin{bmatrix}1\\1\\0\end{bmatrix}
++t\begin{bmatrix}-1\\0\\1\end{bmatrix}
+: s,t\in R
+\right\}.
+$$
+
+The fixed vector is one particular solution. The two direction vectors record
+the freedoms that can be added without leaving the solution set.
+</WorkedExample>
+
+## Null space and span as sets
+
+Two set constructions recur throughout the course.
+
+<Definition title="Null space">
+For an `m \times n` matrix `A`,
+
+$$
+N(A)=\{x\in R^n : Ax=0\}.
+$$
+</Definition>
+
+This is the solution set of the homogeneous system `Ax=0`.
+
+<Definition title="Span">
+For vectors `u_1,\dots,u_q` in the same vector space,
+
+$$
+\operatorname{Span}\{u_1,\dots,u_q\}
+=
+\{\alpha_1u_1+\cdots+\alpha_qu_q : \alpha_1,\dots,\alpha_q\in R\}.
+$$
+</Definition>
+
+The span is a set, not the list itself. Reordering the vectors does not change
+the span, and adding a vector that was already a linear combination of the old
+ones does not change the span.
+
+## Set equality means two directions
+
+<Definition title="Set equality">
+Two sets `S` and `T` are equal if every element of each set belongs to the
+other:
+
+$$
+S=T
+\quad\Longleftrightarrow\quad
+\bigl(x\in S \text{ if and only if } x\in T\bigr)
+\text{ for every object }x.
+$$
+</Definition>
+
+In proofs, this usually becomes a two-inclusion routine:
+
+1. prove that every element of `S` belongs to `T`;
+2. prove that every element of `T` belongs to `S`.
+
+The first direction alone proves only `S\subseteq T`, not equality.
+
+## A core span argument
+
+The following argument appears repeatedly in linear algebra, often hidden inside
+larger computations.
+
+<TheoremCard title="Adding a redundant vector does not change the span">
+Suppose `v` is a linear combination of `u_1,\dots,u_q`. Then
+
+$$
+\operatorname{Span}\{u_1,\dots,u_q,v\}
+=
+\operatorname{Span}\{u_1,\dots,u_q\}.
+$$
+</TheoremCard>
+
+<CollapsibleProof title="Proof by set equality">
+Write
+
+$$
+v=\beta_1u_1+\cdots+\beta_qu_q.
+$$
+
+Let
+
+$$
+S=\operatorname{Span}\{u_1,\dots,u_q,v\},
+\qquad
+T=\operatorname{Span}\{u_1,\dots,u_q\}.
+$$
+
+First take any `x\in S`. Then there are scalars
+`a_1,\dots,a_q,c` such that
+
+$$
+x=a_1u_1+\cdots+a_qu_q+cv.
+$$
+
+Substitute the formula for `v`:
+
+$$
+x=(a_1+c\beta_1)u_1+\cdots+(a_q+c\beta_q)u_q.
+$$
+
+So `x\in T`.
+
+Conversely, if `y\in T`, then
+
+$$
+y=d_1u_1+\cdots+d_qu_q
+=d_1u_1+\cdots+d_qu_q+0v,
+$$
+
+so `y\in S`. Therefore `S=T`.
+</CollapsibleProof>
+
+This proof is not about a particular numerical example. It explains why
+removing redundant vectors from a spanning list is legitimate.
+
+## Worked example: proving two spans are equal
+
+Let
+
+$$
+u_1=\begin{bmatrix}1\\0\\1\end{bmatrix},
+\qquad
+u_2=\begin{bmatrix}0\\1\\1\end{bmatrix},
+\qquad
+v=\begin{bmatrix}2\\3\\5\end{bmatrix}.
+$$
+
+Since
+
+$$
+v=2u_1+3u_2,
+$$
+
+the theorem gives
+
+$$
+\operatorname{Span}\{u_1,u_2,v\}
+=
+\operatorname{Span}\{u_1,u_2\}.
+$$
+
+The vector `v` may still be useful computationally, but it does not enlarge the
+set of vectors that can be produced.
+
+## Common mistakes
+
+<CommonMistake title="Confusing a vector with a set containing that vector">
+The vector `x_0` and the singleton set `\{x_0\}` are different objects. If a
+system has a unique solution, the solution is `x_0`, but the solution set is
+`\{x_0\}`.
+</CommonMistake>
+
+<CommonMistake title="Forgetting the ambient space">
+The condition `Ax=0` does not by itself say whether `x` is a vector in `R^n`, a
+matrix variable, or some other object. Write the ambient set when the context is
+not already fixed.
+</CommonMistake>
+
+<CommonMistake title="Proving only one inclusion">
+To prove `S=T`, showing that every element of `S` belongs to `T` is not enough.
+You must also show that every element of `T` belongs to `S`.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="If `S(A,b)=\varnothing`, what does that say about the system `Ax=b`?">
+Translate the empty set into solution language.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It says that the system has no solution. In other words, `Ax=b` is
+inconsistent.
+</RevealSolution>
+
+<QuickCheck prompt="Suppose `w=3u_1-u_2`. Does adding `w` to the list `\{u_1,u_2\}` change the span?">
+Use the redundant-vector theorem.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. Since `w` is already a linear combination of `u_1` and `u_2`,
+
+$$
+\operatorname{Span}\{u_1,u_2,w\}
+=
+\operatorname{Span}\{u_1,u_2\}.
+$$
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Let `S=\operatorname{Span}\{(1,0),(0,1),(1,1)\}` and `T=R^2`. Prove that `S=T`.">
+Use both inclusions, even if one direction feels obvious.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+First, every vector in `S` is a linear combination of vectors in `R^2`, so
+`S\subseteq R^2`.
+
+Conversely, take any `(a,b)\in R^2`. Then
+
+$$
+(a,b)=a(1,0)+b(0,1)+0(1,1),
+$$
+
+so `(a,b)\in S`. Therefore `R^2\subseteq S`, and hence `S=T`.
+</RevealSolution>
+
+## Read this first
+
+This note extends
+[1.1 Equations and solution sets](/en/notes/math1030/systems/equations-solution-sets)
+and prepares the set-equality arguments used in
+[6.3 Linear combinations and span](/en/notes/math1030/vector-spaces/linear-combinations-and-span).

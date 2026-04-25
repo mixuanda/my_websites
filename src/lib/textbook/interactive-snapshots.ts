@@ -204,6 +204,57 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "跟着看一个用行化简求逆的例子"
     ),
   },
+  "matrix-reading-trainer": {
+    sampleStates: [
+      {
+        label: text("Reading size", "讀大小", "读大小"),
+        value: text(
+          "Count rows first and columns second: the sample matrix is 2 x 3.",
+          "先數行，再數列：範例矩陣是 2 x 3。",
+          "先数行，再数列：示例矩阵是 2 x 3。"
+        ),
+      },
+      {
+        label: text("Reading one entry", "讀一個元素", "读一个元素"),
+        value: text(
+          "The entry a_23 is found at row 2, column 3, so a_23 = 4 in the sample matrix.",
+          "元素 a_23 位於第 2 行第 3 列，所以在範例矩陣中 a_23 = 4。",
+          "元素 a_23 位于第 2 行第 3 列，所以在示例矩阵中 a_23 = 4。"
+        ),
+      },
+      {
+        label: text("Reading a column", "讀一列", "读一列"),
+        value: text(
+          "With variable order (x_1,x_2,x_3), column 2 stores the coefficients of x_2: 2 and -1.",
+          "按變量次序 (x_1,x_2,x_3)，第 2 列儲存 x_2 的係數：2 與 -1。",
+          "按变量次序 (x_1,x_2,x_3)，第 2 列储存 x_2 的系数：2 与 -1。"
+        ),
+      },
+      {
+        label: text("Reading a row", "讀一行", "读一行"),
+        value: text(
+          "In a coefficient matrix, row 1 records one equation: 1x_1 + 2x_2 + 0x_3.",
+          "在係數矩陣中，第 1 行記錄一條方程：1x_1 + 2x_2 + 0x_3。",
+          "在系数矩阵中，第 1 行记录一条方程：1x_1 + 2x_2 + 0x_3。"
+        ),
+      },
+    ],
+    summary: text(
+      "Use the guided tasks to practise the basic moves needed before doing matrix calculations: size, entries, rows, columns, and coefficient positions.",
+      "透過引導任務練習矩陣計算前最基本的動作：讀大小、元素、行、列，以及係數位置。",
+      "通过引导任务练习矩阵计算前最基本的动作：读大小、元素、行、列，以及系数位置。"
+    ),
+    steps: [
+      text("Choose a task and try to answer before revealing the reasoning.", "先選一個任務，顯示思路前自己試答。", "先选一个任务，显示思路前自己试答。"),
+      text("Use the highlighted row, column, or entry to check where the answer comes from.", "利用被標出的行、列或元素確認答案從何而來。", "利用被标出的行、列或元素确认答案从何而来。"),
+      text("Translate the same reading habit back to textbook exercises.", "把同一種讀法帶回課本練習題。", "把同一种读法带回课本练习题。"),
+    ],
+    title: text(
+      "Practise reading a matrix before calculating",
+      "計算前先練習讀懂矩陣",
+      "计算前先练习读懂矩阵"
+    ),
+  },
   "matrix-multiplication-visualizer": {
     sampleIO: [
       {
@@ -311,6 +362,76 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "Trace one induction proof",
       "跟著走一遍歸納證明",
       "跟着走一遍归纳证明"
+    ),
+  },
+  "integer-equivalence-explorer": {
+    sampleStates: [
+      {
+        label: text("Representative shift", "代表元平移", "代表元平移"),
+        value: text(
+          "(2,5), (5,8), and (4,7) all have formal difference -3, so they belong to the same integer class.",
+          "(2,5)、(5,8) 與 (4,7) 的形式差值同樣是 -3，所以它們屬於同一個整數等價類。",
+          "(2,5)、(5,8) 与 (4,7) 的形式差值同样是 -3，所以它们属于同一个整数等价类。"
+        ),
+      },
+      {
+        label: text("Equivalence test", "等價測試", "等价测试"),
+        value: text(
+          "To compare (a,b) with (c,d), check a+d=b+c rather than comparing the two ordered pairs component by component.",
+          "比較 (a,b) 與 (c,d) 時，要檢查 a+d=b+c，而不是逐個坐標比較兩個有序對。",
+          "比较 (a,b) 与 (c,d) 时，要检查 a+d=b+c，而不是逐个坐标比较两个有序对。"
+        ),
+      },
+    ],
+    summary: text(
+      "The explorer shows how changing representatives inside one integer class preserves the formal difference.",
+      "這個探索器展示在同一個整數等價類中更換代表元時，形式差值如何保持不變。",
+      "这个探索器展示在同一个整数等价类中更换代表元时，形式差值如何保持不变。"
+    ),
+    steps: [
+      text("Choose a natural-number pair (a,b).", "先選一個自然數對 (a,b)。", "先选一个自然数对 (a,b)。"),
+      text("Add the same natural number to both coordinates.", "把同一個自然數加到兩個坐標上。", "把同一个自然数加到两个坐标上。"),
+      text("Use a+d=b+c to test whether another pair lies in the same class.", "用 a+d=b+c 測試另一個對子是否在同一等價類中。", "用 a+d=b+c 测试另一个对子是否在同一等价类中。"),
+    ],
+    title: text(
+      "Explore representatives of one integer",
+      "探索同一個整數的代表元",
+      "探索同一个整数的代表元"
+    ),
+  },
+  "rational-representative-lab": {
+    sampleStates: [
+      {
+        label: text("Unstable numerator rule", "不穩定的分子規則", "不稳定的分子规则"),
+        value: text(
+          "Comparing p>m can change when 1/2 is written as (1,2) or (2,4), so it does not define a relation on Q.",
+          "只比較 p>m 會因 1/2 寫成 (1,2) 或 (2,4) 而改變，因此不能定義 Q 上的關係。",
+          "只比较 p>m 会因 1/2 写成 (1,2) 或 (2,4) 而改变，因此不能定义 Q 上的关系。"
+        ),
+      },
+      {
+        label: text("Sign-corrected comparison", "修正符號後的比較", "修正符号后的比较"),
+        value: text(
+          "For 1/2 and 1/3, the expression (pn-mq)nq stays positive across the displayed representatives.",
+          "對 1/2 與 1/3，(pn-mq)nq 在顯示的不同代表元下都保持為正。",
+          "对 1/2 与 1/3，(pn-mq)nq 在显示的不同代表元下都保持为正。"
+        ),
+      },
+    ],
+    summary: text(
+      "The lab compares several representative formulas and makes visible which ones survive a change of fraction representative.",
+      "這個 lab 比較多條寫在代表元上的公式，讓讀者直接看見哪些公式能通過更換分數代表元的測試。",
+      "这个 lab 比较多条写在代表元上的公式，让读者直接看见哪些公式能通过更换分数代表元的测试。"
+    ),
+    steps: [
+      text("Choose one representative for 1/2 and one representative for 1/3.", "先為 1/2 和 1/3 各選一個代表元。", "先为 1/2 和 1/3 各选一个代表元。"),
+      text("Compare the truth values produced by each proposed rule.", "比較每條候選規則給出的真假值。", "比较每条候选规则给出的真假值。"),
+      text("Keep only formulas whose output depends on the rational numbers, not on the chosen representatives.", "只保留輸出依賴有理數本身、而不依賴所選代表元的公式。", "只保留输出依赖有理数本身、而不依赖所选代表元的公式。"),
+    ],
+    title: text(
+      "Test representative-dependent formulas on Q",
+      "測試 Q 上公式是否依賴代表元",
+      "测试 Q 上公式是否依赖代表元"
     ),
   },
   "row-reduction-stepper": {

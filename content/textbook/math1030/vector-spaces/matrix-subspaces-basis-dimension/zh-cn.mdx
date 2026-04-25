@@ -1,0 +1,315 @@
+---
+title: "6.7 矩阵子空间、基与维数"
+description: "把张成、基与维数由列向量子空间推广到矩阵子空间，例如全矩阵空间、上三角矩阵与反对称矩阵。"
+---
+
+到目前为止，多数基与维数例子都使用列向量。不过同样的思想也适用于矩阵，
+因为矩阵可以相加，也可以乘以标量。换句话说，在某些向量空间里，矩阵本身
+就是“向量”。
+
+本节说明如何在 `M_{m,n}(R)` 中阅读基与维数。这里 `M_{m,n}(R)` 表示所有
+实 `m \times n` 矩阵所成的向量空间。
+
+## 把矩阵视为向量
+
+运算就是平常的矩阵加法与标量乘法：
+
+$$
+A+B,\qquad \alpha A.
+$$
+
+这些运算会保持大小不变。若 `A` 与 `B` 都是 `m \times n` 矩阵，则每个线性
+组合
+
+$$
+\alpha A+\beta B
+$$
+
+仍然是 `m \times n` 矩阵。
+
+<Definition title="矩阵的张成">
+若 `A_1,\dots,A_q` 是 `m \times n` 矩阵，则
+
+$$
+\operatorname{Span}\{A_1,\dots,A_q\}
+=
+\{c_1A_1+\cdots+c_qA_q : c_1,\dots,c_q\in R\}.
+$$
+</Definition>
+
+这是 `M_{m,n}(R)` 的子空间。理由与向量的 span 一样：线性组合的和以及标量
+倍数仍是线性组合。
+
+## 标准矩阵单元
+
+对每个位置 `(i,j)`，定义 `E_{ij}` 为 `(i,j)` 位置是 `1`、其他位置全是 `0`
+的矩阵。
+
+例如，`M_{2,2}(R)` 的一组基是
+
+$$
+E_{11}=
+\begin{bmatrix}1&0\\0&0\end{bmatrix},
+\quad
+E_{12}=
+\begin{bmatrix}0&1\\0&0\end{bmatrix},
+\quad
+E_{21}=
+\begin{bmatrix}0&0\\1&0\end{bmatrix},
+\quad
+E_{22}=
+\begin{bmatrix}0&0\\0&1\end{bmatrix}.
+$$
+
+每个 `2 \times 2` 矩阵都能唯一写成
+
+$$
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+=aE_{11}+bE_{12}+cE_{21}+dE_{22}.
+$$
+
+<TheoremCard title="全矩阵空间的维数">
+空间 `M_{m,n}(R)` 有基
+
+$$
+\{E_{ij}:1\le i\le m,\ 1\le j\le n\}
+$$
+
+因此
+
+$$
+\dim M_{m,n}(R)=mn.
+$$
+</TheoremCard>
+
+数字 `mn` 不是记忆技巧，而是 `m \times n` 矩阵中独立位置的个数。
+
+## 上三角矩阵
+
+有些矩阵子空间是通过把某些位置强制为零而定义的。
+
+<Definition title="上三角矩阵子空间">
+令 `UT_n(R)` 为所有 `n \times n` 上三角矩阵所成的集合：
+
+$$
+UT_n(R)=\{A=[a_{ij}]\in M_{n,n}(R): a_{ij}=0\text{ whenever }i>j\}.
+$$
+</Definition>
+
+只有主对角线上方及主对角线上的元素是自由的。因此，一组基由所有满足
+`i\le j` 的矩阵单元 `E_{ij}` 给出。
+
+对 `UT_3(R)`，一组基是
+
+$$
+E_{11},E_{12},E_{13},E_{22},E_{23},E_{33}.
+$$
+
+所以
+
+$$
+\dim UT_3(R)=6.
+$$
+
+一般而言，
+
+$$
+\dim UT_n(R)=1+2+\cdots+n=\frac{n(n+1)}2.
+$$
+
+## 反对称矩阵
+
+另一个重要子空间由涉及转置的方程定义。
+
+<Definition title="反对称矩阵">
+方阵 `A` 称为**反对称矩阵**，若
+
+$$
+A^T=-A.
+$$
+
+令 `Skew_n(R)` 为所有实 `n \times n` 反对称矩阵所成的集合。
+</Definition>
+
+反对称矩阵的主对角线元素必须为零，因为 `a_{ii}=-a_{ii}` 推出
+`a_{ii}=0`。主对角线上方的元素决定下方的元素，并且符号相反。
+
+当 `n=3` 时，每个反对称矩阵都有形式
+
+$$
+\begin{bmatrix}
+0&a&b\\
+-a&0&c\\
+-b&-c&0
+\end{bmatrix}.
+$$
+
+所以 `Skew_3(R)` 的一组基是
+
+$$
+E_{12}-E_{21},\qquad
+E_{13}-E_{31},\qquad
+E_{23}-E_{32},
+$$
+
+并且
+
+$$
+\dim Skew_3(R)=3.
+$$
+
+一般而言，
+
+$$
+\dim Skew_n(R)=\frac{n(n-1)}2.
+$$
+
+## 矩阵与长列向量之间的字典
+
+矩阵子空间之所以和向量子空间有相同行为，是因为我们可以把矩阵的各列叠成
+一条长列向量。例如
+
+$$
+\begin{bmatrix}
+a&b\\
+c&d
+\end{bmatrix}
+\quad\longleftrightarrow\quad
+\begin{bmatrix}
+a\\c\\b\\d
+\end{bmatrix}.
+$$
+
+这个转换只是 bookkeeping，但它说明了为什么线性组合、线性无关、基与维数
+的定理可以转移到矩阵空间。矩阵之间的线性关系，会变成长列向量之间的线性
+关系。
+
+## 例子：对称 `2 \times 2` 矩阵
+
+令 `Sym_2(R)` 为所有对称 `2 \times 2` 矩阵所成的集合。一般元素有形式
+
+$$
+\begin{bmatrix}
+a&b\\
+b&c
+\end{bmatrix}.
+$$
+
+因此
+
+$$
+\begin{bmatrix}
+a&b\\
+b&c
+\end{bmatrix}
+=
+a\begin{bmatrix}1&0\\0&0\end{bmatrix}
++b\begin{bmatrix}0&1\\1&0\end{bmatrix}
++c\begin{bmatrix}0&0\\0&1\end{bmatrix}.
+$$
+
+三个矩阵
+
+$$
+\begin{bmatrix}1&0\\0&0\end{bmatrix},
+\qquad
+\begin{bmatrix}0&1\\1&0\end{bmatrix},
+\qquad
+\begin{bmatrix}0&0\\0&1\end{bmatrix}
+$$
+
+张成 `Sym_2(R)`。
+
+它们线性无关，因为
+
+$$
+\alpha\begin{bmatrix}1&0\\0&0\end{bmatrix}
++\beta\begin{bmatrix}0&1\\1&0\end{bmatrix}
++\gamma\begin{bmatrix}0&0\\0&1\end{bmatrix}
+=
+\begin{bmatrix}0&0\\0&0\end{bmatrix}
+$$
+
+会通过比较元素迫使 `\alpha=0`、`\beta=0`、`\gamma=0`。所以它们形成一组
+基，并且
+
+$$
+\dim Sym_2(R)=3.
+$$
+
+## 解题流程
+
+当题目要求找矩阵子空间的基时：
+
+1. 先写出子空间中一般矩阵的形式；
+2. 找出自由参数；
+3. 把矩阵拆成第一个参数乘上一个固定矩阵，再加上第二个参数乘上另一个固定
+   矩阵，如此类推；
+4. 用这些固定矩阵作候选基；
+5. 通过比较元素检查线性无关。
+
+这就是把解集参数化并读出方向向量的方法，移到矩阵空间中使用。
+
+## 常见错误
+
+<CommonMistake title="有约束时仍然数所有元素">
+`M_{3,3}(R)` 的维数是 `9`，但 `UT_3(R)` 的维数是 `6`，`Skew_3(R)` 的
+维数是 `3`。维数数的是自由参数，而不只是矩阵的大小。
+</CommonMistake>
+
+<CommonMistake title="忘记线性组合中的矩阵必须大小相同">
+矩阵加法是逐项相加。因此像 `\operatorname{Span}\{A_1,A_2\}` 这种 span
+只有在矩阵大小相同时才有意义。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="`M_{2,3}(R)` 的维数是多少？">
+数一数独立元素位置。
+</QuickCheck>
+
+<RevealSolution title="答案">
+共有 `2\cdot3=6` 个独立元素位置，所以
+
+$$
+\dim M_{2,3}(R)=6.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="为什么每个反对称矩阵的主对角线元素都必须是零？">
+在 `(i,i)` 元素使用 `A^T=-A`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+在主对角线位置，转置不会移动该元素。条件给出 `a_{ii}=-a_{ii}`，所以
+`2a_{ii}=0`，故 `a_{ii}=0`。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="求所有对角 `3 \times 3` 矩阵所成子空间的一组基与维数。">
+先写出一般对角矩阵。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+一般对角 `3 \times 3` 矩阵是
+
+$$
+\begin{bmatrix}
+a&0&0\\
+0&b&0\\
+0&0&c
+\end{bmatrix}
+=
+aE_{11}+bE_{22}+cE_{33}.
+$$
+
+所以 `\{E_{11},E_{22},E_{33}\}` 是一组基，维数是 `3`。
+</RevealSolution>
+
+## 先读这些
+
+本节使用
+[6.5 基与维数](/zh-cn/notes/math1030/vector-spaces/basis-and-dimension)
+以及
+[3.2 转置与特殊矩阵](/zh-cn/notes/math1030/matrix-algebra/transpose-and-special-matrices)。

@@ -360,6 +360,17 @@ $$
 保持成立。
 </WorkedExample>
 
+## 互动检查：会受代表元影响的规则
+
+理解这个问题最快的方法，是把几条候选规则放到同一对有理数的不同代表元上
+测试。下面的面板中，有理数一直是 `1/2` 与 `1/3`；改变的只是它们的代表元。
+
+<InteractiveWidget id="rational-representative-lab" />
+
+真正定义在 `Q` 上的关系，必须在每一次合法更换代表元后给出同一个真值。如果
+输出只因 `1/2` 写成 `(1,2)`、`(2,4)` 或 `(-1,-2)` 而改变，该公式就不能
+下降到商集。
+
 ## 常见错误
 
 <CommonMistake title="等价类不是某一个特权分数">
@@ -435,6 +446,52 @@ $$
 `(-1, -2)`，则变成 `-1 > 0`，为假。
 
 所以这条规则会依赖代表元的选择，不能定义成 `Q` 上的关系。
+</RevealSolution>
+
+<QuickCheck prompt="假设 `a=bk+c`，其中 `0\leq c<b`。证明 `\gcd(a,b)=\gcd(b,c)`。">
+证明这两对数有完全相同的公因子。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+设 `d` 是 `a` 与 `b` 的公因子。因为 `c=a-bk`，同一个 `d` 也整除 `c`，
+所以 `d` 是 `b` 与 `c` 的公因子。
+
+反过来，若 `d` 同时整除 `b` 与 `c`，则 `d` 整除 `bk+c=a`，所以 `d` 也是
+`a` 与 `b` 的公因子。
+
+因此两对数的公因子集合相同，最大公因子也相同：
+
+$$
+\gcd(a,b)=\gcd(b,c).
+$$
+</RevealSolution>
+
+<QuickCheck prompt="证明 `Q` 上的乘法公式是良定的：若 `(a,b)\sim_Q(a',b')` 且 `(c,d)\sim_Q(c',d')`，则 `(ac,bd)\sim_Q(a'c',b'd')`。">
+把每个等价关系翻译成交叉乘积等式。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+由 `(a,b)\sim_Q(a',b')` 和 `(c,d)\sim_Q(c',d')`，可知
+
+$$
+ab'=ba',
+\qquad
+cd'=dc'.
+$$
+
+要证 `(ac,bd)\sim_Q(a'c',b'd')`，我们需要证明
+
+$$
+(ac)(b'd')=(bd)(a'c').
+$$
+
+但
+
+$$
+(ac)(b'd')=(ab')(cd')=(ba')(dc')=(bd)(a'c').
+$$
+
+所以乘法不依赖所选代表元。
 </RevealSolution>
 
 ## 相关笔记

@@ -15,6 +15,23 @@ often blur together:
 
 This note lays down that language carefully.
 
+## Before you start
+
+This section does not assume that you already know matrix theory. It does,
+however, assume a few earlier habits from algebra and the first systems note.
+
+You should be able to:
+
+- read variables such as `x_1`, `x_2`, and `x_3` as distinct unknowns;
+- recognize coefficients in a linear equation, including coefficients equal to
+  `0`, `1`, and `-1`;
+- keep an ordered tuple such as `(2,-1,4)` in the correct order;
+- do basic signed arithmetic entry by entry.
+
+If any of these feel rusty, the right way to read this page is still not to
+memorize vocabulary first. Instead, pause at each worked example and ask:
+which row, which column, and which position is being used?
+
 ## What a matrix is
 
 <Definition title="Matrix">
@@ -28,6 +45,22 @@ definitions make sense over other number systems as well.
 The point of the rectangular format is not decoration. A row records one line
 of data, a column records another line of data, and the position of an entry
 matters. Later, multiplication and row operations will depend on that position.
+
+This is why a matrix should not be treated as a loose list of numbers. The
+entry in row `1`, column `3` can play a completely different role from the same
+number placed in row `3`, column `1`. In a coefficient matrix, for example,
+columns are tied to the chosen order of the variables. If the variable order is
+`(x_1, x_2, x_3)`, then the second column records coefficients of `x_2`. If the
+order is changed to `(x_2, x_1, x_3)`, the displayed matrix must change as well.
+
+<CommonMistake title="Do not separate a coefficient from its position">
+The number `5` by itself does not say which variable it multiplies. In a
+coefficient matrix, the column position tells you that information. Moving a
+column changes the encoded system unless the variable order is changed at the
+same time.
+</CommonMistake>
+
+<MatrixAnatomyFigure />
 
 ## Read the size before you touch the entries
 
@@ -65,6 +98,12 @@ Its entry in row 2, column 3 is `4`.
 
 The notation `a_{ij}` is not optional bookkeeping. It is the language used in
 definitions such as matrix equality, matrix addition, and matrix multiplication.
+
+For a first pass through this topic, practise reading before calculating. The
+interactive task below is deliberately simple: it trains the exact habits that
+later prevent mistakes in row reduction and matrix multiplication.
+
+<InteractiveWidget id="matrix-reading-trainer" />
 
 ## Matrix equality is entrywise
 
@@ -214,6 +253,55 @@ $$
 This compact form is not a shortcut that hides meaning. It gathers the same
 coefficients, variables, and constants into an object that later supports row
 operations, null-space language, and invertibility tests.
+
+## How to approach basic matrix questions
+
+Most early matrix questions are not trying to surprise you. They are testing
+whether you can keep the bookkeeping straight. A reliable working order is:
+
+1. identify the requested object: size, entry, row, column, coefficient matrix,
+   constant vector, sum, or scalar multiple;
+2. check whether the operation is defined before calculating;
+3. keep row and column order fixed;
+4. compute only the entries that the question asks for;
+5. state the answer with its size when the object is a matrix or vector.
+
+<WorkedExample title="From wording to coefficient matrix">
+Question: using the variable order `(x_1,x_2,x_3)`, write the coefficient
+matrix and constant vector for
+
+$$
+\begin{aligned}
+2x_1 - x_3 &= 5,\\
+-x_1 + 4x_2 + 3x_3 &= -2.
+\end{aligned}
+$$
+
+First, rewrite the first equation with the missing `x_2` coefficient shown:
+
+$$
+2x_1 + 0x_2 - x_3 = 5.
+$$
+
+Now each equation becomes one row, and the columns follow the fixed variable
+order `(x_1,x_2,x_3)`. Therefore
+
+$$
+A =
+\begin{bmatrix}
+2 & 0 & -1 \\
+-1 & 4 & 3
+\end{bmatrix},
+\qquad
+b =
+\begin{bmatrix}
+5 \\ -2
+\end{bmatrix}.
+$$
+
+The most common mistake is to omit the `0` in the first row. But the missing
+`x_2` coefficient is part of the data, and column 2 must still exist.
+</WorkedExample>
 
 ## A short preview of multiplication
 

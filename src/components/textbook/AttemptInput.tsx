@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { TextbookInlineRichText } from "@/components/textbook/mdx-blocks";
 import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
 import type {
   Locale,
@@ -73,7 +74,9 @@ export function AttemptInput({
                 type="radio"
                 value={choice.id}
               />
-              <span>{getLocalizedText(choice.text, locale)}</span>
+              <span>
+                <TextbookInlineRichText text={getLocalizedText(choice.text, locale)} />
+              </span>
             </label>
           ))}
         </fieldset>
@@ -99,13 +102,15 @@ export function AttemptInput({
         {problem.syntaxGuidance ? (
           <p>
             {getLocalizedText(uiText.syntaxGuidance, locale)}:{" "}
-            {getLocalizedText(problem.syntaxGuidance, locale)}
+            <TextbookInlineRichText text={getLocalizedText(problem.syntaxGuidance, locale)} />
           </p>
         ) : null}
         {problem.previewExamples?.length ? (
           <ul className="list-disc pl-5">
             {problem.previewExamples.map((example) => (
-              <li key={example.en}>{getLocalizedText(example, locale)}</li>
+              <li key={example.en}>
+                <TextbookInlineRichText text={getLocalizedText(example, locale)} />
+              </li>
             ))}
           </ul>
         ) : null}
@@ -117,12 +122,13 @@ export function AttemptInput({
           {preview.previewText ? (
             <p className="mt-2">
               {getLocalizedText(uiText.previewNormalizedAs, locale)}:{" "}
-              <span className="font-mono">{preview.previewText}</span>
+              <TextbookInlineRichText text={preview.previewText} />
             </p>
           ) : null}
           {preview.syntaxGuidance ? (
             <p className="mt-2 text-muted-foreground">
-              {getLocalizedText(uiText.syntaxGuidance, locale)}: {preview.syntaxGuidance}
+              {getLocalizedText(uiText.syntaxGuidance, locale)}:{" "}
+              <TextbookInlineRichText text={preview.syntaxGuidance} />
             </p>
           ) : null}
         </div>

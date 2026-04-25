@@ -107,6 +107,19 @@ The vectors `u_1,\dots,u_n` are linearly independent if and only if the matrix
 variable in `A\alpha=0`).
 </TheoremCard>
 
+This gives a complete algorithm.
+
+1. Put the vectors into a column matrix `A=[u_1\ \cdots\ u_n]`.
+2. Solve the homogeneous system `A\alpha=0`.
+3. If there is a free variable, choose a nonzero value for it and read a
+   nontrivial relation.
+4. If every column is a pivot column, only the trivial solution exists and the
+   vectors are independent.
+
+A useful shortcut also falls out immediately: more than `m` vectors in `R^m`
+must be dependent, because an `m \times n` matrix with `n>m` cannot have a
+pivot in every column.
+
 <WorkedExample title="Use row reduction to test independence">
 Let
 

@@ -39,7 +39,8 @@ The current reusable note blocks live across
 The current widget set lives in `src/components/textbook/interactives.tsx`.
 
 - `math1090`: truth-table builder, quantifier-negation stepper,
-  set-operation explorer
+  set-operation explorer, integer-equivalence explorer,
+  rational-representative lab
 - `math1030`: system-to-augmented-matrix explorer, row-reduction stepper,
   matrix-multiplication visualizer, solution-set classifier,
   invertibility row-reduction demo, subspace checker, span explorer,
@@ -80,6 +81,12 @@ Use these rules when you author a new interactive note.
 
 The current pass especially strengthens the `math1030` note flow.
 
+- `math1090` `3.3` now has an integer-equivalence explorer that keeps the
+  quotient-class definition visible while readers change representatives and
+  test the cross-sum condition.
+- `math1090` `3.4` now has a rational-representative lab that compares
+  candidate formulas for relations on `Q` against legal changes of fraction
+  representative.
 - `2.3` now explains the distinction between REF, RREF, and back substitution
   before the learner opens the row-reduction stepper.
 - Vector-space notes already use widgets to make subspace testing, span, and

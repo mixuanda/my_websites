@@ -1,0 +1,323 @@
+---
+title: "6.7 Matrix subspaces, basis, and dimension"
+description: "Extend span, basis, and dimension from column-vector subspaces to matrix subspaces such as all matrices, upper triangular matrices, and skew-symmetric matrices."
+---
+
+So far, most basis and dimension examples have used column vectors. But the
+same ideas apply to matrices because matrices can be added and scaled. A matrix
+can be a "vector" inside a vector space whose elements are matrices.
+
+This note explains how to read basis and dimension for subspaces of
+`M_{m,n}(R)`, the vector space of all real `m \times n` matrices.
+
+## Matrices as vectors
+
+The operations are ordinary matrix addition and scalar multiplication:
+
+$$
+A+B,\qquad \alpha A.
+$$
+
+These operations keep the size fixed. If `A` and `B` are both `m \times n`,
+then every linear combination
+
+$$
+\alpha A+\beta B
+$$
+
+is again an `m \times n` matrix.
+
+<Definition title="Matrix span">
+If `A_1,\dots,A_q` are `m \times n` matrices, then
+
+$$
+\operatorname{Span}\{A_1,\dots,A_q\}
+=
+\{c_1A_1+\cdots+c_qA_q : c_1,\dots,c_q\in R\}.
+$$
+</Definition>
+
+This is a subspace of `M_{m,n}(R)` for the same reason that the span of vectors
+is a subspace: sums and scalar multiples of linear combinations remain linear
+combinations.
+
+## The standard matrix units
+
+For each position `(i,j)`, define `E_{ij}` to be the matrix with `1` in the
+`(i,j)` position and `0` everywhere else.
+
+For example, a basis of `M_{2,2}(R)` is
+
+$$
+E_{11}=
+\begin{bmatrix}1&0\\0&0\end{bmatrix},
+\quad
+E_{12}=
+\begin{bmatrix}0&1\\0&0\end{bmatrix},
+\quad
+E_{21}=
+\begin{bmatrix}0&0\\1&0\end{bmatrix},
+\quad
+E_{22}=
+\begin{bmatrix}0&0\\0&1\end{bmatrix}.
+$$
+
+Every `2 \times 2` matrix decomposes uniquely as
+
+$$
+\begin{bmatrix}a&b\\c&d\end{bmatrix}
+=aE_{11}+bE_{12}+cE_{21}+dE_{22}.
+$$
+
+<TheoremCard title="Dimension of full matrix space">
+The space `M_{m,n}(R)` has basis
+
+$$
+\{E_{ij}:1\le i\le m,\ 1\le j\le n\}
+$$
+
+and therefore
+
+$$
+\dim M_{m,n}(R)=mn.
+$$
+</TheoremCard>
+
+The number `mn` is not mysterious. It is the number of independent entry
+positions in an `m \times n` matrix.
+
+## Upper triangular matrices
+
+Some matrix subspaces are defined by forcing certain entries to be zero.
+
+<Definition title="Upper triangular matrix subspace">
+Let `UT_n(R)` be the set of all `n \times n` upper triangular matrices:
+
+$$
+UT_n(R)=\{A=[a_{ij}]\in M_{n,n}(R): a_{ij}=0\text{ whenever }i>j\}.
+$$
+</Definition>
+
+Only entries on or above the diagonal are free. Therefore a basis is given by
+the matrix units `E_{ij}` with `i\le j`.
+
+For `UT_3(R)`, a basis is
+
+$$
+E_{11},E_{12},E_{13},E_{22},E_{23},E_{33}.
+$$
+
+Thus
+
+$$
+\dim UT_3(R)=6.
+$$
+
+In general,
+
+$$
+\dim UT_n(R)=1+2+\cdots+n=\frac{n(n+1)}2.
+$$
+
+## Skew-symmetric matrices
+
+Another important subspace is defined by an equation involving transpose.
+
+<Definition title="Skew-symmetric matrices">
+A square matrix `A` is **skew-symmetric** if
+
+$$
+A^T=-A.
+$$
+
+Let `Skew_n(R)` be the set of all `n \times n` skew-symmetric real matrices.
+</Definition>
+
+The diagonal entries of a skew-symmetric matrix must be zero, because
+`a_{ii}=-a_{ii}` implies `a_{ii}=0`. Entries above the diagonal determine the
+entries below the diagonal with opposite sign.
+
+For `n=3`, every skew-symmetric matrix has the form
+
+$$
+\begin{bmatrix}
+0&a&b\\
+-a&0&c\\
+-b&-c&0
+\end{bmatrix}.
+$$
+
+So a basis of `Skew_3(R)` is
+
+$$
+E_{12}-E_{21},\qquad
+E_{13}-E_{31},\qquad
+E_{23}-E_{32},
+$$
+
+and
+
+$$
+\dim Skew_3(R)=3.
+$$
+
+In general,
+
+$$
+\dim Skew_n(R)=\frac{n(n-1)}2.
+$$
+
+## A dictionary between matrices and long column vectors
+
+One reason matrix subspaces behave like vector subspaces is that a matrix can be
+turned into a long column vector by stacking its columns. For example,
+
+$$
+\begin{bmatrix}
+a&b\\
+c&d
+\end{bmatrix}
+\quad\longleftrightarrow\quad
+\begin{bmatrix}
+a\\c\\b\\d
+\end{bmatrix}.
+$$
+
+This conversion is only a bookkeeping device, but it explains why the same
+linear-combination, independence, basis, and dimension theorems transfer to
+matrix spaces. Linear relations among matrices become linear relations among
+their stacked coordinate vectors.
+
+## Worked example: symmetric `2 \times 2` matrices
+
+Let `Sym_2(R)` be the set of symmetric `2 \times 2` matrices. A general element
+has the form
+
+$$
+\begin{bmatrix}
+a&b\\
+b&c
+\end{bmatrix}.
+$$
+
+Therefore
+
+$$
+\begin{bmatrix}
+a&b\\
+b&c
+\end{bmatrix}
+=
+a\begin{bmatrix}1&0\\0&0\end{bmatrix}
++b\begin{bmatrix}0&1\\1&0\end{bmatrix}
++c\begin{bmatrix}0&0\\0&1\end{bmatrix}.
+$$
+
+The three matrices
+
+$$
+\begin{bmatrix}1&0\\0&0\end{bmatrix},
+\qquad
+\begin{bmatrix}0&1\\1&0\end{bmatrix},
+\qquad
+\begin{bmatrix}0&0\\0&1\end{bmatrix}
+$$
+
+span `Sym_2(R)`.
+
+They are linearly independent because
+
+$$
+\alpha\begin{bmatrix}1&0\\0&0\end{bmatrix}
++\beta\begin{bmatrix}0&1\\1&0\end{bmatrix}
++\gamma\begin{bmatrix}0&0\\0&1\end{bmatrix}
+=
+\begin{bmatrix}0&0\\0&0\end{bmatrix}
+$$
+
+forces `\alpha=0`, `\beta=0`, and `\gamma=0` by comparing entries. Thus they
+form a basis and
+
+$$
+\dim Sym_2(R)=3.
+$$
+
+## Problem-solving routine
+
+When a problem asks for a basis of a matrix subspace:
+
+1. write a general matrix in the subspace;
+2. identify the free parameters;
+3. split the matrix into one parameter times one fixed matrix, plus another
+   parameter times another fixed matrix, and so on;
+4. use the fixed matrices as a candidate basis;
+5. check independence by comparing entries.
+
+This is the matrix-space version of parameterizing a solution set and reading
+off the direction vectors.
+
+## Common mistakes
+
+<CommonMistake title="Counting all entries when some entries are constrained">
+`M_{3,3}(R)` has dimension `9`, but `UT_3(R)` has dimension `6` and
+`Skew_3(R)` has dimension `3`. The dimension counts free parameters, not merely
+the size of the matrix.
+</CommonMistake>
+
+<CommonMistake title="Forgetting that matrices in a linear combination must have the same size">
+Matrix addition is entrywise. Therefore a span such as
+`\operatorname{Span}\{A_1,A_2\}` only makes sense when the matrices have the
+same size.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="What is the dimension of `M_{2,3}(R)`?">
+Count independent entry positions.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+There are `2\cdot3=6` independent entries, so
+
+$$
+\dim M_{2,3}(R)=6.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Why does every skew-symmetric matrix have zero diagonal entries?">
+Use the equation `A^T=-A` at the `(i,i)` entry.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+At a diagonal entry, transpose does not move the entry. The condition gives
+`a_{ii}=-a_{ii}`, so `2a_{ii}=0`, hence `a_{ii}=0`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Find a basis and dimension for the subspace of diagonal `3 \times 3` matrices.">
+Write a general diagonal matrix first.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+A general diagonal `3 \times 3` matrix is
+
+$$
+\begin{bmatrix}
+a&0&0\\
+0&b&0\\
+0&0&c
+\end{bmatrix}
+=
+aE_{11}+bE_{22}+cE_{33}.
+$$
+
+Thus `\{E_{11},E_{22},E_{33}\}` is a basis, and the dimension is `3`.
+</RevealSolution>
+
+## Read this first
+
+This note uses
+[6.5 Basis and dimension](/en/notes/math1030/vector-spaces/basis-and-dimension)
+and
+[3.2 Transpose and special matrices](/en/notes/math1030/matrix-algebra/transpose-and-special-matrices).

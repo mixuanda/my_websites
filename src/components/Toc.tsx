@@ -8,7 +8,7 @@ import { getRouteLocale, getSiteText, resolveSiteLocale, siteUiText } from "@/li
 import { defaultLocale } from "@/lib/textbook/i18n";
 import type { Locale } from "@/lib/textbook/types";
 
-const headingSelector = "article h2, article h3, article h4";
+const headingLevels = [2, 3, 4] as const;
 
 interface TocItem {
   id: string;
@@ -18,24 +18,32 @@ interface TocItem {
 
 interface TocProps {
   highContrast?: boolean;
+  maxDepth?: 2 | 3 | 4;
   title?: string;
 }
 
-function collectHeadings(): TocItem[] {
+function getHeadingSelector(maxDepth: 2 | 3 | 4) {
+  return headingLevels
+    .filter((level) => level <= maxDepth)
+    .map((level) => `article h${level}`)
+    .join(", ");
+}
+
+function collectHeadings(maxDepth: 2 | 3 | 4): TocItem[] {
   if (typeof document === "undefined") {
     return [];
   }
 
-  return Array.from(document.querySelectorAll<HTMLElement>(headingSelector)).map(
-    (el) => ({
+  return Array.from(document.querySelectorAll<HTMLElement>(getHeadingSelector(maxDepth)))
+    .filter((el) => Boolean(el.id))
+    .map((el) => ({
       id: el.id,
       text: el.textContent || "",
       level: Number.parseInt(el.tagName.charAt(1), 10),
-    })
-  );
+    }));
 }
 
-export function Toc({ highContrast = false, title }: TocProps) {
+export function Toc({ highContrast = false, maxDepth = 3, title }: TocProps) {
   const pathname = usePathname();
   const [locale, setLocale] = useState<Locale>(
     getRouteLocale(pathname) ?? defaultLocale
@@ -45,17 +53,17 @@ export function Toc({ highContrast = false, title }: TocProps) {
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
-      setHeadings(collectHeadings());
+      setHeadings(collectHeadings(maxDepth));
     });
 
     return () => {
       window.cancelAnimationFrame(frame);
     };
-  }, []);
+  }, [maxDepth]);
 
   useEffect(() => {
     const elements = Array.from(
-      document.querySelectorAll<HTMLElement>(headingSelector)
+      document.querySelectorAll<HTMLElement>(getHeadingSelector(maxDepth))
     );
 
     if (elements.length === 0) {
@@ -78,7 +86,7 @@ export function Toc({ highContrast = false, title }: TocProps) {
     return () => {
       observer.disconnect();
     };
-  }, [headings]);
+  }, [headings, maxDepth]);
 
   useEffect(() => {
     setLocale(resolveSiteLocale(pathname));

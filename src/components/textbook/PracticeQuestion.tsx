@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { AttemptInput } from "@/components/textbook/AttemptInput";
 import { FeedbackPanel } from "@/components/textbook/FeedbackPanel";
 import { SolutionSteps } from "@/components/textbook/SolutionSteps";
+import { TextbookInlineRichText } from "@/components/textbook/mdx-blocks";
 import { Button } from "@/components/ui/button";
 import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
 import { getMembershipHref } from "@/lib/textbook/routes";
@@ -179,7 +180,7 @@ export function PracticeQuestion({
           {getLocalizedText(uiText.skillsLabel, locale)}: {problem.skillTags.join(", ")}
         </p>
         <h3 className="text-base font-semibold">
-          {getLocalizedText(problem.prompt, locale)}
+          <TextbookInlineRichText text={getLocalizedText(problem.prompt, locale)} />
         </h3>
       </header>
 

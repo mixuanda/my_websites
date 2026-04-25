@@ -68,6 +68,10 @@ The latest merged content passes also:
   Cauchy-sequence model of `R`, delta-epsilon limits, limit laws, sequential
   characterization, and continuity, with new pedagogically justified
   interactives and static illustration assets.
+- deepened the public `math1090` number-system units `3.3` and `3.4` in EN,
+  zh-HK, and zh-CN with an integer-equivalence explorer, a
+  rational-representative lab, source-backed exercises from Lecture Exercises
+  33-38 / Worksheet 5, and matching problem-bank checkpoint questions.
 
 The next resume point is now QA rather than missing Math1090 content:
 
@@ -97,6 +101,21 @@ Current QA progress from April 24, 2026:
 - confirmed that the repository has no checked-in `CSCI2120` reference or
   content tree; this run therefore treats the user-requested CSCI course as the
   present `CSCI2520` material and records the absence explicitly.
+
+Current MATH1030 practice / rendering progress from April 25, 2026:
+
+- added source-aligned checkpoint problems to the previously uncovered public
+  MATH1030 units `1.1`, `2.1`, `2.2`, `2.4`, `6.1`, `6.2`, `6.3`, and `6.5`,
+  so every live MATH1030 unit now has at least one checkpoint problem;
+- used the existing course sources and practice packets as the conceptual
+  basis for systems, matrix basics, row operations, RREF contradiction rows,
+  vector-space axioms, subspace testing, span, and basis / dimension checks;
+- simplified the public page TOC to article headings through `h3`, preventing
+  theorem / example / quick-check titles from crowding out the actual section
+  structure;
+- recorded the durable "textbook prose + purposeful interaction + visual
+  support + WebWork-like exercises" authoring expectation in
+  `docs/math-notes-authoring-memory.md`.
 
 The tables below use these status labels:
 
@@ -294,9 +313,9 @@ below.
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Feb27.pdf` | lecture notes | incorporated | yes | no | no | Direct source for logic, truth tables, quantifiers, sets, functions, and relations. |
-| MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf` | lecture notes | partially incorporated | partial | no | no | Primary source for the current public `§3.*` number-construction notes and an earlier version of the chapter-4 backbone. Later real-number and analysis-preparatory sections remain backlog. |
+| MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf` | lecture notes | partially incorporated | partial | no | no | Primary source for the current public `§3.*` number-construction notes; the latest pass strengthened integer subtraction / multiplication and rational well-definedness inside `3.3`-`3.4`. Later real-number and analysis-preparatory sections remain backlog. |
 | MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf` | lecture notes | incorporated | yes | no | no | Direct source for the public `4.1`-`4.6` and `5.1`-`5.3` family: cuts, decimals, irrationals, sequence limits, Cauchy sequences, delta-epsilon limits, limit laws, sequential characterization, and continuity. |
-| MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_final.tex` | review source | partially incorporated | partial | yes | no | Used for headings, terminology, proof structure, and the new chapter-4 note family through `§4.7`. Later proof-template and appendix sections remain backlog. |
+| MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_final.tex` | review source | partially incorporated | partial | yes | no | Used for headings, terminology, proof structure, number-system exercises 32-38, Worksheet 5 proof patterns, and the chapter-4 note family through `§4.7`. Later proof-template and appendix sections remain backlog. |
 | MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_final.pdf` | review packet | partially incorporated | partial | yes | no | Reinforces the authored logic-through-`§4.7` units and still contains later proof-template / rapid-review material not yet surfaced publicly. |
 | MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_master.pdf` | review packet | overlap | partial | yes | no | Editorial variant of the final review packet; do not treat as a separate public-content stream. |
 | MATH1090 | `reference/MATH1090/MATH1090_HW1.pdf` | homework | incorporated | yes | yes | no | Supports propositional logic practice already merged into public notes. |
@@ -304,8 +323,8 @@ below.
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet1.pdf` | worksheet | incorporated | yes | yes | no | Supports propositional logic examples and quick checks. |
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet2.pdf` | worksheet | incorporated | yes | yes | no | Supports quantifiers and negation. |
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet3.pdf` | worksheet | incorporated | yes | yes | no | Supports sets, Venn-diagram language, and function / relation examples. |
-| MATH1090 | `reference/MATH1090/MATH1090_Worksheet4.pdf` | worksheet | incorporated | yes | yes | no | Supports naturals, induction, and integer-construction notes. |
-| MATH1090 | `reference/MATH1090/MATH1090_Worksheet5.pdf` | worksheet | incorporated | yes | yes | no | Supports rationals, well-defined relations on `Q`, the `sqrt(2)` gap note, and chapter-4 completeness / gap exercises. |
+| MATH1090 | `reference/MATH1090/MATH1090_Worksheet4.pdf` | worksheet | incorporated | yes | yes | no | Supports naturals, induction, integer-construction notes, and the latest subtraction / multiplication practice expansion. |
+| MATH1090 | `reference/MATH1090/MATH1090_Worksheet5.pdf` | worksheet | incorporated | yes | yes | no | Supports rationals, Euclidean-algorithm gcd invariance, well-defined relations on `Q`, the `sqrt(2)` gap note, and chapter-4 completeness / gap exercises. |
 
 ## MATH1030 coverage
 
@@ -319,7 +338,7 @@ These files are the main conceptual sources for authored note pages.
 
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| MATH1030 | `reference/MATH1030/MATH1030-Notes.pdf` | master notes | partially incorporated | partial | no | no | Public notes now cover chapters 1-9 through `9.4`. Remaining backlog includes advanced basis appendices, linear transformations, and later optional algebra material. |
+| MATH1030 | `reference/MATH1030/MATH1030-Notes.pdf` | master notes | partially incorporated | partial | no | no | Public notes now cover chapters 1-9 through `9.4`, plus a gap pass on set language and matrix subspaces. Remaining backlog is mainly optional proof appendices and deeper exercise / export QA; linear transformations only appear as isolated motivation in the checked master notes, not as a supported full unit. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-01.pdf` | lecture note | incorporated | yes | no | no | Merged into `2.1 Matrix basics`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-02.pdf` | lecture note | incorporated | yes | no | no | Merged into `3.1 Matrix multiplication and identity matrices`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-03.pdf` | lecture note | incorporated | yes | no | no | Merged into `3.2 Transpose and special matrices`. |
@@ -328,25 +347,25 @@ These files are the main conceptual sources for authored note pages.
 | MATH1030 | `reference/MATH1030/1030gi-n01-04.pdf` | lecture note | incorporated | yes | no | no | Merged into `3.2 Transpose and special matrices`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-04p.pdf` | optional appendix | overlap | partial | yes | no | Induction appendix overlaps with existing MATH1090 induction note; no dedicated MATH1030 public page yet. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-04q.pdf` | optional appendix | overlap | partial | yes | no | Counterexample appendix informs note-writing style, but is not yet a separate public note. |
-| MATH1030 | `reference/MATH1030/1030gi-n01-05.pdf` | lecture note | partially incorporated | partial | no | no | Linear-combination ideas are live in `6.3`, but the earlier matrix-algebra framing is not fully preserved yet. |
-| MATH1030 | `reference/MATH1030/1030gi-n01-06.pdf` | lecture note | partially incorporated | partial | no | no | Dependence material is live in `6.4`, but the explicit homogeneous-system viewpoint still needs a later refinement pass. |
+| MATH1030 | `reference/MATH1030/1030gi-n01-05.pdf` | lecture note | incorporated | yes | no | no | Core linear-combination definitions, closure, and column-vector emphasis are represented in `6.3`; the matrix-space adaptation is now supported by `6.7`. |
+| MATH1030 | `reference/MATH1030/1030gi-n01-06.pdf` | lecture note | incorporated | yes | no | no | Dependence / independence definitions and the homogeneous-system dictionary are now explicit in `6.4`, with matrix-space context covered by `6.7`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-07.pdf` | lecture note | incorporated | yes | no | no | Row-operation language is merged into `2.2` and `2.3`. |
-| MATH1030 | `reference/MATH1030/1030gi-n01-08.pdf` | lecture note | partially incorporated | partial | no | no | Row-operation matrices are only lightly represented; still room for a deeper dedicated note or expansion. |
+| MATH1030 | `reference/MATH1030/1030gi-n01-08.pdf` | lecture note | incorporated | yes | no | no | Direct source for the new `3.3 Row-operation matrices` note, with standard matrix units also connected to `6.7`. |
 | MATH1030 | `reference/MATH1030/1030gi-n02-01.pdf` | lecture note | incorporated | yes | no | no | Merged into `2.2 Augmented matrices and row operations`. |
 | MATH1030 | `reference/MATH1030/1030gi-n02-02.pdf` | lecture note | incorporated | yes | no | no | Core source for the RREF note; already reflected in public coverage even though not every source ref was listed before this pass. |
 | MATH1030 | `reference/MATH1030/1030gi-n02-02p.pdf` | optional appendix | overlap | partial | yes | no | Small-size RREF classification overlaps with current Gaussian-elimination coverage and export examples. |
 | MATH1030 | `reference/MATH1030/1030gi-n02-03.pdf` | lecture note | incorporated | yes | no | no | Direct source for Gaussian elimination and uniqueness discussion. |
 | MATH1030 | `reference/MATH1030/1030gi-n02-03p.pdf` | optional appendix | pending | no | partial | no | Existence / uniqueness proofs for REF and RREF are not yet written as a theorem-first appendix note. |
 | MATH1030 | `reference/MATH1030/1030gi-n02-04.pdf` | lecture note | incorporated | yes | no | no | Merged into `4.1 Homogeneous systems and null space`. |
-| MATH1030 | `reference/MATH1030/1030gi-n02-05.pdf` | lecture note | pending | no | partial | no | System viewpoint on linear combinations is strong and usable; a later note or expansion should integrate it explicitly. |
-| MATH1030 | `reference/MATH1030/1030gi-n02-06.pdf` | lecture note | partially incorporated | partial | no | no | Homogeneous-system viewpoint on dependence is only partly reflected in current `6.4`; still needs a fuller merge. |
-| MATH1030 | `reference/MATH1030/1030gi-n03-01.pdf` | lecture note | partially incorporated | partial | no | no | Supports invertible / nonsingular language; public invertibility note still needs another depth pass. |
-| MATH1030 | `reference/MATH1030/1030gi-n03-02.pdf` | lecture note | partially incorporated | partial | no | no | Row-operation characterization of invertibility is present, but not yet covered with full theorem detail. |
-| MATH1030 | `reference/MATH1030/1030gi-n03-03.pdf` | lecture note | partially incorporated | partial | no | no | Necessary-and-sufficient conditions for invertibility are only partly surfaced. |
+| MATH1030 | `reference/MATH1030/1030gi-n02-05.pdf` | lecture note | incorporated | yes | no | no | The membership algorithm for span via `[U|v]`, consistency, inconsistency, and coefficient recovery is now explicit in `6.3`. |
+| MATH1030 | `reference/MATH1030/1030gi-n02-06.pdf` | lecture note | incorporated | yes | no | no | The homogeneous-system algorithm for dependence / independence and reading nontrivial relations from `Uc=0` is now explicit in `6.4`. |
+| MATH1030 | `reference/MATH1030/1030gi-n03-01.pdf` | lecture note | incorporated | yes | no | no | Invertible / nonsingular language is now reinforced in `5.1` through prerequisite preparation, one-sided inverse warnings, and the theorem dictionary. |
+| MATH1030 | `reference/MATH1030/1030gi-n03-02.pdf` | lecture note | incorporated | yes | no | no | Row-operation characterization of invertibility is now represented in `5.1`, including row-equivalence, row-operation matrices, and the `[A | I]` method. |
+| MATH1030 | `reference/MATH1030/1030gi-n03-03.pdf` | lecture note | incorporated | yes | no | no | Necessary-and-sufficient invertibility conditions are now surfaced as a practical problem-solving dictionary in `5.1`. |
 | MATH1030 | `reference/MATH1030/1030gi-n03-04.pdf` | lecture note | incorporated | yes | no | no | Direct source for the expanded row-equivalence, preserved-column-relation, and rank discussion in `5.1 Invertible matrices`. |
 | MATH1030 | `reference/MATH1030/1030gi-n03-04p.pdf` | optional appendix | partially incorporated | partial | no | no | The uniqueness of RREF and well-defined rank now appear in `5.1`, though the full induction proof is still only summarized. |
-| MATH1030 | `reference/MATH1030/1030gi-n04-01.pdf` | lecture note | partially incorporated | partial | no | no | Set language in elementary linear algebra informs `4.1` and vector-space notes, but is not yet a standalone public page. |
-| MATH1030 | `reference/MATH1030/1030gi-n04-02.pdf` | lecture note | pending | no | no | no | Set equality arguments are audited but not yet surfaced as a public note. |
+| MATH1030 | `reference/MATH1030/1030gi-n04-01.pdf` | lecture note | incorporated | yes | no | no | Direct source for `4.2 Set language and solution sets`, including membership, ambient spaces, solution sets, null spaces, and span as set notation. |
+| MATH1030 | `reference/MATH1030/1030gi-n04-02.pdf` | lecture note | incorporated | yes | no | no | Direct source for `4.2 Set language and solution sets`, especially two-inclusion set equality proofs and redundant-vector span arguments. |
 | MATH1030 | `reference/MATH1030/1030gi-n04-03.pdf` | lecture note | incorporated | yes | no | no | Direct source for the new null-space note. |
 | MATH1030 | `reference/MATH1030/1030gi-n04-04.pdf` | lecture note | incorporated | yes | no | no | Direct source for the vector-space note. |
 | MATH1030 | `reference/MATH1030/1030gi-n05-01.pdf` | lecture note | incorporated | yes | no | no | Used in basis / dimension coverage. |
@@ -354,11 +373,11 @@ These files are the main conceptual sources for authored note pages.
 | MATH1030 | `reference/MATH1030/1030gi-n05-02p.pdf` | optional appendix | pending | no | no | no | Existence of basis appendix is not yet a dedicated public theorem note. |
 | MATH1030 | `reference/MATH1030/1030gi-n05-02q.pdf` | optional appendix | pending | no | no | no | Replacement theorem remains backlog. |
 | MATH1030 | `reference/MATH1030/1030gi-n05-02r.pdf` | optional appendix | pending | no | no | no | Change-of-basis theorem remains backlog. |
-| MATH1030 | `reference/MATH1030/1030gi-n05-03.pdf` | lecture note | partially incorporated | partial | no | no | Linear-combination / span note uses this source, but minimal-spanning-set language is not yet explicit. |
+| MATH1030 | `reference/MATH1030/1030gi-n05-03.pdf` | lecture note | incorporated | yes | no | no | Minimal spanning sets, rank of a generating matrix, pivot-column extraction, and redundant-column relations are now explicit in `6.5`. |
 | MATH1030 | `reference/MATH1030/1030gi-n05-04.pdf` | lecture note | incorporated | yes | no | no | Direct source for the new `6.6 Column space, row space, and rank` note. |
-| MATH1030 | `reference/MATH1030/1030gi-n05-05.pdf` | lecture note | partially incorporated | partial | no | no | Some dimension shortcuts appear in `6.5`, but the full necessary / sufficient theorem package is not yet explicit. |
-| MATH1030 | `reference/MATH1030/1030gi-n05-05p.pdf` | optional appendix | pending | no | no | no | Dimension inequalities for comparable subspaces remain backlog. |
-| MATH1030 | `reference/MATH1030/1030gi-n05-07.pdf` | lecture note | pending | no | no | no | Basis and dimension for matrix subspaces are source-backed but not yet authored. |
+| MATH1030 | `reference/MATH1030/1030gi-n05-05.pdf` | lecture note | incorporated | yes | no | no | `6.5 Basis and dimension` now includes the counting theorem, two-of-three basis criterion, dimension consequences, and rank-nullity-style basis tests. |
+| MATH1030 | `reference/MATH1030/1030gi-n05-05p.pdf` | optional appendix | incorporated | yes | no | no | Comparable-subspace dimension inequalities and the equal-dimension containment criterion are now summarized in `6.5`. |
+| MATH1030 | `reference/MATH1030/1030gi-n05-07.pdf` | lecture note | incorporated | yes | no | no | Direct source for the new `6.7 Matrix subspaces, bases, and dimension` note. |
 | MATH1030 | `reference/MATH1030/1030gi-n06-01.pdf` | lecture note | incorporated | yes | no | no | Direct source for `7.1 Determinants and cofactor expansion`. |
 | MATH1030 | `reference/MATH1030/1030gi-n06-02.pdf` | lecture note | incorporated | yes | no | no | Direct source for `7.2 Row operations, products, and invertibility`. |
 | MATH1030 | `reference/MATH1030/1030gi-n06-03.pdf` | lecture note | incorporated | yes | no | no | Direct source for `7.3`, including the local appendix path to adjoints and Cramer's rule. |
@@ -393,7 +412,7 @@ into exercises, examples, and source refs for authored note pages.
 | MATH1030 | `reference/MATH1030/1030efghi-tutorial-week05as.pdf` | tutorial answers | overlap | partial | yes | no | Answer key only. |
 | MATH1030 | `reference/MATH1030/1030efghi-tutorial-week06.pdf` | tutorial | incorporated | yes | yes | no | Direct support for null-space / set-language note. |
 | MATH1030 | `reference/MATH1030/1030efghi-tutorial-week06as.pdf` | tutorial answers | overlap | partial | yes | no | Answer key only. |
-| MATH1030 | `reference/MATH1030/1030efghi-tutorial-week07.pdf` | tutorial | partially incorporated | partial | yes | no | Invertibility ideas are live, but theorem-level expansion is still pending. |
+| MATH1030 | `reference/MATH1030/1030efghi-tutorial-week07.pdf` | tutorial | incorporated | yes | yes | no | Invertibility tutorial ideas are now represented through theorem use, null-space noninvertibility tests, and inverse-solve examples. |
 | MATH1030 | `reference/MATH1030/1030efghi-tutorial-week07as.pdf` | tutorial answers | overlap | partial | yes | no | Answer key only. |
 | MATH1030 | `reference/MATH1030/1030efghi-tutorial-week08.pdf` | tutorial | incorporated | yes | yes | no | Supports vector-space and subspace coverage. |
 | MATH1030 | `reference/MATH1030/1030efghi-tutorial-week08as.pdf` | tutorial answers | overlap | partial | yes | no | Answer key only. |
@@ -410,7 +429,7 @@ into exercises, examples, and source refs for authored note pages.
 | MATH1030 | `reference/MATH1030/Practice Set 2_Solutions.pdf` | practice solutions | overlap | partial | yes | no | Internal solution support only. |
 | MATH1030 | `reference/MATH1030/Practice Set 3_Matrix Algebra and Linear Equation System.pdf` | practice set | incorporated | yes | yes | no | Supports matrix multiplication note and elimination-related exercises. |
 | MATH1030 | `reference/MATH1030/Practice Set 3_Solutions.pdf` | practice solutions | overlap | partial | yes | no | Internal solution support only. |
-| MATH1030 | `reference/MATH1030/Practice Set 4_Invertible Matrix.pdf` | practice set | partially incorporated | partial | yes | no | Supports invertibility page, but the public note still needs a deeper theorem pass. |
+| MATH1030 | `reference/MATH1030/Practice Set 4_Invertible Matrix.pdf` | practice set | incorporated | yes | yes | no | Supports the expanded invertibility page and the new checkpoint questions on nonzero null-space vectors and inverse-based solving. |
 | MATH1030 | `reference/MATH1030/Practice Set 4_Solutions.pdf` | practice solutions | overlap | partial | yes | no | Internal solution support only. |
 | MATH1030 | `reference/MATH1030/MATH1030 HW3.pdf` | homework | partially incorporated | partial | no | no | Appears to align with null-space / invertibility territory; extraction is weak, so treat as secondary support only. |
 | MATH1030 | `reference/MATH1030/math1030_assignment4_review_solutions.pdf` | review packet | incorporated | yes | yes | no | Already used in span and dependence notes. |
@@ -645,3 +664,51 @@ existing invertibility note instead of creating a detached new route.
 - Recorded that no checked-in CSCI2120 source tree exists; do not claim public
   CSCI2120 completion until repository sources are present.
 - Validation so far: `npm run contentlayer` generated 181 documents.
+
+### 2026-04-25 checkpoint 13: fill MATH1030 set-language and matrix-subspace gaps
+
+- Audited the MATH1030 `1030gi-n**-**` family against the current public Notes
+  map, with special attention to `1030gi-n04-01`, `1030gi-n04-02`,
+  `1030gi-n05-05`, `1030gi-n05-05p`, and `1030gi-n05-07`.
+- Added a new three-locale `4.2 Set language and solution sets` unit covering
+  set membership, ambient spaces, solution-set notation, null spaces, span as a
+  set, two-inclusion equality proofs, redundant-vector span arguments, worked
+  examples, common mistakes, quick checks, and exercises.
+- Added a new three-locale `6.7 Matrix subspaces, bases, and dimension` unit
+  covering matrix spaces as vector spaces, matrix units `E_ij`, bases and
+  dimensions of full matrix spaces, upper triangular matrices, skew-symmetric
+  matrices, coordinate-vector conversion, and a repeatable basis routine.
+- Expanded `6.5 Basis and dimension` with the dimension counting theorem,
+  two-of-three basis criterion, rank-nullity-style basis tests, and comparable
+  subspace consequences.
+- Added a static study diagram for `6.6 Column space, row space, and rank` and
+  inserted it into EN / zh-HK / zh-CN note pages; the zh-HK page was also
+  cleaned toward formal written Hong Kong Chinese around this section.
+- Added more MATH1030 checkpoint problems in the problem bank so the new /
+  strengthened vector-space units have assessment coverage.
+- Remaining issues: optional proof appendices such as `1030gi-n01-03p`,
+  `1030gi-n01-03q`, `1030gi-n02-03p`, `1030gi-n05-02p/q/r`, and some older
+  homogeneous-system viewpoints remain candidates for future appendix-style
+  or refinement passes rather than blockers for the newly added core pages.
+
+### 2026-04-25 checkpoint 14: row-operation matrices and span algorithms
+
+- Added a new three-locale MATH1030 unit, `3.3 Row-operation matrices`, from
+  `1030gi-n01-08.pdf`. The unit explains row-operation matrices as row
+  operations applied to `I_p`, left multiplication, products of elementary
+  matrices, reverse row operations, and invertibility.
+- Expanded `6.3 Linear combinations and span` with the explicit `[U|v]`
+  membership algorithm, proof via `Uc=c_1u_1+\cdots+c_qu_q`, and an
+  inconsistency example proving non-membership.
+- Expanded `6.4 Linear dependence and independence` with the homogeneous-system
+  algorithm for `Uc=0`, the too-many-vectors shortcut, and relation reading
+  from nontrivial solutions.
+- Expanded `6.5 Basis and dimension` with the minimal-spanning-set extraction
+  theorem from `1030gi-n05-03.pdf`: pivot positions are read from a reduced
+  form of `U=[u_1\cdots u_q]`, but basis vectors are taken from the original
+  generating list.
+- Added checkpoint questions for row-operation matrices, span nonmembership,
+  dependence relations from `Uc=0`, and minimal spanning sets.
+- Remaining issues: optional proof-culture appendices and full REF/RREF
+  existence / uniqueness proof appendices remain documented backlog rather than
+  public-page blockers.

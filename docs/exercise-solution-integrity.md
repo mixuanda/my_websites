@@ -43,6 +43,19 @@ April 24, 2026 QA update:
 - the new CSCI2520 units were authored with the visible prompt plus immediate
   `RevealSolution` pattern; each new note has paired quick checks and guided
   exercise solutions in EN, zh-HK, and zh-CN.
+- the latest MATH1090 number-system pass added EN / zh-HK / zh-CN quick checks
+  for integer subtraction, integer multiplication, Euclidean-algorithm gcd
+  invariance, and rational multiplication well-definedness; each prompt is
+  immediately followed by its matching `RevealSolution`, and the problem bank
+  now includes checkpoint questions for the `3.3` and `3.4` units.
+- the April 25 MATH1030 gap pass added paired quick checks and guided exercise
+  solutions to `4.2 Set language and solution sets` and `6.7 Matrix subspaces,
+  bases, and dimension`; it also added checkpoint questions for the new /
+  strengthened vector-space units in `src/lib/textbook/problem-bank.ts`.
+- the following April 25 pass added paired quick checks and reveal solutions
+  to `3.3 Row-operation matrices`, plus checkpoint questions for elementary
+  matrices, span nonmembership, dependence relations, and minimal spanning set
+  extraction.
 
 ### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
 
@@ -252,3 +265,55 @@ Current checkpoint resolution:
 - Current resume point: after connectivity is restored, verify representative
   exports and page behavior for the new invertibility quick checks, then keep
   the same integrity discipline in the next source-backed unit
+
+### 2026-04-25 checkpoint 6: MATH1030 unit-level checkpoint coverage
+
+This checkpoint shifted MATH1030 practice from uneven chapter coverage toward
+unit-level coverage.
+
+- Checkpoint name: MATH1030 unit-level checkpoint coverage
+- What was inspected: `src/lib/textbook/problem-bank.ts`,
+  `content/textbook/math1030/**`, `src/components/textbook/PracticeQuestion.tsx`,
+  `src/components/textbook/AttemptInput.tsx`, `src/components/textbook/SolutionSteps.tsx`,
+  `src/components/textbook/FeedbackPanel.tsx`, and `src/components/Toc.tsx`
+- What was changed: added checkpoint problems for previously uncovered
+  MATH1030 units: `1.1`, `2.1`, `2.2`, `2.4`, `6.1`, `6.2`, `6.3`, and `6.5`;
+  these include fill-in, multiple-choice, and true/false-as-choice formats
+- What was verified locally before full build: `rg` counts now show at least
+  one `math1030` problem for every public MATH1030 unit
+- Integrity note: each new problem includes a localized prompt, hint, answer,
+  reveal policy, and solution-step sequence; answer strings were kept compact
+  to match the current grader's exact / symbolic normalization
+- Remaining issues: later passes should expand from one checkpoint per thin
+  unit to fuller chapter-level exercise sets drawn from tutorials, assignments,
+  and practice-set PDFs
+
+### 2026-04-25 checkpoint 7: MATH1030 matrix-basics practice expansion
+
+- Checkpoint name: `2.1 Matrix basics` problem-set expansion
+- What was inspected: the existing matrix-basics quick checks, the unit-level
+  checkpoint problem, and the new matrix-reading interaction
+- What was changed: added additional checkpoint questions for reading
+  `a_23`, restoring a missing zero coefficient in a coefficient matrix, and
+  recognizing when matrix addition is undefined
+- Integrity note: each new item has a single unambiguous answer, a localized
+  hint, and a short solution sequence tied directly to the article's worked
+  examples; true/false is represented as an MCQ to match the current problem
+  schema
+- Remaining issues: verify the rendered checkpoint card order and answer
+  reveal behavior in the browser after the build refresh
+
+### 2026-04-25 checkpoint 8: MATH1030 invertibility practice expansion
+
+- Checkpoint name: `5.1 Invertible matrices` problem-set expansion
+- What was inspected: the expanded invertibility theorem dictionary, null-space
+  noninvertibility example, inverse-solve example, and existing member
+  checkpoint coverage
+- What was changed: added checkpoint questions for recognizing that a nonzero
+  `Av=0` vector proves non-invertibility and for solving `Ax=b` using a given
+  inverse matrix
+- Integrity note: both items are multiple choice to avoid fragile vector-input
+  parsing; prompts, choices, hints, and solution steps use the shared rich-text
+  math renderer path
+- Remaining issues: verify the member-gated checkpoint rendering in browser QA
+  after the build refresh
