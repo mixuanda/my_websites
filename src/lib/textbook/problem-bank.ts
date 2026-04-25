@@ -3673,6 +3673,85 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["set-equality", "solution-set", "proof"],
   },
+  "checkpoint.math1030.solution-intersection-same-coefficients": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.solution-intersection-same-coefficients",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "solution-structure",
+    unitId: "math1030.solution-structure.set-language-and-solution-sets",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Suppose `S(A,b)∩S(A,c)` contains a vector `x_0`. What must follow?",
+      "假設 `S(A,b)∩S(A,c)` 包含一個向量 `x_0`。必然推出甚麼？",
+      "假设 `S(A,b)∩S(A,c)` 包含一个向量 `x_0`。必然推出什么？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`b` and `c` may be different, but the two systems share one solution.",
+          "`b` 和 `c` 可以不同，只是兩個系統共享一個解。",
+          "`b` 和 `c` 可以不同，只是两个系统共享一个解。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "`b=c`, so `S(A,b)=S(A,c)`.",
+          "`b=c`，所以 `S(A,b)=S(A,c)`。",
+          "`b=c`，所以 `S(A,b)=S(A,c)`。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "`A` must be invertible.",
+          "`A` 必定可逆。",
+          "`A` 必定可逆。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "Both solution sets must be empty.",
+          "兩個解集都必定是空集。",
+          "两个解集都必定是空集。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "Use membership in both solution sets: `Ax_0=b` and `Ax_0=c`.",
+        "使用同時屬於兩個解集的意思：`Ax_0=b` 且 `Ax_0=c`。",
+        "使用同时属于两个解集的意思：`Ax_0=b` 且 `Ax_0=c`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "Because `x_0∈S(A,b)`, the definition of solution set gives `Ax_0=b`.",
+        "因為 `x_0∈S(A,b)`，由解集定義可得 `Ax_0=b`。",
+        "因为 `x_0∈S(A,b)`，由解集定义可得 `Ax_0=b`。"
+      ),
+      text(
+        "Because `x_0∈S(A,c)`, the same definition gives `Ax_0=c`.",
+        "因為 `x_0∈S(A,c)`，同一定義亦給出 `Ax_0=c`。",
+        "因为 `x_0∈S(A,c)`，同一定义也给出 `Ax_0=c`。"
+      ),
+      text(
+        "Hence `b=c`; the two systems have the same defining condition, so their solution sets are equal.",
+        "因此 `b=c`；兩個系統有相同的 defining condition，所以解集相等。",
+        "因此 `b=c`；两个系统有相同的 defining condition，所以解集相等。"
+      ),
+    ],
+    skillTags: ["solution-set", "intersection", "set-equality"],
+  },
   "checkpoint.math1030.span-membership-set-language": {
     accessTier: "MEMBER",
     id: "checkpoint.math1030.span-membership-set-language",
@@ -3881,6 +3960,57 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
     ],
     skillTags: ["inverse", "matrix-product", "invertible-matrix"],
+  },
+  "checkpoint.math1030.cyclic-identity-from-product": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.cyclic-identity-from-product",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "invertibility",
+    unitId: "math1030.invertibility.invertible-matrices",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Suppose `A,B,C,D` are square matrices and `ABCD=I`. Which equality is definitely forced?",
+      "假設 `A,B,C,D` 都是方陣，且 `ABCD=I`。哪一條等式必然成立？",
+      "假设 `A,B,C,D` 都是方阵，且 `ABCD=I`。哪一条等式必然成立？"
+    ),
+    choices: [
+      { id: "a", text: text("`DABC=I`", "`DABC=I`", "`DABC=I`") },
+      { id: "b", text: text("`DCBA=I`", "`DCBA=I`", "`DCBA=I`") },
+      { id: "c", text: text("`DBAC=I`", "`DBAC=I`", "`DBAC=I`") },
+      { id: "d", text: text("`ACDB=I`", "`ACDB=I`", "`ACDB=I`") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Group the original product as `(ABC)D=I`, then use the square one-sided inverse theorem.",
+        "把原式分組為 `(ABC)D=I`，再使用方陣的一側逆定理。",
+        "把原式分组为 `(ABC)D=I`，再使用方阵的一侧逆定理。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "From `(ABC)D=I`, the square one-sided identity theorem says `D` is the inverse of `ABC`.",
+        "由 `(ABC)D=I`，方陣的一側單位等式定理說明 `D` 是 `ABC` 的逆矩陣。",
+        "由 `(ABC)D=I`，方阵的一侧单位等式定理说明 `D` 是 `ABC` 的逆矩阵。"
+      ),
+      text(
+        "Therefore the reverse grouped product is also the identity: `D(ABC)=I`.",
+        "因此反向分組乘積也等於單位矩陣：`D(ABC)=I`。",
+        "因此反向分组乘积也等于单位矩阵：`D(ABC)=I`。"
+      ),
+      text(
+        "This proves `DABC=I`. It does not allow arbitrary non-cyclic reorderings such as `DCBA`.",
+        "這證明 `DABC=I`。但它不容許任意非循環重排，例如 `DCBA`。",
+        "这证明 `DABC=I`。但它不允许任意非循环重排，例如 `DCBA`。"
+      ),
+    ],
+    skillTags: ["invertible-matrix", "matrix-product", "one-sided-inverse"],
   },
   "checkpoint.math1030.linear-combination-coefficients": {
     accessTier: "MEMBER",

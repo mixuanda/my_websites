@@ -355,3 +355,26 @@ Current checkpoint resolution:
   routes on `www.evanalysis.top`.
 - Remaining issues: continue export QA on the broader MATH1030 sequence after
   this unit-level check
+
+### 2026-04-25 checkpoint 15: MATH1030 as03 proof-pattern rendering
+
+- Checkpoint name: `4.2 Set language` and `5.1 Invertible matrices`
+  assignment-style proof-pattern rendering pass
+- What was inspected: the strengthened EN / zh-HK / zh-CN `4.2` and `5.1`
+  MDX files, the existing MDX block registry, the catalog source-ref map, and
+  the export behavior expected for theorem, proof, worked-example,
+  common-mistake, quick-check, and reveal-solution blocks
+- What was changed: added display-math-heavy proof templates for
+  `N(C)\subseteq N(\alpha A+\beta B)`, common-solution forcing `b=c`, and
+  cyclic identities from `ABCD=I`
+- Rendering note: no new block type was introduced; the additions use
+  existing article blocks and display math so TXT / PDF export should preserve
+  the complete static study sequence
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed. Local production route checks returned 200 for
+  the EN / zh-HK `4.2` and `5.1` note pages; representative TXT and PDF
+  export routes returned 200. Browser QA confirmed the zh-HK pages render the
+  new proof-pattern sections and checkpoint prompts with no captured console
+  errors.
+- Remaining issues: continue export QA on the broader MATH1030 sequence after
+  this unit-level check

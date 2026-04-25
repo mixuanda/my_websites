@@ -446,3 +446,23 @@ written languages.
   locale-specific terminology
 - Remaining issues: `as03` assignment parity and broader export QA should
   follow
+
+### 2026-04-25 checkpoint 10: as03 set-language and invertibility parity
+
+This checkpoint strengthens two existing MATH1030 units in all three supported
+written languages.
+
+- Checkpoint name: Parallel EN, zh-HK, and zh-CN expansion of `4.2 Set
+  language and solution sets` and `5.1 Invertible matrices`
+- What was inspected: `1030efghi-as03.pdf`, `1030efghi-as03as.pdf`, and the
+  existing localized `4.2` and `5.1` note files
+- What was changed: each locale received the same added proof templates for
+  stacked-null-space subset arguments, same-coefficient solution-set
+  intersections, and cyclic product identities from `ABCD=I`
+- What was verified: contentlayer, lint, build, local route / export checks,
+  and zh-HK browser QA passed for the strengthened `4.2` and `5.1` units; the
+  three locale files keep matching section order and exercise targets while
+  using locale-specific terminology
+- Remaining issues: full numerical `as03` row-reduction tables and longer
+  polynomial-identity proofs remain exercise-depth backlog; broader export QA
+  should continue

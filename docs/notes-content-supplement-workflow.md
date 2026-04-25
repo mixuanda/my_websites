@@ -284,3 +284,33 @@ Use this shape for future entries:
   the EN TXT export route, and the zh-HK PDF export route.
 - Remaining gaps: `as03` invertibility and set-language practice parity, plus
   broader export QA across the expanded MATH1030 sequence.
+
+### 2026-04-25: MATH1030 as03 set-language and invertibility parity pass
+
+- Gap selected: `as03` still had assignment-style proof templates that were
+  only partially represented in public notes, especially direct set-language
+  proof from definitions and determinant-free invertibility product algebra.
+- Reference basis: `reference/MATH1030/1030efghi-as03.pdf` and
+  `reference/MATH1030/1030efghi-as03as.pdf`.
+- Content files changed: strengthened the EN / zh-HK / zh-CN `4.2 Set
+  language and solution sets` unit and the EN / zh-HK / zh-CN `5.1 Invertible
+  matrices` unit; updated `src/lib/textbook/catalog.ts` and
+  `src/lib/textbook/problem-bank.ts`.
+- Visuals added: none; the new material is proof-structural and algebraic, so
+  theorem, proof, worked-example, common-mistake, quick-check, and
+  reveal-solution blocks are the appropriate article surface.
+- Interactions added: none; no new widget was justified for the set-inclusion
+  or cyclic-product reasoning patterns.
+- Exercises added: in-page quick checks now cover common-solution forcing
+  `b=c` and cyclic identities from `ABCD=I`; the problem bank adds matching
+  multiple-choice checkpoint items.
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed. Local production smoke on port `3000` returned
+  200 for the EN / zh-HK `4.2` and `5.1` note routes, EN TXT export for
+  `4.2`, and zh-HK PDF export for `5.1`. Browser QA on the zh-HK routes
+  confirmed the new set-language section, cyclic-product section, checkpoint
+  prompts, localized export controls, and zero captured console errors.
+- Deployment: pending completion of this pass.
+- Remaining gaps: full `as03` row-reduction tables, parameterized inverse
+  computations, and longer polynomial identity proof exercises remain
+  exercise-depth backlog; broader MATH1030 export QA should continue.

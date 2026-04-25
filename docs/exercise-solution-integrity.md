@@ -430,3 +430,24 @@ unit-level coverage.
   `dpl_H7y9BXVxtHY62bp2QuNs52ERAxgw`
 - Remaining issues: longer `as02` row-operation drill items and `as03`
   invertibility practice remain future exercise-depth targets
+
+### 2026-04-25 checkpoint 15: MATH1030 as03 set-language and cyclic-product parity
+
+- Checkpoint name: `4.2` solution-set intersection and `5.1` cyclic-product
+  integrity
+- What was inspected: `1030efghi-as03.pdf`, `1030efghi-as03as.pdf`, the
+  localized `4.2` and `5.1` MDX files, and `src/lib/textbook/problem-bank.ts`
+- What was changed: added paired in-page quick checks / reveal solutions for
+  the common-solution argument `Ax_0=b` and `Ax_0=c`, and for deriving
+  `DABC=I` from `ABCD=I`; added one multiple-choice checkpoint for each
+  pattern
+- Integrity note: both problem-bank additions are multiple choice to avoid
+  fragile symbolic parsing of set expressions and product reorderings; the
+  correct choices match the in-page reveal solutions
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed; local route / export smoke returned 200 for
+  representative `4.2` and `5.1` note and export routes; browser QA confirmed
+  the new checkpoint prompts render on the zh-HK note pages with no captured
+  console errors
+- Remaining issues: longer numerical row-reduction and polynomial-identity
+  proof exercises from `as03` remain exercise-depth backlog

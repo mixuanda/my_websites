@@ -460,6 +460,86 @@ The transpose result is useful when you want to turn a statement about columns
 into a statement about rows. The power rule is useful when a repeated
 transformation appears in a calculation.
 
+## Products that equal the identity
+
+Some assignment problems do not hand you a matrix and ask for an inverse
+directly. Instead, they give a product such as
+
+$$
+ABCD=I
+$$
+
+and ask which shorter products or cyclic reorderings are forced to be
+invertible. The correct method is not to commute matrices. It is to group the
+product carefully and use one-sided inverse information for square matrices.
+
+<TheoremCard title="A one-sided identity is enough in the square case">
+Let `P` and `Q` be square matrices of the same size. If
+
+$$
+PQ=I,
+$$
+
+then both `P` and `Q` are invertible, and
+
+$$
+Q=P^{-1},\qquad QP=I.
+$$
+</TheoremCard>
+
+This theorem is one reason the square case is special. For rectangular
+matrices, a one-sided inverse may fail to be a two-sided inverse. For square
+matrices in this course, the invertibility dictionary lets us promote a
+one-sided identity to a genuine inverse relation.
+
+<WorkedExample title="Cyclic identities from `ABCD=I`">
+Suppose `A,B,C,D` are `5 \times 5` matrices and
+
+$$
+ABCD=I_5.
+$$
+
+Group the product as
+
+$$
+(ABC)D=I_5.
+$$
+
+By the one-sided identity theorem, `ABC` and `D` are inverses of each other.
+Therefore
+
+$$
+DABC=I_5.
+$$
+
+Next group the same original product cyclically:
+
+$$
+(DAB)C=I_5
+\qquad\text{and}\qquad
+(CDA)B=I_5,
+$$
+
+after using the already justified cyclic identities. This gives
+
+$$
+CDAB=I_5,
+\qquad
+BCDA=I_5.
+$$
+
+So `BCDA`, `CDAB`, and `DABC` are forced to equal `I_5`. Arbitrary reorderings
+such as `DCBA` or `DBAC` are not forced by `ABCD=I_5`; matrix multiplication
+still does not commute.
+</WorkedExample>
+
+The safe workflow is:
+
+1. keep the given order unless a theorem justifies changing it;
+2. group adjacent factors to form a product `PQ=I`;
+3. use square invertibility to reverse that grouped product;
+4. repeat only with identities already proved.
+
 ## How to approach invertibility problems
 
 When a question asks whether a matrix is invertible, do not start by trying
@@ -545,6 +625,12 @@ A matrix can look simple and still fail to be invertible. The correct test is
 to row-reduce it, or to use one of the equivalent conditions above.
 </CommonMistake>
 
+<CommonMistake title="Do not permute factors without justification">
+From `ABCD=I`, it is legitimate to derive certain cyclic identities such as
+`DABC=I` by using inverse theory. It is not legitimate to rearrange the factors
+as if `A,B,C,D` commute.
+</CommonMistake>
+
 ## Quick checks
 
 <QuickCheck prompt="If `A` is invertible, what is `A^{-1}A`?">
@@ -603,6 +689,16 @@ Use the null-space condition, not row reduction.
 <RevealSolution title="Answer">
 No. An invertible matrix has `N(A) = \{0\}`. A nonzero vector satisfying
 `Av = 0` proves that the null space is nontrivial, so `A` is not invertible.
+</RevealSolution>
+
+<QuickCheck prompt="Suppose `A,B,C,D` are square matrices and `ABCD=I`. Which cyclic identity is forced: `DABC=I` or `DCBA=I`?">
+Group the original product as `(ABC)D=I`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`DABC=I` is forced. Since `(ABC)D=I`, the square one-sided identity theorem
+implies that `D` is the inverse of `ABC`, so `D(ABC)=I`. The equality `DCBA=I`
+would reverse the order of the factors and is not forced in general.
 </RevealSolution>
 
 ## Exercise

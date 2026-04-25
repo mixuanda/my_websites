@@ -445,8 +445,8 @@ into exercises, examples, and source refs for authored note pages.
 | MATH1030 | `reference/MATH1030/1030efghi-as01as.pdf` | assignment answers | overlap | partial | yes | no | Answer key only. |
 | MATH1030 | `reference/MATH1030/1030efghi-as02.pdf` | assignment | partially incorporated | partial | no | no | Systems and row-operation material largely merged. The `4.1` note now directly incorporates the particular-solution plus null-space structure, the `v-u in N(A)` proof pattern, and the `2A,3b` scaling check; longer row-operation matrices and RREF drill sequences remain mostly internal. |
 | MATH1030 | `reference/MATH1030/1030efghi-as02as.pdf` | assignment answers | overlap | partial | yes | no | Answer key only. |
-| MATH1030 | `reference/MATH1030/1030efghi-as03.pdf` | assignment | partially incorporated | partial | no | no | Set language, null space, and invertibility questions now have better coverage, but not full one-to-one exercise parity. |
-| MATH1030 | `reference/MATH1030/1030efghi-as03as.pdf` | assignment answers | overlap | partial | yes | no | Answer key only. |
+| MATH1030 | `reference/MATH1030/1030efghi-as03.pdf` | assignment | substantially incorporated | partial | no | no | Direct support now appears in `4.2` for stacked-null-space subset proofs and same-coefficient solution-set intersections, and in `5.1` for one-sided identity / cyclic product invertibility arguments. Full numerical row-reduction parity remains exercise-depth backlog. |
+| MATH1030 | `reference/MATH1030/1030efghi-as03as.pdf` | assignment answers | overlap | partial | yes | no | Used to verify the solution patterns for the `4.2` set-language proof templates and `5.1` determinant-free invertibility algebra; answer-key extraction remains secondary evidence. |
 | MATH1030 | `reference/MATH1030/1030efghi-as04-202526.pdf` | assignment | incorporated | yes | yes | no | Already supports dependence / span / vector-space public notes. |
 | MATH1030 | `reference/MATH1030/Practice Set 1_Set review and Solving Linear system.pdf` | practice set | incorporated | yes | yes | no | Used in systems, augmented matrices, and solution-set types. |
 | MATH1030 | `reference/MATH1030/Practice Set 1_Solutions.pdf` | practice solutions | overlap | partial | yes | no | Internal solution support only. |
@@ -868,3 +868,25 @@ existing invertibility note instead of creating a detached new route.
   sequences are still better handled in future exercise-depth passes; `as03`
   invertibility / set-language practice parity remains the next assignment
   content target.
+
+### 2026-04-25 checkpoint 21: MATH1030 as03 set-language and invertibility parity pass
+
+- Strengthened the existing three-locale `4.2 Set language and solution sets`
+  note using `1030efghi-as03.pdf` and `1030efghi-as03as.pdf`.
+- Added textbook-style coverage for direct subset proofs from definitions,
+  including the stacked matrix pattern
+  `C=[A;B]` and `N(C)\subseteq N(\alpha A+\beta B)`.
+- Added the same-coefficient solution-set intersection theorem: if
+  `S(A,b)\cap S(A,c)` is nonempty, then a common solution forces `b=c`, hence
+  `S(A,b)=S(A,c)`.
+- Strengthened the existing three-locale `5.1 Invertible matrices` note with
+  the determinant-free `as03` product-identity pattern: for square matrices,
+  one-sided identities promote to genuine inverse relations, so `ABCD=I`
+  forces cyclic identities such as `DABC=I`, `CDAB=I`, and `BCDA=I`, but not
+  arbitrary reorderings.
+- Updated catalog source refs for `4.2` and `5.1`, and added checkpoint
+  questions for the solution-set intersection pattern and cyclic product
+  identity pattern.
+- Remaining issues: full `as03` numerical row-reduction tables, parameterized
+  inverse computations, and longer Q10 polynomial identity proofs remain
+  exercise-depth backlog rather than core article blockers.

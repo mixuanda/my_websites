@@ -135,6 +135,54 @@ $$
 張成是一個集合，不是原來的列表。重排向量不會改變張成；加入一個本來已經
 是舊向量線性組合的向量，也不會改變張成。
 
+## 堆疊矩陣中的 subset 證明
+
+功課題常要求你直接根據定義證明集合包含，而不是引用較大的定理。下面的模式
+很值得掌握。
+
+<TheoremCard title="堆疊矩陣的零空間包含在組合矩陣的零空間內">
+設 `A` 和 `B` 是 `p \times q` 矩陣，並令
+
+$$
+C=\begin{bmatrix} A \\ B \end{bmatrix}.
+$$
+
+對任意實數 `\alpha,\beta`，都有
+
+$$
+N(C)\subseteq N(\alpha A+\beta B).
+$$
+</TheoremCard>
+
+<CollapsibleProof title="由定義出發的證明">
+要證明 subset 關係，取任意 `t\in N(C)`。由零空間定義，
+
+$$
+Ct=0.
+$$
+
+由於 `C` 是把 `A` 疊在 `B` 上方所得的矩陣，這等同於
+
+$$
+\begin{bmatrix} At \\ Bt \end{bmatrix}
+=
+\begin{bmatrix} 0 \\ 0 \end{bmatrix}.
+$$
+
+因此 `At=0` 且 `Bt=0`。所以
+
+$$
+(\alpha A+\beta B)t
+=
+\alpha At+\beta Bt
+=
+0.
+$$
+
+再次由零空間定義，`t\in N(\alpha A+\beta B)`。由於 `t\in N(C)` 是任意
+選取的，包含關係成立。
+</CollapsibleProof>
+
 ## 集合相等需要兩個方向
 
 <Definition title="集合相等">
@@ -154,6 +202,57 @@ $$
 2. 證明 `T` 的每個元素都屬於 `S`。
 
 只證明第一個方向，只能得到 `S\subseteq T`，不能得到相等。
+
+## 同一係數矩陣的解集交集
+
+集合語言也能清楚說明一個常用事實：若 `Ax=b` 和 `Ax=c` 的解集有一個共同
+向量，則兩個右端向量其實必須相同。
+
+<TheoremCard title="同一個 A 下，兩個有交集的解集必然相等">
+設 `A` 是 `m \times n` 矩陣，且 `b,c\in R^m`。若
+
+$$
+S(A,b)\cap S(A,c)\ne\varnothing,
+$$
+
+則
+
+$$
+S(A,b)=S(A,c).
+$$
+</TheoremCard>
+
+<CollapsibleProof title="為何一個共同解足以迫出相等">
+因為交集非空，所以存在某個向量 `x_0`，使得
+
+$$
+x_0\in S(A,b)
+\qquad\text{and}\qquad
+x_0\in S(A,c).
+$$
+
+由解集定義，
+
+$$
+Ax_0=b
+\qquad\text{and}\qquad
+Ax_0=c.
+$$
+
+因此 `b=c`。但若兩個右端向量相同，兩個 defining condition 就完全一樣：
+
+$$
+Ax=b
+\qquad\Longleftrightarrow\qquad
+Ax=c.
+$$
+
+所以 `S(A,b)` 的每個元素都屬於 `S(A,c)`，而 `S(A,c)` 的每個元素亦屬於
+`S(A,b)`。因此 `S(A,b)=S(A,c)`。
+</CollapsibleProof>
+
+反過來讀也很重要：對固定矩陣 `A`，兩個一致系統 `Ax=b` 與 `Ax=c` 的解集
+要麼不相交，要麼完全相同。它們不可能只共享一個解，卻在其他解上不同。
 
 ## 一個核心張成論證
 
@@ -256,6 +355,12 @@ $$
 每個元素也屬於 `S`。
 </CommonMistake>
 
+<CommonMistake title="忘記共同解會固定右端向量">
+如果兩個系統使用同一個矩陣 `A`，而某個 `x_0` 同時滿足 `Ax_0=b` 和
+`Ax_0=c`，則必然有 `b=c`。結論不只是兩個系統相似，而是它們有相同的右端
+向量。
+</CommonMistake>
+
 ## 快速檢查
 
 <QuickCheck prompt="如果 `S(A,b)=\varnothing`，這對方程組 `Ax=b` 表示甚麼？">
@@ -278,6 +383,15 @@ $$
 =
 \operatorname{Span}\{u_1,u_2\}.
 $$
+</RevealSolution>
+
+<QuickCheck prompt="假設 `S(A,b)\cap S(A,c)` 包含一個向量 `x_0`。這對 `b` 和 `c` 表示甚麼？">
+用解集成員的定義。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因為 `x_0\in S(A,b)`，所以 `Ax_0=b`。又因為 `x_0\in S(A,c)`，所以
+`Ax_0=c`。因此 `b=c`，兩個解集相等。
 </RevealSolution>
 
 ## 練習

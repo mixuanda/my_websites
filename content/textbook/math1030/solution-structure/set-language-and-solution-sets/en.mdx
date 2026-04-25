@@ -145,6 +145,56 @@ The span is a set, not the list itself. Reordering the vectors does not change
 the span, and adding a vector that was already a linear combination of the old
 ones does not change the span.
 
+## A subset proof with stacked matrices
+
+Assignment problems often ask you to prove a set inclusion directly from the
+definitions rather than by quoting a larger theorem. The following pattern is a
+good model.
+
+<TheoremCard title="A stacked null space is contained in a combined null space">
+Let `A` and `B` be `p \times q` matrices, and let
+
+$$
+C=\begin{bmatrix} A \\ B \end{bmatrix}.
+$$
+
+For any real numbers `\alpha,\beta`,
+
+$$
+N(C)\subseteq N(\alpha A+\beta B).
+$$
+</TheoremCard>
+
+<CollapsibleProof title="Proof from the definitions">
+To prove the subset relation, take an arbitrary `t\in N(C)`. By the definition
+of null space,
+
+$$
+Ct=0.
+$$
+
+Since `C` is the matrix obtained by stacking `A` above `B`, this says
+
+$$
+\begin{bmatrix} At \\ Bt \end{bmatrix}
+=
+\begin{bmatrix} 0 \\ 0 \end{bmatrix}.
+$$
+
+Therefore `At=0` and `Bt=0`. Hence
+
+$$
+(\alpha A+\beta B)t
+=
+\alpha At+\beta Bt
+=
+0.
+$$
+
+By the definition of null space again, `t\in N(\alpha A+\beta B)`. Since the
+choice of `t\in N(C)` was arbitrary, the inclusion follows.
+</CollapsibleProof>
+
 ## Set equality means two directions
 
 <Definition title="Set equality">
@@ -165,6 +215,61 @@ In proofs, this usually becomes a two-inclusion routine:
 2. prove that every element of `T` belongs to `S`.
 
 The first direction alone proves only `S\subseteq T`, not equality.
+
+## Intersections of solution sets with the same coefficient matrix
+
+Set language also clarifies a useful fact about systems with the same
+coefficient matrix. If two solution sets for `Ax=b` and `Ax=c` have even one
+common vector, then the two right-hand sides must actually be the same.
+
+<TheoremCard title="For the same A, two nonempty-overlapping solution sets are equal">
+Let `A` be an `m \times n` matrix, and let `b,c\in R^m`. If
+
+$$
+S(A,b)\cap S(A,c)\ne\varnothing,
+$$
+
+then
+
+$$
+S(A,b)=S(A,c).
+$$
+</TheoremCard>
+
+<CollapsibleProof title="Why one common solution forces equality">
+Because the intersection is nonempty, there is some vector `x_0` such that
+
+$$
+x_0\in S(A,b)
+\qquad\text{and}\qquad
+x_0\in S(A,c).
+$$
+
+By the definition of solution set,
+
+$$
+Ax_0=b
+\qquad\text{and}\qquad
+Ax_0=c.
+$$
+
+Therefore `b=c`. But if the two right-hand sides are the same, the two defining
+conditions are identical:
+
+$$
+Ax=b
+\qquad\Longleftrightarrow\qquad
+Ax=c.
+$$
+
+Thus every element of `S(A,b)` belongs to `S(A,c)`, and every element of
+`S(A,c)` belongs to `S(A,b)`. Hence `S(A,b)=S(A,c)`.
+</CollapsibleProof>
+
+The contrapositive reading is often just as important: for a fixed matrix `A`,
+two consistent systems `Ax=b` and `Ax=c` either have disjoint solution sets or
+exactly the same solution set. They cannot share one solution but disagree
+elsewhere.
 
 ## A core span argument
 
@@ -272,6 +377,12 @@ To prove `S=T`, showing that every element of `S` belongs to `T` is not enough.
 You must also show that every element of `T` belongs to `S`.
 </CommonMistake>
 
+<CommonMistake title="Forgetting that a common solution fixes the right-hand side">
+If the same matrix `A` is used in both systems, a vector `x_0` satisfying
+`Ax_0=b` and `Ax_0=c` forces `b=c`. The conclusion is not merely that the two
+systems are similar; their equations have the same right-hand side.
+</CommonMistake>
+
 ## Quick checks
 
 <QuickCheck prompt="If `S(A,b)=\varnothing`, what does that say about the system `Ax=b`?">
@@ -295,6 +406,15 @@ $$
 =
 \operatorname{Span}\{u_1,u_2\}.
 $$
+</RevealSolution>
+
+<QuickCheck prompt="Suppose `S(A,b)\cap S(A,c)` contains a vector `x_0`. What must be true about `b` and `c`?">
+Use the definition of membership in a solution set.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Since `x_0\in S(A,b)`, we have `Ax_0=b`. Since `x_0\in S(A,c)`, we also have
+`Ax_0=c`. Therefore `b=c`, and the two solution sets are equal.
 </RevealSolution>
 
 ## Exercises

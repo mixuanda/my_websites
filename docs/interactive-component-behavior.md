@@ -113,5 +113,12 @@ did not add a new widget. The new material is the structural identity
 reading. Existing theorem, proof, worked-example, quick-check, and reveal
 blocks preserve the article-first flow and export cleanly.
 
+The later `math1030` `4.2` / `5.1` as03 assignment parity pass also did not
+add a new widget. The added material is proof-structural: direct subset
+arguments from definitions, solution-set intersection logic, and cyclic
+product identities from `ABCD=I`. Existing theorem, proof, worked-example,
+common-mistake, quick-check, and reveal blocks preserve the article-first flow
+and export cleanly.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

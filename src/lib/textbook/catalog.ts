@@ -1687,6 +1687,10 @@ const math1030SolutionStructureUnits: TextbookUnitMeta[] = [
         file: "reference/MATH1030/MATH1030-Notes.pdf",
         pages: "§1.1, §2.3, §4.1-§4.2, §6.3",
       },
+      {
+        file: "reference/MATH1030/1030efghi-as03.pdf",
+        note: "Assignment-style set-language proofs for null spaces, solution-set intersections, and set equality",
+      },
     ],
     title: text(
       "4.2 Set language and solution sets",
@@ -1741,6 +1745,14 @@ const math1030InvertibilityUnits: TextbookUnitMeta[] = [
       },
       {
         file: "reference/MATH1030/Practice Set 4_Invertible Matrix.pdf",
+      },
+      {
+        file: "reference/MATH1030/1030efghi-as03.pdf",
+        note: "Assignment-style invertibility proofs using one-sided identities and cyclic product order",
+      },
+      {
+        file: "reference/MATH1030/1030efghi-as03as.pdf",
+        note: "Solution patterns for determinant-free invertibility algebra",
       },
     ],
     title: text(
