@@ -259,6 +259,16 @@ The following gaps remain active.
 Use this checklist while you verify the current note set, then extend it as new
 source-backed chapters are added.
 
+## Current MATH1030 parity note
+
+- `6.8 Basis extension and change of basis` now exists in EN, zh-HK, and zh-CN
+  with matching section order, theorem blocks, worked examples, quick checks,
+  exercises, and localized prerequisite links.
+- The unit is source-backed by `1030gi-n05-02p.pdf`,
+  `1030gi-n05-02q.pdf`, and `1030gi-n05-02r.pdf`.
+- Catalog order now places `6.8` after matrix subspaces and before the
+  determinant chapter; later MATH1030 chapters retain their relative order.
+
 ## Checkpoint log
 
 This log records parity-impacting checkpoints so the three-language note set

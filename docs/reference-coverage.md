@@ -370,9 +370,9 @@ These files are the main conceptual sources for authored note pages.
 | MATH1030 | `reference/MATH1030/1030gi-n04-04.pdf` | lecture note | incorporated | yes | no | no | Direct source for the vector-space note. |
 | MATH1030 | `reference/MATH1030/1030gi-n05-01.pdf` | lecture note | incorporated | yes | no | no | Used in basis / dimension coverage. |
 | MATH1030 | `reference/MATH1030/1030gi-n05-02.pdf` | lecture note | incorporated | yes | no | no | Used in basis / dimension coverage. |
-| MATH1030 | `reference/MATH1030/1030gi-n05-02p.pdf` | optional appendix | pending | no | no | no | Existence of basis appendix is not yet a dedicated public theorem note. |
-| MATH1030 | `reference/MATH1030/1030gi-n05-02q.pdf` | optional appendix | pending | no | no | no | Replacement theorem remains backlog. |
-| MATH1030 | `reference/MATH1030/1030gi-n05-02r.pdf` | optional appendix | pending | no | no | no | Change-of-basis theorem remains backlog. |
+| MATH1030 | `reference/MATH1030/1030gi-n05-02p.pdf` | optional appendix | incorporated | yes | no | no | Basis-existence proof for arbitrary nonzero subspaces of `R^n` is now incorporated in `6.8 Basis extension and change of basis`. |
+| MATH1030 | `reference/MATH1030/1030gi-n05-02q.pdf` | optional appendix | incorporated | yes | no | no | Replacement theorem, same-size bases, and dimension counting consequences are now incorporated in `6.8`. |
+| MATH1030 | `reference/MATH1030/1030gi-n05-02r.pdf` | optional appendix | incorporated | yes | no | no | Change-of-basis theorem, `U=VS`, coordinate conversion, and a proper-subspace worked example are now incorporated in `6.8`. |
 | MATH1030 | `reference/MATH1030/1030gi-n05-03.pdf` | lecture note | incorporated | yes | no | no | Minimal spanning sets, rank of a generating matrix, pivot-column extraction, and redundant-column relations are now explicit in `6.5`. |
 | MATH1030 | `reference/MATH1030/1030gi-n05-04.pdf` | lecture note | incorporated | yes | no | no | Direct source for the new `6.6 Column space, row space, and rank` note. |
 | MATH1030 | `reference/MATH1030/1030gi-n05-05.pdf` | lecture note | incorporated | yes | no | no | `6.5 Basis and dimension` now includes the counting theorem, two-of-three basis criterion, dimension consequences, and rank-nullity-style basis tests. |
@@ -711,4 +711,24 @@ existing invertibility note instead of creating a detached new route.
   dependence relations from `Uc=0`, and minimal spanning sets.
 - Remaining issues: optional proof-culture appendices and full REF/RREF
   existence / uniqueness proof appendices remain documented backlog rather than
-  public-page blockers.
+  public-page blockers; the basis-existence / replacement / change-of-basis
+  appendix family is now represented publicly.
+
+### 2026-04-25 checkpoint 15: basis extension and change-of-basis appendix pass
+
+- Added a new three-locale MATH1030 unit, `6.8 Basis extension and change of
+  basis`, from `1030gi-n05-02p.pdf`, `1030gi-n05-02q.pdf`, and
+  `1030gi-n05-02r.pdf`.
+- The new unit covers basis existence for nonzero subspaces of `R^n`, the
+  greedy selection proof idea, the Replacement Theorem, dimension counting
+  consequences, ordered bases, coordinate vectors, the change-of-basis theorem,
+  the formula `U=VS`, and coordinate conversion `[x]_V=S[x]_U`.
+- Added a worked proper-subspace coordinate-conversion example based on the
+  reference packet and two checkpoint questions covering replacement-theorem
+  counting and change-of-basis coordinate conversion.
+- Updated the catalog so the MATH1030 vector-space chapter now runs through
+  `6.8`; later determinant, eigenvalue, and inner-product order values were
+  shifted accordingly.
+- Remaining issues: `1030gi-n02-03p.pdf` remains the main optional linear
+  systems appendix backlog, focused on existence of REF / RREF and preservation
+  of pivot columns during reduction from REF to RREF.

@@ -1880,6 +1880,47 @@ const math1030VectorSpaceUnits: TextbookUnitMeta[] = [
     unitId: "math1030.vector-spaces.matrix-subspaces-basis-dimension",
     unitNumber: "6.7",
   },
+  {
+    accessTier: "MEMBER",
+    chapterId: "vector-spaces",
+    chapterNumber: "6",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use basis existence, the replacement theorem, and change-of-basis matrices to compare coordinate systems rigorously.",
+      "用基底存在性、替換定理與基變換矩陣，嚴謹比較不同坐標系統。",
+      "用基底存在性、替换定理与基变换矩阵，严谨比较不同坐标系统。"
+    ),
+    glossaryRefs: ["basis", "dimension", "linear-independence", "span", "invertible-matrix"],
+    interactiveIds: [],
+    order: 19,
+    prerequisites: [
+      "math1030.vector-spaces.linear-dependence-and-independence",
+      "math1030.vector-spaces.basis-and-dimension",
+    ],
+    slug: "basis-extension-and-change-of-basis",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/1030gi-n05-02p.pdf",
+        note: "Basis existence for arbitrary nonzero subspaces of R^n",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n05-02q.pdf",
+        note: "Replacement theorem and dimension consequences",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n05-02r.pdf",
+        note: "Change-of-basis theorem and coordinate conversion",
+      },
+    ],
+    title: text(
+      "6.8 Basis extension and change of basis",
+      "6.8 基底延伸與基變換",
+      "6.8 基底延伸与基变换"
+    ),
+    unitId: "math1030.vector-spaces.basis-extension-and-change-of-basis",
+    unitNumber: "6.8",
+  },
 ];
 
 const math1030DeterminantUnits: TextbookUnitMeta[] = [
@@ -1896,7 +1937,7 @@ const math1030DeterminantUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["determinant", "minor", "cofactor"],
     interactiveIds: [],
-    order: 19,
+    order: 20,
     prerequisites: ["math1030.matrices.matrix-basics"],
     slug: "determinants-and-cofactor-expansion",
     sourceRefs: [
@@ -1929,7 +1970,7 @@ const math1030DeterminantUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["determinant", "row-operation", "invertible-matrix"],
     interactiveIds: [],
-    order: 20,
+    order: 21,
     prerequisites: [
       "math1030.determinants.determinants-and-cofactor-expansion",
       "math1030.invertibility.invertible-matrices",
@@ -1971,7 +2012,7 @@ const math1030DeterminantUnits: TextbookUnitMeta[] = [
       "cramers-rule",
     ],
     interactiveIds: [],
-    order: 21,
+    order: 22,
     prerequisites: [
       "math1030.determinants.determinants-and-cofactor-expansion",
       "math1030.determinants.row-operations-products-and-invertibility",
@@ -2011,7 +2052,7 @@ const math1030EigenvalueUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["eigenvalue", "eigenvector", "eigenspace", "determinant"],
     interactiveIds: [],
-    order: 22,
+    order: 23,
     prerequisites: [
       "math1030.determinants.row-operations-products-and-invertibility",
       "math1030.vector-spaces.basis-and-dimension",
@@ -2047,7 +2088,7 @@ const math1030EigenvalueUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["eigenvalue", "eigenvector", "diagonalizable-matrix", "basis"],
     interactiveIds: [],
-    order: 23,
+    order: 24,
     prerequisites: [
       "math1030.eigenvalues.eigenvalues-eigenvectors-and-eigenspaces",
       "math1030.vector-spaces.basis-and-dimension",
@@ -2088,7 +2129,7 @@ const math1030EigenvalueUnits: TextbookUnitMeta[] = [
       "diagonalizable-matrix",
     ],
     interactiveIds: [],
-    order: 24,
+    order: 25,
     prerequisites: [
       "math1030.eigenvalues.eigenvalues-eigenvectors-and-eigenspaces",
       "math1030.eigenvalues.diagonalization-and-similarity",
@@ -2128,7 +2169,7 @@ const math1030InnerProductUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["inner-product", "norm", "unit-vector"],
     interactiveIds: [],
-    order: 25,
+    order: 26,
     prerequisites: ["math1030.vector-spaces.vector-spaces"],
     slug: "inner-products-norms-and-angles",
     sourceRefs: [
@@ -2161,7 +2202,7 @@ const math1030InnerProductUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["inner-product", "orthogonal", "orthonormal-basis", "basis"],
     interactiveIds: [],
-    order: 26,
+    order: 27,
     prerequisites: [
       "math1030.inner-products.inner-products-norms-and-angles",
       "math1030.vector-spaces.basis-and-dimension",
@@ -2198,7 +2239,7 @@ const math1030InnerProductUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["orthogonal", "orthonormal-basis", "gram-schmidt", "span"],
     interactiveIds: [],
-    order: 27,
+    order: 28,
     prerequisites: [
       "math1030.inner-products.orthogonal-sets-and-orthonormal-bases",
       "math1030.vector-spaces.basis-and-dimension",
@@ -2231,7 +2272,7 @@ const math1030InnerProductUnits: TextbookUnitMeta[] = [
     ),
     glossaryRefs: ["inner-product", "norm", "orthogonal"],
     interactiveIds: [],
-    order: 28,
+    order: 29,
     prerequisites: ["math1030.inner-products.inner-products-norms-and-angles"],
     slug: "cauchy-schwarz-and-triangle-inequalities",
     sourceRefs: [

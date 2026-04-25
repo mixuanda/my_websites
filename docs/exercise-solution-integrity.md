@@ -317,3 +317,18 @@ unit-level coverage.
   math renderer path
 - Remaining issues: verify the member-gated checkpoint rendering in browser QA
   after the build refresh
+
+### 2026-04-25 checkpoint 9: MATH1030 6.8 basis appendix checks
+
+- Checkpoint name: `6.8 Basis extension and change of basis` exercise
+  integrity
+- What was inspected: the new quick-check / reveal pairs inside all three
+  localized `6.8` pages and the new problem-bank checkpoint entries
+- What was changed: added two in-page quick checks and two guided exercises
+  per locale, plus checkpoint questions for replacement-theorem counting and
+  change-of-basis coordinate conversion
+- Integrity note: answer content stays immediately after the matching prompt;
+  coordinate-conversion arithmetic uses the same matrix `S` in the article and
+  the problem bank, so the public exercise and checkpoint agree
+- Remaining issues: verify rendered checkpoint order and member-gated answer
+  reveal behavior after build refresh

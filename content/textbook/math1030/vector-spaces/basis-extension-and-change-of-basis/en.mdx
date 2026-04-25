@@ -1,0 +1,478 @@
+---
+title: "6.8 Basis extension and change of basis"
+description: "Turn the basis theorems into usable tools: extend independent lists, replace old basis vectors, and compare coordinates across two bases."
+---
+
+The previous notes explain what a basis is and how dimension is used. This
+note adds the structural theorems that make the theory reliable.
+
+There are three questions behind the results:
+
+1. If a subspace is nonzero, must it have a basis?
+2. If we already have a basis, when can we replace some old basis vectors by
+   new independent vectors?
+3. If two different bases describe the same subspace, how do their coordinate
+   systems talk to each other?
+
+The answers are not just formal background. They explain why dimension is
+well-defined, why independent lists can be extended, why spanning lists can be
+trimmed, and why diagonalization later is really a change of coordinates.
+
+## Why existence is not automatic
+
+For familiar spaces such as `R^n`, it is easy to write down the standard basis.
+For an arbitrary subspace `W \subseteq R^n`, a basis is less obvious. The
+subspace might be given by equations, by a span, or by a condition such as
+`x_1+x_2+x_3=0`.
+
+The first theorem says that the situation is still controlled.
+
+<TheoremCard title="Existence of a basis for subspaces of `R^n`">
+Every nonzero subspace `W` of `R^n` has a basis. More precisely, there are
+vectors
+
+$$
+u_1,\ldots,u_p\in W
+$$
+
+such that `1\le p\le n`, the list is linearly independent, and
+
+$$
+W=\operatorname{Span}\{u_1,\ldots,u_p\}.
+$$
+</TheoremCard>
+
+The proof is a controlled selection process.
+
+Start with any nonzero vector `u_1\in W`. If every vector in `W` is already a
+multiple of `u_1`, then `\{u_1\}` is a basis. If not, choose `u_2\in W` that is
+not a multiple of `u_1`. Then `u_1,u_2` are linearly independent.
+
+Continue in the same way. At step `j`, if the current list
+`u_1,\ldots,u_j` does not span `W`, choose a new vector
+`u_{j+1}\in W` outside the current span. The new list stays linearly
+independent because the new vector was chosen not to be a linear combination
+of the old ones.
+
+This process cannot go on forever: no more than `n` vectors in `R^n` can be
+linearly independent. Therefore it must stop, and when it stops the chosen
+vectors span `W`. They are independent by construction, so they form a basis.
+
+<WorkedExample title="A basis produced by the selection idea">
+Let
+
+$$
+W=\left\{
+\begin{bmatrix}x\\y\\z\end{bmatrix}\in R^3:x+y+z=0
+\right\}.
+$$
+
+Choose
+
+$$
+u_1=\begin{bmatrix}1\\-1\\0\end{bmatrix}\in W.
+$$
+
+This one vector does not span all of `W`, because
+
+$$
+u_2=\begin{bmatrix}1\\0\\-1\end{bmatrix}\in W
+$$
+
+is not a scalar multiple of `u_1`. Therefore `u_1,u_2` are linearly
+independent.
+
+Now every vector in `W` can be written as
+
+$$
+\begin{bmatrix}x\\y\\z\end{bmatrix}
+=
+x\begin{bmatrix}1\\0\\-1\end{bmatrix}
++y\begin{bmatrix}0\\1\\-1\end{bmatrix},
+$$
+
+or, using our chosen list,
+
+$$
+\begin{bmatrix}x\\y\\z\end{bmatrix}
+=
+-y\begin{bmatrix}1\\-1\\0\end{bmatrix}
++(x+y)\begin{bmatrix}1\\0\\-1\end{bmatrix},
+$$
+
+because `z=-x-y`. Hence `u_1,u_2` span `W` and form a basis. This also gives
+`dim(W)=2`.
+</WorkedExample>
+
+## The replacement idea
+
+The basis-existence proof grows an independent list. The replacement theorem
+explains the complementary operation: insert new independent vectors into an
+old basis while deleting the correct old vectors.
+
+<TheoremCard title="Replacement theorem">
+Let `W` be a subspace of `R^n`. Suppose
+
+$$
+t_1,\ldots,t_q
+$$
+
+is a basis for `W`, and suppose
+
+$$
+u_1,\ldots,u_p\in W
+$$
+
+are linearly independent. Then:
+
+1. `p\le q`;
+2. the vectors `u_1,\ldots,u_p`, together with some `q-p` of the old basis
+   vectors `t_1,\ldots,t_q`, form another basis for `W`.
+</TheoremCard>
+
+This theorem is the precise version of the slogan:
+
+> independent vectors can replace the same number of old basis vectors.
+
+The proof begins with the one-vector case. Suppose
+`t_1,\ldots,t_q` is a basis and
+
+$$
+u=\alpha_1t_1+\cdots+\alpha_qt_q,\qquad u\ne 0.
+$$
+
+At least one coefficient is nonzero. If `\alpha_1\ne 0`, then
+
+$$
+t_1=\frac{1}{\alpha_1}u
+-\frac{\alpha_2}{\alpha_1}t_2-\cdots
+-\frac{\alpha_q}{\alpha_1}t_q.
+$$
+
+So the list
+
+$$
+u,t_2,\ldots,t_q
+$$
+
+spans the same space as the old basis. It is also independent. If the first
+nonzero coefficient is not `\alpha_1`, relabel the old basis vectors and do the
+same argument.
+
+The full replacement theorem repeats this one-vector replacement step. Each new
+independent vector replaces one old basis vector, and independence prevents the
+process from getting stuck.
+
+## Dimension consequences
+
+The replacement theorem gives the rigorous reason why dimension works.
+
+<TheoremCard title="All bases of the same finite-dimensional subspace have the same size">
+If `B` and `C` are both bases for the same subspace `W\subseteq R^n`, then
+`B` and `C` contain the same number of vectors.
+</TheoremCard>
+
+Indeed, apply the replacement theorem twice. If `B` has `p` vectors and `C`
+has `q` vectors, then the independence of `B` inside a space with basis `C`
+gives `p\le q`. Reversing the roles gives `q\le p`. Therefore `p=q`.
+
+Several useful statements follow immediately.
+
+<TheoremCard title="Counting rules inside a `q`-dimensional subspace">
+Let `dim(W)=q`.
+
+1. Any linearly independent list in `W` has at most `q` vectors.
+2. Any list of more than `q` vectors in `W` is linearly dependent.
+3. A linearly independent list in `W` can be extended to a basis of `W`.
+4. A spanning list for `W` can be reduced to a basis of `W` by deleting
+   redundant vectors.
+</TheoremCard>
+
+These are not separate tricks. They all express the same fact: a basis is the
+exact size of a nonredundant spanning list.
+
+## Ordered bases and coordinate vectors
+
+A basis as a set tells us which vectors are available. An **ordered basis**
+also fixes their order. Order matters for coordinates.
+
+If
+
+$$
+B=(b_1,\ldots,b_p)
+$$
+
+is an ordered basis for `W`, then every `x\in W` has a unique expression
+
+$$
+x=\alpha_1b_1+\cdots+\alpha_pb_p.
+$$
+
+The coordinate vector of `x` relative to `B` is
+
+$$
+[x]_B=
+\begin{bmatrix}
+\alpha_1\\
+\vdots\\
+\alpha_p
+\end{bmatrix}.
+$$
+
+Changing the order of the basis changes the coordinate vector, even if the
+underlying basis vectors are the same.
+
+## Change-of-basis theorem
+
+Now suppose the same `p`-dimensional subspace `W` has two ordered bases:
+
+$$
+U=(u_1,\ldots,u_p),\qquad V=(v_1,\ldots,v_p).
+$$
+
+Write the basis matrices
+
+$$
+\mathcal U=[u_1\ \cdots\ u_p],
+\qquad
+\mathcal V=[v_1\ \cdots\ v_p].
+$$
+
+<TheoremCard title="Change-of-basis theorem">
+There is a unique invertible `p\times p` matrix `S` such that
+
+$$
+\mathcal U=\mathcal V S.
+$$
+
+The columns of `S` are the coordinate vectors of the `u_j`'s in the ordered
+basis `V`. If
+
+$$
+x=\mathcal U a=\mathcal V b,
+$$
+
+then the coordinate vectors satisfy
+
+$$
+b=Sa.
+$$
+</TheoremCard>
+
+Read this carefully. The matrix `S` does not move the vector `x` in the ambient
+space. It converts the coordinate column from the `U`-basis language into the
+`V`-basis language:
+
+$$
+[x]_V=S[x]_U.
+$$
+
+Because `S` is invertible, the reverse conversion is
+
+$$
+[x]_U=S^{-1}[x]_V.
+$$
+
+If `W=R^n`, then `\mathcal U` and `\mathcal V` are square invertible matrices,
+and the formula becomes especially concrete:
+
+$$
+S=\mathcal V^{-1}\mathcal U.
+$$
+
+For a proper subspace, `\mathcal V` is usually not square, so you should find
+each column of `S` by solving
+
+$$
+\mathcal V s_j=u_j.
+$$
+
+## Worked example: changing coordinates in a plane
+
+Let
+
+$$
+u_1=\begin{bmatrix}2\\1\\1\end{bmatrix},
+\quad
+u_2=\begin{bmatrix}0\\-1\\1\end{bmatrix},
+\quad
+v_1=\begin{bmatrix}1\\1\\0\end{bmatrix},
+\quad
+v_2=\begin{bmatrix}1\\0\\1\end{bmatrix}.
+$$
+
+Let `W=Span\{u_1,u_2\}`. One checks that both
+`(u_1,u_2)` and `(v_1,v_2)` are ordered bases for the same plane `W`.
+
+The vector equalities
+
+$$
+u_1=v_1+v_2,\qquad
+u_2=-v_1+v_2
+$$
+
+combine into the matrix equality
+
+$$
+\mathcal U=\mathcal V
+\begin{bmatrix}
+1&-1\\
+1&1
+\end{bmatrix}.
+$$
+
+Therefore
+
+$$
+S=
+\begin{bmatrix}
+1&-1\\
+1&1
+\end{bmatrix}
+$$
+
+is the change-of-basis matrix from the ordered basis `U` to the ordered basis
+`V`.
+
+For example, if
+
+$$
+[x]_U=
+\begin{bmatrix}3\\2\end{bmatrix},
+$$
+
+then
+
+$$
+[x]_V
+=S[x]_U
+=
+\begin{bmatrix}
+1&-1\\
+1&1
+\end{bmatrix}
+\begin{bmatrix}3\\2\end{bmatrix}
+=
+\begin{bmatrix}1\\5\end{bmatrix}.
+$$
+
+So
+
+$$
+x=3u_1+2u_2=v_1+5v_2.
+$$
+
+The actual vector has not changed. Only its coordinates have changed.
+
+## How to compute a change-of-basis matrix
+
+Use this workflow.
+
+1. Decide the direction of conversion. If you want `[x]_V` from `[x]_U`, you
+   need `\mathcal U=\mathcal V S`.
+2. For each `u_j`, solve `\mathcal V s_j=u_j`.
+3. Put the solution columns together:
+
+$$
+S=[s_1\ \cdots\ s_p].
+$$
+
+If `\mathcal V` is square and invertible, this is just
+
+$$
+S=\mathcal V^{-1}\mathcal U.
+$$
+
+If `\mathcal V` is not square, solve the systems directly. The solution exists
+and is unique because the `v_j`'s form a basis for the same subspace.
+
+## Common mistakes
+
+<CommonMistake title="Using the inverse direction by accident">
+If `\mathcal U=\mathcal V S`, then `S` sends `U`-coordinates to `V`-coordinates:
+`[x]_V=S[x]_U`. The inverse `S^{-1}` sends `V`-coordinates back to
+`U`-coordinates.
+</CommonMistake>
+
+<CommonMistake title="Forgetting that the bases are ordered">
+The ordered basis `(b_1,b_2)` and the ordered basis `(b_2,b_1)` give different
+coordinate vectors. A change-of-basis matrix compares ordered bases, not just
+unordered sets.
+</CommonMistake>
+
+<CommonMistake title="Trying to invert a non-square basis matrix for a proper subspace">
+If `W` is a plane inside `R^3`, a basis matrix has size `3\times2`, so it is not
+invertible as a square matrix. Solve `\mathcal V s_j=u_j` column by column
+instead.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="If `dim(W)=4`, can five vectors in `W` be linearly independent?">
+Use the replacement-theorem counting rule.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. In a 4-dimensional space, every linearly independent list has at most four
+vectors. Any five vectors in `W` are linearly dependent.
+</RevealSolution>
+
+<QuickCheck prompt="If `\mathcal U=\mathcal V S`, which coordinate vector is `S[x]_U` equal to?">
+Track the equality `x=\mathcal U[x]_U=\mathcal V[x]_V`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is `[x]_V`. Since `x=\mathcal U[x]_U=\mathcal V S[x]_U`, uniqueness of
+coordinates in the `V`-basis gives `[x]_V=S[x]_U`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Let `B=(b_1,b_2,b_3)` be a basis for `W`, and let `u=b_1+2b_2-b_3`. Which old vector can be replaced immediately by `u`?">
+Look for a nonzero coefficient in the expression of `u` using the old basis.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The coefficient of `b_1` is `1`, which is nonzero. Therefore
+
+$$
+b_1=u-2b_2+b_3.
+$$
+
+So `u,b_2,b_3` spans the same space as `b_1,b_2,b_3`. It is also independent,
+so `u` can replace `b_1`. The nonzero coefficients of `b_2` and `b_3` would
+also allow replacement after relabelling.
+</RevealSolution>
+
+<QuickCheck prompt="Use the example matrix `S=\begin{bmatrix}1&-1\\1&1\end{bmatrix}` to convert `[x]_U=(4,-1)^T` into `[x]_V`.">
+Multiply `S[x]_U`.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Compute
+
+$$
+[x]_V
+=
+\begin{bmatrix}
+1&-1\\
+1&1
+\end{bmatrix}
+\begin{bmatrix}
+4\\-1
+\end{bmatrix}
+=
+\begin{bmatrix}
+5\\3
+\end{bmatrix}.
+$$
+
+Thus `[x]_V=(5,3)^T`.
+</RevealSolution>
+
+## Read this first
+
+This note depends on
+[6.5 Basis and dimension](/en/notes/math1030/vector-spaces/basis-and-dimension)
+and
+[6.4 Linear dependence and independence](/en/notes/math1030/vector-spaces/linear-dependence-and-independence).

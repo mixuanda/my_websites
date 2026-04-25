@@ -1,0 +1,423 @@
+---
+title: "6.8 基底延伸与基变换"
+description: "把基底定理变成可使用的工具：延伸线性无关组、替换旧基向量，并比较两组基底下的坐标。"
+---
+
+前几节已经说明什么是基底，以及维数如何使用。本节补上使整个理论可靠的结构定理。
+
+背后有三个问题：
+
+1. 若一个子空间不是零空间，它是否一定有基底？
+2. 若已经有一组基底，什么时候可以用新的线性无关向量替换部分旧基向量？
+3. 若两组不同基底描述同一个子空间，它们的坐标系统如何互相转换？
+
+这些答案不只是形式背景。它们解释为什么维数是良定的、为什么线性无关组可以延伸成基、为什么张成组可以删去冗余向量，以及为什么之后的对角化本质上是坐标变换。
+
+## 为什么基底存在性需要证明
+
+对 `R^n` 这类熟悉空间，标准基很容易写出来。但对任意子空间 `W \subseteq R^n`，基未必一眼可见。子空间可能由方程、张成式，或像 `x_1+x_2+x_3=0` 这类条件给出。
+
+第一个定理说明情况仍然受控制。
+
+<TheoremCard title="`R^n` 子空间的基底存在性">
+每个非零子空间 `W \subseteq R^n` 都有基底。更精确地说，存在向量
+
+$$
+u_1,\ldots,u_p\in W
+$$
+
+使得 `1\le p\le n`，这组向量线性无关，并且
+
+$$
+W=\operatorname{Span}\{u_1,\ldots,u_p\}.
+$$
+</TheoremCard>
+
+证明是一个受控的选取过程。
+
+先在 `W` 中选一个非零向量 `u_1`。如果 `W` 中每个向量都已经是 `u_1` 的倍数，则 `\{u_1\}` 就是一组基底。若不是，便选一个不在 `Span\{u_1\}` 内的向量 `u_2\in W`。这样 `u_1,u_2` 线性无关。
+
+同样地继续。到第 `j` 步，如果目前的 `u_1,\ldots,u_j` 还未张成 `W`，就选一个不在目前张成之中的新向量 `u_{j+1}\in W`。因为新向量不是旧向量的线性组合，所以新的列表仍然线性无关。
+
+这个过程不可能无限进行：`R^n` 中不可能有超过 `n` 个线性无关向量。因此它必定停止；停止时，所选向量已张成 `W`。它们又按构造线性无关，所以形成基。
+
+<WorkedExample title="用选取思想产生一组基底">
+令
+
+$$
+W=\left\{
+\begin{bmatrix}x\\y\\z\end{bmatrix}\in R^3:x+y+z=0
+\right\}.
+$$
+
+先选
+
+$$
+u_1=\begin{bmatrix}1\\-1\\0\end{bmatrix}\in W.
+$$
+
+单一向量不能张成整个 `W`，因为
+
+$$
+u_2=\begin{bmatrix}1\\0\\-1\end{bmatrix}\in W
+$$
+
+不是 `u_1` 的标量倍。因此 `u_1,u_2` 线性无关。
+
+现在，若
+
+$$
+\begin{bmatrix}x\\y\\z\end{bmatrix}\in W,
+$$
+
+则 `z=-x-y`，而且
+
+$$
+\begin{bmatrix}x\\y\\z\end{bmatrix}
+=
+-y\begin{bmatrix}1\\-1\\0\end{bmatrix}
++(x+y)\begin{bmatrix}1\\0\\-1\end{bmatrix}.
+$$
+
+因此 `u_1,u_2` 张成 `W`，也线性无关，所以它们形成一组基底。由此 `dim(W)=2`。
+</WorkedExample>
+
+## 替换定理的思想
+
+基底存在性的证明是在增长一个线性无关列表。替换定理则说明相反方向的操作：把新的线性无关向量放入旧基底，同时删去适当的旧基向量。
+
+<TheoremCard title="替换定理">
+令 `W` 是 `R^n` 的子空间。假设
+
+$$
+t_1,\ldots,t_q
+$$
+
+是 `W` 的一组基底，而
+
+$$
+u_1,\ldots,u_p\in W
+$$
+
+线性无关。则：
+
+1. `p\le q`;
+2. `u_1,\ldots,u_p` 加上某些 `q-p` 个旧基向量 `t_1,\ldots,t_q`，会形成 `W` 的另一组基底。
+</TheoremCard>
+
+这个定理精确表达了以下说法：
+
+> 线性无关的新向量，可以替换同样数目的旧基向量。
+
+证明先看一个向量的情况。假设 `t_1,\ldots,t_q` 是基，而
+
+$$
+u=\alpha_1t_1+\cdots+\alpha_qt_q,\qquad u\ne 0.
+$$
+
+至少有一个系数非零。若 `\alpha_1\ne 0`，则
+
+$$
+t_1=\frac{1}{\alpha_1}u
+-\frac{\alpha_2}{\alpha_1}t_2-\cdots
+-\frac{\alpha_q}{\alpha_1}t_q.
+$$
+
+所以
+
+$$
+u,t_2,\ldots,t_q
+$$
+
+张成与旧基底相同的空间，而且这组向量也线性无关。若第一个非零系数不是 `\alpha_1`，只需先重排旧基向量，再做同一个论证。
+
+完整的替换定理就是不断重复这个一步替换。每个新的线性无关向量替换一个旧基向量，而线性无关性保证过程不会中途失败。
+
+## 维数的后果
+
+替换定理给出维数理论的严格基础。
+
+<TheoremCard title="同一有限维子空间的所有基有相同大小">
+若 `B` 和 `C` 都是同一个子空间 `W\subseteq R^n` 的基底，则 `B` 和 `C` 含有相同数目的向量。
+</TheoremCard>
+
+理由是把替换定理用两次。若 `B` 有 `p` 个向量而 `C` 有 `q` 个向量，则 `B` 在由 `C` 作基底的空间中线性无关，所以 `p\le q`。反过来又得 `q\le p`。因此 `p=q`。
+
+以下常用结论也立即成立。
+
+<TheoremCard title="`q` 维子空间中的计数规则">
+令 `dim(W)=q`。
+
+1. `W` 中任何线性无关列表最多有 `q` 个向量。
+2. `W` 中任何超过 `q` 个向量的列表都线性相关。
+3. `W` 中的线性无关列表可以延伸成 `W` 的基底。
+4. `W` 的张成列表可以通过删去冗余向量缩减成基。
+</TheoremCard>
+
+这些不是互不相关的技巧。它们都在说同一件事：基是一个没有冗余而又能张成全空间的列表，其大小正正是维数。
+
+## 有序基底与坐标向量
+
+基底作为集合，说明可用哪些向量。有序基底还固定了它们的次序。次序会影响坐标。
+
+若
+
+$$
+B=(b_1,\ldots,b_p)
+$$
+
+是 `W` 的有序基底，则每个 `x\in W` 都有唯一表示
+
+$$
+x=\alpha_1b_1+\cdots+\alpha_pb_p.
+$$
+
+`x` 在基底 `B` 下的坐标向量是
+
+$$
+[x]_B=
+\begin{bmatrix}
+\alpha_1\\
+\vdots\\
+\alpha_p
+\end{bmatrix}.
+$$
+
+即使基底向量相同，只要改变排列次序，坐标向量也会改变。
+
+## 基变换定理
+
+现在假设同一个 `p` 维子空间 `W` 有两组有序基底：
+
+$$
+U=(u_1,\ldots,u_p),\qquad V=(v_1,\ldots,v_p).
+$$
+
+写成基底矩阵
+
+$$
+\mathcal U=[u_1\ \cdots\ u_p],
+\qquad
+\mathcal V=[v_1\ \cdots\ v_p].
+$$
+
+<TheoremCard title="基变换定理">
+存在唯一可逆的 `p\times p` 矩阵 `S`，使得
+
+$$
+\mathcal U=\mathcal V S.
+$$
+
+`S` 的各列正是各个 `u_j` 在有序基底 `V` 下的坐标向量。若
+
+$$
+x=\mathcal U a=\mathcal V b,
+$$
+
+则坐标向量满足
+
+$$
+b=Sa.
+$$
+</TheoremCard>
+
+这句话要小心读。矩阵 `S` 不是在环境空间中移动向量 `x`，而是把 `U` 基底下的坐标列转换成 `V` 基底下的坐标列：
+
+$$
+[x]_V=S[x]_U.
+$$
+
+由于 `S` 可逆，反方向转换是
+
+$$
+[x]_U=S^{-1}[x]_V.
+$$
+
+若 `W=R^n`，则 `\mathcal U` 和 `\mathcal V` 都是方形可逆矩阵，公式特别简洁：
+
+$$
+S=\mathcal V^{-1}\mathcal U.
+$$
+
+若 `W` 是真子空间，`\mathcal V` 通常不是方阵，因此应逐列解
+
+$$
+\mathcal V s_j=u_j.
+$$
+
+## 例子：在平面内转换坐标
+
+令
+
+$$
+u_1=\begin{bmatrix}2\\1\\1\end{bmatrix},
+\quad
+u_2=\begin{bmatrix}0\\-1\\1\end{bmatrix},
+\quad
+v_1=\begin{bmatrix}1\\1\\0\end{bmatrix},
+\quad
+v_2=\begin{bmatrix}1\\0\\1\end{bmatrix}.
+$$
+
+令 `W=Span\{u_1,u_2\}`。可以验证 `(u_1,u_2)` 和 `(v_1,v_2)` 都是同一个平面 `W` 的有序基底。
+
+向量等式
+
+$$
+u_1=v_1+v_2,\qquad
+u_2=-v_1+v_2
+$$
+
+合并成矩阵等式
+
+$$
+\mathcal U=\mathcal V
+\begin{bmatrix}
+1&-1\\
+1&1
+\end{bmatrix}.
+$$
+
+因此
+
+$$
+S=
+\begin{bmatrix}
+1&-1\\
+1&1
+\end{bmatrix}
+$$
+
+就是从有序基底 `U` 转到有序基底 `V` 的基变换矩阵。
+
+例如若
+
+$$
+[x]_U=
+\begin{bmatrix}3\\2\end{bmatrix},
+$$
+
+则
+
+$$
+[x]_V
+=S[x]_U
+=
+\begin{bmatrix}
+1&-1\\
+1&1
+\end{bmatrix}
+\begin{bmatrix}3\\2\end{bmatrix}
+=
+\begin{bmatrix}1\\5\end{bmatrix}.
+$$
+
+所以
+
+$$
+x=3u_1+2u_2=v_1+5v_2.
+$$
+
+实际向量没有改变，改变的只是它的坐标描述。
+
+## 如何计算基变换矩阵
+
+可按以下流程处理。
+
+1. 先决定转换方向。若要由 `[x]_U` 求 `[x]_V`，需要的是 `\mathcal U=\mathcal V S`。
+2. 对每个 `u_j`，解 `\mathcal V s_j=u_j`。
+3. 把解向量放成矩阵的列：
+
+$$
+S=[s_1\ \cdots\ s_p].
+$$
+
+若 `\mathcal V` 是方阵且可逆，这就是
+
+$$
+S=\mathcal V^{-1}\mathcal U.
+$$
+
+若 `\mathcal V` 不是方阵，就直接解各个线性系统。因为 `v_j` 是同一子空间的基底，解必定存在且唯一。
+
+## 常见错误
+
+<CommonMistake title="不小心用反方向的矩阵">
+若 `\mathcal U=\mathcal V S`，则 `S` 把 `U` 坐标转成 `V` 坐标：
+`[x]_V=S[x]_U`。反矩阵 `S^{-1}` 才把 `V` 坐标转回 `U` 坐标。
+</CommonMistake>
+
+<CommonMistake title="忘记基是有序的">
+有序基底 `(b_1,b_2)` 和 `(b_2,b_1)` 给出的坐标向量不同。基变换矩阵比较的是有序基底，不只是无序集合。
+</CommonMistake>
+
+<CommonMistake title="把真子空间的非方形基底矩阵拿去求逆">
+若 `W` 是 `R^3` 中的一个平面，基底矩阵大小是 `3\times2`，它不是方阵，所以不能求方阵意义下的反矩阵。此时应逐列解 `\mathcal V s_j=u_j`。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="若 `dim(W)=4`，`W` 中五个向量可以线性无关吗？">
+使用替换定理的计数规则。
+</QuickCheck>
+
+<RevealSolution title="答案">
+不可以。在 4 维空间中，任何线性无关列表最多只有四个向量。因此 `W` 中任何五个向量都线性相关。
+</RevealSolution>
+
+<QuickCheck prompt="若 `\mathcal U=\mathcal V S`，`S[x]_U` 等于哪一个坐标向量？">
+追踪等式 `x=\mathcal U[x]_U=\mathcal V[x]_V`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它等于 `[x]_V`。因为 `x=\mathcal U[x]_U=\mathcal V S[x]_U`，而 `V` 基底下的坐标唯一，所以 `[x]_V=S[x]_U`。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="令 `B=(b_1,b_2,b_3)` 是 `W` 的一组基底，且 `u=b_1+2b_2-b_3`。哪一个旧基向量可以立即被 `u` 替换？">
+观察 `u` 在旧基底表示式中的非零系数。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+`b_1` 的系数是 `1`，非零。因此
+
+$$
+b_1=u-2b_2+b_3.
+$$
+
+所以 `u,b_2,b_3` 张成与 `b_1,b_2,b_3` 相同的空间，而且也线性无关，故 `u` 可以替换 `b_1`。`b_2` 和 `b_3` 的系数也非零，所以重排后也可作替换。
+</RevealSolution>
+
+<QuickCheck prompt="用例子中的矩阵 `S=\begin{bmatrix}1&-1\\1&1\end{bmatrix}`，把 `[x]_U=(4,-1)^T` 转成 `[x]_V`。">
+计算 `S[x]_U`。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+计算
+
+$$
+[x]_V
+=
+\begin{bmatrix}
+1&-1\\
+1&1
+\end{bmatrix}
+\begin{bmatrix}
+4\\-1
+\end{bmatrix}
+=
+\begin{bmatrix}
+5\\3
+\end{bmatrix}.
+$$
+
+因此 `[x]_V=(5,3)^T`。
+</RevealSolution>
+
+## 阅读前置
+
+本节依赖
+[6.5 基底与维数](/zh-cn/notes/math1030/vector-spaces/basis-and-dimension)
+以及
+[6.4 线性相依与线性无关](/zh-cn/notes/math1030/vector-spaces/linear-dependence-and-independence)。

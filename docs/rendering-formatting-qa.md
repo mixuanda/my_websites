@@ -228,3 +228,18 @@ Current checkpoint resolution:
   quick-check, and reveal blocks only; no new visual component was needed
 - Remaining issues: run member-page browser QA and export checks after
   contentlayer and production build refresh
+
+### 2026-04-25 checkpoint 9: MATH1030 6.8 basis appendix unit
+
+- Checkpoint name: `6.8 Basis extension and change of basis` appendix-depth
+  pass
+- What was inspected: the optional basis-existence, replacement-theorem, and
+  change-of-basis PDFs plus the existing vector-space chapter pages
+- What was changed: added a new three-language unit using existing theorem,
+  example, mistake, quick-check, and reveal blocks only; no new renderer or
+  interactive component was required
+- Rendering note: the page contains dense display math around `U=VS` and
+  `[x]_V=S[x]_U`; contentlayer and production build should be rerun before the
+  checkpoint is considered deployed
+- Remaining issues: run member-page route and TXT/PDF export checks after the
+  generated content refresh

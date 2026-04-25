@@ -2816,6 +2816,123 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["basis", "dimension", "minimal-spanning-set", "rref"],
   },
+  "checkpoint.math1030.replacement-theorem-count": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.replacement-theorem-count",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.basis-extension-and-change-of-basis",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Suppose `dim(W)=4`. Which statement is forced by the replacement theorem?",
+      "假設 `dim(W)=4`。替換定理迫使哪一個陳述成立？",
+      "假设 `dim(W)=4`。替换定理迫使哪一个陈述成立？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("Every five vectors in `W` are linearly dependent.", "`W` 中任何五個向量都線性相依。", "`W` 中任何五个向量都线性相关。"),
+      },
+      {
+        id: "b",
+        text: text("Every three vectors in `W` span `W`.", "`W` 中任何三個向量都張成 `W`。", "`W` 中任何三个向量都张成 `W`。"),
+      },
+      {
+        id: "c",
+        text: text("Every four vectors in `W` form a basis.", "`W` 中任何四個向量都形成基底。", "`W` 中任何四个向量都形成基底。"),
+      },
+      {
+        id: "d",
+        text: text("No vector in `W` can be zero.", "`W` 中不能有零向量。", "`W` 中不能有零向量。"),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "In a `q`-dimensional space, a linearly independent list cannot have more than `q` vectors.",
+        "在 `q` 維空間中，線性無關列表不能有超過 `q` 個向量。",
+        "在 `q` 维空间中，线性无关列表不能有超过 `q` 个向量。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "A basis of `W` has four vectors.",
+        "`W` 的基底有四個向量。",
+        "`W` 的基底有四个向量。"
+      ),
+      text(
+        "The replacement theorem implies that any linearly independent list in `W` has at most four vectors.",
+        "替換定理推出：`W` 中任何線性無關列表最多只有四個向量。",
+        "替换定理推出：`W` 中任何线性无关列表最多只有四个向量。"
+      ),
+      text(
+        "Therefore any five vectors in `W` must be linearly dependent.",
+        "因此 `W` 中任何五個向量都必定線性相依。",
+        "因此 `W` 中任何五个向量都必定线性相关。"
+      ),
+    ],
+    skillTags: ["basis", "dimension", "replacement-theorem"],
+  },
+  "checkpoint.math1030.change-of-basis-coordinate": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.change-of-basis-coordinate",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "vector-spaces",
+    unitId: "math1030.vector-spaces.basis-extension-and-change-of-basis",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "If `U=VS` and `[x]_U=(4,-1)^T` with `S=[[1,-1],[1,1]]`, what is the first coordinate of `[x]_V`?",
+      "若 `U=VS`，且 `[x]_U=(4,-1)^T`、`S=[[1,-1],[1,1]]`，`[x]_V` 的第一個坐標是多少？",
+      "若 `U=VS`，且 `[x]_U=(4,-1)^T`、`S=[[1,-1],[1,1]]`，`[x]_V` 的第一个坐标是多少？"
+    ),
+    correctAnswer: {
+      value: "5",
+      equivalentValues: ["5.0"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "`U=VS` means `[x]_V=S[x]_U`, not the reverse.",
+        "`U=VS` 表示 `[x]_V=S[x]_U`，不是反方向。",
+        "`U=VS` 表示 `[x]_V=S[x]_U`，不是反方向。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    syntaxGuidance: text(
+      "Enter a single number.",
+      "請輸入一個數字。",
+      "请输入一个数字。"
+    ),
+    solutionSteps: [
+      text(
+        "Because `U=VS`, the matrix `S` converts `U`-coordinates to `V`-coordinates.",
+        "因為 `U=VS`，矩陣 `S` 把 `U` 坐標轉成 `V` 坐標。",
+        "因为 `U=VS`，矩阵 `S` 把 `U` 坐标转成 `V` 坐标。"
+      ),
+      text(
+        "Compute `S[x]_U=[[1,-1],[1,1]](4,-1)^T=(5,3)^T`.",
+        "計算 `S[x]_U=[[1,-1],[1,1]](4,-1)^T=(5,3)^T`。",
+        "计算 `S[x]_U=[[1,-1],[1,1]](4,-1)^T=(5,3)^T`。"
+      ),
+      text(
+        "The first coordinate is therefore `5`.",
+        "所以第一個坐標是 `5`。",
+        "所以第一个坐标是 `5`。"
+      ),
+    ],
+    skillTags: ["change-of-basis", "coordinates", "matrix-multiplication"],
+  },
   "checkpoint.math1030.set-equality-two-inclusions": {
     accessTier: "MEMBER",
     id: "checkpoint.math1030.set-equality-two-inclusions",
