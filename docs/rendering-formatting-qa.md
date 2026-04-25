@@ -375,6 +375,9 @@ Current checkpoint resolution:
   the EN / zh-HK `4.2` and `5.1` note pages; representative TXT and PDF
   export routes returned 200. Browser QA confirmed the zh-HK pages render the
   new proof-pattern sections and checkpoint prompts with no captured console
-  errors.
+  errors. Vercel production deployment
+  `dpl_9gVqM1iwDGR1vTm3xcFRnLKXtWCP` reached READY, and production smoke
+  checks returned 200 for representative note and export routes on
+  `www.evanalysis.top`.
 - Remaining issues: continue export QA on the broader MATH1030 sequence after
   this unit-level check

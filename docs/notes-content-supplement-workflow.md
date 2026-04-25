@@ -310,7 +310,12 @@ Use this shape for future entries:
   `4.2`, and zh-HK PDF export for `5.1`. Browser QA on the zh-HK routes
   confirmed the new set-language section, cyclic-product section, checkpoint
   prompts, localized export controls, and zero captured console errors.
-- Deployment: pending completion of this pass.
+- Deployment: commit `94fd6bd` deployed successfully through Vercel
+  production deployment `dpl_9gVqM1iwDGR1vTm3xcFRnLKXtWCP`. Production smoke
+  checks on `www.evanalysis.top` returned 200 for the EN / zh-HK `4.2` and
+  `5.1` note routes, the EN `4.2` TXT export route, and the zh-HK `5.1` PDF
+  export route; production content greps confirmed the new set-language and
+  cyclic-product sections are live.
 - Remaining gaps: full `as03` row-reduction tables, parameterized inverse
   computations, and longer polynomial identity proof exercises remain
   exercise-depth backlog; broader MATH1030 export QA should continue.

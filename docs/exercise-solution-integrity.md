@@ -448,6 +448,7 @@ unit-level coverage.
   `git diff --check` passed; local route / export smoke returned 200 for
   representative `4.2` and `5.1` note and export routes; browser QA confirmed
   the new checkpoint prompts render on the zh-HK note pages with no captured
-  console errors
+  console errors; production smoke checks passed after deployment
+  `dpl_9gVqM1iwDGR1vTm3xcFRnLKXtWCP`
 - Remaining issues: longer numerical row-reduction and polynomial-identity
   proof exercises from `as03` remain exercise-depth backlog
