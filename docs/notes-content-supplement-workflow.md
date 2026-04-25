@@ -213,6 +213,9 @@ Use this shape for future entries:
   exports, and EN / zh-CN PDF exports. Browser QA confirmed the EN and zh-HK
   pages render with the proof section, language links, export control, and no
   captured console errors.
-- Deployment: not attempted in this local pass.
+- Deployment: commit `921be62` deployed successfully through Vercel production
+  deployment `dpl_GPKkupx7yYxd1HeyhPSN1K9W6YMS`. Production smoke checks on
+  `www.evanalysis.top` returned 200 for the EN and zh-HK note routes, the EN
+  TXT export route, and the EN PDF export route.
 - Remaining gaps: broader assignment / tutorial exercise parity and export /
   rendering QA across the expanded MATH1030 sequence.

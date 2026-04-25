@@ -299,6 +299,9 @@ Current checkpoint resolution:
   the EN / zh-HK / zh-CN note pages; TXT and PDF export checks returned 200
   for representative EN, zh-HK, and zh-CN export routes. Browser QA confirmed
   the EN and zh-HK pages render the title and proof section with no captured
-  console errors.
+  console errors. Vercel production deployment
+  `dpl_GPKkupx7yYxd1HeyhPSN1K9W6YMS` reached READY, and production smoke
+  checks on `www.evanalysis.top` returned 200 for the representative EN /
+  zh-HK page routes and EN TXT / PDF exports.
 - Remaining issues: no rendering blocker found for this unit; broader
   MATH1030 export and member-checkpoint QA should continue in later passes
