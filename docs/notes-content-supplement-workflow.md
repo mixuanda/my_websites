@@ -278,6 +278,9 @@ Use this shape for future entries:
   PDF export. Browser QA on the zh-HK route confirmed the new section,
   difference-of-solutions checkpoint, localized export control, and zero
   captured console errors.
-- Deployment: pending until the completed pass is committed and pushed.
+- Deployment: commit `ddbf20e` deployed successfully through Vercel production
+  deployment `dpl_H7y9BXVxtHY62bp2QuNs52ERAxgw`. Production smoke checks on
+  `www.evanalysis.top` returned 200 for the EN and zh-HK `4.1` note routes,
+  the EN TXT export route, and the zh-HK PDF export route.
 - Remaining gaps: `as03` invertibility and set-language practice parity, plus
   broader export QA across the expanded MATH1030 sequence.

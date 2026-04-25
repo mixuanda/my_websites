@@ -349,6 +349,9 @@ Current checkpoint resolution:
   `git diff --check` passed. Local production route checks returned 200 for
   the EN / zh-HK / zh-CN `4.1` note pages; representative TXT and PDF export
   routes returned 200; browser QA confirmed the zh-HK page renders the new
-  section and checkpoint prompt with no captured console errors.
+  section and checkpoint prompt with no captured console errors. Vercel
+  production deployment `dpl_H7y9BXVxtHY62bp2QuNs52ERAxgw` reached READY, and
+  production smoke checks returned 200 for representative note and export
+  routes on `www.evanalysis.top`.
 - Remaining issues: continue export QA on the broader MATH1030 sequence after
   this unit-level check

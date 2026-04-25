@@ -426,6 +426,7 @@ unit-level coverage.
   `git diff --check` passed; local route / export smoke returned 200 for
   representative `4.1` note and export routes; browser QA confirmed the new
   checkpoint prompt renders on the zh-HK note page with no captured console
-  errors
+  errors; production smoke checks passed after deployment
+  `dpl_H7y9BXVxtHY62bp2QuNs52ERAxgw`
 - Remaining issues: longer `as02` row-operation drill items and `as03`
   invertibility practice remain future exercise-depth targets
