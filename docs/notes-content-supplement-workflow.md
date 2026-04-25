@@ -179,7 +179,9 @@ Use this shape for future entries:
   `git diff --check` passed. Local production smoke checks on port `3000`
   returned 200 for representative EN / zh-HK / zh-CN routes and confirmed
   representative TXT / PDF exports for both new units.
-- Deployment: pending until the completed commit is pushed and the production
-  deployment for `www.evanalysis.top` is checked.
+- Deployment: commit `188713c` deployed successfully through Vercel production
+  deployment `dpl_5xU7ZhJ1pRJxwxkzGBzqsDNTxoSy`. Production smoke checks on
+  `www.evanalysis.top` returned 200 for the representative new note routes and
+  TXT / PDF exports.
 - Remaining gaps: deeper RREF uniqueness / well-defined rank proof detail from
   `1030gi-n03-04p.pdf`, plus broader assignment / practice-set exercise parity.

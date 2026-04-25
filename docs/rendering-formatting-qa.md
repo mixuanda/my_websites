@@ -277,7 +277,8 @@ Current checkpoint resolution:
 - Rendering note: both pages intentionally use article-first prose and display
   math / block matrices that should degrade cleanly into TXT and PDF exports;
   source-tracing remains internal through the catalog and coverage docs
-- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
-  local production route / TXT / PDF export smoke checks passed after the final
-  MDX terminology pass.
-- Remaining issues: confirm the production deployment after push
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, local
+  production route / TXT / PDF export smoke checks, Vercel deployment
+  `dpl_5xU7ZhJ1pRJxwxkzGBzqsDNTxoSy`, and production smoke checks on
+  `www.evanalysis.top` passed after the final MDX terminology pass.
+- Remaining issues: none for this MATH1030 appendix rendering pass

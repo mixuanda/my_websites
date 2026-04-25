@@ -364,8 +364,8 @@ unit-level coverage.
 - Integrity note: both new checkpoint entries are multiple choice to avoid
   fragile symbolic parsing; the correct answers match the in-page quick checks
   and the solution steps remain localized in EN / zh-HK / zh-CN
-- Verification: `npm run lint` and `npm run build` passed, and representative
+- Verification: `npm run lint` and `npm run build` passed, representative
   public note routes plus TXT / PDF exports passed local production smoke
-  checks after the checkpoint additions.
-- Remaining issues: confirm checkpoint card behavior on the production
-  deployment after push
+  checks, and production smoke checks passed on `www.evanalysis.top` after
+  deployment `dpl_5xU7ZhJ1pRJxwxkzGBzqsDNTxoSy`.
+- Remaining issues: none for the new multiple-choice checkpoint pair
