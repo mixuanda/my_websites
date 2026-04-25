@@ -1,0 +1,1882 @@
+--- page 1 ---
+MATH1025B
+Essential Mathematical Methods
+Chapter 11: Conic Sections
+November 27, 2025
+
+--- page 2 ---
+Conic Sections
+Conic sections formed by cutting a double cone with a plane:
+
+--- page 3 ---
+Conic Sections
+Deﬁnition 11.1
+A conic section is the locus of a pointX which moves in a plane in such a
+way that
+the distanceXF of X from a ﬁxed pointF (called focus) is a constant
+multiple of its distance from a ﬁxed lineD (called directrix)
+i.e. XF
+XE =e,
+where e> 0 is a constant (calledeccentricity), andE is the foot of
+perpendicular fromX to the directrixD.
+
+--- page 4 ---
+Parabola (e = 1)
+Parabola:
+Assume F = (a, 0) and D :x = −a, wherea> 0.
+Let X = (x,y ). Then
+XF =XE
+√
+(x −a)2 + (y − 0)2 = |x − (−a)|
+(x −a)2 +y2 = (x +a)2
+y2 = 4ax.
+
+--- page 5 ---
+Parabola (e = 1)
+Let P (x0,y 0) be a point on the parabolaP :y2 = 4ax.
+Diﬀerentiate both sides with respect tox:
+2ydy
+dx = 4a
+dy
+dx
+⏐⏐⏐
+(x,y)=(x0,y0)
+= 2a
+y0
+(if y0 ̸= 0)
+T angent of P at P (x0,y 0):
+y −y0
+x −x0
+= 2a
+y0
+2ax −y0y +y2
+0 − 2ax0 = 0
+2ax −y0y + 2ax0 = 0 ( ∵y2
+0 = 4ax0)
+Normal of P at P (x0,y 0):
+y −y0
+x −x0
+= −
+(2a
+y0
+)−1
+= −y0
+2a
+y0x + 2ay − (2a +x0)y0 = 0
+
+--- page 6 ---
+Parabola (e = 1)
+Parametrization:
+The curveγ : R → R2 deﬁned byγ(t) = (at2, 2at) gives a parametrization
+of the parabolaP :y2 = 4ax.
+Let P (at2
+0, 2at0) be a point on the parabolaP :y2 = 4ax.
+dy
+dx =
+dy
+dt
+dx
+dt
+= 2a
+2at = 1
+t (if t ̸= 0) =⇒ dy
+dx
+⏐⏐⏐
+t=t0
+= 1
+t0
+T angent of P at P (at2
+0, 2at0):
+y − 2at0
+x −at2
+0
+= 1
+t0
+x −t0y +at2
+0 = 0
+Normal of P at P (at2
+0, 2at0):
+y − 2at0
+x −at2
+0
+= −t0
+t0x +y − 2at0 −at3
+0 = 0
+
+--- page 7 ---
+Parabola (e = 1)
+Other forms:
+Replace a by −a:
+Interchange the roles ofx and y:
+
+--- page 8 ---
+Parabola (e = 1)
+Example 11.1
+How many tangents of the parabolaP :y2 = 4ax pass throughQ = (h,k )?
+Let L :x −ty +at2 = 0 be a tangent ofP passing throughQ(h,k ). Then
+at2 −kt +h = 0.
+The equation has
+▶ two solutions (i.e.P has two tangents at(h,k )) if
+k2 − 4ah> 0, i.e. (h,k ) is on the left hand side ofP
+▶ no solution (i.e. P has no tangents at(h,k )) if
+k2 − 4ah< 0, i.e. (h,k ) is on the right hand side ofP
+▶ exactly one solution (i.e.P has exactly one tangent at(h,k )) if
+k2 − 4ah = 0, i.e. (h,k ) lies on P
+Exercise 11.1
+Find the two tangents ofy2 = 4x passing through (−2, 1).
+Ans: x − 2y + 4 = 0 and x +y + 1 = 0
+
+--- page 9 ---
+Parabola (e = 1)
+Example 11.2
+Let T (h,k ) be an external point ofP :y2 = 4ax. Find the equation of
+chordPQ, whereP and Q are the points of contact of the tangents fromT.
+Let P (x1,y 1), Q(x2,y 2).
+Equation of tangent atP : 2ax −y1y + 2ax1 = 0
+Equation of tangent atQ : 2ax −y2y + 2ax2 = 0
+Since T lies on both tangents, we have
+2ah −y1k + 2ax1 = 0 and 2ah −y2k + 2ax2 = 0.
+Consider the line2ah −yk + 2ax = 0.
+Since bothP (x1,y 1), Q(x2,y 2) satisfy 2ah −yk + 2ax = 0, it is the
+equation ofPQ.
+
+--- page 10 ---
+Parabola (e = 1)
+Example 11.3 (Parallel rays to axis of parabola will converge to focus)
+LetQ = (at2, 2at) be a point onP :y2 = 4ax. Then the normalℓ of P atQ
+bisects the rayr and FQ. Equivalently, ∠FQT = ∠FTQ .
+Suppose the tangent atQ cuts thex-axis at an angleθ.
+Slope ofQT = 1
+t = tanθ
+Slope ofQF = 2at − 0
+at2 −a = 2t
+t2 − 1 = 2( 1
+t )
+1 − ( 1
+t )2 = 2 tanθ
+1 − tan2θ = tan 2θ
+So ∠FQT = 2θ −θ =θ = ∠FTQ .
+
+--- page 11 ---
+Parabola (e = 1)
+Example 11.4
+A and B are points on the parabolay2 = 4ax moving in a way that∠AOB
+is a right angle. Suppose thatTA and TB are tangents,NA and NB are
+normals. Show that the locus of the mid-pointM of TN is a parabola.
+Let A = (at2
+1, 2at1), B = (at2
+2, 2at2). Then
+Eq. ofTA :x −t1y +at2
+1 = 0 (1)
+Eq. ofTB :x −t2y +at2
+2 = 0 (2)
+Solving (1) and (2):T = (at1t2,a (t1 +t2)).
+Eq. ofNA :t1x +y − 2at1 −at3
+1 = 0 (3)
+Eq. ofNB :t2x +y − 2at2 −at3
+2 = 0 (4)
+Solving (3) and (4):N = (a(2 +t2
+1 +t1t2 +t2
+2), −at1t2(t1 +t2)).
+∴M = 1
+2(T +N) = (a
+2
+[
+2 + (t1 +t2)2]
+,a
+2 (t1 +t2)(1 −t1t2))
+
+--- page 12 ---
+Parabola (e = 1)
+Example 11.4
+A and B are points on the parabolay2 = 4ax moving in a way that∠AOB
+is a right angle. Suppose thatTA and TB are tangents,NA and NB are
+normals. Show that the locus of the mid-pointM of TN is a parabola.
+Set
+(x,y ) =M = (a
+2
+[
+2 + (t1 +t2)2]
+,a
+2 (t1 +t2)(1 −t1t2))
+How to eliminatet1,t 2 to obtain an equation inx and y only?
+Note
+∠AOB = π
+2 =⇒ 2at1
+at2
+1
+· 2at2
+at2
+2
+= −1 = ⇒ t1t2 = −4.
+So
+y = a
+2 (t1 +t2)(1 − (−4)) = ⇒ t1 +t2 = 2y
+5a.
+Put t1 +t2 = 2y
+5a intox = a
+2
+[
+2 + (t1 +t2)2]
+, we have
+y2 = 25a
+2 (x −a).
+
+--- page 13 ---
+Parabola (e = 1)
+Exercise 11.2
+A pointP moves on the linex =h and the three normals fromP meet the
+parabola y2 = 4ax at Q1,Q 2,Q 3. Show that the centroid of△Q1Q2Q3
+remains at a ﬁxed point on the thex-axis.
+(Recall: Centroid of (xi,yi), i = 1, 2, 3, is
+(x1+x2+x3
+3 , y1+y2+y3
+3
+)
+.)
+
+--- page 14 ---
+Ellipse (0 < e < 1)
+Ellipse:
+Assume F = (k, 0), wherek> 0, andD : ¯x = 0.
+Let X = (¯x, ¯y). Then
+XF =e ·XE
+√
+(¯x −k)2 + (¯y − 0)2 =e|¯x|
+¯x2 − 2k¯x + ¯y2 =e2¯x2
+(1 −e2)¯x2 − 2k¯x + ¯y2 = 0
+(1 −e2)
+(
+¯x − k
+1 −e2
+)2
++ ¯y2 = k2e2
+1 −e2
+
+--- page 15 ---
+Ellipse (0 < e < 1)
+Let x = ¯x − k
+1−e2 and y = ¯y, the equation becomes
+(1 −e2)x2 +y2 = k2e2
+1 −e2
+x2
+( ke
+1−e2 )2 + y2
+( ke√
+1−e2 )2 = 1.
+Let a = ke
+1−e2, b =a
+√
+1 −e2 (and so 0<b<a ),
+x2
+a2 + y2
+b2 = 1.
+
+--- page 16 ---
+Ellipse (0 < e < 1)
+▶ a is called thesemimajor axis , b the semiminor axis (0<b<a ).
+▶ Centre: (0, 0), eccentricity:e =
+√
+1 − b2
+a2.
+▶ Directrix: ¯x = 0 ← → x = 0 − k
+1−e2 = −a
+e
+Focus: (¯x, ¯y) = (k, 0) ← → (x,y ) = (− ke2
+1−e2, 0) = (−ae, 0)
+▶ XF 1 =e ·XE 1 or XF 2 =e ·XE 2 will give the same ellipse.
+▶ F1 and F2 are called the foci of the ellipse,D1 and D2 the directrices.
+
+--- page 17 ---
+Ellipse (0 < e < 1)
+Alternative Characterization of an ellipse:
+An ellipse is the locus of a pointX in a plane
+whose distances from two ﬁxed points (the
+foci) in the plane have a constant sum.
+Let a> 0 and 0<e< 1 be constants.
+Suppose F1(−ae, 0) and F2(ae, 0) are the foci, andX(x,y ) is a point on
+plane such thatXF 1 +XF 2 = 2a. Then X(x,y ) satisﬁes the equation
+√
+(x +ae)2 +y2 +
+√
+(x −ae)2 +y2 = 2a (1)
+Multiplying by
+√
+(x +ae)2 +y2 −
+√
+(x −ae)2 +y2, we have
+√
+(x +ae)2 +y2 −
+√
+(x −ae)2 +y2 = 2ex. (2)
+(x +ae)2 +y2 = (a +ex)2((1) + (2))2:
+(1 −e2)x2 +y2 =a2(1 −e2).
+Let b =a
+√
+1 −e2, we have
+x2
+a2 + y2
+b2 = 1.
+
+--- page 18 ---
+Ellipse (0 < e < 1)
+T wo cases:
+x2
+a2 + y2
+b2 = 1 , a>b> 0
+ x2
+a2 + y2
+b2 = 1 , b>a> 0
+
+--- page 19 ---
+Ellipse (0 < e < 1)
+Let P (x0,y 0) be a point on the ellipseE : x2
+a2 + y2
+b2 = 1.
+Diﬀerentiate both sides with respect tox:
+2x
+a2 + 2y
+b2
+dy
+dx = 0
+dy
+dx
+⏐⏐⏐
+(x,y)=(x0,y0)
+= −b2x0
+a2y0
+(if y0 ̸= 0)
+T angent of E at P (x0,y 0):
+y −y0
+x −x0
+= −b2x0
+a2y0
+b2x0x +a2y0y − (b2x2
+0 +a2y2
+0) = 0
+b2x0x +a2y0y −a2b2 = 0 ( ∵ x2
+0
+a2 + y2
+0
+b2 = 1)
+Normal of E at P (x0,y 0):
+y −y0
+x −x0
+= a2y0
+b2x0
+a2y0x −b2x0y + (b2 −a2)x0y0 = 0
+
+--- page 20 ---
+Ellipse (0 < e < 1)
+Parametrization:
+The curveγ : [0, 2π] → R2 deﬁned byγ(θ) = (a cosθ,b sinθ) gives a
+parametrization of the ellipseE : x2
+a2 + y2
+b2 = 1.
+Let P (a cosθ,b sinθ) be a point on the ellipseE : x2
+a2 + y2
+b2 = 1.
+dy
+dx =
+dy
+dθ
+dx
+dθ
+= −b cosθ
+a sinθ (if θ ̸= 0,π, 2π) =⇒ dy
+dx
+⏐⏐⏐
+θ=θ0
+= −b cosθ0
+a sinθ0
+T angent of E at P (a cosθ0,b sinθ0):
+y −b sinθ0
+x −a cosθ0
+= −b cosθ0
+a sinθ0
+(b cosθ0)x + (a sinθ0)y −ab(cos2θ0 + sin2θ0) = 0
+(b cosθ0)x + (a sinθ0)y −ab = 0
+Normal of E at P (a cosθ0,b sinθ0):
+y −b sinθ0
+x −a cosθ0
+= a sinθ0
+b cosθ0
+(a sinθ0)x − (b cosθ0)y + (b2 −a2) sinθ0 cosθ0 = 0
+
+--- page 21 ---
+Ellipse (0 < e < 1)
+Example 11.5
+Rays originated from one focus of the ellipse are reﬂected back to the other
+focus.
+Let P = (a cosθ,b sinθ) be a point on the el-
+lipse E : x2
+a2 + y2
+b2 = 1.
+Then ⃗ n= ( −b cosθ)⃗i + (−a sinθ)⃗j is normal
+to E at P (pointing inwards).
+− − →PF 1 = (−ae −a cosθ)⃗i + (−b sinθ)⃗j
+|− − →PF 1|2 =a2e2 + 2a2e cosθ +a2 cos2θ +a2(1 −e2) sin2θ
+=a2e2 cos2θ + 2a2e cosθ +a2 =a2(e cosθ + 1)2
+|− − →PF 1| =a(1 +e cosθ)
+cosα1 =
+− − →PF 1 ·⃗ n
+|− − →PF 1||⃗ n|
+= ab(1 +e cosθ)
+a(1 +e cosθ)|⃗ n| = b
+|⃗ n|
+
+--- page 22 ---
+Ellipse (0 < e < 1)
+Let P = (a cosθ,b sinθ) be a point on the el-
+lipse E : x2
+a2 + y2
+b2 = 1.
+Then ⃗ n= ( −b cosθ)⃗i + (−a sinθ)⃗j is normal
+to E at P (pointing inwards).
+− − →PF 2 = (ae −a cosθ)⃗i + (−b sinθ)⃗j
+|− − →PF 2|2 =a2e2 − 2a2e cosθ +a2 cos2θ +a2(1 −e2) sin2θ
+=a2e2 cos2θ − 2a2e cosθ +a2 =a2(e cosθ − 1)2
+|− − →PF 2| =a(1 −e cosθ) ( ∵ 0<e< 1)
+cosα2 =
+− − →PF 2 ·⃗ n
+|− − →PF 2||⃗ n|
+= ab(1 −e cosθ)
+a(1 −e cosθ)|⃗ n| = b
+|⃗ n| = cosα1
+So α1 =α2.
+
+--- page 23 ---
+Ellipse (0 < e < 1)
+Alternative approach:
+Let⃗ a,⃗b be the position vector of the two foci
+F1,F 2 of the ellipse.
+Then, the equation of the ellipse can be ex-
+pressed in vector form as
+|⃗ x−⃗ a| + |⃗ x−⃗b| =c, a constant.
+Suppose⃗ γ(t) is a parametrization of the ellipse. We have
+|⃗ γ(t) −⃗ a| + |⃗ γ(t) −⃗b| =c.
+Diﬀerentiate both sides with respect tot:
+⃗ γ′(t) · ⃗ γ(t) −⃗ a
+|γ(t) −⃗ a| +⃗ γ′(t) · ⃗ γ(t) −⃗b
+|γ(t) −⃗b|
+= 0
+cosβ1 + cosβ2 = 0
+β2 +β1 =π
+∴θ1 =θ2
+
+--- page 24 ---
+Ellipse (0 < e < 1)
+Example 11.6
+An ellipse has foci at(9, 20) and (49, 55) in thexy-plane and is tangent to
+the x-axis. What is the length of its semi-major axis?
+Let F1 = (9, 20), F2 = (49, 55) and letX =
+(x, 0) be the point of tangency of the ellipse
+withthe x-axis. LetF′
+2 = (49, −55), thereﬂec-
+tion ofF2 across thex-axis. By the reﬂection
+property of ellipses,F1,X,F ′
+2 are collinear.
+Thus
+XF 1 +XF 2 =XF 1 +XF′
+2 =F1F′
+2
+=
+√
+(9 − 49)2 + (20 + 55)2 = 85.
+Hence, the length of its semi-major axis is
+(XF 1 +XF 2)/2 = 85/2.
+
+--- page 25 ---
+Ellipse (0 < e < 1)
+Exercise 11.3
+Let P,Q be points moving on an ellipseE : x2
+a2 + y2
+b2 = 1 such that
+∠POQ = π
+2 and the tangents atP,Q intersect atT. Find the equation of
+locus ofT.
+Let P = (a cosθ1,b sinθ1),Q = (a cosθ2,b sinθ2).
+Equations tangents atP,Q:
+(b cosθi)x + (a sinθi)y −ab = 0, i = 1, 2.
+Solving the equations, we have
+
+
+
+x = a(sinθ2−sinθ1)
+sinθ2 cosθ1−sinθ1 cosθ2
+=
+2a sin θ2−θ1
+2 cos θ2 +θ1
+2
+sin(θ2−θ1)
+y = −b(cosθ2−cosθ1)
+sinθ2 cosθ1−sinθ1 cosθ2
+=
+2b sin θ2−θ1
+2 sin θ2 +θ1
+2
+sin(θ2−θ1) .
+Hence, the tangents atP,Q intersect at
+T =
+(
+a cos θ2+θ1
+2
+cos θ2−θ1
+2
+,b sin θ2+θ1
+2
+cos θ2−θ1
+2
+)
+.
+
+--- page 26 ---
+Ellipse (0 < e < 1)
+Since ∠POQ = π
+2, we have
+b sinθ1
+a cosθ1
+· b sinθ2
+a cosθ2
+= −1
+b2 sinθ1 sinθ2 = −a2 cosθ1 cosθ2
+− b2
+2 [cos(θ2 −θ1) − cos(θ2 +θ1)] = a2
+2 [cos(θ2 −θ1) + cos(θ2 +θ1)]
+(a2 +b2) cos(θ2 −θ1) = (b2 −a2) cos(θ2 +θ1)
+(a2 +b2)[2 cos2 θ2 −θ1
+2 − 1] = (b2 −a2)[2 cos2 θ2 +θ1
+2 − 1]
+(a2 +b2) cos2 θ2 −θ1
+2 =b2 cos2 θ2 +θ1
+2 +a2[1 − cos2 θ2 +θ1
+2 ]
+( 1
+a2 + 1
+b2 ) cos2 θ2 −θ1
+2 = 1
+a4 (a2 cos2 θ2 +θ1
+2 ) + 1
+b4 (b2 sin2 θ2 +θ1
+2 ).
+Hence, the coordinates ofT (x,y ) =
+(
+a cos θ2 +θ1
+2
+cos θ2−θ1
+2
+,
+b sin θ2 +θ1
+2
+cos θ2−θ1
+2
+)
+satisﬁes
+x2
+a4 + y2
+b4 = 1
+a2 + 1
+b2.
+GeoGebra Illustration
+
+--- page 27 ---
+Hyperbola (e > 1)
+Hyperbola:
+Assume F = (k, 0), wherek> 0, andD : ¯x = 0.
+Let X = (¯x, ¯y). Then
+XF =e ·XE
+√
+(¯x −k)2 + (¯y − 0)2 =e|¯x|
+¯x2 − 2k¯x +k2 + ¯y2 =e2¯x2
+¯y2 = (e2 − 1)¯x2 + 2k¯x −k2
+¯y2 = (e2 − 1)
+(
+¯x + k
+e2 − 1
+)2
+− k2e2
+e2 − 1
+
+--- page 28 ---
+Hyperbola (e > 1)
+Let x = ¯x + k
+e2−1 and y = ¯y, the eq. becomes
+y2 = (e2 − 1)x2 − k2e2
+e2 − 1
+x2
+( ke
+e2−1)2 − y2
+( ke√
+e2−1
+)2 = 1.
+Let a = ke
+e2−1, b =a
+√
+e2 − 1,
+x2
+a2 − y2
+b2 = 1.
+
+--- page 29 ---
+Hyperbola (e > 1)
+▶ Centre: (0, 0), eccentricity:e =
+√
+1 + b2
+a2.
+▶ Directrix: ¯x = 0 ← → x = 0 + k
+e2−1 = a
+e
+Focus: (¯x, ¯y) = (k, 0) ← → (x,y ) = ( ke2
+e2−1, 0) = (ae, 0)
+▶ XF 1 =e ·XE 1 or XF 2 =e ·XE 2 will give the same hyperbola.
+▶ F1 and F2 are called the foci of the hyperbola,D1 and D2 the
+directrices.
+
+--- page 30 ---
+Ellipse (0 < e < 1)
+Alternative Characterization of a hyperbola:
+A hyperbola is the locus of a point X in a
+plane whose distances from two ﬁxed points
+(the foci) in the plane have a constant diﬀer-
+ence.
+Let a> 0 and e> 1 be constants.
+SupposeF1(−ae, 0) andF2(ae, 0) are the foci, and|XF 1 −XF 2| = 2a, where
+X(x,y ) is a point on the hyperbola.Then X(x,y ) satisﬁes the equation
+√
+(x +ae)2 +y2 −
+√
+(x −ae)2 +y2 = ±2a. (1)
+Multiplying by
+√
+(x +ae)2 +y2 +
+√
+(x −ae)2 +y2, we have
+√
+(x +ae)2 +y2 +
+√
+(x −ae)2 +y2 = ±2ex. (2)
+(x +ae)2 +y2 = [±(a +ex)]2((1) + (2))2:
+(e2 − 1)x2 −y2 =a2(e2 − 1).
+Let b =a
+√
+1 −e2, we have
+x2
+a2 − y2
+b2 = 1.
+
+--- page 31 ---
+Hyperbola (e > 1)
+Let P (x0,y 0) be a point on the hyperbolaH : x2
+a2 − y2
+b2 = 1.
+Diﬀerentiate both sides with respect tox:
+2x
+a2 − 2y
+b2
+dy
+dx = 0
+dy
+dx
+⏐⏐⏐
+(x,y)=(x0,y0)
+= b2x0
+a2y0
+(if y0 ̸= 0)
+T angent of H at P (x0,y 0):
+y −y0
+x −x0
+= b2x0
+a2y0
+b2x0x −a2y0y − (b2x2
+0 −a2y2
+0) = 0
+b2x0x −a2y0y −a2b2 = 0 ( ∵ x2
+0
+a2 − y2
+0
+b2 = 1)
+Normal of H at P (x0,y 0):
+y −y0
+x −x0
+= −a2y0
+b2x0
+a2y0x +b2x0y − (a2 +b2)x0y0 = 0
+
+--- page 32 ---
+Hyperbola (e > 1)
+Parametrization:
+The curveγ : (−π
+2, π
+2 ) → R2 (resp. γ : (π
+2, 3π
+2 ) → R2) deﬁned by
+γ(θ) = (a secθ,b tanθ) gives a parametrization of the right (resp. left) half
+of the hyperbolaH : x2
+a2 − y2
+b2 = 1.
+Let P (a secθ,b tanθ) be a point on the hyperbolaH : x2
+a2 − y2
+b2 = 1.
+dy
+dx =
+dy
+dθ
+dx
+dθ
+= b sec2θ
+a secθ tanθ = b secθ
+a tanθ (if θ ̸= 0,π) =⇒ dy
+dx
+⏐⏐⏐
+θ=θ0
+= b secθ0
+a tanθ0
+T angent of H at P (a secθ0,b tanθ0):
+y −b tanθ0
+x −a secθ0
+= b secθ0
+a tanθ0
+(b secθ0)x − (a tanθ0)y −ab = 0
+Normal of H at P (a secθ0,b tanθ0):
+y −b tanθ0
+x −a secθ0
+= −a tanθ0
+b secθ0
+(a tanθ0)x + (b secθ0)y − (a2 +b2) secθ0 tanθ0 = 0
+
+--- page 33 ---
+Hyperbola (e > 1)
+Asymptote of H : x2
+a2 − y2
+b2 = 1 are y = ±b
+ax
+Writey2 = b2
+a2 (x2 −a2) = ⇒ y = ±b
+a
+√
+x2 −a2
+Case 1:y = b
+a
+√
+x2 −a2
+(i) lim
+x→+∞
+y − b
+ax = lim
+x→+∞
+b
+a(
+√
+x2 −a2 −
+√
+x2) = lim
+x→+∞
+b
+a
+(−a2)√
+x2 −a2 +
+√
+x2
+= 0
+(ii) lim
+x→−∞
+y + b
+ax = lim
+x→−∞
+b
+a(
+√
+x2 −a2 −
+√
+x2) = lim
+x→−∞
+b
+a
+(−a2)√
+x2 −a2 +
+√
+x2
+= 0
+Caution: x = −
+√
+x2 when x< 0.
+
+--- page 34 ---
+Hyperbola (e > 1)
+Asymptote of H : x2
+a2 − y2
+b2 = 1 are y = ±b
+ax
+Case 2:y = −b
+a
+√
+x2 −a2
+(iii) lim
+x→+∞
+y + b
+ax = lim
+x→+∞
+b
+a(
+√
+x2 −
+√
+x2 −a2) = lim
+x→+∞
+b
+a
+a2
+√
+x2 +
+√
+x2 −a2
+= 0
+(iv) lim
+x→−∞
+y − b
+ax = lim
+x→−∞
+b
+a(+
+√
+x2 −
+√
+x2 −a2) = lim
+x→−∞
+b
+a
+a2
+√
+x2 +
+√
+x2 −a2
+= 0
+Caution: x = −
+√
+x2 when x< 0.
+
+--- page 35 ---
+Hyperbola (e > 1)
+Other forms:
+Interchange the roles ofx and y:
+Takea =b and rotate byπ/4:
+
+--- page 36 ---
+Hyperbola (e > 1)
+Example 11.7
+Show that the locus of the foot of perpendicularX from the focus
+F (−ae, 0) to the tangent of the hyperbolax2
+a2 − y2
+b2 = 1 is a circle.
+Let P (a secθ,b tanθ) be a movable point on
+the hyperbola.
+Equation of tangent atP:
+(b secθ)x − (a tanθ)y =ab (1)
+Slope ofXF = −a tanθ
+b secθ = y − 0
+x − (−ae)
+(a tanθ)x + (b secθ)y = −a2e tanθ (2)
+(1)2 + (2)2:
+[(b secθ)x − (a tanθ)y]2 + [(a tanθ)x + (b secθ)y]2 =a2b2 +a4e2 tan2θ
+(x2 +y2)(a2 tan2θ +b2 sec2θ) =a2b2 +a2(a2 +b2) tan2θ
+=a2(a2 tan2θ +b2 sec2θ)
+So x2 +y2 =a2.
+
+--- page 37 ---
+Hyperbola (e > 1)
+Example 11.8
+Let P be a point on a hyperbola. SupposeF1, F2 are foci of the hyperbola.
+Show thatPF 1 and PF 2 are equally inclined to the tangent atP.
+
+--- page 38 ---
+Hyperbola (e > 1)
+Example 11.8
+Let P be a point on a hyperbola. SupposeF1, F2 are foci of the hyperbola.
+Show thatPF 1 and PF 2 are equally inclined to the tangent atP.
+Let⃗ a,⃗b be the position vector of the two foci
+F1,F 2 of the hyperbola.
+Then, the equation of one half of the hyper-
+bola can be expressed in vector form as
+|⃗ x−⃗ a| − |⃗ x−⃗b| =c, a constant.
+Suppose⃗ γ(t) is a parametrization of (one half of) the hyperbola. We have
+|⃗ γ(t) −⃗ a| − |⃗ γ(t) −⃗b| =c.
+Diﬀerentiate both sides with respect tot:
+⃗ γ′(t) · ⃗ γ(t) −⃗ a
+|⃗ γ(t) −⃗ a| −⃗ γ′(t) · ⃗ γ(t) −⃗b
+|⃗ γ(t) −⃗b|
+= 0
+cosα1 − cosα2 = 0
+∴α1 =α2
+
+--- page 39 ---
+General Conics and Their Classiﬁcation (Optional)
+LetL :ax +by +c = 0 be a directrix andF (p,q ) be a focus. LetX(x,y ) be
+a point.
+The Focus-Directrix equation becomes
+XF =e ·XE
+√
+(x −p)2 + (y −q)2 =e ·
+⏐⏐⏐⏐
+ax +by +c√
+a2 +b2
+⏐⏐⏐⏐
+(x −p)2 + (y −q)2 =e2 ·
+⏐⏐⏐⏐
+ax +by +c√
+a2 +b2
+⏐⏐⏐⏐
+2
+.
+So a conic section must satisfy an equation of the form:
+Ax2 +Bxy +Cy 2 +Dx +Ey +F = 0.
+
+--- page 40 ---
+General Conics and Their Classiﬁcation (Optional)
+Question
+Does Ax2 +Bxy +Cy 2 +Dx +Ey +F = 0 always give a conic section?
+Idea: Rotate the coordinate axes and usex′y′-coordinates to get rid of the
+cross term.
+The equation then becomes
+A′x′2 +C′y′2
+  
+quadratic
++D′x′ +E′y′ +F′
+  
+linear
+= 0.
+By completing the squares, the equation can be further reduced to
+A′(x′ −h)2 +C′(y′ −k)2 =m.
+The signs ofA,C and m will then determine whether the equation is an
+ellipse, a parabola, a hyperbola, or a degenerate conic.
+
+--- page 41 ---
+General Conics and Their Classiﬁcation (Optional)
+Rotate thex,y coordinate axes byθ in the couterclockwise direction to
+obtain the newx′,y′ coordinate axes.
+Let⃗ e1,⃗ e2 be the unit coordinate vectors inx′y′-coordinates. Then
+⃗ e1 = cosθ⃗i + sinθ⃗j, ⃗ e2 = − sinθ⃗i + cosθ⃗j.
+
+--- page 42 ---
+General Conics and Their Classiﬁcation (Optional)
+A point⃗ ucan be expressed as:
+⃗ u=x⃗i +y⃗j and
+⃗ u=x′⃗ e1 +y′⃗ e2
+=x′(cosθ⃗i + sinθ⃗j) +y′(− sinθ⃗i + cosθ⃗j)
+= (x′ cosθ −y′ sinθ)⃗i + (x′ sinθ +y′ cosθ)⃗j.
+∴
+{
+x =x′ cosθ −y′ sinθ
+y =x′ sinθ +y′ cosθ or
+(x
+y
+)
+=
+(cosθ − sinθ
+sinθ cosθ
+) (x′
+y′
+)
+Substitute the above intoAx2 +Bxy +Cy 2 +Dx +Ey +F = 0:
+A(x′ cosθ −y′ sinθ)2 +B(x′ cosθ −y′ sinθ)(x′ sinθ +y′ cosθ)
++C(x′ sinθ +y′ cosθ)2 +D(x′ cosθ −y′ sinθ) +E(x′ sinθ +y′ cosθ) +F = 0
+(A cos2θ +B sinθ cosθ +C sin2θ)x′2 + [−2A sinθ cosθ +B(cos2θ − sin2θ) + 2C sinθ cosθ]x′y′
++(A sin2θ −B sinθ cosθ +C cos2θ)y′2 + (D cosθ +E sinθ)x′ + (−D sinθ +E cosθ)y′ +F = 0
+Denote the last equation as
+A′x′2 +B′x′y′ +C′y′2 +D′x′ +E′y′ +F′ = 0.
+
+--- page 43 ---
+General Conics and Their Classiﬁcation (Optional)
+In particular,
+
+
+
+A′ =A cos2θ +B sinθ cosθ +C sin2θ
+B′ = −2A sinθ cosθ +B(cos2θ − sin2θ) + 2C sinθ cosθ
+C′ =A sin2θ −B sinθ cosθ +C cos2θ.
+▶ Claim 1: A +C =A′ +C′
+A′ +C′ = (A cos2θ +B sinθ cosθ +C sin2θ) + (A sin2θ−B sinθ cosθ +C cos2θ)
+= (A +C)(cos2θ + sin2θ) = A +C
+▶ Claim 2: B2 − 4AC =B′2 − 4A′C′
+B′2− 4A′C′ =B′2− (A′ +C′)2 + (A′−C′)2
+= [B cos 2θ− (A−C) sin 2θ]2− (A +C)2 + [(A−C) cos 2θ +B sin 2θ]2
+=B2− (A +C)2 + (A−C)2
+=B2− 4AC
+
+--- page 44 ---
+General Conics and Their Classiﬁcation (Optional)
+Solveθ such thatB′ = 0:
+B′ := −2A sinθ cosθ +B(cos2θ − sin2θ) + 2C sinθ cosθ = 0.
+That is,
+B cos 2θ − (A −C) sin 2θ = 0
+▶ If A ̸=C, take tan 2θ = B
+A −C which as a solution in(−π
+4,π
+4 ).
+▶ If A =C, takeθ = π
+4.
+Therefore, it suﬃces to look at equation in form of
+Ax2 +Cy 2 +Dx +Ey +F = 0 (∗)
+▶ Case 1 (A =C = 0):
+(∗) becomes a linear equation Dx +Ey +F = 0, which gives a
+straight line.
+
+--- page 45 ---
+General Conics and Their Classiﬁcation (Optional)
+▶ Case 2 (A ̸= 0,C =E = 0):
+(∗) becomes Ax2 +Dx +F = 0. Let ∆ =D2 − 4AF.
+• ∆> 0 : It gives a pair of parallel linesx =r1, x =r2.
+• ∆ = 0 : It gives a linex =r.
+• ∆< 0 : No solution.
+▶ Case 3 (C ̸= 0,A =D = 0):
+(∗) becomes Cy 2 +Ey +F = 0. Similar to case 2.
+▶ Case 4 (A ̸= 0,C = 0,E ̸= 0):
+(∗) becomes Ax2 +Dx +Ey +F = 0
+A(x −h)2 = −E(y −k), where D = −2Ah,F =Ah2 −Ek
+which is a parabola.
+▶ Case 5 (C ̸= 0,A = 0,D ̸= 0):
+(∗) becomes Cy 2 +Dx +Ey +F = 0. Similar to case 4.
+
+--- page 46 ---
+General Conics and Their Classiﬁcation (Optional)
+▶ Case 6 (A ̸= 0,C ̸= 0):
+By completing the square, (∗) becomesA(x −h)2 +C(y −k)2 =m,
+where
+D = −2Ah, E = −2Ck, F =Ah2 +Ck 2 −m.
+• If AC >0, thenA,C have the same sign.
+WLOG, assumeA,C > 0. Then, (x −h√
+C
+)2 + (y −k√
+A
+)2 = m
+AC.
+• m> 0: IfA =C, it deﬁnes a circle; otherwise, an ellipse.
+• m = 0: It gives a single point(h,k ).
+• m< 0: No solution.
+• If AC <0, thenA,C have opposite signs.
+WLOG, assumeA> 0,C < 0. Then (x −h√
+−C )2 − (y −k√
+A
+)2 = − m
+AC.
+• m ̸= 0: It gives a hyperbola.
+• m = 0: It gives a pair of intersecting lines:x −h√
+−C = ±y −k√
+A
+.
+
+--- page 47 ---
+General Conics and Their Classiﬁcation (Optional)
+Summary:
+Curve deﬁned by Ax2 +Cy 2 +Dx +Ey +F = 0 :
+−4AC <0 −4AC = 0 −4AC >0
+A =C A ̸=C
+Non-degenerate circle ellipse parabola hyperbola
+Degenerate single point single point 2 parallel lines 2 intersecting lines
+empty set empty set one double line
+empty set
+In general, by changing coordinates, we write
+Ax2 +Bxy +Cy 2 +Dx +Ey +F = 0
+into the form
+A′x′2 +B′x′y′ +C′y′2 +D′x′ +E′y′ +F′ = 0 with B′ = 0.
+Then, B2 − 4AC =B′2 − 4A′C′ = −4A′C′.
+Furthermore,A′ =C′ =⇒ B = 0 (∵B2 + (A −C)2 =B′2 + (A′ −C′)2).
+
+--- page 48 ---
+General Conics and Their Classiﬁcation (Optional)
+Proposition 11.1
+Ax2 +Bxy +Cy 2 +Dx +Ey +F = 0 represents
+(1) a circle if B = 0 and A =C ̸= 0,
+(2) an ellipse if B2 − 4AC <0,
+(3) a parabola if B2 − 4AC = 0,
+(4) a hyperbola if B2 − 4AC >0.
+
+--- page 49 ---
+General Conics and Their Classiﬁcation (Optional)
+Example 11.9
+Determine the type of conic section deﬁned by
+5x2 − 4xy + 8y2 + 4
+√
+5x − 16
+√
+5 + 4 = 0.
+Sketch the curve.
+Since B2 − 4AC = (−4)2 − 4(5)(8) = −144< 0, so the conic is an ellipse.
+Set tan 2θ = B
+A −C = −4
+5 − 8 = 4
+3, where −π
+4 <θ< π
+4.
+2 tanθ
+1 − tan2θ = 4
+3
+2 tan2θ + 3 tanθ − 2 = 0
+tanθ = 1
+2 or tanθ = −2 (rejected)
+∴ cosθ = 2√
+5
+, sinθ = 1√
+5
+
+--- page 50 ---
+General Conics and Their Classiﬁcation (Optional)
+Example 11.9
+Determine the type of conic section deﬁned by
+5x2 − 4xy + 8y2 + 4
+√
+5x − 16
+√
+5 + 4 = 0.
+Sketch the curve.
+So
+
+
+
+x =x′ cosθ −y′ sinθ = 1√
+5
+(2x′ −y′)
+y =x′ sinθ +y′ cosθ = 1√
+5
+(x′ + 2y′).
+Put them into the given equation:
+4x′2 + 9y′2 − 8x′ − 36y′ + 4 = 0
+4(x′ − 1)2 + 9(y′ − 2)2 = 36
+(x′ − 1)2
+32 + (y′ − 2)2
+22 = 1
+
+--- page 51 ---
+General Conics and Their Classiﬁcation (Optional)
+Matrix representation:
+Rewrite Ax2 +Bxy +Cy 2 +Dx +Ey +F = 0 using matrix products:
+(
+x y
+)( A B/ 2
+B/2 C
+) (x
+y
+)
+  
+quadratic
++
+(
+D E
+)(x
+y
+)
++F
+  
+linear
+= 0.
+Let (x
+y
+)
+=O
+(x′
+y′
+)
+, where O =
+(cosθ − sinθ
+sinθ cosθ
+)
+Note thatO is orthogonal:
+OOT =
+(cosθ − sinθ
+sinθ cosθ
+) ( cosθ sinθ
+− sinθ cosθ
+)
+=
+(1 0
+0 1
+)
+=OTO.
+Taking transpose: (
+x y
+)
+=
+(
+x′ y′)
+OT
+Put it into the quadratic part:
+(
+x y
+)( A B/ 2
+B/2 C
+) (x
+y
+)
+=
+(
+x′ y′)
+OT
+( A B/ 2
+B/2 C
+)
+O
+(x′
+y′
+)
+=
+(
+x′ y′)( A′ B′/2
+B′/2 C′
+) (x′
+y′
+)
+.
+
+--- page 52 ---
+General Conics and Their Classiﬁcation (Optional)
+▶ A +C =A′ +C′:
+A +C = tr
+( A B/ 2
+B/2 C
+)
+= tr
+(
+OT
+( A′ B′/2
+B′/2 C′
+)
+O
+)
+= tr
+(( A′ B′/2
+B′/2 C′
+)
+OOT
+)
+= tr
+( A′ B′/2
+B′/2 C′
+)
+=A′ +C′
+▶ B2 − 4AC =B′2 − 4A′C′:
+AC −B2/4 = det
+( A B/ 2
+B/2 C
+)
+= det
+(
+OT
+( A′ B′/2
+B′/2 C′
+)
+O
+)
+= det(OT ) det
+( A′ B′/2
+B′/2 C′
+)
+det(O)
+= det
+( A′ B′/2
+B′/2 C′
+)
+=A′C′ −B′2/4
+
+--- page 53 ---
+General Conics and Their Classiﬁcation (Optional)
+▶ Choosing a suitableθ such thatB′ = 0 corresponds to the orthogonal
+diagonalization of the symmetric matrix
+( A B/ 2
+B/2 C
+)
+:
+OT
+( A B/ 2
+B/2 C
+)
+O =
+(A′ 0
+0 C′
+)
+The equation then becomes
+(
+x′ y′)(A′ 0
+0 C′
+) (x′
+y′
+)
++
+(
+D E
+)
+O
+(x′
+y′
+)
++F = 0
+A′x′2 +C′y′2 +
+(
+D E
+)(cosθ − sinθ
+sinθ cosθ
+) (x′
+y′
+)
++F = 0,
+which represents
+• an ellipse ifA′C′ > 0 (i.e. B2 − 4AC <0),
+• a parabola ifA′C′ = 0 (i.e. B2 − 4AC = 0),
+• a hyperbola ifA′C′ < 0 (i.e. B2 − 4AC >0).
+
+--- page 54 ---
+Equation of tangent
+Example 11.10
+Let P (x0,y 0) be a point on the conic section
+Γ :Ax2 +Bxy +Cy 2 +Dx +Ey +F = 0.
+Show that the equation of tangent ofΓ at P is given by
+Ax0x +Bx0y +y0x
+2 +Cy 0y +Dx +x0
+2 +Ey +y0
+2 +F = 0.
+By implicit diﬀerentiation,
+2Ax +By +Bxdy
+dx + 2Cydy
+dx +D +Edy
+dx = 0.
+Put (x,y ) = (x0,y 0):
+2Ax0 +By0 +D + (Bx0 + 2Cy 0 +E)dy
+dx
+⏐⏐⏐
+(x0,y0)
+= 0
+
+--- page 55 ---
+Equation of tangent
+So the equation of tangent ofΓ at P is
+2Ax0 +By0 +D + (Bx0 + 2Cy 0 +E) · y −y0
+x −x0
+= 0
+2Ax0x
+−2Ax2
+0
++ By0x
+−Bx0y0
++ Dx
+−Dx0
++ Bx0y
+−Bx0y0
++ 2Cy 0y
+−2Cxy02 + Ey
+−Ey0
+= 0
+2Ax0x +B(x0y +y0x) + 2Cy 0y +D(x +x0) +E(y +y0)
+−2Ax2
+0 − 2Bx0y0 − 2Cy 2
+0 − 2Dx0 − 2Ey0
+= 0
+Ax0x +Bx0y +y0x
+2 +Cy 0y +Dx +x0
+2 +Ey +y0
+2 +F = 0.
+T angent of P :y2 = 4ax at P (x0,y 0):
+y0y = 2a(x +x0)
+T angent of E : x2
+a2 + y2
+b2 = 1 at P (x0,y 0):
+x0x
+a2 + y0y
+b2 = 1
+T angent of H : x2
+a2 − y2
+b2 = 1 at P (x0,y 0):
+x0x
+a2 − y0y
+b2 = 1
+
+--- page 56 ---
+Example 11.11 (Homework 10 Question 10)
+Let H :xy = 1, wherex,y >0, be a part of a hyperbola. LetS =
+(
+s, 1
+s
+)
+and T =
+(
+t, 1
+t
+)
+be distinct points onH.
+(a) Show that the equation of the chordST is x +sty =s +t.
+(b) Suppose thatST passes through (2, 2).
+(i) Show thatt = s − 2
+2s − 1 and ﬁnd all possible values ofs.
+(ii) If M is the mid-point ofST, show that the equation of locus ofM
+is (x − 1)(y − 1) = 1.
+
+--- page 57 ---
+Example 11.11 (Homework 10 Question 10)
+Let H :xy = 1, wherex,y >0, be a part of a hyperbola. LetS =
+(
+s, 1
+s
+)
+and T =
+(
+t, 1
+t
+)
+be distinct points onH.
+(a) Show that the equation of the chordST is x +sty =s +t.
+(a) The equation of the chordST is
+y − 1
+s
+x −s =
+1
+s − 1
+t
+s −t
+y − 1
+s
+x −s = − 1
+st
+x +sty =s +t
+
+--- page 58 ---
+Example 11.11 (Homework 10 Question 10)
+Let H :xy = 1, wherex,y >0, be a part of a hyperbola. LetS =
+(
+s, 1
+s
+)
+and T =
+(
+t, 1
+t
+)
+be distinct points onH.
+(a) Show that the equation of the chordST is x +sty =s +t.
+(b) Suppose thatST passes through (2, 2).
+(i) Show thatt = s − 2
+2s − 1 and ﬁnd all possible values ofs.
+(b) (i) Put x = 2 and y = 2 into the equation obtained in (a),
+2 + 2st =s +t
+t = s − 2
+2s − 1
+Since s − 2
+2s − 1 =t> 0 and s> 0, we have0<s< 1
+2 or s> 2.
+
+--- page 59 ---
+Example 11.11 (Homework 10 Question 10)
+Let H :xy = 1, wherex,y >0, be a part of a hyperbola. LetS =
+(
+s, 1
+s
+)
+and T =
+(
+t, 1
+t
+)
+be distinct points onH.
+(b) Suppose thatST passes through (2, 2).
+(i) Show thatt = s − 2
+2s − 1 and ﬁnd all possible values ofs.
+(ii) If M is the mid-point ofST, show that the equation of locus ofM
+is (x − 1)(y − 1) = 1.
+(b) (ii) Let (x,y ) =M =
+(s +t
+2 ,
+1
+s + 1
+t
+2
+)
+=
+(s +t
+2 ,s +t
+2st
+)
+.
+From (b)(i), we have2 + 2st =s +t, sox = 1 +st and y = 1 +st
+st .
+Put st =x − 1 intoy = 1 +st
+st ,
+y = 1 + (x − 1)
+(x − 1)
+y(x − 1) − (x − 1) = 1
+(x − 1)(y − 1) = 1
+
+--- page 60 ---
+Example 11.12 (Homework 10 Question 11)
+Let P = (p,q ) be a point which does not lie on the parabolaP :y2 = 4x.
+(a) If y =mx +c is a straight line passing through the pointP tangent to
+the parabola P, show thatq =pm + 1
+m.
+(b) Given that the two tangents for the parabolaP with slopesm1 andm2
+intersects at the pointP.
+(i) Prove that
+( 1
+m1
+− 1
+m2
+)2
+=q2 − 4p.
+(ii) If
+( 1
+m1
+− 1
+m2
+)2
+= 5 and the pointP lies on the liney =x, ﬁnd
+the coordinates ofP.
+(c) If the tangentsPT 1 and PT 2 are drawn to the parabolaP where T1
+and T2 are the points of contact. Let∠T2PT 1 =α, whereα ̸= π
+2.
+Prove that the equation of the locus of the pointP is
+y2 − 4x = (x + 1)2 tan2α.
+What happens ifα = π
+2?
+
+--- page 61 ---
+Example 11.13 (Homework 10 Question 11)
+Let P = (p,q ) be a point which does not lie on the parabolaP :y2 = 4x.
+(a) If y =mx +c is a straight line passing through the pointP tangent to
+the parabola P, show thatq =pm + 1
+m.
+(a) Put y =mx +c into the equation ofP,
+(mx +c)2 = 4x
+m2x2 + (2mc − 4)x +c2 = 0
+Since the tangent line only intersectsP at a single point, we have
+∆ = 0
+(2mc − 4)2 − 4(m2)(c2) = 0
+−16mc + 16 = 0
+c = 1
+m
+Therefore, the tangent isy =mx + 1
+m. Furthermore, it passes through
+the pointP = (p,q ). Therefore,q =pm + 1
+m.
+
+--- page 62 ---
+Example 11.14 (Homework 10 Question 11)
+Let P = (p,q ) be a point which does not lie on the parabolaP :y2 = 4x.
+(b) Given that the two tangents for the parabolaP with slopesm1 andm2
+intersects at the pointP.
+(i) Prove that
+( 1
+m1
+− 1
+m2
+)2
+=q2 − 4p.
+(ii) If
+( 1
+m1
+− 1
+m2
+)2
+= 5 and the pointP lies on the liney =x, ﬁnd
+the coordinates ofP.
+(b) (i) Rewriting the equation obtained in (a), we have
+pm2 −qm + 1 = 0. Then, m1 and m2 are the roots of this
+equation, som1 +m2 = q
+p and m1m2 = 1
+p. Therefore,
+( 1
+m1
+− 1
+m2
+)2
+= (m1 −m2)2
+(m1m2)2 = (m1 +m2)2 − 4m1m2
+(m1m2)2
+=
+(q
+p)2 − 4( 1
+p)
+( 1
+p)2 =q2 − 4p
+(ii) We haveq2 − 4p =
+( 1
+m1
+− 1
+m2
+)2
+= 5 and p =q.
+It impliesp =q = −1 orp =q = 5, i.e.P = (−1, −1) orP = (5, 5).
+
+--- page 63 ---
+Example 11.15 (Homework 10 Question 11)
+Let P = (p,q ) be a point which does not lie on the parabolaP :y2 = 4x.
+(c) If the tangentsPT 1 and PT 2 are drawn to the parabolaP where T1
+and T2 are the points of contact. Let∠T2PT 1 =α, whereα ̸= π
+2.
+Prove that the equation of the locus of the pointP is
+y2 − 4x = (x + 1)2 tan2α.
+What happens ifα = π
+2?
+(c)
+| tanα| =
+⏐⏐⏐⏐
+m1 −m2
+1 +m1m2
+⏐⏐⏐⏐
+tan2α = (m1 −m2)2
+(1 +m1m2)2 = (m1 +m2)2 − 4m1m2
+(1 +m1m2)2
+=
+(q
+p)2 − 4( 1
+p)
+(1 + 1
+p)2 = q2 − 4p
+(p + 1)2
+q2 − 4p = (p + 1)2 tan2α
+which gives an equation inp and q. The result follows by replacingp
+and q with x and y.
+
+--- page 64 ---
+Example 11.16 (Homework 10 Question 11)
+Let P = (p,q ) be a point which does not lie on the parabolaP :y2 = 4x.
+(c) If the tangentsPT 1 and PT 2 are drawn to the parabolaP where T1
+and T2 are the points of contact. Let∠T2PT 1 =α, whereα ̸= π
+2.
+Prove that the equation of the locus of the pointP is
+y2 − 4x = (x + 1)2 tan2α.
+What happens ifα = π
+2?
+(c) When α = π
+2, we have1
+p =m1m2 = −1, i.e.p = −1. Therefore, P
+moves along the vertical linex = −1, which is exactly the directrix of
+P.
+
+--- page 65 ---
+Example 11.17 (HKALE Pure Math 1996 Paper 2 Q11)
+Figure 1 shows a circle with radiusb rolling externally without slipping on
+a ﬁxed circle with radiusa and centred at the origin. LetP be a point ﬁxed
+on the rolling circle with initial position atA(a, 0).
+(a) Referring to Figure 2, show that the parametric equations of the locus
+of P are given by
+
+
+
+x = ( a +b) cosθ − b cos
+(a +b
+b
+)
+θ
+y = ( a +b) sinθ − b sin
+(a +b
+b
+)
+θ
+.
+
+--- page 66 ---
+Let C be the center of the rolling circle.Then
+− − →OC = (a +b)(cosθ, sinθ),
+− − →CP =b(cos(−(π −θ −φ)), sin(−(π −θ −φ)))
+=b(− cos(θ +φ), − sin(θ +φ)).
+Since aθ =bφ, we have
+− − →OP = − − →OC + − − →CP = ((a +b) cosθ, (a +b) sinθ) + (−b cos(θ + aθ
+b ), −b sin(θ + aθ
+b ))
+So the parametric equations of the locus ofP are given by
+
+
+x = ( a +b) cosθ − b cos
+(a +b
+b
+)
+θ
+y = ( a +b) sinθ − b sin
+(a +b
+b
+)
+θ
+.
+
+--- page 67 ---
+Example 11.18 (HKALE Pure Math 1996 Paper 2 Q11)
+Figure 1 shows a circle with radiusb rolling externally without slipping on
+a ﬁxed circle with radiusa and centred at the origin. LetP be a point ﬁxed
+on the rolling circle with initial position atA(a, 0).
+(b) Suppose a = 2b
+(i) Write down the parametric equations of the locus ofP.
+(ii) Express
+√(dx
+dθ
+)2
++
+(dy
+dθ
+)2
+in terms ofθ.
+(iii) Find the distance travelled byP before it meets the ﬁxed circle
+again.
+
+--- page 68 ---
+Suppose a = 2b.
+(i) The parametric equations of the locus ofP:
+{ x = 3 b cosθ − b cos 3θ
+y = 3 b sinθ − b sin 3θ .
+(ii) 
+
+
+dx
+dθ = −3b sinθ + 3 b sin 3θ
+dy
+dθ = 3 b cosθ − 3b cos 3θ
+.
+(dx
+dθ
+)2
++
+(dy
+dθ
+)2
+= 9b2(1 + 1 − 2 sinθ sin 3θ − 2 cosθ cos 3θ)
+= 9b2(2 − 2 cos 2θ) = 9b2(2 − 2(1 − 2 sin2θ))
+= 36b2 sin2θ
+∴
+√(dx
+dθ
+)2
++
+(dy
+dθ
+)2
+= 6b| sinθ|.
+(iii) When P ﬁrst meet the ﬁxed circle again,φ = 2π. Soθ = b
+aφ =π.
+Distance travelled byP =
+∫ π
+0
+6b2| sinθ|dθ = 12b.
+
+--- page 69 ---
+Example 11.19
+Let P,Q be points moving on an ellipseE : x2
+a2 + y2
+b2 = 1 such that
+∠POQ = π
+2 and the tangents atP,Q intersect atT. Find the equation of
+locus ofT.
+Equations of tangents atP = (x1,y 1),Q = (x2,y 2):
+x1x
+a2 + y1y
+b2 = 1
+x2x
+a2 + y2y
+b2 = 1.
+Solving the equations,T = (x,y ) is given by
+x = −a2(y2 −y1)
+x2y1 −x1y2
+y = b2(x2 −x1)
+x2y1 −x1y2
+.
+
+--- page 70 ---
+Consider the stereographic projection of the unit circle onto they-axis:
+▶ tan φ
+2 =t
+▶ sinφ = 2t
+1+t2
+▶ cosφ = 1−t2
+1+t2
+▶ tanφ = 2t
+1−t2
+A parametrization of the unit circle (except the point(−1, 0)) is
+(1 −t2
+1 +t2, 2t
+1 +t2
+)
+, t ∈ R.
+Hence, we have a parametrization of the ellipsex2
+a2 + y2
+b2 = 1:
+γ(t) =
+(
+a · 1 −t2
+1 +t2,b · 2t
+1 +t2
+)
+, t ∈ R.
+
+--- page 71 ---
+Let P =γ(t1), Q =γ(t2). Then
+x2 −x1 =a(1 −t2
+2)(1 +t2
+1) − (1 −t2
+1)(1 +t2
+2)
+(1 +t2
+1)(1 +t2
+2) = −2a(t2
+2 −t2
+1)
+(1 +t2
+1)(1 +t2
+2)
+y2 −y1 = 2b(t1)(1 +t2
+2) − (t2)(1 +t2
+1)
+(1 +t2
+1)(1 +t2
+2) = 2b(t2 −t1)(1 −t1t2)
+(1 +t2
+1)(1 +t2
+2)
+x2y1 −x1y2 =ab(1 +t2
+2)(2t1) − (1 +t2
+1)(2t2)
+(1 +t2
+1)(1 +t2
+2) = −2ab(t2 −t1)(1 +t1t2)
+(1 +t2
+1)(1 +t2
+2) .
+So
+x = −a2(y2 −y1)
+x2y1 −x1y2
+= a(1 −t1t2)
+1 +t1t2
+y = b2(x2 −x1)
+x2y1 −x1y2
+= b(t1 +t2)
+1 +t1t2
+.
+Now ∠POQ = π
+2 means that
+2bt1
+a(1 −t2
+1) · 2bt2
+a(1 −t2
+2) = −1
+4b2t1t2 = −a2(1 −t2
+1)(1 −t2
+2).
+Want to express this relation in terms of(1 −t1t2), (t1 +t2) and (1 +t1t2).
+
+--- page 72 ---
+Note
+4b2t1t2 =b2[(1 +t1t2)2 − (1 −t1t2)2],
+and
+−a2(1 −t2
+1)(1 −t2
+2) = −a2(1 −t1)(1 −t2)(1 +t1)(1 +t2)
+= −a2(1 +t1t2 −t1 −t2)(1 +t1t2 +t1t2)
+= −a2[(1 +t1t2)2 − (t1 +t2)2].
+The equation 4b2t1t2 = −a2(1 −t2
+1)(1 −t2
+2) becomes
+(a2 +b2)(1 +t1t2)2 =b2(1 −t1t2)2 +a2(t1 +t2)2.
+Substitutingx = a(1 −t1t2)
+1 +t1t2
+, y = b(t1 +t2)
+1 +t1t2
+back into the formula, we have
+a2 +b2 =b2(x
+a )2 +a2(y
+b )2
+x2
+a4 + y2
+b4 = 1
+a2 + 1
+b2.

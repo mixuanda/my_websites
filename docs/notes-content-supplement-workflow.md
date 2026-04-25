@@ -129,5 +129,27 @@ Use this shape for future entries:
 
 ## Current log
 
-No content supplement round has been recorded in this file yet. Future rounds
-should append entries here after QA and deployment verification.
+### 2026-04-25: Math1025 induction, inequalities, and binomial theorem
+
+- Gap selected: Math1025 had repository sources through chapter 11, but the
+  public Notes tree only exposed the chapter-0 / chapter-1 baseline.
+- Reference basis: `reference/MATH1025/MATH1025_slides_ch2(2).pdf`,
+  `reference/MATH1025/MATH1025_slides_ch3(5).pdf`, and
+  `reference/MATH1025/MATH1025_slides_ch4(1).pdf`; extracted review text was
+  stored under `docs/extracted/math1025/**`.
+- Content files changed: added three EN / zh-HK / zh-CN Math1025 unit families
+  for induction, inequalities / absolute value, and binomial coefficients /
+  expansions; updated `src/lib/textbook/catalog.ts`.
+- Visuals added: none; the selected material is primarily symbolic proof and
+  algebraic method, so existing theorem / worked-example blocks were enough.
+- Interactions added: none; no new widget was justified for this pass.
+- Exercises added: each new unit includes quick checks, immediate reveal
+  solutions, exercises, and guided solution structure.
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed. Local smoke checks on port `3001` returned 200
+  for the new Math1025 EN / zh-HK note routes, verified the EN and zh-HK
+  Math1025 course overview listed the new chapter families, and confirmed TXT
+  and PDF export routes for representative new units returned study material.
+- Deployment: not attempted in this local content pass.
+- Remaining gaps: Math1025 chapters `5` through `11` remain source-backed
+  backlog, and no `CSCI2120` source tree exists in the repository.

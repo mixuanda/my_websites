@@ -60,6 +60,14 @@ then serializes that structure to TXT or PDF.
 - The lead-in prose that introduces `math1030` widgets remains in the export
   before the snapshot, so the static study file keeps the same teaching
   transition as the live page.
+- The Math1025 `2.1`, `3.1`, and `4.1` additions use static MDX note blocks
+  only, so TXT and PDF exports should preserve their definitions, theorem
+  statements, worked examples, quick checks, reveal solutions, exercises, and
+  guided solution sections without interactive fallback rules.
+- Representative local checks after the Math1025 expansion returned TXT export
+  content for `en/math1025/binomial-theorem/binomial-coefficients-and-expansions`
+  and a 200 `application/pdf` response for
+  `zh-cn/math1025/proof-and-inequalities/mathematical-induction/pdf`.
 
 ## Current blockers
 

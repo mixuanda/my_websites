@@ -1,0 +1,230 @@
+---
+title: "2.1 Mathematical induction"
+description: "Use base cases, induction steps, and strong induction to prove statements indexed by positive integers."
+---
+
+## Why induction is needed
+
+Many early MATH1025 statements are not about one number. They are about every
+positive integer at once. Checking the first few cases can suggest a pattern,
+but it does not prove the pattern. For example,
+
+$$
+1^3+2^3+\cdots+n^3=\left(\frac{n(n+1)}2\right)^2
+$$
+
+is true for `n=1,2,3,4`, but the statement claims infinitely many facts. A
+finite table cannot justify all of them. Mathematical induction is the proof
+principle that turns one verified starting point and one repeatable implication
+into a proof for every positive integer.
+
+The hidden idea is simple: once the first statement is true, and once truth of
+one statement always forces truth of the next, the chain cannot break.
+
+## Statements indexed by integers
+
+<Definition title="Indexed statement">
+An indexed statement is a family of statements `P(n)`, one for each integer
+`n` in a specified range. The sentence `P(n)` may be true for some values of
+`n` and false for others.
+</Definition>
+
+Before writing an induction proof, always state `P(n)` explicitly. This avoids
+two common errors: proving a different formula from the one claimed, or using
+the induction assumption without knowing exactly what it says.
+
+<TheoremCard title="Principle of mathematical induction">
+Let `P(n)` be a statement for each `n \in Z^+`. Suppose:
+
+1. `P(1)` is true.
+2. For every integer `k \ge 1`, if `P(k)` is true, then `P(k+1)` is true.
+
+Then `P(n)` is true for every `n \in Z^+`.
+</TheoremCard>
+
+The second condition is not the statement `P(k+1)` by itself. It is a
+conditional statement: assuming `P(k)`, prove `P(k+1)`. The proof is allowed to
+use the assumption `P(k)`, but only after clearly declaring it.
+
+## The standard proof format
+
+An induction proof normally has four visible pieces:
+
+1. Define `P(n)`.
+2. Verify the base case.
+3. Prove the induction step: assume `P(k)` for an arbitrary `k` in the allowed
+   range and deduce `P(k+1)`.
+4. Invoke the induction principle.
+
+This format is not decoration. It records exactly where the infinite claim
+enters the proof.
+
+<WorkedExample title="Sum of cubes">
+Prove that
+
+$$
+1^3+2^3+\cdots+n^3=\frac{n^2(n+1)^2}{4}
+$$
+
+for every `n \in Z^+`.
+
+Let `P(n)` be the displayed identity.
+
+For `n=1`, the left side is `1`, and the right side is
+
+$$
+\frac{1^2(1+1)^2}{4}=1.
+$$
+
+So `P(1)` is true.
+
+Now assume `P(k)` is true for some `k \ge 1`, so
+
+$$
+1^3+2^3+\cdots+k^3=\frac{k^2(k+1)^2}{4}.
+$$
+
+Then
+
+$$
+\begin{aligned}
+1^3+2^3+\cdots+k^3+(k+1)^3
+&=\frac{k^2(k+1)^2}{4}+(k+1)^3 \\
+&=(k+1)^2\left(\frac{k^2}{4}+k+1\right) \\
+&=(k+1)^2\frac{(k+2)^2}{4}.
+\end{aligned}
+$$
+
+This is exactly `P(k+1)`. Therefore, by induction, the formula holds for all
+positive integers `n`.
+</WorkedExample>
+
+The key line in the example is not the algebra alone. It is the moment where
+the assumed formula for the first `k` cubes is used to rewrite the first part
+of the sum for `k+1`.
+
+## Divisibility induction
+
+Induction is not limited to closed-form sums. It also proves divisibility
+statements.
+
+<Definition title="Divisibility">
+For integers `m` and `n`, we say that `m` is divisible by `n`, and write
+`n \mid m`, if there exists an integer `q` such that `m=nq`.
+</Definition>
+
+<WorkedExample title="A divisibility proof">
+Prove that `3 \mid (n^3-n)` for every `n \in Z^+`.
+
+Let `P(n)` be the statement `3 \mid (n^3-n)`.
+
+For `n=1`, we have `1^3-1=0=3\cdot 0`, so `P(1)` is true.
+
+Assume `P(k)` for some `k \ge 1`. Then `k^3-k=3q` for some `q \in Z`.
+Compute
+
+$$
+\begin{aligned}
+(k+1)^3-(k+1)
+&=k^3+3k^2+3k+1-k-1\\
+&=(k^3-k)+3k^2+3k\\
+&=3q+3k^2+3k\\
+&=3(q+k^2+k).
+\end{aligned}
+$$
+
+Since `q+k^2+k` is an integer, `3 \mid ((k+1)^3-(k+1))`. Thus `P(k+1)` is
+true, and induction proves the claim.
+</WorkedExample>
+
+The proof works because the induction assumption gives a precise multiple of
+`3`, not merely a vague pattern.
+
+## What can go wrong
+
+<CommonMistake title="The induction step must work immediately after the base case">
+A famous false proof claims that all objects in every finite set have the same
+property by comparing two overlapping `n`-element subsets of an
+`(n+1)`-element set. The argument fails at the transition from `n=1` to `n=2`:
+the two one-element subsets do not overlap. A proof with a true base case but a
+broken first transition proves nothing.
+</CommonMistake>
+
+<CommonMistake title="Do not prove only examples">
+Showing `P(1)`, `P(2)`, and `P(3)` may help you discover the statement, but it
+does not replace the induction step. The proof must explain why an arbitrary
+true case forces the next one.
+</CommonMistake>
+
+## Variations
+
+Sometimes the first relevant integer is not `1`. If a statement begins at
+`n_0`, the base case is `P(n_0)`, and the induction step must prove
+`P(k+1)` from `P(k)` for every `k \ge n_0`.
+
+Sometimes a problem naturally splits into even and odd cases. Then an induction
+step from `P(k)` to `P(k+2)` may be used, but it needs the correct starting
+case for the parity being proved.
+
+<TheoremCard title="Strong induction">
+Let `P(n)` be a statement for each `n \in Z^+`. Suppose:
+
+1. `P(1)` is true.
+2. For every `k \ge 1`, if `P(1),P(2),\dots,P(k)` are all true, then `P(k+1)`
+   is true.
+
+Then `P(n)` is true for every `n \in Z^+`.
+</TheoremCard>
+
+Strong induction is useful when the next case depends on several earlier cases,
+not only the immediately previous one.
+
+## Quick checks
+
+<QuickCheck prompt="In an induction proof, what is the difference between `P(k)` and `P(k+1)`?">
+State the role of each one in the induction step.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`P(k)` is the induction assumption. `P(k+1)` is the next statement that must be
+proved from that assumption.
+</RevealSolution>
+
+<QuickCheck prompt="Why is checking `n=1,2,3` not a proof of a formula for all positive integers?">
+Think about the size of the claim.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The formula claims infinitely many cases. A finite list of checks may suggest a
+pattern but does not prove the arbitrary transition from one case to the next.
+</RevealSolution>
+
+<QuickCheck prompt="If a statement is claimed for all integers `n \ge 5`, what should the base case be?">
+Use the first allowed integer.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The base case should be `n=5`, and the induction step should run from an
+arbitrary `k \ge 5` to `k+1`.
+</RevealSolution>
+
+## Exercises
+
+1. Prove by induction that `1+2+\cdots+n=n(n+1)/2` for every `n \in Z^+`.
+2. Prove that `4 \mid (5^n-1)` for every `n \in Z^+`.
+3. Prove that `n^2<2^n` for every integer `n \ge 5`.
+4. Explain precisely why the overlapping-subset argument in the false proof
+   fails at the first nontrivial transition.
+
+## Guided solutions
+
+1. Let `P(n)` be the summation formula. The base case is immediate. For the
+   step, add `k+1` to the formula for `1+\cdots+k` and simplify to
+   `(k+1)(k+2)/2`.
+2. Base case: `5-1=4`. If `5^k-1=4q`, then
+   `5^{k+1}-1=5(5^k)-1=5(4q+1)-1=20q+4=4(5q+1)`.
+3. Start at `n=5`. If `k^2<2^k` and `k \ge 5`, then
+   `(k+1)^2=k^2+2k+1<2^k+2^k=2^{k+1}` because `2k+1<2^k` for `k \ge 5`.
+4. The two subsets used in the induction step overlap only when `n \ge 2`.
+   The step from one object to two objects therefore has no shared object, so
+   the argument cannot transfer the property.

@@ -1,0 +1,216 @@
+---
+title: "4.1 二項式係數與展開"
+description: "連接排列、組合、Pascal 恒等式與二項式定理。"
+---
+
+## 先計數，再展開
+
+二項式定理常被記成公式，但公式背後其實是計數。展開 `(x+y)^n` 時，每一項
+都來自於在 `n` 個括號中各自選 `x` 或 `y`。係數記錄有多少種選法會產生同一
+個 `x` 次方和同一個 `y` 次方。
+
+所以在定理前，需要先理解階乘、排列與組合。
+
+## 階乘、排列、組合
+
+<Definition title="階乘">
+對正整數 `n`，
+
+$$
+n! = n(n-1)(n-2)\cdots 2\cdot 1.
+$$
+
+約定 `0! = 1`。
+</Definition>
+
+<Definition title="排列">
+從 `n` 個不同物件中取出 `k` 個並排成有次序的一列，稱為一個 `k`-排列。
+其數量為
+
+$$
+P(n,k)=n(n-1)\cdots(n-k+1)=\frac{n!}{(n-k)!}.
+$$
+</Definition>
+
+排列重視次序。選出 `A,B,C` 與排成 `C,B,A` 是不同排列。
+
+<Definition title="二項式係數">
+若 `0\le k\le n`，
+
+$$
+\binom{n}{k}=\frac{n!}{k!(n-k)!}.
+$$
+
+它計算從 `n` 個元素中選出 `k` 個元素的子集數量。
+</Definition>
+
+組合不重視內部次序，所以公式中要除以 `k!`。
+
+<WorkedExample title="帶限制的座位安排">
+有 `m` 個女生與 `n` 個男生排成一列，假設 `m>n`，且不允許兩個男生相鄰。
+
+先排列 `m` 個女生，共有 `m!` 種方法。女生排好後形成 `m+1` 個可放男生的
+空位，包括最前、最後以及相鄰女生之間。
+
+男生要選出並排列 `n` 個空位，因此方法數為
+
+$$
+P(m+1,n)=\frac{(m+1)!}{(m+1-n)!}.
+$$
+
+總方法數為
+
+$$
+m!\,P(m+1,n)=m!\frac{(m+1)!}{(m+1-n)!}.
+$$
+</WorkedExample>
+
+## Pascal 恒等式
+
+<TheoremCard title="基本二項式係數恒等式">
+若 `0\le k\le n`，
+
+$$
+\binom{n}{0}=\binom{n}{n}=1,
+\qquad
+\binom{n}{k}=\binom{n}{n-k}.
+$$
+
+若 `0\le k\le n-1`，
+
+$$
+\binom{n}{k}+\binom{n}{k+1}=\binom{n+1}{k+1}.
+$$
+</TheoremCard>
+
+最後一條就是 Pascal 恒等式，它解釋了 Pascal 三角形中每個內部數字為何等於
+上方兩個數字之和。
+
+<CollapsibleProof title="Pascal 恒等式的代數證明">
+計算
+
+$$
+\binom{n}{k}+\binom{n}{k+1}
+=\frac{n!}{k!(n-k)!}+\frac{n!}{(k+1)!(n-k-1)!}.
+$$
+
+通分後可得
+
+$$
+\binom{n}{k}+\binom{n}{k+1}
+=\frac{(n+1)!}{(k+1)!(n-k)!}
+=\binom{n+1}{k+1}.
+$$
+</CollapsibleProof>
+
+<WorkedExample title="格點路徑">
+若每一步只能向右或向上走一格，從 `(0,0)` 到 `(5,3)` 有多少條路徑？
+
+總共需要 `8` 步，其中 `5` 步向右、`3` 步向上。只要選出哪 `5` 步是向右，
+路徑就被決定。因此方法數是
+
+$$
+\binom{8}{5}.
+$$
+</WorkedExample>
+
+## 二項式定理
+
+<TheoremCard title="二項式定理">
+對每個正整數 `n`，
+
+$$
+(x+y)^n=\sum_{k=0}^n \binom{n}{k}x^{n-k}y^k.
+$$
+</TheoremCard>
+
+含有 `y^k` 的項，來自於在 `n` 個括號中選出恰好 `k` 個括號提供 `y`，
+其餘 `n-k` 個括號提供 `x`。這種選法有 `\binom{n}{k}` 種。
+
+<WorkedExample title="展開小次方">
+當 `n=3`，
+
+$$
+(x+y)^3=x^3+3x^2y+3xy^2+y^3.
+$$
+
+`x^2y` 的係數是 `3`，因為三個括號中恰好一個提供 `y`，共有
+`\binom31=3` 種選法。
+</WorkedExample>
+
+## 抽取係數
+
+二項式定理很適合只尋找某一項。
+
+<WorkedExample title="尋找常數項">
+找出
+
+$$
+\left(x^3-\frac{1}{x}\right)^9
+$$
+
+的常數項。
+
+一般項為
+
+$$
+\binom{9}{k}(x^3)^{9-k}\left(-\frac1x\right)^k
+=\binom{9}{k}(-1)^k x^{27-4k}.
+$$
+
+若要常數項，需 `27-4k=0`，但此方程沒有整數解。因此展開式沒有常數項。
+</WorkedExample>
+
+方法比答案更重要：
+
+1. 寫出一般項；
+2. 計算變數指數；
+3. 令指數等於題目要求的數；
+4. 檢查得到的 `k` 是否為 `0\le k\le n` 的整數。
+
+<CommonMistake title="二項式索引必須是範圍內的整數">
+若求出的 `k` 不是整數，或不在 `0,\dots,n` 之內，該項並不存在。
+</CommonMistake>
+
+## 快速檢查
+
+<QuickCheck prompt="為甚麼 `C(n,k)` 要除以 `k!`，但 `P(n,k)` 不需要？">
+比較有序與無序。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`P(n,k)` 計算有次序排列；`C(n,k)` 計算無次序選擇，所以要除去已選物件內部
+的 `k!` 種排列。
+</RevealSolution>
+
+<QuickCheck prompt="從 `(0,0)` 到 `(4,2)`，每步只可向右或向上，共有多少條路徑？">
+數向右步的位置。
+</QuickCheck>
+
+<RevealSolution title="答案">
+總共 `6` 步，其中 `4` 步向右，所以共有 `\binom64=15` 條。
+</RevealSolution>
+
+<QuickCheck prompt="`(x+y)^n` 中 `x^{n-2}y^2` 的係數是甚麼？">
+使用二項式定理。
+</QuickCheck>
+
+<RevealSolution title="答案">
+係數是 `\binom n2`。
+</RevealSolution>
+
+## 練習
+
+1. 計算 `\binom{7}{3}`，並說明其計數意思。
+2. 用階乘公式證明 `\binom{n}{k}=\binom{n}{n-k}`。
+3. 求 `(2x-3)^6` 中 `x^4` 的係數。
+4. 求 `(x^2+1/x)^6` 中 `x^0` 的係數。
+
+## 引導解答
+
+1. `\binom73=35`，代表從七個元素中選三個元素的子集數。
+2. `\binom{n}{n-k}=n!/((n-k)!k!)=\binom nk`。
+3. 一般項為 `\binom6k(2x)^{6-k}(-3)^k`。令 `6-k=4`，得 `k=2`，
+   係數為 `\binom62 2^4(-3)^2=2160`。
+4. 一般項為 `\binom6k(x^2)^{6-k}x^{-k}=\binom6k x^{12-3k}`。
+   令 `12-3k=0`，得 `k=4`，係數為 `\binom64=15`。

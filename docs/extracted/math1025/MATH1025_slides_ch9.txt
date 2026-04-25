@@ -1,0 +1,602 @@
+--- page 1 ---
+MATH1025B
+Essential Mathematical Methods
+Chapter 9: Vectors in Rn
+November 13, 2025
+
+--- page 2 ---
+Rn and Vector Operations
+Deﬁnition 9.1
+A vector in Rn is an element of
+Rn = R× R×···× R  
+n copies
+={(x1,x 2,...,x n) : x1,x 2,...,x n∈ R}.
+Example 9.1
+▶ A vector inR2 can be written as(x1,x 2) or x1⃗i +x2⃗j.
+
+--- page 3 ---
+Rn and Vector Operations
+Example 9.1
+▶ A vector inR3 can be written as(x1,x 2,x 3) or x1⃗i +x2⃗j +x3⃗k.
+▶ A vector inRn can be written as
+(x1,x 2,...,x n) or x1⃗ e1 +x2⃗ e2 +··· +xn⃗ en,
+where
+⃗ ei = (0,..., 0, 1
+↑
+i-th
+, 0..., 0).
+In particular,⃗0 = (0, 0,..., 0) = 0⃗ e1 + 0⃗ e2 +··· + 0⃗ en is said to be the
+zero vector.
+
+--- page 4 ---
+Rn and Vector Operations
+Deﬁnition 9.2 (Vector Addition)
+Let⃗ u= (u1,u 2,...,u n),⃗ v= (v1,v 2,...,v n)∈ Rn. Then
+⃗ u+⃗ v:= (u1 + v1,u 2 + v2,...,u n + vn)
+
+--- page 5 ---
+Rn and Vector Operations
+Example 9.2
+Let− − →OU =⃗ u= 4⃗i +⃗j,− − →OV =⃗ v= 2⃗i + 3⃗j∈ R2. Then
+⃗ u+⃗ v= (4 + 2)⃗i + (1 + 3)⃗j = 6⃗i + 4⃗j.
+We can also write
+− − →OU +− − →OV =− − →OU +−−→UW =−−→OW.
+Idea: Transport− − →OV =⃗ vso that its tail coincides with the tip of− − →OU =⃗ u.
+
+--- page 6 ---
+Rn and Vector Operations
+Deﬁnition 9.2 (Vector Addition)
+Let⃗ u= (u1,u 2,...,u n),⃗ v= (v1,v 2,...,v n)∈ Rn. Then
+⃗ u+⃗ v:= (u1 + v1,u 2 + v2,...,u n + vn)
+Deﬁnition 9.3
+Let⃗ u,⃗ v∈ Rn. Then
+▶ −⃗ vis deﬁned as the vector such that⃗ v+ (−⃗ v) = (−⃗ v) +⃗ v=⃗0;
+▶ ⃗ u−⃗ vis deﬁned as⃗ u+ (−⃗ v).
+
+--- page 7 ---
+Rn and Vector Operations
+Example 9.3
+If− − →OU =⃗ u= 4⃗i + 2⃗j and− − →OV =⃗ v=⃗i + 3⃗j, then
+− − →VO =−⃗ v= (−1)⃗i + (−3)⃗j (Check: ⃗ v+ (−⃗ v) = (−⃗ v) +⃗ v=⃗0)
+⃗ u−⃗ v=⃗ u+ (−⃗ v) = (4⃗i + 2⃗j) + (−⃗i− 3⃗j) = 3⃗i−⃗j
+We can also write:
+⃗ u−⃗ v=− − →OU−− − →OV =− − →OU +− − →VO
+=− − →VO +− − →OU =− − →VU
+
+--- page 8 ---
+Rn and Vector Operations
+Deﬁnition 9.4 (Scalar Multiplication)
+If⃗ v= (v1,v 2,...,v n)∈ Rn, t∈ R (called scalar), then
+t⃗ v:= (tv1,tv 2,...,tv n).
+Remark:−⃗ v= (−1)⃗ v= (−v1,−v2,..., −vn).
+Deﬁnition 9.5
+Two vectors are said to beparallel if one can be written as a scalar
+multiple of the other.
+Remark: ⃗0∈ Rn is parallel to any vector⃗ v∈ Rn as⃗0 = 0⃗ v.
+
+--- page 9 ---
+Rn and Vector Operations
+Example 9.4
+If⃗ v= (4, 2)∈ Rn, then
+3⃗ v= (12, 6), 1
+2⃗ v= (2, 1), (−1)⃗ v= (−4,−2).
+
+--- page 10 ---
+Rn and Vector Operations
+Proposition 9.1
+Let⃗ u,⃗ v,⃗ w∈ Rn, and let s,t∈ R.
+(1) (Commutative Law of Vector Addition) ⃗ u+⃗ v=⃗ v+⃗ u
+(2) (Associative Law of Vector Addition) (⃗ u+⃗ v) + ⃗ w=⃗ u+ (⃗ v+ ⃗ w)
+(3) (Existence of Additive Identity) ⃗0 +⃗ v=⃗ v+⃗0 =⃗ v
+(4) (Existence of Additive Inverse) ⃗ v+ (−⃗ v) = (−⃗ v) +⃗ v=⃗0
+(5) (Existence of Multiplicative Identity) 1⃗ v=⃗ v
+(6) (Associative Law of Scalar Multiplication) s(t⃗ v) = (st)⃗ v
+(7) (Distributive Law of Scalar Multiplication)
+s(⃗ u+⃗ v) = s⃗ u+s⃗ v and (s +t)⃗ u=s⃗ u+t⃗ u
+Remark: Rn is a vector space.
+Proof of (1):
+Let⃗ u= (u1,u 2,...,u n),⃗ v= (v1,v 2,...,v n)∈ Rn. Then
+⃗ u+⃗ v= (u1 + v1,u 2 + v2,...,u n + vn)
+= (v1 + u1,v 2 + u2,...,v n + un) ( ∵ui,vi∈ R,ui +vi =vi +ui)
+=⃗ v+⃗ u.
+
+--- page 11 ---
+Rn and Vector Operations
+Deﬁnition 9.6
+Let⃗ v= (v1,v 2,...,v n)∈ Rn. Length/Norm of⃗ vis deﬁned as
+|⃗ v| =
+( n∑
+i=1
+v2
+i
+)1/2
+=
+√
+v2
+1 +v2
+2 +··· +v2n.
+(Or it is denoted by∥⃗ v∥.)
+Example 9.5
+Let⃗ v∈ Rn and letk∈ R. Show that|k⃗ v| =|k||⃗ v|.
+Let⃗ v= (v1,v 2,...,v n)∈ Rn. Then
+|k⃗ v| =
+( n∑
+i=1
+(kvi)2
+)1/2
+=
+(
+k2
+n∑
+i=1
+v2
+i
+)1/2
+=|k||⃗ v|.
+(Note|k| =
+√
+k2 for allk∈ R.)
+
+--- page 12 ---
+Rn and Vector Operations
+If we letˆv = 1
+|⃗ v|⃗ v, then ˆv//⃗ vand|ˆv| =
+⏐⏐⏐⏐
+1
+|⃗ v|⃗ v
+⏐⏐⏐⏐ =
+⏐⏐⏐⏐
+1
+|⃗ v|
+⏐⏐⏐⏐|⃗ v| = 1.
+Here ˆv is said to be the unit vector of⃗ v.
+Idea: A vector⃗ vin Rn is a quantity with magnitude and direction.⃗ v=|⃗ v|ˆv
+where|⃗ v| and ˆv give the magnitude and direction respectively.
+Example 9.6
+Let⃗ v= 4⃗i + 3⃗j∈ R2.
+Then|⃗ v| =
+√
+42 + 32 = 5 (Pyth. Thm.) and ˆv = 4
+5
+⃗i + 3
+5
+⃗j.
+
+--- page 13 ---
+Dot Product
+Deﬁnition 9.7 (Dot Product)
+Let⃗ u= (u1,u 2,...,u n),⃗ v= (v1,v 2,...,v n)∈ Rn. The dot product of ⃗ u
+and ⃗ vis deﬁned as
+⃗ u·⃗ v=
+n∑
+i=1
+uivi =u1v1 +u2v2 +··· +unvn.
+In particular,⃗ v·⃗ v=
+n∑
+i=1
+v2
+i =|⃗ v|2.
+Example 9.7
+Let⃗ u= 4⃗i + 2⃗j + 3⃗k,⃗ v=−2⃗i + 6⃗j + 5⃗k. Then
+⃗ u·⃗ v= 4· (−2) + 2· 6 + 3· 5 = 19,
+and
+⃗ v·⃗ u= (−2)· 4 + 6· 2 + 5· 3 = 19.
+Well, what is the geometric meaning of⃗ u·⃗ v?
+
+--- page 14 ---
+Dot Product
+Cosine Law:BC 2 =AB2 +AC 2− 2(AB)(AC) cos ∠BAC
+|⃗ u−⃗ v|2 =|⃗ u|2 +|⃗ v|2− 2|⃗ u||⃗ v| cosθ
+n∑
+i=1
+(ui−vi)2 =
+n∑
+i=1
+u2
+i +
+n∑
+i=1
+v2
+i− 2|⃗ u||⃗ v| cosθ
+n∑
+i=1
+u2
+i− 2
+n∑
+i=1
+uivi +
+n∑
+i=1
+v2
+i =
+n∑
+i=1
+u2
+i +
+n∑
+i=1
+v2
+i− 2|⃗ u||⃗ v| cosθ
+n∑
+i=1
+uivi =|⃗ u||⃗ v| cosθ
+So⃗ u·⃗ v=|⃗ u||⃗ v| cosθ.
+
+--- page 15 ---
+Dot Product
+Deﬁnition 9.8 (Dot Product)
+Let⃗ u= (u1,u 2,...,u n),⃗ v= (v1,v 2,...,v n)∈ Rn. The dot product of ⃗ u
+and ⃗ vis deﬁned as
+⃗ u·⃗ v=|⃗ u||⃗ v| cosθ,
+where θ (0≤θ≤π) is the angle between⃗ uand⃗ vif⃗ u,⃗ v̸=⃗0.
+Also, if either⃗ u=⃗0 or⃗ v=⃗0,⃗ u·⃗ v=⃗0.
+Remark: Deﬁnition 9.7 deﬁnes the dot product in a computational way
+while deﬁnition 9.8 deﬁnes the dot product in a geometrical way, but
+actually the are equivalent.
+
+--- page 16 ---
+Dot Product
+Example 9.8
+Draw⃗ u= 3⃗i and⃗ v=−2⃗i + 2⃗j, and guess the angle between⃗ uand⃗ v.
+Find the angle between⃗ uand⃗ vby using the formula⃗ u·⃗ v=|⃗ u||⃗ v| cosθ.
+⃗ u·⃗ v=|⃗ u||⃗ v| cosθ
+−6 = (3)(2
+√
+2) cosθ
+cosθ =− 1√
+2
+θ = 3π
+4
+
+--- page 17 ---
+Dot Product
+Direct consequences:
+(1) ⃗ uis perpendicular (or orthogonal) to⃗ v, i.e.⃗ u⊥⃗ v, if and only if
+θ = π
+2 ⇐⇒ ⃗ u·⃗ v= 0.
+(2)
+⃗ ei·⃗ ej =δij =
+{
+|⃗ ei|2 = 1 if i =j
+0 if i̸=j
+(δij is called Kronecker delta)
+Furthermore, let⃗ u=u1⃗i +u2⃗j,⃗ v=v1⃗i +v2⃗j∈ R2.
+Assume thatθ is the angle measured from⃗ uto⃗ v.
+
+--- page 18 ---
+Dot Product
+The signed area of parllelogram spanned by⃗ uand⃗ v
+=|⃗ u||⃗ v| sinθ
+=|⃗ u||⃗ v| cos(θ− π
+2 )
+=|⃗ u⊥||⃗ v| cos(θ− π
+2 ) ( ∵|⃗ u| =|⃗ u⊥|)
+=⃗ u⊥·⃗ v
+= (−u2⃗i +u1⃗j)· (v1⃗i +v2⃗j)
+=u1v2−u2v1 =
+⏐⏐⏐⏐
+u1 u2
+v1 v2
+⏐⏐⏐⏐.
+
+--- page 19 ---
+Dot Product
+Exercise 9.1
+Find the signed area of parallelogram spanned by⃗ uand⃗ vif
+(1) ⃗ u=⃗i,⃗ v=⃗j
+(2) ⃗ u=⃗j,⃗ v=⃗i
+(3) ⃗ u= 2⃗i + 3⃗j,⃗ v=−4⃗i +⃗j
+Ans: (1) 1 (2) −1 (3) 14
+
+--- page 20 ---
+Dot Product
+Proposition 9.2
+Let⃗ u,⃗ v,⃗ w∈ Rn, and let t∈ R.
+(1) (Commutative Law of Dot Product) ⃗ u·⃗ v=⃗ v·⃗ u
+(2) (Distributive Law of Dot Product) ⃗ u· (⃗ v+ ⃗ w) = ⃗ u·⃗ v+⃗ u· ⃗ w
+(3) (Associative Law of Scalar and Dot Product) (t⃗ u)·⃗ v=⃗ u· (t⃗ v) = t(⃗ u·⃗ v)
+Proof of (2):
+Let⃗ u= (u1,u 2,...,u n),⃗ v= (v1,v 2,...,v n) and ⃗ w= (w1,w 2,...,w n).
+⃗ u· (⃗ v+ ⃗ w) =
+n∑
+i=1
+ui(vi +wi) =
+n∑
+i=1
+(uivi +uiwi)
+=
+n∑
+i=1
+uivi +
+n∑
+i=1
+uiwi =⃗ u·⃗ v+⃗ u· ⃗ w
+Furthermore,
+(⃗ v+ ⃗ w)·⃗ u=⃗ u· (⃗ v+ ⃗ w) = ⃗ u·⃗ v+⃗ u· ⃗ w=⃗ v·⃗ u+ ⃗ w·⃗ u.
+
+--- page 21 ---
+Vector Projection
+Projection of⃗ valong ⃗ w=−−→OV′:
+0≤θ≤ π
+2
+π
+2≤θ≤π
+Length of−−→OV′ |⃗ v| cosθ −|⃗ v| cosθ
+Direction of−−→OV′ ˆw − ˆw
+proj⃗ w(⃗ v) =
+−−→
+OV′ = (|⃗ v| cosθ) ˆw =
+(|⃗ v||⃗ w| cosθ
+|⃗ w|
+) ( ⃗ w
+|⃗ w|
+)
+= ⃗ v· ⃗ w
+|⃗ w|2 ⃗ w
+
+--- page 22 ---
+Vector Projection
+Furthermore,− − →OV =⃗ vcan be expressed as
+− − →OV =
+−−→
+OV′ +
+−−→
+V′V,
+where −−→
+OV′ = proj⃗ w(⃗ v) = ⃗ v· ⃗ w
+|⃗ w|2 ⃗ w
+and −−→
+V′V =− − →OV−
+−−→
+OV′ =⃗ v−⃗ v· ⃗ w
+|⃗ w|2 ⃗ w.
+Then−−→OV′//⃗ wand−−→V′V·⃗ v= (⃗ v− ⃗ v·⃗ w
+|⃗ w|2⃗ w)· ⃗ w= 0, i.e.−−→V′V ⊥ ⃗ w.
+
+--- page 23 ---
+Vector Projection
+Example 9.9
+Let⃗ v= 3⃗i + 2⃗j,⃗ w=⃗i +⃗j∈ R2.
+Then
+proj⃗ w(⃗ v) = ⃗ v· ⃗ w
+|⃗ w|2 ⃗ w= 5
+2 (⃗i +⃗j),
+proj⃗ v(⃗ w) = ⃗ w·⃗ v
+|⃗ v|2 ⃗ v= 5
+13 (3⃗i + 2⃗j).
+
+--- page 24 ---
+Vector Projection
+Exercise 9.2
+Let⃗ v= 2⃗i +⃗j + 3⃗k,⃗ w=⃗i− 2⃗j + 2⃗k∈ R3.
+Express⃗ v=⃗ v1 +⃗ v2 where⃗ v1//⃗ wand⃗ v2⊥ ⃗ w.
+Ans: ⃗ v1 = 2
+3 (⃗i− 2⃗j + 2⃗k),⃗ v2 = 1
+3 (4⃗i + 7⃗j + 5⃗k).
+
+--- page 25 ---
+Cross Product in R3
+Deﬁnition 9.9 (Cross Product inR3)
+Let⃗ u,⃗ v∈ R3. ⃗ u×⃗ v∈ R3 is deﬁned by the following:
+▶ Magnitude:|⃗ u×⃗ v| =|⃗ u||⃗ v| sinθ
+▶ Direction: ⃗ u×⃗ v⊥⃗ u, ⃗ u×⃗ v⊥⃗ v with right hand rule
+By deﬁnition, we have
+(1) ⃗ u×⃗ v=−(⃗ v×⃗ u)
+(2) ⃗i×⃗j =⃗k,⃗j×⃗k =⃗i,⃗k×⃗i =⃗j
+⃗i×⃗i =⃗j×⃗j =⃗k×⃗k =⃗0 (NOT the real number 0)
+
+--- page 26 ---
+Cross Product in R3
+Question
+How to compute⃗ u×⃗ vif⃗ u=u1⃗i +u2⃗j +u3⃗k and⃗ v=v1⃗i +v2⃗j +v3⃗k?
+Assume linearity and distributive law (hard to show from deﬁnition 9.9):
+⃗ u×⃗ v= (u1⃗i +u2⃗j +u3⃗k)× (v1⃗i +v2⃗j +v3⃗k)
+=u1v1⃗i×⃗i +u1v2⃗i×⃗j +u1v3⃗i×⃗k
+u2v1⃗j×⃗i +u2v2⃗j×⃗j +u2v3⃗j×⃗k
+u3v1⃗k×⃗i +u3v2⃗k×⃗j +u3v3⃗k×⃗k
+= (u2v3−u3v2)⃗i−(u1v3−u3v1)⃗j + (u1v2−u2v1)⃗k
+=
+⏐⏐⏐⏐⏐⏐
+⃗i ⃗j ⃗k
+u1 u2 u3
+v1 v2 v3
+⏐⏐⏐⏐⏐⏐
+
+--- page 27 ---
+Cross Product in R3
+Deﬁnition 9.10 (Cross Product inR3)
+Let⃗ u=u1⃗i +u2⃗j +u3⃗k and⃗ v=v1⃗i +v2⃗j +v3⃗k. Then
+⃗ u×⃗ v:= (u2v3−u3v2)⃗i− (u1v3−u3v1)⃗j + (u1v2−u2v1)⃗k.
+Remark: Deﬁnition 9.10 deﬁnes the dot product in a computational way
+while deﬁnition 9.9 deﬁnes the dot product in a geometrical way, but
+actually the are equivalent.
+Example 9.10
+Let⃗ u=⃗i + 2⃗k,⃗ v= 2⃗i− 3⃗j +⃗k. Then
+⃗ u×⃗ v=
+⏐⏐⏐⏐⏐⏐
+⃗i ⃗j ⃗k
+1 0 2
+2 −3 1
+⏐⏐⏐⏐⏐⏐
+=
+⏐⏐⏐⏐
+0 2
+−3 1
+⏐⏐⏐⏐⃗i−
+⏐⏐⏐⏐
+1 2
+2 1
+⏐⏐⏐⏐⃗j +
+⏐⏐⏐⏐
+1 0
+2 −3
+⏐⏐⏐⏐⃗k
+= 6⃗i + 3⃗j− 3⃗k.
+
+--- page 28 ---
+Cross Product in R3
+Proposition 9.3
+Let⃗ u,⃗ v,⃗ w∈ Rn, and let t∈ R.
+(1) ⃗ u×⃗ v=−(⃗ v×⃗ u)
+(2) (Distributive Law of Cross Product) ⃗ u× (⃗ v+ ⃗ w) = ⃗ u×⃗ v+⃗ u× ⃗ w
+(3) (t⃗ u)×⃗ v=⃗ u× (t⃗ v) = t(⃗ u×⃗ v)
+
+--- page 29 ---
+Scalar Triple Product
+Note that if⃗ u,⃗ v∈ R3, then⃗ u×⃗ v∈ R3.
+Furthermore, suppose⃗ w∈ R3. Then, we know that(⃗ u×⃗ v)· ⃗ wis
+well-deﬁned and it is just a scalar.
+Here (⃗ u×⃗ v)· ⃗ wis called scalar triple product .
+What is the geometrical meaning?
+(⃗ u×⃗ v)· ⃗ w=|⃗ u×⃗ v|ˆn· ⃗ w
+=|⃗ u×⃗ v|(|⃗ w| cosα)
+
+--- page 30 ---
+Scalar Triple Product
+(⃗ u×⃗ v)· ⃗ w=|⃗ u×⃗ v|ˆn· ⃗ w
+=|⃗ u×⃗ v|(|⃗ w| cosα)
+= |⃗ u×⃗ v|  
+base area
+(|⃗ w| cosα)  
+height (with± sign)
+= signed volume of the paralelepiped spanned by⃗ u,⃗ vand ⃗ w
+(Every face of a parallelepiped is a parallelogram.)
+Remark: If π
+2 <α ≤π, cosα< 0 and so (⃗ u×⃗ v)· ⃗ w<0.
+
+--- page 31 ---
+Scalar Triple Product
+Let⃗ u=u1⃗i +u2⃗j +u3⃗k,⃗ v=v1⃗i +v2⃗j +v3⃗k and ⃗ w=w1⃗i +w2⃗j +w3⃗k. Then
+(⃗ u×⃗ v)· ⃗ w
+=
+[
+(u2v3−u3v2)⃗i− (u1v3−u3v1)⃗j + (u1v2−u2v1)⃗k
+]
+· (w1⃗i +w2⃗j +w3⃗k)
+= (u2v3−u3v2)w1− (u1v3−u3v1)w2 + (u1v2−u2v1)w3
+=
+⏐⏐⏐⏐⏐⏐
+u1 u2 u3
+v1 v2 v3
+w1 w2 w3
+⏐⏐⏐⏐⏐⏐
+By properties of determinants:
+(⃗ u×⃗ v)· ⃗ w= (⃗ v× ⃗ w)·⃗ u= (⃗ w×⃗ u)·⃗ v
+(⃗ v×⃗ u)· ⃗ w= (⃗ w×⃗ v)·⃗ u= (⃗ u× ⃗ w)·⃗ v
+and the two rows diﬀer by a minus sign.
+
+--- page 32 ---
+Cauchy-Schwarz’s Inequality
+Let⃗ u= (u1,u 2,...,u n),⃗ v= (v1,v 2,...,v n)∈ Rn.
+Dot product:
+⃗ u·⃗ v=
+n∑
+i=1
+uivi =u1v1 +u2v2 +··· +unvn.
+In particular,⃗ v·⃗ v=
+n∑
+i=1
+v2
+i =|⃗ v|2.
+Theorem 9.4 (Cauchy-Schwarz’s Inequality)
+Let⃗ x= (x1,x 2,...,x n), ⃗ y= (y1,y 2,...,y n)∈ Rn. Then
+|⃗ x·⃗ y|≤∥ ⃗ x∥∥⃗ y∥.
+Moreover, the equality holds
+⇐⇒ there exists α∈ R such that ⃗ x=α⃗ yor ⃗ y=α⃗ x
+⇐⇒ ⃗ xand ⃗ yare parallel.
+
+--- page 33 ---
+Triangle Inequality
+Theorem 9.5 (Triangle Inequality)
+Let⃗ x= (x1,x 2,...,x n), ⃗ y= (y1,y 2,...,y n)∈ Rn. Then
+∥⃗ x+⃗ y∥≤∥ ⃗ x∥ +∥⃗ y∥.
+Moreover, the equality holds if and only if
+⃗ x=α⃗ y for some α≥ 0 or ⃗ y=α⃗ x for some α≥ 0.
+Proof:
+∥⃗ x+⃗ y∥2 = (⃗ x+⃗ y)· (⃗ x+⃗ y)
+=⃗ x·⃗ x+⃗ x·⃗ y+⃗ y·⃗ x+⃗ y·⃗ y
+=∥⃗ x∥2 + 2(⃗ x·⃗ y) +∥⃗ y∥2
+≤∥⃗ x∥2 + 2|⃗ x·⃗ y| +∥⃗ y∥2 (1)
+≤∥⃗ x∥2 + 2∥⃗ x∥∥⃗ y∥ +∥⃗ y∥2 (2)
+= (∥⃗ x∥ +∥⃗ y∥)2.
+The equalities hold in both (1) and (2) if and only if
+⃗ x=α⃗ yfor someα≥ 0 or ⃗ y=α⃗ xfor someα≥ 0.
+
+--- page 34 ---
+Some Problems in Vector Geometry
+Exercise 9.3
+Consider a circle centered atO such thatAB is its diameter. LetC be a
+point on the circle. Show that∠ACB = π
+2.
+−→AC =−→AO +− − →OC− − →BC =− − →BO +− − →OC =−−→AO +− − →OC
+−→AC·− − →BC = (−→AO +− − →OC )· (−−→AO +− − →OC )
+=−−→AO·−→AO +−→AO·− − →OC−− − →OC·−→AO +− − →OC·− − →OC
+=−|−→AO|2 +|− − →OC|2
+= 0 (|−→AO| =|− − →OC| are radius)
+So−→AC⊥− − →BC, i.e. ∠ACB = π
+2.
+
+--- page 35 ---
+Some Problems in Vector Geometry
+Exercise 9.4
+Let⃗ x,⃗ y∈ Rn. Show that
+2|⃗ x|2 + 2|⃗ y|2 =|⃗ x+⃗ y|2 +|⃗ x−⃗ y|2.
+This is the parallelogram law:
+the sum of the squares of the lengths of the four sides of a parallelogram
+equals the sum of the squares of the lengths of the two diagonals.
+
+--- page 36 ---
+Cross Product and Scalar Triple Product
+Let⃗ u=u1⃗i +u2⃗j +u3⃗k,⃗ v=v1⃗i +v2⃗j +v3⃗k and ⃗ w=w1⃗i +w2⃗j +w3⃗k.
+Cross Product:
+⃗ u×⃗ v:=
+⏐⏐⏐⏐⏐⏐
+⃗i ⃗j ⃗k
+u1 u2 u3
+v1 v2 v3
+⏐⏐⏐⏐⏐⏐
+=
+⏐⏐⏐⏐
+u2 u3
+v2 v3
+⏐⏐⏐⏐⃗i−
+⏐⏐⏐⏐
+u1 u3
+v1 v3
+⏐⏐⏐⏐⃗j +
+⏐⏐⏐⏐
+u1 u2
+v1 v2
+⏐⏐⏐⏐⃗k
+= (u2v3−u3v2)⃗i− (u1v3−u3v1)⃗j + (u1v2−u2v1)⃗k
+Scalar T riple Product:
+(⃗ u×⃗ v)· ⃗ w=
+⏐⏐⏐⏐⏐⏐
+u1 u2 u3
+v1 v2 v3
+w1 w2 w3
+⏐⏐⏐⏐⏐⏐
+= signed volume of
+the parallelepiped
+spanned by⃗ u,⃗ vand ⃗ w
+
+--- page 37 ---
+Cross Product and Scalar Triple Product
+Exercise 9.5
+As shown in the ﬁgure is a cube with side length 2. Find(−→AB×− − →AD)·− − →CE.
+Ans: 8
+
+--- page 38 ---
+Cross Product and Scalar Triple Product
+Exercise 9.6
+Let⃗ a= (1, 2, 3),⃗b = (3, 2, 1) and⃗ c= (x,y,z ). Suppose|⃗ c| =
+√
+6. Find the
+maximum value of the determinant
+⏐⏐⏐⏐⏐⏐
+1 2 3
+3 2 1
+x y z
+⏐⏐⏐⏐⏐⏐
+.
+Ans: 24

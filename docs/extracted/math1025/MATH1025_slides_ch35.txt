@@ -1,0 +1,1325 @@
+--- page 1 ---
+MATH1025B
+Essential Mathematical Methods
+Chapter 3: Inequalities
+September 25, 2025
+
+--- page 2 ---
+Basic Properties
+(i) (Law of Trichotomy) Leta,b∈ R. Then exactly one of the following
+holds:
+a>b, a =b, a<b.
+(ii) (Transitivity) Leta,b,c ∈ R. Ifa<b and b<c , thena<c .
+(iii) Let a,b,c ∈ R. Ifa<b , thena +c<b +c.
+(iv) Let a,b,c ∈ R.
+▶ If a<b and c> 0, thenac<bc .
+▶ If a<b and c< 0, thenac>bc .
+(v) Let a,b,r ∈ R. If 0<a<b and r> 0, then
+▶ ar <b r
+▶ a−r >b−r (equivalently, 1
+ar > 1
+br).
+
+--- page 3 ---
+Basic Properties
+Example 3.1
+Let x,y >0. Prove thatx
+y + y
+x≥ 2.
+Idea:
+x
+y + y
+x
+?
+≥ 2
+x2 +y2
+xy
+?
+≥ 2
+x2 +y2 ?
+≥ 2xy (∵xy >0)
+x2− 2xy +y2 ?
+≥ 0
+(x−y)2 ?
+≥ 0 (true!)
+Proof:
+(x−y)2≥ 0
+x2− 2xy +y2≥ 0
+x2 +y2≥ 2xy
+x2 +y2
+xy ≥ 2 ( ∵xy >0)
+x
+y + y
+x≥ 2
+
+--- page 4 ---
+Basic Properties
+Example 3.2
+Let a,b,c ∈ R. Prove thata2 +b2 +c2≥ab +bc +ca and that the equality
+holds if and only ifa =b =c.
+Since (a−b)2, (b−c)2, (c−a)2≥ 0, we have
+(a−b)2 + (b−c)2 + (c−a)2≥ 0
+2(a2 +b2 +c2−ab−bc−ca)≥ 0
+a2 +b2 +c2≥ab +bc +ca.
+Moreover,
+equality holds⇐⇒ (a−b)2 = (b−c)2 = (c−a)2 = 0
+⇐⇒ a =b =c.
+
+--- page 5 ---
+Basic Properties
+Estimate a fraction a
+b where a, b > 0
+If p≥a> 0 and b≥q >0, then aq≤pq≤pb and so a
+b≤ p
+q .
+▶ Fixing the numerator, the bigger the denominator, the smaller the
+fraction.
+▶ Fixing the denominator, the bigger the numerator, the bigger the
+fraction.
+
+--- page 6 ---
+Basic Properties
+Example 3.3
+Suppose that x1
+y1
+< x2
+y2
+<··· < xn
+yn
+, wherexi,yi > 0 for i = 1, 2,...,n , and
+n≥ 2. Show thatx1
+y1
+<
+∑n
+i=1xi∑n
+i=1yi
+< xn
+yn
+.
+Hence, deduce that if0<α 1 <α 2 <··· <α n < π
+2, then
+tanα1 <
+∑n
+i=1 sinαi∑n
+i=1 cosαi
+< tanαn.
+Fori = 1, 2,...,n , we havex1
+y1
+< xi
+yi
+< xn
+yn
+and thusx1
+y1
+·yi <x i < xn
+yn
+·yi.
+Summing up the inequalities fori = 1, 2,...,n , we get
+x1
+y1
+·
+n∑
+i=1
+yi <
+n∑
+i=1
+xi < xn
+yn
+·
+n∑
+i=1
+yi,
+and so
+x1
+y1
+<
+∑n
+i=1xi∑n
+i=1yi
+< xn
+yn
+.
+Since 0<α 1 <α 2 <··· <α n < π
+2, we havetanα1 < tanα2 <··· < tanαn.
+The result follows by lettingxi = sinαi and yi = cosαi.
+
+--- page 7 ---
+Basic Properties
+Example 3.3
+Show thatP (n) = “1· 3· 5··· (2n− 1)
+2· 4· 6··· 2n < 1√3n + 1” is true for all integers
+n≥ 2.
+▶ When n = 2,
+LHS = 1· 3
+2· 4 = 3
+8
+?
+< 1√
+7
+= RHS
+3
+√
+7
+?
+< 8
+63 = (3
+√
+7)2 ?
+< 82 = 64 (true !)
+Now, we have
+63< 64 =⇒ 3
+√
+7 =
+√
+63<
+√
+64 = 8 =⇒ LHS = 3
+8 < 1√
+7
+= RHS
+So P (2) is true.
+
+--- page 8 ---
+Basic Properties
+Example 3.4
+Show thatP (n) = “1· 3· 5··· (2n− 1)
+2· 4· 6··· 2n < 1√3n + 1” is true for all integers
+n≥ 2.
+▶ Assume P (k) is true wherek≥ 2.
+1· 3· 5··· (2k− 1)(2k + 1)
+2· 4· 6··· 2k(2k + 2) < 1√
+3k + 1· 2k + 1
+2k + 2
+?
+< 1√
+3k + 4
+(2k + 1)
+√
+3k + 4
+?
+< (2k + 2)
+√
+3k + 1
+(2k + 1)2(3k + 4)
+?
+< (2k + 2)2(3k + 1)
+12k3 + 28k2 + 19k + 4
+?
+< 12k3 + 28k + 20k + 4
+0
+?
+< k
+Indeed k> 0
+(Exercise!)
+=⇒ ··· =⇒ 1· 3· 5··· (2k− 1)(2k + 1)
+2· 4· 6··· 2k(2k + 2) < 1√
+3k + 4.
+So P (k + 1) is true.
+▶ By mathematical induction,P (n) is true for all integersn≥ 2.
+
+--- page 9 ---
+Basic Properties
+Exercise 3.1
+(a) Let a and b be two distinct positive real numbers. Show that
+an+1−anb>ab n−bn+1 for all positive integersn.
+(b) By mathematical induction, show thatbn [(n + 1)a−bn]<a n+1 for all
+positive integersn. Hence, prove that
+(
+1 + 1
+n
+)n
+<
+(
+1 + 1
+n+1
+)n+1
+for all
+positive integersn.
+Exercise 3.2 (Bernoulli’s Inequality)
+Prove that, ifx> −1, then
+(1 +x)n≥ 1 +nx for all positive integersn.
+
+--- page 10 ---
+Solving Inequalities in One Variable
+Goal
+Finding all possible values ofx such that the inequality holds.
+Example 3.5
+Solve x + 1
+x− 1≤ 2.
+Caution: x + 1
+x− 1≤ 2 XXX⇐⇒ x + 1≤ 2(x− 1)
+since (x− 1)< 0 is possible (whenx< 1).
+
+--- page 11 ---
+Solving Inequalities in One Variable
+Example 3.5
+Solve x + 1
+x− 1≤ 2.
+Method 1:
+▶ Case 1: Whenx> 1, x− 1> 0 and
+x + 1
+x− 1≤ 2 ⇐⇒ x + 1≤ 2(x− 1) ⇐⇒ x≥ 3.
+∴ x> 1 and x≥ 3 givex≥ 3.
+▶ Case 2: Whenx< 1, x− 1< 0 and
+x + 1
+x− 1≤ 2 ⇐⇒ x + 1≥ 2(x− 1) ⇐⇒ x≤ 3.
+∴ x< 1 and x≤ 3 givex< 1.
+Answer: x< 1 or x≥ 3.
+
+--- page 12 ---
+Solving Inequalities in One Variable
+Example 3.5
+Solve x + 1
+x− 1≤ 2.
+Method 2:
+x + 1
+x− 1≤ 2
+x + 1
+x− 1(x− 1)2≤ 2(x− 1)2 (∵ (x− 1)2≥ 0)
+(x + 1)(x− 1)≤ 2(x− 1)2
+0≤ (x− 1)(x− 3)
+x≤ 1 or x≥ 3.
+Howeverx̸= 1.
+Answer: x< 1 or x≥ 3
+
+--- page 13 ---
+Solving Inequalities in One Variable
+Example 3.5
+Solve x + 1
+x− 1≤ 2.
+Method 3: Note that
+x + 1
+x− 1≤ 2 ⇐⇒ 0≤ 2− x + 1
+x− 1 ⇐⇒ 0≤ x− 3
+x− 1.
+x< 1 x = 1 1 <x< 3 x = 3 x> 3
+x− 3 − − − 0 +
+x− 1 − 0 + + +
+x− 3
+x− 1 + underﬁned − 0 +
+Answer: x< 1 or x≥ 3
+
+--- page 14 ---
+Solving Inequalities in One Variable
+Example 3.6
+Solvex> 3
+x + 2. ( Answer:−1<x< 0 or x> 3.)
+Note that
+x> 3
+x + 2 ⇐⇒ x− 3
+x− 2> 0
+⇐⇒ x2− 2x− 3
+x > 0
+⇐⇒ (x− 3)(x + 1)
+x > 0.
+The solution is−1<x< 0 or x> 3.
+
+--- page 15 ---
+Solving Inequalities in One Variable
+Exercise 3.3
+Solve (x− 2)3(x− 3)
+e−x√x− 1 > 0. ( Answer: 1<x< 2 or x> 3. )
+(Note: e−x > 0 for allx∈ R; 1√x−1 > 0 if x> 1, undeﬁned otherwise. )
+
+--- page 16 ---
+Absolute Values and Triangle Inequality for Real numbers
+Deﬁnition 3.1 (Absolute value of a real number)
+The absolute value of a real numbera, denoted by|a|, is deﬁned by
+|a| :=
+{
+a if a≥ 0,
+−a if a< 0.
+Geometrically|a| represents the distance between the point0 and the point
+a on the real line.
+Lemma 3.1
+For any a∈ R,|a| =
+√
+a2. Note: √ stands for the non-negative square
+root.
+Proof. Exercise.
+
+--- page 17 ---
+Absolute Values and Triangle Inequality for Real numbers
+Theorem 3.2
+For any a,b∈ R, we have
+(a) |− a| =|a|,
+(b) |ab| =|a||b|,
+(c) −|a|≤ a≤|a|,
+(d) if b≥ 0 then|a|≤ b if and only if −b≤a≤b,
+(e) if b> 0 then|a|<b if and only if −b<a<b .
+Proof. Exercise.
+
+--- page 18 ---
+Absolute Values and Triangle Inequality for Real numbers
+Theorem 3.3 (Triangle Inequality)
+Leta,b∈ R. Then |a +b|≤| a| +|b|. Equality holds if and only if ab≥ 0.
+Proof. Note that
+|a +b|2 = (a +b)2 =a2 + 2ab +b2≤|a|2 + 2|a||b| +|b|2 = (|a| +|b|)2.
+Taking square roots yields|a +b|≤| a| +|b|. Moreover, equality holds if and
+only if 2ab = 2|a||b| which is equivalent toab≥ 0.
+Corollary 3.4 (Generalized Triangle Inequality)
+Letn∈ Z+. Suppose a1,a 2,...,a n∈ R. Then
+|a1 +a2 +··· +an|≤| a1| +|a2| +··· +|an|.
+Equality holds if and only if a1,a 2,...,a n are all non-negative or all
+non-positive.
+Proof. Straightforward application of mathematical induction.
+
+--- page 19 ---
+Absolute Values and Triangle Inequality for Real numbers
+Corollary 3.5
+If a,b∈ R, then
+(a) ||a|−| b||≤| a−b|,
+(b) |a−b|≤| a| +|b|.
+Proof.
+(a) By Triangle Inequality,|a| =|(a−b) +b|≤| a−b| +|b|.
+So|a|−| b|≤| a−b|.
+Reversing the roles ofa and b gives|b|−| a|≤| b−a| =|a−b|.
+Thus, we have−|a−b|≤| a|−| b|≤| a−b|, and the inequality follows
+from Theorem 3.2.
+(b) |a−b| =|a + (−b)|≤| a| +|− b| =|a| +|b|.
+
+--- page 20 ---
+Absolute Values and Triangle Inequality for Real numbers
+Example 3.7
+Solve|x− 2| +|2x + 1|≥ 4.
+Note that
+|x− 2| +|2x + 1| =
+
+
+
+−(x− 2) + [−(2x + 1)] =−3x + 1 if x< − 1
+2
+−(x− 2) + (2 x + 1) = x + 3 if − 1
+2≤x< 2
+(x− 2) + (2 x + 1) = 3x− 1 if x≥ 2
+.
+▶ When x< − 1
+2,|x− 2| +|2x + 1| =−3x + 1≥ 4 ⇐⇒ x≤− 1;
+then x< − 1
+2 and x≤− 1 givesx≤− 1.
+▶ When− 1
+2 <x ≤ 2,|x− 2| +|2x + 1| =x + 3≥ 4 ⇐⇒ x≤ 1;
+then− 1
+2 <x ≤ 2, andx≥ 1 gives 1≤x≤ 2.
+▶ When x> 2,|x− 2| +|2x + 1| = 3x− 1≥ 4 ⇐⇒ x≥ 5
+3;
+then x> 2 and x≥ 5
+3 givesx≥ 2.
+Answer: x≤− 1 or x≥ 1.
+
+--- page 21 ---
+Absolute Values and Triangle Inequality for Real numbers
+You may plot the graph off(x) =|x− 2| +|2x + 1| and solvef(x)≥ 4
+graphically.
+
+--- page 22 ---
+Absolute Values and Triangle Inequality for Real numbers
+Example 3.8
+Solve|x− 2|<x 2.
+Consider two cases.
+Case 1: x< 2. Then
+|x− 2|<x 2 ⇐⇒ −(x−2)<x 2 ⇐⇒ x2+x−2> 0 ⇐⇒ (x+2)(x−1)> 0,
+which is true whenx< −2 or x> 1. Sox< −2 or 1<x< 2.
+Case 2: x≥ 2. Then
+|x− 2|<x 2 ⇐⇒ (x− 2)<x 2 ⇐⇒ x2−x + 2> 0 ⇐⇒ (x− 1
+2)2 + 7
+4 > 0,
+which is always true. Sox≥ 2.
+Combining the two cases, the solution isx< −2 or x> 1.
+
+--- page 23 ---
+Absolute Values and Triangle Inequality for Real numbers
+Exercise 3.4
+Solve|x + 2|
+x + 1 <−1. ( Answer:− 3
+2 <x< −1.)
+
+--- page 24 ---
+Calculus Method
+Example 3.9
+Prove thatex≥ 1 +x (i.e. ex−x− 1≥ 0) for allx∈ R.
+Let f(x) =ex−x− 1. Thenf′(x) =ex− 1. So
+{ f′(x)> 0 if x> 0 = ⇒ f is strictly increasing on(0,∞)
+f′(x)< 0 if x< 0 = ⇒ f is strictly decreasing on(−∞, 0).
+(And f is continuous atx = 0.)
+Thusf attains its global minimum atx = 0, that is,
+f(x)≥f(0) =e0− 1 = 0 for anyx∈ R.
+Moreover, the equality holds if and only ifx = 0.
+
+--- page 25 ---
+Calculus Method
+Exercise 3.5
+(a) Show thatf(x) =x
+1
+3− 1
+3x− 2
+3≤ 0 for allx> 0.
+(b) Using (a), show thatu
+1
+3v
+2
+3≤ 1
+3u + 2
+3v for allu,v >0.
+
+--- page 26 ---
+Calculus Method
+Exercise 3.6
+(a) Suppose 0<p< 1.
+(i) Let f(x) =xp−px +p− 1 for x> 0. Show thatf(x)≤ 0 for all
+x> 0.
+(ii) Let a,b> 0. Show thatapb1−p≤pa + (1−p)b.
+(b) Let α,β >0. Prove thataαbβ≤
+(αa +βb
+α +β
+)α+β
+.
+
+--- page 27 ---
+Classical Inequalities: AM-GM Inequality
+Deﬁnition 3.2 (Arithmetic Mean, Geometric Mean)
+Let n∈ Z+. Leta1,a 2,...,a n be n non-negative real numbers.
+(a) The numbera1 +a2 +··· +an
+n is called thearithmetic mean of
+a1,a 2,...,a n.
+(b) The number n√a1a2··· an is called thegeometric mean of
+a1,a 2,...,a n.
+Theorem 3.6 (Arithmetic Mean-Geometric Mean Inequality)
+Letn∈ Z+. Let a1,a 2,...,a n ben non-negative real numbers. Then
+a1 +a2 +··· +an
+n ≥ n√a1a2··· an.
+Moreover equality holds if and only if a1 =a2 =··· =an.
+
+--- page 28 ---
+Classical Inequalities: AM-GM Inequality
+Lemma 3.7 (Special case of Theorem 3.10: two numbers)
+Supposeu, v are non-negative real numbers. Then the inequality
+u +v
+2 ≥√uv holds. Moreover equality holds if and only if u =v.
+Proof. Expanding the inequality(√u−√v)2≥ 0, we have
+(√u)2− 2√u√v + (√v)2≥ 0, and henceu +v
+2 ≥√uv.
+Moreover, equality holds if and only if√u =√v, which is equivalent to
+u =v.
+Lemma 3.8 (Special case of Theorem 3.10:2n numbers)
+Letn∈ Z+. Let a1,a 2,...,a 2n be 2n non-negative real numbers. Then the
+inequality
+a1 +a2 +··· +a2n
+2n ≥ 2n√a1a2··· a2n
+holds. Moreover equality holds if and only if a1 =a2 =··· =a2n .
+
+--- page 29 ---
+Classical Inequalities: AM-GM Inequality
+Proof of Lemma 3.8.
+Denote byP (n) the statement below:
+“ Ifa1,a 2,...,a 2n are 2n non-negative real numbers, then
+a1 +a2 +··· +a2n
+2n ≥ 2n√a1a2··· a2n.
+Equality holds if and only ifa1 =a2 =··· =a2n.”
+P (1) is true by Lemma 3.7.
+Let k∈ Z+. SupposeP (k) is true. We are going to verify thatP (k + 1) is
+true:
+Suppose b1,...,b 2k,b 2k+1,...,b 2k+1 are 2k+1 non-negative real numbers.
+Since P (k) is true, we have
+u :=
+
+
+2k
+∏
+i=1
+bi
+
+
+1
+2k
+≤ 1
+2k
+2k
+∑
+i=1
+bi, v :=
+
+
+2k+1
+∏
+i=2k+1
+bi
+
+
+1
+2k
+≤ 1
+2k
+2k+1
+∑
+i=2k+1
+bi. (∗)
+Moreover√uv≤ u +v
+2 by Lemma 3.7.
+
+--- page 30 ---
+Classical Inequalities: AM-GM Inequality
+Therefore
+
+
+2k+1
+∏
+i=1
+bi
+
+
+1
+2k+1
+=
+
+
+
+
+2k
+∏
+i=1
+bi
+
+
+1
+2k
+
+
+2k+1
+∏
+i=2k+1
+bi
+
+
+1
+2k
+
+
+1
+2
+=√uv≤ u +v
+2 (∗∗)
+≤ 1
+2
+
+ 1
+2k
+2k
+∑
+i=1
+bi + 1
+2k
+2k+1
+∑
+i=2k+1
+bi
+
+
+= 1
+2k+1
+2k+1
+∑
+i=1
+bi.
+Furthermore, equality holds if and only if equalities hold in both (∗) and
+(∗∗), which meansu =b1 =b2 =··· =b2k, v =b2k+1 =b2k+2 =··· =b2k+1
+and u =v, that isb1 =b2 =··· =b2k =··· =b2k+1.
+Hence P (k + 1) is true.
+By Mathematical Induction,P (n) is true for anyn∈ Z+.
+
+--- page 31 ---
+Proof of Theorem 3.10 (AM ≥ GM).
+Choose m∈ Z+∪{ 0} such that 2m≤n< 2m+1. Set
+b1 =a1, ··· ,bn =an and bn+1 =bn+2 =··· =b2m+1 = a1 +··· +an
+n .
+Then
+b1 +··· +b2m+1
+2m+1 = a1 +··· +an + (2m+1−n)a1+···+an
+n
+2m+1 = a1 +··· +an
+n ,
+and
+b1··· b2m+1 =a1··· an·
+(a1 +··· +an
+n
+)2m+1−n
+.
+By Lemma 3.8, we have
+a1 +··· +an
+n = b1 +··· +b2m+1
+2m+1
+≥ (b1··· b2m+1)1/2m+1
+= (a1··· an)1/2m+1
+·
+(a1 +··· +an
+n
+)1− n
+2m+1
+,
+and thus a1 +··· +an
+n ≥ (a1a2··· an)1/n.
+Finally, equality holds if and only ifb1 =b2 =··· =b2m+1, which is
+equivalent toa1 =a2 =··· =an.
+
+--- page 32 ---
+Another proof of AM-GM inequality
+Another Proof of Theorem 3.10.
+Without loss of generality, we assume that allai’s are positive.
+Let P (n) be the statement
+“ For anya1,a 2,...,a n > 0, a1 +a2 +··· +an
+n ≥ n√a1a2··· an, and
+equality holds if and only ifa1 =a2 =··· =an.”
+When n = 1, LHS = a1
+1 =a1 = RHS. SoP (1) is true.
+Assume P (k) is true wherek≥ 1. Leta1,a 2,...,a k,ak+1 > 0.
+By the induction assumption,a1 +a2 +··· +ak
+k ≥ n√a1a2··· ak and
+equality holds if and only ifa1 =a2 =··· =ak.
+Consider f(x) := ∑k
+i=1ai +x− (k + 1)
+[(∏k
+i=1ai
+)
+x
+] 1
+k+1
+for x> 0. Then
+f′(x) = 1−
+(∏k
+i=1ai
+) 1
+k+1
+x− k
+k+1 and f′(x) = 0 ⇐⇒ x =
+(∏k
+i=1ai
+)1
+k
+.
+When 0<x<
+(∏k
+i=1ai
+)1
+k
+, f′(x)< 0;
+When x>
+(∏k
+i=1ai
+)1
+k
+, f′(x)> 0.
+So f(x)≥f(
+(∏k
+i=1ai
+)1
+k
+) = ∑k
+i=1ai−k
+(∏k
+i=1ai
+)1
+k
+≥ 0.
+
+--- page 33 ---
+Another proof of AM-GM inequality
+Now,
+k+1∑
+i=1
+ai− (k + 1)
+(k+1∏
+i=1
+ai
+) 1
+k+1
+=f(ak+1)≥f(
+( k∏
+i=1
+ai
+) 1
+k
+) (1)
+=
+k∑
+i=1
+ai−k
+( k∏
+i=1
+ai
+) 1
+k
+≥ 0 (2)
+Moreover,
+∑k+1
+i=1 ai
+k + 1 =
+(k+1∏
+i=1
+ai
+) 1
+k+1
+⇐⇒ equalities hold at (1) and (2)
+⇐⇒ ak+1 =
+( k∏
+i=1
+ai
+) 1
+k+1
+and a1 =a2 =··· =ak
+⇐⇒ a1 =a2 =··· =ak =ak+1.
+So P (k + 1) is true. By Mathematical Induction,P (n) is true for any
+n∈ Z+.
+
+--- page 34 ---
+Other proofs of AM-GM inequality
+Exercise 3.7
+(a) By considering the functionf(x) =x− lnx− 1 for x> 0, show that
+lnx≤x− 1.
+(b) Let a1,a 2,...,a n > 0. Show that
+∑n
+i=1ai
+n ≥
+(∏n
+i=1ai
+)1
+n
+Hint: Let A =
+∑n
+i=1ai
+n and putx = ai
+A into the inequality obtained in (a).
+Sum up the inequalities fori = 1, 2,...,n .
+
+--- page 35 ---
+Other proofs of AM-GM inequality
+Exercise 3.8
+(a) Letx,y >0 and letn∈ Z+. Show thatxn+1− (n + 1)xyn +nyn+1≥ 0.
+(b) Let a1,a 2,...,a n > 0. LetAk = 1
+k
+∑k
+i=1ai, Gk =
+(∏k
+i=1ai
+)1
+k
+for
+k = 1, 2,...,n . Show thatk(Ak−Gk)≥ (k− 1)(Ak−1−Gk−1) for
+k = 2, 3,...,n . Hence, show thatAn≥Gn.
+Hint: Forn =k− 1, putx =a1/k
+k and y =G1/k
+k−1 into the the inequality
+obtained in (a).
+
+--- page 36 ---
+Classical Inequalities: AM-GM Inequality
+Example 3.10
+By AM-GM Inequality, show that
+(a) if a,b,c> 0, then a
+b + b
+c + c
+a≥ 3;
+(b) if n∈ Z+, then (1 + 1
+n+1)n+1 > (1 + 1
+n)n;
+(a) By AM-GM Inequality,
+a
+b + b
+c + c
+a
+3 ≥
+3
+√
+a
+b· b
+c· c
+a = 1.
+(b) Want: (1 + 1
+n+1)>
+[
+(1 + 1
+n)n] 1
+n+1 = [(1 + 1
+n)··· (1 + 1
+n)  
+n copies
+·1]
+1
+n+1 = GM.
+Apply AM-GM Inequality to(1 + 1
+n),..., (1 + 1
+n), 1, we have
+AM = n(1 + 1
+n) + 1
+n + 1 = 1 + 1
+n + 1 > GM =
+[
+(1 + 1
+n)n
+] 1
+n+1
+.
+
+--- page 37 ---
+Classical Inequalities: AM-GM Inequality
+Example 3.11
+Let a1,a 2,...,a n > 0. Apply AM≥ GM to 1
+a1
+, 1
+a2
+,..., 1
+an
+> 0, we have
+n
+1
+a1
++ 1
+a2
++··· + 1
+an
+≤ n√a1a2··· an,
+and equality holds if and only ifa1 =a2 =··· =an. The numbern
+1
+a1
++ 1
+a2
++··· + 1
+an
+is called theharmonic mean (HM) ofai’s.
+
+--- page 38 ---
+Classical Inequalities: AM-GM Inequality
+Exercise 3.9
+Let a,b,c> 0. Show that
+a3 +b3 +c3≥a2b +b2c +c2a.
+
+--- page 39 ---
+Classical Inequalities: AM-GM Inequality
+Exercise 3.10
+Show that
+(
+1 + 1
+n
+)n+1
+is strictly decreasing by AM-GM Inequality.
+
+--- page 40 ---
+Classical Inequalities: Cauchy-Schwarz’s Inequality
+Theorem 3.9 (Cauchy-Schwarz’s Inequality)
+Letx1,x 2,...,x n,y 1,y 2,...,y n∈ R. Then
+( n∑
+i=1
+xiyi
+)2
+≤
+( n∑
+i=1
+x2
+i
+) ( n∑
+i=1
+y2
+i
+)
+.
+Moreover the equality holds if and only if there exist α∈ R such that
+xi =αyi for i = 1, 2,...,n or yi =αxi for i = 1, 2,...,n.
+Proof.
+If x1 =··· =xn = 0, then both sides of the inequality are zero and the
+inequality is trivially true.
+In this case, takeα = 0, thenxi =αyi for i = 1,...,n .
+From now on, assume thatx1,...,x n are not all zero.
+
+--- page 41 ---
+Classical Inequalities: Cauchy-Schwarz’s Inequality
+Deﬁne the functionF : R→ R by
+F (t) =
+n∑
+i=1
+(xit−yi)2 =
+( n∑
+i=1
+x2
+i
+)
+t2−2
+( n∑
+i=1
+xiyi
+)
+t+
+n∑
+i=1
+y2
+i =:At2+Bt+C,
+which is a quadratic function becauseA =
+n∑
+i=1
+x2
+i > 0.
+Since F (t) =At2 +Bt +C≥ 0 for anyt∈ R and A> 0, the quadratic
+equation F (t) = 0 has at most one real root.
+Therefore, ∆ =B2− 4AC≤ 0 and we have
+( n∑
+i=1
+xiyi
+)2
+= B2
+4 ≤AC =
+( n∑
+i=1
+x2
+i
+) ( n∑
+i=1
+y2
+i
+)
+.
+Furthermore, the equality holds if and only if
+∆ = 0 ⇐⇒ there existsα∈ R such that 0 =f(α) =
+n∑
+i=1
+(xiα−yi)2
+⇐⇒ there existsα∈ R such thaty =αxi for i = 1, 2,...,n.
+
+--- page 42 ---
+Classical Inequalities: Cauchy-Schwarz’s Inequality
+Another Intepretation of Cauchy-Schwarz’s Inequality
+Let⃗ x= (x1,x 2,...,x n), ⃗ y= (y1,y 2,...,y n)∈ Rn (with the standard inner
+product).
+Cauchy Schwarz’s Inequality says that
+⏐⏐⏐⏐⏐
+n∑
+i=1
+xiyi
+⏐⏐⏐⏐⏐≤
+( n∑
+i=1
+x2
+i
+)1/2 ( n∑
+i=1
+y2
+i
+)1/2
+,
+that is,
+|⃗ x·⃗ y|≤∥ ⃗ x∥∥⃗ y∥.
+Moreover, the equality holds
+⇐⇒ there existsα∈ R such that⃗ x=α⃗ yor ⃗ y=α⃗ x
+⇐⇒ ⃗ xand ⃗ yare parallel.
+Remark: The inequality−1≤ ⃗ x·⃗ y
+∥⃗ x∥∥⃗ y∥≤ 1 allows us to deﬁne the angle
+between⃗ xand ⃗ yto beθ such that cosθ = ⃗ x·⃗ y
+∥⃗ x∥∥⃗ y∥.
+
+--- page 43 ---
+Classical Inequalities: Cauchy-Schwarz’s Inequality
+Example 3.12
+Let a1,a 2,...,a n∈ R. Apply Cauchy-Schwarz’s Inequality to
+xi =ai and yi = 1 for i = 1, 2...,n ,
+we have √
+a2
+1 +a2
+2 +··· +a2n
+n ≥ a1 +a2 +··· +an
+n .
+Furthermore, the equality holds if and only ifa1 =a2 =··· =an.
+Remark: The number
+(
+1
+n
+n∑
+i=1
+a2
+i
+) 1
+2
+is called theroot mean square or
+quadratic mean (QM) ofa1,a 2,...,a n > 0. As a result,
+QM≥ AM≥ GM≥ HM.
+Furthermore, the equalities hold if and only ifa1 =a2 =··· =an.
+
+--- page 44 ---
+Classical Inequalities: Cauchy-Schwarz’s Inequality
+Example 3.13
+For positive real numbersa,b,c , show thatabc(a +b +c)≤a3b +b3c +c3a.
+Rewrite the inequality as
+(a +b +c)2≤
+(
+a3b +b3c +c3a
+)( 1
+bc + 1
+ca + 1
+ab
+)
+.
+Let
+x1 =
+√
+a3b, x 2 =
+√
+b3c, x 3 =
+√
+c3a,
+and
+y1 = 1√
+ab
+, y 2 = 1√
+bc
+, y 3 = 1√ca.
+Then
+x1y1 =a, x 2y2 =b, x 3y3 =c.
+By Cauchy-Schwarz’s Inequality, we have
+(√
+a3b
+2
++
+√
+b3c
+2
++
+√
+c3a
+2)(
+1√
+ab
+2 + 1√
+bc
+2 + 1√ca2
+)
+≥ (a +b +c)2,
+that is (
+a3b +b3c +c3a
+)( 1
+ab + 1
+bc + 1
+ca
+)
+≥ (a +b +c)2.
+
+--- page 45 ---
+Classical Inequalities: Cauchy-Schwarz’s Inequality
+Exercise 3.11
+For anya1,a 2,...,a n∈ R and b1,b 2,...,b n > 0, we have
+a2
+1
+b1
++ a2
+2
+b2
++··· + a2
+n
+bn
+≥ (a1 +a2 +··· +an)2
+b1 +b2 +··· +bn
+.
+Exercise 3.12
+Givenθ1,θ 2,...,θ n∈ [0, π
+2 ), prove that
+1
+cos2θ1
++ 1
+cos2θ2
++··· + 1
+cos2θn
+≥n + (sinθ1 + sinθ2 +··· + sinθn)2
+cos2θ1 + cos2θ2 +··· + cos2θn
+.
+Exercise 3.13
+Let x,y,z,w> 0 and suppose thatxyzw = 16. Show that
+x2
+x +y + y2
+y +z + z2
+z +w + w2
+w +x≥ 4
+with equality holds if and only ifx =y =z =w = 2.
+
+--- page 46 ---
+More about Absolute Value and Inequality
+Recall the Triangle Inequality and its Corollary.
+Theorem 3.3 (Triangle Inequality)
+Leta,b∈ R. Then |a +b|≤| a| +|b|. Equality holds if and only if ab≥ 0.
+Corollary 3.5
+If a,b∈ R, then
+(a) ||a|−| b||≤| a−b|,
+(b) |a−b|≤| a| +|b|.
+
+--- page 47 ---
+More about Absolute Value and Inequality
+Example 3.14
+Show that
+|2x− 1| +|x|≤ 5 = ⇒ | x|≤ 2.
+By Corollary 3.5,
+|2x− 1|≥| 2x|−| 1| = 2|x|− 1.
+Hence,
+|2x− 1| +|x|≤ 5 = ⇒ 2|x|− 1 +|x|≤ 5
+=⇒ 3|x|≤ 6
+=⇒ | x|≤ 2.
+We do not need to solve the inequality!
+
+--- page 48 ---
+More about Absolute Value and Inequality
+Example 3.15
+Show that
+|x− 2|< 1 = ⇒ | x2− 4|< 5.
+Since
+x2− 4 = (x− 2)(x + 2),
+we have
+|x2− 4| =|x− 2|·| x + 2|
+<|x + 2| (∵|x− 2|< 1)
+=|(x− 2) + 4|
+≤|x− 2| + 4 (by triangle inequality)
+< 1 + 4 = 5.
+
+--- page 49 ---
+More about Absolute Value and Inequality
+Example 3.16
+Show that
+|x− 2|< 0.005 = ⇒ | x3− 8|< 0.1.
+By the triangle inequality,
+|x3− 8| =|x− 2|·| x2 + 2x + 4|≤| x− 2|(|x|2 + 2|x| + 4).
+If|x− 2|< 0.005, then
+|x|≤| x− 2| + 2< 0.005 + 2< 3,
+and hence
+|x3− 8|≤| x− 2|(|x|2 + 2|x| + 4)
+<|x− 2|(32 + 2· 3 + 4) = 19|x− 2|
+< 19(0.005)< 0.1.
+
+--- page 50 ---
+More about Absolute Value and Inequality
+Example 3.17
+Let δ∈ (0, 1]. Show that
+|x− 2|<δ =⇒ | x3− 8|< 20δ.
+If|x− 2|<δ (≤ 1), then
+|x|≤| x− 2| + 2<δ + 2≤ 3,
+and hence
+|x3− 8|≤| x− 2|(|x|2 + 2|x| + 4)
+<|x− 2|(32 + 2· 3 + 4) = 19|x− 2|
+< 20δ.
+Example 3.17 shows that ifx is close to 2 thenx3 is close to 8, and, more
+accurately, ifx is within aδ-distance from 2 thenx3 is within a20δ
+distance from 8. That is, we can control the closeness ofx3 to 8.
+
+--- page 51 ---
+More about Absolute Value and Inequality
+Example 3.18
+Given a numberε> 0. Find a numberδ >0 such that
+|x− 2|<δ =⇒ | x3− 8|<ε.
+If we takeδ =ε/20 or δ <ε/20, then
+|x3− 8|< 20δ =⇒ | x3− 8|<ε.
+By Example 3.17, the implication
+|x− 2|<δ =⇒ | x3− 8|< 20δ
+is true under the additional condition thatδ≤ 1. To guaranteeδ≤ 1, we
+may set
+δ = minimum ofε/20 and 1.
+This δ is a solution of the problem. Note that the choice ofδ is not unique.
+(We can always take a smallerδ.)
+The purpose of Example 3.18 is to motivate the following deﬁnition of limit.
+
+--- page 52 ---
+More about Absolute Value and Inequality
+Deﬁnition 3.3 (Limit of a function at a point)
+Letc∈ R and letf : R\{c}→ R be a function. A real numberL is said to a
+limit of f at c (write lim
+x→c
+f(x) =L) if,
+given anyε> 0, there existsδ >0 such that
+if x̸=c and|x−c|<δ , then|f(x)−L|<ε .
+i.e. (∀ε> 0)(∃δ >0)(∀x∈ R\{c}) [(|x−c|<δ ) =⇒ (|f(x)−L|<ε )]
+GeoGebra Illustration: Epsilon-Delta Deﬁnition of a Limit
+
+--- page 53 ---
+More about Absolute Value and Inequality
+Exercise 3.14
+Let f(x) =x2 + 4x for x∈ R.
+(a) Show that if|x + 3|< 1, then|f(x) + 3|< 3|x + 3|.
+(b) Suppose 0<ε< 1. Find oneδ >0 such that
+|f(x) + 3|<ε whenever|x + 3|<δ.
+
+--- page 54 ---
+More about Absolute Value and Inequality
+Example 3.19
+Let p(x) =ax3 +bx2 +cx +d, wherea,b,c,d ∈ R and a> 0. Show that
+there existsM >0 such thatp(M)> 0.
+Idea:
+p(M) = aM 3
+  
++ve dominant term
++ bM 2 +cM +d  
+possibly−ve, absorbed by dominant term
+Note
+|bM 2 +cM +d|≤| b||M 2| +|c||M| +|d| (by triangle inequality)
+≤|b|M 2 +|c|M 2 +|d|M 2 (if M≥ 1)
+= (|b| +|c| +|d|)M 2.
+Then
+aM 3+bM 2+cM +d≥aM 3−|bM 2+cM +d|≥ aM 3−(|b|+|c|+|d|)M 2 ?
+> 0,
+where the last ‘>’ is true ifM >|b| +|c| +|d|
+a .
+
+--- page 55 ---
+More about Absolute Value and Inequality
+Example 3.19
+Let p(x) =ax3 +bx2 +cx +d, wherea,b,c,d ∈ R and a> 0. Show that
+there existsM >0 such thatp(M)> 0.
+Proof:
+TakeM =|b| +|c| +|d|
+a + 1.
+Then bM 2 +cM +d≤ (|b| +|c| +|d|)M 2 since M≥ 1.
+Hence,
+p(M) =aM 3 +bM 2 +cM +d
+≥aM 3− (|b| +|c| +|d|)M 2
+=M 2 [aM− (|b| +|c| +|d|)]
+> 0. (∵M >|b| +|c| +|d|
+a )
+
+--- page 56 ---
+More about Absolute Value and Inequality
+Example 3.19
+Let p(x) =ax3 +bx2 +cx +d, wherea,b,c,d ∈ R and a> 0. Show that
+there existsM >0 such thatp(M)> 0.
+Remark: Similarly, it can be shown that there existsm< 0 such that
+p(m)< 0. By applying the Intermediate Value Theorem top(x) on [m,M ],
+there existsc∈ (m,M ) such thatp(c) = 0. That means that a cubic
+equation always has a real root.
+
+--- page 57 ---
+More about Absolute Value and Inequality
+Exercise 3.15
+Under the condition of Example 3.19, show that for anyα> 0, there exists
+M >0 such thatp(x)>α for allx>M . This means that
+lim
+x→+∞
+p(x) = +∞.
+Exercise 3.16
+Generalize the argument in Example 3.19 to a polynomial of odd degree.
+
+--- page 58 ---
+More about Absolute Value and Inequality
+Example 3.20
+Let xn = n2− 3
+n2− 5n− 1 for n∈ Z+.
+(a) Find N∈ Z+ such that|xn− 1|≤ 14
+n for alln≥N.
+(b) Let ε0 = 2−1025. FindN∈ Z+ such that|xn− 1|≤ ε0 for alln≥N.
+(a) Forn∈ Z+,
+|xn− 1| =
+⏐⏐⏐⏐
+5n− 2
+n2− 5n− 1
+⏐⏐⏐⏐≤ 5n + 2
+|n2− 5n− 1|≤ 7n
+|n2− 5n− 1|
+and
+|n2− 5n− 1|≥ n2− 5n− 1≥n2− 6n≥ 1
+2n2 if n≥ 12.
+Hence, for alln≥ 12,
+|xn− 1|≤ 7n
+1
+2n2 = 14
+n .
+(b) TakeN = 14· 21025≥ 12. Then for alln≥N, we have
+|xn− 1|≤ 14
+n ≤ 14
+N = 21025 =ε0.

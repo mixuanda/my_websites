@@ -1,0 +1,231 @@
+---
+title: "4.1 Binomial coefficients and expansions"
+description: "Connect permutations, combinations, Pascal's identity, and the binomial theorem."
+---
+
+## Counting before expanding
+
+The binomial theorem is often remembered as a formula, but the formula is a
+counting statement. When expanding `(x+y)^n`, each term comes from choosing
+either `x` or `y` from each of the `n` factors. The coefficient records how many
+different choices lead to the same power of `x` and the same power of `y`.
+
+That is why factorials and combinations appear before the theorem.
+
+## Factorials, permutations, and combinations
+
+<Definition title="Factorial">
+For a positive integer `n`,
+
+$$
+n! = n(n-1)(n-2)\cdots 2\cdot 1.
+$$
+
+By convention, `0! = 1`.
+</Definition>
+
+<Definition title="Permutation">
+A `k`-permutation of `n` distinct objects is an ordered arrangement of `k` of
+those objects. The number of such arrangements is
+
+$$
+P(n,k)=n(n-1)\cdots(n-k+1)=\frac{n!}{(n-k)!}.
+$$
+</Definition>
+
+Order matters for permutations. Choosing `A,B,C` and choosing `C,B,A` are
+different ordered arrangements.
+
+<Definition title="Binomial coefficient">
+For integers `0\le k\le n`,
+
+$$
+\binom{n}{k}=\frac{n!}{k!(n-k)!}.
+$$
+
+It counts the number of `k`-element subsets of an `n`-element set.
+</Definition>
+
+Order does not matter for combinations. The factor `k!` in the denominator
+removes the internal ordering of the selected objects.
+
+<WorkedExample title="Arrange objects with a restriction">
+Suppose `m` girls and `n` boys are seated in a row, with `m>n`, and no two boys
+may sit together.
+
+First arrange the `m` girls. This can be done in `m!` ways. The girls create
+`m+1` possible gaps where boys may be placed: before the first girl, between
+two consecutive girls, or after the last girl.
+
+Choose and order `n` of those gaps for the boys:
+
+$$
+P(m+1,n)=\frac{(m+1)!}{(m+1-n)!}.
+$$
+
+Thus the total number of arrangements is
+
+$$
+m!\,P(m+1,n)=m!\frac{(m+1)!}{(m+1-n)!}.
+$$
+</WorkedExample>
+
+## Pascal's identity
+
+<TheoremCard title="Basic binomial identities">
+For `0\le k\le n`,
+
+$$
+\binom{n}{0}=\binom{n}{n}=1,
+\qquad
+\binom{n}{k}=\binom{n}{n-k}.
+$$
+
+For `0\le k\le n-1`,
+
+$$
+\binom{n}{k}+\binom{n}{k+1}=\binom{n+1}{k+1}.
+$$
+</TheoremCard>
+
+The last identity is Pascal's identity. It explains why the entries of
+Pascal's triangle are obtained by adding the two entries above.
+
+<CollapsibleProof title="Algebraic proof of Pascal's identity">
+Compute
+
+$$
+\binom{n}{k}+\binom{n}{k+1}
+=\frac{n!}{k!(n-k)!}+\frac{n!}{(k+1)!(n-k-1)!}.
+$$
+
+Using the common denominator `(k+1)!(n-k)!`, the numerator becomes
+
+$$
+n!(k+1)+n!(n-k)=n!(n+1).
+$$
+
+Therefore
+
+$$
+\binom{n}{k}+\binom{n}{k+1}
+=\frac{(n+1)!}{(k+1)!(n-k)!}
+=\binom{n+1}{k+1}.
+$$
+</CollapsibleProof>
+
+<WorkedExample title="Lattice paths">
+How many paths go from `(0,0)` to `(5,3)` if each step is either one unit right
+or one unit up?
+
+The path has `8` steps total: `5` right steps and `3` up steps. Choosing which
+`5` of the `8` steps are right determines the path, so the number is
+
+$$
+\binom{8}{5}.
+$$
+</WorkedExample>
+
+## The binomial theorem
+
+<TheoremCard title="Binomial theorem">
+For every positive integer `n`,
+
+$$
+(x+y)^n=\sum_{k=0}^n \binom{n}{k}x^{n-k}y^k.
+$$
+</TheoremCard>
+
+The term with `y^k` occurs when `y` is chosen from exactly `k` of the `n`
+factors, and `x` is chosen from the remaining `n-k` factors. There are
+`\binom{n}{k}` ways to choose those `k` factors.
+
+<WorkedExample title="Expand a small power">
+For `n=3`,
+
+$$
+(x+y)^3=x^3+3x^2y+3xy^2+y^3.
+$$
+
+The coefficient `3` in front of `x^2y` appears because exactly one of the
+three factors contributes `y`, and there are `\binom31=3` choices.
+</WorkedExample>
+
+## Coefficient extraction
+
+The binomial theorem is especially useful when only one term is needed.
+
+<WorkedExample title="Find a constant term">
+Find the constant term of
+
+$$
+\left(x^3-\frac{1}{x}\right)^9.
+$$
+
+The general term is
+
+$$
+\binom{9}{k}(x^3)^{9-k}\left(-\frac1x\right)^k
+=\binom{9}{k}(-1)^k x^{27-4k}.
+$$
+
+The exponent is zero when `27-4k=0`, which has no integer solution. Therefore
+this expansion has no constant term.
+</WorkedExample>
+
+The method is more important than this particular answer:
+
+1. write the general term;
+2. compute the exponent of the variable;
+3. solve for the exponent required by the question;
+4. check whether the resulting `k` is an integer in the range `0\le k\le n`.
+
+<CommonMistake title="The binomial index must be an integer in range">
+Solving for a desired exponent may produce a non-integer or an integer outside
+`0,\dots,n`. In that case the requested term does not appear.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Why is `C(n,k)` divided by `k!` while `P(n,k)` is not?">
+Compare ordered and unordered selection.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`P(n,k)` counts ordered arrangements. `C(n,k)` counts unordered selections, so
+the `k!` possible internal orders of the selected objects must be divided out.
+</RevealSolution>
+
+<QuickCheck prompt="How many paths go from `(0,0)` to `(4,2)` using only right and up steps?">
+Count the right-step positions.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+There are `6` steps total and `4` right steps, so the number is `\binom64=15`.
+</RevealSolution>
+
+<QuickCheck prompt="What is the coefficient of `x^{n-2}y^2` in `(x+y)^n`?">
+Use the binomial theorem.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The coefficient is `\binom n2`.
+</RevealSolution>
+
+## Exercises
+
+1. Compute `\binom{7}{3}` and explain its counting meaning.
+2. Prove `\binom{n}{k}=\binom{n}{n-k}` using the factorial formula.
+3. Find the coefficient of `x^4` in `(2x-3)^6`.
+4. Find the coefficient of `x^0` in `(x^2+1/x)^6`.
+
+## Guided solutions
+
+1. `\binom73=35`. It counts the number of three-element subsets of a
+   seven-element set.
+2. Substitute into the formula:
+   `\binom{n}{n-k}=n!/((n-k)!k!)=\binom nk`.
+3. The general term is `\binom6k(2x)^{6-k}(-3)^k`. To get `x^4`, set
+   `6-k=4`, so `k=2`. The coefficient is `\binom62 2^4(-3)^2=2160`.
+4. The general term is `\binom6k(x^2)^{6-k}x^{-k}=\binom6k x^{12-3k}`.
+   Set `12-3k=0`, so `k=4`. The coefficient is `\binom64=15`.

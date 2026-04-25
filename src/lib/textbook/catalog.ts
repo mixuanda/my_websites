@@ -1152,6 +1152,84 @@ const math1025FoundationUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1025ProofInequalityUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "proof-and-inequalities",
+    chapterNumber: "2-3",
+    course: "math1025",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use base cases, induction steps, and strong induction to prove statements indexed by positive integers.",
+      "用基本情況、歸納步驟與強歸納法證明以正整數為索引的命題。",
+      "用基础情形、归纳步骤与强归纳法证明以正整数为索引的命题。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 3,
+    prerequisites: ["math1025.foundations.equation-structure-and-trigonometric-identities"],
+    slug: "mathematical-induction",
+    sourceRefs: [{ file: "reference/MATH1025/MATH1025_slides_ch2(2).pdf" }],
+    title: text(
+      "2.1 Mathematical induction",
+      "2.1 數學歸納法",
+      "2.1 数学归纳法"
+    ),
+    unitId: "math1025.proof-and-inequalities.mathematical-induction",
+    unitNumber: "2.1",
+  },
+  {
+    chapterId: "proof-and-inequalities",
+    chapterNumber: "2-3",
+    course: "math1025",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Solve inequalities by preserving order, tracking domains, and using absolute value as distance.",
+      "透過保留不等號方向、追蹤定義域，以及把絕對值理解為距離來解不等式。",
+      "通过保持不等号方向、追踪定义域，以及把绝对值理解为距离来解不等式。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 4,
+    prerequisites: ["math1025.proof-and-inequalities.mathematical-induction"],
+    slug: "inequalities-and-absolute-value",
+    sourceRefs: [{ file: "reference/MATH1025/MATH1025_slides_ch3(5).pdf" }],
+    title: text(
+      "3.1 Inequalities and absolute value",
+      "3.1 不等式與絕對值",
+      "3.1 不等式与绝对值"
+    ),
+    unitId: "math1025.proof-and-inequalities.inequalities-and-absolute-value",
+    unitNumber: "3.1",
+  },
+];
+
+const math1025BinomialUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "binomial-theorem",
+    chapterNumber: "4",
+    course: "math1025",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Connect permutations, combinations, Pascal's identity, and the binomial theorem.",
+      "連接排列、組合、Pascal 恒等式與二項式定理。",
+      "连接排列、组合、Pascal 恒等式与二项式定理。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 5,
+    prerequisites: ["math1025.proof-and-inequalities.mathematical-induction"],
+    slug: "binomial-coefficients-and-expansions",
+    sourceRefs: [{ file: "reference/MATH1025/MATH1025_slides_ch4(1).pdf" }],
+    title: text(
+      "4.1 Binomial coefficients and expansions",
+      "4.1 二項式係數與展開",
+      "4.1 二项式系数与展开"
+    ),
+    unitId: "math1025.binomial-theorem.binomial-coefficients-and-expansions",
+    unitNumber: "4.1",
+  },
+];
+
 const math1030SystemsUnits: TextbookUnitMeta[] = [
   {
     chapterId: "systems",
@@ -2627,6 +2705,30 @@ const math1025: TextbookCourseMeta = {
       ),
       title: text("Foundations and early methods", "基礎與早期方法", "基础与早期方法"),
       units: math1025FoundationUnits,
+    },
+    {
+      course: "math1025",
+      id: "proof-and-inequalities",
+      number: "2-3",
+      summary: text(
+        "Induction, order reasoning, rational inequalities, absolute value, and first classical inequalities.",
+        "歸納法、次序推理、有理不等式、絕對值，以及初步經典不等式。",
+        "归纳法、次序推理、有理不等式、绝对值，以及初步经典不等式。"
+      ),
+      title: text("Proof and inequalities", "證明與不等式", "证明与不等式"),
+      units: math1025ProofInequalityUnits,
+    },
+    {
+      course: "math1025",
+      id: "binomial-theorem",
+      number: "4",
+      summary: text(
+        "Factorials, permutations, combinations, Pascal's identity, and coefficient extraction from binomial expansions.",
+        "階乘、排列、組合、Pascal 恒等式，以及從二項式展開抽取係數。",
+        "阶乘、排列、组合、Pascal 恒等式，以及从二项式展开抽取系数。"
+      ),
+      title: text("Binomial theorem", "二項式定理", "二项式定理"),
+      units: math1025BinomialUnits,
     },
   ],
   description: text(

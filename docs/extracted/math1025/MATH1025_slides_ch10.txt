@@ -1,0 +1,438 @@
+--- page 1 ---
+MATH1025B
+Essential Mathematical Methods
+Chapter 10: Straight Lines, Planes and
+Curves
+November 18, 2025
+
+--- page 2 ---
+Straight Line in R3
+Let
+▶ C = (c1,c 2,c 3) be a ﬁxed point
+▶ ⃗ a= (a1,a 2,a 3) be a ﬁxed vector (direction vector)
+▶ L be a straight line passing throughC and goes along direction⃗ a
+▶ P = (x,y,z ) be a movable point
+Then, we have− − →CP//⃗ a, i.e.− − →CP =t⃗ a, or
+(x−c1,y−c2,z−c3) = t(a1,a 2,a 3), t ∈ R.
+So we have theparametric equationof L:
+
+
+
+x =c1 +ta1
+y =c2 +ta2
+z =c3 +ta3
+
+--- page 3 ---
+Straight Line in R3
+Parametric equation ofL:
+
+
+
+x =c1 +ta1
+y =c2 +ta2
+z =c3 +ta3
+Eliminating t, we get thesymmetric equationof L:
+x−c1
+a1
+= y−c2
+a2
+= z−c3
+a3
+(if a1,a 2,a 3̸= 0)
+If, saya1,a 2̸= 0 but a3 = 0, then the equation becomes:
+x−c1
+a1
+= y−c2
+a2
+and z =c3.
+
+--- page 4 ---
+Straight Lines in R3
+Example 10.1
+Suppose the equation of a straight lineL in R3 is
+x− 2
+3 =y− 4 = z
+5.
+Then L passes through (2, 4, 0) and goes along the direction⃗ a= (3, 1, 5).
+However,L also passes through the point
+C′ = (2, 4, 0) + 2(3, 1, 5) = (8, 6, 10).
+Therefore,
+x− 8
+3 =y− 6 = z− 10
+5
+is also an equation ofL.
+
+--- page 5 ---
+Straight Lines in R3
+Example 10.2
+If the equation of a straight lineL in R3 is
+x− 2
+3 = y− 1
+4 and z = 5,
+then L passes through (2, 1, 5) and goes along the direction⃗ a= (3, 4, 0).
+
+--- page 6 ---
+Straight Lines in R3
+Example 10.3
+Suppose L is a straight line inR3 given by the equationx−2
+3 = y+1
+−2 = z−2
+2 ,
+and Q = (10,−3, 4) is a ﬁxed point. What is the shortest distance between
+L and Q?
+The shortest distance betweenL and
+Q is the distance betweenQ and Q′,
+where Q′ is the foot of perpendicular
+from Q to L.
+▶ L passes throughP (2,−1, 1).
+▶ Direction vector ofL: ⃗ a= (3,−2, 2)
+▶ − − →PQ = (10,−3, 4)− (3,−2, 2) = (8,−2, 3)
+▶ −−→PQ′ = proj⃗ a(− − →PQ ) =
+− − →PQ·⃗ a
+|⃗ a|2 ⃗ a= 34
+17⃗ a= 2⃗ a= (6,−4, 4)
+▶ −−→Q′Q =− − →PQ−−−→PQ′ = (8,−2, 3)− (6,−4, 4) = (2, 2,−1)
+The shortest distance betweenL and Q:|−−→QQ′| =
+√
+22 + 22 + (−1)2 = 3.
+
+--- page 7 ---
+Straight Lines in R3
+In general, ifL is a straight line inRn which
+▶ passes through a ﬁxed point⃗ c= (c1,c 2,··· ,cn) and
+▶ goes along the direction⃗ a= (a1,a 2,...,a n),
+then a parametric equation ofL is
+⃗ x=⃗ c+t⃗ a, t∈ R,
+where⃗ x= (x1,x 2,...,x n).
+If ai̸= 0 for alli, by eliminatingt, we obtain
+x1−c1
+a1
+= x2−c2
+a2
+=··· = xn−cn
+an
+.
+(What does the equation look like if someai = 0?)
+
+--- page 8 ---
+Straight Line in R3
+Example 10.4
+Let⃗ c1 = (4, 1, 8),⃗ a1 = (0, 1,−2),⃗ c2 = (4,−5, 11),⃗ a2 = (1,−3, 4).
+Let L1 :⃗ x=⃗ c1 +t⃗ a1 and L2 :⃗ x=⃗ c2 +s⃗ a2, t,s∈ R, be two straight lines in
+R3. Find the shortest distance betweenL1 and L2.
+Need to ﬁndA on L1 and B on L2 such that−→BA is perpendicular to both
+L1 and L2. Then the shortest distance betweenL1 and L2 is|−→BA|.
+
+--- page 9 ---
+Straight Line in R3
+Example 10.4
+Let⃗ c1 = (4, 1, 8),⃗ a1 = (0, 1,−2),⃗ c2 = (4,−5, 11),⃗ a2 = (1,−3, 4).
+Let L1 :⃗ x=⃗ c1 +t⃗ a1 and L2 :⃗ x=⃗ c2 +s⃗ a2, t,s∈ R, be two straight lines in
+R3. Find the shortest distance betweenL1 and L2.
+Let−→OA =⃗ c1 +t0⃗ a1,− − →OB =⃗ c2 +s0⃗ a2 for somet0,s 0∈ R.
+Then
+−→BA =−→OA−− − →OB = (⃗ c1−⃗ c2) +t0⃗ a1−s0⃗ a2
+= (0, 6,−3) +t0(0, 1,−2)−s0(1,−3, 4)
+= (−s0, 6 +t0 + 3s0.− 3− 2t0− 4s0).
+Note−→BA⊥⃗ a1 and−→BA⊥⃗ a2 give two equations:
+−→BA·⃗ a1 = 0 ⇐⇒ 12 + 5t0 + 11s0 = 0
+−→BA·⃗ a2 = 0 ⇐⇒ −30− 11t0− 26s0 = 0.
+Solving the equations, we gett0 = 2 and s0 =−2, and thus−→BA = (2, 2, 1).
+The shortest distance betweenL1 and L2 is|−→BA| =
+√
+22 + 22 + 12 = 3.
+
+--- page 10 ---
+Planes in R3
+Given a plane inR3, let
+▶ Q = (q1,q 2,q 3) be a ﬁxed point on the plane
+▶ ⃗ n= (A,B,C ) be a normal of the plane
+▶ P = (x,y,z ) be a movable point on the plane
+Then, we have⃗ n⊥− − →QP, i.e.⃗ n·− − →QP = 0.
+A(x−q1) +B(y−q2) +C(z−q3) = 0
+Ax +By +Cz + (−Aq1−Bq2−Cq3)  
+denote it by D
+= 0
+So the equation of a plane inR3 is of the form
+Ax +By +Cz +D = 0
+where⃗ n=A⃗i +B⃗j +C⃗k is a normal.
+
+--- page 11 ---
+Planes in R3
+Furthermore, ifd is the distance between a pointV (x0,y 0,z 0) and the
+plane π :Ax +By +Cz +D = 0, thend =
+⏐⏐⏐|− − →VQ| cosθ
+⏐⏐⏐ where θ is the angle
+between⃗ nand− − →VQ.
+d =
+⏐⏐⏐|− − →VQ| cosθ
+⏐⏐⏐ =||⃗ q−⃗ v| cosθ| =
+⏐⏐⏐⏐
+|⃗ n||⃗ q−⃗ v| cosθ
+|⃗ n|
+⏐⏐⏐⏐ =|⃗ n· (⃗ q−⃗ v)|
+|⃗ n|
+=|(A,B,C )· (q1−x0,q 2−y0,q 3−z0)|
+|⃗ n|
+=|Ax0 +By0 +Cz0 +D|√
+A2 +B2 +C2 (Recall: D =−Aq1−Bq2−Cq3)
+
+--- page 12 ---
+Planes in R3
+Example 10.5
+π : 2x− 2y−z− 3 = 0 is a plane inR3 with a normal2⃗i− 2⃗j−⃗k.
+The distance betweenO and π is
+|2(0)− 2(0)− (0)− 3|√
+22 + (−2)2 + (−1)2
+= 1.
+
+--- page 13 ---
+Planes in R3
+Exercise 10.1 (Revisit of straight lines inR2)
+Follow the idea of the discussion of planes inR3, show that if
+L :Ax +By +C = 0 is a straight line inR2, then
+(a) ⃗ n=A⃗i +B⃗j gives a normal ofL;
+(b) the distance betweenV (x0,y 0) and L is d = |Ax0+By0+C|√
+A2+B2 .
+
+--- page 14 ---
+Planes in R3
+Example 10.6
+Let L : x− 1
+2 = y− 2
+−1 = z
+2 be a straight line andπ :x +y +z = 0 be a
+plane in R3.
+(a) Find the intersection ofL and π.
+(b) Find the angle betweenL and π.
+(c) Find the projection ofL on π.
+(a) If P is a point lying onL, then
+P = (1, 2, 0) +t(2,−1, 2) = (1 + 2t, 2−t, 2t), t∈ R.
+Suppose further thatP lies onπ, we have
+(1 + 2t) + (2−t) + (2t) = 0
+3t + 3 = 0
+t =−1.
+So L and π intersect at (−1, 3,−2).
+
+--- page 15 ---
+Planes in R3
+Example 10.6
+Let L : x− 1
+2 = y− 2
+−1 = z
+2 be a straight line andπ :x +y +z = 0 be a
+plane in R3.
+(b) Find the angle betweenL and π.
+(b) Note⃗ a= (2,−1, 2) is a direction vector ofL,
+and⃗ n= (1, 1, 1) is a normal ofπ.
+The angle betweenL and⃗ nis
+cos−1
+(⃗ a·⃗ n
+|⃗ a||⃗ n|
+)
+= cos−1
+( 1√
+3
+)
+.
+So the angle betweenL and π is π
+2− cos−1
+( 1√
+3
+)
+.
+
+--- page 16 ---
+Planes in R3
+Example 10.6
+Let L : x− 1
+2 = y− 2
+−1 = z
+2 be a straight line andπ :x +y +z = 0 be a
+plane in R3.
+(c) Find the projection ofL on π.
+(c) Question: How to ﬁnd a direction vector of the projectionL′?
+
+--- page 17 ---
+Planes in R3
+Example 10.6
+Let L : x− 1
+2 = y− 2
+−1 = z
+2 be a straight line andπ :x +y +z = 0 be a
+plane in R3.
+(c) Find the projection ofL on π.
+(c) Suppose L′ has a direction vector⃗b.
+Then⃗b lies on the plane spanned by⃗ nand⃗ a. So⃗b⊥⃗ a×⃗ n.
+Since⃗b also lies on the planeπ, we have⃗b⊥⃗ n.
+Hence⃗b//(⃗ n× (⃗ a×⃗ n)).
+⃗ n× (⃗ a×⃗ n) = (⃗i +⃗j +⃗k)× (−3⃗i + 3⃗k) =
+⏐⏐⏐⏐⏐⏐
+⃗i ⃗j ⃗k
+1 1 1
+−3 0 3
+⏐⏐⏐⏐⏐⏐
+= 3⃗i− 6⃗j + 3⃗k
+So a direction vector ofL′ is⃗i− 2⃗j +⃗k.
+Equation ofL′:
+x + 1 = y− 3
+−2 =z + 2.
+
+--- page 18 ---
+Planes in R3
+Example 10.6
+Let L : x− 1
+2 = y− 2
+−1 = z
+2 be a straight line andπ :x +y +z = 0 be a
+plane in R3.
+(c) Find the projection ofL on π.
+(c) Alternatively, a direction of vector ofL′ is given by
+⃗ a− proj⃗ n(⃗ a) =⃗ a−⃗ a·⃗ n
+|⃗ n|2⃗ n
+= 2⃗i−⃗j + 2⃗k− 3
+3 (⃗i +⃗j +⃗k)
+=⃗i− 2⃗j +⃗k.
+Equation ofL′:
+x + 1 = y− 3
+−2 =z + 2.
+
+--- page 19 ---
+Planes in R3
+Follow the idea of the discussion of planes inR3, the equation
+a1x1 +a2x2 +··· +anxn +b = 0
+in Rn gives a “plane” inRn, which is said to be an aﬃne hyperplaneπ.
+The vector⃗ n= (a1,a 2,...,a n) is a normal of the aﬃne hyperplaneπ.
+▶ 1-dim aﬃne hyperplane inR2 is just a usual straight line inR2
+▶ 2-dim aﬃne hyperplane inR3 is just a usual plane inR3
+
+--- page 20 ---
+Curves
+Idea: Suppose that a point is moving onxy-plane. γ(t) = (x(t),y (t)) is a
+function which tells us thex and y coordinate of the moving point at time
+t. Then the locus of the moving point is a curve inR2.
+Deﬁnition 10.1
+A (parametric) curvein Rn is a continuous functionγ :I→ Rn, whereI
+is an interval. If we write
+γ(t) = (x1(t),x 2(t),...,x n(t)), t∈I,
+that means each componentxi(t) is a continuous function.
+Remark:
+γ(t) is a vector inRn, so sometimesγ is called a vector function and some
+may write⃗ γ(t).
+
+--- page 21 ---
+Curves
+Example 10.7
+Let γ : [0, 1]→ R2 be deﬁned byγ(t) = (x(t),y (t)) = (t, 2t).
+Starting point:γ(0) = (0, 0)
+Endpoint: γ(1) = (1, 2)
+{
+x =t
+y =t
+eliminate t
+−−−−−−−−→y = 2x
+
+--- page 22 ---
+Curves
+Deﬁnition 10.2
+A curveγ : [a,b ]→ Rn is said to beclosed if γ(a) = γ(b).
+
+--- page 23 ---
+Curves
+Deﬁnition 10.3
+A curveγ : [a,b ]→ Rn is said to besimple if it has no self intersection
+except possibly at its endpoints, i.e.
+γ(t1)̸=γ(t2) for anya≤t1 <t 2≤b, except possibly att1 =a,t 2 =b.
+
+--- page 24 ---
+Curves
+Example 10.8
+Let γ : [0, 2π]→ R2 be a curve deﬁned by
+γ(t) = (R cost,R sint), t ∈ [0, 2π]
+where R> 0. Thenγ(0) = γ(2π) = (R, 0). Also,
+{
+x =R cost (1)
+y =R sint (2)
+eliminate t by (1)2 + (2)2
+−−−−−−−−−−−−−−−−−→x2 +y2 =R2
+Therefore, γ is a circle centered at the origin with radiusR.
+As t increases, we move in anticlockwise direction.
+R = 1:
+
+--- page 25 ---
+Curves
+Deﬁnition 10.4
+Let γ :I→ Rn be a curve. The derivative ofγ at t0∈I is deﬁned as
+γ′(t0) = lim
+∆t→0
+γ(t0 + ∆t) −γ(t0)
+∆t
+= lim
+∆t→0
+(x1(t0 + ∆t) −x1(t0)
+∆t ,..., xn(t0 + ∆t) −xn(t0)
+∆t
+)
+=
+(
+lim
+∆t→0
+x1(t0 + ∆t) −x1(t0)
+∆t ,..., lim
+∆t→0
+xn(t0 + ∆t) −xn(t0)
+∆t
+)
+= (x′
+1(t0),...,x ′
+n(t0)) (if exists)
+If γ′(t) exists for allt∈I, thenγ is said to be adiﬀerentiable curve.
+Remark: Iftrepresents time andγ(t)
+is thepositionof a moving object, then
+γ′(t) and|γ′(t)| are the velocity and
+speed of the object at timet respec-
+tively.
+
+--- page 26 ---
+Curves
+Example 10.8
+Let γ : [0, 2π]→ R2 be a curve deﬁned byγ(t) = (R cost,R sint), where
+R> 0,ω. Then
+γ′(t) = (−R sint,R cost) and |γ′(t)| =
+√
+(−R sint)2 + (R cost)2 =R.
+Furthermore, letξ : [0, 2π
+ω ]→ R2 be deﬁned byξ(t) = (R cosωt,R sinωt),
+where R> 0.
+Exercise: Checkξ also gives the same circle asγ but|ξ′(t)| =Rω.
+(Diﬀerent parametrization may give the same curve.)
+
+--- page 27 ---
+Curves
+Exercise 10.2
+Give a parametrization of a unit circle centered at the origin which goes in
+clockwise direction and starts and ends at(0, 1).
+Ans: One parametrization isγ : [0, 2π]→ R2,
+γ(t) = (cos(π
+2−t), sin(π
+2−t)) = (sin t, cost).
+
+--- page 28 ---
+Curves
+Exercise 10.3
+Let γ : R→ R3 be deﬁned by
+γ(t) = (x(t),y (t),z (t)) = (R cost,R sint,ht ),
+where R,h> 0. What isγ?
+Ans: Helix:
+
+--- page 29 ---
+Curves
+Exercise 10.4
+Give a parametrization of each of the following curves.
+(1) Circle given by(x−h)2 + (y−k)2 =R2, whereh,k∈ R, R> 0.
+(2) Line segment joining two pointsA and B in Rn with−→OA =⃗ aand− − →OB =⃗b.
+[(3) Curve given by graph of a continuous functionf : [a,b ]→ R.
+Ans:
+(1) γ(t) = (h +R cost,k +R sint), t∈ [0, 2π]
+(2) γ(t) =⃗ a+t(⃗b−⃗ a) = (1−t)⃗ a+t⃗b, t∈ [0, 1]
+(3) γ(t) = (t,f (t)), t∈ [a,b ]

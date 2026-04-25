@@ -55,6 +55,12 @@ April 24, 2026 QA update:
 - the next April 25 pass added `3.3 Row-operation matrices` and algorithmic
   expansions to `6.3`, `6.4`, and `6.5`, again using existing theorem,
   proof, worked-example, quick-check, and reveal-solution block types.
+- the Math1025 expansion pass added three EN / zh-HK / zh-CN unit families
+  using existing `Definition`, `TheoremCard`, `CollapsibleProof`,
+  `WorkedExample`, `CommonMistake`, `QuickCheck`, and `RevealSolution` blocks;
+  `npm run contentlayer` regenerated 202 documents after the new files and
+  catalog metadata landed, and `npm run build` completed successfully with the
+  new Math1025 routes included.
 
 ## Current findings
 

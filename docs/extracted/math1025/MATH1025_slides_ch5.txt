@@ -1,0 +1,358 @@
+--- page 1 ---
+MATH1025B
+Essential Mathematical Methods
+Chapter 5: Sequences
+October 2, 2025
+
+--- page 2 ---
+Sequences
+Deﬁnition 5.1 (Sequences)
+A sequence of real numbers is a functiona : Z+→ R.
+Given n, the function returns then-th term, which is a real number.
+Usually, we writean instead of a(n) and we denote the sequence by{an}.
+Example 5.1
+(a) an = (−1)n, the sequence is−1, 1,−1, 1, . . . ,(−1)n, . . .
+(b) an = 2 n−1, the sequence is1, 2, 4, 8, . . . ,2n−1, . . .
+
+--- page 3 ---
+Sequences
+Example 5.1
+(c) Let f (x) = sin x. Then
+f (n)(x) =
+
+
+
+cos x if n = 4m + 1
+− sin x if n = 4m + 2
+− cos x if n = 4m + 3
+sin x if n = 4m
+f (n)(0) =
+
+
+
+1 if n = 4m + 1
+0 if n = 4m + 2
+−1 if n = 4m + 3
+0 if n = 4m,
+where m is a nonnegative integer.
+Let an = f (n)(0). How do we write down the general term?
+an = cos( (n− 1)π
+2 )
+or
+an = real part ofin−1
+= 1
+2
+[
+in−1 + (−i)n−1]
+= in−1
+2
+[
+1 + (−1)n−1]
+
+--- page 4 ---
+Sequences
+Exercise 5.1
+Write down the general term of each of the following sequences
+(a) 1, 0, 1, 0, . . .
+(b) 2, 2· 4, 2· 4· 6, 2· 4· 6· 8, . . .
+(c) 1, 1· 3, 1· 3· 5, 1· 3· 5· 7, . . .
+(a) Ans: 1
+2 [1 + (−1)n−1]
+(b) Ans: 2· 4··· 2n = 2 nn!
+(c) Ans: 1· 3··· (2n− 1) = 1·2·3···2n
+2·4·6···2n = (2n)!
+2nn!
+
+--- page 5 ---
+Sequences
+A recursive sequenceis a sequence where each term is deﬁned using one
+or more preceding terms.
+Example 5.2
+Consider the sequence{an} deﬁned by a1 = 4 and an+1 = 2an + 1 for
+n≥ 1. The recursive relation tells us how to ﬁnda2, a3, and so on.
+a2 = 2a1 + 1 = 2(4) + 1 = 9 ,
+a3 = 2a2 + 1 = 2(9) + 1 = 19 ,
+a4 = 2a3 + 1 = 2(19) + 1 = 39 , . . .
+It turns out the general term of{an} is
+an = 5· 2n−1− 1 for n∈ Z+.
+
+--- page 6 ---
+Sequences
+Example 5.3 (Fibonacci Sequence)
+The sequence{Fn} deﬁned by F1 = F2 = 1 and Fn+2 = Fn+1 + Fn for
+n≥ 1 is called theFibonacci sequence.
+The Fibonacci Spiral
+https://en.wikipedia.org/wiki/
+Fibonacci_sequence
+Exercise 5.2
+Let ϕ = 1 +
+√
+5
+2 (≈ 1.618 called Golden Ratio) and ψ = 1−
+√
+5
+2 .
+Show that Fn = ϕn− ψn
+ϕ− ψ for all positive integern.
+
+--- page 7 ---
+Sequences
+Example 5.4
+Let{an} be a sequence deﬁned bya1 = 1 and an+1 = a2
+n + 1 for n≥ 1.
+Then,
+a2 = a2
+1 + 1 = 1 2 + 1 = 2 ,
+a3 = a2
+2 + 1 = 2 2 + 1 = 5 ,
+a4 = a2
+3 + 1 = 5 2 + 1 = 26 , . . .
+But it may not be easy to write down the general term.
+Recall: A sequence of real numbers is a functiona : Z+→ R.
+Question
+Why does a recursive relation deﬁnes a sequence?
+The next two slides are optional.
+
+--- page 8 ---
+Sequences
+Theorem 5.1 (Recursion Theorem)
+Let X be a set, b∈ X, and f : X→ X be a function. Then there is a
+unique function a : Z+→ X such that
+a(1) = b, and
+a(n + 1) = f (a(n)) for all n∈ Z+.
+Example 5.2: a1 = 4 and an+1 = an + 1 for n≥ 1.
+Apply Recursion Theorem to
+b = 4 and f (x) = x + 1.
+Example 5.4: a1 = 1 and an+1 = a2
+n + 1 for n≥ 1.
+Apply Recursion Theorem to
+b = 1 and f (x) = x2 + 1.
+
+--- page 9 ---
+Sequences
+Theorem 5.2 (Recursion Theorem)
+Let X be a set, b∈ X, and f : X→ X be a function. Then there is a
+unique function a : Z+→ X such that
+a(1) = b, and
+a(n + 1) = f (a(n)) for all n∈ Z+.
+Example 5.3: F1 = F2 = 1 and Fn+2 = Fn+1 + Fn for n≥ 1.
+Apply Recursion Theorem to
+b = (1, 1) and f (x, y) = ( y, x + y).
+Then we obtain a sequencea(n) := (Fn, Gn) such that a(1) = (1 , 1) and
+(Fn+1
+Gn+1
+)
+= a(n + 1) = f (a(n)) =
+( Gn
+Fn + Gn
+)
+,
+So Gn = Fn+1 and hence
+Fn+2 = Gn+1 = Fn + Gn = Fn + Fn+1.
+
+--- page 10 ---
+Arithmetic and Geometric Sequences
+Deﬁnition 5.2 (Arithmetic sequence)
+A sequence{an} is said to be anarithmetic sequence(or arithmetic
+progression) if there is a constantd such that
+an+1− an = d for any n∈ Z+.
+Remark:
+(1) The number d is unique (∵ d = a2− a1), and is called thecommon
+diﬀerence of{an}.
+(2) The general term is
+an = a + (n− 1)d for any n∈ Z+,
+where a = a1 is theinitial term.
+
+--- page 11 ---
+Arithmetic and Geometric Sequences
+Consider the arithmetic seriessn =
+n∑
+k=1
+ak =
+n∑
+k=1
+[a + (k− 1)d].
+Goal: simplify the sum.
+Let j = n + 1− k. Then k− 1 = n− j.
+When k = 1, j = n; when k = n, j = 1.
+So,
+sn =
+n∑
+j=1
+[a + (n− j)d] =
+n∑
+k=1
+[a + (n− k)d] .
+Then,
+2sn = sn + sn =
+n∑
+k=1
+[a + (k− 1)d] +
+n∑
+k=1
+[a + (n− k)d]
+=
+n∑
+k=1
+[2a + (n− 1)d] = n [2a + (n− 1)d]
+Hence
+sn = n
+2 [2a + (n− 1)d] = n
+2 (a1 + an).
+
+--- page 12 ---
+Arithmetic and Geometric Sequences
+Example 5.5
+The common diﬀerence and the sum of the ﬁrst 15 terms of an arithmetic
+sequence are 3
+2 and 240 respectively.
+(a) Find the ﬁrst term of the sequence.
+(b) If the sum of the ﬁrstk terms of the sequence is 361, ﬁnd the value ofk.
+(a) Recall:
+sn = n
+2 [2a + (n− 1)d] .
+Since d = 3
+2 and s15 = 15
+2 [2a + (15− 1) 3
+2 ] = 240, we havea = 5.5.
+(b) Given:
+sk = k
+2
+[
+2(5.5) + (k− 1)( 3
+2 )
+]
+= 361,
+we have
+3k2 + 19k− 1444 = 0 .
+So k = 19 (k =−76/3 is rejected).
+
+--- page 13 ---
+Arithmetic and Geometric Sequences
+Deﬁnition 5.3 (Geometric sequence)
+A sequence{bn} of nonzero numbers is said to be ageometric sequence
+(or geometric progression) if there is a nonzero constantr such that
+bn+1
+bn
+= r for any n∈ Z+.
+Remark:
+(1) The number r is unique (∵ r = b2/b1), and is called thecommon
+ratio of{bn}.
+(2) The general term is
+bn = brn−1 for any n∈ Z+,
+where b = b1 is theinitial term.
+
+--- page 14 ---
+Arithmetic and Geometric Sequences
+Geometric series sn =
+n∑
+k=1
+bk =
+n∑
+k=1
+brk−1 = b
+n−1∑
+k=0
+rk. (How to simplify?)
+If r = 1, sn = bn (simple).
+If r̸= 1, then
+(1− r)
+(n−1∑
+k=0
+rk
+)
+=
+n−1∑
+k=0
+rk−
+n−1∑
+k=0
+rk+1
+=
+n−1∑
+k=0
+rk−
+n∑
+k=1
+rk
+= 1− rn.
+So
+n−1∑
+k=0
+rk = 1− rn
+1− r ,
+and
+sn = b(1− rn)
+1− r = b(rn− 1)
+r− 1 .
+
+--- page 15 ---
+Arithmetic and Geometric Sequences
+Example 5.6 (Mortgage Formula)
+P = Mortgage principal
+R = Fixed interest rate
+N = Mortgage duration (in month)
+x = Monthly payment amount
+Month 0 1 2 ···
+Loan Amount P P (1 + R
+12 )− x [P (1 + R
+12 )− x](1 + R
+12 )− x ···
+Given P, R and N, ﬁnd x.
+Let Ln be the loan amount aftern-th month (after monthly payment).
+Then
+L0 = P and Ln = Ln−1(1 + R
+12 )− x for n≥ 1.
+Hence,
+Ln = P (1 + R
+12 )n−
+[
+(1 + R
+12 )n−1x + (1 + R
+12 )n−2x +··· + (1 + R
+12 )x + x
+]
+= P (1 + R
+12 )n− (1 + R
+12 )n− 1
+(1 + R
+12 )− 1 x.
+
+--- page 16 ---
+Arithmetic and Geometric Sequences
+Hence,
+Ln = P (1 + R
+12 )n− (1 + R
+12 )n− 1
+(1 + R
+12 )− 1 x.
+Set LN = 0, we have
+P (1 + R
+12 )N = (1 + R
+12 )N− 1
+(1 + R
+12 )− 1 x
+x = P
+R
+12 (1 + R
+12 )N
+(1 + R
+12 )N− 1 .
+For example,
+if P = 8, 000, 000, R = 3%, N = 360, then x = 33, 728.
+(Total interest= 4, 142, 196.)
+GeoGebra Illustration: Mortage
+
+--- page 17 ---
+Arithmetic and Geometric Sequences
+Exercise 5.3
+Let (xn) be an arithmetic-geometric sequence deﬁned by
+xn = (a + nd)brn, n ∈ N, where a, d, r∈ R and r̸= 0,̸= 1.
+Show that Sn :=
+n−1∑
+k=0
+xk can be expressed as
+Sn = ab− (a + nd)brn
+1− r + dbr(1− rn)
+(1− r)2 .
+Hint: Consider Sn− rSn .

@@ -1,0 +1,637 @@
+--- page 1 ---
+MATH1025B
+Essential Mathematical Methods
+Chapter 7: Integers and Rational
+Numbers
+November 4, 2025
+
+--- page 2 ---
+Divisibility
+Deﬁnition 7.1
+Let a,b∈ Z. We say thata divides b (or b is divisible bya), denoted by
+a|b, if there existsd∈ Z such thatb =ad.
+In this case,a is a divisor (or factor) ofb
+Example 7.1
+(i) 3| 15 but 4 ∤ 15
+(ii) ±1,±3,±5,±15| 15
+(iii) ±1,±a|a for anya∈ Z
+(iv) a| 0 for anya∈ Z (In particular 0| 0)
+
+--- page 3 ---
+Divisibility
+Example 7.2
+No integer except 0 is divisible by 0.
+The statement is formally expressed as:
+“Let x be an integer. Supposex is divisible by 0. Thenx = 0."
+Justiﬁcation:
+Let x be an integer. Supposex is divisible by 0.
+By deﬁnition, there exists an integerk such thatx =k· 0.
+Then x = 0.
+
+--- page 4 ---
+Divisibility
+Proposition 7.1
+Leta,b,c ∈ Z.
+(1) If b̸= 0 and a|b, then|a|≤| b|.
+(2) If a|b, then (±a)| (±b).
+(3) If a|b and b|c, thena|c.
+(4) If a|b and a|c, thena| (bx +cy) for anyx,y∈ Z.
+Proof of (1).
+Since a|b, there existm∈ Z such thatb =am. Then|b| =|a||m|.
+Since b̸= 0, we have|m|̸ = 0 and so|m|≥ 1.
+Hence|b| =|a||m|≥| a|· 1 =|a|.
+Proof of (4).
+Since a|b and a|c, there existm,n∈ Z such thatb =am and c =an.
+Then, for anyx,y∈ Z,
+bx +cy =a(mx +ny), where mx +ny∈ Z.
+So a| (bx +cy).
+
+--- page 5 ---
+Primes and Composites
+Deﬁnition 7.2
+Let n∈ Z+ such thatn> 1. n is aprime if 1 andn are the only positive
+divisors ofn. Otherwisen is called acomposite.
+Remark: 1 is neither a prime nor a composite!
+Reformulation of the deﬁnition of composites
+Let n∈ Z+ such thatn> 1. Thenn is a composite if and only if the
+statement (∗) holds:
+there exist integersn1,n 2 with 1<n 1,n 2 <n such thatn =n1n2. ( ∗)
+Example 7.3
+(a) 2, 3, 5, 7, 11,... are primes.
+(b) 4, 6, 8, 9, 10,... are composites.
+Question: How many primes are there?
+We will show that there are inﬁnitely many primes.
+
+--- page 6 ---
+Well-ordering Principle
+Deﬁnition 7.3
+Let S be a subset ofR. Letm∈S. We say thatm is aleast element of
+S if
+for anys∈S, m≤s.
+Remark: There can be at most one least element because ifm1,m 2 are
+both least element ofS, thenm1≤m2 and m2≤m1, and som1 =m2.
+Theorem 7.2 (Well-ordering Principle)
+LetS be a subset ofN ={0, 1, 2,... }. SupposeS̸=∅. ThenS has a least
+element, i.e. there existsm∈S such thatm≤s for alls∈S.
+In contrast, a nonempty subset ofR may not have a least element.
+For example,(0, 1] does not have a least element even thoughx> 0 for any
+x∈ (0, 1].
+Note that 0 is a lower bound but not an element of(0, 1].
+
+--- page 7 ---
+Well-ordering Principle
+Theorem 7.2 (Well-ordering Principle)
+LetS be a subset ofN ={0, 1, 2,... }. SupposeS̸=∅. ThenS has a least
+element, i.e. there existsm∈S such thatm≤s for alls∈S.
+We will show that the Well-ordering Principle is a consequence of the
+Principle of Mathematical Induction.
+Proof.
+Let S be a subset ofN with no least element.
+Forn∈ N, denote byP (n) the statement:n̸∈S.
+Clearly,P (0) is true since0 would be the least element ofS otherwise.
+Suppose P (k) is true for all integersk = 0, 1,...,n .
+Now ifn + 1∈S, thenn + 1 would be the least element ofS since
+0, 1,...,n ̸∈S.
+So n + 1̸∈S and P (n + 1) is true.
+By strong induction,P (n) is true for alln∈ N, i.e.S =∅.
+
+--- page 8 ---
+Primes and Composites
+Lemma 7.3
+Every positive integer greater than 1 has a prime factor.
+Proof.
+Let S be the set of all integers greater than 1 that has no prime factors.
+Suppose on the contrary thatS̸=∅.
+By the Well-ordering Principle,S has a least elementm.
+Firstly,m is not a prime. Otherwisem is a prime factor of itself.
+Then m must be composite, and so
+m =n1n2 for somen1,n 2∈ Z with 1<n 1,n 2 <m.
+Since 1<n 1 <m , we haven1̸∈S (∵m is the least element).
+By deﬁnition ofS, p|n1 for some primep.
+Now,p|n1 and n1|m =⇒ p|m, which is a contradiction.
+
+--- page 9 ---
+Primes and Composites
+Proposition 7.4
+There are inﬁnitely many primes.
+Proof.
+Assume on the contrary thatp1 <p 2 <··· <p N are the only primes.
+Consider n =p1p2··· pN + 1> 1.
+Then n must have a prime divisor, saypi|n.
+Furthermore,pi|p1p2··· pN.
+Therefore, pi| (n−p1p2··· pN ) = 1, which is a contradiction.
+
+--- page 10 ---
+Greatest Common Divisors
+Deﬁnition 7.4
+(1) Let a,b∈ Z. a and b are said to berelatively primeif 1 is the only
+positive divisor of botha and b.
+(2) Let a,b∈ Z. Thegreatest common divisorof a and b is deﬁned as
+gcd(a,b ) =
+{
+max{d∈ Z :d|a and d|b} if a̸= 0 or b̸= 0
+0 if a =b = 0.
+(Therefore, ifa̸= 0, gcd(a, 0) =|a|.)
+Remark:
+▶ {d∈ Z :d|a and d|b}̸ =∅ since 1 divides any integer.
+▶ If a̸= 0 or b̸= 0, andd|a and d|b, then|d|≤| a| or|d|≤| b|.
+So{d∈ Z :d|a and d|b} consists of ﬁnitely many elements and its
+maximum does exist.
+▶ gcd(a,b )∈ Z+ unless a =b = 0.
+
+--- page 11 ---
+Greatest Common Divisors
+Proposition 7.5
+Leta and b be nonzero integers.
+(1) a and b are relatively prime if and only ifgcd(a,b ) = 1.
+(2) gcd(a,b ) = gcd(|a|,|b|).
+(3) If d = gcd(a,b ), then gcd( a
+d, b
+d ) = 1.
+Proof of (3).
+Let d′ = gcd( a
+d, b
+d )> 0. Then
+d′| a
+d and d′| b
+d
+=⇒ dd′|a and dd′|b
+=⇒ 0<dd′≤d
+=⇒ d′ = 1.
+
+--- page 12 ---
+Greatest Common Divisors
+Proposition 7.6
+Leta and b be nonzero integers.
+(1) a and b are relatively prime if and only ifgcd(a,b ) = 1.
+(2) gcd(a,b ) = gcd(|a|,|b|).
+(3) If d = gcd(a,b ), then gcd( a
+d, b
+d ) = 1.
+E.g. To simplify 126
+140, note thatgcd(126, 140) = 14, then
+126
+140 = 126/14
+140/14 = 9
+10,
+where 9 and 10 are now relatively prime.
+But how can we ﬁnd the greatest common divisor in general?
+
+--- page 13 ---
+Division Algorithm
+Theorem 7.7 (Division Algorithm)
+Leta,b∈ Z with b̸= 0. Then, there exist unique integersq and r such that
+a =bq +r with 0≤r< |b|.
+The numbersq and r are called thequotient and remainder in the
+division ofa byb.
+Idea:
+Suppose a≥b> 0. We subtractb from a repeatedly until we hit the
+negative:
+a−b≥ 0
+a− 2b≥ 0
+...
+a−qb≥ 0
+a− (q + 1)b< 0
+Let r =a−bq. Thenr≥ 0 and r−b< 0, i.e. 0≤r<b .
+
+--- page 14 ---
+Division Algorithm
+Well-ordering Principle
+LetS be a subset ofN ={0, 1, 2,... }. SupposeS̸=∅. ThenS has a least
+element, i.e. there existsm∈S such thatm≤s for alls∈S.
+Theorem 7.8 (Division Algorithm)
+Leta,b∈ Z with b̸= 0. Then, there exist unique integersq and r such that
+a =bq +r with 0≤r< |b|.
+Proof of existence part (for the casea≥ 0 and b> 0).
+Let S ={a−bn :n∈ N and a−bn≥ 0}.
+Since a =a−b· 0∈S, S̸=∅.
+By the Well-ordering Principle,S has a least elementr.
+Since r∈S, we haver∈ N (so r≥ 0) and there existsq∈ N such that
+r =a−bq. We now verify thatr<b .
+If it were true thatr≥b, then
+0≤r−b =a− (q + 1)b<a −qb =r.
+So a−b(q + 1)∈S, which contradicts the fact thata−bq is the least
+element ofS.
+
+--- page 15 ---
+Division Algorithm
+Theorem 7.9 (Division Algorithm)
+Leta,b∈ Z with b̸= 0. Then, there exist unique integersq and r such that
+a =bq +r with 0≤r< |b|.
+Proof of uniqueness part.
+Suppose thata =bq +r =bq′ +r′ where q,q′,r,r′∈ Z with 0≤r,r′ <|b|.
+Then b(q−q′) = r′−r, and thusb| (r′−r).
+In particular,|b|≤| r′−r| unless r′−r = 0.
+Since 0≤r,r′ <|b|, we have
+−|b|<r′−r< |b|
+Hence we must haver′−r = 0, i.e.r =r′.
+As a result,b(q−q′) = 0.
+Since b̸= 0, we haveq−q′ = 0, i.e.q =q′.
+
+--- page 16 ---
+Division Algorithm
+Exercise 7.1
+(a) Prove the Division Algorithm fora,b∈ Z with b< 0.
+(b) Prove the Division Algorithm fora,b∈ Z with a< 0 and b> 0.
+Hint: If a< 0 and b> 0, thena + (−a)b = (−a)(b− 1)∈ N. Apply the
+Division Algorithm.
+
+--- page 17 ---
+Division Algorithm
+Proposition 7.10
+Leta,b,q,r ∈ Z such thata =bq +r. Then gcd(a,b ) = gcd(b,r ).
+Proof.
+Let d = gcd(a,b ) and d′ = gcd(b,r ). Then
+d′|b and d′|r =⇒ d′|a =bq +r and d′|b
+=⇒ d′ is a common factor ofa,b
+=⇒ d′≤d,
+and
+d|a and d|b =⇒ d|r =a−bq and d|b
+=⇒ d is a common factor ofb,r
+=⇒ d≤d′.
+So gcd(a,b ) = d =d′ = gcd(b,r ).
+
+--- page 18 ---
+Euclidean Algorithm
+Example 7.4
+Find gcd(7224, 1290).
+7224 = 1290× 5 + 774 gcd(7224 , 1290) = gcd(1290, 774)
+1290 = 774× 1 + 516 = gcd(774 , 516)
+774 = 516× 1 + 258 = gcd(516 , 258)
+516 = 258× 2 + 0 = gcd(258 , 0) = 258
+It is called theEuclidean algorithm.
+258 = 774 + 516× (−1)
+= 774 + [1290 + 774× (−1)]× (−1) = 1290× (−1) + 774× 2
+= 1290× (−1) + [7224 + 1290× (−5)]× 2 = 7224× 2 + 1290× (−11)
+It is called theextended Euclidean algorithm.
+
+--- page 19 ---
+Divisibility and Greatest Common Divisors
+Euclidean Algorithm
+Let a,b∈ Z+. Supposea>b . Setr0 =a, r1 =b.
+Applying the Division Algorithm iteratively, we obtain
+r0 =r1q1 +r2 (0≤r2 <r 1)
+r1 =r2q2 +r3 (0≤r3 <r 2)
+r2 =r3q3 +r4 (0≤r4 <r 3)
+...
+rn−2 =rn−1qn−1 +rn (0≤rn <r n−1)
+rn−1 =rnqn + 0 ( rn+1 = 0)
+Here rn is the last nonzero remainder. Suchrn exists because
+r0 >r 1 >r 2 >r 3 >··· >r n−1 >r n > 0.
+Then
+gcd(a,b ) = gcd(r0,r 1) = gcd(r1,r 2) =··· = gcd(rn−1,r n) = gcd(rn, 0) = rn.
+
+--- page 20 ---
+Euclidean Algorithm
+How to ﬁndx,y∈ Z such that gcd(a,b ) = ax +by?
+Extended Euclidean Algorithm
+Write r0 = 1·a + 0·b =s0a +t0b
+r1 = 0·a + 1·b =s1a +t1b.
+If rk =ska +tkb and rk+1 =sk+1a +tk+1b, then
+rk+2 =rk−qk+1rk+1
+= (ska +tkb)−qk+1(sk+1a +tk+1b)
+= (sk−qk+1sk+1)a + (tk−qk+1tk+1)b.
+So we deﬁne the integer sequences{sk} and{tk} by
+s0 = 1, t 0 = 0
+s1 = 0, t 1 = 1
+sk+2 =sk−qk+1sk+1, t k+2 =tk−qk+1tk+1 for k≥ 0.
+Then
+gcd(a,b ) = rn =sna +tnb.
+
+--- page 21 ---
+Euclidean Algorithm
+Example 7.5
+Find gcd(12345, 11111).
+k r k =rk−2−qk−1rk−1 qk sk tk
+0 12345 1 0
+1 11111 1 0 1
+2 12345 − 11111× 1 = 1234 9 1 −1
+3 11111 − 1234× 9 = 5 246 −9 10
+4 1234 − 5× 246 = 4 1 2215 −2461
+5 5 − 4× 1 = 1 4 −2224 2471
+6 0
+So gcd(12345, 11111) = 1 = 12345 × (−2224) + 11111× (2471).
+
+--- page 22 ---
+Bézout’s Identity
+Proposition 7.11 (Bézout’s Identity)
+Leta,b∈ Z. Then there existx,y∈ Z such that gcd(a,b ) = ax +by,
+i.e. gcd(a,b ) can be expressed as a linear combination ofa and b.
+(If a = 0 or b = 0, trivial;
+if botha and b are nonzero, apply the extended Euclidean algorithm.)
+Direct consequence:
+Let a,b be nonzero integers. Then
+a and b are relatively prime⇐⇒ gcd(a,b ) = 1
+=⇒ there existx,y∈ Z such thatax +by = 1
+?
+⇐=
+In fact, it is true!
+Let d = gcd(a,b ). Thend|a and d|b =⇒ d| 1 = ax +by, forcingd = 1.
+Proposition 7.12
+Leta,b be nonzero integers. Thena,b are relatively prime if and only if
+there existx,y∈ Z such thatax +by = 1.
+
+--- page 23 ---
+Divisibility and Greatest Common Divisors
+Exercise 7.2
+Let a∈ Z and letp be a prime. Show that ifp ∤a, then gcd(a,p ) = 1.
+(Equivalently, ifgcd(a,p )> 1, thenp|a.)
+
+--- page 24 ---
+Divisibility and Greatest Common Divisors
+Proposition 7.13
+Leta,b,n ∈ Z. Thenn|a and n|b if and only ifn| gcd(a,b ).
+Proof.
+( =⇒ ) It follows directly from Bézout’s Identity:
+gcd(a,b ) = ax +by for somex,y∈ Z.
+(⇐= ) Clear becausegcd(a,b )|a and gcd(a,b )|b.
+Alternative deﬁnition of greatest common divisor
+Leta,b∈ Z and letd∈ N. The statements (1), (2) are equivalent:
+(1) d = gcd(a,b )
+(2) d is a common divisor ofa, b, andd is divisible by every common
+divisor ofa,b.
+
+--- page 25 ---
+Euclid’s Lemma
+Proposition 7.14 (Euclid’s Lemma)
+Leta,b∈ Z and letp be a prime. Ifp|ab, thenp|a or p|b.
+Proof.
+If p|a, done.
+If p ∤a, then gcd(a,p ) = 1 and am +pn = 1 for somem,n∈ Z.
+So abm +bpn =b.
+Since p|ab, ab =pq for someq∈ Z.
+Thusb =pqm +bpn =p(qm +bn), whereqm +bn∈ Z.
+Therefore p|b.
+Corollary 7.15 (Corollary to Euclid’s lemma)
+Letp be a prime number. Letn∈ Z+\{1} and leta1,a 2,...,a n∈ Z.
+If p divides a1a2··· an, thenp divides at least one ofa1,a 2,...,a n.
+
+--- page 26 ---
+Fundamental Theorem of Arithmetic
+Theorem 7.16 (Fundamental Theorem of Arithmetic)
+Every positive integer> 1 can be expressed as a product of prime(s) in a
+unique way. (Primes are “building blocks” of positive integers> 1.)
+Proof of existence part.
+Let
+S ={n∈ Z+\{1} :n cannot be expressed as a product of prime(s)}⊆ Z+.
+Suppose S is nonempty.
+Then S has a least elementm by the Well-ordering Principle.
+Since m cannot be a prime, we have
+m =n1n2 where n1,n 2∈ Z with 1<n 1,n 2 <m .
+However, sincem is already the least element ofS, we haven1,n 2̸∈S, so
+both can be expressed as a product of prime(s).
+Hence m =n1n2 can also be expressed as a product of prime(s).
+This is a contradiction and soS =∅.
+
+--- page 27 ---
+Fundamental Theorem of Arithmetic
+Theorem 7.16 (Fundamental Theorem of Arithmetic)
+Every positive integer> 1 can be expressed as a product of prime(s) in a
+unique way. (Primes are “building blocks” of positive integers> 1.)
+Proof of uniqueness part.
+Let n∈ Z+\{1} such that
+n =p1p2··· pr =q1q2··· qs
+where pi’s andqj’s are primes,r,s∈ Z+.
+Then, by Euclid’s lemma,
+p1|q1q2··· qs =⇒ p1|qj for somej
+=⇒ p1 =qj (∵p1, qj are both primes)
+Swapping the indices forqj’s, we haveq1 =p1 and p2p3··· pr =q2q3··· qs.
+Repeat the above, we haver =s and pi =qi for i = 1, 2,...,r .
+
+--- page 28 ---
+Fundamental Theorem of Arithmetic
+Direct consequence:
+▶ Let a,b∈ Z+. Then there aredistinct primes p1,p 2,...,p r such that
+a =pm1
+1 pm2
+2 ··· pmr
+r and b =pn1
+1 pn2
+2 ··· pnr
+r
+where m1,m 2,...,m r, n1,n 2,...n r are nonnegative integers. (So the
+exponent can be zero.)
+▶ Furthermore,a divides b if and only if
+mi≤ni for alli = 1, 2,...,r.
+
+--- page 29 ---
+Fundamental Theorem of Arithmetic
+Proposition 7.17
+Leta,b∈ Z+ and letp1,p 2,...,p r be distinct primes such that
+a =pm1
+1 pm2
+2 ··· pmr
+r and b =pn1
+1 pn2
+2 ··· pnr
+r
+wherem1,m 2,...,m r, n1,n 2,...n r are nonnegative integers.
+Then,
+gcd(a,b ) = ps1
+1 ps2
+2 ··· psr
+r wheresi := min{mi,n i} for i = 1, 2,...,r.
+Proof.
+If d|a, thend =pt1
+1 pt2
+2 ··· ptr
+r , where 0≤ti≤mi for i = 1, 2,...,r .
+If d|b, thend =pt1
+1 pt2
+2 ··· ptr
+r , where 0≤ti≤ni for i = 1, 2,...,r .
+So, ifd|a and d|b, then
+d =pt1
+1 pt2
+2 ··· ptr
+r , where 0≤ti≤ min{mi,n i} =si for i = 1, 2,...,r .
+Ford to be at its greatest, we want the largest possible exponent for each
+pi’s. The result follows.
+Direct consequence:d is a common divisor ofa and b ⇐⇒ d| gcd(a,b ).
+
+--- page 30 ---
+Fundamental Theorem of Arithmetic
+Example 7.6
+144 = 2 4× 32(×50)
+60 = 2 2× 31× 51
+So
+gcd(144, 60) = 2 2× 31× 50 = 12.
+Common divisors of 144 and 60:
+±1,±2,±3,±4,±6,±12
+
+--- page 31 ---
+Fundamental Theorem of Arithmetic
+Proposition 7.18
+Leta,b,c ∈ Z such thatc> 1. Ifc|ab and gcd(a,c ) = 1, thenc|b.
+It is a generalization of Euclid’s lemma (putc =p where p is a prime).
+Proof.
+Write
+a =
+r∏
+i=1
+pmi
+i , b =
+r∏
+i=1
+pni
+i , c =
+r∏
+i=1
+pki
+i ,
+where p1,p 2,...,p r are distinct primes andmi,n i,k i∈ N.
+Then
+c|ab =⇒ ki≤mi +ni ∀i = 1,...,r
+gcd(a,c ) = 1 =⇒ min{mi,k i} = 0 ∀i = 1,...,r.
+Hence, ki≤ni∀i = 1,...,r .
+Therefore c|b.
+
+--- page 32 ---
+Fundamental Theorem of Arithmetic
+Exercise 7.3
+Let a,b,c ∈ Z. Supposea|c,b|c and gcd(a,b ) = 1, show thatab|c.
+
+--- page 33 ---
+Linear Diophantine Equation
+Question
+Givena,b,c ∈ Z. Can we ﬁndx,y∈ Z such thatax +by =c?
+It is called alinear Diophantine equation.
+Equivalently, we want to study the set{ax +by :x,y∈ Z}.
+Proposition 7.19
+Given a,b,c ∈ Z. There existx,y∈ Z such thatax +by =c if and only if
+gcd(a,b )|c.
+Proof.
+Let d = gcd(a,b ).
+( =⇒ ) Assume there arex,y∈ Z such thatax +by =c.
+Then d|a,d|b =⇒ d|c =ax +by.
+(⇐= ) Assume d := gcd(a,b )|c, i.e.c =dr for somer∈ Z.
+By Bézout’s Identity, there existm,n∈ Z such thatd =am +bn.
+Then c =dr =amr +bnr =ax +by by lettingx =mr,y =nr∈ Z.
+
+--- page 34 ---
+Linear Diophantine Equation
+Further suppose 0̸=d := gcd(a,b )|c (so the equationax +by =c has a
+solution).
+Let u =a/d, v =b/d∈ Z. Then
+gcd(u,v ) = gcd(a
+d, b
+d ) = 1
+Claim 1: If (x,y ) is a solution,(x +kv,y−ku) is also a solution for any
+k∈ Z.
+Reason:
+a(x +kv) +b(y−ku) = ax +by + (akv−bku) = c + (dukv−dvku) = c.
+Claim 2: If (x1,y 1), (x2,y 2) are solutions, thenx2 =x1 +kv, y2 =y1−ku
+for somek∈ Z.
+Reason:
+ax1 +by1 =c =ax2 +by2
+ux1 +vy1 =ux2 +vy2
+v(y1−y2) = u(x2−x1)
+Since gcd(u,v ) = 1, v| (x1−x2), i.e.x2−x1 =kv (or x2 =x1 +kv).
+Then, v(y1−y2) = ukv,and soy2 =y1−ku.
+
+--- page 35 ---
+Linear Diophantine Equation
+Example 7.7
+You are given a glass and a cup which can hold 105 mL and 180 mL, a big
+bucket and a water source. Can we measure exactly 30 mL of water using
+them?
+Solve 180x + 105y = 30 where x,y∈ Z.
+Since gcd(180, 105) = 15| 30, so the above equation is solvable.
+By the extended Euclidean algorithm,
+15 = gcd(180, 105) = 180× 3− 105× 5, and so
+180× 6− 105× 10 = 30.
+So (x,y ) = (6,−10) gives a particular solution.
+All solutions are in the form(6 + 7k,−10− 12k), k∈ Z.
+Fill the cup with water and pour it into the bucket. Do it 6 times.
+Then, pour water form the bucket into the glass and throw away the water
+in the glass. Do it 10 times.
+
+--- page 36 ---
+Rational and Irrational Numbers
+Deﬁnition 7.5 (Rational and irrationals)
+Let x∈ R.
+(a) We say thatx is arational numberif there existm,n∈ Z such that
+n̸= 0 and m =nx (i.e. x = m
+n).
+(b) We say thatx is anirrational numberif x is not a rational number.
+The set of all rational numbers is denoted byQ.
+Theorem 7.20
+Letx,y∈ Q. Then
+(a) x +y, x−y and xy∈ Q;
+(b) x
+y∈ Q providedy̸= 0.
+Exercise 7.4
+Give examples that the sum and product of irrational numbers may not be
+irrational.
+
+--- page 37 ---
+Rational and Irrational Numbers
+Deﬁnition 7.6 (Nonnegativen-th root of a nonnegative real number)
+Suppose n is a positive integer, anda,ρ are nonnegative real numbers.
+Then we sayρ is anonnegative n-th real root ofa if ρn =a.
+Theorem 7.21
+Supposen∈ Z+ and a is a nonnegative real number. Then there is a unique
+nonnegative real numberρ such thatρn =a. This number is denoted byn√a.
+Remark: The existence of n√a will be justiﬁed in Mathematical Analysis I.
+
+--- page 38 ---
+Rational and Irrational Numbers
+Example 7.8 (Irrationality of
+√
+2)
+√
+2 is irrational.
+Suppose the contrary.
+Then
+√
+2 = a
+b for somea,b∈ Z+ that are relatively prime.
+Now,
+2b2 =a2 =⇒ 2|a2
+=⇒ 2|a (Euclid’s lemma)
+Let a = 2c for somec∈ Z+. Then,
+2b2 =a2 = (2c)2 = 4c2 =⇒ b = 2c2
+=⇒ 2|b2
+=⇒ 2|b (Euclid’s lemma)
+Hence, 2|a and 2|b, which contradicts the assumption thata,b are
+relatively prime.
+Therefore
+√
+2 is irrational.
+
+--- page 39 ---
+Rational and Irrational Numbers
+Exercise 7.5
+Let a,b,c,d be rational numbers. Supposea +b
+√
+3 = c +d
+√
+3. Show that
+a =c and b =d. You may assume that
+√
+3 is irrational.
+
+--- page 40 ---
+Rational and Irrational Numbers
+Exercise 7.6 (Irrationality of surds of positive prime numbers)
+Suppose n is an integer greater than 1, andp is a positive prime number.
+Then n√p is an irrational number.
+Suppose the contrary.
+Then n√p = a
+b for somea,b∈ Z+ that are relatively prime.
+Now,
+pbn =an =⇒ p|an
+=⇒ p|a (Euclid’s lemma)
+Let a =pc for somec∈ Z+. Then,
+pbn =an = (pc)n =pncn =⇒ bn =pn−1cn
+=⇒ p|bn (note n> 1)
+=⇒ p|b (Euclid’s lemma)
+Hence, p|a and p|b, which contradicts the assumption thata,b are
+relatively prime.
+Therefore n√p is irrational.
+
+--- page 41 ---
+Rational and Irrational Numbers
+Exercise 7.7
+Let n∈ Z+. Show that√n is rational if and only ifn is a perfect square,
+i.e. n =m2 for somem∈ Z.

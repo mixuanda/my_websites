@@ -1,0 +1,305 @@
+---
+title: "3.1 Inequalities and absolute value"
+description: "Solve inequalities by preserving order, tracking domains, and using absolute value as distance."
+---
+
+## Inequalities are statements with direction
+
+An equation records equality. An inequality records order. The difference is
+small in notation but large in algebra: multiplying by a negative number
+reverses the inequality sign, while multiplying by a positive number preserves
+it.
+
+The main discipline in this chapter is to know which transformations preserve
+the solution set and which ones require cases.
+
+## Basic order rules
+
+<TheoremCard title="Order rules for real numbers">
+For real numbers `a,b,c`:
+
+- exactly one of `a<b`, `a=b`, `a>b` holds;
+- if `a<b` and `b<c`, then `a<c`;
+- if `a<b`, then `a+c<b+c`;
+- if `a<b` and `c>0`, then `ac<bc`;
+- if `a<b` and `c<0`, then `ac>bc`.
+</TheoremCard>
+
+The last two rules explain why division by an expression such as `x-1` cannot
+be done blindly. Its sign depends on `x`.
+
+<WorkedExample title="A square gives an inequality">
+Let `x,y>0`. Prove
+
+$$
+\frac{x}{y}+\frac{y}{x}\ge 2.
+$$
+
+Since `(x-y)^2\ge 0`, we have
+
+$$
+x^2-2xy+y^2\ge 0,
+$$
+
+so
+
+$$
+x^2+y^2\ge 2xy.
+$$
+
+Because `xy>0`, division by `xy` preserves the inequality:
+
+$$
+\frac{x^2+y^2}{xy}\ge 2.
+$$
+
+Thus
+
+$$
+\frac{x}{y}+\frac{y}{x}\ge 2.
+$$
+
+Equality holds exactly when `x=y`.
+</WorkedExample>
+
+This proof illustrates a common method: start from a quantity known to be
+nonnegative, then rearrange it into the desired inequality.
+
+## Rational inequalities
+
+<CommonMistake title="Do not multiply by an expression of unknown sign">
+The inequality
+
+$$
+\frac{x+1}{x-1}\le 2
+$$
+
+cannot be solved by immediately multiplying by `x-1`, because `x-1` is
+positive for `x>1`, negative for `x<1`, and zero at `x=1`.
+</CommonMistake>
+
+There are three reliable methods:
+
+- split into sign cases;
+- multiply by a square such as `(x-1)^2` after excluding the zero point;
+- move everything to one side and use a sign chart.
+
+<WorkedExample title="Solve a rational inequality">
+Solve
+
+$$
+\frac{x+1}{x-1}\le 2.
+$$
+
+The expression is undefined at `x=1`. Move everything to one side:
+
+$$
+\frac{x+1}{x-1}-2\le 0.
+$$
+
+Simplify:
+
+$$
+\frac{x+1-2x+2}{x-1}\le 0,
+\qquad
+\frac{3-x}{x-1}\le 0.
+$$
+
+Equivalently,
+
+$$
+\frac{x-3}{x-1}\ge 0.
+$$
+
+The critical points are `1` and `3`. A sign chart shows the fraction is
+positive on `(-\infty,1)` and `[3,\infty)`, but `x=1` is excluded. Therefore
+
+$$
+x<1 \quad\text{or}\quad x\ge 3.
+$$
+</WorkedExample>
+
+## Absolute value as distance
+
+<Definition title="Absolute value">
+For a real number `a`,
+
+$$
+|a| =
+\begin{cases}
+a, & a\ge 0,\\
+-a, & a<0.
+\end{cases}
+$$
+
+Geometrically, `|a|` is the distance from `a` to `0` on the real line.
+</Definition>
+
+Because absolute value is a distance, it is always nonnegative, and
+
+$$
+|a|=\sqrt{a^2}.
+$$
+
+<TheoremCard title="Useful absolute-value facts">
+For real numbers `a,b`:
+
+$$
+|-a|=|a|,
+\qquad
+|ab|=|a||b|,
+\qquad
+-|a|\le a\le |a|.
+$$
+
+If `b\ge 0`, then
+
+$$
+|a|\le b \quad\Longleftrightarrow\quad -b\le a\le b.
+$$
+
+If `b>0`, then
+
+$$
+|a|<b \quad\Longleftrightarrow\quad -b<a<b.
+$$
+</TheoremCard>
+
+<TheoremCard title="Triangle inequality">
+For all real numbers `a,b`,
+
+$$
+|a+b|\le |a|+|b|.
+$$
+
+More generally,
+
+$$
+|a_1+\cdots+a_n|\le |a_1|+\cdots+|a_n|.
+$$
+</TheoremCard>
+
+The triangle inequality says that going directly from one point to another is
+never longer than taking a detour through intermediate displacements.
+
+## Solving absolute-value inequalities
+
+Absolute-value equations and inequalities often require splitting at the points
+where the expression inside an absolute value changes sign.
+
+<WorkedExample title="Split at the breakpoints">
+Solve
+
+$$
+|x-2|+|2x+1|\ge 4.
+$$
+
+The expressions change sign at `x=2` and `x=-1/2`. Consider the intervals
+
+$$
+(-\infty,-1/2),\qquad [-1/2,2),\qquad [2,\infty).
+$$
+
+On `x<-1/2`,
+
+$$
+|x-2|+|2x+1|=-(x-2)-(2x+1)=-3x+1.
+$$
+
+The inequality `-3x+1\ge 4` gives `x\le -1`, so this case contributes
+`x\le -1`.
+
+On `-1/2\le x<2`,
+
+$$
+|x-2|+|2x+1|=-(x-2)+(2x+1)=x+3.
+$$
+
+The inequality `x+3\ge 4` gives `x\ge 1`, so this case contributes
+`1\le x<2`.
+
+On `x\ge 2`,
+
+$$
+|x-2|+|2x+1|=(x-2)+(2x+1)=3x-1.
+$$
+
+The inequality `3x-1\ge 4` gives `x\ge 5/3`; combined with `x\ge 2`, this
+contributes `x\ge 2`.
+
+Therefore the full solution is
+
+$$
+x\le -1 \quad\text{or}\quad x\ge 1.
+$$
+</WorkedExample>
+
+## Classical inequality habit
+
+Several later examples use named inequalities such as Bernoulli's inequality
+and AM-GM. The common pattern is the same: state the domain, locate the
+nonnegative expression or monotonic function, and record the equality case.
+
+<TheoremCard title="AM-GM for two nonnegative numbers">
+If `u,v\ge 0`, then
+
+$$
+\frac{u+v}{2}\ge \sqrt{uv}.
+$$
+
+Equality holds exactly when `u=v`.
+</TheoremCard>
+
+This follows from
+
+$$
+(\sqrt u-\sqrt v)^2\ge 0.
+$$
+
+## Quick checks
+
+<QuickCheck prompt="Why does multiplying an inequality by `x-1` require cases?">
+Think about the sign of `x-1`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The sign of `x-1` changes at `x=1`. Multiplying by a positive quantity
+preserves the inequality direction, while multiplying by a negative quantity
+reverses it.
+</RevealSolution>
+
+<QuickCheck prompt="Rewrite `|x-5|<2` as an interval.">
+Use distance from `5`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`|x-5|<2` means `-2<x-5<2`, so `3<x<7`.
+</RevealSolution>
+
+<QuickCheck prompt="When does equality hold in `x/y + y/x >= 2` for `x,y>0`?">
+Look at the square used in the proof.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Equality holds when `(x-y)^2=0`, that is, when `x=y`.
+</RevealSolution>
+
+## Exercises
+
+1. Solve `((x-2)(x-3))/(x+1) > 0`.
+2. Prove Bernoulli's inequality: if `x>-1`, then `(1+x)^n\ge 1+nx` for every
+   `n\in Z^+`.
+3. Solve `|x+2|/(x+1)<-1`.
+4. Prove `||a|-|b||\le |a-b|` for real numbers `a,b`.
+
+## Guided solutions
+
+1. The critical points are `-1`, `2`, and `3`, with `x=-1` excluded. A sign
+   chart gives `(-1,2)\cup(3,\infty)`.
+2. Use induction. The base case is equality. If `(1+x)^k\ge 1+kx`, multiply by
+   `1+x>0` and compare with `1+(k+1)x`; the remaining term is `kx^2\ge 0`.
+3. The domain requires `x\ne -1`. Splitting at `x=-2` and `x=-1` gives
+   `-3/2<x<-1`.
+4. From the triangle inequality,
+   `|a|=|(a-b)+b|\le |a-b|+|b|`, so `|a|-|b|\le |a-b|`. Reverse the roles of
+   `a` and `b` to get `|b|-|a|\le |a-b|`.

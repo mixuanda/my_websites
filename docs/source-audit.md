@@ -11,17 +11,18 @@ The current live note set stays inside the strongest audited coverage zones.
 These units are already present in code and should remain source-backed.
 
 - `math1090`: 1.1, 1.2, 1.3, 2.1, 2.2, 3.1, 3.2, 3.3, 3.4, 3.5, 4.1, 4.2,
-  4.3, 4.4, 4.5, 4.6, 5.1, 5.2, 5.3
-- `math1030`: 1.1, 2.1, 2.2, 2.3, 2.4, 3.1, 3.2, 4.1, 5.1, 6.1, 6.2, 6.3,
-  6.4, 6.5, 6.6, 7.1, 7.2, 7.3, 8.1, 8.2, 8.3, 9.1, 9.2, 9.3, 9.4
-- `math1025`: baseline foundations pair only
+  4.3, 4.4, 4.5, 4.6, 5.1, 5.2, 5.3, 6.1, 6.2, 6.3, 7.1
+- `math1030`: 1.1, 2.1, 2.2, 2.3, 2.4, 3.1, 3.2, 3.3, 4.1, 4.2, 5.1,
+  6.1, 6.2, 6.3, 6.4, 6.5, 6.6, 6.7, 6.8, 7.1, 7.2, 7.3, 8.1, 8.2, 8.3,
+  9.1, 9.2, 9.3, 9.4
+- `math1025`: 0.1, 1.1, 2.1, 3.1, 4.1
 - `csci2520`: programming foundations `0.1`, ADT operations `1.1`, hashing
   `1.2`, lists / recursion `2.1`, complexity and selection / sorting `3.1`
   to `3.2`, trees / BSTs `4.1`, and graph / heap material `5.1` to `5.2`
 
-`math1025` now has a small authored tree under `content/textbook`, but most of
-its slide families are still only source backlog rather than complete public
-notes.
+`math1025` now has an authored early-methods baseline under `content/textbook`
+through chapter 4, but chapters 5-11 remain source backlog rather than
+complete public notes.
 
 ## MATH1090
 
@@ -156,8 +157,9 @@ The current weak spots are:
 
 ## MATH1025
 
-The MATH1025 tree is broad enough to enter planning immediately, even though it
-does not yet appear in the public Notes catalog.
+The MATH1025 tree is broad enough to drive source-backed authoring. It now
+appears in the public Notes catalog through the chapter-4 binomial-theorem
+unit, while the later slide families remain backlog.
 
 ### Available materials
 
@@ -189,8 +191,8 @@ The current weak spots are straightforward:
 
 - The repository clearly contains usable conceptual material for a future
   MATH1025 course.
-- The course now has a minimal public foundations baseline, but the majority of
-  chapter-slide material is still unauthored.
+- The course now has a public EN / zh-HK / zh-CN baseline through `4.1`, but
+  the majority of chapter-slide material is still unauthored.
 - The next Math1025 work must stay source-backed and chapter-scoped rather than
   pretending the course is already broadly complete.
 
@@ -269,7 +271,7 @@ traceable.
 
 ## Next steps
 
-Move next to the post-`§4.7` Math1090 backlog deliberately, while keeping
-Math1025 expansion narrow and source-backed and continuing to use the newer
-Math1030 higher chapters plus the new Math1090 chapter-4 family for export,
-rendering, and exercise QA.
+Move next to the remaining Math1025 chapter-slide backlog deliberately,
+starting with sequences / complex numbers / number-theory / polynomials from
+`ch5`-`ch8`, while keeping Math1030 and Math1090 in export, rendering, and
+exercise QA unless a specific thin unit is selected.

@@ -1,0 +1,1272 @@
+--- page 1 ---
+MATH1025B
+Essential Mathematical Methods
+Chapter 8: Polynomials
+November 4, 2025
+
+--- page 2 ---
+Polynomials
+Deﬁnition 8.1
+A polynomial p(x) with coeﬃcients inR is an inﬁnite formal sum
+∞∑
+i=0
+aixi =a0 +a1x +··· +anxn +···
+where ai∈ R and only ﬁnitely many of them are nonzero.
+▶ Ifai̸= 0 for somei≥ 0, the largest such value ofi is thedegree ofp(x)
+▶ If ai = 0 for alli≥ 0, then the degree ofp(x) is−∞.
+Remark:
+(1) The ai are coeﬃcients ofp(x).
+(2) The degree ofp(x) is denoted bydeg(p(x)).
+(3) The set of all polynomials with coeﬃcients inR is denoted byR[x].
+(Although we primarily studyR[x], all discussions work inF[x], where F is
+a ﬁeld (e.g. Q, C).)
+
+--- page 3 ---
+Polynomials
+▶ To simplify working with polynomials, if
+p(x) =
+∞∑
+i=0
+aixi has ai = 0 for alli>n ,
+we may denotep(x) =a0 +a1x +··· +anxn.
+Caution: It does not meandeg(p(x)) =n unless we knowan̸= 0.
+▶ Furthermore,p(x) is said to bemonic if an = 1 (leading coeﬃcient
+= 1).
+▶ Write 1xi in such a sum asxi.
+▶ Omit any term0xi unless allai are zero (i.e. whenp(x) is the zero
+polynomial).
+▶ A number inR is aconstant polynomial.
+
+--- page 4 ---
+Polynomials
+Deﬁnition 8.2
+Let p(x) =
+∞∑
+i=0
+aixi, q(x) =
+∞∑
+i=0
+bixi∈ R[x].
+(1) (Sum) p(x) +q(x) is deﬁned as
+∞∑
+i=0
+cixi, whereci =ai +bi.
+(2) (Product) p(x)q(x) is deﬁned as
+∞∑
+i=0
+dixi, wheredi =
+i∑
+k=0
+akbi−k.
+Observe that bothci and di are 0 for all but a ﬁnite number of values ofi,
+so these deﬁnitions make sense.
+Proposition 8.1
+Letp(x),q (x)∈ R[x]. Then
+(1) deg(p(x) +q(x))≤ max{deg(p(x)), deg(q(x))}.
+(2) deg(p(x)q(x)) = deg(p(x)) + deg(q(x)).
+(Convention: max{−∞,−∞} =−∞, max{−∞,r} =r and
+(−∞) + (−∞) = (−∞) +r =−∞ for anyr≥ 0.)
+
+--- page 5 ---
+Polynomials
+Proof.
+Suppose thatp(x),q (x)∈ R[x] are nonzero polynomials.
+Let p(x) =
+∞∑
+i=0
+akxi, q(x) =
+∞∑
+i=0
+bixi such that deg(p(x)) =r, deg(q(x)) =s.
+Then, ar̸= 0 and ai = 0 for i>r ; bs̸= 0 and bi = 0 for i>s .
+(1) Note thatci =ai +bi = 0 for i> max{r,s}.
+So deg(p(x) +q(x))≤ max{r,s}.
+(2) When i>r +s, i.e.i−r≥s + 1, we have
+di =
+i∑
+k=0
+aibi−k =a0bi+a1bi−1+··· +arbi−r+ar+1bi−r−1+··· +aib0 = 0.
+Furthermore,dr+s =arbs̸= 0 (∵ar̸= 0,bs̸= 0).
+So deg(p(x)q(x)) =r +s.
+For the case thatp(x) or q(x) is zero, it is left as exercise.
+
+--- page 6 ---
+Division Algorithm
+Proposition 8.2 (Division Algorithm for polynomials)
+Letf(x),g (x)∈ R[x] such that g(x) is nonzero, i.e. deg(g(x))≥ 0.
+Then, there exist unique q(x),r (x)∈ R[x] such that
+f(x) =g(x)q(x) +r(x), where deg(r(x))< deg(g(x)).
+Proof of existence part.
+Let S ={f(x)−g(x)s(x) :s(x)∈ R[x]}.
+▶ If 0∈S, i.e.f(x) =g(x)s0(x) for somes0(x)∈ R[x].
+Takeq(x) =s0(x), r(x) = 0. Done! (deg(r(x)) =−∞< 0≤ deg(g(x)))
+▶ If 0̸∈S, letr0(x) =f(x)−g(x)q0(x)∈S be an element of minimal
+degree.
+Claim: deg(r0(x))< deg(g(x)).
+Suppose on the contrary thatdeg(r0(x)) =k≥j = deg(g(x)).
+Let
+r0(x) =c0 +c1x +··· +ckxk with ck̸= 0 and
+g(x) =b0 +b1x +··· +bjxj with bj̸= 0.
+
+--- page 7 ---
+Division Algorithm
+Consider
+r1(x) =r0(x)−g(x)
+[
+(ck/bj)xk−j
+]
+,
+which can be written in the form
+r1(x) =f(x)−g(x)
+[
+q0(x) + (ck/bj)xk−j
+]
+.
+So r1(x)∈S.
+Moreover,
+r1(x) =
+( k∑
+i=0
+cixi
+)
+−
+(
+ckxk +
+j−1∑
+i=0
+bi
+(ck
+bj
+)
+xi+k−j
+)
+=
+k−1∑
+i=0
+cixi−
+j−1∑
+i=0
+bi
+(ck
+bj
+)
+xi+k−j,
+which is a polynomial with degree<k .
+So deg(r1(x))<k ≤ deg(r0(x)), contradicting the fact thatr0(x) was
+selected to have minimal degree inS.
+
+--- page 8 ---
+Division Algorithm
+Proof of uniqueness part.
+Assume
+f(x) =g(x)q1(x) +r1(x)
+and
+f(x) =g(x)q2(x) +r2(x)
+for someq1(x),q 2(x),r 1(x),r 2(x)∈ R[x] with
+deg(r1(x)), deg(r2(x))< deg(g(x)).
+Then,
+g(x)(q1(x)−q2(x)) =r2(x)−r1(x).
+Now
+deg(g(x)(q1(x)−q2(x))) = deg(g(x)) + deg(q1(x)−q2(x))
+while
+deg(r2(x)−r1(x))≤ max{deg(r1(x)), deg(r2(x))}< deg(g(x)).
+The equality can only hold ifLHS =RHS =−∞, i.e.q1(x) =q2(x),
+r1(x) =r2(x).
+
+--- page 9 ---
+Division Algorithm
+Example 8.0
+Find the quotient and remainder in the division ofx4− 3x3 + 2x2 + 4x− 1
+byx2− 2x + 3.
+By long division,
+x2−x− 3
+x2− 2x + 3
+)
+x4− 3x3 + 2x2 + 4x− 1
+x4− 2x3 + 3x2
+−x3 −x2 + 4x
+−x3 + 2x2 − 3x
+−3x2 + 7x− 1
+−3x2 + 6x− 9
+x + 8
+x4− 3x3 + 2x2 + 4x− 1 = (x2− 2x + 3)(x2−x− 3) + (x + 8),
+quotient =x2−x− 3
+remainder =x + 8.
+
+--- page 10 ---
+Division Algorithm
+Proposition 8.3 (Remainder Theorem)
+Letp(x)∈ R[x] and a∈ R. If f(x) is divided by (x−a), then the remainder
+is equal to f(a).
+Proof.
+By division algorithm, there exist uniqueq(x),r (x)∈ R[x] such that
+f(x) = (x−a)q(x) +r(x)
+and
+deg(r(x))< deg((x−a)) = 1.
+Therefore r(x) =R (a constant).
+Put x =a intof(x) = (x−a)q(x) +R, we have
+f(a) = (a−a)q(a) +R
+R =f(a).
+
+--- page 11 ---
+Division Algorithm
+Deﬁnition 8.3
+Let f(x),g (x)∈ R[x], we say thatg(x) divides f(x) (or f(x) is divisible
+byg(x)), denoted byg(x)|f(x), if there existsq(x)∈ R[x] such that
+f(x) =g(x)q(x). In this case,g(x) is a factor (or divisor) off(x).
+Proposition 8.4 (Factor Theorem)
+Letf(x)∈ R[x] and a∈ R. Then (x−a) is a factor of f(x) if and only if
+f(a) = 0.
+Proof.
+By division algorithm, there exist uniqueq(x)∈ R[x], R∈ R such that
+f(x) = (x−a)q(x) +R.
+So (x−a) is a factor off(x) ⇐⇒ R = 0 ⇐⇒ f(a) = 0.
+
+--- page 12 ---
+Division Algorithm
+Example 8.1
+Let f(x)∈ R[x]. Suppose that the remainders whenf(x) is divided by
+(x− 1) and (x + 1) are 5 and 3 respectively. Find the remainder whenf(x)
+is divided byx2− 1 = (x− 1)(x + 1).
+By the remainder theorem,f(1) = 5 and f(−1) = 3.
+By division algorithm, there existsq(x),ax +b∈ R[x] such that
+f(x) = (x2− 1)q(x) + (ax +b).
+Then {
+f(1) =a +b = 5
+f(−1) =−a +b = 3 =⇒
+{
+a = 1
+b = 4.
+So the remainder isx + 4.
+
+--- page 13 ---
+Division Algorithm
+Corollary 8.5
+A nonzero polynomial f(x)∈ R[x] (resp. C[x]) of degree n has at most n
+zeros in R (resp. C).
+Proof. We proceed by induction onn.
+The casen = 0 is trivial becausef(x) is a nonzero constant, thus has no
+zeros.
+Suppose any polynomial inR[x] of degreen has at mostn zeros in R.
+Let f(x)∈ R[x] of degreen + 1.
+Iff(x) has no zero, then the result is trivial.So we assume thatf(x) has at
+least a zeroa∈ R. By factor theorem, there existsq(x)∈ R[x] such that
+f(x) = (x−a)q(x).
+Clearly deg(q(x)) =n. By the induction hypothesis,q(x) has at mostn
+zeros in R.
+It is clear that any zero ofq(x) is also a zero off(x); and ifb̸=a is a zero
+of f(x) then b is also a zero ofq(x).
+Thusf(x) has at mostn + 1 zeros.
+
+--- page 14 ---
+Division Algorithm
+Corollary 8.6
+Suppose that p(x) =a0 +a1x +··· +anxn∈ C[x] (i.e. deg(p(x))≤n) has
+n + 1 distinct zeros in C. Then p(x) is the zero polynomial.
+
+--- page 15 ---
+Division Algorithm
+Exercise 8.1
+Let f(x)≡a0 +a1x +··· +amxm and g(x)≡b0 +b1x +··· +bnxn be
+polynomials with real coeﬃcients. Deﬁne
+F (x)≡f(x3) and G(x)≡g(x3).
+Suppose F (x) +xG(x) is divisible byx2 +x + 1, prove that bothf(x) and
+g(x) are divisible byx− 1.
+Hint: Note thatx2 +x + 1 = (x−ω)(x−ω2) where ω =e2πi/3.
+
+--- page 16 ---
+Division Algorithm
+Proposition (Division Algorithm for polynomials)
+Letf(x),g (x)∈ R[x] such that g(x) is nonzero, i.e. deg(g(x))≥ 0.
+Then, there exist unique q(x),r (x)∈ R[x] such that
+f(x) =g(x)q(x) +r(x), where deg(r(x))< deg(g(x)).
+Proposition (Remainder Theorem)
+Letp(x)∈ R[x] and a∈ R. If f(x) is divided by (x−a), then the remainder
+is equal to f(a).
+Proposition (Factor Theorem)
+Letf(x)∈ R[x] and a∈ R. Then (x−a) is a factor of f(x) if and only if
+f(a) = 0.
+Corollary
+Suppose that p(x) =a0 +a1x +··· +anxn∈ C[x] (i.e. deg(p(x))≤n) has
+n + 1 distinct zeros in C. Then p(x) is the zero polynomial.
+
+--- page 17 ---
+GCD for Polynomials
+Lemma 8.7
+Letf(x),g (x)∈ R[x] such that f(x),g (x) are nonzero. Then g(x)|f(x) and
+f(x)|g(x) if and only if f(x) =kg(x) for some nonzero k∈ R.
+Proof.
+(⇐= ) Trivial! (∵f(x) =kg(x) and g(x) = 1
+kf(x).)
+( =⇒ ) Assume g(x)|f(x) and f(x)|g(x).
+Then, f(x) =d1(x)g(x) and g(x) =d2(x)f(x) for somed1(x),d 2(x)∈ R[x].
+Now,
+f(x) =d1(x)d2(x)f(x)
+=⇒ d1(x)d2(x) = 1 ( byf(x)̸= 0 and division algorithm)
+=⇒ both d1(x) and d2(x) are constant polynomials.
+So we can write
+d1(x) =k and d2(x) = 1
+k, for somek∈ R\{0}.
+
+--- page 18 ---
+GCD for Polynomials
+Recall the GCD of two integers.
+Deﬁnition
+Let a,b∈ Z. Thegreatest common divisorof a and b is deﬁned as
+gcd(a,b ) =
+{
+max{d∈ Z :d|a and d|b} if a̸= 0 or b̸= 0
+0 if a =b = 0.
+(Therefore, ifa̸= 0, gcd(a, 0) =|a|.)
+Alternative deﬁnition of greatest common divisor
+Leta,b∈ Z and let d∈ N. The statements (1), (2) are equivalent:
+(1) d = gcd(a,b )
+(2) d is a common divisor of a, b, and d is divisible by every common
+divisor of a,b .
+
+--- page 19 ---
+GCD for Polynomials
+Deﬁnition 8.4
+Let f(x),g (x)∈ R[x] that are not both zero. A polynomiald(x)∈ R[x] is
+said to be agreatest common divisorof f(x) and g(x) if
+(1) d(x) is a common factor off(x) and g(x),
+i.e. d(x)|f(x) and d(x)|g(x); and
+(2) if d′(x) is a common factor off(x) and g(x), thend′(x)|d(x).
+▶ If d1(x),d 2(x) are greatest common divisors off(x) and g(x), then,
+d1(x)|d2(x) and d2(x)|d1(x). So, by Lemma 8.7,
+d1(x) =kd2(x) for some nonzerok∈ R.
+▶ Greatest common divisor off(x) and g(x) is unique up to the
+multiplication by a nonzero constant.
+▶ However, it is unique if we take a monic polynomial (i.e. the leading
+coeﬃcient is 1). We denote it bygcd(f(x),g (x)).
+
+--- page 20 ---
+GCD for Polynomials
+Let f(x),g (x) be nonzero polynomials inR[x]. Then, there exist unique
+q(x),r (x)∈ R[x] such that
+f(x) =g(x)q(x) +r(x), where deg(r(x))< deg(g(x)).
+Proposition 8.8
+Then gcd(f(x),g (x)) = gcd(g(x),r (x))
+Proof.
+Let d(x) = gcd(f(x),g (x)) and d′(x) = gcd(g(x),r (x)). Then
+d′(x)|g(x) and d′(x)|r(x) =⇒ d′(x)|f(x) =g(x)q(x) +r(x) and d′(x)|g(x)
+=⇒ d′(x) is a common factor off(x),g (x)
+=⇒ d′(x)|d(x),
+and
+d(x)|f(x) and d(x)|g(x) =⇒ d(x)|r(x) =f(x)−g(x)q(x) and d(x)|g(x)
+=⇒ d(x) is a common factor ofg(x),r (x)
+=⇒ d(x)|d′(x),
+Since d(x),d′(x) are both monic, we haved(x) =d′(x).
+
+--- page 21 ---
+GCD for Polynomials
+Proposition 8.9 (Extended Euclidean Algorithm)
+Letf(x),g (x) be nonzero polynomials in R[x].
+Then, there exist a(x),b (x)∈ R[x] such that
+gcd(f(x),g (x)) =a(x)f(x) +b(x)g(x).
+Proof.
+Repeat the proof of extended Euclidean algorithm for integers.
+Note that we have a sequence of remaindersrk(x) such that
+deg(g(x))> deg(r2(x))>··· > deg(rn−1(x))> deg(rn(x)).
+Deﬁnition 8.5
+Let f(x),g (x) be nonzero polynomials inR[x].
+Then f(x) and g(x) are said to berelatively primeif gcd(f(x),g (x)) = 1.
+(Equivalently, there exista(x),b (x)∈ R[x] such that
+a(x)f(x) +b(x)g(x) = 1.)
+
+--- page 22 ---
+GCD for Polynomials
+Example 8.2
+Let f(x) = 4x4− 2x3− 16x2 + 5x + 9, g(x) = 2x3−x2− 5x + 4∈ R[x].
+Find gcd(f(x),g (x)) and a(x),b (x)∈ R[x] such that
+gcd(f(x),g (x)) =a(x)f(x) +b(x)g(x).
+By Euclidean algorithm,
+4x4− 2x3− 16x2 + 5x + 9 = (2x)(2x3−x2− 5x + 4) + (−6x2− 3x + 9)
+2x3−x2− 5x + 4 = (−1
+3x + 1
+3)(−6x2− 3x + 9) + (−x + 1)
+−6x2− 3x + 9 = (6x + 9)(−x + 1) + 0.
+Hence gcd(f(x),g (x)) =x− 1. Moreover,
+x− 1 = (−1
+3x + 1
+3)(−6x2− 3x + 9)−g(x)
+= (−1
+3x + 1
+3)[f(x)− (2x)g(x)]−g(x)
+= (−1
+3x + 1
+3)f(x) + (2
+3x2− 2
+3x− 1)g(x).
+
+--- page 23 ---
+Irreducible Polynomials
+Deﬁnition 8.6
+A nonconstantf(x)∈ F[x] (F = Q, R or C) isirreducible over F if f(x)
+cannot be expressed as a product ofg(x),h (x)∈ F[x] with
+deg(g(x)), deg(h(x))< deg(f(x)).
+(Analogous to prime inZ.)
+Example 8.3
+▶ Let x2− 2∈ Q[x]. Then it is irreducible overQ.
+However, if we considerx2− 2∈ R[x], then it is reducible overR since
+x2− 2 = (x−
+√
+2)(x +
+√
+2).
+▶ Let x2 + 1∈ R[x]. Then it is irreducible overR.
+However, if we considerx2 + 1∈ C[x], then it is reducible overC since
+x2 + 1 = (x−i)(x +i).
+
+--- page 24 ---
+Irreducible Polynomials
+By the fundamental theorem of algebra, a degreen polynomial p(x)∈ C[x]
+can be factorized as
+p(x) =an(x−α1)(x−α2)··· (x−αn),
+where αi∈ C are the not necessarily distinct roots ofp(x).
+Therefore,
+(1) All irreducible polynomials inC[x] are those linear (degree 1)
+polynomials.
+(2) All irreducible polynomials inR[x] are those linear (degree 1)
+polynomials and quadratic (degree 2) polynomials in the form
+ax2 +bx +c with ∆ =b2− 4ac< 0.
+(Since p(α) = 0 ⇐⇒ p(α) = 0, and whenα̸∈ R,
+(x−α)(x−α) =x2− 2 Re(α)x +|α|2∈ R[x] and is irreducible.)
+
+--- page 25 ---
+Irreducible Polynomials
+Proposition 8.10
+Leta(x),p (x)∈ R[x] such that p(x) is irreducible over R. If p(x) ∤a(x),
+then gcd(a(x),p (x)) = 1.
+Proposition 8.11
+Letp(x),a (x),b (x)∈ R[x]. If p(x) is irreducible over R and p(x)|a(x)b(x),
+then either p(x)|a(x) or p(x)|b(x).
+Proposition 8.12
+Leta(x),b (x),c (x)∈ R[x]. Then there exist p(x),q (x)∈ R[x] such that
+a(x)p(x) +b(x)q(x) =c(x) if and only if gcd(a(x),b (x))|c(x).
+Proposition 8.13
+Every nonconstant f(x)∈ F[x] can be factored into a product of irreducible
+polynomials in F[x], the irreducible polynomial being unique except for order
+and for nonzero constant factors.
+
+--- page 26 ---
+Irreducible Polynomials
+Exercise 8.2
+Prove the propositions above.
+(Hint: Refer to Exercise 7.2, Proposition 7.14, 7.19 and Theorem 7.16. )
+
+--- page 27 ---
+Rational Functions and Partial Fraction Decomposition
+All polynomials in this part are real polynomials.
+Deﬁnition 8.7
+A rational functionis a quotientp(x)
+q(x) of two polynomialsp(x) and q(x)
+where q(x) is nonzero.
+In calculus, we are sometimes asked to evaluate integrals of rational
+functions, for example: ∫ 2x2 + 1
+x2(x2 + 1)2 dx.
+Goal
+Express a rational functionp(x)
+q(x) as a sum of polynomial and simpler
+fractions (partial fraction decomposition).
+
+--- page 28 ---
+Rational Functions and Partial Fraction Decomposition
+Proposition 8.14 (Partial Fraction Decomposition)
+Letp(x),q (x)∈ R[x] such that q(x) can be uniquely factorized as a product
+in form of
+K·
+r∏
+i=1
+(x−ai)mi·
+s∏
+j=1
+(x2 +bjx +cj)nj
+whereK,ai,bi,ci∈ R, mi,nj∈ Z+, deg(q(x)) = (∑r
+i=1mi) + 2(∑
+j=1nj).
+Then the rational function p(x)
+q(x) can be expressed uniquely in form of
+p(x)
+q(x) =b(x) + 1
+K
+
+
+r∑
+i=1
+mi∑
+α=1
+kiα
+(x−ai)α +
+s∑
+j=1
+nj∑
+β
+rjβx +sjβ
+(x2 +bjx +cj)β
+
+,
+whereb(x)∈ R[x] and kiα,rjβ,sjβ∈ R.
+
+--- page 29 ---
+Rational Functions and Partial Fraction Decomposition
+(1) Polynomial Part
+If deg(p(x))≥ deg(q(x)), by the division algorithm,
+there exist uniqueb(x),r (x)∈ R[x] such that
+p(x) =q(x)b(x) +r(x) and deg(r(x))< deg(q(x)).
+Therefore,
+p(x)
+q(x) =b(x) +r(x)
+q(x).
+So we focus onr(x)
+q(x) with deg(r(x))< deg(q(x)).
+
+--- page 30 ---
+Rational Functions and Partial Fraction Decomposition
+(2) Factors of the Denominator
+Consider r(x)
+q(x) with deg(r(x))< deg(q(x)). Supposeq(x) =q1(x)q2(x) for
+some relatively prime polynomialsq1(x) and q2(x).
+Claim: There exist uniquer1(x),r 2(x)∈ R[x] with
+deg(r1(x))< deg(q1(x)), deg(r2(x))< deg(q2(x)) such that
+r(x)
+q(x) = r1(x)
+q1(x) + r2(x)
+q2(x).
+Existence: Since gcd(q1(x),q 2(x)) = 1, there exista(x),b (x) such that
+a(x)q1(x) +b(x)q2(x) = 1.
+r(x)
+q(x) = r(x)[a(x)q1(x) +b(x)q2(x)]
+q1(x)q2(x)
+= r(x)b(x)
+q1(x) + r(x)a(x)
+q2(x)
+=c1(x) +c2(x) +r1(x)
+q1(x) + r2(x)
+q2(x)
+Division algorithm:{
+r(x)b(x) = c1(x)q1(x) + r1(x)
+r(x)a(x) = c2(x)q1(x) + r2(x)
+deg(ri(x)) < deg(qi(x)), i = 1, 2
+Since deg(r(x))< deg(q(x)), we havec1(x) +c2(x) = 0.
+
+--- page 31 ---
+Rational Functions and Partial Fraction Decomposition
+Uniqueness: Suppose that
+r(x)
+q(x) = r1(x)
+q1(x) + r2(x)
+q2(x) = ˜r1(x)
+q1(x) + ˜r2(x)
+q2(x)
+with
+deg(ri(x)), deg(˜ri(x))< deg(qi(x)) , i = 1, 2.
+Then,
+(r1(x)− ˜r1(x))q2(x) = (r2(x)− ˜r2(x))q1(x)
+=⇒ q1(x)| (r1(x)− ˜r1(x))q2(x)
+=⇒ q1(x)| (r1(x)− ˜r1(x)) ( ∵q1(x),q 2(x) are relatively prime)
+=⇒ r1(x)− ˜r1(x) = 0 ( ∵ deg(r1(x)− ˜r1(x))< deg(q1(x)))
+Hence r1(x) = ˜r1(x). Similarly,r2(x) = ˜r2(x).
+
+--- page 32 ---
+Rational Functions and Partial Fraction Decomposition
+Recall: A real polynomialq(x) can be uniquely factorized as a product in
+form of
+K·
+r∏
+i=1
+(x−ai)mi·
+s∏
+j=1
+(x2 +bjx +cj)nj
+where K,ai,bi,ci∈ R, mi,nj∈ Z+, deg(q(x)) =
+( r∑
+i=1
+mi
+)
++ 2
+(∑
+j=1
+nj
+)
+.
+Moreover, any pair of linear or quadratic factors are relatively prime.
+Therefore, r(x)
+q(x) with deg(r(x))< deg(q(x)) can be expressed uniquely in
+form of
+r(x)
+q(x) = 1
+K
+( r∑
+i=1
+Ai(x)
+(x−ai)mi
++
+s∑
+j=1
+Bj(x)
+(x2 +bjx +cj)nj
+)
+where deg(Ai(x))<m i and deg(Bj(x))< 2nj.
+So we focus on
+Ai(x)
+(x−ai)mi
+and Bj(x)
+(x2 +bjx +cj)nj
+.
+
+--- page 33 ---
+Rational Functions and Partial Fraction Decomposition
+(3) Powers in the Denominator
+Case 1: A(x)
+(x−a)m where deg(A(x))<m .
+When m> 1, by the division algorithm, there exist unique˜A(x), km such
+that A(x) = (x−a) ˜A(x) +km and so A(x)
+(x−a)m = km
+(x−a)m +
+˜A(x)
+(x−a)m−1.
+Repeating the above untilm = 1.
+So A(x)
+(x−a)m can be expressed uniquely in form of
+m∑
+i=1
+ki
+(x−a)i.
+Case 2: B(x)
+(x2 +cx +b)n where deg(B(x))< 2n.
+When n> 1, by the division algorithm, there exist unique˜B(x), rx +sn
+such thatB(x) = (x2 +bx +c) ˜B(x) + (rnx +sn) and so
+B(x)
+(x2 +cx +b)n = rnx +sn
+(x2 +bx +c)n +
+˜B(x)
+(x2 +bx +c)n−1.
+Repeating the above untiln = 1.
+So B(x)
+(x2 +cx +b)n can be expressed uniquely in form of
+n∑
+j=1
+rjx +sj
+(x2 +bx +c)j.
+
+--- page 34 ---
+Rational Functions and Partial Fraction Decomposition
+Example 8.4
+Resolve x4 + 2x + 4
+2x3− 4x2 + 3x− 6 into partial fractions.
+By long division,
+1
+2x + 1
+2x3− 4x2 + 3x− 6
+)
+x4 + 0x3 + 0x2 + 2x + 4
+x4− 2x3 + 3
+2x2− 3x
+2x3− 3
+2x2 + 5x + 4
+2x3− 4x2 + 3x− 6
+5
+2x2 + 2x + 10
+So
+x4 + 2x + 4
+2x3− 4x2 + 3x− 6 = 1
+2x + 1 +
+5
+2x2 + 2x + 10
+2x3− 4x2 + 3x− 6
+= 1
+2x + 1 +
+5
+2x2 + 2x + 10
+(2x2 + 3)(x− 2).
+
+--- page 35 ---
+Rational Functions and Partial Fraction Decomposition
+Example 8.4
+Resolve x4 + 2x + 4
+2x3− 4x2 + 3x− 6 into partial fractions.
+Write
+5
+2x2 + 2x + 10
+(2x2 + 3)(x− 2) = Ax +B
+2x2 + 3 + C
+x− 2.
+So
+5
+2x2 + 2x + 10 = (Ax +B)(x− 2) +C(2x2 + 3)
+= (A + 2C)x2 + (−2A +B)x + (−2B + 3C)
+
+
+
+A + 2C = 5
+2
+−2A +B = 2
+−2B + 3C = 10
+=⇒
+A =− 41
+22
+B =− 19
+11
+C = 24
+11
+Hence
+x4 + 2x + 4
+2x3− 4x2 + 3x− 6 = 1
+2x + 1− 41x + 38
+22(2x2 + 3) + 24
+11(x− 2).
+
+--- page 36 ---
+Rational Functions and Partial Fraction Decomposition
+Example 8.5
+Write down the forms when the following rational functions are resolved
+into partial fractions.
+(a) 5
+x2 +x− 6
+(b) x3 + 1
+(x− 2)4
+(c) 2x2 + 1
+x2(x2 + 1)2
+(a) 5
+x2 +x− 6 = A
+x + 3 + B
+x− 2 (A =−1,B = 1)
+(b) x3 + 1
+(x− 2)4 = A
+x− 2 + B
+(x− 2)2 + C
+(x− 2)3 + D
+(x− 2)4
+(A = 1,B = 6,C = 12,D = 9)
+(c) 2x2 + 1
+x2(x2 + 1)2 = A
+x + B
+x2 + Cx +D
+x2 + 1 + Ex +F
+(x2 + 1)2
+(A = 0,B = 1,C = 0D =−1,E = 0,F = 1)
+
+--- page 37 ---
+Rational Functions and Partial Fraction Decomposition
+Example 8.6
+Resolve x
+(2x− 1)(2x + 1)(2x + 3) into partial fractions.
+Hence ﬁnd
+n∑
+k=1
+k
+(2k− 1)(2k + 1)(2k + 3).
+Let x
+(2x− 1)(2x + 1)(2x + 3) = A
+2x− 1 + B
+2x + 1 + C
+2x + 3.
+Then A = 1
+16,B = 1
+8,C =− 3
+16 (Exercise). Now,
+n∑
+k=1
+k
+(2k− 1)(2k + 1)(2k + 3)
+=
+1
+16
+
+
+n∑
+k=1
+1
+2k− 1
++
+n∑
+k=1
+2
+2k + 1
+−
+n∑
+k=1
+3
+2k + 3
+
+
+=
+1
+16
+[
+(
+1
+1
++
+1
+3
++
+n∑
+k=3
+1
+2k− 1
+  
+=
+n−2∑
+k=1
+1
+2k + 3
+) + (
+2
+3
++
+n−1∑
+k=2
+2
+2k + 1
+  
+=
+n−2∑
+k=1
+2
+2k + 3
++
+2
+2n + 1
+)− (
+n−2∑
+k=1
+3
+2k + 3
+  
+=
+n−2∑
+k=1
+3
+2k + 3
++
+3
+2n + 1
++
+3
+2n + 3
+)
+]
+=
+1
+16
+[
+2−
+1
+2n + 1
+−
+3
+2n + 3
+]
+.
+
+--- page 38 ---
+Relationship between Roots and Coeﬃcients of Polynomials
+Suppose p(x) =anxn +an−1xn−1 +··· +a1x +a0∈ C[x] where an̸= 0.
+By the fundamental theorem of algebra,
+p(x) =an(x−α1)(x−α2)··· (x−αn)
+for someα1,α 2,...,α n∈ C (not necessarily distinct).
+Then, we expand the above expression:
+p(x) =an[xn− (α1 +α2 +··· +αn)xn−1+
+(α1α2 +α1α3 +··· +αn−1αn)xn−2−··· + (−1)n(α1α2··· αn)].
+Comparing coeﬃcients:
+
+
+
+α1 +α2 +··· +αn = −an−1
+an
+α1α2 +α1α3 +··· +αn−1αn = an−2
+an
+...
+α1α2··· αn = ( −1)na0
+an
+
+--- page 39 ---
+Relationship between Roots and Coeﬃcients of Polynomials
+Theorem 8.15 (Vieta’s Formulas)
+Supposep(x) =anxn +an−1xn−1 +··· +a1x +a0∈ C[x], where an̸= 0, has
+n (not necessarily distinct) complex roots α1,α 2,...,α n. Then
+∑
+1≤i1<i2<···<ij≤n
+( j∏
+k=1
+αik
+)
+= (−1)jan−j
+an
+, for j = 1, 2,...,n.
+The indicesik are sorted in increasing order to ensure each product ofj
+roots is used exactly once.
+Equivalently, Vieta’s formulas can be expressed as follows:
+Let I⊆{ 1, 2,...,n }, writeαI =αi1αi2··· αij where i1,i 2,...,i j are all
+elements inI. Then
+∑
+I⊆{1,2,...,n}
+|I|=j
+αI = (−1)jan−j
+an
+.
+
+--- page 40 ---
+Relationship between Roots and Coeﬃcients of Polynomials
+Example 8.7
+Let α1,α 2,α 2∈ C be the roots ofa0 +a1x +a2x2 +a3x3 = 0 and
+Sr =αr
+1 +αr
+2 +αr
+3 for r = 1, 2,... .
+Express S2 and S3 in terms ofai’s.
+Firstly, 
+
+
+α1 +α2 +α3 = −a2
+a3
+α1α2 +α1α3 +α2α3 = a1
+a3
+α1α2α3 = −a0
+a3
+.
+Then,
+S2 =α2
+1 +α2
+2 +α2
+3
+= (α1 +α2 +α3)2− 2(α1α2 +α1α3 +α2α3)
+= a2
+2− 2a1a3
+a2
+3
+.
+
+--- page 41 ---
+Relationship between Roots and Coeﬃcients of Polynomials
+Example 8.7
+Let α1,α 2,α 2∈ C be the roots ofa0 +a1x +a2x2 +a3x3 = 0 and
+Sr =αr
+1 +αr
+2 +αr
+3 for r = 1, 2,... .
+Express S2 and S3 in terms ofai’s.
+S3 =α3
+1 +α3
+2 +α3
+3
+= (α1 +α2 +α3)3− 3(α2
+1α2 +α2
+1α3 +α2
+2α1 +α2
+2α3 +α2
+3α1 +α2
+3α2)
+− 6α1α2α3
+= (α1 +α2 +α3)3− 3
+[
+(α2
+1 +α2
+2 +α2
+3)(α1 +α2 +α3)− (α3
+1 +α3
+2 +α3
+3)
+]
+− 6α1α2α3.
+So
+S3 =
+(
+−a2
+a3
+)3
+− 3
+[(a2
+2− 2a1a3
+a2
+3
+) (
+−a2
+a3
+)
+−S3
+]
+− 6
+(
+−a0
+a3
+)
+− 2S3 = 1
+a3
+3
+(
+−a3
+2 + 3a3
+2− 6a1a2a3 + 6a0a2
+3
+)
+S3 = 1
+a3
+3
+(
+−a3
+2 + 3a1a2a3− 3a0a2
+3
+)
+.
+
+--- page 42 ---
+Lagrange Interpolation (Optional)
+Let (x1,y 1), (x2,y 2),..., (xn+1,yn+1)∈ R2 such that allxi’s are distinct.
+Question
+Can we ﬁnd a polynomialf(x) of degreen (or less) such thatf(xi) =yi for
+all i = 1, 2,...,n + 1?
+Let
+fi(x) =
+∏
+1≤j≤n+1,j̸=i(x−xj)∏
+1≤j≤n+1,j̸=i(xi−xj) (for i = 1, 2,...,n + 1)
+which is a polynomial of degreen that satisﬁes
+fi(xj) =δij :=
+{
+1 if i =j
+0 if i̸=j.
+Then f(x) :=
+n+1∑
+i=1
+yifi(x) is a polynomial of degree≤n such that
+f(xj) =
+n∑
+i=1
+yifi(xj) =
+n∑
+i=1
+yiδij =yj for j = 1, 2,...,n + 1.
+Such a polynomial is unique because the diﬀerence of any two such
+polynomials is a polynomial of degree≤n with n + 1 zeros.
+
+--- page 43 ---
+Exercise 8.3
+(a) Show, using de Moivre’s theorem, or otherwise, that
+tan 9θ = t(t2− 3)(t6− 33t4 + 27t2− 3)
+(3t2− 1)(3t6− 27t4 + 33t2− 1), where t = tanθ.
+(b) By considering the equationtan 9θ = 0, or otherwise, obtain a cubic
+equation with integer coeﬃcients whose roots are
+tan2
+(π
+9
+)
+, tan2
+(2π
+9
+)
+and tan2
+(4π
+9
+)
+.
+(c) Deduce the value of
+tan
+(π
+9
+)
+tan
+(2π
+9
+)
+tan
+(4π
+9
+)
+.
+(d) Show that
+tan6
+(π
+9
+)
++ tan6
+(2π
+9
+)
++ tan6
+(4π
+9
+)
+= 33273.
+
+--- page 44 ---
+Exercise 8.3
+(a) Show, using de Moivre’s theorem, or otherwise, that
+tan 9θ = t(t2− 3)(t6− 33t4 + 27t2− 3)
+(3t2− 1)(3t6− 27t4 + 33t2− 1), where t = tanθ.
+(a) By de Moivre’s theorem,
+tan 9θ = (cos 9θ +i sin 9θ)− (cos 9θ−i sin 9θ)
+(cos 9θ +i sin 9θ) + (cos 9θ−i sin 9θ)· 1
+i
+= (cosθ +i sinθ)9− (cosθ−i sinθ)9
+(cosθ +i sinθ)9 + (cosθ−i sinθ)9· 1
+i
+= (1 +it)9− (1−it)9
+(1 +it)9 + (1−it)9· 1
+i.
+The formula now follows since
+(1 +it)9− (1−it)9 = 2it(t8− 36t6 + 126t4− 84t2 + 9)
+= 2it(t2− 3)(t6− 33t4 + 27t2− 3),
+and
+(1 +it)9 + (1−it)9 = 2(9t8− 84t6 + 126t4− 36t2 + 1)
+= 2(3t2− 1)(3t6− 27t4 + 33t2− 1).
+
+--- page 45 ---
+Exercise 8.3
+(b) By considering the equationtan 9θ = 0, or otherwise, obtain a cubic
+equation with integer coeﬃcients whose roots are
+tan2
+(π
+9
+)
+, tan2
+(2π
+9
+)
+and tan2
+(4π
+9
+)
+.
+(b) Takeθ = π
+9. By (a),t := tan
+(π
+9
+)
+satisﬁes
+t(t2−3)(t6−33t4 +27t2−3) = (tanπ)(3t2−1)(3t6−27t4 +33t2−1) = 0.
+Since tan
+(π
+9
+)
+̸= 0,±
+√
+3, tan2
+(π
+9
+)
+must be a root of the cubic
+equation
+x3− 33x2 + 27x− 3 = 0.
+Similarly, we can show thattan2
+(2π
+9
+)
+and tan2
+(4π
+9
+)
+are roots of
+the equationx3− 33x2 + 27x− 3 = 0 also.
+So the required (monic) cubic equation isx3− 33x2 + 27x− 3 = 0.
+
+--- page 46 ---
+Exercise 8.3
+(c) Deduce the value of
+tan
+(π
+9
+)
+tan
+(2π
+9
+)
+tan
+(4π
+9
+)
+.
+(c) Let α1,α 2,α 3 be tan2
+(π
+9
+)
+, tan2
+(2π
+9
+)
+, tan2
+(4π
+9
+)
+respectively.
+Since α1,α 2,α 3 are the roots ofx3− 33x2 + 27x− 3 = 0, we have
+α1α2α3 =−−3
+1 = 3.
+Therefore
+tan
+(π
+9
+)
+tan
+(2π
+9
+)
+tan
+(4π
+9
+)
+=
+√
+3
+because tan
+(π
+9
+)
+, tan
+(2π
+9
+)
+, tan
+(4π
+9
+)
+> 0.
+
+--- page 47 ---
+Exercise 8.3
+(d) Show that
+tan6
+(π
+9
+)
++ tan6
+(2π
+9
+)
++ tan6
+(4π
+9
+)
+= 33273.
+(d) Note that
+(α1+α2+α3)3 =α3
+1+α3
+2+α3
+3+3(α1+α2+α3)(α1α2+α2α3+α3α1)−3α1α2α3.
+Moreover, as roots ofx3− 33x2 + 27x− 3 = 0, α1,α 2,α 3 satisfy
+α1 +α2 +α3 =−−33
+1 = 33,
+α1α2 +α2α3 +α3α1 = 27
+1 = 27,
+α1α2α3 =−−3
+1 = 3.
+Therefore,
+tan6
+(π
+9
+)
++ tan6
+(2π
+9
+)
++ tan6
+(4π
+9
+)
+=α3
+1 +α3
+2 +α3
+3
+= 333− 3(33)(27) + 3(3) = 33273.

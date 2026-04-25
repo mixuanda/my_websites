@@ -56,6 +56,11 @@ April 24, 2026 QA update:
   to `3.3 Row-operation matrices`, plus checkpoint questions for elementary
   matrices, span nonmembership, dependence relations, and minimal spanning set
   extraction.
+- the Math1025 expansion pass added paired quick checks and immediate
+  `RevealSolution` blocks to `2.1 Mathematical induction`, `3.1 Inequalities
+  and absolute value`, and `4.1 Binomial coefficients and expansions` in EN,
+  zh-HK, and zh-CN; each unit also includes an exercises section followed by a
+  guided-solutions section.
 
 ### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
 

@@ -117,6 +117,18 @@ Current MATH1030 practice / rendering progress from April 25, 2026:
   support + WebWork-like exercises" authoring expectation in
   `docs/math-notes-authoring-memory.md`.
 
+Current Math1025 expansion progress from April 25, 2026:
+
+- extracted the main Math1025 chapter-slide PDFs into
+  `docs/extracted/math1025/**` for internal source-backed authoring review;
+- added public three-language Math1025 notes for `2.1 Mathematical induction`,
+  `3.1 Inequalities and absolute value`, and `4.1 Binomial coefficients and
+  expansions`;
+- registered the new Math1025 chapter families in `src/lib/textbook/catalog.ts`
+  so they appear under public Notes and participate in unit-level exports;
+- left `reference/MATH1025/MATH1025_slides_ch5.pdf` through
+  `MATH1025_slides_ch11.pdf` as the next source-backed Math1025 backlog.
+
 The tables below use these status labels:
 
 - `incorporated`: already represented in public notes or in shared glossary and
@@ -450,12 +462,17 @@ public notes.
 ## MATH1025 coverage
 
 The `reference/MATH1025/**` tree is large enough that it must be tracked now.
-The public site now exposes a small `math1025` foundations baseline, but the
-course remains mostly backlog rather than finished coverage.
+The public site now exposes the foundations, induction, inequalities, and
+binomial-theorem baseline in EN, zh-HK, and zh-CN, but the course remains
+mostly backlog beyond chapter 4.
 
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| MATH1025 | `reference/MATH1025/MATH1025_slides_ch0.pdf` to `reference/MATH1025/MATH1025_slides_ch4(1).pdf` | foundations slides | pending | no | no | no | Primary future-course backbone for preliminaries, trigonometry, induction, inequalities, and binomial-theorem material. |
+| MATH1025 | `reference/MATH1025/MATH1025_slides_ch0.pdf` | foundations slides | incorporated | yes | no | no | Direct source for public `0.1 Course foundations and notation`. |
+| MATH1025 | `reference/MATH1025/MATH1025_slides_ch1(1).pdf` | trigonometry slides | incorporated | yes | no | no | Direct source for public `1.1 Equation structure and trigonometric identities`. |
+| MATH1025 | `reference/MATH1025/MATH1025_slides_ch2(2).pdf` | induction slides | incorporated | yes | no | no | Direct source for public `2.1 Mathematical induction`. Extracted to `docs/extracted/math1025/MATH1025_slides_ch22.txt`. |
+| MATH1025 | `reference/MATH1025/MATH1025_slides_ch3(5).pdf` | inequalities slides | incorporated | yes | no | no | Direct source for public `3.1 Inequalities and absolute value`. Extracted to `docs/extracted/math1025/MATH1025_slides_ch35.txt`. |
+| MATH1025 | `reference/MATH1025/MATH1025_slides_ch4(1).pdf` | binomial theorem slides | incorporated | yes | no | no | Direct source for public `4.1 Binomial coefficients and expansions`. Extracted to `docs/extracted/math1025/MATH1025_slides_ch41.txt`. |
 | MATH1025 | `reference/MATH1025/MATH1025_slides_ch5.pdf` to `reference/MATH1025/MATH1025_slides_ch8.pdf` | methods slides | pending | no | no | no | Primary future-course backbone for sequences, complex numbers, integers / rational numbers, and polynomials. |
 | MATH1025 | `reference/MATH1025/MATH1025_slides_ch9.pdf` to `reference/MATH1025/MATH1025_slides_ch11.pdf` | vectors and geometry slides | pending | no | no | no | Primary future-course backbone for vectors in `R^n`, straight lines / planes / curves, and conic sections. |
 | MATH1025 | `reference/MATH1025/Solution to MATH1025_1028_HW1.pdf` to `reference/MATH1025/Solution to MATH1025_1028_HW10.pdf` | homework solutions | pending | no | partial | no | Keep for later exercise / solution authoring once the baseline chapter notes exist. |
@@ -466,26 +483,26 @@ course remains mostly backlog rather than finished coverage.
 
 The next source-backed expansions with the clearest payoff are:
 
-1. Next missing source-backed priority: return to the remaining Math1090
-   chapter-4 and proof-structure material while keeping the newly added
-   Math1030 chapter-8 and chapter-9 notes under QA.
+1. Next missing source-backed priority: continue Math1025 chapter slides
+   `ch5`-`ch8` into sequences, complex numbers, integers / rationals, and
+   polynomials, unless the next user request narrows the course scope.
 2. Keep refining thin but already public units, especially MATH1030 `3.1`,
    `4.1`, and the lighter MATH1090 set / function notes, only when they
    compete directly with a current source-backed chapter family.
-3. Continue the grouped Math1025 slide families only after the active Math1030
-   expansion wave stabilizes.
+3. Keep Math1030 and Math1090 mostly in QA / refinement mode unless a specific
+   thin unit is selected from the ledger.
 
 ## Current blockers
 
 The following constraints still matter during future authoring:
 
-- Later MATH1090 material is present, but the public note set does not yet have
-  route coverage or three-language authoring for those sections.
 - Several MATH1030 appendix files are theoretically strong but need deliberate
   decisions about whether to surface them as main notes or as secondary
   appendices.
 - `MATH1090 HW8.pdf` and `MATH1030 HW3.pdf` extract poorly enough that they
   should not be used as primary sources without stronger corroborating files.
+- No `reference/CSCI2120/**` or `content/textbook/csci2120/**` tree is present;
+  do not claim CSCI2120 coverage until repository sources are added.
 
 ## Checkpoint log
 

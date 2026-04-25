@@ -1,0 +1,692 @@
+--- page 1 ---
+MATH1025B
+Essential Mathematical Methods
+Chapter 4: Binomial Theorem
+September 30, 2025
+
+--- page 2 ---
+n!, P n
+r , Cn
+r
+Deﬁnition 1.1 (Factorials)
+The factorial of a positive integern is the number
+n! = n× (n− 1)×··· 2× 1 = ∏n
+i=1 i.
+Furthermore, 0! is deﬁned to be 1.
+A k-permutation of n objects is an ordered arrangement ofk objects out
+of n distinct objects.
+The number of suchk-permutations is denoted variously by the symbols
+P n
+k , nP k or P (n, k).
+It is computed by the formula
+P n
+k = n× (n− 1)×···× (n− k + 1) = n!
+(n− k)! if 0≤ k≤ n.
+
+--- page 3 ---
+n!, P n
+r , Cn
+r
+Example 1.1
+Suppose m girls and n boys are to be seated in a row so that no two boys
+sit together. Ifm > n, ﬁnd the number of ways in which they can be seated.
+Fix a particular order of them girls.
+Since m > n and no two boys can sit together, there are(m + 1) places for
+n boys as shown in the ﬁgure below.
+G1 G2 ··· Gm
+The number of ways for the boys to be seated isP m+1
+n .
+Now the m girls can be ordered inP m
+m ways, so the number of ways in
+which the girls and boys can be seated is
+P m
+m× P m+1
+n = m!(m + 1)!
+(m− n + 1)! .
+
+--- page 4 ---
+n!, P n
+r , Cn
+r
+Deﬁnition 1.2 (Binomial Coeﬃcients)
+Let n≥ 0 be an integer. For each integerk, 0≤ k≤ n, thebinomial
+coeﬃcient of n over k is the number
+C n
+k := n!
+k!· (n− k)! .
+The number C n
+k is also denoted bynC k, C(n, k) or
+(
+n
+k
+)
+.
+Remark:
+(i) It turns out thatC n
+k is an integer.
+(ii) Given a setS of n elements, a k-combination of S is a selection ofk
+elements from S such that order does not matter (i.e. it is ak-element
+subset of S). The number of suchk-combinations is
+P n
+k
+P k
+k
+= n!
+k!(n− k)! = C n
+k , if 0≤ k≤ n.
+
+--- page 5 ---
+n!, P n
+r , Cn
+r
+Example 1.2
+The number of ways to choose 3 letters from A, B, C, D, E (5 letters) in
+order (without repetition) isP 5
+3 = 5!
+(5− 3)! = 60.
+# ways to choose 3 objects out of 5 regardless of ordering=C53 = 10
+# ways to
+permute 3
+objects
+= 3! = 6
+ABC ABD ABE ACD ACE ADE BCD BCE BDE CDE
+ACB ADB AEB CAD CAE DEA BDC BEC BED DCE
+BAC BAD BAE DAC DAE DAE CBD CBE DBE DEC
+BCA BDA BEA DCA EAC EAD CDB CEB DEB EDC
+CAB ABD EBA CDA ECA AED DBC ECB EBD CED
+CBA DBA EAB DCA AEC DEA DCB EBC EDB ECD
+3!× C 5
+3 = P 5
+3 = 5!
+(5− 3)!
+∴ C 5
+3 = 5!
+3!(5− 3)!
+
+--- page 6 ---
+n!, P n
+r , Cn
+r
+Proposition 1.1
+Let n≥ 0 be an integer.
+(a) C n
+0 = C n
+n = 1.
+(b) If k is an integer such that0≤ k≤ n, then C n
+k = C n
+n−k.
+(c) If k is an integer among0≤ k≤ n− 1, then C n
+k + C n
+k+1 = C n+1
+k+1.
+Proof. We only prove (c) here:
+C n
+k + C n
+k+1 = n!
+k!(n− k)! + n!
+(k + 1)!(n− k− 1)!
+= n!
+k!(n− k− 1)!
+( 1
+n− k + 1
+k + 1
+)
+= n!
+k!(n− k− 1)!· n + 1
+(n− k)(k + 1)
+= (n + 1)!
+(k + 1)!(n− k)! = C n+1
+k+1 .
+
+--- page 7 ---
+n!, P n
+r , Cn
+r
+Example 1.3
+If someone starts from(0, 0) and either moves up or to the right by 1 unit
+every time, how many diﬀerent ways one can move from(0, 0) to (5, 3)?
+He needs to move 8 steps in total, and move to the right 5 times. So there
+are C 8
+5 ways to move to(5, 3).
+In general, there areC n
+k ways to move to(k, n− k).
+Furthermore,
+# ways to (k + 1, n− k) = # ways to (k, n− k) + # ways to (k + 1, n− k− 1)
+∴ C n+1
+k+1 = C n
+k + C n
+k+1.
+
+--- page 8 ---
+n!, P n
+r , Cn
+r
+Pascal’s Triangle
+1
+1 1
+1 2 1
+1 3 3 1
+1 4 6 4 1
+·
+·
+·
+C0
+0
+C1
+0 C1
+1
+C2
+0 C2
+1 C2
+2
+C3
+0 C3
+1 +   C3
+2 C3
+3
+C4
+0 C4
+1 C4
+2 C4
+3 C4
+4
+·
+·
+·
+
+--- page 9 ---
+Binomial Theorem
+Question:
+How do we expand(x + y)n, where n∈ Z+.
+n = 3 case:
+(x + y)3 = (x + y)(x + y)(x + y)
+= (xx + yx + xy + yy)(x + y)
+= xxx + yxx + xyx + yyx + xxy + yxy + xyy + yyy
+= x3 + 3x2y + 3xy2 + y3.
+Observations:
+(i) There are 23 = 8 terms in the expansion of(x + y)3 before
+simpliﬁcation.
+(ii) Every term is product ofx’s and y’s, and exactly one ofx or y is taken
+from each bracket.
+(iii) There are threex2y since we have to pick twox’s from two brackets
+and one y from the remaining bracket and there areC 3
+2 = 3 ways to do
+so.
+(iv) (x + y)3 = C 3
+3 x3y0 + C 3
+2 x2y1 + C 3
+1 x1y2 + C 3
+0 x0y3 (choosing x’s)
+= C 3
+0 x3y0 + C 3
+1 x2y1 + C 3
+2 x1y2 + C 3
+3 x0y3 (choosing y’s).
+(This is expected becauseC n
+k = C n
+n−k.)
+
+--- page 10 ---
+Binomial Theorem
+Theorem 1.2 (Binomial Theorem)
+Let n be a positive integer. Then,
+(x+y)n =
+n∑
+k=0
+C n
+k xkyn−k = C n
+0 x0yn+C n
+1 x1yn−1+··· +C n
+n−1xn−1y1+C n
+n xny0.
+Proof. Let P (n) be the equality above.
+▶ When n = 1, LHS =(x + y)1 = x + y = C 1
+0 x0y1 + C 1
+1 x1y0 = RHS. So
+P (1) is true.
+▶ Assume P (n) is true wheren≥ 1. Then
+(x + y)n+1
+= (x + y)n(x + y)
+=
+(
+C n
+0 x0yn + C n
+1 x1yn−1 +··· + C n
+n−1xn−1y1 + C n
+n xny0)
+(x + y)
+= + C n
+0 x1yn + ··· + C n
+n−1xny1 + C n
+n xn+1y0 +
+C n
+0 x0yn+1 + C n
+1 x1yn + ··· + C n
+n xny1
+= C n+1
+0 x0yn+1 + C n+1
+1 x1yn + ··· + C n+1
+n xny1 + C n+1
+n xn+1y0.
+So P (n + 1) is true.
+▶ By mathematical induction,P (n) is true for alln∈ Z+.
+
+--- page 11 ---
+Binomial Theorem
+Example 1.4
+Put x = y = 1, we get
+n∑
+k=0
+C n
+k = 2 n. (Compare it with observation (i).)
+Put x =−1, y = 1, we get
+n∑
+k=0
+(−1)kC n
+k = 0.
+Example 1.5
+Find the constant term of
+(
+x2− 1
+x
+)9
+.
+By the binomial theorem,
+(
+x2− 1
+x
+)9
+=
+9∑
+k=0
+C 9
+k(x2)k(− 1
+x )9−k =
+9∑
+k=0
+(−1)9−kC 9
+kx3k−9.
+We obtain the constant term when3k− 9 = 0, that is,k = 3.
+So the constant term is(−1)6C 9
+3 = 84.
+
+--- page 12 ---
+Binomial Theorem
+Example 1.6
+Let n be a positive integer. By considering(x + 1)2n = (x + 1)n(x + 1)n,
+show that
+C 2n
+n = C n
+0 C n
+n + C n
+1 C n
+n−1 +··· + C n
+n C n
+0 .
+By the binomial theorem,
+(x + 1)2n =
+2n∑
+k=0
+C 2n
+k xk.
+So the coeﬃcient ofxn is C 2n
+n . On the other hand,
+(x+1)n(x+1)n =
+( n∑
+r=0
+C n
+r xr
+) ( n∑
+k=0
+C n
+k xk
+)
+=
+n∑
+r=0
+n∑
+k=0
+C n
+r C n
+k xr+k
+  
+xn term when r + k = n
+.
+So the coeﬃcient ofxn is C n
+0 C n
+n + C n
+1 C n
+n−1 +··· + C n
+n C n
+0.
+Therefore, C 2n
+n = C n
+0 C n
+n + C n
+1 C n
+n−1 +··· + C n
+n C n
+0.
+What about C 2n
+m for m other than n?
+
+--- page 13 ---
+Binomial Theorem
+Exercise 1.1 (Vandermonde’s identity)
+For any nonnegative integersm, n and r such that m, n≥ r, show that
+(
+m + n
+r
+)
+=
+r∑
+k=0
+(
+m
+k
+)(
+n
+r− k
+)
+.
+
+--- page 14 ---
+Binomial Theorem
+Example 1.7
+Let n∈ Z+ and let y be a real constant. Then
+(x + y)n =
+n∑
+k=0
+C n
+k xkyn−k for any x∈ R.
+Diﬀerentiate both sides with respect tox:
+d
+dx (x + y)n = d
+dx
+( n∑
+k=0
+C n
+k xkyn−k
+)
+=
+n∑
+k=0
+d
+dx
+(
+C n
+k xkyn−k
+)
+n(x + y)n−1 =
+n∑
+k=0
+kC n
+k xk−1yn−k
+=
+n∑
+k=1
+kC n
+k xk−1yn−k. (kC n
+k xk−1yn−k = 0 when k = 0)
+Put x = y = 1, we get
+n∑
+k=1
+kC n
+k = n2n−1.
+
+--- page 15 ---
+Binomial Theorem
+Exercise 1.2
+Let n∈ Z+. Show that
+n∑
+k=0
+(−1)k
+k + 1 C n
+k = 1
+n + 1.
+
+--- page 16 ---
+Binomial Theorem
+Exercise 1.3
+(a) Let n, k∈ Z+ such that 1≤ k≤ n. Show thatk· C n
+k = n· C n−1
+k−1.
+(b) Let n∈ Z+. Hence, or otherwise, ﬁnd the values of the following sums.
+(i)
+n∑
+k=0
+kC n
+k
+(ii)
+n∑
+k=0
+k(−1)kC n
+k
+(iii)
+n∑
+k=0
+1
+k + 1 C n
+k
+(iv)
+n∑
+k=0
+k2C n
+k
+Ans: (i) n· 2n−1, (ii) 0 if n≥ 2;−1 if n = 1, (iii) 1
+n+1 (2n+1− 1), (iv)
+n(n + 1)· 2n−2.
+
+--- page 17 ---
+Binomial Theorem
+Example 1.8 (Binomial Distribution)
+Let 0 < p < 1 be the probability of getting a head when a biased coin is
+tossed. Suppose the coin is tossedn times. Let X be the random variable
+that denotes the number of heads obtained. ThenX∼ B(n, p), that is,
+P (X = k) = C n
+k pk(1− p)n−k, 0≤ k≤ n.
+Expected number of heads=
+n∑
+k=0
+kP (X = k) =
+n∑
+k=0
+kC n
+k pk(1− p)n−k.
+From Example 1.7, we have
+n(x + y)n−1· x =
+( n∑
+k=0
+kC n
+k xk−1yn−k
+)
+x =
+n∑
+k=0
+kC n
+k xkyn−k.
+Put x = p and y = 1− p, we have
+n∑
+k=0
+kC n
+k pk(1− p)n−k = np.
+
+--- page 18 ---
+Binomial Theorem
+Exercise 1.4
+Show that the variance
+n∑
+k=0
+(k− np)2P (X = k) = np(1− p).
+
+--- page 19 ---
+Binomial Theorem
+Example 1.9
+If X∼ B(n, p), then ask goes from 0 to n, P (X = k) ﬁrst increases
+monotonically and then decreases monotonically, reaching its largest value
+when k is the largest integer less than or equal to(n + 1)p.
+P (X = k− 1)≤ P (X = k)
+⇐⇒ C n
+k−1pk−1(1− p)n−k+1≤ C n
+k pk(1− p)n−k
+⇐⇒ n!
+(k− 1)!(n− k + 1)! (1− p)≤ n!
+k!(n− k)! p
+⇐⇒ k(1− p)≤ (n− k + 1)p
+⇐⇒ k≤ (n + 1)p
+
+--- page 20 ---
+Binomial Theorem
+Example 1.10
+Let a > 0. Show that there is a constantC > 0 such that n2(1 + a)−n≤ C
+for all integersn≥ 2.
+Want: ﬁnd a constantC′ > 0 such that
+(1 + a)n≥ C′n2 ∀ n≥ 2.
+By the binomial theorem, forn≥ 2,
+(1 + a)n =
+n∑
+k=0
+C n
+k ak = 1 + C n
+1 a + C n
+2 a2 +··· + C n
+n an
+≥ C n
+2 a2 = n(n− 1)
+2 a2. (∵ C n
+k ak≥ 0)
+For n≥ 2, we have
+n2≥ 2n =⇒ 2n2− 2n≥ n2 =⇒ n(n− 1)≥ n2
+2 .
+Combining the inequalities, we have
+(1 + a)n≥ a2
+4 n2 ∀ n≥ 2.
+Can you do the same forn3(1 + a)−n?
+
+--- page 21 ---
+Binomial Theorem
+Exercise 1.5
+(a) Show that fork, r, n∈ Z+ such that 1≤ k≤ r≤ n, C n
+r C r
+k = C n
+k C n−k
+r−k.
+(b) Hence, show that (i)
+n∑
+r=k
+C n
+r C r
+k = 2 n−kC n
+k, (ii)
+n∑
+r=k
+(−1)rC r
+nC r
+k =
+{
+0 if 1≤ k < n
+(−1)n if k = n .
+
+--- page 22 ---
+Binomial Theorem
+Exercise 1.6
+Let n∈ Z+.
+(a) Show by Cauchy Schwarz inequality that√
+n(2n− 1) >
+√
+C n
+1 +
+√
+C n
+2 +··· +√C nn.
+(b) By considering n(x + 1)2n−1 = n(x + 1)n−1(x + 1)n, ﬁnd ∑n
+r=1 r (C n
+r )2.
+
+--- page 23 ---
+Multinomial Theorem
+Question:
+In general, what is the expansion of(x1 + x2 +··· + xm)n where m, n∈ Z+?
+Theorem 1.3 (Multinomial Theorem)
+Let m, n∈ Z+. Then
+(x1 + x2 +··· + xm)n =
+∑
+k1+k2+···+km=n
+k1,k2,...,km≥0
+(
+n
+k1, k2, . . . , km
+)
+xk1
+1 xk2
+2 ··· xkm
+m ,
+where
+(
+n
+k1, k2, . . . , km
+)
+:= n!
+k1!k2!··· km! is a multinomial coeﬃcient.
+Remark:
+(
+n
+k1, k2, . . . , km
+)
+is the number of ways to partitionn distinct
+objects into m distinct groups such that thei-th group containski objects,
+1≤ i≤ m.
+
+--- page 24 ---
+Multinomial Theorem
+Example 1.11
+Given n objects and three boxes, labelled A, B and C. Suppose we are to
+place a given numbera of the objects in box A, a given numberb in box B,
+and the remainingc = n− a− b in box C. Assuming the order of placement
+of objects in each box is irrelevant, what is the number of such placement?
+Each placement can be described by ﬁrst selectinga objects from the set of
+n for box A, and then pickingb objects from the remainingn− a for box B.
+The number of such placement is
+(
+n
+a
+)
+·
+(
+n− a
+b
+)
+·
+(
+n− a− b
+c
+)
+= n!
+a!(n− a)!· (n− a)!
+b!(n− a− b)!· 1
+= n!
+a! b! c! =
+(
+n
+a, b, c
+)
+.
+
+--- page 25 ---
+Multinomial Theorem
+Example 1.12
+How many ways can you arrange the letters in “GOOGOL”?
+First arrange the 6 letters as if they were distinct:
+G1O1O2G2O3L
+The number of ordered arrangement is6!.
+The number of permutations withinO1, O2, O3 is 3!.
+The number of permutations withinG1, G2 is 2!.
+The number of permutations withinL is 1!.
+Hence, the number of ways we can arrange the letters in “GOOGOL” is
+6!
+3! 2! 1! =
+(
+6
+3, 2, 1
+)
+= 60.

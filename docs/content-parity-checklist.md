@@ -89,7 +89,9 @@ The following units are currently present in EN, zh-HK, and zh-CN.
   cuts and the embedding of `Q`, 4.6 decimal expansions and irrational
   numbers, 5.1 sequences and epsilon-`N` limits, 5.2 Cauchy sequences and
   another model of the reals, 5.3 delta-epsilon limits / limit laws /
-  continuity
+  continuity, 6.1 cardinality / countability / cardinal inequalities, 6.2
+  Cantor theorem / continuum / choice, 6.3 intervals / Cantor set / density /
+  well-ordering, 7.1 binary operations / monoids / groups
 - `math1030`: 1.1 equations and solution sets, 2.1 matrix basics,
   2.2 augmented matrices and row operations, 2.3 Gaussian elimination and
   RREF, 2.4 solution-set types, 3.1 matrix multiplication and identity
@@ -99,13 +101,16 @@ The following units are currently present in EN, zh-HK, and zh-CN.
   vector spaces, 6.2 subspaces, 6.3
   linear combinations and span, 6.4 linear dependence and independence, 6.5
   basis and dimension, 6.6 column space / row space / rank, 6.7 matrix
-  subspaces / bases / dimension, 7.1 determinants and cofactor expansion, 7.2
-  row operations / products / invertibility, 7.3 transpose / column operations
-  / Cramer's rule, 8.1 eigenvalues /
+  subspaces / bases / dimension, 6.8 basis extension / change of basis, 7.1
+  determinants and cofactor expansion, 7.2 row operations / products /
+  invertibility, 7.3 transpose / column operations / Cramer's rule, 8.1 eigenvalues /
   eigenvectors / eigenspaces, 8.2 diagonalization / similarity, 8.3
   characteristic polynomials / diagonalization tests, 9.1 inner products /
   norms / angles, 9.2 orthogonal sets / orthonormal bases, 9.3 Gram-Schmidt,
   9.4 Cauchy-Schwarz / triangle inequalities
+- `math1025`: 0.1 course foundations and notation, 1.1 equation structure and
+  trigonometric identities, 2.1 mathematical induction, 3.1 inequalities and
+  absolute value, 4.1 binomial coefficients and expansions
 - `csci2520`: 0.1 pointers / memory / structs, 1.1 ADT operations, 1.2 hash
   tables and collision strategies, 2.1 lists as recursive ADTs, 3.1
   complexity growth and algorithmic cost, 3.2 selection / quickselect /

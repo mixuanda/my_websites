@@ -1,0 +1,1950 @@
+--- page 1 ---
+MATH1025B
+Essential Mathematical Methods
+Chapter 6: Complex Numbers
+October 21, 2025
+
+--- page 2 ---
+Introduction
+▶ The quadratic equationx2 + 1 = 0 has no real root.
+To “solve” it, create a new “number”i such thati2 =−1.
+▶ Geometrically, multiplying−1 to a real numbera is rotatinga in the
+anticlockwise direction by180◦.
+▶ i2 =−1 and so (−1)a =i·i·a, which suggests that multiplyingi to a
+is rotatinga in the anticlockwise (usual convention) direction by90◦
+▶ In particular,i· 1 =i. It suggests that we should jump from the real
+line to the plane and regardi as (0, 1).
+
+--- page 3 ---
+Introduction
+▶ Each point (x,y ) corresponds to a “complex number”, written formally
+as
+x +iy.
+(So far, + and· in x +i·y have not been deﬁned yet.)
+Then, a real numberx can be regarded as a complex numberx +i· 0,
+lying on thex-axis.
+▶ Furthermore, pretend we can do the following:
+(x1 +iy1) + (x2 +iy2) =x1 +iy1 +x2 +iy2
+=x1 +x2 +iy1 +iy2
+= (x1 +x2) +i(y1 +y2)
+and
+(x1 +iy1)· (x2 +iy2) =x1x2 +ix2y1 +ix1y2 +iy1iy2
+= (x1x2 +i2y1y2) +i(x1y2 +x2y1)
+= (x1x2−y1y2) +i(x1y2 +x2y1)
+The above discussion motivates us to deﬁne a complex number as follows.
+
+--- page 4 ---
+Introduction
+Deﬁnition 6.1
+A complex numberis deﬁned as an ordered pair(x,y ) where x,y∈ R.
+Addition and multiplication of complex numbers are deﬁned as follows:
+(i) (Addition)
+(x1,y 1) + (x2,y 2) = (x1 +x2,y 1 +y2)
+(ii) (Multiplication)
+(x1,y 1) · (x2,y 2) = (x1 ·x2−y1 ·y2,x 1 ·y2 +x2 ·y1)
+A real numberx corresponds to (x, 0). Instead of(0, 1), we writei.
+We intend to write a complex number(x,y ) as x +iy, but we need to check
+that it is consistent with the addition and multiplication deﬁned above.
+Indeed, x,y and i correspond to (x, 0), (y, 0) and (0, 1), so
+(x, 0) + (0, 1) · (y, 0) = (x, 0) + (0·y− 1 · 0, 0 · 0 +y · 1)
+= (x, 0) + (0,y )
+= (x + 0, 0 +y)
+= (x,y )
+From now on, a complex number(x,y ) will be denoted byx +iy.
+
+--- page 5 ---
+Introduction
+▶ The set of all complex numbers{x +iy :x,y∈ R} is denoted byC.
+▶ Let z =x +iy∈ C, wherex,y∈ R.
+▶ x is said to be the real part ofz, and is denoted byRe(z)
+▶ y is said to be the imaginary part ofz, and is denoted byIm(z).
+▶ If Im(z) = 0, z is real.
+If Re(z) = 0, z =iy which is said to be apurely imaginarynumber.
+▶ Suppose thatw =a +ib,z =c +id∈ C, wherea,b,c,d ∈ R. Then
+w =z ⇐⇒ (a,b ) = (c,d )
+⇐⇒ a =c and b =d, i.e. Re(z) = Re(w) and Im(z) = Im(w)
+▶ R is regarded as a subset ofC by the identiﬁcationϕ : R→ C deﬁned
+byϕ(x) =x +i· 0.
+The addition + and multiplication· on C generalize those onR in the
+sense that for alla,b∈ R,
+ϕ(a +b) =ϕ(a) +ϕ(b) and ϕ(a·b) =ϕ(a)·ϕ(b).
+
+--- page 6 ---
+Introduction
+Proposition 6.1 (Properties of complex addition and multiplication)
+(i) (Commutativity of addition) For allw,z ∈ C, w +z =z +w.
+(ii) (Associativity of addition) For allu,w,z ∈ C, (u +w) +z =u + (w +z).
+(iii) (Existence of additive identity) Let0 = 0 + i0∈ C. Then, for allz∈ C,
+z + 0 = 0 + z =z.
+(iv) (Existence of additive inverse) For allz =x +iy∈ C, wherex,y∈ R,
+w := (−x) +i(−y)∈ C satisﬁes z +w =w +z = 0. w is said to be an
+additive inverse of z and is denoted by−z.
+(v) (Commutativity of multiplication) For allw,z ∈ C, w·z =z·w.
+(vi) (Associativity of multiplication) For allu,w,z ∈ C, (u·w)·z =u· (w·z).
+(vii) (Existence of multiplicative identity) Let1 = 1 + i0∈ C. Then, for allz∈ C,
+z· 1 = 1·z =z.
+(viii) (Existence of multiplicative inverse) For all nonzeroz =x +iy∈ C, where
+x,y∈ R with x̸= 0 or y̸= 0, w := x
+x2+y2 +i −y
+x2+y2∈ C satisﬁes
+z·w =w·z = 1. w is said to be amultiplicative inverse of z and is
+denoted byz−1.
+(ix) (Distributivity) For allu,w,z ∈ C, (u +w)·z =u·z +w·z and
+z· (u +w) = z·u +z·w.
+Remark: (i)–(ix) say thatC is a ﬁeld.
+
+--- page 7 ---
+Introduction
+Proof of (v).
+Let z =a +ib,w =c +id∈ C, wherea,b,c,d ∈ R.
+z·w = (a·c−b·d) +i(a·d +b·c) (Deﬁnition of complex multiplication)
+= (c·a−d·b) +i(d·a +c·b) (Commutativity of real multiplication)
+=w·z.
+Proof of (viii).
+Let z =x +iy, w = x
+x2+y2 +i −y
+x2+y2, wherex,y∈ R with x̸= 0 or y̸= 0.
+z·w = x2 +y2
+x2 +y2 +i−xy +xy
+x2 +y2 = 1 +i· 0 = 1.
+In particular, (i)–(ix) show that the usual arithmetic rules are true on
+(C, +,·), for examples
+if z∈ C, thenz· 0 = 0·z = 0; and
+if z,w ∈ C and z·w = 0, thenz = 0 or w = 0.
+
+--- page 8 ---
+Introduction
+Suppose thatz =a +ib,w =c +id∈ C, wherea,b,c,d ∈ R.
+(Complex Subtraction)
+z−w :=z + (−w) = (a−c) +i(b−d)
+(Complex Division) Ifw̸= 0,
+z
+w :=zw−1 = (a +ib)·
+( c
+c2 +d2 +i −d
+c2 +d2
+)
+= ac +bd
+c2 +d2 +ibc−ad
+c2 +d2
+Example 6.1
+Express −1 + 4i
+(2 +i)− (4− 4i) in the forma +bi.
+−1 + 4i
+(2 +i)− (4− 4i) =−1 + 4i
+6− 3i = (−1 + 4i)·
+( 6
+62 + (−3)2− −3
+62 + (−3)2i
+)
+= 1
+45 (−6− 12 + 24i− 3i) =−2
+5 + 7
+15i.
+
+--- page 9 ---
+Geometric Perspective
+▶ A complex numberz =x +iy can be represented by the point or
+vector (x,y ) on the coordinate plane.
+▶ The plane is called thecomplex planeor Argand’s diagram.
+▶ The horizontal axis is called thereal axisand the vertical axis is
+called theimaginary axis.
+
+--- page 10 ---
+Complex Conjugate and Modulus
+Deﬁnition 6.2
+Let z =x +iy∈ C.
+(i) The complex conjugateof z is deﬁned to be the complex number
+x−iy. It is denoted by¯z.
+(ii) The modulus of z is deﬁned to be the non-negative real number√
+x2 +y2. It is denoted by|z|.
+Remark:
+▶ In the complex plane,¯z is
+the reﬂection ofz with
+respect to the real axis.
+▶ |z| is the length ofOP.
+
+--- page 11 ---
+Complex Conjugate and Modulus
+Proposition 6.2 (Properties of complex conjugate)
+(i) ¯¯z =z
+(ii) z = ¯z if and only ifz is real
+(iii) Re(z) = 1
+2(z + ¯z) and Im(z) = 1
+2i(z− ¯z)
+(iv) z1±z2 =z1±z2, z1z2 =z1 z2,
+(
+z1
+z2
+)
+= z1
+z2
+.
+Proof ofz1z2 =z1 z2 in (iv).
+Let z1 =a +ib and z2 =c +id. Then
+z1z2 = (ac−bd) +i(ad +bc)
+= (ac−bd)−i(ad +bc)
+= [ac− (−b)(−d)] +i[a(−d) +c(−b)]
+= (a−ib)(c−id)
+=z1 z2.
+
+--- page 12 ---
+Complex Conjugate and Modulus
+Proposition 6.3 (Properties of modulus)
+(i) |z|2 =z¯z (Hence,z¯z is real and non-negative.)
+(ii) |z| =|− z| =|¯z|
+(iii) −|z|≤ Re(z), Im(z)≤|z|
+(iv) |z1z2| =|z1||z2| and
+⏐⏐⏐z1
+z2
+⏐⏐⏐ = |z1|
+|z2|
+Proof of (iv).
+|z1z2|2 = (z1z2)(z1z2) = (z1z1)(z2z2) =|z1|2|z2|2 = (|z1||z2|)2.
+Since modulus is always non-negative, we have|z1z2| =|z1||z2|.
+
+--- page 13 ---
+Complex Conjugate and Modulus
+Example 6.2
+Let z1,z 2∈ C. Show that|z1 +z2|2 +|z1−z2|2 = 2|z1|2 + 2|z2|2.
+(Don’t always writez1 =x1 +iy1 and z2 =x2 +iy2!)
+|z1 +z2|2 +|z1−z2|2 = (z1 +z2)(z1 +z2) + (z1−z2)(z1−z2)
+= (z1 +z2)(z1 +z2) + (z1−z2)(z1−z2)
+= (z1z1 +z1z2 +z2z1 +z2z2) + (z1z1−z1z2−z2z1 +z2z2)
+= 2z1z1 + 2z2z2
+= 2|z1|2 + 2|z2|2.
+This result is called the parallelogram law.
+
+--- page 14 ---
+Complex Conjugate and Modulus
+Exercise 6.1
+Let z1,z 2∈ C. Show that|1−z1z2|2−|z1−z2|2 = (1−|z1|2)(1−|z2|2).
+
+--- page 15 ---
+Complex Conjugate and Modulus
+Exercise 6.2
+Let z∈ C such thatz̸= 0. Show that
+⏐⏐¯z + 1
+z
+⏐⏐≥ 2
+
+--- page 16 ---
+Argument and Polar Form
+Deﬁnition 6.3
+Let z =x +iy be a non-zero complex number.
+▶ θ is called anargument of z, denoted byarg(z), ifθ is an angle at the
+origin measured anticlockwise from the positive real axis to the point
+(x,y ). Note thatarg(z) is only determined up to2kπ, k∈ Z,
+additively:
+arg(z) =θ + 2kπ, k ∈ Z.
+▶ An argumentθ of z is said to be theprincipal argumentof z if
+−π <θ≤π. It is denoted byArg(z).
+
+--- page 17 ---
+Argument and Polar Form
+Polar Form
+A non-zero complex numberz can be expressed as
+z =r(cosθ +i sinθ) (or simplyrcisθ),
+where
+r =|z| and θ is an argument ofz.
+It is called thepolar formof z.
+Remark: If z =r(cosθ +i sinθ) for somer> 0 and θ∈ R, then
+▶ |z| =r and θ is an argument ofz.
+▶ ¯z =r(cosθ−i sinθ) =r [cos(−θ) +i sin(−θ)] (Polar form)
+▶ 1
+z = 1
+z¯z ¯z = 1
+|z|2 ¯z = 1
+r [cos(−θ) +i sin(−θ)] (Polar form)
+In particular,|z| = 1 ⇐⇒ 1
+z = ¯z.
+
+--- page 18 ---
+Argument and Polar Form
+Example 6.3
+Let z =−2 + 2
+√
+3i. Find the modulus, argument and principal argument of
+z. Expressz in polar form.
+Modulus:|z| =
+√
+(−2)2 + (2
+√
+3)2 =√4 + 12 =
+√
+16 = 4.
+Solving
+{
+4 cosθ =−2
+4 sinθ = 2
+√
+3 , we havetanθ =−
+√
+3 and so
+θ =−π
+3 (rejected) or θ =π− π
+3 = 2π
+3 .
+Principal argument: Arg(z) = 2π
+3 .
+Argument: arg(z) = 2π
+3 + 2kπ, k∈ Z.
+Polar form:z = 4
+(
+cos 2π
+3 ) +i sin(2π
+3 )
+)
+.
+
+--- page 19 ---
+Visualization of Complex Addition and Multiplication
+Let z1 =x1 +iy1,z 2 =x2 +iy2∈ C, wherex1,x 2,y 1,y 2∈ R.
+Complex addition can be visualized similar to vector addition inR2.
+z1 +z2 = (x1 +x2) +i(y1 +y2)
+How about complex multiplication?
+z1z2 = (x1 +iy1)(x2 +iy2) = (x1x2−y1y2) +i(x1y2 +x2y1)
+which may not give us any idea.
+
+--- page 20 ---
+Visualization of Complex Addition and Multiplication
+Let’s try polar form.
+Assume z1,z 2̸= 0. Writez1 =r1(cosθ1 +i sinθ1),z 2 =r2(cosθ2 +i sinθ2),
+where r1,r 2 > 0, θ1,θ 2∈ R. Then
+z1z2 =r1r2 [(cosθ1 cosθ2− sinθ1 sinθ2) +i (cosθ1 sinθ2 + cosθ2 sinθ1)]
+=r1r2 [cos(θ1 +θ2) +i sin(θ1 +θ2)].
+We have {
+|z1z2| =|z1||z2|
+arg(z1z2) = arg(z1) + arg(z2).
+(Is Arg(z1z2) = Arg(z1) + Arg(z2) true? Why?)
+
+--- page 21 ---
+Visualization of Complex Addition and Multiplication
+In particular, we have proved the following.
+Proposition 6.4
+Letz =|z|(cosθ +i sinθ), w =|w|(cosϕ +i sinϕ)∈ C. Then
+zw =|z||w|(cos(θ +ϕ) +i sin(θ +ϕ)).
+Complex multiplication as applying a rotation and a scaling
+zw = |z|
+scaling
+(cosθ +i sinθ)  
+rotation
+w
+Similarly,
+z1
+z2
+=z1z−1
+2 =r1(cosθ1 +i sinθ1)· 1
+r2
+[cos(−θ2) +i sin(−θ2)]
+= r1
+r2
+[cos(θ1−θ2) +i sin(θ1−θ2)].
+We have 
+
+
+⏐⏐⏐⏐
+z1
+z2
+⏐⏐⏐⏐ =|z1|
+|z2|
+arg(z1
+z2
+) = arg(z1)− arg(z2).
+
+--- page 22 ---
+De Moivre’s Theorem
+Deﬁnition 6.4
+Let z∈ C. We deﬁnezn+1 := (zn)·z for n∈ Z+. Further, ifz̸= 0, we
+deﬁne z0 := 1 and z−n := (z−1)n for n∈ Z+.
+With this deﬁnition, we can show that the usual Laws of Indices hold for
+integral powers of complex numbers. Furthermore, the following holds.
+Theorem 6.5 (De Moivre’s Theorem)
+For anyn∈ Z, (cosθ +i sinθ)n = cosnθ +i sinnθ.
+Proof. Case 1: n is a positive integer. Prove by mathematical induction
+and Proposition 6.4.
+Case 2: n = 0. Trivial.
+Case 3: n is a negative integer. Letm =−n. Thenm is a positive integer.
+(cosθ +i sinθ)n =
+[
+(cosθ +i sinθ)−1]m
+= [(cosθ +i sinθ)m]−1
+= (cosmθ +i sinmθ)−1 (by Case 1)
+= cosmθ−i sinmθ (|z| = 1 =⇒ z−1 = ¯z)
+= cos(−mθ) +i sin(−mθ)
+= cosnθ +i sinnθ.
+
+--- page 23 ---
+De Moivre’s Theorem
+Example 6.4
+By De Moivre’s Theorem,
+cos 3θ +i sin 3θ = (cosθ +i sinθ)3
+= cos3θ + 3 cos2θ(i sinθ) + 3 cosθ(i sinθ)2 + (i sinθ)3
+= (cos3θ− 3 cosθ sin2θ) +i(3 cos2θ sinθ− sin3θ).
+Comparing the real and imaginary parts, we have
+cos 3θ = cos3θ− 3 cosθ sin2θ = cos3θ− 3 cosθ(1− cos2θ)
+= 4 cos3θ− 3 cosθ,
+sin 3θ = 3 cos2θ sinθ− sin3θ = 3(1− sin2θ) sinθ− sin3θ
+= 3 sinθ− 4 sin3θ.
+
+--- page 24 ---
+De Moivre’s Theorem
+Exercise 6.3
+Express cos 5θ and sin 5θ in terms ofcosθ and sinθ.
+
+--- page 25 ---
+De Moivre’s Theorem
+Example 6.5
+Show that 8 sin4θ = cos 4θ− 4 cos 2θ + 3.
+Let z = cosθ +i sinθ. Then
+{
+cosθ = Re(z) = 1
+2(z + ¯z)
+sinθ = Im(z) = 1
+2i(z− ¯z).
+By De Moivre’s Theorem,zn = (cosnθ +i sinnθ) for n∈ Z. Then
+{
+cosnθ = Re(zn) = 1
+2(zn + ¯zn)
+sinnθ = Im(zn) = 1
+2i(zn− ¯zn).
+Hence,
+8 sin4θ = 8
+[ 1
+2i(z− ¯z)
+]4
+= 1
+2
+(
+z4− 4z3¯z + 6z2¯z2− 4z¯z3 + ¯z4)
+= 1
+2(z4 + ¯z4)− 2(z2 + ¯z2) + 3 (∵z¯z =|z|2 = 1)
+= cos 4θ− 4 cos 2θ + 3.
+
+--- page 26 ---
+De Moivre’s Theorem
+Exercise 6.4
+Show that cos3θ sin4θ = 1
+64 (cos 7θ− cos 5θ− 3 cos 3θ + 3 cosθ).
+
+--- page 27 ---
+Triangle Inequality
+Theorem 6.6 (Triangle Inequality)
+Letz1,z 2∈ C. Then
+|z1 +z2|≤| z1| +|z2|.
+Furthermore, the equality holds if and only if
+z1 =kz2 for somek≥ 0 or z2 =kz1 for somek≥ 0 .
+
+--- page 28 ---
+Triangle Inequality
+Proof. The statement is trivially true ifz1 = 0 or z2 = 0. Assume that
+z1,z 2̸= 0.
+|z1 +z2|2 = (z1 +z2)(z1 +z2)
+=z1z1 +z1z2 +z2z1 +z2z2
+=|z1|2 + 2 Re(z1z2) +|z2|2
+≤|z1|2 + 2|z1z2| +|z2|2
+≤|z1|2 + 2|z1||z2| +|z2|2
+= (|z1| +|z2|)2.
+So|z1 +z2|≤| z1| +|z2|.
+Furthermore, the equality holds⇐⇒ z1z2 =k for somek≥ 0
+z1 = k
+z2
+= k
+|z2|2z2
+⇐⇒ z1 =k′z2 for somek′≥ 0.
+
+--- page 29 ---
+Triangle Inequality
+Exercise 6.5
+Let z1,z 2,...,z n∈ C. By mathematical induction, show that
+⏐⏐⏐⏐⏐
+n∑
+i=1
+zi
+⏐⏐⏐⏐⏐≤
+n∑
+i=1
+|zi|.
+Exercise 6.6
+Let z1,z 2,...,z n∈ C and λ1,λ 2,...,λ n > 0 such that
+λ−1
+1 +λ−1
+2 +··· +λ−1
+n = 1. Show that
+⏐⏐⏐⏐⏐
+n∑
+i=1
+zi
+⏐⏐⏐⏐⏐
+2
+≤
+n∑
+i=1
+λi|zi|2.
+
+--- page 30 ---
+Euler’s Formula and Complex Numbers
+Recall the series expansions:
+sinx =
+∞∑
+n=0
+(−1)n
+(2n + 1)!x2n+1 =x− x3
+3! + x5
+5!− x7
+7! +···
+cosx =
+∞∑
+n=0
+(−1)n
+(2n)! x2n = 1− x2
+2! + x4
+4!− x6
+6! +···
+ex =
+∞∑
+n=0
+1
+n!xn = 1 +x + x2
+2! + x3
+3! +···
+Motivation:
+Let z =x +iy∈ C, wherex,y∈ R. How do we deﬁneez?
+Assume that the laws of indices still hold:
+ez =ex+iy = ex
+
+real
+· eiy
+
+What is it?
+
+--- page 31 ---
+Euler’s Formula and Complex Numbers
+Pretending the series expansions are true for complex numberiθ, we have
+eiθ =
+∞∑
+n=0
+(iθ)n
+n!
+= 1 +iθ−θ2
+2! −iθ3
+3! +θ4
+4! +iθ5
+5! −···
+=
+(
+1−θ2
+2! +θ4
+4! −···
+)
++i
+(
+θ−θ3
+3! +θ5
+5! −···
+)
+= cosθ +i sinθ.
+It suggests us to deﬁne
+eiθ = cosθ +i sinθ for θ∈ R.
+Then, we can write a complex numberz as
+z =reiθ,
+where r =|z| and θ is an argument ofz (when z̸= 0).
+This is called theexponential formof z.
+
+--- page 32 ---
+Euler’s Formula for Complex Numbers
+By expressing complex numbers in the exponential form, the complex
+multiplication and De Moibre’s Theorem can be written as follows:
+Multiplication: z1z2 =r1eiθ·r2eiθ =r1r2ei(θ1+θ2)
+De Moivre’s Theorem: (eiθ)n =einθ, n ∈ Z.
+Also,
+cosθ = 1
+2
+(
+eiθ +e−iθ
+)
+, sinθ = 1
+2i
+(
+eiθ−e−iθ
+)
+.
+Putting θ =π yields
+eiπ = cosπ +i sinπ =−1 +i(0) =−1.
+Euler’s Identity
+eiπ + 1 = 0
+It connects ﬁve fundamental numbers in mathematics.
+
+--- page 33 ---
+Euler’s Formula for Complex Numbers
+Example 6.6
+∫
+sin2θ cos2θdθ =
+∫ [ 1
+2i(eiθ−e−iθ)
+]2[ 1
+2(eiθ +e−iθ)
+]2
+dθ
+=− 1
+16
+∫
+(e2iθ− 2 +e−2iθ)(e2iθ + 2 +e−2iθ)dθ
+=− 1
+16
+∫
+(e4iθ +e−4iθ− 2)dθ
+=− 1
+16
+[ 1
+4i(e4iθ−e−4iθ)− 2θ
+]
++C (∗)
+=− 1
+32 sin 4θ + θ
+8 +C.
+In (∗), we assume that forα∈ C\{0},
+∫
+eαxdx = 1
+αeαx +C.
+
+--- page 34 ---
+Euler’s Formula for Complex Numbers
+Example 6.7
+Let θ be a real number such thatθ̸= 2kπ, k∈ Z. Show that, forn∈ Z+,
+n∑
+k=1
+coskθ = sin nθ
+2 cos (n+1)θ
+2
+sin θ
+2
+,
+n∑
+k=1
+sinkθ = sin nθ
+2 sin (n+1)θ
+2
+sin θ
+2
+.
+If z̸= 1, then
+(z− 1)(z +z2 +··· +zn) =zn+1−z
+z +z2 +··· +zn =z· zn− 1
+z− 1 .
+Now, putz =eiθ̸= 1,
+LHS =eiθ +ei2θ +··· +einθ
+=
+n∑
+k=1
+coskθ +i
+n∑
+k=1
+sinkθ,
+
+--- page 35 ---
+Euler’s Formula for Complex Numbers
+LHS =
+n∑
+k=1
+coskθ +i
+n∑
+k=1
+sinkθ.
+RHS =eiθ· einθ− 1
+eiθ− 1
+=eiθ· einθ
+2 −e−inθ
+2
+eiθ
+2−e−iθ
+2
+· einθ
+2
+eiθ
+2
+= 2i sin nθ
+2
+2i sin θ
+2
+·ei (n+1)θ
+2
+= sin nθ
+2
+sin θ
+2
+(
+cos (n + 1)θ
+2 +i sin (n + 1)θ
+2
+)
+.
+By comparing the real and imaginary parts, we have
+n∑
+k=1
+coskθ = sin nθ
+2 cos (n+1)θ
+2
+sin θ
+2
+,
+n∑
+k=1
+sinkθ = sin nθ
+2 sin (n+1)θ
+2
+sin θ
+2
+.
+
+--- page 36 ---
+Fundamental Theorem of Algebra
+Let p(x)∈ R[x] (the set of all polynomials with coeﬃcients inR) be a
+nonconstant polynomial, i.e.
+p(x) =anxn +an1xn−1 +··· +a1x +a0
+for somen∈ Z+ and somean,an−1,...,a 1,a 0∈ R with an̸= 0.
+Here an is called theleading coeﬃcientof p(x) and n is called the
+degree of p(x), denoted bydeg(p(x)).
+Question
+Can we always ﬁndα∈ R such thatp(α) = 0?
+Answer: Negative! Considerp(x) =x2 + 1. p(x) = 0 has no real roots!.
+How about C?
+Theorem 6.7 (Fundamental Theorem of Algebra)
+Letp∈ C[x] be a nonconstant polynomial (with coeﬃcients inC). Then
+p(x) = 0 has at least one root inC.
+
+--- page 37 ---
+Fundamental Theorem of Algebra
+Direct Consequence:
+Suppose thatp(α) = 0. Then,p(x) = (x−α)q(x) for someq(x)∈ C[x]
+where
+deg(q(x)) = deg(p(x))− 1.
+Apply the fundamental theorem of algebra repeatedly,p(x) can be
+factorized as
+p(x) =an(x−α1)(x−α2)··· (x−αn),
+where αi∈ C (αi’s are not necessarily distinct).
+Therefore, p(x) has exactlyn complex roots, counting with multiplicities.
+Example 6.8
+p(x) = (1 +i)x3 + 2x2 + (3 + 5i)x + (6− 2i) can be factorized as
+p(x) = (1 +i)(x−i)(x + 1− 2i)(x + 2i).
+
+--- page 38 ---
+Fundamental Theorem of Algebra
+Coming back to polynomials with real coeﬃcients:
+Consider x2 + 2x + 5 = 0. Then
+∆ = 22− 4(1)(5) =−16< 0.
+So it has no real root. By the quadratic formula,
+x =−2±√−16
+2 =−1± 4i.
+Observation:
+Both α =−1 + 4i and α =−1− 4i are roots.
+In fact, it is true in general.
+
+--- page 39 ---
+Fundamental Theorem of Algebra
+Proposition 6.8
+Letp(x)∈ R[x], i.e.
+p(x) =anxn +an−1xn−1 +··· +a1x +a0, whereai∈ R for i = 0, 1,...,n.
+If p(α) = 0, thenp(α) = 0. (Trivial ifα∈ R.)
+Proof.
+anαn +an−1αn−1 +··· +a1α +a0 =p(α) = 0.
+Taking complex conjugate on both sides,
+anαn +an−1αn−1 +··· +a1α +a0 = 0
+an(α)n +an−1(α)n−1 +··· +a1(α) +a0 = 0,
+since
+z1 +z2 =z1 +z2, z1z2 =z1z2 and ai =ai.
+Therefore p(α) = 0.
+
+--- page 40 ---
+Fundamental Theorem of Algebra
+Proposition 6.8
+Letp(x)∈ R[x]. Ifp(α) = 0, thenp(α) = 0. (Trivial ifα∈ R.)
+Direct consequence:
+(1) If p(x)∈ R[x] is ofodd degree, thenp(x) has at least one real root.
+(2) Note that
+(x−α)(x−α) =x2− (α +α)x +αα =x2− 2 Re(α)x +|α|2.
+Everyp(x)∈ R[x]⊆ C[x] can be factorized into a product of linear and
+quadratic factors with real coeﬃcients:
+p(x) = (x−β1)··· (x−βr)(x−α1)(x−α1)··· (x−αs)(x−αs)
+= (x−β1)··· (x−βr)  
+real linear factors
+(x2− 2 Re(α1)x +|α1|2)··· (x2− 2 Re(αs)x +|αs|2)  
+real quadratic factors
+where β1,...β r∈ R and α1,α1,...,α s,αs∈ C (deg(p(x)) =r + 2s).
+Therefore p(α) = 0.
+
+--- page 41 ---
+Roots of Unity
+Factorizingzn− 1 is equivalent to solvingzn− 1 = 0 (i.e. zn = 1) (∗).
+▶ Of course, 1 is a root of(∗). What about the remaining roots?
+Write 1 =e2πi =
+(
+e
+2πi
+n
+)n
+.
+▶ Let ω =e
+2πi
+n = cos 2π
+n +i sin 2π
+n .
+Then, ωn =
+(
+e
+2πi
+n
+)n
+=e2πi = 1. Soω is a root of(∗).
+▶ Actually,ωk is a root of(∗) for allk∈ Z since (ωk)n = (ωn)k = 1k = 1.
+▶ Now, 1,ω,ω 2,...,ω n−1 are n distinct roots of(∗) (called then-th
+roots of unity). Hence,
+zn− 1 = (z− 1)(z−ω)(z−ω2)··· (z−ωn−1).
+
+--- page 42 ---
+Roots of Unity
+Example 6.9
+Factorizez5− 1.
+Let ω =e
+2πi
+5 . Then,
+z5− 1 = (z− 1)(z−ω)(z−ω2)(z−ω3)(z−ω4) (over C)
+= (z− 1)(z−ω)(z−ω2)(z−ω2)(z−ω) (ω =ω4, ω2 =ω3)
+= (z− 1)(z2− 2 Re(ω)z +|ω|2)(z2− 2 Re(ω2)z +|ω2|2)
+= (z− 1)(z2− 2(cos 2π
+5 )z + 1)(z2− 2(cos 4π
+5 )z + 1) (over R)
+
+--- page 43 ---
+Roots of Unity
+Example 6.10
+Factorizez6− 1.
+Let ω =e
+2πi
+6 =e
+πi
+3 . Then,
+z6− 1 = (z− 1)(z−ω)(z−ω2)(z−ω3)(z−ω4)(z−ω5) (over C)
+= (z− 1)(z−ω)(z−ω2)(z−ω3)(z−ω2)(z−ω) (ωk =ω6−k)
+= (z− 1)(z + 1)(z2− 2 Re(ω)z +|ω|2)(z2− 2 Re(ω2)z +|ω2|2)
+= (z− 1)(z + 1)(z2− 2(cosπ
+3 )z + 1)(z2− 2(cos 2π
+3 )z + 1) (over R)
+
+--- page 44 ---
+Roots of Unity
+In general,
+zn− 1 =
+
+
+
+(z− 1)
+n−1
+2∏
+k=1
+(
+z2− 2(cos 2kπ
+n )z + 1
+)
+if n is odd;
+(z− 1)(z + 1)
+n
+2−1∏
+k=1
+(
+z2− 2(cos 2kπ
+n )z + 1
+)
+if n is even.
+Exercise 6.7
+Prove the formulas above.
+
+--- page 45 ---
+Roots of Unity
+Similarly, we solve the equation
+zn =z0, where n∈ Z+ and z0 =r0eiθ0.
+Let ω =e
+2πi
+n .
+Then, zn =z0 has n distinct roots:
+αk :=r
+1
+n
+0 e
+iθ0
+n ωk =r
+1
+n
+0 e
+2kπ+θ0
+n i =r
+1
+n
+0
+[
+cos( 2kπ+θ0
+n ) +i sin( 2kπ+θ0
+n )
+]
+,
+where k = 0, 1,...,n − 1.
+
+--- page 46 ---
+Roots of Unity
+Exercise 6.8
+Factorizez5 + 1 and z6 + 1 over R and C.
+
+--- page 47 ---
+Roots of Unity
+Example 6.11
+Let n be a positive integer.
+(a) Show that (z−eiθ)(z−e−iθ) =z2− 2z cosθ + 1. Hence or otherwise,
+deduce that
+z2n + 1 =
+n∏
+k=1
+(
+z2− 2z cos
+(
+(2k−1)π
+2n
+)
++ 1
+)
+.
+(b) Show that, whenn is even,
+cos
+(π
+2n
+)
+cos
+(3π
+2n
+)
+cos
+(5π
+2n
+)
+··· cos
+(
+(2n−1)π
+2n
+)
+= (−1)
+1
+2n
+21−n.
+(c) When n is odd, evaluate
+cos2(π
+2n
+)
+cos2(3π
+2n
+)
+cos2(5π
+2n
+)
+··· cos2
+(
+(n−2)π
+2n
+)
+.
+
+--- page 48 ---
+Roots of Unity
+(a) (z−eiθ)(z−e−iθ) =z2− (eiθ +e−iθ)z +eiθe−iθ =z2− 2z cosθ + 1.
+Need to show:
+z2n + 1 =
+n∏
+k=1
+(
+z2− 2z cos
+(
+(2k−1)π
+2n
+)
++ 1
+)
+.
+The (2n) roots ofz2n + 1 = 0 are
+e
+iπ
+2n, e
+i3π
+2n, ... , e
+i(2n−1)π
+2n
+e
+i(4n−1)π
+2n , e
+i(4n−3)π
+2n , ... , e
+i(2n+1)π
+2n ,
+which can be written as
+ei 2k−1
+2n π, e −i 2k−1
+2n π, k = 1, 2,...,n .
+Hence,
+z2n + 1 =
+n∏
+k=1
+(
+(z−ei 2k−1
+2n π)(z−e−i 2k−1
+2n π)
+)
+=
+n∏
+k=1
+(
+z2− 2z cos
+(
+(2k−1)π
+2n
+)
++ 1
+)
+.
+
+--- page 49 ---
+Roots of Unity
+(a)
+z2n + 1 =
+n∏
+k=1
+(
+z2− 2z cos
+(
+(2k−1)π
+2n
+)
++ 1
+)
+.
+(b) Suppose n is even. Need to show
+cos
+(π
+2n
+)
+cos
+(3π
+2n
+)
+cos
+(5π
+2n
+)
+··· cos
+(
+(2n−1)π
+2n
+)
+= (−1)
+1
+2n
+21−n.
+Putting z =i, we have
+2 = (i)2n + 1 =
+n∏
+k=1
+(
+−1− 2i cos
+(
+(2k−1)π
+2n
+)
++ 1
+)
+,
+and so n∏
+k=1
+cos
+(
+(2k−1)π
+2n
+)
+= 2
+(−2i)n = (−1)n/221−n.
+
+--- page 50 ---
+Roots of Unity
+(c) Suppose n is odd.
+When k = n + 1
+2 , cos
+(
+(2·n+1
+2 −1)π
+2n
+)
+= cos π
+2 = 0. Moreover,
+cos
+(
+(2k−1)π
+2n
+)
+cos
+(
+(2n−2k+1)π
+2n
+)
+=− cos2
+(
+(2k−1)π
+2n
+)
+for k = 1, 2,..., n−1
+2 .
+Since 1 +z2n = (1 +z2)(1−z2 +z4−··· +z2n−2), we have
+1−z2 +z4−··· +z2n−2 =
+n∏
+k=1
+k̸=n+1
+2
+(
+z2− 2z cos
+(
+(2k−1)π
+2n
+)
++ 1
+)
+.
+Putting z =i, we have
+n =
+n∏
+k=1
+k̸=n+1
+2
+(
+−2i cos
+(
+(2k−1)π
+2n
+))
+= (−2i)n−1
+n−1
+2∏
+k=1
+(
+− cos2
+(
+(2k−1)π
+2n
+))
+.
+Hence,
+cos2(π
+2n
+)
+cos2(3π
+2n
+)
+cos2(5π
+2n
+)
+··· cos2
+(
+(n−2)π
+2n
+)
+=n21−n(−1)
+n−1
+2 (−1)
+n−1
+2 =n21−n.
+
+--- page 51 ---
+Roots of Unity
+Example 6.12
+Let n∈ Z+. Letω =e
+2πi
+n = cos 2π
+n +i sin 2π
+n .
+(a) Show that for anym∈ Z, ωm,ωm+1,...,ω m+n−1 are n distinct roots
+of zn− 1 = 0.
+(b) Show that 1 +ω +ω2 +··· +ωn−1 = 0.
+(c) Evaluateω×ω2×···× ωn−1.
+(a) It suﬃces to show thatωm,ωm+1,...,ω m+n−1 are distinct. Suppose
+not. Then there arei,j ∈{ 0, 1,...,n − 1} with i<j such that
+ωm+i =ωm+j. Soωi =ω−m·ωm+i =ω−m·ωm+j =ωj. This
+contradicts the fact thatω,ω,...,ω n−1 are distinct.
+(b) Since (ω− 1)(1 +ω +ω2 +··· +ωn−1) =ωn− 1 = 0 and ω̸= 1, we
+have 1 +ω +ω2 +··· +ωn−1 = 0.
+(c) Recall that
+zn− 1 = (z− 1)(z−ω)(z−ω2)··· (z−ωn−1).
+Putting z = 0, we have−1 = (−1)(−ω)(−ω2)··· (−ωn−1).
+Therefore ω×ω2×···× ωn−1 = (−1)n−1.
+
+--- page 52 ---
+Geometry Involving Complex Numbers
+Let z1,z 2,z 3∈ C be distinct points.
+Write z1−z3
+z2−z3
+=reiθ (polar form).
+Then
+z1−z3 = z1−z3
+z2−z3
+· (z2−z3) =reiθ(z2−z1).
+Therefore,z1−z3 can be obtained by rotatingz2−z3 byθ and then scaling
+byr.
+r =
+⏐⏐⏐⏐
+z1−z3
+z2−z3
+⏐⏐⏐⏐ =|z1−z3|
+|z2−z3| ratio of two sides
+θ = arg
+(z1−z3
+z2−z3
+)
+= ∠z2z3z1 angle between two sides (with orientation)
+
+--- page 53 ---
+Geometry Involving Complex Numbers
+Example 6.13
+Let z1 =i, z2 =
+√
+3 +i and z3 =
+√
+3.
+Then
+z1−z3
+z2−z3
+= 2e
+πi
+3
+z2−z1
+z3−z1
+=
+√
+3
+2 e
+πi
+6
+z3−z2
+z1−z2
+= 1√
+3
+e
+πi
+2 .
+
+--- page 54 ---
+Geometry Involving Complex Numbers
+Proposition 6.9
+Three pointsz1,z 2,z 3∈ C are collinear if and only if
+⏐⏐⏐⏐⏐⏐
+1 1 1
+z1 z2 z3
+z1 z2 z3
+⏐⏐⏐⏐⏐⏐
+= 0.
+Recall the deﬁnition of determinant:
+The determinant of a2× 2 matrix is
+⏐⏐⏐⏐
+a b
+c d
+⏐⏐⏐⏐ =ad−bc,
+and the determinant of a3× 3 matrix is
+⏐⏐⏐⏐⏐⏐
+a b c
+d e f
+g h i
+⏐⏐⏐⏐⏐⏐
+=aei +bfg +cdh−ceg−bdi−afh
+=a·
+⏐⏐⏐⏐
+e f
+h i
+⏐⏐⏐⏐−b·
+⏐⏐⏐⏐
+d f
+g i
+⏐⏐⏐⏐ +c·
+⏐⏐⏐⏐
+d e
+g h
+⏐⏐⏐⏐.
+
+--- page 55 ---
+Geometry Involving Complex Numbers
+Proposition 6.9
+Three pointsz1,z 2,z 3∈ C are collinear if and only if
+⏐⏐⏐⏐⏐⏐
+1 1 1
+z1 z2 z3
+z1 z2 z3
+⏐⏐⏐⏐⏐⏐
+= 0.
+Proof.
+z1,z 2,z 3 are collinear
+⇐⇒ Arg
+(z1−z3
+z2−z3
+)
+= 0 or π
+⇐⇒ z1−z3
+z2−z3
+∈ R
+⇐⇒ z1−z3
+z2−z3
+= z1−z3
+z2−z3
+⇐⇒ (z1−z3)(z2−z3)− (z2−z3)(z1−z3) = 0
+⇐⇒ (z2z3−z2z3)− (z1z3−z1z3) + (z1z2−z1z2) = 0
+⇐⇒
+⏐⏐⏐⏐⏐⏐
+1 1 1
+z1 z2 z3
+z1 z2 z3
+⏐⏐⏐⏐⏐⏐
+= 0.
+
+--- page 56 ---
+Geometry Involving Complex Numbers
+Exercise 6.9
+Show thatz1−z3
+z2−z3
+∈ R ⇐⇒ z2−z1
+z3−z1
+∈ R ⇐⇒ z3−z2
+z1−z2
+∈ R.
+
+--- page 57 ---
+Geometry Involving Complex Numbers
+Consider two triangles△z1z2z3,△w1w2w3 with vertices
+z1,z 2,z 3,w 1,w 2,w 3∈ C.
+Then,
+z1−z3
+z2−z3
+= w1−w3
+w2−w3
+⇐⇒ |z1−z3|
+|z2−z3| =|w1−w3|
+|w2−w3|  
+same as
+|z1−z3|
+|w1−w3| = |z2−z3|
+|w2−w3|
+and arg
+(z1−z3
+z2−z3
+)
+= arg
+(w1−w3
+w2−w3
+)
+  
+(Not just the magnitude
+but also the orientation)
+⇐⇒ △z1z2z3∼△w1w2w3 (with the same orientation)
+(ratio of two sides, inc.∠)
+
+--- page 58 ---
+Geometry Involving Complex Numbers
+Proposition 6.10
+Letz1,z 2,z 3,w 1,w 2,w 3∈ C. Then
+△z1z2z3∼
+↑
+(same orientation)
+△w1w2w3 ⇐⇒ z1−z3
+z2−z3
+= w1−w3
+w2−w3
+⇐⇒
+⏐⏐⏐⏐⏐⏐
+1 1 1
+z1 z2 z3
+w1 w2 w3
+⏐⏐⏐⏐⏐⏐
+= 0.
+Corollary 6.11
+△z1z2z3 is equilateral⇐⇒ △z1z2z3∼△z2z3z1 ⇐⇒
+⏐⏐⏐⏐⏐⏐
+1 1 1
+z1 z2 z3
+z2 z3 z1
+⏐⏐⏐⏐⏐⏐
+= 0.
+The last condition is equivalent to
+z2
+1 +z2
+2 +z2
+3−z1z2−z2z3−z3z1 = 0.
+
+--- page 59 ---
+Geometry Involving Complex Numbers
+Example 6.14
+Let z1,z 2,z 3∈ C are the vertices of a triangle in the counter-clockwise
+orientation. Show that△z1z2z3 is an equilateral triangle if and only if
+z1 +z2ω +z3ω2 = 0, whereω =e
+2πi
+3 is a cube root of unity.
+Let w1 = 1,w 2 =ω,w 3 =ω2.
+Note that△z1z2z3 is equilateral if and only if△z1z2z3∼△w1w2w3.
+By Proposition 6.10, this is equivalent to
+z1−z3
+z2−z3
+= w1−w3
+w2−w3
+= 1−ω2
+ω−ω2 = 1 +ω
+ω
+⇐⇒ z1ω−z3ω =z2(1 +ω)−z3(1 +ω)
+⇐⇒ z1ω +z2ω2 +z3 = 0
+⇐⇒ z1 +z2ω +z3ω2 =ω2(z1ω +z2ω2 +z3) = 0.
+
+--- page 60 ---
+Geometry Involving Complex Numbers
+Exercise 6.10 (Napoleon’s Theorem)
+Given△ABC. Draw equilateral triangles△BXC,△CYA,△AZB on the
+opposite side ofBC,CA,AB , respectively. LetL,M,N be the centroids of
+△BXC,△CYA,△AZB, respectively. Then△LMN is equilateral.
+Napoleon’s theorem
+https://en.wikipedia.org/wiki/
+Napoleon%27s_theorem
+
+--- page 61 ---
+Geometry Involving Complex Numbers
+Denote the pointsA,B,C,X,Y,Z,M,L,N bya,b,c,x,y,z,m,l,n ∈ C.
+Since△BXC,△CYA,△AZB are equilateral and are in the
+counter-clockwise orientation, we have
+x +cω +bω2 = 0, y +aω +cω2 = 0, z +bω +aω2 = 0.
+Since ω3 = 1, we have
+l +mω +nω2 = b +x +c
+3 + c +y +a
+3 ω + a +z +b
+3 ω2
+= 1
+3
+[
+(x +cω +bω2) +ω(y +aω +cω2) +ω2(z +bω +aω2)
+]
+= 0.
+
+--- page 62 ---
+Geometry Involving Complex Numbers
+Example 6.15
+Let z0 = 0,z 1 = 1,z 2 = 2,z 3 = 1 +i,z 4 = 2 + 2i,z 5 = 1−i.
+Then
+z1− 0
+z3− 0 = 1
+2− 1
+2i = z2− 0
+z4− 0
+z1− 0
+z5− 0 = 1
+2 + 1
+2i =
+(z1− 0
+z3− 0
+)
+Note that△z0z2z4∼△z0z1z3
+rev
+∼
+↑
+(orientation reversed)
+△z0z1z5.
+
+--- page 63 ---
+Geometry Involving Complex Numbers
+Proposition 6.12
+Letz1,z 2,z 3,w 1,w 2,w 3∈ C. Then
+△z1z2z3
+rev
+∼
+↑
+(orientation reversed)
+△w1w2w3 ⇐⇒ z1−z3
+z2−z3
+= w1−w3
+w2−w3
+⇐⇒
+⏐⏐⏐⏐⏐⏐
+1 1 1
+z1 z2 z3
+w1 w2 w3
+⏐⏐⏐⏐⏐⏐
+= 0.
+Another interpretation of Proposition 6.9:
+z1,z 2,z 3 are collinear⇐⇒ △z1z2z3∼△z1z2z3 ⇐⇒
+⏐⏐⏐⏐⏐⏐
+1 1 1
+z1 z2 z3
+z1 z2 z3
+⏐⏐⏐⏐⏐⏐
+= 0.
+
+--- page 64 ---
+Geometry Involving Complex Numbers
+Signed area of△z1z2z3
+= 1
+2|z1−z3||z2−z3| sinθ
+= 1
+2|z2−z3|2
+⏐⏐⏐⏐
+z1−z3
+z2−z3
+⏐⏐⏐⏐ sinθ
+⏐⏐⏐⏐
+z1−z3
+z2−z3
+⏐⏐⏐⏐ sinθ = Im
+(z1−z3
+z2−z3
+)
+= 1
+2i
+(z1−z3
+z2−z3
+− z1−z3
+z2−z3
+)
+= 1
+2i|z2−z3|2
+⏐⏐⏐⏐⏐⏐
+1 1 1
+z1 z2 z3
+z1 z2 z3
+⏐⏐⏐⏐⏐⏐
+.
+So signed area of△z1z2z3 = 1
+4i
+⏐⏐⏐⏐⏐⏐
+1 1 1
+z1 z2 z3
+z1 z2 z3
+⏐⏐⏐⏐⏐⏐
+.
+Another interpretation of Proposition 6.9:
+z1,z 2,z 3 collinear ⇐⇒ signed area of△z1z2z3 = 0 ⇐⇒
+⏐⏐⏐⏐⏐⏐
+1 1 1
+z1 z2 z3
+z1 z2 z3
+⏐⏐⏐⏐⏐⏐
+= 0
+
+--- page 65 ---
+Geometry Involving Complex Numbers
+Deﬁnition 6.5
+Let z1,z 2,z 3,z 4∈ C be four distinct points. The cross ratio(z1,z 2;z3,z 4) is
+deﬁned as
+(z1,z 2;z3,z 4) =
+(z1−z3
+z2−z3
+)/(z1−z4
+z2−z4
+)
+= (z1−z3)(z2−z4)
+(z2−z3)(z1−z4).
+Exercise 6.11
+Let z1,z 2,z 3,z 4∈ C be four distinct points. Show that
+(i) (z1,z 2;z3,z 4) = (z3,z 4;z1,z 2)
+(ii) (z1,z 2;z3,z 4) = 1/(z1,z 2;z4,z 3)
+(iii) (z1,z 2;z3,z 4) = 1− (z1,z 3;z2,z 4)
+
+--- page 66 ---
+Geometry Involving Complex Numbers
+Let z1,z 2,z 3,z 4∈ C be four distinct points.
+LetC be the circle passing throughz1,z 2,z 3.
+Then, z4 lies onC if and only if
+(1) ∠z1z3z2 = ∠z1z4z2
+⇐⇒ arg
+(z2−z3
+z1−z3
+)
+= arg
+(z2−z4
+z1−z4
+)
+⇐⇒ arg
+(z2−z3
+z1−z3
+/z2−z4
+z1−z4
+)
+= 0
+⇐⇒ 1/(z1,z 2;z3,z 4)∈ R
+or
+(2) ∠z1z3z2− ∠z1z4z2 =−π
+⇐⇒ arg
+(z2−z3
+z1−z3
+)
+− arg
+(z2−z4
+z1−z4
+)
+=−π
+⇐⇒ arg
+(z2−z3
+z1−z3
+/z2−z4
+z1−z4
+)
+=−π
+⇐⇒ 1/(z1,z 2;z3,z 4)∈ R
+Hence, z1,z 2,z 3,z 4 are concyclic if and only if(z1,z 2;z3,z 4)∈ R.
+
+--- page 67 ---
+Locus Problems Involving Complex Numbers
+(1) Circle centered atz0 with radiusr> 0:
+|z−z0| =r
+The equation can also be written as
+|z−z0|2 =r2
+(z−z0)(z−z0) =r2
+zz−z0z−z0z + (|z0|2−r2) = 0.
+
+--- page 68 ---
+Locus Problems Involving Complex Numbers
+(2) Perpendicular bisector of the line segment joiningz1 and z2
+(z1̸=z2):
+|z−z1| =|z−z2|
+The equation can also be written as
+|z−z1|2 =|z−z2|2
+(z−z1)(z−z1) = (z−z2)(z−z2)
+(z1−z2)z + (z1−z2)z + (|z2|2−|z1|2) = 0.
+
+--- page 69 ---
+Locus Problems Involving Complex Numbers
+(3) Line joiningz1 and z2 (z1̸=z2):
+z1,z 2,z are collinear⇐⇒ z−z2
+z1−z2
+∈ R ⇐⇒
+⏐⏐⏐⏐⏐⏐
+1 1 1
+z1 z2 z
+z1 z2 z
+⏐⏐⏐⏐⏐⏐
+= 0
+The equation can also be written as
+z−z2
+z1−z2
+− z−z2
+z1−z2
+= 0
+(z1−z2)(z−z2)− (z1−z2)(z−z2) = 0.
+
+--- page 70 ---
+Locus Problems Involving Complex Numbers
+(4) Circle passing through noncollinear pointsz1,z 2,z 3:
+(z1,z 2;z3,z ) = (z1−z3)(z2−z)
+(z2−z3)(z1−z)∈ R.
+The equation can also be written as
+(z1−z3)(z2−z)
+(z2−z3)(z1−z)− (z1−z3)(z2−z)
+(z2−z3)(z1−z) = 0
+
+--- page 71 ---
+Locus Problems Involving Complex Numbers
+Example 6.16
+Show that|z− 1| = 3|z + 1| represents a circle.
+|z− 1|2 = 9|z + 1|2
+(z− 1)(¯z− 1) = 9(z + 1)(¯z + 1)
+z¯z−z− ¯z + 1 = 9(z¯z +z + ¯z + 1)
+8z¯z + 10z + 10¯z + 8 = 0
+z¯z + 5
+4z + 5
+4 ¯z + 1 = 0
+(z + 5
+4)(¯z + 5
+4)− 9
+16 = 0
+|z + 5
+4| = 3
+4
+So the equation represents a
+circle centered at− 5
+4 with ra-
+dius 3
+4.
+Apollonius’s deﬁnition of a circle:
+|AP|
+|BP| = 3
+1.
+
+--- page 72 ---
+Locus Problems Involving Complex Numbers
+Example 6.17
+(a) If|1 +z| =|2−z|, ﬁnd Re(z).
+(b) Find allz∈ C such that
+{
+|z|2−z− ¯z +i(z− ¯z) = 1
+2
+|1 +z| =|2−z|
+(a)
+|1 +z|2 =|2−z|2
+(1 +z)(1 + ¯z) = (2−z)(2− ¯z)
+1 +z + ¯z +z¯z = 4−z− ¯z +z¯z
+z + ¯z = 1
+Re(z) = 1
+2 (it deﬁnes a vertical line)
+
+--- page 73 ---
+Locus Problems Involving Complex Numbers
+(b)
+|z|2−z− ¯z +i(z− ¯z) = 1
+2
+z¯z− (1−i)z− (1 +i)¯z = 1
+2
+[z− (1 +i)]
+[
+¯z− (1 +i)
+]
+= 1
+2 +|1 +i|2
+|z− (1 +i)|2 = 5
+2 (it deﬁnes a circle)
+Put z = 1
+2 +iy where y∈ R. Then
+(1
+2)2 + (y− 1)2 = 5
+2
+y = 5
+2 or y =−1
+2
+So z = 1
+2 + 5
+2i or z = 1
+2− 1
+2i.
+
+--- page 74 ---
+Locus Problems Involving Complex Numbers
+Example 6.18
+Sketch the setIm(1
+z )> 1 on the complex plane.
+Forz =x +iy̸= 0,
+1
+z = ¯z
+z¯z = ¯z
+|z|2 = x−iy
+x2 +y2.
+The inequality Im(1
+z )> 1 becomes
+−y
+x2 +y2 > 1,
+that is
+x2 +y2 +y <0
+(x− 0)2 + (y + 1
+2)2 < (1
+2)2.
+So the inequality represents the region interior to the circle centred at
+z =−i/2 and with radius1/2.
+
+--- page 75 ---
+Locus Problems Involving Complex Numbers
+Example 6.18
+Sketch the setIm(1
+z )> 1 on the complex plane.
+Forz =x +iy,
+Im(1
+z )> 1 ⇐⇒ (x− 0)2 + (y + 1
+2)2 < (1
+2)2.
+
+--- page 76 ---
+Complex Transformation
+Deﬁnition 6.6
+A complex transformationis a function fromC to itself.
+GeoGebra Illustration: Complex Transformation
+
+--- page 77 ---
+Complex Transformation (Optional)
+Example 6.19
+Let f : C→ C be a complex transformation deﬁned byw =f(z) =z2.
+Writez =x +iy and w =u +iv, wherex,y,u,v ∈ R.
+We have
+u +iv =w =z2 = (x +iy)2 = (x2−y2) +i(2xy),
+that is {
+u(x,y ) =x2−y2
+v(x,y ) = 2xy.
+−→
+
+--- page 78 ---
+Complex Transformation (Optional)
+We may also drawz and w on the same plane to compare them:
+Writez =reiθ. Thenw =f(z) =z2 =r2e2iθ.
+
+--- page 79 ---
+Complex Transformation (Optional)
+Some special transformation:
+f(z) =rz r ∈ R\{0} (scaling)
+f(z) =z +a a ∈ C (translation)
+f(z) =eiθz θ ∈ R (rotation)
+f(z) = 1
+z (z̸= 0) (inversion)
+f(z) = ¯z (complex conjugation/reﬂection along the
+real axis)
+Inversion:
+
+--- page 80 ---
+Complex Transformation (Optional)
+Exercise 6.12
+Show that the distance between any two points is preserved under a
+translation, a rotation or the complex conjugation, i.e.
+|f(z1)−f(z2)| =|z1−z2| for allz1,z 2∈ C
+if f is one of the above transformation.
+
+--- page 81 ---
+Complex Transformation (Optional)
+Exercise 6.13
+Let z1,z 2,z 3∈ C be distinct points. Show that the 3-point ratioz1−z3
+z2−z3
+is
+preserved under a translation, a rotation or a scaling, i.e.
+f(z1)−f(z3)
+f(z2)−f(z3) = z1−z3
+z2−z3
+for all distinct pointsz1,z 2,z 3∈ C
+if f is one of the above transformation.
+Direct cosequence:
+▶ △z1z2z3∼△f(z1)f(z2)f(z3)
+▶ If z1,z 2,z 3,z 4∈ C are distinct points, then
+(f(z1),f (z2);f(z3),f (z4)) = (f(z1)−f(z3))(f(z2)−f(z4))
+(f(z2)−f(z3))(f(z1)−f(z4))
+= (z1−z3)(z2−z4)
+(z2−z3)(z1−z4) = (z1,z 2;z3,z 4).
+What about inversionf(z) = 1
+z? Yes, inversions also preserves cross ratios.
+
+--- page 82 ---
+Complex Transformation (Optional)
+Exercise 6.14
+(a) Show that the signed area of any triangle is preserved under a
+translation or a rotation.
+(b) Let f(z) =rz, wherer∈ R\{0}. Show that
+signed area of△f(z1)f(z2)f(z3) =r2· signed area of△z1z2z3.
+(c) Show that signed area of△z1z2z3 =− signed area of△z1z2z3.
+(d) Let ϕ : C→ C be the reﬂection along a straight lineℓ. Show that
+(i) signed area of△ϕ(z1)ϕ(z2)ϕ(z3) =− signed area of△z1z2z3.
+(ii) ϕ(z1)ϕ(z2)ϕ(z3)
+rev
+∼△ z1z2z3.
+Hint: ϕ =h◦g◦ρ◦g−1◦h−1, where
+ρ(z) = ¯z,
+g(z) =eiθz g −1(z) =e−iθz
+h(z) =z +a h −1(z) =z−a.
+
+--- page 83 ---
+Complex Transformation (Optional)
+It is usually better to work on the extended complex planeC∞ = C∪{∞}.
+Deﬁnition 6.7
+Let z1,z 2,z 3,z 4∈ C∞ with at least three distinct points.
+The cross ratio(z1,z 2;z3,z 4) is deﬁned as
+(z1,z 2;z3,z 4) =
+
+
+
+(z1−z3)(z2−z4)
+(z2−z3)(z1−z4) if z2̸=z3 and z1̸=z4
+∞ otherwise.
+If one ofz1,z 2,z 3,z 4 is∞, the cross ratio is deﬁned by taking appropriate
+limit. For example,
+(z1,z 2;z3,∞) = z1−z3
+z2−z3
+.
+Proposition 6.13
+Letz1,z 2,z 3,z 4∈ C∞ with at least three distinct points. Thenz1,z 2,z 3,z 4
+lies on a straight line or a circle if and only if(z1,z 2;z3,z 4)∈ R∪{∞}.
+(Convention:∞ lies on any straight line.)
+
+--- page 84 ---
+Complex Transformation (Optional)
+Deﬁnition 6.8
+A functionf : C∞→ C∞ is said to be aMöbius transformationif
+f(z) = az +b
+cz +d where a,b,c,d ∈ C with ad−bc̸= 0.
+Note:
+(1) ad−bc̸= 0 =⇒ c and d cannot be both zero, andf is not a constant.
+(2) If c̸= 0, we deﬁnef(−d
+c ) =∞ and f(∞) = a
+c.
+(3) If c = 0 (then d̸= 0), f(z) = a
+dz + b
+d and we deﬁnef(∞) =∞.
+Remark:
+▶ The inverse of a Möbius transformation exists and is also a Möbius
+transformation. In fact,
+f−1(z) = dz−b
+−cz +a.
+▶ Clearly, a scaling, a translation, a rotation or an inversion is a Möbius
+transformation.
+
+--- page 85 ---
+Complex Transformation (Optional)
+Proposition 6.14
+Every Möbius transformation is a composition of scalings, translations,
+rotations and inversions.
+Proof. If c = 0 (then d̸= 0), f(z) = a
+dz + b
+d, which is a rotation followed
+by a scaling followed by a translation.
+If c̸= 0,
+f(z) = az +b
+cz +d = bc−ad
+c2 · 1
+z + d
+c
++ a
+c.
+Let
+f1(z) =z + d
+c (translation)
+f2(z) = 1
+z (inversion)
+f3(z) = bc−ad
+c2 z (rotation followed by scaling)
+f4(z) =z + a
+c (translation).
+Then f(z) = (f4◦f3◦f2◦f1)(z).
+
+--- page 86 ---
+Complex Transformation (Optional)
+Direct consequence:
+▶ Cross ratios are preserved by scalings, translations, rotations and
+inversions.
+=⇒ Cross ratios are preserved by Möbius transformations.
+▶ Furthermore, Möbius transformations map straight lines and circles to
+straight lines and circles.
+
+--- page 87 ---
+Complex Transformation (Optional)
+Another way to see that Möbius transformations map straight lines and
+circles to straight lines and circles is to consider their equations.
+Lemma 6.15
+The general equation of a circle or straight line in the complex plane can be
+written in the form
+Az¯z +Bz +B¯z +C = 0 (∗)
+whereA,C ∈ R and|B|2−AC >0. IfA̸= 0, then (∗) represents a circle.
+If A = 0, then (∗) represents a straight line.
+It is then easy to check that scalings, translations, rotations and inversions
+preserve equation of the form (∗). For example, ifw = 1/z, then (∗)
+becomes
+A 1
+ww +B 1
+w +B 1
+w +C = 0
+⇐⇒ Cww +Bw +Bw +A = 0.
+Hence, Möbius transformations map straight lines and circles to straight
+lines and circles.
+
+--- page 88 ---
+Complex Transformation (Optional)
+Another look at cross ratio
+Given three distinct pointsz1,z 2,z 3, there is a unique Möbius
+transformation T which mapsz1,z 2,z 3 to∞, 0, 1 respectively:
+T (z) = (z1−z3)(z2−z)
+(z2−z3)(z1−z).
+(Note T satisﬁes “ad−bc̸= 0” because (z1−z2), (z2−z3), (z3−z1)̸= 0.)
+T
+−→
+Now the cross ratio(z1,z 2;z3,z 4) is the image ofz4 under T:
+(z1,z 2;z3,z 4) = (z1−z3)(z2−z4)
+(z2−z3)(z1−z4) =T (z4).
