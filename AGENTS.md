@@ -402,6 +402,7 @@ Internal progress tracking belongs in `docs/`, not on public-facing pages.
 Maintain and update these as needed:
 - `docs/reference-coverage.md`
 - `docs/chapter-coverage-map.md`
+- `docs/notes-content-supplement-workflow.md`
 - `docs/missing-reference-policy.md`
 - `docs/localization-strategy.md`
 - `docs/terminology-glossary.md`
@@ -434,6 +435,47 @@ When starting work, do this in order:
 
 Do not stop at planning only.
 Do real implementation work.
+
+---
+
+## Notes content supplement workflow
+
+For every future content supplement round, use a gap-first, multi-agent
+workflow. This applies to mathematics notes and to other related Notes content.
+Do not treat it as Math1090 / Math1030 only.
+
+Required sequence:
+
+1. Inspect the currently missing or thin content by checking authored notes,
+   `reference/`, and the relevant internal coverage documents.
+2. Choose the highest-value missing content slice that is actually supported by
+   repository evidence.
+3. Run parallel agent workstreams where the scope is large enough and write
+   ownership is non-conflicting:
+   - a content authoring agent expands the note text into serious,
+     article-style prose;
+   - a visual reference agent prepares GPT Image 2 prompts and generated
+     pedagogical images when a figure materially improves understanding;
+   - an interactive component agent adds or reuses embedded components only
+     when they clarify the idea;
+   - an exercise authoring agent adds WebWork-like practice, including
+     multiple-choice and fill-in questions with correctness checks and proper
+     math rendering where mathematical notation is involved;
+   - a QA agent reviews content accuracy, rendering, exercise grading,
+     answer-solution pairing, export behavior, i18n, and dark/light mode.
+4. Integrate the work under the existing Notes architecture, keeping public
+   pages article-first and avoiding detached app-like experiences.
+5. Update the relevant internal tracking documents, especially
+   `docs/reference-coverage.md`,
+   `docs/notes-content-supplement-workflow.md`,
+   `docs/exercise-solution-integrity.md`, and
+   `docs/interactive-component-behavior.md`.
+6. Before ending the round, commit the completed work, push it to the remote
+   repository, and verify that the production deployment for
+   `www.evanalysis.top` succeeds.
+
+The QA pass must run after integration. It should record what was added, what
+was verified, and what remains missing or intentionally deferred.
 
 ---
 

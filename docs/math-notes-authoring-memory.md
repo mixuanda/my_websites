@@ -53,3 +53,16 @@ As of 2026-04-25, the immediate MATH1030 exercise target is that every public
 unit has at least one checkpoint problem, with thin units getting priority for
 new exercises and explanatory text. Later passes should increase from one
 problem per unit toward fuller exercise sets per chapter.
+
+## Default supplement workflow
+
+Use `docs/notes-content-supplement-workflow.md` as the general workflow for
+future content supplement rounds. That workflow is not limited to mathematics
+notes, but it applies fully to Math1090 and Math1030.
+
+For math-specific passes, start by finding the missing or thin unit, then run
+parallel streams where useful: content writing, GPT Image 2 visual references,
+embedded interaction, WebWork-like exercises with multiple-choice and fill-in
+grading, and a final QA stream. The integrated page should still read as a
+serious note. Visuals, interactions, and exercises support the article; they do
+not replace the exposition.

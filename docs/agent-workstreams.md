@@ -1,6 +1,6 @@
 # Agent workstreams
 
-This project uses separate workstreams so the math notes system can keep moving
+This project uses separate workstreams so the Notes system can keep moving
 without constant merge conflicts in the same core files. The supervisor agent
 keeps the route model, export flow, and localization architecture coherent
 across these workstreams.
@@ -19,8 +19,15 @@ them.
   `docs/terminology-glossary.md`, and `docs/content-parity-checklist.md`.
 - **Math1090 content agent** owns `content/textbook/math1090/**`.
 - **Math1030 content agent** owns `content/textbook/math1030/**`.
+- **General Notes content agent** owns non-math note expansion when a future
+  content supplement round targets adjacent Notes content.
+- **Visual reference agent** owns GPT Image 2 prompts, generated instructional
+  figure assets, figure captions, and export-friendly static descriptions.
 - **Interactive learning agent** owns `src/components/textbook/mdx-*.tsx` and
   `src/components/textbook/interactives.tsx`.
+- **Exercise authoring agent** owns new WebWork-like question design,
+  fill-in answer expectations, multiple-choice distractors, and problem-bank
+  entries that require correctness checks.
 - **Export / static conversion agent** owns
   `src/app/api/textbook-export/**`, `src/lib/textbook/export.ts`, and
   `src/lib/textbook/export-pdf.tsx`.
@@ -49,6 +56,9 @@ split remains the default workflow for future units.
 
 ## Next steps
 
-Keep future unit authoring isolated by course, keep later export work inside
-the export workstream, and let the supervisor handle shared route or catalog
-changes.
+Keep future unit authoring isolated by course or Notes topic, keep visual
+generation and interactive implementation in their own streams, keep
+exercise-grading changes coordinated with the existing problem-bank
+architecture, keep later export work inside the export workstream, and let the
+supervisor handle shared route or catalog changes. At the end of each completed
+round, commit, push, and verify the `www.evanalysis.top` production deployment.
