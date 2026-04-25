@@ -123,6 +123,12 @@ Current MATH1030 practice / rendering progress from April 25, 2026:
 - added checkpoint problems for the new proof-language and REF/RREF existence
   units, and corrected the `2.3 Gaussian elimination and RREF` catalog source
   refs to list `1030gi-n02-02.pdf` explicitly.
+- added the source-backed public MATH1030 appendix-style unit `5.2 RREF
+  uniqueness and well-defined rank` in EN, zh-HK, and zh-CN, using
+  `1030gi-n03-04p.pdf` for the induction proof and `1030gi-n03-04.pdf` for
+  the preserved-column-relation bridge.
+- added checkpoint problems for the new `5.2` unit covering the uniqueness
+  conclusion and reading rank from the pivot-column count.
 
 Current Math1025 expansion progress from April 25, 2026:
 
@@ -382,7 +388,7 @@ These files are the main conceptual sources for authored note pages.
 | MATH1030 | `reference/MATH1030/1030gi-n03-02.pdf` | lecture note | incorporated | yes | no | no | Row-operation characterization of invertibility is now represented in `5.1`, including row-equivalence, row-operation matrices, and the `[A | I]` method. |
 | MATH1030 | `reference/MATH1030/1030gi-n03-03.pdf` | lecture note | incorporated | yes | no | no | Necessary-and-sufficient invertibility conditions are now surfaced as a practical problem-solving dictionary in `5.1`. |
 | MATH1030 | `reference/MATH1030/1030gi-n03-04.pdf` | lecture note | incorporated | yes | no | no | Direct source for the expanded row-equivalence, preserved-column-relation, and rank discussion in `5.1 Invertible matrices`. |
-| MATH1030 | `reference/MATH1030/1030gi-n03-04p.pdf` | optional appendix | partially incorporated | partial | no | no | The uniqueness of RREF and well-defined rank now appear in `5.1`, though the full induction proof is still only summarized. |
+| MATH1030 | `reference/MATH1030/1030gi-n03-04p.pdf` | optional appendix | incorporated | yes | no | no | Direct source for `5.2 RREF uniqueness and well-defined rank`, covering the induction proof that a row-equivalence class contains only one RREF and making rank independent of the row-reduction path. |
 | MATH1030 | `reference/MATH1030/1030gi-n04-01.pdf` | lecture note | incorporated | yes | no | no | Direct source for `4.2 Set language and solution sets`, including membership, ambient spaces, solution sets, null spaces, and span as set notation. |
 | MATH1030 | `reference/MATH1030/1030gi-n04-02.pdf` | lecture note | incorporated | yes | no | no | Direct source for `4.2 Set language and solution sets`, especially two-inclusion set equality proofs and redundant-vector span arguments. |
 | MATH1030 | `reference/MATH1030/1030gi-n04-03.pdf` | lecture note | incorporated | yes | no | no | Direct source for the new null-space note. |
@@ -752,9 +758,10 @@ existing invertibility note instead of creating a detached new route.
 - Updated the catalog so the MATH1030 vector-space chapter now runs through
   `6.8`; later determinant, eigenvalue, and inner-product order values were
   shifted accordingly.
-- Remaining issues: after the later `2.5` pass, this backlog has moved from
-  REF / RREF existence into deeper RREF uniqueness / well-defined rank proof
-  detail and exercise-depth parity.
+- Remaining issues at that point: after the later `2.5` pass, this backlog
+  moved from REF / RREF existence into deeper RREF uniqueness / well-defined
+  rank proof detail and exercise-depth parity. The RREF uniqueness proof
+  detail is handled by checkpoint 18 below.
 
 ### 2026-04-25 checkpoint 16: late-chapter worked-example refinement
 
@@ -802,7 +809,25 @@ existing invertibility note instead of creating a detached new route.
   units.
 - Updated this coverage ledger and removed the stale `0314 表格2.pdf` entry
   because no such file is present in the current `reference/MATH1030` tree.
-- Remaining issues: `1030gi-n03-04p.pdf` still contains deeper RREF uniqueness
-  / well-defined rank proof detail than the public notes currently spell out,
-  and assignments `as01` through `as03` remain only partially converted into
-  WebWork-like public checkpoint coverage.
+- Remaining issues at that point: `1030gi-n03-04p.pdf` still contained deeper
+  RREF uniqueness / well-defined rank proof detail than the public notes then
+  spelled out. Checkpoint 18 handles that proof gap; assignments `as01`
+  through `as03` remain only partially converted into WebWork-like public
+  checkpoint coverage.
+
+### 2026-04-25 checkpoint 18: MATH1030 RREF uniqueness and rank appendix pass
+
+- Added a new three-locale public unit, `5.2 RREF uniqueness and well-defined
+  rank`, from `1030gi-n03-04p.pdf`, with `1030gi-n03-04.pdf` as supporting
+  material for preserved linear relations among corresponding columns.
+- The new unit explains why RREF uniqueness is needed, proves uniqueness by
+  induction on the number of pivot columns, shows how free-column relations
+  force a second RREF column by column, and defines rank only after uniqueness
+  is established.
+- Updated the MATH1030 catalog so the unit appears under public Notes after
+  `5.1 Invertible matrices`.
+- Added checkpoint questions for the uniqueness conclusion and pivot-count
+  rank reading.
+- Remaining issues: the MATH1030 content backlog is now mainly broader
+  assignment / tutorial exercise parity and export / rendering QA across the
+  expanded higher-chapter sequence.

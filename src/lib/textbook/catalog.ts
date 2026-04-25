@@ -1729,10 +1729,6 @@ const math1030InvertibilityUnits: TextbookUnitMeta[] = [
         file: "reference/MATH1030/1030gi-n03-04.pdf",
       },
       {
-        file: "reference/MATH1030/1030gi-n03-04p.pdf",
-        note: "Appendix on uniqueness of RREF and rank",
-      },
-      {
         file: "reference/MATH1030/1030efghi-tutorial-week07.pdf",
       },
       {
@@ -1746,6 +1742,43 @@ const math1030InvertibilityUnits: TextbookUnitMeta[] = [
     ),
     unitId: "math1030.invertibility.invertible-matrices",
     unitNumber: "5.1",
+  },
+  {
+    accessTier: "MEMBER",
+    chapterId: "invertibility",
+    chapterNumber: "5",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Prove uniqueness of reduced row-echelon form and use it to make rank independent of the chosen row-reduction path.",
+      "證明最簡行階梯形的唯一性，並用它說明秩不依賴所選行化簡路徑。",
+      "证明简化行阶梯形的唯一性，并用它说明秩不依赖所选行化简路径。"
+    ),
+    glossaryRefs: ["rref", "row-equivalence", "rank", "pivot-column"],
+    interactiveIds: [],
+    order: 11.5,
+    prerequisites: [
+      "math1030.matrices.existence-of-row-echelon-forms",
+      "math1030.invertibility.invertible-matrices",
+    ],
+    slug: "rref-uniqueness-and-rank",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/1030gi-n03-04p.pdf",
+        note: "Appendix on uniqueness of RREF and well-defined rank",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n03-04.pdf",
+        note: "Column-relation preservation under row-equivalence",
+      },
+    ],
+    title: text(
+      "5.2 RREF uniqueness and well-defined rank",
+      "5.2 RREF 唯一性與秩的良定性",
+      "5.2 RREF 唯一性与秩的良定性"
+    ),
+    unitId: "math1030.invertibility.rref-uniqueness-and-rank",
+    unitNumber: "5.2",
   },
 ];
 

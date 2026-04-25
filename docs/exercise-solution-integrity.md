@@ -369,3 +369,20 @@ unit-level coverage.
   checks, and production smoke checks passed on `www.evanalysis.top` after
   deployment `dpl_5xU7ZhJ1pRJxwxkzGBzqsDNTxoSy`.
 - Remaining issues: none for the new multiple-choice checkpoint pair
+
+### 2026-04-25 checkpoint 12: MATH1030 RREF uniqueness checkpoint additions
+
+- Checkpoint name: `5.2 RREF uniqueness and well-defined rank` exercise
+  integrity
+- What was inspected: the new in-page quick checks / reveal pairs in all three
+  localized `5.2` files, plus `src/lib/textbook/problem-bank.ts`
+- What was changed: added one multiple-choice checkpoint for the RREF
+  uniqueness conclusion and one fill-in checkpoint for reading rank from the
+  pivot-column count
+- Integrity note: the in-page quick checks place each answer immediately after
+  its prompt; the problem-bank fill-in answer is a single integer to avoid
+  fragile symbolic parsing
+- Verification: `npm run lint` and `npm run build` passed; local browser QA
+  confirmed the new checkpoint prompts render on the EN note page
+- Remaining issues: broader assignment / tutorial exercise parity remains the
+  next MATH1030 practice gap

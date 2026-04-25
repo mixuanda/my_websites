@@ -1,0 +1,438 @@
+---
+title: "5.2 RREF uniqueness and well-defined rank"
+description: "Prove that every row-equivalence class has only one reduced row-echelon form, then use that theorem to make rank independent of the chosen reduction path."
+---
+
+Gaussian elimination feels algorithmic, but one subtle theoretical question is
+still open:
+
+> If two people row-reduce the same matrix by different legal routes, why must
+> they obtain the same RREF?
+
+Existence says that some RREF can be reached. Uniqueness says that there is
+only one possible RREF. This second statement is what allows us to speak about
+**the** RREF of a matrix and to define **rank** without referring to a
+particular computation.
+
+## Before you start
+
+This appendix uses three earlier facts.
+
+1. Row-equivalence can be written as multiplication on the left by an
+   invertible matrix.
+2. Row-equivalence preserves linear relations among corresponding columns.
+3. In an RREF matrix, pivot columns and free columns have a very rigid shape.
+
+The proof is longer than a row-reduction calculation, but the idea is simple:
+compare the columns of two possible RREFs from left to right. The pivot columns
+are forced first, and then every free column is forced by its linear relation
+with the pivot columns.
+
+## The theorem
+
+<TheoremCard title="Uniqueness of RREF">
+Let `A` be any matrix. Suppose `B` and `C` are both reduced row-echelon forms.
+If `B` is row-equivalent to `A` and `C` is row-equivalent to `A`, then
+
+$$
+B = C.
+$$
+</TheoremCard>
+
+Since row-equivalence is transitive, it is enough to prove the following
+slightly more direct statement.
+
+<TheoremCard title="Equivalent form">
+If `B` and `C` are reduced row-echelon forms of the same size and `B` is
+row-equivalent to `C`, then `B=C`.
+</TheoremCard>
+
+Notice the word **reduced**. Ordinary row-echelon form is not unique. A matrix
+can have many different REF outputs, but only one RREF output.
+
+## Column relations survive row-equivalence
+
+Write the columns of two row-equivalent `p \times q` matrices as
+
+$$
+B=[b_1\ b_2\ \cdots\ b_q],
+\qquad
+C=[c_1\ c_2\ \cdots\ c_q].
+$$
+
+If `B` is row-equivalent to `C`, then there is an invertible `p \times p`
+matrix `G` such that
+
+$$
+B = GC.
+$$
+
+Thus `b_j = Gc_j` for every column index `j`.
+
+<TheoremCard title="Preservation of column relations">
+Suppose
+
+$$
+c_j=\alpha_1c_{k_1}+\alpha_2c_{k_2}+\cdots+\alpha_nc_{k_n}.
+$$
+
+Then
+
+$$
+b_j=\alpha_1b_{k_1}+\alpha_2b_{k_2}+\cdots+\alpha_nb_{k_n}.
+$$
+
+Conversely, any relation among the corresponding `b` columns gives the same
+relation among the corresponding `c` columns.
+</TheoremCard>
+
+The converse uses `G^{-1}`. This is why invertibility of `G` is essential:
+we can move column relations forward and backward between row-equivalent
+matrices.
+
+## What RREF columns look like
+
+Let `C` be an RREF matrix. Suppose its pivot columns are
+
+$$
+d_1<d_2<\cdots<d_r.
+$$
+
+Then the pivot columns have the standard-vector shape:
+
+$$
+c_{d_1}=e_1,\quad c_{d_2}=e_2,\quad \ldots,\quad c_{d_r}=e_r,
+$$
+
+where the vectors are written inside the ambient column length of `C`.
+
+Free columns are controlled by the pivot columns to their left. If `c_j` is a
+free column and the pivot columns strictly to its left are
+`c_{d_1},\ldots,c_{d_h}`, then
+
+$$
+c_j=\gamma_{1j}c_{d_1}+\gamma_{2j}c_{d_2}+\cdots+\gamma_{hj}c_{d_h}.
+$$
+
+The coefficients are not mysterious: they are exactly the entries of `c_j` in
+the pivot rows.
+
+Finally, each pivot column is genuinely new at the moment it appears:
+
+$$
+c_{d_k}
+\quad\text{is not a linear combination of columns strictly to its left.}
+$$
+
+These three observations are the engine of the uniqueness proof.
+
+## Proof by induction on the number of pivots
+
+To avoid circularity, read "the rank of an RREF" in this proof simply as "the
+number of pivot columns in that RREF." Only after uniqueness is proved will we
+define the rank of an arbitrary matrix.
+
+<CollapsibleProof title="Full proof of RREF uniqueness">
+Let `P(r)` be the statement:
+
+> If `B` and `C` are RREF matrices of the same size, `B` is row-equivalent to
+> `C`, and `C` has exactly `r` pivot columns, then `B=C`.
+
+We prove `P(r)` for all `r\ge 0`.
+
+**Base case.** Suppose `C` has no pivot columns. Then `C` has no nonzero rows,
+so `C` is the zero matrix. Since `B` is row-equivalent to `C`, we can write
+`B=GC` for some invertible matrix `G`. Hence `B=G0=0`, so `B=C`.
+
+**Induction step.** Assume `P(s)` is true. Let `C` have `s+1` pivot columns,
+located at
+
+$$
+d_1<d_2<\cdots<d_s<d_{s+1}.
+$$
+
+Split both matrices at the last pivot column:
+
+$$
+B=[B^\flat\ B^\natural],
+\qquad
+C=[C^\flat\ C^\natural],
+$$
+
+where `B^\flat` and `C^\flat` contain all columns strictly to the left of
+column `d_{s+1}`.
+
+The left blocks `B^\flat` and `C^\flat` are still RREF matrices, they are
+row-equivalent, and `C^\flat` has exactly `s` pivot columns. By the induction
+hypothesis,
+
+$$
+B^\flat=C^\flat.
+$$
+
+So the two matrices already agree in every column before `d_{s+1}`.
+
+Now compare column `d_{s+1}`. In `C`, this pivot column is not a linear
+combination of the columns to its left. Row-equivalence preserves this
+non-combination statement, so the `d_{s+1}`-th column of `B` is not a linear
+combination of the columns of `B` to its left.
+
+Since the left blocks are already equal, the first `s` pivot columns of `B`
+are exactly
+
+$$
+e_1,e_2,\ldots,e_s.
+$$
+
+Therefore the `d_{s+1}`-th column of `B` must have a nonzero entry at or below
+row `s+1`. Because `B` is in RREF, this forces column `d_{s+1}` to be the next
+pivot column of `B`, namely
+
+$$
+b_{d_{s+1}}=e_{s+1}=c_{d_{s+1}}.
+$$
+
+It remains to compare columns to the right of `d_{s+1}`. Let `\ell>d_{s+1}`.
+If `c_\ell` is a free column of `C`, then it has a unique expression
+
+$$
+c_\ell
+=
+\gamma_{1\ell}c_{d_1}
++\cdots+
+\gamma_{s\ell}c_{d_s}
++\gamma_{s+1,\ell}c_{d_{s+1}}.
+$$
+
+Row-equivalence preserves this relation, so
+
+$$
+b_\ell
+=
+\gamma_{1\ell}b_{d_1}
++\cdots+
+\gamma_{s\ell}b_{d_s}
++\gamma_{s+1,\ell}b_{d_{s+1}}.
+$$
+
+But the pivot columns of `B` and `C` have now been shown to be the same.
+Therefore `b_\ell=c_\ell`.
+
+Every column of `B` equals the corresponding column of `C`, so `B=C`. This
+proves `P(s+1)`, and the induction is complete.
+</CollapsibleProof>
+
+## A concrete miniature version
+
+The proof above may feel abstract because it tracks arbitrary columns. Here is
+the same logic in a small RREF matrix:
+
+$$
+C=
+\begin{bmatrix}
+1 & 2 & 0 & -1\\
+0 & 0 & 1 & 3\\
+0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+The pivot columns are columns `1` and `3`. They are
+
+$$
+c_1=e_1,
+\qquad
+c_3=e_2.
+$$
+
+The free columns satisfy
+
+$$
+c_2=2c_1,
+\qquad
+c_4=-c_1+3c_3.
+$$
+
+Now suppose `B` is another RREF matrix row-equivalent to `C`. The first pivot
+column cannot disappear, so `b_1=e_1`. Since the relation `c_2=2c_1` is
+preserved, `b_2=2b_1=2e_1`, so the second column is forced.
+
+The third column is not a combination of columns `1` and `2`, so it must become
+the next pivot column of `B`: `b_3=e_2`. Finally, the relation
+`c_4=-c_1+3c_3` is preserved, so
+
+$$
+b_4=-b_1+3b_3=-e_1+3e_2=c_4.
+$$
+
+Thus `B=C`. The entire matrix is forced column by column.
+
+## Rank is now well defined
+
+<Definition title="Rank">
+For any matrix `A`, the **rank** of `A`, written `\operatorname{rank}(A)`, is
+the number of pivot columns in the unique RREF row-equivalent to `A`.
+</Definition>
+
+This definition is legitimate because uniqueness has already been proved. If
+different row-reduction paths could end at different RREFs, then the number of
+pivot columns could depend on the route taken. The theorem rules out that
+possibility.
+
+Rank is therefore not a memory of how you computed. It is an invariant of the
+matrix.
+
+For computations, the workflow is now safe:
+
+1. reduce `A` to RREF;
+2. mark the pivot columns of that RREF;
+3. count them to get `\operatorname{rank}(A)`.
+
+If the question asks for a basis of the column space, use the pivot positions
+to return to the corresponding columns of the original matrix. If the question
+only asks for rank, the RREF itself is enough. This distinction matters because
+row operations preserve column relations, but they do not usually preserve the
+actual column space.
+
+## Common mistakes
+
+<CommonMistake title="Do not claim ordinary REF is unique">
+The uniqueness theorem is about RREF, not arbitrary row-echelon form. Before
+normalizing pivots and clearing entries above them, many different REF outputs
+can occur.
+</CommonMistake>
+
+<CommonMistake title="Do not define rank from a chosen reduction path">
+It is acceptable to compute rank by row reduction, but the definition is not
+"whatever pivot count I happened to get." The uniqueness theorem guarantees
+that all legal RREF paths give the same pivot count.
+</CommonMistake>
+
+<CommonMistake title="Do not forget the role of column relations">
+The proof does not say that row operations preserve the actual column space.
+They generally do not. The key preserved information is the pattern of linear
+relations among corresponding columns.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="If two RREF matrices are row-equivalent to the same matrix, what can you conclude?">
+Use the uniqueness theorem, not another row reduction.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+They must be equal. A row-equivalence class contains exactly one RREF.
+</RevealSolution>
+
+<QuickCheck prompt="Why does rank become well defined only after RREF uniqueness is proved?">
+Mention the number of pivot columns.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Rank is defined as the number of pivot columns in the RREF. If the RREF were
+not unique, different reduction paths might give different pivot counts. Since
+the RREF is unique, the pivot count is independent of the path.
+</RevealSolution>
+
+<QuickCheck prompt="If the unique RREF row-equivalent to `A` has pivot columns `1`, `3`, and `5`, what is `\operatorname{rank}(A)`?">
+Count the pivot columns, not the free columns.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The rank is `3`, because there are three pivot columns.
+</RevealSolution>
+
+## Exercises
+
+### Exercise 1
+
+Let
+
+$$
+C=
+\begin{bmatrix}
+1&4&0&2\\
+0&0&1&-3\\
+0&0&0&0
+\end{bmatrix}.
+$$
+
+Identify the pivot columns and express each free column as a linear combination
+of the pivot columns.
+
+<RevealSolution title="Guided solution for exercise 1">
+The pivot columns are columns `1` and `3`:
+
+$$
+c_1=e_1,\qquad c_3=e_2.
+$$
+
+The free columns are columns `2` and `4`. From their entries in the pivot rows,
+
+$$
+c_2=4c_1,
+\qquad
+c_4=2c_1-3c_3.
+$$
+</RevealSolution>
+
+### Exercise 2
+
+Suppose `B` is an RREF matrix row-equivalent to the matrix `C` in Exercise 1.
+Use column relations to explain why `B=C`.
+
+<RevealSolution title="Guided solution for exercise 2">
+Since `c_1` is the first pivot column, the first column of `B` must be
+`b_1=e_1=c_1`. The relation `c_2=4c_1` is preserved, so
+`b_2=4b_1=4c_1=c_2`.
+
+The third column of `C` is not a combination of the columns to its left, so the
+third column of `B` is forced to be the next pivot column:
+
+$$
+b_3=e_2=c_3.
+$$
+
+Finally, `c_4=2c_1-3c_3` is preserved, so
+
+$$
+b_4=2b_1-3b_3=2c_1-3c_3=c_4.
+$$
+
+Thus every column agrees, and `B=C`.
+</RevealSolution>
+
+### Exercise 3
+
+Explain why the following two row-equivalent REF matrices do not contradict
+RREF uniqueness:
+
+$$
+E_1=
+\begin{bmatrix}
+1&2\\
+0&0
+\end{bmatrix},
+\qquad
+E_2=
+\begin{bmatrix}
+2&4\\
+0&0
+\end{bmatrix}.
+$$
+
+<RevealSolution title="Guided solution for exercise 3">
+They are row-equivalent, and both have a row-echelon shape, but `E_2` is not
+reduced row-echelon form because its leading entry is `2`, not `1`.
+
+RREF uniqueness says that the reduced row-echelon representative is unique. It
+does not say that every intermediate REF representative is unique.
+</RevealSolution>
+
+## Related notes
+
+Read this after
+[2.5 Existence of row-echelon forms](/en/notes/math1030/matrices/existence-of-row-echelon-forms)
+and
+[5.1 Invertible matrices](/en/notes/math1030/invertibility/invertible-matrices).
+It also supports
+[6.6 Column space, row space, and rank](/en/notes/math1030/vector-spaces/column-space-row-space-rank).

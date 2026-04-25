@@ -183,5 +183,36 @@ Use this shape for future entries:
   deployment `dpl_5xU7ZhJ1pRJxwxkzGBzqsDNTxoSy`. Production smoke checks on
   `www.evanalysis.top` returned 200 for the representative new note routes and
   TXT / PDF exports.
-- Remaining gaps: deeper RREF uniqueness / well-defined rank proof detail from
-  `1030gi-n03-04p.pdf`, plus broader assignment / practice-set exercise parity.
+- Remaining gaps at that point: deeper RREF uniqueness / well-defined rank
+  proof detail from `1030gi-n03-04p.pdf`, plus broader assignment /
+  practice-set exercise parity. The RREF proof gap is handled in the following
+  pass.
+
+### 2026-04-25: MATH1030 RREF uniqueness and well-defined rank gap pass
+
+- Gap selected: `reference/MATH1030/1030gi-n03-04p.pdf` still held the full
+  induction proof for RREF uniqueness and the well-defined rank bridge, while
+  the public notes had only summarized that material inside `5.1`.
+- Reference basis: `reference/MATH1030/1030gi-n03-04p.pdf`, with
+  `reference/MATH1030/1030gi-n03-04.pdf` for the preserved-column-relation
+  theorem used in the proof.
+- Content files changed: added and strengthened the EN / zh-HK / zh-CN
+  `5.2 RREF uniqueness and well-defined rank` unit family and registered it in
+  `src/lib/textbook/catalog.ts`.
+- Visuals added: none; this is a proof-heavy appendix where theorem,
+  collapsible-proof, mistake, and guided-solution blocks are the appropriate
+  instructional surface.
+- Interactions added: none; no new widget was justified for this proof pass.
+- Exercises added: in-page quick checks and guided exercises now cover
+  uniqueness, pivot-count rank, free-column relations, and the difference
+  between REF and RREF uniqueness; the problem bank adds MCQ and fill-in
+  checkpoint items for the new unit.
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed. Local production smoke checks on port `3000`
+  returned 200 for the EN / zh-HK / zh-CN note routes, EN and zh-HK TXT
+  exports, and EN / zh-CN PDF exports. Browser QA confirmed the EN and zh-HK
+  pages render with the proof section, language links, export control, and no
+  captured console errors.
+- Deployment: not attempted in this local pass.
+- Remaining gaps: broader assignment / tutorial exercise parity and export /
+  rendering QA across the expanded MATH1030 sequence.

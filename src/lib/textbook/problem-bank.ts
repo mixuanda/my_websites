@@ -706,6 +706,139 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["invertible-matrix", "inverse", "linear-system"],
   },
+  "checkpoint.math1030.rref-uniqueness-conclusion": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.rref-uniqueness-conclusion",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "invertibility",
+    unitId: "math1030.invertibility.rref-uniqueness-and-rank",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Suppose `B` and `C` are reduced row-echelon forms of the same size and `B` is row-equivalent to `C`. What must be true?",
+      "假設 `B` 與 `C` 是同尺寸的最簡行階梯形，而且 `B` 與 `C` 行等價。哪一項必定正確？",
+      "假设 `B` 与 `C` 是同尺寸的简化行阶梯形，而且 `B` 与 `C` 行等价。哪一项必定正确？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`B=C`.",
+          "`B=C`。",
+          "`B=C`。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "`B` and `C` may have different pivot columns.",
+          "`B` 與 `C` 可以有不同樞軸欄。",
+          "`B` 与 `C` 可以有不同主元列。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "Only their row spaces are equal; the matrices need not be equal.",
+          "只有它們的行空間相等；矩陣本身不一定相等。",
+          "只有它们的行空间相等；矩阵本身不一定相等。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "They are ordinary REF forms, so uniqueness does not apply.",
+          "它們只是普通 REF，所以唯一性不適用。",
+          "它们只是普通 REF，所以唯一性不适用。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The uniqueness theorem applies to reduced row-echelon forms, not arbitrary REF outputs.",
+        "唯一性定理適用於最簡行階梯形，不適用於任意 REF 輸出。",
+        "唯一性定理适用于简化行阶梯形，不适用于任意 REF 输出。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "Row-equivalence places `B` and `C` in the same row-equivalence class.",
+        "行等價表示 `B` 與 `C` 屬於同一個行等價類。",
+        "行等价表示 `B` 与 `C` 属于同一个行等价类。"
+      ),
+      text(
+        "The theorem says that a row-equivalence class contains at most one RREF.",
+        "定理說明一個行等價類最多只有一個 RREF。",
+        "定理说明一个行等价类最多只有一个 RREF。"
+      ),
+      text(
+        "Since both matrices are RREF, they must be the same matrix.",
+        "既然兩個矩陣都是 RREF，它們必須是同一個矩陣。",
+        "既然两个矩阵都是 RREF，它们必须是同一个矩阵。"
+      ),
+    ],
+    skillTags: ["rref", "row-equivalence", "uniqueness"],
+  },
+  "checkpoint.math1030.rref-rank-pivot-count": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.rref-rank-pivot-count",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "invertibility",
+    unitId: "math1030.invertibility.rref-uniqueness-and-rank",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Fill in the blank: if the unique RREF row-equivalent to `A` has pivot columns 1, 3, and 5, then `rank(A)=____`.",
+      "填空：若與 `A` 行等價的唯一 RREF 有第 1、3、5 欄為樞軸欄，則 `rank(A)=____`。",
+      "填空：若与 `A` 行等价的唯一 RREF 有第 1、3、5 列为主元列，则 `rank(A)=____`。"
+    ),
+    correctAnswer: {
+      value: "3",
+      equivalentValues: ["rank 3"],
+      equivalence: [{ type: "trimmed" }, { type: "case-insensitive" }],
+    },
+    hints: [
+      text(
+        "Rank is the number of pivot columns in the unique RREF.",
+        "秩就是唯一 RREF 中的樞軸欄數目。",
+        "秩就是唯一 RREF 中的主元列数目。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    syntaxGuidance: text(
+      "Enter a single integer.",
+      "輸入一個整數即可。",
+      "输入一个整数即可。"
+    ),
+    solutionSteps: [
+      text(
+        "The pivot columns are listed as columns 1, 3, and 5.",
+        "題目列出的樞軸欄是第 1、3、5 欄。",
+        "题目列出的主元列是第 1、3、5 列。"
+      ),
+      text(
+        "There are three pivot columns.",
+        "共有三個樞軸欄。",
+        "共有三个主元列。"
+      ),
+      text(
+        "Therefore `rank(A)=3`.",
+        "因此 `rank(A)=3`。",
+        "因此 `rank(A)=3`。"
+      ),
+    ],
+    skillTags: ["rank", "pivot-columns", "rref"],
+  },
   "checkpoint.math1030.null-space-dimension": {
     accessTier: "MEMBER",
     id: "checkpoint.math1030.null-space-dimension",

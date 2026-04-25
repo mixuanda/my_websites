@@ -282,3 +282,23 @@ Current checkpoint resolution:
   `dpl_5xU7ZhJ1pRJxwxkzGBzqsDNTxoSy`, and production smoke checks on
   `www.evanalysis.top` passed after the final MDX terminology pass.
 - Remaining issues: none for this MATH1030 appendix rendering pass
+
+### 2026-04-25 checkpoint 12: MATH1030 RREF uniqueness appendix rendering
+
+- Checkpoint name: `5.2 RREF uniqueness and well-defined rank` rendering pass
+- What was inspected: `1030gi-n03-04p.pdf`, the new three-locale MDX unit
+  family, the existing MDX block registry, and the catalog source-ref map
+- What was changed: registered the new unit under public Notes and kept the
+  page on existing `TheoremCard`, `Definition`, `CollapsibleProof`,
+  `CommonMistake`, `QuickCheck`, and `RevealSolution` blocks
+- Rendering note: the proof uses dense display math and column-vector notation
+  but introduces no new renderer surface; no source-tracing block is shown on
+  the public page
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed. Local production route checks returned 200 for
+  the EN / zh-HK / zh-CN note pages; TXT and PDF export checks returned 200
+  for representative EN, zh-HK, and zh-CN export routes. Browser QA confirmed
+  the EN and zh-HK pages render the title and proof section with no captured
+  console errors.
+- Remaining issues: no rendering blocker found for this unit; broader
+  MATH1030 export and member-checkpoint QA should continue in later passes

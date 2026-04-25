@@ -96,5 +96,10 @@ The current pass especially strengthens the `math1030` note flow.
 
 ## Next steps
 
-Add the next `math1030` widgets for linear transformations and geometry-heavy
-intuition once the source audit supports those units.
+The `math1030` `5.2 RREF uniqueness and well-defined rank` appendix pass did
+not add a widget. The material is proof-structural, and the existing theorem,
+collapsible-proof, quick-check, and reveal-solution blocks preserve the
+article-first reading flow better than a detached interaction.
+
+Add the next `math1030` widgets only for geometry-heavy or state-changing
+topics once the source audit supports those units.

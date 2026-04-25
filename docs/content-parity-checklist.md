@@ -386,3 +386,22 @@ three supported written languages.
   to remain idiomatic in each language
 - Remaining issues: browser and export QA still need to confirm that the new
   display math and table render cleanly after regeneration
+
+### 2026-04-25 checkpoint 7: RREF uniqueness appendix kept in parity
+
+This checkpoint adds one new MATH1030 appendix unit in all three supported
+written languages.
+
+- Checkpoint name: Parallel EN, zh-HK, and zh-CN authoring of `5.2 RREF
+  uniqueness and well-defined rank`
+- What was inspected: `reference/MATH1030/1030gi-n03-04p.pdf`, supporting
+  column-relation material from `1030gi-n03-04.pdf`, and the existing
+  localized `5.1` invertibility page
+- What was changed: each locale now has the same theorem structure,
+  induction-proof structure, concrete RREF example, rank definition, common
+  mistakes, quick checks, and guided exercises
+- What was verified: the three files keep matching section order and
+  exercise-answer pairing while preserving locale-specific terminology such as
+  zh-HK `樞軸欄` and zh-CN `主元列`; contentlayer, lint, production build,
+  local route checks, representative TXT / PDF exports, and browser QA passed
+- Remaining issues: broader assignment / tutorial exercise parity remains
