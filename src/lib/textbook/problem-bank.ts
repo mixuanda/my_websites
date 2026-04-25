@@ -1538,6 +1538,57 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["diagonalization", "eigenvector", "basis"],
   },
+  "checkpoint.math1030.diagonalization-order": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.diagonalization-order",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "eigenvalues",
+    unitId: "math1030.eigenvalues.diagonalization-and-similarity",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Suppose `S=[v_1 v_2]`, `Av_1=3v_1`, and `Av_2=1v_2`. What is `S^{-1}AS`?",
+      "假設 `S=[v_1 v_2]`、`Av_1=3v_1`、`Av_2=1v_2`。`S^{-1}AS` 是甚麼？",
+      "假设 `S=[v_1 v_2]`、`Av_1=3v_1`、`Av_2=1v_2`。`S^{-1}AS` 是什么？"
+    ),
+    choices: [
+      { id: "a", text: text("`diag(3,1)`", "`diag(3,1)`", "`diag(3,1)`") },
+      { id: "b", text: text("`diag(1,3)`", "`diag(1,3)`", "`diag(1,3)`") },
+      { id: "c", text: text("`[[0,3],[1,0]]`", "`[[0,3],[1,0]]`", "`[[0,3],[1,0]]`") },
+      { id: "d", text: text("It cannot be diagonal.", "它不可能是對角矩陣。", "它不可能是对角矩阵。") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The diagonal entries must follow the same order as the eigenvector columns in `S`.",
+        "對角線元素必須跟 `S` 的特徵向量列次序一致。",
+        "对角线元素必须跟 `S` 的特征向量列次序一致。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "The first column of `S` is `v_1`, whose eigenvalue is `3`.",
+        "`S` 的第一列是 `v_1`，它的特徵值是 `3`。",
+        "`S` 的第一列是 `v_1`，它的特征值是 `3`。"
+      ),
+      text(
+        "The second column is `v_2`, whose eigenvalue is `1`.",
+        "第二列是 `v_2`，它的特徵值是 `1`。",
+        "第二列是 `v_2`，它的特征值是 `1`。"
+      ),
+      text(
+        "Therefore the diagonal matrix is `diag(3,1)`.",
+        "因此對角矩陣是 `diag(3,1)`。",
+        "因此对角矩阵是 `diag(3,1)`。"
+      ),
+    ],
+    skillTags: ["diagonalization", "eigenvector", "basis-order"],
+  },
   "checkpoint.math1030.characteristic-root": {
     accessTier: "MEMBER",
     id: "checkpoint.math1030.characteristic-root",
@@ -1632,6 +1683,57 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
     ],
     skillTags: ["inner-product", "orthogonal"],
+  },
+  "checkpoint.math1030.angle-cosine": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.angle-cosine",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "inner-products",
+    unitId: "math1030.inner-products.inner-products-norms-and-angles",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "For `u=(1,2)` and `v=(3,1)`, what is `cos(theta)`, where `theta` is the angle between them?",
+      "對 `u=(1,2)` 和 `v=(3,1)`，若 `theta` 是它們的夾角，`cos(theta)` 是多少？",
+      "对 `u=(1,2)` 和 `v=(3,1)`，若 `theta` 是它们的夹角，`cos(theta)` 是多少？"
+    ),
+    choices: [
+      { id: "a", text: text("`1/sqrt(2)`", "`1/sqrt(2)`", "`1/sqrt(2)`") },
+      { id: "b", text: text("`0`", "`0`", "`0`") },
+      { id: "c", text: text("`sqrt(2)`", "`sqrt(2)`", "`sqrt(2)`") },
+      { id: "d", text: text("`-1/sqrt(2)`", "`-1/sqrt(2)`", "`-1/sqrt(2)`") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Use `cos(theta)=<u,v>/(||u|| ||v||)`.",
+        "使用 `cos(theta)=<u,v>/(||u|| ||v||)`。",
+        "使用 `cos(theta)=<u,v>/(||u|| ||v||)`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "`<u,v>=1*3+2*1=5`.",
+        "`<u,v>=1*3+2*1=5`。",
+        "`<u,v>=1*3+2*1=5`。"
+      ),
+      text(
+        "`||u||=sqrt(5)` and `||v||=sqrt(10)`.",
+        "`||u||=sqrt(5)` 且 `||v||=sqrt(10)`。",
+        "`||u||=sqrt(5)` 且 `||v||=sqrt(10)`。"
+      ),
+      text(
+        "Thus `cos(theta)=5/(sqrt(5)sqrt(10))=1/sqrt(2)`.",
+        "因此 `cos(theta)=5/(sqrt(5)sqrt(10))=1/sqrt(2)`。",
+        "因此 `cos(theta)=5/(sqrt(5)sqrt(10))=1/sqrt(2)`。"
+      ),
+    ],
+    skillTags: ["inner-product", "angle", "norm"],
   },
   "checkpoint.math1030.orthonormal-coefficient": {
     accessTier: "MEMBER",
@@ -1749,6 +1851,60 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
     ],
     skillTags: ["gram-schmidt", "span", "orthogonal-basis"],
+  },
+  "checkpoint.math1030.gram-schmidt-projection-coefficient": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.gram-schmidt-projection-coefficient",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "inner-products",
+    unitId: "math1030.inner-products.gram-schmidt-orthogonalization",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "In Gram-Schmidt, let `v_1=w_1=(1,1,0)` and `w_2=(1,0,1)`. Fill in `(<w_2,v_1>)/(||v_1||^2)=____`.",
+      "在 Gram-Schmidt 中，令 `v_1=w_1=(1,1,0)` 且 `w_2=(1,0,1)`。填空：`(<w_2,v_1>)/(||v_1||^2)=____`。",
+      "在 Gram-Schmidt 中，令 `v_1=w_1=(1,1,0)` 且 `w_2=(1,0,1)`。填空：`(<w_2,v_1>)/(||v_1||^2)=____`。"
+    ),
+    correctAnswer: {
+      value: "1/2",
+      equivalentValues: ["0.5", ".5"],
+      equivalence: [{ type: "trimmed" }, { type: "symbolic" }],
+    },
+    hints: [
+      text(
+        "`<w_2,v_1>=1` and `||v_1||^2=2`.",
+        "`<w_2,v_1>=1` 且 `||v_1||^2=2`。",
+        "`<w_2,v_1>=1` 且 `||v_1||^2=2`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    syntaxGuidance: text(
+      "Enter a number or fraction.",
+      "請輸入數字或分數。",
+      "请输入数字或分数。"
+    ),
+    solutionSteps: [
+      text(
+        "Compute `<w_2,v_1>=(1,0,1) dot (1,1,0)=1`.",
+        "計算 `<w_2,v_1>=(1,0,1) dot (1,1,0)=1`。",
+        "计算 `<w_2,v_1>=(1,0,1) dot (1,1,0)=1`。"
+      ),
+      text(
+        "Compute `||v_1||^2=1^2+1^2+0^2=2`.",
+        "計算 `||v_1||^2=1^2+1^2+0^2=2`。",
+        "计算 `||v_1||^2=1^2+1^2+0^2=2`。"
+      ),
+      text(
+        "Therefore the projection coefficient is `1/2`.",
+        "因此投影係數是 `1/2`。",
+        "因此投影系数是 `1/2`。"
+      ),
+    ],
+    skillTags: ["gram-schmidt", "projection", "inner-product"],
   },
   "checkpoint.math1030.cauchy-schwarz-bound": {
     accessTier: "MEMBER",

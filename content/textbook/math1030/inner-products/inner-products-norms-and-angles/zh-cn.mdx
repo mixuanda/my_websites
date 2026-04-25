@@ -250,6 +250,69 @@ $$
 
 这个观察之后便会在任意 `\mathbb{R}^m` 中变成正交的代数定义。
 
+<WorkedExample title="计算夹角，并从长度反推内积">
+令
+
+$$
+u=
+\begin{bmatrix}
+1\\2
+\end{bmatrix},
+\qquad
+v=
+\begin{bmatrix}
+3\\1
+\end{bmatrix}.
+$$
+
+先计算内积：
+
+$$
+\langle u,v\rangle=1\cdot3+2\cdot1=5.
+$$
+
+两个范数是
+
+$$
+\|u\|=\sqrt{1^2+2^2}=\sqrt5,
+\qquad
+\|v\|=\sqrt{3^2+1^2}=\sqrt{10}.
+$$
+
+因此
+
+$$
+\cos\theta
+=\frac{\langle u,v\rangle}{\|u\|\,\|v\|}
+=\frac{5}{\sqrt5\sqrt{10}}
+=\frac{1}{\sqrt2}.
+$$
+
+所以 `\theta=\pi/4`，夹角是锐角。
+
+同一个内积也可以由长度反推出。因为
+
+$$
+u+v=
+\begin{bmatrix}
+4\\3
+\end{bmatrix},
+\qquad
+\|u+v\|^2=25,
+$$
+
+极化恒等式给出
+
+$$
+\langle u,v\rangle
+=\frac12(25-5-10)
+=5.
+$$
+
+这个第二种算法是一个有用检查：夹角公式与长度公式其实读的是同一份内
+积信息。
+</WorkedExample>
+
 ## 常见错误
 
 <CommonMistake title="内积的结果是一个数，不是一个向量">

@@ -243,3 +243,16 @@ Current checkpoint resolution:
   checkpoint is considered deployed
 - Remaining issues: run member-page route and TXT/PDF export checks after the
   generated content refresh
+
+### 2026-04-25 checkpoint 10: MATH1030 late-chapter static calculation blocks
+
+- Checkpoint name: `8.2`, `9.1`, and `9.3` worked-example formatting pass
+- What was inspected: the three localized MDX files for diagonalization, inner
+  products / angles, and Gram-Schmidt orthogonalization
+- What was changed: added display-math-heavy worked examples and a markdown
+  table that intentionally degrades well into TXT / PDF exports
+- Rendering note: no new MDX block type was introduced; the pass uses existing
+  `WorkedExample` blocks, display math, inline math, and a standard markdown
+  table so the shared renderer remains the only formatting surface
+- Remaining issues: rerun contentlayer and the production build, then verify
+  representative public routes plus TXT / PDF exports for the new examples

@@ -38,8 +38,8 @@ remaining Math1090 backlog.
 | `math1030` | 5 Invertibility | Authored | Strong | `5.1` now includes prerequisite preparation, one-sided inverse warnings, an invertibility-dictionary workflow, null-space noninvertibility tests, inverse-solve examples, and expanded checkpoint questions; appendix proofs remain partial. |
 | `math1030` | 6 Vector spaces, span, basis, rank | Authored through `6.8` | Strong | `6.3` now has the span-membership algorithm, `6.4` has the homogeneous-system dependence algorithm, `6.5` includes dimension counting, minimal-spanning-set extraction, and comparable-subspace criteria; `6.6` has a static rank map; `6.7` covers matrix subspaces, bases, and dimension; `6.8` adds basis existence, the Replacement Theorem, ordered bases, and change-of-basis matrices. Remaining work is mostly the optional REF/RREF proof appendix and deeper exercise/export QA. |
 | `math1030` | 7 Determinants | Authored through `7.3` | Strong | `7.3` deliberately absorbs the local appendix path to cofactors, adjoints, and Cramer's rule. |
-| `math1030` | 8 Eigenvalues and diagonalization | Authored through `8.3` | Strong | `8.3` includes multiplicities, the distinct-eigenvalue test, and a first Cayley-Hamilton pass. |
-| `math1030` | 9 Inner products and orthogonality | Authored through `9.4` | Strong | `9.4` completes the chapter with Cauchy-Schwarz and triangle inequalities after orthogonal bases and Gram-Schmidt. |
+| `math1030` | 8 Eigenvalues and diagonalization | Authored through `8.3` | Strong | `8.2` now includes a full `2 by 2` diagonalization computation with ordered `S` / `D`; `8.3` includes multiplicities, the distinct-eigenvalue test, and a first Cayley-Hamilton pass. |
+| `math1030` | 9 Inner products and orthogonality | Authored through `9.4` | Strong | `9.1` now has a full angle / polarization example, and `9.3` has a static Gram-Schmidt table before `9.4` completes the chapter with Cauchy-Schwarz and triangle inequalities. |
 
 ## CSCI2520
 

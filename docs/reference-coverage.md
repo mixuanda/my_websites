@@ -732,3 +732,26 @@ existing invertibility note instead of creating a detached new route.
 - Remaining issues: `1030gi-n02-03p.pdf` remains the main optional linear
   systems appendix backlog, focused on existence of REF / RREF and preservation
   of pivot columns during reduction from REF to RREF.
+
+### 2026-04-25 checkpoint 16: late-chapter worked-example refinement
+
+- Revisited already-authored MATH1030 late chapters against the `1030gi-n**`
+  and `MATH1030-Notes` material, focusing on places where the public note had
+  the right theorem spine but too little calculation for independent study.
+- Expanded `8.2 Diagonalization and similarity` in EN, zh-HK, and zh-CN with a
+  full `2 by 2` diagonalization example: characteristic polynomial, two
+  eigenspaces, construction of `S` and `D`, verification through `AS=SD`, and
+  the ordering convention for eigenvector columns.
+- Expanded `9.1 Inner products, norms, and angles` in all three locales with a
+  complete angle computation for two vectors, plus a polarization identity
+  check showing how the same inner product can be recovered from norms.
+- Expanded `9.3 Gram-Schmidt orthogonalization` in all three locales with a
+  static study table for a three-vector Gram-Schmidt computation. This gives
+  export-friendly projection data and intermediate orthogonal vectors instead
+  of relying only on interactive or prose explanation.
+- Added three checkpoint questions tied to these strengthened units:
+  diagonalization order, angle cosine, and the first Gram-Schmidt projection
+  coefficient.
+- Remaining issues: late-chapter MATH1030 now has better computation support,
+  but tutorial / practice-set material can still support broader exercise sets
+  after the core article pages are stable.

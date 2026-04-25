@@ -94,6 +94,111 @@ $$
 
 ## 第一批对角化例子
 
+<WorkedExample title="由一个 2 乘 2 矩阵建立 `S` 和 `D`">
+令
+
+$$
+A=
+\begin{bmatrix}
+2&1\\
+1&2
+\end{bmatrix}.
+$$
+
+我们从头开始把 `A` 对角化。
+
+先计算特征多项式：
+
+$$
+\det(A-\lambda I)
+=
+\begin{vmatrix}
+2-\lambda&1\\
+1&2-\lambda
+\end{vmatrix}
+=(2-\lambda)^2-1
+=\lambda^2-4\lambda+3.
+$$
+
+因此
+
+$$
+\det(A-\lambda I)=(\lambda-1)(\lambda-3),
+$$
+
+所以特征值是 `1` 和 `3`。
+
+对 `\lambda=3`，
+
+$$
+A-3I=
+\begin{bmatrix}
+-1&1\\
+1&-1
+\end{bmatrix},
+$$
+
+所以可以取特征向量
+
+$$
+v_1=
+\begin{bmatrix}
+1\\1
+\end{bmatrix}.
+$$
+
+对 `\lambda=1`，
+
+$$
+A-I=
+\begin{bmatrix}
+1&1\\
+1&1
+\end{bmatrix},
+$$
+
+所以可以取特征向量
+
+$$
+v_2=
+\begin{bmatrix}
+1\\-1
+\end{bmatrix}.
+$$
+
+现在把特征向量按列放入 `S`，并在 `D` 的对角线上用相同次序放入对应
+特征值：
+
+$$
+S=
+\begin{bmatrix}
+1&1\\
+1&-1
+\end{bmatrix},
+\qquad
+D=
+\begin{bmatrix}
+3&0\\
+0&1
+\end{bmatrix}.
+$$
+
+两个特征向量线性无关，所以 `S` 可逆。而且
+
+$$
+AS=SD,
+$$
+
+因为第一列表示 `Av_1=3v_1`，第二列表示 `Av_2=1v_2`。因此
+
+$$
+S^{-1}AS=D.
+$$
+
+最重要的习惯是保持次序一致：如果 `S` 的列依次是 `v_1,v_2`，那么 `D`
+对角线上的特征值也必须按相同次序排列。
+</WorkedExample>
+
 <WorkedExample title="一个可对角化的上三角矩阵">
 令
 

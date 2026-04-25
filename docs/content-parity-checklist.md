@@ -363,3 +363,21 @@ languages.
 - Current resume point: once connectivity and build verification are available
   again, continue from the next source-backed MATH1030 unit rather than
   reopening `5.1`
+
+### 2026-04-25 checkpoint 6: late-chapter MATH1030 examples kept in parity
+
+This checkpoint deepened three already-authored late MATH1030 units in all
+three supported written languages.
+
+- Checkpoint name: Parallel EN, zh-HK, and zh-CN expansion of `8.2`, `9.1`,
+  and `9.3`
+- What was inspected: the localized diagonalization, inner-product angle, and
+  Gram-Schmidt MDX files
+- What was changed: each locale received the same instructional additions:
+  a full `2 by 2` diagonalization example, an angle / polarization worked
+  example, and a static Gram-Schmidt computation table
+- What was verified: the additions keep the same mathematical data, ordering,
+  and exercise targets across the three locales while allowing the actual prose
+  to remain idiomatic in each language
+- Remaining issues: browser and export QA still need to confirm that the new
+  display math and table render cleanly after regeneration

@@ -332,3 +332,17 @@ unit-level coverage.
   the problem bank, so the public exercise and checkpoint agree
 - Remaining issues: verify rendered checkpoint order and member-gated answer
   reveal behavior after build refresh
+
+### 2026-04-25 checkpoint 10: MATH1030 late-chapter checkpoint additions
+
+- Checkpoint name: `8.2`, `9.1`, and `9.3` checkpoint integrity
+- What was inspected: the new worked examples for diagonalization order, angle
+  computation, and the Gram-Schmidt projection coefficient
+- What was changed: added one problem-bank item for each strengthened unit, with
+  localized prompts, hints, answer policies, and guided solution steps
+- Integrity note: the diagonalization item checks that eigenvalue order follows
+  the column order in `S`; the angle item uses the same vectors and answer as
+  the public worked example; the Gram-Schmidt item asks only for the first
+  projection coefficient to keep the fill-in answer unambiguous
+- Remaining issues: verify rendered checkpoint cards and member-gated solution
+  reveal behavior after the production build refresh

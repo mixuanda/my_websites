@@ -98,6 +98,112 @@ guessing a lucky matrix `S`; it is about finding a full basis of eigenvectors.
 
 ## First diagonalization examples
 
+<WorkedExample title="Build `S` and `D` from a 2 by 2 matrix">
+Let
+
+$$
+A=
+\begin{bmatrix}
+2&1\\
+1&2
+\end{bmatrix}.
+$$
+
+We will diagonalize `A` from scratch.
+
+First compute the characteristic polynomial:
+
+$$
+\det(A-\lambda I)
+=
+\begin{vmatrix}
+2-\lambda&1\\
+1&2-\lambda
+\end{vmatrix}
+=(2-\lambda)^2-1
+=\lambda^2-4\lambda+3.
+$$
+
+Hence
+
+$$
+\det(A-\lambda I)=(\lambda-1)(\lambda-3),
+$$
+
+so the eigenvalues are `1` and `3`.
+
+For `\lambda=3`,
+
+$$
+A-3I=
+\begin{bmatrix}
+-1&1\\
+1&-1
+\end{bmatrix},
+$$
+
+so an eigenvector is
+
+$$
+v_1=
+\begin{bmatrix}
+1\\1
+\end{bmatrix}.
+$$
+
+For `\lambda=1`,
+
+$$
+A-I=
+\begin{bmatrix}
+1&1\\
+1&1
+\end{bmatrix},
+$$
+
+so an eigenvector is
+
+$$
+v_2=
+\begin{bmatrix}
+1\\-1
+\end{bmatrix}.
+$$
+
+Now put the eigenvectors into the columns of `S`, in the same order as the
+eigenvalues in `D`:
+
+$$
+S=
+\begin{bmatrix}
+1&1\\
+1&-1
+\end{bmatrix},
+\qquad
+D=
+\begin{bmatrix}
+3&0\\
+0&1
+\end{bmatrix}.
+$$
+
+The two eigenvectors are linearly independent, so `S` is invertible. Also,
+
+$$
+AS=SD,
+$$
+
+because the first column says `Av_1=3v_1` and the second column says
+`Av_2=1v_2`. Therefore
+
+$$
+S^{-1}AS=D.
+$$
+
+The important habit is the ordering: if you put `v_1,v_2` into `S`, then the
+matching eigenvalues must appear in the same order down the diagonal of `D`.
+</WorkedExample>
+
 <WorkedExample title="A diagonalizable upper-triangular matrix">
 Let
 
