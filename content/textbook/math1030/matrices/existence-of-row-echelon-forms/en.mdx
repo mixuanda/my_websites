@@ -1,0 +1,251 @@
+---
+title: "2.5 Existence of row-echelon forms"
+description: "Read the optional proof that every matrix can be row-reduced to REF and then to RREF, and learn why the pivot structure is not merely an algorithmic guess."
+---
+
+The previous notes teach how to carry out Gaussian elimination and how to read
+the result. This note asks a more theoretical question:
+
+> Why is it legitimate to expect a row-echelon form, and then a reduced
+> row-echelon form, to exist for every matrix?
+
+This question matters because row reduction is used throughout the course. We
+use it to solve systems, find free variables, test span, test independence,
+compute inverses, find ranks, and build bases. If echelon forms were only a
+collection of examples, the later theory would rest on guesswork. The theorem
+below says that the algorithm has a guaranteed target.
+
+## What is being proved
+
+<TheoremCard title="Existence of REF">
+For every matrix `C`, there exists a row-echelon form `C^\#` such that `C^\#`
+is row-equivalent to `C`.
+</TheoremCard>
+
+<TheoremCard title="Existence of RREF">
+For every matrix `C`, there exists a reduced row-echelon form `C'` such that
+`C'` is row-equivalent to `C`.
+</TheoremCard>
+
+The first theorem says that Gaussian elimination can always reach a staircase
+form. The second theorem says that, once a staircase form has been reached, the
+extra cleanup steps can always reach reduced form.
+
+The proof is optional, but it is valuable because it explains why the row
+reduction process is not just a recipe. It is a finite, structured argument.
+
+## Induction on the number of rows
+
+The REF existence proof is by induction on the number of rows.
+
+<Definition title="The induction proposition">
+Let `P(m)` be the statement: if `A` is a matrix with `m` rows, then `A` is
+row-equivalent to some row-echelon form `A^\#` with `m` rows.
+</Definition>
+
+The base case is direct. If a matrix has only one row, it is already in row
+echelon form: either it is the zero row, or its first nonzero entry is the
+leading entry of the only nonzero row.
+
+For the induction step, assume `P(k)` is true and let `A` be a matrix with
+`k+1` rows.
+
+If `A` is the zero matrix, there is nothing to prove. Otherwise, find the
+leftmost nonzero column of `A`. In that column, choose the topmost nonzero
+entry and swap its row into the first row if necessary. Call the resulting
+first pivot value `\beta`.
+
+After that, use the first row to clear all entries below `\beta` in the same
+column. The matrix has the block shape
+
+$$
+\begin{bmatrix}
+O_{1\times(j-1)} & \beta & u \\
+O_{k\times(j-1)} & 0_k & V
+\end{bmatrix},
+$$
+
+where `V` is a matrix with `k` rows.
+
+Now the induction hypothesis applies to `V`. It can be row-reduced to some
+row-echelon form `V'`. Performing the corresponding row operations on the lower
+`k` rows of the whole matrix gives
+
+$$
+\begin{bmatrix}
+O_{1\times(j-1)} & \beta & u \\
+O_{k\times(j-1)} & 0_k & V'
+\end{bmatrix}.
+$$
+
+This matrix is in row-echelon form: the first pivot is in column `j`, all
+entries below it are zero, and the lower block has the required staircase
+structure by induction.
+
+<TheoremCard title="Conclusion of the REF proof">
+By mathematical induction, every matrix with a positive number of rows is
+row-equivalent to some row-echelon form.
+</TheoremCard>
+
+The point of the proof is not to memorize the block notation. The point is to
+see the recursive structure: one pivot is placed, everything below it is
+cleared, and the remaining smaller matrix is handled by the same theorem.
+
+## From REF to RREF
+
+The second part begins with a matrix already in row-echelon form. The goal is
+to prove that it can be changed into reduced row-echelon form without losing
+row equivalence.
+
+The induction parameter is now the rank, meaning the number of nonzero rows in
+the row-echelon form.
+
+<TheoremCard title="REF-to-RREF lemma">
+If `A` is a row-echelon form of rank `r`, then there exists a reduced
+row-echelon form `A'` of rank `r` such that `A'` is row-equivalent to `A`.
+</TheoremCard>
+
+The base case `r=0` is immediate: a row-echelon form with rank `0` is the zero
+matrix, which is already in RREF.
+
+For the induction step, suppose the result is known for rank `k`, and let `A`
+be a row-echelon form of rank `k+1`. Focus first on the columns strictly to the
+left of the last pivot column. Those columns form a smaller row-echelon block
+of rank `k`, so the induction hypothesis reduces that left block.
+
+Then normalize the last pivot to `1` and clear the entries above it. These row
+operations do not disturb the already-reduced pivot columns to the left,
+because the echelon form has zeros in the relevant positions.
+
+The result is a matrix whose pivot columns each contain exactly one nonzero
+entry, and that entry is `1`. Hence the result is in RREF.
+
+## Pivot columns are preserved in the REF-to-RREF cleanup
+
+The proof actually gives a useful extra statement.
+
+<TheoremCard title="Pivot columns are preserved from REF to RREF">
+Suppose `A` is a row-echelon form of rank `r`, with pivot columns
+`d_1,\ldots,d_r`. Then `A` is row-equivalent to a reduced row-echelon form
+whose pivot columns are still `d_1,\ldots,d_r`.
+</TheoremCard>
+
+This is why, once a matrix is in REF, you can already read the pivot columns.
+Continuing from REF to RREF cleans the pivot columns; it does not move them.
+
+<WorkedExample title="REF already tells you the pivot columns">
+Consider
+
+$$
+\begin{bmatrix}
+2 & 4 & 1 & 7\\
+0 & 0 & 3 & 5\\
+0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+This is in REF. The pivot columns are columns `1` and `3`. To reach RREF, one
+would scale the first two nonzero rows and clear entries above the second
+pivot. The values in the free columns may change, but the pivot columns remain
+columns `1` and `3`.
+</WorkedExample>
+
+## What this note does not prove
+
+This note proves existence. It shows that at least one REF and at least one
+RREF can be reached from any matrix.
+
+There is another important theorem, used later when rank is treated as a
+well-defined invariant: the RREF of a matrix is unique. That uniqueness theorem
+is stronger than existence. Existence says a target can be reached; uniqueness
+says all valid reduction paths reach the same reduced target.
+
+For ordinary computation, you mainly need the practical consequence:
+
+1. elimination can always be organized into REF;
+2. REF can always be cleaned into RREF;
+3. pivot columns read in REF are the same pivot columns in the corresponding
+   RREF cleanup;
+4. row equivalence preserves the solution set of an augmented system.
+
+## Common mistakes
+
+<CommonMistake title="Treating induction as a calculation trick">
+The proof is not saying that every matrix should be reduced by writing block
+matrices on paper. The induction proof explains why the algorithm must
+terminate with the desired form.
+</CommonMistake>
+
+<CommonMistake title="Confusing existence with uniqueness">
+Existence of RREF says some reduced row-echelon form can be reached. It does
+not, by itself, prove that different row-reduction paths must lead to the same
+RREF.
+</CommonMistake>
+
+<CommonMistake title="Thinking RREF changes pivot columns from REF">
+The REF-to-RREF argument preserves pivot columns. The cleanup clears entries
+above pivots and normalizes pivots, but it does not shift the leading positions
+to new columns.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Why does the REF proof use induction on the number of rows?">
+Look at what remains after the first pivot column has been placed and cleared.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+After the first pivot column is placed and cleared, the unreduced part is a
+smaller matrix with one fewer row block to handle. That is exactly the kind of
+recursive situation where induction on the number of rows applies.
+</RevealSolution>
+
+<QuickCheck prompt="Once a matrix is in REF, can the pivot columns move while cleaning to RREF?">
+Think about the extra statement proved in the REF-to-RREF lemma.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+No. The cleanup from REF to RREF preserves the pivot columns. It scales pivot
+rows and clears entries above pivots, but the pivot positions remain in the
+same columns.
+</RevealSolution>
+
+## Exercises
+
+### Exercise 1
+
+Explain why the following matrix is already in REF, and identify its pivot
+columns:
+
+$$
+\begin{bmatrix}
+0 & 2 & 1 & 4\\
+0 & 0 & 5 & 6\\
+0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+<RevealSolution title="Guided solution for exercise 1">
+The zero row is at the bottom. The first nonzero row has leading entry in
+column `2`, and the second nonzero row has leading entry in column `3`, which
+is strictly to the right. Hence the matrix is in REF. Its pivot columns are
+columns `2` and `3`.
+</RevealSolution>
+
+### Exercise 2
+
+Suppose a row-echelon form has pivot columns `1`, `4`, and `5`. What can you
+say about the pivot columns after reducing it further to RREF?
+
+<RevealSolution title="Guided solution for exercise 2">
+The pivot columns remain `1`, `4`, and `5`. The REF-to-RREF cleanup may scale
+pivot rows and clear entries above the pivots, but it preserves the pivot
+column positions.
+</RevealSolution>
+
+## Related notes
+
+This appendix should be read after
+[2.3 Gaussian elimination and RREF](/en/notes/math1030/matrices/gaussian-elimination-rref)
+and before relying heavily on row reduction in span, independence, rank, or
+inverse computations.

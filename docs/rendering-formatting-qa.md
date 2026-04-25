@@ -262,3 +262,22 @@ Current checkpoint resolution:
   table so the shared renderer remains the only formatting surface
 - Remaining issues: rerun contentlayer and the production build, then verify
   representative public routes plus TXT / PDF exports for the new examples
+
+### 2026-04-25 checkpoint 11: MATH1030 proof appendix rendering
+
+- Checkpoint name: `1.2` proof-language and `2.5` REF/RREF existence rendering
+  pass
+- What was inspected: pending MATH1030 appendix references, the existing MDX
+  block registry, the catalog source-ref map, and checkpoint problem rendering
+  requirements
+- What was changed: added two new three-locale note families using existing
+  `Definition`, `TheoremCard`, `WorkedExample`, `CommonMistake`, `QuickCheck`,
+  and `RevealSolution` blocks only; no new visual or interactive component was
+  introduced
+- Rendering note: both pages intentionally use article-first prose and display
+  math / block matrices that should degrade cleanly into TXT and PDF exports;
+  source-tracing remains internal through the catalog and coverage docs
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  local production route / TXT / PDF export smoke checks passed after the final
+  MDX terminology pass.
+- Remaining issues: confirm the production deployment after push

@@ -351,3 +351,21 @@ unit-level coverage.
   projection coefficient to keep the fill-in answer unambiguous
 - Remaining issues: verify rendered checkpoint cards and member-gated solution
   reveal behavior after the production build refresh
+
+### 2026-04-25 checkpoint 11: MATH1030 appendix checkpoint additions
+
+- Checkpoint name: `1.2` proof-language and `2.5` REF/RREF existence
+  checkpoint integrity
+- What was inspected: the new in-page quick checks / reveal pairs for all
+  three locales, plus `src/lib/textbook/problem-bank.ts`
+- What was changed: added one checkpoint question for contrapositive versus
+  converse reading, and one checkpoint question for pivot-column preservation
+  during REF-to-RREF cleanup
+- Integrity note: both new checkpoint entries are multiple choice to avoid
+  fragile symbolic parsing; the correct answers match the in-page quick checks
+  and the solution steps remain localized in EN / zh-HK / zh-CN
+- Verification: `npm run lint` and `npm run build` passed, and representative
+  public note routes plus TXT / PDF exports passed local production smoke
+  checks after the checkpoint additions.
+- Remaining issues: confirm checkpoint card behavior on the production
+  deployment after push

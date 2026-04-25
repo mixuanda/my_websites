@@ -116,6 +116,13 @@ Current MATH1030 practice / rendering progress from April 25, 2026:
 - recorded the durable "textbook prose + purposeful interaction + visual
   support + WebWork-like exercises" authoring expectation in
   `docs/math-notes-authoring-memory.md`.
+- added two source-backed public MATH1030 appendix-style units in all three
+  locales: `1.2 Reading theorems and proof language`, using the proof-language
+  and counterexample appendices, and `2.5 Existence of row-echelon forms`,
+  using the optional REF/RREF existence proof appendix.
+- added checkpoint problems for the new proof-language and REF/RREF existence
+  units, and corrected the `2.3 Gaussian elimination and RREF` catalog source
+  refs to list `1030gi-n02-02.pdf` explicitly.
 
 Current Math1025 expansion progress from April 25, 2026:
 
@@ -350,24 +357,24 @@ These files are the main conceptual sources for authored note pages.
 
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| MATH1030 | `reference/MATH1030/MATH1030-Notes.pdf` | master notes | partially incorporated | partial | no | no | Public notes now cover chapters 1-9 through `9.4`, plus a gap pass on set language and matrix subspaces. Remaining backlog is mainly optional proof appendices and deeper exercise / export QA; linear transformations only appear as isolated motivation in the checked master notes, not as a supported full unit. |
+| MATH1030 | `reference/MATH1030/MATH1030-Notes.pdf` | master notes | partially incorporated | partial | no | no | Public notes now cover chapters 1-9 through `9.4`, plus gap passes on proof language, REF/RREF existence, set language, and matrix subspaces. Remaining backlog is mainly optional uniqueness proof detail and deeper exercise / export QA; linear transformations only appear as isolated motivation in the checked master notes, not as a supported full unit. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-01.pdf` | lecture note | incorporated | yes | no | no | Merged into `2.1 Matrix basics`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-02.pdf` | lecture note | incorporated | yes | no | no | Merged into `3.1 Matrix multiplication and identity matrices`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-03.pdf` | lecture note | incorporated | yes | no | no | Merged into `3.2 Transpose and special matrices`. |
-| MATH1030 | `reference/MATH1030/1030gi-n01-03p.pdf` | optional appendix | pending | no | partial | no | Proof-culture appendix; useful for future theorem / proof-writing note or appendix pages. |
-| MATH1030 | `reference/MATH1030/1030gi-n01-03q.pdf` | optional appendix | pending | no | partial | no | Logic-phrase appendix; could inform a later proof-language note if public scope expands. |
+| MATH1030 | `reference/MATH1030/1030gi-n01-03p.pdf` | optional appendix | incorporated | yes | no | no | Direct source for `1.2 Reading theorems and proof language`, covering theorem formats, assumptions / conclusions, direct proofs, and definitions. |
+| MATH1030 | `reference/MATH1030/1030gi-n01-03q.pdf` | optional appendix | incorporated | yes | no | no | Direct source for `1.2 Reading theorems and proof language`, covering logical words, conditionals, converses, contrapositives, equivalence, quantifiers, and uniqueness. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-04.pdf` | lecture note | incorporated | yes | no | no | Merged into `3.2 Transpose and special matrices`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-04p.pdf` | optional appendix | overlap | partial | yes | no | Induction appendix overlaps with existing MATH1090 induction note; no dedicated MATH1030 public page yet. |
-| MATH1030 | `reference/MATH1030/1030gi-n01-04q.pdf` | optional appendix | overlap | partial | yes | no | Counterexample appendix informs note-writing style, but is not yet a separate public note. |
+| MATH1030 | `reference/MATH1030/1030gi-n01-04q.pdf` | optional appendix | incorporated | yes | no | no | Counterexample appendix is now incorporated into `1.2 Reading theorems and proof language`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-05.pdf` | lecture note | incorporated | yes | no | no | Core linear-combination definitions, closure, and column-vector emphasis are represented in `6.3`; the matrix-space adaptation is now supported by `6.7`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-06.pdf` | lecture note | incorporated | yes | no | no | Dependence / independence definitions and the homogeneous-system dictionary are now explicit in `6.4`, with matrix-space context covered by `6.7`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-07.pdf` | lecture note | incorporated | yes | no | no | Row-operation language is merged into `2.2` and `2.3`. |
 | MATH1030 | `reference/MATH1030/1030gi-n01-08.pdf` | lecture note | incorporated | yes | no | no | Direct source for the new `3.3 Row-operation matrices` note, with standard matrix units also connected to `6.7`. |
 | MATH1030 | `reference/MATH1030/1030gi-n02-01.pdf` | lecture note | incorporated | yes | no | no | Merged into `2.2 Augmented matrices and row operations`. |
-| MATH1030 | `reference/MATH1030/1030gi-n02-02.pdf` | lecture note | incorporated | yes | no | no | Core source for the RREF note; already reflected in public coverage even though not every source ref was listed before this pass. |
-| MATH1030 | `reference/MATH1030/1030gi-n02-02p.pdf` | optional appendix | overlap | partial | yes | no | Small-size RREF classification overlaps with current Gaussian-elimination coverage and export examples. |
+| MATH1030 | `reference/MATH1030/1030gi-n02-02.pdf` | lecture note | incorporated | yes | no | no | Core source for the RREF note and now explicitly listed in the `2.3 Gaussian elimination and RREF` catalog source refs. |
+| MATH1030 | `reference/MATH1030/1030gi-n02-02p.pdf` | optional appendix | partially incorporated | partial | yes | no | Small-size RREF classification now supports `2.5 Existence of row-echelon forms`; not every classification table is reproduced publicly. |
 | MATH1030 | `reference/MATH1030/1030gi-n02-03.pdf` | lecture note | incorporated | yes | no | no | Direct source for Gaussian elimination and uniqueness discussion. |
-| MATH1030 | `reference/MATH1030/1030gi-n02-03p.pdf` | optional appendix | pending | no | partial | no | Existence / uniqueness proofs for REF and RREF are not yet written as a theorem-first appendix note. |
+| MATH1030 | `reference/MATH1030/1030gi-n02-03p.pdf` | optional appendix | incorporated | yes | no | no | Direct source for `2.5 Existence of row-echelon forms`, covering induction on row count for REF existence and induction on rank for REF-to-RREF existence while preserving pivot columns. |
 | MATH1030 | `reference/MATH1030/1030gi-n02-04.pdf` | lecture note | incorporated | yes | no | no | Merged into `4.1 Homogeneous systems and null space`. |
 | MATH1030 | `reference/MATH1030/1030gi-n02-05.pdf` | lecture note | incorporated | yes | no | no | The membership algorithm for span via `[U|v]`, consistency, inconsistency, and coefficient recovery is now explicit in `6.3`. |
 | MATH1030 | `reference/MATH1030/1030gi-n02-06.pdf` | lecture note | incorporated | yes | no | no | The homogeneous-system algorithm for dependence / independence and reading nontrivial relations from `Uc=0` is now explicit in `6.4`. |
@@ -456,7 +463,6 @@ public notes.
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | MATH1030 | `reference/MATH1030/1030 added.zip` | archive bundle | overlap | no | yes | no | Contains duplicates of `n06-*`, `n07-*`, and `n08-01`; use extracted PDFs already present beside it. |
-| MATH1030 | `reference/MATH1030/0314 表格2.pdf` | non-course handout | blocked | no | no | yes | Not MATH1030 mathematics content. |
 | MATH1030 | `reference/MATH1030/MATH1090_Worksheet5 (1).pdf` | stray file | blocked | no | yes | yes | MATH1090 rational-number worksheet stored in the wrong course folder. |
 
 ## MATH1025 coverage
@@ -746,9 +752,9 @@ existing invertibility note instead of creating a detached new route.
 - Updated the catalog so the MATH1030 vector-space chapter now runs through
   `6.8`; later determinant, eigenvalue, and inner-product order values were
   shifted accordingly.
-- Remaining issues: `1030gi-n02-03p.pdf` remains the main optional linear
-  systems appendix backlog, focused on existence of REF / RREF and preservation
-  of pivot columns during reduction from REF to RREF.
+- Remaining issues: after the later `2.5` pass, this backlog has moved from
+  REF / RREF existence into deeper RREF uniqueness / well-defined rank proof
+  detail and exercise-depth parity.
 
 ### 2026-04-25 checkpoint 16: late-chapter worked-example refinement
 
@@ -772,3 +778,31 @@ existing invertibility note instead of creating a detached new route.
 - Remaining issues: late-chapter MATH1030 now has better computation support,
   but tutorial / practice-set material can still support broader exercise sets
   after the core article pages are stable.
+
+### 2026-04-25 checkpoint 17: MATH1030 proof-language and REF/RREF appendix pass
+
+- Audited `reference/MATH1030` against the live `content/textbook/math1030`
+  tree and confirmed that the remaining "reference exists but no public note"
+  gaps are mainly optional appendix material and exercise-depth parity, not
+  missing core chapter families.
+- Added a new three-locale public unit, `1.2 Reading theorems and proof
+  language`, from `1030gi-n01-03p.pdf`, `1030gi-n01-03q.pdf`, and
+  `1030gi-n01-04q.pdf`. The unit covers theorem assumptions and conclusions,
+  converses, contrapositives, equivalences, direct proof, definitions,
+  existence / uniqueness, and counterexamples.
+- Added a new three-locale public unit, `2.5 Existence of row-echelon forms`,
+  from `1030gi-n02-03p.pdf`, with `1030gi-n02-02p.pdf` as supporting
+  small-size RREF context. The unit explains induction on row count for REF
+  existence, induction on rank for REF-to-RREF existence, and preservation of
+  pivot columns during cleanup.
+- Updated the MATH1030 catalog so both new units appear under public Notes,
+  and corrected the `2.3 Gaussian elimination and RREF` source refs to include
+  `1030gi-n02-02.pdf` explicitly.
+- Added checkpoint questions for the new proof-language and REF/RREF existence
+  units.
+- Updated this coverage ledger and removed the stale `0314 表格2.pdf` entry
+  because no such file is present in the current `reference/MATH1030` tree.
+- Remaining issues: `1030gi-n03-04p.pdf` still contains deeper RREF uniqueness
+  / well-defined rank proof detail than the public notes currently spell out,
+  and assignments `as01` through `as03` remain only partially converted into
+  WebWork-like public checkpoint coverage.

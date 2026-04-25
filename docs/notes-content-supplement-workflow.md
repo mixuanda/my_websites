@@ -153,3 +153,33 @@ Use this shape for future entries:
 - Deployment: not attempted in this local content pass.
 - Remaining gaps: Math1025 chapters `5` through `11` remain source-backed
   backlog, and no `CSCI2120` source tree exists in the repository.
+
+### 2026-04-25: MATH1030 proof-language and REF/RREF appendix gap pass
+
+- Gap selected: `reference/MATH1030` still had optional proof-language and
+  REF/RREF existence appendices marked pending or partial while the public
+  Notes tree already covered the core chapter sequence.
+- Reference basis: `reference/MATH1030/1030gi-n01-03p.pdf`,
+  `reference/MATH1030/1030gi-n01-03q.pdf`,
+  `reference/MATH1030/1030gi-n01-04q.pdf`,
+  `reference/MATH1030/1030gi-n02-03p.pdf`, and supporting
+  `reference/MATH1030/1030gi-n02-02p.pdf`.
+- Content files changed: added EN / zh-HK / zh-CN note families for `1.2
+  Reading theorems and proof language` and `2.5 Existence of row-echelon
+  forms`; updated `src/lib/textbook/catalog.ts`, `src/lib/textbook/problem-bank.ts`,
+  and MATH1030 coverage / QA docs.
+- Visuals added: none; the material is proof and theorem-structure heavy, so
+  existing theorem / example / mistake blocks are the right surface.
+- Interactions added: none; interactivity was not justified for this proof
+  appendix pass.
+- Exercises added: each new unit includes quick checks and guided exercises;
+  the problem bank now has checkpoint items for contrapositive reading and
+  REF-to-RREF pivot-column preservation.
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed. Local production smoke checks on port `3000`
+  returned 200 for representative EN / zh-HK / zh-CN routes and confirmed
+  representative TXT / PDF exports for both new units.
+- Deployment: pending until the completed commit is pushed and the production
+  deployment for `www.evanalysis.top` is checked.
+- Remaining gaps: deeper RREF uniqueness / well-defined rank proof detail from
+  `1030gi-n03-04p.pdf`, plus broader assignment / practice-set exercise parity.

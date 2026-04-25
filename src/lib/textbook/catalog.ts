@@ -1267,6 +1267,43 @@ const math1030SystemsUnits: TextbookUnitMeta[] = [
     unitId: "math1030.systems.equations-solution-sets",
     unitNumber: "1.1",
   },
+  {
+    chapterId: "systems",
+    chapterNumber: "1",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Learn how to read definitions, theorem statements, equivalences, uniqueness claims, and counterexamples before the course becomes proof-heavy.",
+      "在課程進入較多證明前，學習如何閱讀定義、定理陳述、等價命題、唯一性主張與反例。",
+      "在课程进入较多证明前，学习如何阅读定义、定理陈述、等价命题、唯一性主张与反例。"
+    ),
+    glossaryRefs: ["proposition"],
+    interactiveIds: [],
+    order: 1.5,
+    prerequisites: ["math1030.systems.equations-solution-sets"],
+    slug: "reading-theorems-and-proof-language",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/1030gi-n01-03p.pdf",
+        note: "Optional appendix on definitions, theorems, direct proof, and proof-reading culture",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-03q.pdf",
+        note: "Optional appendix on logical words, conditionals, equivalence, quantifiers, and uniqueness",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-04q.pdf",
+        note: "Optional appendix on disproving universal statements by counterexample",
+      },
+    ],
+    title: text(
+      "1.2 Reading theorems and proof language",
+      "1.2 讀懂定理與證明語言",
+      "1.2 读懂定理与证明语言"
+    ),
+    unitId: "math1030.systems.reading-theorems-and-proof-language",
+    unitNumber: "1.2",
+  },
 ];
 
 const math1030MatricesUnits: TextbookUnitMeta[] = [
@@ -1363,6 +1400,10 @@ const math1030MatricesUnits: TextbookUnitMeta[] = [
         pages: "§2.2",
       },
       {
+        file: "reference/MATH1030/1030gi-n02-02.pdf",
+        note: "Core RREF definitions and pivot-column reading",
+      },
+      {
         file: "reference/MATH1030/1030gi-n02-03.pdf",
       },
       {
@@ -1409,6 +1450,39 @@ const math1030MatricesUnits: TextbookUnitMeta[] = [
     ),
     unitId: "math1030.matrices.solution-set-types",
     unitNumber: "2.4",
+  },
+  {
+    chapterId: "matrices",
+    chapterNumber: "2",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Read the optional induction proof that every matrix is row-equivalent to an REF and then to an RREF.",
+      "閱讀可選的歸納證明：每個矩陣都與某個 REF 行等價，並可再到達 RREF。",
+      "阅读可选的归纳证明：每个矩阵都与某个 REF 行等价，并可再到达 RREF。"
+    ),
+    glossaryRefs: ["matrix", "row-operation", "rref"],
+    interactiveIds: [],
+    order: 5.5,
+    prerequisites: ["math1030.matrices.gaussian-elimination-rref"],
+    slug: "existence-of-row-echelon-forms",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/1030gi-n02-03p.pdf",
+        note: "Optional appendix proving existence of REF and RREF by induction",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n02-02p.pdf",
+        note: "Small-size RREF classifications used as reading support",
+      },
+    ],
+    title: text(
+      "2.5 Existence of row-echelon forms",
+      "2.5 行階梯形的存在性",
+      "2.5 行阶梯形的存在性"
+    ),
+    unitId: "math1030.matrices.existence-of-row-echelon-forms",
+    unitNumber: "2.5",
   },
 ];
 

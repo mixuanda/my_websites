@@ -1,0 +1,279 @@
+---
+title: "1.2 Reading theorems and proof language"
+description: "Learn how to read definitions, theorem statements, logical words, direct proofs, equivalences, uniqueness claims, and counterexamples in linear algebra."
+---
+
+Linear algebra is not only a calculation course. Very quickly, it starts to
+use the language of definitions, theorems, lemmas, proofs, equivalent
+conditions, and counterexamples. If that language is read loosely, the formulas
+may still look familiar, but the mathematical content becomes unstable.
+
+This section is a reading guide for the proof language used throughout
+MATH1030. It is not a separate logic course. Its purpose is practical: when a
+later note says that several conditions are equivalent, that a vector is unique,
+or that a proposed statement is false, you should know exactly what kind of
+claim is being made and what kind of argument can support it.
+
+## Statements, assumptions, and conclusions
+
+Most theorem statements in this course have the same logical shape:
+
+<TheoremCard title="The usual theorem shape">
+Suppose the assumptions `P` are satisfied. Then the conclusion `Q` follows.
+</TheoremCard>
+
+The assumptions are not being asserted in isolation. The theorem says that
+whenever the assumptions are true in a particular situation, the conclusion is
+also true in that situation.
+
+That distinction prevents several common mistakes. The statement
+
+> If a square matrix is invertible, then its RREF is the identity matrix.
+
+does **not** say that every square matrix is invertible. It also does not say
+that every matrix whose RREF is the identity must be introduced through the
+same proof. It states a conditional implication from one property to another.
+
+<Definition title="Conditional statement">
+A conditional statement has the form "if `P`, then `Q`". The part `P` is the
+assumption or hypothesis. The part `Q` is the conclusion.
+</Definition>
+
+When reading a theorem, always separate these two parts before trying to use
+the result:
+
+1. What objects are being discussed?
+2. What assumptions are imposed on those objects?
+3. What conclusion is guaranteed?
+4. Is the theorem being used in the forward direction, the reverse direction,
+   or as part of an equivalence?
+
+## The converse is a different statement
+
+The converse of "if `P`, then `Q`" is "if `Q`, then `P`". These two statements
+are not the same. One may be true while the other is false.
+
+<WorkedExample title="Do not silently reverse a theorem">
+The statement
+
+$$
+\text{if } A \text{ is invertible, then } Ax=0 \text{ has only the zero solution}
+$$
+
+has converse
+
+$$
+\text{if } Ax=0 \text{ has only the zero solution, then } A \text{ is invertible}.
+$$
+
+For a square matrix, both statements are true as part of the invertible-matrix
+dictionary. But that is extra information supplied by a theorem. You cannot
+reverse a conditional merely because the forward direction looks plausible.
+</WorkedExample>
+
+This is why MATH1030 often presents results as dictionaries:
+
+<TheoremCard title="Equivalence format">
+The following statements are logically equivalent:
+
+1. `P`;
+2. `Q`;
+3. `R`.
+</TheoremCard>
+
+Such a result means that the statements stand or fall together. In practice,
+you may use any one of them to prove any other. But to prove the dictionary
+itself, one must establish enough implications to connect all the statements,
+not merely write them in a list.
+
+## Contrapositive and direct proof
+
+The contrapositive of "if `P`, then `Q`" is "if not `Q`, then not `P`". A
+conditional and its contrapositive are logically equivalent.
+
+In this course, however, many arguments are best written directly. Matrix and
+vector proofs usually involve equations, and equations are easiest to control
+when the proof begins from the assumptions and builds toward the conclusion.
+
+<Definition title="Direct proof">
+A direct proof starts from the assumptions, uses definitions, earlier
+theorems, and calculations, and then derives the desired conclusion step by
+step.
+</Definition>
+
+For example, to prove that the null space of a matrix is a subspace, a direct
+proof begins with vectors in the null space, uses the equations `Au=0` and
+`Av=0`, and then checks closure:
+
+$$
+A(u+v)=Au+Av=0+0=0,
+\qquad
+A(cu)=cAu=c0=0.
+$$
+
+The proof succeeds because the calculations are attached to the exact defining
+condition.
+
+## Definitions are not theorems
+
+A definition introduces a name or a condition. It is not the kind of statement
+that is true or false, and it is not something to be proved. Once a definition
+has been introduced, later arguments may use it.
+
+<Definition title="Definition-reading habit">
+When reading a definition, identify:
+
+1. the objects to which the definition applies;
+2. the name being introduced;
+3. the defining condition;
+4. any earlier definitions required to understand that condition.
+</Definition>
+
+For instance, "a matrix is symmetric if `A^T=A`" gives a criterion. To prove
+that a particular matrix is symmetric, you compute its transpose and verify the
+criterion. To use symmetry later, you may replace `A^T` by `A` because the
+definition gives that equality.
+
+## Quantifiers and existence claims
+
+Words such as "for every", "for some", "there exists", "at most one", and
+"unique" carry mathematical content. They are not decorative.
+
+<TheoremCard title="Existence and uniqueness split">
+A statement saying "there exists a unique object with property `P`" has two
+parts:
+
+1. **existence**: at least one object with property `P` exists;
+2. **uniqueness**: at most one object with property `P` exists.
+</TheoremCard>
+
+This split is especially important in linear algebra. When we later say that
+coordinates relative to an ordered basis are unique, the existence part says
+that every vector in the space can be expressed using the basis. The uniqueness
+part says that two different coefficient lists cannot represent the same
+vector.
+
+<WorkedExample title="How an at-most-one proof is usually written">
+To prove that there is at most one object with a property, do not start by
+trying to find the object. Instead, suppose two objects have the property and
+prove that they must be equal.
+
+For example, to prove uniqueness of coordinates, suppose
+
+$$
+x=a_1b_1+\cdots+a_pb_p
+\qquad\text{and}\qquad
+x=c_1b_1+\cdots+c_pb_p.
+$$
+
+Subtracting gives
+
+$$
+0=(a_1-c_1)b_1+\cdots+(a_p-c_p)b_p.
+$$
+
+If `b_1,\ldots,b_p` are linearly independent, all coefficients must be zero.
+Hence `a_i=c_i` for every `i`.
+</WorkedExample>
+
+## Counterexamples disprove universal claims
+
+Many false statements in mathematics are disproved by a counterexample. The
+counterexample must satisfy the assumptions but fail the conclusion.
+
+<Definition title="Counterexample">
+A counterexample to "if `P`, then `Q`" is a concrete object or situation for
+which `P` is true but `Q` is false.
+</Definition>
+
+The preparatory work is often the hard part: you have to guess where a failure
+may occur. The written argument, however, must be explicit:
+
+1. name the object;
+2. verify that it satisfies the assumptions;
+3. verify that it fails the conclusion.
+
+<WorkedExample title="A linear algebra counterexample">
+Consider the false statement:
+
+> If two `2\times 2` matrices have the same determinant, then they are equal.
+
+Take
+
+$$
+A=
+\begin{bmatrix}
+1 & 0\\
+0 & 1
+\end{bmatrix},
+\qquad
+B=
+\begin{bmatrix}
+2 & 0\\
+0 & \frac12
+\end{bmatrix}.
+$$
+
+Both matrices are `2\times 2`, and
+
+$$
+\det(A)=1,\qquad \det(B)=1.
+$$
+
+So the assumption is satisfied. But `A\ne B`, so the conclusion fails. This
+single example disproves the universal claim.
+</WorkedExample>
+
+## How this note should affect later reading
+
+The practical reading routine is:
+
+1. mark the assumptions and conclusions in every theorem;
+2. avoid reversing implications unless an equivalence theorem allows it;
+3. treat definitions as criteria that can be checked and used;
+4. split existence from uniqueness;
+5. use counterexamples only when the proposed statement is universal and false.
+
+<QuickCheck prompt="A theorem says: if `P`, then `Q`. Which statement is automatically equivalent to it?">
+Compare the converse with the contrapositive before answering.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The contrapositive, "if not `Q`, then not `P`", is automatically equivalent to
+the theorem. The converse, "if `Q`, then `P`", is a different statement and
+needs its own proof.
+</RevealSolution>
+
+## Exercises
+
+### Exercise 1
+
+A result says:
+
+> If the columns of a square matrix `A` are linearly independent, then `A` is
+> invertible.
+
+Write the converse of this statement. Does the original statement alone prove
+the converse?
+
+<RevealSolution title="Guided solution for exercise 1">
+The converse is:
+
+> If `A` is invertible, then the columns of `A` are linearly independent.
+
+The original statement alone does not prove the converse. In MATH1030 the
+converse is true, but it needs a theorem from the invertible-matrix dictionary,
+not a silent reversal of the original implication.
+</RevealSolution>
+
+### Exercise 2
+
+Disprove the statement:
+
+> If a real number `x` satisfies `x^2>0`, then `x>0`.
+
+<RevealSolution title="Guided solution for exercise 2">
+Take `x=-1`. Then `x` is a real number and `x^2=1>0`, so the assumption is
+satisfied. But `x>0` is false. Therefore this `x` is a counterexample, and the
+statement is false.
+</RevealSolution>

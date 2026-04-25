@@ -31,8 +31,8 @@ remaining Math1090 backlog.
 
 | Course | Chapter | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
-| `math1030` | 1 Systems overview | Authored | Strong | `1.1` now has a line-system visual and a checkpoint problem, but can still absorb more tutorial-style exercises. |
-| `math1030` | 2 Matrices, elimination, solution types | Authored | Strong | Every chapter-2 unit now has checkpoint coverage; `2.1` has extra coefficient-position explanation. |
+| `math1030` | 1 Systems overview | Authored through `1.2` | Strong | `1.1` has a line-system visual and checkpoint problem; `1.2` now incorporates the proof-language, logical-phrase, and counterexample appendices as a public reading note. |
+| `math1030` | 2 Matrices, elimination, solution types | Authored through `2.5` | Strong | Every chapter-2 unit now has checkpoint coverage; `2.5` adds the optional REF / RREF existence proof, including pivot-column preservation during REF-to-RREF cleanup. |
 | `math1030` | 3 Matrix algebra | Authored through `3.3` | Strong | `3.3` now adds row-operation matrices, left multiplication by elementary matrices, reverse row operations, and the bridge to invertibility. |
 | `math1030` | 4 Homogeneous systems, null space, and set language | Authored through `4.2` | Strong | `4.2` now adds set membership, solution-set notation, null spaces, span, set equality proofs, and redundant-vector arguments from the `n04-*` notes. |
 | `math1030` | 5 Invertibility | Authored | Strong | `5.1` now includes prerequisite preparation, one-sided inverse warnings, an invertibility-dictionary workflow, null-space noninvertibility tests, inverse-solve examples, and expanded checkpoint questions; appendix proofs remain partial. |
@@ -85,7 +85,7 @@ to the actual checked-in `CSCI2520` materials.
 The next content cycle should focus on QA across the now-broader public Notes
 tree: export fidelity, rendering checks, exercise / reveal integrity, and
 theme / layout review across Math1090, Math1030, and the expanded CSCI2520
-sequence. For MATH1030, the remaining content backlog is now mostly appendix
-proof material and local refinements to older homogeneous-system viewpoints
-rather than missing core chapter directories. Math1025 expansion should remain
-controlled and source-backed.
+sequence. For MATH1030, the remaining content backlog is now mostly deeper
+RREF uniqueness / well-defined rank proof detail and assignment / practice
+exercise parity rather than missing core chapter directories. Math1025
+expansion should remain controlled and source-backed.

@@ -104,6 +104,182 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["rref", "pivot-columns", "row-reduction"],
   },
+  "checkpoint.math1030.proof-language-contrapositive": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.proof-language-contrapositive",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "systems",
+    unitId: "math1030.systems.reading-theorems-and-proof-language",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "A theorem says: if P, then Q. Which statement is automatically logically equivalent to it?",
+      "某定理說：若 P，則 Q。哪一個命題一定與它邏輯等價？",
+      "某定理说：若 P，则 Q。哪一个命题一定与它逻辑等价？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "If Q, then P.",
+          "若 Q，則 P。",
+          "若 Q，则 P。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "If not Q, then not P.",
+          "若非 Q，則非 P。",
+          "若非 Q，则非 P。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "P and Q are both always true.",
+          "P 與 Q 都必定為真。",
+          "P 与 Q 都必定为真。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "If not P, then not Q.",
+          "若非 P，則非 Q。",
+          "若非 P，则非 Q。"
+        ),
+      },
+    ],
+    correctAnswer: {
+      choiceId: "b",
+    },
+    hints: [
+      text(
+        "The converse reverses the arrow. The contrapositive reverses the arrow and negates both sides.",
+        "逆命題只倒轉箭嘴；逆否命題會倒轉箭嘴並同時否定兩邊。",
+        "逆命题只倒转箭头；逆否命题会倒转箭头并同时否定两边。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "For a statement like `invertible => zero null space`, the equivalent contrapositive is `nonzero null vector => not invertible`.",
+        "例如 `可逆 => 零空間只有零向量` 的等價逆否命題是 `有非零零空間向量 => 不可逆`。",
+        "例如 `可逆 => 零空间只有零向量` 的等价逆否命题是 `有非零零空间向量 => 不可逆`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The converse `if Q, then P` is not automatically equivalent to the original theorem.",
+        "逆命題「若 Q，則 P」不會自動與原定理等價。",
+        "逆命题“若 Q，则 P”不会自动与原定理等价。"
+      ),
+      text(
+        "The contrapositive of `if P, then Q` is `if not Q, then not P`.",
+        "「若 P，則 Q」的逆否命題是「若非 Q，則非 P」。",
+        "“若 P，则 Q”的逆否命题是“若非 Q，则非 P”。"
+      ),
+      text(
+        "A conditional statement and its contrapositive are logically equivalent.",
+        "條件命題與其逆否命題邏輯等價。",
+        "条件命题与其逆否命题逻辑等价。"
+      ),
+    ],
+    skillTags: ["proof-language", "conditional-statements", "contrapositive"],
+  },
+  "checkpoint.math1030.rref-existence-pivot-columns": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.rref-existence-pivot-columns",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrices",
+    unitId: "math1030.matrices.existence-of-row-echelon-forms",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Suppose a matrix is already in REF with pivot columns 2 and 4. During the cleanup from REF to RREF, what happens to those pivot columns?",
+      "假設某矩陣已在 REF，樞軸欄是第 2 欄與第 4 欄。由 REF 清理到 RREF 時，這些樞軸欄會怎樣？",
+      "假设某矩阵已在 REF，主元列是第 2 列与第 4 列。由 REF 清理到 RREF 时，这些主元列会怎样？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "They remain columns 2 and 4.",
+          "它們仍是第 2 欄與第 4 欄。",
+          "它们仍是第 2 列与第 4 列。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "They must move to columns 1 and 2.",
+          "它們必定移到第 1 欄與第 2 欄。",
+          "它们必定移到第 1 列与第 2 列。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "They disappear because RREF has no pivot columns.",
+          "它們會消失，因為 RREF 沒有樞軸欄。",
+          "它们会消失，因为 RREF 没有主元列。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "They can become any two columns depending on the row operations.",
+          "它們可視乎行變換變成任意兩欄。",
+          "它们可视乎行变换变成任意两列。"
+        ),
+      },
+    ],
+    correctAnswer: {
+      choiceId: "a",
+    },
+    hints: [
+      text(
+        "The REF-to-RREF lemma preserves pivot-column positions.",
+        "由 REF 到 RREF 的引理會保持樞軸欄位置。",
+        "由 REF 到 RREF 的引理会保持主元列位置。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Cleanup scales pivot rows and clears entries above pivots; it does not shift the leading positions to new columns.",
+        "清理步驟會縮放樞軸列並清掉樞軸上方項；它不會把首項移到新欄。",
+        "清理步骤会缩放主元行并清掉主元上方项；它不会把首项移到新列。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "In REF, the leading entries determine the pivot columns.",
+        "在 REF 中，首項決定樞軸欄。",
+        "在 REF 中，首项决定主元列。"
+      ),
+      text(
+        "The proof that REF can be cleaned to RREF shows that the same pivot columns are preserved.",
+        "REF 可被清理到 RREF 的證明同時說明這些樞軸欄會保持不變。",
+        "REF 可被清理到 RREF 的证明同时说明这些主元列会保持不变。"
+      ),
+      text(
+        "Therefore the RREF still has pivot columns 2 and 4.",
+        "因此 RREF 的樞軸欄仍是第 2 欄與第 4 欄。",
+        "因此 RREF 的主元列仍是第 2 列与第 4 列。"
+      ),
+    ],
+    skillTags: ["rref", "row-echelon-form", "pivot-columns"],
+  },
   "demo.math1090.quantifier-negation": {
     accessTier: "FREE",
     id: "demo.math1090.quantifier-negation",
