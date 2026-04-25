@@ -1645,6 +1645,10 @@ const math1030SolutionStructureUnits: TextbookUnitMeta[] = [
       {
         file: "reference/MATH1030/1030efghi-tutorial-week06.pdf",
       },
+      {
+        file: "reference/MATH1030/1030efghi-as02.pdf",
+        note: "Assignment-style particular-solution plus null-space structure",
+      },
     ],
     title: text(
       "4.1 Homogeneous systems and null space",

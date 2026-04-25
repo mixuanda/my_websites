@@ -253,3 +253,31 @@ Use this shape for future entries:
   the EN TXT export route, and the zh-HK PDF export route.
 - Remaining gaps: `as02` / `as03` assignment parity and higher-chapter export
   QA should continue after this pass.
+
+### 2026-04-25: MATH1030 homogeneous-solution assignment parity pass
+
+- Gap selected: after the `3.1` matrix-algebra pass, `as02` still had
+  assignment-style solution-structure patterns that were only summarized in
+  public notes.
+- Reference basis: `reference/MATH1030/1030efghi-as02.pdf` and
+  `reference/MATH1030/1030efghi-as02as.pdf`.
+- Content files changed: strengthened the EN / zh-HK / zh-CN `4.1
+  Homogeneous systems and null space` unit and updated
+  `src/lib/textbook/catalog.ts` plus `src/lib/textbook/problem-bank.ts`.
+- Visuals added: none; this is a structural proof and parameter-form pass, so
+  theorem, worked-example, common-mistake, quick-check, and reveal-solution
+  blocks are the appropriate article surface.
+- Interactions added: none; no new widget was justified for the null-space
+  translation pattern.
+- Exercises added: in-page quick checks now ask readers to prove that the
+  difference of two particular solutions lies in the null space; the problem
+  bank adds a multiple-choice checkpoint for the same pattern.
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed. Local production smoke on port `3000` returned
+  200 for the EN / zh-HK / zh-CN `4.1` note routes, EN TXT export, and zh-HK
+  PDF export. Browser QA on the zh-HK route confirmed the new section,
+  difference-of-solutions checkpoint, localized export control, and zero
+  captured console errors.
+- Deployment: pending until the completed pass is committed and pushed.
+- Remaining gaps: `as03` invertibility and set-language practice parity, plus
+  broader export QA across the expanded MATH1030 sequence.

@@ -426,3 +426,23 @@ written languages.
   locale-specific terminology
 - Remaining issues: later passes should continue with `as02` / `as03`
   assignment parity and higher-chapter export QA
+
+### 2026-04-25 checkpoint 9: Homogeneous-solution parity
+
+This checkpoint strengthens an existing MATH1030 unit in all three supported
+written languages.
+
+- Checkpoint name: Parallel EN, zh-HK, and zh-CN expansion of `4.1 Homogeneous
+  systems and null space`
+- What was inspected: `1030efghi-as02.pdf`, `1030efghi-as02as.pdf`, and the
+  existing localized `4.1` note files
+- What was changed: each locale received the same added section on moving from
+  one particular solution to the whole solution set, including the proof that
+  `v-u in N(A)`, a concrete `p+s q_1+t q_2` worked example, a scaling check
+  for `2A` and `3b`, a common-mistake block, and a quick-check / reveal pair
+- What was verified: contentlayer, lint, build, local route / export checks,
+  and zh-HK browser QA passed for the strengthened `4.1` unit; the three
+  files keep matching section order and exercise targets while using
+  locale-specific terminology
+- Remaining issues: `as03` assignment parity and broader export QA should
+  follow

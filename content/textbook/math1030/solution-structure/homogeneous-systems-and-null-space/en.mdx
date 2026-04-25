@@ -180,6 +180,98 @@ $$
 So every vector of the form `x_p + v` is also a solution.
 </CollapsibleProof>
 
+## A standard problem pattern: move between one solution and all solutions
+
+The theorem above is often used in two directions. The forward direction says
+that once you have one solution `u` of `Ax = b`, you may add any homogeneous
+solution without leaving the solution set:
+
+$$
+Ah = 0
+\quad\Longrightarrow\quad
+A(u+h)=Au+Ah=b+0=b.
+$$
+
+The reverse direction is just as important. If `v` is another solution of the
+same system, then
+
+$$
+A(v-u)=Av-Au=b-b=0,
+$$
+
+so `v-u \in N(A)`. Therefore the difference between two particular solutions is
+not another arbitrary particular solution; it is a homogeneous solution. This is
+the cleanest way to justify the formula
+
+$$
+S(A,b)=u+N(A).
+$$
+
+<WorkedExample title="Use one particular solution and two null-space directions">
+Suppose a system `Ax=b` has one known solution
+
+$$
+p=
+\begin{bmatrix}
+1\\0\\-1\\0\\1\\0
+\end{bmatrix},
+$$
+
+and suppose the homogeneous system `Ax=0` has solution directions
+
+$$
+q_1=
+\begin{bmatrix}
+2\\-3\\1\\0\\0\\0
+\end{bmatrix},
+\qquad
+q_2=
+\begin{bmatrix}
+-3\\1\\0\\-2\\2\\1
+\end{bmatrix}.
+$$
+
+If these two directions span `N(A)`, then every solution of `Ax=b` has the form
+
+$$
+x=p+s q_1+t q_2,
+\qquad s,t\in R.
+$$
+
+Written out, this is
+
+$$
+x=
+\begin{bmatrix}
+1\\0\\-1\\0\\1\\0
+\end{bmatrix}
++s
+\begin{bmatrix}
+2\\-3\\1\\0\\0\\0
+\end{bmatrix}
++t
+\begin{bmatrix}
+-3\\1\\0\\-2\\2\\1
+\end{bmatrix}.
+$$
+
+The role of `p` is different from the role of `q_1` and `q_2`. The vector `p`
+places the solution set at the correct right-hand side `b`; the vectors `q_1`
+and `q_2` describe directions in which we may move while keeping the same
+right-hand side.
+</WorkedExample>
+
+There is one more useful scaling habit. If `Ap=b`, then
+
+$$
+2A\left({3\over 2}p\right)=3Ap=3b.
+$$
+
+So `{3\over 2}p` is a solution of `2Ax=3b`. This is not because solution sets
+can be rescaled freely in every situation. It works here because the coefficient
+matrix and the right-hand side have both been scaled, and the calculation
+checks the claim directly.
+
 ## A nonhomogeneous example
 
 <WorkedExample title="Describe all solutions as a translate of the null space">
@@ -488,6 +580,11 @@ Finding one vector `x_p` with `Ax_p = b` is only the start. You still need to
 add the whole null space to describe every solution.
 </CommonMistake>
 
+<CommonMistake title="Do not confuse a particular solution with a direction">
+If `u` and `v` both solve `Ax=b`, then `v-u` solves `Ax=0`. The vector `v-u`
+is a direction inside the null space, not a new right-hand side.
+</CommonMistake>
+
 ## Quick checks
 
 <QuickCheck prompt="Why does `Ax = 0` always have at least one solution?">
@@ -514,6 +611,18 @@ Answer from the parameter form, not from a guess.
 <RevealSolution title="Answer">
 No. A free variable can vary through infinitely many scalar values, so it
 produces infinitely many solution vectors.
+</RevealSolution>
+
+<QuickCheck prompt="Suppose `u` and `v` both solve `Ax=b`. What homogeneous system does `v-u` solve?">
+Use one line of matrix algebra.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It solves `Ax=0`, because
+
+$$
+A(v-u)=Av-Au=b-b=0.
+$$
 </RevealSolution>
 
 ## Exercise

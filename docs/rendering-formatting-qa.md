@@ -330,3 +330,25 @@ Current checkpoint resolution:
   export routes on `www.evanalysis.top`.
 - Remaining issues: continue export QA on the broader MATH1030 sequence after
   this unit-level check
+
+### 2026-04-25 checkpoint 14: MATH1030 homogeneous-solution rendering
+
+- Checkpoint name: `4.1 Homogeneous systems and null space` assignment-style
+  solution-structure rendering pass
+- What was inspected: the strengthened EN / zh-HK / zh-CN `4.1` MDX files,
+  the existing MDX block registry, the catalog source-ref map, and the export
+  behavior expected for worked examples, common mistakes, quick checks, and
+  reveal solutions
+- What was changed: added display-math-heavy proof paragraphs and a worked
+  example for `S(A,b)=p+N(A)`, two null-space directions, and the scaling
+  check for `2A` versus `3b`
+- Rendering note: no new block type was introduced; the additions use existing
+  article blocks and display math so TXT / PDF export should preserve the
+  complete static study sequence
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed. Local production route checks returned 200 for
+  the EN / zh-HK / zh-CN `4.1` note pages; representative TXT and PDF export
+  routes returned 200; browser QA confirmed the zh-HK page renders the new
+  section and checkpoint prompt with no captured console errors.
+- Remaining issues: continue export QA on the broader MATH1030 sequence after
+  this unit-level check

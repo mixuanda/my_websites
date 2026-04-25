@@ -175,6 +175,93 @@ $$
 所以任何形如 `x_p + v` 的向量，也必定是系統的解。
 </CollapsibleProof>
 
+## 標準題型：由一個解走向全部解
+
+上面的定理經常要雙向使用。正向的說法是：一旦你知道 `u` 是 `Ax = b`
+的一個解，就可以加上任何齊次解而不會離開原來的解集：
+
+$$
+Ah = 0
+\quad\Longrightarrow\quad
+A(u+h)=Au+Ah=b+0=b.
+$$
+
+反方向同樣重要。若 `v` 是同一個系統的另一個解，則
+
+$$
+A(v-u)=Av-Au=b-b=0,
+$$
+
+所以 `v-u \in N(A)`。因此兩個特解的差，不是一個任意的新特解，而是一個
+齊次解。這就是
+
+$$
+S(A,b)=u+N(A)
+$$
+
+這個公式的精確理由。
+
+<WorkedExample title="用一個特解與兩個零空間方向描述全部解">
+假設系統 `Ax=b` 有一個已知解
+
+$$
+p=
+\begin{bmatrix}
+1\\0\\-1\\0\\1\\0
+\end{bmatrix},
+$$
+
+而齊次系統 `Ax=0` 有以下兩個解方向：
+
+$$
+q_1=
+\begin{bmatrix}
+2\\-3\\1\\0\\0\\0
+\end{bmatrix},
+\qquad
+q_2=
+\begin{bmatrix}
+-3\\1\\0\\-2\\2\\1
+\end{bmatrix}.
+$$
+
+若這兩個方向張成 `N(A)`，那麼 `Ax=b` 的所有解都可寫成
+
+$$
+x=p+s q_1+t q_2,
+\qquad s,t\in R.
+$$
+
+展開來看，就是
+
+$$
+x=
+\begin{bmatrix}
+1\\0\\-1\\0\\1\\0
+\end{bmatrix}
++s
+\begin{bmatrix}
+2\\-3\\1\\0\\0\\0
+\end{bmatrix}
++t
+\begin{bmatrix}
+-3\\1\\0\\-2\\2\\1
+\end{bmatrix}.
+$$
+
+`p` 的角色與 `q_1`、`q_2` 的角色不同。`p` 把解集放在正確的右邊 `b`
+上；`q_1` 與 `q_2` 則描述在保持同一個右邊時可以移動的方向。
+</WorkedExample>
+
+還有一個常用的縮放判斷。若 `Ap=b`，則
+
+$$
+2A\left({3\over 2}p\right)=3Ap=3b.
+$$
+
+所以 `{3\over 2}p` 是 `2Ax=3b` 的一個解。這並不是說任何解集都可以任意
+縮放；這裡可行，是因為係數矩陣與右邊同時被縮放，而且計算直接驗證了結論。
+
 ## 一個非齊次例子
 
 <WorkedExample title="把所有解寫成特解加零空間">
@@ -460,6 +547,11 @@ $$
 算完整描述了解集。
 </CommonMistake>
 
+<CommonMistake title="不要把特解與方向混淆">
+若 `u` 與 `v` 都解 `Ax=b`，則 `v-u` 解的是 `Ax=0`。向量 `v-u`
+是零空間中的方向，不是一個新的右邊。
+</CommonMistake>
+
 ## 快速檢查
 
 <QuickCheck prompt="為甚麼 `Ax = 0` 一定至少有一個解？">
@@ -484,6 +576,18 @@ $$
 
 <RevealSolution title="答案">
 唔可能。自由變量可以取無限多個純量值，所以會產生無限多個解向量。
+</RevealSolution>
+
+<QuickCheck prompt="假設 `u` 與 `v` 都解 `Ax=b`。那麼 `v-u` 解哪一個齊次系統？">
+用一行矩陣計算回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它解 `Ax=0`，因為
+
+$$
+A(v-u)=Av-Au=b-b=0.
+$$
 </RevealSolution>
 
 ## 練習

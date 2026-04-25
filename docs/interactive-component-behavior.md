@@ -107,5 +107,11 @@ right interaction for the unit; the new material is better represented as
 worked examples, common mistakes, and static guided exercises so exports keep
 the same learning value.
 
+The later `math1030` `4.1` homogeneous-solution assignment parity pass also
+did not add a new widget. The new material is the structural identity
+`S(A,b)=p+N(A)`, the proof that `v-u in N(A)`, and static parameter-form
+reading. Existing theorem, proof, worked-example, quick-check, and reveal
+blocks preserve the article-first flow and export cleanly.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

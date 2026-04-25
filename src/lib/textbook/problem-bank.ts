@@ -1544,6 +1544,85 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["null-space", "solution-structure", "particular-solution"],
   },
+  "checkpoint.math1030.difference-of-particular-solutions": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.difference-of-particular-solutions",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "solution-structure",
+    unitId: "math1030.solution-structure.homogeneous-systems-and-null-space",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Suppose u and v both solve Ax = b. Which statement must be true?",
+      "假設 u 與 v 都解 Ax = b。下列哪一項必定正確？",
+      "假设 u 与 v 都解 Ax = b。下列哪一项必定正确？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "v - u solves Ax = 0.",
+          "v - u 解 Ax = 0。",
+          "v - u 解 Ax = 0。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "u + v solves Ax = b.",
+          "u + v 解 Ax = b。",
+          "u + v 解 Ax = b。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "v - u solves Ax = b.",
+          "v - u 解 Ax = b。",
+          "v - u 解 Ax = b。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "u and v must be equal.",
+          "u 與 v 必須相等。",
+          "u 与 v 必须相等。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Subtract the two equations Au = b and Av = b.",
+        "把 Au = b 與 Av = b 兩條等式相減。",
+        "把 Au = b 与 Av = b 两条等式相减。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Since u solves Ax = b, we have Au = b.",
+        "因為 u 解 Ax = b，所以 Au = b。",
+        "因为 u 解 Ax = b，所以 Au = b。"
+      ),
+      text(
+        "Since v also solves Ax = b, we have Av = b.",
+        "因為 v 也解 Ax = b，所以 Av = b。",
+        "因为 v 也解 Ax = b，所以 Av = b。"
+      ),
+      text(
+        "Therefore A(v - u) = Av - Au = b - b = 0.",
+        "因此 A(v - u) = Av - Au = b - b = 0。",
+        "因此 A(v - u) = Av - Au = b - b = 0。"
+      ),
+    ],
+    skillTags: ["null-space", "solution-set", "particular-solution"],
+  },
   "checkpoint.math1030.dependence-zero-vector": {
     accessTier: "FREE",
     id: "checkpoint.math1030.dependence-zero-vector",

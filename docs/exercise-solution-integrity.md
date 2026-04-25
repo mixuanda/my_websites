@@ -409,3 +409,23 @@ unit-level coverage.
   errors
 - Remaining issues: assignment `as02` / `as03` practice structures still need
   later public checkpoint coverage
+
+### 2026-04-25 checkpoint 14: MATH1030 homogeneous-solution parity
+
+- Checkpoint name: `4.1` particular-solution plus null-space integrity
+- What was inspected: `1030efghi-as02.pdf`, `1030efghi-as02as.pdf`, the
+  localized `4.1` MDX files, and `src/lib/textbook/problem-bank.ts`
+- What was changed: added a worked example using one particular solution and
+  two null-space directions, added a quick check / reveal pair for the
+  `v-u in N(A)` argument, and added one multiple-choice checkpoint for the
+  difference of two particular solutions
+- Integrity note: the in-page proof and the checkpoint use the same calculation
+  `A(v-u)=Av-Au=b-b=0`; the problem remains multiple choice to avoid fragile
+  symbolic parsing of vector expressions
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed; local route / export smoke returned 200 for
+  representative `4.1` note and export routes; browser QA confirmed the new
+  checkpoint prompt renders on the zh-HK note page with no captured console
+  errors
+- Remaining issues: longer `as02` row-operation drill items and `as03`
+  invertibility practice remain future exercise-depth targets

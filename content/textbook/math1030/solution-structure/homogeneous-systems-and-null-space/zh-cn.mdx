@@ -175,6 +175,93 @@ $$
 所以任何形如 `x_p + v` 的向量，也必定是系统的解。
 </CollapsibleProof>
 
+## 标准题型：由一个解走向全部解
+
+上面的定理经常要双向使用。正向的说法是：一旦你知道 `u` 是 `Ax = b`
+的一个解，就可以加上任何齐次解而不会离开原来的解集：
+
+$$
+Ah = 0
+\quad\Longrightarrow\quad
+A(u+h)=Au+Ah=b+0=b.
+$$
+
+反方向同样重要。若 `v` 是同一个系统的另一个解，则
+
+$$
+A(v-u)=Av-Au=b-b=0,
+$$
+
+所以 `v-u \in N(A)`。因此两个特解的差，不是一个任意的新特解，而是一个
+齐次解。这就是
+
+$$
+S(A,b)=u+N(A)
+$$
+
+这个公式的精确理由。
+
+<WorkedExample title="用一个特解与两个零空间方向描述全部解">
+假设系统 `Ax=b` 有一个已知解
+
+$$
+p=
+\begin{bmatrix}
+1\\0\\-1\\0\\1\\0
+\end{bmatrix},
+$$
+
+而齐次系统 `Ax=0` 有以下两个解方向：
+
+$$
+q_1=
+\begin{bmatrix}
+2\\-3\\1\\0\\0\\0
+\end{bmatrix},
+\qquad
+q_2=
+\begin{bmatrix}
+-3\\1\\0\\-2\\2\\1
+\end{bmatrix}.
+$$
+
+若这两个方向张成 `N(A)`，那么 `Ax=b` 的所有解都可写成
+
+$$
+x=p+s q_1+t q_2,
+\qquad s,t\in R.
+$$
+
+展开来看，就是
+
+$$
+x=
+\begin{bmatrix}
+1\\0\\-1\\0\\1\\0
+\end{bmatrix}
++s
+\begin{bmatrix}
+2\\-3\\1\\0\\0\\0
+\end{bmatrix}
++t
+\begin{bmatrix}
+-3\\1\\0\\-2\\2\\1
+\end{bmatrix}.
+$$
+
+`p` 的角色与 `q_1`、`q_2` 的角色不同。`p` 把解集放在正确的右边 `b`
+上；`q_1` 与 `q_2` 则描述在保持同一个右边时可以移动的方向。
+</WorkedExample>
+
+还有一个常用的缩放判断。若 `Ap=b`，则
+
+$$
+2A\left({3\over 2}p\right)=3Ap=3b.
+$$
+
+所以 `{3\over 2}p` 是 `2Ax=3b` 的一个解。这并不是说任何解集都可以任意
+缩放；这里可行，是因为系数矩阵与右边同时被缩放，而且计算直接验证了结论。
+
 ## 一个非齐次例子
 
 <WorkedExample title="把所有解写成特解加零空间">
@@ -459,6 +546,11 @@ $$
 算完整描述了解集。
 </CommonMistake>
 
+<CommonMistake title="不要把特解与方向混淆">
+若 `u` 与 `v` 都解 `Ax=b`，则 `v-u` 解的是 `Ax=0`。向量 `v-u`
+是零空间中的方向，不是一个新的右边。
+</CommonMistake>
+
 ## 快速检查
 
 <QuickCheck prompt="为什么 `Ax = 0` 一定至少有一个解？">
@@ -483,6 +575,18 @@ $$
 
 <RevealSolution title="答案">
 不可能。自由变量可以取无限多个纯量值，所以会产生无限多个解向量。
+</RevealSolution>
+
+<QuickCheck prompt="假设 `u` 与 `v` 都解 `Ax=b`。那么 `v-u` 解哪一个齐次系统？">
+用一行矩阵计算回答。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它解 `Ax=0`，因为
+
+$$
+A(v-u)=Av-Au=b-b=0.
+$$
 </RevealSolution>
 
 ## 练习

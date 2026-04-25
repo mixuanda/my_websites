@@ -443,7 +443,7 @@ into exercises, examples, and source refs for authored note pages.
 | MATH1030 | `reference/MATH1030/1030efghi-tutorial-week08as.pdf` | tutorial answers | overlap | partial | yes | no | Answer key only. |
 | MATH1030 | `reference/MATH1030/1030efghi-as01.pdf` | assignment | partially incorporated | partial | no | no | Matrix algebra assignment now directly supports the strengthened `3.1` unknown-product example and noncommutative product-expansion warnings; transpose / symmetry problems remain covered mostly by `3.2`. |
 | MATH1030 | `reference/MATH1030/1030efghi-as01as.pdf` | assignment answers | overlap | partial | yes | no | Answer key only. |
-| MATH1030 | `reference/MATH1030/1030efghi-as02.pdf` | assignment | partially incorporated | partial | no | no | Systems and row-operation material largely merged, but some problem structures remain internal only. |
+| MATH1030 | `reference/MATH1030/1030efghi-as02.pdf` | assignment | partially incorporated | partial | no | no | Systems and row-operation material largely merged. The `4.1` note now directly incorporates the particular-solution plus null-space structure, the `v-u in N(A)` proof pattern, and the `2A,3b` scaling check; longer row-operation matrices and RREF drill sequences remain mostly internal. |
 | MATH1030 | `reference/MATH1030/1030efghi-as02as.pdf` | assignment answers | overlap | partial | yes | no | Answer key only. |
 | MATH1030 | `reference/MATH1030/1030efghi-as03.pdf` | assignment | partially incorporated | partial | no | no | Set language, null space, and invertibility questions now have better coverage, but not full one-to-one exercise parity. |
 | MATH1030 | `reference/MATH1030/1030efghi-as03as.pdf` | assignment answers | overlap | partial | yes | no | Answer key only. |
@@ -849,3 +849,22 @@ existing invertibility note instead of creating a detached new route.
 - Remaining issues: assignment `as02` and `as03` still have problem structures
   that are only partially represented in public checkpoint coverage, and the
   higher-chapter export / rendering QA pass should continue.
+
+### 2026-04-25 checkpoint 20: MATH1030 homogeneous-solution assignment parity pass
+
+- Strengthened the existing three-locale `4.1 Homogeneous systems and null
+  space` note using `1030efghi-as02.pdf` and `1030efghi-as02as.pdf`.
+- Added textbook-style coverage for the assignment pattern that moves between
+  one known particular solution, homogeneous solution directions, and the full
+  solution set `S(A,b)=p+N(A)`.
+- Added a direct proof explanation that if `u` and `v` both solve `Ax=b`, then
+  `v-u` solves `Ax=0`, plus the assignment-style scaling check
+  `2A((3/2)p)=3b` when `Ap=b`.
+- Updated the MATH1030 catalog source refs so `as02` is visible as internal
+  provenance for the strengthened `4.1` unit.
+- Added a checkpoint question for the difference-of-particular-solutions
+  pattern in the problem bank.
+- Remaining issues: longer `as02` row-operation-matrix and RREF drill
+  sequences are still better handled in future exercise-depth passes; `as03`
+  invertibility / set-language practice parity remains the next assignment
+  content target.
