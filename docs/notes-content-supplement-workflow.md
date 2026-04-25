@@ -350,8 +350,11 @@ Use this shape for future entries:
   exports. Browser QA on the zh-HK route confirmed the new long reduction,
   near-RREF example, checkpoint prompts, language links, and zero captured
   console errors.
-- Deployment: pending commit, push, and Vercel production verification for
-  this round.
+- Deployment: committed as `d873d4c`, pushed to `origin/main`, and verified on
+  Vercel production deployment `dpl_5nQ1SWt5PBD7f3Hvr21Sz6qLffjG`. Production
+  smoke checks on `www.evanalysis.top` returned 200 for the EN and zh-HK `2.3`
+  note routes, EN TXT export, and EN PDF export; content checks confirmed the
+  new long RREF drill is live.
 - Remaining gaps: `as03` inverse-by-row-reduction, parameterized inverse
   computations, and longer polynomial-identity proof exercises remain later
   exercise-depth backlog; broader MATH1030 export QA should continue.
