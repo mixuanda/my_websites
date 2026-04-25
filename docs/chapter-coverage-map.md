@@ -33,7 +33,7 @@ remaining Math1090 backlog.
 | --- | --- | --- | --- | --- |
 | `math1030` | 1 Systems overview | Authored through `1.2` | Strong | `1.1` has a line-system visual and checkpoint problem; `1.2` now incorporates the proof-language, logical-phrase, and counterexample appendices as a public reading note. |
 | `math1030` | 2 Matrices, elimination, solution types | Authored through `2.5` | Strong | Every chapter-2 unit now has checkpoint coverage; `2.5` adds the optional REF / RREF existence proof, including pivot-column preservation during REF-to-RREF cleanup. |
-| `math1030` | 3 Matrix algebra | Authored through `3.3` | Strong | `3.3` now adds row-operation matrices, left multiplication by elementary matrices, reverse row operations, and the bridge to invertibility. |
+| `math1030` | 3 Matrix algebra | Authored through `3.3` | Strong | `3.1` now includes assignment-style parameter recovery, noncommutative expansion warnings, column-interpretation traps, lower-triangular closure, and checkpoint questions; `3.3` adds row-operation matrices, left multiplication by elementary matrices, reverse row operations, and the bridge to invertibility. |
 | `math1030` | 4 Homogeneous systems, null space, and set language | Authored through `4.2` | Strong | `4.2` now adds set membership, solution-set notation, null spaces, span, set equality proofs, and redundant-vector arguments from the `n04-*` notes. |
 | `math1030` | 5 Invertibility | Authored through `5.2` | Strong | `5.1` includes prerequisite preparation, one-sided inverse warnings, an invertibility-dictionary workflow, null-space noninvertibility tests, inverse-solve examples, and expanded checkpoint questions. `5.2` now adds the optional RREF uniqueness induction proof and the well-defined rank bridge. |
 | `math1030` | 6 Vector spaces, span, basis, rank | Authored through `6.8` | Strong | `6.3` now has the span-membership algorithm, `6.4` has the homogeneous-system dependence algorithm, `6.5` includes dimension counting, minimal-spanning-set extraction, and comparable-subspace criteria; `6.6` has a static rank map; `6.7` covers matrix subspaces, bases, and dimension; `6.8` adds basis existence, the Replacement Theorem, ordered bases, and change-of-basis matrices. Remaining work is mostly the optional REF/RREF proof appendix and deeper exercise/export QA. |
@@ -85,7 +85,8 @@ to the actual checked-in `CSCI2520` materials.
 The next content cycle should focus on QA across the now-broader public Notes
 tree: export fidelity, rendering checks, exercise / reveal integrity, and
 theme / layout review across Math1090, Math1030, and the expanded CSCI2520
-sequence. For MATH1030, the remaining content backlog is now mostly assignment
-/ tutorial practice parity and export QA rather than missing core chapter
-directories or missing RREF proof appendices. Math1025 expansion should remain
-controlled and source-backed.
+sequence. For MATH1030, the remaining content backlog is now mostly `as02` /
+`as03` assignment practice parity and export QA rather than missing core
+chapter directories, missing matrix-algebra parameter practice, or missing
+RREF proof appendices. Math1025 expansion should remain controlled and
+source-backed.

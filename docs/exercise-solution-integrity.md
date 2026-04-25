@@ -386,3 +386,26 @@ unit-level coverage.
   confirmed the new checkpoint prompts render on the EN note page
 - Remaining issues: broader assignment / tutorial exercise parity remains the
   next MATH1030 practice gap
+
+### 2026-04-25 checkpoint 13: MATH1030 matrix-algebra practice parity
+
+- Checkpoint name: `3.1` matrix multiplication assignment-style practice
+  integrity
+- What was inspected: `1030efghi-as01.pdf`, `1030efghi-as01as.pdf`,
+  `Practice Set 2_Matrix Algebra.pdf`, `Practice Set 2_Solutions.pdf`, the
+  localized `3.1` MDX files, and `src/lib/textbook/problem-bank.ts`
+- What was changed: added paired in-page quick checks / reveal solutions for
+  noncommutative expansion, parameter recovery from a partial product, and
+  lower-triangular product closure; added one fill-in checkpoint for
+  parameter recovery and one multiple-choice checkpoint for noncommuting
+  expansion
+- Integrity note: the fill-in checkpoint asks for the single scalar `b=6`,
+  while the expansion checkpoint is multiple choice to avoid fragile symbolic
+  equivalence between `AB` and `BA` terms
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed; local route / export smoke returned 200 for
+  representative `3.1` note and export routes; browser QA confirmed the two
+  new checkpoint prompts render on the zh-HK note page with no captured console
+  errors
+- Remaining issues: assignment `as02` / `as03` practice structures still need
+  later public checkpoint coverage

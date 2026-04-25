@@ -101,5 +101,11 @@ not add a widget. The material is proof-structural, and the existing theorem,
 collapsible-proof, quick-check, and reveal-solution blocks preserve the
 article-first reading flow better than a detached interaction.
 
+The later `math1030` `3.1` matrix-algebra practice parity pass also did not add
+a new widget. The existing `matrix-multiplication-visualizer` remains the
+right interaction for the unit; the new material is better represented as
+worked examples, common mistakes, and static guided exercises so exports keep
+the same learning value.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

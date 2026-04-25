@@ -385,6 +385,160 @@ inverse matrices, row operations, and block-matrix computation assume them
 silently. If you do not know them explicitly, longer calculations become much
 harder to audit.
 
+## Practice-set patterns that reveal the main traps
+
+The assignment-style problems on matrix algebra usually test more than raw
+arithmetic. A product with unknown entries may be asking whether you can read
+dimensions, identify which row and column make one output entry, and remember
+that matrix factors cannot usually be rearranged.
+
+<WorkedExample title="Recover unknowns from a partially known product">
+Let
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & 1 & 3 \\
+1 & 0 & 2 & 1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+a & b \\
+1 & 1 \\
+b & a \\
+1 & 2
+\end{bmatrix}.
+$$
+
+Suppose
+
+$$
+AB =
+\begin{bmatrix}
+1 & c \\
+3 & d
+\end{bmatrix}.
+$$
+
+The product is defined because `A` is `2 \times 4` and `B` is `4 \times 2`,
+so `AB` must be `2 \times 2`. Computing only the entries we need gives
+
+$$
+AB =
+\begin{bmatrix}
+a+b+5 & a+b+8 \\
+a+2b+1 & 2a+b+2
+\end{bmatrix}.
+$$
+
+Comparing the first column with the given matrix gives
+
+$$
+a+b+5=1,
+\qquad
+a+2b+1=3.
+$$
+
+Thus
+
+$$
+a+b=-4,
+\qquad
+a+2b=2.
+$$
+
+Subtracting the first equation from the second gives `b=6`, and then
+`a=-10`. The remaining entries are
+
+$$
+c=a+b+8=4,
+\qquad
+d=2a+b+2=-12.
+$$
+</WorkedExample>
+
+This kind of problem is not really about multiplying every entry in sight. It
+is about extracting the few equations that the known product entries force.
+
+<WorkedExample title="Expand products without pretending matrices commute">
+Let `A` and `B` be square matrices of the same size. Then
+
+$$
+(5A-B)(2A+3B)
+= 5A(2A+3B)-B(2A+3B).
+$$
+
+Now distribute on the right:
+
+$$
+5A(2A+3B)-B(2A+3B)
+=10A^2+15AB-2BA-3B^2.
+$$
+
+The middle terms are `15AB` and `-2BA`. They cannot be combined into
+`13AB` unless you already know that `AB=BA`.
+</WorkedExample>
+
+The same warning explains a common false shortcut:
+
+$$
+(A+B)(A-B)
+=A^2-AB+BA-B^2.
+$$
+
+This equals `A^2-B^2` only under the extra condition `AB=BA`. Real-number
+algebra hides this issue because real-number multiplication is commutative.
+Matrix algebra does not.
+
+<TheoremCard title="Lower triangular matrices are closed under multiplication">
+A `3 \times 3` lower triangular matrix has the shape
+
+$$
+\begin{bmatrix}
+* & 0 & 0 \\
+* & * & 0 \\
+* & * & *
+\end{bmatrix}.
+$$
+
+If `A` and `B` are both lower triangular `3 \times 3` matrices, then `AB` is
+also lower triangular.
+</TheoremCard>
+
+Here is the reason in one explicit calculation. Write
+
+$$
+A =
+\begin{bmatrix}
+a_1 & 0 & 0 \\
+b_1 & c_1 & 0 \\
+d_1 & e_1 & f_1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+a_2 & 0 & 0 \\
+b_2 & c_2 & 0 \\
+d_2 & e_2 & f_2
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+AB =
+\begin{bmatrix}
+a_1a_2 & 0 & 0 \\
+b_1a_2+c_1b_2 & c_1c_2 & 0 \\
+d_1a_2+e_1b_2+f_1d_2 & e_1c_2+f_1e_2 & f_1f_2
+\end{bmatrix}.
+$$
+
+The entries above the diagonal stay zero because every row-by-column product
+there is forced to use a zero from one side or the other. This is a useful
+example of a *shape property* being preserved by multiplication.
+
 <WorkedExample title="A zero product does not force a zero factor">
 Let
 
@@ -446,6 +600,24 @@ If `A` is `2 \times 3` and `B` is `3 \times 4`, then `AB` is defined but `BA`
 is not. Never assume the reverse order makes sense automatically.
 </CommonMistake>
 
+<CommonMistake title="Column language belongs to the right-hand factor">
+If `B=[b_1\ b_2]`, then `AB=[Ab_1\ Ab_2]`. The columns of the product are
+linear combinations of the columns of `A`, using weights from the corresponding
+columns of `B`. Do not write `AB=[a_1b_1\ a_2b_2]`; that expression does not
+match the definition of matrix multiplication.
+</CommonMistake>
+
+<CommonMistake title="Binomial formulas need commutation hypotheses">
+The formula `(A+B)^2=A^2+2AB+B^2` is not automatic for matrices. The actual
+expansion is
+
+$$
+(A+B)^2=A^2+AB+BA+B^2.
+$$
+
+You may combine the middle terms only when `AB=BA`.
+</CommonMistake>
+
 ## Quick checks
 
 <QuickCheck prompt="If `A` is `2 × 3` and `B` is `3 × 5`, what is the size of `AB`?">
@@ -473,6 +645,14 @@ Use the column interpretation of matrix multiplication.
 The columns of `AB` are `Ab_1` and `Ab_2`.
 </RevealSolution>
 
+<QuickCheck prompt="In `(5A-B)(2A+3B)`, what is the coefficient of `BA` after expansion?">
+Keep `AB` and `BA` as different terms.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The coefficient of `BA` is `-2`, because the term comes from `-B(2A)`.
+</RevealSolution>
+
 ## Exercise
 
 <QuickCheck prompt="Why does `Ax = 0` always have at least one solution, no matter what `A` is?">
@@ -494,6 +674,42 @@ For `AB` to be defined, the number of columns of `A` must equal the number of
 rows of `B`. For `BA` to be defined, the number of columns of `B` must equal
 the number of rows of `A`. These are different conditions, so one order may be
 legal while the reverse order is not.
+</RevealSolution>
+
+<QuickCheck prompt="Let `A` and `B` be the matrices from the worked example with unknowns. If the first column of `AB` is `[1,3]^T`, find `a` and `b`.">
+Use only the equations coming from the first column.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The first column of `AB` gives
+
+$$
+a+b+5=1,
+\qquad
+a+2b+1=3.
+$$
+
+So
+
+$$
+a+b=-4,
+\qquad
+a+2b=2.
+$$
+
+Subtracting gives `b=6`, and substituting into `a+b=-4` gives `a=-10`.
+</RevealSolution>
+
+<QuickCheck prompt="Why does the product of two lower triangular `3 × 3` matrices remain lower triangular?">
+Do not multiply every entry. Explain why the entries above the diagonal stay zero.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+An entry above the diagonal has row index smaller than column index. In the
+row-by-column sum for such an entry, each term is forced to use either an
+above-diagonal zero from the left lower triangular matrix or an above-diagonal
+zero from the right lower triangular matrix. Hence every entry above the
+diagonal is zero, so the product is lower triangular.
 </RevealSolution>
 
 ## Related notes

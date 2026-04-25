@@ -219,3 +219,35 @@ Use this shape for future entries:
   TXT export route, and the EN PDF export route.
 - Remaining gaps: broader assignment / tutorial exercise parity and export /
   rendering QA across the expanded MATH1030 sequence.
+
+### 2026-04-25: MATH1030 matrix-algebra practice parity pass
+
+- Gap selected: MATH1030 no longer lacked a core chapter route, but `3.1`
+  still had less assignment-style practice depth than the checked-in matrix
+  algebra packets.
+- Reference basis: `reference/MATH1030/1030efghi-as01.pdf`,
+  `reference/MATH1030/1030efghi-as01as.pdf`,
+  `reference/MATH1030/Practice Set 2_Matrix Algebra.pdf`, and
+  `reference/MATH1030/Practice Set 2_Solutions.pdf`.
+- Content files changed: strengthened the EN / zh-HK / zh-CN `3.1 Matrix
+  multiplication and identity matrices` unit and updated
+  `src/lib/textbook/catalog.ts` plus `src/lib/textbook/problem-bank.ts`.
+- Visuals added: none; the added material is symbolic matrix algebra and
+  theorem / worked-example blocks are the appropriate surface.
+- Interactions added: none; the existing matrix-multiplication visualizer is
+  still the relevant embedded interaction for this unit.
+- Exercises added: in-page quick checks and guided exercises now cover
+  unknown recovery from a partial product, noncommutative expansion, and lower
+  triangular closure; the problem bank adds checkpoint items for parameter
+  recovery and noncommuting product expansion.
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed. Local production smoke on port `3000` returned
+  200 for the EN / zh-HK / zh-CN `3.1` note routes, EN TXT export, and zh-HK
+  PDF export. Browser QA on the zh-HK route confirmed the new practice
+  section, lower-triangular theorem, parameter-recovery checkpoint,
+  noncommuting-expansion checkpoint, localized language control, and zero
+  captured console errors.
+- Deployment: pending until this checkpoint commit is pushed and the Vercel
+  production deployment finishes.
+- Remaining gaps: `as02` / `as03` assignment parity and higher-chapter export
+  QA should continue after this pass.

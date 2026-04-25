@@ -1511,6 +1511,10 @@ const math1030MatrixAlgebraUnits: TextbookUnitMeta[] = [
         file: "reference/MATH1030/1030gi-n01-02.pdf",
       },
       {
+        file: "reference/MATH1030/1030efghi-as01.pdf",
+        note: "Question 2 and matrix algebra supplement patterns",
+      },
+      {
         file: "reference/MATH1030/Practice Set 2_Matrix Algebra.pdf",
       },
       {

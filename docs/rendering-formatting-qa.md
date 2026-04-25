@@ -305,3 +305,25 @@ Current checkpoint resolution:
   zh-HK page routes and EN TXT / PDF exports.
 - Remaining issues: no rendering blocker found for this unit; broader
   MATH1030 export and member-checkpoint QA should continue in later passes
+
+### 2026-04-25 checkpoint 13: MATH1030 matrix-algebra practice rendering
+
+- Checkpoint name: `3.1 Matrix multiplication and identity matrices`
+  assignment-style practice rendering pass
+- What was inspected: the strengthened EN / zh-HK / zh-CN `3.1` MDX files,
+  the existing MDX block registry, and the export behavior expected for
+  worked examples, theorem cards, common mistakes, quick checks, and reveal
+  solutions
+- What was changed: added display-math-heavy worked examples for a partial
+  product with unknowns, noncommutative expansion, lower triangular products,
+  and matching quick-check / reveal-solution pairs
+- Rendering note: no new block type was introduced; all additions use existing
+  article blocks and display math so TXT / PDF export should preserve the
+  complete static study sequence
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed. Local production route checks returned 200 for
+  the EN / zh-HK / zh-CN `3.1` note pages; representative TXT and PDF export
+  routes returned 200; browser QA confirmed the zh-HK page renders the new
+  section, theorem, and checkpoint prompts with no captured console errors.
+- Remaining issues: continue export QA on the broader MATH1030 sequence after
+  this unit-level check

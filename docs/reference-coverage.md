@@ -441,7 +441,7 @@ into exercises, examples, and source refs for authored note pages.
 | MATH1030 | `reference/MATH1030/1030efghi-tutorial-week07as.pdf` | tutorial answers | overlap | partial | yes | no | Answer key only. |
 | MATH1030 | `reference/MATH1030/1030efghi-tutorial-week08.pdf` | tutorial | incorporated | yes | yes | no | Supports vector-space and subspace coverage. |
 | MATH1030 | `reference/MATH1030/1030efghi-tutorial-week08as.pdf` | tutorial answers | overlap | partial | yes | no | Answer key only. |
-| MATH1030 | `reference/MATH1030/1030efghi-as01.pdf` | assignment | partially incorporated | partial | no | no | Matrix algebra assignment now aligns with new chapter 3 notes, but not every problem type has been surfaced. |
+| MATH1030 | `reference/MATH1030/1030efghi-as01.pdf` | assignment | partially incorporated | partial | no | no | Matrix algebra assignment now directly supports the strengthened `3.1` unknown-product example and noncommutative product-expansion warnings; transpose / symmetry problems remain covered mostly by `3.2`. |
 | MATH1030 | `reference/MATH1030/1030efghi-as01as.pdf` | assignment answers | overlap | partial | yes | no | Answer key only. |
 | MATH1030 | `reference/MATH1030/1030efghi-as02.pdf` | assignment | partially incorporated | partial | no | no | Systems and row-operation material largely merged, but some problem structures remain internal only. |
 | MATH1030 | `reference/MATH1030/1030efghi-as02as.pdf` | assignment answers | overlap | partial | yes | no | Answer key only. |
@@ -450,7 +450,7 @@ into exercises, examples, and source refs for authored note pages.
 | MATH1030 | `reference/MATH1030/1030efghi-as04-202526.pdf` | assignment | incorporated | yes | yes | no | Already supports dependence / span / vector-space public notes. |
 | MATH1030 | `reference/MATH1030/Practice Set 1_Set review and Solving Linear system.pdf` | practice set | incorporated | yes | yes | no | Used in systems, augmented matrices, and solution-set types. |
 | MATH1030 | `reference/MATH1030/Practice Set 1_Solutions.pdf` | practice solutions | overlap | partial | yes | no | Internal solution support only. |
-| MATH1030 | `reference/MATH1030/Practice Set 2_Matrix Algebra.pdf` | practice set | incorporated | yes | yes | no | Now directly merged into matrix basics and matrix multiplication notes. |
+| MATH1030 | `reference/MATH1030/Practice Set 2_Matrix Algebra.pdf` | practice set | incorporated | yes | yes | no | Now directly merged into matrix basics and matrix multiplication notes, including product-size, parameter-recovery, noncommutative expansion, and lower-triangular closure patterns. |
 | MATH1030 | `reference/MATH1030/Practice Set 2_Solutions.pdf` | practice solutions | overlap | partial | yes | no | Internal solution support only. |
 | MATH1030 | `reference/MATH1030/Practice Set 3_Matrix Algebra and Linear Equation System.pdf` | practice set | incorporated | yes | yes | no | Supports matrix multiplication note and elimination-related exercises. |
 | MATH1030 | `reference/MATH1030/Practice Set 3_Solutions.pdf` | practice solutions | overlap | partial | yes | no | Internal solution support only. |
@@ -831,3 +831,21 @@ existing invertibility note instead of creating a detached new route.
 - Remaining issues: the MATH1030 content backlog is now mainly broader
   assignment / tutorial exercise parity and export / rendering QA across the
   expanded higher-chapter sequence.
+
+### 2026-04-25 checkpoint 19: MATH1030 matrix-algebra practice parity pass
+
+- Strengthened the existing three-locale `3.1 Matrix multiplication and
+  identity matrices` note using `1030efghi-as01.pdf`,
+  `1030efghi-as01as.pdf`, `Practice Set 2_Matrix Algebra.pdf`, and
+  `Practice Set 2_Solutions.pdf`.
+- Added textbook-style coverage for assignment-style parameter recovery from a
+  partially known product, noncommutative expansion of matrix products, the
+  correct column interpretation of `AB`, and closure of lower triangular
+  matrices under multiplication.
+- Updated the MATH1030 catalog source refs so the assignment packet is visible
+  as internal provenance for the strengthened `3.1` unit.
+- Added checkpoint questions for parameter recovery and noncommuting product
+  expansion in the problem bank.
+- Remaining issues: assignment `as02` and `as03` still have problem structures
+  that are only partially represented in public checkpoint coverage, and the
+  higher-chapter export / rendering QA pass should continue.

@@ -1079,6 +1079,139 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["identity-matrix", "matrix-multiplication"],
   },
+  "checkpoint.math1030.matrix-product-parameter-recovery": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.matrix-product-parameter-recovery",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "matrix-algebra",
+    unitId: "math1030.matrix-algebra.matrix-multiplication-and-identity",
+    inputMode: "math-expression",
+    maxAttempts: 4,
+    points: 1,
+    prompt: text(
+      "Let A = [[1,2,1,3],[1,0,2,1]] and B = [[a,b],[1,1],[b,a],[1,2]]. If the first column of AB is [1,3]^T, fill in the blank: b = ____.",
+      "設 A = [[1,2,1,3],[1,0,2,1]]，B = [[a,b],[1,1],[b,a],[1,2]]。若 AB 的第一列是 [1,3]^T，填空：b = ____。",
+      "设 A = [[1,2,1,3],[1,0,2,1]]，B = [[a,b],[1,1],[b,a],[1,2]]。若 AB 的第一列是 [1,3]^T，填空：b = ____。"
+    ),
+    correctAnswer: {
+      value: "6",
+      equivalentValues: ["6.0"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "The first column gives two equations: a+b+5=1 and a+2b+1=3.",
+        "第一列給出兩條方程：a+b+5=1 及 a+2b+1=3。",
+        "第一列给出两条方程：a+b+5=1 及 a+2b+1=3。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter one scalar.",
+      "請輸入一個純量。",
+      "请输入一个纯量。"
+    ),
+    solutionSteps: [
+      text(
+        "Comparing the first entry of the first column gives a+b+5=1, so a+b=-4.",
+        "比較第一列的第一個元素，得到 a+b+5=1，所以 a+b=-4。",
+        "比较第一列的第一个元素，得到 a+b+5=1，所以 a+b=-4。"
+      ),
+      text(
+        "Comparing the second entry of the first column gives a+2b+1=3, so a+2b=2.",
+        "比較第一列的第二個元素，得到 a+2b+1=3，所以 a+2b=2。",
+        "比较第一列的第二个元素，得到 a+2b+1=3，所以 a+2b=2。"
+      ),
+      text(
+        "Subtract the two equations to get b=6.",
+        "兩式相減得到 b=6。",
+        "两式相减得到 b=6。"
+      ),
+    ],
+    skillTags: ["matrix-multiplication", "parameter-recovery", "row-by-column"],
+  },
+  "checkpoint.math1030.noncommuting-product-expansion": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.noncommuting-product-expansion",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrix-algebra",
+    unitId: "math1030.matrix-algebra.matrix-multiplication-and-identity",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "For same-size square matrices A and B, which expansion is always correct?",
+      "對同大小方陣 A、B，下列哪個展開式必定正確？",
+      "对同大小方阵 A、B，下列哪个展开式必定正确？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "(A+B)^2 = A^2 + 2AB + B^2",
+          "(A+B)^2 = A^2 + 2AB + B^2",
+          "(A+B)^2 = A^2 + 2AB + B^2"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "(A+B)^2 = A^2 + AB + BA + B^2",
+          "(A+B)^2 = A^2 + AB + BA + B^2",
+          "(A+B)^2 = A^2 + AB + BA + B^2"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "(A+B)^2 = A^2 + B^2",
+          "(A+B)^2 = A^2 + B^2",
+          "(A+B)^2 = A^2 + B^2"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "(A+B)^2 = A^2 + BA + B^2",
+          "(A+B)^2 = A^2 + BA + B^2",
+          "(A+B)^2 = A^2 + BA + B^2"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "Distribute first. Do not combine AB and BA unless commutativity is known.",
+        "先做分配律；除非已知可交換，否則不要合併 AB 與 BA。",
+        "先做分配律；除非已知可交换，否则不要合并 AB 与 BA。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "(A+B)^2 means (A+B)(A+B).",
+        "(A+B)^2 的意思是 (A+B)(A+B)。",
+        "(A+B)^2 的意思是 (A+B)(A+B)。"
+      ),
+      text(
+        "Distributing gives A(A+B)+B(A+B)=A^2+AB+BA+B^2.",
+        "用分配律得到 A(A+B)+B(A+B)=A^2+AB+BA+B^2。",
+        "用分配律得到 A(A+B)+B(A+B)=A^2+AB+BA+B^2。"
+      ),
+      text(
+        "The terms AB and BA are not automatically equal for matrices.",
+        "對矩陣而言，AB 與 BA 不會自動相等。",
+        "对矩阵而言，AB 与 BA 不会自动相等。"
+      ),
+    ],
+    skillTags: ["matrix-multiplication", "noncommutative-algebra", "expansion"],
+  },
   "checkpoint.math1030.transpose-size": {
     accessTier: "FREE",
     id: "checkpoint.math1030.transpose-size",

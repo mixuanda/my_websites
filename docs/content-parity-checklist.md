@@ -405,3 +405,24 @@ written languages.
   zh-HK `樞軸欄` and zh-CN `主元列`; contentlayer, lint, production build,
   local route checks, representative TXT / PDF exports, and browser QA passed
 - Remaining issues: broader assignment / tutorial exercise parity remains
+
+### 2026-04-25 checkpoint 8: Matrix-algebra practice parity
+
+This checkpoint strengthens an existing MATH1030 unit in all three supported
+written languages.
+
+- Checkpoint name: Parallel EN, zh-HK, and zh-CN expansion of `3.1 Matrix
+  multiplication and identity matrices`
+- What was inspected: `1030efghi-as01.pdf`, `1030efghi-as01as.pdf`,
+  `Practice Set 2_Matrix Algebra.pdf`, `Practice Set 2_Solutions.pdf`, and
+  the existing localized `3.1` note files
+- What was changed: each locale now has the same added section on
+  assignment-style traps, including unknown recovery from a partial product,
+  noncommutative expansion, lower triangular closure, common mistakes, quick
+  checks, and guided exercises
+- What was verified: contentlayer, lint, build, local route / export checks,
+  and zh-HK browser QA passed for the strengthened `3.1` unit; the three
+  locales keep matching section order and exercise targets while using
+  locale-specific terminology
+- Remaining issues: later passes should continue with `as02` / `as03`
+  assignment parity and higher-chapter export QA

@@ -286,6 +286,155 @@ $$
 这些法则虽然基础，但后面谈逆矩阵、block 计算和更长乘积推理时都会默认使
 用。如果不把它们明确掌握，后面的长计算会很难核对。
 
+## 从练习题看出主要陷阱
+
+矩阵代数的 assignment 题通常不只是测试算术。当乘积里面出现未知元素时，
+题目往往同时要求你读懂大小、知道哪一行和哪一列决定某个输出元素，并记得
+矩阵因子通常不能互相调换。
+
+<WorkedExample title="由部分已知乘积反推出未知数">
+令
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 & 1 & 3 \\
+1 & 0 & 2 & 1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+a & b \\
+1 & 1 \\
+b & a \\
+1 & 2
+\end{bmatrix}.
+$$
+
+假设
+
+$$
+AB =
+\begin{bmatrix}
+1 & c \\
+3 & d
+\end{bmatrix}.
+$$
+
+乘积有定义，因为 `A` 是 `2 \times 4`，`B` 是 `4 \times 2`，所以 `AB`
+必定是 `2 \times 2`。只计算需要比较的元素，可得
+
+$$
+AB =
+\begin{bmatrix}
+a+b+5 & a+b+8 \\
+a+2b+1 & 2a+b+2
+\end{bmatrix}.
+$$
+
+把第一列与已知矩阵比较，得到
+
+$$
+a+b+5=1,
+\qquad
+a+2b+1=3.
+$$
+
+因此
+
+$$
+a+b=-4,
+\qquad
+a+2b=2.
+$$
+
+第二条减第一条得到 `b=6`，再代入得到 `a=-10`。余下元素是
+
+$$
+c=a+b+8=4,
+\qquad
+d=2a+b+2=-12.
+$$
+</WorkedExample>
+
+这类题目的重点，不是把所有元素都盲目乘出来，而是抽出已知乘积元素所强制
+的少数方程。
+
+<WorkedExample title="展开乘积时不要假设矩阵可交换">
+令 `A` 与 `B` 是同大小方阵。则
+
+$$
+(5A-B)(2A+3B)
+= 5A(2A+3B)-B(2A+3B).
+$$
+
+继续分配右边因子：
+
+$$
+5A(2A+3B)-B(2A+3B)
+=10A^2+15AB-2BA-3B^2.
+$$
+
+中间两项是 `15AB` 与 `-2BA`。除非已知 `AB=BA`，否则不能把它们合并成
+`13AB`。
+</WorkedExample>
+
+同一个警告也解释了常见错误：
+
+$$
+(A+B)(A-B)
+=A^2-AB+BA-B^2.
+$$
+
+只有在额外知道 `AB=BA` 时，这才等于 `A^2-B^2`。实数代数会遮住这个问题，
+因为实数乘法可交换；矩阵代数不会。
+
+<TheoremCard title="下三角矩阵在乘法下封闭">
+一个 `3 \times 3` 下三角矩阵具有以下形状：
+
+$$
+\begin{bmatrix}
+* & 0 & 0 \\
+* & * & 0 \\
+* & * & *
+\end{bmatrix}.
+$$
+
+若 `A` 与 `B` 都是 `3 \times 3` 下三角矩阵，则 `AB` 仍然是下三角矩阵。
+</TheoremCard>
+
+可以用一次明确计算看出原因。写
+
+$$
+A =
+\begin{bmatrix}
+a_1 & 0 & 0 \\
+b_1 & c_1 & 0 \\
+d_1 & e_1 & f_1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+a_2 & 0 & 0 \\
+b_2 & c_2 & 0 \\
+d_2 & e_2 & f_2
+\end{bmatrix}.
+$$
+
+则
+
+$$
+AB =
+\begin{bmatrix}
+a_1a_2 & 0 & 0 \\
+b_1a_2+c_1b_2 & c_1c_2 & 0 \\
+d_1a_2+e_1b_2+f_1d_2 & e_1c_2+f_1e_2 & f_1f_2
+\end{bmatrix}.
+$$
+
+对角线上方的元素保持为零，因为那些行乘列的和式中，每一项都会被左边或右
+边其中一个上方零项杀掉。这是一个“形状性质”被矩阵乘法保留的好例子。
+
 <WorkedExample title="零乘积不代表其中一个因子必定为零">
 令
 
@@ -346,6 +495,22 @@ $$
 没有。不要自动把顺序反过来。
 </CommonMistake>
 
+<CommonMistake title="列的观点是看右边因子的列">
+如果 `B=[b_1\ b_2]`，则 `AB=[Ab_1\ Ab_2]`。乘积的各列是 `A` 的列的线性
+组合，而权重来自 `B` 的对应列。不要写成 `AB=[a_1b_1\ a_2b_2]`；这并不
+符合矩阵乘法的定义。
+</CommonMistake>
+
+<CommonMistake title="二项式公式需要可交换假设">
+公式 `(A+B)^2=A^2+2AB+B^2` 对矩阵不是自动成立。真正展开是
+
+$$
+(A+B)^2=A^2+AB+BA+B^2.
+$$
+
+只有在 `AB=BA` 时，才可以把中间两项合并。
+</CommonMistake>
+
 ## 快速检查
 
 <QuickCheck prompt="若 `A` 是 `2 × 3`、`B` 是 `3 × 5`，那么 `AB` 的大小是什么？">
@@ -372,6 +537,14 @@ $$
 `AB` 的各列分别是 `Ab_1` 和 `Ab_2`。
 </RevealSolution>
 
+<QuickCheck prompt="展开 `(5A-B)(2A+3B)` 时，`BA` 的系数是多少？">
+请把 `AB` 与 `BA` 当作不同项处理。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`BA` 的系数是 `-2`，因为该项来自 `-B(2A)`。
+</RevealSolution>
+
 ## 练习
 
 <QuickCheck prompt="为什么 `Ax = 0` 不论 `A` 是什么，都至少有一个解？">
@@ -391,6 +564,40 @@ $$
 `AB` 有定义，要求 `A` 的列数等于 `B` 的行数；而 `BA` 有定义，要求
 `B` 的列数等于 `A` 的行数。这两个条件不同，所以一个方向可以做，反方向
 未必可以做。
+</RevealSolution>
+
+<QuickCheck prompt="令 `A`、`B` 为上面含未知数的 worked example 中的矩阵。若 `AB` 的第一列是 `[1,3]^T`，求 `a` 和 `b`。">
+只使用第一列给出的方程。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+`AB` 的第一列给出
+
+$$
+a+b+5=1,
+\qquad
+a+2b+1=3.
+$$
+
+所以
+
+$$
+a+b=-4,
+\qquad
+a+2b=2.
+$$
+
+相减得 `b=6`，再代入 `a+b=-4` 得 `a=-10`。
+</RevealSolution>
+
+<QuickCheck prompt="为什么两个 `3 × 3` 下三角矩阵的乘积仍是下三角矩阵？">
+不需要把所有元素乘出来；请解释对角线上方的元素为何保持为零。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+对角线上方的元素满足行指标小于列指标。在对应的行乘列和式中，每一项都会
+碰到左边下三角矩阵或右边下三角矩阵的一个上方零项，因此整个和为零。所有
+对角线上方元素都是零，所以乘积仍是下三角矩阵。
 </RevealSolution>
 
 ## 相关笔记
