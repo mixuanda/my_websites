@@ -247,7 +247,9 @@ Use this shape for future entries:
   section, lower-triangular theorem, parameter-recovery checkpoint,
   noncommuting-expansion checkpoint, localized language control, and zero
   captured console errors.
-- Deployment: pending until this checkpoint commit is pushed and the Vercel
-  production deployment finishes.
+- Deployment: commit `f865e4a` deployed successfully through Vercel production
+  deployment `dpl_D2m7puHGfJAX1eDwvL9nkiDKL2RQ`. Production smoke checks on
+  `www.evanalysis.top` returned 200 for the EN and zh-HK `3.1` note routes,
+  the EN TXT export route, and the zh-HK PDF export route.
 - Remaining gaps: `as02` / `as03` assignment parity and higher-chapter export
   QA should continue after this pass.

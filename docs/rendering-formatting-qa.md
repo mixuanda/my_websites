@@ -325,5 +325,8 @@ Current checkpoint resolution:
   the EN / zh-HK / zh-CN `3.1` note pages; representative TXT and PDF export
   routes returned 200; browser QA confirmed the zh-HK page renders the new
   section, theorem, and checkpoint prompts with no captured console errors.
+  Vercel production deployment `dpl_D2m7puHGfJAX1eDwvL9nkiDKL2RQ` reached
+  READY, and production smoke checks returned 200 for representative note and
+  export routes on `www.evanalysis.top`.
 - Remaining issues: continue export QA on the broader MATH1030 sequence after
   this unit-level check
