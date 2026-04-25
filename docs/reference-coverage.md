@@ -129,6 +129,10 @@ Current MATH1030 practice / rendering progress from April 25, 2026:
   the preserved-column-relation bridge.
 - added checkpoint problems for the new `5.2` unit covering the uniqueness
   conclusion and reading rank from the pivot-column count.
+- deepened the public MATH1030 unit `2.3 Gaussian elimination and RREF` in EN,
+  zh-HK, and zh-CN with assignment-style RREF drills from `as02`, including a
+  long augmented-system reduction, one-step RREF cleanup, parametric solution
+  reading, and two matching checkpoint problems.
 
 Current Math1025 expansion progress from April 25, 2026:
 
@@ -443,8 +447,8 @@ into exercises, examples, and source refs for authored note pages.
 | MATH1030 | `reference/MATH1030/1030efghi-tutorial-week08as.pdf` | tutorial answers | overlap | partial | yes | no | Answer key only. |
 | MATH1030 | `reference/MATH1030/1030efghi-as01.pdf` | assignment | partially incorporated | partial | no | no | Matrix algebra assignment now directly supports the strengthened `3.1` unknown-product example and noncommutative product-expansion warnings; transpose / symmetry problems remain covered mostly by `3.2`. |
 | MATH1030 | `reference/MATH1030/1030efghi-as01as.pdf` | assignment answers | overlap | partial | yes | no | Answer key only. |
-| MATH1030 | `reference/MATH1030/1030efghi-as02.pdf` | assignment | partially incorporated | partial | no | no | Systems and row-operation material largely merged. The `4.1` note now directly incorporates the particular-solution plus null-space structure, the `v-u in N(A)` proof pattern, and the `2A,3b` scaling check; longer row-operation matrices and RREF drill sequences remain mostly internal. |
-| MATH1030 | `reference/MATH1030/1030efghi-as02as.pdf` | assignment answers | overlap | partial | yes | no | Answer key only. |
+| MATH1030 | `reference/MATH1030/1030efghi-as02.pdf` | assignment | substantially incorporated | partial | no | no | Systems and row-operation material largely merged. The `4.1` note directly incorporates the particular-solution plus null-space structure, the `v-u in N(A)` proof pattern, and the `2A,3b` scaling check; `2.3` now incorporates Q5/Q7-style RREF cleanup, long row-reduction, and parametric-solution reading. Remaining row-operation-matrix composition items are better treated in `3.3` or future checkpoint work. |
+| MATH1030 | `reference/MATH1030/1030efghi-as02as.pdf` | assignment answers | overlap | partial | yes | no | Answer key used to verify the `2.3` RREF cleanup / parametric-solution forms and the existing `4.1` homogeneous-solution patterns. |
 | MATH1030 | `reference/MATH1030/1030efghi-as03.pdf` | assignment | substantially incorporated | partial | no | no | Direct support now appears in `4.2` for stacked-null-space subset proofs and same-coefficient solution-set intersections, and in `5.1` for one-sided identity / cyclic product invertibility arguments. Full numerical row-reduction parity remains exercise-depth backlog. |
 | MATH1030 | `reference/MATH1030/1030efghi-as03as.pdf` | assignment answers | overlap | partial | yes | no | Used to verify the solution patterns for the `4.2` set-language proof templates and `5.1` determinant-free invertibility algebra; answer-key extraction remains secondary evidence. |
 | MATH1030 | `reference/MATH1030/1030efghi-as04-202526.pdf` | assignment | incorporated | yes | yes | no | Already supports dependence / span / vector-space public notes. |
@@ -890,3 +894,19 @@ existing invertibility note instead of creating a detached new route.
 - Remaining issues: full `as03` numerical row-reduction tables, parameterized
   inverse computations, and longer Q10 polynomial identity proofs remain
   exercise-depth backlog rather than core article blockers.
+
+### 2026-04-26 checkpoint 22: MATH1030 RREF numerical drill parity pass
+
+- Strengthened the existing three-locale `2.3 Gaussian elimination and RREF`
+  note using `1030efghi-as02.pdf` and `1030efghi-as02as.pdf`.
+- Added a long augmented-system row-reduction example from the assignment
+  pattern, including the intermediate echelon stage, final RREF, pivot/free
+  variable reading, and full parametric solution form.
+- Added a one-step RREF cleanup worked example so readers can recognize a
+  matrix that is almost reduced but still has a nonzero entry above a pivot.
+- Updated the MATH1030 catalog source refs for `2.3` and added checkpoint
+  questions for the cleanup operation and scalar substitution in a parametric
+  RREF solution.
+- Remaining issues: as03 inverse-by-row-reduction and parameterized inverse
+  computations remain better suited to a later invertibility-depth exercise
+  pass; broader export / rendering QA should continue.

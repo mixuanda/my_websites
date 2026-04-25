@@ -3212,6 +3212,111 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["rref", "pivot-columns", "free-variable"],
   },
+  "checkpoint.math1030.rref-cleanup-operation": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.rref-cleanup-operation",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrices",
+    unitId: "math1030.matrices.gaussian-elimination-rref",
+    inputMode: "text",
+    maxAttempts: unlimited,
+    points: 1,
+    prompt: text(
+      "A matrix has a pivot `1` in row 3, column 5, and the only other nonzero entry in that column is `2` in row 1. Which operation clears the pivot column?",
+      "某矩陣在第 3 行第 5 列有主元 `1`，而同一列唯一其他非零元素是第 1 行的 `2`。哪個行變換能清掉這個主元列？",
+      "某矩阵在第 3 行第 5 列有主元 `1`，而同一列唯一其他非零元素是第 1 行的 `2`。哪个行变换能清掉这个主元列？"
+    ),
+    choices: [
+      { id: "a", text: text("`R_1 <- R_1 - 2R_3`", "`R_1 <- R_1 - 2R_3`", "`R_1 <- R_1 - 2R_3`") },
+      { id: "b", text: text("`R_3 <- R_3 - 2R_1`", "`R_3 <- R_3 - 2R_1`", "`R_3 <- R_3 - 2R_1`") },
+      { id: "c", text: text("`R_1 <- 2R_1`", "`R_1 <- 2R_1`", "`R_1 <- 2R_1`") },
+      { id: "d", text: text("`R_1 <-> R_3`", "`R_1 <-> R_3`", "`R_1 <-> R_3`") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Use the pivot row to eliminate the unwanted entry above the pivot.",
+        "用主元所在的行去消去主元上方不需要的元素。",
+        "用主元所在的行去消去主元上方不需要的元素。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The entry to remove is the `2` in row 1, column 5.",
+        "要清掉的是第 1 行第 5 列的 `2`。",
+        "要清掉的是第 1 行第 5 列的 `2`。"
+      ),
+      text(
+        "Row 3 has the pivot `1` in that column, so subtract `2R_3` from `R_1`.",
+        "第 3 行在同一列有主元 `1`，所以從 `R_1` 減去 `2R_3`。",
+        "第 3 行在同一列有主元 `1`，所以从 `R_1` 减去 `2R_3`。"
+      ),
+      text(
+        "The new column-5 entry in row 1 is `2-2(1)=0`.",
+        "第 1 行第 5 列的新元素是 `2-2(1)=0`。",
+        "第 1 行第 5 列的新元素是 `2-2(1)=0`。"
+      ),
+    ],
+    skillTags: ["rref", "row-operations", "pivot-columns"],
+  },
+  "checkpoint.math1030.rref-parametric-coordinate": {
+    accessTier: "FREE",
+    id: "checkpoint.math1030.rref-parametric-coordinate",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "matrices",
+    unitId: "math1030.matrices.gaussian-elimination-rref",
+    inputMode: "math-expression",
+    maxAttempts: 4,
+    points: 1,
+    prompt: text(
+      "For the RREF rows `x_1+2x_2+x_4+2x_6=1`, `x_3-x_4-x_6=5`, and `x_5+x_6=-3`, set `x_2=1`, `x_4=0`, and `x_6=2`. Fill in the blank: `x_5=____`.",
+      "對 RREF 行 `x_1+2x_2+x_4+2x_6=1`、`x_3-x_4-x_6=5`、`x_5+x_6=-3`，令 `x_2=1`、`x_4=0`、`x_6=2`。填空：`x_5=____`。",
+      "对 RREF 行 `x_1+2x_2+x_4+2x_6=1`、`x_3-x_4-x_6=5`、`x_5+x_6=-3`，令 `x_2=1`、`x_4=0`、`x_6=2`。填空：`x_5=____`。"
+    ),
+    correctAnswer: {
+      value: "-5",
+      equivalentValues: ["-5.0"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "Only the third row is needed: `x_5+x_6=-3`.",
+        "只需要用第三行：`x_5+x_6=-3`。",
+        "只需要用第三行：`x_5+x_6=-3`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter one scalar.",
+      "請輸入一個純量。",
+      "请输入一个纯量。"
+    ),
+    solutionSteps: [
+      text(
+        "The third RREF row is `x_5+x_6=-3`.",
+        "第三條 RREF 行是 `x_5+x_6=-3`。",
+        "第三条 RREF 行是 `x_5+x_6=-3`。"
+      ),
+      text(
+        "Substitute `x_6=2` to get `x_5+2=-3`.",
+        "代入 `x_6=2`，得到 `x_5+2=-3`。",
+        "代入 `x_6=2`，得到 `x_5+2=-3`。"
+      ),
+      text(
+        "Therefore `x_5=-5`.",
+        "因此 `x_5=-5`。",
+        "因此 `x_5=-5`。"
+      ),
+    ],
+    skillTags: ["rref", "parametric-solution", "free-variable"],
+  },
   "checkpoint.math1030.transpose-symmetric-sum": {
     accessTier: "FREE",
     id: "checkpoint.math1030.transpose-symmetric-sum",

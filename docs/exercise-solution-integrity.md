@@ -452,3 +452,23 @@ unit-level coverage.
   `dpl_9gVqM1iwDGR1vTm3xcFRnLKXtWCP`
 - Remaining issues: longer numerical row-reduction and polynomial-identity
   proof exercises from `as03` remain exercise-depth backlog
+
+### 2026-04-26 checkpoint 16: MATH1030 RREF numerical drill parity
+
+- Checkpoint name: `2.3` RREF cleanup and parametric-solution integrity
+- What was inspected: `1030efghi-as02.pdf`, `1030efghi-as02as.pdf`, the
+  localized `2.3` MDX files, and `src/lib/textbook/problem-bank.ts`
+- What was changed: added paired in-page quick checks / reveal solutions for
+  reading free variables from the long RREF drill, added guided exercises for
+  a one-step RREF cleanup and for reading `x_1`, `x_3`, `x_5` from free
+  variables, and added one MCQ plus one fill-in checkpoint in the problem bank
+- Integrity note: the fill-in checkpoint asks for the single scalar
+  `x_5=-5`, avoiding fragile parsing of a full parametric vector; the in-page
+  answer blocks stay immediately after their corresponding prompts
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and `git diff --check` passed; local route
+  / export smoke returned 200 for representative `2.3` note and export
+  routes; browser QA confirmed the new checkpoint prompts render on the zh-HK
+  note page with no captured console errors
+- Remaining issues: `as03` inverse-by-row-reduction and longer symbolic proof
+  exercises remain future exercise-depth targets

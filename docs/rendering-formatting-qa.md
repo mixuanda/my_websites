@@ -381,3 +381,27 @@ Current checkpoint resolution:
   `www.evanalysis.top`.
 - Remaining issues: continue export QA on the broader MATH1030 sequence after
   this unit-level check
+
+### 2026-04-26 checkpoint 16: MATH1030 RREF numerical drill rendering
+
+- Checkpoint name: `2.3 Gaussian elimination and RREF` assignment-style
+  numerical drill rendering pass
+- What was inspected: the strengthened EN / zh-HK / zh-CN `2.3` MDX files,
+  the existing MDX block registry, the catalog source-ref map, and the export
+  behavior expected for worked examples, common mistakes, quick checks, and
+  reveal solutions
+- What was changed: added display-math-heavy long row-reduction, RREF reading,
+  one-step cleanup, and parametric-solution exercises without introducing a
+  new block type
+- Rendering note: the additions use existing article blocks and display math,
+  so TXT / PDF export preserves the complete static study sequence while the
+  existing row-reduction stepper remains the only interactive support in this
+  unit
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed. Local production route checks returned 200 for
+  EN / zh-HK / zh-CN `2.3` note pages; representative TXT and PDF exports
+  returned 200. Browser QA confirmed the zh-HK page renders the new long
+  reduction, near-RREF example, and checkpoint prompts with no captured
+  console errors.
+- Remaining issues: continue export QA on the broader MATH1030 sequence after
+  this unit-level check

@@ -1409,6 +1409,14 @@ const math1030MatricesUnits: TextbookUnitMeta[] = [
       {
         file: "reference/MATH1030/1030efghi-tutorial-week03.pdf",
       },
+      {
+        file: "reference/MATH1030/1030efghi-as02.pdf",
+        note: "Questions 5 and 7 on RREF reading, one-step cleanup, and full row-reduction drills",
+      },
+      {
+        file: "reference/MATH1030/1030efghi-as02as.pdf",
+        note: "Answer-key verification for the RREF cleanup and parametric-solution forms",
+      },
     ],
     title: text(
       "2.3 Gaussian elimination and RREF",

@@ -319,3 +319,39 @@ Use this shape for future entries:
 - Remaining gaps: full `as03` row-reduction tables, parameterized inverse
   computations, and longer polynomial identity proof exercises remain
   exercise-depth backlog; broader MATH1030 export QA should continue.
+
+### 2026-04-26: MATH1030 RREF numerical drill parity pass
+
+- Gap selected: after earlier MATH1030 passes, the remaining early-chapter
+  gap was not a missing route but `as02`-style long RREF / row-reduction
+  practice that had not been fully converted into public article and
+  checkpoint depth.
+- Reference basis: `reference/MATH1030/1030efghi-as02.pdf` and
+  `reference/MATH1030/1030efghi-as02as.pdf`, especially the Q5 one-step RREF
+  cleanup patterns and Q7 augmented-system reduction / parametric solution.
+- Content files changed: strengthened
+  `content/textbook/math1030/matrices/gaussian-elimination-rref/{en,zh-hk,zh-cn}.mdx`;
+  updated `src/lib/textbook/catalog.ts`, `src/lib/textbook/problem-bank.ts`,
+  and the MATH1030 coverage / QA docs.
+- Visuals added: none; the existing row-reduction stepper already covers the
+  state-changing interaction, while this pass needed static, export-friendly
+  worked reductions.
+- Interactions added: none; the new material is a longer computation and
+  solution-reading pass that works best as article text, display math, quick
+  checks, and guided exercises.
+- Exercises added: added in-page quick checks and exercises for free-variable
+  reading, one-step RREF cleanup, and parametric-coordinate extraction; added
+  two problem-bank checkpoints for the cleanup operation and scalar
+  substitution into an RREF solution.
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and `git diff --check` passed. Local
+  production smoke on `127.0.0.1:3000` returned 200 for EN / zh-HK / zh-CN
+  `2.3` note routes, representative TXT exports, and representative PDF
+  exports. Browser QA on the zh-HK route confirmed the new long reduction,
+  near-RREF example, checkpoint prompts, language links, and zero captured
+  console errors.
+- Deployment: pending commit, push, and Vercel production verification for
+  this round.
+- Remaining gaps: `as03` inverse-by-row-reduction, parameterized inverse
+  computations, and longer polynomial-identity proof exercises remain later
+  exercise-depth backlog; broader MATH1030 export QA should continue.

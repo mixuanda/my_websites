@@ -205,6 +205,118 @@ at three things:
 
 <InteractiveWidget id="row-reduction-stepper" />
 
+## A longer assignment-style reduction
+
+Short examples are useful for learning the mechanics, but assignment problems
+usually test whether you can keep the whole reduction organized. The main
+danger is not the size of the numbers. The main danger is losing the purpose of
+each row operation.
+
+Consider the augmented matrix
+
+$$
+C=
+\begin{bmatrix}
+1 & 2 & 0 & 1 & 0 & 2 & 1 \\
+1 & 2 & 1 & 0 & 1 & 2 & 3 \\
+2 & 4 & 1 & 1 & 2 & 5 & 1 \\
+5 & 10 & 3 & 2 & 4 & 11 & 8
+\end{bmatrix}.
+$$
+
+The first column already has a usable pivot in row 1. Clearing below that pivot
+gives
+
+$$
+\begin{bmatrix}
+1 & 2 & 0 & 1 & 0 & 2 & 1 \\
+0 & 0 & 1 & -1 & 1 & 0 & 2 \\
+0 & 0 & 1 & -1 & 2 & 1 & -1 \\
+0 & 0 & 3 & -3 & 4 & 1 & 3
+\end{bmatrix}.
+$$
+
+Now row 2 supplies the next pivot. Use it to remove the matching entries below:
+
+$$
+R_3\leftarrow R_3-R_2,
+\qquad
+R_4\leftarrow R_4-3R_2.
+$$
+
+After also clearing the duplicate row created by the next pivot, one clean
+echelon stage is
+
+$$
+\begin{bmatrix}
+1 & 2 & 0 & 1 & 0 & 2 & 1 \\
+0 & 0 & 1 & -1 & 1 & 0 & 2 \\
+0 & 0 & 0 & 0 & 1 & 1 & -3 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+This is the point where you should pause and read the structure: pivot columns
+are columns `1`, `3`, and `5`; free columns are columns `2`, `4`, and `6`.
+To reach RREF, clear the entry above the pivot in column `5`:
+
+$$
+R_2\leftarrow R_2-R_3.
+$$
+
+The final reduced form is
+
+$$
+C'=
+\begin{bmatrix}
+1 & 2 & 0 & 1 & 0 & 2 & 1 \\
+0 & 0 & 1 & -1 & 0 & -1 & 5 \\
+0 & 0 & 0 & 0 & 1 & 1 & -3 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+Let
+
+$$
+x_2=u,\qquad x_4=v,\qquad x_6=w.
+$$
+
+Then the pivot equations read
+
+$$
+\begin{aligned}
+x_1+2x_2+x_4+2x_6 &= 1,\\
+x_3-x_4-x_6 &= 5,\\
+x_5+x_6 &= -3.
+\end{aligned}
+$$
+
+So every solution has the form
+
+$$
+x=
+\begin{bmatrix}
+1\\0\\5\\0\\-3\\0
+\end{bmatrix}
++u
+\begin{bmatrix}
+-2\\1\\0\\0\\0\\0
+\end{bmatrix}
++v
+\begin{bmatrix}
+-1\\0\\1\\1\\0\\0
+\end{bmatrix}
++w
+\begin{bmatrix}
+-2\\0\\1\\0\\-1\\1
+\end{bmatrix}.
+$$
+
+This example illustrates the real purpose of a long reduction: not merely to
+produce zeros, but to expose the pivot/free-variable pattern from which the
+whole solution set follows.
+
 ## How to read an RREF matrix
 
 Once a matrix is in RREF, the main reading questions are:
@@ -245,6 +357,55 @@ then the corresponding equation is `0 = 1`. That is impossible, so the system
 is inconsistent and has no solution.
 </TheoremCard>
 
+<WorkedExample title="When a matrix is almost RREF">
+Sometimes a matrix is very close to RREF, but one pivot column has not yet been
+cleaned. For example,
+
+$$
+\begin{bmatrix}
+1 & 3 & 0 & 1 & 2 & 4 \\
+0 & 0 & 1 & 1 & 0 & -1 \\
+0 & 0 & 0 & 0 & 1 & 3 \\
+0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}
+$$
+
+is not RREF because the pivot in column `5` has a `2` above it. The single move
+
+$$
+R_1\leftarrow R_1-2R_3
+$$
+
+gives
+
+$$
+\begin{bmatrix}
+1 & 3 & 0 & 1 & 0 & -2 \\
+0 & 0 & 1 & 1 & 0 & -1 \\
+0 & 0 & 0 & 0 & 1 & 3 \\
+0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+Now the pivot columns are clean, so the matrix is in RREF. The free variables
+are `x_2` and `x_4`; with `x_2=s` and `x_4=t`, the solution is
+
+$$
+x=
+\begin{bmatrix}
+-2\\0\\-1\\0\\3
+\end{bmatrix}
++s
+\begin{bmatrix}
+-3\\1\\0\\0\\0
+\end{bmatrix}
++t
+\begin{bmatrix}
+-1\\0\\-1\\1\\0
+\end{bmatrix}.
+$$
+</WorkedExample>
+
 ## Common mistakes
 
 <CommonMistake title="REF is not yet RREF">
@@ -284,6 +445,15 @@ Translate the row back into an equation before you answer.
 <RevealSolution title="Answer">
 No. It represents `0 = 1`, which is a contradiction. That means the system is
 inconsistent and has no solution.
+</RevealSolution>
+
+<QuickCheck prompt="In the longer reduction above, why are `x_2`, `x_4`, and `x_6` free?">
+Look at the final RREF `C'`. Which variable columns contain leading `1`s?
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The leading `1`s are in columns `1`, `3`, and `5`. Therefore columns `2`, `4`,
+and `6` have no pivots, so `x_2`, `x_4`, and `x_6` are free variables.
 </RevealSolution>
 
 ## Exercises
@@ -333,6 +503,66 @@ or no solution?
 There is no contradiction row, so the system is not inconsistent. But column 3
 has no pivot, which means there is a free variable. Therefore the system has
 infinitely many solutions.
+</RevealSolution>
+
+### Exercise 3
+
+Start from
+
+$$
+\begin{bmatrix}
+1 & 3 & 0 & 1 & 2 & 4 \\
+0 & 0 & 1 & 1 & 0 & -1 \\
+0 & 0 & 0 & 0 & 1 & 3 \\
+0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+Which single row operation turns this matrix into RREF?
+
+<RevealSolution title="Guided solution for exercise 3">
+The pivot in column `5` is the `1` in row 3. The only nonzero entry elsewhere
+in that pivot column is the `2` in row 1, so subtract twice row 3 from row 1:
+
+$$
+R_1\leftarrow R_1-2R_3.
+$$
+</RevealSolution>
+
+### Exercise 4
+
+For the RREF matrix
+
+$$
+\begin{bmatrix}
+1 & 2 & 0 & 1 & 0 & 2 & 1 \\
+0 & 0 & 1 & -1 & 0 & -1 & 5 \\
+0 & 0 & 0 & 0 & 1 & 1 & -3 \\
+0 & 0 & 0 & 0 & 0 & 0 & 0
+\end{bmatrix},
+$$
+
+set `x_2=u`, `x_4=v`, and `x_6=w`. Write `x_1`, `x_3`, and `x_5` in terms of
+`u`, `v`, and `w`.
+
+<RevealSolution title="Guided solution for exercise 4">
+Read the three nonzero rows:
+
+$$
+\begin{aligned}
+x_1+2u+v+2w &= 1,\\
+x_3-v-w &= 5,\\
+x_5+w &= -3.
+\end{aligned}
+$$
+
+Therefore
+
+$$
+x_1=1-2u-v-2w,\qquad
+x_3=5+v+w,\qquad
+x_5=-3-w.
+$$
 </RevealSolution>
 
 ## Read this first

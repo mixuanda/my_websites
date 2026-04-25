@@ -120,5 +120,11 @@ product identities from `ABCD=I`. Existing theorem, proof, worked-example,
 common-mistake, quick-check, and reveal blocks preserve the article-first flow
 and export cleanly.
 
+The later `math1030` `2.3` RREF numerical drill parity pass also did not add a
+new widget. The existing row-reduction stepper already covers the state change
+from row operations; the new material is a static assignment-style computation
+and is better represented through display math, worked examples, quick checks,
+and guided exercises so exports keep the full study value.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

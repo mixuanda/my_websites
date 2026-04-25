@@ -466,3 +466,23 @@ written languages.
 - Remaining issues: full numerical `as03` row-reduction tables and longer
   polynomial-identity proofs remain exercise-depth backlog; broader export QA
   should continue
+
+### 2026-04-26 checkpoint 11: RREF numerical drill parity
+
+This checkpoint strengthens one existing MATH1030 unit in all three supported
+written languages.
+
+- Checkpoint name: Parallel EN, zh-HK, and zh-CN expansion of `2.3 Gaussian
+  elimination and RREF`
+- What was inspected: `1030efghi-as02.pdf`, `1030efghi-as02as.pdf`, the
+  existing localized `2.3` note files, `src/lib/textbook/catalog.ts`, and
+  `src/lib/textbook/problem-bank.ts`
+- What was changed: each locale received the same assignment-style long RREF
+  reduction, the same one-step near-RREF cleanup example, matching quick
+  checks, guided exercises, and two new problem-bank checkpoint patterns
+- What was verified: contentlayer, TypeScript, lint, build, local route /
+  export checks, and zh-HK browser QA passed for the strengthened `2.3` unit;
+  the three files keep matching section order and exercise targets while using
+  locale-specific prose
+- Remaining issues: later passes should focus on `as03` inverse computation
+  and broader export QA rather than early RREF drill parity
