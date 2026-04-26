@@ -385,8 +385,11 @@ Use this shape for future entries:
   on the zh-HK route confirmed the new parameterized inverse section,
   determinant-free proof section, language links, light/dark mode rendering,
   and zero captured console errors.
-- Deployment: pending commit, push, and Vercel production verification for
-  this round.
+- Deployment: committed, pushed to `origin/main`, and verified on Vercel
+  production. Production smoke checks on `www.evanalysis.top` returned 200 for
+  the EN / zh-HK / zh-CN `5.1` note routes, representative TXT exports, and
+  the EN PDF export; production content greps confirmed the parameterized
+  inverse and determinant-free proof sections are live.
 - Remaining gaps after this pass: the Q5 / Q6 / Q8 numerical row-reduction
   table material was addressed by the following row-reduction-table pass;
   broader MATH1030 export QA should continue.
@@ -420,8 +423,11 @@ Use this shape for future entries:
   confirmed the zh-HK route renders the new supplied-table section, the
   language switcher reaches the zh-CN route, dark mode renders coherently, and
   zero console errors were captured.
-- Deployment: pending commit, push, and Vercel production verification for
-  this round.
+- Deployment: committed, pushed to `origin/main`, and verified on Vercel
+  production. Production smoke checks on `www.evanalysis.top` returned 200 for
+  the EN / zh-HK / zh-CN `5.1` note routes, representative TXT exports, and
+  the EN PDF export; production content greps confirmed the supplied
+  row-reduction table section is live.
 - Remaining gaps: broader MATH1030 export QA and optional exhaustive
   reproduction of every intermediate numerical row-operation table remain
   later QA-depth work.
