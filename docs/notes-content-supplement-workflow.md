@@ -461,3 +461,37 @@ Use this shape for future entries:
   and zero console errors were captured.
 - Remaining gaps: the parameterized `G/H` construction from `as02` Q2 remains
   optional exercise-depth backlog; broader MATH1030 export QA should continue.
+
+### 2026-04-26: MATH1030 as02 parameterized row-operation product pass
+
+- Gap selected: after the Q1-style `3.3` row-operation-product pass, the
+  remaining documented `as02` gap was Q2's parameterized `G/H` construction:
+  applying a chain with `alpha_1`, `alpha_2`, `beta_1`, and `beta_2` to
+  `I_5`, then reversing it.
+- Reference basis: `reference/MATH1030/1030efghi-as02.pdf` and
+  `reference/MATH1030/1030efghi-as02as.pdf`, especially Q2.
+- Content files changed: strengthened
+  `content/textbook/math1030/matrix-algebra/row-operation-matrices/{en,zh-hk,zh-cn}.mdx`;
+  updated `src/lib/textbook/problem-bank.ts` and the MATH1030 coverage / QA
+  docs.
+- Visuals added: none; the material is a symbolic row-operation product and
+  is clearer as static display math.
+- Interactions added: none; no new widget was justified. The exercises use
+  existing `QuickCheck` and `RevealSolution` blocks so TXT / PDF exports keep
+  the full study value.
+- Exercises added: added two in-page guided exercises for constructing `G`
+  and reversing it to obtain `H=G^{-1}`; added two problem-bank checkpoints
+  for the `(3,2)` entry `alpha_2 beta_1` and the relationship `H=G^{-1}`.
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and local production smoke on
+  `127.0.0.1:3003` passed. Local note routes rendered the new EN / zh-HK /
+  zh-CN parameterized exercises, EN TXT export contained the new `G/H`
+  material, and zh-HK PDF export returned `application/pdf`. Browser DOM QA
+  confirmed the zh-HK page exposes the new exercises, checkpoint section,
+  zh-CN language links, and no captured console errors; browser screenshot
+  capture timed out in the in-app browser.
+- Deployment: to be completed by the final commit / push / Vercel production
+  verification for this round.
+- Remaining gaps: broader MATH1030 export QA remains; exhaustive reproduction
+  of every intermediate numerical assignment table remains intentionally
+  optional.

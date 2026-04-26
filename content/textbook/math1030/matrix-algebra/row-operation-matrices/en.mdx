@@ -488,6 +488,64 @@ B = E_2E_1A.
 $$
 </RevealSolution>
 
+<QuickCheck prompt="Let `\beta_1,\beta_2\ne 0`. Suppose `B` is obtained from a five-row matrix `A` by the chain `\alpha_1R_1+R_3`, then `\beta_1R_2`, then `R_1\leftrightarrow R_4`, then `\alpha_2R_2+R_3`, then `\beta_2R_1`. Write the single matrix `G` such that `B=GA`.">
+Apply the same operations to `I_5`, remembering that later operations use the
+current rows, not the original rows.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+Applying the operations to `I_5` gives
+
+$$
+G=
+\begin{bmatrix}
+0&0&0&\beta_2&0\\
+0&\beta_1&0&0&0\\
+\alpha_1&\alpha_2\beta_1&1&0&0\\
+1&0&0&0&0\\
+0&0&0&0&1
+\end{bmatrix}.
+$$
+
+The entry `\alpha_2\beta_1` is the main point. The operation
+`R_3\leftarrow R_3+\alpha_2R_2` occurs after row `2` has already been scaled
+to `\beta_1R_2`, so the contribution from the original row `2` is
+`\alpha_2\beta_1R_2`.
+</RevealSolution>
+
+<QuickCheck prompt="For the matrix `G` in the previous exercise, suppose `D=GC`. Write the matrix `H` such that `C=HD`.">
+Reverse the row operations in reverse order.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The inverse chain is
+
+$$
+G
+\xrightarrow{\frac1{\beta_2}R_1}
+\xrightarrow{-\alpha_2R_2+R_3}
+\xrightarrow{R_1\leftrightarrow R_4}
+\xrightarrow{\frac1{\beta_1}R_2}
+\xrightarrow{-\alpha_1R_1+R_3}
+I_5.
+$$
+
+Therefore
+
+$$
+H=
+\begin{bmatrix}
+0&0&0&1&0\\
+0&\frac1{\beta_1}&0&0&0\\
+0&-\alpha_2&1&-\alpha_1&0\\
+\frac1{\beta_2}&0&0&0&0\\
+0&0&0&0&1
+\end{bmatrix}.
+$$
+
+This is `G^{-1}`, so `D=GC` implies `C=HD`.
+</RevealSolution>
+
 ## Related notes
 
 This page builds on

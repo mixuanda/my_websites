@@ -478,3 +478,28 @@ Current checkpoint resolution:
   zh-CN page, and no console errors were captured.
 - Remaining issues: continue export QA on the broader MATH1030 sequence after
   this unit-level check
+
+### 2026-04-26 checkpoint 20: MATH1030 as02 parameterized row-operation product rendering
+
+- Checkpoint name: `3.3 Row-operation matrices` parameterized `G/H`
+  construction rendering pass
+- What was inspected: the strengthened EN / zh-HK / zh-CN `3.3` MDX files,
+  the existing MDX block registry, the problem-bank checkpoint additions, and
+  the export behavior expected for quick checks and reveal solutions
+- What was changed: added display-math-heavy guided exercises for the
+  parameterized combined multiplier `G` and its inverse multiplier `H`
+  without introducing a new block type
+- Rendering note: the additions use existing article blocks and display math,
+  so TXT / PDF export should preserve the complete static study sequence
+  without requiring an interactive row-operation-product widget
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and local production route checks on
+  `127.0.0.1:3003` passed. Local EN / zh-HK / zh-CN `3.3` note routes
+  rendered the new parameterized exercises; EN TXT export contained the new
+  `G/H` material; zh-HK PDF export returned `application/pdf`. Browser DOM QA
+  confirmed the zh-HK page renders the new exercises and checkpoint section,
+  exposes zh-CN language links, and has no captured console errors. In-app
+  browser screenshot capture timed out, so this pass used DOM / log signals
+  rather than a captured image.
+- Remaining issues: continue export QA on the broader MATH1030 sequence after
+  this unit-level check

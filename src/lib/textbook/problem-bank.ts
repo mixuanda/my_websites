@@ -3639,6 +3639,108 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["row-operation-matrix", "inverse", "matrix-product-order"],
   },
+  "checkpoint.math1030.parameter-row-operation-product": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.parameter-row-operation-product",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrix-algebra",
+    unitId: "math1030.matrix-algebra.row-operation-matrices",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "In a five-row chain, `R_2` is first replaced by `\\beta_1 R_2`, and later `R_3 \\leftarrow R_3 + \\alpha_2 R_2`. In the combined multiplier `G`, what is the entry in position `(3,2)`?",
+      "在一串五行行變換中，先把 `R_2` 換成 `\\beta_1 R_2`，後來再做 `R_3 \\leftarrow R_3 + \\alpha_2 R_2`。在合併乘數 `G` 中，位置 `(3,2)` 的項是甚麼？",
+      "在一串五行行变换中，先把 `R_2` 换成 `\\beta_1 R_2`，后来再做 `R_3 \\leftarrow R_3 + \\alpha_2 R_2`。在合并乘数 `G` 中，位置 `(3,2)` 的项是什么？"
+    ),
+    choices: [
+      { id: "a", text: text("`\\alpha_2`", "`\\alpha_2`", "`\\alpha_2`") },
+      { id: "b", text: text("`\\beta_1`", "`\\beta_1`", "`\\beta_1`") },
+      { id: "c", text: text("`\\alpha_2\\beta_1`", "`\\alpha_2\\beta_1`", "`\\alpha_2\\beta_1`") },
+      { id: "d", text: text("`\\alpha_1\\beta_2`", "`\\alpha_1\\beta_2`", "`\\alpha_1\\beta_2`") },
+    ],
+    correctAnswer: { choiceId: "c" },
+    hints: [
+      text(
+        "The later operation uses the current row 2, after row 2 has already been scaled.",
+        "後面的操作使用當時的第 2 行，而那一行已經被縮放。",
+        "后面的操作使用当时的第 2 行，而那一行已经被缩放。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "After the scaling step, row 2 is `\\beta_1 R_2` in terms of the original rows.",
+        "經過縮放步驟後，用原來的行表示，第 2 行是 `\\beta_1 R_2`。",
+        "经过缩放步骤后，用原来的行表示，第 2 行是 `\\beta_1 R_2`。"
+      ),
+      text(
+        "The later operation adds `\\alpha_2` times that current row 2 to row 3.",
+        "後面的操作把那條當前第 2 行的 `\\alpha_2` 倍加到第 3 行。",
+        "后面的操作把那条当前第 2 行的 `\\alpha_2` 倍加到第 3 行。"
+      ),
+      text(
+        "So the contribution from the original row 2 is `\\alpha_2\\beta_1 R_2`, and the `(3,2)` entry is `\\alpha_2\\beta_1`.",
+        "所以來自原來第 2 行的貢獻是 `\\alpha_2\\beta_1 R_2`，`(3,2)` 項是 `\\alpha_2\\beta_1`。",
+        "所以来自原来第 2 行的贡献是 `\\alpha_2\\beta_1 R_2`，`(3,2)` 项是 `\\alpha_2\\beta_1`。"
+      ),
+    ],
+    skillTags: ["row-operation-matrix", "parameters", "matrix-product-order"],
+  },
+  "checkpoint.math1030.parameter-row-operation-inverse": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.parameter-row-operation-inverse",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrix-algebra",
+    unitId: "math1030.matrix-algebra.row-operation-matrices",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "A combined row-operation multiplier is `G`. If `D=GC` and `H` is chosen so that `C=HD`, what is the relationship between `H` and `G`?",
+      "某個合併行變換乘數是 `G`。若 `D=GC`，而 `H` 被選成令 `C=HD` 成立，則 `H` 與 `G` 有甚麼關係？",
+      "某个合并行变换乘数是 `G`。若 `D=GC`，而 `H` 被选成令 `C=HD` 成立，则 `H` 与 `G` 有什么关系？"
+    ),
+    choices: [
+      { id: "a", text: text("`H=G`.", "`H=G`。", "`H=G`。") },
+      { id: "b", text: text("`H=G^{-1}`.", "`H=G^{-1}`。", "`H=G^{-1}`。") },
+      { id: "c", text: text("`H=G^T`.", "`H=G^T`。", "`H=G^T`。") },
+      { id: "d", text: text("`H=O`.", "`H=O`。", "`H=O`。") },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "To recover `C` from `D`, undo the total left multiplication by `G`.",
+        "要由 `D` 回到 `C`，要抵消左乘 `G` 的總作用。",
+        "要由 `D` 回到 `C`，要抵消左乘 `G` 的总作用。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "The equation `D=GC` says the row-operation chain acts by left multiplication with `G`.",
+        "等式 `D=GC` 表示那串行變換的總作用是左乘 `G`。",
+        "等式 `D=GC` 表示那串行变换的总作用是左乘 `G`。"
+      ),
+      text(
+        "The equation `C=HD` must undo that action, so `HGC=C` for every compatible `C`.",
+        "等式 `C=HD` 必須撤銷這個作用，所以對每個相容的 `C` 都有 `HGC=C`。",
+        "等式 `C=HD` 必须撤销这个作用，所以对每个相容的 `C` 都有 `HGC=C`。"
+      ),
+      text(
+        "Thus `HG=I`, and since these are square row-operation products, `H=G^{-1}`.",
+        "因此 `HG=I`；由於它們是方陣行變換乘積，`H=G^{-1}`。",
+        "因此 `HG=I`；由于它们是方阵行变换乘积，`H=G^{-1}`。"
+      ),
+    ],
+    skillTags: ["row-operation-matrix", "inverse", "parameters"],
+  },
   "checkpoint.math1030.span-nonmembership-inconsistent": {
     accessTier: "MEMBER",
     id: "checkpoint.math1030.span-nonmembership-inconsistent",

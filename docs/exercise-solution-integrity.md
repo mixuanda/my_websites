@@ -541,3 +541,23 @@ unit-level coverage.
   console errors
 - Remaining issues: broader export QA remains; the parameterized `G/H` matrix
   construction from `as02` Q2 is left as optional exercise-depth backlog
+
+### 2026-04-26 checkpoint 20: MATH1030 as02 parameterized row-operation product parity
+
+- Checkpoint name: `3.3` parameterized `G/H` row-operation-product integrity
+- What was inspected: `1030efghi-as02.pdf`, `1030efghi-as02as.pdf`, the
+  localized `3.3` MDX files, and `src/lib/textbook/problem-bank.ts`
+- What was changed: added paired in-page quick checks / reveal solutions for
+  constructing the parameterized combined multiplier `G` and reversing the
+  chain to construct `H=G^{-1}`; added two MCQ checkpoints for the current-row
+  entry `alpha_2 beta_1` and the inverse relationship between `G` and `H`
+- Integrity note: both problem-bank additions are multiple choice to avoid
+  fragile parsing of full symbolic matrices; the in-page answer blocks stay
+  immediately after their corresponding prompts
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and local route / export smoke on
+  `127.0.0.1:3003` passed; browser DOM QA confirmed the new checkpoint areas
+  render on the zh-HK page with no captured console errors
+- Remaining issues: broader export QA remains; exhaustive grading of full
+  symbolic `5 x 5` matrices is intentionally deferred until there is a robust
+  matrix-equivalence parser

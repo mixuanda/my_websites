@@ -146,5 +146,12 @@ inverse-reading task: identify `H_1,...,H_6`, form
 Existing worked-example, quick-check, and reveal-solution blocks preserve the
 article-first flow and export cleanly.
 
+The later `math1030` `3.3` as02 parameterized row-operation product pass also
+did not add a new widget. The Q2-style `G/H` construction is a static symbolic
+tracking task: apply the parameterized row-operation chain to `I_5`, remember
+that later operations use current rows, and reverse the chain to obtain
+`H=G^{-1}`. Existing quick-check and reveal-solution blocks keep the page
+article-first and export-friendly.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

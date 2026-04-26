@@ -463,6 +463,63 @@ B = E_2E_1A.
 $$
 </RevealSolution>
 
+<QuickCheck prompt="令 `\beta_1,\beta_2\ne 0`。假设五行矩阵 `A` 经以下行变换链得到 `B`：先做 `\alpha_1R_1+R_3`，再做 `\beta_1R_2`，再做 `R_1\leftrightarrow R_4`，再做 `\alpha_2R_2+R_3`，最后做 `\beta_2R_1`。写出单一矩阵 `G`，使得 `B=GA`。">
+把同一串操作作用在 `I_5` 上，并记住后面的操作使用的是当时的行，不是原来的行。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+把这些操作作用在 `I_5` 上，得到
+
+$$
+G=
+\begin{bmatrix}
+0&0&0&\beta_2&0\\
+0&\beta_1&0&0&0\\
+\alpha_1&\alpha_2\beta_1&1&0&0\\
+1&0&0&0&0\\
+0&0&0&0&1
+\end{bmatrix}.
+$$
+
+重点是 `\alpha_2\beta_1` 这一项。操作
+`R_3\leftarrow R_3+\alpha_2R_2` 发生在第 `2` 行已经被缩放成
+`\beta_1R_2` 之后，所以来自原来第 `2` 行的贡献是
+`\alpha_2\beta_1R_2`。
+</RevealSolution>
+
+<QuickCheck prompt="沿用上一题的矩阵 `G`，假设 `D=GC`。写出矩阵 `H`，使得 `C=HD`。">
+把行变换按相反顺序逐步撤销。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+反向链是
+
+$$
+G
+\xrightarrow{\frac1{\beta_2}R_1}
+\xrightarrow{-\alpha_2R_2+R_3}
+\xrightarrow{R_1\leftrightarrow R_4}
+\xrightarrow{\frac1{\beta_1}R_2}
+\xrightarrow{-\alpha_1R_1+R_3}
+I_5.
+$$
+
+因此
+
+$$
+H=
+\begin{bmatrix}
+0&0&0&1&0\\
+0&\frac1{\beta_1}&0&0&0\\
+0&-\alpha_2&1&-\alpha_1&0\\
+\frac1{\beta_2}&0&0&0&0\\
+0&0&0&0&1
+\end{bmatrix}.
+$$
+
+这就是 `G^{-1}`，所以 `D=GC` 会推出 `C=HD`。
+</RevealSolution>
+
 ## 相关笔记
 
 这一页建立在
