@@ -1756,11 +1756,11 @@ const math1030InvertibilityUnits: TextbookUnitMeta[] = [
       },
       {
         file: "reference/MATH1030/1030efghi-as03.pdf",
-        note: "Assignment-style invertibility proofs using one-sided identities and cyclic product order",
+        note: "Assignment-style invertibility proofs, parameterized inverse computations, and cyclic product order",
       },
       {
         file: "reference/MATH1030/1030efghi-as03as.pdf",
-        note: "Solution patterns for determinant-free invertibility algebra",
+        note: "Solution patterns for row-reduction inverses and determinant-free invertibility algebra",
       },
     ],
     title: text(

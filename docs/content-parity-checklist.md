@@ -486,3 +486,25 @@ written languages.
   locale-specific prose
 - Remaining issues: later passes should focus on `as03` inverse computation
   and broader export QA rather than early RREF drill parity
+
+### 2026-04-26 checkpoint 12: as03 invertibility-depth parity
+
+This checkpoint strengthens one existing MATH1030 unit in all three supported
+written languages.
+
+- Checkpoint name: Parallel EN, zh-HK, and zh-CN expansion of `5.1 Invertible
+  matrices`
+- What was inspected: `1030efghi-as03.pdf`, `1030efghi-as03as.pdf`, the
+  existing localized `5.1` note files, `src/lib/textbook/catalog.ts`, and
+  `src/lib/textbook/problem-bank.ts`
+- What was changed: each locale received the same practice-style
+  parameterized inverse computation for `A_alpha`, determinant-free proof
+  practice for vector identities and polynomial matrix expressions, matching
+  quick checks, a guided commutativity exercise, and two new problem-bank
+  checkpoint patterns
+- What was verified: contentlayer, TypeScript, lint, build, local route /
+  export checks on `127.0.0.1:3001`, and zh-HK browser QA in light and dark
+  mode passed for the strengthened `5.1` unit; the three files keep matching
+  section order and exercise targets while using locale-specific prose
+- Remaining issues: later passes should focus on full `as03` Q5 / Q6 / Q8
+  row-reduction table parity and broader export QA

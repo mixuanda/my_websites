@@ -358,3 +358,34 @@ Use this shape for future entries:
 - Remaining gaps: `as03` inverse-by-row-reduction, parameterized inverse
   computations, and longer polynomial-identity proof exercises remain later
   exercise-depth backlog; broader MATH1030 export QA should continue.
+
+### 2026-04-26: MATH1030 as03 invertibility-depth pass
+
+- Gap selected: after the RREF drill pass, `as03` still had invertibility
+  practice that was not represented in public article depth: parameterized
+  inverse computation and determinant-free polynomial identity proofs.
+- Reference basis: `reference/MATH1030/1030efghi-as03.pdf` and
+  `reference/MATH1030/1030efghi-as03as.pdf`, especially Q7 and Q10.
+- Content files changed: strengthened
+  `content/textbook/math1030/invertibility/invertible-matrices/{en,zh-hk,zh-cn}.mdx`;
+  updated `src/lib/textbook/catalog.ts`, `src/lib/textbook/problem-bank.ts`,
+  and the MATH1030 coverage / QA docs.
+- Visuals added: none; the new material is algebraic row-reduction output and
+  proof practice, which is clearer as display math and worked examples than
+  as a generated illustration.
+- Interactions added: none; no new widget was justified beyond the existing
+  row-reduction support already present on the page.
+- Exercises added: added in-page quick checks for parameter substitution in
+  `A_alpha^{-1}` and the vector-identity inverse pattern; added a guided
+  commutativity exercise from `(A-B)A=I`; added two problem-bank checkpoints.
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and `git diff --check` passed. Local
+  production smoke on `127.0.0.1:3001` returned 200 for EN / zh-HK / zh-CN
+  `5.1` note routes, the three TXT exports, and the EN PDF export. Browser QA
+  on the zh-HK route confirmed the new parameterized inverse section,
+  determinant-free proof section, language links, light/dark mode rendering,
+  and zero captured console errors.
+- Deployment: pending commit, push, and Vercel production verification for
+  this round.
+- Remaining gaps: full `as03` Q5 / Q6 / Q8 numerical row-reduction table
+  parity and broader MATH1030 export QA should continue.

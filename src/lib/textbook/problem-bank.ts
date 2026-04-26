@@ -706,6 +706,134 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["invertible-matrix", "inverse", "linear-system"],
   },
+  "checkpoint.math1030.parameterized-inverse-entry": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.parameterized-inverse-entry",
+    type: "FILL_IN_BLANK",
+    courseId: "math1030",
+    chapterId: "invertibility",
+    unitId: "math1030.invertibility.invertible-matrices",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "In the note's `A_alpha^{-1}` formula, the `(1,4)` entry is `alpha-2`. What is that entry when `alpha=3`?",
+      "在本節的 `A_alpha^{-1}` 公式中，`(1,4)` 元素是 `alpha-2`。當 `alpha=3` 時，該元素是多少？",
+      "在本节的 `A_alpha^{-1}` 公式中，`(1,4)` 元素是 `alpha-2`。当 `alpha=3` 时，该元素是多少？"
+    ),
+    correctAnswer: {
+      value: "1",
+      equivalentValues: ["+1"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "Substitute the parameter value into the displayed inverse matrix entry.",
+        "把參數值代入顯示出的逆矩陣元素。",
+        "把参数值代入显示出的逆矩阵元素。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    syntaxGuidance: text(
+      "Enter a single number.",
+      "輸入一個數字即可。",
+      "输入一个数字即可。"
+    ),
+    solutionSteps: [
+      text(
+        "The relevant entry is `alpha-2`.",
+        "相關元素是 `alpha-2`。",
+        "相关元素是 `alpha-2`。"
+      ),
+      text(
+        "Substituting `alpha=3` gives `3-2=1`.",
+        "代入 `alpha=3` 得到 `3-2=1`。",
+        "代入 `alpha=3` 得到 `3-2=1`。"
+      ),
+    ],
+    skillTags: ["inverse", "parameter", "row-reduction"],
+  },
+  "checkpoint.math1030.vector-identity-inverse": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.vector-identity-inverse",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "invertibility",
+    unitId: "math1030.invertibility.invertible-matrices",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Suppose `A` is square and `A^2x=Ax+x` for every vector `x`. Which conclusion is forced?",
+      "假設 `A` 是方陣，而且對每個向量 `x` 都有 `A^2x=Ax+x`。哪個結論必然成立？",
+      "假设 `A` 是方阵，而且对每个向量 `x` 都有 `A^2x=Ax+x`。哪个结论必然成立？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`A` is invertible with inverse `A-I`.",
+          "`A` 可逆，其逆矩陣是 `A-I`。",
+          "`A` 可逆，其逆矩阵是 `A-I`。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "`A` must be the zero matrix.",
+          "`A` 必定是零矩陣。",
+          "`A` 必定是零矩阵。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "`A` is not invertible.",
+          "`A` 不可逆。",
+          "`A` 不可逆。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "No conclusion about invertibility is possible.",
+          "不能推出任何關於可逆性的結論。",
+          "不能推出任何关于可逆性的结论。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Move `Ax` to the left and factor `A^2-A`.",
+        "把 `Ax` 移到左邊，並分解 `A^2-A`。",
+        "把 `Ax` 移到左边，并分解 `A^2-A`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "The identity gives `(A^2-A)x=x` for every vector `x`.",
+        "該恆等式給出對每個向量 `x` 都有 `(A^2-A)x=x`。",
+        "该恒等式给出对每个向量 `x` 都有 `(A^2-A)x=x`。"
+      ),
+      text(
+        "Since `A^2-A=(A-I)A`, the matrices satisfy `(A-I)A=I`.",
+        "因為 `A^2-A=(A-I)A`，矩陣滿足 `(A-I)A=I`。",
+        "因为 `A^2-A=(A-I)A`，矩阵满足 `(A-I)A=I`。"
+      ),
+      text(
+        "For a square matrix, a one-sided identity is enough to prove invertibility, so the inverse is `A-I`.",
+        "對方陣而言，一側單位等式足以證明可逆，因此逆矩陣是 `A-I`。",
+        "对方阵而言，一侧单位等式足以证明可逆，因此逆矩阵是 `A-I`。"
+      ),
+    ],
+    skillTags: ["invertible-matrix", "one-sided-inverse", "matrix-polynomial"],
+  },
   "checkpoint.math1030.rref-uniqueness-conclusion": {
     accessTier: "MEMBER",
     id: "checkpoint.math1030.rref-uniqueness-conclusion",

@@ -35,7 +35,7 @@ remaining Math1090 backlog.
 | `math1030` | 2 Matrices, elimination, solution types | Authored through `2.5` | Strong | Every chapter-2 unit now has checkpoint coverage; `2.3` now includes assignment-style long RREF drill, one-step cleanup, and parametric-solution reading from `as02`; `2.5` adds the optional REF / RREF existence proof, including pivot-column preservation during REF-to-RREF cleanup. |
 | `math1030` | 3 Matrix algebra | Authored through `3.3` | Strong | `3.1` now includes assignment-style parameter recovery, noncommutative expansion warnings, column-interpretation traps, lower-triangular closure, and checkpoint questions; `3.3` adds row-operation matrices, left multiplication by elementary matrices, reverse row operations, and the bridge to invertibility. |
 | `math1030` | 4 Homogeneous systems, null space, and set language | Authored through `4.2` | Strong | `4.1` now includes the assignment-style `S(A,b)=p+N(A)` pattern, the proof that two particular solutions differ by a null-space vector, and the `2A,3b` scaling check; `4.2` adds set membership, solution-set notation, null spaces, span, set equality proofs, redundant-vector arguments, stacked-null-space subset proofs, and the same-coefficient solution-set intersection theorem from `as03`. |
-| `math1030` | 5 Invertibility | Authored through `5.2` | Strong | `5.1` includes prerequisite preparation, one-sided inverse warnings, an invertibility-dictionary workflow, null-space noninvertibility tests, inverse-solve examples, cyclic-product arguments from `ABCD=I`, and expanded checkpoint questions. `5.2` now adds the optional RREF uniqueness induction proof and the well-defined rank bridge. |
+| `math1030` | 5 Invertibility | Authored through `5.2` | Strong | `5.1` includes prerequisite preparation, one-sided inverse warnings, an invertibility-dictionary workflow, null-space noninvertibility tests, inverse-solve examples, cyclic-product arguments from `ABCD=I`, parameterized inverse computation from `as03`, determinant-free polynomial identity proof practice, and expanded checkpoint questions. `5.2` now adds the optional RREF uniqueness induction proof and the well-defined rank bridge. |
 | `math1030` | 6 Vector spaces, span, basis, rank | Authored through `6.8` | Strong | `6.3` now has the span-membership algorithm, `6.4` has the homogeneous-system dependence algorithm, `6.5` includes dimension counting, minimal-spanning-set extraction, and comparable-subspace criteria; `6.6` has a static rank map; `6.7` covers matrix subspaces, bases, and dimension; `6.8` adds basis existence, the Replacement Theorem, ordered bases, and change-of-basis matrices. Remaining work is mostly the optional REF/RREF proof appendix and deeper exercise/export QA. |
 | `math1030` | 7 Determinants | Authored through `7.3` | Strong | `7.3` deliberately absorbs the local appendix path to cofactors, adjoints, and Cramer's rule. |
 | `math1030` | 8 Eigenvalues and diagonalization | Authored through `8.3` | Strong | `8.2` now includes a full `2 by 2` diagonalization computation with ordered `S` / `D`; `8.3` includes multiplicities, the distinct-eigenvalue test, and a first Cayley-Hamilton pass. |
@@ -86,8 +86,8 @@ The next content cycle should focus on QA across the now-broader public Notes
 tree: export fidelity, rendering checks, exercise / reveal integrity, and
 theme / layout review across Math1090, Math1030, and the expanded CSCI2520
 sequence. For MATH1030, the remaining content backlog is no longer missing
-core chapter directories or early RREF drill parity. Remaining assignment work
-is mostly `as03` inverse-by-row-reduction / parameterized inverse computation,
-longer polynomial-identity proof exercises, and broader export QA across the
-expanded sequence. Math1025 expansion should remain controlled and
-source-backed.
+core chapter directories, early RREF drill parity, or the main `as03`
+parameterized inverse / determinant-free proof patterns. Remaining assignment
+work is mostly the full `as03` Q5 / Q6 / Q8 numerical row-reduction table bank
+and broader export QA across the expanded sequence. Math1025 expansion should
+remain controlled and source-backed.

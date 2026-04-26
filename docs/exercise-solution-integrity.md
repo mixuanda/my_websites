@@ -472,3 +472,27 @@ unit-level coverage.
   note page with no captured console errors
 - Remaining issues: `as03` inverse-by-row-reduction and longer symbolic proof
   exercises remain future exercise-depth targets
+
+### 2026-04-26 checkpoint 17: MATH1030 as03 invertibility-depth parity
+
+- Checkpoint name: `5.1` parameterized inverse and determinant-free proof
+  integrity
+- What was inspected: `1030efghi-as03.pdf`, `1030efghi-as03as.pdf`, the
+  localized `5.1` MDX files, and `src/lib/textbook/problem-bank.ts`
+- What was changed: added paired in-page quick checks / reveal solutions for
+  reading a scalar entry from the `A_alpha^{-1}` formula and for identifying
+  `A-I` as the inverse from `A^2x=Ax+x`; added a guided exercise proving
+  commutativity from `(A-B)A=I`; added one fill-in checkpoint plus one MCQ in
+  the problem bank
+- Integrity note: the fill-in checkpoint asks for the single scalar `1`,
+  avoiding fragile parsing of a full parameterized inverse matrix; the vector
+  identity checkpoint is multiple choice to avoid fragile symbolic parsing of
+  matrix-polynomial expressions
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and `git diff --check` passed; local route
+  / export smoke on `127.0.0.1:3001` returned 200 for EN / zh-HK / zh-CN
+  `5.1` note routes and TXT exports, plus the EN PDF export; browser QA
+  confirmed the new checkpoint areas render on the zh-HK note page with no
+  captured console errors
+- Remaining issues: full `as03` Q5 / Q6 / Q8 row-reduction table exercises
+  remain future exercise-depth targets

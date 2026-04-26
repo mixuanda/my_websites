@@ -405,3 +405,29 @@ Current checkpoint resolution:
   console errors.
 - Remaining issues: continue export QA on the broader MATH1030 sequence after
   this unit-level check
+
+### 2026-04-26 checkpoint 17: MATH1030 as03 invertibility-depth rendering
+
+- Checkpoint name: `5.1 Invertible matrices` parameterized inverse and
+  determinant-free proof rendering pass
+- What was inspected: the strengthened EN / zh-HK / zh-CN `5.1` MDX files,
+  the existing MDX block registry, the catalog source-ref map, and the export
+  behavior expected for worked examples, common mistakes, quick checks, and
+  reveal solutions
+- What was changed: added a display-math-heavy parameterized inverse example,
+  vector-identity invertibility proof, polynomial-expression
+  noninvertibility proof, and commutativity exercise without introducing a new
+  block type
+- Rendering note: the additions use existing article blocks and display math,
+  so TXT / PDF export should preserve the complete static study sequence
+  while the existing row-reduction widgets remain the only interactive support
+  in this unit
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and `git diff --check` passed. Local
+  production route checks on `127.0.0.1:3001` returned 200 for EN / zh-HK /
+  zh-CN `5.1` note pages and TXT exports; the EN PDF export returned 200 with
+  a valid PDF header. Browser QA confirmed the zh-HK page renders the new
+  parameterized inverse section and determinant-free proof section in light
+  and dark mode with no captured console errors.
+- Remaining issues: continue export QA on the broader MATH1030 sequence after
+  this unit-level check
