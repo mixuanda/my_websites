@@ -533,3 +533,25 @@ written languages.
 - Remaining issues: broader export QA remains; exhaustive reproduction of
   every intermediate numerical row operation is intentionally left as optional
   QA-depth work rather than public-page clutter
+
+### 2026-04-26 checkpoint 14: as02 row-operation product parity
+
+This checkpoint strengthens one existing MATH1030 unit in all three supported
+written languages.
+
+- Checkpoint name: Parallel EN, zh-HK, and zh-CN expansion of `3.3
+  Row-operation matrices`
+- What was inspected: `1030efghi-as02.pdf`, `1030efghi-as02as.pdf`, the
+  existing localized `3.3` note files, `src/lib/textbook/catalog.ts`, and
+  `src/lib/textbook/problem-bank.ts`
+- What was changed: each locale received the same six-step row-operation
+  product section, including `H_1` through `H_6`, the combined multiplier
+  `J=H_6H_5H_4H_3H_2H_1`, the equation `A_7=JA_1`, and a reverse-chain
+  quick check; one new problem-bank checkpoint matches the same concept
+- What was verified: contentlayer, TypeScript, lint, build, local route /
+  export checks on `127.0.0.1:3002`, and browser QA for zh-HK dark-mode
+  rendering plus zh-CN language switching passed for the strengthened `3.3`
+  unit; the three locale files keep matching section order and exercise
+  targets while using locale-specific prose
+- Remaining issues: the parameterized `G/H` construction from `as02` Q2
+  remains optional exercise-depth backlog

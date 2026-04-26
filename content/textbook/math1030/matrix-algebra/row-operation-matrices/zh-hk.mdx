@@ -200,6 +200,133 @@ $$
 `I_3` 上，所得矩陣就是合併後的左乘矩陣。
 </WorkedExample>
 
+## 讀懂較長的行變換乘積
+
+在功課式題目裏，行變換經常會以一長串步驟出現。重點不是盲目相乘很多矩陣，
+而是把三種對象分清楚：
+
+- 正在被變換的矩陣 `A_1,A_2,\ldots,A_{k+1}`；
+- 每一步對應的行變換矩陣 `H_1,H_2,\ldots,H_k`；
+- 合併後的單一左乘矩陣 `J=H_k\cdots H_2H_1`。
+
+以下是一個四行矩陣的典型例子。假設
+
+$$
+\begin{aligned}
+\rho_1 &: R_2 \leftarrow -\frac12 R_2,\\
+\rho_2 &: R_1 \leftrightarrow R_2,\\
+\rho_3 &: R_3 \leftarrow R_3-2R_1,\\
+\rho_4 &: R_4 \leftarrow R_4-2R_3,\\
+\rho_5 &: R_1 \leftarrow R_1-R_3,\\
+\rho_6 &: R_1 \leftarrow R_1-R_2.
+\end{aligned}
+$$
+
+如果
+
+$$
+A_1 \xrightarrow{\rho_1} A_2 \xrightarrow{\rho_2} A_3
+\xrightarrow{\rho_3} A_4 \xrightarrow{\rho_4} A_5
+\xrightarrow{\rho_5} A_6 \xrightarrow{\rho_6} A_7,
+$$
+
+那麼
+
+$$
+A_7 = H_6H_5H_4H_3H_2H_1A_1.
+$$
+
+相應的行變換矩陣是
+
+$$
+\begin{aligned}
+H_1&=
+\begin{bmatrix}
+1&0&0&0\\
+0&-\frac12&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{bmatrix},
+&
+H_2&=
+\begin{bmatrix}
+0&1&0&0\\
+1&0&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{bmatrix},\\[0.8em]
+H_3&=
+\begin{bmatrix}
+1&0&0&0\\
+0&1&0&0\\
+-2&0&1&0\\
+0&0&0&1
+\end{bmatrix},
+&
+H_4&=
+\begin{bmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&-2&1
+\end{bmatrix},\\[0.8em]
+H_5&=
+\begin{bmatrix}
+1&0&-1&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{bmatrix},
+&
+H_6&=
+\begin{bmatrix}
+1&-1&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{bmatrix}.
+\end{aligned}
+$$
+
+它們的乘積是
+
+$$
+J=H_6H_5H_4H_3H_2H_1=
+\begin{bmatrix}
+-1&-\frac32&-1&0\\
+1&0&0&0\\
+0&1&1&0\\
+0&-2&-2&1
+\end{bmatrix}.
+$$
+
+有效率的做法，是把六個行變換依次作用在 `I_4` 上，而不是手動展開六個因子。
+矩陣 `J` 記錄了整串步驟對行的總作用：
+
+$$
+A_7=JA_1.
+$$
+
+這個等式也可用來檢查乘積次序。如果把第一步放在最左邊，所得乘積會描述另一
+串不同的操作。
+
+<QuickCheck prompt="在上面六步行變換中，若 `K` 是由 `A_7` 反向回到 `A_1` 的行變換矩陣乘積，`J` 和 `K` 應滿足甚麼等式？">
+把 `K` 想成抵消 `J` 總作用的矩陣。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因為 `A_7=JA_1`，而反向步驟給出 `A_1=KA_7`，所以 `K` 必須是 `J` 的逆矩陣。
+因此
+
+$$
+KJ=I_4
+\qquad
+JK=I_4.
+$$
+
+換句話說，`K=J^{-1}`。
+</RevealSolution>
+
 ## 反向行變換與逆矩陣
 
 每個初等行變換都有反向操作：

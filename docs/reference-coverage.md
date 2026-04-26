@@ -447,8 +447,8 @@ into exercises, examples, and source refs for authored note pages.
 | MATH1030 | `reference/MATH1030/1030efghi-tutorial-week08as.pdf` | tutorial answers | overlap | partial | yes | no | Answer key only. |
 | MATH1030 | `reference/MATH1030/1030efghi-as01.pdf` | assignment | partially incorporated | partial | no | no | Matrix algebra assignment now directly supports the strengthened `3.1` unknown-product example and noncommutative product-expansion warnings; transpose / symmetry problems remain covered mostly by `3.2`. |
 | MATH1030 | `reference/MATH1030/1030efghi-as01as.pdf` | assignment answers | overlap | partial | yes | no | Answer key only. |
-| MATH1030 | `reference/MATH1030/1030efghi-as02.pdf` | assignment | substantially incorporated | partial | no | no | Systems and row-operation material largely merged. The `4.1` note directly incorporates the particular-solution plus null-space structure, the `v-u in N(A)` proof pattern, and the `2A,3b` scaling check; `2.3` now incorporates Q5/Q7-style RREF cleanup, long row-reduction, and parametric-solution reading. Remaining row-operation-matrix composition items are better treated in `3.3` or future checkpoint work. |
-| MATH1030 | `reference/MATH1030/1030efghi-as02as.pdf` | assignment answers | overlap | partial | yes | no | Answer key used to verify the `2.3` RREF cleanup / parametric-solution forms and the existing `4.1` homogeneous-solution patterns. |
+| MATH1030 | `reference/MATH1030/1030efghi-as02.pdf` | assignment | substantially incorporated | partial | no | no | Systems and row-operation material largely merged. The `4.1` note directly incorporates the particular-solution plus null-space structure, the `v-u in N(A)` proof pattern, and the `2A,3b` scaling check; `2.3` now incorporates Q5/Q7-style RREF cleanup, long row-reduction, and parametric-solution reading; `3.3` now incorporates Q1-style row-operation matrix products `J=H_6...H_1` and reverse-chain inverse reading. Remaining parameterized `G/H` row-operation-matrix items are optional exercise-depth backlog. |
+| MATH1030 | `reference/MATH1030/1030efghi-as02as.pdf` | assignment answers | overlap | partial | yes | no | Answer key used to verify the `2.3` RREF cleanup / parametric-solution forms, the existing `4.1` homogeneous-solution patterns, and the new `3.3` row-operation product / inverse multiplier conclusions. |
 | MATH1030 | `reference/MATH1030/1030efghi-as03.pdf` | assignment | substantially incorporated | partial | no | no | Direct support now appears in `4.2` for stacked-null-space subset proofs and same-coefficient solution-set intersections, and in `5.1` for one-sided identity / cyclic product invertibility arguments, the parameterized inverse family `A_alpha`, determinant-free polynomial identity proof practice, and Q5 / Q6 / Q8 row-reduction inverse-table reading. Remaining work is mostly exhaustive intermediate-table replication and broader export QA, not missing core coverage. |
 | MATH1030 | `reference/MATH1030/1030efghi-as03as.pdf` | assignment answers | overlap | partial | yes | no | Used to verify the solution patterns for the `4.2` set-language proof templates, `5.1` determinant-free invertibility algebra, the `A_alpha^{-1}` formula, the Q5 / Q6 / Q8 inverse-table conclusions, and the Q10 proof patterns; answer-key extraction remains secondary evidence. |
 | MATH1030 | `reference/MATH1030/1030efghi-as04-202526.pdf` | assignment | incorporated | yes | yes | no | Already supports dependence / span / vector-space public notes. |
@@ -952,3 +952,21 @@ existing invertibility note instead of creating a detached new route.
 - Remaining issues: broader MATH1030 export QA and optional exhaustive
   reproduction of every intermediate numerical row operation remain later
   QA-depth work.
+
+### 2026-04-26 checkpoint 25: MATH1030 as02 row-operation product pass
+
+- Strengthened the existing three-locale `3.3 Row-operation matrices` note
+  using `1030efghi-as02.pdf` and `1030efghi-as02as.pdf`, focusing on Q1-style
+  row-operation matrix products rather than adding another route.
+- Added an assignment-level section that separates the transformed matrices
+  `A_1,...,A_7`, the row-operation matrices `H_1,...,H_6`, and the combined
+  multiplier `J=H_6H_5H_4H_3H_2H_1`.
+- Added the explicit six-step example with the displayed `H_j` matrices,
+  combined matrix `J`, and the interpretation `A_7=JA_1`.
+- Added an in-page quick check explaining that the reverse-chain multiplier
+  `K` satisfies `KJ=I_4` and `JK=I_4`.
+- Updated the MATH1030 catalog source refs for `3.3` and added one problem-bank
+  checkpoint for the same inverse-multiplier reading.
+- Remaining issues: the parameterized `G/H` matrix construction from `as02` Q2
+  is still optional exercise-depth backlog; broader MATH1030 export QA should
+  continue after this unit-level pass.

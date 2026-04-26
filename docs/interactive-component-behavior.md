@@ -139,5 +139,12 @@ inverse, detect missing pivot columns, and translate the shared row-operation
 product into an algebraic identity. Existing worked-example, quick-check, and
 reveal-solution blocks keep the page article-first and export-friendly.
 
+The later `math1030` `3.3` as02 row-operation product parity pass also did not
+add a new widget. The added Q1-style material is a static product-order and
+inverse-reading task: identify `H_1,...,H_6`, form
+`J=H_6H_5H_4H_3H_2H_1`, and read the reverse multiplier `K` as `J^{-1}`.
+Existing worked-example, quick-check, and reveal-solution blocks preserve the
+article-first flow and export cleanly.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

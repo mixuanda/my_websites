@@ -3588,6 +3588,57 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["elementary-matrix", "row-operation", "matrix-multiplication"],
   },
+  "checkpoint.math1030.row-operation-product-inverse": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.row-operation-product-inverse",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "matrix-algebra",
+    unitId: "math1030.matrix-algebra.row-operation-matrices",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "A six-step row-operation chain sends `A_1` to `A_7`, and its combined left multiplier is `J`, so `A_7=JA_1`. If `K` is the combined multiplier for the reverse chain, which statement must hold?",
+      "一串六步行變換把 `A_1` 變成 `A_7`，合併後的左乘矩陣是 `J`，所以 `A_7=JA_1`。若 `K` 是反向步驟的合併左乘矩陣，下列哪一項必定成立？",
+      "一串六步行变换把 `A_1` 变成 `A_7`，合并后的左乘矩阵是 `J`，所以 `A_7=JA_1`。若 `K` 是反向步骤的合并左乘矩阵，下列哪一项必定成立？"
+    ),
+    choices: [
+      { id: "a", text: text("`KJ=I_4` and `JK=I_4`.", "`KJ=I_4` 而且 `JK=I_4`。", "`KJ=I_4` 而且 `JK=I_4`。") },
+      { id: "b", text: text("`KJ=O_4` because the reverse chain cancels all rows.", "`KJ=O_4`，因為反向步驟會抵消所有行。", "`KJ=O_4`，因为反向步骤会抵消所有行。") },
+      { id: "c", text: text("`J+K=I_4` because reverse operations are additive inverses.", "`J+K=I_4`，因為反向行變換是加法逆元。", "`J+K=I_4`，因为反向行变换是加法逆元。") },
+      { id: "d", text: text("`K=J` for every row-operation chain.", "對每一串行變換都有 `K=J`。", "对每一串行变换都有 `K=J`。") },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The reverse chain sends `A_7` back to `A_1`, so it must undo left multiplication by `J`.",
+        "反向步驟把 `A_7` 送回 `A_1`，所以它必須抵消左乘 `J` 的總作用。",
+        "反向步骤把 `A_7` 送回 `A_1`，所以它必须抵消左乘 `J` 的总作用。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "The forward chain gives `A_7=JA_1`.",
+        "正向步驟給出 `A_7=JA_1`。",
+        "正向步骤给出 `A_7=JA_1`。"
+      ),
+      text(
+        "The reverse chain gives `A_1=KA_7`.",
+        "反向步驟給出 `A_1=KA_7`。",
+        "反向步骤给出 `A_1=KA_7`。"
+      ),
+      text(
+        "Substitute `A_7=JA_1` into the reverse equation: `A_1=KJA_1` for every compatible `A_1`, so `KJ=I_4`. Since both are square inverse matrices, also `JK=I_4`.",
+        "把 `A_7=JA_1` 代入反向等式：對每個相容的 `A_1`，都有 `A_1=KJA_1`，所以 `KJ=I_4`。由於兩者是方陣逆矩陣，也有 `JK=I_4`。",
+        "把 `A_7=JA_1` 代入反向等式：对每个相容的 `A_1`，都有 `A_1=KJA_1`，所以 `KJ=I_4`。由于两者是方阵逆矩阵，也有 `JK=I_4`。"
+      ),
+    ],
+    skillTags: ["row-operation-matrix", "inverse", "matrix-product-order"],
+  },
   "checkpoint.math1030.span-nonmembership-inconsistent": {
     accessTier: "MEMBER",
     id: "checkpoint.math1030.span-nonmembership-inconsistent",

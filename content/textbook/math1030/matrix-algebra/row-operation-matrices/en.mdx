@@ -212,6 +212,135 @@ this combined matrix by applying the same two row operations to `I_3` in the
 same order.
 </WorkedExample>
 
+## Reading a longer row-operation product
+
+In assignment-style questions, the row operations are often given as a long
+chain. The goal is not to multiply many matrices blindly. The goal is to keep
+three objects separate:
+
+- the matrices `A_1,A_2,\ldots,A_{k+1}` being transformed;
+- the row-operation matrices `H_1,H_2,\ldots,H_k`;
+- the single combined left multiplier `J=H_k\cdots H_2H_1`.
+
+Here is a typical four-row example. Suppose
+
+$$
+\begin{aligned}
+\rho_1 &: R_2 \leftarrow -\frac12 R_2,\\
+\rho_2 &: R_1 \leftrightarrow R_2,\\
+\rho_3 &: R_3 \leftarrow R_3-2R_1,\\
+\rho_4 &: R_4 \leftarrow R_4-2R_3,\\
+\rho_5 &: R_1 \leftarrow R_1-R_3,\\
+\rho_6 &: R_1 \leftarrow R_1-R_2.
+\end{aligned}
+$$
+
+If
+
+$$
+A_1 \xrightarrow{\rho_1} A_2 \xrightarrow{\rho_2} A_3
+\xrightarrow{\rho_3} A_4 \xrightarrow{\rho_4} A_5
+\xrightarrow{\rho_5} A_6 \xrightarrow{\rho_6} A_7,
+$$
+
+then
+
+$$
+A_7 = H_6H_5H_4H_3H_2H_1A_1.
+$$
+
+The corresponding row-operation matrices are
+
+$$
+\begin{aligned}
+H_1&=
+\begin{bmatrix}
+1&0&0&0\\
+0&-\frac12&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{bmatrix},
+&
+H_2&=
+\begin{bmatrix}
+0&1&0&0\\
+1&0&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{bmatrix},\\[0.8em]
+H_3&=
+\begin{bmatrix}
+1&0&0&0\\
+0&1&0&0\\
+-2&0&1&0\\
+0&0&0&1
+\end{bmatrix},
+&
+H_4&=
+\begin{bmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&-2&1
+\end{bmatrix},\\[0.8em]
+H_5&=
+\begin{bmatrix}
+1&0&-1&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{bmatrix},
+&
+H_6&=
+\begin{bmatrix}
+1&-1&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{bmatrix}.
+\end{aligned}
+$$
+
+Their product is
+
+$$
+J=H_6H_5H_4H_3H_2H_1=
+\begin{bmatrix}
+-1&-\frac32&-1&0\\
+1&0&0&0\\
+0&1&1&0\\
+0&-2&-2&1
+\end{bmatrix}.
+$$
+
+The efficient way to obtain `J` is to apply the six operations to `I_4`, not
+to expand all six factors by hand. The matrix `J` records the total effect of
+the chain on rows:
+
+$$
+A_7=JA_1.
+$$
+
+This equation is also a good check on the order. If the first operation were
+placed on the far left, the product would describe a different chain.
+
+<QuickCheck prompt="In the six-step chain above, suppose `K` is the row-operation matrix product for the reverse chain from `A_7` back to `A_1`. What equation should `J` and `K` satisfy?">
+Think of `K` as undoing the total effect of `J`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Since `A_7=JA_1` and the reverse chain gives `A_1=KA_7`, the matrix `K` must
+be the inverse of `J`. Therefore
+
+$$
+KJ=I_4
+\qquad\text{and}\qquad
+JK=I_4.
+$$
+
+Equivalently, `K=J^{-1}`.
+</RevealSolution>
+
 ## Reverse row operations and inverses
 
 Every elementary row operation has a reverse operation:

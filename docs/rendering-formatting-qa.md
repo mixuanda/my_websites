@@ -455,3 +455,26 @@ Current checkpoint resolution:
   mode remains coherent with no captured console errors.
 - Remaining issues: continue export QA on the broader MATH1030 sequence after
   this unit-level check
+
+### 2026-04-26 checkpoint 19: MATH1030 as02 row-operation product rendering
+
+- Checkpoint name: `3.3 Row-operation matrices` six-step row-operation product
+  rendering pass
+- What was inspected: the strengthened EN / zh-HK / zh-CN `3.3` MDX files,
+  the existing MDX block registry, the catalog source-ref map, and the export
+  behavior expected for worked examples, quick checks, and reveal solutions
+- What was changed: added display-math-heavy `H_1` through `H_6` matrices, the
+  combined multiplier `J`, and the reverse-chain inverse check without
+  introducing a new block type
+- Rendering note: the additions use existing article blocks and display math,
+  so TXT / PDF export should preserve the complete static study sequence
+  without requiring an interactive row-operation-product widget
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and `git diff --check` passed. Local
+  production route checks on `127.0.0.1:3002` returned 200 for EN / zh-HK /
+  zh-CN `3.3` note pages and TXT exports; the EN PDF export returned 200 with
+  a valid PDF header. Browser QA confirmed the zh-HK page renders the new
+  row-operation product section in dark mode, language switching reaches the
+  zh-CN page, and no console errors were captured.
+- Remaining issues: continue export QA on the broader MATH1030 sequence after
+  this unit-level check

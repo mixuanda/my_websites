@@ -1609,6 +1609,14 @@ const math1030MatrixAlgebraUnits: TextbookUnitMeta[] = [
         note: "Supplementary row-operation exercises",
       },
       {
+        file: "reference/MATH1030/1030efghi-as02.pdf",
+        note: "Assignment row-operation matrix composition and reversal patterns",
+      },
+      {
+        file: "reference/MATH1030/1030efghi-as02as.pdf",
+        note: "Answer-key verification for row-operation products and inverse multipliers",
+      },
+      {
         file: "reference/MATH1030/Practice Set 3_Matrix Algebra and Linear Equation System.pdf",
         note: "Matrix algebra and row-operation practice",
       },

@@ -431,3 +431,33 @@ Use this shape for future entries:
 - Remaining gaps: broader MATH1030 export QA and optional exhaustive
   reproduction of every intermediate numerical row-operation table remain
   later QA-depth work.
+
+### 2026-04-26: MATH1030 as02 row-operation product parity pass
+
+- Gap selected: the MATH1030 core chapter map was complete, but the coverage
+  ledger still marked `as02` as partial and explicitly pointed the remaining
+  row-operation-matrix composition material toward `3.3`.
+- Reference basis: `reference/MATH1030/1030efghi-as02.pdf` and
+  `reference/MATH1030/1030efghi-as02as.pdf`, especially Q1 on identifying
+  row-operation matrices, forming `J=H_6...H_1`, and reversing the chain.
+- Content files changed: strengthened
+  `content/textbook/math1030/matrix-algebra/row-operation-matrices/{en,zh-hk,zh-cn}.mdx`;
+  updated `src/lib/textbook/catalog.ts`, `src/lib/textbook/problem-bank.ts`,
+  and the MATH1030 coverage / QA docs.
+- Visuals added: none; the material is a matrix-product reading task, and the
+  display-math sequence is clearer and more export-friendly than a generated
+  illustration.
+- Interactions added: none; no new widget was justified. The new section is a
+  static worked example with an immediate quick check, so TXT / PDF export can
+  preserve the full study value.
+- Exercises added: added an in-page quick check for `KJ=I_4` / `JK=I_4` and a
+  matching problem-bank checkpoint on reverse row-operation products.
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and `git diff --check` passed. Local
+  production smoke on `127.0.0.1:3002` returned 200 for EN / zh-HK / zh-CN
+  `3.3` note routes, the three TXT exports, and the EN PDF export. Browser QA
+  confirmed the zh-HK route renders the new six-step row-operation product
+  section in dark mode, clicking the language switcher reaches the zh-CN route,
+  and zero console errors were captured.
+- Remaining gaps: the parameterized `G/H` construction from `as02` Q2 remains
+  optional exercise-depth backlog; broader MATH1030 export QA should continue.

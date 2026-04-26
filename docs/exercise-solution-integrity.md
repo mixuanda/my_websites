@@ -520,3 +520,24 @@ unit-level coverage.
 - Remaining issues: broader export QA remains; fully interactive grading of
   complete row-reduction tables is intentionally deferred because it would be
   fragile without a matrix-equivalence parser
+
+### 2026-04-26 checkpoint 19: MATH1030 as02 row-operation product parity
+
+- Checkpoint name: `3.3` row-operation product and reverse-chain integrity
+- What was inspected: `1030efghi-as02.pdf`, `1030efghi-as02as.pdf`, the
+  localized `3.3` MDX files, and `src/lib/textbook/problem-bank.ts`
+- What was changed: added a paired in-page quick check / reveal solution for
+  the reverse multiplier `K=J^{-1}` after a six-step row-operation chain;
+  added one MCQ checkpoint for the same `KJ=I_4` / `JK=I_4` reading
+- Integrity note: the problem-bank addition is multiple choice to avoid
+  fragile parsing of matrix products; the in-page answer block stays
+  immediately after its prompt
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and `git diff --check` passed; local route
+  / export smoke on `127.0.0.1:3002` returned 200 for EN / zh-HK / zh-CN
+  `3.3` note routes and TXT exports, plus the EN PDF export; browser QA
+  confirmed the new checkpoint renders on the zh-HK page, dark mode remains
+  coherent, and the language switcher reaches the zh-CN page with no captured
+  console errors
+- Remaining issues: broader export QA remains; the parameterized `G/H` matrix
+  construction from `as02` Q2 is left as optional exercise-depth backlog
