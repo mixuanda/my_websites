@@ -494,5 +494,29 @@ unit-level coverage.
   `5.1` note routes and TXT exports, plus the EN PDF export; browser QA
   confirmed the new checkpoint areas render on the zh-HK note page with no
   captured console errors
-- Remaining issues: full `as03` Q5 / Q6 / Q8 row-reduction table exercises
-  remain future exercise-depth targets
+- Remaining issues after this pass: the `as03` Q5 / Q6 / Q8 row-reduction
+  table material was addressed by checkpoint 18; broader export QA remains
+  a future exercise-depth target
+
+### 2026-04-26 checkpoint 18: MATH1030 as03 row-reduction table parity
+
+- Checkpoint name: `5.1` supplied row-reduction table integrity
+- What was inspected: `1030efghi-as03.pdf`, `1030efghi-as03as.pdf`, the
+  localized `5.1` MDX files, and `src/lib/textbook/problem-bank.ts`
+- What was changed: added paired in-page quick checks / reveal solutions for
+  reading `D=A^{-1}` from `[A | I_p] -> [I_p | D]` and for identifying
+  `H=A^{-1}` from a row-operation product; added two MCQ checkpoints for
+  those patterns; added worked examples whose stated matrices and vectors
+  match the answer-key conclusions for Q5, Q6, and Q8
+- Integrity note: both problem-bank additions are multiple choice to avoid
+  fragile parsing of full matrix-polynomial expressions; the in-page answer
+  blocks stay immediately after their corresponding prompts
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and `git diff --check` passed; local route
+  / export smoke on `127.0.0.1:3002` returned 200 for EN / zh-HK / zh-CN
+  `5.1` note routes and TXT exports, plus the EN PDF export; browser QA
+  confirmed the new checkpoint areas render on the zh-HK and zh-CN note pages
+  with no captured console errors
+- Remaining issues: broader export QA remains; fully interactive grading of
+  complete row-reduction tables is intentionally deferred because it would be
+  fragile without a matrix-equivalence parser

@@ -506,5 +506,30 @@ written languages.
   export checks on `127.0.0.1:3001`, and zh-HK browser QA in light and dark
   mode passed for the strengthened `5.1` unit; the three files keep matching
   section order and exercise targets while using locale-specific prose
-- Remaining issues: later passes should focus on full `as03` Q5 / Q6 / Q8
-  row-reduction table parity and broader export QA
+- Remaining issues after this pass: the `as03` Q5 / Q6 / Q8 row-reduction
+  table material was addressed by checkpoint 13; broader export QA remains
+
+### 2026-04-26 checkpoint 13: as03 row-reduction table parity
+
+This checkpoint strengthens one existing MATH1030 unit in all three supported
+written languages.
+
+- Checkpoint name: Parallel EN, zh-HK, and zh-CN expansion of `5.1 Invertible
+  matrices`
+- What was inspected: `1030efghi-as03.pdf`, `1030efghi-as03as.pdf`, the
+  existing localized `5.1` note files, `src/lib/textbook/catalog.ts`, and
+  `src/lib/textbook/problem-bank.ts`
+- What was changed: each locale received the same supplied-row-reduction-table
+  section, including Q5-style recovery of `A`, `A^{-1}`, and the solution of
+  `A^t x=g`; Q6-style four-case invertibility decisions from pivot columns;
+  Q8-style reading of `A^{-1}`, `(A^t)^{-1}`, and
+  `F=A^4+3A^2+A-I_5`; matching quick checks; and two new problem-bank
+  checkpoint patterns
+- What was verified: contentlayer, TypeScript, lint, build, local route /
+  export checks on `127.0.0.1:3002`, and browser QA for zh-HK / zh-CN
+  language switching plus dark mode passed for the strengthened `5.1` unit;
+  the three locale files keep matching section order and exercise targets
+  while using locale-specific prose
+- Remaining issues: broader export QA remains; exhaustive reproduction of
+  every intermediate numerical row operation is intentionally left as optional
+  QA-depth work rather than public-page clutter

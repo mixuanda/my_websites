@@ -431,3 +431,27 @@ Current checkpoint resolution:
   and dark mode with no captured console errors.
 - Remaining issues: continue export QA on the broader MATH1030 sequence after
   this unit-level check
+
+### 2026-04-26 checkpoint 18: MATH1030 as03 row-reduction table rendering
+
+- Checkpoint name: `5.1 Invertible matrices` supplied row-reduction table
+  rendering pass
+- What was inspected: the strengthened EN / zh-HK / zh-CN `5.1` MDX files,
+  the existing MDX block registry, the catalog source-ref map, and the export
+  behavior expected for worked examples, quick checks, and reveal solutions
+- What was changed: added display-math-heavy Q5 / Q6 / Q8 row-reduction table
+  reading examples without introducing a new block type; added two paired
+  quick-check / reveal-solution blocks
+- Rendering note: the additions use existing article blocks and display math,
+  so TXT / PDF export should preserve the complete static study sequence
+  while the existing row-reduction widgets remain the only interactive support
+  in this unit
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and `git diff --check` passed. Local
+  production route checks on `127.0.0.1:3002` returned 200 for EN / zh-HK /
+  zh-CN `5.1` note pages and TXT exports; the EN PDF export returned 200 with
+  a valid PDF header. Browser QA confirmed the zh-HK page renders the new
+  supplied-table section, language switching reaches the zh-CN page, and dark
+  mode remains coherent with no captured console errors.
+- Remaining issues: continue export QA on the broader MATH1030 sequence after
+  this unit-level check

@@ -387,5 +387,41 @@ Use this shape for future entries:
   and zero captured console errors.
 - Deployment: pending commit, push, and Vercel production verification for
   this round.
-- Remaining gaps: full `as03` Q5 / Q6 / Q8 numerical row-reduction table
-  parity and broader MATH1030 export QA should continue.
+- Remaining gaps after this pass: the Q5 / Q6 / Q8 numerical row-reduction
+  table material was addressed by the following row-reduction-table pass;
+  broader MATH1030 export QA should continue.
+
+### 2026-04-26: MATH1030 as03 row-reduction table parity pass
+
+- Gap selected: after the parameterized-inverse pass, the remaining as03
+  content gap was the Q5 / Q6 / Q8 numerical inverse-table material: reading
+  `[A | I] -> [I | D]`, deciding invertibility from pivot columns, using
+  transpose-inverse information, and translating one shared row-operation
+  product into a matrix-polynomial identity.
+- Reference basis: `reference/MATH1030/1030efghi-as03.pdf` and
+  `reference/MATH1030/1030efghi-as03as.pdf`, especially Q5, Q6, and Q8.
+- Content files changed: strengthened
+  `content/textbook/math1030/invertibility/invertible-matrices/{en,zh-hk,zh-cn}.mdx`;
+  updated `src/lib/textbook/catalog.ts`, `src/lib/textbook/problem-bank.ts`,
+  and the MATH1030 coverage / QA docs.
+- Visuals added: none; the new material is best represented as static
+  row-reduction tables and matrix identities, and the existing row-reduction
+  widgets already cover state-changing interaction.
+- Interactions added: none; the article now uses worked examples, display
+  math, quick checks, and problem-bank checkpoints so TXT/PDF export preserves
+  the same study value.
+- Exercises added: added in-page quick checks for the right block in
+  `[A | I] -> [I | D]` and for interpreting a row-operation product `H`;
+  added two problem-bank checkpoints for the same concepts.
+- Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
+  `npm run lint`, `npm run build`, and `git diff --check` passed. Local
+  production smoke on `127.0.0.1:3002` returned 200 for EN / zh-HK / zh-CN
+  `5.1` note routes, the three TXT exports, and the EN PDF export. Browser QA
+  confirmed the zh-HK route renders the new supplied-table section, the
+  language switcher reaches the zh-CN route, dark mode renders coherently, and
+  zero console errors were captured.
+- Deployment: pending commit, push, and Vercel production verification for
+  this round.
+- Remaining gaps: broader MATH1030 export QA and optional exhaustive
+  reproduction of every intermediate numerical row-operation table remain
+  later QA-depth work.

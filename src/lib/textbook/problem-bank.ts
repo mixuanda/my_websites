@@ -4245,6 +4245,115 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["invertible-matrix", "matrix-product", "one-sided-inverse"],
   },
+  "checkpoint.math1030.reduction-right-block-inverse": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.reduction-right-block-inverse",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "invertibility",
+    unitId: "math1030.invertibility.invertible-matrices",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "A row-reduction table shows `[A \\mid I_4] \\sim [I_4 \\mid D]`. What does the right block `D` represent?",
+      "某個行化簡表格顯示 `[A \\mid I_4] \\sim [I_4 \\mid D]`。右邊區塊 `D` 代表甚麼？",
+      "某个行化简表格显示 `[A \\mid I_4] \\sim [I_4 \\mid D]`。右边区块 `D` 代表什么？"
+    ),
+    choices: [
+      { id: "a", text: text("`A` itself", "`A` 本身", "`A` 本身") },
+      { id: "b", text: text("`A^{-1}`", "`A^{-1}`", "`A^{-1}`") },
+      { id: "c", text: text("`A^t`", "`A^t`", "`A^t`") },
+      {
+        id: "d",
+        text: text(
+          "Nothing definite, because the right block is only scratch work",
+          "沒有確定意思，因為右邊區塊只是草稿計算",
+          "没有确定意思，因为右边区块只是草稿计算"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "The right block becomes meaningful only after the left block has become the identity.",
+        "右邊區塊要在左邊區塊已化成單位矩陣後才有這個含義。",
+        "右边区块要在左边区块已化成单位矩阵后才有这个含义。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "The row operations turn `A` into `I_4`.",
+        "這些行操作把 `A` 化成 `I_4`。",
+        "这些行操作把 `A` 化成 `I_4`。"
+      ),
+      text(
+        "Applying the same operations to `I_4` produces the inverse of `A`.",
+        "同一批行操作作用在 `I_4` 上，得到的就是 `A` 的逆矩陣。",
+        "同一批行操作作用在 `I_4` 上，得到的就是 `A` 的逆矩阵。"
+      ),
+      text(
+        "Therefore `D=A^{-1}`.",
+        "因此 `D=A^{-1}`。",
+        "因此 `D=A^{-1}`。"
+      ),
+    ],
+    skillTags: ["inverse", "row-reduction", "augmented-matrix"],
+  },
+  "checkpoint.math1030.same-row-operations-polynomial": {
+    accessTier: "MEMBER",
+    id: "checkpoint.math1030.same-row-operations-polynomial",
+    type: "MCQ",
+    courseId: "math1030",
+    chapterId: "invertibility",
+    unitId: "math1030.invertibility.invertible-matrices",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "The same row-operation product that sends `[A \\mid I_5]` to `[I_5 \\mid E]` sends `F+I_5` to `A^3+3A+I_5`. Which formula for `F` follows?",
+      "同一個把 `[A \\mid I_5]` 化成 `[I_5 \\mid E]` 的行操作乘積，把 `F+I_5` 化成 `A^3+3A+I_5`。可推出哪條 `F` 的公式？",
+      "同一个把 `[A \\mid I_5]` 化成 `[I_5 \\mid E]` 的行操作乘积，把 `F+I_5` 化成 `A^3+3A+I_5`。可推出哪条 `F` 的公式？"
+    ),
+    choices: [
+      { id: "a", text: text("`F=A^3+3A`", "`F=A^3+3A`", "`F=A^3+3A`") },
+      { id: "b", text: text("`F=A^4+3A^2+A-I_5`", "`F=A^4+3A^2+A-I_5`", "`F=A^4+3A^2+A-I_5`") },
+      { id: "c", text: text("`F=A^{-1}(A^3+3A+I_5)`", "`F=A^{-1}(A^3+3A+I_5)`", "`F=A^{-1}(A^3+3A+I_5)`") },
+      { id: "d", text: text("`F=A^4+3A^2`", "`F=A^4+3A^2`", "`F=A^4+3A^2`") },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "Let `H` be the row-operation product. From `[A \\mid I_5] \\mapsto [I_5 \\mid E]`, read `H=A^{-1}`.",
+        "令 `H` 為行操作乘積。由 `[A \\mid I_5] \\mapsto [I_5 \\mid E]` 讀出 `H=A^{-1}`。",
+        "令 `H` 为行操作乘积。由 `[A \\mid I_5] \\mapsto [I_5 \\mid E]` 读出 `H=A^{-1}`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-max-attempts",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "MEMBER",
+    solutionSteps: [
+      text(
+        "The same row operations give `A^3+3A+I_5=A^{-1}(F+I_5)`.",
+        "同一批行操作給出 `A^3+3A+I_5=A^{-1}(F+I_5)`。",
+        "同一批行操作给出 `A^3+3A+I_5=A^{-1}(F+I_5)`。"
+      ),
+      text(
+        "Multiply on the left by `A`: `F+I_5=A(A^3+3A+I_5)=A^4+3A^2+A`.",
+        "左乘 `A`：`F+I_5=A(A^3+3A+I_5)=A^4+3A^2+A`。",
+        "左乘 `A`：`F+I_5=A(A^3+3A+I_5)=A^4+3A^2+A`。"
+      ),
+      text(
+        "Subtract `I_5` to get `F=A^4+3A^2+A-I_5`.",
+        "減去 `I_5`，得到 `F=A^4+3A^2+A-I_5`。",
+        "减去 `I_5`，得到 `F=A^4+3A^2+A-I_5`。"
+      ),
+    ],
+    skillTags: ["row-operation-matrix", "inverse", "matrix-polynomial"],
+  },
   "checkpoint.math1030.linear-combination-coefficients": {
     accessTier: "MEMBER",
     id: "checkpoint.math1030.linear-combination-coefficients",

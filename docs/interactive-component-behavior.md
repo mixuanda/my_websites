@@ -132,5 +132,12 @@ static row-reduction output, and the Q10 material is determinant-free proof
 practice. Existing worked-example, common-mistake, quick-check, and
 reveal-solution blocks preserve the article-first flow and export cleanly.
 
+The later `math1030` `5.1` as03 row-reduction table parity pass also did not
+add a new widget. The added Q5 / Q6 / Q8 material is a static reading task:
+recognize when the left block is the identity, interpret the right block as an
+inverse, detect missing pivot columns, and translate the shared row-operation
+product into an algebraic identity. Existing worked-example, quick-check, and
+reveal-solution blocks keep the page article-first and export-friendly.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

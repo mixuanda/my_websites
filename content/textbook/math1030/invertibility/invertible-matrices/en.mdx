@@ -677,6 +677,270 @@ missing pivot or an illegal division by zero, not from the mere presence of a
 symbol.
 </CommonMistake>
 
+## Reading supplied row-reduction tables
+
+Longer inverse questions often give only parts of a row-reduction chain. That is
+still enough information if you read the chain structurally. The important
+question is always:
+
+> What is the left block, and what does that force the right block to mean?
+
+If a sequence of row operations sends
+
+$$
+[A \mid I_p]
+\quad\text{to}\quad
+[I_p \mid D],
+$$
+
+then `A` is invertible and `D=A^{-1}`. If the final left block is merely an
+echelon form with a missing pivot column, then `A` is not invertible, no matter
+how complicated the right block looks.
+
+<WorkedExample title="Recovering `A` and solving a transposed system from a reduction table">
+Suppose a reduction table shows that `[A \mid I_4]` is row-equivalent to
+`[I_4 \mid D]`, where
+
+$$
+D=
+\begin{bmatrix}
+3 & -2 & 3 & -2 \\
+0 & 1 & -2 & 1 \\
+-3 & 1 & -2 & 2 \\
+1 & 0 & 1 & -1
+\end{bmatrix}.
+$$
+
+Then the row-reduction result itself already says
+
+$$
+A^{-1}=D.
+$$
+
+If the earlier part of the table lets us reverse the first row operations, the
+original left block can be recovered as
+
+$$
+A=
+\begin{bmatrix}
+1 & 1 & 1 & 1 \\
+1 & 1 & 2 & 3 \\
+2 & 1 & 3 & 3 \\
+3 & 2 & 4 & 3
+\end{bmatrix}.
+$$
+
+Now let
+
+$$
+g=
+\begin{bmatrix}
+1 \\ 0 \\ 3 \\ 0
+\end{bmatrix}.
+$$
+
+To solve `A^t x=g`, do not row-reduce again from the beginning. Since `A` is
+invertible, `A^t` is also invertible and
+
+$$
+(A^t)^{-1}=(A^{-1})^t=D^t.
+$$
+
+Therefore
+
+$$
+x=(A^t)^{-1}g=D^t g
+=
+\begin{bmatrix}
+-6 \\ 1 \\ -3 \\ 4
+\end{bmatrix}.
+$$
+
+The computation is short because the reduction table has already done the hard
+work.
+</WorkedExample>
+
+<WorkedExample title="Four inverse computations read by pivot columns">
+For each matrix below, the method is the same: row-reduce `[A \mid I_4]`, look
+only at the pivot pattern of the left block first, and read the inverse from the
+right block only if the left block becomes `I_4`.
+
+**Case (a).** For
+
+$$
+A_1=
+\begin{bmatrix}
+1 & 0 & 3 & 3 \\
+2 & 1 & 2 & 3 \\
+-1 & 3 & 0 & 3 \\
+4 & 2 & 2 & 4
+\end{bmatrix},
+$$
+
+one echelon stage has left block
+
+$$
+A_1^\sharp=
+\begin{bmatrix}
+1 & 0 & 3 & 3 \\
+0 & 1 & -4 & -3 \\
+0 & 0 & 1 & 1 \\
+0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+There is no pivot in the fourth column. Hence `A_1` is not invertible.
+
+**Case (b).** For
+
+$$
+A_2=
+\begin{bmatrix}
+1 & 1 & 1 & 1 \\
+1 & 1 & 2 & 3 \\
+2 & 1 & 3 & 3 \\
+3 & 2 & 4 & 3
+\end{bmatrix},
+$$
+
+the reduction reaches `[I_4 \mid A_2^{-1}]`, with
+
+$$
+A_2^{-1}=
+\begin{bmatrix}
+3 & -2 & 3 & -2 \\
+0 & 1 & -2 & 1 \\
+-3 & 1 & -2 & 2 \\
+1 & 0 & 1 & -1
+\end{bmatrix}.
+$$
+
+**Case (c).** For
+
+$$
+A_3=
+\begin{bmatrix}
+1 & 2 & -1 & 30 \\
+3 & 2 & 0 & 15 \\
+0 & 1 & 3 & 15 \\
+1 & 1 & 1 & 10
+\end{bmatrix},
+$$
+
+one echelon stage has left block
+
+$$
+A_3^\sharp=
+\begin{bmatrix}
+1 & 2 & -1 & 30 \\
+0 & 1 & 3 & 15 \\
+0 & 0 & 5 & -5 \\
+0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+Again a pivot column is missing, so `A_3` is not invertible.
+
+**Case (d).** For
+
+$$
+A_4=
+\begin{bmatrix}
+1 & 1 & 2 & 1 \\
+2 & 3 & 4 & 1 \\
+3 & 3 & 3 & 1 \\
+1 & 2 & 3 & 1
+\end{bmatrix},
+$$
+
+the reduction reaches `[I_4 \mid A_4^{-1}]`, with
+
+$$
+A_4^{-1}=
+\begin{bmatrix}
+1 & 1 & 0 & -2 \\
+-2 & -2 & 1 & 3 \\
+1 & 2 & -1 & -2 \\
+0 & -3 & 1 & 3
+\end{bmatrix}.
+$$
+
+This example is deliberately repetitive. The repetition is the point: in every
+case, the left block decides invertibility before the right block is interpreted
+as an inverse.
+</WorkedExample>
+
+<WorkedExample title="A final identity block controls the whole chain">
+Suppose a row-operation chain carries `[A \mid I_5]` through an intermediate
+matrix `[B \mid C]` and finally to `[D \mid E]`. After the last few operations,
+the final augmented matrix is
+
+$$
+[D \mid E]
+=
+\left[
+\begin{array}{ccccc|ccccc}
+1 & 0 & 0 & 0 & 0 & 1 & 0 & -2 & 0 & 0 \\
+0 & 1 & 0 & 0 & 0 & 9 & 1 & -18 & -3 & -2 \\
+0 & 0 & 1 & 0 & 0 & -6 & 2 & 11 & 2 & 0 \\
+0 & 0 & 0 & 1 & 0 & -3 & 0 & 6 & 1 & 0 \\
+0 & 0 & 0 & 0 & 1 & -6 & 0 & 12 & 2 & 1
+\end{array}
+\right].
+$$
+
+The left block is `I_5`, so `D=I_5` and
+
+$$
+A^{-1}=E=
+\begin{bmatrix}
+1 & 0 & -2 & 0 & 0 \\
+9 & 1 & -18 & -3 & -2 \\
+-6 & 2 & 11 & 2 & 0 \\
+-3 & 0 & 6 & 1 & 0 \\
+-6 & 0 & 12 & 2 & 1
+\end{bmatrix}.
+$$
+
+It follows immediately that `A^t` is invertible and
+
+$$
+(A^t)^{-1}=E^t
+=
+\begin{bmatrix}
+1 & 9 & -6 & -3 & -6 \\
+0 & 1 & 2 & 0 & 0 \\
+-2 & -18 & 11 & 6 & 12 \\
+0 & -3 & 2 & 1 & 2 \\
+0 & -2 & 0 & 0 & 1
+\end{bmatrix}.
+$$
+
+The same chain can also be read as one left multiplication. Let `H` be the
+product of all row-operation matrices in the chain. Since `HA=I_5` and
+`HI_5=E`, we have `H=A^{-1}`. Therefore, if the same row operations carry
+`F+I_5` to `A^3+3A+I_5`, then
+
+$$
+A^3+3A+I_5=A^{-1}(F+I_5).
+$$
+
+Multiplying by `A` on the left gives
+
+$$
+F+I_5=A(A^3+3A+I_5)=A^4+3A^2+A,
+$$
+
+so
+
+$$
+F=A^4+3A^2+A-I_5.
+$$
+
+The lesson is that a row-reduction table is not just numerical work. It also
+records an invertible matrix multiplying on the left.
+</WorkedExample>
+
 ## Proof practice without determinants
 
 Some proof exercises deliberately ask for invertibility arguments that do not
@@ -856,6 +1120,24 @@ Rewrite the identity as `(A-I)A=I`.
 <RevealSolution title="Answer">
 The inverse is `A-I`. Indeed, the vector identity gives `(A-I)A=I`; for square
 matrices, this one-sided identity is enough to conclude that `A` is invertible.
+</RevealSolution>
+
+<QuickCheck prompt="If row operations transform `[A \mid I_p]` into `[I_p \mid D]`, what is `D`?">
+Read the right block only after confirming the left block is the identity.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`D=A^{-1}`. The same row operations that turn `A` into `I_p` turn `I_p` into the
+inverse of `A`.
+</RevealSolution>
+
+<QuickCheck prompt="If a row-operation product `H` satisfies `HA=I_p` and `HI_p=E`, what is `H`?">
+Use the square one-sided identity theorem.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`H=A^{-1}`. Since `HA=I_p` and `A` is square, `H` is the inverse of `A`; also
+`HI_p=H`, so `E=H=A^{-1}`.
 </RevealSolution>
 
 ## Exercise

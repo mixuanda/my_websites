@@ -1756,11 +1756,11 @@ const math1030InvertibilityUnits: TextbookUnitMeta[] = [
       },
       {
         file: "reference/MATH1030/1030efghi-as03.pdf",
-        note: "Assignment-style invertibility proofs, parameterized inverse computations, and cyclic product order",
+        note: "Assignment-style invertibility proofs, row-reduction inverse tables, parameterized inverse computations, and cyclic product order",
       },
       {
         file: "reference/MATH1030/1030efghi-as03as.pdf",
-        note: "Solution patterns for row-reduction inverses and determinant-free invertibility algebra",
+        note: "Solution patterns for Q5/Q6/Q8 row-reduction inverse tables and determinant-free invertibility algebra",
       },
     ],
     title: text(
