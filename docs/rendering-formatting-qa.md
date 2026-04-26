@@ -500,6 +500,9 @@ Current checkpoint resolution:
   confirmed the zh-HK page renders the new exercises and checkpoint section,
   exposes zh-CN language links, and has no captured console errors. In-app
   browser screenshot capture timed out, so this pass used DOM / log signals
-  rather than a captured image.
+  rather than a captured image. Production deployment
+  `dpl_4tDQK1t7oyDTxKNufHNUf3u3jYcZ` reached READY, and production smoke on
+  `www.evanalysis.top` returned 200 for EN / zh-HK / zh-CN note routes, 200
+  for EN TXT export, and `application/pdf` for zh-HK PDF export.
 - Remaining issues: continue export QA on the broader MATH1030 sequence after
   this unit-level check

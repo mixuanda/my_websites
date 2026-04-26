@@ -557,7 +557,9 @@ unit-level coverage.
 - Verification: `npm run contentlayer`, `npx tsc --noEmit --pretty false`,
   `npm run lint`, `npm run build`, and local route / export smoke on
   `127.0.0.1:3003` passed; browser DOM QA confirmed the new checkpoint areas
-  render on the zh-HK page with no captured console errors
+  render on the zh-HK page with no captured console errors; Vercel production
+  deployment `dpl_4tDQK1t7oyDTxKNufHNUf3u3jYcZ` reached READY and production
+  note / export smoke checks passed
 - Remaining issues: broader export QA remains; exhaustive grading of full
   symbolic `5 x 5` matrices is intentionally deferred until there is a robust
   matrix-equivalence parser

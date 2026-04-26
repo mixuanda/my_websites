@@ -490,8 +490,12 @@ Use this shape for future entries:
   confirmed the zh-HK page exposes the new exercises, checkpoint section,
   zh-CN language links, and no captured console errors; browser screenshot
   capture timed out in the in-app browser.
-- Deployment: to be completed by the final commit / push / Vercel production
-  verification for this round.
+- Deployment: content implementation committed as `c5d60a9`, pushed to
+  `origin/main`, and verified on Vercel production deployment
+  `dpl_4tDQK1t7oyDTxKNufHNUf3u3jYcZ`. Production smoke checks on
+  `www.evanalysis.top` returned 200 for EN / zh-HK / zh-CN note routes, 200
+  for the EN TXT export, and `application/pdf` for the zh-HK PDF export;
+  production content greps confirmed the new `alpha_2` and `G^{-1}` material.
 - Remaining gaps: broader MATH1030 export QA remains; exhaustive reproduction
   of every intermediate numerical assignment table remains intentionally
   optional.
