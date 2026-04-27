@@ -20,15 +20,14 @@ export default function Home() {
             Evanalysis Notes
           </h1>
           <p className="mt-5 max-w-3xl text-base leading-8 text-muted-foreground md:text-lg">
-            我把一些課上反覆用到、又容易在第一次讀時卡住的數學與計算機內容整理在這裡。
-            每個系列都可以按自己的節奏慢慢讀；需要回頭查定義、例子或計算細節時，也有一個固定入口。
+            數學、計算機和課程筆記。
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
               href="/zh-hk/notes"
               className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
-              進入繁體中文筆記
+              繁體中文
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
@@ -51,37 +50,37 @@ export default function Home() {
         <GlassPanel className="p-5">
           <div className="flex items-center gap-2 font-medium">
             <BookOpen className="h-4 w-4 text-primary" />
-            慢慢讀
+            課程筆記
           </div>
           <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            有些概念不是看一眼就會懂。這裡盡量把符號、例子和常見卡點放在同一頁，方便回頭重讀。
+            按課程閱讀。
           </p>
         </GlassPanel>
         <GlassPanel className="p-5">
           <div className="flex items-center gap-2 font-medium">
             <Languages className="h-4 w-4 text-primary" />
-            三種文字入口
+            三種語言
           </div>
           <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            同一個系列可以切換英文、繁體中文和簡體中文；目前以繁體中文入口作為首頁預設。
+            English / 繁體中文 / 简体中文
           </p>
         </GlassPanel>
         <GlassPanel className="p-5">
           <div className="flex items-center gap-2 font-medium">
             <Download className="h-4 w-4 text-primary" />
-            留一份離線版本
+            TXT / PDF
           </div>
           <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            單元頁可以匯出 TXT 或 PDF，做功課或複習時不用一直留在瀏覽器裡。
+            單元頁可匯出。
           </p>
         </GlassPanel>
       </section>
 
       <section className="space-y-5">
         <div>
-          <h2 className="text-2xl font-semibold">可以開始讀的系列</h2>
+          <h2 className="text-2xl font-semibold">筆記系列</h2>
           <p className="mt-2 text-sm leading-7 text-muted-foreground">
-            先從一個熟悉的課程進去即可；每個系列下面都有章節和單元入口。
+            選一個課程開始。
           </p>
         </div>
         <div className="grid gap-4 lg:grid-cols-2">

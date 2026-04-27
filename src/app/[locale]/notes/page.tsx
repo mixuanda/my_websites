@@ -21,14 +21,14 @@ function text(en: string, zhHk: string, zhCn: string): LocalizedText {
 
 const heroCopy = {
   body: text(
-    "Choose a course and start from the section you need. The notes are written for rereading: definitions stay close to examples, longer computations remain visible, and exported copies are available when you want to study offline.",
-    "選一個課程，從你現在需要的一節開始讀。這些筆記適合反覆翻看：定義旁邊有例子，較長的計算會留在頁面上，需要離線溫習時也可以匯出。",
-    "选一个课程，从你现在需要的一节开始读。这些笔记适合反复翻看：定义旁边有例子，较长的计算会留在页面上，需要离线复习时也可以导出。"
+    "Choose a course to start.",
+    "選一個課程開始。",
+    "选一个课程开始。"
   ),
   export: text(
-    "Keep an offline copy",
-    "留一份離線版本",
-    "留一份离线版本"
+    "TXT / PDF",
+    "TXT / PDF",
+    "TXT / PDF"
   ),
   languages: text(
     "English · 繁體中文 · 简体中文",
@@ -36,9 +36,9 @@ const heroCopy = {
     "English · 繁體中文 · 简体中文"
   ),
   route: text(
-    "Start from the section you need",
-    "從需要的一節開始",
-    "从需要的一节开始"
+    "Courses",
+    "課程",
+    "课程"
   ),
 } as const;
 

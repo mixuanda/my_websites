@@ -2609,9 +2609,9 @@ const math1090: TextbookCourseMeta = {
     },
   ],
   description: text(
-    "Rigorous course notes on logic, sets, number construction, the real numbers, limits, cardinality, and the first algebraic structures, written in linked sections with careful proofs and examples.",
-    "以嚴謹課程筆記方式整理的邏輯、集合、數系構造、實數、極限、基數與第一批代數結構筆記，按互相關聯的小節撰寫，重視證明與例子。",
-    "以严谨课程笔记方式整理的逻辑、集合、数系构造、实数、极限、基数与第一批代数结构笔记，按相互关联的小节撰写，重视证明与例子。"
+    "Set theory notes.",
+    "集合論筆記。",
+    "集合论笔记。"
   ),
   id: "math1090",
   shortTitle: text("Set theory", "集合論", "集合论"),
@@ -2738,9 +2738,9 @@ const math1030: TextbookCourseMeta = {
     },
   ],
   description: text(
-    "Rigorous linear algebra notes on systems, matrices, structure, and proof, with interaction used only where it clarifies the mathematics.",
-    "以嚴謹方式整理的線性代數筆記，涵蓋方程組、矩陣、結構與證明；互動只在真正有助理解數學時使用。",
-    "以严谨方式整理的线性代数笔记，涵盖方程组、矩阵、结构与证明；互动只在真正有助理解数学时使用。"
+    "Linear algebra notes.",
+    "線性代數筆記。",
+    "线性代数笔记。"
   ),
   id: "math1030",
   shortTitle: text("Linear algebra I", "線性代數 I", "线性代数 I"),
@@ -2827,9 +2827,9 @@ const csci2520: TextbookCourseMeta = {
     },
   ],
   description: text(
-    "Structured notes for CSCI2520 data-structure foundations with operation-level reasoning and selective interactive demonstrations.",
-    "針對 CSCI2520 資料結構基礎的結構化筆記，重視操作層級推理與選擇性互動示範。",
-    "针对 CSCI2520 资料结构基础的结构化笔记，重视操作层级推理与选择性互动示范。"
+    "Data-structure notes.",
+    "資料結構筆記。",
+    "资料结构笔记。"
   ),
   id: "csci2520",
   shortTitle: text("Data structures", "資料結構", "资料结构"),
@@ -2876,9 +2876,9 @@ const math1025: TextbookCourseMeta = {
     },
   ],
   description: text(
-    "Preparatory notes for algebraic technique, trigonometry, and proof-aware worked examples.",
-    "整理代數技巧、三角內容與帶證明意識例題的預備筆記。",
-    "整理代数技巧、三角内容与带证明意识例题的预备笔记。"
+    "Preparatory mathematics notes.",
+    "預備數學筆記。",
+    "预备数学笔记。"
   ),
   id: "math1025",
   shortTitle: text("Preparatory mathematics", "預備數學", "预备数学"),
