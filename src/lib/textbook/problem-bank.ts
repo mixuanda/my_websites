@@ -4876,6 +4876,195 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["hashtable", "chaining", "lookup"],
   },
+  "checkpoint.math1090.sets.inclusion-exclusion-hike": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.sets.inclusion-exclusion-hike",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "sets",
+    unitId: "math1090.sets.set-operations",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Ten students go hiking. Seven use sunscreen, six wear a hat, and two use neither. How many use both sunscreen and a hat?",
+      "十位學生去遠足。七位使用防曬，六位戴帽，兩位兩者皆沒有。多少位兩者皆有？",
+      "十位学生去远足。七位使用防晒，六位戴帽，两位两者都没有。多少位两者都有？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("3", "3", "3"),
+      },
+      {
+        id: "b",
+        text: text("5", "5", "5"),
+      },
+      {
+        id: "c",
+        text: text("8", "8", "8"),
+      },
+      {
+        id: "d",
+        text: text("13", "13", "13"),
+      },
+    ],
+    correctAnswer: { choiceId: "b" },
+    hints: [
+      text(
+        "First compute the union: if two use neither, then eight use at least one form of protection.",
+        "先計聯集：若兩位兩者皆沒有，則八位至少有一種保護。",
+        "先算并集：若两位两者都没有，则八位至少有一种保护。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Use `|S \\cup H| = |S| + |H| - |S \\cap H|`.",
+        "使用 `|S \\cup H| = |S| + |H| - |S \\cap H|`。",
+        "使用 `|S \\cup H| = |S| + |H| - |S \\cap H|`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Let S be the sunscreen set and H the hat set.",
+        "設 S 為使用防曬的集合，H 為戴帽的集合。",
+        "设 S 为使用防晒的集合，H 为戴帽的集合。"
+      ),
+      text(
+        "Two students use neither, so `|S \\cup H| = 10 - 2 = 8`.",
+        "兩位學生兩者皆沒有，所以 `|S \\cup H| = 10 - 2 = 8`。",
+        "两位学生两者都没有，所以 `|S \\cup H| = 10 - 2 = 8`。"
+      ),
+      text(
+        "Thus `|S \\cap H| = 7 + 6 - 8 = 5`.",
+        "因此 `|S \\cap H| = 7 + 6 - 8 = 5`。",
+        "因此 `|S \\cap H| = 7 + 6 - 8 = 5`。"
+      ),
+    ],
+    skillTags: ["sets", "venn-diagrams", "inclusion-exclusion"],
+  },
+  "checkpoint.math1090.sets.function-set-count": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.sets.function-set-count",
+    type: "FILL_IN_BLANK",
+    courseId: "math1090",
+    chapterId: "sets",
+    unitId: "math1090.sets.functions-relations",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "If `A` has three elements and `B` has two elements, how many functions are in `B^A`?",
+      "如果 `A` 有三個元素，而 `B` 有兩個元素，`B^A` 中有多少個函數？",
+      "如果 `A` 有三个元素，而 `B` 有两个元素，`B^A` 中有多少个函数？"
+    ),
+    correctAnswer: {
+      value: "8",
+      equivalentValues: ["2^3", "2³"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "Each input in A independently chooses one of the two outputs in B.",
+        "`A` 的每個輸入都獨立地在 `B` 中選兩個輸出之一。",
+        "`A` 的每个输入都独立地在 `B` 中选两个输出之一。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Enter a number such as `8`.",
+        "輸入一個數字，例如 `8`。",
+        "输入一个数字，例如 `8`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter the count as a whole number.",
+      "以整數輸入數量。",
+      "以整数输入数量。"
+    ),
+    solutionSteps: [
+      text(
+        "A function from A to B chooses one output in B for each input in A.",
+        "由 `A` 到 `B` 的函數，會為 `A` 的每個輸入選一個 `B` 中的輸出。",
+        "由 `A` 到 `B` 的函数，会为 `A` 的每个输入选一个 `B` 中的输出。"
+      ),
+      text(
+        "There are two choices for each of three inputs, so the count is `2^3 = 8`.",
+        "三個輸入各有兩個選擇，所以數量是 `2^3 = 8`。",
+        "三个输入各有两个选择，所以数量是 `2^3 = 8`。"
+      ),
+    ],
+    skillTags: ["functions", "function-sets", "counting"],
+  },
+  "checkpoint.math1090.sets.finite-left-inverse": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.sets.finite-left-inverse",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "sets",
+    unitId: "math1090.sets.functions-relations",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Let X be finite and let `g : X \\to X`. If `h \\circ g = id_X`, what is the first property of g used to prove that g is invertible?",
+      "設 X 是有限集合且 `g : X \\to X`。若 `h \\circ g = id_X`，證明 g 可逆時首先得到 g 有甚麼性質？",
+      "设 X 是有限集合且 `g : X \\to X`。若 `h \\circ g = id_X`，证明 g 可逆时首先得到 g 有什么性质？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("g is injective.", "g 是單射。", "g 是单射。"),
+      },
+      {
+        id: "b",
+        text: text("g is constant.", "g 是常值函數。", "g 是常值函数。"),
+      },
+      {
+        id: "c",
+        text: text("g is undefined on one point.", "g 在某一點沒有定義。", "g 在某一点没有定义。"),
+      },
+      {
+        id: "d",
+        text: text("g has no image.", "g 沒有像。", "g 没有像。"),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Start with `g(x1)=g(x2)` and apply h to both sides.",
+        "由 `g(x1)=g(x2)` 出發，兩邊同時作用 h。",
+        "由 `g(x1)=g(x2)` 出发，两边同时作用 h。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "If `g(x1)=g(x2)`, applying h gives `h(g(x1))=h(g(x2))`.",
+        "若 `g(x1)=g(x2)`，作用 h 後得 `h(g(x1))=h(g(x2))`。",
+        "若 `g(x1)=g(x2)`，作用 h 后得 `h(g(x1))=h(g(x2))`。"
+      ),
+      text(
+        "Since `h \\circ g = id_X`, this becomes `x1=x2`, so g is injective.",
+        "因為 `h \\circ g = id_X`，這變成 `x1=x2`，所以 g 是單射。",
+        "因为 `h \\circ g = id_X`，这变成 `x1=x2`，所以 g 是单射。"
+      ),
+      text(
+        "A self-map of a finite set is invertible once it is injective.",
+        "有限集合到自身的映射一旦是單射，就可推出可逆。",
+        "有限集合到自身的映射一旦是单射，就可推出可逆。"
+      ),
+    ],
+    skillTags: ["functions", "left-inverse", "finite-sets"],
+  },
 };
 
 export function getProblemById(problemId: string) {

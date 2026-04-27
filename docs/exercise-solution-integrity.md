@@ -61,6 +61,15 @@ April 24, 2026 QA update:
   and absolute value`, and `4.1 Binomial coefficients and expansions` in EN,
   zh-HK, and zh-CN; each unit also includes an exercises section followed by a
   guided-solutions section.
+- the April 27 MATH1090 set-language pass added paired quick checks and
+  immediate `RevealSolution` blocks to `2.1` and `2.2` in EN, zh-HK, and
+  zh-CN; the local structural count is aligned across locales
+  (`2.1`: 4 `QuickCheck`, 5 `RevealSolution`; `2.2`: 5 `QuickCheck`,
+  12 `RevealSolution`), with the extra reveal blocks belonging to worked
+  examples rather than unmatched prompts.
+- the same MATH1090 pass added three problem-bank checkpoints for
+  inclusion-exclusion, `B^A` function counting, and finite left-inverse logic;
+  each checkpoint includes localized hints and solution steps.
 
 ### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
 

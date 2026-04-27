@@ -87,6 +87,14 @@ The current pass especially strengthens the `math1030` note flow.
 - `math1090` `3.4` now has a rational-representative lab that compares
   candidate formulas for relations on `Q` against legal changes of fraction
   representative.
+- `math1090` `2.1` still uses the existing set-operation explorer; the April
+  27 depth pass added static set-builder, Venn-counting, and proof material
+  rather than a new widget because the existing explorer already covers the
+  state-changing part of union / intersection / difference / complement.
+- `math1090` `2.2` did not add a widget. The new `B^A`, finite inverse,
+  cardinality, operation, and Hasse-diagram material is proof-and-reading
+  material that exports more cleanly as static worked examples and checkpoint
+  problems.
 - `2.3` now explains the distinction between REF, RREF, and back substitution
   before the learner opens the row-reduction stepper.
 - Vector-space notes already use widgets to make subspace testing, span, and

@@ -56,6 +56,38 @@ books write `A \subseteq B` for that idea and reserve `A \subset B` for strict
 subset. Always check the local convention.
 </CommonMistake>
 
+## Set-builder notation and bounded predicates
+
+After predicate logic, the most common way to define a set is to start with a
+known set and then keep exactly the elements satisfying a condition:
+
+$$
+\{x \in S \mid P(x)\}.
+$$
+
+This notation should be read carefully. The symbol before the vertical bar tells
+you where the variable is allowed to live; the predicate after the bar tells you
+which of those allowed elements survive. For example,
+
+$$
+\{n \in \mathbb{Z} \mid n \text{ is even}\}
+$$
+
+is the set of even integers.
+
+<CommonMistake title="Do not ignore the ambient set">
+The expression `\{x \mid P(x)\}` is often convenient shorthand, but the rigorous
+version is bounded inside a set already under discussion. This prevents the
+definition from pretending that every verbal description automatically creates a
+safe mathematical object.
+</CommonMistake>
+
+<CommonMistake title="Sets are not multisets">
+A set remembers whether an object is present, not how many times it was listed.
+Thus `\{1,1,2,3\}` and `\{1,2,3\}` describe the same set, even though they would
+be different multisets.
+</CommonMistake>
+
 ## Building new sets
 
 Once we know some sets, we usually want to build more. The standard operations
@@ -116,8 +148,12 @@ For sets `A`, `B`, and `C`:
 - `A \cup (B \cap C) = (A \cup B) \cap (A \cup C)`
 - `(A \cup B)^c = A^c \cap B^c`
 - `(A \cap B)^c = A^c \cup B^c`
+- `(A^c)^c = A`
+- `A \cap A^c = \varnothing`
+- `A \cup A^c = E`
 - `A \subset B` if and only if `A \cup B = B`
 - `A \subset B` if and only if `A \cap B = A`
+- `A \subset B` if and only if `B^c \subset A^c`
 </TheoremCard>
 
 The key proof method is element chasing. For example:
@@ -231,6 +267,20 @@ Since the reasoning can be read in either direction, the two sets are equal.
 This is the same idea used for De Morgan’s laws, distributive laws, and later
 proofs about relations and number constructions.
 
+## Reading Venn diagrams correctly
+
+Venn diagrams are useful for organizing a situation, but the proof still comes
+from membership conditions. A diagram can suggest that a region is empty, inside
+another region, or split into several pieces; the written argument must then say
+which inclusion, disjointness condition, or counting equation that picture
+represents.
+
+For three sets, a statement such as `A \subset (B \cup C)` means every element of
+`A` lies in at least one of `B` or `C`. It does not say that `A \subset B`, and
+it does not say that `A \subset C`. Keeping those possibilities separate is a
+good test of whether the diagram is being read logically rather than visually
+only.
+
 ## Counting finite sets
 
 The language of sets also controls counting.
@@ -261,6 +311,28 @@ $$
 $$
 
 possible subsets. Hence `|P(S)| = 8`.
+</WorkedExample>
+
+<WorkedExample title="A Venn-diagram count without drawing the diagram">
+Ten students go hiking. Seven use sunscreen, six wear a hat, and two use no sun
+protection.
+
+Let `S` be the sunscreen set and `H` the hat set. Since two students use neither
+form of protection,
+
+$$
+|S \cup H| = 10 - 2 = 8.
+$$
+
+By inclusion-exclusion,
+
+$$
+|S \cap H| = |S| + |H| - |S \cup H|
+  = 7 + 6 - 8
+  = 5.
+$$
+
+So five students use both sunscreen and a hat.
 </WorkedExample>
 
 ## A checklist for subset proofs
@@ -308,6 +380,15 @@ Ask what the complement is supposed to be taken inside.
 
 <RevealSolution title="Answer">
 Because the same set has different complements in different universes.
+</RevealSolution>
+
+<QuickCheck prompt="Ten students go hiking. Seven use sunscreen, six wear a hat, and two use neither. How many use both?">
+Translate the two students using neither into the size of the union first.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The union has `10 - 2 = 8` students, so the intersection has `7 + 6 - 8 = 5`
+students.
 </RevealSolution>
 
 <QuickCheck prompt="If `A \subset B`, what do `A \cup B` and `A \cap B` simplify to?">

@@ -44,6 +44,10 @@ April 24, 2026 parity update:
 - MATH1090 `3.3` and `3.4` were expanded in synchronized EN / zh-HK / zh-CN
   files with matching interactive placements, added exercise / solution pairs,
   and shared checkpoint questions.
+- MATH1090 `2.1` and `2.2` were expanded in synchronized EN / zh-HK / zh-CN
+  files with matching set-builder, Venn / inclusion-exclusion, `B^A`, finite
+  inverse, cardinality, operation, Hasse-diagram, quick-check, and checkpoint
+  additions.
 
 April 25, 2026 MATH1030 exercise / TOC update:
 

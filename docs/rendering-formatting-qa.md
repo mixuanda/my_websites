@@ -61,6 +61,11 @@ April 24, 2026 QA update:
   `npm run contentlayer` regenerated 202 documents after the new files and
   catalog metadata landed, and `npm run build` completed successfully with the
   new Math1025 routes included.
+- the April 27 MATH1090 set-language pass expanded `2.1` and `2.2` in EN /
+  zh-HK / zh-CN using existing MDX block types only. The new material includes
+  display-math set-builder notation, `B^A`, finite inverse identities,
+  Hasse-diagram covering relations, and checkpoint prompts; no new rendering
+  component was introduced.
 
 ## Current findings
 

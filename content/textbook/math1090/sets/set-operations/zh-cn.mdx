@@ -12,7 +12,7 @@ description: "建立成员关系、子集证明，以及标准集合构造的语
 ## 集合、属于、相等
 
 <Definition title="集合">
-集合是一批对象的集合。
+集合是一批对象所组成的整体。
 
 如果 `x` 是集合 `A` 的元素，我们写 `x \in A`；如果不是，就写
 `x \notin A`。
@@ -49,6 +49,34 @@ $$
 本课程用 `A \subset B` 表示“`A` 的每个元素都在 `B` 里”。有些书会用
 `A \subseteq B` 表示这个意思，而把 `A \subset B` 留给 strict subset。
 读书时要先确认约定。
+</CommonMistake>
+
+## 集合列式和有界谓词
+
+学过谓词逻辑之后，最常见的定义集合方式，是先指定一个已知集合，再保留其中
+满足某个条件的元素：
+
+$$
+\{x \in S \mid P(x)\}.
+$$
+
+这个记号要仔细读。竖线前面的部分说明变量允许在哪个集合里取值；竖线后面的
+谓词说明哪些元素会被留下。例如
+
+$$
+\{n \in \mathbb{Z} \mid n \text{ is even}\}
+$$
+
+就是所有偶整数的集合。
+
+<CommonMistake title="不要忽略所在集合">
+`\{x \mid P(x)\}` 有时是方便的简写，但严谨版本应该把变量限制在某个已知集合
+里。这样做可以避免把任何文字描述都当成自动产生良好数学对象。
+</CommonMistake>
+
+<CommonMistake title="集合不是 multiset">
+集合只记录某个对象是否出现，不记录它在列表里出现多少次。因此
+`\{1,1,2,3\}` 和 `\{1,2,3\}` 描述同一个集合；如果讨论 multiset，二者才会不同。
 </CommonMistake>
 
 ## 建立新集合
@@ -108,8 +136,12 @@ $$
 - `A \cup (B \cap C) = (A \cup B) \cap (A \cup C)`
 - `(A \cup B)^c = A^c \cap B^c`
 - `(A \cap B)^c = A^c \cup B^c`
+- `(A^c)^c = A`
+- `A \cap A^c = \varnothing`
+- `A \cup A^c = E`
 - `A \subset B` 当且仅当 `A \cup B = B`
 - `A \subset B` 当且仅当 `A \cap B = A`
+- `A \subset B` 当且仅当 `B^c \subset A^c`
 </TheoremCard>
 
 核心证明法是 element chasing。比如：
@@ -218,6 +250,16 @@ $$
 
 这种逐元素追踪的方法，后面还会再次出现在德摩根律、关系，以及数系构造中。
 
+## 怎样正确阅读 Venn 图
+
+Venn 图适合用来整理情况，但证明仍然要回到成员条件。图形可以提示某个区域
+为空、包含在另一个区域里，或被切成几部分；正式文字则要说明这对应哪个
+包含关系、不交条件或计数等式。
+
+对三个集合来说，`A \subset (B \cup C)` 表示 `A` 的每个元素都至少落在 `B`
+或 `C` 之一。它不表示 `A \subset B`，也不表示 `A \subset C`。能否分清这些
+可能性，是检查自己是否真正用逻辑方式阅读图形的好方法。
+
 ## 有限集合怎样计数
 
 集合语言不只用来分类，也直接控制计数。
@@ -247,6 +289,26 @@ $$
 $$
 
 个子集。因此 `|P(S)| = 8`。
+</WorkedExample>
+
+<WorkedExample title="不用画图也能完成的 Venn 图计数">
+十位学生去远足。七位使用防晒，六位戴帽，两位没有任何防晒保护。
+
+设 `S` 是使用防晒的集合，`H` 是戴帽的集合。由于两位学生不在这两个集合里，
+
+$$
+|S \cup H| = 10 - 2 = 8.
+$$
+
+由 inclusion-exclusion，
+
+$$
+|S \cap H| = |S| + |H| - |S \cup H|
+  = 7 + 6 - 8
+  = 5.
+$$
+
+所以五位学生同时使用防晒并戴帽。
 </WorkedExample>
 
 ## 子集证明检查表
@@ -290,6 +352,14 @@ $$
 
 <RevealSolution title="答案">
 因为同一个集合在不同 universe 里的补集可以完全不同。
+</RevealSolution>
+
+<QuickCheck prompt="十位学生去远足。七位使用防晒，六位戴帽，两位两者都没有。多少位两者都有？">
+先把“两者都没有”翻译成并集大小。
+</QuickCheck>
+
+<RevealSolution title="答案">
+并集有 `10 - 2 = 8` 位学生，所以交集有 `7 + 6 - 8 = 5` 位学生。
 </RevealSolution>
 
 <QuickCheck prompt="如果 `A \subset B`，那么 `A \cup B` 和 `A \cap B` 会简化成什么？">

@@ -129,6 +129,41 @@ Use this shape for future entries:
 
 ## Current log
 
+### 2026-04-27: MATH1090 set-language depth pass
+
+- Gap selected: `docs/chapter-coverage-map.md` still marked MATH1090 `2.1`
+  and `2.2` as thinner than the source density, and the Feb27 / Worksheet 3
+  source audit showed missing or underdeveloped set-builder, multiset,
+  Venn-counting, `B^A`, finite inverse, cardinality, operation, and poset
+  material.
+- Reference basis: `reference/MATH1090/MATH1090_Lecture_Notes_Feb27.pdf`
+  chapter 2 and `reference/MATH1090/MATH1090_Worksheet3.pdf`.
+- Content files changed: strengthened
+  `content/textbook/math1090/sets/set-operations/{en,zh-hk,zh-cn}.mdx` and
+  `content/textbook/math1090/sets/functions-relations/{en,zh-hk,zh-cn}.mdx`;
+  updated `src/lib/textbook/problem-bank.ts` and MATH1090 coverage / QA docs.
+- Visuals added: none; the existing set-operation explorer covers the
+  state-changing part of `2.1`, while the new material is better represented
+  as textbook prose, worked examples, and static proof / counting displays.
+- Interactions added: none; no new widget was justified for the proof and
+  exercise-depth material.
+- Exercises added: added in-page quick checks for hiking inclusion-exclusion,
+  function-set counting, and finite left-inverse logic; added matching
+  problem-bank checkpoints for the same topics.
+- Verification: `npm run contentlayer`, `npm run lint`, `npx tsc --noEmit
+  --pretty false`, `npm run build`, and `git diff --check` passed. Local
+  production smoke checks on port `3005` returned 200 for representative
+  EN / zh-HK / zh-CN MATH1090 `2.1` and `2.2` routes, confirmed the new
+  headings and checkpoint prompts render, confirmed no `X -&gt; X` / `h o g`
+  fallback strings remain, and confirmed representative TXT / PDF exports
+  return study material. Browser QA on the same local server confirmed the
+  EN `2.1` page layout, zh-HK language switch, zh-HK new-section rendering,
+  and dark-mode toggle state.
+- Deployment: pending.
+- Remaining gaps: optional Worksheet 3 exercise-depth parity remains for the
+  remaining Venn-configuration variants and the optional `N x N -> N`
+  injection.
+
 ### 2026-04-25: Math1025 induction, inequalities, and binomial theorem
 
 - Gap selected: Math1025 had repository sources through chapter 11, but the

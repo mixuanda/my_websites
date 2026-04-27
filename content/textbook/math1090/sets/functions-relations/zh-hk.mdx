@@ -16,7 +16,7 @@ description: "把函數與關係視為積集的子集，再用這套語言理解
 都只會配對到 `Y` 中唯一一個 `y`。
 </Definition>
 
-這就是這裏採用的集合論定義。
+這就是本單元採用的集合論定義。
 
 同一件事可以用幾種方式去讀：
 
@@ -35,7 +35,40 @@ description: "把函數與關係視為積集的子集，再用這套語言理解
 或者 `Q \setminus \{0\}` 上的函數；但無論如何，也不可以包含 `0`。
 </CommonMistake>
 
-## 如何小心那麼讀一個函數
+## 所有函數所組成的集合
+
+當函數已經被定義為有序對集合後，我們亦可以建立「以函數為元素」的集合。
+若 `A` 與 `B` 是集合，記號
+
+$$
+B^A
+$$
+
+表示所有由 `A` 到 `B` 的函數所組成的集合。
+
+這個記號不是偶然的。若 `A` 有 `n` 個元素，而 `B` 有 `m` 個元素，一個
+`A \to B` 的函數就是替 `A` 的每個輸入各選一個 `B` 中的輸出。因此共有
+`m^n` 個這樣的函數。例如 `A = \{a,b,c\}`、`B=\{0,1\}` 時，`B^A`
+有 `2^3=8` 個函數。這正是 `|P(A)| = 2^{|A|}` 背後的同一個計數原理。
+
+<WorkedExample title="把 `B^A` 讀成函數集合">
+令 `A=\{a,b\}`、`B=\{0,1\}`。那麼 `B^A` 恰有四個函數：
+
+$$
+\begin{array}{c|cc}
+ & a & b \\
+\hline
+f_1 & 0 & 0\\
+f_2 & 0 & 1\\
+f_3 & 1 & 0\\
+f_4 & 1 & 1
+\end{array}
+$$
+
+每一行是一整個函數，而不是某一個函數的一個值。
+</WorkedExample>
+
+## 如何仔細閱讀一個函數
 
 <WorkedExample title="平方函數會有重複輸出">
 考慮 `f(x) = x^2`。
@@ -74,7 +107,7 @@ $$
 (g \circ f)(x) = g(f(x)).
 $$
 
-次序好重要：`g \circ f` 也就是「先做 `f`，再做 `g`」。
+次序很重要：`g \circ f` 也就是「先做 `f`，再做 `g`」。
 
 <WorkedExample title="比較 `f(x)=x^2` 的像與原像">
 設 `f : R \to R` 由 `f(x) = x^2` 定義，而
@@ -123,7 +156,7 @@ $$
 - `f` 滿射 iff `f(X) = Y`
 - `f` 雙射 iff 每個目標值都剛好被命中一次
 
-這裏之所以經常使用這幾個詞，是因為它們直接決定逆函數存不存在。
+這裡之所以經常使用這幾個詞，是因為它們直接決定逆函數存不存在。
 
 <TheoremCard title="逆函數存在當且僅當雙射">
 對函數 `f : X \to Y`，逆函數存在，當且僅當 `f` 是雙射。
@@ -151,13 +184,13 @@ $$
 </RevealSolution>
 </WorkedExample>
 
-<CommonMistake title="不好將原像同逆函數混淆">
+<CommonMistake title="不要將原像與逆函數混淆">
 `f^{-1}(B)` 永遠有意義，只要 `B` 是 target 的子集。真正的逆函數 `f^{-1}` 只在 `f` 是雙射時先存在。
 </CommonMistake>
 
 ## 左逆同右逆
 
-相關練習中有一個好有用的區分。
+相關練習中有一個很有用的區分。
 
 - 左逆 `h` 代表 `h \circ f = id`
 - 右逆 `g` 代表 `f \circ g = id`
@@ -209,6 +242,61 @@ $$
 如果存在左逆，兩個不同輸入但同一輸出會在左逆之後被迫變成同一個元素，這個不可能。
 </RevealSolution>
 </WorkedExample>
+
+<TheoremCard title="有限自映射：有左逆已足以推出可逆">
+設 `X` 是有限集合，且 `g : X \to X`。如果存在 `h : X \to X` 滿足
+`h \circ g = id_X`，那麼 `g` 是雙射，而且 `h` 亦是 `g` 的右逆。
+</TheoremCard>
+
+<CollapsibleProof title="證明思路">
+等式 `h \circ g = id_X` 首先說明 `g` 是單射：若 `g(x_1)=g(x_2)`，兩邊
+再作用 `h`，就得到 `x_1=x_2`。
+
+對有限集合而言，由 `X` 到自身的單射必然也是滿射。因此 `g` 是雙射。由於
+逆函數唯一，而 `h` 已經在左邊抵消 `g`，所以 `h` 必須就是 `g` 的逆函數。
+因此亦有 `g \circ h = id_X`。
+</CollapsibleProof>
+
+## 基數與運算語言
+
+基數表示大小，但在集合論中，正確的大小比較不一定只是普通計數。兩個集合
+`X` 和 `Y` 同勢，意思是它們之間存在一個雙射：
+
+$$
+|X| = |Y| \quad \text{表示存在一個雙射 } X \to Y.
+$$
+
+對有限集合而言，這與元素個數一致。對無限集合而言，這個定義會變得更微妙，
+後面會再次使用。
+
+<WorkedExample title="`N` 與 `Z` 之間的第一個雙射">
+可以用自然數指標按以下次序列出所有整數：
+
+$$
+0, 1, -1, 2, -2, 3, -3, \ldots
+$$
+
+這對應到一個函數 `f : N \to Z`，例如
+
+$$
+f(0)=0,\qquad f(2k+1)=k+1,\qquad f(2k+2)=-(k+1).
+$$
+
+每個整數都恰好出現一次，所以這是一個雙射枚舉。
+</WorkedExample>
+
+<Definition title="把運算讀成函數">
+集合 `S` 上的一個 `n` 元運算，是一個函數
+
+$$
+S^n \to S.
+$$
+
+例如加法是二元運算，因為它取一對輸入，並回傳同一個集合中的一個輸出。
+</Definition>
+
+`0` 元運算初看可能有些奇怪。它是沒有輸入位置、但有一個 `S` 中輸出的函數，
+所以可以理解為在 `S` 中指定一個特別元素。
 
 ## 關係
 
@@ -277,6 +365,23 @@ $$
 </RevealSolution>
 </WorkedExample>
 
+<WorkedExample title="子集關係作為一個小型偏序">
+令 `X=\{a,b\}`，並考慮 `P(X)`，即 `X` 的所有子集所組成的集合。
+用包含關係排列 `P(X)`。
+
+最底層元素是 `\varnothing`，最頂層元素是 `\{a,b\}`，中間兩個元素是
+`\{a\}` 和 `\{b\}`。直接相鄰的 covering relations 只有
+
+$$
+\varnothing \subset \{a\},\quad
+\varnothing \subset \{b\},\quad
+\{a\}\subset \{a,b\},\quad
+\{b\}\subset \{a,b\}.
+$$
+
+Hasse 圖只畫這些直接覆蓋關係；較長的比較則由傳遞性自動理解。
+</WorkedExample>
+
 <WorkedExample title="一個簡單的等價關係">
 模 `m` 同餘是 `Z` 上的等價關係。
 
@@ -323,7 +428,7 @@ $$
 
 ## 常見錯誤
 
-<CommonMistake title="不好將原像同逆函數混淆">
+<CommonMistake title="不要將原像與逆函數混淆">
 `f^{-1}(B)` 永遠有意義，只要 `B` 是 target 的子集。真正的逆函數 `f^{-1}` 只在 `f` 是雙射時先存在。
 </CommonMistake>
 
@@ -354,6 +459,22 @@ $$
 有。原像永遠有意義。
 </RevealSolution>
 
+<QuickCheck prompt="如果 `A` 有三個元素，而 `B` 有兩個元素，`B^A` 中有多少個函數？">
+對 `A` 的每個輸入，各自在 `B` 中選一個輸出。
+</QuickCheck>
+
+<RevealSolution title="答案">
+共有 `2^3 = 8` 個函數。
+</RevealSolution>
+
+<QuickCheck prompt="若 `g : X \to X` 有左逆且 `X` 是有限集合，證明 `g` 可逆時第一步應證明 `g` 有甚麼性質？">
+使用等式 `h \circ g = id_X`。
+</QuickCheck>
+
+<RevealSolution title="答案">
+先證 `g` 是單射。由於 `X` 有限，單射推出滿射，因此 `g` 是雙射。
+</RevealSolution>
+
 <QuickCheck prompt="如果一個關係是 reflexive、symmetric、transitive，它叫甚麼？">
 回想會將集合分成 class 的那種關係。
 </QuickCheck>
@@ -369,6 +490,6 @@ $$
 - `N` 會透過集合語言同 induction 構造
 - `Z` 同 `Q` 會透過等價類構造
 - 數字上的 `≤` 是 partial order
-- quotient set 解釋咗為甚麼同一個對象可以有許多代表元
+- quotient set 解釋了為甚麼同一個對象可以有許多代表元
 
 如果這一單元清楚，後面的構造會容易許多，因為符號不再在暗中做事。

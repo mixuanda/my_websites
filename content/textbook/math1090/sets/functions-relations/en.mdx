@@ -18,7 +18,7 @@ A function from `X` to `Y` is a subset of `X \times Y` such that every `x \in X`
 is paired with exactly one `y \in Y`.
 </Definition>
 
-This is the set-theoretic definition used throughout the local notes.
+This is the set-theoretic definition used in this unit.
 
 The same information can be read in several equivalent ways:
 
@@ -38,6 +38,40 @@ The formula `1/x` is not a single function unless you specify a domain. It can
 be a function on `R \setminus \{0\}`, on `Q \setminus \{0\}`, or on another
 domain where division by zero is excluded.
 </CommonMistake>
+
+## The set of all functions
+
+Once functions have been defined as sets of ordered pairs, we can also make a
+set whose elements are functions. If `A` and `B` are sets, the notation
+
+$$
+B^A
+$$
+
+means the set of all functions from `A` to `B`.
+
+This notation is not accidental. When `A` is finite with `n` elements and `B`
+is finite with `m` elements, a function `A \to B` is made by choosing one of
+`m` outputs for each of the `n` inputs. Hence there are `m^n` such functions.
+For example, if `A = \{a,b,c\}` and `B=\{0,1\}`, then `B^A` has `2^3=8`
+functions. This is the same counting principle behind `|P(A)| = 2^{|A|}`.
+
+<WorkedExample title="Read `B^A` as a function set">
+Let `A=\{a,b\}` and `B=\{0,1\}`. Then `B^A` contains exactly four functions:
+
+$$
+\begin{array}{c|cc}
+ & a & b \\
+\hline
+f_1 & 0 & 0\\
+f_2 & 0 & 1\\
+f_3 & 1 & 0\\
+f_4 & 1 & 1
+\end{array}
+$$
+
+Each row is one whole function, not one value of a single function.
+</WorkedExample>
 
 ## Reading a function carefully
 
@@ -228,6 +262,67 @@ impossible.
 </RevealSolution>
 </WorkedExample>
 
+<TheoremCard title="Finite self-maps: a left inverse already forces an inverse">
+Let `X` be finite and let `g : X \to X`. If there exists `h : X \to X` with
+`h \circ g = id_X`, then `g` is bijective and `h` is also a right inverse of
+`g`.
+</TheoremCard>
+
+<CollapsibleProof title="Proof idea">
+The equation `h \circ g = id_X` says that `g` is injective: if `g(x_1)=g(x_2)`,
+then applying `h` gives `x_1=x_2`.
+
+For a finite set, an injective map from `X` to itself is automatically
+surjective. Thus `g` is bijective. Since its inverse is unique and `h` already
+undoes `g` on the left, `h` must be the inverse function. Therefore
+`g \circ h = id_X` as well.
+</CollapsibleProof>
+
+## Cardinality and operation language
+
+Cardinality means size, but in set theory the correct comparison is not always
+ordinary counting. Two sets `X` and `Y` have the same cardinality when there is
+a bijection between them:
+
+$$
+|X| = |Y| \quad \text{means there exists a bijection } X \to Y.
+$$
+
+For finite sets, this agrees with the usual number of elements. For infinite
+sets, the definition is more subtle and will become important later.
+
+<WorkedExample title="A first bijection between `N` and `Z`">
+One explicit way to list all integers using natural-number indices is
+
+$$
+0, 1, -1, 2, -2, 3, -3, \ldots
+$$
+
+This corresponds to a function `f : N \to Z` such as
+
+$$
+f(0)=0,\qquad f(2k+1)=k+1,\qquad f(2k+2)=-(k+1).
+$$
+
+Every integer appears exactly once in this list, so this is a bijective
+enumeration.
+</WorkedExample>
+
+<Definition title="Operations as functions">
+An `n`-ary operation on a set `S` is a function
+
+$$
+S^n \to S.
+$$
+
+For example, addition is a binary operation because it takes a pair of inputs
+and returns one output in the same set.
+</Definition>
+
+A `0`-ary operation may look strange at first. It is a function with no input
+slot and one value in `S`, so it can be read as choosing a distinguished element
+of `S`.
+
 ## Relations
 
 <Definition title="A relation">
@@ -298,6 +393,25 @@ So divisibility is a partial order.
 Posets are not just a vocabulary item. They let us organize objects by how one
 contains, refines, or divides another.
 </RevealSolution>
+</WorkedExample>
+
+<WorkedExample title="The subset relation as a small poset">
+Let `X=\{a,b\}` and consider `P(X)`, the set of all subsets of `X`.
+Order `P(X)` by inclusion.
+
+The bottom element is `\varnothing`, the top element is `\{a,b\}`, and the two
+middle elements are `\{a\}` and `\{b\}`. The only immediate covering relations
+are
+
+$$
+\varnothing \subset \{a\},\quad
+\varnothing \subset \{b\},\quad
+\{a\}\subset \{a,b\},\quad
+\{b\}\subset \{a,b\}.
+$$
+
+A Hasse diagram draws only these immediate covers; all longer comparisons are
+then understood by transitivity.
 </WorkedExample>
 
 <WorkedExample title="A simple equivalence relation">
@@ -388,6 +502,23 @@ Separate preimage notation from inverse-function notation.
 
 <RevealSolution title="Answer">
 Yes. The preimage always exists.
+</RevealSolution>
+
+<QuickCheck prompt="If `A` has three elements and `B` has two elements, how many functions are in `B^A`?">
+Choose one output in `B` for each input in `A`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+There are `2^3 = 8` functions.
+</RevealSolution>
+
+<QuickCheck prompt="If `g : X \to X` has a left inverse and `X` is finite, what property of `g` comes first in the proof that `g` is invertible?">
+Use the equation `h \circ g = id_X`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+First prove that `g` is injective. Since `X` is finite, injective then implies
+surjective, so `g` is bijective.
 </RevealSolution>
 
 <QuickCheck prompt="If a relation is reflexive, symmetric, and transitive, what is it called?">

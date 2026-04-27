@@ -72,13 +72,24 @@ The latest merged content passes also:
   zh-HK, and zh-CN with an integer-equivalence explorer, a
   rational-representative lab, source-backed exercises from Lecture Exercises
   33-38 / Worksheet 5, and matching problem-bank checkpoint questions.
+- deepened the public `math1090` set-language units `2.1` and `2.2` in EN,
+  zh-HK, and zh-CN with bounded set-builder notation, multiset warnings,
+  complement / reverse-inclusion laws, Venn / inclusion-exclusion practice,
+  `B^A`, finite self-map inverse logic, first cardinality language, operations
+  as functions, a small Hasse-diagram reading example, and new checkpoint
+  problems.
 
-The next resume point is now QA rather than missing Math1090 content:
+The next resume point is now QA and optional exercise-depth parity rather than
+missing MATH1090 core content:
 
-1. keep export, rendering, and exercise QA active on the new Math1090 `4.5`
-   through `5.3` family.
+1. keep export, rendering, and exercise QA active on the revised MATH1090
+   `2.1` / `2.2` set-language family and the existing `4.5` through `5.3`
+   family.
 2. keep export, rendering, and exercise QA active on the recently added higher
-   Math1030 chapters.
+   MATH1030 chapters.
+3. treat the remaining Worksheet 3 Venn-configuration variants and the
+   optional `N x N -> N` injection as exercise-depth backlog, not as missing
+   route-level content.
 
 Current QA progress from April 24, 2026:
 
@@ -341,7 +352,7 @@ below.
 
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Feb27.pdf` | lecture notes | incorporated | yes | no | no | Direct source for logic, truth tables, quantifiers, sets, functions, and relations. |
+| MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Feb27.pdf` | lecture notes | incorporated | yes | no | no | Direct source for logic, truth tables, quantifiers, sets, functions, and relations. The latest set-language pass added bounded comprehension, multiset warnings, `B^A`, cardinality, operations, finite inverse logic, and Hasse-diagram reading into public `2.1` / `2.2`. |
 | MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf` | lecture notes | partially incorporated | partial | no | no | Primary source for the current public `§3.*` number-construction notes; the latest pass strengthened integer subtraction / multiplication and rational well-definedness inside `3.3`-`3.4`. Later real-number and analysis-preparatory sections remain backlog. |
 | MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf` | lecture notes | incorporated | yes | no | no | Direct source for the public `4.1`-`4.6` and `5.1`-`5.3` family: cuts, decimals, irrationals, sequence limits, Cauchy sequences, delta-epsilon limits, limit laws, sequential characterization, and continuity. |
 | MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_final.tex` | review source | partially incorporated | partial | yes | no | Used for headings, terminology, proof structure, number-system exercises 32-38, Worksheet 5 proof patterns, and the chapter-4 note family through `§4.7`. Later proof-template and appendix sections remain backlog. |
@@ -351,7 +362,7 @@ below.
 | MATH1090 | `reference/MATH1090/MATH1090 HW8.pdf` | homework | blocked | no | no | yes | Extraction quality is weak and the surrounding later-course material is not yet mapped tightly enough to author from this file alone. |
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet1.pdf` | worksheet | incorporated | yes | yes | no | Supports propositional logic examples and quick checks. |
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet2.pdf` | worksheet | incorporated | yes | yes | no | Supports quantifiers and negation. |
-| MATH1090 | `reference/MATH1090/MATH1090_Worksheet3.pdf` | worksheet | incorporated | yes | yes | no | Supports sets, Venn-diagram language, and function / relation examples. |
+| MATH1090 | `reference/MATH1090/MATH1090_Worksheet3.pdf` | worksheet | partially incorporated | partial | yes | no | Supports sets, Venn-diagram language, and function / relation examples. The hiking inclusion-exclusion problem and finite left-inverse proof pattern are now public; the remaining Venn-configuration variants and optional `N x N -> N` injection remain exercise-depth backlog. |
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet4.pdf` | worksheet | incorporated | yes | yes | no | Supports naturals, induction, integer-construction notes, and the latest subtraction / multiplication practice expansion. |
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet5.pdf` | worksheet | incorporated | yes | yes | no | Supports rationals, Euclidean-algorithm gcd invariance, well-defined relations on `Q`, the `sqrt(2)` gap note, and chapter-4 completeness / gap exercises. |
 
@@ -988,3 +999,24 @@ existing invertibility note instead of creating a detached new route.
 - Remaining issues: broader MATH1030 export QA remains; exhaustive
   reproduction of every intermediate assignment table remains intentionally
   optional.
+
+### 2026-04-27 checkpoint 27: MATH1090 set-language depth and status refresh
+
+- Strengthened the existing three-locale `2.1 Sets and set operations` note
+  using the Feb27 set-theory source and Worksheet 3 set practice.
+- Added bounded set-builder notation, the multiset distinction, the
+  comprehension-bound warning, extra complement laws, reverse inclusion under
+  complement, Venn-diagram reading guidance, and a hiking inclusion-exclusion
+  worked example.
+- Strengthened the existing three-locale `2.2 Functions and relations` note
+  with `B^A` as the set of all functions, finite self-map left-inverse logic,
+  first cardinality language, operations as functions, an explicit `N` to `Z`
+  bijection, and a small subset-poset / Hasse-diagram reading example.
+- Added three MATH1090 problem-bank checkpoints for inclusion-exclusion,
+  function-set counting, and the finite left-inverse proof pattern.
+- Updated the MATH1090 tracking docs to reflect that chapters 6 and 7 are
+  already authored in the public Notes tree and that remaining Worksheet 3
+  items are exercise-depth backlog rather than missing route-level content.
+- Remaining issues: run the full build / export smoke checks for this pass,
+  and consider a later optional exercise pass for the remaining Venn
+  configurations and `N x N -> N` injection.
