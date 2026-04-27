@@ -28,7 +28,7 @@ import {
   isUnitVisibleOnSurface,
   textbookCatalog,
 } from "@/lib/textbook/catalog";
-import { getSiteSurface, isProductionSurface } from "@/lib/site-surface";
+import { getSiteSurface } from "@/lib/site-surface";
 import { estimateReadingTimeMinutes, getTextbookUnit, getStaticTextbookParams } from "@/lib/textbook/content";
 import { getCoverageLabel, getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
 import { getProblemsForUnit } from "@/lib/textbook/problem-bank";
@@ -105,13 +105,10 @@ export default async function UnitPage({ params }: UnitPageProps) {
   const unitHref = getUnitHref(locale, bundle.meta);
   const session = await auth();
   const entitlements = await getUserEntitlements(session);
-  const membershipGatingEnabled =
-    !isProductionSurface(surface) && isMembershipGatingEnabled();
+  const membershipGatingEnabled = isMembershipGatingEnabled();
   const canAccessPremium = canAccessTier(entitlements, bundle.meta.accessTier);
   const checkpointProblems = getProblemsForUnit(bundle.meta.unitId).filter((problem) =>
-    isProductionSurface(surface)
-      ? problem.accessTier !== "MEMBER"
-      : canAccessTier(entitlements, problem.accessTier)
+    canAccessTier(entitlements, problem.accessTier)
   );
   const readingTime = estimateReadingTimeMinutes(bundle.doc.body.raw, locale);
 

@@ -8,7 +8,7 @@ import type {
   TextbookUnitMeta,
 } from "./types";
 import { getLocalizedText } from "./i18n";
-import { getSiteSurface, isProductionSurface, type SiteSurface } from "@/lib/site-surface";
+import { getSiteSurface, type SiteSurface } from "@/lib/site-surface";
 
 function text(
   en: string,
@@ -2904,17 +2904,15 @@ export function isUnitVisibleOnSurface(
   unit: TextbookUnitMeta,
   surface: SiteSurface = getSiteSurface()
 ) {
-  return !isProductionSurface(surface) || unit.accessTier !== "MEMBER";
+  void unit;
+  void surface;
+  return true;
 }
 
 export function filterCourseMetaForSurface(
   course: TextbookCourseMeta,
   surface: SiteSurface = getSiteSurface()
 ): TextbookCourseMeta | null {
-  if (!isProductionSurface(surface)) {
-    return course;
-  }
-
   const chapters = course.chapters
     .map((chapter) => ({
       ...chapter,

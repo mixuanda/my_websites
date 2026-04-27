@@ -9,7 +9,7 @@ import { ArrowRight, Languages, SquareLibrary } from "lucide-react";
 
 export const metadata = {
   title: "笔记",
-  description: "按课程、章节和小节组织的课程笔记与学习记录。",
+  description: "可以反复回来看的一组课程笔记。",
 };
 
 export default function NotesPage() {
@@ -44,11 +44,11 @@ export default function NotesPage() {
                 <Badge variant="secondary">课程笔记</Badge>
               </div>
               <h2 className="mt-4 text-2xl font-semibold">
-                按课程和小节阅读数学笔记
+                从需要的一节开始读
               </h2>
               <p className="mt-3 text-sm leading-7 text-muted-foreground">
-                课程内容按章节拆成独立笔记页。阅读体验以清晰推导、定义、
-                例题和练习为中心；互动组件只在它能帮助看懂概念或计算时出现。
+                有些定义、例题和计算细节需要不止看一次。这里把可以继续读下去的笔记放在一起，
+                方便上课、做题或复习时直接回到对应的一节。
               </p>
           </div>
           <div className="space-y-3">

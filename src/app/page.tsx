@@ -17,11 +17,11 @@ export default function Home() {
             <Badge variant="secondary">Evanalysis Notes</Badge>
           </div>
           <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight md:text-5xl">
-            以章節為單位整理的課程筆記
+            Evanalysis Notes
           </h1>
           <p className="mt-5 max-w-3xl text-base leading-8 text-muted-foreground md:text-lg">
-            這個網站目前保留首頁與 Notes。筆記按課程、章節與小節編排，
-            以清楚的定義、推導、例題和練習為主；互動內容只在它能幫助理解概念或計算時出現。
+            我把一些課上反覆用到、又容易在第一次讀時卡住的數學與計算機內容整理在這裡。
+            每個系列都可以按自己的節奏慢慢讀；需要回頭查定義、例子或計算細節時，也有一個固定入口。
           </p>
           <div className="mt-7 flex flex-wrap gap-3">
             <Link
@@ -51,37 +51,37 @@ export default function Home() {
         <GlassPanel className="p-5">
           <div className="flex items-center gap-2 font-medium">
             <BookOpen className="h-4 w-4 text-primary" />
-            文章式閱讀
+            慢慢讀
           </div>
           <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            每節筆記都以連續的說明和例子展開，不把內容壓縮成簡短提示。
+            有些概念不是看一眼就會懂。這裡盡量把符號、例子和常見卡點放在同一頁，方便回頭重讀。
           </p>
         </GlassPanel>
         <GlassPanel className="p-5">
           <div className="flex items-center gap-2 font-medium">
             <Languages className="h-4 w-4 text-primary" />
-            三語入口
+            三種文字入口
           </div>
           <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            英文、繁體中文與簡體中文共用同一套課程結構，方便切換閱讀。
+            同一個系列可以切換英文、繁體中文和簡體中文；目前以繁體中文入口作為首頁預設。
           </p>
         </GlassPanel>
         <GlassPanel className="p-5">
           <div className="flex items-center gap-2 font-medium">
             <Download className="h-4 w-4 text-primary" />
-            靜態匯出
+            留一份離線版本
           </div>
           <p className="mt-3 text-sm leading-7 text-muted-foreground">
-            小節頁可匯出為 TXT 或 PDF，互動區塊會轉成適合溫習的靜態材料。
+            單元頁可以匯出 TXT 或 PDF，做功課或複習時不用一直留在瀏覽器裡。
           </p>
         </GlassPanel>
       </section>
 
       <section className="space-y-5">
         <div>
-          <h2 className="text-2xl font-semibold">目前可閱讀的筆記系列</h2>
+          <h2 className="text-2xl font-semibold">可以開始讀的系列</h2>
           <p className="mt-2 text-sm leading-7 text-muted-foreground">
-            這些系列都放在 Notes 下面，之後新增課程也會沿用同一種章節結構。
+            先從一個熟悉的課程進去即可；每個系列下面都有章節和單元入口。
           </p>
         </div>
         <div className="grid gap-4 lg:grid-cols-2">

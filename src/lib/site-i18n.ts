@@ -74,9 +74,9 @@ export const siteUiText = {
     "zh-hk": "項目",
   },
   shellSubtitle: {
-    en: "Course notes in mathematics and computing",
-    "zh-cn": "数学与计算机课程笔记",
-    "zh-hk": "數學與計算機課程筆記",
+    en: "Notes I keep returning to",
+    "zh-cn": "反复会用到的笔记",
+    "zh-hk": "反覆會用到的筆記",
   },
   switchToDarkMode: {
     en: "Switch to dark mode",

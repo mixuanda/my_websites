@@ -5,7 +5,7 @@ import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { isMembershipGatingEnabled } from "@/lib/membership/entitlements";
 import { getVisibleCourseList } from "@/lib/textbook/catalog";
-import { getSiteSurface, isProductionSurface } from "@/lib/site-surface";
+import { getSiteSurface } from "@/lib/site-surface";
 import { getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
 import { getCourseHref, getMembershipHref } from "@/lib/textbook/routes";
 import type { LocalizedText } from "@/lib/textbook/types";
@@ -21,14 +21,14 @@ function text(en: string, zhHk: string, zhCn: string): LocalizedText {
 
 const heroCopy = {
   body: text(
-    "Browse rigorous mathematics notes one section at a time. Each page is written as a serious course-note article, with interaction used only where it clarifies a definition, computation, or proof idea, and each section exports as TXT or PDF.",
-    "逐節閱讀嚴謹的數學筆記。每頁都按正式課程筆記文章撰寫，只在能幫助理解定義、計算或證明思路時加入互動，並可把當前一節匯出成 TXT 或 PDF 溫習版本。",
-    "逐节阅读严谨的数学笔记。每页都按正式课程笔记文章撰写，只在能帮助理解定义、计算或证明思路时加入互动，并可把当前一节导出成 TXT 或 PDF 复习版本。"
+    "Choose a course and start from the section you need. The notes are written for rereading: definitions stay close to examples, longer computations remain visible, and exported copies are available when you want to study offline.",
+    "選一個課程，從你現在需要的一節開始讀。這些筆記適合反覆翻看：定義旁邊有例子，較長的計算會留在頁面上，需要離線溫習時也可以匯出。",
+    "选一个课程，从你现在需要的一节开始读。这些笔记适合反复翻看：定义旁边有例子，较长的计算会留在页面上，需要离线复习时也可以导出。"
   ),
   export: text(
-    "Export the current section",
-    "匯出目前一節",
-    "导出当前一节"
+    "Keep an offline copy",
+    "留一份離線版本",
+    "留一份离线版本"
   ),
   languages: text(
     "English · 繁體中文 · 简体中文",
@@ -36,9 +36,9 @@ const heroCopy = {
     "English · 繁體中文 · 简体中文"
   ),
   route: text(
-    "Read by linked sections with prerequisites",
-    "按帶有先備關係的連結小節閱讀",
-    "按带有先备关系的链接小节阅读"
+    "Start from the section you need",
+    "從需要的一節開始",
+    "从需要的一节开始"
   ),
 } as const;
 
@@ -71,8 +71,7 @@ export default async function NotesIndexPage({
 
   const surface = getSiteSurface();
   const courses = getVisibleCourseList(surface);
-  const membershipGatingEnabled =
-    !isProductionSurface(surface) && isMembershipGatingEnabled();
+  const membershipGatingEnabled = isMembershipGatingEnabled();
 
   return (
     <div className="mx-auto max-w-7xl space-y-8">
