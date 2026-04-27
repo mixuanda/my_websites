@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BillingActions } from "@/components/membership/BillingActions";
 import { auth } from "@/lib/auth";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import {
   getMembershipRecordByEmail,
   getMembershipRecordByUserId,
@@ -87,6 +88,8 @@ export async function generateMetadata({
 export default async function LocalizedMembershipPage({
   params,
 }: MembershipPageProps) {
+  notFoundInProduction();
+
   const { locale } = await params;
 
   if (!isLocale(locale)) {

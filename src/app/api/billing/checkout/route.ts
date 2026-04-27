@@ -3,10 +3,14 @@ import { auth } from "@/lib/auth";
 import { getStripeClient, getAppUrl } from "@/lib/membership/stripe";
 import { getUserEntitlements } from "@/lib/membership/entitlements";
 import { getBillingPlan, type BillingPlanId } from "@/lib/membership/plans";
+import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 import { defaultLocale, isLocale } from "@/lib/textbook/i18n";
 import { getMembershipCancelHref, getMembershipSuccessHref } from "@/lib/textbook/routes";
 
 export async function POST(request: Request) {
+  const hiddenResponse = notFoundApiResponseInProduction();
+  if (hiddenResponse) return hiddenResponse;
+
   try {
     const session = await auth();
     const user = session?.user as { id?: string; email?: string | null } | undefined;

@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth";
 import { isAdminEmail } from "@/lib/membership/config";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import { redirect } from "next/navigation";
 
 export const metadata = {
@@ -15,6 +16,8 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
+  notFoundInProduction();
+
   const session = await auth();
 
   // 未登录，跳转登录页

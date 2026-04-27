@@ -15,6 +15,7 @@ import {
   type SiteUserTheme,
 } from "@/lib/user-store";
 import { usingFirestore } from "@/lib/db";
+import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 import { NextResponse } from "next/server";
 
 function isLocale(value: unknown): value is SiteUserLocale {
@@ -26,6 +27,9 @@ function isTheme(value: unknown): value is SiteUserTheme {
 }
 
 export async function GET() {
+  const hiddenResponse = notFoundApiResponseInProduction();
+  if (hiddenResponse) return hiddenResponse;
+
   try {
     const session = await auth();
 
@@ -68,6 +72,9 @@ export async function GET() {
 }
 
 export async function PATCH(request: Request) {
+  const hiddenResponse = notFoundApiResponseInProduction();
+  if (hiddenResponse) return hiddenResponse;
+
   try {
     const session = await auth();
 

@@ -1,6 +1,7 @@
 "use client";
 
 import { GlassSidebar } from "@/components/glass";
+import type { SiteSurface } from "@/lib/site-surface";
 import { cn } from "@/lib/utils";
 import {
   createContext,
@@ -24,6 +25,7 @@ export const useLayoutContext = () => useContext(LayoutContext);
 
 interface MainLayoutProps {
   children: React.ReactNode;
+  surface: SiteSurface;
 }
 
 const HIGH_CONTRAST_STORAGE_KEY = "site-high-contrast";
@@ -61,7 +63,7 @@ function subscribeHighContrast(onStoreChange: () => void) {
   };
 }
 
-export function MainLayout({ children }: MainLayoutProps) {
+export function MainLayout({ children, surface }: MainLayoutProps) {
   const highContrast = useSyncExternalStore(
     subscribeHighContrast,
     getHighContrastSnapshot,
@@ -113,6 +115,7 @@ export function MainLayout({ children }: MainLayoutProps) {
         <GlassSidebar
           highContrast={highContrast}
           onHighContrastChange={setHighContrast}
+          surface={surface}
         />
         <main className="lg:ml-64 min-h-screen pt-16 lg:pt-0">
           <div className="p-4 md:p-6 lg:p-8">{children}</div>

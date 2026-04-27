@@ -1,60 +1,47 @@
-import { allPosts, allNotes, allProjects } from "contentlayer/generated";
+import { allTextbookUnits } from "contentlayer/generated";
 import { MetadataRoute } from "next";
+import { getVisibleCourseList } from "@/lib/textbook/catalog";
+import { locales } from "@/lib/textbook/i18n";
+import { getSiteSurface } from "@/lib/site-surface";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.mixuanda.top";
+    process.env.NEXT_PUBLIC_SITE_URL || "https://www.evanalysis.top";
+  const surface = getSiteSurface();
+  const courses = getVisibleCourseList(surface);
+  const now = new Date();
+
+  const visibleUnitKeys = new Set(
+    courses.flatMap((course) =>
+      course.chapters.flatMap((chapter) =>
+        chapter.units.map((unit) => `${course.id}/${chapter.id}/${unit.slug}`)
+      )
+    )
+  );
 
   const staticPages = [
-    { url: baseUrl, lastModified: new Date() },
-    { url: `${baseUrl}/about`, lastModified: new Date() },
-    { url: `${baseUrl}/blog`, lastModified: new Date() },
-    { url: `${baseUrl}/notes`, lastModified: new Date() },
-    { url: `${baseUrl}/projects`, lastModified: new Date() },
+    { url: baseUrl, lastModified: now },
+    ...locales.map((locale) => ({
+      url: `${baseUrl}/${locale}/notes`,
+      lastModified: now,
+    })),
   ];
 
-  const postPages = allPosts
-    .filter((post) => post.published)
-    .map((post) => ({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: new Date(post.date),
+  const coursePages = locales.flatMap((locale) =>
+    courses.map((course) => ({
+      url: `${baseUrl}/${locale}/notes/${course.id}`,
+      lastModified: now,
+    }))
+  );
+
+  const unitPages = allTextbookUnits
+    .filter((unit) =>
+      visibleUnitKeys.has(`${unit.course}/${unit.chapterId}/${unit.unitSlug}`)
+    )
+    .map((unit) => ({
+      url: `${baseUrl}${unit.url}`,
+      lastModified: now,
     }));
 
-  const notePages = allNotes.map((note) => ({
-    url: `${baseUrl}/notes/${note.slug}`,
-    lastModified: new Date(note.date),
-  }));
-
-  const projectPages = allProjects.map((project) => ({
-    url: `${baseUrl}/projects/${project.slug}`,
-    lastModified: new Date(project.date),
-  }));
-
-  // Get unique tags and categories
-  const allTags = new Set<string>();
-  allPosts.forEach((p) => p.tags.forEach((t) => allTags.add(t)));
-  allNotes.forEach((n) => n.tags.forEach((t) => allTags.add(t)));
-
-  const tagPages = Array.from(allTags).map((tag) => ({
-    url: `${baseUrl}/tags/${encodeURIComponent(tag)}`,
-    lastModified: new Date(),
-  }));
-
-  const allCategories = new Set<string>();
-  allPosts.forEach((p) => p.category && allCategories.add(p.category));
-  allNotes.forEach((n) => n.category && allCategories.add(n.category));
-
-  const categoryPages = Array.from(allCategories).map((cat) => ({
-    url: `${baseUrl}/categories/${encodeURIComponent(cat)}`,
-    lastModified: new Date(),
-  }));
-
-  return [
-    ...staticPages,
-    ...postPages,
-    ...notePages,
-    ...projectPages,
-    ...tagPages,
-    ...categoryPages,
-  ];
+  return [...staticPages, ...coursePages, ...unitPages];
 }

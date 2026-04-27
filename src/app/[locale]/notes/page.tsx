@@ -4,7 +4,8 @@ import { ArrowRight, BookOpen, Languages, SquareLibrary, Waypoints } from "lucid
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { isMembershipGatingEnabled } from "@/lib/membership/entitlements";
-import { getCourseList } from "@/lib/textbook/content";
+import { getVisibleCourseList } from "@/lib/textbook/catalog";
+import { getSiteSurface, isProductionSurface } from "@/lib/site-surface";
 import { getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
 import { getCourseHref, getMembershipHref } from "@/lib/textbook/routes";
 import type { LocalizedText } from "@/lib/textbook/types";
@@ -68,8 +69,10 @@ export default async function NotesIndexPage({
     notFound();
   }
 
-  const courses = getCourseList();
-  const membershipGatingEnabled = isMembershipGatingEnabled();
+  const surface = getSiteSurface();
+  const courses = getVisibleCourseList(surface);
+  const membershipGatingEnabled =
+    !isProductionSurface(surface) && isMembershipGatingEnabled();
 
   return (
     <div className="mx-auto max-w-7xl space-y-8">

@@ -1,5 +1,6 @@
 import { buildArticlePdf } from "@/lib/article-pdf";
 import { getExportArticle, type ExportArticleKind } from "@/lib/article-export";
+import { isProductionSurface } from "@/lib/site-surface";
 
 export const runtime = "nodejs";
 
@@ -12,6 +13,10 @@ interface RouteContext {
 
 export async function GET(_: Request, { params }: RouteContext) {
   const { kind, slug } = await params;
+
+  if (isProductionSurface()) {
+    return new Response("Article not found", { status: 404 });
+  }
 
   if (!["blog", "notes", "projects"].includes(kind)) {
     return new Response("Unsupported export type", { status: 400 });

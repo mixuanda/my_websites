@@ -5,7 +5,8 @@ import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { TextbookCourseSidebar } from "@/components/textbook/TextbookCourseSidebar";
 import { isMembershipGatingEnabled } from "@/lib/membership/entitlements";
-import { getCourseMeta, textbookCatalog } from "@/lib/textbook/catalog";
+import { getCourseMeta, getVisibleCourseMeta, textbookCatalog } from "@/lib/textbook/catalog";
+import { getSiteSurface, isProductionSurface } from "@/lib/site-surface";
 import { getCoverageLabel, getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
 import { getCoursesHref, getUnitHref } from "@/lib/textbook/routes";
 import type { CourseId, LocalizedText } from "@/lib/textbook/types";
@@ -73,8 +74,14 @@ export default async function CoursePage({ params }: CoursePageProps) {
   }
 
   const safeCourse = course as CourseId;
-  const courseMeta = getCourseMeta(safeCourse);
-  const membershipGatingEnabled = isMembershipGatingEnabled();
+  const surface = getSiteSurface();
+  const courseMeta = getVisibleCourseMeta(safeCourse, surface);
+  const membershipGatingEnabled =
+    !isProductionSurface(surface) && isMembershipGatingEnabled();
+
+  if (!courseMeta) {
+    notFound();
+  }
 
   return (
     <div className="mx-auto max-w-7xl">

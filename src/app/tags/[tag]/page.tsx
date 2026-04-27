@@ -1,6 +1,7 @@
 import { allPosts, allNotes, allProjects } from "contentlayer/generated";
 import { PostCard } from "@/components/PostCard";
 import { GlassPanel } from "@/components/glass";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import Link from "next/link";
 import { ArrowLeft, Tag } from "lucide-react";
 import type { Metadata } from "next";
@@ -30,6 +31,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function TagPage({ params }: PageProps) {
+  notFoundInProduction();
+
   const { tag } = await params;
   const decodedTag = decodeURIComponent(tag);
 

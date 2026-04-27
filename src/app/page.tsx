@@ -1,185 +1,111 @@
-import { allPosts, allProjects } from "contentlayer/generated";
-import { PostCard } from "@/components/PostCard";
+import Link from "next/link";
+import { ArrowRight, BookOpen, Download, Languages, SquareLibrary } from "lucide-react";
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
-import Link from "next/link";
-import { ArrowRight, Sparkles, BookOpen, FolderKanban, Languages, Download } from "lucide-react";
+import { getVisibleCourseList } from "@/lib/textbook/catalog";
+import { getLocalizedText } from "@/lib/textbook/i18n";
 
 export default function Home() {
-  const recentPosts = allPosts
-    .filter((post) => post.published)
-    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-    .slice(0, 3);
-
-  const featuredProjects = allProjects
-    .filter((p) => p.featured)
-    .slice(0, 2);
+  const courses = getVisibleCourseList();
 
   return (
-    <div className="max-w-6xl mx-auto space-y-12">
-      {/* Hero Section */}
-      <section className="py-12 md:py-20">
-        <GlassCard variant="elevated" className="p-8 md:p-12">
-          <div className="flex items-center gap-2 mb-4">
-            <Sparkles className="w-5 h-5 text-primary" />
-            <Badge variant="secondary">欢迎访问</Badge>
+    <div className="mx-auto max-w-6xl space-y-10">
+      <section className="py-10 md:py-16">
+        <GlassCard variant="elevated" className="p-7 md:p-10">
+          <div className="flex items-center gap-2">
+            <SquareLibrary className="h-5 w-5 text-primary" />
+            <Badge variant="secondary">Evanalysis Notes</Badge>
           </div>
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            你好，我是{" "}
-            <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-              Evanalysis
-            </span>
+          <h1 className="mt-5 max-w-3xl text-4xl font-bold leading-tight md:text-5xl">
+            以章節為單位整理的課程筆記
           </h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mb-6">
-            一名把课程笔记、技术写作和项目实践持续整理到同一个网站里的学习者。
-            这里的当前重点是按小节持续扩写的 Notes 系统，同时保留项目与文章记录。
+          <p className="mt-5 max-w-3xl text-base leading-8 text-muted-foreground md:text-lg">
+            這個網站目前保留首頁與 Notes。筆記按課程、章節與小節編排，
+            以清楚的定義、推導、例題和練習為主；互動內容只在它能幫助理解概念或計算時出現。
           </p>
-          <div className="flex flex-wrap gap-3">
+          <div className="mt-7 flex flex-wrap gap-3">
             <Link
               href="/zh-hk/notes"
-              className="inline-flex items-center gap-2 px-4 py-2 bg-primary text-primary-foreground rounded-xl hover:opacity-90 transition-opacity"
+              className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-opacity hover:opacity-90"
             >
-              <Languages className="w-4 h-4" />
-              进入笔记
+              進入繁體中文筆記
+              <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 rounded-xl border border-border/60 bg-background/40 px-4 py-2 transition-colors hover:bg-background/60"
+              href="/en/notes"
+              className="inline-flex items-center gap-2 rounded-xl border border-border/60 bg-background/40 px-4 py-2 text-sm transition-colors hover:bg-background/60"
             >
-              <BookOpen className="w-4 h-4" />
-              浏览博客
+              English
             </Link>
             <Link
-              href="/projects"
-              className="inline-flex items-center gap-2 rounded-xl border border-border/60 bg-background/40 px-4 py-2 transition-colors hover:bg-background/60"
+              href="/zh-cn/notes"
+              className="inline-flex items-center gap-2 rounded-xl border border-border/60 bg-background/40 px-4 py-2 text-sm transition-colors hover:bg-background/60"
             >
-              <FolderKanban className="w-4 h-4" />
-              查看项目
+              简体中文
             </Link>
           </div>
         </GlassCard>
       </section>
 
-      <section>
-        <GlassCard className="p-6 md:p-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
-            <div className="max-w-3xl">
-              <div className="flex items-center gap-2 mb-4">
-                <Languages className="w-5 h-5 text-primary" />
-                <Badge variant="secondary">笔记</Badge>
-              </div>
-              <h2 className="text-2xl md:text-3xl font-bold">
-                Math1090 与 Math1030 课程笔记
-              </h2>
-              <p className="mt-4 text-muted-foreground leading-8">
-                这里按章节和小节整理严谨的数学笔记。每一节都以文章式阅读为主，
-                互动演示只用于解释定义、证明思路或计算过程；需要离线复习时，
-                当前小节也可以导出为静态学习材料。
-              </p>
-            </div>
-            <div className="grid gap-3 sm:grid-cols-2">
-              <GlassPanel className="p-4">
-                <div className="flex items-center gap-2 font-medium">
-                  <BookOpen className="w-4 h-4 text-primary" />
-                  小单元分路由阅读
-                </div>
-              </GlassPanel>
-              <GlassPanel className="p-4">
-                <div className="flex items-center gap-2 font-medium">
-                  <Download className="w-4 h-4 text-primary" />
-                  当前单元可导出 TXT / PDF
-                </div>
-              </GlassPanel>
-            </div>
+      <section className="grid gap-4 md:grid-cols-3">
+        <GlassPanel className="p-5">
+          <div className="flex items-center gap-2 font-medium">
+            <BookOpen className="h-4 w-4 text-primary" />
+            文章式閱讀
           </div>
-        </GlassCard>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
+            每節筆記都以連續的說明和例子展開，不把內容壓縮成簡短提示。
+          </p>
+        </GlassPanel>
+        <GlassPanel className="p-5">
+          <div className="flex items-center gap-2 font-medium">
+            <Languages className="h-4 w-4 text-primary" />
+            三語入口
+          </div>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
+            英文、繁體中文與簡體中文共用同一套課程結構，方便切換閱讀。
+          </p>
+        </GlassPanel>
+        <GlassPanel className="p-5">
+          <div className="flex items-center gap-2 font-medium">
+            <Download className="h-4 w-4 text-primary" />
+            靜態匯出
+          </div>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
+            小節頁可匯出為 TXT 或 PDF，互動區塊會轉成適合溫習的靜態材料。
+          </p>
+        </GlassPanel>
       </section>
 
-      {/* Featured Projects */}
-      {featuredProjects.length > 0 && (
-        <section>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-2xl font-bold">精选项目</h2>
-            <Link
-              href="/projects"
-              className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1"
-            >
-              查看全部 <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {featuredProjects.map((project) => (
-              <PostCard
-                key={project.slug}
-                title={project.title}
-                description={project.description}
-                date={project.date}
-                slug={project.slug}
-                tags={project.tags}
-                image={project.image}
-                type="project"
-              />
-            ))}
-          </div>
-        </section>
-      )}
-
-      {/* Recent Posts */}
-      <section>
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold">最新文章</h2>
-          <Link
-            href="/blog"
-            className="text-sm text-muted-foreground hover:text-primary flex items-center gap-1"
-          >
-            查看全部 <ArrowRight className="w-4 h-4" />
-          </Link>
+      <section className="space-y-5">
+        <div>
+          <h2 className="text-2xl font-semibold">目前可閱讀的筆記系列</h2>
+          <p className="mt-2 text-sm leading-7 text-muted-foreground">
+            這些系列都放在 Notes 下面，之後新增課程也會沿用同一種章節結構。
+          </p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {recentPosts.map((post) => (
-            <PostCard
-              key={post.slug}
-              title={post.title}
-              description={post.description}
-              date={post.date}
-              slug={post.slug}
-              tags={post.tags}
-              category={post.category}
-              image={post.image}
-              type="blog"
-            />
+        <div className="grid gap-4 lg:grid-cols-2">
+          {courses.map((course) => (
+            <GlassCard key={course.id} className="p-5">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                {course.id}
+              </p>
+              <h3 className="mt-2 text-xl font-semibold">
+                {getLocalizedText(course.title, "zh-hk")}
+              </h3>
+              <p className="mt-3 text-sm leading-7 text-muted-foreground">
+                {getLocalizedText(course.description, "zh-hk")}
+              </p>
+              <Link
+                href={`/zh-hk/notes/${course.id}`}
+                className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-primary"
+              >
+                閱讀系列
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </GlassCard>
           ))}
         </div>
-      </section>
-
-      {/* Stats Section */}
-      <section>
-        <GlassPanel className="p-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            <div>
-              <div className="text-3xl font-bold text-primary">
-                {allPosts.length}
-              </div>
-              <div className="text-sm text-muted-foreground">篇文章</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary">
-                {allProjects.length}
-              </div>
-              <div className="text-sm text-muted-foreground">个项目</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary">
-                {Array.from(new Set(allPosts.flatMap((p) => p.tags))).length}
-              </div>
-              <div className="text-sm text-muted-foreground">个标签</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary">∞</div>
-              <div className="text-sm text-muted-foreground">热情</div>
-            </div>
-          </div>
-        </GlassPanel>
       </section>
     </div>
   );

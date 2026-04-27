@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import { getLocalizedText, isLocale } from "@/lib/textbook/i18n";
 import { getMembershipHref } from "@/lib/textbook/routes";
 import type { LocalizedText } from "@/lib/textbook/types";
@@ -42,6 +43,8 @@ export async function generateMetadata({
 export default async function LocalizedMembershipSuccessPage({
   params,
 }: SuccessPageProps) {
+  notFoundInProduction();
+
   const { locale } = await params;
 
   if (!isLocale(locale)) {

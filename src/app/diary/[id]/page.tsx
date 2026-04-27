@@ -3,6 +3,7 @@ import { redirect, notFound } from "next/navigation";
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { Button } from "@/components/ui/button";
 import { db, initSampleData, usingFirestore } from "@/lib/db";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Edit, Trash } from "lucide-react";
 import { format } from "date-fns";
@@ -30,6 +31,8 @@ interface PageProps {
 }
 
 export default async function DiaryDetailPage({ params }: PageProps) {
+  notFoundInProduction();
+
   const session = await auth();
 
   if (!session?.user) {

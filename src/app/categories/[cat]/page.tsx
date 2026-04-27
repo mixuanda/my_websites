@@ -1,6 +1,7 @@
 import { allPosts, allNotes } from "contentlayer/generated";
 import { PostCard } from "@/components/PostCard";
 import { GlassPanel } from "@/components/glass";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import Link from "next/link";
 import { ArrowLeft, Folder } from "lucide-react";
 import type { Metadata } from "next";
@@ -29,6 +30,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function CategoryPage({ params }: PageProps) {
+  notFoundInProduction();
+
   const { cat } = await params;
   const decodedCat = decodeURIComponent(cat);
 

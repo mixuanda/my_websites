@@ -3,6 +3,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeMetaController } from "@/components/ThemeMetaController";
 import { MainLayout } from "@/components/MainLayout";
+import { getSiteSurface } from "@/lib/site-surface";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -16,8 +17,8 @@ export const metadata: Metadata = {
     default: "Evanalysis",
     template: "%s | Evanalysis",
   },
-  description: "Rigorous mathematics notes, projects, and articles.",
-  keywords: ["math notes", "math1090", "math1030", "mathematics", "notes", "projects"],
+  description: "Rigorous course notes in mathematics and related technical subjects.",
+  keywords: ["math notes", "math1090", "math1030", "mathematics", "course notes"],
   authors: [{ name: "Evanalysis" }],
   manifest: "/manifest.json",
   appleWebApp: {
@@ -47,6 +48,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const surface = getSiteSurface();
+
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -80,7 +83,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ThemeMetaController />
-          <MainLayout>{children}</MainLayout>
+          <MainLayout surface={surface}>{children}</MainLayout>
         </ThemeProvider>
         
         {/* Service Worker Registration */}

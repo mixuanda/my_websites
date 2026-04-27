@@ -13,6 +13,7 @@ import {
   isRegistrationEnabled,
 } from "./password-auth";
 import { recordUserLogin } from "./user-store";
+import { isPreviewOnlyPath, isProductionSurface } from "./site-surface";
 
 const githubClientId =
   process.env.GITHUB_CLIENT_ID || process.env.AUTH_GITHUB_ID;
@@ -94,6 +95,10 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   },
   callbacks: {
     authorized({ auth, request: { nextUrl } }) {
+      if (isProductionSurface() && isPreviewOnlyPath(nextUrl.pathname)) {
+        return true;
+      }
+
       const isLoggedIn = !!auth?.user;
       const isPrivate = nextUrl.pathname.startsWith("/diary") ||
                         nextUrl.pathname.startsWith("/private") ||

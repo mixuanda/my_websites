@@ -1,5 +1,6 @@
 import { GlassCard } from "@/components/glass";
 import { Button } from "@/components/ui/button";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import Link from "next/link";
 import { ShieldX, ArrowLeft } from "lucide-react";
 
@@ -8,6 +9,8 @@ export const metadata = {
 };
 
 export default function UnauthorizedPage() {
+  notFoundInProduction();
+
   return (
     <div className="max-w-md mx-auto mt-20">
       <GlassCard className="p-8 text-center">

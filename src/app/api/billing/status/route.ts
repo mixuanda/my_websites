@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { isMembershipGatingEnabled } from "@/lib/membership/entitlements";
+import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 import {
   getBillingConfigStatus,
   getBillingPlanConfigs,
@@ -8,6 +9,9 @@ import {
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  const hiddenResponse = notFoundApiResponseInProduction();
+  if (hiddenResponse) return hiddenResponse;
+
   const billingConfig = getBillingConfigStatus();
   const configuredPlans = getBillingPlanConfigs().filter((plan) => Boolean(plan.priceId));
   const ready =

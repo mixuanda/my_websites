@@ -2,6 +2,7 @@ import { allPosts } from "contentlayer/generated";
 import { PostCard } from "@/components/PostCard";
 import { GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import Link from "next/link";
 
 export const metadata = {
@@ -10,6 +11,8 @@ export const metadata = {
 };
 
 export default function BlogPage() {
+  notFoundInProduction();
+
   const posts = allPosts
     .filter((post) => post.published)
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());

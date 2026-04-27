@@ -3,6 +3,7 @@ import { auth, authBackendStatus } from "@/lib/auth";
 import { firebaseEnabled } from "@/lib/firebase-admin";
 import { getAdminEmails, isAdminEmail } from "@/lib/membership/config";
 import { isMembershipGatingEnabled } from "@/lib/membership/entitlements";
+import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 import {
   getBillingConfigStatus,
   getBillingPlanConfigs,
@@ -60,6 +61,9 @@ async function inspectStripePrice(priceId?: string) {
 }
 
 export async function GET() {
+  const hiddenResponse = notFoundApiResponseInProduction();
+  if (hiddenResponse) return hiddenResponse;
+
   const session = await auth();
   const email = session?.user?.email?.toLowerCase();
 

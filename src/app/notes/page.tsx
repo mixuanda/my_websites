@@ -2,7 +2,9 @@ import { allNotes } from "contentlayer/generated";
 import { PostCard } from "@/components/PostCard";
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
+import { isProductionSurface } from "@/lib/site-surface";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import { ArrowRight, Languages, SquareLibrary } from "lucide-react";
 
 export const metadata = {
@@ -11,6 +13,10 @@ export const metadata = {
 };
 
 export default function NotesPage() {
+  if (isProductionSurface()) {
+    redirect("/zh-hk/notes");
+  }
+
   const notes = allNotes.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   );

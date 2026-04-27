@@ -2,10 +2,14 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { listAdminUserRows } from "@/lib/admin-users";
 import { isAdminEmail } from "@/lib/membership/config";
+import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
+  const hiddenResponse = notFoundApiResponseInProduction();
+  if (hiddenResponse) return hiddenResponse;
+
   const session = await auth();
   const email = session?.user?.email?.toLowerCase();
 

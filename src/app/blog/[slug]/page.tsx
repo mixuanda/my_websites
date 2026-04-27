@@ -6,6 +6,7 @@ import { GlassCard, GlassPanel } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { Giscus } from "@/components/Giscus";
 import { ArticleDownloadMenu } from "@/components/ArticleDownloadMenu";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
 import Link from "next/link";
@@ -41,6 +42,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function BlogPostPage({ params }: PageProps) {
+  notFoundInProduction();
+
   const { slug } = await params;
   const post = allPosts.find((p) => p.slug === slug);
 

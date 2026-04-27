@@ -1,4 +1,5 @@
 import { auth } from "@/lib/auth";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import { SessionProvider } from "next-auth/react";
 import { redirect } from "next/navigation";
 
@@ -12,6 +13,8 @@ export default async function SettingsLayout({
 }: {
   children: React.ReactNode;
 }) {
+  notFoundInProduction();
+
   const session = await auth();
 
   if (!session?.user) {

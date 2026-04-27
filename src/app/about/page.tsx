@@ -1,6 +1,7 @@
 import { GlassCard } from "@/components/glass";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import { Github, Twitter, Mail, MapPin, Calendar } from "lucide-react";
 import Link from "next/link";
 
@@ -10,6 +11,8 @@ export const metadata = {
 };
 
 export default function AboutPage() {
+  notFoundInProduction();
+
   const skills = [
     { category: "前端", items: ["React", "Next.js", "TypeScript", "Tailwind CSS"] },
     { category: "后端", items: ["Node.js", "Python", "Go"] },

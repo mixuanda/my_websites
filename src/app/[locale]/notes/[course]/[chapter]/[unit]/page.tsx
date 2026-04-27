@@ -22,10 +22,13 @@ import {
 import {
   getCourseMeta,
   getLocalizedGlossaryEntries,
-  getPreviousAndNextUnits,
+  getPreviousAndNextVisibleUnits,
   getUnitMetaByRoute,
+  getVisibleCourseMeta,
+  isUnitVisibleOnSurface,
   textbookCatalog,
 } from "@/lib/textbook/catalog";
+import { getSiteSurface, isProductionSurface } from "@/lib/site-surface";
 import { estimateReadingTimeMinutes, getTextbookUnit, getStaticTextbookParams } from "@/lib/textbook/content";
 import { getCoverageLabel, getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
 import { getProblemsForUnit } from "@/lib/textbook/problem-bank";
@@ -80,10 +83,12 @@ export default async function UnitPage({ params }: UnitPageProps) {
 
   const safeCourse = course as CourseId;
   const bundle = getTextbookUnit(locale, safeCourse, chapter, unit);
-  const courseMeta = getCourseMeta(safeCourse);
+  const surface = getSiteSurface();
+  const rawCourseMeta = getCourseMeta(safeCourse);
+  const courseMeta = getVisibleCourseMeta(safeCourse, surface);
   const unitMeta = getUnitMetaByRoute(safeCourse, chapter, unit);
 
-  if (!bundle || !unitMeta) {
+  if (!bundle || !unitMeta || !courseMeta || !isUnitVisibleOnSurface(unitMeta, surface)) {
     notFound();
   }
 
@@ -96,14 +101,17 @@ export default async function UnitPage({ params }: UnitPageProps) {
         .find((item) => item.unitId === unitId)
     )
     .filter((value): value is NonNullable<typeof value> => Boolean(value));
-  const navigation = getPreviousAndNextUnits(bundle.meta.unitId);
+  const navigation = getPreviousAndNextVisibleUnits(bundle.meta.unitId, surface);
   const unitHref = getUnitHref(locale, bundle.meta);
   const session = await auth();
   const entitlements = await getUserEntitlements(session);
-  const membershipGatingEnabled = isMembershipGatingEnabled();
+  const membershipGatingEnabled =
+    !isProductionSurface(surface) && isMembershipGatingEnabled();
   const canAccessPremium = canAccessTier(entitlements, bundle.meta.accessTier);
   const checkpointProblems = getProblemsForUnit(bundle.meta.unitId).filter((problem) =>
-    canAccessTier(entitlements, problem.accessTier)
+    isProductionSurface(surface)
+      ? problem.accessTier !== "MEMBER"
+      : canAccessTier(entitlements, problem.accessTier)
   );
   const readingTime = estimateReadingTimeMinutes(bundle.doc.body.raw, locale);
 
@@ -131,7 +139,7 @@ export default async function UnitPage({ params }: UnitPageProps) {
             </Link>
             <ChevronRight className="h-4 w-4" />
             <Link href={getCourseHref(locale, safeCourse)} className="hover:text-primary">
-              {courseMeta.shortTitle[locale]}
+              {rawCourseMeta.shortTitle[locale]}
             </Link>
             <ChevronRight className="h-4 w-4" />
             <span>{chapterMeta.title[locale]}</span>

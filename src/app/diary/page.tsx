@@ -3,6 +3,7 @@ import { redirect } from "next/navigation";
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { Button } from "@/components/ui/button";
 import { db, initSampleData, usingFirestore } from "@/lib/db";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import Link from "next/link";
 import { Calendar, Lock, Plus, User, Settings } from "lucide-react";
 import { format } from "date-fns";
@@ -27,6 +28,8 @@ const moodEmoji: Record<string, string> = {
 };
 
 export default async function DiaryPage() {
+  notFoundInProduction();
+
   const session = await auth();
 
   if (!session?.user) {

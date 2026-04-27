@@ -5,6 +5,7 @@ import { Toc } from "@/components/Toc";
 import { GlassCard } from "@/components/glass";
 import { Badge } from "@/components/ui/badge";
 import { ArticleDownloadMenu } from "@/components/ArticleDownloadMenu";
+import { notFoundInProduction } from "@/lib/production-route-guard";
 import { format } from "date-fns";
 import { zhCN } from "date-fns/locale";
 import Link from "next/link";
@@ -33,6 +34,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function NotePage({ params }: PageProps) {
+  notFoundInProduction();
+
   const { slug } = await params;
   const note = allNotes.find((n) => n.slug === slug);
 

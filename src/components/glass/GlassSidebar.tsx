@@ -28,6 +28,7 @@ import { useEffect, useState, useSyncExternalStore } from "react";
 import { signOut } from "next-auth/react";
 import { useTheme } from "next-themes";
 import { getRouteLocale, getSiteText, resolveSiteLocale, siteUiText } from "@/lib/site-i18n";
+import { isProductionSurface, type SiteSurface } from "@/lib/site-surface";
 import { defaultLocale } from "@/lib/textbook/i18n";
 import type { Locale } from "@/lib/textbook/types";
 
@@ -38,8 +39,8 @@ interface NavItem {
   matches?: (pathname: string) => boolean;
 }
 
-function getNavItems(locale: Locale): NavItem[] {
-  return [
+function getNavItems(locale: Locale, surface: SiteSurface): NavItem[] {
+  const productionItems: NavItem[] = [
     { href: "/", label: getSiteText(siteUiText.home, locale), icon: <Home className="w-4 h-4" /> },
     {
       href: `/${locale}/notes`,
@@ -50,6 +51,14 @@ function getNavItems(locale: Locale): NavItem[] {
         pathname.startsWith("/notes/") ||
         /^\/(en|zh-hk|zh-cn)(\/notes|$)/.test(pathname),
     },
+  ];
+
+  if (isProductionSurface(surface)) {
+    return productionItems;
+  }
+
+  return [
+    ...productionItems,
     { href: "/about", label: getSiteText(siteUiText.about, locale), icon: <User className="w-4 h-4" /> },
     { href: "/projects", label: getSiteText(siteUiText.projects, locale), icon: <FolderKanban className="w-4 h-4" /> },
     { href: "/blog", label: getSiteText(siteUiText.blog, locale), icon: <FileText className="w-4 h-4" /> },
@@ -59,6 +68,7 @@ function getNavItems(locale: Locale): NavItem[] {
 interface GlassSidebarProps {
   highContrast?: boolean;
   onHighContrastChange?: (value: boolean) => void;
+  surface: SiteSurface;
 }
 
 function subscribeThemeReady(onStoreChange: () => void) {
@@ -193,6 +203,7 @@ interface SidebarContentProps {
   pathname: string;
   resolvedTheme?: string;
   setTheme: (theme: string) => void;
+  surface: SiteSurface;
   themeReady: boolean;
 }
 
@@ -205,9 +216,10 @@ function SidebarContent({
   pathname,
   resolvedTheme,
   setTheme,
+  surface,
   themeReady,
 }: SidebarContentProps) {
-  const navItems = getNavItems(locale);
+  const navItems = getNavItems(locale, surface);
   const isDarkTheme = themeReady && resolvedTheme === "dark";
   const themeIcon = isDarkTheme ? (
     <Sun className="w-4 h-4" />
@@ -265,8 +277,12 @@ function SidebarContent({
       <Separator className="bg-border/70" />
 
       <div className="shrink-0 p-4 space-y-2">
-        <AccountActions locale={locale} onNavigate={onNavigate} pathname={pathname} />
-        <Separator className="bg-border/70" />
+        {!isProductionSurface(surface) ? (
+          <>
+            <AccountActions locale={locale} onNavigate={onNavigate} pathname={pathname} />
+            <Separator className="bg-border/70" />
+          </>
+        ) : null}
         <SiteLanguageSwitcher locale={locale} onLocaleChange={onLocaleChange} />
         <Button
           variant="ghost"
@@ -302,6 +318,7 @@ function SidebarContent({
 export function GlassSidebar({
   highContrast = false,
   onHighContrastChange,
+  surface,
 }: GlassSidebarProps) {
   const pathname = usePathname() ?? "/";
   const [open, setOpen] = useState(false);
@@ -339,6 +356,7 @@ export function GlassSidebar({
           pathname={pathname}
           resolvedTheme={resolvedTheme}
           setTheme={setTheme}
+          surface={surface}
           themeReady={themeReady}
         />
       </aside>
@@ -383,6 +401,7 @@ export function GlassSidebar({
               pathname={pathname}
               resolvedTheme={resolvedTheme}
               setTheme={setTheme}
+              surface={surface}
               themeReady={themeReady}
             />
           </SheetContent>

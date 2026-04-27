@@ -8,6 +8,7 @@ import type {
   TextbookUnitMeta,
 } from "./types";
 import { getLocalizedText } from "./i18n";
+import { getSiteSurface, isProductionSurface, type SiteSurface } from "@/lib/site-surface";
 
 function text(
   en: string,
@@ -2899,6 +2900,52 @@ export function getCourseMeta(course: CourseId) {
   return textbookCatalog[course];
 }
 
+export function isUnitVisibleOnSurface(
+  unit: TextbookUnitMeta,
+  surface: SiteSurface = getSiteSurface()
+) {
+  return !isProductionSurface(surface) || unit.accessTier !== "MEMBER";
+}
+
+export function filterCourseMetaForSurface(
+  course: TextbookCourseMeta,
+  surface: SiteSurface = getSiteSurface()
+): TextbookCourseMeta | null {
+  if (!isProductionSurface(surface)) {
+    return course;
+  }
+
+  const chapters = course.chapters
+    .map((chapter) => ({
+      ...chapter,
+      units: chapter.units.filter((unit) => isUnitVisibleOnSurface(unit, surface)),
+    }))
+    .filter((chapter) => chapter.units.length > 0);
+
+  if (chapters.length === 0) {
+    return null;
+  }
+
+  return {
+    ...course,
+    chapters,
+  };
+}
+
+export function getVisibleCourseMeta(
+  course: CourseId,
+  surface: SiteSurface = getSiteSurface()
+) {
+  const courseMeta = textbookCatalog[course];
+  return courseMeta ? filterCourseMetaForSurface(courseMeta, surface) : null;
+}
+
+export function getVisibleCourseList(surface: SiteSurface = getSiteSurface()) {
+  return Object.values(textbookCatalog)
+    .map((course) => filterCourseMetaForSurface(course, surface))
+    .filter((course): course is TextbookCourseMeta => Boolean(course));
+}
+
 export function getCourseTitle(course: CourseId, locale: Locale) {
   return getLocalizedText(textbookCatalog[course].title, locale);
 }
@@ -2927,6 +2974,24 @@ export function getPreviousAndNextUnits(unitId: string) {
   const current = getUnitMeta(unitId);
   const courseUnits = current
     ? textbookCatalog[current.course].chapters.flatMap((chapter) => chapter.units)
+    : [];
+  const index = courseUnits.findIndex((unit) => unit.unitId === unitId);
+
+  return {
+    next: index >= 0 ? courseUnits[index + 1] ?? null : null,
+    previous: index >= 0 ? courseUnits[index - 1] ?? null : null,
+  };
+}
+
+export function getPreviousAndNextVisibleUnits(
+  unitId: string,
+  surface: SiteSurface = getSiteSurface()
+) {
+  const current = getUnitMeta(unitId);
+  const courseUnits = current
+    ? textbookCatalog[current.course].chapters
+        .flatMap((chapter) => chapter.units)
+        .filter((unit) => isUnitVisibleOnSurface(unit, surface))
     : [];
   const index = courseUnits.findIndex((unit) => unit.unitId === unitId);
 

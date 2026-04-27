@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { registerPasswordAuthUser } from "@/lib/password-auth";
+import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 import { upsertUserProfile } from "@/lib/user-store";
 
 export const dynamic = "force-dynamic";
@@ -24,6 +25,9 @@ function messageFor(error: unknown) {
 }
 
 export async function POST(request: Request) {
+  const hiddenResponse = notFoundApiResponseInProduction();
+  if (hiddenResponse) return hiddenResponse;
+
   try {
     const payload = (await request.json()) as {
       email?: unknown;

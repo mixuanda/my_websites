@@ -1,8 +1,12 @@
 import { auth } from "@/lib/auth";
+import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 import { getLinkedAccounts, getSessionProfile } from "@/lib/user-store";
 import { NextResponse } from "next/server";
 
 export async function GET() {
+  const hiddenResponse = notFoundApiResponseInProduction();
+  if (hiddenResponse) return hiddenResponse;
+
   try {
     const session = await auth();
     
