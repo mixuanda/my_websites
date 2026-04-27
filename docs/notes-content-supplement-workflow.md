@@ -159,7 +159,10 @@ Use this shape for future entries:
   return study material. Browser QA on the same local server confirmed the
   EN `2.1` page layout, zh-HK language switch, zh-HK new-section rendering,
   and dark-mode toggle state.
-- Deployment: pending.
+- Deployment: commit `dbc75fb` deployed successfully through Vercel production
+  deployment `dpl_EqfRxvYh2WkSs2WeLDqigNnrtwJP`. Production smoke checks on
+  `www.evanalysis.top` returned 200 for representative MATH1090 `2.1` /
+  `2.2` note routes and confirmed representative TXT / PDF exports.
 - Remaining gaps: optional Worksheet 3 exercise-depth parity remains for the
   remaining Venn-configuration variants and the optional `N x N -> N`
   injection.
