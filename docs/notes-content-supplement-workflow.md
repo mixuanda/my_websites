@@ -160,7 +160,12 @@ Use this shape for future entries:
   two new problem-bank checkpoints through the non-persistent preview API.
   Browser DOM QA confirmed the EN `2.1` page title, language switcher, Venn
   heading, and quick-check text, plus the zh-HK `2.2` prime-factorization text.
-- Deployment: pending until this working round is committed and pushed.
+- Deployment: content commit `96bebca` was pushed to `main` and reached Vercel
+  production deployment `dpl_2okPiUDEoaSU67WPrcWUtRUmiobB` with aliases including
+  `www.evanalysis.top`. Production smoke checks returned 200 for representative
+  MATH1090 `2.1` / `2.2` note routes, representative TXT exports, and a
+  representative PDF export; `vercel logs` found no error logs for that
+  deployment in the checked window.
 - Remaining gaps: no known remaining Worksheet 3 exercise-depth backlog; next
   MATH1090 work should focus on export / rendering QA and optional checkpoint
   coverage for later authored units.
