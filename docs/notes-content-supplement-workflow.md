@@ -152,7 +152,10 @@ Use this shape for future entries:
   `npm run build`, local route smoke checks, TXT/PDF export smoke checks,
   all six new `/api/textbook/problems/grade` preview calls, and an in-app
   browser render check for zh-HK `5.1` passed locally.
-- Deployment: pending until this checkpoint pass is committed and pushed.
+- Deployment: content commit `b5a235e` was pushed to `origin/main`; Vercel
+  production deployment `dpl_9nLoNRww6Ke8fnYgHkkvwff7tSqy` reached Ready on
+  `www.evanalysis.top`, with production route, TXT/PDF export, problem preview
+  API, and error-log smoke checks passing.
 - Remaining gaps: MATH1090 still has authored units without problem-bank
   checkpoint entries, especially earlier order / completeness and some
   intermediate later units; broader export QA remains a separate recurring
