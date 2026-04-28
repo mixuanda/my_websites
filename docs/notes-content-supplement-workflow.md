@@ -156,7 +156,10 @@ Use this shape for future entries:
   render check for zh-HK `4.2` passed locally. The local production server
   emitted the existing Auth.js `MissingSecret` warning because this shell has no
   local auth secret; production logs must be checked after deployment.
-- Deployment: pending until this checkpoint sweep is committed and pushed.
+- Deployment: content commit `95957cb` was pushed to `origin/main`; Vercel
+  production deployment `dpl_C7EGLSC269JLZYCWPzsXbV8ogqn3` reached Ready on
+  `www.evanalysis.top`, with production route, TXT/PDF export, problem preview
+  API, and error-log smoke checks passing.
 - Remaining gaps: MATH1090 chapter `4`-`7` now has first-pass checkpoint
   coverage; remaining MATH1090 work should shift toward export / rendering QA
   and optional checkpoint depth for earlier logic / number-construction units.
