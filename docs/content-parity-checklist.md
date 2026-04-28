@@ -48,6 +48,9 @@ April 24, 2026 parity update:
   files with matching set-builder, Venn / inclusion-exclusion, `B^A`, finite
   inverse, cardinality, operation, Hasse-diagram, quick-check, and checkpoint
   additions.
+- The April 28 MATH1090 Worksheet 3 parity pass kept the same synchronized
+  three-language discipline while adding the remaining Venn-configuration
+  variants to `2.1` and the `N x N -> N` injection proof to `2.2`.
 
 April 25, 2026 MATH1030 exercise / TOC update:
 

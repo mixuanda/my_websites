@@ -95,6 +95,11 @@ The current pass especially strengthens the `math1030` note flow.
   cardinality, operation, and Hasse-diagram material is proof-and-reading
   material that exports more cleanly as static worked examples and checkpoint
   problems.
+- The April 28 MATH1090 Worksheet 3 parity pass also did not add a widget. The
+  remaining Venn configurations and the `N x N -> N` injection are best handled
+  as static region-reading / proof examples plus checkpoint questions, while
+  the existing set-operation explorer continues to cover the state-changing
+  union / intersection / difference / complement material.
 - `2.3` now explains the distinction between REF, RREF, and back substitution
   before the learner opens the row-reduction stepper.
 - Vector-space notes already use widgets to make subspace testing, span, and

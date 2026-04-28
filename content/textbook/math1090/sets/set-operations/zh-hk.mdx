@@ -261,6 +261,21 @@ Venn 圖適合用來整理情況，但證明仍然要回到屬元條件。圖形
 或 `C` 其中之一。它不表示 `A \subset B`，也不表示 `A \subset C`。能否分清
 這些可能性，是檢查自己是否真正用邏輯方式閱讀圖形的好方法。
 
+<WorkedExample title="把四種 Venn 圖條件翻譯成區域語言">
+假設 `A`、`B`、`C` 都是非空集合。以下常見練習條件，最好先讀成區域指令，
+而不是只憑圖形印象處理。
+
+| 條件 | 圖中必須呈現的意思 |
+| --- | --- |
+| `A \subset B`、`C \subset B`，且 `A \cap C = \varnothing` | `A` 與 `C` 都在 `B` 之內，但二者互不相交。`B` 仍然可以有不屬於 `A` 或 `C` 的元素。 |
+| `A \cap B \ne \varnothing`、`A \cap C \ne \varnothing`、`B \cap C \ne \varnothing`，且 `A \cap B \cap C = \varnothing` | 每兩個集合都有交集，但三者共同交集為空。因此三個 pairwise overlap 必須是分開的區域。 |
+| `A \subset (B \cap C)`，且 `B \subset C` | 因為 `B \subset C`，所以 `B \cap C` 其實就是 `B`。於是 `A` 在 `B` 之內，而 `B` 又在 `C` 之內。 |
+| `A \subset (B \cup C)`、並非 `A \subset B`、並非 `A \subset C` | `A` 沒有元素落在 `B \cup C` 之外，但 `A` 必須至少有一個元素在 `C \setminus B`，亦至少有一個元素在 `B \setminus C`。 |
+
+第四行最容易被誤讀。它不只是說 `A` 同時碰到 `B` 與 `C`；它還說 `A` 完全
+被 `B` 與 `C` 覆蓋，但又不能只由其中一個集合單獨覆蓋。
+</WorkedExample>
+
 ## 有限集合如何計數
 
 集合語言不只用來分類，還直接控制計數。
@@ -369,6 +384,16 @@ $$
 
 <RevealSolution title="答案">
 `A \cup B = B`，而 `A \cap B = A`。
+</RevealSolution>
+
+<QuickCheck prompt="假設 `A \subset (B \cup C)`，但 `A` 不是 `B` 的子集，也不是 `C` 的子集。`A` 的哪兩個部分必須非空？">
+把每一個「不是子集」的敘述翻譯成存在某個元素。
+</QuickCheck>
+
+<RevealSolution title="答案">
+必須至少有一個 `A` 的元素在 `C \setminus B`，並且至少有一個 `A` 的元素在
+`B \setminus C`。條件 `A \subset (B \cup C)` 則排除了 `A` 有元素同時不在
+`B` 和 `C` 的可能。
 </RevealSolution>
 
 ## 為甚麼這一單元重要

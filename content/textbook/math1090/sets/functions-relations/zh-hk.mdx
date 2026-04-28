@@ -285,6 +285,38 @@ $$
 每個整數都恰好出現一次，所以這是一個雙射枚舉。
 </WorkedExample>
 
+<WorkedExample title="從 `N \times N` 到 `N` 的一個單射">
+練習會問：能否把一個自然數有序對編碼成一個自然數？一個乾淨答案是
+
+$$
+F(m,n)=2^m3^n.
+$$
+
+這確實定義了一個函數 `F : N \times N \to N`，因為對每個 `(m,n)`，
+`2^m3^n` 都是自然數。
+
+要證 `F` 是單射，假設
+
+$$
+F(m,n)=F(m',n').
+$$
+
+也就是
+
+$$
+2^m3^n = 2^{m'}3^{n'}.
+$$
+
+唯一素因數分解說明，一個正整數分解成素數冪的方式只有一種。因此兩邊的
+`2` 的指數必須相同，`3` 的指數亦必須相同：
+
+$$
+m=m', \qquad n=n'.
+$$
+
+所以兩個不同有序對不可能被送到同一個自然數。
+</WorkedExample>
+
 <Definition title="把運算讀成函數">
 集合 `S` 上的一個 `n` 元運算，是一個函數
 
@@ -473,6 +505,15 @@ $$
 
 <RevealSolution title="答案">
 先證 `g` 是單射。由於 `X` 有限，單射推出滿射，因此 `g` 是雙射。
+</RevealSolution>
+
+<QuickCheck prompt="為甚麼 `F(m,n)=2^m3^n` 定義了由 `N \times N` 到 `N` 的單射？">
+留意素數 `2` 和 `3` 的指數。
+</QuickCheck>
+
+<RevealSolution title="答案">
+如果 `2^m3^n = 2^{m'}3^{n'}`，唯一素因數分解會迫使 `m=m'` 且 `n=n'`。
+因此相同輸出推出相同有序對，所以 `F` 是單射。
 </RevealSolution>
 
 <QuickCheck prompt="如果一個關係是 reflexive、symmetric、transitive，它叫甚麼？">

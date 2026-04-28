@@ -18,7 +18,7 @@ structure unit. The latest content pass deepened the previously thin `2.1` /
 | Course | Chapter | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
 | `math1090` | 1 Logic | Authored in EN, zh-HK, zh-CN | Strong | Needs tone / depth review only. |
-| `math1090` | 2 Sets, functions, relations | Authored in EN, zh-HK, zh-CN | Strong | `2.1` / `2.2` now include set-builder notation, multisets, Venn / inclusion-exclusion practice, `B^A`, finite inverse logic, first cardinality language, operations as functions, Hasse-diagram reading, and checkpoint questions. Remaining Worksheet 3 Venn variants and the optional `N x N -> N` injection are exercise-depth backlog. |
+| `math1090` | 2 Sets, functions, relations | Authored in EN, zh-HK, zh-CN | Strong | `2.1` / `2.2` now include set-builder notation, multisets, Venn / inclusion-exclusion practice, all Worksheet 3 Venn configuration variants, `B^A`, finite inverse logic, the `N x N -> N` injection pattern, first cardinality language, operations as functions, Hasse-diagram reading, and checkpoint questions. |
 | `math1090` | 3 Naturals, integers, rationals | Authored through `3.5` | Strong | `3.3` and `3.4` now include quotient-construction interactives, expanded integer / rational operation exercises, and checkpoint questions. |
 | `math1090` | 4 Orders, bounds, completeness, reals | Authored through `4.6` | Strong through `§4.11` | `4.1`-`4.6` now cover total order / ordered field, bounds and `sup` / `inf`, completeness, the `Q`-gap at `sqrt(2)`, axiomatic / first-approximation motivation, Dedekind cuts, decimal expansions, and irrational numbers. |
 | `math1090` | 5 Sequences and first limits | Authored through `5.3` | Strong through `§5.6` | Public notes now cover sequence limits, Cauchy sequences, the Cauchy-sequence model of `R`, delta-epsilon limits, limit laws, sequential characterization, and continuity in EN / zh-HK / zh-CN. |
@@ -90,7 +90,8 @@ The next content cycle should focus on QA across the now-broader public Notes
 tree: export fidelity, rendering checks, exercise / reveal integrity, and
 theme / layout review across Math1090, Math1030, and the expanded CSCI2520
 sequence. For MATH1090, the current route-level backlog is no longer chapter 2
-depth, but optional Worksheet 3 exercise parity and broader export QA. For
+depth or Worksheet 3 exercise parity; the remaining work is broader export QA
+and optional checkpoint coverage for later authored units. For
 MATH1030, the remaining content backlog is no longer missing core chapter
 directories, early RREF drill parity, the main `as03` parameterized inverse /
 determinant-free proof patterns, or the `as02` Q2 parameterized `G/H`

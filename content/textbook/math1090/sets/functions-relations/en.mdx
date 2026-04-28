@@ -308,6 +308,40 @@ Every integer appears exactly once in this list, so this is a bijective
 enumeration.
 </WorkedExample>
 
+<WorkedExample title="An injection from `N \times N` into `N`">
+The worksheet asks whether one can encode an ordered pair of natural numbers by
+a single natural number. A clean answer is
+
+$$
+F(m,n)=2^m3^n.
+$$
+
+This defines a function `F : N \times N \to N`, because `2^m3^n` is a natural
+number for every pair `(m,n)`.
+
+To see that `F` is injective, suppose
+
+$$
+F(m,n)=F(m',n').
+$$
+
+Then
+
+$$
+2^m3^n = 2^{m'}3^{n'}.
+$$
+
+Unique prime factorization says that a positive integer has only one
+factorization into powers of primes. Therefore the exponent of `2` must agree
+on both sides, and the exponent of `3` must agree on both sides:
+
+$$
+m=m', \qquad n=n'.
+$$
+
+So two different ordered pairs cannot be sent to the same natural number.
+</WorkedExample>
+
 <Definition title="Operations as functions">
 An `n`-ary operation on a set `S` is a function
 
@@ -519,6 +553,15 @@ Use the equation `h \circ g = id_X`.
 <RevealSolution title="Answer">
 First prove that `g` is injective. Since `X` is finite, injective then implies
 surjective, so `g` is bijective.
+</RevealSolution>
+
+<QuickCheck prompt="Why does `F(m,n)=2^m3^n` define an injection from `N \times N` to `N`?">
+Use the exponents of the primes `2` and `3`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+If `2^m3^n = 2^{m'}3^{n'}`, unique prime factorization forces `m=m'` and
+`n=n'`. Therefore equal outputs imply equal ordered pairs, so `F` is injective.
 </RevealSolution>
 
 <QuickCheck prompt="If a relation is reflexive, symmetric, and transitive, what is it called?">

@@ -129,6 +129,42 @@ Use this shape for future entries:
 
 ## Current log
 
+### 2026-04-28: MATH1090 Worksheet 3 exercise-parity pass
+
+- Gap selected: MATH1090 no longer had missing route-level chapter content, but
+  `docs/reference-coverage.md` and `docs/chapter-coverage-map.md` still
+  recorded Worksheet 3 Venn-configuration variants and the optional
+  `N x N -> N` injection as exercise-depth backlog.
+- Reference basis: `reference/MATH1090/MATH1090_Worksheet3.pdf`, checked with
+  bundled `pypdf`, plus the existing Feb27 set / function lecture-note spine.
+- Content files changed: strengthened
+  `content/textbook/math1090/sets/set-operations/{en,zh-hk,zh-cn}.mdx` with
+  four Venn-region condition patterns and strengthened
+  `content/textbook/math1090/sets/functions-relations/{en,zh-hk,zh-cn}.mdx`
+  with the prime-factorization injection `F(m,n)=2^m3^n`.
+- Visuals added: none; the Venn variants are now explicit region-reading
+  prose, and the injection proof is more useful as static text than as a new
+  widget.
+- Interactions added: none; the existing set-operation explorer remains the
+  right interaction for `2.1`, while this pass is exercise / proof parity.
+- Exercises added: added localized quick checks for the covered-but-not-contained
+  Venn condition and for the `N x N -> N` injection; added matching problem-bank
+  checkpoints `checkpoint.math1090.sets.venn-covered-not-contained` and
+  `checkpoint.math1090.sets.nx-n-injection`.
+- Verification: `npm run contentlayer`, `npm run lint`, `npm run build`, and
+  `git diff --check` passed. Local production smoke checks on port `3005`
+  returned 200 for EN / zh-HK / zh-CN `2.1` and `2.2` routes, confirmed the
+  new Venn and prime-factorization text appears in rendered pages, confirmed
+  representative TXT exports contain the new answer material, confirmed
+  representative PDF exports return valid `%PDF` payloads, and confirmed the
+  two new problem-bank checkpoints through the non-persistent preview API.
+  Browser DOM QA confirmed the EN `2.1` page title, language switcher, Venn
+  heading, and quick-check text, plus the zh-HK `2.2` prime-factorization text.
+- Deployment: pending until this working round is committed and pushed.
+- Remaining gaps: no known remaining Worksheet 3 exercise-depth backlog; next
+  MATH1090 work should focus on export / rendering QA and optional checkpoint
+  coverage for later authored units.
+
 ### 2026-04-27: MATH1090 set-language depth pass
 
 - Gap selected: `docs/chapter-coverage-map.md` still marked MATH1090 `2.1`
@@ -163,9 +199,9 @@ Use this shape for future entries:
   deployment `dpl_EqfRxvYh2WkSs2WeLDqigNnrtwJP`. Production smoke checks on
   `www.evanalysis.top` returned 200 for representative MATH1090 `2.1` /
   `2.2` note routes and confirmed representative TXT / PDF exports.
-- Remaining gaps: optional Worksheet 3 exercise-depth parity remains for the
-  remaining Venn-configuration variants and the optional `N x N -> N`
-  injection.
+- Remaining gaps at the time: optional Worksheet 3 exercise-depth parity for
+  the remaining Venn-configuration variants and the optional `N x N -> N`
+  injection. Superseded by the April 28 parity pass above.
 
 ### 2026-04-25: Math1025 induction, inequalities, and binomial theorem
 

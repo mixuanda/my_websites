@@ -75,9 +75,10 @@ The latest merged content passes also:
 - deepened the public `math1090` set-language units `2.1` and `2.2` in EN,
   zh-HK, and zh-CN with bounded set-builder notation, multiset warnings,
   complement / reverse-inclusion laws, Venn / inclusion-exclusion practice,
-  `B^A`, finite self-map inverse logic, first cardinality language, operations
-  as functions, a small Hasse-diagram reading example, and new checkpoint
-  problems.
+  the remaining Worksheet 3 Venn configuration variants, `B^A`, finite self-map
+  inverse logic, the `N x N -> N` injection pattern, first cardinality language,
+  operations as functions, a small Hasse-diagram reading example, and new
+  checkpoint problems.
 
 The next resume point is now QA and optional exercise-depth parity rather than
 missing MATH1090 core content:
@@ -87,9 +88,10 @@ missing MATH1090 core content:
    family.
 2. keep export, rendering, and exercise QA active on the recently added higher
    MATH1030 chapters.
-3. treat the remaining Worksheet 3 Venn-configuration variants and the
-   optional `N x N -> N` injection as exercise-depth backlog, not as missing
-   route-level content.
+3. treat MATH1090 Worksheet 3 as incorporated into the public `2.1` / `2.2`
+   set-language family; the next MATH1090 work should be export / rendering QA
+   and optional checkpoint coverage for later authored units, not new
+   route-level chapter authoring.
 
 Current QA progress from April 24, 2026:
 
@@ -362,7 +364,7 @@ below.
 | MATH1090 | `reference/MATH1090/MATH1090 HW8.pdf` | homework | blocked | no | no | yes | Extraction quality is weak and the surrounding later-course material is not yet mapped tightly enough to author from this file alone. |
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet1.pdf` | worksheet | incorporated | yes | yes | no | Supports propositional logic examples and quick checks. |
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet2.pdf` | worksheet | incorporated | yes | yes | no | Supports quantifiers and negation. |
-| MATH1090 | `reference/MATH1090/MATH1090_Worksheet3.pdf` | worksheet | partially incorporated | partial | yes | no | Supports sets, Venn-diagram language, and function / relation examples. The hiking inclusion-exclusion problem and finite left-inverse proof pattern are now public; the remaining Venn-configuration variants and optional `N x N -> N` injection remain exercise-depth backlog. |
+| MATH1090 | `reference/MATH1090/MATH1090_Worksheet3.pdf` | worksheet | incorporated | yes | yes | no | Supports sets, Venn-diagram language, function / relation examples, left and right inverses, the `N` to `Z` bijection, and the optional `N x N -> N` injection. The April 28 pass added the remaining Venn-configuration variants and prime-factorization injection pattern into public `2.1` / `2.2` notes and checkpoint questions. |
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet4.pdf` | worksheet | incorporated | yes | yes | no | Supports naturals, induction, integer-construction notes, and the latest subtraction / multiplication practice expansion. |
 | MATH1090 | `reference/MATH1090/MATH1090_Worksheet5.pdf` | worksheet | incorporated | yes | yes | no | Supports rationals, Euclidean-algorithm gcd invariance, well-defined relations on `Q`, the `sqrt(2)` gap note, and chapter-4 completeness / gap exercises. |
 
@@ -513,9 +515,9 @@ The next source-backed expansions with the clearest payoff are:
 1. Next missing source-backed priority: continue Math1025 chapter slides
    `ch5`-`ch8` into sequences, complex numbers, integers / rationals, and
    polynomials, unless the next user request narrows the course scope.
-2. Keep refining thin but already public units, especially MATH1030 `3.1`,
-   `4.1`, and the lighter MATH1090 set / function notes, only when they
-   compete directly with a current source-backed chapter family.
+2. Keep refining thin but already public units, especially MATH1030 `3.1` and
+   `4.1`, only when they compete directly with a current source-backed chapter
+   family.
 3. Keep Math1030 and Math1090 mostly in QA / refinement mode unless a specific
    thin unit is selected from the ledger.
 
@@ -1017,6 +1019,24 @@ existing invertibility note instead of creating a detached new route.
 - Updated the MATH1090 tracking docs to reflect that chapters 6 and 7 are
   already authored in the public Notes tree and that remaining Worksheet 3
   items are exercise-depth backlog rather than missing route-level content.
-- Remaining issues: run the full build / export smoke checks for this pass,
-  and consider a later optional exercise pass for the remaining Venn
-  configurations and `N x N -> N` injection.
+- Remaining issues at the time: run the full build / export smoke checks for
+  this pass, and consider a later optional exercise pass for the remaining Venn
+  configurations and `N x N -> N` injection. The exercise-parity portion was
+  superseded by checkpoint 28.
+
+### 2026-04-28 checkpoint 28: MATH1090 Worksheet 3 exercise parity
+
+- Continued the existing MATH1090 `2.1` / `2.2` set-language family rather
+  than opening a new route, because the current ledger showed chapter 2 as
+  authored but still carrying Worksheet 3 exercise-depth backlog.
+- Added a three-locale worked example translating all remaining Worksheet 3
+  Venn-configuration variants into region conditions, including the subtle
+  `A \subset (B \cup C)` but not `A \subset B` / not `A \subset C` case.
+- Added a three-locale worked example for the optional honours injection
+  `F(m,n)=2^m3^n : N x N -> N`, with the proof by unique prime factorization.
+- Added matching quick checks and two localized problem-bank checkpoints for
+  the Venn witness condition and the `N x N -> N` injection.
+- Status change: `reference/MATH1090/MATH1090_Worksheet3.pdf` is now treated as
+  incorporated / overlap, not partial exercise backlog. Remaining MATH1090 work
+  is export, rendering, exercise-integrity, and optional later-unit checkpoint
+  QA.

@@ -70,6 +70,14 @@ April 24, 2026 QA update:
 - the same MATH1090 pass added three problem-bank checkpoints for
   inclusion-exclusion, `B^A` function counting, and finite left-inverse logic;
   each checkpoint includes localized hints and solution steps.
+- the April 28 MATH1090 Worksheet 3 exercise-parity pass kept the touched
+  locales structurally aligned: `2.1` has 5 `QuickCheck` blocks and 6
+  `RevealSolution` blocks in EN / zh-HK / zh-CN, and `2.2` has 6 `QuickCheck`
+  blocks and 13 `RevealSolution` blocks in EN / zh-HK / zh-CN. The extra
+  reveal blocks are worked-example explanations, not unmatched answers.
+- the same April 28 pass added two problem-bank checkpoints for the remaining
+  Worksheet 3 exercise patterns: the covered-but-not-contained Venn condition
+  and the prime-factorization injection `N x N -> N`.
 
 ### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
 

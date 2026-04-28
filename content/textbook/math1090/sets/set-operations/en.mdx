@@ -281,6 +281,22 @@ it does not say that `A \subset C`. Keeping those possibilities separate is a
 good test of whether the diagram is being read logically rather than visually
 only.
 
+<WorkedExample title="Translate four Venn conditions into regions">
+Assume `A`, `B`, and `C` are non-empty sets. The following common worksheet
+conditions are best read as region instructions, not as vague pictures.
+
+| Condition | What the diagram must show |
+| --- | --- |
+| `A \subset B`, `C \subset B`, and `A \cap C = \varnothing` | Both `A` and `C` sit inside `B`, but they do not overlap each other. The set `B` may still have points outside both of them. |
+| `A \cap B \ne \varnothing`, `A \cap C \ne \varnothing`, `B \cap C \ne \varnothing`, and `A \cap B \cap C = \varnothing` | Each pair overlaps, but the central triple-overlap region is empty. The three pairwise overlaps must be separate regions. |
+| `A \subset (B \cap C)` and `B \subset C` | Since `B \subset C`, the intersection `B \cap C` is just `B`. Thus `A` lies inside `B`, and `B` lies inside `C`. |
+| `A \subset (B \cup C)`, not `A \subset B`, and not `A \subset C` | No point of `A` is outside `B \cup C`, but `A` must have at least one point in `C \setminus B` and at least one point in `B \setminus C`. |
+
+The fourth line is the easiest one to misread. It does not merely say that `A`
+touches both circles. It says that `A` is completely covered by `B` and `C`,
+while still failing to be contained in either one alone.
+</WorkedExample>
+
 ## Counting finite sets
 
 The language of sets also controls counting.
@@ -397,6 +413,16 @@ Use the absorption laws from the theorem above.
 
 <RevealSolution title="Answer">
 `A \cup B = B` and `A \cap B = A`.
+</RevealSolution>
+
+<QuickCheck prompt="Suppose `A \subset (B \cup C)`, but `A` is not a subset of `B` and not a subset of `C`. Which two parts of `A` must be non-empty?">
+Turn each failed subset statement into an existential statement.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+There must be at least one element of `A` in `C \setminus B`, and at least one
+element of `A` in `B \setminus C`. The condition `A \subset (B \cup C)` rules
+out any element of `A` outside both `B` and `C`.
 </RevealSolution>
 
 ## Why this matters later

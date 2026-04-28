@@ -4946,6 +4946,92 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["sets", "venn-diagrams", "inclusion-exclusion"],
   },
+  "checkpoint.math1090.sets.venn-covered-not-contained": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.sets.venn-covered-not-contained",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "sets",
+    unitId: "math1090.sets.set-operations",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Suppose `A \\subset (B \\cup C)`, but `A` is not a subset of `B` and not a subset of `C`. Which statement must be true?",
+      "假設 `A \\subset (B \\cup C)`，但 `A` 不是 `B` 的子集，也不是 `C` 的子集。哪一項必定正確？",
+      "假设 `A \\subset (B \\cup C)`，但 `A` 不是 `B` 的子集，也不是 `C` 的子集。哪一项必定正确？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`A` has an element in `B \\setminus C` and an element in `C \\setminus B`.",
+          "`A` 有元素在 `B \\setminus C`，亦有元素在 `C \\setminus B`。",
+          "`A` 有元素在 `B \\setminus C`，也有元素在 `C \\setminus B`。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "`A` must be disjoint from `B`.",
+          "`A` 必須與 `B` 不相交。",
+          "`A` 必须与 `B` 不相交。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "`A` must have an element outside `B \\cup C`.",
+          "`A` 必須有元素在 `B \\cup C` 之外。",
+          "`A` 必须有元素在 `B \\cup C` 之外。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "`A` is necessarily equal to `B \\cup C`.",
+          "`A` 必然等於 `B \\cup C`。",
+          "`A` 必然等于 `B \\cup C`。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "`A` being covered by `B \\cup C` rules out points outside both sets. The two failed subset statements each produce a witness.",
+        "`A` 被 `B \\cup C` 覆蓋，排除了同時不在兩個集合中的點。兩個失敗的子集敘述各自給出一個見證元素。",
+        "`A` 被 `B \\cup C` 覆盖，排除了同时不在两个集合中的点。两个失败的子集叙述各自给出一个见证元素。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "`A` not contained in `B` means there is an element of `A` outside `B`.",
+        "`A` 不包含於 `B`，意思是存在一個 `A` 的元素不在 `B` 中。",
+        "`A` 不包含于 `B`，意思是存在一个 `A` 的元素不在 `B` 中。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Since `A` is not a subset of `B`, choose `x \\in A` with `x \\notin B`.",
+        "因為 `A` 不是 `B` 的子集，可取 `x \\in A` 且 `x \\notin B`。",
+        "因为 `A` 不是 `B` 的子集，可取 `x \\in A` 且 `x \\notin B`。"
+      ),
+      text(
+        "The condition `A \\subset (B \\cup C)` then forces `x \\in C`, so `x \\in C \\setminus B`.",
+        "條件 `A \\subset (B \\cup C)` 於是迫使 `x \\in C`，所以 `x \\in C \\setminus B`。",
+        "条件 `A \\subset (B \\cup C)` 于是迫使 `x \\in C`，所以 `x \\in C \\setminus B`。"
+      ),
+      text(
+        "Similarly, `A` not being a subset of `C` gives an element of `A` in `B \\setminus C`.",
+        "同理，`A` 不是 `C` 的子集會給出一個 `A` 的元素在 `B \\setminus C`。",
+        "同理，`A` 不是 `C` 的子集会给出一个 `A` 的元素在 `B \\setminus C`。"
+      ),
+    ],
+    skillTags: ["sets", "venn-diagrams", "subset-witnesses"],
+  },
   "checkpoint.math1090.sets.function-set-count": {
     accessTier: "FREE",
     id: "checkpoint.math1090.sets.function-set-count",
@@ -5064,6 +5150,92 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
     ],
     skillTags: ["functions", "left-inverse", "finite-sets"],
+  },
+  "checkpoint.math1090.sets.nx-n-injection": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.sets.nx-n-injection",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "sets",
+    unitId: "math1090.sets.functions-relations",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Why is `F(m,n)=2^m3^n` injective as a function `N \\times N \\to N`?",
+      "為甚麼 `F(m,n)=2^m3^n` 作為 `N \\times N \\to N` 的函數是單射？",
+      "为什么 `F(m,n)=2^m3^n` 作为 `N \\times N \\to N` 的函数是单射？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "Unique prime factorization recovers both exponents `m` and `n` from the output.",
+          "唯一素因數分解可由輸出恢復兩個指數 `m` 與 `n`。",
+          "唯一素因数分解可由输出恢复两个指数 `m` 与 `n`。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "Every natural number is equal to `2^m3^n` for some pair `(m,n)`.",
+          "每個自然數都等於某個 `(m,n)` 對應的 `2^m3^n`。",
+          "每个自然数都等于某个 `(m,n)` 对应的 `2^m3^n`。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "The formula ignores the order of the pair.",
+          "這個公式不理會有序對的順序。",
+          "这个公式不理会有序对的顺序。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "The output is always an even number.",
+          "輸出必定是偶數。",
+          "输出必定是偶数。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "If two outputs are equal, compare the exponent of 2 and the exponent of 3 on both sides.",
+        "若兩個輸出相等，就比較兩邊的 2 的指數與 3 的指數。",
+        "若两个输出相等，就比较两边的 2 的指数与 3 的指数。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "`F(2,1)=12` and `F(1,2)=18`, so the order of the pair is still visible.",
+        "`F(2,1)=12` 而 `F(1,2)=18`，所以有序對的順序仍然可被分辨。",
+        "`F(2,1)=12` 而 `F(1,2)=18`，所以有序对的顺序仍然可被分辨。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Assume `F(m,n)=F(m',n')`, so `2^m3^n=2^{m'}3^{n'}`.",
+        "假設 `F(m,n)=F(m',n')`，即 `2^m3^n=2^{m'}3^{n'}`。",
+        "假设 `F(m,n)=F(m',n')`，即 `2^m3^n=2^{m'}3^{n'}`。"
+      ),
+      text(
+        "Unique prime factorization forces the exponent of 2 to match and the exponent of 3 to match.",
+        "唯一素因數分解迫使 2 的指數相同，3 的指數也相同。",
+        "唯一素因数分解迫使 2 的指数相同，3 的指数也相同。"
+      ),
+      text(
+        "Thus `m=m'` and `n=n'`, so equal outputs imply equal ordered pairs.",
+        "因此 `m=m'` 且 `n=n'`，所以相同輸出推出相同有序對。",
+        "因此 `m=m'` 且 `n=n'`，所以相同输出推出相同有序对。"
+      ),
+    ],
+    skillTags: ["functions", "injection", "cardinality"],
   },
 };
 
