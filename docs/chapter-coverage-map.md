@@ -20,10 +20,10 @@ structure unit. The latest content pass deepened the previously thin `2.1` /
 | `math1090` | 1 Logic | Authored in EN, zh-HK, zh-CN | Strong | Needs tone / depth review only. |
 | `math1090` | 2 Sets, functions, relations | Authored in EN, zh-HK, zh-CN | Strong | `2.1` / `2.2` now include set-builder notation, multisets, Venn / inclusion-exclusion practice, all Worksheet 3 Venn configuration variants, `B^A`, finite inverse logic, the `N x N -> N` injection pattern, first cardinality language, operations as functions, Hasse-diagram reading, and checkpoint questions. |
 | `math1090` | 3 Naturals, integers, rationals | Authored through `3.5` | Strong | `3.3` and `3.4` now include quotient-construction interactives, expanded integer / rational operation exercises, and checkpoint questions. |
-| `math1090` | 4 Orders, bounds, completeness, reals | Authored through `4.6` | Strong through `§4.11` | `4.1`-`4.6` now cover total order / ordered field, bounds and `sup` / `inf`, completeness, the `Q`-gap at `sqrt(2)`, axiomatic / first-approximation motivation, Dedekind cuts, decimal expansions, and irrational numbers. |
-| `math1090` | 5 Sequences and first limits | Authored through `5.3` | Strong through `§5.6` | Public notes now cover sequence limits, Cauchy sequences, the Cauchy-sequence model of `R`, delta-epsilon limits, limit laws, sequential characterization, and continuity in EN / zh-HK / zh-CN. |
-| `math1090` | 6 Big sets | Authored through `6.3` | Strong | Public notes cover cardinality, countability, cardinal inequalities, Cantor's theorem, continuum / choice context, intervals, Cantor set, density, and well-ordering. |
-| `math1090` | 7 Sets with structure | Authored through `7.1` | Strong | Public notes cover binary operations, monoids, and groups with an embedded law checker. |
+| `math1090` | 4 Orders, bounds, completeness, reals | Authored through `4.6` | Strong through `§4.11` | `4.1`-`4.6` now cover total order / ordered field, bounds and `sup` / `inf`, completeness, the `Q`-gap at `sqrt(2)`, axiomatic / first-approximation motivation, Dedekind cuts, decimal expansions, and irrational numbers. `4.5` now has a checkpoint on the no-maximum condition for cuts. |
+| `math1090` | 5 Sequences and first limits | Authored through `5.3` | Strong through `§5.6` | Public notes now cover sequence limits, Cauchy sequences, the Cauchy-sequence model of `R`, delta-epsilon limits, limit laws, sequential characterization, and continuity in EN / zh-HK / zh-CN. `5.1` and `5.2` now have checkpoint coverage for epsilon-`N` thresholds and internal Cauchy control. |
+| `math1090` | 6 Big sets | Authored through `6.3` | Strong | Public notes cover cardinality, countability, cardinal inequalities, Cantor's theorem, continuum / choice context, intervals, Cantor set, density, and well-ordering. `6.1` and `6.2` now have checkpoint coverage for Cantor-Bernstein and Cantor's diagonal set. |
+| `math1090` | 7 Sets with structure | Authored through `7.1` | Strong | Public notes cover binary operations, monoids, and groups with an embedded law checker. `7.1` now has checkpoint coverage for group left cancellation. |
 | `math1090` | Review / appendices | No dedicated public review route | Secondary / overlap | Remaining review-packet material is better treated as appendix-style reinforcement or checkpoint-practice depth rather than a separate public priority. |
 
 ## Math1030
@@ -90,8 +90,10 @@ The next content cycle should focus on QA across the now-broader public Notes
 tree: export fidelity, rendering checks, exercise / reveal integrity, and
 theme / layout review across Math1090, Math1030, and the expanded CSCI2520
 sequence. For MATH1090, the current route-level backlog is no longer chapter 2
-depth or Worksheet 3 exercise parity; the remaining work is broader export QA
-and optional checkpoint coverage for later authored units. For
+depth, Worksheet 3 exercise parity, or first-pass checkpoint coverage for the
+late `4.5` / `5.1` / `5.2` / `6.1` / `6.2` / `7.1` units. Remaining work is
+broader export QA and optional checkpoint coverage for still-uncovered earlier
+or intermediate authored units. For
 MATH1030, the remaining content backlog is no longer missing core chapter
 directories, early RREF drill parity, the main `as03` parameterized inverse /
 determinant-free proof patterns, or the `as02` Q2 parameterized `G/H`

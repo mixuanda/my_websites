@@ -78,6 +78,11 @@ April 24, 2026 QA update:
 - the same April 28 pass added two problem-bank checkpoints for the remaining
   Worksheet 3 exercise patterns: the covered-but-not-contained Venn condition
   and the prime-factorization injection `N x N -> N`.
+- the following April 28 MATH1090 late-unit checkpoint pass added six localized
+  problem-bank checkpoints to later authored units: Dedekind-cut no-maximum,
+  epsilon-`N` thresholding, Cauchy internal control, Cantor-Bernstein,
+  Cantor's diagonal set, and group left cancellation. These are problem-bank
+  additions only; no new `QuickCheck` / `RevealSolution` MDX pairs were added.
 
 ### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
 

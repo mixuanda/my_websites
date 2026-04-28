@@ -129,6 +129,35 @@ Use this shape for future entries:
 
 ## Current log
 
+### 2026-04-28: MATH1090 late-unit checkpoint coverage pass
+
+- Gap selected: after the Worksheet 3 pass, MATH1090's public route-level
+  content was broadly authored, but checkpoint coverage remained concentrated
+  in logic / set / number-construction units. The highest-value next slice was
+  therefore selected late-unit practice coverage rather than more prose.
+- Reference basis: `reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf`, with
+  current authored notes under `content/textbook/math1090/order-and-completeness`,
+  `content/textbook/math1090/sequences-and-limits`,
+  `content/textbook/math1090/big-sets`, and
+  `content/textbook/math1090/sets-with-structure`.
+- Content files changed: no public MDX prose was changed; the pass adds
+  WebWork-like checkpoint coverage in `src/lib/textbook/problem-bank.ts`.
+- Visuals added: none.
+- Interactions added: none; this pass attaches checkpoint questions to already
+  authored article-first notes and existing widgets.
+- Exercises added: six localized checkpoint problems covering the Dedekind-cut
+  no-maximum condition, an epsilon-`N` threshold for `1/(2n)`, Cauchy internal
+  control, Cantor-Bernstein, Cantor's diagonal set, and group left cancellation.
+- Verification: `git diff --check`, `npm run contentlayer`, `npm run lint`,
+  `npm run build`, local route smoke checks, TXT/PDF export smoke checks,
+  all six new `/api/textbook/problems/grade` preview calls, and an in-app
+  browser render check for zh-HK `5.1` passed locally.
+- Deployment: pending until this checkpoint pass is committed and pushed.
+- Remaining gaps: MATH1090 still has authored units without problem-bank
+  checkpoint entries, especially earlier order / completeness and some
+  intermediate later units; broader export QA remains a separate recurring
+  concern.
+
 ### 2026-04-28: MATH1090 Worksheet 3 exercise-parity pass
 
 - Gap selected: MATH1090 no longer had missing route-level chapter content, but

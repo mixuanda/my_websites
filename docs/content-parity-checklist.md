@@ -51,6 +51,10 @@ April 24, 2026 parity update:
 - The April 28 MATH1090 Worksheet 3 parity pass kept the same synchronized
   three-language discipline while adding the remaining Venn-configuration
   variants to `2.1` and the `N x N -> N` injection proof to `2.2`.
+- The subsequent April 28 MATH1090 late-unit checkpoint pass added localized
+  EN / zh-HK / zh-CN problem-bank prompts, choices, hints, and solution steps
+  for selected `4.5`, `5.1`, `5.2`, `6.1`, `6.2`, and `7.1` checkpoint
+  coverage.
 
 April 25, 2026 MATH1030 exercise / TOC update:
 

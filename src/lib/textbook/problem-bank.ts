@@ -5237,6 +5237,510 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["functions", "injection", "cardinality"],
   },
+  "checkpoint.math1090.order.dedekind-cut-no-maximum": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.order.dedekind-cut-no-maximum",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "order-and-completeness",
+    unitId: "math1090.order-and-completeness.dedekind-cuts-and-embedding-of-q",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Why is `C={x in Q | x <= 2}` not a Dedekind cut in the convention of this note?",
+      "為甚麼 `C={x in Q | x <= 2}` 按本筆記的慣例不是 Dedekind cut？",
+      "为什么 `C={x in Q | x <= 2}` 按本笔记的惯例不是 Dedekind cut？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "It has a maximum element, namely 2.",
+          "它有最大元素，也就是 2。",
+          "它有最大元素，也就是 2。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "It is empty.",
+          "它是空集合。",
+          "它是空集合。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "It is not downward closed.",
+          "它不是向下封閉。",
+          "它不是向下封闭。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "It contains irrational numbers.",
+          "它包含無理數。",
+          "它包含无理数。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "A rational cut should not include its boundary point.",
+        "有理 cut 不應把邊界點本身包括進去。",
+        "有理 cut 不应把边界点本身包括进去。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "`{x in Q | x < 2}` is the cut for 2; the version using `<=` includes the endpoint.",
+        "`{x in Q | x < 2}` 才是 2 對應的 cut；用 `<=` 的版本包含端點。",
+        "`{x in Q | x < 2}` 才是 2 对应的 cut；用 `<=` 的版本包含端点。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The set is nonempty, proper, and downward closed.",
+        "這個集合非空、不是整個 `Q`，而且向下封閉。",
+        "这个集合非空、不是整个 `Q`，而且向下封闭。"
+      ),
+      text(
+        "But Dedekind cuts in this convention require no maximum element.",
+        "但本慣例下的 Dedekind cut 要求沒有最大元素。",
+        "但本惯例下的 Dedekind cut 要求没有最大元素。"
+      ),
+      text(
+        "Here 2 belongs to C and every element of C is at most 2, so 2 is a maximum.",
+        "這裡 2 屬於 C，且 C 的每個元素都至多是 2，所以 2 是最大元素。",
+        "这里 2 属于 C，且 C 的每个元素都至多是 2，所以 2 是最大元素。"
+      ),
+    ],
+    skillTags: ["dedekind-cuts", "order", "reals"],
+  },
+  "checkpoint.math1090.sequences.epsilon-n-threshold": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.sequences.epsilon-n-threshold",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "sequences-and-limits",
+    unitId: "math1090.sequences-and-limits.sequences-and-epsilon-n-limits",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "To prove `1/(2n) -> 0`, which condition on N is enough for every `n>N` to satisfy `|1/(2n)|<epsilon`?",
+      "要證 `1/(2n) -> 0`，哪個關於 N 的條件足以保證每個 `n>N` 都滿足 `|1/(2n)|<epsilon`？",
+      "要证 `1/(2n) -> 0`，哪个关于 N 的条件足以保证每个 `n>N` 都满足 `|1/(2n)|<epsilon`？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`N > 1/(2 epsilon)`",
+          "`N > 1/(2 epsilon)`",
+          "`N > 1/(2 epsilon)`"
+        ),
+      },
+      {
+        id: "b",
+        text: text("`N < epsilon`", "`N < epsilon`", "`N < epsilon`"),
+      },
+      {
+        id: "c",
+        text: text("`N = 0` for every epsilon", "每個 epsilon 都取 `N = 0`", "每个 epsilon 都取 `N = 0`"),
+      },
+      {
+        id: "d",
+        text: text(
+          "`N` must depend on n after n is chosen.",
+          "`N` 必須在選定 n 之後再依賴 n。",
+          "`N` 必须在选定 n 之后再依赖 n。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Solve `1/(2n)<epsilon` for n.",
+        "把 `1/(2n)<epsilon` 解成對 n 的條件。",
+        "把 `1/(2n)<epsilon` 解成对 n 的条件。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "After epsilon is given, choose a tail index N; then all later n must work.",
+        "epsilon 給定後才選尾部起點 N；之後所有更大的 n 都要成立。",
+        "epsilon 给定后才选尾部起点 N；之后所有更大的 n 都要成立。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "We need `1/(2n)<epsilon`, equivalently `n>1/(2 epsilon)`.",
+        "我們需要 `1/(2n)<epsilon`，等價於 `n>1/(2 epsilon)`。",
+        "我们需要 `1/(2n)<epsilon`，等价于 `n>1/(2 epsilon)`。"
+      ),
+      text(
+        "Choosing `N>1/(2 epsilon)` ensures that every `n>N` is also larger than `1/(2 epsilon)`.",
+        "選 `N>1/(2 epsilon)` 可保證每個 `n>N` 亦大於 `1/(2 epsilon)`。",
+        "选 `N>1/(2 epsilon)` 可保证每个 `n>N` 也大于 `1/(2 epsilon)`。"
+      ),
+      text(
+        "Therefore `|1/(2n)-0|=1/(2n)<epsilon` for the whole tail.",
+        "因此整段尾部都有 `|1/(2n)-0|=1/(2n)<epsilon`。",
+        "因此整段尾部都有 `|1/(2n)-0|=1/(2n)<epsilon`。"
+      ),
+    ],
+    skillTags: ["sequence-limits", "epsilon-n", "proof"],
+  },
+  "checkpoint.math1090.sequences.cauchy-internal-control": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.sequences.cauchy-internal-control",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "sequences-and-limits",
+    unitId: "math1090.sequences-and-limits.cauchy-sequences-and-another-real-construction",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "What is the key difference between a convergent sequence and a Cauchy sequence?",
+      "收斂序列與 Cauchy 序列的關鍵分別是甚麼？",
+      "收敛序列与 Cauchy 序列的关键区别是什么？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "Convergence names a limit L; the Cauchy condition compares late terms to each other.",
+          "收斂會指定一個極限 L；Cauchy 條件則比較尾部項彼此之間的距離。",
+          "收敛会指定一个极限 L；Cauchy 条件则比较尾部项彼此之间的距离。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "Cauchy sequences must be constant.",
+          "Cauchy 序列必須是常值序列。",
+          "Cauchy 序列必须是常值序列。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "Convergent sequences do not need a tail condition.",
+          "收斂序列不需要尾部條件。",
+          "收敛序列不需要尾部条件。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "Cauchy sequences are defined only for finite sets.",
+          "Cauchy 序列只在有限集合上定義。",
+          "Cauchy 序列只在有限集合上定义。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Look at whether the definition mentions an external candidate limit.",
+        "留意定義是否提到外部候選極限。",
+        "留意定义是否提到外部候选极限。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Cauchy means late terms are close to each other, not first to a named L.",
+        "Cauchy 的意思是尾部項互相接近，而不是先接近某個指定 L。",
+        "Cauchy 的意思是尾部项互相接近，而不是先接近某个指定 L。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Convergence says: after some point, `x_n` is close to a specified L.",
+        "收斂說的是：過了某點之後，`x_n` 會接近指定的 L。",
+        "收敛说的是：过了某点之后，`x_n` 会接近指定的 L。"
+      ),
+      text(
+        "Cauchy says: after some point, `x_n` and `x_m` are close whenever both indices are large.",
+        "Cauchy 說的是：過了某點之後，只要兩個指標都夠大，`x_n` 和 `x_m` 就彼此接近。",
+        "Cauchy 说的是：过了某点之后，只要两个指标都够大，`x_n` 和 `x_m` 就彼此接近。"
+      ),
+      text(
+        "Thus the Cauchy condition is internal to the sequence.",
+        "因此 Cauchy 條件是序列內部的條件。",
+        "因此 Cauchy 条件是序列内部的条件。"
+      ),
+    ],
+    skillTags: ["cauchy-sequences", "sequence-limits", "completeness"],
+  },
+  "checkpoint.math1090.big-sets.cantor-bernstein": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.big-sets.cantor-bernstein",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "big-sets",
+    unitId: "math1090.big-sets.cardinality-countability-and-cardinal-inequalities",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "If there is an injection `X -> Y` and an injection `Y -> X`, what does the Cantor-Bernstein theorem conclude?",
+      "若存在一個單射 `X -> Y` 和一個單射 `Y -> X`，Cantor-Bernstein 定理推出甚麼？",
+      "若存在一个单射 `X -> Y` 和一个单射 `Y -> X`，Cantor-Bernstein 定理推出什么？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "There is a bijection between X and Y.",
+          "X 與 Y 之間存在一個雙射。",
+          "X 与 Y 之间存在一个双射。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "X must be a subset of Y.",
+          "X 必須是 Y 的子集。",
+          "X 必须是 Y 的子集。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "Both sets must be finite.",
+          "兩個集合都必須是有限集合。",
+          "两个集合都必须是有限集合。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "There is no way to compare their cardinalities.",
+          "它們的基數無法比較。",
+          "它们的基数无法比较。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "This theorem supplies the antisymmetry principle for cardinal inequalities.",
+        "這個定理提供基數不等式的反對稱性原理。",
+        "这个定理提供基数不等式的反对称性原理。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Think of the injections as `|X| <= |Y|` and `|Y| <= |X|`.",
+        "可把兩個單射讀成 `|X| <= |Y|` 與 `|Y| <= |X|`。",
+        "可把两个单射读成 `|X| <= |Y|` 与 `|Y| <= |X|`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "An injection `X -> Y` means `|X| <= |Y|`.",
+        "單射 `X -> Y` 表示 `|X| <= |Y|`。",
+        "单射 `X -> Y` 表示 `|X| <= |Y|`。"
+      ),
+      text(
+        "An injection `Y -> X` means `|Y| <= |X|`.",
+        "單射 `Y -> X` 表示 `|Y| <= |X|`。",
+        "单射 `Y -> X` 表示 `|Y| <= |X|`。"
+      ),
+      text(
+        "Cantor-Bernstein concludes `|X|=|Y|`, meaning a bijection exists.",
+        "Cantor-Bernstein 推出 `|X|=|Y|`，即存在雙射。",
+        "Cantor-Bernstein 推出 `|X|=|Y|`，即存在双射。"
+      ),
+    ],
+    skillTags: ["cardinality", "injections", "cantor-bernstein"],
+  },
+  "checkpoint.math1090.big-sets.cantor-diagonal-set": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.big-sets.cantor-diagonal-set",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "big-sets",
+    unitId: "math1090.big-sets.cantor-theorem-continuum-and-choice",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "In Cantor's theorem, what is the diagonal set built from a proposed function `f:X -> P(X)`?",
+      "在 Cantor 定理中，從候選函數 `f:X -> P(X)` 建立的對角集合是甚麼？",
+      "在 Cantor 定理中，从候选函数 `f:X -> P(X)` 建立的对角集合是什么？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`T={x in X | x notin f(x)}`",
+          "`T={x in X | x notin f(x)}`",
+          "`T={x in X | x notin f(x)}`"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "`T={x in X | x in f(x)}`",
+          "`T={x in X | x in f(x)}`",
+          "`T={x in X | x in f(x)}`"
+        ),
+      },
+      {
+        id: "c",
+        text: text("`T=X x X`", "`T=X x X`", "`T=X x X`"),
+      },
+      {
+        id: "d",
+        text: text(
+          "`T` is the empty set by definition.",
+          "`T` 按定義是空集合。",
+          "`T` 按定义是空集合。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The diagonal set deliberately disagrees with f(x) at the input x.",
+        "對角集合刻意在輸入 x 這一點與 f(x) 不同。",
+        "对角集合刻意在输入 x 这一点与 f(x) 不同。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "If `x in f(x)`, then the diagonal set leaves x out; if `x notin f(x)`, it puts x in.",
+        "若 `x in f(x)`，對角集合就不收 x；若 `x notin f(x)`，它就收 x。",
+        "若 `x in f(x)`，对角集合就不收 x；若 `x notin f(x)`，它就收 x。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Assume for contradiction that f hits every subset of X.",
+        "反證假設 f 會命中 X 的每個子集。",
+        "反证假设 f 会命中 X 的每个子集。"
+      ),
+      text(
+        "Define `T={x in X | x notin f(x)}`.",
+        "定義 `T={x in X | x notin f(x)}`。",
+        "定义 `T={x in X | x notin f(x)}`。"
+      ),
+      text(
+        "For every x, T differs from f(x) exactly at x, so T cannot equal any f(x).",
+        "對每個 x，T 都在 x 這一點與 f(x) 不同，所以 T 不可能等於任何 f(x)。",
+        "对每个 x，T 都在 x 这一点与 f(x) 不同，所以 T 不可能等于任何 f(x)。"
+      ),
+    ],
+    skillTags: ["cantor-theorem", "diagonal-argument", "power-sets"],
+  },
+  "checkpoint.math1090.structure.group-left-cancellation": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.structure.group-left-cancellation",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "sets-with-structure",
+    unitId: "math1090.sets-with-structure.binary-operations-monoids-and-groups",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "In a group, how do we prove left cancellation: if `a*b=a*c`, then `b=c`?",
+      "在 group 中，如何證明左消去律：若 `a*b=a*c`，則 `b=c`？",
+      "在 group 中，如何证明左消去律：若 `a*b=a*c`，则 `b=c`？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "Left-multiply both sides by `a^{-1}` and use associativity.",
+          "兩邊同時左乘 `a^{-1}`，並使用結合律。",
+          "两边同时左乘 `a^{-1}`，并使用结合律。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "Assume the operation is commutative.",
+          "假設運算必然交換。",
+          "假设运算必然交换。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "Replace `a` by the identity without justification.",
+          "無理由地把 `a` 換成 identity。",
+          "无理由地把 `a` 换成 identity。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "Use only closure; inverses are unnecessary.",
+          "只用封閉性；不需要逆元。",
+          "只用封闭性；不需要逆元。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The inverse of a is the tool that removes the leading a.",
+        "a 的逆元正是用來消去前面的 a 的工具。",
+        "a 的逆元正是用来消去前面的 a 的工具。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "`a^{-1}*(a*b)=(a^{-1}*a)*b=e*b=b`.",
+        "`a^{-1}*(a*b)=(a^{-1}*a)*b=e*b=b`。",
+        "`a^{-1}*(a*b)=(a^{-1}*a)*b=e*b=b`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Start with `a*b=a*c`.",
+        "由 `a*b=a*c` 開始。",
+        "由 `a*b=a*c` 开始。"
+      ),
+      text(
+        "Left-multiply both sides by `a^{-1}`.",
+        "兩邊同時左乘 `a^{-1}`。",
+        "两边同时左乘 `a^{-1}`。"
+      ),
+      text(
+        "Associativity gives `(a^{-1}*a)*b=(a^{-1}*a)*c`, hence `e*b=e*c`, so `b=c`.",
+        "由結合律得 `(a^{-1}*a)*b=(a^{-1}*a)*c`，即 `e*b=e*c`，所以 `b=c`。",
+        "由结合律得 `(a^{-1}*a)*b=(a^{-1}*a)*c`，即 `e*b=e*c`，所以 `b=c`。"
+      ),
+    ],
+    skillTags: ["groups", "cancellation", "inverses"],
+  },
 };
 
 export function getProblemById(problemId: string) {
