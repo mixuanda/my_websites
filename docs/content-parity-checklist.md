@@ -55,6 +55,9 @@ April 24, 2026 parity update:
   EN / zh-HK / zh-CN problem-bank prompts, choices, hints, and solution steps
   for selected `4.5`, `5.1`, `5.2`, `6.1`, `6.2`, and `7.1` checkpoint
   coverage.
+- The follow-on April 28 MATH1090 chapter `4`-`6` checkpoint sweep kept the
+  same three-language problem-bank parity while adding first-pass checkpoint
+  coverage for `4.1`, `4.2`, `4.3`, `4.4`, `4.6`, `5.3`, and `6.3`.
 
 April 25, 2026 MATH1030 exercise / TOC update:
 

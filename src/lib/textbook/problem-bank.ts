@@ -5237,6 +5237,351 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["functions", "injection", "cardinality"],
   },
+  "checkpoint.math1090.order.total-order-comparability": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.order.total-order-comparability",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "order-and-completeness",
+    unitId: "math1090.order-and-completeness.order-bounds-and-completeness",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Why is divisibility on positive integers not a total order?",
+      "為甚麼正整數上的整除關係不是全序？",
+      "为什么正整数上的整除关系不是全序？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "Because 2 and 3 are incomparable: neither divides the other.",
+          "因為 2 與 3 不可比較：兩者都不整除對方。",
+          "因为 2 与 3 不可比较：两者都不整除对方。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "Because divisibility is not reflexive.",
+          "因為整除關係不是自反的。",
+          "因为整除关系不是自反的。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "Because every pair of positive integers divides each other.",
+          "因為任意兩個正整數都互相整除。",
+          "因为任意两个正整数都互相整除。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "Because total orders cannot be transitive.",
+          "因為全序不可以有傳遞性。",
+          "因为全序不可以有传递性。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "A total order must compare every two elements.",
+        "全序必須能比較任意兩個元素。",
+        "全序必须能比较任意两个元素。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Divisibility is a partial-order example: reflexive and transitive, but not always comparable.",
+        "整除關係是偏序例子：自反且傳遞，但不一定能比較任意兩個元素。",
+        "整除关系是偏序例子：自反且传递，但不一定能比较任意两个元素。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "A total order requires that for any two elements x and y, either `x<=y` or `y<=x`.",
+        "全序要求任意兩個元素 x 與 y 都滿足 `x<=y` 或 `y<=x`。",
+        "全序要求任意两个元素 x 与 y 都满足 `x<=y` 或 `y<=x`。"
+      ),
+      text(
+        "Under divisibility, 2 does not divide 3 and 3 does not divide 2.",
+        "在整除關係下，2 不整除 3，3 也不整除 2。",
+        "在整除关系下，2 不整除 3，3 也不整除 2。"
+      ),
+      text(
+        "So the comparability requirement fails.",
+        "所以比較性要求失敗。",
+        "所以可比性要求失败。"
+      ),
+    ],
+    skillTags: ["orders", "total-order", "partial-order"],
+  },
+  "checkpoint.math1090.order.supremum-open-interval": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.order.supremum-open-interval",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "order-and-completeness",
+    unitId: "math1090.order-and-completeness.supremum-and-infimum",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "For `Y=(0,1)` as a subset of `R`, which statement is correct?",
+      "把 `Y=(0,1)` 視為 `R` 的子集時，哪一項正確？",
+      "把 `Y=(0,1)` 视为 `R` 的子集时，哪一项正确？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`Y` has maximum 1 and minimum 0.",
+          "`Y` 有最大值 1 與最小值 0。",
+          "`Y` 有最大值 1 与最小值 0。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "`Y` has no upper bound.",
+          "`Y` 沒有上界。",
+          "`Y` 没有上界。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "`Y` has no maximum, but `sup(Y)=1` and `inf(Y)=0`.",
+          "`Y` 沒有最大值，但 `sup(Y)=1` 且 `inf(Y)=0`。",
+          "`Y` 没有最大值，但 `sup(Y)=1` 且 `inf(Y)=0`。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "`Y` has supremum `1/2` because `1/2` lies inside the interval.",
+          "`Y` 的上確界是 `1/2`，因為 `1/2` 在區間內。",
+          "`Y` 的上确界是 `1/2`，因为 `1/2` 在区间内。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "c" },
+    hints: [
+      text(
+        "A maximum must belong to the set; a supremum only needs to be the least upper bound in the ambient ordered set.",
+        "最大值必須屬於集合；上確界只需是所在有序集合中的最小上界。",
+        "最大值必须属于集合；上确界只需是所在有序集合中的最小上界。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "The endpoints 0 and 1 are not in `(0,1)`, but they are still the best lower and upper barriers.",
+        "端點 0 與 1 不在 `(0,1)` 內，但它們仍是最佳下界與上界。",
+        "端点 0 与 1 不在 `(0,1)` 内，但它们仍是最佳下界与上界。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "No element of `(0,1)` is largest, since any `y<1` can be moved slightly upward while staying below 1.",
+        "`(0,1)` 沒有最大元素，因為任何 `y<1` 都可稍微向上移而仍小於 1。",
+        "`(0,1)` 没有最大元素，因为任何 `y<1` 都可稍微向上移而仍小于 1。"
+      ),
+      text(
+        "The least real upper bound is 1.",
+        "最小的實數上界是 1。",
+        "最小的实数上界是 1。"
+      ),
+      text(
+        "Similarly, 0 is the greatest lower bound, but not a minimum of the interval.",
+        "同理，0 是最大下界，但不是這個區間的最小值。",
+        "同理，0 是最大下界，但不是这个区间的最小值。"
+      ),
+    ],
+    skillTags: ["supremum", "infimum", "bounds"],
+  },
+  "checkpoint.math1090.order.completeness-supremum-property": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.order.completeness-supremum-property",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "order-and-completeness",
+    unitId: "math1090.order-and-completeness.completeness-and-gaps-in-q",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Which statement expresses the completeness property used in this chapter?",
+      "哪一項表達了本章使用的完備性質？",
+      "哪一项表达了本章使用的完备性质？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "Every nonempty subset that is bounded above has a supremum in the ambient ordered field.",
+          "每個非空且有上界的子集，都在所在有序域中有上確界。",
+          "每个非空且有上界的子集，都在所在有序域中有上确界。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "Every subset has a maximum element.",
+          "每個子集都有最大元素。",
+          "每个子集都有最大元素。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "Every bounded set must be finite.",
+          "每個有界集合都必定有限。",
+          "每个有界集合都必定有限。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "Every Cauchy sequence must be eventually constant.",
+          "每條 Cauchy 序列最終都必須變成常值。",
+          "每条 Cauchy 序列最终都必须变成常值。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The key word is supremum, not maximum.",
+        "關鍵詞是上確界，而不是最大值。",
+        "关键词是上确界，而不是最大值。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "`Q` fails this property for the rationals below `sqrt(2)`.",
+        "`Q` 對 `sqrt(2)` 下方的有理數集合不滿足這個性質。",
+        "`Q` 对 `sqrt(2)` 下方的有理数集合不满足这个性质。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Completeness is stated for nonempty subsets that are bounded above.",
+        "完備性是針對非空且有上界的子集而說。",
+        "完备性是针对非空且有上界的子集而说。"
+      ),
+      text(
+        "It guarantees a least upper bound inside the same ordered field.",
+        "它保證最小上界存在於同一個有序域之內。",
+        "它保证最小上界存在于同一个有序域之内。"
+      ),
+      text(
+        "This is weaker than requiring a maximum and strong enough to detect the gap in `Q`.",
+        "這比要求最大值弱，但足以偵測 `Q` 的缺口。",
+        "这比要求最大值弱，但足以检测 `Q` 的缺口。"
+      ),
+    ],
+    skillTags: ["completeness", "supremum", "ordered-field"],
+  },
+  "checkpoint.math1090.order.decimal-approximations-gap": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.order.decimal-approximations-gap",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "order-and-completeness",
+    unitId:
+      "math1090.order-and-completeness.axioms-for-the-reals-and-first-approximations",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "What do decimal approximations to `sqrt(2)` illustrate about `Q`?",
+      "`sqrt(2)` 的小數近似說明了 `Q` 的甚麼問題？",
+      "`sqrt(2)` 的小数近似说明了 `Q` 的什么问题？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "A sequence of rational approximations can suggest a least upper bound that is not rational.",
+          "一串有理近似可以指向一個不是有理數的最小上界。",
+          "一串有理近似可以指向一个不是有理数的最小上界。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "Every decimal approximation is already equal to `sqrt(2)`.",
+          "每個小數近似都已經等於 `sqrt(2)`。",
+          "每个小数近似都已经等于 `sqrt(2)`。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "`Q` contains no bounded subsets.",
+          "`Q` 不含任何有界子集。",
+          "`Q` 不含任何有界子集。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "Completeness of `Q` follows from long division.",
+          "`Q` 的完備性可由長除法推出。",
+          "`Q` 的完备性可由长除法推出。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The approximations are rational, but their intended boundary is not.",
+        "近似值本身是有理數，但它們指向的邊界不是有理數。",
+        "近似值本身是有理数，但它们指向的边界不是有理数。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "`1.4, 1.41, 1.414, ...` are rational shadows of a missing boundary in `Q`.",
+        "`1.4, 1.41, 1.414, ...` 是 `Q` 中缺失邊界的有理影子。",
+        "`1.4, 1.41, 1.414, ...` 是 `Q` 中缺失边界的有理影子。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Each finite decimal approximation is rational.",
+        "每個有限小數近似都是有理數。",
+        "每个有限小数近似都是有理数。"
+      ),
+      text(
+        "But the boundary they approach is `sqrt(2)`, which is not rational.",
+        "但它們逼近的邊界是 `sqrt(2)`，而它不是有理數。",
+        "但它们逼近的边界是 `sqrt(2)`，而它不是有理数。"
+      ),
+      text(
+        "This motivates adding a completed object such as a cut, not pretending that `Q` was already complete.",
+        "這推動我們加入像 cut 這樣的完成物件，而不是假裝 `Q` 已經完備。",
+        "这推动我们加入像 cut 这样的完成对象，而不是假装 `Q` 已经完备。"
+      ),
+    ],
+    skillTags: ["decimal-approximations", "sqrt2", "completeness"],
+  },
   "checkpoint.math1090.order.dedekind-cut-no-maximum": {
     accessTier: "FREE",
     id: "checkpoint.math1090.order.dedekind-cut-no-maximum",
@@ -5322,6 +5667,93 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
     ],
     skillTags: ["dedekind-cuts", "order", "reals"],
+  },
+  "checkpoint.math1090.order.sqrt2-dedekind-cut": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.order.sqrt2-dedekind-cut",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "order-and-completeness",
+    unitId:
+      "math1090.order-and-completeness.decimal-expansions-and-irrational-numbers",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Which description best matches the Dedekind cut representing `sqrt(2)`?",
+      "哪個描述最符合代表 `sqrt(2)` 的 Dedekind cut？",
+      "哪个描述最符合代表 `sqrt(2)` 的 Dedekind cut？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "All rationals `q` such that `q<0` or `q^2<2`.",
+          "所有滿足 `q<0` 或 `q^2<2` 的有理數 `q`。",
+          "所有满足 `q<0` 或 `q^2<2` 的有理数 `q`。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "Only the rational number `sqrt(2)`.",
+          "只有有理數 `sqrt(2)` 這一個元素。",
+          "只有有理数 `sqrt(2)` 这一个元素。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "All rationals whose square is greater than 2.",
+          "所有平方大於 2 的有理數。",
+          "所有平方大于 2 的有理数。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "The empty subset of `Q`.",
+          "`Q` 的空子集。",
+          "`Q` 的空子集。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "A cut is a lower set in `Q`; for `sqrt(2)` it must contain every rational below that boundary.",
+        "cut 是 `Q` 中的下集；對 `sqrt(2)` 而言，它應包含邊界以下的每個有理數。",
+        "cut 是 `Q` 中的下集；对 `sqrt(2)` 而言，它应包含边界以下的每个有理数。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Negative rationals are included automatically because they are below the positive boundary.",
+        "負有理數會自動包括在內，因為它們都低於這個正邊界。",
+        "负有理数会自动包括在内，因为它们都低于这个正边界。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "`sqrt(2)` is not rational, so the cut cannot contain a rational endpoint equal to `sqrt(2)`.",
+        "`sqrt(2)` 不是有理數，所以這個 cut 不可能包含等於 `sqrt(2)` 的有理端點。",
+        "`sqrt(2)` 不是有理数，所以这个 cut 不可能包含等于 `sqrt(2)` 的有理端点。"
+      ),
+      text(
+        "The positive rationals below the boundary are exactly those with square less than 2.",
+        "位於邊界以下的正有理數正是那些平方小於 2 的有理數。",
+        "位于边界以下的正有理数正是那些平方小于 2 的有理数。"
+      ),
+      text(
+        "All negative rationals also belong to the lower set.",
+        "所有負有理數也屬於這個下集。",
+        "所有负有理数也属于这个下集。"
+      ),
+    ],
+    skillTags: ["dedekind-cuts", "sqrt2", "irrational-numbers"],
   },
   "checkpoint.math1090.sequences.epsilon-n-threshold": {
     accessTier: "FREE",
@@ -5486,6 +5918,81 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
     ],
     skillTags: ["cauchy-sequences", "sequence-limits", "completeness"],
+  },
+  "checkpoint.math1090.sequences.delta-linear-limit": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.sequences.delta-linear-limit",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "sequences-and-limits",
+    unitId:
+      "math1090.sequences-and-limits.delta-epsilon-limits-limit-laws-and-continuity",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "To prove `lim_{x->3}(2x+1)=7`, which choice of delta works directly from `|2x+1-7|=2|x-3|`?",
+      "要證 `lim_{x->3}(2x+1)=7`，由 `|2x+1-7|=2|x-3|` 可直接選哪個 delta？",
+      "要证 `lim_{x->3}(2x+1)=7`，由 `|2x+1-7|=2|x-3|` 可直接选哪个 delta？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("`delta=epsilon/2`", "`delta=epsilon/2`", "`delta=epsilon/2`"),
+      },
+      {
+        id: "b",
+        text: text("`delta=2epsilon`", "`delta=2epsilon`", "`delta=2epsilon`"),
+      },
+      {
+        id: "c",
+        text: text("`delta=7` for every epsilon", "每個 epsilon 都取 `delta=7`", "每个 epsilon 都取 `delta=7`"),
+      },
+      {
+        id: "d",
+        text: text(
+          "`delta` must be chosen after x is known.",
+          "`delta` 必須在知道 x 之後才選。",
+          "`delta` 必须在知道 x 之后才选。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "You need `2|x-3|<epsilon`.",
+        "你需要 `2|x-3|<epsilon`。",
+        "你需要 `2|x-3|<epsilon`。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "The factor 2 in the output error becomes the denominator in the delta choice.",
+        "輸出誤差中的因子 2 會變成 delta 選擇中的分母。",
+        "输出误差中的因子 2 会变成 delta 选择中的分母。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The error simplifies to `|2x+1-7|=2|x-3|`.",
+        "誤差化簡為 `|2x+1-7|=2|x-3|`。",
+        "误差化简为 `|2x+1-7|=2|x-3|`。"
+      ),
+      text(
+        "If `0<|x-3|<epsilon/2`, then `2|x-3|<epsilon`.",
+        "若 `0<|x-3|<epsilon/2`，則 `2|x-3|<epsilon`。",
+        "若 `0<|x-3|<epsilon/2`，则 `2|x-3|<epsilon`。"
+      ),
+      text(
+        "Therefore `delta=epsilon/2` is a valid direct choice.",
+        "因此 `delta=epsilon/2` 是一個直接可用的選擇。",
+        "因此 `delta=epsilon/2` 是一个直接可用的选择。"
+      ),
+    ],
+    skillTags: ["delta-epsilon", "function-limits", "continuity"],
   },
   "checkpoint.math1090.big-sets.cantor-bernstein": {
     accessTier: "FREE",
@@ -5654,6 +6161,92 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
     ],
     skillTags: ["cantor-theorem", "diagonal-argument", "power-sets"],
+  },
+  "checkpoint.math1090.big-sets.cantor-stage-count": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.big-sets.cantor-stage-count",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "big-sets",
+    unitId: "math1090.big-sets.intervals-cantor-set-density-and-well-ordering",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "At stage n of the Cantor set construction, how many intervals remain and what is the length of each interval?",
+      "在 Cantor set 構造的第 n 階段，剩下多少個區間？每個區間長度是多少？",
+      "在 Cantor set 构造的第 n 阶段，剩下多少个区间？每个区间长度是多少？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`2^n` intervals, each of length `3^{-n}`.",
+          "`2^n` 個區間，每個長度為 `3^{-n}`。",
+          "`2^n` 个区间，每个长度为 `3^{-n}`。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "`3^n` intervals, each of length `2^{-n}`.",
+          "`3^n` 個區間，每個長度為 `2^{-n}`。",
+          "`3^n` 个区间，每个长度为 `2^{-n}`。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "One interval, always of length 1.",
+          "一個區間，長度永遠是 1。",
+          "一个区间，长度永远是 1。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "`n` intervals, each of length `1/n`.",
+          "`n` 個區間，每個長度為 `1/n`。",
+          "`n` 个区间，每个长度为 `1/n`。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Each stage keeps two thirds-sized children from every surviving interval.",
+        "每一階段都從每個尚存區間保留兩個三分之一長度的子區間。",
+        "每一阶段都从每个尚存区间保留两个三分之一长度的子区间。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Stage 0 has one interval of length 1; stage 1 has two intervals of length `1/3`.",
+        "第 0 階段有一個長度 1 的區間；第 1 階段有兩個長度 `1/3` 的區間。",
+        "第 0 阶段有一个长度 1 的区间；第 1 阶段有两个长度 `1/3` 的区间。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Every interval produces two surviving intervals at the next stage.",
+        "每個區間在下一階段產生兩個尚存區間。",
+        "每个区间在下一阶段产生两个尚存区间。"
+      ),
+      text(
+        "Thus the number of intervals is multiplied by 2 at each stage, giving `2^n`.",
+        "因此區間數每階段乘以 2，得到 `2^n`。",
+        "因此区间数每阶段乘以 2，得到 `2^n`。"
+      ),
+      text(
+        "Each surviving interval is scaled by a factor of `1/3` each time, so its length is `3^{-n}`.",
+        "每個尚存區間每次都縮短為原來的 `1/3`，所以長度是 `3^{-n}`。",
+        "每个尚存区间每次都缩短为原来的 `1/3`，所以长度是 `3^{-n}`。"
+      ),
+    ],
+    skillTags: ["cantor-set", "intervals", "cardinality"],
   },
   "checkpoint.math1090.structure.group-left-cancellation": {
     accessTier: "FREE",

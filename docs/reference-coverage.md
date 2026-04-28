@@ -82,20 +82,25 @@ The latest merged content passes also:
 - expanded MATH1090 late-unit checkpoint coverage with source-backed problems
   for Dedekind-cut endpoints, epsilon-`N` thresholds, Cauchy internal control,
   Cantor-Bernstein, Cantor's diagonal set, and group cancellation.
+- completed the next MATH1090 chapter `4`-`6` checkpoint sweep with localized
+  problem-bank questions for total-order comparability, open-interval
+  supremum / infimum, the completeness property, decimal approximations to
+  `sqrt(2)`, the `sqrt(2)` cut, a first linear delta-epsilon proof, and Cantor
+  set stage counting.
 
 The next resume point is now QA and optional exercise-depth parity rather than
 missing MATH1090 core content:
 
 1. keep export, rendering, and exercise QA active on the revised MATH1090
-   `2.1` / `2.2` set-language family and the existing `4.5` through `5.3`
-   family.
+   `2.1` / `2.2` set-language family and the now checkpoint-backed chapter
+   `4`-`7` family.
 2. keep export, rendering, and exercise QA active on the recently added higher
    MATH1030 chapters.
-3. treat MATH1090 Worksheet 3 and the first late-unit checkpoint pass as
-   incorporated into the public Notes workflow; the next MATH1090 work should
-   be broader export / rendering QA and optional checkpoint coverage for still
-   uncovered earlier or intermediate authored units, not new route-level
-   chapter authoring.
+3. treat MATH1090 Worksheet 3 and the chapter `4`-`7` first-pass checkpoint
+   sweep as incorporated into the public Notes workflow; the next MATH1090
+   work should be broader export / rendering QA and optional checkpoint depth
+   for logic / early number-construction units, not new route-level chapter
+   authoring.
 
 Current QA progress from April 24, 2026:
 
@@ -360,7 +365,7 @@ below.
 | --- | --- | --- | --- | --- | --- | --- | --- |
 | MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Feb27.pdf` | lecture notes | incorporated | yes | no | no | Direct source for logic, truth tables, quantifiers, sets, functions, and relations. The latest set-language pass added bounded comprehension, multiset warnings, `B^A`, cardinality, operations, finite inverse logic, and Hasse-diagram reading into public `2.1` / `2.2`. |
 | MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf` | lecture notes | partially incorporated | partial | no | no | Primary source for the current public `§3.*` number-construction notes; the latest pass strengthened integer subtraction / multiplication and rational well-definedness inside `3.3`-`3.4`. Later real-number and analysis-preparatory sections remain backlog. |
-| MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf` | lecture notes | incorporated | yes | no | no | Direct source for the public `4.1`-`4.6`, `5.1`-`5.3`, `6.1`-`6.3`, and `7.1` family: cuts, decimals, irrationals, sequence limits, Cauchy sequences, delta-epsilon limits, limit laws, sequential characterization, continuity, cardinality, Cantor's theorem, choice context, intervals / Cantor set / density / well-ordering, and first monoid / group structure. The April 28 late-unit checkpoint pass added practice coverage for selected `4.5`, `5.1`, `5.2`, `6.1`, `6.2`, and `7.1` concepts. |
+| MATH1090 | `reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf` | lecture notes | incorporated | yes | no | no | Direct source for the public `4.1`-`4.6`, `5.1`-`5.3`, `6.1`-`6.3`, and `7.1` family: cuts, decimals, irrationals, sequence limits, Cauchy sequences, delta-epsilon limits, limit laws, sequential characterization, continuity, cardinality, Cantor's theorem, choice context, intervals / Cantor set / density / well-ordering, and first monoid / group structure. The April 28 checkpoint passes added first-pass problem-bank practice across every public chapter `4`-`7` unit. |
 | MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_final.tex` | review source | partially incorporated | partial | yes | no | Used for headings, terminology, proof structure, number-system exercises 32-38, Worksheet 5 proof patterns, and the chapter-4 note family through `§4.7`. Later proof-template and appendix sections remain backlog. |
 | MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_final.pdf` | review packet | partially incorporated | partial | yes | no | Reinforces the authored logic-through-`§4.7` units and still contains later proof-template / rapid-review material not yet surfaced publicly. |
 | MATH1090 | `reference/MATH1090/MATH1090_midterm_review_notes_master.pdf` | review packet | overlap | partial | yes | no | Editorial variant of the final review packet; do not treat as a separate public-content stream. |
@@ -1044,3 +1049,19 @@ existing invertibility note instead of creating a detached new route.
   incorporated / overlap, not partial exercise backlog. Remaining MATH1090 work
   is export, rendering, exercise-integrity, and optional later-unit checkpoint
   QA.
+
+### 2026-04-28 checkpoint 29: MATH1090 chapter 4-6 checkpoint sweep
+
+- Continued the existing MATH1090 route tree rather than adding new public
+  chapter routes, because the current ledger showed the public `4.1`-`6.3`
+  notes as authored but still uneven in problem-bank checkpoint coverage.
+- Added seven localized problem-bank checkpoints for the previously uncovered
+  source-backed units `4.1`, `4.2`, `4.3`, `4.4`, `4.6`, `5.3`, and `6.3`.
+- Concepts covered: total-order comparability, open-interval supremum /
+  infimum, the completeness property, decimal approximations to `sqrt(2)`, the
+  Dedekind cut for `sqrt(2)`, a first linear delta-epsilon limit proof, and
+  Cantor set stage counting.
+- Status change: MATH1090 chapter `4`-`7` now has first-pass unit-level
+  checkpoint coverage. Remaining MATH1090 work should prioritize export /
+  rendering QA and optional depth for earlier logic / number-construction
+  units.

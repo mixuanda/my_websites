@@ -129,6 +129,38 @@ Use this shape for future entries:
 
 ## Current log
 
+### 2026-04-28: MATH1090 chapter 4-6 checkpoint sweep
+
+- Gap selected: after the first late-unit checkpoint pass, MATH1090 chapter
+  `4`-`7` notes were source-backed and public, but `4.1`, `4.2`, `4.3`,
+  `4.4`, `4.6`, `5.3`, and `6.3` still had no problem-bank checkpoint entries.
+  The next highest-value slice was therefore first-pass unit-level practice for
+  those authored notes.
+- Reference basis: `reference/MATH1090/MATH1090_Lecture_Notes_Apr10.pdf`,
+  `reference/MATH1090/MATH1090_midterm_review_notes_final.pdf`, and the
+  current public notes under `content/textbook/math1090/order-and-completeness`,
+  `content/textbook/math1090/sequences-and-limits`, and
+  `content/textbook/math1090/big-sets`.
+- Content files changed: no public MDX prose was changed; this pass adds
+  WebWork-like checkpoint coverage in `src/lib/textbook/problem-bank.ts`.
+- Visuals added: none.
+- Interactions added: none; this pass reuses the existing checkpoint surface on
+  already authored article-first notes.
+- Exercises added: seven localized checkpoint problems covering total-order
+  comparability, open-interval supremum / infimum, completeness, decimal
+  approximations to `sqrt(2)`, the `sqrt(2)` Dedekind cut, a first linear
+  delta-epsilon proof, and Cantor set stage counting.
+- Verification: `git diff --check`, `npm run contentlayer`, `npm run lint`,
+  `npm run build`, local route smoke checks, TXT/PDF export smoke checks, all
+  seven new `/api/textbook/problems/grade` preview calls, and an in-app browser
+  render check for zh-HK `4.2` passed locally. The local production server
+  emitted the existing Auth.js `MissingSecret` warning because this shell has no
+  local auth secret; production logs must be checked after deployment.
+- Deployment: pending until this checkpoint sweep is committed and pushed.
+- Remaining gaps: MATH1090 chapter `4`-`7` now has first-pass checkpoint
+  coverage; remaining MATH1090 work should shift toward export / rendering QA
+  and optional checkpoint depth for earlier logic / number-construction units.
+
 ### 2026-04-28: MATH1090 late-unit checkpoint coverage pass
 
 - Gap selected: after the Worksheet 3 pass, MATH1090's public route-level

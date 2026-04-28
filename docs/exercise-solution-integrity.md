@@ -83,6 +83,12 @@ April 24, 2026 QA update:
   epsilon-`N` thresholding, Cauchy internal control, Cantor-Bernstein,
   Cantor's diagonal set, and group left cancellation. These are problem-bank
   additions only; no new `QuickCheck` / `RevealSolution` MDX pairs were added.
+- the follow-on April 28 MATH1090 chapter `4`-`6` checkpoint sweep added seven
+  localized problem-bank checkpoints for total-order comparability, open
+  interval sup / inf, completeness, decimal approximations, the `sqrt(2)` cut,
+  a linear delta-epsilon proof, and Cantor set stage counting. These are also
+  problem-bank additions only; no new `QuickCheck` / `RevealSolution` MDX pairs
+  were added.
 
 ### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
 
