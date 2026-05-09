@@ -124,7 +124,8 @@ The following units are currently present in EN, zh-HK, and zh-CN.
   9.4 Cauchy-Schwarz / triangle inequalities
 - `math1025`: 0.1 course foundations and notation, 1.1 equation structure and
   trigonometric identities, 2.1 mathematical induction, 3.1 inequalities and
-  absolute value, 4.1 binomial coefficients and expansions
+  absolute value, 4.1 binomial coefficients and expansions, 5.1 sequences /
+  recursion / series
 - `csci2520`: 0.1 pointers / memory / structs, 1.1 ADT operations, 1.2 hash
   tables and collision strategies, 2.1 lists as recursive ADTs, 3.1
   complexity growth and algorithmic cost, 3.2 selection / quickselect /

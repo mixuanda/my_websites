@@ -1,0 +1,556 @@
+---
+title: "5.1 Sequences, recursion, and series"
+description: "Read sequences as functions on positive integers, compare explicit and recursive definitions, and derive arithmetic and geometric sum formulas."
+---
+
+## What a sequence really is
+
+A sequence is not merely a row of numbers written with commas. Formally, it is
+a function whose input is a positive integer and whose output is a real number.
+The input tells us the position of the term. The output is the value sitting at
+that position.
+
+<Definition title="Sequence of real numbers">
+A sequence of real numbers is a function
+
+$$
+a:\mathbb Z^+\to \mathbb R.
+$$
+
+Instead of writing `a(n)`, we usually write `a_n`, and we denote the whole
+sequence by `{a_n}`.
+</Definition>
+
+This definition is worth taking seriously. It explains why the same values in
+a different order form a different sequence, and why a formula for `a_n` must
+say what happens for every positive integer `n`.
+
+<WorkedExample title="Reading a general term">
+If `a_n=(-1)^n`, then
+
+$$
+a_1=-1,\quad a_2=1,\quad a_3=-1,\quad a_4=1.
+$$
+
+If `b_n=2^{n-1}`, then
+
+$$
+b_1=1,\quad b_2=2,\quad b_3=4,\quad b_4=8.
+$$
+
+Both are sequences because each positive integer `n` determines exactly one
+real number.
+</WorkedExample>
+
+## Finding general terms from patterns
+
+A finite list suggests a pattern, but the general term must describe the
+`n`-th term, not just the first few terms.
+
+<WorkedExample title="Alternating zeros and ones">
+The sequence
+
+$$
+1,0,1,0,\ldots
+$$
+
+is `1` when `n` is odd and `0` when `n` is even. A compact formula is
+
+$$
+a_n=\frac{1+(-1)^{n-1}}2.
+$$
+
+When `n` is odd, `n-1` is even and the numerator is `2`. When `n` is even,
+`n-1` is odd and the numerator is `0`.
+</WorkedExample>
+
+<WorkedExample title="Products of even and odd factors">
+The product
+
+$$
+2\cdot4\cdot6\cdots(2n)
+$$
+
+has the `k`-th factor `2k`. Therefore
+
+$$
+2\cdot4\cdots(2n)
+=\prod_{k=1}^n 2k
+=2^n n!.
+$$
+
+Similarly,
+
+$$
+1\cdot3\cdot5\cdots(2n-1)
+=\frac{(2n)!}{2^n n!},
+$$
+
+because `(2n)!` is the product of all factors from `1` to `2n`, and dividing
+by the even part `2\cdot4\cdots(2n)=2^n n!` leaves only the odd part.
+</WorkedExample>
+
+<WorkedExample title="A sequence made from repeated differentiation">
+The chapter also uses `f(x)=\sin x` to show that sequences do not have to come
+from ordinary lists first. Define `a_n=f^{(n)}(0)`, where `f^{(n)}` means the
+`n`-th derivative. The derivatives cycle:
+
+$$
+\sin x,\quad \cos x,\quad -\sin x,\quad -\cos x,\quad \sin x,\ldots
+$$
+
+So
+
+$$
+a_1=1,\quad a_2=0,\quad a_3=-1,\quad a_4=0,
+$$
+
+and the same four-term pattern repeats. One compact general term is
+
+$$
+a_n=\cos\left(\frac{(n-1)\pi}{2}\right).
+$$
+
+This example is important because it separates the idea of a sequence from the
+idea of a simple algebraic pattern. The sequence is still a function of the
+index `n`; its values are produced by a calculus operation before evaluating at
+`0`.
+</WorkedExample>
+
+<CommonMistake title="A pattern is not a definition until the indexing is fixed">
+Writing `2,4,8,...` is not as precise as writing `a_n=2^{n-1}`. The first term
+matters: `2^n` would give `2,4,8,...` only if the indexing started at `n=1`
+with first term `2`, while the chapter example `1,2,4,8,...` is
+`2^{n-1}`.
+</CommonMistake>
+
+## Recursive definitions
+
+Some sequences are easier to define by saying how to get the next term from
+earlier terms.
+
+<Definition title="Recursive sequence">
+A recursive sequence is a sequence whose terms are defined using one or more
+preceding terms, together with enough initial values to start the process.
+</Definition>
+
+For example,
+
+$$
+a_1=4,\qquad a_{n+1}=2a_n+1
+$$
+
+gives
+
+$$
+a_2=9,\quad a_3=19,\quad a_4=39.
+$$
+
+The recurrence determines the next term only after the earlier term is known.
+
+For this particular recurrence, we can also find a closed formula. Add `1` to
+both sides and set `b_n=a_n+1`. Then
+
+$$
+b_{n+1}=a_{n+1}+1=2a_n+2=2(a_n+1)=2b_n.
+$$
+
+Since `b_1=a_1+1=5`, the transformed sequence is geometric:
+
+$$
+b_n=5\cdot2^{n-1}.
+$$
+
+Therefore
+
+$$
+a_n=b_n-1=5\cdot2^{n-1}-1.
+$$
+
+The lesson is not that every recurrence becomes geometric. The useful habit is
+to look for a change of variables that removes the constant term when the
+recurrence is affine.
+
+<TheoremCard title="Recursion theorem">
+Let `X` be a set, let `b\in X`, and let `f:X\to X` be a function. Then there
+is a unique function `a:\mathbb Z^+\to X` such that
+
+$$
+a(1)=b,\qquad a(n+1)=f(a(n))
+$$
+
+for every `n\in\mathbb Z^+`.
+</TheoremCard>
+
+The theorem gives the formal reason why a first term plus a rule such as
+`a_{n+1}=f(a_n)` really defines a sequence. The rule never leaves `X`, because
+`f` maps `X` back into `X`, and uniqueness says that there is no second
+sequence satisfying the same starting value and same next-term rule.
+
+<WorkedExample title="Turning a recurrence into theorem data">
+For
+
+$$
+a_1=1,\qquad a_{n+1}=a_n^2+1,
+$$
+
+take `X=\mathbb R`, `b=1`, and `f(x)=x^2+1`. The recursion theorem says that
+there is a unique real sequence satisfying this rule. The first terms are
+
+$$
+1,\quad 2,\quad 5,\quad 26,\ldots
+$$
+
+There may be no simple closed formula, but the sequence is still completely
+defined.
+</WorkedExample>
+
+## Fibonacci as a first-order recursion on pairs
+
+The Fibonacci sequence is defined by two starting values and a rule using the
+previous two terms:
+
+$$
+F_1=F_2=1,\qquad F_{n+2}=F_{n+1}+F_n.
+$$
+
+To fit the recursion theorem, package two consecutive values as one ordered
+pair:
+
+$$
+a(n)=(F_n,F_{n+1}).
+$$
+
+Then the next pair is obtained from the function
+
+$$
+f(x,y)=(y,x+y).
+$$
+
+So a two-term recurrence can be viewed as a one-step recurrence on the set
+`\mathbb R^2`.
+
+<TheoremCard title="Binet form of Fibonacci numbers">
+Let
+
+$$
+\phi=\frac{1+\sqrt5}{2},
+\qquad
+\psi=\frac{1-\sqrt5}{2}.
+$$
+
+Then for every positive integer `n`,
+
+$$
+F_n=\frac{\phi^n-\psi^n}{\phi-\psi}.
+$$
+</TheoremCard>
+
+This formula is usually proved by checking that the right-hand side has the
+same first two values and satisfies the same recurrence. The essential
+identities are `\phi^2=\phi+1` and `\psi^2=\psi+1`.
+
+Here is the verification in a form that is useful for similar recurrence
+questions. Define
+
+$$
+B_n=\frac{\phi^n-\psi^n}{\phi-\psi}.
+$$
+
+First,
+
+$$
+B_1=1,\qquad
+B_2=\frac{\phi^2-\psi^2}{\phi-\psi}=\phi+\psi=1.
+$$
+
+Next, because each of `\phi` and `\psi` satisfies `t^2=t+1`, we have
+
+$$
+\phi^{n+2}=\phi^{n+1}+\phi^n,
+\qquad
+\psi^{n+2}=\psi^{n+1}+\psi^n.
+$$
+
+Subtracting the second identity from the first and dividing by
+`\phi-\psi` gives
+
+$$
+B_{n+2}=B_{n+1}+B_n.
+$$
+
+Thus `{B_n}` has the same first two values and the same recursive rule as the
+Fibonacci sequence. By uniqueness of the recursively defined sequence, `B_n`
+must equal `F_n` for every positive integer `n`.
+
+## Arithmetic sequences and sums
+
+<Definition title="Arithmetic sequence">
+A sequence `{a_n}` is arithmetic if there is a constant `d` such that
+
+$$
+a_{n+1}-a_n=d
+$$
+
+for every `n\in\mathbb Z^+`. The number `d` is the common difference.
+</Definition>
+
+If `a=a_1`, then the general term is
+
+$$
+a_n=a+(n-1)d.
+$$
+
+The sum of the first `n` terms is
+
+$$
+s_n=\sum_{k=1}^n a_k
+=\frac n2\left[2a+(n-1)d\right]
+=\frac n2(a_1+a_n).
+$$
+
+The last equality comes from pairing the first term with the last, the second
+with the second-last, and so on. Every pair has the same sum `a_1+a_n`.
+
+<WorkedExample title="Recover an arithmetic sequence from a sum">
+Suppose the common difference is `d=3/2` and the sum of the first `15` terms is
+`240`. Then
+
+$$
+240=\frac{15}{2}\left[2a+14\cdot\frac32\right].
+$$
+
+Solving gives `a=5.5`.
+
+If the sum of the first `k` terms is `361`, then
+
+$$
+\frac{k}{2}\left[2(5.5)+(k-1)\frac32\right]=361.
+$$
+
+This simplifies to
+
+$$
+3k^2+19k-1444=0.
+$$
+
+The positive integer solution is `k=19`; the other root is rejected because a
+number of terms cannot be negative.
+</WorkedExample>
+
+## Geometric sequences and sums
+
+<Definition title="Geometric sequence">
+A sequence `{b_n}` of nonzero numbers is geometric if there is a nonzero
+constant `r` such that
+
+$$
+\frac{b_{n+1}}{b_n}=r
+$$
+
+for every `n\in\mathbb Z^+`. The number `r` is the common ratio.
+</Definition>
+
+If `b=b_1`, then
+
+$$
+b_n=br^{n-1}.
+$$
+
+For `r\ne 1`, the finite geometric sum is
+
+$$
+\sum_{k=1}^n br^{k-1}
+=b\sum_{k=0}^{n-1}r^k
+=b\frac{1-r^n}{1-r}
+=b\frac{r^n-1}{r-1}.
+$$
+
+The proof is the subtraction trick:
+
+$$
+(1-r)(1+r+\cdots+r^{n-1})=1-r^n.
+$$
+
+If `r=1`, the sum is simply `bn`.
+
+<InteractiveWidget id="math1025-sequence-recursion-lab" />
+
+## Arithmetic-geometric sums
+
+The final exercise in the source chapter mixes an arithmetic factor with a
+geometric factor. Let
+
+$$
+x_k=(a+kd)br^k,\qquad k\in\mathbb N,
+$$
+
+where `r\ne0` and `r\ne1`, and define
+
+$$
+S_n=\sum_{k=0}^{n-1}x_k
+=\sum_{k=0}^{n-1}(a+kd)br^k.
+$$
+
+This is not a new kind of magic formula. It is the same subtraction method,
+but now the coefficient changes by `d` when the index moves forward. Compare
+`S_n` with `rS_n`:
+
+$$
+S_n-rS_n
+=ab+db(r+r^2+\cdots+r^{n-1})-(a+(n-1)d)br^n.
+$$
+
+The middle part is again a geometric sum. Dividing by `1-r` and simplifying
+gives the source formula
+
+$$
+S_n=
+\frac{ab-(a+nd)br^n}{1-r}
++\frac{dbr(1-r^n)}{(1-r)^2}.
+$$
+
+<CommonMistake title="Watch the shifted boundary term">
+The boundary term is the subtle point. The last term in `rS_n` is
+`(a+(n-1)d)br^n`, but after combining with the finite geometric sum the
+equivalent final formula can be written with `(a+nd)br^n`.
+</CommonMistake>
+
+## An applied recurrence: the mortgage formula
+
+The chapter's mortgage example is a useful applied recurrence. Let:
+
+- `P` be the initial principal;
+- `R` be the annual fixed interest rate;
+- `N` be the duration in months;
+- `x` be the monthly payment;
+- `L_n` be the loan amount after the `n`-th monthly payment.
+
+Then
+
+$$
+L_0=P,\qquad
+L_n=L_{n-1}\left(1+\frac{R}{12}\right)-x.
+$$
+
+Writing `q=1+R/12`, repeated substitution gives
+
+$$
+L_n=Pq^n-x(q^{n-1}+q^{n-2}+\cdots+q+1).
+$$
+
+Using the geometric sum,
+
+$$
+L_n=Pq^n-x\frac{q^n-1}{q-1}.
+$$
+
+To finish the loan after `N` months, set `L_N=0`, so
+
+$$
+x=P\frac{(R/12)(1+R/12)^N}{(1+R/12)^N-1}.
+$$
+
+The formula is not a separate trick. It is the geometric series formula applied
+to a recurrence where interest multiplies the balance and the payment subtracts
+from it.
+
+## Quick checks
+
+<QuickCheck prompt="A sequence is formally a function from which set to which set in this chapter?">
+Use the chapter definition.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is a function `a:\mathbb Z^+\to\mathbb R`, so each positive integer index
+returns one real-number term.
+</RevealSolution>
+
+<QuickCheck prompt="For `a_1=4` and `a_{n+1}=2a_n+1`, what is `a_3`?">
+Compute one term at a time.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`a_2=2(4)+1=9`, so `a_3=2(9)+1=19`.
+</RevealSolution>
+
+<QuickCheck prompt="What is the sum of the first `n` terms of an arithmetic sequence with first term `a` and common difference `d`?">
+Use first-last pairing.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+
+$$
+s_n=\frac n2\left[2a+(n-1)d\right].
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Why does the geometric-sum formula need a separate case when `r=1`?">
+Look at the denominator.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The formula `b(1-r^n)/(1-r)` divides by `1-r`, which is zero when `r=1`.
+In that case every term is `b`, so the sum is `bn`.
+</RevealSolution>
+
+<QuickCheck prompt="In the arithmetic-geometric sum, why is the method `S_n-rS_n` useful?">
+Track what happens to the coefficient `a+kd` after shifting by one power of
+`r`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Most terms line up with the same power of `r`, and their coefficients differ by
+exactly `d`. That leaves two boundary terms and a geometric sum
+`db(r+\cdots+r^{n-1})`, which can be simplified by the ordinary geometric-sum
+formula.
+</RevealSolution>
+
+## Exercises
+
+1. Find a formula for `1,0,1,0,\ldots`.
+2. Prove that `1\cdot3\cdot5\cdots(2n-1)=(2n)!/(2^n n!)`.
+3. Let `a_1=3` and `a_{n+1}=a_n+4`. Find `a_n` and `s_n`.
+4. Let `b_1=5` and `b_{n+1}=3b_n`. Find `b_n` and the sum of the first `n`
+   terms.
+5. Let `B_n=(\phi^n-\psi^n)/(\phi-\psi)`, where
+   `\phi=(1+\sqrt5)/2` and `\psi=(1-\sqrt5)/2`. Verify that
+   `B_1=B_2=1` and `B_{n+2}=B_{n+1}+B_n`.
+6. Let `L_0=2000` and `L_n=1.02L_{n-1}-150`. Write `L_n` using a finite
+   geometric sum.
+7. Let `x_k=(2+3k)5(1/2)^k` and `S_n=\sum_{k=0}^{n-1}x_k`. Write `S_n`
+   using the arithmetic-geometric formula.
+
+## Guided solutions
+
+1. The term is `1` on odd indices and `0` on even indices, so
+   `a_n=(1+(-1)^{n-1})/2`.
+2. Divide `(2n)!` into its even and odd factors. The even product is
+   `2\cdot4\cdots(2n)=2^n n!`, so the odd product is
+   `(2n)!/(2^n n!)`.
+3. This is arithmetic with first term `3` and common difference `4`, hence
+   `a_n=3+4(n-1)=4n-1` and
+   `s_n=n[2\cdot3+(n-1)4]/2=n(2n+1)`.
+4. This is geometric with first term `5` and ratio `3`, so
+   `b_n=5\cdot3^{n-1}` and
+   `s_n=5(3^n-1)/(3-1)=5(3^n-1)/2`.
+5. Since `\phi^2=\phi+1` and `\psi^2=\psi+1`, multiplying by
+   `\phi^n` or `\psi^n` gives
+   `\phi^{n+2}=\phi^{n+1}+\phi^n` and
+   `\psi^{n+2}=\psi^{n+1}+\psi^n`. Subtract the two identities and divide by
+   `\phi-\psi` to obtain `B_{n+2}=B_{n+1}+B_n`. Also
+   `B_1=1` and `B_2=(\phi^2-\psi^2)/(\phi-\psi)=\phi+\psi=1`. Therefore
+   `{B_n}` satisfies the same initial values and recurrence as Fibonacci.
+6. Repeated substitution gives
+   `L_n=2000(1.02)^n-150[(1.02)^{n-1}+\cdots+1]`, so
+   `L_n=2000(1.02)^n-150((1.02)^n-1)/0.02`.
+7. Here `a=2`, `d=3`, `b=5`, and `r=1/2`. Therefore
+
+   $$
+   S_n=
+   \frac{10-(2+3n)5(1/2)^n}{1-1/2}
+   +\frac{15(1/2)(1-(1/2)^n)}{(1-1/2)^2}.
+   $$
+
+   This can be simplified further, but the important point is the substitution
+   into the general finite-sum formula.

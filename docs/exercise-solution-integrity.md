@@ -591,3 +591,23 @@ unit-level coverage.
 - Remaining issues: broader export QA remains; exhaustive grading of full
   symbolic `5 x 5` matrices is intentionally deferred until there is a robust
   matrix-equivalence parser
+
+### 2026-05-07 checkpoint 21: Math1025 sequence checkpoint integrity
+
+- Checkpoint name: `5.1` sequences, recursion, and series integrity
+- What was inspected: `MATH1025_slides_ch5.pdf` extracted text, the new
+  localized `5.1` MDX files, and `src/lib/textbook/problem-bank.ts`
+- What was changed: added paired quick checks / reveal solutions for sequence
+  definitions, recursive computation, arithmetic sums, geometric-sum edge
+  cases, and the `S_n-rS_n` arithmetic-geometric sum method; added end
+  exercises with guided solutions; added five checkpoint problems for an
+  even-factor general term, an affine recursive fourth term, the recursion
+  theorem, Fibonacci / Binet verification, and the arithmetic-geometric
+  finite-sum formula
+- Integrity note: the symbolic fill-in for `2^n n!` includes accepted
+  equivalent text forms, while the recurrence value is a single scalar and the
+  theorem / Fibonacci proof-structure items are multiple choice to avoid
+  fragile formula parsing
+- Verification: pending in this round
+- Remaining issues: broader Math1025 checkpoint density should increase as
+  chapters `6` through `11` are authored

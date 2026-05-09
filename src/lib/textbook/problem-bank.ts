@@ -6334,6 +6334,402 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["groups", "cancellation", "inverses"],
   },
+  "checkpoint.math1025.sequences.even-product-general-term": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.sequences.even-product-general-term",
+    type: "FILL_IN_BLANK",
+    courseId: "math1025",
+    chapterId: "sequences",
+    unitId: "math1025.sequences.sequences-and-recursion",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Exercise 5.1 asks for a general term of `2, 2\\cdot4, 2\\cdot4\\cdot6, ...`. Fill in the blank: for `n\\in \\mathbb Z^+`, `a_n = 2\\cdot4\\cdots(2n) = ____`.",
+      "Exercise 5.1 要求寫出 `2, 2\\cdot4, 2\\cdot4\\cdot6, ...` 的通項。填空：對 `n\\in \\mathbb Z^+`，`a_n = 2\\cdot4\\cdots(2n) = ____`。",
+      "Exercise 5.1 要求写出 `2, 2\\cdot4, 2\\cdot4\\cdot6, ...` 的通项。填空：对 `n\\in \\mathbb Z^+`，`a_n = 2\\cdot4\\cdots(2n) = ____`。"
+    ),
+    correctAnswer: {
+      value: "2^n n!",
+      equivalentValues: [
+        "2^n*n!",
+        "2^n\\cdot n!",
+        "2^n\\times n!",
+        "2^n\\,n!",
+        "2^n(n!)",
+        "2^n*(n!)",
+        "n!2^n",
+        "n!*2^n",
+        "n!\\cdot2^n",
+        "n!\\times2^n",
+      ],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "Write the k-th factor as `2k`, then separate the repeated factor `2` from the product `1\\cdot2\\cdots n`.",
+        "把第 k 個因子寫成 `2k`，再把重複出現的因子 `2` 與乘積 `1\\cdot2\\cdots n` 分開。",
+        "把第 k 个因子写成 `2k`，再把重复出现的因子 `2` 与乘积 `1\\cdot2\\cdots n` 分开。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Enter an expression such as `2^n*n!`.",
+        "可輸入例如 `2^n*n!` 的表達式。",
+        "可输入例如 `2^n*n!` 的表达式。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter the general term using n, powers, and factorial notation.",
+      "請使用 n、冪次與階乘記號輸入通項。",
+      "请使用 n、幂次与阶乘记号输入通项。"
+    ),
+    solutionSteps: [
+      text(
+        "The product has n even factors: `2,4,6,...,2n`.",
+        "這個乘積有 n 個偶數因子：`2,4,6,...,2n`。",
+        "这个乘积有 n 个偶数因子：`2,4,6,...,2n`。"
+      ),
+      text(
+        "Rewrite them as `2\\cdot1, 2\\cdot2, 2\\cdot3, ..., 2\\cdot n`.",
+        "把它們改寫為 `2\\cdot1, 2\\cdot2, 2\\cdot3, ..., 2\\cdot n`。",
+        "把它们改写为 `2\\cdot1, 2\\cdot2, 2\\cdot3, ..., 2\\cdot n`。"
+      ),
+      text(
+        "There are n copies of 2, and the remaining product is `1\\cdot2\\cdots n=n!`, so the general term is `2^n n!`.",
+        "共有 n 個 2，而餘下的乘積是 `1\\cdot2\\cdots n=n!`，所以通項是 `2^n n!`。",
+        "共有 n 个 2，而余下的乘积是 `1\\cdot2\\cdots n=n!`，所以通项是 `2^n n!`。"
+      ),
+    ],
+    skillTags: ["sequences", "general-term", "factorials"],
+  },
+  "checkpoint.math1025.sequences.affine-recursion-fourth-term": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.sequences.affine-recursion-fourth-term",
+    type: "FILL_IN_BLANK",
+    courseId: "math1025",
+    chapterId: "sequences",
+    unitId: "math1025.sequences.sequences-and-recursion",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Example 5.2 defines `a_1=4` and `a_{n+1}=2a_n+1` for `n\\ge 1`. Fill in the blank: `a_4 = ____`.",
+      "Example 5.2 定義 `a_1=4`，且對 `n\\ge 1` 有 `a_{n+1}=2a_n+1`。填空：`a_4 = ____`。",
+      "Example 5.2 定义 `a_1=4`，且对 `n\\ge 1` 有 `a_{n+1}=2a_n+1`。填空：`a_4 = ____`。"
+    ),
+    correctAnswer: {
+      value: "39",
+      equivalentValues: ["39.0"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "A recursive definition uses the previous term. Compute `a_2`, then `a_3`, then `a_4`.",
+        "遞推定義使用前一項。先計 `a_2`，再計 `a_3`，最後計 `a_4`。",
+        "递归定义使用前一项。先算 `a_2`，再算 `a_3`，最后算 `a_4`。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Enter a single number.",
+        "請輸入一個數。",
+        "请输入一个数。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter the value of the fourth term.",
+      "請輸入第四項的值。",
+      "请输入第四项的值。"
+    ),
+    solutionSteps: [
+      text(
+        "Start from the initial term `a_1=4`.",
+        "由初始項 `a_1=4` 開始。",
+        "由初始项 `a_1=4` 开始。"
+      ),
+      text(
+        "Then `a_2=2a_1+1=2(4)+1=9`.",
+        "因此 `a_2=2a_1+1=2(4)+1=9`。",
+        "因此 `a_2=2a_1+1=2(4)+1=9`。"
+      ),
+      text(
+        "Next `a_3=2a_2+1=2(9)+1=19`.",
+        "再有 `a_3=2a_2+1=2(9)+1=19`。",
+        "再有 `a_3=2a_2+1=2(9)+1=19`。"
+      ),
+      text(
+        "Finally `a_4=2a_3+1=2(19)+1=39`.",
+        "最後 `a_4=2a_3+1=2(19)+1=39`。",
+        "最后 `a_4=2a_3+1=2(19)+1=39`。"
+      ),
+    ],
+    skillTags: ["sequences", "recursion", "recursive-definition"],
+  },
+  "checkpoint.math1025.sequences.recursion-theorem-unique-sequence": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.sequences.recursion-theorem-unique-sequence",
+    type: "MCQ",
+    courseId: "math1025",
+    chapterId: "sequences",
+    unitId: "math1025.sequences.sequences-and-recursion",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "According to the recursion theorem in chapter 5, let `X` be a set, `b\\in X`, and `f:X\\to X`. Does `a(1)=b` and `a(n+1)=f(a(n))` determine a unique function `a:\\mathbb Z^+\\to X`?",
+      "根據第 5 章的 Recursion Theorem，設 `X` 是集合、`b\\in X`，且 `f:X\\to X`。條件 `a(1)=b` 與 `a(n+1)=f(a(n))` 是否決定唯一的函數 `a:\\mathbb Z^+\\to X`？",
+      "根据第 5 章的 Recursion Theorem，设 `X` 是集合、`b\\in X`，且 `f:X\\to X`。条件 `a(1)=b` 与 `a(n+1)=f(a(n))` 是否决定唯一的函数 `a:\\mathbb Z^+\\to X`？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "Yes. The initial value and the self-map determine exactly one sequence.",
+          "是。初始值與自映射會決定唯一一個數列。",
+          "是。初始值与自映射会决定唯一一个数列。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "No. The same initial value and self-map can still produce many different sequences.",
+          "否。相同的初始值與自映射仍可產生多個不同數列。",
+          "否。相同的初始值与自映射仍可产生多个不同数列。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "No, unless `X` is the set of real numbers.",
+          "否，除非 `X` 是實數集合。",
+          "否，除非 `X` 是实数集合。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "Yes, but only when `f` is linear.",
+          "是，但只限於 `f` 是線性函數時。",
+          "是，但只限于 `f` 是线性函数时。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The theorem is an existence-and-uniqueness statement: once `b` and `f:X\\to X` are fixed, the recursive sequence is fixed.",
+        "該定理是存在性與唯一性的陳述：一旦固定 `b` 與 `f:X\\to X`，遞推數列亦被固定。",
+        "该定理是存在性与唯一性的陈述：一旦固定 `b` 与 `f:X\\to X`，递归数列也被固定。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "For `a_1=1` and `a_{n+1}=a_n^2+1`, the self-map is `f(x)=x^2+1`.",
+        "對 `a_1=1` 及 `a_{n+1}=a_n^2+1`，自映射是 `f(x)=x^2+1`。",
+        "对 `a_1=1` 及 `a_{n+1}=a_n^2+1`，自映射是 `f(x)=x^2+1`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The recursion theorem assumes a set `X`, a starting element `b\\in X`, and a function `f:X\\to X`.",
+        "Recursion Theorem 假設有集合 `X`、起始元素 `b\\in X`，以及函數 `f:X\\to X`。",
+        "Recursion Theorem 假设有集合 `X`、起始元素 `b\\in X`，以及函数 `f:X\\to X`。"
+      ),
+      text(
+        "It then states that there is a unique function `a:\\mathbb Z^+\\to X` satisfying `a(1)=b` and `a(n+1)=f(a(n))`.",
+        "該定理指出，存在唯一函數 `a:\\mathbb Z^+\\to X` 滿足 `a(1)=b` 與 `a(n+1)=f(a(n))`。",
+        "该定理指出，存在唯一函数 `a:\\mathbb Z^+\\to X` 满足 `a(1)=b` 与 `a(n+1)=f(a(n))`。"
+      ),
+      text(
+        "Therefore the correct choice is the one saying that the initial value and self-map determine exactly one sequence.",
+        "因此，正確選項是：初始值與自映射會決定唯一一個數列。",
+        "因此，正确选项是：初始值与自映射会决定唯一一个数列。"
+      ),
+    ],
+    skillTags: ["sequences", "recursion-theorem", "existence-uniqueness"],
+  },
+  "checkpoint.math1025.sequences.fibonacci-binet-verification": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.sequences.fibonacci-binet-verification",
+    type: "MCQ",
+    courseId: "math1025",
+    chapterId: "sequences",
+    unitId: "math1025.sequences.sequences-and-recursion",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Let `B_n=(\\phi^n-\\psi^n)/(\\phi-\\psi)`, where `\\phi^2=\\phi+1` and `\\psi^2=\\psi+1`. Which check proves that `B_n` satisfies the Fibonacci recurrence?",
+      "設 `B_n=(\\phi^n-\\psi^n)/(\\phi-\\psi)`，其中 `\\phi^2=\\phi+1` 且 `\\psi^2=\\psi+1`。哪一個檢查可證明 `B_n` 滿足 Fibonacci 遞推式？",
+      "设 `B_n=(\\phi^n-\\psi^n)/(\\phi-\\psi)`，其中 `\\phi^2=\\phi+1` 且 `\\psi^2=\\psi+1`。哪一个检查可证明 `B_n` 满足 Fibonacci 递推式？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "Show `B_1=B_2=1` and `B_{n+2}=B_{n+1}+B_n`.",
+          "證明 `B_1=B_2=1`，並證明 `B_{n+2}=B_{n+1}+B_n`。",
+          "证明 `B_1=B_2=1`，并证明 `B_{n+2}=B_{n+1}+B_n`。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "Show only that `B_1=1`; no recurrence check is needed.",
+          "只需證明 `B_1=1`；不需要檢查遞推式。",
+          "只需证明 `B_1=1`；不需要检查递推式。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "Show `B_{n+1}=2B_n` for every `n`.",
+          "證明對每個 `n` 都有 `B_{n+1}=2B_n`。",
+          "证明对每个 `n` 都有 `B_{n+1}=2B_n`。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "Show that `\\phi+\\psi=0`.",
+          "證明 `\\phi+\\psi=0`。",
+          "证明 `\\phi+\\psi=0`。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "A closed formula proves it represents Fibonacci numbers only after matching both the initial values and the recursive rule.",
+        "封閉公式要代表 Fibonacci 數，必須同時吻合初始值與遞推規則。",
+        "封闭公式要代表 Fibonacci 数，必须同时吻合初始值与递推规则。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "`\\phi^2=\\phi+1` implies `\\phi^{n+2}=\\phi^{n+1}+\\phi^n`, and similarly for `\\psi`.",
+        "`\\phi^2=\\phi+1` 推出 `\\phi^{n+2}=\\phi^{n+1}+\\phi^n`，而 `\\psi` 亦同理。",
+        "`\\phi^2=\\phi+1` 推出 `\\phi^{n+2}=\\phi^{n+1}+\\phi^n`，而 `\\psi` 也同理。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "First compute `B_1=1` and `B_2=(\\phi^2-\\psi^2)/(\\phi-\\psi)=\\phi+\\psi=1`.",
+        "先計算 `B_1=1`，以及 `B_2=(\\phi^2-\\psi^2)/(\\phi-\\psi)=\\phi+\\psi=1`。",
+        "先计算 `B_1=1`，以及 `B_2=(\\phi^2-\\psi^2)/(\\phi-\\psi)=\\phi+\\psi=1`。"
+      ),
+      text(
+        "Then use `\\phi^2=\\phi+1` and `\\psi^2=\\psi+1` to get `\\phi^{n+2}=\\phi^{n+1}+\\phi^n` and `\\psi^{n+2}=\\psi^{n+1}+\\psi^n`.",
+        "然後用 `\\phi^2=\\phi+1` 與 `\\psi^2=\\psi+1` 得到 `\\phi^{n+2}=\\phi^{n+1}+\\phi^n` 及 `\\psi^{n+2}=\\psi^{n+1}+\\psi^n`。",
+        "然后用 `\\phi^2=\\phi+1` 与 `\\psi^2=\\psi+1` 得到 `\\phi^{n+2}=\\phi^{n+1}+\\phi^n` 及 `\\psi^{n+2}=\\psi^{n+1}+\\psi^n`。"
+      ),
+      text(
+        "Subtract the two identities and divide by `\\phi-\\psi`; this gives `B_{n+2}=B_{n+1}+B_n`.",
+        "兩式相減並除以 `\\phi-\\psi`，即可得到 `B_{n+2}=B_{n+1}+B_n`。",
+        "两式相减并除以 `\\phi-\\psi`，即可得到 `B_{n+2}=B_{n+1}+B_n`。"
+      ),
+    ],
+    skillTags: ["sequences", "fibonacci", "recursion", "closed-form-verification"],
+  },
+  "checkpoint.math1025.sequences.arithmetic-geometric-sum-form": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.sequences.arithmetic-geometric-sum-form",
+    type: "MCQ",
+    courseId: "math1025",
+    chapterId: "sequences",
+    unitId: "math1025.sequences.sequences-and-recursion",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "For `x_k=(a+kd)br^k` and `S_n=\\sum_{k=0}^{n-1}x_k`, which formula matches the arithmetic-geometric sum derived from `S_n-rS_n`?",
+      "對 `x_k=(a+kd)br^k` 及 `S_n=\\sum_{k=0}^{n-1}x_k`，哪一條公式符合由 `S_n-rS_n` 推出的等差等比混合求和？",
+      "对 `x_k=(a+kd)br^k` 及 `S_n=\\sum_{k=0}^{n-1}x_k`，哪一条公式符合由 `S_n-rS_n` 推出的等差等比混合求和？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`S_n = [ab-(a+nd)br^n]/(1-r) + dbr(1-r^n)/(1-r)^2`",
+          "`S_n = [ab-(a+nd)br^n]/(1-r) + dbr(1-r^n)/(1-r)^2`",
+          "`S_n = [ab-(a+nd)br^n]/(1-r) + dbr(1-r^n)/(1-r)^2`"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "`S_n = b(1-r^n)/(1-r)`",
+          "`S_n = b(1-r^n)/(1-r)`",
+          "`S_n = b(1-r^n)/(1-r)`"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "`S_n = n[2a+(n-1)d]/2`",
+          "`S_n = n[2a+(n-1)d]/2`",
+          "`S_n = n[2a+(n-1)d]/2`"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "`S_n = [ab-(a+nd)br^n]/(1-r)` only, with no second term.",
+          "只需 `S_n = [ab-(a+nd)br^n]/(1-r)`，沒有第二項。",
+          "只需 `S_n = [ab-(a+nd)br^n]/(1-r)`，没有第二项。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The coefficient changes by d after the shift, so the derivation leaves an extra geometric sum involving `dbr`.",
+        "平移後係數相差 d，因此推導會留下含有 `dbr` 的額外等比和。",
+        "平移后系数相差 d，因此推导会留下含有 `dbr` 的额外等比和。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Look for the formula that has both a boundary term and the extra `dbr` correction.",
+        "找出同時含有邊界項與額外 `dbr` 修正項的公式。",
+        "找出同时含有边界项与额外 `dbr` 修正项的公式。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Subtracting gives `(1-r)S_n=ab+db(r+...+r^{n-1})-(a+(n-1)d)br^n`.",
+        "相減得到 `(1-r)S_n=ab+db(r+...+r^{n-1})-(a+(n-1)d)br^n`。",
+        "相减得到 `(1-r)S_n=ab+db(r+...+r^{n-1})-(a+(n-1)d)br^n`。"
+      ),
+      text(
+        "The middle part is a geometric sum, which contributes the `dbr(1-r^n)/(1-r)^2` correction after division by `1-r`.",
+        "中間部分是等比和；除以 `1-r` 後，它貢獻 `dbr(1-r^n)/(1-r)^2` 這個修正項。",
+        "中间部分是等比和；除以 `1-r` 后，它贡献 `dbr(1-r^n)/(1-r)^2` 这个修正项。"
+      ),
+      text(
+        "After collecting boundary terms, the source formula is the one with both `[ab-(a+nd)br^n]/(1-r)` and the `dbr` correction.",
+        "整理邊界項後，來源公式正是同時含有 `[ab-(a+nd)br^n]/(1-r)` 與 `dbr` 修正項的選項。",
+        "整理边界项后，来源公式正是同时含有 `[ab-(a+nd)br^n]/(1-r)` 与 `dbr` 修正项的选项。"
+      ),
+    ],
+    skillTags: ["sequences", "arithmetic-geometric-series", "finite-sums"],
+  },
 };
 
 export function getProblemById(problemId: string) {

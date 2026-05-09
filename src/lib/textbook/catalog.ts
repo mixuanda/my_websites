@@ -1231,6 +1231,33 @@ const math1025BinomialUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1025SequenceUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "sequences",
+    chapterNumber: "5",
+    course: "math1025",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Read sequences as functions on positive integers, compare explicit and recursive definitions, and derive arithmetic and geometric sum formulas.",
+      "把數列讀成定義在正整數上的函數，比較顯式與遞推定義，並推導等差與等比求和公式。",
+      "把数列读成定义在正整数上的函数，比较显式与递推定义，并推导等差与等比求和公式。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: ["math1025-sequence-recursion-lab"],
+    order: 6,
+    prerequisites: ["math1025.binomial-theorem.binomial-coefficients-and-expansions"],
+    slug: "sequences-and-recursion",
+    sourceRefs: [{ file: "reference/MATH1025/MATH1025_slides_ch5.pdf" }],
+    title: text(
+      "5.1 Sequences, recursion, and series",
+      "5.1 數列、遞推與級數",
+      "5.1 数列、递推与级数"
+    ),
+    unitId: "math1025.sequences.sequences-and-recursion",
+    unitNumber: "5.1",
+  },
+];
+
 const math1030SystemsUnits: TextbookUnitMeta[] = [
   {
     chapterId: "systems",
@@ -2873,6 +2900,18 @@ const math1025: TextbookCourseMeta = {
       ),
       title: text("Binomial theorem", "二項式定理", "二项式定理"),
       units: math1025BinomialUnits,
+    },
+    {
+      course: "math1025",
+      id: "sequences",
+      number: "5",
+      summary: text(
+        "Sequences as functions, recursive construction, arithmetic and geometric progressions, finite sums, and first applied recurrences.",
+        "數列作為函數、遞推構造、等差與等比數列、有限和，以及初步應用遞推。",
+        "数列作为函数、递推构造、等差与等比数列、有限和，以及初步应用递推。"
+      ),
+      title: text("Sequences", "數列", "数列"),
+      units: math1025SequenceUnits,
     },
   ],
   description: text(

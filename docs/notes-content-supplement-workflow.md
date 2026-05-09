@@ -300,6 +300,39 @@ Use this shape for future entries:
 - Remaining gaps: Math1025 chapters `5` through `11` remain source-backed
   backlog, and no `CSCI2120` source tree exists in the repository.
 
+### 2026-05-07: Math1025 sequences, recursion, and series
+
+- Gap selected: Math1025 chapter 5 was the next contiguous source-backed
+  backlog item after the public chapter-0-to-4 baseline.
+- Reference basis: `reference/MATH1025/MATH1025_slides_ch5.pdf`, with
+  extracted review text in `docs/extracted/math1025/MATH1025_slides_ch5.txt`.
+- Content files changed: added EN / zh-HK / zh-CN public note files under
+  `content/textbook/math1025/sequences/sequences-and-recursion/`; registered
+  the new `5.1` chapter / unit in `src/lib/textbook/catalog.ts`; added
+  checkpoint problems in `src/lib/textbook/problem-bank.ts`.
+- Visuals added: none via generated bitmap in this pass; the most useful
+  visual support is a live sequence table tied to recursive and explicit
+  formulas.
+- Interactions added: added `math1025-sequence-recursion-lab`, a localized
+  article-embedded widget comparing arithmetic, geometric, and affine
+  recursive sequences with terms, closed forms, and partial-sum / balance
+  values; added a static export snapshot in `src/lib/textbook/interactive-snapshots.ts`.
+- Exercises added: the page includes paired quick checks / reveal solutions,
+  end-of-section exercises, guided solutions, and five source-backed
+  checkpoint problems covering the even-factor product, recursive computation,
+  the recursion theorem, Fibonacci / Binet verification, and the
+  arithmetic-geometric sum formula.
+- Coverage refinement: the final integration pass added the derivative-based
+  sine sequence, the closed form for `a_{n+1}=2a_n+1`, and the source chapter's
+  Fibonacci / Binet proof exercise and arithmetic-geometric finite-sum exercise
+  so `MATH1025_slides_ch5.pdf` is not limited to the easier arithmetic /
+  geometric sequence material.
+- Verification target: run Contentlayer, lint, build, local note/export route
+  smoke, and browser QA before committing and deploying.
+- Remaining gaps: Math1025 chapters `6` through `11` remain source-backed
+  backlog; homework solution PDFs and the midterm pair remain secondary
+  exercise-design support after the baseline chapter notes exist.
+
 ### 2026-04-25: MATH1030 proof-language and REF/RREF appendix gap pass
 
 - Gap selected: `reference/MATH1030` still had optional proof-language and

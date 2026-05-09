@@ -67,8 +67,8 @@ small public foundations baseline, but the course is still far from complete.
 
 | Course | Chapter family | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
-| `math1025` | Foundations and early methods (`ch0` to `ch4`) | Authored through `4.1` | Usable | Five three-language units are live: notation, trigonometry, induction, inequalities / absolute value, and binomial coefficients / expansions. |
-| `math1025` | Methods spine (`ch5` to `ch8`) | Unauthored | Usable | Chapter slides cover sequences, complex numbers, integers / rational numbers, and polynomials. |
+| `math1025` | Foundations and early methods (`ch0` to `ch5`) | Authored through `5.1` | Usable | Six three-language units are live: notation, trigonometry, induction, inequalities / absolute value, binomial coefficients / expansions, and sequences / recursion / series. |
+| `math1025` | Methods spine (`ch6` to `ch8`) | Unauthored | Usable | Chapter slides cover complex numbers, integers / rational numbers, and polynomials. |
 | `math1025` | Vectors and geometry (`ch9` to `ch11`) | Unauthored | Usable | Chapter slides cover vectors in `R^n`, straight lines / planes / curves, and conic sections. |
 | `math1025` | Homework and assessment support | Unauthored | Secondary support | Keep homework-solution PDFs and the MATH1025 midterm pair for later exercise design after baseline notes exist. |
 | `math1025` | MATH1028 overlap material | Unauthored | Overlap | Treat the MATH1028 midterm pair as adjacent-course overlap, not as primary Math1025 conceptual source. |

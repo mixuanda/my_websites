@@ -166,5 +166,12 @@ that later operations use current rows, and reverse the chain to obtain
 `H=G^{-1}`. Existing quick-check and reveal-solution blocks keep the page
 article-first and export-friendly.
 
+The Math1025 `5.1` sequences pass adds `math1025-sequence-recursion-lab`
+because the source chapter explicitly compares recursive rules, explicit
+general terms, arithmetic / geometric sums, and a mortgage recurrence. The
+widget is justified because learners need to see how changing the number of
+displayed terms affects term values, partial sums, and loan balances while
+keeping the recursive and explicit descriptions visible.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

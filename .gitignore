@@ -20,9 +20,24 @@
 # production
 /build
 
+# local/reference source archives are intentionally kept out of website commits
+/reference/**
+
 # misc
 .DS_Store
 *.pem
+*:Zone.Identifier
+~$*
+
+# LaTeX build intermediates
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.xdv
+*.synctex.gz
 
 # debug
 npm-debug.log*

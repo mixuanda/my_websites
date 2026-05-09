@@ -68,6 +68,10 @@ then serializes that structure to TXT or PDF.
   content for `en/math1025/binomial-theorem/binomial-coefficients-and-expansions`
   and a 200 `application/pdf` response for
   `zh-cn/math1025/proof-and-inequalities/mathematical-induction/pdf`.
+- The Math1025 `5.1` sequence unit adds one interactive widget. TXT / PDF
+  export should preserve it through the `math1025-sequence-recursion-lab`
+  static snapshot: representative arithmetic sequence, geometric sequence,
+  mortgage recurrence, summary, steps, and static diagram note.
 
 ## Current blockers
 

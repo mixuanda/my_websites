@@ -3617,6 +3617,193 @@ function MonoidGroupLawChecker({ locale }: { locale: Locale }) {
   );
 }
 
+function Math1025SequenceRecursionLab({ locale }: { locale: Locale }) {
+  const cases = [
+    {
+      id: "arithmetic",
+      label: text("Arithmetic", "等差", "等差"),
+      recursive: text(
+        "`a_1=5.5`, `a_{n+1}=a_n+1.5`",
+        "`a_1=5.5`, `a_{n+1}=a_n+1.5`",
+        "`a_1=5.5`, `a_{n+1}=a_n+1.5`"
+      ),
+      explicit: text(
+        "`a_n=5.5+1.5(n-1)`",
+        "`a_n=5.5+1.5(n-1)`",
+        "`a_n=5.5+1.5(n-1)`"
+      ),
+      focus: text(
+        "Successive differences stay constant. The sum pairs the first and last terms.",
+        "相鄰項差保持不變；求和時可把首項與尾項配對。",
+        "相邻项差保持不变；求和时可把首项与尾项配对。"
+      ),
+      term: (n: number) => 5.5 + 1.5 * (n - 1),
+      sum: (n: number) => (n / 2) * (2 * 5.5 + (n - 1) * 1.5),
+      sumLabel: text("Partial sum `s_n`", "部分和 `s_n`", "部分和 `s_n`"),
+    },
+    {
+      id: "geometric",
+      label: text("Geometric", "等比", "等比"),
+      recursive: text(
+        "`b_1=3`, `b_{n+1}=2b_n`",
+        "`b_1=3`, `b_{n+1}=2b_n`",
+        "`b_1=3`, `b_{n+1}=2b_n`"
+      ),
+      explicit: text(
+        "`b_n=3\\cdot 2^{n-1}`",
+        "`b_n=3\\cdot 2^{n-1}`",
+        "`b_n=3\\cdot 2^{n-1}`"
+      ),
+      focus: text(
+        "Successive ratios stay constant. The finite sum comes from subtracting `r s_n` from `s_n`.",
+        "相鄰項比例保持不變；有限和公式來自把 `r s_n` 從 `s_n` 中相減。",
+        "相邻项比例保持不变；有限和公式来自把 `r s_n` 从 `s_n` 中相减。"
+      ),
+      term: (n: number) => 3 * 2 ** (n - 1),
+      sum: (n: number) => 3 * (2 ** n - 1),
+      sumLabel: text("Partial sum `s_n`", "部分和 `s_n`", "部分和 `s_n`"),
+    },
+    {
+      id: "mortgage",
+      label: text("Affine recurrence", "仿射遞推", "仿射递推"),
+      recursive: text(
+        "`L_0=1000`, `L_n=1.01L_{n-1}-88.85`",
+        "`L_0=1000`, `L_n=1.01L_{n-1}-88.85`",
+        "`L_0=1000`, `L_n=1.01L_{n-1}-88.85`"
+      ),
+      explicit: text(
+        "`L_n=1000(1.01)^n-88.85((1.01)^n-1)/0.01`",
+        "`L_n=1000(1.01)^n-88.85((1.01)^n-1)/0.01`",
+        "`L_n=1000(1.01)^n-88.85((1.01)^n-1)/0.01`"
+      ),
+      focus: text(
+        "Each month multiplies the old balance by an interest factor and then subtracts the payment.",
+        "每月先把舊欠款乘以利息因子，再扣除供款。",
+        "每月先把旧欠款乘以利息因子，再扣除还款。"
+      ),
+      term: (n: number) => 1000 * 1.01 ** n - (88.85 * (1.01 ** n - 1)) / 0.01,
+      sum: (n: number) => 1000 * 1.01 ** n - (88.85 * (1.01 ** n - 1)) / 0.01,
+      sumLabel: text("Balance after month `n`", "`n` 月後欠款", "`n` 月后欠款"),
+    },
+  ] as const;
+
+  const [selected, setSelected] = useState<(typeof cases)[number]["id"]>("arithmetic");
+  const [steps, setSteps] = useState(6);
+  const current = cases.find((item) => item.id === selected) ?? cases[0];
+  const safeSteps = Math.min(12, Math.max(1, Number.isFinite(steps) ? Math.round(steps) : 6));
+  const termLabel = selected === "mortgage" ? "L_n" : selected === "geometric" ? "b_n" : "a_n";
+
+  const rows = Array.from({ length: safeSteps }, (_, index) => {
+    const n = selected === "mortgage" ? index : index + 1;
+    return {
+      n,
+      term: current.term(n),
+      sum: current.sum(n),
+    };
+  });
+
+  return (
+    <InteractiveShell icon={<StepForward className="h-5 w-5" />} locale={locale} widgetId="math1025-sequence-recursion-lab">
+      <div className="flex flex-wrap gap-2">
+        {cases.map((item) => (
+          <Button
+            key={item.id}
+            onClick={() => setSelected(item.id)}
+            size="sm"
+            type="button"
+            variant={selected === item.id ? "default" : "outline"}
+          >
+            {getLocalizedText(item.label, locale)}
+          </Button>
+        ))}
+      </div>
+
+      <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_220px]">
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <div className="grid gap-3 md:grid-cols-2">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                {getLocalizedText(interactiveLabels.relation, locale)}
+              </p>
+              <p className="mt-2 text-sm">
+                <TextbookInlineRichText text={getLocalizedText(current.recursive, locale)} />
+              </p>
+            </div>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                {getLocalizedText(interactiveLabels.result, locale)}
+              </p>
+              <p className="mt-2 text-sm">
+                <TextbookInlineRichText text={getLocalizedText(current.explicit, locale)} />
+              </p>
+            </div>
+          </div>
+          <p className="mt-4 text-sm leading-7 text-muted-foreground">
+            {getLocalizedText(current.focus, locale)}
+          </p>
+        </GlassPanel>
+
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <label className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground" htmlFor="math1025-sequence-steps">
+            {getLocalizedText(
+              text("Displayed rows", "顯示列數", "显示行数"),
+              locale
+            )}
+          </label>
+          <Input
+            id="math1025-sequence-steps"
+            className="mt-2"
+            max={12}
+            min={1}
+            onChange={(event) => setSteps(Number(event.target.value))}
+            type="number"
+            value={safeSteps}
+          />
+          <p className="mt-2 text-xs text-muted-foreground">
+            {getLocalizedText(
+              text(
+                "Show between 1 and 12 displayed terms or months.",
+                "顯示 1 至 12 個項或月份。",
+                "显示 1 至 12 个项或月份。"
+              ),
+              locale
+            )}
+          </p>
+        </GlassPanel>
+      </div>
+
+      <div className="mt-4 overflow-x-auto">
+        <table className="w-full border-collapse text-sm">
+          <thead>
+            <tr className="text-left text-muted-foreground">
+              <th className="border-b border-border/60 px-3 py-2">n</th>
+              <th className="border-b border-border/60 px-3 py-2">
+                {termLabel}
+              </th>
+              <th className="border-b border-border/60 px-3 py-2">
+                <TextbookInlineRichText text={getLocalizedText(current.sumLabel, locale)} />
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row) => (
+              <tr key={`${selected}-${row.n}`}>
+                <td className="border-b border-border/60 px-3 py-2 font-mono">{row.n}</td>
+                <td className="border-b border-border/60 px-3 py-2 font-mono">
+                  {row.term.toFixed(selected === "mortgage" ? 2 : 1)}
+                </td>
+                <td className="border-b border-border/60 px-3 py-2 font-mono">
+                  {row.sum.toFixed(selected === "mortgage" ? 2 : 1)}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </InteractiveShell>
+  );
+}
+
 const interactiveComponents = {
   "adt-stack-queue-stepper": AdtStackQueueStepper,
   "cantor-diagonal-lab": CantorDiagonalLab,
@@ -3633,6 +3820,7 @@ const interactiveComponents = {
   "integer-equivalence-explorer": IntegerEquivalenceExplorer,
   "matrix-reading-trainer": MatrixReadingTrainer,
   "matrix-multiplication-visualizer": MatrixMultiplicationVisualizer,
+  "math1025-sequence-recursion-lab": Math1025SequenceRecursionLab,
   "monoid-group-law-checker": MonoidGroupLawChecker,
   "pointer-state-tracer": PointerStateTracer,
   "quantifier-negation-stepper": QuantifierNegationStepper,

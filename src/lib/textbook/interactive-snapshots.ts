@@ -1010,6 +1010,54 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "检查 monoid 与 group 公理"
     ),
   },
+  "math1025-sequence-recursion-lab": {
+    sampleStates: [
+      {
+        label: text("Arithmetic sequence", "等差數列", "等差数列"),
+        value: text(
+          "`a_1=5.5` and `a_{n+1}=a_n+1.5` produce `a_n=5.5+1.5(n-1)`; the partial sum pairs first and last terms.",
+          "`a_1=5.5` 與 `a_{n+1}=a_n+1.5` 產生 `a_n=5.5+1.5(n-1)`；部分和可把首項與尾項配對。",
+          "`a_1=5.5` 与 `a_{n+1}=a_n+1.5` 产生 `a_n=5.5+1.5(n-1)`；部分和可把首项与尾项配对。"
+        ),
+      },
+      {
+        label: text("Geometric sequence", "等比數列", "等比数列"),
+        value: text(
+          "`b_1=3` and `b_{n+1}=2b_n` produce `b_n=3\\cdot2^{n-1}`; the finite sum comes from subtracting `2s_n` from `s_n`.",
+          "`b_1=3` 與 `b_{n+1}=2b_n` 產生 `b_n=3\\cdot2^{n-1}`；有限和來自把 `2s_n` 從 `s_n` 中相減。",
+          "`b_1=3` 与 `b_{n+1}=2b_n` 产生 `b_n=3\\cdot2^{n-1}`；有限和来自把 `2s_n` 从 `s_n` 中相减。"
+        ),
+      },
+      {
+        label: text("Mortgage recurrence", "按揭遞推", "按揭递推"),
+        value: text(
+          "`L_n=1.01L_{n-1}-88.85` shows the same recurrence idea used in the chapter source: multiply by an interest factor, then subtract the payment.",
+          "`L_n=1.01L_{n-1}-88.85` 展示章節來源中的同一遞推思想：先乘以利息因子，再扣除供款。",
+          "`L_n=1.01L_{n-1}-88.85` 展示章节来源中的同一递推思想：先乘以利息因子，再扣除还款。"
+        ),
+      },
+    ],
+    staticDiagramNote: text(
+      "Export as a static table comparing recursive rules, explicit rules, first terms, partial sums, and the affine loan-balance recurrence.",
+      "匯出時保留靜態表格，比較遞推規則、顯式公式、前幾項、部分和，以及仿射貸款欠款遞推。",
+      "导出时保留静态表格，比较递推规则、显式公式、前几项、部分和，以及仿射贷款欠款递推。"
+    ),
+    summary: text(
+      "The lab lets readers switch among arithmetic, geometric, and affine recursive sequences to compare terms, closed forms, and finite sums.",
+      "這個工具讓讀者切換等差、等比與仿射遞推數列，比較項、顯式公式與有限和。",
+      "这个工具让读者切换等差、等比与仿射递推数列，比较项、显式公式与有限和。"
+    ),
+    steps: [
+      text("Choose arithmetic, geometric, or affine recurrence.", "選擇等差、等比或仿射遞推。", "选择等差、等比或仿射递推。"),
+      text("Compare the recursive rule with the explicit formula.", "比較遞推規則與顯式公式。", "比较递推规则与显式公式。"),
+      text("Change the displayed term count and read the term and sum table.", "改變顯示項數，並讀取項與和的表格。", "改变显示项数，并读取项与和的表格。"),
+    ],
+    title: text(
+      "Compare recursive and explicit sequence descriptions",
+      "比較遞推與顯式數列描述",
+      "比较递推与显式数列描述"
+    ),
+  },
   "truth-table-builder": {
     sampleStates: [
       {
