@@ -350,6 +350,510 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["quantifiers", "negation", "logic-equivalence"],
   },
+  "checkpoint.math1090.logic.proposition-vs-open-sentence": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.logic.proposition-vs-open-sentence",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "logic",
+    unitId: "math1090.logic.propositional-logic",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Which sentence is not a proposition as written?",
+      "下列哪一句按原樣書寫時不是命題？",
+      "下列哪一句按原样书写时不是命题？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("`2+2=4`", "`2+2=4`", "`2+2=4`"),
+      },
+      {
+        id: "b",
+        text: text(
+          "Every even integer is divisible by `2`.",
+          "每個偶整數都可被 `2` 整除。",
+          "每个偶整数都可被 `2` 整除。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "`x+1=3`, with `x` not specified.",
+          "`x+1=3`，但 `x` 未被指定。",
+          "`x+1=3`，但 `x` 未被指定。"
+        ),
+      },
+      {
+        id: "d",
+        text: text("`7` is prime.", "`7` 是質數。", "`7` 是质数。"),
+      },
+    ],
+    correctAnswer: {
+      choiceId: "c",
+    },
+    hints: [
+      text(
+        "A proposition already has a definite truth value. A free variable keeps the sentence open.",
+        "命題本身已經有確定真假值；自由變數會令句子仍然未封閉。",
+        "命题本身已经有确定真假值；自由变量会令句子仍然未封闭。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Before choosing, ask whether the sentence can be marked true or false without adding extra data.",
+        "選擇前先問：不加額外資料時，這句話能否判定真假？",
+        "选择前先问：不加额外资料时，这句话能否判定真假？"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "`2+2=4`, the even-integer statement, and `7 is prime` are all closed mathematical claims.",
+        "`2+2=4`、偶整數敘述，以及 `7` 是質數，都是封閉的數學斷言。",
+        "`2+2=4`、偶整数叙述，以及 `7` 是质数，都是封闭的数学断言。"
+      ),
+      text(
+        "The sentence `x+1=3` still depends on the value of `x`.",
+        "句子 `x+1=3` 的真假仍取決於 `x` 的值。",
+        "句子 `x+1=3` 的真假仍取决于 `x` 的值。"
+      ),
+      text(
+        "Because `x` is not fixed or quantified, the sentence is open and is not yet a proposition.",
+        "因為 `x` 未被指定或量化，這句仍是開放句，暫時不是命題。",
+        "因为 `x` 未被指定或量化，这句仍是开放句，暂时不是命题。"
+      ),
+    ],
+    skillTags: ["propositions", "truth-values", "free-variables"],
+  },
+  "checkpoint.math1090.logic.demorgan-truth-table-row": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.logic.demorgan-truth-table-row",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "logic",
+    unitId: "math1090.logic.truth-tables-equivalence",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "In the truth table for `not(P or Q)` and `(not P) and (not Q)`, in which row are both formulas true?",
+      "在 `not(P or Q)` 與 `(not P) and (not Q)` 的真值表中，哪一行令兩個公式同時為真？",
+      "在 `not(P or Q)` 与 `(not P) and (not Q)` 的真值表中，哪一行令两个公式同时为真？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("`P=T, Q=T`", "`P=T, Q=T`", "`P=T, Q=T`"),
+      },
+      {
+        id: "b",
+        text: text("`P=T, Q=F`", "`P=T, Q=F`", "`P=T, Q=F`"),
+      },
+      {
+        id: "c",
+        text: text("`P=F, Q=T`", "`P=F, Q=T`", "`P=F, Q=T`"),
+      },
+      {
+        id: "d",
+        text: text("`P=F, Q=F`", "`P=F, Q=F`", "`P=F, Q=F`"),
+      },
+    ],
+    correctAnswer: {
+      choiceId: "d",
+    },
+    hints: [
+      text(
+        "`not(P or Q)` can be true only when the disjunction `P or Q` is false.",
+        "`not(P or Q)` 只有在 `P or Q` 為假時才會為真。",
+        "`not(P or Q)` 只有在 `P or Q` 为假时才会为真。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Check the row where neither atomic statement is true.",
+        "先檢查兩個原子命題都不為真的那一行。",
+        "先检查两个原子命题都不为真的那一行。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "If either `P` or `Q` is true, then `P or Q` is true and `not(P or Q)` is false.",
+        "只要 `P` 或 `Q` 其中一個為真，`P or Q` 就為真，因此 `not(P or Q)` 為假。",
+        "只要 `P` 或 `Q` 其中一个为真，`P or Q` 就为真，因此 `not(P or Q)` 为假。"
+      ),
+      text(
+        "When `P=F` and `Q=F`, both `not P` and `not Q` are true.",
+        "當 `P=F` 且 `Q=F` 時，`not P` 與 `not Q` 都為真。",
+        "当 `P=F` 且 `Q=F` 时，`not P` 与 `not Q` 都为真。"
+      ),
+      text(
+        "So the last row makes both De Morgan expressions true, and it is the row that confirms the true entry in the final columns.",
+        "所以最後一行令兩個德摩根表達式同時為真，也是最後兩欄同為真的那一行。",
+        "所以最后一行令两个德摩根表达式同时为真，也是最后两列同为真的那一行。"
+      ),
+    ],
+    skillTags: ["truth-tables", "de-morgan", "logical-equivalence"],
+  },
+  "checkpoint.math1090.logic.negated-existential-conjunction": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.logic.negated-existential-conjunction",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "logic",
+    unitId: "math1090.logic.quantifiers-negation",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Which formula is the negation of `there exists x such that P(x) and Q(x)`?",
+      "哪一個公式是「存在 x 使得 P(x) 且 Q(x)」的否定？",
+      "哪一个公式是“存在 x 使得 P(x) 且 Q(x)”的否定？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`there exists x such that (not P(x)) and (not Q(x))`",
+          "`存在 x 使得 (not P(x)) and (not Q(x))`",
+          "`存在 x 使得 (not P(x)) and (not Q(x))`"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "`for all x, (not P(x)) or (not Q(x))`",
+          "`對所有 x，(not P(x)) or (not Q(x))`",
+          "`对所有 x，(not P(x)) or (not Q(x))`"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "`for all x, P(x) and Q(x)`",
+          "`對所有 x，P(x) and Q(x)`",
+          "`对所有 x，P(x) and Q(x)`"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "`there exists x such that P(x) or Q(x)`",
+          "`存在 x 使得 P(x) or Q(x)`",
+          "`存在 x 使得 P(x) or Q(x)`"
+        ),
+      },
+    ],
+    correctAnswer: {
+      choiceId: "b",
+    },
+    hints: [
+      text(
+        "Negate the existential quantifier first, then apply De Morgan's law inside the predicate.",
+        "先否定存在量詞，再在述詞內套用德摩根律。",
+        "先否定存在量词，再在谓词内套用德摩根律。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "`not exists` becomes `for all not`, and `not(P and Q)` becomes `(not P) or (not Q)`.",
+        "`not exists` 會變成 `for all not`，而 `not(P and Q)` 會變成 `(not P) or (not Q)`。",
+        "`not exists` 会变成 `for all not`，而 `not(P and Q)` 会变成 `(not P) or (not Q)`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Start with `not exists x (P(x) and Q(x))`.",
+        "先寫成 `not exists x (P(x) and Q(x))`。",
+        "先写成 `not exists x (P(x) and Q(x))`。"
+      ),
+      text(
+        "Changing the negated existential quantifier gives `for all x, not(P(x) and Q(x))`.",
+        "否定存在量詞後得到 `for all x, not(P(x) and Q(x))`。",
+        "否定存在量词后得到 `for all x, not(P(x) and Q(x))`。"
+      ),
+      text(
+        "De Morgan's law changes the inside to `(not P(x)) or (not Q(x))`.",
+        "德摩根律把內部改寫成 `(not P(x)) or (not Q(x))`。",
+        "德摩根律把内部改写成 `(not P(x)) or (not Q(x))`。"
+      ),
+    ],
+    skillTags: ["quantifiers", "negation", "de-morgan"],
+  },
+  "checkpoint.math1090.numbers.peano-zero-not-successor": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.numbers.peano-zero-not-successor",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "numbers",
+    unitId: "math1090.numbers.natural-numbers-peano",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Which pathology is ruled out by the Peano axiom saying that `0` is not a successor?",
+      "Peano 公理中「`0` 不是任何元素的後繼」排除了哪一種病態結構？",
+      "Peano 公理中“`0` 不是任何元素的后继”排除了哪一种病态结构？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "A successor map where two different elements have the same successor.",
+          "兩個不同元素有同一個後繼的後繼映射。",
+          "两个不同元素有同一个后继的后继映射。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "A finite cycle such as `S(2)=0`.",
+          "像 `S(2)=0` 這樣的有限循環。",
+          "像 `S(2)=0` 这样的有限循环。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "A disconnected extra chain not reached from `0`.",
+          "一條不能從 `0` 到達的額外分支。",
+          "一条不能从 `0` 到达的额外分支。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "The use of set-theoretic representatives for numbers.",
+          "用集合論代表元表示自然數。",
+          "用集合论代表元表示自然数。"
+        ),
+      },
+    ],
+    correctAnswer: {
+      choiceId: "b",
+    },
+    hints: [
+      text(
+        "If some element maps to `0`, the counting chain has looped back to its supposed start.",
+        "若某元素映到 `0`，計數鏈就回到了原本應是起點的位置。",
+        "若某元素映到 `0`，计数链就回到了原本应是起点的位置。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Compare the cycle `0 -> 1 -> 2 -> 0` with the one-way chain expected of natural numbers.",
+        "比較循環 `0 -> 1 -> 2 -> 0` 與自然數應有的單向鏈。",
+        "比较循环 `0 -> 1 -> 2 -> 0` 与自然数应有的单向链。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The axiom does not primarily say that successors are distinct; injectivity handles that.",
+        "這條公理主要不是說後繼彼此不同；那是單射性處理的事情。",
+        "这条公理主要不是说后继彼此不同；那是单射性处理的事情。"
+      ),
+      text(
+        "It says that the starting element `0` is not reached by applying the successor map to some earlier element.",
+        "它說的是起點 `0` 不能由某個更早元素套用後繼映射而得到。",
+        "它说的是起点 `0` 不能由某个更早元素套用后继映射而得到。"
+      ),
+      text(
+        "A cycle like `S(2)=0` violates exactly that condition.",
+        "像 `S(2)=0` 的循環正正違反了這個條件。",
+        "像 `S(2)=0` 的循环正是违反了这个条件。"
+      ),
+    ],
+    skillTags: ["peano-axioms", "successor", "natural-numbers"],
+  },
+  "checkpoint.math1090.numbers.induction-zero-plus-n": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.numbers.induction-zero-plus-n",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "numbers",
+    unitId: "math1090.numbers.induction-and-recursive-arithmetic",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "To prove `0+n=n` by induction using `a+0=a` and `a+S(b)=S(a+b)`, which induction step is correct?",
+      "要用 `a+0=a` 與 `a+S(b)=S(a+b)` 以歸納法證明 `0+n=n`，哪一個歸納步驟正確？",
+      "要用 `a+0=a` 与 `a+S(b)=S(a+b)` 以归纳法证明 `0+n=n`，哪一个归纳步骤正确？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "Assume `0+n=n`; then `0+S(n)=S(0+n)=S(n)`.",
+          "假設 `0+n=n`；則 `0+S(n)=S(0+n)=S(n)`。",
+          "假设 `0+n=n`；则 `0+S(n)=S(0+n)=S(n)`。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "Assume `0+n=n`; then `S(0+n)=0+n`.",
+          "假設 `0+n=n`；則 `S(0+n)=0+n`。",
+          "假设 `0+n=n`；则 `S(0+n)=0+n`。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "Assume `0+n=n`; then `0+S(n)=0+n`.",
+          "假設 `0+n=n`；則 `0+S(n)=0+n`。",
+          "假设 `0+n=n`；则 `0+S(n)=0+n`。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "No induction is needed because `0+n=n` is one of the recursive definitions.",
+          "不需要歸納，因為 `0+n=n` 是遞迴定義之一。",
+          "不需要归纳，因为 `0+n=n` 是递归定义之一。"
+        ),
+      },
+    ],
+    correctAnswer: {
+      choiceId: "a",
+    },
+    hints: [
+      text(
+        "The recursive definition controls the second input of addition.",
+        "加法的遞迴定義控制的是第二個輸入。",
+        "加法的递归定义控制的是第二个输入。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Apply `a+S(b)=S(a+b)` with `a=0` and `b=n`, then use the induction hypothesis.",
+        "用 `a=0`、`b=n` 套入 `a+S(b)=S(a+b)`，再使用歸納假設。",
+        "用 `a=0`、`b=n` 套入 `a+S(b)=S(a+b)`，再使用归纳假设。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The base case is `0+0=0`, which follows from `a+0=a`.",
+        "基礎步是 `0+0=0`，由 `a+0=a` 得到。",
+        "基础步是 `0+0=0`，由 `a+0=a` 得到。"
+      ),
+      text(
+        "For the step, assume the induction hypothesis `0+n=n`.",
+        "做歸納步時，假設歸納假設 `0+n=n`。",
+        "做归纳步时，假设归纳假设 `0+n=n`。"
+      ),
+      text(
+        "The recursive rule gives `0+S(n)=S(0+n)`, and the induction hypothesis turns this into `S(n)`.",
+        "遞迴規則給出 `0+S(n)=S(0+n)`，而歸納假設把它化成 `S(n)`。",
+        "递归规则给出 `0+S(n)=S(0+n)`，而归纳假设把它化成 `S(n)`。"
+      ),
+    ],
+    skillTags: ["induction", "recursive-addition", "peano-arithmetic"],
+  },
+  "checkpoint.math1090.numbers.sqrt2-upper-bound-not-least": {
+    accessTier: "FREE",
+    id: "checkpoint.math1090.numbers.sqrt2-upper-bound-not-least",
+    type: "MCQ",
+    courseId: "math1090",
+    chapterId: "numbers",
+    unitId: "math1090.numbers.gaps-in-q-and-sqrt2",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Let `S={q in Q | q^2<2}`. Why can a positive rational upper-bound candidate `s` with `s^2>2` not be `sup_Q(S)`?",
+      "設 `S={q in Q | q^2<2}`。為甚麼滿足 `s^2>2` 的正有理上界候選 `s` 不可能是 `sup_Q(S)`？",
+      "设 `S={q in Q | q^2<2}`。为什么满足 `s^2>2` 的正有理上界候选 `s` 不可能是 `sup_Q(S)`？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`s` is inside `S`, so it is not an upper bound.",
+          "`s` 在 `S` 裡，所以不是上界。",
+          "`s` 在 `S` 里，所以不是上界。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "One can move slightly left to a smaller rational number that is still an upper bound.",
+          "可以稍微向左移到一個較小的有理數，而且它仍然是上界。",
+          "可以稍微向左移到一个较小的有理数，而且它仍然是上界。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "Every upper bound must belong to `S`.",
+          "每個上界都必須屬於 `S`。",
+          "每个上界都必须属于 `S`。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "`Q` is dense, so every bounded set in `Q` has a rational supremum.",
+          "`Q` 稠密，所以 `Q` 中每個有界集合都有有理數上確界。",
+          "`Q` 稠密，所以 `Q` 中每个有界集合都有有理数上确界。"
+        ),
+      },
+    ],
+    correctAnswer: {
+      choiceId: "b",
+    },
+    hints: [
+      text(
+        "A least upper bound cannot have a smaller upper bound below it.",
+        "最小上界的下方不可以還有另一個更小的上界。",
+        "最小上界的下方不可以还有另一个更小的上界。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "The gap argument splits candidates into `s^2<2`, `s^2=2`, and `s^2>2`.",
+        "缺口論證會把候選值分成 `s^2<2`、`s^2=2`、`s^2>2` 三種情況。",
+        "缺口论证会把候选值分成 `s^2<2`、`s^2=2`、`s^2>2` 三种情况。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "If `s^2>2`, then `s` is on the upper-bound side of the cut.",
+        "若 `s^2>2`，則 `s` 位於這個切割的上界一側。",
+        "若 `s^2>2`，则 `s` 位于这个切割的上界一侧。"
+      ),
+      text(
+        "But the square remains above `2` after a sufficiently small rational move to the left.",
+        "但只要向左移動足夠小的有理距離，平方仍可保持大於 `2`。",
+        "但只要向左移动足够小的有理距离，平方仍可保持大于 `2`。"
+      ),
+      text(
+        "So there is a smaller rational upper bound below `s`, meaning `s` is too large to be the least upper bound.",
+        "因此 `s` 下方仍有較小的有理上界，表示 `s` 太大，不可能是最小上界。",
+        "因此 `s` 下方仍有较小的有理上界，表示 `s` 太大，不可能是最小上界。"
+      ),
+    ],
+    skillTags: ["supremum", "rationals", "sqrt2-gap"],
+  },
   "checkpoint.math1090.integer-equivalence-class": {
     accessTier: "FREE",
     id: "checkpoint.math1090.integer-equivalence-class",
