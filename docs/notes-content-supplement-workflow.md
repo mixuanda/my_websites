@@ -129,6 +129,36 @@ Use this shape for future entries:
 
 ## Current log
 
+### 2026-05-12: Math1025 complex numbers documentation checkpoint
+
+- Gap selected: Math1025 chapter 6 was the next contiguous source-backed
+  chapter-slide pass after `5.1 Sequences, recursion, and series`.
+- Reference basis: `reference/MATH1025/MATH1025_slides_ch6(3).pdf`, with
+  extracted review text in `docs/extracted/math1025/MATH1025_slides_ch63.txt`.
+- Source scope recorded: ordered-pair construction of `C`, complex arithmetic,
+  conjugate and modulus, polar / exponential form, De Moivre's theorem,
+  triangle inequality, polynomial consequences, roots of unity, complex-plane
+  geometry, loci, and optional transformation material.
+- Content files changed: added EN / zh-HK / zh-CN `6.1 Complex numbers,
+  polar form, and geometry` notes and registered the unit under the existing
+  Notes catalog.
+- Exercises added: paired quick checks / reveal solutions, guided exercises,
+  and five problem-bank checkpoints covering complex division, conjugate /
+  modulus identities, argument, polar multiplication, and De Moivre's theorem.
+- Verification: `git diff --check`, `npm run contentlayer`, `npm run lint`,
+  `npx tsc --noEmit --pretty false`, and `npm run build` passed locally.
+  Local production-server checks returned 200 for EN / zh-HK / zh-CN note
+  routes, the Math1025 course overviews, representative TXT exports, and
+  representative PDF exports. Headless browser screenshots covered EN light
+  desktop and zh-HK dark mobile rendering; the rendered HTML contained the
+  expected complex-number, roots-of-unity, and locus-equation markers. The
+  local grading preview API returned 200 for all five new checkpoint problems.
+- Deployment: pending until this checkpoint commit is pushed and the
+  `www.evanalysis.top` production deployment is verified.
+- Remaining gaps: Math1025 `ch7` and `ch8` remain pending method chapters;
+  `ch9` through `ch11` remain pending vectors / geometry chapters; homework
+  solution PDFs and assessment pairs remain secondary exercise-design support.
+
 ### 2026-05-12: MATH1090 early logic and number checkpoint sweep
 
 - Gap selected: MATH1090 core route-level content was already authored, but
@@ -369,7 +399,7 @@ Use this shape for future entries:
   geometric sequence material.
 - Verification target: run Contentlayer, lint, build, local note/export route
   smoke, and browser QA before committing and deploying.
-- Remaining gaps: Math1025 chapters `6` through `11` remain source-backed
+- Remaining gaps: Math1025 chapters `7` through `11` remain source-backed
   backlog; homework solution PDFs and the midterm pair remain secondary
   exercise-design support after the baseline chapter notes exist.
 

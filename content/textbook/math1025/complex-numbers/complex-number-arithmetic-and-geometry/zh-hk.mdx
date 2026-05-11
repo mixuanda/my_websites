@@ -1,0 +1,1031 @@
+---
+title: "6.1 複數、極形式與幾何"
+description: "由有序對構造複數，並系統地研究運算、共軛、極形式、單位根、複平面幾何與變換方法。"
+---
+
+## 為何複數應放在平面上
+
+方程 `x^2+1=0` 在實數中沒有解。引入滿足 `i^2=-1` 的符號 `i`，不只是
+代數上的記號方便；它亦提示我們要把實數線擴展成一個平面。乘以 `-1` 可視
+為在實數線上旋轉 `180^\circ`。既然 `i^2=-1`，乘以 `i` 就應像連續旋轉
+兩次 `90^\circ`；因此 `i\cdot1` 自然對應到平面中的 `(0,1)`。
+
+正式處理時，我們不先假設 `x+iy` 已經有意義，而是先把複數定義為平面上的
+有序對，再定義加法與乘法，使 `i^2=-1` 成為運算規則的一部分。
+
+<Definition title="以有序對定義複數">
+複數集合定義為
+
+$$
+\mathbb C=\{(x,y):x,y\in\mathbb R\}.
+$$
+
+若 `(x_1,y_1),(x_2,y_2)\in\mathbb C`，定義
+
+$$
+(x_1,y_1)+(x_2,y_2)=(x_1+x_2,y_1+y_2),
+$$
+
+以及
+
+$$
+(x_1,y_1)(x_2,y_2)=(x_1x_2-y_1y_2,\;x_1y_2+x_2y_1).
+$$
+
+實數 `x` 視為 `(x,0)`，而 `i` 表示 `(0,1)`。
+</Definition>
+
+這些定義保證 `x+iy` 與有序對表示法一致。因為對實數 `x,y`，
+
+$$
+(x,0)+(0,1)(y,0)=(x,0)+(0,y)=(x,y).
+$$
+
+所以往後我們寫
+
+$$
+z=x+iy
+$$
+
+來表示有序對 `(x,y)`。
+
+<Definition title="實部與虛部">
+若 `z=x+iy`，其中 `x,y\in\mathbb R`，則
+
+$$
+\operatorname{Re}(z)=x,\qquad \operatorname{Im}(z)=y.
+$$
+
+當 `\operatorname{Im}(z)=0` 時，`z` 是實數；當
+`\operatorname{Re}(z)=0` 時，`z` 是純虛數。
+</Definition>
+
+複數相等就是有序對相等。因此
+
+$$
+a+ib=c+id
+\quad\Longleftrightarrow\quad
+a=c\text{ 且 }b=d.
+$$
+
+這一點使我們可以在複數等式中比較實部與虛部。
+
+## 複數運算與域結構
+
+以上運算使 `\mathbb C` 成為一個完整的數系。加法與乘法具交換律與結合律，
+乘法對加法有分配律，`0=0+i0` 是加法單位元，而 `1=1+i0` 是乘法單位元。
+
+<TheoremCard title="複數構成一個域">
+對每個 `z=x+iy\in\mathbb C`，加法逆元為
+
+$$
+-z=(-x)+i(-y).
+$$
+
+若 `z=x+iy\ne0`，則乘法逆元為
+
+$$
+z^{-1}=\frac{x}{x^2+y^2}-i\frac{y}{x^2+y^2}.
+$$
+
+連同交換律、結合律、單位元與分配律，這些性質表示 `\mathbb C` 是一個域。
+</TheoremCard>
+
+乘法逆元公式值得直接檢查。若 `z=x+iy\ne0`，則 `x^2+y^2>0`，並且
+
+$$
+(x+iy)\left(\frac{x}{x^2+y^2}-i\frac{y}{x^2+y^2}\right)
+=\frac{x^2+y^2}{x^2+y^2}
++i\frac{-xy+xy}{x^2+y^2}
+=1.
+$$
+
+因此非零複數都可相除；也因此 `\mathbb C` 沒有零因子：若 `zw=0`，則
+`z=0` 或 `w=0`。
+
+## 減法與除法
+
+若 `z=a+ib`、`w=c+id`，則
+
+$$
+z-w=(a-c)+i(b-d).
+$$
+
+若 `w\ne0`，除法就是乘以 `w` 的乘法逆元：
+
+$$
+\frac{z}{w}
+=\frac{a+ib}{c+id}
+=(a+ib)\left(\frac{c}{c^2+d^2}-i\frac{d}{c^2+d^2}\right).
+$$
+
+展開後得到
+
+$$
+\frac{a+ib}{c+id}
+=\frac{ac+bd}{c^2+d^2}
++i\frac{bc-ad}{c^2+d^2}.
+$$
+
+<WorkedExample title="除法計算">
+把
+
+$$
+\frac{-1+4i}{6-3i}
+$$
+
+寫成 `a+bi`。
+
+因為 `6-3i` 的共軛是 `6+3i`，
+
+$$
+\frac{-1+4i}{6-3i}
+=(-1+4i)\frac{6+3i}{6^2+(-3)^2}.
+$$
+
+所以
+
+$$
+\frac{-1+4i}{6-3i}
+=\frac{(-1)(6)+4(-3)}{45}
++i\frac{4(6)-(-1)(-3)}{45}
+=-\frac25+\frac{7}{15}i.
+$$
+</WorkedExample>
+
+## Argand 平面
+
+複數 `z=x+iy` 可以表示為座標平面上的點或向量 `(x,y)`。水平座標是實部，
+垂直座標是虛部。這個平面稱為複平面或 Argand 平面；水平軸稱為實軸，
+垂直軸稱為虛軸。
+
+複數加法就是向量加法：
+
+$$
+(x_1+iy_1)+(x_2+iy_2)
+=(x_1+x_2)+i(y_1+y_2).
+$$
+
+相比之下，乘法在直角座標下較難直接看出幾何意義；引入模與幅角後，乘法
+會變成旋轉與縮放。
+
+## 共軛與模
+
+<Definition title="共軛複數與模">
+對 `z=x+iy`，定義
+
+$$
+\overline z=x-iy,\qquad |z|=\sqrt{x^2+y^2}.
+$$
+</Definition>
+
+共軛複數是把點對實軸作反射；模是該點到原點的距離。
+
+基本性質包括
+
+$$
+\overline{\overline z}=z,\qquad
+z=\overline z\Longleftrightarrow z\in\mathbb R,
+$$
+
+以及
+
+$$
+\operatorname{Re}(z)=\frac12(z+\overline z),
+\qquad
+\operatorname{Im}(z)=\frac{1}{2i}(z-\overline z).
+$$
+
+共軛會保留加減乘除的結構：
+
+$$
+\overline{z_1\pm z_2}=\overline{z_1}\pm\overline{z_2},
+\qquad
+\overline{z_1z_2}=\overline{z_1}\,\overline{z_2},
+\qquad
+\overline{\left(\frac{z_1}{z_2}\right)}
+=\frac{\overline{z_1}}{\overline{z_2}}
+$$
+
+其中 `z_2\ne0`。
+
+模與共軛的核心關係是
+
+$$
+|z|^2=z\overline z.
+$$
+
+因此 `z\overline z` 一定是非負實數。此外，
+
+$$
+|z|=|-z|=|\overline z|,
+\qquad
+|z_1z_2|=|z_1||z_2|,
+\qquad
+\left|\frac{z_1}{z_2}\right|=\frac{|z_1|}{|z_2|}
+$$
+
+其中 `z_2\ne0`。
+
+<WorkedExample title="平行四邊形定律">
+對任意 `z_1,z_2\in\mathbb C`，
+
+$$
+|z_1+z_2|^2+|z_1-z_2|^2=2|z_1|^2+2|z_2|^2.
+$$
+
+用 `|u|^2=u\overline u` 可得
+
+$$
+\begin{aligned}
+|z_1+z_2|^2+|z_1-z_2|^2
+&=(z_1+z_2)(\overline{z_1}+\overline{z_2})
++(z_1-z_2)(\overline{z_1}-\overline{z_2})\\
+&=2z_1\overline{z_1}+2z_2\overline{z_2}\\
+&=2|z_1|^2+2|z_2|^2.
+\end{aligned}
+$$
+</WorkedExample>
+
+## 幅角與極式
+
+設 `z=x+iy\ne0`。`z` 的一個幅角是由正實軸逆時針量到點 `(x,y)` 的角。
+若 `\theta` 是一個幅角，則全部幅角為
+
+$$
+\theta+2k\pi,\qquad k\in\mathbb Z.
+$$
+
+主值幅角是落在區間
+
+$$
+-\pi<\operatorname{Arg}(z)\le\pi
+$$
+
+中的唯一幅角。
+
+若 `r=|z|`，則
+
+$$
+z=r(\cos\theta+i\sin\theta),
+$$
+
+其中 `\theta` 是 `z` 的任一幅角。這稱為 `z` 的極式。
+
+<WorkedExample title="求極式">
+設
+
+$$
+z=-2+2\sqrt3\,i.
+$$
+
+則
+
+$$
+|z|=\sqrt{(-2)^2+(2\sqrt3)^2}=4.
+$$
+
+由
+
+$$
+\cos\theta=-\frac12,\qquad \sin\theta=\frac{\sqrt3}{2},
+$$
+
+可知點在第二象限，所以 `\theta=2\pi/3`。因此
+
+$$
+\operatorname{Arg}(z)=\frac{2\pi}{3},
+\qquad
+\arg(z)=\frac{2\pi}{3}+2k\pi,
+\quad k\in\mathbb Z,
+$$
+
+並且
+
+$$
+z=4\left(\cos\frac{2\pi}{3}+i\sin\frac{2\pi}{3}\right).
+$$
+</WorkedExample>
+
+極式亦能簡潔表示共軛與逆元：
+
+$$
+\overline z=r(\cos(-\theta)+i\sin(-\theta)),
+\qquad
+z^{-1}=\frac1r(\cos(-\theta)+i\sin(-\theta)).
+$$
+
+特別地，若 `|z|=1`，則 `z^{-1}=\overline z`。
+
+## 乘法是旋轉與縮放
+
+設
+
+$$
+z_1=r_1(\cos\theta_1+i\sin\theta_1),
+\qquad
+z_2=r_2(\cos\theta_2+i\sin\theta_2).
+$$
+
+利用三角函數的和角公式，
+
+$$
+z_1z_2
+=r_1r_2\bigl(\cos(\theta_1+\theta_2)
++i\sin(\theta_1+\theta_2)\bigr).
+$$
+
+因此乘法會把模相乘、把幅角相加：
+
+$$
+|z_1z_2|=|z_1||z_2|,
+\qquad
+\arg(z_1z_2)=\arg(z_1)+\arg(z_2)
+$$
+
+但幅角只在相差 `2\pi` 的意義下確定。
+
+除法則把第二個複數的旋轉反向，並把長度相除：
+
+$$
+\frac{z_1}{z_2}
+=\frac{r_1}{r_2}
+\bigl(\cos(\theta_1-\theta_2)+i\sin(\theta_1-\theta_2)\bigr).
+$$
+
+<CommonMistake title="主值幅角不一定可直接相加">
+幅角相加是模 `2\pi` 意義下的說法。一般不能直接寫
+`\operatorname{Arg}(z_1z_2)=\operatorname{Arg}(z_1)+\operatorname{Arg}(z_2)`。
+相加後若不在 `(-\pi,\pi]` 內，必須先調回主值範圍。
+</CommonMistake>
+
+## De Moivre 定理
+
+整數次方由反覆乘法定義。若 `z\ne0`，則 `z^0=1`，且對正整數 `n`，
+`z^{-n}=(z^{-1})^n`。
+
+<TheoremCard title="De Moivre 定理">
+對每個整數 `n`，
+
+$$
+(\cos\theta+i\sin\theta)^n=\cos(n\theta)+i\sin(n\theta).
+$$
+</TheoremCard>
+
+當 `n` 為正整數時，可由極式乘法規則作數學歸納法證明。`n=0` 時顯然成立。
+當 `n` 為負整數時，寫 `n=-m`，使用正整數情形，再用單位模複數的逆元等於
+共軛這一事實。
+
+<WorkedExample title="三倍角公式">
+由 De Moivre 定理，
+
+$$
+\cos(3\theta)+i\sin(3\theta)
+=(\cos\theta+i\sin\theta)^3.
+$$
+
+展開右邊：
+
+$$
+(\cos^3\theta-3\cos\theta\sin^2\theta)
++i(3\cos^2\theta\sin\theta-\sin^3\theta).
+$$
+
+比較實部與虛部，得到
+
+$$
+\cos(3\theta)=4\cos^3\theta-3\cos\theta,
+$$
+
+以及
+
+$$
+\sin(3\theta)=3\sin\theta-4\sin^3\theta.
+$$
+</WorkedExample>
+
+## Euler 公式與指數形式
+
+正弦、餘弦與指數函數的冪級數提示我們如何理解 `e^{i\theta}`：
+
+$$
+e^{i\theta}
+=1+i\theta-\frac{\theta^2}{2!}-i\frac{\theta^3}{3!}
++\frac{\theta^4}{4!}+\cdots
+=\cos\theta+i\sin\theta.
+$$
+
+在本課程的層次，我們用這個動機寫成
+
+$$
+e^{i\theta}=\cos\theta+i\sin\theta.
+$$
+
+非零複數因此可寫成指數形式
+
+$$
+z=re^{i\theta},
+$$
+
+其中 `r=|z|`，而 `\theta` 是 `z` 的一個幅角。
+
+此記法把乘法與 De Moivre 定理寫得更簡潔：
+
+$$
+r_1e^{i\theta_1}\,r_2e^{i\theta_2}
+=r_1r_2e^{i(\theta_1+\theta_2)},
+\qquad
+(e^{i\theta})^n=e^{in\theta}.
+$$
+
+同時，
+
+$$
+\cos\theta=\frac12(e^{i\theta}+e^{-i\theta}),
+\qquad
+\sin\theta=\frac{1}{2i}(e^{i\theta}-e^{-i\theta}).
+$$
+
+代入 `\theta=\pi` 得 Euler 恒等式：
+
+$$
+e^{i\pi}+1=0.
+$$
+
+## 三角不等式
+
+<TheoremCard title="三角不等式">
+對所有 `z_1,z_2\in\mathbb C`，
+
+$$
+|z_1+z_2|\le |z_1|+|z_2|.
+$$
+
+等號成立當且僅當兩個非零向量方向相同；等價地，`z_1=kz_2` 對某個
+`k\ge0` 成立，或 `z_2=kz_1` 對某個 `k\ge0` 成立。
+</TheoremCard>
+
+證明中使用共軛可避免冗長的座標展開：
+
+$$
+\begin{aligned}
+|z_1+z_2|^2
+&=(z_1+z_2)(\overline{z_1}+\overline{z_2})\\
+&=|z_1|^2+2\operatorname{Re}(z_1\overline{z_2})+|z_2|^2\\
+&\le |z_1|^2+2|z_1\overline{z_2}|+|z_2|^2\\
+&=(|z_1|+|z_2|)^2.
+\end{aligned}
+$$
+
+兩邊皆非負，取平方根便得結論。
+
+<CommonMistake title="模不是線性運算">
+通常 `|z_1+z_2|\ne |z_1|+|z_2|`。三角不等式只給出上界；等號需要兩個
+向量方向相同。例如 `1` 與 `i` 不滿足等號情況。
+</CommonMistake>
+
+## `\mathbb C` 上的多項式根
+
+引入複數的最初原因，是 `x^2+1=0` 在實數中無解。更深一層的封閉性是：
+一旦允許複係數與複根，每個非常數多項式都至少有一個根。
+
+<TheoremCard title="代數基本定理">
+若 `p(z)\in\mathbb C[z]` 是非常數多項式，則方程
+
+$$
+p(z)=0
+$$
+
+至少有一個複數解。
+</TheoremCard>
+
+本節不證明這個定理，但會使用它的後果。若 `\alpha` 是一個根，則
+`p(z)=(z-\alpha)q(z)`，其中 `q` 的次數比 `p` 小一。反覆分解可得
+
+$$
+p(z)=a_n(z-\alpha_1)(z-\alpha_2)\cdots(z-\alpha_n),
+$$
+
+其中根按重數計算。
+
+若多項式係數全為實數，非實根會成共軛對出現。設
+
+$$
+p(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_1z+a_0,\qquad a_k\in\mathbb R.
+$$
+
+若 `p(\alpha)=0`，對等式兩邊取共軛便得到 `p(\overline\alpha)=0`。
+
+因此，實係數多項式可分解成實線性因子與實二次因子。非實共軛對給出
+
+$$
+(z-\alpha)(z-\overline\alpha)
+=z^2-2\operatorname{Re}(\alpha)z+|\alpha|^2.
+$$
+
+<WorkedExample title="實二次式中的共軛根">
+對
+
+$$
+x^2+2x+5=0,
+$$
+
+判別式是 `4-20=-16`。因此
+
+$$
+x=\frac{-2\pm\sqrt{-16}}2=-1\pm2i.
+$$
+
+兩個根互為共軛，並且
+
+$$
+(x-(-1+2i))(x-(-1-2i))=x^2+2x+5.
+$$
+</WorkedExample>
+
+## 單位根與解 `z^n=z_0`
+
+極式使 `z^n=1` 這類方程的根變得清楚。令
+
+$$
+\omega=e^{2\pi i/n}
+=\cos\frac{2\pi}{n}+i\sin\frac{2\pi}{n}.
+$$
+
+則 `\omega^n=1`，而
+
+$$
+1,\omega,\omega^2,\ldots,\omega^{n-1}
+$$
+
+是 `n` 個互異的 `n` 次單位根。因此
+
+$$
+z^n-1=(z-1)(z-\omega)(z-\omega^2)\cdots(z-\omega^{n-1}).
+$$
+
+在實數上分解時，要把共軛根配成二次因子。例如 `n=5` 時，
+
+$$
+z^5-1
+=(z-1)
+\left(z^2-2\cos\frac{2\pi}{5}\,z+1\right)
+\left(z^2-2\cos\frac{4\pi}{5}\,z+1\right).
+$$
+
+同一方法可解 `z^n=z_0`。若 `z_0=r_0e^{i\theta_0}` 且 `r_0>0`，則所有解為
+
+$$
+\alpha_k=r_0^{1/n}
+e^{i(\theta_0+2k\pi)/n},
+\qquad k=0,1,\ldots,n-1.
+$$
+
+每個根的模都是 `r_0^{1/n}`；幅角相隔 `2\pi/n`。
+
+<WorkedExample title="一的三次根">
+當 `n=3`，
+
+$$
+\omega=e^{2\pi i/3}=-\frac12+\frac{\sqrt3}{2}i.
+$$
+
+一的三個三次根是
+
+$$
+1,\quad \omega,\quad \omega^2
+=-\frac12-\frac{\sqrt3}{2}i.
+$$
+
+它們位於單位圓上，幅角分別是 `0`、`2\pi/3`、`4\pi/3`，形成正三角形。
+</WorkedExample>
+
+## 由複數比值讀幾何
+
+複數差表示有方向的向量。對互異點 `z_1,z_2,z_3`，寫
+
+$$
+\frac{z_1-z_3}{z_2-z_3}=re^{i\theta}.
+$$
+
+則 `r=|z_1-z_3|/|z_2-z_3|`，而 `\theta` 是由向量 `z_2-z_3` 轉到
+`z_1-z_3` 的有向角。因此，一個複數比值同時記錄邊長比與角度。
+
+<TheoremCard title="共線判別">
+互異點 `z_1,z_2,z_3\in\mathbb C` 共線，當且僅當
+
+$$
+\frac{z_1-z_3}{z_2-z_3}\in\mathbb R.
+$$
+
+等價地，
+
+$$
+\begin{vmatrix}
+1&1&1\\
+z_1&z_2&z_3\\
+\overline{z_1}&\overline{z_2}&\overline{z_3}
+\end{vmatrix}=0.
+$$
+</TheoremCard>
+
+比值為實數表示兩個向量的幅角相差 `0` 或 `\pi`，也就是在同一直線上。
+
+複數比值亦可描述同向相似三角形：
+
+$$
+\triangle z_1z_2z_3\sim \triangle w_1w_2w_3
+\quad\Longleftrightarrow\quad
+\frac{z_1-z_3}{z_2-z_3}
+=
+\frac{w_1-w_3}{w_2-w_3}.
+$$
+
+等式表示對應邊長比與夾角都相同。
+
+<WorkedExample title="正三角形判別">
+令 `\omega=e^{2\pi i/3}`。若 `z_1,z_2,z_3` 以逆時針方向排列，則三角形為
+正三角形，當且僅當它與 `1,\omega,\omega^2` 相似。其中一個簡潔條件是
+
+$$
+z_1+z_2\omega+z_3\omega^2=0.
+$$
+
+這把等邊與 `60^\circ` 角度的幾何條件，轉成一條代數方程。
+</WorkedExample>
+
+來源亦引入四個互異點的 cross ratio：
+
+$$
+(z_1,z_2;z_3,z_4)
+=\frac{(z_1-z_3)(z_2-z_4)}
+{(z_2-z_3)(z_1-z_4)}.
+$$
+
+在本階段，重點不是一次記住所有恆等式，而是看見反覆使用的策略：平移用差
+表示，縮放與旋轉用乘法表示，形狀資訊則用比值表示。
+
+## 軌跡方程與複變換
+
+許多平面軌跡都可用複數記法簡潔表示。方程
+
+$$
+|z-z_0|=r
+$$
+
+表示以 `z_0` 為圓心、半徑為 `r` 的圓。平方後得到
+
+$$
+(z-z_0)(\overline z-\overline{z_0})=r^2,
+$$
+
+較方便展開。
+
+同樣地，
+
+$$
+|z-z_1|=|z-z_2|
+$$
+
+表示連接 `z_1` 與 `z_2` 的線段之垂直平分線，因為它描述所有到兩端點距離
+相等的點。通過 `z_1,z_2` 的直線可寫成
+
+$$
+\frac{z-z_2}{z_1-z_2}\in\mathbb R.
+$$
+
+若三個非共線點決定一個圓，則 cross-ratio 判別給出
+
+$$
+(z_1,z_2;z_3,z)\in\mathbb R.
+$$
+
+<WorkedExample title="Apollonius 圓">
+證明
+
+$$
+|z-1|=3|z+1|
+$$
+
+表示一個圓。平方並展開：
+
+$$
+(z-1)(\overline z-1)=9(z+1)(\overline z+1).
+$$
+
+整理後得到
+
+$$
+z\overline z+\frac54z+\frac54\overline z+1=0.
+$$
+
+完成平方：
+
+$$
+\left|z+\frac54\right|=\frac34.
+$$
+
+所以軌跡是以 `-5/4` 為圓心、半徑為 `3/4` 的圓。
+</WorkedExample>
+
+來源亦討論複變換，也就是由複平面到自身的函數。基本例子包括：
+
+- 縮放：`f(z)=rz`，其中 `r\in\mathbb R` 且 `r\ne0`；
+- 平移：`f(z)=z+a`；
+- 旋轉：`f(z)=e^{i\theta}z`；
+- 反演：`f(z)=1/z`；
+- 對實軸反射：`f(z)=\overline z`。
+
+例如 `f(z)=z^2` 會把 `z=re^{i\theta}` 送到
+
+$$
+f(z)=r^2e^{2i\theta},
+$$
+
+所以它會把離原點的距離平方，並把幅角加倍。
+
+平移、旋轉與共軛會保距離。平移、旋轉與縮放會保留三點比值
+
+$$
+\frac{z_1-z_3}{z_2-z_3}.
+$$
+
+因此它們保留相似性。Cross ratio 更穩定：縮放、平移、旋轉與反演都保留
+cross ratio，因此 Mobius 變換
+
+$$
+f(z)=\frac{az+b}{cz+d},\qquad ad-bc\ne0
+$$
+
+亦保留 cross ratio。這解釋了為何 Mobius 變換會把直線與圓送到直線或圓。
+直線與圓可統一寫成
+
+$$
+A z\overline z+Bz+\overline B\,\overline z+C=0,
+$$
+
+其中 `A,C\in\mathbb R`；`A\ne0` 時是圓，`A=0` 時是直線。
+
+## 快速檢查
+
+<QuickCheck prompt="若有序對表示中的 `z=(3,-5)`，用 `x+iy` 記法如何寫？`Re(z)` 與 `Im(z)` 分別是多少？">
+使用 `(x,y)=x+iy` 的識別。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`z=3-5i`，`\operatorname{Re}(z)=3`，`\operatorname{Im}(z)=-5`。
+</RevealSolution>
+
+<QuickCheck prompt="求 `2-i` 的乘法逆元。">
+使用 `x+iy` 的逆元公式。
+</QuickCheck>
+
+<RevealSolution title="答案">
+這裏 `x=2`、`y=-1`，所以
+
+$$
+(2-i)^{-1}=\frac{2}{5}+i\frac{1}{5}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="`-1-i` 的主值幅角是多少？">
+先判斷該點在複平面的哪一象限。
+</QuickCheck>
+
+<RevealSolution title="答案">
+該點在第三象限，參考角為 `\pi/4`，其中一個幅角是 `5\pi/4`。主值幅角需
+落在 `(-\pi,\pi]`，所以
+
+$$
+\operatorname{Arg}(-1-i)=-\frac{3\pi}{4}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="若 `z=2(\cos(\pi/6)+i\sin(\pi/6))` 且 `w=3(\cos(-\pi/4)+i\sin(-\pi/4))`，求 `zw` 的極式。">
+把模相乘，把幅角相加。
+</QuickCheck>
+
+<RevealSolution title="答案">
+模為 `2\cdot3=6`，幅角為 `\pi/6-\pi/4=-\pi/12`。因此
+
+$$
+zw=6\left(\cos\left(-\frac{\pi}{12}\right)
++i\sin\left(-\frac{\pi}{12}\right)\right).
+$$
+</RevealSolution>
+
+<QuickCheck prompt="用 De Moivre 定理化簡 `(\cos\theta+i\sin\theta)^4`。">
+把單位極式提升至四次方。
+</QuickCheck>
+
+<RevealSolution title="答案">
+
+$$
+(\cos\theta+i\sin\theta)^4=\cos(4\theta)+i\sin(4\theta).
+$$
+</RevealSolution>
+
+<QuickCheck prompt="令 `\omega=e^{2\pi i/5}`。為何 `\omega^3` 也是五次單位根？">
+使用指數律。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因為
+
+$$
+(\omega^3)^5=\omega^{15}=(\omega^5)^3=1^3=1.
+$$
+
+所以 `\omega^3` 是 `z^5-1=0` 的根。
+</RevealSolution>
+
+<QuickCheck prompt="比值 `(z_1-z_3)/(z_2-z_3)` 如何判斷三點共線？">
+留意它的幅角。
+</QuickCheck>
+
+<RevealSolution title="答案">
+這個比值比較由 `z_3` 出發的兩個有向向量。若比值為實數，它的幅角是
+`0` 或 `\pi`，因此兩個向量同向或反向，三點就在同一直線上。
+</RevealSolution>
+
+<QuickCheck prompt="`|z-1|=|z+3|` 描述甚麼幾何對象？">
+把它讀成等距條件。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它是連接 `1` 與 `-3` 的線段之垂直平分線。兩點都在實軸上，中點是 `-1`，
+所以垂直平分線是直線 `\operatorname{Re}(z)=-1`。
+</RevealSolution>
+
+## 練習
+
+1. 證明嵌入 `\phi:\mathbb R\to\mathbb C`，`\phi(x)=x+i0`，保留加法與乘法。
+2. 把 `(3-2i)/(1+i)` 寫成 `a+bi`。
+3. 證明 `z\overline z=|z|^2`，並用它推出非零 `z` 的逆元公式。
+4. 求 `-\sqrt3+i` 的模、所有幅角、主值幅角與極式。
+5. 證明
+   `|1-\overline{z_1}z_2|^2-|z_1-z_2|^2=(1-|z_1|^2)(1-|z_2|^2)`。
+6. 用 De Moivre 定理，把 `\cos(5\theta)` 與 `\sin(5\theta)` 寫成
+   `\cos\theta` 與 `\sin\theta` 的冪。
+7. 用數學歸納法證明
+   `|\sum_{k=1}^n z_k|\le \sum_{k=1}^n |z_k|`。
+8. 對 `\theta\ne2k\pi`，用 `e^{i\theta}` 的等比和推導
+   `\sum_{k=1}^n \cos(k\theta)=\sin(n\theta/2)\cos((n+1)\theta/2)/\sin(\theta/2)`。
+9. 先在 `\mathbb C` 上分解 `z^6-1`，再把非實共軛根配對，在 `\mathbb R`
+   上分解它。
+10. 以極式解 `z^4=16`。
+11. 證明：若 `p(z)\in\mathbb R[z]` 且 `p(\alpha)=0`，則
+   `p(\overline\alpha)=0`。
+12. 證明 `z_1,z_2,z_3` 共線，當且僅當 `(z_1-z_3)/(z_2-z_3)` 是實數。
+13. 直接證明 `|z-1|=3|z+1|` 是圓 `|z+5/4|=3/4`。
+14. 設 `f(z)=az+b` 且 `a\ne0`。證明對互異的 `z_1,z_2,z_3`，
+    `(f(z_1)-f(z_3))/(f(z_2)-f(z_3))=(z_1-z_3)/(z_2-z_3)`。
+
+## 引導解答
+
+1. 對實數 `a,b`，
+   `\phi(a+b)=(a+b)+i0=(a+i0)+(b+i0)=\phi(a)+\phi(b)`。同時
+   `\phi(ab)=ab+i0=(a+i0)(b+i0)=\phi(a)\phi(b)`。所以實數運算在
+   `\mathbb C` 內被保留。
+2. 乘以分母的共軛：
+
+   $$
+   \frac{3-2i}{1+i}
+   =\frac{(3-2i)(1-i)}{(1+i)(1-i)}
+   =\frac{1-5i}{2}
+   =\frac12-\frac52 i.
+   $$
+3. 若 `z=x+iy`，則
+   `z\overline z=(x+iy)(x-iy)=x^2+y^2=|z|^2`。若 `z\ne0`，則
+   `|z|^2>0`，因此
+   `z^{-1}=\overline z/|z|^2=(x-iy)/(x^2+y^2)`。
+4. 模為 `2`。由
+   `\cos\theta=-\sqrt3/2`、`\sin\theta=1/2` 可知點在第二象限，主值幅角為
+   `5\pi/6`。全部幅角是 `5\pi/6+2k\pi`，而
+   `-\sqrt3+i=2(\cos(5\pi/6)+i\sin(5\pi/6))`。
+5. 用共軛展開兩個平方模：
+
+   $$
+   |1-\overline{z_1}z_2|^2
+   =(1-\overline{z_1}z_2)(1-z_1\overline{z_2})
+   =1-\overline{z_1}z_2-z_1\overline{z_2}+|z_1|^2|z_2|^2,
+   $$
+
+   而
+
+   $$
+   |z_1-z_2|^2
+   =|z_1|^2-z_1\overline{z_2}-\overline{z_1}z_2+|z_2|^2.
+   $$
+
+   相減後混合項抵消，得到
+   `(1-|z_1|^2)(1-|z_2|^2)`。
+6. 展開
+   `(\cos\theta+i\sin\theta)^5=\cos(5\theta)+i\sin(5\theta)`。偶次 `i` 的
+   項給實部，奇次 `i` 的項給虛部：
+
+   $$
+   \cos(5\theta)=\cos^5\theta-10\cos^3\theta\sin^2\theta
+   +5\cos\theta\sin^4\theta,
+   $$
+
+   $$
+   \sin(5\theta)=5\cos^4\theta\sin\theta
+   -10\cos^2\theta\sin^3\theta+\sin^5\theta.
+   $$
+7. `n=1` 時顯然成立。若命題對 `n` 成立，則
+
+   $$
+   \left|\sum_{k=1}^{n+1}z_k\right|
+   =
+   \left|\left(\sum_{k=1}^{n}z_k\right)+z_{n+1}\right|
+   \le
+   \left|\sum_{k=1}^{n}z_k\right|+|z_{n+1}|
+   \le
+   \sum_{k=1}^{n+1}|z_k|.
+   $$
+8. 因為 `e^{i\theta}\ne1`，
+
+   $$
+   \sum_{k=1}^n e^{ik\theta}
+   =e^{i\theta}\frac{e^{in\theta}-1}{e^{i\theta}-1}.
+   $$
+
+   用半角因子重寫分子與分母，可得
+
+   $$
+   \sum_{k=1}^n e^{ik\theta}
+   =
+   \frac{\sin(n\theta/2)}{\sin(\theta/2)}
+   e^{i(n+1)\theta/2}.
+   $$
+
+   比較實部便得到所需的餘弦求和公式。
+9. 在 `\mathbb C` 上，令 `\omega=e^{2\pi i/6}`。則
+
+   $$
+   z^6-1=\prod_{k=0}^{5}(z-\omega^k).
+   $$
+
+   根為 `1`、`-1`、`e^{\pi i/3}`、`e^{-\pi i/3}`、`e^{2\pi i/3}`、
+   `e^{-2\pi i/3}`。配對共軛根可得
+
+   $$
+   z^6-1=(z-1)(z+1)
+   \left(z^2-2\cos\frac{\pi}{3}z+1\right)
+   \left(z^2-2\cos\frac{2\pi}{3}z+1\right),
+   $$
+
+   所以在 `\mathbb R` 上，
+
+   $$
+   z^6-1=(z-1)(z+1)(z^2-z+1)(z^2+z+1).
+   $$
+10. 寫 `16=16e^{2\pi i m}`。四次根的模是 `2`，幅角是
+    `(2k\pi)/4=k\pi/2`，所以解為
+
+    $$
+    2,\quad 2i,\quad -2,\quad -2i.
+    $$
+11. 寫
+    `p(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_0`，其中所有 `a_j` 都是實數。
+    若 `p(\alpha)=0`，對兩邊取共軛得到
+
+    $$
+    a_n\overline\alpha^n+a_{n-1}\overline\alpha^{n-1}
+    +\cdots+a_0=0,
+    $$
+
+    因為共軛保留和與乘積，而且 `\overline{a_j}=a_j`。這正是
+    `p(\overline\alpha)=0`。
+12. 若三點共線，向量 `z_1-z_3` 與 `z_2-z_3` 同向或反向，幅角差為
+    `0` 或 `\pi`，故商為實數。反過來，若商為實數，則兩向量幅角差為
+    `0` 或 `\pi`，所以兩向量平行，三點共線。
+13. 平方得到
+
+    $$
+    (z-1)(\overline z-1)=9(z+1)(\overline z+1).
+    $$
+
+    展開並整理：
+
+    $$
+    z\overline z+\frac54z+\frac54\overline z+1=0.
+    $$
+
+    這等價於
+
+    $$
+    \left(z+\frac54\right)\left(\overline z+\frac54\right)=\frac9{16},
+    $$
+
+    因此 `|z+5/4|=3/4`。
+14. 因為 `f(z_j)=az_j+b`，
+
+    $$
+    \frac{f(z_1)-f(z_3)}{f(z_2)-f(z_3)}
+    =\frac{a(z_1-z_3)}{a(z_2-z_3)}
+    =\frac{z_1-z_3}{z_2-z_3}.
+    $$
+
+    平移部分抵消，而非零的縮放 / 旋轉因子 `a` 亦抵消。

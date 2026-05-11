@@ -180,5 +180,13 @@ Peano successor structure, induction-step selection, and the rational
 `sqrt(2)` gap. The existing article flow and checkpoint surface preserve the
 learning value more cleanly than a new detached interaction.
 
+The Math1025 `6.1` complex-number pass is documented without a new widget.
+Although the source contains geometric material, this pass kept the public page
+article-first and verified route rendering, static formulas, export readability,
+and exercise pairing instead of introducing a detached complex-plane tool. Add
+an interactive complex-plane component only if a later pass needs stateful
+rotation, root-of-unity, or locus exploration beyond what static article
+examples can explain.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

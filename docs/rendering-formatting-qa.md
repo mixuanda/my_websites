@@ -66,6 +66,11 @@ April 24, 2026 QA update:
   display-math set-builder notation, `B^A`, finite inverse identities,
   Hasse-diagram covering relations, and checkpoint prompts; no new rendering
   component was introduced.
+- the May 12 Math1025 chapter 6 checkpoint marks the complex numbers source as
+  incorporated and completed local visual/export QA for EN / zh-HK / zh-CN
+  `6.1` routes. The sample covered representative TXT and PDF exports, dense
+  display math for polar form / roots of unity / locus equations, EN light
+  desktop rendering, and zh-HK dark mobile rendering.
 
 ## Current findings
 
@@ -84,6 +89,9 @@ component- and authoring-shape issues inside the existing Notes stack.
   dependent on backtick wrapping to reach KaTeX.
 - The current remaining rendering risk is representative export QA and
   cross-locale content drift, not missing math infrastructure.
+- Math1025 `6.1` is now part of the route/export sample because the source
+  uses long aligned formulas, roots-of-unity products, determinant tests for
+  collinearity, locus equations, and optional transformation notation.
 
 ## Checkpoint log
 

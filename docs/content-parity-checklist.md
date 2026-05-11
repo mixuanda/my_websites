@@ -289,6 +289,20 @@ source-backed chapters are added.
 - Catalog order now places `6.8` after matrix subspaces and before the
   determinant chapter; later MATH1030 chapters retain their relative order.
 
+## Current Math1025 parity note
+
+- `6.1 Complex numbers, polar form, and geometry` is now the documented
+  Math1025 coverage boundary after `5.1 Sequences, recursion, and series`.
+- The EN, zh-HK, and zh-CN `6.1` files keep matching section order,
+  definitions, theorem/proof flow, worked examples, exercises, and answer
+  labels while using locale-specific prose.
+- Representative TXT and PDF exports were checked locally for complex
+  arithmetic, polar / exponential formulas, roots of unity, locus equations,
+  and complex-geometry determinants.
+- Unit-level checkpoint problems were added to the shared Math1025 problem
+  bank; production verification remains tied to the post-push deployment
+  check for this checkpoint.
+
 ## Checkpoint log
 
 This log records parity-impacting checkpoints so the three-language note set

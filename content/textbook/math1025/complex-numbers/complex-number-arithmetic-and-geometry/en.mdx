@@ -1,0 +1,1094 @@
+---
+title: "6.1 Complex numbers, polar form, and geometry"
+description: "Construct complex numbers as ordered pairs, then study arithmetic, conjugates, polar form, roots of unity, complex-plane geometry, and transformation methods."
+---
+
+## Why complex numbers live in a plane
+
+The equation `x^2+1=0` has no real solution. Introducing a symbol `i` with
+`i^2=-1` is not only an algebraic trick; it also suggests a geometric
+extension of the real line. Multiplication by `-1` rotates a real number by
+`180^\circ`. Since `i^2=-1`, multiplication by `i` should behave like a
+`90^\circ` anticlockwise rotation. Thus `i\cdot 1` is naturally placed at the
+point `(0,1)` rather than somewhere on the real line.
+
+This motivates the formal construction: a complex number is a point in the
+plane, but with addition and multiplication chosen so that the rule `i^2=-1`
+is built into the arithmetic.
+
+<Definition title="Complex numbers as ordered pairs">
+The set of complex numbers is
+
+$$
+\mathbb C=\{(x,y):x,y\in\mathbb R\}.
+$$
+
+For `(x_1,y_1),(x_2,y_2)\in\mathbb C`, define
+
+$$
+(x_1,y_1)+(x_2,y_2)=(x_1+x_2,y_1+y_2),
+$$
+
+and
+
+$$
+(x_1,y_1)(x_2,y_2)=(x_1x_2-y_1y_2,\;x_1y_2+x_2y_1).
+$$
+
+The real number `x` is identified with `(x,0)`, and `i` means `(0,1)`.
+</Definition>
+
+These definitions are chosen so that the informal expression `x+iy` is not
+just notation but actually agrees with the ordered-pair construction. Indeed,
+for real `x` and `y`,
+
+$$
+(x,0)+(0,1)(y,0)=(x,0)+(0,y)=(x,y).
+$$
+
+So from now on we write
+
+$$
+z=x+iy
+$$
+
+instead of `(x,y)`.
+
+<Definition title="Real and imaginary parts">
+If `z=x+iy` with `x,y\in\mathbb R`, then
+
+$$
+\operatorname{Re}(z)=x,\qquad \operatorname{Im}(z)=y.
+$$
+
+The number is real when `\operatorname{Im}(z)=0`, and it is purely imaginary
+when `\operatorname{Re}(z)=0`.
+</Definition>
+
+Equality of complex numbers is equality of ordered pairs. Thus
+
+$$
+a+ib=c+id
+\quad\Longleftrightarrow\quad
+a=c\text{ and }b=d.
+$$
+
+This simple point is often the reason complex equations can be solved by
+comparing real and imaginary parts.
+
+## Arithmetic and field structure
+
+The ordered-pair rules make `\mathbb C` behave like a number system. Addition
+and multiplication are commutative and associative, multiplication distributes
+over addition, `0=0+i0` is the additive identity, and `1=1+i0` is the
+multiplicative identity.
+
+<TheoremCard title="Complex numbers form a field">
+For every `z=x+iy\in\mathbb C`, the additive inverse is
+
+$$
+-z=(-x)+i(-y).
+$$
+
+For every non-zero `z=x+iy`, the multiplicative inverse is
+
+$$
+z^{-1}=\frac{x}{x^2+y^2}-i\frac{y}{x^2+y^2}.
+$$
+
+Together with the usual commutative, associative, identity, and distributive
+laws, these inverse formulas say that `\mathbb C` is a field.
+</TheoremCard>
+
+The inverse formula is worth deriving once. If `z=x+iy\ne0`, then
+`x^2+y^2>0`, and
+
+$$
+(x+iy)\left(\frac{x}{x^2+y^2}-i\frac{y}{x^2+y^2}\right)
+=\frac{x^2+y^2}{x^2+y^2}
++i\frac{-xy+xy}{x^2+y^2}
+=1.
+$$
+
+Because non-zero complex numbers have multiplicative inverses, there are no
+zero divisors in `\mathbb C`: if `zw=0`, then `z=0` or `w=0`.
+
+## Subtraction and division
+
+For `z=a+ib` and `w=c+id`,
+
+$$
+z-w=(a-c)+i(b-d).
+$$
+
+If `w\ne0`, then division means multiplication by the inverse of `w`:
+
+$$
+\frac{z}{w}
+=\frac{a+ib}{c+id}
+=(a+ib)\left(\frac{c}{c^2+d^2}-i\frac{d}{c^2+d^2}\right).
+$$
+
+After multiplying out,
+
+$$
+\frac{a+ib}{c+id}
+=\frac{ac+bd}{c^2+d^2}
++i\frac{bc-ad}{c^2+d^2}.
+$$
+
+<WorkedExample title="A division calculation">
+Express
+
+$$
+\frac{-1+4i}{6-3i}
+$$
+
+in the form `a+bi`.
+
+Using the inverse of `6-3i`,
+
+$$
+\frac{-1+4i}{6-3i}
+=(-1+4i)\frac{6+3i}{6^2+(-3)^2}.
+$$
+
+Therefore
+
+$$
+\frac{-1+4i}{6-3i}
+=\frac{(-1)(6)+4(-3)}{45}
++i\frac{4(6)-(-1)(-3)}{45}
+=-\frac25+\frac{7}{15}i.
+$$
+</WorkedExample>
+
+## The Argand plane
+
+The same ordered pair `(x,y)` can be read geometrically as a point or vector
+in the coordinate plane. For `z=x+iy`, the horizontal coordinate is the real
+part and the vertical coordinate is the imaginary part. This plane is called
+the complex plane or Argand plane. The horizontal axis is the real axis, and
+the vertical axis is the imaginary axis.
+
+Addition is vector addition:
+
+$$
+(x_1+iy_1)+(x_2+iy_2)
+=(x_1+x_2)+i(y_1+y_2).
+$$
+
+Multiplication is less visible in rectangular coordinates, but it becomes
+clear after we introduce modulus and argument.
+
+## Conjugate and modulus
+
+<Definition title="Complex conjugate and modulus">
+For `z=x+iy`, define the conjugate and modulus by
+
+$$
+\overline z=x-iy,\qquad |z|=\sqrt{x^2+y^2}.
+$$
+</Definition>
+
+The conjugate is reflection across the real axis. The modulus is the distance
+from the origin to the point representing `z`.
+
+The basic identities are
+
+$$
+\overline{\overline z}=z,\qquad
+z=\overline z\Longleftrightarrow z\in\mathbb R,
+$$
+
+and
+
+$$
+\operatorname{Re}(z)=\frac12(z+\overline z),
+\qquad
+\operatorname{Im}(z)=\frac{1}{2i}(z-\overline z).
+$$
+
+Conjugation respects arithmetic:
+
+$$
+\overline{z_1\pm z_2}=\overline{z_1}\pm\overline{z_2},
+\qquad
+\overline{z_1z_2}=\overline{z_1}\,\overline{z_2},
+\qquad
+\overline{\left(\frac{z_1}{z_2}\right)}
+=\frac{\overline{z_1}}{\overline{z_2}}
+$$
+
+when `z_2\ne0`.
+
+The modulus is tied to conjugation by
+
+$$
+|z|^2=z\overline z.
+$$
+
+Hence `z\overline z` is always a non-negative real number. Also,
+
+$$
+|z|=|-z|=|\overline z|,
+\qquad
+|z_1z_2|=|z_1||z_2|,
+\qquad
+\left|\frac{z_1}{z_2}\right|=\frac{|z_1|}{|z_2|}
+$$
+
+for `z_2\ne0`.
+
+<WorkedExample title="Parallelogram law">
+For `z_1,z_2\in\mathbb C`,
+
+$$
+|z_1+z_2|^2+|z_1-z_2|^2=2|z_1|^2+2|z_2|^2.
+$$
+
+Use `|u|^2=u\overline u`:
+
+$$
+\begin{aligned}
+|z_1+z_2|^2+|z_1-z_2|^2
+&=(z_1+z_2)(\overline{z_1}+\overline{z_2})
++(z_1-z_2)(\overline{z_1}-\overline{z_2})\\
+&=2z_1\overline{z_1}+2z_2\overline{z_2}\\
+&=2|z_1|^2+2|z_2|^2.
+\end{aligned}
+$$
+</WorkedExample>
+
+## Argument and polar form
+
+Let `z=x+iy\ne0`. An argument of `z` is any angle from the positive real axis
+to the point `(x,y)`, measured anticlockwise. If `\theta` is one argument, then
+all arguments are
+
+$$
+\theta+2k\pi,\qquad k\in\mathbb Z.
+$$
+
+The principal argument is the unique argument in the interval
+
+$$
+-\pi<\operatorname{Arg}(z)\le\pi.
+$$
+
+If `r=|z|`, then
+
+$$
+z=r(\cos\theta+i\sin\theta),
+$$
+
+where `\theta` is any argument of `z`. This is the polar form of `z`.
+
+<WorkedExample title="Finding polar form">
+Let
+
+$$
+z=-2+2\sqrt3\,i.
+$$
+
+Then
+
+$$
+|z|=\sqrt{(-2)^2+(2\sqrt3)^2}=4.
+$$
+
+Since
+
+$$
+\cos\theta=-\frac12,\qquad \sin\theta=\frac{\sqrt3}{2},
+$$
+
+the point lies in quadrant II and `\theta=2\pi/3`. Thus
+
+$$
+\operatorname{Arg}(z)=\frac{2\pi}{3},
+\qquad
+\arg(z)=\frac{2\pi}{3}+2k\pi,
+\quad k\in\mathbb Z,
+$$
+
+and
+
+$$
+z=4\left(\cos\frac{2\pi}{3}+i\sin\frac{2\pi}{3}\right).
+$$
+</WorkedExample>
+
+Polar form also explains conjugates and inverses:
+
+$$
+\overline z=r(\cos(-\theta)+i\sin(-\theta)),
+\qquad
+z^{-1}=\frac1r(\cos(-\theta)+i\sin(-\theta)).
+$$
+
+In particular, if `|z|=1`, then `z^{-1}=\overline z`.
+
+## Multiplication as rotation and scaling
+
+Suppose
+
+$$
+z_1=r_1(\cos\theta_1+i\sin\theta_1),
+\qquad
+z_2=r_2(\cos\theta_2+i\sin\theta_2).
+$$
+
+Using the angle-sum formulas,
+
+$$
+z_1z_2
+=r_1r_2\bigl(\cos(\theta_1+\theta_2)
++i\sin(\theta_1+\theta_2)\bigr).
+$$
+
+Thus multiplication multiplies moduli and adds arguments:
+
+$$
+|z_1z_2|=|z_1||z_2|,
+\qquad
+\arg(z_1z_2)=\arg(z_1)+\arg(z_2)
+$$
+
+up to multiples of `2\pi`.
+
+Division reverses the second rotation and divides the lengths:
+
+$$
+\frac{z_1}{z_2}
+=\frac{r_1}{r_2}
+\bigl(\cos(\theta_1-\theta_2)+i\sin(\theta_1-\theta_2)\bigr).
+$$
+
+<CommonMistake title="Principal arguments do not simply add">
+It is correct that arguments add modulo `2\pi`. It is not always correct that
+`\operatorname{Arg}(z_1z_2)=\operatorname{Arg}(z_1)+\operatorname{Arg}(z_2)`.
+After adding angles, the result may need to be moved back into
+`(-\pi,\pi]`.
+</CommonMistake>
+
+## De Moivre's theorem
+
+Integral powers are defined by repeated multiplication. If `z\ne0`, then
+`z^0=1` and `z^{-n}=(z^{-1})^n` for positive integers `n`.
+
+<TheoremCard title="De Moivre's theorem">
+For every integer `n`,
+
+$$
+(\cos\theta+i\sin\theta)^n=\cos(n\theta)+i\sin(n\theta).
+$$
+</TheoremCard>
+
+For positive `n`, the result follows by induction from the multiplication
+rule in polar form. The case `n=0` is immediate. For negative `n`, write
+`n=-m`, use the positive case for `m`, and use the fact that a unit complex
+number has inverse equal to its conjugate.
+
+<WorkedExample title="Triple-angle formulas">
+By De Moivre's theorem,
+
+$$
+\cos(3\theta)+i\sin(3\theta)
+=(\cos\theta+i\sin\theta)^3.
+$$
+
+Expanding the right-hand side gives
+
+$$
+(\cos^3\theta-3\cos\theta\sin^2\theta)
++i(3\cos^2\theta\sin\theta-\sin^3\theta).
+$$
+
+Comparing real and imaginary parts,
+
+$$
+\cos(3\theta)=4\cos^3\theta-3\cos\theta,
+$$
+
+and
+
+$$
+\sin(3\theta)=3\sin\theta-4\sin^3\theta.
+$$
+</WorkedExample>
+
+## Euler's formula and exponential form
+
+The power series for sine, cosine, and the exponential suggest what
+`e^{i\theta}` should mean:
+
+$$
+e^{i\theta}
+=1+i\theta-\frac{\theta^2}{2!}-i\frac{\theta^3}{3!}
++\frac{\theta^4}{4!}+\cdots
+=\cos\theta+i\sin\theta.
+$$
+
+In this course context, we use that motivation to write
+
+$$
+e^{i\theta}=\cos\theta+i\sin\theta.
+$$
+
+A non-zero complex number can then be written in exponential form as
+
+$$
+z=re^{i\theta},
+$$
+
+where `r=|z|` and `\theta` is an argument of `z`.
+
+This notation compresses multiplication and De Moivre's theorem:
+
+$$
+r_1e^{i\theta_1}\,r_2e^{i\theta_2}
+=r_1r_2e^{i(\theta_1+\theta_2)},
+\qquad
+(e^{i\theta})^n=e^{in\theta}.
+$$
+
+It also gives
+
+$$
+\cos\theta=\frac12(e^{i\theta}+e^{-i\theta}),
+\qquad
+\sin\theta=\frac{1}{2i}(e^{i\theta}-e^{-i\theta}).
+$$
+
+Putting `\theta=\pi` gives Euler's identity:
+
+$$
+e^{i\pi}+1=0.
+$$
+
+## Triangle inequality
+
+<TheoremCard title="Triangle inequality">
+For all `z_1,z_2\in\mathbb C`,
+
+$$
+|z_1+z_2|\le |z_1|+|z_2|.
+$$
+
+Equality holds exactly when the two non-zero vectors point in the same
+direction, equivalently when `z_1=kz_2` for some `k\ge0`, or
+`z_2=kz_1` for some `k\ge0`.
+</TheoremCard>
+
+The proof is a good example of how conjugates avoid coordinate expansion:
+
+$$
+\begin{aligned}
+|z_1+z_2|^2
+&=(z_1+z_2)(\overline{z_1}+\overline{z_2})\\
+&=|z_1|^2+2\operatorname{Re}(z_1\overline{z_2})+|z_2|^2\\
+&\le |z_1|^2+2|z_1\overline{z_2}|+|z_2|^2\\
+&=(|z_1|+|z_2|)^2.
+\end{aligned}
+$$
+
+Taking square roots gives the inequality because both sides are non-negative.
+
+<CommonMistake title="Modulus is not linear">
+Usually `|z_1+z_2|\ne |z_1|+|z_2|`. The triangle inequality gives an upper
+bound. Equality requires the two vectors to point in the same direction; for
+example, `1` and `i` do not satisfy equality.
+</CommonMistake>
+
+## Polynomial roots over `\mathbb C`
+
+The construction of complex numbers began because `x^2+1=0` has no real
+solution. The deeper closure statement is that, once we allow complex
+coefficients and complex roots, every non-constant polynomial has a root.
+
+<TheoremCard title="Fundamental theorem of algebra">
+If `p(z)\in\mathbb C[z]` is a non-constant polynomial, then the equation
+
+$$
+p(z)=0
+$$
+
+has at least one solution in `\mathbb C`.
+</TheoremCard>
+
+The theorem is not proved in this unit, but its consequences are central. If
+`\alpha` is a root, then `p(z)=(z-\alpha)q(z)` for a polynomial `q` whose
+degree is one smaller. Repeating this factorization gives
+
+$$
+p(z)=a_n(z-\alpha_1)(z-\alpha_2)\cdots(z-\alpha_n),
+$$
+
+where roots are counted with multiplicity.
+
+When the polynomial has real coefficients, non-real roots come in conjugate
+pairs. Indeed, if
+
+$$
+p(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_1z+a_0,\qquad a_k\in\mathbb R,
+$$
+
+and `p(\alpha)=0`, then taking conjugates of the equation gives
+`p(\overline\alpha)=0`.
+
+This explains why real polynomials factor into real linear and real quadratic
+pieces:
+
+$$
+(z-\alpha)(z-\overline\alpha)
+=z^2-2\operatorname{Re}(\alpha)z+|\alpha|^2.
+$$
+
+<WorkedExample title="Conjugate roots in a real quadratic">
+For
+
+$$
+x^2+2x+5=0,
+$$
+
+the discriminant is `4-20=-16`. Hence
+
+$$
+x=\frac{-2\pm\sqrt{-16}}2=-1\pm2i.
+$$
+
+The two roots are conjugates. Their product factor is
+
+$$
+(x-(-1+2i))(x-(-1-2i))=x^2+2x+5.
+$$
+</WorkedExample>
+
+## Roots of unity and solving `z^n=z_0`
+
+Polar form makes roots of equations such as `z^n=1` visible. Let
+
+$$
+\omega=e^{2\pi i/n}
+=\cos\frac{2\pi}{n}+i\sin\frac{2\pi}{n}.
+$$
+
+Then `\omega^n=1`, and
+
+$$
+1,\omega,\omega^2,\ldots,\omega^{n-1}
+$$
+
+are the `n` distinct `n`-th roots of unity. Therefore
+
+$$
+z^n-1=(z-1)(z-\omega)(z-\omega^2)\cdots(z-\omega^{n-1}).
+$$
+
+Over the real numbers, conjugate roots are paired into quadratic factors. For
+example, if `n=5`, then
+
+$$
+z^5-1
+=(z-1)
+\left(z^2-2\cos\frac{2\pi}{5}\,z+1\right)
+\left(z^2-2\cos\frac{4\pi}{5}\,z+1\right).
+$$
+
+The same idea solves `z^n=z_0`. If `z_0=r_0e^{i\theta_0}` with `r_0>0`, then
+the solutions are
+
+$$
+\alpha_k=r_0^{1/n}
+e^{i(\theta_0+2k\pi)/n},
+\qquad k=0,1,\ldots,n-1.
+$$
+
+Each root has the same modulus `r_0^{1/n}`; the arguments are equally spaced
+by `2\pi/n`.
+
+<WorkedExample title="Cube roots of one">
+For `n=3`,
+
+$$
+\omega=e^{2\pi i/3}=-\frac12+\frac{\sqrt3}{2}i.
+$$
+
+The three cube roots of one are
+
+$$
+1,\quad \omega,\quad \omega^2
+=-\frac12-\frac{\sqrt3}{2}i.
+$$
+
+They lie on the unit circle at angles `0`, `2\pi/3`, and `4\pi/3`, forming an
+equilateral triangle.
+</WorkedExample>
+
+## Geometry with complex ratios
+
+Differences of complex numbers represent directed vectors. For distinct
+points `z_1,z_2,z_3`, write
+
+$$
+\frac{z_1-z_3}{z_2-z_3}=re^{i\theta}.
+$$
+
+Then `r=|z_1-z_3|/|z_2-z_3|`, and `\theta` is the oriented angle from the
+vector `z_2-z_3` to the vector `z_1-z_3`. Thus one complex ratio records both
+a side-length ratio and an angle.
+
+This gives a compact collinearity test:
+
+<TheoremCard title="Collinearity test">
+Distinct points `z_1,z_2,z_3\in\mathbb C` are collinear if and only if
+
+$$
+\frac{z_1-z_3}{z_2-z_3}\in\mathbb R.
+$$
+
+Equivalently,
+
+$$
+\begin{vmatrix}
+1&1&1\\
+z_1&z_2&z_3\\
+\overline{z_1}&\overline{z_2}&\overline{z_3}
+\end{vmatrix}=0.
+$$
+</TheoremCard>
+
+The real-ratio condition says the two directed vectors have argument
+difference `0` or `\pi`; that is exactly the condition that they lie on the
+same line.
+
+Complex ratios also encode similarity of oriented triangles:
+
+$$
+\triangle z_1z_2z_3\sim \triangle w_1w_2w_3
+\quad\Longleftrightarrow\quad
+\frac{z_1-z_3}{z_2-z_3}
+=
+\frac{w_1-w_3}{w_2-w_3},
+$$
+
+when the orientation is the same. The equality means the corresponding
+side-ratio and included angle both agree.
+
+<WorkedExample title="Equilateral triangle criterion">
+Let `\omega=e^{2\pi i/3}`. For a counter-clockwise triangle with vertices
+`z_1,z_2,z_3`, the triangle is equilateral exactly when it is similar to
+`1,\omega,\omega^2`. One compact form of the condition is
+
+$$
+z_1+z_2\omega+z_3\omega^2=0.
+$$
+
+This is useful because it turns a geometric statement about equal side
+lengths and `60^\circ` angles into one algebraic equation.
+</WorkedExample>
+
+The source also introduces the cross ratio
+
+$$
+(z_1,z_2;z_3,z_4)
+=\frac{(z_1-z_3)(z_2-z_4)}
+{(z_2-z_3)(z_1-z_4)}
+$$
+
+for four distinct points. At this level, the important lesson is not to
+memorize every identity at once, but to notice the recurring strategy:
+translation is represented by differences, scaling and rotation by
+multiplication, and shape information by ratios.
+
+## Locus equations and transformations
+
+Many plane loci can be written cleanly in complex notation. The equation
+
+$$
+|z-z_0|=r
+$$
+
+is the circle centered at `z_0` with radius `r`. Squaring gives
+
+$$
+(z-z_0)(\overline z-\overline{z_0})=r^2,
+$$
+
+which is often easier to expand.
+
+Similarly,
+
+$$
+|z-z_1|=|z-z_2|
+$$
+
+is the perpendicular bisector of the segment joining `z_1` and `z_2`, because
+it is the set of points equally distant from the two endpoints. A line through
+`z_1` and `z_2` can be described by the real-ratio condition
+
+$$
+\frac{z-z_2}{z_1-z_2}\in\mathbb R.
+$$
+
+For a circle through three non-collinear points, the cross-ratio test gives
+
+$$
+(z_1,z_2;z_3,z)\in\mathbb R.
+$$
+
+<WorkedExample title="An Apollonius circle">
+Show that
+
+$$
+|z-1|=3|z+1|
+$$
+
+represents a circle. Squaring and expanding,
+
+$$
+(z-1)(\overline z-1)=9(z+1)(\overline z+1).
+$$
+
+After collecting terms,
+
+$$
+z\overline z+\frac54z+\frac54\overline z+1=0.
+$$
+
+Completing the square gives
+
+$$
+\left|z+\frac54\right|=\frac34.
+$$
+
+So the locus is the circle centered at `-5/4` with radius `3/4`.
+</WorkedExample>
+
+The source also treats complex transformations, meaning functions from the
+complex plane to itself. The basic transformations are:
+
+- scaling: `f(z)=rz`, with real `r\ne0`;
+- translation: `f(z)=z+a`;
+- rotation: `f(z)=e^{i\theta}z`;
+- inversion: `f(z)=1/z`;
+- reflection in the real axis: `f(z)=\overline z`.
+
+For example, `f(z)=z^2` sends `z=re^{i\theta}` to
+
+$$
+f(z)=r^2e^{2i\theta},
+$$
+
+so it squares distances from the origin and doubles arguments.
+
+Translations, rotations, and conjugation preserve distances. Translations,
+rotations, and scalings preserve the three-point ratio
+
+$$
+\frac{z_1-z_3}{z_2-z_3}.
+$$
+
+This explains why they preserve similarity. Cross ratios are even more stable:
+they are preserved by scalings, translations, rotations, and inversions, hence
+by Mobius transformations
+
+$$
+f(z)=\frac{az+b}{cz+d},\qquad ad-bc\ne0.
+$$
+
+This is why Mobius transformations send straight lines and circles to straight
+lines and circles. One algebraic way to summarize both objects is the equation
+
+$$
+A z\overline z+Bz+\overline B\,\overline z+C=0,
+$$
+
+where `A,C\in\mathbb R`; `A\ne0` gives a circle, while `A=0` gives a line.
+
+## Quick checks
+
+<QuickCheck prompt="If `z=(3,-5)` in the ordered-pair construction, what are `z`, `Re(z)`, and `Im(z)` in `x+iy` notation?">
+Use the identification `(x,y)=x+iy`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`z=3-5i`, `\operatorname{Re}(z)=3`, and `\operatorname{Im}(z)=-5`.
+</RevealSolution>
+
+<QuickCheck prompt="Find the multiplicative inverse of `2-i`.">
+Use the inverse formula for `x+iy`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Here `x=2` and `y=-1`, so
+
+$$
+(2-i)^{-1}=\frac{2}{5}+i\frac{1}{5}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="What is the principal argument of `-1-i`?">
+Locate the point in the complex plane.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The point is in quadrant III with reference angle `\pi/4`, so an argument is
+`5\pi/4`. The principal argument must lie in `(-\pi,\pi]`, hence
+
+$$
+\operatorname{Arg}(-1-i)=-\frac{3\pi}{4}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="If `z=2(\cos(\pi/6)+i\sin(\pi/6))` and `w=3(\cos(-\pi/4)+i\sin(-\pi/4))`, what is the polar form of `zw`?">
+Multiply moduli and add arguments.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The modulus is `2\cdot3=6`, and the argument is
+`\pi/6-\pi/4=-\pi/12`. Therefore
+
+$$
+zw=6\left(\cos\left(-\frac{\pi}{12}\right)
++i\sin\left(-\frac{\pi}{12}\right)\right).
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Use De Moivre's theorem to simplify `(\cos\theta+i\sin\theta)^4`.">
+Raise the unit polar form to the fourth power.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+
+$$
+(\cos\theta+i\sin\theta)^4=\cos(4\theta)+i\sin(4\theta).
+$$
+</RevealSolution>
+
+<QuickCheck prompt="Let `\omega=e^{2\pi i/5}`. Why is `\omega^3` also a fifth root of unity?">
+Use the law of indices.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Because
+
+$$
+(\omega^3)^5=\omega^{15}=(\omega^5)^3=1^3=1.
+$$
+
+Thus `\omega^3` is a root of `z^5-1=0`.
+</RevealSolution>
+
+<QuickCheck prompt="How can the ratio `(z_1-z_3)/(z_2-z_3)` detect collinearity?">
+Think about its argument.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The ratio compares two directed vectors from `z_3`. If the ratio is real, its
+argument is `0` or `\pi`, so the two vectors point in the same or opposite
+direction. Therefore the three points lie on one line.
+</RevealSolution>
+
+<QuickCheck prompt="What geometric object is described by `|z-1|=|z+3|`?">
+Read it as an equal-distance condition.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is the perpendicular bisector of the segment joining `1` and `-3`. Since
+those points lie on the real axis, the midpoint is `-1`, and the perpendicular
+bisector is the vertical line `\operatorname{Re}(z)=-1`.
+</RevealSolution>
+
+## Exercises
+
+1. Prove that the embedding `\phi:\mathbb R\to\mathbb C`,
+   `\phi(x)=x+i0`, preserves addition and multiplication.
+2. Express `(3-2i)/(1+i)` in the form `a+bi`.
+3. Prove that `z\overline z=|z|^2` and use it to derive the inverse formula
+   for non-zero `z`.
+4. Find the modulus, all arguments, principal argument, and polar form of
+   `-\sqrt3+i`.
+5. Prove
+   `|1-\overline{z_1}z_2|^2-|z_1-z_2|^2=(1-|z_1|^2)(1-|z_2|^2)`.
+6. Use De Moivre's theorem to express `\cos(5\theta)` and `\sin(5\theta)`
+   in terms of powers of `\cos\theta` and `\sin\theta`.
+7. Prove by induction that
+   `|\sum_{k=1}^n z_k|\le \sum_{k=1}^n |z_k|`.
+8. For `\theta\ne2k\pi`, use the geometric sum for `e^{i\theta}` to derive
+   the formula
+   `\sum_{k=1}^n \cos(k\theta)=\sin(n\theta/2)\cos((n+1)\theta/2)/\sin(\theta/2)`.
+9. Factor `z^6-1` over `\mathbb C` and then group the non-real conjugate
+   roots to factor it over `\mathbb R`.
+10. Solve `z^4=16` in polar form.
+11. Show that if `p(z)\in\mathbb R[z]` and `p(\alpha)=0`, then
+   `p(\overline\alpha)=0`.
+12. Prove that `z_1,z_2,z_3` are collinear exactly when
+   `(z_1-z_3)/(z_2-z_3)` is real.
+13. Show directly that `|z-1|=3|z+1|` is the circle
+    `|z+5/4|=3/4`.
+14. Let `f(z)=az+b` with `a\ne0`. Prove that
+    `(f(z_1)-f(z_3))/(f(z_2)-f(z_3))=(z_1-z_3)/(z_2-z_3)` for distinct
+    `z_1,z_2,z_3`.
+
+## Guided solutions
+
+1. For real `a,b`,
+   `\phi(a+b)=(a+b)+i0=(a+i0)+(b+i0)=\phi(a)+\phi(b)`. Also
+   `\phi(ab)=ab+i0=(a+i0)(b+i0)=\phi(a)\phi(b)`. Thus real arithmetic is
+   preserved inside `\mathbb C`.
+2. Multiply by the conjugate of the denominator:
+
+   $$
+   \frac{3-2i}{1+i}
+   =\frac{(3-2i)(1-i)}{(1+i)(1-i)}
+   =\frac{1-5i}{2}
+   =\frac12-\frac52 i.
+   $$
+3. If `z=x+iy`, then
+   `z\overline z=(x+iy)(x-iy)=x^2+y^2=|z|^2`. If `z\ne0`, then
+   `|z|^2>0`, so
+   `z^{-1}=\overline z/|z|^2=(x-iy)/(x^2+y^2)`.
+4. The modulus is `2`. Since
+   `\cos\theta=-\sqrt3/2` and `\sin\theta=1/2`, the point is in quadrant II
+   with principal argument `5\pi/6`. Hence all arguments are
+   `5\pi/6+2k\pi`, and
+   `-\sqrt3+i=2(\cos(5\pi/6)+i\sin(5\pi/6))`.
+5. Expand both squared moduli using conjugates:
+
+   $$
+   |1-\overline{z_1}z_2|^2
+   =(1-\overline{z_1}z_2)(1-z_1\overline{z_2})
+   =1-\overline{z_1}z_2-z_1\overline{z_2}+|z_1|^2|z_2|^2,
+   $$
+
+   while
+
+   $$
+   |z_1-z_2|^2
+   =|z_1|^2-z_1\overline{z_2}-\overline{z_1}z_2+|z_2|^2.
+   $$
+
+   Subtracting cancels the mixed terms and gives
+   `(1-|z_1|^2)(1-|z_2|^2)`.
+6. Expand
+   `(\cos\theta+i\sin\theta)^5=\cos(5\theta)+i\sin(5\theta)` by the binomial
+   theorem. The real terms are those with even powers of `i`, and the
+   imaginary terms are those with odd powers of `i`:
+
+   $$
+   \cos(5\theta)=\cos^5\theta-10\cos^3\theta\sin^2\theta
+   +5\cos\theta\sin^4\theta,
+   $$
+
+   $$
+   \sin(5\theta)=5\cos^4\theta\sin\theta
+   -10\cos^2\theta\sin^3\theta+\sin^5\theta.
+   $$
+7. The case `n=1` is immediate. If the result holds for `n`, then
+
+   $$
+   \left|\sum_{k=1}^{n+1}z_k\right|
+   =
+   \left|\left(\sum_{k=1}^{n}z_k\right)+z_{n+1}\right|
+   \le
+   \left|\sum_{k=1}^{n}z_k\right|+|z_{n+1}|
+   \le
+   \sum_{k=1}^{n+1}|z_k|.
+   $$
+8. Since `e^{i\theta}\ne1`,
+
+   $$
+   \sum_{k=1}^n e^{ik\theta}
+   =e^{i\theta}\frac{e^{in\theta}-1}{e^{i\theta}-1}.
+   $$
+
+   Rewrite numerator and denominator by factoring half-angles:
+
+   $$
+   e^{in\theta}-1
+   =e^{in\theta/2}(e^{in\theta/2}-e^{-in\theta/2}),
+   $$
+
+   and similarly for `e^{i\theta}-1`. This gives
+
+   $$
+   \sum_{k=1}^n e^{ik\theta}
+   =
+   \frac{\sin(n\theta/2)}{\sin(\theta/2)}
+   e^{i(n+1)\theta/2}.
+   $$
+
+   Taking real parts gives the stated cosine-sum formula.
+9. Over `\mathbb C`, let `\omega=e^{2\pi i/6}`. Then
+
+   $$
+   z^6-1=\prod_{k=0}^{5}(z-\omega^k).
+   $$
+
+   The roots are `1`, `-1`, `e^{\pi i/3}`, `e^{-\pi i/3}`,
+   `e^{2\pi i/3}`, and `e^{-2\pi i/3}`. Pairing conjugates gives
+
+   $$
+   z^6-1=(z-1)(z+1)
+   \left(z^2-2\cos\frac{\pi}{3}z+1\right)
+   \left(z^2-2\cos\frac{2\pi}{3}z+1\right),
+   $$
+
+   so over `\mathbb R`,
+
+   $$
+   z^6-1=(z-1)(z+1)(z^2-z+1)(z^2+z+1).
+   $$
+10. Write `16=16e^{2\pi i m}`. The fourth roots have modulus `2` and
+    arguments `(2k\pi)/4=k\pi/2`, so the solutions are
+
+    $$
+    2,\quad 2i,\quad -2,\quad -2i.
+    $$
+11. Write
+    `p(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_0` with all `a_j` real. If
+    `p(\alpha)=0`, then conjugating both sides gives
+
+    $$
+    a_n\overline\alpha^n+a_{n-1}\overline\alpha^{n-1}
+    +\cdots+a_0=0,
+    $$
+
+    because conjugation respects sums and products and
+    `\overline{a_j}=a_j`. This is exactly `p(\overline\alpha)=0`.
+12. If the points are collinear, the vectors `z_1-z_3` and `z_2-z_3` have
+    the same or opposite direction, so their argument difference is `0` or
+    `\pi`; the quotient is real. Conversely, if the quotient is real, its
+    argument is `0` or `\pi`, so the two vectors are parallel and the three
+    points lie on a line.
+13. Squaring gives
+
+    $$
+    (z-1)(\overline z-1)=9(z+1)(\overline z+1).
+    $$
+
+    Expanding and collecting terms gives
+
+    $$
+    z\overline z+\frac54z+\frac54\overline z+1=0.
+    $$
+
+    This is
+
+    $$
+    \left(z+\frac54\right)\left(\overline z+\frac54\right)=\frac9{16},
+    $$
+
+    hence `|z+5/4|=3/4`.
+14. Since `f(z_j)=az_j+b`,
+
+    $$
+    \frac{f(z_1)-f(z_3)}{f(z_2)-f(z_3)}
+    =\frac{a(z_1-z_3)}{a(z_2-z_3)}
+    =\frac{z_1-z_3}{z_2-z_3}.
+    $$
+
+    The translation part cancels, and the non-zero scaling/rotation factor
+    `a` cancels.

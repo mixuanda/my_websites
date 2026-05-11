@@ -171,8 +171,10 @@ Current Math1025 expansion progress from April 25, 2026:
 - registered the new Math1025 chapter families in `src/lib/textbook/catalog.ts`
   so they appear under public Notes and participate in unit-level exports;
 - the later May 2026 continuation incorporated `reference/MATH1025/MATH1025_slides_ch5.pdf`;
-  `MATH1025_slides_ch6(3).pdf` through `MATH1025_slides_ch11.pdf` remain the
-  next source-backed Math1025 chapter-slide backlog.
+  the chapter 6 complex-number pass incorporated
+  `reference/MATH1025/MATH1025_slides_ch6(3).pdf`; `MATH1025_slides_ch7.pdf`
+  through `MATH1025_slides_ch11.pdf` remain the next source-backed Math1025
+  chapter-slide backlog.
 
 The tables below use these status labels:
 
@@ -507,8 +509,8 @@ public notes.
 
 The `reference/MATH1025/**` tree is large enough that it must be tracked now.
 The public site now exposes the foundations, induction, inequalities,
-binomial-theorem, and sequences baseline in EN, zh-HK, and zh-CN, but the
-course remains mostly backlog beyond chapter 5.
+binomial-theorem, sequences, and chapter 6 complex-number baseline in EN,
+zh-HK, and zh-CN, but the course remains backlog-heavy from chapter 7 onward.
 
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -518,7 +520,8 @@ course remains mostly backlog beyond chapter 5.
 | MATH1025 | `reference/MATH1025/MATH1025_slides_ch3(5).pdf` | inequalities slides | incorporated | yes | no | no | Direct source for public `3.1 Inequalities and absolute value`. Extracted to `docs/extracted/math1025/MATH1025_slides_ch35.txt`. |
 | MATH1025 | `reference/MATH1025/MATH1025_slides_ch4(1).pdf` | binomial theorem slides | incorporated | yes | no | no | Direct source for public `4.1 Binomial coefficients and expansions`. Extracted to `docs/extracted/math1025/MATH1025_slides_ch41.txt`. |
 | MATH1025 | `reference/MATH1025/MATH1025_slides_ch5.pdf` | sequences slides | incorporated | yes | no | no | Direct source for public `5.1 Sequences, recursion, and series`. Extracted to `docs/extracted/math1025/MATH1025_slides_ch5.txt`; incorporated sequence-as-function notation, derivative-generated sequences, recursive definitions, the recursion theorem, Fibonacci pair recursion and Binet-form verification, arithmetic / geometric sums, the arithmetic-geometric sum exercise, and the mortgage recurrence. |
-| MATH1025 | `reference/MATH1025/MATH1025_slides_ch6(3).pdf` to `reference/MATH1025/MATH1025_slides_ch8.pdf` | methods slides | pending | no | no | no | Primary future-course backbone for complex numbers, integers / rational numbers, and polynomials. |
+| MATH1025 | `reference/MATH1025/MATH1025_slides_ch6(3).pdf` | complex numbers slides | incorporated | yes | no | no | Direct source for public `6.1 Complex numbers, polar form, and geometry`. Extracted to `docs/extracted/math1025/MATH1025_slides_ch63.txt`; incorporated ordered-pair construction, arithmetic and inverses, conjugate and modulus, polar and exponential forms, De Moivre's theorem, triangle inequality, fundamental theorem of algebra consequences, roots of unity, complex-plane geometry, locus problems, and optional transformation material. |
+| MATH1025 | `reference/MATH1025/MATH1025_slides_ch7.pdf` to `reference/MATH1025/MATH1025_slides_ch8.pdf` | methods slides | pending | no | no | no | Primary future-course backbone for integers / rational numbers and polynomials. |
 | MATH1025 | `reference/MATH1025/MATH1025_slides_ch9.pdf` to `reference/MATH1025/MATH1025_slides_ch11.pdf` | vectors and geometry slides | pending | no | no | no | Primary future-course backbone for vectors in `R^n`, straight lines / planes / curves, and conic sections. |
 | MATH1025 | `reference/MATH1025/Solution to MATH1025_1028_HW1.pdf` to `reference/MATH1025/Solution to MATH1025_1028_HW10.pdf` | homework solutions | pending | no | partial | no | Keep for later exercise / solution authoring once the baseline chapter notes exist. |
 | MATH1025 | `reference/MATH1025/MATH1025_Midterm_Exam.pdf` and `reference/MATH1025/Solution to MATH1025_Midterm_Exam.pdf` | assessment pair | pending | no | partial | no | Secondary support only; use after the first chapter-family notes exist. |
@@ -529,7 +532,7 @@ course remains mostly backlog beyond chapter 5.
 The next source-backed expansions with the clearest payoff are:
 
 1. Next missing source-backed priority: continue Math1025 chapter slides
-   `ch6`-`ch8` into complex numbers, integers / rationals, and polynomials,
+   `ch7`-`ch8` into integers / rationals and polynomials,
    unless the next user request narrows the course scope.
 2. Keep refining thin but already public units, especially MATH1030 `3.1` and
    `4.1`, only when they compete directly with a current source-backed chapter

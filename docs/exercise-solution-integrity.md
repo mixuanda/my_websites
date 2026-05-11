@@ -101,6 +101,14 @@ April 24, 2026 QA update:
   `RevealSolution` pairs were changed. Local and production preview API checks
   confirmed the six new IDs are readable, parse selected choices, and are
   attached to the expected unit-level checkpoint summaries.
+- the May 12 Math1025 chapter 6 checkpoint added the `6.1` complex-number unit
+  to the exercise integrity sample. Local tag-count QA confirmed balanced
+  quick-check / reveal-solution pairs across EN, zh-HK, and zh-CN. The guided
+  exercises and problem-bank checkpoints match the chapter 6 source topics:
+  complex division, conjugate / modulus identities, argument and polar form,
+  De Moivre identities, triangle inequality, roots of unity, locus equations,
+  and complex-geometry criteria. The local grading preview API returned 200
+  for the five new checkpoint IDs with the expected normalized answer or choice.
 
 ### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
 
@@ -146,6 +154,8 @@ textbook exercise blocks.
 - The next integrity risk is broader QA: confirming that export output still
   reads cleanly on the richer rewritten notes and that no localized note drifts
   into mismatched prerequisite or answer labels.
+- Math1025 `6.1` is now part of that QA sample; exports should be checked for
+  expanded answer sections rather than hidden or shifted reveal content.
 
 ### 2026-04-14 checkpoint 7: preview / submit foundation
 

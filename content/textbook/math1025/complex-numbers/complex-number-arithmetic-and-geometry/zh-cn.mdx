@@ -1,0 +1,1031 @@
+---
+title: "6.1 复数、极形式与几何"
+description: "由有序对构造复数，并系统地研究运算、共轭、极形式、单位根、复平面几何与变换方法。"
+---
+
+## 为何复数应放在平面上
+
+方程 `x^2+1=0` 在实数中没有解。引入满足 `i^2=-1` 的符号 `i`，不只是
+代数上的记号方便；它也提示我们要把实数线扩展成一个平面。乘以 `-1` 可以
+看作在实数线上旋转 `180^\circ`。既然 `i^2=-1`，乘以 `i` 就应像连续
+旋转两次 `90^\circ`；因此 `i\cdot1` 自然对应到平面中的 `(0,1)`。
+
+正式处理时，我们不先假设 `x+iy` 已经有意义，而是先把复数定义为平面上的
+有序对，再定义加法与乘法，使 `i^2=-1` 成为运算规则的一部分。
+
+<Definition title="以有序对定义复数">
+复数集合定义为
+
+$$
+\mathbb C=\{(x,y):x,y\in\mathbb R\}.
+$$
+
+若 `(x_1,y_1),(x_2,y_2)\in\mathbb C`，定义
+
+$$
+(x_1,y_1)+(x_2,y_2)=(x_1+x_2,y_1+y_2),
+$$
+
+以及
+
+$$
+(x_1,y_1)(x_2,y_2)=(x_1x_2-y_1y_2,\;x_1y_2+x_2y_1).
+$$
+
+实数 `x` 视为 `(x,0)`，而 `i` 表示 `(0,1)`。
+</Definition>
+
+这些定义保证 `x+iy` 与有序对表示法一致。因为对实数 `x,y`，
+
+$$
+(x,0)+(0,1)(y,0)=(x,0)+(0,y)=(x,y).
+$$
+
+所以往后我们写
+
+$$
+z=x+iy
+$$
+
+来表示有序对 `(x,y)`。
+
+<Definition title="实部与虚部">
+若 `z=x+iy`，其中 `x,y\in\mathbb R`，则
+
+$$
+\operatorname{Re}(z)=x,\qquad \operatorname{Im}(z)=y.
+$$
+
+当 `\operatorname{Im}(z)=0` 时，`z` 是实数；当
+`\operatorname{Re}(z)=0` 时，`z` 是纯虚数。
+</Definition>
+
+复数相等就是有序对相等。因此
+
+$$
+a+ib=c+id
+\quad\Longleftrightarrow\quad
+a=c\text{ 且 }b=d.
+$$
+
+这一点使我们可以在复数等式中比较实部与虚部。
+
+## 复数运算与域结构
+
+以上运算使 `\mathbb C` 成为一个完整的数系。加法与乘法具有交换律与结合律，
+乘法对加法有分配律，`0=0+i0` 是加法单位元，而 `1=1+i0` 是乘法单位元。
+
+<TheoremCard title="复数构成一个域">
+对每个 `z=x+iy\in\mathbb C`，加法逆元为
+
+$$
+-z=(-x)+i(-y).
+$$
+
+若 `z=x+iy\ne0`，则乘法逆元为
+
+$$
+z^{-1}=\frac{x}{x^2+y^2}-i\frac{y}{x^2+y^2}.
+$$
+
+连同交换律、结合律、单位元与分配律，这些性质表示 `\mathbb C` 是一个域。
+</TheoremCard>
+
+乘法逆元公式值得直接检查。若 `z=x+iy\ne0`，则 `x^2+y^2>0`，并且
+
+$$
+(x+iy)\left(\frac{x}{x^2+y^2}-i\frac{y}{x^2+y^2}\right)
+=\frac{x^2+y^2}{x^2+y^2}
++i\frac{-xy+xy}{x^2+y^2}
+=1.
+$$
+
+因此非零复数都可相除；也因此 `\mathbb C` 没有零因子：若 `zw=0`，则
+`z=0` 或 `w=0`。
+
+## 减法与除法
+
+若 `z=a+ib`、`w=c+id`，则
+
+$$
+z-w=(a-c)+i(b-d).
+$$
+
+若 `w\ne0`，除法就是乘以 `w` 的乘法逆元：
+
+$$
+\frac{z}{w}
+=\frac{a+ib}{c+id}
+=(a+ib)\left(\frac{c}{c^2+d^2}-i\frac{d}{c^2+d^2}\right).
+$$
+
+展开后得到
+
+$$
+\frac{a+ib}{c+id}
+=\frac{ac+bd}{c^2+d^2}
++i\frac{bc-ad}{c^2+d^2}.
+$$
+
+<WorkedExample title="除法计算">
+把
+
+$$
+\frac{-1+4i}{6-3i}
+$$
+
+写成 `a+bi`。
+
+因为 `6-3i` 的共轭是 `6+3i`，
+
+$$
+\frac{-1+4i}{6-3i}
+=(-1+4i)\frac{6+3i}{6^2+(-3)^2}.
+$$
+
+所以
+
+$$
+\frac{-1+4i}{6-3i}
+=\frac{(-1)(6)+4(-3)}{45}
++i\frac{4(6)-(-1)(-3)}{45}
+=-\frac25+\frac{7}{15}i.
+$$
+</WorkedExample>
+
+## Argand 平面
+
+复数 `z=x+iy` 可以表示为坐标平面上的点或向量 `(x,y)`。水平坐标是实部，
+垂直坐标是虚部。这个平面称为复平面或 Argand 平面；水平轴称为实轴，
+垂直轴称为虚轴。
+
+复数加法就是向量加法：
+
+$$
+(x_1+iy_1)+(x_2+iy_2)
+=(x_1+x_2)+i(y_1+y_2).
+$$
+
+相比之下，乘法在直角坐标下较难直接看出几何意义；引入模与辐角后，乘法
+会变成旋转与缩放。
+
+## 共轭与模
+
+<Definition title="共轭复数与模">
+对 `z=x+iy`，定义
+
+$$
+\overline z=x-iy,\qquad |z|=\sqrt{x^2+y^2}.
+$$
+</Definition>
+
+共轭复数是把点对实轴作反射；模是该点到原点的距离。
+
+基本性质包括
+
+$$
+\overline{\overline z}=z,\qquad
+z=\overline z\Longleftrightarrow z\in\mathbb R,
+$$
+
+以及
+
+$$
+\operatorname{Re}(z)=\frac12(z+\overline z),
+\qquad
+\operatorname{Im}(z)=\frac{1}{2i}(z-\overline z).
+$$
+
+共轭会保留加减乘除的结构：
+
+$$
+\overline{z_1\pm z_2}=\overline{z_1}\pm\overline{z_2},
+\qquad
+\overline{z_1z_2}=\overline{z_1}\,\overline{z_2},
+\qquad
+\overline{\left(\frac{z_1}{z_2}\right)}
+=\frac{\overline{z_1}}{\overline{z_2}}
+$$
+
+其中 `z_2\ne0`。
+
+模与共轭的核心关系是
+
+$$
+|z|^2=z\overline z.
+$$
+
+因此 `z\overline z` 一定是非负实数。此外，
+
+$$
+|z|=|-z|=|\overline z|,
+\qquad
+|z_1z_2|=|z_1||z_2|,
+\qquad
+\left|\frac{z_1}{z_2}\right|=\frac{|z_1|}{|z_2|}
+$$
+
+其中 `z_2\ne0`。
+
+<WorkedExample title="平行四边形定律">
+对任意 `z_1,z_2\in\mathbb C`，
+
+$$
+|z_1+z_2|^2+|z_1-z_2|^2=2|z_1|^2+2|z_2|^2.
+$$
+
+用 `|u|^2=u\overline u` 可得
+
+$$
+\begin{aligned}
+|z_1+z_2|^2+|z_1-z_2|^2
+&=(z_1+z_2)(\overline{z_1}+\overline{z_2})
++(z_1-z_2)(\overline{z_1}-\overline{z_2})\\
+&=2z_1\overline{z_1}+2z_2\overline{z_2}\\
+&=2|z_1|^2+2|z_2|^2.
+\end{aligned}
+$$
+</WorkedExample>
+
+## 辐角与极式
+
+设 `z=x+iy\ne0`。`z` 的一个辐角是由正实轴逆时针量到点 `(x,y)` 的角。
+若 `\theta` 是一个辐角，则全部辐角为
+
+$$
+\theta+2k\pi,\qquad k\in\mathbb Z.
+$$
+
+主值辐角是落在区间
+
+$$
+-\pi<\operatorname{Arg}(z)\le\pi
+$$
+
+中的唯一辐角。
+
+若 `r=|z|`，则
+
+$$
+z=r(\cos\theta+i\sin\theta),
+$$
+
+其中 `\theta` 是 `z` 的任一辐角。这称为 `z` 的极式。
+
+<WorkedExample title="求极式">
+设
+
+$$
+z=-2+2\sqrt3\,i.
+$$
+
+则
+
+$$
+|z|=\sqrt{(-2)^2+(2\sqrt3)^2}=4.
+$$
+
+由
+
+$$
+\cos\theta=-\frac12,\qquad \sin\theta=\frac{\sqrt3}{2},
+$$
+
+可知点在第二象限，所以 `\theta=2\pi/3`。因此
+
+$$
+\operatorname{Arg}(z)=\frac{2\pi}{3},
+\qquad
+\arg(z)=\frac{2\pi}{3}+2k\pi,
+\quad k\in\mathbb Z,
+$$
+
+并且
+
+$$
+z=4\left(\cos\frac{2\pi}{3}+i\sin\frac{2\pi}{3}\right).
+$$
+</WorkedExample>
+
+极式也能简洁表示共轭与逆元：
+
+$$
+\overline z=r(\cos(-\theta)+i\sin(-\theta)),
+\qquad
+z^{-1}=\frac1r(\cos(-\theta)+i\sin(-\theta)).
+$$
+
+特别地，若 `|z|=1`，则 `z^{-1}=\overline z`。
+
+## 乘法是旋转与缩放
+
+设
+
+$$
+z_1=r_1(\cos\theta_1+i\sin\theta_1),
+\qquad
+z_2=r_2(\cos\theta_2+i\sin\theta_2).
+$$
+
+利用三角函数的和角公式，
+
+$$
+z_1z_2
+=r_1r_2\bigl(\cos(\theta_1+\theta_2)
++i\sin(\theta_1+\theta_2)\bigr).
+$$
+
+因此乘法会把模相乘、把辐角相加：
+
+$$
+|z_1z_2|=|z_1||z_2|,
+\qquad
+\arg(z_1z_2)=\arg(z_1)+\arg(z_2)
+$$
+
+但辐角只在相差 `2\pi` 的意义下确定。
+
+除法则把第二个复数的旋转反向，并把长度相除：
+
+$$
+\frac{z_1}{z_2}
+=\frac{r_1}{r_2}
+\bigl(\cos(\theta_1-\theta_2)+i\sin(\theta_1-\theta_2)\bigr).
+$$
+
+<CommonMistake title="主值辐角不一定可直接相加">
+辐角相加是模 `2\pi` 意义下的说法。一般不能直接写
+`\operatorname{Arg}(z_1z_2)=\operatorname{Arg}(z_1)+\operatorname{Arg}(z_2)`。
+相加后若不在 `(-\pi,\pi]` 内，必须先调回主值范围。
+</CommonMistake>
+
+## De Moivre 定理
+
+整数次方由反复乘法定义。若 `z\ne0`，则 `z^0=1`，且对正整数 `n`，
+`z^{-n}=(z^{-1})^n`。
+
+<TheoremCard title="De Moivre 定理">
+对每个整数 `n`，
+
+$$
+(\cos\theta+i\sin\theta)^n=\cos(n\theta)+i\sin(n\theta).
+$$
+</TheoremCard>
+
+当 `n` 为正整数时，可由极式乘法规则作数学归纳法证明。`n=0` 时显然成立。
+当 `n` 为负整数时，写 `n=-m`，使用正整数情形，再用单位模复数的逆元等于
+共轭这一事实。
+
+<WorkedExample title="三倍角公式">
+由 De Moivre 定理，
+
+$$
+\cos(3\theta)+i\sin(3\theta)
+=(\cos\theta+i\sin\theta)^3.
+$$
+
+展开右边：
+
+$$
+(\cos^3\theta-3\cos\theta\sin^2\theta)
++i(3\cos^2\theta\sin\theta-\sin^3\theta).
+$$
+
+比较实部与虚部，得到
+
+$$
+\cos(3\theta)=4\cos^3\theta-3\cos\theta,
+$$
+
+以及
+
+$$
+\sin(3\theta)=3\sin\theta-4\sin^3\theta.
+$$
+</WorkedExample>
+
+## Euler 公式与指数形式
+
+正弦、余弦与指数函数的幂级数提示我们如何理解 `e^{i\theta}`：
+
+$$
+e^{i\theta}
+=1+i\theta-\frac{\theta^2}{2!}-i\frac{\theta^3}{3!}
++\frac{\theta^4}{4!}+\cdots
+=\cos\theta+i\sin\theta.
+$$
+
+在本课程的层次，我们用这个动机写成
+
+$$
+e^{i\theta}=\cos\theta+i\sin\theta.
+$$
+
+非零复数因此可写成指数形式
+
+$$
+z=re^{i\theta},
+$$
+
+其中 `r=|z|`，而 `\theta` 是 `z` 的一个辐角。
+
+此记法把乘法与 De Moivre 定理写得更简洁：
+
+$$
+r_1e^{i\theta_1}\,r_2e^{i\theta_2}
+=r_1r_2e^{i(\theta_1+\theta_2)},
+\qquad
+(e^{i\theta})^n=e^{in\theta}.
+$$
+
+同时，
+
+$$
+\cos\theta=\frac12(e^{i\theta}+e^{-i\theta}),
+\qquad
+\sin\theta=\frac{1}{2i}(e^{i\theta}-e^{-i\theta}).
+$$
+
+代入 `\theta=\pi` 得 Euler 恒等式：
+
+$$
+e^{i\pi}+1=0.
+$$
+
+## 三角不等式
+
+<TheoremCard title="三角不等式">
+对所有 `z_1,z_2\in\mathbb C`，
+
+$$
+|z_1+z_2|\le |z_1|+|z_2|.
+$$
+
+等号成立当且仅当两个非零向量方向相同；等价地，`z_1=kz_2` 对某个
+`k\ge0` 成立，或 `z_2=kz_1` 对某个 `k\ge0` 成立。
+</TheoremCard>
+
+证明中使用共轭可避免冗长的坐标展开：
+
+$$
+\begin{aligned}
+|z_1+z_2|^2
+&=(z_1+z_2)(\overline{z_1}+\overline{z_2})\\
+&=|z_1|^2+2\operatorname{Re}(z_1\overline{z_2})+|z_2|^2\\
+&\le |z_1|^2+2|z_1\overline{z_2}|+|z_2|^2\\
+&=(|z_1|+|z_2|)^2.
+\end{aligned}
+$$
+
+两边皆非负，取平方根便得结论。
+
+<CommonMistake title="模不是线性运算">
+通常 `|z_1+z_2|\ne |z_1|+|z_2|`。三角不等式只给出上界；等号需要两个
+向量方向相同。例如 `1` 与 `i` 不满足等号情形。
+</CommonMistake>
+
+## `\mathbb C` 上的多项式根
+
+引入复数的最初原因，是 `x^2+1=0` 在实数中无解。更深一层的封闭性是：
+一旦允许复系数与复根，每个非常数多项式都至少有一个根。
+
+<TheoremCard title="代数基本定理">
+若 `p(z)\in\mathbb C[z]` 是非常数多项式，则方程
+
+$$
+p(z)=0
+$$
+
+至少有一个复数解。
+</TheoremCard>
+
+本节不证明这个定理，但会使用它的后果。若 `\alpha` 是一个根，则
+`p(z)=(z-\alpha)q(z)`，其中 `q` 的次数比 `p` 小一。反复分解可得
+
+$$
+p(z)=a_n(z-\alpha_1)(z-\alpha_2)\cdots(z-\alpha_n),
+$$
+
+其中根按重数计算。
+
+若多项式系数全为实数，非实根会成共轭对出现。设
+
+$$
+p(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_1z+a_0,\qquad a_k\in\mathbb R.
+$$
+
+若 `p(\alpha)=0`，对等式两边取共轭便得到 `p(\overline\alpha)=0`。
+
+因此，实系数多项式可分解成实线性因子与实二次因子。非实共轭对给出
+
+$$
+(z-\alpha)(z-\overline\alpha)
+=z^2-2\operatorname{Re}(\alpha)z+|\alpha|^2.
+$$
+
+<WorkedExample title="实二次式中的共轭根">
+对
+
+$$
+x^2+2x+5=0,
+$$
+
+判别式是 `4-20=-16`。因此
+
+$$
+x=\frac{-2\pm\sqrt{-16}}2=-1\pm2i.
+$$
+
+两个根互为共轭，并且
+
+$$
+(x-(-1+2i))(x-(-1-2i))=x^2+2x+5.
+$$
+</WorkedExample>
+
+## 单位根与解 `z^n=z_0`
+
+极式使 `z^n=1` 这类方程的根变得清楚。令
+
+$$
+\omega=e^{2\pi i/n}
+=\cos\frac{2\pi}{n}+i\sin\frac{2\pi}{n}.
+$$
+
+则 `\omega^n=1`，而
+
+$$
+1,\omega,\omega^2,\ldots,\omega^{n-1}
+$$
+
+是 `n` 个互异的 `n` 次单位根。因此
+
+$$
+z^n-1=(z-1)(z-\omega)(z-\omega^2)\cdots(z-\omega^{n-1}).
+$$
+
+在实数上分解时，要把共轭根配成二次因子。例如 `n=5` 时，
+
+$$
+z^5-1
+=(z-1)
+\left(z^2-2\cos\frac{2\pi}{5}\,z+1\right)
+\left(z^2-2\cos\frac{4\pi}{5}\,z+1\right).
+$$
+
+同一方法可解 `z^n=z_0`。若 `z_0=r_0e^{i\theta_0}` 且 `r_0>0`，则所有解为
+
+$$
+\alpha_k=r_0^{1/n}
+e^{i(\theta_0+2k\pi)/n},
+\qquad k=0,1,\ldots,n-1.
+$$
+
+每个根的模都是 `r_0^{1/n}`；辐角相隔 `2\pi/n`。
+
+<WorkedExample title="一的三次根">
+当 `n=3`，
+
+$$
+\omega=e^{2\pi i/3}=-\frac12+\frac{\sqrt3}{2}i.
+$$
+
+一的三个三次根是
+
+$$
+1,\quad \omega,\quad \omega^2
+=-\frac12-\frac{\sqrt3}{2}i.
+$$
+
+它们位于单位圆上，辐角分别是 `0`、`2\pi/3`、`4\pi/3`，形成正三角形。
+</WorkedExample>
+
+## 由复数比值读几何
+
+复数差表示有方向的向量。对互异点 `z_1,z_2,z_3`，写
+
+$$
+\frac{z_1-z_3}{z_2-z_3}=re^{i\theta}.
+$$
+
+则 `r=|z_1-z_3|/|z_2-z_3|`，而 `\theta` 是由向量 `z_2-z_3` 转到
+`z_1-z_3` 的有向角。因此，一个复数比值同时记录边长比与角度。
+
+<TheoremCard title="共线判别">
+互异点 `z_1,z_2,z_3\in\mathbb C` 共线，当且仅当
+
+$$
+\frac{z_1-z_3}{z_2-z_3}\in\mathbb R.
+$$
+
+等价地，
+
+$$
+\begin{vmatrix}
+1&1&1\\
+z_1&z_2&z_3\\
+\overline{z_1}&\overline{z_2}&\overline{z_3}
+\end{vmatrix}=0.
+$$
+</TheoremCard>
+
+比值为实数表示两个向量的辐角相差 `0` 或 `\pi`，也就是在同一直线上。
+
+复数比值也可描述同向相似三角形：
+
+$$
+\triangle z_1z_2z_3\sim \triangle w_1w_2w_3
+\quad\Longleftrightarrow\quad
+\frac{z_1-z_3}{z_2-z_3}
+=
+\frac{w_1-w_3}{w_2-w_3}.
+$$
+
+等式表示对应边长比与夹角都相同。
+
+<WorkedExample title="正三角形判别">
+令 `\omega=e^{2\pi i/3}`。若 `z_1,z_2,z_3` 以逆时针方向排列，则三角形为
+正三角形，当且仅当它与 `1,\omega,\omega^2` 相似。其中一个简洁条件是
+
+$$
+z_1+z_2\omega+z_3\omega^2=0.
+$$
+
+这把等边与 `60^\circ` 角度的几何条件，转成一条代数方程。
+</WorkedExample>
+
+来源也引入四个互异点的 cross ratio：
+
+$$
+(z_1,z_2;z_3,z_4)
+=\frac{(z_1-z_3)(z_2-z_4)}
+{(z_2-z_3)(z_1-z_4)}.
+$$
+
+在本阶段，重点不是一次记住所有恒等式，而是看见反复使用的策略：平移用差
+表示，缩放与旋转用乘法表示，形状信息则用比值表示。
+
+## 轨迹方程与复变换
+
+许多平面轨迹都可用复数记法简洁表示。方程
+
+$$
+|z-z_0|=r
+$$
+
+表示以 `z_0` 为圆心、半径为 `r` 的圆。平方后得到
+
+$$
+(z-z_0)(\overline z-\overline{z_0})=r^2,
+$$
+
+较方便展开。
+
+同样地，
+
+$$
+|z-z_1|=|z-z_2|
+$$
+
+表示连接 `z_1` 与 `z_2` 的线段之垂直平分线，因为它描述所有到两端点距离
+相等的点。通过 `z_1,z_2` 的直线可写成
+
+$$
+\frac{z-z_2}{z_1-z_2}\in\mathbb R.
+$$
+
+若三个非共线点决定一个圆，则 cross-ratio 判别给出
+
+$$
+(z_1,z_2;z_3,z)\in\mathbb R.
+$$
+
+<WorkedExample title="Apollonius 圆">
+证明
+
+$$
+|z-1|=3|z+1|
+$$
+
+表示一个圆。平方并展开：
+
+$$
+(z-1)(\overline z-1)=9(z+1)(\overline z+1).
+$$
+
+整理后得到
+
+$$
+z\overline z+\frac54z+\frac54\overline z+1=0.
+$$
+
+完成平方：
+
+$$
+\left|z+\frac54\right|=\frac34.
+$$
+
+所以轨迹是以 `-5/4` 为圆心、半径为 `3/4` 的圆。
+</WorkedExample>
+
+来源也讨论复变换，也就是由复平面到自身的函数。基本例子包括：
+
+- 缩放：`f(z)=rz`，其中 `r\in\mathbb R` 且 `r\ne0`；
+- 平移：`f(z)=z+a`；
+- 旋转：`f(z)=e^{i\theta}z`；
+- 反演：`f(z)=1/z`；
+- 对实轴反射：`f(z)=\overline z`。
+
+例如 `f(z)=z^2` 会把 `z=re^{i\theta}` 送到
+
+$$
+f(z)=r^2e^{2i\theta},
+$$
+
+所以它会把离原点的距离平方，并把辐角加倍。
+
+平移、旋转与共轭会保距离。平移、旋转与缩放会保留三点比值
+
+$$
+\frac{z_1-z_3}{z_2-z_3}.
+$$
+
+因此它们保留相似性。Cross ratio 更稳定：缩放、平移、旋转与反演都保留
+cross ratio，因此 Mobius 变换
+
+$$
+f(z)=\frac{az+b}{cz+d},\qquad ad-bc\ne0
+$$
+
+也保留 cross ratio。这解释了为什么 Mobius 变换会把直线与圆送到直线或圆。
+直线与圆可统一写成
+
+$$
+A z\overline z+Bz+\overline B\,\overline z+C=0,
+$$
+
+其中 `A,C\in\mathbb R`；`A\ne0` 时是圆，`A=0` 时是直线。
+
+## 快速检查
+
+<QuickCheck prompt="若有序对表示中的 `z=(3,-5)`，用 `x+iy` 记法如何写？`Re(z)` 与 `Im(z)` 分别是多少？">
+使用 `(x,y)=x+iy` 的识别。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`z=3-5i`，`\operatorname{Re}(z)=3`，`\operatorname{Im}(z)=-5`。
+</RevealSolution>
+
+<QuickCheck prompt="求 `2-i` 的乘法逆元。">
+使用 `x+iy` 的逆元公式。
+</QuickCheck>
+
+<RevealSolution title="答案">
+这里 `x=2`、`y=-1`，所以
+
+$$
+(2-i)^{-1}=\frac{2}{5}+i\frac{1}{5}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="`-1-i` 的主值辐角是多少？">
+先判断该点在复平面的哪一象限。
+</QuickCheck>
+
+<RevealSolution title="答案">
+该点在第三象限，参考角为 `\pi/4`，其中一个辐角是 `5\pi/4`。主值辐角需
+落在 `(-\pi,\pi]`，所以
+
+$$
+\operatorname{Arg}(-1-i)=-\frac{3\pi}{4}.
+$$
+</RevealSolution>
+
+<QuickCheck prompt="若 `z=2(\cos(\pi/6)+i\sin(\pi/6))` 且 `w=3(\cos(-\pi/4)+i\sin(-\pi/4))`，求 `zw` 的极式。">
+把模相乘，把辐角相加。
+</QuickCheck>
+
+<RevealSolution title="答案">
+模为 `2\cdot3=6`，辐角为 `\pi/6-\pi/4=-\pi/12`。因此
+
+$$
+zw=6\left(\cos\left(-\frac{\pi}{12}\right)
++i\sin\left(-\frac{\pi}{12}\right)\right).
+$$
+</RevealSolution>
+
+<QuickCheck prompt="用 De Moivre 定理化简 `(\cos\theta+i\sin\theta)^4`。">
+把单位极式提升至四次方。
+</QuickCheck>
+
+<RevealSolution title="答案">
+
+$$
+(\cos\theta+i\sin\theta)^4=\cos(4\theta)+i\sin(4\theta).
+$$
+</RevealSolution>
+
+<QuickCheck prompt="令 `\omega=e^{2\pi i/5}`。为什么 `\omega^3` 也是五次单位根？">
+使用指数律。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因为
+
+$$
+(\omega^3)^5=\omega^{15}=(\omega^5)^3=1^3=1.
+$$
+
+所以 `\omega^3` 是 `z^5-1=0` 的根。
+</RevealSolution>
+
+<QuickCheck prompt="比值 `(z_1-z_3)/(z_2-z_3)` 如何判断三点共线？">
+留意它的辐角。
+</QuickCheck>
+
+<RevealSolution title="答案">
+这个比值比较由 `z_3` 出发的两个有向向量。若比值为实数，它的辐角是
+`0` 或 `\pi`，因此两个向量同向或反向，三点就在同一直线上。
+</RevealSolution>
+
+<QuickCheck prompt="`|z-1|=|z+3|` 描述什么几何对象？">
+把它读成等距条件。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它是连接 `1` 与 `-3` 的线段之垂直平分线。两点都在实轴上，中点是 `-1`，
+所以垂直平分线是直线 `\operatorname{Re}(z)=-1`。
+</RevealSolution>
+
+## 练习
+
+1. 证明嵌入 `\phi:\mathbb R\to\mathbb C`，`\phi(x)=x+i0`，保留加法与乘法。
+2. 把 `(3-2i)/(1+i)` 写成 `a+bi`。
+3. 证明 `z\overline z=|z|^2`，并用它推出非零 `z` 的逆元公式。
+4. 求 `-\sqrt3+i` 的模、所有辐角、主值辐角与极式。
+5. 证明
+   `|1-\overline{z_1}z_2|^2-|z_1-z_2|^2=(1-|z_1|^2)(1-|z_2|^2)`。
+6. 用 De Moivre 定理，把 `\cos(5\theta)` 与 `\sin(5\theta)` 写成
+   `\cos\theta` 与 `\sin\theta` 的幂。
+7. 用数学归纳法证明
+   `|\sum_{k=1}^n z_k|\le \sum_{k=1}^n |z_k|`。
+8. 对 `\theta\ne2k\pi`，用 `e^{i\theta}` 的等比和推导
+   `\sum_{k=1}^n \cos(k\theta)=\sin(n\theta/2)\cos((n+1)\theta/2)/\sin(\theta/2)`。
+9. 先在 `\mathbb C` 上分解 `z^6-1`，再把非实共轭根配对，在 `\mathbb R`
+   上分解它。
+10. 以极式解 `z^4=16`。
+11. 证明：若 `p(z)\in\mathbb R[z]` 且 `p(\alpha)=0`，则
+   `p(\overline\alpha)=0`。
+12. 证明 `z_1,z_2,z_3` 共线，当且仅当 `(z_1-z_3)/(z_2-z_3)` 是实数。
+13. 直接证明 `|z-1|=3|z+1|` 是圆 `|z+5/4|=3/4`。
+14. 设 `f(z)=az+b` 且 `a\ne0`。证明对互异的 `z_1,z_2,z_3`，
+    `(f(z_1)-f(z_3))/(f(z_2)-f(z_3))=(z_1-z_3)/(z_2-z_3)`。
+
+## 引导解答
+
+1. 对实数 `a,b`，
+   `\phi(a+b)=(a+b)+i0=(a+i0)+(b+i0)=\phi(a)+\phi(b)`。同时
+   `\phi(ab)=ab+i0=(a+i0)(b+i0)=\phi(a)\phi(b)`。所以实数运算在
+   `\mathbb C` 内被保留。
+2. 乘以分母的共轭：
+
+   $$
+   \frac{3-2i}{1+i}
+   =\frac{(3-2i)(1-i)}{(1+i)(1-i)}
+   =\frac{1-5i}{2}
+   =\frac12-\frac52 i.
+   $$
+3. 若 `z=x+iy`，则
+   `z\overline z=(x+iy)(x-iy)=x^2+y^2=|z|^2`。若 `z\ne0`，则
+   `|z|^2>0`，因此
+   `z^{-1}=\overline z/|z|^2=(x-iy)/(x^2+y^2)`。
+4. 模为 `2`。由
+   `\cos\theta=-\sqrt3/2`、`\sin\theta=1/2` 可知点在第二象限，主值辐角为
+   `5\pi/6`。全部辐角是 `5\pi/6+2k\pi`，而
+   `-\sqrt3+i=2(\cos(5\pi/6)+i\sin(5\pi/6))`。
+5. 用共轭展开两个平方模：
+
+   $$
+   |1-\overline{z_1}z_2|^2
+   =(1-\overline{z_1}z_2)(1-z_1\overline{z_2})
+   =1-\overline{z_1}z_2-z_1\overline{z_2}+|z_1|^2|z_2|^2,
+   $$
+
+   而
+
+   $$
+   |z_1-z_2|^2
+   =|z_1|^2-z_1\overline{z_2}-\overline{z_1}z_2+|z_2|^2.
+   $$
+
+   相减后混合项抵消，得到
+   `(1-|z_1|^2)(1-|z_2|^2)`。
+6. 展开
+   `(\cos\theta+i\sin\theta)^5=\cos(5\theta)+i\sin(5\theta)`。偶次 `i` 的
+   项给实部，奇次 `i` 的项给虚部：
+
+   $$
+   \cos(5\theta)=\cos^5\theta-10\cos^3\theta\sin^2\theta
+   +5\cos\theta\sin^4\theta,
+   $$
+
+   $$
+   \sin(5\theta)=5\cos^4\theta\sin\theta
+   -10\cos^2\theta\sin^3\theta+\sin^5\theta.
+   $$
+7. `n=1` 时显然成立。若命题对 `n` 成立，则
+
+   $$
+   \left|\sum_{k=1}^{n+1}z_k\right|
+   =
+   \left|\left(\sum_{k=1}^{n}z_k\right)+z_{n+1}\right|
+   \le
+   \left|\sum_{k=1}^{n}z_k\right|+|z_{n+1}|
+   \le
+   \sum_{k=1}^{n+1}|z_k|.
+   $$
+8. 因为 `e^{i\theta}\ne1`，
+
+   $$
+   \sum_{k=1}^n e^{ik\theta}
+   =e^{i\theta}\frac{e^{in\theta}-1}{e^{i\theta}-1}.
+   $$
+
+   用半角因子重写分子与分母，可得
+
+   $$
+   \sum_{k=1}^n e^{ik\theta}
+   =
+   \frac{\sin(n\theta/2)}{\sin(\theta/2)}
+   e^{i(n+1)\theta/2}.
+   $$
+
+   比较实部便得到所需的余弦求和公式。
+9. 在 `\mathbb C` 上，令 `\omega=e^{2\pi i/6}`。则
+
+   $$
+   z^6-1=\prod_{k=0}^{5}(z-\omega^k).
+   $$
+
+   根为 `1`、`-1`、`e^{\pi i/3}`、`e^{-\pi i/3}`、`e^{2\pi i/3}`、
+   `e^{-2\pi i/3}`。配对共轭根可得
+
+   $$
+   z^6-1=(z-1)(z+1)
+   \left(z^2-2\cos\frac{\pi}{3}z+1\right)
+   \left(z^2-2\cos\frac{2\pi}{3}z+1\right),
+   $$
+
+   所以在 `\mathbb R` 上，
+
+   $$
+   z^6-1=(z-1)(z+1)(z^2-z+1)(z^2+z+1).
+   $$
+10. 写 `16=16e^{2\pi i m}`。四次根的模是 `2`，辐角是
+    `(2k\pi)/4=k\pi/2`，所以解为
+
+    $$
+    2,\quad 2i,\quad -2,\quad -2i.
+    $$
+11. 写
+    `p(z)=a_nz^n+a_{n-1}z^{n-1}+\cdots+a_0`，其中所有 `a_j` 都是实数。
+    若 `p(\alpha)=0`，对两边取共轭得到
+
+    $$
+    a_n\overline\alpha^n+a_{n-1}\overline\alpha^{n-1}
+    +\cdots+a_0=0,
+    $$
+
+    因为共轭保留和与乘积，而且 `\overline{a_j}=a_j`。这正是
+    `p(\overline\alpha)=0`。
+12. 若三点共线，向量 `z_1-z_3` 与 `z_2-z_3` 同向或反向，辐角差为
+    `0` 或 `\pi`，故商为实数。反过来，若商为实数，则两向量辐角差为
+    `0` 或 `\pi`，所以两向量平行，三点共线。
+13. 平方得到
+
+    $$
+    (z-1)(\overline z-1)=9(z+1)(\overline z+1).
+    $$
+
+    展开并整理：
+
+    $$
+    z\overline z+\frac54z+\frac54\overline z+1=0.
+    $$
+
+    这等价于
+
+    $$
+    \left(z+\frac54\right)\left(\overline z+\frac54\right)=\frac9{16},
+    $$
+
+    因此 `|z+5/4|=3/4`。
+14. 因为 `f(z_j)=az_j+b`，
+
+    $$
+    \frac{f(z_1)-f(z_3)}{f(z_2)-f(z_3)}
+    =\frac{a(z_1-z_3)}{a(z_2-z_3)}
+    =\frac{z_1-z_3}{z_2-z_3}.
+    $$
+
+    平移部分抵消，而非零的缩放 / 旋转因子 `a` 也抵消。

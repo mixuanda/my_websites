@@ -7234,6 +7234,363 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["sequences", "arithmetic-geometric-series", "finite-sums"],
   },
+  "checkpoint.math1025.complex-numbers.divide-by-conjugate": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.complex-numbers.divide-by-conjugate",
+    type: "FILL_IN_BLANK",
+    courseId: "math1025",
+    chapterId: "complex-numbers",
+    unitId: "math1025.complex-numbers.complex-number-arithmetic-and-geometry",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Chapter 6 divides complex numbers by multiplying by the inverse of the denominator. Fill in the blank: `(-1+4i)/(6-3i)=____` in `a+bi` form.",
+      "第 6 章用分母的逆元來做複數除法。填空：以 `a+bi` 形式表示，`(-1+4i)/(6-3i)=____`。",
+      "第 6 章用分母的逆元来做复数除法。填空：以 `a+bi` 形式表示，`(-1+4i)/(6-3i)=____`。"
+    ),
+    correctAnswer: {
+      value: "-2/5+7i/15",
+      equivalentValues: [
+        "-2/5 + 7i/15",
+        "-2/5+(7/15)i",
+        "-2/5 + (7/15)i",
+        "-2/5+7/15i",
+        "-2/5 + 7/15i",
+        "-2/5 + (7i)/15",
+        "(-6+21i)/15",
+        "(-18+21i)/45",
+      ],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "Use `(6-3i)^{-1}=(6+3i)/(6^2+(-3)^2)=(6+3i)/45`, then multiply the numerator.",
+        "使用 `(6-3i)^{-1}=(6+3i)/(6^2+(-3)^2)=(6+3i)/45`，再與分子相乘。",
+        "使用 `(6-3i)^{-1}=(6+3i)/(6^2+(-3)^2)=(6+3i)/45`，再与分子相乘。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Enter an expression such as `-2/5+7i/15`.",
+        "可輸入例如 `-2/5+7i/15` 的表達式。",
+        "可输入例如 `-2/5+7i/15` 的表达式。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter the complex number in a+bi form.",
+      "請以 a+bi 形式輸入複數。",
+      "请以 a+bi 形式输入复数。"
+    ),
+    solutionSteps: [
+      text(
+        "For `w=6-3i`, the inverse is `w^{-1}=\\bar w/|w|^2=(6+3i)/(36+9)=(6+3i)/45`.",
+        "對 `w=6-3i`，其逆元是 `w^{-1}=\\bar w/|w|^2=(6+3i)/(36+9)=(6+3i)/45`。",
+        "对 `w=6-3i`，其逆元是 `w^{-1}=\\bar w/|w|^2=(6+3i)/(36+9)=(6+3i)/45`。"
+      ),
+      text(
+        "Thus `(-1+4i)/(6-3i)=(-1+4i)(6+3i)/45`.",
+        "因此 `(-1+4i)/(6-3i)=(-1+4i)(6+3i)/45`。",
+        "因此 `(-1+4i)/(6-3i)=(-1+4i)(6+3i)/45`。"
+      ),
+      text(
+        "The product is `-18+21i`, so the quotient is `-18/45+21i/45=-2/5+7i/15`.",
+        "乘積是 `-18+21i`，所以商是 `-18/45+21i/45=-2/5+7i/15`。",
+        "乘积是 `-18+21i`，所以商是 `-18/45+21i/45=-2/5+7i/15`。"
+      ),
+    ],
+    skillTags: ["complex-numbers", "division", "conjugate", "multiplicative-inverse"],
+  },
+  "checkpoint.math1025.complex-numbers.modulus-conjugate-identity": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.complex-numbers.modulus-conjugate-identity",
+    type: "FILL_IN_BLANK",
+    courseId: "math1025",
+    chapterId: "complex-numbers",
+    unitId: "math1025.complex-numbers.complex-number-arithmetic-and-geometry",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Proposition 6.3 says `|z|^2=z\\bar z`. For `z=3-4i`, fill in the blank: `z\\bar z=____`.",
+      "Proposition 6.3 指出 `|z|^2=z\\bar z`。若 `z=3-4i`，填空：`z\\bar z=____`。",
+      "Proposition 6.3 指出 `|z|^2=z\\bar z`。若 `z=3-4i`，填空：`z\\bar z=____`。"
+    ),
+    correctAnswer: {
+      value: "25",
+      equivalentValues: ["25.0", "3^2+4^2", "9+16"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "The conjugate is `3+4i`, and the cross terms cancel in `(3-4i)(3+4i)`.",
+        "共軛是 `3+4i`，在 `(3-4i)(3+4i)` 中交叉項會互相抵消。",
+        "共轭是 `3+4i`，在 `(3-4i)(3+4i)` 中交叉项会互相抵消。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Enter a single non-negative real number.",
+        "請輸入一個非負實數。",
+        "请输入一个非负实数。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter the value of z times its conjugate.",
+      "請輸入 z 與其共軛的乘積。",
+      "请输入 z 与其共轭的乘积。"
+    ),
+    solutionSteps: [
+      text(
+        "For `z=3-4i`, the conjugate is `\\bar z=3+4i`.",
+        "若 `z=3-4i`，則共軛是 `\\bar z=3+4i`。",
+        "若 `z=3-4i`，则共轭是 `\\bar z=3+4i`。"
+      ),
+      text(
+        "Multiplying gives `z\\bar z=(3-4i)(3+4i)=3^2+4^2=25`.",
+        "相乘得 `z\\bar z=(3-4i)(3+4i)=3^2+4^2=25`。",
+        "相乘得 `z\\bar z=(3-4i)(3+4i)=3^2+4^2=25`。"
+      ),
+      text(
+        "This also equals `|z|^2`, because `|z|=\\sqrt{3^2+(-4)^2}=5`.",
+        "這也等於 `|z|^2`，因為 `|z|=\\sqrt{3^2+(-4)^2}=5`。",
+        "这也等于 `|z|^2`，因为 `|z|=\\sqrt{3^2+(-4)^2}=5`。"
+      ),
+    ],
+    skillTags: ["complex-numbers", "conjugate", "modulus", "identity"],
+  },
+  "checkpoint.math1025.complex-numbers.principal-argument-quadrant": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.complex-numbers.principal-argument-quadrant",
+    type: "MCQ",
+    courseId: "math1025",
+    chapterId: "complex-numbers",
+    unitId: "math1025.complex-numbers.complex-number-arithmetic-and-geometry",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Let `z=-2+2\\sqrt{3}i`. Which value is the principal argument `Arg(z)`?",
+      "設 `z=-2+2\\sqrt{3}i`。哪一個值是主幅角 `Arg(z)`？",
+      "设 `z=-2+2\\sqrt{3}i`。哪一个值是主幅角 `Arg(z)`？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("`2\\pi/3`", "`2\\pi/3`", "`2\\pi/3`"),
+      },
+      {
+        id: "b",
+        text: text("`-\\pi/3`", "`-\\pi/3`", "`-\\pi/3`"),
+      },
+      {
+        id: "c",
+        text: text("`4\\pi/3`", "`4\\pi/3`", "`4\\pi/3`"),
+      },
+      {
+        id: "d",
+        text: text("`\\pi/3`", "`\\pi/3`", "`\\pi/3`"),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "The point has negative real part and positive imaginary part, so it lies in quadrant II, not quadrant IV.",
+        "該點的實部為負、虛部為正，所以位於第二象限，不是第四象限。",
+        "该点的实部为负、虚部为正，所以位于第二象限，不是第四象限。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Principal arguments must satisfy `-\\pi<\\theta\\le \\pi`.",
+        "主幅角必須滿足 `-\\pi<\\theta\\le \\pi`。",
+        "主幅角必须满足 `-\\pi<\\theta\\le \\pi`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The modulus is `\\sqrt{(-2)^2+(2\\sqrt3)^2}=4`.",
+        "模長是 `\\sqrt{(-2)^2+(2\\sqrt3)^2}=4`。",
+        "模长是 `\\sqrt{(-2)^2+(2\\sqrt3)^2}=4`。"
+      ),
+      text(
+        "Thus `\\cos\\theta=-1/2` and `\\sin\\theta=\\sqrt3/2`.",
+        "因此 `\\cos\\theta=-1/2` 且 `\\sin\\theta=\\sqrt3/2`。",
+        "因此 `\\cos\\theta=-1/2` 且 `\\sin\\theta=\\sqrt3/2`。"
+      ),
+      text(
+        "The angle in `(-\\pi,\\pi]` with those signs is `2\\pi/3`, so `Arg(z)=2\\pi/3`.",
+        "在 `(-\\pi,\\pi]` 內兼具這些符號的角是 `2\\pi/3`，所以 `Arg(z)=2\\pi/3`。",
+        "在 `(-\\pi,\\pi]` 内兼具这些符号的角是 `2\\pi/3`，所以 `Arg(z)=2\\pi/3`。"
+      ),
+    ],
+    skillTags: ["complex-numbers", "polar-form", "argument", "principal-argument"],
+  },
+  "checkpoint.math1025.complex-numbers.polar-product-rotation-scaling": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.complex-numbers.polar-product-rotation-scaling",
+    type: "MCQ",
+    courseId: "math1025",
+    chapterId: "complex-numbers",
+    unitId: "math1025.complex-numbers.complex-number-arithmetic-and-geometry",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Let `z=2(\\cos(\\pi/3)+i\\sin(\\pi/3))`. Geometrically, what does multiplying a complex number `w` by `z` do?",
+      "設 `z=2(\\cos(\\pi/3)+i\\sin(\\pi/3))`。從幾何上看，把複數 `w` 乘以 `z` 會做甚麼？",
+      "设 `z=2(\\cos(\\pi/3)+i\\sin(\\pi/3))`。从几何上看，把复数 `w` 乘以 `z` 会做什么？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "Scale by 2 and rotate anticlockwise by `\\pi/3`.",
+          "放大 2 倍，並逆時針旋轉 `\\pi/3`。",
+          "放大 2 倍，并逆时针旋转 `\\pi/3`。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "Scale by `\\pi/3` and rotate anticlockwise by 2 radians.",
+          "放大 `\\pi/3` 倍，並逆時針旋轉 2 弧度。",
+          "放大 `\\pi/3` 倍，并逆时针旋转 2 弧度。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "Translate every point two units to the right.",
+          "把每一點向右平移兩個單位。",
+          "把每一点向右平移两个单位。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "Reflect across the real axis and then scale by 2.",
+          "先沿實軸反射，再放大 2 倍。",
+          "先沿实轴反射，再放大 2 倍。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "In polar form, the modulus multiplies lengths and the argument adds angles.",
+        "在極形式中，模長負責乘上長度，幅角負責相加角度。",
+        "在极形式中，模长负责乘上长度，幅角负责相加角度。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "`zw` has modulus `|z||w|` and argument `arg(z)+arg(w)`.",
+        "`zw` 的模長是 `|z||w|`，幅角是 `arg(z)+arg(w)`。",
+        "`zw` 的模长是 `|z||w|`，幅角是 `arg(z)+arg(w)`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The number `z` has modulus `2` and argument `\\pi/3`.",
+        "`z` 的模長是 `2`，幅角是 `\\pi/3`。",
+        "`z` 的模长是 `2`，幅角是 `\\pi/3`。"
+      ),
+      text(
+        "Proposition 6.4 gives `zw=|z||w|(\\cos(\\theta+\\phi)+i\\sin(\\theta+\\phi))`.",
+        "Proposition 6.4 給出 `zw=|z||w|(\\cos(\\theta+\\phi)+i\\sin(\\theta+\\phi))`。",
+        "Proposition 6.4 给出 `zw=|z||w|(\\cos(\\theta+\\phi)+i\\sin(\\theta+\\phi))`。"
+      ),
+      text(
+        "Therefore multiplication by `z` scales by `2` and rotates anticlockwise by `\\pi/3`.",
+        "因此乘以 `z` 會放大 `2` 倍，並逆時針旋轉 `\\pi/3`。",
+        "因此乘以 `z` 会放大 `2` 倍，并逆时针旋转 `\\pi/3`。"
+      ),
+    ],
+    skillTags: ["complex-numbers", "polar-form", "multiplication", "rotation-scaling"],
+  },
+  "checkpoint.math1025.complex-numbers.demoivre-third-power": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.complex-numbers.demoivre-third-power",
+    type: "MCQ",
+    courseId: "math1025",
+    chapterId: "complex-numbers",
+    unitId: "math1025.complex-numbers.complex-number-arithmetic-and-geometry",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Use De Moivre's Theorem to compute `(\\cos(\\pi/6)+i\\sin(\\pi/6))^3`.",
+      "使用 De Moivre's Theorem 計算 `(\\cos(\\pi/6)+i\\sin(\\pi/6))^3`。",
+      "使用 De Moivre's Theorem 计算 `(\\cos(\\pi/6)+i\\sin(\\pi/6))^3`。"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("`i`", "`i`", "`i`"),
+      },
+      {
+        id: "b",
+        text: text("`1`", "`1`", "`1`"),
+      },
+      {
+        id: "c",
+        text: text("`-i`", "`-i`", "`-i`"),
+      },
+      {
+        id: "d",
+        text: text("`\\sqrt3/2+i/2`", "`\\sqrt3/2+i/2`", "`\\sqrt3/2+i/2`"),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "De Moivre's Theorem multiplies the angle by the integer power.",
+        "De Moivre's Theorem 會把角度乘以整數冪。",
+        "De Moivre's Theorem 会把角度乘以整数幂。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "`(\\cos\\theta+i\\sin\\theta)^n=\\cos(n\\theta)+i\\sin(n\\theta)`.",
+        "`(\\cos\\theta+i\\sin\\theta)^n=\\cos(n\\theta)+i\\sin(n\\theta)`。",
+        "`(\\cos\\theta+i\\sin\\theta)^n=\\cos(n\\theta)+i\\sin(n\\theta)`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Here `\\theta=\\pi/6` and `n=3`.",
+        "這裡 `\\theta=\\pi/6` 且 `n=3`。",
+        "这里 `\\theta=\\pi/6` 且 `n=3`。"
+      ),
+      text(
+        "By De Moivre's Theorem, the power is `\\cos(3\\pi/6)+i\\sin(3\\pi/6)`.",
+        "由 De Moivre's Theorem，該冪次為 `\\cos(3\\pi/6)+i\\sin(3\\pi/6)`。",
+        "由 De Moivre's Theorem，该幂次为 `\\cos(3\\pi/6)+i\\sin(3\\pi/6)`。"
+      ),
+      text(
+        "Since `3\\pi/6=\\pi/2`, the value is `\\cos(\\pi/2)+i\\sin(\\pi/2)=i`.",
+        "因為 `3\\pi/6=\\pi/2`，所以值是 `\\cos(\\pi/2)+i\\sin(\\pi/2)=i`。",
+        "因为 `3\\pi/6=\\pi/2`，所以值是 `\\cos(\\pi/2)+i\\sin(\\pi/2)=i`。"
+      ),
+    ],
+    skillTags: ["complex-numbers", "de-moivre", "polar-form", "powers"],
+  },
 };
 
 export function getProblemById(problemId: string) {

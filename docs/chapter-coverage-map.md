@@ -63,12 +63,13 @@ The public Notes tree has therefore been expanded under `csci2520` only.
 ## Math1025
 
 Math1025 is no longer a purely future placeholder. The repo already exposes a
-small public foundations baseline, but the course is still far from complete.
+public baseline through the chapter 6 complex-number unit, but the course is
+still far from complete.
 
 | Course | Chapter family | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
-| `math1025` | Foundations and early methods (`ch0` to `ch5`) | Authored through `5.1` | Usable | Six three-language units are live: notation, trigonometry, induction, inequalities / absolute value, binomial coefficients / expansions, and sequences / recursion / series. |
-| `math1025` | Methods spine (`ch6` to `ch8`) | Unauthored | Usable | Chapter slides cover complex numbers, integers / rational numbers, and polynomials. |
+| `math1025` | Foundations and early methods (`ch0` to `ch6`) | Authored through `6.1` | Usable | Seven three-language units are represented: notation, trigonometry, induction, inequalities / absolute value, binomial coefficients / expansions, sequences / recursion / series, and complex numbers / polar form / geometry. |
+| `math1025` | Methods spine (`ch7` to `ch8`) | Unauthored | Usable | Chapter slides cover integers / rational numbers and polynomials. |
 | `math1025` | Vectors and geometry (`ch9` to `ch11`) | Unauthored | Usable | Chapter slides cover vectors in `R^n`, straight lines / planes / curves, and conic sections. |
 | `math1025` | Homework and assessment support | Unauthored | Secondary support | Keep homework-solution PDFs and the MATH1025 midterm pair for later exercise design after baseline notes exist. |
 | `math1025` | MATH1028 overlap material | Unauthored | Overlap | Treat the MATH1028 midterm pair as adjacent-course overlap, not as primary Math1025 conceptual source. |
@@ -102,4 +103,4 @@ determinant-free proof patterns, or the `as02` Q2 parameterized `G/H`
 row-operation-product construction. Remaining assignment work is mostly
 optional exhaustive intermediate-table replication and broader export QA across
 the expanded sequence. Math1025 expansion should remain controlled and
-source-backed.
+source-backed, with `ch7` through `ch11` as the active chapter-slide backlog.

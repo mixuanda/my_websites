@@ -1258,6 +1258,33 @@ const math1025SequenceUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1025ComplexNumberUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "complex-numbers",
+    chapterNumber: "6",
+    course: "math1025",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Construct complex numbers from ordered pairs, use conjugates and polar form, and connect rotation, roots of unity, and complex-plane geometry.",
+      "由有序對構造複數，使用共軛與極形式，並連接旋轉、單位根與複平面幾何。",
+      "由有序对构造复数，使用共轭与极形式，并连接旋转、单位根与复平面几何。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 7,
+    prerequisites: ["math1025.sequences.sequences-and-recursion"],
+    slug: "complex-number-arithmetic-and-geometry",
+    sourceRefs: [{ file: "reference/MATH1025/MATH1025_slides_ch6(3).pdf" }],
+    title: text(
+      "6.1 Complex numbers, polar form, and geometry",
+      "6.1 複數、極形式與幾何",
+      "6.1 复数、极形式与几何"
+    ),
+    unitId: "math1025.complex-numbers.complex-number-arithmetic-and-geometry",
+    unitNumber: "6.1",
+  },
+];
+
 const math1030SystemsUnits: TextbookUnitMeta[] = [
   {
     chapterId: "systems",
@@ -2912,6 +2939,18 @@ const math1025: TextbookCourseMeta = {
       ),
       title: text("Sequences", "數列", "数列"),
       units: math1025SequenceUnits,
+    },
+    {
+      course: "math1025",
+      id: "complex-numbers",
+      number: "6",
+      summary: text(
+        "Complex arithmetic, conjugates, modulus, polar and exponential forms, roots of unity, and complex-plane geometry.",
+        "複數運算、共軛、模、極形式與指數形式、單位根，以及複平面幾何。",
+        "复数运算、共轭、模、极形式与指数形式、单位根，以及复平面几何。"
+      ),
+      title: text("Complex numbers", "複數", "复数"),
+      units: math1025ComplexNumberUnits,
     },
   ],
   description: text(
