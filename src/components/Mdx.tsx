@@ -5,6 +5,7 @@
 import type { MDXComponents } from "mdx/types";
 import { useMDXComponent } from "next-contentlayer2/hooks";
 import { Children, isValidElement } from "react";
+import { cn } from "@/lib/utils";
 import { Callout } from "./Callout";
 
 function extractText(children: React.ReactNode): string {
@@ -83,16 +84,40 @@ const baseComponents: MDXComponents = {
   a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
     <a className="text-primary hover:underline" {...props} />
   ),
-  table: (props: React.HTMLAttributes<HTMLTableElement>) => (
-    <div className="my-6 overflow-x-auto">
-      <table className="w-full border-collapse" {...props} />
+  table: ({ className, ...props }: React.HTMLAttributes<HTMLTableElement>) => (
+    <div className="my-6 w-full overflow-x-auto rounded-md border border-border/70">
+      <table
+        className={cn("w-full min-w-max border-collapse text-sm", className)}
+        {...props}
+      />
     </div>
   ),
-  th: (props: React.HTMLAttributes<HTMLTableCellElement>) => (
-    <th className="border border-border px-4 py-2 text-left font-semibold bg-muted/50" {...props} />
+  thead: ({ className, ...props }: React.HTMLAttributes<HTMLTableSectionElement>) => (
+    <thead className={cn("bg-muted/60", className)} {...props} />
   ),
-  td: (props: React.HTMLAttributes<HTMLTableCellElement>) => (
-    <td className="border border-border px-4 py-2" {...props} />
+  tr: ({ className, ...props }: React.HTMLAttributes<HTMLTableRowElement>) => (
+    <tr
+      className={cn("border-b border-border/70 last:border-b-0", className)}
+      {...props}
+    />
+  ),
+  th: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <th
+      className={cn(
+        "border-r border-border/70 px-4 py-2 text-left align-top font-semibold text-foreground last:border-r-0",
+        className,
+      )}
+      {...props}
+    />
+  ),
+  td: ({ className, ...props }: React.HTMLAttributes<HTMLTableCellElement>) => (
+    <td
+      className={cn(
+        "border-r border-border/70 px-4 py-2 align-top leading-7 text-foreground/95 last:border-r-0",
+        className,
+      )}
+      {...props}
+    />
   ),
   hr: () => <hr className="my-8 border-border" />,
   Callout,
