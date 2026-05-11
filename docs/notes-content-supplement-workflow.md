@@ -153,8 +153,11 @@ Use this shape for future entries:
   desktop and zh-HK dark mobile rendering; the rendered HTML contained the
   expected complex-number, roots-of-unity, and locus-equation markers. The
   local grading preview API returned 200 for all five new checkpoint problems.
-- Deployment: pending until this checkpoint commit is pushed and the
-  `www.evanalysis.top` production deployment is verified.
+- Deployment: commit `d0fe465` deployed successfully to Vercel production
+  deployment `dpl_C5TdXg3QrzhpmRoNMaqRtzSoeYXY`. Public checks on
+  `www.evanalysis.top` returned 200 for EN / zh-HK / zh-CN note routes,
+  representative TXT exports, representative PDF exports, and all five new
+  checkpoint preview-grade requests.
 - Remaining gaps: Math1025 `ch7` and `ch8` remain pending method chapters;
   `ch9` through `ch11` remain pending vectors / geometry chapters; homework
   solution PDFs and assessment pairs remain secondary exercise-design support.

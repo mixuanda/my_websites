@@ -70,7 +70,9 @@ April 24, 2026 QA update:
   incorporated and completed local visual/export QA for EN / zh-HK / zh-CN
   `6.1` routes. The sample covered representative TXT and PDF exports, dense
   display math for polar form / roots of unity / locus equations, EN light
-  desktop rendering, and zh-HK dark mobile rendering.
+  desktop rendering, and zh-HK dark mobile rendering. Production route and
+  export checks on `www.evanalysis.top` also returned 200 with the expected
+  roots-of-unity markers and PDF headers.
 
 ## Current findings
 

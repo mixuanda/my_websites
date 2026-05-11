@@ -300,8 +300,9 @@ source-backed chapters are added.
   arithmetic, polar / exponential formulas, roots of unity, locus equations,
   and complex-geometry determinants.
 - Unit-level checkpoint problems were added to the shared Math1025 problem
-  bank; production verification remains tied to the post-push deployment
-  check for this checkpoint.
+  bank; production verification on `www.evanalysis.top` passed for the
+  localized note routes, representative TXT/PDF exports, and all five new
+  checkpoint preview-grade requests.
 
 ## Checkpoint log
 
