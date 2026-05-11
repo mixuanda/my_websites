@@ -1,9 +1,7 @@
 import { MetadataRoute } from "next";
+import { SITE_URL } from "@/lib/seo";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl =
-    process.env.NEXT_PUBLIC_SITE_URL || "https://www.evanalysis.top";
-
   return {
     rules: [
       {
@@ -12,14 +10,12 @@ export default function robots(): MetadataRoute.Robots {
         disallow: [
           "/about/",
           "/admin/",
-          "/api/admin/",
-          "/api/auth/",
-          "/api/billing/",
-          "/api/export/",
-          "/api/user/",
+          "/api/",
           "/blog/",
           "/categories/",
+          "/courses/",
           "/diary/",
+          "/en/courses/",
           "/login/",
           "/notes/membership/",
           "/private/",
@@ -27,9 +23,14 @@ export default function robots(): MetadataRoute.Robots {
           "/settings/",
           "/tags/",
           "/unauthorized/",
+          "/zh-cn/courses/",
+          "/zh-hk/courses/",
+          "/en/notes/membership/",
+          "/zh-cn/notes/membership/",
+          "/zh-hk/notes/membership/",
         ],
       },
     ],
-    sitemap: `${baseUrl}/sitemap.xml`,
+    sitemap: `${SITE_URL}/sitemap.xml`,
   };
 }

@@ -8,8 +8,15 @@ import { isMembershipGatingEnabled } from "@/lib/membership/entitlements";
 import { getCourseMeta, getVisibleCourseMeta, textbookCatalog } from "@/lib/textbook/catalog";
 import { getSiteSurface } from "@/lib/site-surface";
 import { getCoverageLabel, getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
-import { getCoursesHref, getUnitHref } from "@/lib/textbook/routes";
+import { getCourseHref, getCoursesHref, getUnitHref } from "@/lib/textbook/routes";
 import type { CourseId, LocalizedText } from "@/lib/textbook/types";
+import {
+  absoluteUrl,
+  getAlternateOpenGraphLocales,
+  getLocalizedAlternates,
+  getOpenGraphLocale,
+  SITE_NAME,
+} from "@/lib/seo";
 import { notFound } from "next/navigation";
 
 function text(en: string, zhHk: string, zhCn: string): LocalizedText {
@@ -59,10 +66,31 @@ export async function generateMetadata({
   }
 
   const courseMeta = getCourseMeta(course as CourseId);
+  const safeCourse = course as CourseId;
+  const title = courseMeta.title[locale];
+  const description = courseMeta.description[locale];
+  const canonicalPath = getCourseHref(locale, safeCourse);
 
   return {
-    title: courseMeta.title[locale],
-    description: courseMeta.description[locale],
+    title,
+    description,
+    alternates: getLocalizedAlternates(locale, (candidateLocale) =>
+      getCourseHref(candidateLocale, safeCourse)
+    ),
+    openGraph: {
+      title,
+      description,
+      url: absoluteUrl(canonicalPath),
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getAlternateOpenGraphLocales(locale),
+      siteName: SITE_NAME,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 

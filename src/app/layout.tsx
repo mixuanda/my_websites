@@ -3,6 +3,12 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeMetaController } from "@/components/ThemeMetaController";
 import { MainLayout } from "@/components/MainLayout";
+import {
+  googleSiteVerification,
+  metadataBase,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+} from "@/lib/seo";
 import { getSiteSurface } from "@/lib/site-surface";
 
 export const viewport: Viewport = {
@@ -13,13 +19,17 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
+  metadataBase,
   title: {
-    default: "Evanalysis",
-    template: "%s | Evanalysis",
+    default: SITE_NAME,
+    template: `%s | ${SITE_NAME}`,
   },
-  description: "Rigorous course notes in mathematics and related technical subjects.",
+  description: SITE_DESCRIPTION,
   keywords: ["math notes", "math1090", "math1030", "mathematics", "course notes"],
   authors: [{ name: "Evanalysis" }],
+  alternates: {
+    canonical: "/",
+  },
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
@@ -31,16 +41,24 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
+    url: "/",
     locale: "en_US",
-    siteName: "Evanalysis",
+    siteName: SITE_NAME,
   },
   twitter: {
     card: "summary_large_image",
+    title: SITE_NAME,
+    description: SITE_DESCRIPTION,
   },
   robots: {
     index: true,
     follow: true,
   },
+  ...(googleSiteVerification
+    ? { verification: { google: googleSiteVerification } }
+    : {}),
 };
 
 export default function RootLayout({
