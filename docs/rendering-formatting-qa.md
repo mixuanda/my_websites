@@ -78,6 +78,10 @@ component- and authoring-shape issues inside the existing Notes stack.
   `R^3`, `A^{-1}`, `Ax = b`, and `sqrt(2)`.
 - The shared renderer now promotes obvious mathematical notation in both block
   titles and textbook body code spans.
+- The shared rich-text renderer also promotes standalone short math strings in
+  checkpoint prompts / choices, so answer choices such as `⟨v,w⟩=0`,
+  `|⟨v,w⟩| ≤ ||v|| ||w||`, and fraction-like expressions are no longer
+  dependent on backtick wrapping to reach KaTeX.
 - The current remaining rendering risk is representative export QA and
   cross-locale content drift, not missing math infrastructure.
 
@@ -208,6 +212,26 @@ Current checkpoint resolution:
 - Remaining issues: browser QA should confirm the simplified TOC on a long
   MATH1030 page and the rendered checkpoint math on a representative free page
   plus a representative member-gated page
+
+### 2026-05-11 checkpoint 6a: checkpoint standalone math and readability
+
+- Checkpoint name: checkpoint readability and standalone math rendering
+- What was inspected: `TextbookInlineRichText`, `UnitCheckpoint`,
+  `PracticeQuestion`, `AttemptInput`, `FeedbackPanel`, `SolutionSteps`, and
+  representative MATH1030 checkpoint pages.
+- What was changed: checkpoint typography and spacing were raised across the
+  shared assessment shell, MCQ choices, fill-in inputs, preview feedback, and
+  solution steps. The rich-text renderer now promotes standalone short math
+  strings to KaTeX and relaxes the file-path guard so fraction-like notation
+  is not rejected as a path.
+- What was verified: targeted `eslint`, full `npm run lint`, `tsc`,
+  `git diff --check`, full `npm run build`, local HTML checks against EN
+  MATH1030 `9.1` / `9.3`, and EN MATH1030 `9.1` TXT / PDF exports. The
+  representative HTML checks found KaTeX output and the expected larger
+  checkpoint classes.
+- Remaining issues: real browser visual QA, mobile-width inspection, theme
+  inspection, and a live preview / submit interaction remain blocked until the
+  browser automation connection is repaired.
 
 ### 2026-04-25 checkpoint 7: MATH1030 2.1 complete-section structure
 

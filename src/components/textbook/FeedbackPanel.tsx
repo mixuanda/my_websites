@@ -31,7 +31,7 @@ export function FeedbackPanel({
 }) {
   return (
     <div
-      className={`rounded-md border p-4 text-sm ${
+      className={`rounded-md border p-4 text-base leading-7 ${
         result.correct
           ? "border-emerald-500/40 bg-emerald-500/10"
           : "border-amber-500/40 bg-amber-500/10"
@@ -58,7 +58,7 @@ export function FeedbackPanel({
         </p>
       ) : null}
       {progress ? (
-        <div className="mt-3 space-y-1 text-xs opacity-80">
+        <div className="mt-3 space-y-1 text-sm leading-6 opacity-80">
           <p>
             {getLocalizedText(uiText.progress, locale)}:{" "}
             {getProgressStatusText(progress, locale)}
@@ -79,7 +79,7 @@ export function FeedbackPanel({
         </div>
       ) : null}
       {mastery ? (
-        <p className="mt-2 text-xs opacity-80">
+        <p className="mt-2 text-sm leading-6 opacity-80">
           {getLocalizedText(uiText.sectionMastery, locale)}:{" "}
           {(mastery.mastery * 100).toFixed(0)}% ({mastery.correctAttempts}/
           {mastery.totalAttempts} {getLocalizedText(uiText.correctAttemptsLabel, locale)})

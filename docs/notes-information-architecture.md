@@ -40,6 +40,26 @@ detached course portal.
 - Do not show large source-tracing panels in the main reader flow.
 - Keep note pages small and linked. Avoid chapter-sized single pages.
 
+## Course sidebar behavior
+
+The course sidebar is a Notes navigation aid, not a separate course portal.
+Its controls should help readers scan long course note collections without
+changing the public framing.
+
+- Keep the course title, language switcher, all-courses link, course overview
+  link, chapter quick links, and section links inside the existing note shell.
+- Keep search scoped to the current course metadata: chapter number, chapter
+  title, chapter summary, unit number, unit title, and unit description.
+- Keep the all-chapters / current-chapter filter generic so future courses can
+  reuse it without Math1030- or Math1090-specific branching.
+- Default the current chapter open on unit pages, but let readers collapse it
+  when they are scanning. During active search, matched chapters can remain
+  forced open if the forced-open state is exposed as non-toggleable.
+- Preserve accessible relationships between search/filter controls and the
+  filtered chapter list. Chapter toggles should expose their controlled panel.
+- Public labels must stay localized and Notes-oriented. Do not introduce
+  public “Textbook portal” or “course app” language for this sidebar.
+
 ## Internal model
 
 The internal content and metadata system still uses `textbook` in filenames
@@ -77,6 +97,9 @@ Use this checklist before you land IA changes.
 4. Confirm note detail pages still render the course sidebar, TOC, progress,
    and export controls.
 5. Confirm the `/notes` archive still exposes the math notes hub.
+6. For course sidebar changes, confirm course search, chapter filtering,
+   expansion state, language switching, and light / dark mode in a real
+   browser before commit.
 
 ## Next steps
 

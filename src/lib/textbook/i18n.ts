@@ -155,6 +155,31 @@ export const uiText = {
     "zh-cn": "课程目录",
     "zh-hk": "課程目錄",
   },
+  courseSearchLabel: {
+    en: "Search notes in this course",
+    "zh-cn": "搜索本课程笔记",
+    "zh-hk": "搜尋本課程筆記",
+  },
+  courseSearchPlaceholder: {
+    en: "Search section title or topic",
+    "zh-cn": "搜索小节标题或主题",
+    "zh-hk": "搜尋小節標題或主題",
+  },
+  clearCourseSearch: {
+    en: "Clear course search",
+    "zh-cn": "清除课程搜索",
+    "zh-hk": "清除課程搜尋",
+  },
+  allChapters: {
+    en: "All chapters",
+    "zh-cn": "全部章节",
+    "zh-hk": "全部章節",
+  },
+  currentChapterOnly: {
+    en: "Current chapter",
+    "zh-cn": "当前章节",
+    "zh-hk": "目前章節",
+  },
   currentSection: {
     en: "Current section",
     "zh-cn": "当前小节",
@@ -284,6 +309,11 @@ export const uiText = {
     en: "This section can be read on its own.",
     "zh-cn": "这一节可以独立阅读。",
     "zh-hk": "這一節可以獨立閱讀。",
+  },
+  noMatchingSections: {
+    en: "No matching sections in this course.",
+    "zh-cn": "本课程没有匹配的小节。",
+    "zh-hk": "本課程沒有匹配的小節。",
   },
   pageToc: {
     en: "On this page",

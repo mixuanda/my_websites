@@ -34,6 +34,10 @@ Localization now covers both the note content and the shared chrome around it.
 - The localized note shell includes translated breadcrumbs, sidebar labels,
   TOC labels, export labels, progress labels, glossary labels, interactive
   UI text, checkpoint UI text, and membership-center actions.
+- Course-sidebar finder controls are localized through
+  `src/lib/textbook/i18n.ts`: search label and placeholder, clear-search
+  label, all-chapters / current-chapter filters, result counts, and empty
+  states should stay consistent across EN, zh-HK, and zh-CN.
 - The global sidebar derives locale from the current route first, then from the
   stored preferred locale. This keeps `/en`, `/zh-hk`, and `/zh-cn` note pages
   aligned while still letting unprefixed shell pages reuse the learner's last

@@ -61,20 +61,24 @@ export function AttemptInput({
   return (
     <div className="space-y-4">
       {problem.type === "MCQ" ? (
-        <fieldset className="space-y-2">
+        <fieldset
+          aria-label={getLocalizedText(problem.prompt, locale)}
+          className="space-y-3"
+        >
           {problem.choices.map((choice) => (
             <label
               key={choice.id}
-              className="flex items-start gap-2 rounded-md border p-3 text-sm"
+              className="flex items-start gap-3 rounded-md border border-border/70 p-4 text-base leading-7 transition-colors hover:bg-background/45"
             >
               <input
                 checked={choiceId === choice.id}
+                className="mt-1"
                 name={`problem-${problem.id}`}
                 onChange={() => setChoiceId(choice.id)}
                 type="radio"
                 value={choice.id}
               />
-              <span>
+              <span className="min-w-0 break-words">
                 <TextbookInlineRichText text={getLocalizedText(choice.text, locale)} />
               </span>
             </label>
@@ -82,14 +86,14 @@ export function AttemptInput({
         </fieldset>
       ) : (
         <Input
-          className="font-mono"
+          className="h-11 font-mono text-base"
           onChange={(event) => setAnswer(event.target.value)}
           placeholder={getLocalizedText(uiText.enterYourAnswer, locale)}
           value={answer}
         />
       )}
 
-      <div className="space-y-2 text-xs text-muted-foreground">
+      <div className="space-y-2 text-sm leading-6 text-muted-foreground">
         <p>
           {getLocalizedText(uiText.attemptsUsed, locale)}: {progress?.attemptsUsed ?? 0}
         </p>
@@ -117,7 +121,7 @@ export function AttemptInput({
       </div>
 
       {preview ? (
-        <div className="rounded-md border border-primary/25 bg-primary/5 p-4 text-sm">
+        <div className="rounded-md border border-primary/25 bg-primary/5 p-4 text-base leading-7">
           <p className="font-medium">{getLocalizedText(uiText.previewAnswer, locale)}</p>
           {preview.previewText ? (
             <p className="mt-2">
@@ -126,7 +130,7 @@ export function AttemptInput({
             </p>
           ) : null}
           {preview.syntaxGuidance ? (
-            <p className="mt-2 text-muted-foreground">
+            <p className="mt-2 text-sm leading-6 text-muted-foreground">
               {getLocalizedText(uiText.syntaxGuidance, locale)}:{" "}
               <TextbookInlineRichText text={preview.syntaxGuidance} />
             </p>

@@ -14,6 +14,7 @@ shared files need coordination before you edit them.
 - [Roadmap](./roadmap.md)
 - [Agent workstreams](./agent-workstreams.md)
 - [Notes information architecture](./notes-information-architecture.md)
+- [Notes improvement tracker](./notes-improvement-tracker.md)
 
 ## Localization and parity
 

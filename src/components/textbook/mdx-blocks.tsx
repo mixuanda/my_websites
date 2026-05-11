@@ -118,18 +118,41 @@ const matrixAnatomyLabels = {
   },
 } as const satisfies Record<string, LocalizedText>;
 
-const fileLikePattern = /\.[A-Za-z0-9]{2,4}\b|[/#]/;
+const fileLikePattern =
+  /\b[\w.-]+\.[A-Za-z0-9]{2,4}\b|(?:^|[\s"'`])(?:\.{1,2}\/|\/)[^\s]+|(?:^|[\s"'`])#[A-Za-z][\w-]*/;
 const mathIndicatorPattern =
   /\\[A-Za-z]+|[_^=+\-*/<>≤≥→∨∧¬∈∉⊆⊂⊇⊃≈≠×÷∩∪∅]/;
+const standaloneMathIndicatorPattern =
+  /\\[A-Za-z]+|[_^=+*/<>≤≥→∨∧¬∈∉⊆⊂⊇⊃≈≠×÷∩∪∅⟨⟩]|\|\||\b(?:det|rank|dim|Span|span|diag|cos|sin|sqrt|sup|inf)\s*\(/u;
+const standaloneMathAllowedPattern =
+  /^[A-Za-z0-9\\{}()[\],.;: _^+\-*/=<>|⟨⟩≤≥→∨∧¬∈∉⊆⊂⊇⊃≈≠×÷∩∪∅]+$/u;
 const shortMathPattern =
   /^(?:[A-Z]|[A-Z]_[A-Za-z0-9{}]+|[A-Z]\^[A-Za-z0-9{}]+|sqrt\(.+\)|sup\(.+\)|inf\(.+\)|diag\(.+\)|Span\{.+\}|I_[A-Za-z0-9{}]+)$/;
+const mathFunctionWords = new Set([
+  "cos",
+  "det",
+  "diag",
+  "dim",
+  "id",
+  "inf",
+  "rank",
+  "sin",
+  "span",
+  "Span",
+  "sqrt",
+  "sup",
+  "theta",
+]);
 
 function normalizeInlineMath(expression: string) {
   let normalized = expression.trim();
 
-  normalized = normalized.replace(/^sqrt\((.+)\)$/u, "\\sqrt{$1}");
-  normalized = normalized.replace(/^sup\((.+)\)$/u, "\\sup($1)");
-  normalized = normalized.replace(/^inf\((.+)\)$/u, "\\inf($1)");
+  normalized = normalized.replace(/\bsqrt\(([^()]+)\)/gu, "\\sqrt{$1}");
+  normalized = normalized.replace(/\bsup\(([^()]+)\)/gu, "\\sup($1)");
+  normalized = normalized.replace(/\binf\(([^()]+)\)/gu, "\\inf($1)");
+  normalized = normalized.replace(/\bcos\(([^()]+)\)/gu, "\\cos($1)");
+  normalized = normalized.replace(/\bsin\(([^()]+)\)/gu, "\\sin($1)");
+  normalized = normalized.replace(/\btheta\b/gu, "\\theta");
   normalized = normalized.replace(
     /^diag\((.+)\)$/u,
     "\\operatorname{diag}($1)"
@@ -156,6 +179,27 @@ function shouldRenderAsMath(expression: string) {
   return mathIndicatorPattern.test(trimmed) || shortMathPattern.test(trimmed);
 }
 
+function shouldRenderStandaloneMathText(expression: string) {
+  const trimmed = expression.trim();
+
+  if (!trimmed || trimmed.includes("\n") || fileLikePattern.test(trimmed)) {
+    return false;
+  }
+
+  if (
+    !standaloneMathIndicatorPattern.test(trimmed) ||
+    !standaloneMathAllowedPattern.test(trimmed)
+  ) {
+    return false;
+  }
+
+  const proseWords = (trimmed.match(/[A-Za-z]{4,}/g) ?? []).filter(
+    (word) => !mathFunctionWords.has(word)
+  );
+
+  return proseWords.length < 2;
+}
+
 function renderInlineMath(expression: string) {
   try {
     return katex.renderToString(normalizeInlineMath(expression), {
@@ -168,8 +212,26 @@ function renderInlineMath(expression: string) {
   }
 }
 
+function renderInlineMathNode(renderedMath: string, key: string) {
+  return (
+    <span
+      key={key}
+      className="inline-katex-rich align-middle [&_.katex]:text-[1em]"
+      dangerouslySetInnerHTML={{ __html: renderedMath }}
+    />
+  );
+}
+
 export function TextbookInlineRichText({ text }: { text: string }) {
   const nodes = useMemo(() => {
+    const standaloneMath = shouldRenderStandaloneMathText(text)
+      ? renderInlineMath(text)
+      : null;
+
+    if (standaloneMath) {
+      return [renderInlineMathNode(standaloneMath, "standalone-math")];
+    }
+
     const parts: React.ReactNode[] = [];
     const matcher = /(`([^`]+)`)|(\$([^$]+)\$)/g;
     let cursor = 0;
@@ -196,13 +258,7 @@ export function TextbookInlineRichText({ text }: { text: string }) {
           : null;
 
       if (renderedMath) {
-        parts.push(
-          <span
-            key={`math-${key}`}
-            className="inline-katex-rich align-middle [&_.katex]:text-[1em]"
-            dangerouslySetInnerHTML={{ __html: renderedMath }}
-          />
-        );
+        parts.push(renderInlineMathNode(renderedMath, `math-${key}`));
       } else if (codeMatch) {
         parts.push(
           <code

@@ -60,17 +60,17 @@ export function UnitCheckpoint({
   }, [summary]);
 
   return (
-    <section className="space-y-4 rounded-xl border p-5">
-      <div>
-        <h2 className="text-lg font-semibold">{title}</h2>
-        <p className="text-sm text-muted-foreground">
+    <section className="space-y-5 rounded-xl border border-border/70 p-5 sm:p-6">
+      <div className="space-y-2">
+        <h2 className="text-xl font-semibold leading-7">{title}</h2>
+        <p className="text-base leading-7 text-muted-foreground">
           {getLocalizedText(uiText.checkpointRequiresCorrectAnswers, locale)}{" "}
           {getLocalizedText(uiText.checkpointProgressLabel, locale)}: {progress}%.
         </p>
       </div>
 
       {summary ? (
-        <div className="rounded-lg border border-border/60 bg-background/30 p-4 text-sm">
+        <div className="rounded-lg border border-border/60 bg-background/30 p-4 text-sm leading-6">
           <p className="font-medium">{getLocalizedText(uiText.checkpointSummary, locale)}</p>
           <div className="mt-2 space-y-1 text-muted-foreground">
             <p>
@@ -112,7 +112,7 @@ export function UnitCheckpoint({
       ))}
 
       {summary && summary.masteredCount === summary.problemCount && summary.problemCount > 0 ? (
-        <p className="rounded-md bg-emerald-500/10 p-3 text-sm text-emerald-700 dark:text-emerald-300">
+        <p className="rounded-md bg-emerald-500/10 p-3 text-base leading-7 text-emerald-700 dark:text-emerald-300">
           {getLocalizedText(uiText.checkpointCompleted, locale)}
         </p>
       ) : null}

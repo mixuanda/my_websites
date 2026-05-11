@@ -174,12 +174,12 @@ export function PracticeQuestion({
   };
 
   return (
-    <section className="space-y-4 rounded-lg border p-5">
+    <section className="space-y-5 rounded-lg border border-border/70 p-5 sm:p-6">
       <header className="space-y-2">
         <p className="text-xs uppercase tracking-wide text-muted-foreground">
           {getLocalizedText(uiText.skillsLabel, locale)}: {problem.skillTags.join(", ")}
         </p>
-        <h3 className="text-base font-semibold">
+        <h3 className="text-lg font-semibold leading-7">
           <TextbookInlineRichText text={getLocalizedText(problem.prompt, locale)} />
         </h3>
       </header>

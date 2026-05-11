@@ -89,6 +89,12 @@ April 24, 2026 QA update:
   a linear delta-epsilon proof, and Cantor set stage counting. These are also
   problem-bank additions only; no new `QuickCheck` / `RevealSolution` MDX pairs
   were added.
+- the May 11 checkpoint component pass did not change problem-bank answers or
+  grading logic; it changed the shared rendering surface so prompts, choices,
+  previews, feedback, and solution steps are larger and standalone short math
+  choices render through KaTeX. Representative local MATH1030 checkpoint HTML
+  checks found KaTeX output and the expected larger checkpoint classes; TXT /
+  PDF export checks for the sampled unit still returned study-material output.
 
 ### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
 
@@ -128,6 +134,9 @@ textbook exercise blocks.
   closely.
 - Section checkpoints now advance only on correct answers, so the completion
   state can no longer be faked by submitting every item incorrectly.
+- The latest checkpoint UI pass preserves existing answer / solution pairing
+  while improving readability; no prompt, correct answer, hint, or solution
+  ordering was changed.
 - The next integrity risk is broader QA: confirming that export output still
   reads cleanly on the richer rewritten notes and that no localized note drifts
   into mismatched prerequisite or answer labels.
