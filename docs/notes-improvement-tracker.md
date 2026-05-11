@@ -33,8 +33,8 @@ verification result, and any remaining follow-up.
 
 | Area | Item | Status | Current evidence / next action |
 | --- | --- | --- | --- |
-| Global Notes UI | Long left-side course目录 is hard to scan for Math1030 / Math1090 | Blocked | Implemented a reusable course-sidebar finder / chapter filter locally; `lint`, `tsc`, `build`, localized route HTML checks, and TXT / PDF export checks passed on 2026-05-11, but required browser interaction QA is blocked because both the in-app browser and Chrome extension connections are unavailable. |
-| Checkpoint UI | Checkpoint font is too small and not readable enough | In progress | Shared checkpoint shell, prompts, choices, inputs, feedback, and solution steps now use larger typography / spacing; `eslint`, `tsc`, `build`, `git diff --check`, representative local HTML checks, and TXT / PDF exports passed, but mobile / theme browser QA is still blocked. |
+| Global Notes UI | Long left-side course目录 is hard to scan for Math1030 / Math1090 | In progress | Reusable course-sidebar finder / chapter filter is committed, pushed, deployed, and HTTP-verified on `www.evanalysis.top`; required browser interaction QA is still blocked because both the in-app browser and Chrome extension connections are unavailable. |
+| Checkpoint UI | Checkpoint font is too small and not readable enough | In progress | Shared checkpoint shell, prompts, choices, inputs, feedback, and solution steps now use larger typography / spacing; committed, pushed, deployed, and HTTP/API/export-verified on `www.evanalysis.top`, but mobile / theme browser QA is still blocked. |
 | Checkpoint content | Math1030 needs more computational checkpoint practice | Not started | Use repository-backed MATH1030 practice / assignment sources, not generic filler. |
 | Checkpoint rendering | Some checkpoint mathematical structures do not render correctly | In progress | Rich-text rendering now promotes standalone math answer choices and no longer blocks fraction-like strings such as `1/sqrt(2)` as file paths; representative MATH1030 checkpoint HTML contains KaTeX output. |
 | Math1030 interactions | Gram-Schmidt / orthogonalization needs a clearer embedded interaction | Not started | Add or reuse an article-embedded stepper / visualization where it improves understanding. |
@@ -443,6 +443,33 @@ Every implementation pass that touches the items above should verify:
 - Remaining before completion: browser visual QA in light and dark mode,
   mobile-width checkpoint layout inspection, and at least one real checkpoint
   preview / submit interaction once browser automation is available.
+
+### 2026-05-11: Production deployment and remote verification
+
+- Status: Completed for commit / push / production HTTP verification; browser
+  visual QA remains externally blocked as noted above.
+- Commit: `8587ef5` (`Improve notes sidebar and checkpoint readability`).
+- Deployment: Vercel production deployment
+  `dpl_GrsQEiqWdMma7umi3stZdhJoFzRy` reached `Ready` and aliases include
+  `https://www.evanalysis.top`.
+- Production checks on `www.evanalysis.top`:
+  - EN MATH1030 `9.1 Inner products, norms, and angles` returned `200` and
+    contained the larger checkpoint classes, `inline-katex-rich`, preview
+    labels, fieldset aria label, and course-search sidebar marker.
+  - EN MATH1030 `9.3 Gram-Schmidt orthogonalization` returned `200` and
+    contained the localized course finder, all/current chapter controls,
+    larger checkpoint prompt class, and KaTeX output.
+  - zh-HK MATH1090 sequence note returned `200` and contained the zh-HK course
+    finder labels `搜尋小節標題或主題`, `全部章節`, `目前章節`, and `課程目錄`.
+  - EN MATH1030 `9.1` TXT export returned `HTTP/2 200` with
+    `text/plain; charset=utf-8`.
+  - EN MATH1030 `9.1` PDF export returned `HTTP/2 200`,
+    `application/pdf`, and a valid 8-page PDF.
+  - Production checkpoint preview API returned `200` for the free problem
+    `checkpoint.math1030.matrix-product-size`, with normalized answer `a` and
+    preview text `2×4`.
+  - `vercel logs dpl_GrsQEiqWdMma7umi3stZdhJoFzRy --no-follow --level error
+    --since 15m --limit 20` returned no error logs.
 
 ### 2026-05-11: Backlog captured
 
