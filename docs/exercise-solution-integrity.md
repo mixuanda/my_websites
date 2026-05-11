@@ -95,6 +95,12 @@ April 24, 2026 QA update:
   choices render through KaTeX. Representative local MATH1030 checkpoint HTML
   checks found KaTeX output and the expected larger checkpoint classes; TXT /
   PDF export checks for the sampled unit still returned study-material output.
+- the May 12 MATH1090 early-unit checkpoint pass added six localized
+  problem-bank checkpoints for `1.1`, `1.2`, `1.3`, `3.1`, `3.2`, and `3.5`.
+  These are problem-bank-only additions; no MDX `QuickCheck` /
+  `RevealSolution` pairs were changed. Local and production preview API checks
+  confirmed the six new IDs are readable, parse selected choices, and are
+  attached to the expected unit-level checkpoint summaries.
 
 ### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
 

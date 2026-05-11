@@ -13,14 +13,14 @@ visible in the repository: early logic and set language, number construction,
 order / completeness through Dedekind cuts and decimal expansions, first
 sequences / limits, cardinality / large-set material, and the first algebraic
 structure unit. The latest content pass completed first-pass checkpoint
-coverage for the previously uncovered source-backed `4.1`-`4.4`, `4.6`,
-`5.3`, and `6.3` units rather than adding a new route.
+coverage for previously thinner early logic and number-construction units
+rather than adding a new route.
 
 | Course | Chapter | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
-| `math1090` | 1 Logic | Authored in EN, zh-HK, zh-CN | Strong | Needs tone / depth review only. |
+| `math1090` | 1 Logic | Authored in EN, zh-HK, zh-CN | Strong | `1.1`, `1.2`, and `1.3` now have first-pass problem-bank checkpoint coverage for proposition recognition, De Morgan truth-table reading, and quantified negation. |
 | `math1090` | 2 Sets, functions, relations | Authored in EN, zh-HK, zh-CN | Strong | `2.1` / `2.2` now include set-builder notation, multisets, Venn / inclusion-exclusion practice, all Worksheet 3 Venn configuration variants, `B^A`, finite inverse logic, the `N x N -> N` injection pattern, first cardinality language, operations as functions, Hasse-diagram reading, and checkpoint questions. |
-| `math1090` | 3 Naturals, integers, rationals | Authored through `3.5` | Strong | `3.3` and `3.4` now include quotient-construction interactives, expanded integer / rational operation exercises, and checkpoint questions. |
+| `math1090` | 3 Naturals, integers, rationals | Authored through `3.5` | Strong | `3.1`, `3.2`, and `3.5` now have first-pass checkpoint coverage for Peano successor structure, recursive-addition induction, and the `sqrt(2)` rational gap; `3.3` and `3.4` include quotient-construction interactives, expanded integer / rational operation exercises, and checkpoint questions. |
 | `math1090` | 4 Orders, bounds, completeness, reals | Authored through `4.6` | Strong through `§4.11` | `4.1`-`4.6` now cover total order / ordered field, bounds and `sup` / `inf`, completeness, the `Q`-gap at `sqrt(2)`, axiomatic / first-approximation motivation, Dedekind cuts, decimal expansions, and irrational numbers. Every chapter-4 unit now has first-pass checkpoint coverage. |
 | `math1090` | 5 Sequences and first limits | Authored through `5.3` | Strong through `§5.6` | Public notes now cover sequence limits, Cauchy sequences, the Cauchy-sequence model of `R`, delta-epsilon limits, limit laws, sequential characterization, and continuity in EN / zh-HK / zh-CN. Every chapter-5 unit now has first-pass checkpoint coverage. |
 | `math1090` | 6 Big sets | Authored through `6.3` | Strong | Public notes cover cardinality, countability, cardinal inequalities, Cantor's theorem, continuum / choice context, intervals, Cantor set, density, and well-ordering. Every chapter-6 unit now has first-pass checkpoint coverage. |
@@ -91,10 +91,11 @@ The next content cycle should focus on QA across the now-broader public Notes
 tree: export fidelity, rendering checks, exercise / reveal integrity, and
 theme / layout review across Math1090, Math1030, and the expanded CSCI2520
 sequence. For MATH1090, the current route-level backlog is no longer chapter 2
-depth, Worksheet 3 exercise parity, or first-pass checkpoint coverage for the
-chapter `4`-`7` source-backed units. Remaining MATH1090 work is broader export
-QA, rendering / theme QA, and optional checkpoint depth for logic / early
-number-construction units rather than new route-level chapter authoring. For
+depth, Worksheet 3 exercise parity, first-pass checkpoint coverage for the
+chapter `4`-`7` source-backed units, or first-pass checkpoint coverage for the
+early logic / number-construction units targeted on May 12. Remaining MATH1090
+work is broader export QA, rendering / theme QA, and optional deeper practice
+rather than new route-level chapter authoring. For
 MATH1030, the remaining content backlog is no longer missing core chapter
 directories, early RREF drill parity, the main `as03` parameterized inverse /
 determinant-free proof patterns, or the `as02` Q2 parameterized `G/H`

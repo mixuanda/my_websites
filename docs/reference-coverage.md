@@ -87,6 +87,11 @@ The latest merged content passes also:
   supremum / infimum, the completeness property, decimal approximations to
   `sqrt(2)`, the `sqrt(2)` cut, a first linear delta-epsilon proof, and Cantor
   set stage counting.
+- completed a MATH1090 early logic / number-construction checkpoint sweep with
+  localized problem-bank questions for proposition recognition, a De Morgan
+  truth-table row, negating an existential conjunction, the Peano
+  zero-not-successor axiom, the induction step for `0+n=n`, and the
+  rational-upper-bound side of the `sqrt(2)` gap argument.
 
 The next resume point is now QA and optional exercise-depth parity rather than
 missing MATH1090 core content:
@@ -96,11 +101,11 @@ missing MATH1090 core content:
    `4`-`7` family.
 2. keep export, rendering, and exercise QA active on the recently added higher
    MATH1030 chapters.
-3. treat MATH1090 Worksheet 3 and the chapter `4`-`7` first-pass checkpoint
-   sweep as incorporated into the public Notes workflow; the next MATH1090
-   work should be broader export / rendering QA and optional checkpoint depth
-   for logic / early number-construction units, not new route-level chapter
-   authoring.
+3. treat MATH1090 Worksheet 3, the chapter `4`-`7` first-pass checkpoint
+   sweep, and the early logic / number-construction checkpoint sweep as
+   incorporated into the public Notes workflow; the next MATH1090 work should
+   be broader export / rendering QA or deeper optional practice, not new
+   route-level chapter authoring.
 
 Current QA progress from April 24, 2026:
 

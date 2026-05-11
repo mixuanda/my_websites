@@ -173,5 +173,12 @@ widget is justified because learners need to see how changing the number of
 displayed terms affects term values, partial sums, and loan balances while
 keeping the recursive and explicit descriptions visible.
 
+The MATH1090 May 12 early-unit checkpoint pass did not add a widget. The added
+material is assessment depth for already-authored logic and number-construction
+notes: proposition recognition, truth-table row reading, quantified negation,
+Peano successor structure, induction-step selection, and the rational
+`sqrt(2)` gap. The existing article flow and checkpoint surface preserve the
+learning value more cleanly than a new detached interaction.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

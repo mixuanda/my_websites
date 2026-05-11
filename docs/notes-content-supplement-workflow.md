@@ -129,6 +129,46 @@ Use this shape for future entries:
 
 ## Current log
 
+### 2026-05-12: MATH1090 early logic and number checkpoint sweep
+
+- Gap selected: MATH1090 core route-level content was already authored, but
+  the early logic and number-construction units still had thinner formal
+  problem-bank checkpoint coverage than the later set, order, sequence,
+  cardinality, and structure units. The supported target was therefore a
+  first-pass checkpoint sweep for `1.1`, `1.2`, `1.3`, `3.1`, `3.2`, and
+  `3.5`.
+- Reference basis: `reference/MATH1090/MATH1090_HW1.pdf`,
+  `reference/MATH1090/MATH1090_Worksheet1.pdf`,
+  `reference/MATH1090/MATH1090_Lecture_Notes_Mar26.pdf`,
+  `reference/MATH1090/MATH1090_Worksheet4.pdf`,
+  `reference/MATH1090/MATH1090_HW5.pdf`, `docs/source_audit_logic.md`,
+  `docs/source_audit_numbers.md`, and the current public notes under
+  `content/textbook/math1090/logic` and `content/textbook/math1090/numbers`.
+- Content files changed: no public MDX prose was changed; this pass adds
+  WebWork-like checkpoint coverage in `src/lib/textbook/problem-bank.ts`.
+- Visuals added: none.
+- Interactions added: none; this pass reuses the existing checkpoint surface on
+  already authored article-first notes.
+- Exercises added: six localized checkpoint problems covering proposition
+  recognition, a De Morgan truth-table row, negating an existential
+  conjunction, the Peano `0`-is-not-a-successor axiom, the induction proof step
+  for `0+n=n`, and the reason an upper-bound candidate with square larger than
+  `2` is not the rational supremum.
+- Verification: `git diff --check`, `npm run contentlayer`, `npm run lint`,
+  `npx tsc --noEmit --pretty false`, `npm run build`, local production route
+  checks, TXT/PDF export checks, all six new `/api/textbook/problems/grade`
+  preview calls, and section progress checks passed. The in-app browser
+  surface was unavailable in this run, so rendered-page coverage used local
+  production HTML plus route/API/export checks.
+- Deployment: content commit `78ef97d` was pushed to `origin/main`; Vercel
+  production deployment `dpl_9PA5SLFQ9ZS6AaLjT7xBXa1xaapw` reached Ready on
+  `www.evanalysis.top`, with production route, TXT/PDF export, checkpoint
+  preview API, and error-log smoke checks passing.
+- Remaining gaps: MATH1090 now has first-pass checkpoint coverage across the
+  early logic / number-construction units targeted in this pass. Next work
+  should remain broader export / rendering / theme QA or move to the
+  documented source-backed Math1025 backlog.
+
 ### 2026-04-28: MATH1090 chapter 4-6 checkpoint sweep
 
 - Gap selected: after the first late-unit checkpoint pass, MATH1090 chapter
