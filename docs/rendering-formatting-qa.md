@@ -76,6 +76,21 @@ April 24, 2026 QA update:
 
 ## Current findings
 
+May 12, 2026 table-rendering fix:
+
+- Markdown pipe tables in note content require `remark-gfm` in the Contentlayer
+  MDX pipeline. The shared renderer already had table component mappings, but
+  without GFM parsing the source never became `<table>` / `<thead>` / `<tbody>`
+  nodes.
+- `remark-gfm` is now a direct project dependency at a version compatible with
+  the current MDX v3 toolchain. Do not rely on the older TinaCMS-transitive
+  `remark-gfm` copy for Contentlayer rendering.
+- Production builds now run `npm run verify:mdx-tables` before Contentlayer.
+  The check compiles a small table fixture with inline math and inline code and
+  fails if table nodes or KaTeX output disappear.
+- The shared MDX table components now give tables a stable scroll container,
+  visible borders, header styling, and dark/light token-based colors.
+
 The current rendering pass confirmed that the repository already wires
 `remark-math`, `rehype-katex`, KaTeX CSS, and the textbook MDX renderer
 together. The remaining defects are not missing-package issues. They are
