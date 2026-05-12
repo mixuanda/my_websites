@@ -535,6 +535,11 @@ export const uiText = {
     "zh-cn": "这个会员账单方案尚未配置。",
     "zh-hk": "這個會員帳單方案尚未配置。",
   },
+  billingPortalForPlanChanges: {
+    en: "Use the billing portal to change an active subscription.",
+    "zh-cn": "请使用账单门户更改当前启用的订阅。",
+    "zh-hk": "請使用帳單入口更改目前啟用的訂閱。",
+  },
   gradingRetry: {
     en: "We could not grade your answer right now. Try again.",
     "zh-cn": "目前无法批改你的答案，请再试一次。",

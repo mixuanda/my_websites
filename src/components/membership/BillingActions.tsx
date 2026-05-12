@@ -45,8 +45,12 @@ function getBillingErrorMessage(errorCode: string | undefined, locale: Locale) {
       return getLocalizedText(uiText.membershipAlreadyActive, locale);
     case "billing_profile_missing":
       return getLocalizedText(uiText.noBillingProfile, locale);
+    case "billing_not_ready":
+      return getLocalizedText(uiText.billingUnavailable, locale);
     case "plan_not_configured":
       return getLocalizedText(uiText.billingPlanNotConfigured, locale);
+    case "use_billing_portal":
+      return getLocalizedText(uiText.billingPortalForPlanChanges, locale);
     default:
       return getLocalizedText(uiText.billingActionFailed, locale);
   }
@@ -172,6 +176,8 @@ export function BillingActions({
           {plans.map((plan) => {
             const enabled = Boolean(plan.priceId);
             const alreadyIncluded = accessRank[activeTier] >= accessRank[plan.tier];
+            const usePortalForChange =
+              canManageBilling && activeTier !== "FREE" && !alreadyIncluded;
 
             return (
               <div
@@ -205,17 +211,30 @@ export function BillingActions({
                 </ul>
                 <Button
                   className="mt-4 w-full"
-                  disabled={Boolean(loadingPlan) || !enabled || alreadyIncluded}
-                  onClick={() => startCheckout(plan.id)}
+                  disabled={
+                    Boolean(loadingPlan) ||
+                    !enabled ||
+                    alreadyIncluded ||
+                    (usePortalForChange && loadingPortal)
+                  }
+                  onClick={() => {
+                    if (usePortalForChange) {
+                      void openPortal();
+                      return;
+                    }
+                    void startCheckout(plan.id);
+                  }}
                   variant={plan.highlighted ? "default" : "outline"}
                 >
-                  {loadingPlan === plan.id
+                  {loadingPlan === plan.id || (usePortalForChange && loadingPortal)
                     ? getLocalizedText(uiText.openCheckout, locale)
                     : alreadyIncluded
                       ? getLocalizedText(billingCopy.included, locale)
-                      : enabled
-                        ? getLocalizedText(plan.ctaLabel, locale)
-                        : getLocalizedText(billingCopy.notConfigured, locale)}
+                      : !enabled
+                        ? getLocalizedText(billingCopy.notConfigured, locale)
+                      : usePortalForChange
+                        ? getLocalizedText(uiText.manageBilling, locale)
+                        : getLocalizedText(plan.ctaLabel, locale)}
                 </Button>
               </div>
             );

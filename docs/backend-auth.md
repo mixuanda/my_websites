@@ -147,7 +147,10 @@ NextAuth 也兼容 `AUTH_GITHUB_ID`、`AUTH_GITHUB_SECRET`、`AUTH_GOOGLE_ID`、
 - 月费 HKD 20：`price_1TPjAE906oPVRv7kzcP3UNsk`
 - 年费 HKD 200：`price_1TPjAG906oPVRv7kr2IpEaO7`
 
-这两个 price 已写入 Vercel production env。Pro 方案预留以下 env：
+这两个 price 是当前 Plus 方案使用的 Stripe price id。它们应写入当前启用会员
+surface 的部署环境；现阶段优先用于 development / preview surface，production
+surface 只有在明确移除 membership production guard 后才应开放。
+Pro 方案预留以下 env：
 
 - `STRIPE_PRICE_ID_PRO_MONTHLY`
 - `STRIPE_PRICE_ID_PRO_YEARLY`

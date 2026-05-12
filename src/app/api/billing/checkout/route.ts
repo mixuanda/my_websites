@@ -1,8 +1,16 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { getStripeClient, getAppUrl } from "@/lib/membership/stripe";
-import { getUserEntitlements } from "@/lib/membership/entitlements";
-import { getBillingPlan, normalizeBillingPlanId } from "@/lib/membership/plans";
+import {
+  getMembershipRecordByEmail,
+  getMembershipRecordByUserId,
+  getUserEntitlements,
+} from "@/lib/membership/entitlements";
+import {
+  getBillingConfigStatus,
+  getBillingPlan,
+  normalizeBillingPlanId,
+} from "@/lib/membership/plans";
 import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 import { defaultLocale, isLocale } from "@/lib/textbook/i18n";
 import { getMembershipCancelHref, getMembershipSuccessHref } from "@/lib/textbook/routes";
@@ -22,7 +30,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const payload = (await request.json()) as {
+    const payload = (await request.json().catch(() => ({}))) as {
       locale?: string;
       plan?: string;
     };
@@ -52,13 +60,38 @@ export async function POST(request: Request) {
       );
     }
 
+    const billingConfig = getBillingConfigStatus();
+    if (!billingConfig.secretKeyConfigured || !billingConfig.webhookSecretConfigured) {
+      return NextResponse.json(
+        {
+          error: "Membership billing is not fully configured.",
+          errorCode: "billing_not_ready",
+        },
+        { status: 503 }
+      );
+    }
+
     const locale = payload.locale && isLocale(payload.locale) ? payload.locale : defaultLocale;
     const priceId = billingPlan?.priceId;
 
     if (!priceId) {
       return NextResponse.json(
         { error: "Stripe price ID is missing for this plan.", errorCode: "plan_not_configured" },
-        { status: 500 }
+        { status: 503 }
+      );
+    }
+
+    const membership =
+      (await getMembershipRecordByUserId(user.id)) ??
+      (await getMembershipRecordByEmail(user.email));
+
+    if (membership?.customerId && entitlements.tier !== "FREE") {
+      return NextResponse.json(
+        {
+          error: "Use the billing portal to change an active subscription.",
+          errorCode: "use_billing_portal",
+        },
+        { status: 409 }
       );
     }
 
@@ -67,7 +100,10 @@ export async function POST(request: Request) {
 
     const checkoutSession = await stripe.checkout.sessions.create({
       cancel_url: `${appUrl}${getMembershipCancelHref(locale)}`,
-      customer_email: user.email,
+      client_reference_id: user.id ?? user.email,
+      ...(membership?.customerId
+        ? { customer: membership.customerId }
+        : { customer_email: user.email }),
       line_items: [{ price: priceId, quantity: 1 }],
       metadata: {
         locale,

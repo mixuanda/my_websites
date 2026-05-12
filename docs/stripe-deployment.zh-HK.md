@@ -16,13 +16,15 @@
 6. 注意：目前網站會員流程使用 Stripe subscription checkout，不能用 one-time price 代替 recurring price。
 7. 捐款入口不需要預先建立 Stripe price；它會用程式內固定 HKD 金額建立一次性 Checkout line item。
 
-目前 live Stripe 已建立：
+目前 live Stripe 資源與目標 surface：
 
 - Plus product：`prod_UOWCjYRGt8Z2Yc`（`Notes Membership`）
 - 月費 HKD 20：`price_1TPjAE906oPVRv7kzcP3UNsk`
 - 年費 HKD 200：`price_1TPjAG906oPVRv7kr2IpEaO7`
-- Production domain：`https://www.evanalysis.top`
-- 主要 webhook endpoint：`https://www.evanalysis.top/api/billing/webhook`
+- 目前 development target：`https://development.evanalysis.top`
+- Production launch domain：`https://www.evanalysis.top`，只應在明確移除 membership production guard 後開放
+- 目前 development webhook endpoint：`https://development.evanalysis.top/api/billing/webhook`
+- 未來 production webhook endpoint：`https://www.evanalysis.top/api/billing/webhook`
 - 相容 webhook endpoint：`/api/stripe/webhook` 會轉到同一個 membership-backed webhook handler。
 
 ## B. 設定環境變數（部署平台）
@@ -39,6 +41,7 @@
 - `APP_URL`：正式站點 URL（例：`https://your-domain.com`）
 - `ADMIN_EMAILS`：管理員白名單（逗號分隔）
 - `NOTES_FREE_DAILY_ATTEMPT_LIMIT`：免費 checkpoint 每日可評分提交限額，預設為 `8`。
+- `SITE_SURFACE` / `NEXT_PUBLIC_SITE_SURFACE`：在 development domain 驗證 billing 時使用 `preview` 或 `development`；只有在刻意開放 membership surface 後才使用 `production`。
 
 不要把 Stripe CLI 登入後的臨時 `rk_live_...` 當成長期 production key；CLI key 可能有限權或到期。正式站應在 Stripe Dashboard 建立/複製可持續使用的 live secret key 或 restricted key，然後填入部署平台的 `STRIPE_SECRET_KEY`。
 

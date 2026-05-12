@@ -14,6 +14,13 @@ export default auth((req) => {
     pathname.includes("/premium/");
 
   if (authRequired && !isLoggedIn) {
+    if (pathname.startsWith("/api/")) {
+      return NextResponse.json(
+        { error: "Please sign in first.", errorCode: "auth_required" },
+        { status: 401 }
+      );
+    }
+
     const loginUrl = new URL("/login", req.nextUrl.origin);
     loginUrl.searchParams.set("callbackUrl", pathname);
     return NextResponse.redirect(loginUrl);

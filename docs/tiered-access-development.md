@@ -85,3 +85,20 @@ Donation checkout does not require a saved Stripe price. It creates one-time Che
   - `npx tsc --noEmit --pretty false`
   - `AUTH_SECRET=local-test-secret SITE_SURFACE=preview NEXT_PUBLIC_SITE_SURFACE=preview NEXT_PUBLIC_SITE_URL=http://localhost:3020 APP_URL=http://localhost:3020 STRIPE_SECRET_KEY=sk_test_local NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_local STRIPE_WEBHOOK_SECRET=whsec_local STRIPE_PRICE_ID_MEMBER_MONTHLY=price_member_monthly STRIPE_PRICE_ID_PRO_MONTHLY=price_pro_monthly NOTES_MEMBERSHIP_GATING=true NEXT_PUBLIC_NOTES_MEMBERSHIP_GATING=true npm run build`
   - Preview local smoke on `localhost:3020`: `/zh-hk/notes/membership` returned `200`; `/api/billing/status` returned `billingReady=true`, `configuredPlanCount=2`, and `membershipGatingEnabled=true`; unauthenticated `/api/billing/checkout` returned `401 auth_required`; compatibility `/api/stripe/webhook` reached the handler and returned `400 Missing stripe-signature`; unauthenticated premium PDF export returned `401`.
+
+## 2026-05-13 subscription hardening notes
+
+- Continued in the same worktree and branch after verifying the branch was clean and tracking `origin/codex/tiered-access-development`.
+- Subscription checkout now refuses to start unless both `STRIPE_SECRET_KEY` and `STRIPE_WEBHOOK_SECRET` are configured. This prevents paid checkout sessions that cannot sync membership entitlement afterward.
+- Checkout reuses an existing Stripe `customerId` for free or previously canceled users when available.
+- Active paid users with an existing Stripe customer are directed to the Stripe customer portal for tier changes instead of starting a second Checkout subscription.
+- The membership UI now routes higher-tier changes for active subscribers through the portal button path and keeps unconfigured plan slots disabled.
+- API authentication failure for compatibility `/api/stripe/*` endpoints now returns JSON `401 auth_required` instead of redirecting POST requests into `/login`.
+- `.env.example` now includes the Pro price env vars and explicit preview surface flags for the paid-content development surface.
+- Verified after hardening:
+  - `npm run lint`
+  - `npx tsc --noEmit --pretty false`
+  - `git diff --check`
+  - `AUTH_SECRET=local-test-secret SITE_SURFACE=preview NEXT_PUBLIC_SITE_SURFACE=preview NEXT_PUBLIC_SITE_URL=http://localhost:3020 APP_URL=http://localhost:3020 STRIPE_SECRET_KEY=sk_test_local NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_local STRIPE_WEBHOOK_SECRET=whsec_local STRIPE_PRICE_ID_MEMBER_MONTHLY=price_member_monthly STRIPE_PRICE_ID_PRO_MONTHLY=price_pro_monthly NOTES_MEMBERSHIP_GATING=true NEXT_PUBLIC_NOTES_MEMBERSHIP_GATING=true npm run build`
+  - Local runtime smoke on `localhost:3020`: `/zh-hk/notes/membership` returned `200`; `/api/billing/status` returned `billingReady=true`, `configuredPlanCount=2`, and `membershipGatingEnabled=true`; unauthenticated `/api/billing/checkout` returned JSON `401 auth_required`; unauthenticated compatibility `/api/stripe/checkout` returned JSON `401 auth_required`; compatibility `/api/stripe/webhook` returned `400 Missing stripe-signature`; unauthenticated premium PDF export returned `401`; unsupported donation amount returned `400`.
+  - Chrome render smoke opened `/zh-hk/notes/membership` and confirmed the Traditional Chinese membership page, tier cards, quota section, sign-in prompt, and donation buttons render without an obvious first-viewport layout break.

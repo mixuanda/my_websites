@@ -21,7 +21,7 @@
 - 公開 Notes 體驗：三語系課程筆記、章節導覽、先備關係、匯出
 - 數學內容主線：`math1090`、`math1030`
 - 已起步但仍需大幅擴寫的相鄰課程：`math1025`、`csci2520`
-- 會員與權限：Free / Member，加上一個伺服器端 Admin bypass
+- 會員與權限：Free / Member / Pro，加上一個伺服器端 Admin bypass
 - 內部實作命名空間：程式碼與內容路徑仍使用 `textbook`
   這個內部名稱，但公開頁面一律應以 **Notes** 呈現
 
@@ -162,6 +162,7 @@ README、導覽、breadcrumbs、CTA，都應以 **Notes**、**course notes**、
 
 - Free 可以做公開題與公開解說
 - Member 可以進入 premium 題與 deeper checkpoints
+- Pro 預留給更高階工具、premium export pack 與未來進階學習功能
 - Admin 透過伺服器白名單直接擁有完整權限
 
 ## 會員模型
@@ -170,8 +171,9 @@ README、導覽、breadcrumbs、CTA，都應以 **Notes**、**course notes**、
 
 - `FREE`
 - `MEMBER`
+- `PRO`
 
-另外還有一個**不是第三種公開 tier**的伺服器端 bypass：
+另外還有一個**不是公開 tier**的伺服器端 bypass：
 
 - `Admin`
 
@@ -190,6 +192,12 @@ helper 根據 `ADMIN_EMAILS` 判斷後，自動賦予完整權限。
 - 可進入 premium checkpoints
 - 可解鎖更完整的 guided solutions
 - 可使用 Stripe customer portal 管理訂閱
+
+### Pro
+
+- 包含 Member 全部權限
+- 預留給 PRO-only 互動工具
+- 預留給更完整的 premium export pack 與未來進階學習功能
 
 ### Admin
 

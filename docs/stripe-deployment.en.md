@@ -16,13 +16,15 @@ This document explains how to deploy the membership subscription flow (Free / No
 6. Current membership checkout uses Stripe subscriptions, so one-time prices cannot replace recurring prices.
 7. Donation checkout does not require saved prices; it creates one-time HKD Checkout line items from fixed amounts in code.
 
-Current live Stripe resources:
+Current live Stripe resources and target surfaces:
 
 - Plus product: `prod_UOWCjYRGt8Z2Yc` (`Notes Membership`)
 - Monthly HKD 20: `price_1TPjAE906oPVRv7kzcP3UNsk`
 - Yearly HKD 200: `price_1TPjAG906oPVRv7kr2IpEaO7`
-- Production domain: `https://www.evanalysis.top`
-- Primary webhook endpoint: `https://www.evanalysis.top/api/billing/webhook`
+- Current development target: `https://development.evanalysis.top`
+- Production launch domain, only after the membership production guard is deliberately removed: `https://www.evanalysis.top`
+- Current development webhook endpoint: `https://development.evanalysis.top/api/billing/webhook`
+- Future production webhook endpoint: `https://www.evanalysis.top/api/billing/webhook`
 - Compatibility webhook endpoint: `/api/stripe/webhook` forwards to the same membership-backed webhook handler.
 
 ## B. Configure environment variables in deployment
@@ -39,6 +41,7 @@ Set the following in your platform:
 - `APP_URL`: production base URL (e.g. `https://your-domain.com`)
 - `ADMIN_EMAILS`: comma-separated admin emails
 - `NOTES_FREE_DAILY_ATTEMPT_LIMIT`: optional free graded-checkpoint daily limit. Default is `8`.
+- `SITE_SURFACE` / `NEXT_PUBLIC_SITE_SURFACE`: use `preview` or `development` while validating billing on the development domain. Use `production` only after the membership surface is intentionally exposed.
 
 Do not use the temporary `rk_live_...` key created by Stripe CLI login as the long-term production key. CLI keys can be permission-limited or expire. For production, create or copy a durable live secret key or restricted key in Stripe Dashboard, then store it as `STRIPE_SECRET_KEY` in the deployment platform.
 
