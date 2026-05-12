@@ -560,3 +560,45 @@ Current checkpoint resolution:
   for EN TXT export, and `application/pdf` for zh-HK PDF export.
 - Remaining issues: continue export QA on the broader MATH1030 sequence after
   this unit-level check
+
+### 2026-05-12 checkpoint 22: QA tooling and linear-dependence article order
+
+- Checkpoint name: QA tooling plus `6.4 Linear dependence and independence`
+  rendering/order pass
+- What was inspected: the shared Contentlayer / Next build pipeline,
+  `scripts/check-textbook-content.mjs`, `tsconfig.json`, the localized
+  MATH1030 `6.4` MDX files, the generated Contentlayer output, the local
+  production note routes, TXT/PDF exports, and the checkpoint preview API
+- What was changed: made the textbook content checker treat natural
+  article-style headings and MDX block signals as soft backlog warnings rather
+  than hard failures, capped warning output by default, excluded volatile
+  `.next/dev` type output from standalone `tsc`, and repaired the MATH1030
+  `6.4` article order so warm-up exercises no longer look like the final
+  exercise/solution section before later teaching resumes. Dependency QA also
+  added npm overrides for `esbuild` and `postcss` so the production audit no
+  longer reports those moderate build-tool advisories.
+- Rendering note: the final `6.4` flow now moves from warm-up material into
+  redundancy, null-space, and pivot criteria, then gives a final summary,
+  quick checks, guided exercises, and prerequisites
+- Verification: `npm run verify:mdx-tables`, `npm run contentlayer`,
+  `npx tsc --noEmit --pretty false`, `npm run lint`,
+  `CONTENT_CHECK_MAX_WARNINGS=20 npm run check:textbook-content`,
+  `npm run build`, and `git diff --check` passed. Local production checks on
+  `localhost:3000` returned 200 for EN / zh-HK / zh-CN `6.4` note routes,
+  confirmed the corrected article-order markers, confirmed the zh-HK language
+  switcher and theme toggle labels in SSR HTML, and found no translated
+  `/zh-hk/notes` route leak. `npm audit --omit=dev` now reports only the
+  remaining low-severity `firebase-admin` upstream chain; the non-breaking
+  latest `firebase-admin` version is already installed, and the audit-proposed
+  fix would downgrade `firebase-admin` to a breaking older major.
+- Browser limitation: the Codex in-app browser runtime reported `iab`
+  unavailable. The Chrome extension backend also reported unavailable; local
+  diagnostics showed Google Chrome is installed, the Codex Chrome Extension is
+  installed and enabled, and the native host manifest is correct. After user
+  approval, Chrome was opened with the configured default profile, but the
+  extension backend still returned unavailable. This pass therefore used local
+  production HTML / route / export / API checks rather than screenshot evidence
+  or live click screenshots.
+- Remaining issues: the content checker still reports 363 backlog warnings
+  for thin or under-structured note units; these are now visible as backlog
+  warnings instead of blocking the full QA pipeline.

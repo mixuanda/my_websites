@@ -636,3 +636,29 @@ unit-level coverage.
 - Verification: pending in this round
 - Remaining issues: broader Math1025 checkpoint density should increase as
   chapters `6` through `11` are authored
+
+### 2026-05-12 checkpoint 22: MATH1030 linear-dependence solution flow
+
+- Checkpoint name: `6.4` warm-up/final exercise ordering and checkpoint
+  language cleanup
+- What was inspected: EN / zh-HK / zh-CN `6.4 Linear dependence and
+  independence`, the generated Contentlayer unit JSON, and the MATH1030
+  problem-bank checkpoints attached to the same unit family
+- What was changed: renamed the early exercise block to warm-up exercises and
+  warm-up solutions, added a final summary after the deeper redundancy /
+  null-space / pivot-criterion sections, and kept the final quick checks plus
+  guided exercises after that summary. The MATH1030 problem-bank zh-HK text was
+  also cleaned so checkpoint hints and solution steps use formal written
+  Chinese instead of colloquial Cantonese wording.
+- Integrity note: no prompt was moved away from its paired answer. The final
+  page still has immediate `QuickCheck` / `RevealSolution` pairings, while
+  exports expose those reveal blocks as visible study answers.
+- Verification: local production HTML checks confirmed EN / zh-HK / zh-CN
+  `6.4` routes render the reordered markers; EN and zh-HK TXT exports include
+  warm-up exercises, the redundancy section, final summary, and guided
+  solutions; EN PDF export returned `application/pdf`; the free
+  `checkpoint.math1030.dependence-zero-vector` preview API returned 200 and
+  parsed the zh-HK selected answer.
+- Remaining issues: member-gated checkpoint submission was not exercised in
+  this pass; only the free preview path was checked to avoid introducing new
+  account-state dependencies during QA.

@@ -15,6 +15,45 @@ import {
 import { recordUserLogin } from "./user-store";
 import { isPreviewOnlyPath, isProductionSurface } from "./site-surface";
 
+type OAuthProfileWithEmail = {
+  email?: string | null;
+  email_verified?: boolean | null;
+};
+
+type GitHubEmailRecord = {
+  email?: string;
+  primary?: boolean;
+  verified?: boolean;
+};
+
+async function hasVerifiedGitHubEmail(accessToken: string | undefined, email: string | null) {
+  if (!accessToken || !email) {
+    return false;
+  }
+
+  try {
+    const response = await fetch("https://api.github.com/user/emails", {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "User-Agent": "evanalysis-auth",
+      },
+    });
+
+    if (!response.ok) {
+      return false;
+    }
+
+    const emails = (await response.json()) as GitHubEmailRecord[];
+    const normalizedEmail = email.toLowerCase();
+
+    return emails.some(
+      (item) => item.email?.toLowerCase() === normalizedEmail && item.verified === true
+    );
+  } catch {
+    return false;
+  }
+}
+
 const githubClientId =
   process.env.GITHUB_CLIENT_ID || process.env.AUTH_GITHUB_ID;
 const githubClientSecret =
@@ -59,7 +98,6 @@ if (githubClientId && githubClientSecret) {
     GitHub({
       clientId: githubClientId,
       clientSecret: githubClientSecret,
-      allowDangerousEmailAccountLinking: true,
     })
   );
 }
@@ -69,7 +107,6 @@ if (googleClientId && googleClientSecret) {
     Google({
       clientId: googleClientId,
       clientSecret: googleClientSecret,
-      allowDangerousEmailAccountLinking: true,
     })
   );
 }
@@ -94,6 +131,21 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     strategy: "jwt",
   },
   callbacks: {
+    async signIn({ account, profile, user }) {
+      if (account?.provider === "google") {
+        return (profile as OAuthProfileWithEmail | undefined)?.email_verified === true;
+      }
+
+      if (account?.provider === "github") {
+        const email =
+          user.email ??
+          (profile as OAuthProfileWithEmail | undefined)?.email ??
+          null;
+        return hasVerifiedGitHubEmail(account.access_token, email);
+      }
+
+      return true;
+    },
     authorized({ auth, request: { nextUrl } }) {
       if (isProductionSurface() && isPreviewOnlyPath(nextUrl.pathname)) {
         return true;

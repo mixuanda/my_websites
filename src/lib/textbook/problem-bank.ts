@@ -1700,7 +1700,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
       text(
         "Those zeros and ones copy each row or column without changing it.",
-        "呢啲 0 同 1 會原樣抽出每一行或每一列。",
+        "這些 0 和 1 會原樣抽出每一行或每一列。",
         "这些 0 与 1 会原样抽出每一行或每一列。"
       ),
       text(
@@ -1981,7 +1981,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     hints: [
       text(
         "A matrix cannot equal its own transpose unless the sizes already match.",
-        "如果大小本身都唔匹配，就唔可能等於自己嘅轉置。",
+        "如果大小本身不匹配，就不可能等於自己的轉置。",
         "如果大小本身都不匹配，就不可能等于自己的转置。"
       ),
     ],
@@ -1991,12 +1991,12 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     solutionSteps: [
       text(
         "Symmetric means the transpose does not change the matrix.",
-        "對稱矩陣嘅意思係轉置唔會改變矩陣。",
+        "對稱矩陣的意思是轉置不會改變矩陣。",
         "对称矩阵的意思是转置不会改变矩阵。"
       ),
       text(
         "For A and A^T to be comparable, A must already be square.",
-        "要比較 A 同 A^T，A 必須先係方陣。",
+        "要比較 A 與 A^T，A 必須先是方陣。",
         "要比较 A 与 A^T，A 必须先是方阵。"
       ),
     ],
@@ -2046,7 +2046,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
         id: "d",
         text: text(
           "Because the right-hand side can never be zero.",
-          "因為右邊永遠唔會係零。",
+          "因為右邊永遠不會是零。",
           "因为右边永远不会是零。"
         ),
       },
@@ -2070,7 +2070,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
       text(
         "So x = 0 is always a valid solution of Ax = 0.",
-        "所以 x = 0 永遠係 Ax = 0 的合法解。",
+        "所以 x = 0 永遠是 Ax = 0 的合法解。",
         "所以 x = 0 永远是 Ax = 0 的合法解。"
       ),
     ],
@@ -2099,7 +2099,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     hints: [
       text(
         "Use the matrix form of a homogeneous system.",
-        "用齊次系統嘅矩陣寫法。",
+        "用齊次系統的矩陣寫法。",
         "用齐次系统的矩阵写法。"
       ),
     ],
@@ -2108,7 +2108,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     solutionAccessTier: "FREE",
     syntaxGuidance: text(
       "A short symbolic answer such as `Ax=0` is enough.",
-      "像 `Ax=0` 呢種簡短符號答案已經足夠。",
+      "像 `Ax=0` 這種簡短符號答案已經足夠。",
       "像 `Ax=0` 这种简短符号答案已经足够。"
     ),
     solutionSteps: [
@@ -2119,7 +2119,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
       text(
         "A homogeneous system has matrix form Ax = 0.",
-        "齊次系統嘅矩陣形式就係 Ax = 0。",
+        "齊次系統的矩陣形式就是 Ax = 0。",
         "齐次系统的矩阵形式就是 Ax = 0。"
       ),
     ],
@@ -2144,13 +2144,13 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       { id: "a", text: text("xp + v", "xp + v", "xp + v") },
       { id: "b", text: text("b + v", "b + v", "b + v") },
       { id: "c", text: text("A + v", "A + v", "A + v") },
-      { id: "d", text: text("v only", "只係 v", "只有 v") },
+      { id: "d", text: text("v only", "只有 v", "只有 v") },
     ],
     correctAnswer: { choiceId: "a" },
     hints: [
       text(
         "Use A(xp + v) = Axp + Av.",
-        "用 A(xp + v) = Axp + Av 去拆開。",
+        "用 A(xp + v) = Axp + Av 來拆開。",
         "用 A(xp + v) = Axp + Av 去拆开。"
       ),
     ],
@@ -2160,7 +2160,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     solutionSteps: [
       text(
         "Since xp solves Ax = b, we have Axp = b.",
-        "因為 xp 係 Ax = b 的解，所以 Axp = b。",
+        "因為 xp 是 Ax = b 的解，所以 Axp = b。",
         "因为 xp 是 Ax = b 的解，所以 Axp = b。"
       ),
       text(
@@ -2336,7 +2336,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     hints: [
       text(
         "The usual test says one vector is redundant because the rest already generate it.",
-        "常見測試係：其中一個向量其實由其餘向量生成，所以它是冗餘的。",
+        "常見測試是：其中一個向量其實由其餘向量生成，所以它是冗餘的。",
         "常见测试是：其中一个向量其实由其余向量生成，所以它是冗余的。"
       ),
     ],
@@ -2414,7 +2414,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
       text(
         "That redundancy gives a nontrivial linear relation, so the set is dependent.",
-        "呢種冗餘會產生非平凡線性關係，所以這組向量線性相關。",
+        "這種冗餘會產生非平凡線性關係，所以這組向量線性相關。",
         "这种冗余会产生非平凡线性关系，所以这组向量线性相关。"
       ),
     ],
@@ -2445,7 +2445,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     hints: [
       text(
         "For a triangular matrix, you do not need a full cofactor expansion. Read the diagonal.",
-        "對三角矩陣而言，唔需要完整做餘因子展開；直接睇對角線。",
+        "對三角矩陣而言，不需要完整做餘因子展開；直接看對角線。",
         "对三角矩阵而言，不需要完整做余因子展开；直接看对角线。"
       ),
     ],
@@ -2455,7 +2455,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     solutionSteps: [
       text(
         "An upper triangular matrix has determinant equal to the product of its diagonal entries.",
-        "上三角矩陣嘅行列式，等於對角線各項之積。",
+        "上三角矩陣的行列式，等於對角線各項之積。",
         "上三角矩阵的行列式，等于对角线各项之积。"
       ),
       text(
@@ -2496,7 +2496,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     hints: [
       text(
         "A single row swap reverses orientation but does not change the absolute size factor.",
-        "一次交換兩行會反轉方向，但唔會改變絕對伸縮量。",
+        "一次交換兩行會反轉方向，但不會改變絕對伸縮量。",
         "一次交换两行会反转方向，但不会改变绝对伸缩量。"
       ),
     ],
@@ -2506,7 +2506,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     solutionSteps: [
       text(
         "Swapping two rows is the determinant-changing row operation that flips the sign.",
-        "交換兩行係唯一會直接翻轉符號嘅基本行變換。",
+        "交換兩行是唯一會直接翻轉符號的基本行變換。",
         "交换两行是唯一会直接翻转符号的基本行变换。"
       ),
       text(
@@ -2553,7 +2553,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     solutionAccessTier: "MEMBER",
     syntaxGuidance: text(
       "A compact symbolic answer such as `det(M_j)/det(A)` is enough.",
-      "輸入 `det(M_j)/det(A)` 呢種簡短符號答案已經足夠。",
+      "輸入 `det(M_j)/det(A)` 這種簡短符號答案已經足夠。",
       "输入 `det(M_j)/det(A)` 这种简短符号答案已经足够。"
     ),
     solutionSteps: [
@@ -2569,7 +2569,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
       ),
       text(
         "Then x_j is the ratio det(M_j)/det(A).",
-        "之後 x_j 就係 det(M_j)/det(A)。",
+        "之後 x_j 就是 det(M_j)/det(A)。",
         "之后 x_j 就是 det(M_j)/det(A)。"
       ),
     ],
@@ -2920,7 +2920,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     solutionAccessTier: "MEMBER",
     syntaxGuidance: text(
       "A short symbolic answer such as `⟨v,v_i⟩` or `<v,vi>` is enough.",
-      "輸入 `⟨v,v_i⟩` 或 `<v,vi>` 呢種簡短符號答案已足夠。",
+      "輸入 `⟨v,v_i⟩` 或 `<v,vi>` 這種簡短符號答案已足夠。",
       "输入 `⟨v,v_i⟩` 或 `<v,vi>` 这种简短符号答案已足够。"
     ),
     solutionSteps: [
@@ -2954,7 +2954,7 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     points: 1,
     prompt: text(
       "Besides producing orthogonal vectors, what does Gram-Schmidt preserve at each step?",
-      "除咗產生正交向量之外，Gram-Schmidt 在每一步還保留了甚麼？",
+      "除了產生正交向量之外，Gram-Schmidt 在每一步還保留了甚麼？",
       "除了产生正交向量之外，Gram-Schmidt 在每一步还保留了什么？"
     ),
     choices: [

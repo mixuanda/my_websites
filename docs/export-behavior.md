@@ -72,14 +72,22 @@ then serializes that structure to TXT or PDF.
   export should preserve it through the `math1025-sequence-recursion-lab`
   static snapshot: representative arithmetic sequence, geometric sequence,
   mortgage recurrence, summary, steps, and static diagram note.
+- The May 12 MATH1030 `6.4` QA pass verified that reordered warm-up exercises,
+  the later redundancy / null-space material, the final summary, quick checks,
+  and guided solutions all survive TXT export. EN PDF export returned
+  `application/pdf`.
 
 ## Current blockers
 
-The export code exists, but the final automated verification is still partial.
+The export code exists and representative local checks are passing, but full
+route-by-route export coverage remains partial.
 
-- The WSL `node.exe` bridge is slow for long-running build and lint commands.
-- TXT and PDF still need a manual route-by-route QA pass on all localized
+- TXT and PDF still need a complete route-by-route QA pass on all localized
   notes.
+- Visual screenshot QA was not available in the May 12 pass because the Codex
+  in-app browser runtime reported `iab` unavailable, and the Chrome extension
+  backend still reported unavailable even after Chrome was opened with user
+  approval.
 
 ## Next steps
 

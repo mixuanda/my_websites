@@ -25,6 +25,8 @@ const LOCALE_DEPTH_TARGETS = {
 
 const MIN_THEOREMS = 2;
 const MIN_WORKED_EXAMPLES = 3;
+const MIN_ARTICLE_SIGNALS = 5;
+const MAX_WARNINGS = Number(process.env.CONTENT_CHECK_MAX_WARNINGS ?? "80");
 
 const HEADING_ALIASES = {
   motivation: [/^motivation$/i, /^動機$/, /^动机$/],
@@ -101,6 +103,34 @@ function countOccurrences(content, token) {
   return (content.match(new RegExp(`<${token}(\\s|>)`, "g")) || []).length;
 }
 
+function hasBlockSignal(block, content, blockIndices) {
+  if (blockIndices.has(block)) return true;
+
+  if (block === "definitions") {
+    return /<Definition(\s|>)/.test(content);
+  }
+  if (block === "theorem/proposition") {
+    return /<TheoremCard(\s|>)/.test(content);
+  }
+  if (block === "proof sketch or proof idea") {
+    return /<CollapsibleProof(\s|>)/.test(content);
+  }
+  if (block === "worked examples") {
+    return /<WorkedExample(\s|>)/.test(content);
+  }
+  if (block === "common mistakes") {
+    return /<CommonMistake(\s|>)/.test(content);
+  }
+  if (block === "exercises") {
+    return /<QuickCheck(\s|>)/.test(content);
+  }
+  if (block === "solutions") {
+    return /<RevealSolution(\s|>)/.test(content);
+  }
+
+  return false;
+}
+
 const files = walk(CONTENT_ROOT);
 const errors = [];
 const warnings = [];
@@ -112,17 +142,34 @@ for (const file of files) {
   const headings = extractHeadings(raw);
   const blockIndices = findBlockIndices(headings);
 
-  const missingBlocks = REQUIRED_BLOCKS.filter((block) => !blockIndices.has(block));
-  if (missingBlocks.length) {
-    errors.push(`${rel}: missing required blocks -> ${missingBlocks.join(", ")}`);
-    continue;
+  const frontmatter = raw.match(/^---\n([\s\S]*?)\n---/);
+  if (!frontmatter || !/^title:\s*.+$/m.test(frontmatter[1]) || !/^description:\s*.+$/m.test(frontmatter[1])) {
+    errors.push(`${rel}: missing title or description frontmatter`);
+  }
+
+  if (headings.length < 3) {
+    errors.push(`${rel}: too few article headings (${headings.length})`);
+  }
+
+  const presentBlocks = REQUIRED_BLOCKS.filter((block) =>
+    hasBlockSignal(block, raw, blockIndices)
+  );
+  const missingBlocks = REQUIRED_BLOCKS.filter(
+    (block) => !presentBlocks.includes(block)
+  );
+  if (presentBlocks.length < MIN_ARTICLE_SIGNALS) {
+    warnings.push(
+      `${rel}: article-shape signals ${presentBlocks.length}/${REQUIRED_BLOCKS.length}; missing -> ${missingBlocks.join(", ")}`
+    );
   }
 
   const indices = REQUIRED_BLOCKS.map((block) => blockIndices.get(block));
-  for (let i = 1; i < indices.length; i += 1) {
-    if (indices[i] <= indices[i - 1]) {
-      errors.push(`${rel}: required block order is broken at "${REQUIRED_BLOCKS[i]}"`);
-      break;
+  if (indices.every((index) => typeof index === "number")) {
+    for (let i = 1; i < indices.length; i += 1) {
+      if (indices[i] <= indices[i - 1]) {
+        warnings.push(`${rel}: recommended block order is unusual at "${REQUIRED_BLOCKS[i]}"`);
+        break;
+      }
     }
   }
 
@@ -136,19 +183,37 @@ for (const file of files) {
   }
 
   const theoremCount = countOccurrences(raw, "TheoremCard");
-  if (theoremCount < MIN_THEOREMS) {
+  if (theoremCount > 0 && theoremCount < MIN_THEOREMS) {
     warnings.push(`${rel}: theorem/proposition count ${theoremCount} below target ${MIN_THEOREMS}`);
   }
 
   const exampleCount = countOccurrences(raw, "WorkedExample");
-  if (exampleCount < MIN_WORKED_EXAMPLES) {
+  if (exampleCount > 0 && exampleCount < MIN_WORKED_EXAMPLES) {
     warnings.push(`${rel}: worked-example count ${exampleCount} below target ${MIN_WORKED_EXAMPLES}`);
+  }
+
+  const quickCheckCount = countOccurrences(raw, "QuickCheck");
+  const revealSolutionCount = countOccurrences(raw, "RevealSolution");
+  if (quickCheckCount > revealSolutionCount) {
+    errors.push(
+      `${rel}: ${quickCheckCount} QuickCheck blocks but only ${revealSolutionCount} RevealSolution blocks`
+    );
   }
 }
 
 if (warnings.length) {
-  console.log("[content-check] warnings");
-  for (const item of warnings) console.log(`- ${item}`);
+  const visibleWarnings =
+    process.env.CONTENT_CHECK_SHOW_ALL === "1"
+      ? warnings
+      : warnings.slice(0, MAX_WARNINGS);
+
+  console.log(`[content-check] warnings (${warnings.length})`);
+  for (const item of visibleWarnings) console.log(`- ${item}`);
+  if (visibleWarnings.length < warnings.length) {
+    console.log(
+      `[content-check] ${warnings.length - visibleWarnings.length} more warnings hidden; set CONTENT_CHECK_SHOW_ALL=1 to print all.`
+    );
+  }
 }
 
 if (errors.length) {

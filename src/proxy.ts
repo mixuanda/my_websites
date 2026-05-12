@@ -4,12 +4,13 @@ import { auth } from "@/lib/auth";
 export default auth((req) => {
   const isLoggedIn = !!req.auth?.user;
   const pathname = req.nextUrl.pathname;
+  const isStripeWebhook = pathname === "/api/stripe/webhook";
 
   const authRequired =
     pathname.startsWith("/diary") ||
     pathname.startsWith("/private") ||
     pathname.startsWith("/settings") ||
-    pathname.startsWith("/api/stripe") ||
+    (pathname.startsWith("/api/stripe") && !isStripeWebhook) ||
     pathname.includes("/premium/");
 
   if (authRequired && !isLoggedIn) {

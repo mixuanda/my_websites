@@ -3,7 +3,7 @@
  * 支持离线功能和推送通知
  */
 
-const CACHE_NAME = 'my-site-v1';
+const CACHE_NAME = 'my-site-v2';
 const urlsToCache = [
   '/',
   '/offline.html',
@@ -11,6 +11,58 @@ const urlsToCache = [
   '/icon-192.png',
   '/icon-512.png',
 ];
+
+const PRIVATE_PATH_PATTERNS = [
+  /^\/api(?:\/|$)/,
+  /^\/admin(?:\/|$)/,
+  /^\/diary(?:\/|$)/,
+  /^\/login(?:\/|$)/,
+  /^\/private(?:\/|$)/,
+  /^\/settings(?:\/|$)/,
+  /^\/(?:en|zh-hk|zh-cn)\/premium(?:\/|$)/,
+  /^\/premium(?:\/|$)/,
+];
+
+const STATIC_CACHEABLE_PATH_PATTERNS = [
+  /^\/$/,
+  /^\/offline\.html$/,
+  /^\/manifest\.json$/,
+  /^\/icon-[\w-]+\.png$/,
+  /^\/_next\/static\//,
+  /^\/fonts\//,
+  /^\/.*\.(?:css|js|png|jpg|jpeg|webp|gif|svg|ico|woff2?)$/,
+];
+
+function isPrivatePath(pathname) {
+  return PRIVATE_PATH_PATTERNS.some((pattern) => pattern.test(pathname));
+}
+
+function isStaticCacheablePath(pathname) {
+  return STATIC_CACHEABLE_PATH_PATTERNS.some((pattern) => pattern.test(pathname));
+}
+
+function shouldCacheRequest(request) {
+  const url = new URL(request.url);
+
+  if (url.origin !== self.location.origin) {
+    return false;
+  }
+
+  if (request.method !== 'GET' || isPrivatePath(url.pathname)) {
+    return false;
+  }
+
+  return isStaticCacheablePath(url.pathname);
+}
+
+function shouldCacheResponse(response) {
+  if (!response || response.status !== 200 || response.type === 'error') {
+    return false;
+  }
+
+  const cacheControl = response.headers.get('Cache-Control') || '';
+  return !/(?:^|,)\s*(?:no-store|private)\b/i.test(cacheControl);
+}
 
 // 安装事件 - 缓存资源
 self.addEventListener('install', (event) => {
@@ -39,25 +91,17 @@ self.addEventListener('activate', (event) => {
 
 // Fetch 事件 - 离线支持（网络优先策略）
 self.addEventListener('fetch', (event) => {
-  // 只处理 GET 请求
-  if (event.request.method !== 'GET') {
-    return;
-  }
-
-  // 跳过非 HTTP(S) 请求
-  if (!event.request.url.startsWith('http')) {
+  if (!event.request.url.startsWith('http') || !shouldCacheRequest(event.request)) {
     return;
   }
 
   event.respondWith(
     fetch(event.request)
       .then((response) => {
-        // 如果响应成功，缓存它
-        if (!response || response.status !== 200 || response.type === 'error') {
+        if (!shouldCacheResponse(response)) {
           return response;
         }
 
-        // 克隆响应
         const responseToCache = response.clone();
         caches.open(CACHE_NAME).then((cache) => {
           cache.put(event.request, responseToCache);
