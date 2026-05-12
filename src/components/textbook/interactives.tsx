@@ -169,6 +169,83 @@ function scaleMatrix(
   return matrix.map((row) => row.map((value) => value * scalar));
 }
 
+function MatrixArithmeticLab({ locale }: { locale: Locale }) {
+  const [scalar, setScalar] = useState(2);
+  const a = [
+    [1, -2],
+    [3, 0],
+  ];
+  const b = [
+    [4, 1],
+    [-1, 2],
+  ];
+  const sum = addMatrices(a, b);
+  const difference = subtractMatrices(a, b);
+  const scaled = scaleMatrix(a, scalar);
+
+  return (
+    <InteractiveShell icon={<Sigma className="h-5 w-5" />} locale={locale} widgetId="matrix-arithmetic-lab">
+      <div className="grid gap-4 lg:grid-cols-2">
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">{getLocalizedText(interactiveLabels.matrixA, locale)}</p>
+          <div className="mt-3 overflow-x-auto">
+            <MatrixView data={a} />
+          </div>
+        </GlassPanel>
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">B</p>
+          <div className="mt-3 overflow-x-auto">
+            <MatrixView data={b} />
+          </div>
+        </GlassPanel>
+      </div>
+      <div className="mt-4 grid gap-4 lg:grid-cols-3">
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">{getLocalizedText(interactiveLabels.addition, locale)}</p>
+          <div className="mt-3 overflow-x-auto">
+            <MatrixView data={sum} />
+          </div>
+        </GlassPanel>
+        <GlassPanel className="bg-card/50">
+          <p className="text-sm font-semibold">{getLocalizedText(interactiveLabels.subtraction, locale)}</p>
+          <div className="mt-3 overflow-x-auto">
+            <MatrixView data={difference} />
+          </div>
+        </GlassPanel>
+        <GlassPanel className="bg-card/50">
+          <label className="text-sm font-semibold" htmlFor="matrix-scalar">
+            {getLocalizedText(interactiveLabels.scalar, locale)}
+          </label>
+          <Input
+            className="mt-2 max-w-24"
+            id="matrix-scalar"
+            max={5}
+            min={-5}
+            onChange={(event) => setScalar(Number(event.target.value))}
+            type="number"
+            value={scalar}
+          />
+          <div className="mt-3 overflow-x-auto">
+            <MatrixView data={scaled} />
+          </div>
+        </GlassPanel>
+      </div>
+      <GlassPanel className="mt-4 bg-card/50">
+        <p className="text-sm leading-7 text-muted-foreground">
+          {getLocalizedText(
+            text(
+              "Addition and subtraction are entrywise. Scalar multiplication multiplies every entry by the same scalar, so the matrix size stays unchanged.",
+              "加法與減法逐格進行。純量乘法把每一格同時乘以同一個數，因此矩陣大小不變。",
+              "加法与减法逐格进行。数乘把每一格同时乘以同一个数，因此矩阵大小不变。"
+            ),
+            locale
+          )}
+        </p>
+      </GlassPanel>
+    </InteractiveShell>
+  );
+}
+
 function InteractiveShell({
   children,
   icon,
@@ -981,7 +1058,7 @@ function MatrixFamilyChecker({ locale }: { locale: Locale }) {
   ] as const;
   const [selected, setSelected] = useState(0);
   const current = cases[selected];
-  const transpose = useMemo(() => transposeMatrix(current.matrix), [current.matrix]);
+  const transpose = transposeMatrix(current.matrix);
 
   return (
     <InteractiveShell icon={<Braces className="h-5 w-5" />} locale={locale} widgetId="matrix-family-checker">
@@ -4113,6 +4190,8 @@ const interactiveComponents = {
   "invertibility-row-reduction-demo": InvertibilityRowReductionDemo,
   "induction-stepper": InductionStepper,
   "integer-equivalence-explorer": IntegerEquivalenceExplorer,
+  "matrix-arithmetic-lab": MatrixArithmeticLab,
+  "matrix-family-checker": MatrixFamilyChecker,
   "matrix-reading-trainer": MatrixReadingTrainer,
   "matrix-multiplication-visualizer": MatrixMultiplicationVisualizer,
   "math1025-sequence-recursion-lab": Math1025SequenceRecursionLab,

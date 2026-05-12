@@ -1,10 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSitePreferences } from "@/components/SitePreferencesProvider";
+import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { GlassPanel } from "@/components/glass";
-import { getSiteText, siteUiText } from "@/lib/site-i18n";
+import { getRouteLocale, getSiteText, resolveSiteLocale, siteUiText } from "@/lib/site-i18n";
+import { defaultLocale } from "@/lib/textbook/i18n";
+import type { Locale } from "@/lib/textbook/types";
 
 const headingLevels = [2, 3, 4] as const;
 
@@ -48,7 +50,6 @@ export function Toc({ highContrast = false, maxDepth = 3, title }: TocProps) {
   );
   const [headings, setHeadings] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
-  const effectiveHighContrast = highContrast || siteHighContrast;
 
   useEffect(() => {
     const frame = window.requestAnimationFrame(() => {
@@ -94,7 +95,7 @@ export function Toc({ highContrast = false, maxDepth = 3, title }: TocProps) {
   if (headings.length === 0) return null;
 
   return (
-    <GlassPanel highContrast={effectiveHighContrast} className="sticky top-24">
+    <GlassPanel highContrast={highContrast} className="sticky top-24">
       <h4 className="font-semibold mb-3 text-sm">
         {title ?? getSiteText(siteUiText.contents, locale)}
       </h4>

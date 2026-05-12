@@ -14,6 +14,10 @@ function extractPriceIdFromSubscription(subscription: Stripe.Subscription): stri
   return subscription.items.data[0]?.price?.id ?? null;
 }
 
+function getSubscriptionPeriodEnd(subscription: Stripe.Subscription): number | null {
+  return subscription.items.data[0]?.current_period_end ?? null;
+}
+
 async function syncSubscription(subscription: Stripe.Subscription) {
   const customerId =
     typeof subscription.customer === "string"
@@ -51,8 +55,8 @@ async function syncSubscription(subscription: Stripe.Subscription) {
     active: ["active", "trialing", "past_due"].includes(subscription.status),
     cancelAtPeriodEnd: subscription.cancel_at_period_end,
     plan: mapped.plan,
-    renewsAt: subscription.current_period_end
-      ? new Date(subscription.current_period_end * 1000).toISOString()
+    renewsAt: getSubscriptionPeriodEnd(subscription)
+      ? new Date(getSubscriptionPeriodEnd(subscription)! * 1000).toISOString()
       : undefined,
     scopes: billingPlans[mapped.plan].scopes,
     source: "stripe_subscription",

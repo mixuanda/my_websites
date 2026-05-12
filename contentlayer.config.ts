@@ -121,6 +121,7 @@ export const TextbookUnit = defineDocumentType(() => ({
 export default makeSource({
   contentDirPath: 'content',
   contentDirExclude: [
+    'textbook/UNIT_TEMPLATE.mdx',
     'textbook/math1030/matrices/augmented-matrices-row-operations/storyboard.json',
     'textbook/math1030/matrices/gaussian-elimination-rref/storyboard.json',
     'textbook/math1030/matrices/matrix-basics/storyboard.json',

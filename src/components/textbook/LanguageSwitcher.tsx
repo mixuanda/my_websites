@@ -1,8 +1,8 @@
 "use client";
 
+import { useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useSitePreferences } from "@/components/SitePreferencesProvider";
 import { Button } from "@/components/ui/button";
 import {
   defaultLocale,
@@ -13,6 +13,9 @@ import {
   locales,
   uiText,
 } from "@/lib/textbook/i18n";
+import {
+  TEXTBOOK_PREFERRED_LOCALE_STORAGE_KEY,
+} from "@/lib/textbook/storage";
 import type { Locale } from "@/lib/textbook/types";
 import { cn } from "@/lib/utils";
 
@@ -32,16 +35,20 @@ export function LanguageSwitcher({
   locale,
 }: {
   className?: string;
-  locale?: Locale;
+  locale: Locale;
 }) {
   const pathname = usePathname() ?? `/${defaultLocale}/notes`;
-  const { locale: siteLocale, setLocale } = useSitePreferences();
-  const activeLocale = locale ?? siteLocale;
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.localStorage.setItem(TEXTBOOK_PREFERRED_LOCALE_STORAGE_KEY, locale);
+    }
+  }, [locale]);
 
   return (
     <div className={cn("space-y-2", className)}>
       <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-        {getLocalizedText(uiText.language, activeLocale)}
+        {getLocalizedText(uiText.language, locale)}
       </p>
       <div className="flex flex-wrap gap-2">
         {locales.map((targetLocale) => (
@@ -50,15 +57,22 @@ export function LanguageSwitcher({
             asChild
             className="min-w-14"
             size="sm"
-            variant={targetLocale === activeLocale ? "default" : "outline"}
+            variant={targetLocale === locale ? "default" : "outline"}
           >
             <Link
               href={getLocaleHref(pathname, targetLocale)}
-              onClick={() => setLocale(targetLocale)}
+              onClick={() => {
+                if (typeof window !== "undefined") {
+                  window.localStorage.setItem(
+                    TEXTBOOK_PREFERRED_LOCALE_STORAGE_KEY,
+                    targetLocale
+                  );
+                }
+              }}
             >
               {localeLabels[targetLocale]}
               <span className="sr-only">
-                {getLocalizedText(localeNames[targetLocale], activeLocale)}
+                {getLocalizedText(localeNames[targetLocale], locale)}
               </span>
             </Link>
           </Button>

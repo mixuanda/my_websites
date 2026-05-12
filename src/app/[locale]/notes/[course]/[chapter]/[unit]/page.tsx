@@ -197,15 +197,8 @@ export default async function UnitPage({ params }: UnitPageProps) {
                   {bundle.doc.description}
                 </p>
                 {bundle.meta.coverageStatus === "MISSING_SOURCE" ? (
-                  <GlassPanel
-                    className="mt-5 p-4 text-sm leading-7"
-                    style={{
-                      background: "var(--callout-warning-bg)",
-                      borderColor: "var(--callout-warning-border)",
-                      color: "var(--callout-warning-foreground)",
-                    }}
-                  >
-                    {getLocalizedText(uiText.missingSourceNotice, locale)}
+                  <GlassPanel className="mt-5 border border-amber-400/40 bg-amber-500/10 p-4 text-sm leading-7">
+                    {getLocalizedText(uiText.missingSource, locale)}
                   </GlassPanel>
                 ) : null}
               </div>

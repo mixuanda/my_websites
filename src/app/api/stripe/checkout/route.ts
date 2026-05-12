@@ -14,7 +14,8 @@ export const runtime = "nodejs";
 
 export async function POST(request: Request) {
   const session = await auth();
-  const userId = session?.user ? (session.user as { id?: string }).id : null;
+  const user = session?.user as { email?: string | null; id?: string; name?: string | null } | undefined;
+  const userId = user?.id ?? null;
 
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -39,9 +40,9 @@ export async function POST(request: Request) {
 
   if (!customerId) {
     const customer = await stripe.customers.create({
-      email: session.user?.email ?? undefined,
+      email: user?.email ?? undefined,
       metadata: { userId },
-      name: session.user?.name ?? undefined,
+      name: user?.name ?? undefined,
     });
 
     customerId = customer.id;

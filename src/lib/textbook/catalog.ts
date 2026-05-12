@@ -1773,7 +1773,7 @@ const math1030SolutionStructureUnits: TextbookUnitMeta[] = [
   },
 ];
 
-const math1030MatrixAlgebraUnits: TextbookUnitMeta[] = [
+const math1030MatrixAlgebraSupplementUnits: TextbookUnitMeta[] = [
   {
     chapterId: "matrix-algebra",
     chapterNumber: "3",
@@ -2910,7 +2910,10 @@ const math1030: TextbookCourseMeta = {
         "矩阵乘法、转置与结构化矩阵记号。"
       ),
       title: text("Matrix algebra", "矩陣代數", "矩阵代数"),
-      units: math1030MatrixAlgebraUnits,
+      units: [
+        ...math1030MatrixAlgebraUnits,
+        ...math1030MatrixAlgebraSupplementUnits,
+      ],
     },
     {
       course: "math1030",
