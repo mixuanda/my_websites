@@ -492,6 +492,22 @@ export default function SettingsPage() {
         </GlassCard>
       )}
 
+
+
+      <GlassCard className="p-6">
+        <h3 className="text-lg font-semibold mb-2 flex items-center gap-2">
+          <CreditCard className="w-5 h-5" />
+          计费与会员
+        </h3>
+        <p className="text-sm text-muted-foreground mb-4">
+          免费内容包含核心课程笔记。高级练习、视频讲解和高级导出在付费计划中开放。
+        </p>
+        <Button variant="outline" onClick={() => router.push('/settings/billing')}>
+          打开计费页面
+        </Button>
+      </GlassCard>
+
+
       {/* Info */}
       <GlassPanel className="p-4">
         <p className="text-xs text-muted-foreground text-center">
