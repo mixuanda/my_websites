@@ -10,6 +10,9 @@ language and the still-internal `textbook` namespace in code.
 The public IA is route-based and unit-based. Each learning unit behaves like a
 note detail page.
 
+- `/notes` is the Notes hub for the whole site. It now presents the math note
+  collections first and keeps the older general-note archive in the same
+  section.
 - `/${locale}/notes` is the localized math notes landing page.
 - `/${locale}/notes/${course}` is the localized note collection for one
   course.
@@ -82,7 +85,7 @@ metadata rather than dominating note pages.
 
 - Keep `sourceRefs` in catalog metadata.
 - Keep `docs/source-audit.md` current.
-- Show `MISSING_SOURCE` clearly when a unit lacks adequate support.
+- Show `MISSING_SOURCE` only when a unit lacks adequate support.
 - Keep exported study copies focused on the learning material rather than raw
   source listings.
 
@@ -90,8 +93,8 @@ metadata rather than dominating note pages.
 
 Use this checklist before you land IA changes.
 
-1. Confirm the main sidebar points to localized Notes routes.
-2. Confirm `/[locale]/notes` is reachable in all three written languages.
+1. Confirm the main sidebar points to `/notes`.
+2. Confirm `/notes` links into the localized note collections.
 3. Confirm old `/[locale]/courses/**` paths redirect to the matching notes
    route.
 4. Confirm note detail pages still render the course sidebar, TOC, progress,

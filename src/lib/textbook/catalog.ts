@@ -1773,6 +1773,208 @@ const math1030SolutionStructureUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1030MatrixAlgebraUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "matrix-algebra",
+    chapterNumber: "3",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Learn which matrix operations are entrywise, why matching sizes matter, and how the zero matrix behaves like the additive identity.",
+      "學會哪些矩陣運算是逐格進行、為何大小必須配合，以及零矩陣如何充當加法單位元。",
+      "学会哪些矩阵运算是逐格进行、为何大小必须配合，以及零矩阵如何充当加法单位元。"
+    ),
+    glossaryRefs: ["matrix", "zero-matrix"],
+    interactiveIds: ["matrix-arithmetic-lab"],
+    order: 6,
+    prerequisites: ["math1030.matrices.matrix-basics"],
+    slug: "matrix-addition-scalar-multiplication",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§3.1",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-se0102.pdf",
+        note: "Questions 4 to 7",
+      },
+      {
+        file: "reference/MATH1030/Practice Set 2_Matrix Algebra.pdf",
+        note: "Questions 1 to 2",
+      },
+    ],
+    title: text(
+      "3.1 Matrix addition, subtraction, and scalar multiplication",
+      "3.1 矩陣加法、減法與純量乘法",
+      "3.1 矩阵加法、减法与数乘"
+    ),
+    unitId: "math1030.matrix-algebra.matrix-addition-scalar-multiplication",
+    unitNumber: "3.1",
+  },
+  {
+    chapterId: "matrix-algebra",
+    chapterNumber: "3",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Understand matrix multiplication as a row-by-column rule and as a compact way to encode several linear combinations or systems at once.",
+      "把矩陣乘法理解成行乘列的規則，也理解成把多個線性組合或方程組一起打包的方式。",
+      "把矩阵乘法理解成行乘列的规则，也理解成把多个线性组合或方程组一起打包的方式。"
+    ),
+    glossaryRefs: ["matrix", "matrix-product", "identity-matrix"],
+    interactiveIds: ["matrix-multiplication-visualizer"],
+    order: 7,
+    prerequisites: [
+      "math1030.matrices.matrix-basics",
+      "math1030.matrix-algebra.matrix-addition-scalar-multiplication",
+    ],
+    slug: "matrix-multiplication-and-linear-systems",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§3.2",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-se0102.pdf",
+        note: "Questions 8 to 11",
+      },
+      {
+        file: "reference/MATH1030/Practice Set 2_Matrix Algebra.pdf",
+        note: "Questions 2 to 4",
+      },
+      {
+        file: "reference/MATH1030/Practice Set 3_Matrix Algebra and Linear Equation System.pdf",
+        note: "Questions 1 to 3",
+      },
+    ],
+    title: text(
+      "3.2 Matrix multiplication and linear systems",
+      "3.2 矩陣乘法與線性方程組",
+      "3.2 矩阵乘法与线性方程组"
+    ),
+    unitId: "math1030.matrix-algebra.matrix-multiplication-and-linear-systems",
+    unitNumber: "3.2",
+  },
+  {
+    chapterId: "matrix-algebra",
+    chapterNumber: "3",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Transpose swaps rows and columns, while symmetry records what stays unchanged across the main diagonal.",
+      "轉置會交換行與列，而對稱性則記錄主對角線兩側哪些部分保持不變。",
+      "转置会交换行与列，而对称性则记录主对角线两侧哪些部分保持不变。"
+    ),
+    glossaryRefs: ["transpose", "symmetric-matrix", "skew-symmetric-matrix"],
+    interactiveIds: ["transpose-symmetry-lab"],
+    order: 8,
+    prerequisites: ["math1030.matrix-algebra.matrix-multiplication-and-linear-systems"],
+    slug: "transposes-and-symmetric-matrices",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§3.3",
+      },
+      {
+        file: "reference/MATH1030/1030efghi-tutorial-week04.pdf",
+        note: "Questions 1 to 2",
+      },
+      {
+        file: "reference/MATH1030/Practice Set 3_Matrix Algebra and Linear Equation System.pdf",
+        note: "Questions 2, 4 to 6",
+      },
+    ],
+    title: text(
+      "3.3 Transposes, symmetric matrices, and skew-symmetric matrices",
+      "3.3 轉置、對稱矩陣與反對稱矩陣",
+      "3.3 转置、对称矩阵与反对称矩阵"
+    ),
+    unitId: "math1030.matrix-algebra.transposes-and-symmetric-matrices",
+    unitNumber: "3.3",
+  },
+  {
+    chapterId: "matrix-algebra",
+    chapterNumber: "3",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Meet diagonal, triangular, identity, and elementary matrices, and see why their special shapes make later arguments shorter.",
+      "認識對角矩陣、三角矩陣、單位矩陣與初等矩陣，並理解它們的特殊形狀為何能令後面的論證更短。",
+      "认识对角矩阵、三角矩阵、单位矩阵与初等矩阵，并理解它们的特殊形状为何能令后面的论证更短。"
+    ),
+    glossaryRefs: [
+      "identity-matrix",
+      "diagonal-matrix",
+      "triangular-matrix",
+      "elementary-matrix",
+    ],
+    interactiveIds: ["matrix-family-checker", "row-reduction-stepper"],
+    order: 9,
+    prerequisites: [
+      "math1030.matrix-algebra.matrix-multiplication-and-linear-systems",
+      "math1030.matrix-algebra.transposes-and-symmetric-matrices",
+    ],
+    slug: "special-matrices",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§3.4",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-se0102.pdf",
+        note: "Advice section on upper-triangular matrices",
+      },
+      {
+        file: "reference/MATH1030/Practice Set 3_Matrix Algebra and Linear Equation System.pdf",
+        note: "Questions 9 to 11",
+      },
+    ],
+    title: text(
+      "3.4 Special matrices",
+      "3.4 特殊矩陣",
+      "3.4 特殊矩阵"
+    ),
+    unitId: "math1030.matrix-algebra.special-matrices",
+    unitNumber: "3.4",
+  },
+  {
+    chapterId: "matrix-algebra",
+    chapterNumber: "3",
+    course: "math1030",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Partition a large matrix into smaller pieces so addition and multiplication can be carried out block by block without losing meaning.",
+      "把大型矩陣分成較小部分，令加法與乘法可以逐塊進行，同時保持原來的數學意思。",
+      "把大型矩阵分成较小部分，让加法与乘法可以逐块进行，同时保持原来的数学意思。"
+    ),
+    glossaryRefs: ["block-matrix", "matrix"],
+    interactiveIds: [],
+    order: 10,
+    prerequisites: [
+      "math1030.matrix-algebra.matrix-multiplication-and-linear-systems",
+      "math1030.matrix-algebra.special-matrices",
+    ],
+    slug: "block-matrices",
+    sourceRefs: [
+      {
+        file: "reference/MATH1030/MATH1030-Notes.pdf",
+        pages: "§3.5",
+      },
+      {
+        file: "reference/MATH1030/1030gi-n01-se0102.pdf",
+        note: "Advice section on block matrices",
+      },
+    ],
+    title: text(
+      "3.5 Block matrices",
+      "3.5 分塊矩陣",
+      "3.5 分块矩阵"
+    ),
+    unitId: "math1030.matrix-algebra.block-matrices",
+    unitNumber: "3.5",
+  },
+];
+
 const math1030InvertibilityUnits: TextbookUnitMeta[] = [
   {
     accessTier: "MEMBER",

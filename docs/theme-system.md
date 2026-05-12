@@ -13,12 +13,19 @@ The active theme stack now works like this.
 - The app defaults to the system theme rather than forcing dark mode first.
 - `src/app/layout.tsx` now ships light-mode and dark-mode `theme-color` meta
   tags instead of assuming one fixed browser chrome color.
+- `src/lib/site-theme.ts` now keeps the shared browser-chrome theme colors.
 - `src/app/globals.css` owns the light and dark tokens, including the shared
   page background gradient variables and the shared `color-scheme` behavior.
+- `src/components/SitePreferencesProvider.tsx` now keeps the shared high-
+  contrast and preferred-language state for the shell.
 - `src/components/MainLayout.tsx` reads those CSS variables for the decorative
   background instead of branching on the theme in JavaScript.
 - High-contrast state is stored in local storage and mirrored to
   `html[data-contrast]`.
+- The main sidebar now exposes explicit `system`, `light`, and `dark` controls
+  instead of a one-way light or dark toggle.
+- The page TOC now follows the shared high-contrast state instead of staying on
+  its default glass treatment.
 
 ## What was corrected
 

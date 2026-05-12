@@ -299,7 +299,7 @@ The following gaps remain active.
   chapters are not authored yet, so parity is limited to the current
   source-backed note set.
 - zh-HK wording still needs a dedicated Hong Kong terminology review beyond the
-  newer number-system and vector-space units.
+  newer matrix-algebra, number-system, and vector-space units.
 - TXT and PDF export need a final visual QA pass on all localized units.
 
 ## Next steps

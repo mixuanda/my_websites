@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     : {}),
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -70,7 +70,7 @@ export default function RootLayout({
   const surface = getSiteSurface();
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={toHtmlLang(initialLocale)} suppressHydrationWarning>
       <head>
         {/* PWA Meta Tags */}
         <meta name="theme-color" content="#f6f0e8" />
@@ -88,8 +88,6 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Evanalysis" />
-        
-        {/* App Icons */}
         <link rel="apple-touch-icon" href="/icon-192.png" />
         <link rel="icon" type="image/png" href="/icon-192.png" />
       </head>

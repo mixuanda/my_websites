@@ -1,0 +1,196 @@
+---
+title: "3.4 Special matrices"
+description: "Meet diagonal, triangular, identity, and elementary matrices, and see why their special shapes shorten later arguments."
+---
+
+Not every matrix deserves a special name. The matrices in this note do because
+their shape makes algebra easier.
+
+Once you recognize a special matrix quickly, you can often predict what its
+product looks like, how row operations behave, or why a later proof works.
+
+## Intuition first: shape carries information
+
+Special matrices are not special because they are rare. They are special
+because their patterns tell you something before you start computing.
+
+- A diagonal matrix tells you that only the diagonal entries matter.
+- A triangular matrix tells you where the zeros already are.
+- An identity matrix tells you nothing changes under multiplication.
+- An elementary matrix tells you one row operation has been packaged as a
+  matrix.
+
+That means a useful matrix family lets you see structure early.
+
+## Definitions
+
+<Definition title="Diagonal, triangular, identity, and elementary matrices">
+A square matrix is **diagonal** if every off-diagonal entry is `0`.
+
+A square matrix is **upper triangular** if every entry below the main diagonal
+is `0`. It is **lower triangular** if every entry above the main diagonal is
+`0`.
+
+The **identity matrix** `I_n` is the diagonal matrix with `1` on the diagonal.
+
+An **elementary matrix** is obtained by applying one elementary row operation
+to an identity matrix.
+</Definition>
+
+## Embedded interactive moment: classify by shape
+
+Before looking at elementary matrices, use the block below to compare a few
+common matrix families. The same matrix can belong to more than one family at
+the same time.
+
+<InteractiveWidget id="matrix-family-checker" />
+
+## Worked example
+
+<WorkedExample title="Identify the matrix family before calculating">
+Consider
+
+$$
+D =
+\begin{bmatrix}
+3 & 0 & 0 \\
+0 & -1 & 0 \\
+0 & 0 & 5
+\end{bmatrix},
+\qquad
+U =
+\begin{bmatrix}
+1 & 2 & -3 \\
+0 & 4 & 1 \\
+0 & 0 & 2
+\end{bmatrix}.
+$$
+
+The matrix `D` is diagonal, so it is also triangular.
+
+The matrix `U` is upper triangular because every entry below the main diagonal
+is `0`, but it is not diagonal because some entries above the diagonal are
+nonzero.
+
+The identity matrix
+
+$$
+I_3 =
+\begin{bmatrix}
+1 & 0 & 0 \\
+0 & 1 & 0 \\
+0 & 0 & 1
+\end{bmatrix}
+$$
+
+is both diagonal and symmetric.
+</WorkedExample>
+
+## Why the identity matrix is named that way
+
+The identity matrix behaves in matrix multiplication the same way the number `1`
+behaves in ordinary multiplication.
+
+If `A` is an `m × n` matrix, then
+
+$$
+AI_n = A, \qquad I_m A = A.
+$$
+
+This is why the identity matrix appears constantly in inverse problems. When
+you try to "undo" a square matrix `A`, you are asking whether there is another
+matrix that multiplies with `A` to give `I`.
+
+## Embedded interactive moment: elementary matrices and row operations
+
+Elementary matrices matter because left multiplication by an elementary matrix
+performs the corresponding row operation.
+
+As you step through the elimination example below, interpret each move as
+"multiply on the left by another elementary matrix."
+
+<InteractiveWidget id="row-reduction-stepper" />
+
+## Elementary matrices are row operations in disguise
+
+Suppose `E` is obtained from `I_n` by swapping two rows, scaling one row, or
+adding a multiple of one row to another. Then multiplying `EA` performs that
+same row operation on `A`.
+
+This is a major conceptual bridge:
+
+- row operations are not just mechanical moves on a table;
+- they can be encoded as genuine matrix multiplication.
+
+That bridge becomes essential later when you study inverses and row
+equivalence more systematically.
+
+<TheoremCard title="Multiplying by an elementary matrix on the left performs the matching row operation">
+If `E` is an elementary matrix and `A` has the right size, then `EA` is the
+matrix obtained by carrying out that one row operation on `A`.
+</TheoremCard>
+
+## Common mistakes
+
+<CommonMistake title="Confusing diagonal with triangular">
+Every diagonal matrix is triangular, but not every triangular matrix is
+diagonal.
+</CommonMistake>
+
+<CommonMistake title="Forgetting which side of the diagonal matters">
+For an upper triangular matrix, the zeros are below the diagonal. For a lower
+triangular matrix, the zeros are above the diagonal.
+</CommonMistake>
+
+<CommonMistake title="Treating an elementary matrix as an arbitrary matrix">
+An elementary matrix comes from exactly one elementary row operation applied to
+the identity matrix.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Why is every diagonal matrix automatically upper triangular and lower triangular?">
+Answer by referring to the off-diagonal entries.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+In a diagonal matrix, every off-diagonal entry is `0`, so the entries both
+below and above the diagonal are already zero.
+</RevealSolution>
+
+<QuickCheck prompt="What does the identity matrix do when you multiply a compatible matrix by it?">
+State the effect in words.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It leaves the matrix unchanged.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Why does left multiplication by an elementary matrix change rows rather than columns?">
+Use the phrase "row operation" directly.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+An elementary matrix is built from the identity by one row operation, so when
+it multiplies another matrix on the left, it applies that same row operation to
+the rows of the second matrix.
+</RevealSolution>
+
+<QuickCheck prompt="Give one reason the identity matrix belongs to more than one matrix family.">
+Name at least two families.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+The identity matrix is diagonal because all off-diagonal entries are `0`, and
+it is symmetric because it equals its own transpose.
+</RevealSolution>
+
+## Related notes
+
+Review [2.2 Augmented matrices and row operations](/en/notes/math1030/matrices/augmented-matrices-row-operations)
+if the language of row operations feels rusty.
+
+Continue to [3.5 Block matrices](/en/notes/math1030/matrix-algebra/block-matrices)
+for a way to organize larger matrices into smaller pieces.

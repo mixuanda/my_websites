@@ -1,0 +1,204 @@
+---
+title: "3.2 矩阵乘法与线性方程组"
+description: "把矩阵乘法理解成行乘列规则，并把它重新连回你已经见过的线性方程组。"
+---
+
+矩阵乘法是第一种真正让人感觉“和前面不同”的矩阵运算。上一节的加法、减法与数乘，都是逐格进行。矩阵乘法不是。
+
+它的核心做法是：每个输出元素都由
+
+- 左边矩阵的一行，和
+- 右边矩阵的一列
+
+配对而成。
+
+正因为如此，矩阵乘法对大小的要求会比上一节更严格。
+
+## 先有直觉：中间大小一定要匹配
+
+如果 `A` 是 `m × n` 矩阵，而 `B` 是 `n × p` 矩阵，那么 `AB` 有定义，而且结果是 `m × p` 矩阵。
+
+中间那个 `n` 重复出现，是因为 `A` 的一行有 `n` 个元素，而 `B` 的一列也必须刚好有 `n` 个元素，这样才能逐项配对、逐项相乘、最后相加。
+
+所以初学时最值得记住的一句话是：
+
+> 内侧大小要一致。
+
+## 定义
+
+<Definition title="矩阵乘法">
+设 `A` 是 `m × n` 矩阵，`B` 是 `n × p` 矩阵。那么 `AB` 是一个
+`m × p` 矩阵，其 `(i, j)` 元素定义为
+
+$$
+[AB]_{ij} = \sum_{k=1}^{n} [A]_{ik}[B]_{kj}.
+$$
+
+也就是说：取 `A` 的第 `i` 行，取 `B` 的第 `j` 列，逐项相乘，再把结果加起来。
+</Definition>
+
+## 一个输出元素到底代表什么
+
+初学时最容易被符号绕晕，所以最好把规则慢慢拆开。
+
+如果你要算 `[AB]_{23}`：
+
+1. 先看 `A` 的第 2 行；
+2. 再看 `B` 的第 3 列；
+3. 把对应位置逐项相乘；
+4. 最后把所有乘积加起来。
+
+所以，一个输出元素其实浓缩了多次乘法和一次总加法。
+
+## 嵌入式互动时刻
+
+下面的互动工具可以固定观察一个输出位置，然后改动输入矩阵的元素。这是建立“行乘列”习惯最快的方法之一。
+
+<InteractiveWidget id="matrix-multiplication-visualizer" />
+
+## 例题
+
+<WorkedExample title="用行乘列规则计算乘积">
+设
+
+$$
+A =
+\begin{bmatrix}
+1 & 2 \\
+0 & 1
+\end{bmatrix},
+\qquad
+B =
+\begin{bmatrix}
+2 & 1 \\
+3 & 4
+\end{bmatrix}.
+$$
+
+则 `AB` 是 `2 × 2` 矩阵。逐个元素计算：
+
+$$
+[AB]_{11} = 1 \cdot 2 + 2 \cdot 3 = 8,
+$$
+
+$$
+[AB]_{12} = 1 \cdot 1 + 2 \cdot 4 = 9,
+$$
+
+$$
+[AB]_{21} = 0 \cdot 2 + 1 \cdot 3 = 3,
+$$
+
+$$
+[AB]_{22} = 0 \cdot 1 + 1 \cdot 4 = 4.
+$$
+
+因此
+
+$$
+AB =
+\begin{bmatrix}
+8 & 9 \\
+3 & 4
+\end{bmatrix}.
+$$
+</WorkedExample>
+
+## 为什么这和线性方程组有关
+
+你早就见过 `Ax = b` 这个写法。
+
+它不只是节省位置的记号，而是在告诉你：矩阵乘法可以把多条线性方程一次打包。`A` 的每一行与向量 `x` 配对，就会产生一条方程。
+
+如果
+
+$$
+A =
+\begin{bmatrix}
+a_{11} & a_{12} & a_{13} \\
+a_{21} & a_{22} & a_{23}
+\end{bmatrix},
+\qquad
+x =
+\begin{bmatrix}
+x_1 \\
+x_2 \\
+x_3
+\end{bmatrix},
+$$
+
+那么
+
+$$
+Ax =
+\begin{bmatrix}
+a_{11}x_1 + a_{12}x_2 + a_{13}x_3 \\
+a_{21}x_1 + a_{22}x_2 + a_{23}x_3
+\end{bmatrix}.
+$$
+
+所以 `Ax = b` 的意思其实就是一个完整方程组，只不过它是用矩阵方式写出来。
+
+<TheoremCard title="乘积的次序有意义">
+即使 `AB` 和 `BA` 都有定义，它们通常也不相等。
+</TheoremCard>
+
+这和普通数字乘法很不同。在矩阵乘法里，次序本身就是数学内容的一部分。
+
+## 常见错误
+
+<CommonMistake title="检查错了维度">
+对 `AB` 来说，要比较的是 `A` 的列数和 `B` 的行数，而不是先看外侧的两个数字。
+</CommonMistake>
+
+<CommonMistake title="把行和行直接相乘">
+正确规则是 `A` 的行对 `B` 的列，而不是行对行。
+</CommonMistake>
+
+<CommonMistake title="以为 AB = BA">
+矩阵乘法一般并不满足交换律。即使使用同样的两个字母，两个乘积也可能代表完全不同的计算，甚至未必同时有定义。
+</CommonMistake>
+
+## 快速检查
+
+<QuickCheck prompt="如果 `A` 是 `2 × 3`，`B` 是 `3 × 4`，那么 `AB` 的大小是多少？">
+用“内侧匹配，外侧留下”的规则来想。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`AB` 的大小是 `2 × 4`。
+</RevealSolution>
+
+<QuickCheck prompt="为什么 `Ax = b` 可以同时代表多条方程？">
+请在答案中使用“行”这个字。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因为 `A` 的每一行与列向量 `x` 配对后都会产生一条方程，所以 `Ax` 会把整个方程组一起打包。
+</RevealSolution>
+
+## 练习
+
+<QuickCheck prompt="设 `A` 是 `3 × 2`，`B` 是 `2 × 5`。`BA` 有定义吗？如果有，大小是多少？">
+不要因为 `AB` 有定义，就直接猜 `BA` 也有定义。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+`BA` 需要 `B` 的列数等于 `A` 的行数。但 `B` 有 5 列，而 `A` 有 3 行，所以 `BA` 没有定义。
+</RevealSolution>
+
+<QuickCheck prompt="如果 `A` 的第一行是 `(4, -1, 2)`，而 `x = (x_1, x_2, x_3)^T`，那么 `Ax` 的第一个元素是什么？">
+请直接用行乘列规则写出。
+</QuickCheck>
+
+<RevealSolution title="引导解答">
+第一个元素是 `4x_1 - x_2 + 2x_3`。
+</RevealSolution>
+
+## 相关笔记
+
+如果你想把 `Ax = b` 和方程组的矩阵写法再连起来，请先回看
+[2.2 增广矩阵与行变换](/zh-cn/notes/math1030/matrices/augmented-matrices-row-operations)。
+
+下一步可以读
+[3.3 转置、对称矩阵与反对称矩阵](/zh-cn/notes/math1030/matrix-algebra/transposes-and-symmetric-matrices)。

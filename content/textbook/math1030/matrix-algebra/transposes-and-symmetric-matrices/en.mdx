@@ -1,0 +1,197 @@
+---
+title: "3.3 Transposes, symmetric matrices, and skew-symmetric matrices"
+description: "Transpose matrices carefully, then use that operation to read symmetry and sign changes across the diagonal."
+---
+
+The transpose is a simple operation with big consequences. It swaps rows and
+columns, but that small move lets you define several important matrix families
+and prove useful algebraic rules.
+
+This note has two goals:
+
+1. understand what `A^T` really does;
+2. learn how to recognize symmetric and skew-symmetric matrices from the
+   diagonal outward.
+
+## Intuition first: reflect across the main diagonal
+
+When you transpose a matrix, the entry in row `i`, column `j` moves to row `j`,
+column `i`.
+
+The easiest picture is a reflection across the main diagonal. Entries on the
+diagonal stay where they are. Entries off the diagonal trade places with their
+partners on the other side.
+
+That is why symmetry questions are always about comparing pairs like `a_{12}`
+and `a_{21}`.
+
+## Definitions
+
+<Definition title="Transpose, symmetric matrix, and skew-symmetric matrix">
+If `A` is an `m × n` matrix, then its transpose `A^T` is the `n × m` matrix
+defined by
+
+$$
+[A^T]_{ij} = [A]_{ji}.
+$$
+
+A square matrix is **symmetric** if `A^T = A`.
+
+A square matrix is **skew-symmetric** if `A^T = -A`.
+</Definition>
+
+Notice the word **square**. If `A` is not square, then `A` and `A^T` do not
+even have the same size, so the equations `A^T = A` and `A^T = -A` cannot be
+true.
+
+## Embedded interactive moment
+
+The live comparison below lets you switch among several examples. Compare `A`
+with `A^T`, then look at what happens to entries on opposite sides of the main
+diagonal.
+
+<InteractiveWidget id="transpose-symmetry-lab" />
+
+## Worked example
+
+<WorkedExample title="Read symmetry from matching entries">
+Let
+
+$$
+A =
+\begin{bmatrix}
+2 & -1 & 4 \\
+-1 & 3 & 0 \\
+4 & 0 & 5
+\end{bmatrix}.
+$$
+
+Then
+
+$$
+A^T =
+\begin{bmatrix}
+2 & -1 & 4 \\
+-1 & 3 & 0 \\
+4 & 0 & 5
+\end{bmatrix}
+= A.
+$$
+
+So `A` is symmetric.
+
+Now consider
+
+$$
+B =
+\begin{bmatrix}
+0 & 2 & -1 \\
+-2 & 0 & 5 \\
+1 & -5 & 0
+\end{bmatrix}.
+$$
+
+Then each off-diagonal entry changes sign when reflected across the diagonal,
+and every diagonal entry is `0`. Therefore `B^T = -B`, so `B` is
+skew-symmetric.
+</WorkedExample>
+
+## Why diagonal entries matter in the skew-symmetric case
+
+If `A` is skew-symmetric, then `A^T = -A`.
+
+Look at a diagonal entry `a_{ii}`. Transposing does not move it, so the rule
+forces
+
+$$
+a_{ii} = -a_{ii}.
+$$
+
+That means
+
+$$
+2a_{ii} = 0,
+$$
+
+so every diagonal entry must be `0`.
+
+This is one of the fastest ways to reject a candidate skew-symmetric matrix:
+if even one diagonal entry is nonzero, the matrix cannot be skew-symmetric.
+
+<TheoremCard title="Transpose reverses multiplication order">
+Whenever the product `AB` is defined,
+
+$$
+(AB)^T = B^T A^T.
+$$
+</TheoremCard>
+
+This rule is important because transpose does not merely act on each matrix
+separately. It also reverses the order of multiplication. Students often forget
+that reversal.
+
+## Common mistakes
+
+<CommonMistake title="Thinking every square matrix is symmetric">
+Being square is only the first requirement. You still need the reflected
+entries to agree.
+</CommonMistake>
+
+<CommonMistake title="Forgetting that skew-symmetric means a sign change">
+For symmetry you compare equal entries. For skew-symmetry you compare opposite
+entries with opposite signs.
+</CommonMistake>
+
+<CommonMistake title="Writing (AB)^T = A^T B^T">
+Transpose reverses the multiplication order. The correct formula is
+`(AB)^T = B^T A^T`.
+</CommonMistake>
+
+## Quick checks
+
+<QuickCheck prompt="Why must a symmetric or skew-symmetric matrix be square?">
+Answer using the sizes of `A` and `A^T`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+If `A` is `m × n`, then `A^T` is `n × m`, so `A` can equal `A^T` or `-A` only
+when `m = n`.
+</RevealSolution>
+
+<QuickCheck prompt="What must the diagonal entries of a skew-symmetric matrix be?">
+Give the exact value.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Every diagonal entry must be `0`.
+</RevealSolution>
+
+## Exercises
+
+<QuickCheck prompt="Explain in words why `A + A^T` is always symmetric.">
+You do not need a full formal proof, but you must mention transpose.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+If you transpose `A + A^T`, you get
+`(A + A^T)^T = A^T + (A^T)^T = A^T + A = A + A^T`, so the matrix equals its own
+transpose and is therefore symmetric.
+</RevealSolution>
+
+<QuickCheck prompt="Explain in words why `A - A^T` is always skew-symmetric.">
+Again, focus on what happens after taking the transpose.
+</QuickCheck>
+
+<RevealSolution title="Guided solution">
+If you transpose `A - A^T`, you get
+`(A - A^T)^T = A^T - A = -(A - A^T)`, so the transpose is the negative of the
+original matrix.
+</RevealSolution>
+
+## Related notes
+
+Read [3.2 Matrix multiplication and linear systems](/en/notes/math1030/matrix-algebra/matrix-multiplication-and-linear-systems)
+if the order-reversal rule for `(AB)^T` still feels too sudden.
+
+Continue to [3.4 Special matrices](/en/notes/math1030/matrix-algebra/special-matrices)
+to see more named matrix families built from shape and position.

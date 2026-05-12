@@ -19,7 +19,7 @@ export function ThemeMetaController() {
     const themeMeta = document.querySelector('meta[name="theme-color"]:not([media])');
     const theme = resolvedTheme === "dark" ? "dark" : "light";
 
-    themeMeta?.setAttribute("content", themeColors[theme]);
+    themeMeta?.setAttribute("content", siteThemeColors[theme]);
     document.documentElement.style.colorScheme = theme;
   }, [resolvedTheme]);
 

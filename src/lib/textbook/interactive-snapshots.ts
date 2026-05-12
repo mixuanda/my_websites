@@ -286,6 +286,41 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "跟着看一格矩阵乘法"
     ),
   },
+  "transpose-symmetry-lab": {
+    sampleStates: [
+      {
+        label: text("Symmetric example", "對稱例子", "对称例子"),
+        value: text(
+          "A = [[2, -1], [-1, 3]] has matching off-diagonal entries, so A^T = A.",
+          "A = [[2, -1], [-1, 3]] 的對角線兩側元素互相對應，所以 A^T = A。",
+          "A = [[2, -1], [-1, 3]] 的对角线两侧元素互相对应，所以 A^T = A。"
+        ),
+      },
+      {
+        label: text("Neither example", "既非對稱亦非反對稱的例子", "既非对称也非反对称的例子"),
+        value: text(
+          "A = [[2, 4], [0, 6]] is neither symmetric nor skew-symmetric, but it splits into a symmetric part and a skew-symmetric part.",
+          "A = [[2, 4], [0, 6]] 既不是對稱矩陣，也不是反對稱矩陣，但它可以拆成一個對稱部分和一個反對稱部分。",
+          "A = [[2, 4], [0, 6]] 既不是对称矩阵，也不是反对称矩阵，但它可以拆成一个对称部分和一个反对称部分。"
+        ),
+      },
+    ],
+    summary: text(
+      "The live widget compares a matrix with its transpose and shows how the symmetric and skew-symmetric parts are built.",
+      "互動工具會把矩陣和它的轉置並排比較，並顯示對稱部分與反對稱部分如何組成。",
+      "互动工具会把矩阵和它的转置并排比较，并显示对称部分与反对称部分如何组成。"
+    ),
+    steps: [
+      text("Pick one example matrix.", "先選擇一個例子矩陣。", "先选择一个例子矩阵。"),
+      text("Compare A with A^T by checking the entries across the main diagonal.", "沿主對角線兩側比較 A 和 A^T 的元素。", "沿主对角线两侧比较 A 和 A^T 的元素。"),
+      text("Use 1/2(A + A^T) and 1/2(A - A^T) to separate the symmetric and skew-symmetric parts.", "用 1/2(A + A^T) 與 1/2(A - A^T) 分開對稱部分和反對稱部分。", "用 1/2(A + A^T) 与 1/2(A - A^T) 分开对称部分和反对称部分。"),
+    ],
+    title: text(
+      "Compare a matrix with its transpose",
+      "比較一個矩陣與它的轉置",
+      "比较一个矩阵与它的转置"
+    ),
+  },
   "quantifier-negation-stepper": {
     sampleStates: [
       {

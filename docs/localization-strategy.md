@@ -29,8 +29,11 @@ The current codebase uses the following localization model.
 
 Localization now covers both the note content and the shared chrome around it.
 
+- The main sidebar now exposes a visible site-level language switcher.
 - The language switcher preserves the current note route while replacing the
   locale segment.
+- On non-localized pages, the preferred language is stored for the shell and
+  routed back into the localized notes hub.
 - The localized note shell includes translated breadcrumbs, sidebar labels,
   TOC labels, export labels, progress labels, glossary labels, interactive
   UI text, checkpoint UI text, and membership-center actions.
@@ -39,9 +42,9 @@ Localization now covers both the note content and the shared chrome around it.
   label, all-chapters / current-chapter filters, result counts, and empty
   states should stay consistent across EN, zh-HK, and zh-CN.
 - The global sidebar derives locale from the current route first, then from the
-  stored preferred locale. This keeps `/en`, `/zh-hk`, and `/zh-cn` note pages
-  aligned while still letting unprefixed shell pages reuse the learner's last
-  note language.
+  stored preferred locale. The preferred locale is now mirrored to both local
+  storage and a cookie so the shared shell can restore the reader's language
+  choice more reliably.
 - Progress state uses the canonical `unitId`, so switching languages does not
   reset completion.
 

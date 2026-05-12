@@ -13,10 +13,20 @@ export const siteUiText = {
     "zh-cn": "博客",
     "zh-hk": "博客",
   },
+  appearance: {
+    en: "Appearance",
+    "zh-cn": "外观",
+    "zh-hk": "外觀",
+  },
   contents: {
     en: "Contents",
     "zh-cn": "目录",
     "zh-hk": "目錄",
+  },
+  darkMode: {
+    en: "Dark",
+    "zh-cn": "暗色",
+    "zh-hk": "暗色",
   },
   footerNote: {
     en: "The Notes section continues to expand course by course.",
@@ -78,15 +88,15 @@ export const siteUiText = {
     "zh-cn": "反复会用到的笔记",
     "zh-hk": "反覆會用到的筆記",
   },
-  switchToDarkMode: {
-    en: "Switch to dark mode",
-    "zh-cn": "切换到暗色模式",
-    "zh-hk": "切換到暗色模式",
+  systemTheme: {
+    en: "System",
+    "zh-cn": "跟随系统",
+    "zh-hk": "跟隨系統",
   },
-  switchToLightMode: {
-    en: "Switch to light mode",
-    "zh-cn": "切换到亮色模式",
-    "zh-hk": "切換到亮色模式",
+  themeMode: {
+    en: "Theme mode",
+    "zh-cn": "主题模式",
+    "zh-hk": "主題模式",
   },
   textbooks: {
     en: "Notes",

@@ -1,5 +1,7 @@
 "use client";
 
+import { LanguageSwitcher } from "@/components/textbook/LanguageSwitcher";
+import { useSitePreferences } from "@/components/SitePreferencesProvider";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
@@ -43,7 +45,7 @@ function getNavItems(locale: Locale, surface: SiteSurface): NavItem[] {
   const productionItems: NavItem[] = [
     { href: "/", label: getSiteText(siteUiText.home, locale), icon: <Home className="w-4 h-4" /> },
     {
-      href: `/${locale}/notes`,
+      href: "/notes",
       label: getSiteText(siteUiText.notes, locale),
       icon: <BookOpen className="w-4 h-4" />,
       matches: (pathname) =>
@@ -202,6 +204,7 @@ interface SidebarContentProps {
   onNavigate: () => void;
   pathname: string;
   resolvedTheme?: string;
+  theme?: string;
   setTheme: (theme: string) => void;
   surface: SiteSurface;
   themeReady: boolean;
@@ -215,6 +218,7 @@ function SidebarContent({
   onNavigate,
   pathname,
   resolvedTheme,
+  theme,
   setTheme,
   surface,
   themeReady,
@@ -305,6 +309,7 @@ function SidebarContent({
           <Eye className="w-4 h-4" />
           <span>{getSiteText(siteUiText.highContrast, locale)}</span>
         </Button>
+        <LanguageSwitcher className="border-t border-border/60 pt-4" locale={locale} />
       </div>
 
       <div className="shrink-0 p-4 text-center text-xs text-muted-foreground space-y-1">
@@ -342,19 +347,20 @@ export function GlassSidebar({
       <aside
         className={cn(
           "hidden lg:flex flex-col w-64 h-screen fixed left-0 top-0 transition-all duration-300",
-          highContrast
+          effectiveHighContrast
             ? "bg-sidebar border-r border-border"
             : "bg-sidebar/90 backdrop-blur-2xl border-r border-border/60"
         )}
       >
         <SidebarContent
-          highContrast={highContrast}
+          highContrast={effectiveHighContrast}
           locale={locale}
           onHighContrastChange={onHighContrastChange}
           onLocaleChange={setLocale}
           onNavigate={() => setOpen(false)}
           pathname={pathname}
           resolvedTheme={resolvedTheme}
+          theme={theme}
           setTheme={setTheme}
           surface={surface}
           themeReady={themeReady}
@@ -365,7 +371,7 @@ export function GlassSidebar({
       <header
         className={cn(
           "lg:hidden fixed top-0 left-0 right-0 z-50 h-16 flex items-center px-4 transition-all duration-300",
-          highContrast
+          effectiveHighContrast
             ? "bg-sidebar border-b border-border"
             : "bg-sidebar/90 backdrop-blur-2xl border-b border-border/60"
         )}
@@ -384,7 +390,7 @@ export function GlassSidebar({
             side="left"
             className={cn(
               "w-64 p-0 transition-all duration-300",
-              highContrast
+              effectiveHighContrast
                 ? "bg-sidebar"
                 : "bg-sidebar/95 backdrop-blur-2xl border-r border-border/60"
             )}
@@ -393,13 +399,14 @@ export function GlassSidebar({
               {getSiteText(siteUiText.mainMenu, locale)}
             </SheetTitle>
             <SidebarContent
-              highContrast={highContrast}
+              highContrast={effectiveHighContrast}
               locale={locale}
               onHighContrastChange={onHighContrastChange}
               onLocaleChange={setLocale}
               onNavigate={() => setOpen(false)}
               pathname={pathname}
               resolvedTheme={resolvedTheme}
+              theme={theme}
               setTheme={setTheme}
               surface={surface}
               themeReady={themeReady}

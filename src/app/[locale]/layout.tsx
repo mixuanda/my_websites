@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LocaleDocumentController } from "@/components/LocaleDocumentController";
 import { isLocale, locales, toHtmlLang } from "@/lib/textbook/i18n";
@@ -11,6 +12,22 @@ interface LocaleLayoutProps {
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
+}
+
+export async function generateMetadata({
+  params,
+}: LocaleLayoutProps): Promise<Metadata> {
+  const { locale } = await params;
+
+  if (!isLocale(locale)) {
+    return {};
+  }
+
+  return {
+    openGraph: {
+      locale: toOpenGraphLocale(locale),
+    },
+  };
 }
 
 export default async function LocaleLayout({
