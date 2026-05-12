@@ -7,8 +7,15 @@ import { isMembershipGatingEnabled } from "@/lib/membership/entitlements";
 import { getVisibleCourseList } from "@/lib/textbook/catalog";
 import { getSiteSurface } from "@/lib/site-surface";
 import { getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
-import { getCourseHref, getMembershipHref } from "@/lib/textbook/routes";
+import { getCourseHref, getMembershipHref, getNotesHref } from "@/lib/textbook/routes";
 import type { LocalizedText } from "@/lib/textbook/types";
+import {
+  absoluteUrl,
+  getAlternateOpenGraphLocales,
+  getLocalizedAlternates,
+  getOpenGraphLocale,
+  SITE_NAME,
+} from "@/lib/seo";
 import { notFound } from "next/navigation";
 
 function text(en: string, zhHk: string, zhCn: string): LocalizedText {
@@ -53,10 +60,28 @@ export async function generateMetadata({
 }: NotesIndexPageProps): Promise<Metadata> {
   const { locale } = await params;
   const safeLocale = isLocale(locale) ? locale : "zh-hk";
+  const title = getLocalizedText(uiText.textbook, safeLocale);
+  const description = getLocalizedText(heroCopy.body, safeLocale);
+  const canonicalPath = getNotesHref(safeLocale);
 
   return {
-    title: getLocalizedText(uiText.textbook, safeLocale),
-    description: getLocalizedText(heroCopy.body, safeLocale),
+    title,
+    description,
+    alternates: getLocalizedAlternates(safeLocale, getNotesHref),
+    openGraph: {
+      title,
+      description,
+      url: absoluteUrl(canonicalPath),
+      locale: getOpenGraphLocale(safeLocale),
+      alternateLocale: getAlternateOpenGraphLocales(safeLocale),
+      siteName: SITE_NAME,
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 

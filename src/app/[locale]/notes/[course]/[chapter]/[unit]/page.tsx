@@ -38,6 +38,13 @@ import {
   getMembershipHref,
   getUnitHref,
 } from "@/lib/textbook/routes";
+import {
+  absoluteUrl,
+  getAlternateOpenGraphLocales,
+  getLocalizedAlternates,
+  getOpenGraphLocale,
+  SITE_NAME,
+} from "@/lib/seo";
 import type { CourseId } from "@/lib/textbook/types";
 
 interface UnitPageProps {
@@ -68,9 +75,30 @@ export async function generateMetadata({
     return {};
   }
 
+  const canonicalPath = getUnitHref(locale, bundle.meta);
+  const title = bundle.doc.title;
+  const description = bundle.doc.description;
+
   return {
-    title: bundle.doc.title,
-    description: bundle.doc.description,
+    title,
+    description,
+    alternates: getLocalizedAlternates(locale, (candidateLocale) =>
+      getUnitHref(candidateLocale, bundle.meta)
+    ),
+    openGraph: {
+      title,
+      description,
+      url: absoluteUrl(canonicalPath),
+      locale: getOpenGraphLocale(locale),
+      alternateLocale: getAlternateOpenGraphLocales(locale),
+      siteName: SITE_NAME,
+      type: "article",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
