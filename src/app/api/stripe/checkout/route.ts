@@ -1,68 +1,49 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/lib/auth";
-import { billingPlans, resolvePriceId } from "@/lib/billing/catalog";
-import { getEntitlementsByUserId, linkCustomerToUser } from "@/lib/billing/store";
-import { getStripeOrThrow } from "@/lib/billing/stripe";
-import type { BillingCycle, BillingPlan } from "@/lib/billing/types";
+import { POST as createBillingCheckout } from "../../billing/checkout/route";
+import type { BillingPlanId } from "@/lib/membership/plans";
 
 interface CheckoutBody {
-  cycle?: BillingCycle;
-  plan?: BillingPlan;
+  cycle?: "monthly" | "one_time";
+  locale?: string;
+  plan?: "free" | "premium_notes" | "premium_video_tools";
 }
 
 export const runtime = "nodejs";
 
+function mapLegacyPlan(body: CheckoutBody): BillingPlanId | null {
+  if (body.plan === "premium_notes") {
+    return body.cycle === "one_time" ? "member_yearly" : "member_monthly";
+  }
+
+  if (body.plan === "premium_video_tools") {
+    return body.cycle === "one_time" ? "pro_yearly" : "pro_monthly";
+  }
+
+  return null;
+}
+
 export async function POST(request: Request) {
-  const session = await auth();
-  const user = session?.user as { email?: string | null; id?: string; name?: string | null } | undefined;
-  const userId = user?.id ?? null;
-
-  if (!userId) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-  }
-
   const body = (await request.json().catch(() => ({}))) as CheckoutBody;
-  const plan = body.plan ?? "premium_notes";
-  const cycle = body.cycle ?? "monthly";
+  const plan = mapLegacyPlan(body);
 
-  if (!billingPlans[plan]?.checkoutAllowed) {
-    return NextResponse.json({ error: "Unsupported plan" }, { status: 400 });
+  if (!plan) {
+    return NextResponse.json(
+      {
+        error: "Legacy Stripe checkout plan is no longer supported.",
+        errorCode: "unsupported_plan",
+      },
+      { status: 400 }
+    );
   }
 
-  const priceId = resolvePriceId(plan, cycle);
-  if (!priceId) {
-    return NextResponse.json({ error: "Price ID is not configured" }, { status: 500 });
-  }
-
-  const stripe = getStripeOrThrow();
-  const current = await getEntitlementsByUserId(userId);
-  let customerId = current.stripeCustomerId;
-
-  if (!customerId) {
-    const customer = await stripe.customers.create({
-      email: user?.email ?? undefined,
-      metadata: { userId },
-      name: user?.name ?? undefined,
-    });
-
-    customerId = customer.id;
-    await linkCustomerToUser(customer.id, userId);
-  }
-
-  const origin = process.env.NEXT_PUBLIC_APP_URL ?? new URL(request.url).origin;
-  const checkout = await stripe.checkout.sessions.create({
-    mode: cycle === "monthly" ? "subscription" : "payment",
-    customer: customerId,
-    line_items: [{ price: priceId, quantity: 1 }],
-    metadata: {
-      userId,
+  const rewrittenRequest = new Request(request.url, {
+    body: JSON.stringify({
+      locale: body.locale,
       plan,
-      cycle,
-    },
-    allow_promotion_codes: true,
-    success_url: `${origin}/settings/billing?checkout=success`,
-    cancel_url: `${origin}/settings/billing?checkout=canceled`,
+    }),
+    headers: request.headers,
+    method: "POST",
   });
 
-  return NextResponse.json({ url: checkout.url });
+  return createBillingCheckout(rewrittenRequest);
 }

@@ -22,6 +22,7 @@ This document tracks the dedicated development workstream for tiered Notes acces
 | Pro subscription plans | Done | Monthly and yearly Pro plan slots are prepared with separate Stripe price env vars. |
 | Donation flow | Done | Notes membership page exposes fixed HKD donation buttons through Stripe Checkout payment mode. |
 | Checkpoint API enforcement | Done | Problem submission APIs enforce access tier and daily free quota server-side. |
+| Legacy billing surface consolidation | Done | `/settings/billing`, `/api/stripe/*`, premium gates, and premium export checks now converge on the Notes membership model instead of the older product-scope entitlement store. |
 | Vercel development deployment | Done | Preview build is READY and aliased to `development.evanalysis.top`. |
 | Final verification | Done | Local lint, TypeScript, build, route/API smoke tests, Vercel build, DNS, alias, and development-domain HTTP/API checks passed. |
 
@@ -70,3 +71,17 @@ Donation checkout does not require a saved Stripe price. It creates one-time Che
 - Done: development-domain unauthenticated checkout returns `401 auth_required`.
 - Done: development-domain donation endpoint creates a Stripe Checkout URL for the fixed HKD donation flow.
 - Done: development-domain checkpoint submit returns a correct result and free quota data.
+
+## 2026-05-13 continuation notes
+
+- Continued in the existing worktree and branch: `/Users/evan/.codex/worktrees/tiered-access-development/my_websites` on `codex/tiered-access-development`.
+- Consolidated the older `/settings/billing` UI path into the localized Notes membership center.
+- Kept `/api/stripe/checkout`, `/api/stripe/portal`, `/api/stripe/webhook`, and `/api/stripe/entitlements` as compatibility surfaces, but redirected their behavior to the newer membership-backed `/api/billing` model.
+- Updated premium feature gates and premium PDF export checks to use `FREE` / `MEMBER` / `PRO` membership entitlements.
+- Applied the webhook middleware exemption for `/api/stripe/webhook` so compatibility webhook delivery is not blocked by login middleware before Stripe signature verification.
+- Removed the unused legacy product-scope entitlement implementation under `src/lib/billing/**` and the old `BillingClient`.
+- Verified after integration:
+  - `npm run lint`
+  - `npx tsc --noEmit --pretty false`
+  - `AUTH_SECRET=local-test-secret SITE_SURFACE=preview NEXT_PUBLIC_SITE_SURFACE=preview NEXT_PUBLIC_SITE_URL=http://localhost:3020 APP_URL=http://localhost:3020 STRIPE_SECRET_KEY=sk_test_local NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_local STRIPE_WEBHOOK_SECRET=whsec_local STRIPE_PRICE_ID_MEMBER_MONTHLY=price_member_monthly STRIPE_PRICE_ID_PRO_MONTHLY=price_pro_monthly NOTES_MEMBERSHIP_GATING=true NEXT_PUBLIC_NOTES_MEMBERSHIP_GATING=true npm run build`
+  - Preview local smoke on `localhost:3020`: `/zh-hk/notes/membership` returned `200`; `/api/billing/status` returned `billingReady=true`, `configuredPlanCount=2`, and `membershipGatingEnabled=true`; unauthenticated `/api/billing/checkout` returned `401 auth_required`; compatibility `/api/stripe/webhook` reached the handler and returned `400 Missing stripe-signature`; unauthenticated premium PDF export returned `401`.

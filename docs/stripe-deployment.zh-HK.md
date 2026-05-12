@@ -22,7 +22,8 @@
 - 月費 HKD 20：`price_1TPjAE906oPVRv7kzcP3UNsk`
 - 年費 HKD 200：`price_1TPjAG906oPVRv7kr2IpEaO7`
 - Production domain：`https://www.evanalysis.top`
-- Webhook endpoint：`https://www.evanalysis.top/api/billing/webhook`
+- 主要 webhook endpoint：`https://www.evanalysis.top/api/billing/webhook`
+- 相容 webhook endpoint：`/api/stripe/webhook` 會轉到同一個 membership-backed webhook handler。
 
 ## B. 設定環境變數（部署平台）
 
@@ -46,6 +47,7 @@
 1. Stripe Dashboard → Developers → Webhooks。
 2. 新增 endpoint：
    - `https://your-domain.com/api/billing/webhook`
+   - 如果既有 Stripe 設定仍指向 `/api/stripe/webhook`，仍可繼續送達；該 route 使用同一個會員同步 handler。
 3. 事件至少勾選：
    - `checkout.session.completed`
    - `customer.subscription.created`

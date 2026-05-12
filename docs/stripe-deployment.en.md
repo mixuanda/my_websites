@@ -22,7 +22,8 @@ Current live Stripe resources:
 - Monthly HKD 20: `price_1TPjAE906oPVRv7kzcP3UNsk`
 - Yearly HKD 200: `price_1TPjAG906oPVRv7kr2IpEaO7`
 - Production domain: `https://www.evanalysis.top`
-- Webhook endpoint: `https://www.evanalysis.top/api/billing/webhook`
+- Primary webhook endpoint: `https://www.evanalysis.top/api/billing/webhook`
+- Compatibility webhook endpoint: `/api/stripe/webhook` forwards to the same membership-backed webhook handler.
 
 ## B. Configure environment variables in deployment
 
@@ -46,6 +47,7 @@ Do not use the temporary `rk_live_...` key created by Stripe CLI login as the lo
 1. Stripe Dashboard → Developers → Webhooks.
 2. Add endpoint:
    - `https://your-domain.com/api/billing/webhook`
+   - Existing Stripe setups that still target `/api/stripe/webhook` can continue to deliver events; the route uses the same membership sync handler.
 3. Subscribe at least to:
    - `checkout.session.completed`
    - `customer.subscription.created`
