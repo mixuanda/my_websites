@@ -15,6 +15,7 @@ shared files need coordination before you edit them.
 - [Agent workstreams](./agent-workstreams.md)
 - [Notes information architecture](./notes-information-architecture.md)
 - [Notes improvement tracker](./notes-improvement-tracker.md)
+- [Tiered access development checkpoints](./tiered-access-development.md)
 
 ## Localization and parity
 

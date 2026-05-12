@@ -2,6 +2,7 @@ import type { Session } from "next-auth";
 import { firestore } from "@/lib/firebase-admin";
 import { isAdminEmail } from "./config";
 import type { AccessTier } from "@/lib/textbook/types";
+import { getBillingPlanByPriceId } from "./plans";
 
 export type MembershipStatus =
   | "inactive"
@@ -17,6 +18,7 @@ export interface MembershipRecord {
   priceId?: string;
   status: MembershipStatus;
   subscriptionId?: string;
+  tier?: AccessTier;
   updatedAt: string;
 }
 
@@ -45,6 +47,24 @@ function getSessionUser(session: Session | null) {
 
 function activeFromStatus(status: MembershipStatus) {
   return status === "active" || status === "trialing";
+}
+
+const tierRank: Record<AccessTier, number> = {
+  FREE: 0,
+  MEMBER: 1,
+  PRO: 2,
+};
+
+function getMembershipTier(membership: MembershipRecord | null): AccessTier {
+  if (!membership || !activeFromStatus(membership.status)) {
+    return "FREE";
+  }
+
+  if (membership.tier) {
+    return membership.tier;
+  }
+
+  return getBillingPlanByPriceId(membership.priceId)?.tier ?? "MEMBER";
 }
 
 export async function getMembershipRecordByUserId(userId?: string) {
@@ -131,17 +151,17 @@ export async function getUserEntitlements(session: Session | null): Promise<User
     return {
       isAdmin: true,
       isMember: true,
-      tier: "MEMBER",
+      tier: "PRO",
     };
   }
 
   const membership = (await getMembershipRecordByUserId(id)) ?? (await getMembershipRecordByEmail(email));
-  const active = membership ? activeFromStatus(membership.status) : false;
+  const tier = getMembershipTier(membership);
 
   return {
     isAdmin: false,
-    isMember: active,
-    tier: active ? "MEMBER" : "FREE",
+    isMember: tierRank[tier] >= tierRank.MEMBER,
+    tier,
   };
 }
 
@@ -154,5 +174,5 @@ export function canAccessTier(entitlements: UserEntitlements, requiredTier?: Acc
     return true;
   }
 
-  return entitlements.isAdmin || entitlements.isMember;
+  return entitlements.isAdmin || tierRank[entitlements.tier] >= tierRank[requiredTier];
 }

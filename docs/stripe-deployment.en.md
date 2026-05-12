@@ -1,20 +1,24 @@
 # Stripe Subscription Deployment Guide (English)
 
-This document explains how to deploy the membership subscription flow (Free / Member / Admin).
+This document explains how to deploy the membership subscription flow (Free / Notes Plus / Notes Pro / Admin).
 
 ## A. Create product and prices in Stripe
 
 1. Open Stripe Dashboard → Product catalog.
-2. Create a product (e.g. `Notes Membership`).
-3. Create at least one recurring price:
+2. Create a product for Notes Plus (e.g. `Notes Membership`).
+3. Create at least one recurring Plus price:
    - Monthly: map to `STRIPE_PRICE_ID_MEMBER_MONTHLY` (`price_...`)
-4. Optionally create yearly recurring price:
+4. Optionally create yearly recurring Plus price:
    - Yearly: map to `STRIPE_PRICE_ID_MEMBER_YEARLY` (`price_...`)
-5. Current membership checkout uses Stripe subscriptions, so one-time prices cannot replace recurring prices.
+5. If Pro should be purchasable, create separate recurring Pro prices:
+   - Monthly: map to `STRIPE_PRICE_ID_PRO_MONTHLY` (`price_...`)
+   - Yearly: map to `STRIPE_PRICE_ID_PRO_YEARLY` (`price_...`)
+6. Current membership checkout uses Stripe subscriptions, so one-time prices cannot replace recurring prices.
+7. Donation checkout does not require saved prices; it creates one-time HKD Checkout line items from fixed amounts in code.
 
 Current live Stripe resources:
 
-- Product: `prod_UOWCjYRGt8Z2Yc` (`Notes Membership`)
+- Plus product: `prod_UOWCjYRGt8Z2Yc` (`Notes Membership`)
 - Monthly HKD 20: `price_1TPjAE906oPVRv7kzcP3UNsk`
 - Yearly HKD 200: `price_1TPjAG906oPVRv7kr2IpEaO7`
 - Production domain: `https://www.evanalysis.top`
@@ -28,9 +32,12 @@ Set the following in your platform:
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`: publishable key (`pk_live_...`)
 - `STRIPE_PRICE_ID_MEMBER_MONTHLY`: monthly recurring price id (`price_...`)
 - `STRIPE_PRICE_ID_MEMBER_YEARLY`: yearly recurring price id (optional)
+- `STRIPE_PRICE_ID_PRO_MONTHLY`: Pro monthly recurring price id (optional)
+- `STRIPE_PRICE_ID_PRO_YEARLY`: Pro yearly recurring price id (optional)
 - `STRIPE_WEBHOOK_SECRET`: webhook signing secret (`whsec_...`)
 - `APP_URL`: production base URL (e.g. `https://your-domain.com`)
 - `ADMIN_EMAILS`: comma-separated admin emails
+- `NOTES_FREE_DAILY_ATTEMPT_LIMIT`: optional free graded-checkpoint daily limit. Default is `8`.
 
 Do not use the temporary `rk_live_...` key created by Stripe CLI login as the long-term production key. CLI keys can be permission-limited or expire. For production, create or copy a durable live secret key or restricted key in Stripe Dashboard, then store it as `STRIPE_SECRET_KEY` in the deployment platform.
 
@@ -66,6 +73,7 @@ Do not use the temporary `rk_live_...` key created by Stripe CLI login as the lo
 3. Without signing in, `/api/billing/status` can be used as a safe public configuration check. It only returns booleans and plan configured status, not secrets.
 4. That account should access premium note units and premium checkpoint APIs without payment.
 5. Confirm premium submit APIs do not return `403` for that admin account.
+6. Confirm a Free account hits the daily checkpoint quota and a Plus/Pro/Admin account bypasses it.
 
 ## F. Troubleshooting
 

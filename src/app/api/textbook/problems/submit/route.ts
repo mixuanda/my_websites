@@ -10,7 +10,8 @@ import {
 } from "@/lib/textbook/problem-attempts";
 import { gradeProblem } from "@/lib/textbook/problem-grading";
 import { canAccessTier, getUserEntitlements } from "@/lib/membership/entitlements";
-import { defaultLocale, getLocalizedText, isLocale } from "@/lib/textbook/i18n";
+import { consumeFreeAttemptQuota, getFreeAttemptSubject } from "@/lib/membership/free-quota";
+import { defaultLocale, getLocalizedText, isLocale, uiText } from "@/lib/textbook/i18n";
 import type { ProblemAttemptRecord, ProblemSubmission } from "@/lib/textbook/types";
 
 export async function POST(request: Request) {
@@ -45,6 +46,7 @@ export async function POST(request: Request) {
       entitlements,
       problem.solutionAccessTier ?? problem.accessTier
     );
+    const freeQuotaSubject = getFreeAttemptSubject(userId, request);
 
     if (
       currentProgress.maxAttempts !== null &&
@@ -89,6 +91,30 @@ export async function POST(request: Request) {
       );
     }
 
+    const freeQuota =
+      entitlements.tier === "FREE"
+        ? await consumeFreeAttemptQuota(freeQuotaSubject)
+        : null;
+
+    if (freeQuota && !freeQuota.allowed) {
+      return NextResponse.json(
+        {
+          error: "Free daily graded-practice limit reached.",
+          problemProgress: currentProgress,
+          result: {
+            correct: false,
+            freeQuota,
+            hint: getLocalizedText(uiText.freeDailyQuotaReached, locale),
+            normalizedAnswer: "",
+            shouldShowSolution: false,
+            showCorrectAnswer: false,
+            solutionLocked: false,
+          },
+        },
+        { status: 429 }
+      );
+    }
+
     const result = gradeProblem(problem, payload.submission, locale);
     const attemptNumber = await getNextAttemptNumber(problem.id, userId);
 
@@ -124,6 +150,7 @@ export async function POST(request: Request) {
     const summary = await getCheckpointSummary(problem.unitId, checkpointProblems, userId);
     const responseResult = {
       ...result,
+      freeQuota: freeQuota ?? undefined,
       shouldShowSolution: canRevealSolutionByPolicy && canAccessSolutionTier,
       solutionLocked: canRevealSolutionByPolicy && !canAccessSolutionTier,
       showCorrectAnswer: canRevealCorrectAnswer,

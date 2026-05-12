@@ -1,20 +1,24 @@
 # Stripe 訂閱部署指南（繁中）
 
-本文說明如何把本專案的會員訂閱（Free / Member / Admin）在正式環境接通。
+本文說明如何把本專案的會員訂閱（Free / Notes Plus / Notes Pro / Admin）在正式環境接通。
 
 ## A. 在 Stripe 建立產品與價格
 
 1. 到 Stripe Dashboard → Product catalog。
-2. 建立產品（例如 `Notes Membership`）。
-3. 建立至少一個 recurring price：
+2. 建立 Notes Plus 產品（例如 `Notes Membership`）。
+3. 建立至少一個 Plus recurring price：
    - 月費：`STRIPE_PRICE_ID_MEMBER_MONTHLY` 對應 `price_...`
-4. 如要年費，再建另一個 recurring price：
+4. 如要 Plus 年費，再建另一個 recurring price：
    - 年費：`STRIPE_PRICE_ID_MEMBER_YEARLY` 對應 `price_...`
-5. 注意：目前網站會員流程使用 Stripe subscription checkout，不能用 one-time price 代替 recurring price。
+5. 如要開放 Pro 方案，建立另一組 recurring price：
+   - 月費：`STRIPE_PRICE_ID_PRO_MONTHLY` 對應 `price_...`
+   - 年費：`STRIPE_PRICE_ID_PRO_YEARLY` 對應 `price_...`
+6. 注意：目前網站會員流程使用 Stripe subscription checkout，不能用 one-time price 代替 recurring price。
+7. 捐款入口不需要預先建立 Stripe price；它會用程式內固定 HKD 金額建立一次性 Checkout line item。
 
 目前 live Stripe 已建立：
 
-- Product：`prod_UOWCjYRGt8Z2Yc`（`Notes Membership`）
+- Plus product：`prod_UOWCjYRGt8Z2Yc`（`Notes Membership`）
 - 月費 HKD 20：`price_1TPjAE906oPVRv7kzcP3UNsk`
 - 年費 HKD 200：`price_1TPjAG906oPVRv7kr2IpEaO7`
 - Production domain：`https://www.evanalysis.top`
@@ -28,9 +32,12 @@
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`：publishable key（`pk_live_...`）
 - `STRIPE_PRICE_ID_MEMBER_MONTHLY`：月費 price id（`price_...`）
 - `STRIPE_PRICE_ID_MEMBER_YEARLY`：年費 price id（可選）
+- `STRIPE_PRICE_ID_PRO_MONTHLY`：Pro 月費 recurring price id（可選）
+- `STRIPE_PRICE_ID_PRO_YEARLY`：Pro 年費 recurring price id（可選）
 - `STRIPE_WEBHOOK_SECRET`：Webhook signing secret（`whsec_...`）
 - `APP_URL`：正式站點 URL（例：`https://your-domain.com`）
 - `ADMIN_EMAILS`：管理員白名單（逗號分隔）
+- `NOTES_FREE_DAILY_ATTEMPT_LIMIT`：免費 checkpoint 每日可評分提交限額，預設為 `8`。
 
 不要把 Stripe CLI 登入後的臨時 `rk_live_...` 當成長期 production key；CLI key 可能有限權或到期。正式站應在 Stripe Dashboard 建立/複製可持續使用的 live secret key 或 restricted key，然後填入部署平台的 `STRIPE_SECRET_KEY`。
 
@@ -66,6 +73,7 @@
 3. 未登入時可打開 `/api/billing/status` 做安全的公開配置檢查；它只回傳布林值與 plan 是否配置，不公開 secret。
 4. 該帳號應可直接讀取 premium 單元與 premium checkpoint。
 5. 驗證 API：premium 題目提交不應被 403 擋下。
+6. 驗證 Free 帳號會受每日 checkpoint 限額限制，而 Plus/Pro/Admin 帳號不受此限制。
 
 ## F. 常見問題
 

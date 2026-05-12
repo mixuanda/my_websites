@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { getStripeClient, getAppUrl } from "@/lib/membership/stripe";
 import { getUserEntitlements } from "@/lib/membership/entitlements";
-import { getBillingPlan, type BillingPlanId } from "@/lib/membership/plans";
+import { getBillingPlan, normalizeBillingPlanId } from "@/lib/membership/plans";
 import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 import { defaultLocale, isLocale } from "@/lib/textbook/i18n";
 import { getMembershipCancelHref, getMembershipSuccessHref } from "@/lib/textbook/routes";
@@ -22,6 +22,20 @@ export async function POST(request: Request) {
       );
     }
 
+    const payload = (await request.json()) as {
+      locale?: string;
+      plan?: string;
+    };
+    const normalizedPlan = normalizeBillingPlanId(payload.plan) ?? "member_monthly";
+    const billingPlan = getBillingPlan(normalizedPlan);
+
+    if (!billingPlan) {
+      return NextResponse.json(
+        { error: "Unsupported billing plan.", errorCode: "unsupported_plan" },
+        { status: 400 }
+      );
+    }
+
     const entitlements = await getUserEntitlements(session);
     if (entitlements.isAdmin) {
       return NextResponse.json(
@@ -30,20 +44,15 @@ export async function POST(request: Request) {
       );
     }
 
-    if (entitlements.isMember) {
+    const tierRank = { FREE: 0, MEMBER: 1, PRO: 2 } as const;
+    if (tierRank[entitlements.tier] >= tierRank[billingPlan.tier]) {
       return NextResponse.json(
-        { error: "Membership is already active.", errorCode: "already_member" },
+        { error: "Membership is already active for this tier.", errorCode: "already_member" },
         { status: 400 }
       );
     }
 
-    const payload = (await request.json()) as {
-      locale?: string;
-      plan?: BillingPlanId;
-    };
     const locale = payload.locale && isLocale(payload.locale) ? payload.locale : defaultLocale;
-    const plan = payload.plan === "yearly" ? "yearly" : "monthly";
-    const billingPlan = getBillingPlan(plan);
     const priceId = billingPlan?.priceId;
 
     if (!priceId) {
@@ -54,7 +63,7 @@ export async function POST(request: Request) {
     }
 
     const stripe = getStripeClient();
-    const appUrl = getAppUrl();
+    const appUrl = getAppUrl(request);
 
     const checkoutSession = await stripe.checkout.sessions.create({
       cancel_url: `${appUrl}${getMembershipCancelHref(locale)}`,
@@ -62,18 +71,20 @@ export async function POST(request: Request) {
       line_items: [{ price: priceId, quantity: 1 }],
       metadata: {
         locale,
-        plan,
+        plan: normalizedPlan,
         planInterval: billingPlan.interval,
         priceId,
+        tier: billingPlan.tier,
         userEmail: user.email,
         userId: user.id ?? "",
       },
       mode: "subscription",
       subscription_data: {
         metadata: {
-          plan,
+          plan: normalizedPlan,
           planInterval: billingPlan.interval,
           priceId,
+          tier: billingPlan.tier,
           userEmail: user.email,
           userId: user.id ?? "",
         },

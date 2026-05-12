@@ -140,6 +140,21 @@ export const uiText = {
     "zh-cn": "正确答案",
     "zh-hk": "正確答案",
   },
+  freeDailyQuota: {
+    en: "Free daily graded attempts",
+    "zh-cn": "免费每日可评分尝试",
+    "zh-hk": "免費每日可評分嘗試",
+  },
+  freeDailyQuotaRemaining: {
+    en: "Remaining today",
+    "zh-cn": "今日剩余",
+    "zh-hk": "今日剩餘",
+  },
+  freeDailyQuotaReached: {
+    en: "Free daily graded-practice limit reached. Upgrade for unlimited checkpoint attempts or try again after the daily reset.",
+    "zh-cn": "免费每日可评分练习次数已用完。升级即可不限量使用 checkpoint 尝试，或在每日重置后再试。",
+    "zh-hk": "免費每日可評分練習次數已用完。升級即可不限量使用 checkpoint 嘗試，或在每日重置後再試。",
+  },
   enterYourAnswer: {
     en: "Enter your answer",
     "zh-cn": "输入你的答案",

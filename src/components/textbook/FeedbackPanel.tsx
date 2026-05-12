@@ -78,6 +78,13 @@ export function FeedbackPanel({
           </p>
         </div>
       ) : null}
+      {result.freeQuota ? (
+        <p className="mt-2 text-sm leading-6 opacity-80">
+          {getLocalizedText(uiText.freeDailyQuota, locale)}: {result.freeQuota.used}/
+          {result.freeQuota.limit}. {getLocalizedText(uiText.freeDailyQuotaRemaining, locale)}:{" "}
+          {result.freeQuota.remaining}.
+        </p>
+      ) : null}
       {mastery ? (
         <p className="mt-2 text-sm leading-6 opacity-80">
           {getLocalizedText(uiText.sectionMastery, locale)}:{" "}
