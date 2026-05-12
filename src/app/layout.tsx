@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeMetaController } from "@/components/ThemeMetaController";
@@ -85,7 +86,8 @@ export default function RootLayout({
           <ThemeMetaController />
           <MainLayout surface={surface}>{children}</MainLayout>
         </ThemeProvider>
-        
+        <Analytics />
+
         {/* Service Worker Registration */}
         <script src="/sw-register.js" defer />
       </body>
