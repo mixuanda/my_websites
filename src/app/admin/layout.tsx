@@ -4,7 +4,7 @@ import { notFoundInProduction } from "@/lib/production-route-guard";
 import { redirect } from "next/navigation";
 
 export const metadata = {
-  title: "Admin - TinaCMS",
+  title: "Admin",
   robots: {
     index: false,
     follow: false,

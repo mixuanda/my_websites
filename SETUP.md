@@ -391,48 +391,6 @@ export const supabase = createClient(
 
 ---
 
-## TinaCMS 可视化编辑 (可选)
-
-TinaCMS 提供了一个可视化的内容管理界面，让你可以直接在浏览器中编辑 MDX 内容。
-
-### 1. 安装依赖
-
-```bash
-npm install tinacms @tinacms/cli
-```
-
-### 2. 注册 Tina Cloud
-
-1. 前往 [tina.io](https://tina.io) 注册账号
-2. 创建新项目，连接你的 GitHub 仓库
-3. 获取 Client ID 和 Token
-
-### 3. 配置环境变量
-
-```env
-TINA_CLIENT_ID=your-tina-client-id
-TINA_TOKEN=your-tina-token
-```
-
-### 4. 使用方式
-
-```bash
-# 本地开发（带可视化编辑）
-npx tinacms dev -c "npm run dev"
-
-# 访问 http://localhost:3000/admin 进行编辑
-```
-
-### 5. 配置文件
-
-模板已包含 `tina/config.ts` 配置文件，定义了博客、笔记、项目三种内容类型。你可以根据需要修改字段。
-
-### 6. 部署说明
-
-部署到 Vercel 后，TinaCMS 会自动启用云端编辑功能。编辑的内容会自动提交到 GitHub 仓库。
-
----
-
 ## 部署指南
 
 ### Vercel (推荐)

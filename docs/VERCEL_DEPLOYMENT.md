@@ -156,24 +156,29 @@ AUTH_GOOGLE_SECRET=your-google-oauth-secret
 5. 授权重定向 URI: `https://your-domain.com/api/auth/callback/google`
 6. 获取 **Client ID** 和 **Client Secret**
 
-#### 3.3 Firebase 配置（私密日记）
+#### 3.3 Firebase Admin / Firestore 配置
 
 ```env
-# Firebase 配置（从 Firebase Console 获取）
-NEXT_PUBLIC_FIREBASE_API_KEY=your-api-key
-NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=your-project.firebaseapp.com
-NEXT_PUBLIC_FIREBASE_PROJECT_ID=your-project-id
-NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET=your-project.appspot.com
-NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID=your-sender-id
-NEXT_PUBLIC_FIREBASE_APP_ID=your-app-id
-NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID=your-measurement-id
-
-# Firebase 服务账户密钥（后端私密）
-FIREBASE_SERVICE_ACCOUNT_KEY=your-service-account-json-stringified
-FIREBASE_ADMIN_SDK_KEY=your-admin-sdk-key
+# Firebase Admin SDK（后端私密）
+FIREBASE_PROJECT_ID=your-firebase-project-id
+FIREBASE_CLIENT_EMAIL=your-service-account@your-project.iam.gserviceaccount.com
+FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\nYOUR_PRIVATE_KEY_HERE\n-----END PRIVATE KEY-----\n"
 ```
 
-**获取 Firebase 凭证的步骤：**
+当前代码只使用 Firebase Admin SDK 访问 Firestore，不读取 Firebase Web SDK 的
+`NEXT_PUBLIC_FIREBASE_*` 配置，也不读取旧式 `FIREBASE_SERVICE_ACCOUNT_KEY` 或
+`FIREBASE_ADMIN_SDK_KEY` 变量。
+
+Firestore 目前支撑 Auth.js adapter、用户资料、注册账号、会员资格、billing entitlement、Stripe customer 映射、textbook progress 和私密日记。除非已经完成备份、schema mapping、staging rehearsal 和 rollback 计划，否则不要迁移或删除生产 Firestore 数据。
+
+当前数据库状态和后续 Vercel Marketplace 数据库评估见：
+
+- [`docs/database-inventory.md`](./database-inventory.md)
+- [`docs/vercel-database-evaluation.md`](./vercel-database-evaluation.md)
+- [`docs/database-backup-rollback-runbook.md`](./database-backup-rollback-runbook.md)
+- [`docs/billing-entitlement-reconciliation.md`](./billing-entitlement-reconciliation.md)
+
+**获取 Firebase Admin 凭证的步骤：**
 
 1. **访问 Firebase Console**
    - 前往 [console.firebase.google.com](https://console.firebase.google.com/)
@@ -183,94 +188,21 @@ FIREBASE_ADMIN_SDK_KEY=your-admin-sdk-key
    - 输入项目名称
    - 按步骤完成创建
 
-3. **获取 Web API 密钥**
-   - 点击项目设置 ⚙️
-   - 切换到 **Service Accounts** 标签
-   - 选择 **Google Cloud Platform** 链接
-   - 在 **API 和服务** 中找到你的 Web App 配置
-
-4. **在项目设置中获取配置**
-   ```
-   项目设置 → 你的应用 (Web)
-   ```
-   找到以下信息：
-   ```javascript
-   const firebaseConfig = {
-     apiKey: "NEXT_PUBLIC_FIREBASE_API_KEY",
-     authDomain: "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
-     projectId: "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
-     storageBucket: "NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET",
-     messagingSenderId: "NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID",
-     appId: "NEXT_PUBLIC_FIREBASE_APP_ID",
-     measurementId: "NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID"
-   };
-   ```
-
-5. **启用 Firestore 数据库**
+3. **启用 Firestore 数据库**
    ```
    Build → Firestore Database → Create Database
    选择 Start in production mode（可后续修改规则）
    ```
 
-6. **设置安全规则**
-   ```javascript
-   // Firestore Rules
-   rules_version = '2';
-   service cloud.firestore {
-     match /databases/{database}/documents {
-       // 用户只能访问自己的日记
-       match /diaries/{document=**} {
-         allow read, write: if request.auth.uid == resource.data.userId;
-         allow create: if request.auth.uid == request.resource.data.userId;
-       }
-     }
-   }
-   ```
-
-7. **获取服务账户密钥**（用于后端操作）
+4. **获取服务账户密钥**（用于后端操作）
    ```
    项目设置 → Service Accounts → 生成新密钥
    ```
-   生成的 JSON 文件内容需要转换为字符串并作为 `FIREBASE_SERVICE_ACCOUNT_KEY` 环境变量
+   将 JSON 中的 `project_id`、`client_email` 和 `private_key` 分别配置到
+   `FIREBASE_PROJECT_ID`、`FIREBASE_CLIENT_EMAIL` 和 `FIREBASE_PRIVATE_KEY`。
+   `FIREBASE_PRIVATE_KEY` 必须保留换行；在 Vercel 中通常使用带 `\n` 的完整 PEM 字符串。
 
-#### 3.4 Tina CMS 配置
-
-```env
-# Tina Cloud 配置
-NEXT_PUBLIC_TINA_CLIENT_ID=your-tina-client-id
-TINA_TOKEN=your-tina-token
-
-# GitHub 集成（Tina 使用）
-GITHUB_TOKEN=your-github-personal-access-token
-```
-
-**获取 Tina CMS 凭证的步骤：**
-
-1. **创建 Tina 账户**
-   - 访问 [tina.io](https://tina.io)
-   - 使用 GitHub 账号登录
-
-2. **创建新的 Tina 项目**
-   - 在 Tina Dashboard 中点击 **New Project**
-   - 连接你的 GitHub 仓库
-   - 获取 **Client ID** 和 **Token**
-
-3. **生成 GitHub Personal Access Token**（用于 Tina）
-   ```
-   GitHub Settings → Developer settings → Personal access tokens
-   → Tokens (classic) → Generate new token
-   ```
-   选择权限：
-   - `repo` - 完全控制仓库
-   - `user:email` - 读取邮件地址
-   
-4. **在 Tina Cloud 中配置**
-   ```
-   项目设置 → Integrations → GitHub
-   粘贴你的 GitHub Token
-   ```
-
-#### 3.5 评论系统 (Giscus)
+#### 3.4 评论系统 (Giscus)
 
 ```env
 NEXT_PUBLIC_GISCUS_REPO=your-username/your-repo
@@ -331,10 +263,9 @@ vercel env pull
 - [ ] **AUTH_SECRET** - 至少 32 个字符的随机字符串
 - [ ] **AUTH_GITHUB_ID** 和 **AUTH_GITHUB_SECRET** - GitHub OAuth
 - [ ] **AUTH_GOOGLE_ID** 和 **AUTH_GOOGLE_SECRET** - Google OAuth（可选）
-- [ ] **NEXT_PUBLIC_FIREBASE_API_KEY** 等 - Firebase 配置（可选）
-- [ ] **FIREBASE_SERVICE_ACCOUNT_KEY** - Firebase 后端密钥（可选）
-- [ ] **NEXT_PUBLIC_TINA_CLIENT_ID** 和 **TINA_TOKEN** - Tina CMS（可选）
-- [ ] **GITHUB_TOKEN** - GitHub Personal Access Token（用于 Tina）
+- [ ] **FIREBASE_PROJECT_ID** - Firebase project id（Firestore 持久化需要）
+- [ ] **FIREBASE_CLIENT_EMAIL** - Firebase service account email
+- [ ] **FIREBASE_PRIVATE_KEY** - Firebase service account private key
 
 #### 4. 自定义域名（可选）
 

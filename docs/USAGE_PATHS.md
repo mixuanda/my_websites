@@ -40,7 +40,6 @@
 | **从 WordPress 迁移** | 1-2小时 | ⭐⭐ 简单 | MIGRATION_GUIDE.md | ❌ | ❌ |
 | **添加 OAuth 登录** | 15-30分钟 | ⭐⭐ 简单 | SETUP.md | ❌ | ⭐ 少量 |
 | **添加私人日记** | 30-60分钟 | ⭐⭐⭐ 中等 | DATABASE_CONFIG.md + PRIVATE_DIARY_GUIDE.md | ✅ | ⭐⭐ |
-| **连接 TinaCMS** | 30-45分钟 | ⭐⭐⭐ 中等 | BACKEND_CONTROL.md | ❌ | ⭐⭐ |
 | **完全定制代码** | 1-4小时+ | ⭐⭐⭐⭐ 复杂 | 源代码 | 取决于 | ⭐⭐⭐ |
 
 ---

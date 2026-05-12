@@ -83,8 +83,8 @@ May 12, 2026 table-rendering fix:
   without GFM parsing the source never became `<table>` / `<thead>` / `<tbody>`
   nodes.
 - `remark-gfm` is now a direct project dependency at a version compatible with
-  the current MDX v3 toolchain. Do not rely on the older TinaCMS-transitive
-  `remark-gfm` copy for Contentlayer rendering.
+  the current MDX v3 toolchain. Do not rely on transitive dependency copies for
+  Contentlayer rendering.
 - Production builds now run `npm run verify:mdx-tables` before Contentlayer.
   The check compiles a small table fixture with inline math and inline code and
   fails if table nodes or KaTeX output disappear.

@@ -58,7 +58,6 @@
 | **认证** | Auth.js (next-auth@beta) | beta |
 | **认证（Passkey）** | SimpleWebAuthn | 9.0.1 |
 | **评论** | Giscus | - |
-| **CMS** | TinaCMS | 可选 |
 | **数据库** | Firebase/Supabase/MongoDB | 可选 |
 
 ---
@@ -102,7 +101,6 @@ personal-site-template/
 │   ├── DATABASE_CONFIG.md    # 数据库配置
 │   ├── BACKEND_CONTROL.md    # 后台管理
 │   └── PRIVATE_DIARY_GUIDE.md # 私密区使用
-├── tina/                 # TinaCMS 配置
 ├── contentlayer.config.ts
 ├── next.config.ts
 ├── tsconfig.json
@@ -135,9 +133,9 @@ personal-site-template/
   - MongoDB 配置和 Mongoose 实现
   - 数据备份和迁移指南
   
-- ✅ **BACKEND_CONTROL.md** - 后台控制和内容管理
-  - TinaCMS 编辑器详细说明
-  - 博客、笔记、项目创建指南
+- ✅ **BACKEND_CONTROL.md** - 后台控制和权限管理
+  - 后台状态检查说明
+  - 管理员用户管理指南
   - 权限管理和发布流程
   - 分析与监控配置
   - 自定义 MDX 组件

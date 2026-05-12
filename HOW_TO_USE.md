@@ -79,7 +79,7 @@ npm run dev
 ### 🔧 配置和功能
 - **[SETUP.md](./docs/SETUP.md)** - 详细配置指南（OAuth、PWA 等）
 - **[DATABASE_CONFIG.md](./docs/DATABASE_CONFIG.md)** - 数据库配置（Firebase/Supabase/MongoDB）
-- **[BACKEND_CONTROL.md](./docs/BACKEND_CONTROL.md)** - CMS 和后端管理（TinaCMS）
+- **[BACKEND_CONTROL.md](./docs/BACKEND_CONTROL.md)** - 后台状态、权限和后端管理
 - **[PRIVATE_DIARY_GUIDE.md](./docs/PRIVATE_DIARY_GUIDE.md)** - 私人日记功能指南
 
 ### 📖 文档导航
@@ -278,7 +278,7 @@ npm run lint
 
 ### 可以稍后做
 - ✅ 设置数据库和私人日记
-- ✅ 连接 CMS（TinaCMS）
+- ✅ 完善后台状态检查和管理流程
 - ✅ 添加高级功能（支付、会员等）
 - ✅ 创建 API 端点
 
