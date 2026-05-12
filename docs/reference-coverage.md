@@ -92,6 +92,28 @@ The latest merged content passes also:
   truth-table row, negating an existential conjunction, the Peano
   zero-not-successor axiom, the induction step for `0+n=n`, and the
   rational-upper-bound side of the `sqrt(2)` gap argument.
+- rewrites `math1090` unit `3.4 Rationals and well-defined operations` in EN,
+  zh-HK, and zh-CN so the page reads as a serious quotient-construction note
+  instead of a worksheet summary;
+- rewrites `math1030` unit `2.4 Solution-set types` in EN, zh-HK, and zh-CN
+  with fuller theorem flow, parameterized examples, and robust `array`-based
+  augmented-matrix notation for KaTeX and export;
+- rewrites `math1030` unit `6.1 Vector spaces` in EN, zh-HK, and zh-CN so the
+  page now covers the axioms, standard examples, a nonstandard structure
+  example, and the first uniqueness / cancellation theorems at real chapter
+  depth;
+- rewrites `math1030` unit `6.3 Linear combinations and span` in EN, zh-HK,
+  and zh-CN so the page now includes the `Ax = b` equivalence, geometric span
+  examples, the span-subspace theorem, and fuller exercises;
+- rewrites `math1030` unit `6.2 Subspaces` in EN, zh-HK, and zh-CN so the page
+  now includes the equivalent subspace test, equation-defined examples,
+  the null-space theorem, tutorial-backed matrix examples, and fuller quick
+  checks;
+- rewrites `math1030` unit `6.4 Linear dependence and independence` in EN,
+  zh-HK, and zh-CN using the new fixed authoring block order, theorem-led
+  structure, and aligned exercise/solution sequencing;
+- splits the `reference/MATH1025/**` backlog into grouped source families
+  rather than tracking the whole course as a single slide row.
 
 The next resume point is now QA and optional exercise-depth parity rather than
 missing MATH1090 core content:
@@ -175,6 +197,16 @@ Current Math1025 expansion progress from April 25, 2026:
   `reference/MATH1025/MATH1025_slides_ch6(3).pdf`; `MATH1025_slides_ch7.pdf`
   through `MATH1025_slides_ch11.pdf` remain the next source-backed Math1025
   chapter-slide backlog.
+
+
+### Thin-unit priority queue for parity rewrites
+
+The current thin-unit queue, to be rewritten in EN + zh-HK + zh-CN together,
+is:
+
+1. `math1030` `6.4` linear dependence and independence;
+2. `math1030` `6.5` basis and dimension follow-up depth pass;
+3. first `math1090` chapter-4 bridge unit sourced from the April 10 packet.
 
 The tables below use these status labels:
 

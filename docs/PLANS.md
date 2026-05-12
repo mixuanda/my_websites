@@ -9,6 +9,27 @@ finish and verify before the next one starts.
 If any validation command fails, stop the milestone immediately, fix the
 failure in the same session, rerun validation, and only then continue.
 
+## Global authoring floor (effective immediately)
+
+For every unit in `content/textbook/**/{en,zh-hk,zh-cn}.mdx`, authoring and
+revision passes must satisfy the shared structure and depth floor:
+
+- required block order: motivation -> definitions -> theorem/proposition ->
+  proof sketch or proof idea -> worked examples -> common mistakes -> summary
+  -> exercises -> solutions;
+- EN depth target: 1800-3000 English-word proxy;
+- zh-HK depth target: 1300-2200 English-equivalent proxy;
+- zh-CN depth target: 1300-2200 English-equivalent proxy;
+- minimum `<TheoremCard />` count: 2;
+- minimum `<WorkedExample />` count: 3.
+
+Validation command added for each milestone:
+
+- `npm run check:textbook-content`
+
+Depth shortfalls are triaged warnings, while missing/out-of-order required
+blocks are hard failures.
+
 ## Active milestones
 
 ### Milestone 1: run-control docs and first thin-unit rewrite
@@ -28,13 +49,15 @@ Acceptance criteria:
 - localized variants exist and keep the same structure;
 - augmented-matrix notation in `2.4` uses robust LaTeX;
 - `npm run build:site` passes;
-- `npm run lint` passes or only reports pre-existing warnings that are then
+- `npm run lint`
+- `npm run check:textbook-content` passes or only reports pre-existing warnings that are then
   resolved before moving on.
 
 Validation commands:
 
 - `npm run build:site`
 - `npm run lint`
+- `npm run check:textbook-content`
 
 ### Milestone 2: deepen thin MATH1030 chapter 6 notes
 
@@ -59,6 +82,7 @@ Validation commands:
 
 - `npm run build:site`
 - `npm run lint`
+- `npm run check:textbook-content`
 
 ### Milestone 3: notes-shell coherence fix
 
@@ -80,6 +104,7 @@ Validation commands:
 
 - `npm run build:site`
 - `npm run lint`
+- `npm run check:textbook-content`
 
 ### Milestone 4: next thin-unit rewrite batch
 
@@ -101,13 +126,15 @@ Validation commands:
 
 - `npm run build:site`
 - `npm run lint`
+- `npm run check:textbook-content`
 
 Current sub-status:
 
-- `math1030` `6.3` and `6.2` are now rewritten and validated.
-- the next target inside this milestone is the first Math1090 chapter-4 bridge
-  note, sourced primarily from the April 10 lecture packet and the review
-  notes.
+- `math1030` `6.3`, `6.2`, and `6.4` are now rewritten in EN, zh-HK, and
+  zh-CN with parity-preserving structure.
+- next target inside this milestone: deepen `math1030` `6.5` to the same
+  fixed block template and depth floor, then continue to the first Math1090
+  chapter-4 bridge note from the April 10 lecture packet and review notes.
 
 ### Milestone 5: future-course preparation
 
@@ -130,3 +157,4 @@ Validation commands:
 
 - `npm run build:site`
 - `npm run lint`
+- `npm run check:textbook-content`
