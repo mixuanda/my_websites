@@ -3,7 +3,6 @@ import { NextResponse } from "next/server";
 import { getStripeClient } from "@/lib/membership/stripe";
 import { setMembershipByEmail, setMembershipByUserId, type MembershipRecord } from "@/lib/membership/entitlements";
 import { getBillingPlanByPriceId } from "@/lib/membership/plans";
-import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 
 function toMembershipStatus(status?: string): MembershipRecord["status"] {
   if (
@@ -28,9 +27,6 @@ async function syncMembership(record: MembershipRecord, userId?: string, email?:
 }
 
 export async function POST(request: Request) {
-  const hiddenResponse = notFoundApiResponseInProduction();
-  if (hiddenResponse) return hiddenResponse;
-
   const secret = process.env.STRIPE_WEBHOOK_SECRET;
   if (!secret) {
     return NextResponse.json({ error: "Missing STRIPE_WEBHOOK_SECRET" }, { status: 500 });
