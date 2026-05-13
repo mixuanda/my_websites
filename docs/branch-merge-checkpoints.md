@@ -62,4 +62,29 @@ Scope: merge recent outstanding branches into `main`, verify the merged result, 
 
 ### Checkpoint 5 - push and branch cleanup
 
-- Pending.
+- Pushed merged `main` to `origin/main`.
+- Vercel production deployment for commit `bb66317c8ae55c8acf2c2235c8b21fcf517f98cf`: Ready.
+- Production smoke on `https://www.evanalysis.top`:
+  - `/en/notes`: 200
+  - `/en/notes/math1090/logic/quantifiers-negation`: 200
+  - TXT export for the same note: 200
+  - `/api/stripe/webhook` without `stripe-signature`: 400
+- Remote inactive branches deleted after verification:
+  - `CSCI2520`
+  - `codex/create-content-pipeline-for-storyboard-segments`
+  - `codex/create-mandatory-authoring-template-and-checks`
+  - `codex/define-mcq-and-fill-in-the-blank-problem-schema`
+  - `codex/define-product-model-and-implement-checkout`
+  - `codex/implement-subscription-membership-model`
+  - `codex/notes-shell-foundation`
+  - `codex/seo-search-console`
+  - `codex/table-rendering-fix`
+  - `codex/textbook-deploy-fix`
+  - `codex/tiered-access-development`
+  - `codex/tinacms-database-workflow-plan`
+  - `codex/vercel-analytics`
+  - `optimization`
+- Local inactive branches deleted:
+  - `codex/pre-merge-all-20260512`
+  - `codex/tablefixed`
+- Local branches still checked out in linked worktrees were not force-deleted.
