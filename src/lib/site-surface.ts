@@ -2,16 +2,12 @@ export type SiteSurface = "production" | "preview";
 
 const previewOnlyPathPatterns = [
   /^\/about(?:\/|$)/,
-  /^\/admin(?:\/|$)/,
-  /^\/api\/admin(?:\/|$)/,
-  /^\/api\/auth(?:\/|$)/,
   /^\/api\/billing(?:\/|$)/,
   /^\/api\/export(?:\/|$)/,
   /^\/api\/user(?:\/|$)/,
   /^\/blog(?:\/|$)/,
   /^\/categories(?:\/|$)/,
   /^\/diary(?:\/|$)/,
-  /^\/login(?:\/|$)/,
   /^\/notes\/(?!membership(?:\/|$))(?:[^/]+)(?:\/|$)/,
   /^\/notes\/membership(?:\/|$)/,
   /^\/private(?:\/|$)/,

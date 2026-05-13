@@ -125,7 +125,7 @@ NextAuth 也兼容 `AUTH_GITHUB_ID`、`AUTH_GITHUB_SECRET`、`AUTH_GOOGLE_ID`、
 - 管理员可访问 `/api/admin/system-status` 查看安全诊断：admin 白名单数量、Firebase 持久化状态、Stripe secret/webhook/price 配置状态，以及 Stripe price 是否是 recurring price。
 - 管理员可访问 `/admin/users` 查看用户管理界面，包含登录方式、会员状态、最近登录与订阅 ID。
 - 管理员可访问 `/api/admin/users` 获取同样的用户管理 JSON。
-- 所有访客可访问 `/api/billing/status` 做安全的付款配置健康检查；该接口只返回布林状态和 plan 是否配置，不泄露 secret 或完整 price metadata。
+- `/api/billing/status` 可在 preview/development surface 做安全的付款配置健康检查；该接口只返回布林状态和 plan 是否配置，不泄露 secret 或完整 price metadata。当前 production surface 会隐藏 `/api/billing/**`。
 
 ## 当前会员等级模型
 

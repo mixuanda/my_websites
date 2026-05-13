@@ -11,12 +11,17 @@ Production keeps:
 - `/{locale}/notes/{course}`
 - `/{locale}/notes/{course}/{chapter}/{unit}`
 - `/{locale}/courses*` legacy redirects into Notes
+- `/login` and `/api/auth/**` for authenticated private surfaces
+- `/admin*` only for signed-in `ADMIN_EMAILS` administrators; anonymous and
+  non-admin requests return 404
+- `/api/admin/**` only for signed-in `ADMIN_EMAILS` administrators; anonymous
+  and non-admin requests return 404
 - `/api/textbook-export/**`
 - `/api/textbook/problems/**`
 
 Production hides:
 
-- login, registration, account settings, admin, diary, and membership billing pages
+- public registration, account settings, diary, and membership billing pages
 - blog, project, tag, and category pages
 - legacy `/notes/{slug}` pages from `content/notes`
 - article/project/legacy-note export APIs

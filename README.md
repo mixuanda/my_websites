@@ -406,12 +406,6 @@ Admin bypass 是**伺服器端**做的，不是前端隱藏按鈕而已。
 - `AUTH_DISABLE_PASSKEY`
   目前保留在 `.env.example`，但現行 auth code 尚未讀取它。把它視為保留位，
   不要當成已生效的 runtime 開關。
-- `TINA_CLIENT_ID`
-  TinaCMS client id。只有在你真的要啟用 TinaCMS workflow 時才需要。
-- `NEXT_PUBLIC_TINA_CLIENT_ID`
-  TinaCMS client id 的 public 版本。通常與 `TINA_CLIENT_ID` 相同。
-- `TINA_TOKEN`
-  TinaCMS token。只有在你要使用 Tina cloud workflow 時才需要。
 
 ## 本機開發
 

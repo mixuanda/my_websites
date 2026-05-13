@@ -387,9 +387,9 @@ npx tsc --noEmit
    - Firebase、Supabase、MongoDB
    - 数据库设置和迁移
 
-3. **后端控制和 CMS** - [BACKEND_CONTROL.md](./BACKEND_CONTROL.md)
-   - TinaCMS 内容管理
-   - 无需命令行修改内容
+3. **后端控制** - [BACKEND_CONTROL.md](./BACKEND_CONTROL.md)
+   - 后台状态检查
+   - 管理员权限和用户管理
 
 4. **迁移现有网站** - [MIGRATION_GUIDE.md](./MIGRATION_GUIDE.md)
    - 从 Hugo、Hexo、WordPress 等平台迁移

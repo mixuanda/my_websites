@@ -13,9 +13,19 @@ repo, so the same broken behavior does not get reintroduced later.
   large `reference/` source material.
 - Impact: Vercel deployments and local production builds could appear hung even
   when the public site itself was ready to build.
-- Fix: change the default `build` script to `npm run build:site`. Keep
-  `npm run build:cms` and `npm run tina:build:auto` for cases where `/admin`
-  must be generated intentionally.
-- Do not revert: if someone wants TinaCMS admin assets in production, they must
-  opt into the CMS build path instead of changing the default deploy build
-  back.
+- Fix at the time: change the default `build` script to `npm run build:site`.
+- Current state: TinaCMS has since been removed from the repository. Do not
+  reintroduce CMS build steps into the default deploy path.
+
+## May 13, 2026
+
+### TinaCMS removed from repository
+
+- Problem: TinaCMS was no longer part of the current authoring workflow, but its
+  dev dependency chain kept full-audit noise in the repo and older docs still
+  suggested it was a supported deployment path.
+- Fix: remove TinaCMS packages, scripts, config/generated files, env examples,
+  and admin-page fallback behavior. `/admin` is now only the authenticated
+  backend status/user-management surface for preview/development.
+- Do not revert: if a CMS is needed in the future, evaluate it as a new feature
+  in a separate branch instead of restoring the old Tina path casually.
