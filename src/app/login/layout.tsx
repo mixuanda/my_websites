@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { notFoundInProduction } from "@/lib/production-route-guard";
 
 export const metadata: Metadata = {
   title: "登录",
@@ -15,7 +14,5 @@ export default function LoginLayout({
 }: {
   children: React.ReactNode;
 }) {
-  notFoundInProduction();
-
   return children;
 }

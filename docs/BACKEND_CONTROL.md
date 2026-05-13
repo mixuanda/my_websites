@@ -34,7 +34,7 @@ TinaCMS 已从项目中移除。当前仓库不再提供浏览器内 Git-backed 
 - 已配置的 recurring plan 数量
 - 用户管理入口
 
-生产环境下 `/admin` 仍然由 `notFoundInProduction()` 隐藏。Preview / development 环境中，只有登录并且 email 命中 `ADMIN_EMAILS` 白名单的用户可以访问。
+`/admin` 是私密后台入口，不是公开页面。匿名访问或非管理员登录访问都会返回 404；只有登录并且 email 命中 `ADMIN_EMAILS` 白名单的用户可以看到后台。生产环境仍应在 `robots.txt` 中 disallow `/admin/`，但路由本身由登录会话和管理员白名单保护。
 
 ### `/api/admin/system-status`
 
@@ -87,7 +87,7 @@ ADMIN_EMAILS=you@example.com,second@example.com
 
 1. Auth.js 登录会话检查。
 2. `ADMIN_EMAILS` 白名单检查。
-3. production surface guard 检查。
+3. 匿名或非管理员请求返回 404，不跳转登录页，也不返回显眼的 forbidden 页面。
 
 普通用户不能通过前端 API 修改：
 
@@ -158,7 +158,7 @@ npm run build
 /api/billing/status
 ```
 
-生产环境目前隐藏未完成的后台、登录、settings、billing 和 diary surface。详见 `docs/production-preview-surface.md`。
+生产环境目前隐藏未完成的登录、settings、billing 和 diary surface；`/admin` 是私密后台入口，匿名和非管理员访问返回 404。详见 `docs/production-preview-surface.md`。
 
 ---
 
