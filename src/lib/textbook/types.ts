@@ -3,7 +3,7 @@ export type Locale = "en" | "zh-hk" | "zh-cn";
 export type CourseId = string;
 
 export type CoverageStatus = "SOURCE_BACKED" | "MISSING_SOURCE";
-export type AccessTier = "FREE" | "MEMBER";
+export type AccessTier = "FREE" | "MEMBER" | "PRO";
 
 export interface SourceRef {
   file: string;
@@ -235,6 +235,12 @@ export interface ProblemPreviewResult {
 export interface ProblemSubmissionResult {
   correctAnswerPreview?: string;
   correct: boolean;
+  freeQuota?: {
+    limit: number;
+    remaining: number;
+    resetsAt: string;
+    used: number;
+  };
   hint?: string;
   normalizedAnswer: string;
   previewText?: string;

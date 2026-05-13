@@ -2,6 +2,7 @@ import Stripe from "stripe";
 import { NextResponse } from "next/server";
 import { getStripeClient } from "@/lib/membership/stripe";
 import { setMembershipByEmail, setMembershipByUserId, type MembershipRecord } from "@/lib/membership/entitlements";
+import { getBillingPlanByPriceId } from "@/lib/membership/plans";
 import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 
 function toMembershipStatus(status?: string): MembershipRecord["status"] {
@@ -65,6 +66,10 @@ export async function POST(request: Request) {
           priceId: session.metadata?.priceId,
           status: "active",
           subscriptionId: typeof session.subscription === "string" ? session.subscription : undefined,
+          tier:
+            session.metadata?.tier === "PRO"
+              ? "PRO"
+              : getBillingPlanByPriceId(session.metadata?.priceId)?.tier ?? "MEMBER",
           updatedAt: new Date().toISOString(),
         },
         userId,
@@ -95,6 +100,7 @@ export async function POST(request: Request) {
           priceId: subscription.items.data[0]?.price.id,
           status: toMembershipStatus(subscription.status),
           subscriptionId: subscription.id,
+          tier: getBillingPlanByPriceId(subscription.items.data[0]?.price.id)?.tier ?? "MEMBER",
           updatedAt: new Date().toISOString(),
         },
         subscription.metadata?.userId,

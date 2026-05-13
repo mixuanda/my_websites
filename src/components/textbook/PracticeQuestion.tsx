@@ -117,7 +117,7 @@ export function PracticeQuestion({
         method: "POST",
       });
 
-      if (response.status === 409) {
+      if (response.status === 409 || response.status === 429) {
         const data = (await response.json()) as {
           error?: string;
           problemProgress?: ProblemProgress;
@@ -128,6 +128,7 @@ export function PracticeQuestion({
           correct: data.result?.correct ?? false,
           correctAnswerPreview: data.result?.correctAnswerPreview,
           hint: data.error ?? getLocalizedText(uiText.attemptsExhausted, locale),
+          freeQuota: data.result?.freeQuota,
           normalizedAnswer: "",
           shouldShowSolution: data.result?.shouldShowSolution ?? false,
           solutionLocked: data.result?.solutionLocked ?? false,

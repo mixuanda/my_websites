@@ -1,15 +1,23 @@
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
-import { getEntitlementsByUserId } from "@/lib/billing/store";
+import {
+  getMembershipRecordByEmail,
+  getMembershipRecordByUserId,
+  getUserEntitlements,
+} from "@/lib/membership/entitlements";
 
 export async function GET() {
   const session = await auth();
-  const userId = session?.user ? (session.user as { id?: string }).id : null;
+  const user = session?.user as { email?: string | null; id?: string } | undefined;
 
-  if (!userId) {
+  if (!user?.email) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const entitlements = await getEntitlementsByUserId(userId);
-  return NextResponse.json({ entitlements });
+  const entitlements = await getUserEntitlements(session);
+  const membership =
+    (await getMembershipRecordByUserId(user.id)) ??
+    (await getMembershipRecordByEmail(user.email));
+
+  return NextResponse.json({ entitlements, membership });
 }

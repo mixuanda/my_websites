@@ -1,22 +1,16 @@
 import { redirect } from "next/navigation";
-import { BillingClient } from "@/components/billing/BillingClient";
 import { auth } from "@/lib/auth";
-import { getEntitlementsByUserId } from "@/lib/billing/store";
+import { defaultLocale } from "@/lib/textbook/i18n";
+import { getMembershipHref } from "@/lib/textbook/routes";
+import { getSessionProfile } from "@/lib/user-store";
 
 export default async function BillingPage() {
   const session = await auth();
-  const userId = session?.user ? (session.user as { id?: string }).id : null;
 
-  if (!userId) {
-    redirect("/login?callbackUrl=/settings/billing");
+  if (!session?.user?.email) {
+    redirect(`/login?callbackUrl=${encodeURIComponent(getMembershipHref(defaultLocale))}`);
   }
 
-  const entitlements = await getEntitlementsByUserId(userId);
-
-  return (
-    <BillingClient
-      initialEntitlements={entitlements}
-      userEmail={session?.user?.email ?? "unknown user"}
-    />
-  );
+  const profile = await getSessionProfile(session);
+  redirect(getMembershipHref(profile?.preferredLocale ?? defaultLocale));
 }

@@ -1,5 +1,6 @@
 import { auth } from "@/lib/auth";
-import { getEntitlementsByUserId } from "@/lib/billing/store";
+import { getUserEntitlements } from "@/lib/membership/entitlements";
+import { canAccessPremiumFeature } from "@/lib/membership/feature-access";
 import { getLocalizedTextbookUnitExport } from "@/lib/textbook/content";
 import { buildTextbookPdf } from "@/lib/textbook/export-pdf";
 import { isLocale } from "@/lib/textbook/i18n";
@@ -19,14 +20,13 @@ interface RouteContext {
 
 export async function GET(_: Request, { params }: RouteContext) {
   const session = await auth();
-  const userId = session?.user ? (session.user as { id?: string }).id : null;
 
-  if (!userId) {
+  if (!session?.user) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  const entitlements = await getEntitlementsByUserId(userId);
-  if (!entitlements.active || !entitlements.scopes.includes("premium.exports")) {
+  const entitlements = await getUserEntitlements(session);
+  if (!canAccessPremiumFeature(entitlements, "premium.exports")) {
     return new Response("Premium export entitlement required", { status: 403 });
   }
 

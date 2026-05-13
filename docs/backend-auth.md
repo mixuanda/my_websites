@@ -129,8 +129,9 @@ NextAuth 也兼容 `AUTH_GITHUB_ID`、`AUTH_GITHUB_SECRET`、`AUTH_GOOGLE_ID`、
 
 ## 当前会员等级模型
 
-- `FREE`：公开核心笔记、部分例题和部分 quick checks。
-- `MEMBER`：进阶笔记单元、会员 checkpoint、深入引导解答和完整学习支持。该等级需要 Stripe recurring subscription price。
+- `FREE`：公开核心笔记、部分例题和每日限额的可评分 checkpoint。默认限额为每天 8 次，可用 `NOTES_FREE_DAILY_ATTEMPT_LIMIT` 或 `NEXT_PUBLIC_NOTES_FREE_DAILY_ATTEMPT_LIMIT` 调整。
+- `MEMBER` / Notes Plus：进阶笔记单元、会员 checkpoint、深入引导解答、TXT/PDF study export 和不限量可评分 checkpoint。该等级需要 Stripe recurring subscription price。
+- `PRO` / Notes Pro：包含 Plus 全部权限，并预留给最高等级的进阶工具、更完整的 premium export 套装和未来 premium 学习功能。该等级使用独立的 Stripe recurring subscription price。
 - `ADMIN`：服务端 `ADMIN_EMAILS` 白名单，不需要付款，拥有完整访问权。
 
 会员付款入口只会在以下条件同时满足时显示：
@@ -141,12 +142,20 @@ NextAuth 也兼容 `AUTH_GITHUB_ID`、`AUTH_GITHUB_SECRET`、`AUTH_GOOGLE_ID`、
 
 如果 Stripe 账户只有一次性 price，而没有 recurring price，网站不会展示订阅按钮，因为当前会员系统使用 Stripe subscription checkout。
 
-当前 live Stripe 已建立 `Notes Membership` 产品：
+当前 live Stripe 已建立 `Notes Membership` Plus 产品：
 
 - 月费 HKD 20：`price_1TPjAE906oPVRv7kzcP3UNsk`
 - 年费 HKD 200：`price_1TPjAG906oPVRv7kr2IpEaO7`
 
-这两个 price 已写入 Vercel production env。付款闭环还需要 `STRIPE_SECRET_KEY` 与 `STRIPE_WEBHOOK_SECRET`。
+这两个 price 是当前 Plus 方案使用的 Stripe price id。它们应写入当前启用会员
+surface 的部署环境；现阶段优先用于 development / preview surface，production
+surface 只有在明确移除 membership production guard 后才应开放。
+Pro 方案预留以下 env：
+
+- `STRIPE_PRICE_ID_PRO_MONTHLY`
+- `STRIPE_PRICE_ID_PRO_YEARLY`
+
+捐赠入口使用 Stripe Checkout payment mode 和代码内固定 HKD 金额，不需要预先创建 Stripe price。订阅付款闭环还需要 `STRIPE_SECRET_KEY` 与 `STRIPE_WEBHOOK_SECRET`。
 
 ## 生产检查
 
@@ -157,4 +166,4 @@ NextAuth 也兼容 `AUTH_GITHUB_ID`、`AUTH_GITHUB_SECRET`、`AUTH_GOOGLE_ID`、
 - Firestore 服务账号已配置，否则受保护数据不会持久化。
 - `ADMIN_EMAILS` 只包含可信邮箱。
 - Stripe webhook 已配置并能写入会员资格。
-- Stripe 会员 price 必须是 recurring price；一次性 price 不能用于当前 subscription checkout。
+- Stripe Plus / Pro 会员 price 必须是 recurring price；一次性 price 不能用于当前 subscription checkout。

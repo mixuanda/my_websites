@@ -4,6 +4,7 @@ import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 import {
   getBillingConfigStatus,
   getBillingPlanConfigs,
+  getFreeDailyAttemptLimit,
 } from "@/lib/membership/plans";
 
 export const dynamic = "force-dynamic";
@@ -22,6 +23,7 @@ export async function GET() {
   return NextResponse.json({
     billingReady: ready,
     configuredPlanCount: configuredPlans.length,
+    freeDailyAttemptLimit: getFreeDailyAttemptLimit(),
     membershipGatingEnabled: isMembershipGatingEnabled(),
     plans: getBillingPlanConfigs().map((plan) => ({
       configured: Boolean(plan.priceId),

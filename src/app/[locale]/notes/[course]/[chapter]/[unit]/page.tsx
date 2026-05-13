@@ -298,7 +298,7 @@ export default async function UnitPage({ params }: UnitPageProps) {
               <Link className="text-primary underline" href={`/${locale}/premium/videos`}>
                 Video explanations
               </Link>
-              <Link className="text-primary underline" href="/settings/billing">
+              <Link className="text-primary underline" href={getMembershipHref(locale)}>
                 Billing & plans
               </Link>
             </div>
