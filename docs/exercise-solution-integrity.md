@@ -647,7 +647,11 @@ unit-level coverage.
   equivalent text forms, while the recurrence value is a single scalar and the
   theorem / Fibonacci proof-structure items are multiple choice to avoid
   fragile formula parsing
-- Verification: pending in this round
+- Verification: `npm run contentlayer`, `npm run verify:mdx-tables`,
+  `npm run lint`, `npx tsc --noEmit --pretty false`, `git diff --check`,
+  `AUTH_SECRET=local-test-secret npm run build`, local EN / zh-HK / zh-CN
+  route smoke, EN TXT/PDF export smoke, and both new checkpoint preview API
+  requests passed
 - Remaining issues: broader Math1025 checkpoint density should increase as
   chapters `6` through `11` are authored
 
@@ -676,3 +680,23 @@ unit-level coverage.
 - Remaining issues: member-gated checkpoint submission was not exercised in
   this pass; only the free preview path was checked to avoid introducing new
   account-state dependencies during QA.
+
+### 2026-05-14 checkpoint 23: Math1025 ch7 integer-methods exercise integrity
+
+- Checkpoint name: `7.1` divisibility / gcd / Diophantine exercise and answer
+  pairing
+- What was inspected: `MATH1025_slides_ch7.pdf` extracted text pp. 2-35, the
+  new EN / zh-HK / zh-CN `7.1` MDX files, and
+  `src/lib/textbook/problem-bank.ts`
+- What was changed: added paired quick checks / reveal answers for
+  divisibility, integer linear combinations, the Euclidean algorithm, and
+  Diophantine solvability; added an end exercise set with hidden guided
+  solutions; added two checkpoint problems for Euclidean-algorithm last
+  remainder and Diophantine solvability
+- Integrity note: the end-of-unit solutions are inside `RevealSolution` so the
+  public page keeps answers hidden by default while TXT/PDF export can still
+  expose them as study material. The checkpoint fill-in is a single integer,
+  and the Diophantine solvability item is MCQ to avoid fragile parsing.
+- Verification: pending in this round
+- Remaining issues: the rational / irrational-number material later in chapter
+  7 still needs its own exercise and checkpoint pass.

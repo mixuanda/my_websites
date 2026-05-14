@@ -1,0 +1,571 @@
+---
+title: "7.1 Divisibility, gcd, and integer equations"
+description: "Develop divisibility, primes, the division algorithm, Euclidean algorithm, Bezout's identity, unique prime factorization, and linear Diophantine equations."
+---
+
+## Why integer arithmetic needs new language
+
+Integer arithmetic looks familiar, but proofs about integers need vocabulary
+that is more precise than ordinary division. When we write `a/b` in real
+algebra, the quotient usually exists as a real number. In integer arithmetic,
+the important question is different: can the quotient be chosen as another
+integer?
+
+This question controls many later methods. It lets us define prime numbers,
+measure common factors, compute greatest common divisors efficiently, and
+decide when an equation such as
+
+$$
+ax+by=c
+$$
+
+has integer solutions.
+
+## Divisibility
+
+<Definition title="Divisibility">
+Let `a,b\in\mathbb Z`. We say that `a` divides `b`, written `a\mid b`, if
+there exists an integer `d` such that
+
+$$
+b=ad.
+$$
+
+In that case, `a` is called a divisor or factor of `b`.
+</Definition>
+
+The phrase "there exists an integer" is the essential part of the definition.
+For example, `3\mid 15` because `15=3\cdot5`, while `4\nmid 15` because
+there is no integer `d` with `15=4d`.
+
+Several edge cases are worth fixing immediately:
+
+- every integer divides `0`, because `0=a\cdot0`;
+- `0` divides only `0`, because `x=0\cdot d` forces `x=0`;
+- `\pm1` divides every integer;
+- if `a\ne0`, then both `a` and `-a` divide `a`.
+
+<TheoremCard title="Basic divisibility rules">
+Let `a,b,c\in\mathbb Z`.
+
+1. If `b\ne0` and `a\mid b`, then `|a|\le |b|`.
+2. If `a\mid b`, then `(\pm a)\mid(\pm b)`.
+3. If `a\mid b` and `b\mid c`, then `a\mid c`.
+4. If `a\mid b` and `a\mid c`, then
+   `a\mid (bx+cy)` for all `x,y\in\mathbb Z`.
+</TheoremCard>
+
+The fourth rule is the one that quietly powers much of the chapter. If a number
+divides two integers, then it divides every integer linear combination of them.
+For instance, if `6\mid 18` and `6\mid 30`, then
+
+$$
+6\mid 18x+30y
+$$
+
+for every pair of integers `x,y`.
+
+## Primes, composites, and well-ordering
+
+<Definition title="Prime and composite">
+Let `n\in\mathbb Z^+` with `n>1`.
+
+- `n` is prime if its only positive divisors are `1` and `n`;
+- `n` is composite if it is not prime.
+
+The integer `1` is neither prime nor composite.
+</Definition>
+
+Equivalently, `n>1` is composite exactly when
+
+$$
+n=n_1n_2
+$$
+
+for integers `n_1,n_2` satisfying `1<n_1,n_2<n`.
+
+The proofs about prime numbers rely on a simple but powerful ordering fact.
+
+<TheoremCard title="Well-ordering principle">
+Every nonempty subset of `\mathbb N=\{0,1,2,\ldots\}` has a least element.
+</TheoremCard>
+
+This principle is a way to run a least-counterexample argument. If a bad set of
+positive integers is nonempty, choose its least bad element and show that this
+least element creates an even smaller bad element. That contradiction proves
+that the bad set was empty.
+
+<TheoremCard title="Every integer greater than 1 has a prime factor">
+Every positive integer `n>1` is divisible by at least one prime.
+</TheoremCard>
+
+Here is the proof pattern. Suppose the claim fails, and let `m` be the least
+integer greater than `1` with no prime factor. Then `m` cannot itself be prime.
+So `m=n_1n_2` with `1<n_1,n_2<m`. By minimality of `m`, the smaller number
+`n_1` has a prime factor `p`. Since `p\mid n_1` and `n_1\mid m`, transitivity
+gives `p\mid m`, contradicting the choice of `m`.
+
+<TheoremCard title="Infinitely many primes">
+There are infinitely many prime numbers.
+</TheoremCard>
+
+If there were only finitely many primes `p_1,\ldots,p_N`, consider
+
+$$
+n=p_1p_2\cdots p_N+1.
+$$
+
+The previous theorem gives a prime divisor of `n`. That prime must be one of
+the listed primes, say `p_i`. But `p_i` also divides the product
+`p_1p_2\cdots p_N`, so it divides the difference
+
+$$
+n-p_1p_2\cdots p_N=1,
+$$
+
+which is impossible for a prime.
+
+## Greatest common divisors
+
+<Definition title="Greatest common divisor">
+Let `a,b\in\mathbb Z`. If at least one of `a,b` is nonzero, the greatest common
+divisor is
+
+$$
+\gcd(a,b)=\max\{d\in\mathbb Z:d\mid a\text{ and }d\mid b\}.
+$$
+
+If `a=b=0`, define `\gcd(0,0)=0`.
+</Definition>
+
+For nonzero input, the maximum exists because the possible common divisors are
+bounded in absolute value. Also, `\gcd(a,b)` is always positive unless both
+inputs are zero.
+
+<Definition title="Relatively prime">
+Two nonzero integers `a` and `b` are relatively prime if their only positive
+common divisor is `1`. Equivalently,
+
+$$
+\gcd(a,b)=1.
+$$
+</Definition>
+
+The gcd removes the common part of two integers. If
+
+$$
+d=\gcd(a,b),
+$$
+
+then
+
+$$
+\gcd\left(\frac ad,\frac bd\right)=1.
+$$
+
+For example, `\gcd(126,140)=14`, so
+
+$$
+\frac{126}{140}=\frac{9}{10},
+$$
+
+and `9` and `10` are relatively prime.
+
+## The division algorithm
+
+The next task is computational: how do we find the gcd without already knowing
+all common divisors? The key is integer division with a controlled remainder.
+
+<TheoremCard title="Division algorithm">
+Let `a,b\in\mathbb Z` with `b\ne0`. Then there exist unique integers `q` and
+`r` such that
+
+$$
+a=bq+r,\qquad 0\le r<|b|.
+$$
+
+The integer `q` is the quotient and `r` is the remainder.
+</TheoremCard>
+
+The condition `0\le r<|b|` is not decoration. It is what makes the remainder
+unique. For example,
+
+$$
+17=5\cdot3+2
+$$
+
+has an allowed remainder `2`, while
+
+$$
+17=5\cdot2+7
+$$
+
+does not count as the division algorithm because `7` is not smaller than `5`.
+
+<CommonMistake title="Do not ignore the remainder range">
+The equation `a=bq+r` alone is not enough. There are infinitely many such
+representations if `r` is unrestricted, because changing `q` changes `r`.
+The inequality `0\le r<|b|` is what selects the canonical quotient and
+remainder.
+</CommonMistake>
+
+## Gcd invariance and the Euclidean algorithm
+
+The division algorithm is useful because replacing `(a,b)` by `(b,r)` preserves
+the gcd.
+
+<TheoremCard title="Gcd step">
+If `a=bq+r`, then
+
+$$
+\gcd(a,b)=\gcd(b,r).
+$$
+</TheoremCard>
+
+Indeed, a common divisor of `a` and `b` divides `r=a-bq`, and a common divisor
+of `b` and `r` divides `a=bq+r`. Therefore the two pairs have exactly the same
+positive common divisors.
+
+<WorkedExample title="Euclidean algorithm for `\gcd(7224,1290)`">
+Apply the division algorithm repeatedly:
+
+$$
+\begin{aligned}
+7224&=1290\cdot5+774,\\
+1290&=774\cdot1+516,\\
+774&=516\cdot1+258,\\
+516&=258\cdot2+0.
+\end{aligned}
+$$
+
+The last nonzero remainder is `258`, so
+
+$$
+\gcd(7224,1290)=258.
+$$
+</WorkedExample>
+
+The algorithm must terminate because the remainders form a strictly decreasing
+sequence of nonnegative integers:
+
+$$
+r_1>r_2>r_3>\cdots\ge0.
+$$
+
+A strictly decreasing sequence of nonnegative integers cannot continue forever.
+
+## Extended Euclidean algorithm and Bezout's identity
+
+The same computation can be run backward to express the gcd as an integer
+linear combination of the original two numbers.
+
+<WorkedExample title="Back-substitution">
+From the previous computation,
+
+$$
+258=774-516.
+$$
+
+Substitute `516=1290-774`:
+
+$$
+258=774-(1290-774)=2\cdot774-1290.
+$$
+
+Substitute `774=7224-5\cdot1290`:
+
+$$
+258=2(7224-5\cdot1290)-1290
+=2\cdot7224-11\cdot1290.
+$$
+
+Thus
+
+$$
+258=7224\cdot2+1290\cdot(-11).
+$$
+</WorkedExample>
+
+<TheoremCard title="Bezout's identity">
+For any integers `a,b`, there exist integers `x,y` such that
+
+$$
+\gcd(a,b)=ax+by.
+$$
+</TheoremCard>
+
+This result says that the gcd is not merely the largest common divisor; it is
+also the smallest positive integer that can be built as an integer linear
+combination of `a` and `b`.
+
+<TheoremCard title="Relative primality criterion">
+Let `a,b` be nonzero integers. Then `a` and `b` are relatively prime if and only
+if there exist integers `x,y` such that
+
+$$
+ax+by=1.
+$$
+</TheoremCard>
+
+One direction is Bezout's identity when `\gcd(a,b)=1`. For the converse, if
+`ax+by=1`, then every common divisor of `a` and `b` must divide `1`; hence the
+greatest positive common divisor is `1`.
+
+<WorkedExample title="Extended Euclidean table">
+For `12345` and `11111`, the Euclidean algorithm gives
+
+$$
+\begin{aligned}
+12345&=11111\cdot1+1234,\\
+11111&=1234\cdot9+5,\\
+1234&=5\cdot246+4,\\
+5&=4\cdot1+1,\\
+4&=1\cdot4+0.
+\end{aligned}
+$$
+
+So the gcd is `1`. Back-substitution, or the coefficient table form of the
+extended Euclidean algorithm, gives
+
+$$
+1=12345(-2224)+11111(2471).
+$$
+
+This proves in particular that `12345` and `11111` are relatively prime.
+</WorkedExample>
+
+## Common divisors and Euclid's lemma
+
+Bezout's identity also gives a cleaner characterization of the gcd.
+
+<TheoremCard title="Common divisors divide the gcd">
+For integers `a,b,n`,
+
+$$
+n\mid a\text{ and }n\mid b
+\quad\Longleftrightarrow\quad
+n\mid \gcd(a,b).
+$$
+</TheoremCard>
+
+The forward direction is the useful one. If `n` divides both `a` and `b`, then
+it divides every linear combination `ax+by`; in particular, it divides the
+Bezout combination equal to `\gcd(a,b)`.
+
+<TheoremCard title="Euclid's lemma">
+Let `p` be prime. If `p\mid ab`, then `p\mid a` or `p\mid b`.
+</TheoremCard>
+
+If `p\nmid a`, then `\gcd(a,p)=1`, so there exist integers `m,n` with
+
+$$
+am+pn=1.
+$$
+
+Multiplying by `b` gives
+
+$$
+abm+pbn=b.
+$$
+
+Since `p\mid ab`, both terms on the left are divisible by `p`, so `p\mid b`.
+
+## Unique prime factorization
+
+<TheoremCard title="Fundamental theorem of arithmetic">
+Every positive integer greater than `1` can be written as a product of primes,
+and this product is unique up to the order of the factors.
+</TheoremCard>
+
+Existence follows from the same least-counterexample strategy used earlier.
+If there were a least integer greater than `1` that could not be written as a
+product of primes, it would not be prime, so it would split into smaller
+factors, and those smaller factors would already have prime factorizations.
+
+Uniqueness uses Euclid's lemma. If
+
+$$
+p_1p_2\cdots p_r=q_1q_2\cdots q_s,
+$$
+
+then `p_1` divides the right-hand product, so `p_1` must divide one of the
+prime factors `q_j`. Hence `p_1=q_j`. Cancel and repeat.
+
+The theorem lets us compute gcds by comparing exponents. If
+
+$$
+a=p_1^{m_1}\cdots p_r^{m_r},
+\qquad
+b=p_1^{n_1}\cdots p_r^{n_r},
+$$
+
+where missing primes have exponent `0`, then
+
+$$
+\gcd(a,b)=p_1^{\min(m_1,n_1)}\cdots p_r^{\min(m_r,n_r)}.
+$$
+
+<WorkedExample title="Gcd from prime powers">
+Since
+
+$$
+144=2^4\cdot3^2,\qquad 60=2^2\cdot3\cdot5,
+$$
+
+we have
+
+$$
+\gcd(144,60)=2^2\cdot3^1\cdot5^0=12.
+$$
+</WorkedExample>
+
+## Linear Diophantine equations
+
+An equation
+
+$$
+ax+by=c
+$$
+
+where the unknowns `x,y` must be integers is called a linear Diophantine
+equation. Bezout's identity tells us exactly when it is solvable.
+
+<TheoremCard title="Solvability criterion">
+Let `a,b,c\in\mathbb Z` and let `d=\gcd(a,b)`. The equation
+
+$$
+ax+by=c
+$$
+
+has an integer solution `(x,y)` if and only if `d\mid c`.
+</TheoremCard>
+
+If a solution exists, then `d` divides `a` and `b`, so `d` divides
+`ax+by=c`. Conversely, if `c=dr`, Bezout's identity gives `d=am+bn`, and then
+
+$$
+c=dr=a(mr)+b(nr).
+$$
+
+Thus `(mr,nr)` is a solution.
+
+Once one solution is known, all solutions can be described. Suppose
+`d=\gcd(a,b)\ne0`, put
+
+$$
+u=\frac ad,\qquad v=\frac bd,
+$$
+
+and let `(x_0,y_0)` be one solution. Then every solution is
+
+$$
+x=x_0+kv,\qquad y=y_0-ku,\qquad k\in\mathbb Z.
+$$
+
+<WorkedExample title="A measuring problem">
+Can a `180` mL cup and a `105` mL glass measure exactly `30` mL? Algebraically,
+we ask whether
+
+$$
+180x+105y=30
+$$
+
+has integer solutions. Since
+
+$$
+\gcd(180,105)=15
+$$
+
+and `15\mid 30`, the equation is solvable.
+
+Using the extended Euclidean algorithm,
+
+$$
+15=180\cdot3-105\cdot5.
+$$
+
+Multiplying by `2` gives
+
+$$
+30=180\cdot6-105\cdot10.
+$$
+
+So one solution is `(x,y)=(6,-10)`. Since `a/d=12` and `b/d=7`, all solutions
+are
+
+$$
+(x,y)=(6+7k,-10-12k),\qquad k\in\mathbb Z.
+$$
+</WorkedExample>
+
+## Quick checks
+
+<QuickCheck prompt="What does `a\mid b` mean in integer language?">
+Use the quantifier hidden in the definition.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It means that there exists an integer `d` such that `b=ad`.
+</RevealSolution>
+
+<QuickCheck prompt="Why does every common divisor of `a` and `b` divide every expression `ax+by` with `x,y\in\mathbb Z`?">
+Use the definition of divisibility twice.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+If `n\mid a` and `n\mid b`, then `a=nr` and `b=ns` for some integers `r,s`.
+Thus `ax+by=n(rx+sy)`, and `rx+sy` is an integer.
+</RevealSolution>
+
+<QuickCheck prompt="In the Euclidean algorithm for `7224` and `1290`, why is the gcd the last nonzero remainder?">
+Use the identity `\gcd(a,b)=\gcd(b,r)` after each division step.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Each division step preserves the gcd, so the original gcd equals the gcd of
+the last nonzero remainder `258` and `0`. That gcd is `258`.
+</RevealSolution>
+
+<QuickCheck prompt="What condition decides whether `ax+by=c` has integer solutions?">
+State it using `\gcd(a,b)`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The equation has integer solutions if and only if `\gcd(a,b)\mid c`.
+</RevealSolution>
+
+## Exercises
+
+1. List all positive divisors of `84`, and compute `\gcd(84,60)`.
+2. Use the division algorithm to write `-37=5q+r` with `0\le r<5`.
+3. Use the Euclidean algorithm to compute `\gcd(252,198)`.
+4. Express `\gcd(252,198)` as `252x+198y`.
+5. Prove that if `n\mid a` and `n\mid b`, then `n\mid\gcd(a,b)`.
+6. Determine whether `35x+21y=14` has integer solutions. If it does, find one.
+7. Determine whether `35x+21y=10` has integer solutions.
+8. Use prime factorizations to compute `\gcd(2^4\cdot3^2\cdot5,\,
+   2^3\cdot3^5\cdot7)`.
+
+<RevealSolution title="Guided solutions">
+
+1. The positive divisors of `84` are `1,2,3,4,6,7,12,14,21,28,42,84`.
+   Since `60=2^2\cdot3\cdot5` and `84=2^2\cdot3\cdot7`,
+   `\gcd(84,60)=2^2\cdot3=12`.
+2. We need a remainder between `0` and `4`. Since
+   `-37=5(-8)+3`, the quotient is `q=-8` and the remainder is `r=3`.
+3. `252=198\cdot1+54`, `198=54\cdot3+36`, `54=36\cdot1+18`,
+   and `36=18\cdot2+0`. Hence `\gcd(252,198)=18`.
+4. Back-substitute:
+   `18=54-36=54-(198-3\cdot54)=4\cdot54-198`.
+   Since `54=252-198`, we get
+   `18=4(252-198)-198=4\cdot252-5\cdot198`.
+5. By Bezout's identity, `\gcd(a,b)=ax+by` for some integers `x,y`.
+   If `n` divides both `a` and `b`, then `n` divides the right-hand side.
+6. `\gcd(35,21)=7`, and `7\mid14`, so solutions exist. Since
+   `7=35-21`, multiplying by `2` gives `14=35\cdot2+21(-2)`, so
+   `(x,y)=(2,-2)` is one solution.
+7. `\gcd(35,21)=7`, but `7\nmid10`, so there are no integer solutions.
+8. Compare the smaller exponent of each prime:
+   `2^{\min(4,3)}3^{\min(2,5)}5^{\min(1,0)}7^{\min(0,1)}
+   =2^3\cdot3^2=72`.
+</RevealSolution>

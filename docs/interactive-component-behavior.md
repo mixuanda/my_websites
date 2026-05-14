@@ -188,5 +188,12 @@ an interactive complex-plane component only if a later pass needs stateful
 rotation, root-of-unity, or locus exploration beyond what static article
 examples can explain.
 
+The Math1025 `7.1` integer-methods pass also does not add a widget. Divisibility
+definitions, Euclidean remainders, Bezout back-substitution, prime
+factorization, and Diophantine solution families are best introduced through
+static display math and worked examples in this first public unit. A future
+Euclidean-algorithm stepper could be useful only if it remains article-embedded
+and exports as a full static remainder / back-substitution table.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

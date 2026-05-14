@@ -7234,6 +7234,153 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["sequences", "arithmetic-geometric-series", "finite-sums"],
   },
+  "checkpoint.math1025.integer-methods.euclidean-last-remainder": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.integer-methods.euclidean-last-remainder",
+    type: "FILL_IN_BLANK",
+    courseId: "math1025",
+    chapterId: "integer-methods",
+    unitId: "math1025.integer-methods.divisibility-gcd-and-integer-equations",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Use the Euclidean algorithm shown in chapter 7: `7224=1290\\cdot5+774`, `1290=774\\cdot1+516`, `774=516\\cdot1+258`, `516=258\\cdot2+0`. Fill in the blank: `\\gcd(7224,1290)=____`.",
+      "使用第 7 章的歐幾里得算法：`7224=1290\\cdot5+774`，`1290=774\\cdot1+516`，`774=516\\cdot1+258`，`516=258\\cdot2+0`。填空：`\\gcd(7224,1290)=____`。",
+      "使用第 7 章的欧几里得算法：`7224=1290\\cdot5+774`，`1290=774\\cdot1+516`，`774=516\\cdot1+258`，`516=258\\cdot2+0`。填空：`\\gcd(7224,1290)=____`。"
+    ),
+    correctAnswer: {
+      value: "258",
+      equivalentValues: ["258.0"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "The gcd is preserved at each step `\\gcd(a,b)=\\gcd(b,r)` and equals the last nonzero remainder.",
+        "每一步都有 `\\gcd(a,b)=\\gcd(b,r)`，所以最大公因數等於最後一個非零餘數。",
+        "每一步都有 `\\gcd(a,b)=\\gcd(b,r)`，所以最大公因数等于最后一个非零余数。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Enter a single positive integer.",
+        "請輸入一個正整數。",
+        "请输入一个正整数。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter the last nonzero remainder.",
+      "請輸入最後一個非零餘數。",
+      "请输入最后一个非零余数。"
+    ),
+    solutionSteps: [
+      text(
+        "Each division step replaces `\\gcd(a,b)` by `\\gcd(b,r)` without changing the value.",
+        "每個除法步驟都把 `\\gcd(a,b)` 換成 `\\gcd(b,r)`，但數值不變。",
+        "每个除法步骤都把 `\\gcd(a,b)` 换成 `\\gcd(b,r)`，但数值不变。"
+      ),
+      text(
+        "The last nonzero remainder in the displayed chain is `258`.",
+        "列出的計算中，最後一個非零餘數是 `258`。",
+        "列出的计算中，最后一个非零余数是 `258`。"
+      ),
+      text(
+        "Therefore `\\gcd(7224,1290)=258`.",
+        "因此 `\\gcd(7224,1290)=258`。",
+        "因此 `\\gcd(7224,1290)=258`。"
+      ),
+    ],
+    skillTags: ["integer-methods", "gcd", "euclidean-algorithm"],
+  },
+  "checkpoint.math1025.integer-methods.diophantine-solvability": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.integer-methods.diophantine-solvability",
+    type: "MCQ",
+    courseId: "math1025",
+    chapterId: "integer-methods",
+    unitId: "math1025.integer-methods.divisibility-gcd-and-integer-equations",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Which statement correctly decides whether `35x+21y=10` has integer solutions?",
+      "哪一個陳述正確判斷 `35x+21y=10` 是否有整數解？",
+      "哪一个陈述正确判断 `35x+21y=10` 是否有整数解？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "No integer solution exists, because `\\gcd(35,21)=7` and `7\\nmid 10`.",
+          "沒有整數解，因為 `\\gcd(35,21)=7` 且 `7\\nmid 10`。",
+          "没有整数解，因为 `\\gcd(35,21)=7` 且 `7\\nmid 10`。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "Integer solutions always exist for any equation `ax+by=c`.",
+          "任何 `ax+by=c` 都必定有整數解。",
+          "任何 `ax+by=c` 都必定有整数解。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "Integer solutions exist because `35` and `21` are both positive.",
+          "有整數解，因為 `35` 和 `21` 都是正數。",
+          "有整数解，因为 `35` 和 `21` 都是正数。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "Integer solutions exist because `10` is smaller than `35`.",
+          "有整數解，因為 `10` 小於 `35`。",
+          "有整数解，因为 `10` 小于 `35`。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Use the criterion: `ax+by=c` is solvable in integers if and only if `\\gcd(a,b)` divides `c`.",
+        "使用判別條件：`ax+by=c` 有整數解，當且僅當 `\\gcd(a,b)` 整除 `c`。",
+        "使用判别条件：`ax+by=c` 有整数解，当且仅当 `\\gcd(a,b)` 整除 `c`。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "`35=7\\cdot5` and `21=7\\cdot3`, so the gcd is `7`.",
+        "`35=7\\cdot5` 且 `21=7\\cdot3`，所以最大公因數是 `7`。",
+        "`35=7\\cdot5` 且 `21=7\\cdot3`，所以最大公因数是 `7`。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Compute `\\gcd(35,21)=7`.",
+        "先計算 `\\gcd(35,21)=7`。",
+        "先计算 `\\gcd(35,21)=7`。"
+      ),
+      text(
+        "The linear Diophantine equation `35x+21y=10` is solvable only if `7\\mid10`.",
+        "一次 Diophantine 方程 `35x+21y=10` 有整數解的必要充分條件是 `7\\mid10`。",
+        "一次 Diophantine 方程 `35x+21y=10` 有整数解的必要充分条件是 `7\\mid10`。"
+      ),
+      text(
+        "Since `7\\nmid10`, there is no integer solution.",
+        "因為 `7\\nmid10`，所以沒有整數解。",
+        "因为 `7\\nmid10`，所以没有整数解。"
+      ),
+    ],
+    skillTags: ["integer-methods", "linear-diophantine-equations", "gcd"],
+  },
   "checkpoint.math1025.complex-numbers.divide-by-conjugate": {
     accessTier: "FREE",
     id: "checkpoint.math1025.complex-numbers.divide-by-conjugate",

@@ -43,9 +43,9 @@ verification result, and any remaining follow-up.
 | CSCI2520 content | CSCI2520 is incomplete, especially algorithms | Not started | Audit `reference/CSCI2520`, extracted text, and current `content/textbook/csci2520/**`. |
 | CSCI2520 interactions | Algorithms need code / pseudocode plus synchronized demonstrations | Not started | Design split explanatory blocks where code or pseudocode and the demonstration advance together. |
 | CSCI2520 checkpoints | Add code-output and complexity-analysis checkpoint questions | Not started | Extend problem-bank support if current checkpoint types are insufficient. |
-| Math1025 content | Math1025 content is incomplete and currently too easy | Not started | Re-audit `reference/MATH1025` and raise difficulty to match lecture-note level. |
-| Math1025 rendering | Math1025 has rendering mistakes | Not started | Audit page rendering and export output for affected units. |
-| Math1025 exercises | Math1025 exercise / answer presentation should hide answers behind reveals | Not started | Align with the existing reveal-answer pattern used in other Notes units. |
+| Math1025 content | Math1025 content is incomplete and currently too easy | In progress | Added source-backed `7.1 Divisibility, gcd, and integer equations` from `MATH1025_slides_ch7.pdf` pp. 2-35; remaining ch7 rational / irrational material plus ch8-ch11 are still backlog. |
+| Math1025 rendering | Math1025 has rendering mistakes | In progress | New `7.1` uses existing theorem / example / quick-check / reveal components and still needs the current round's local plus production route/export verification. |
+| Math1025 exercises | Math1025 exercise / answer presentation should hide answers behind reveals | In progress | New `7.1` keeps guided solutions inside `RevealSolution` and adds two problem-bank checkpoints for Euclidean algorithm and Diophantine solvability. |
 | Tracking | Record this backlog in the repository | Completed | This file created on 2026-05-11 and linked from `docs/README.md`. |
 
 ## 2026-05-14 QA Checkpoint
@@ -69,8 +69,9 @@ Key result:
 - `npm run check:textbook-content` still reports 363 content warnings, so the
   main unfinished work is content depth and exercise parity, not basic route
   generation.
-- Math1025 is the largest unauthored source-backed backlog: chapter-slide
-  families `ch7` through `ch11` are still not public Notes units.
+- Math1025 is the largest source-backed backlog: the first `ch7` unit is now
+  authored, while the remaining `ch7` rational / irrational material plus
+  `ch8` through `ch11` are still not public Notes units.
 - CSCI2520 has public baseline units but still needs serious algorithm depth,
   source-process prose cleanup, and checkpoint expansion.
 - Math1030 has broad route coverage but still has five units without
@@ -345,6 +346,29 @@ Every implementation pass that touches the items above should verify:
 - internal coverage / QA docs are updated when source-backed content changes.
 
 ## Completion Log
+
+### 2026-05-14: Math1025 ch7 integer-methods supplement
+
+- Status: In progress; content integration and local verification are complete,
+  while commit / push / production verification remain pending in this round.
+- Gap selected: Math1025 had no public Notes unit for the `ch7` integer
+  methods despite checked-in chapter slides.
+- Files changed: three localized MDX files under
+  `content/textbook/math1025/integer-methods/divisibility-gcd-and-integer-equations/`,
+  plus `src/lib/textbook/catalog.ts`, `src/lib/textbook/problem-bank.ts`, and
+  internal coverage / QA docs.
+- Implementation state: added `7.1 Divisibility, gcd, and integer equations`
+  in EN, zh-HK, and zh-CN; registered a new chapter-7 catalog family; added
+  checkpoint problems for Euclidean-algorithm last remainder and Diophantine
+  solvability.
+- Verification completed: `npm run contentlayer`, `npm run verify:mdx-tables`,
+  `npm run lint`, `npx tsc --noEmit --pretty false`, `git diff --check`,
+  `AUTH_SECRET=local-test-secret npm run build`,
+  `CONTENT_CHECK_MAX_WARNINGS=40 npm run check:textbook-content`, local EN /
+  zh-HK / zh-CN route checks, EN TXT/PDF exports, and both new checkpoint
+  preview API checks.
+- Remaining before completion: commit and push, wait for production
+  deployment, then verify `www.evanalysis.top` remotely.
 
 ### 2026-05-11: Global Notes sidebar finder blocked on Chrome QA
 

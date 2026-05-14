@@ -69,7 +69,8 @@ still far from complete.
 | Course | Chapter family | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
 | `math1025` | Foundations and early methods (`ch0` to `ch6`) | Authored through `6.1` | Usable | Seven three-language units are represented: notation, trigonometry, induction, inequalities / absolute value, binomial coefficients / expansions, sequences / recursion / series, and complex numbers / polar form / geometry. |
-| `math1025` | Methods spine (`ch7` to `ch8`) | Unauthored | Usable | Chapter slides cover integers / rational numbers and polynomials. |
+| `math1025` | Integer methods (`ch7`) | Authored through `7.1` | Usable | New three-language unit covers divisibility, primes, well-ordering arguments, gcd, division algorithm, Euclidean / extended Euclidean algorithms, Bezout, unique prime factorization, and linear Diophantine equations. The rational / irrational-number part of `ch7` remains pending. |
+| `math1025` | Polynomial methods (`ch8`) | Unauthored | Usable | Chapter slides cover polynomial arithmetic, division algorithm, polynomial gcd, irreducibility, and rational functions. |
 | `math1025` | Vectors and geometry (`ch9` to `ch11`) | Unauthored | Usable | Chapter slides cover vectors in `R^n`, straight lines / planes / curves, and conic sections. |
 | `math1025` | Homework and assessment support | Unauthored | Secondary support | Keep homework-solution PDFs and the MATH1025 midterm pair for later exercise design after baseline notes exist. |
 | `math1025` | MATH1028 overlap material | Unauthored | Overlap | Treat the MATH1028 midterm pair as adjacent-course overlap, not as primary Math1025 conceptual source. |

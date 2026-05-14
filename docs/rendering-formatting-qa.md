@@ -632,3 +632,29 @@ Current checkpoint resolution:
 - Remaining issues: the content checker still reports 363 backlog warnings
   for thin or under-structured note units; these are now visible as backlog
   warnings instead of blocking the full QA pipeline.
+
+### 2026-05-14 checkpoint 23: Math1025 ch7 integer-methods rendering pass
+
+- Checkpoint name: `7.1 Divisibility, gcd, and integer equations` initial
+  rendering integration
+- What was inspected: extracted `MATH1025_slides_ch7.pdf` text pp. 2-35,
+  existing Math1025 MDX patterns, the shared MDX block registry, catalog
+  source-ref metadata, and problem-bank checkpoint rendering conventions
+- What was changed: added EN / zh-HK / zh-CN article pages using existing
+  `Definition`, `TheoremCard`, `WorkedExample`, `CommonMistake`,
+  `QuickCheck`, and `RevealSolution` blocks; no new interactive component was
+  introduced because the Euclidean and Diophantine material is clearer as
+  static step-by-step text in this first pass
+- Rendering note: the unit uses display math for division chains, Bezout
+  combinations, prime factorizations, and Diophantine solution families; TXT /
+  PDF export should preserve the static study sequence without needing an
+  interactive fallback
+- Verification: `npm run contentlayer`, `npm run verify:mdx-tables`,
+  `npm run lint`, `npx tsc --noEmit --pretty false`, `git diff --check`,
+  `AUTH_SECRET=local-test-secret npm run build`, and
+  `CONTENT_CHECK_MAX_WARNINGS=40 npm run check:textbook-content` passed.
+  Local production smoke on `127.0.0.1:3004` returned 200 for EN / zh-HK /
+  zh-CN note routes, EN TXT export, EN PDF export with `%PDF` header, and both
+  new checkpoint preview API requests.
+- Remaining issues: run route / export / API verification locally, then verify
+  the deployed `www.evanalysis.top` pages after push.

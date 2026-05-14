@@ -319,18 +319,21 @@ source-backed chapters are added.
 
 ## Current Math1025 parity note
 
-- `6.1 Complex numbers, polar form, and geometry` is now the documented
-  Math1025 coverage boundary after `5.1 Sequences, recursion, and series`.
-- The EN, zh-HK, and zh-CN `6.1` files keep matching section order,
-  definitions, theorem/proof flow, worked examples, exercises, and answer
-  labels while using locale-specific prose.
-- Representative TXT and PDF exports were checked locally for complex
-  arithmetic, polar / exponential formulas, roots of unity, locus equations,
-  and complex-geometry determinants.
-- Unit-level checkpoint problems were added to the shared Math1025 problem
-  bank; production verification on `www.evanalysis.top` passed for the
-  localized note routes, representative TXT/PDF exports, and all five new
-  checkpoint preview-grade requests.
+- `7.1 Divisibility, gcd, and integer equations` is now the documented
+  Math1025 coverage boundary after `6.1 Complex numbers, polar form, and
+  geometry`.
+- The EN, zh-HK, and zh-CN `7.1` files keep matching section order:
+  divisibility, primes / well-ordering, gcd, division algorithm, Euclidean
+  algorithm, Bezout, Euclid's lemma, unique prime factorization, Diophantine
+  equations, quick checks, exercises, and hidden guided solutions.
+- The unit is source-backed by `reference/MATH1025/MATH1025_slides_ch7.pdf`
+  pp. 2-35. The rational / irrational-number material beginning around p. 36
+  remains pending as the next `ch7` slice.
+- Two unit-level checkpoint problems were added to the shared Math1025 problem
+  bank for the Euclidean algorithm and Diophantine solvability. Local
+  Contentlayer, MDX table, lint, typecheck, build, route, TXT/PDF export, and
+  checkpoint preview checks passed in this round; production deployment and
+  remote verification are still pending.
 
 ## Checkpoint log
 

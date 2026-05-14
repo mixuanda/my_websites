@@ -1285,6 +1285,38 @@ const math1025ComplexNumberUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1025IntegerMethodUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "integer-methods",
+    chapterNumber: "7",
+    course: "math1025",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Develop divisibility, primes, the division algorithm, the Euclidean algorithm, Bezout's identity, prime factorization, and first linear Diophantine equations.",
+      "建立整除、質數、除法算法、歐幾里得算法、Bézout 恆等式、質因數分解，以及初步一次 Diophantine 方程。",
+      "建立整除、质数、除法算法、欧几里得算法、Bézout 恒等式、质因数分解，以及初步一次 Diophantine 方程。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 8,
+    prerequisites: ["math1025.complex-numbers.complex-number-arithmetic-and-geometry"],
+    slug: "divisibility-gcd-and-integer-equations",
+    sourceRefs: [
+      {
+        file: "reference/MATH1025/MATH1025_slides_ch7.pdf",
+        pages: "pp. 2-35",
+      },
+    ],
+    title: text(
+      "7.1 Divisibility, gcd, and integer equations",
+      "7.1 整除、最大公因數與整數方程",
+      "7.1 整除、最大公因数与整数方程"
+    ),
+    unitId: "math1025.integer-methods.divisibility-gcd-and-integer-equations",
+    unitNumber: "7.1",
+  },
+];
+
 const math1030SystemsUnits: TextbookUnitMeta[] = [
   {
     chapterId: "systems",
@@ -3156,6 +3188,22 @@ const math1025: TextbookCourseMeta = {
       ),
       title: text("Complex numbers", "複數", "复数"),
       units: math1025ComplexNumberUnits,
+    },
+    {
+      course: "math1025",
+      id: "integer-methods",
+      number: "7",
+      summary: text(
+        "Divisibility, primes, gcd computations, Bezout identities, and integer linear equations.",
+        "整除、質數、最大公因數計算、Bézout 恆等式與整數線性方程。",
+        "整除、质数、最大公因数计算、Bézout 恒等式与整数线性方程。"
+      ),
+      title: text(
+        "Integer methods",
+        "整數方法",
+        "整数方法"
+      ),
+      units: math1025IntegerMethodUnits,
     },
   ],
   description: text(

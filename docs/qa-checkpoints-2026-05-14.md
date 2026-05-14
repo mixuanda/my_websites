@@ -160,21 +160,61 @@ be surfaced on public note pages.
   choice page loads from `www.evanalysis.top`, with localized course sidebar,
   export control, checkpoint block, and the corrected prose `同一部分`.
 
+### 2026-05-14 23:30 HKT - Math1025 ch7 integer-methods implementation checkpoint
+
+- Gap selected: Math1025 chapter-slide backlog remains the largest
+  source-backed unfinished slice. `MATH1025_slides_ch7.pdf` pp. 2-35 was
+  chosen because it supports a coherent public Notes unit on divisibility,
+  gcd, the Euclidean algorithm, Bezout, prime factorization, and linear
+  Diophantine equations.
+- Implementation completed so far:
+  - added EN / zh-HK / zh-CN MDX for
+    `7.1 Divisibility, gcd, and integer equations`;
+  - registered a new Math1025 chapter family `integer-methods` in the shared
+    catalog;
+  - added two free checkpoint problems for Euclidean-algorithm last remainder
+    and Diophantine solvability;
+  - updated reference coverage, chapter coverage, parity, rendering, exercise,
+    and tracker docs.
+- Scope intentionally left for later:
+  - the rational / irrational-number material in the rest of chapter 7;
+  - chapter 8 polynomial arithmetic / gcd / irreducibility;
+  - chapter 9-11 vectors and geometry;
+  - homework / assessment PDFs as secondary exercise-design support.
+- Local verification completed at this checkpoint:
+  - `npm run contentlayer` generated 235 documents;
+  - `npm run verify:mdx-tables`, `npm run lint`,
+    `npx tsc --noEmit --pretty false`, and `git diff --check` passed;
+  - `AUTH_SECRET=local-test-secret npm run build` passed and generated 316
+    static pages;
+  - `CONTENT_CHECK_MAX_WARNINGS=40 npm run check:textbook-content` passed with
+    366 backlog warnings and required structure present;
+  - local production smoke on `127.0.0.1:3004` returned 200 for EN / zh-HK /
+    zh-CN `7.1` note routes;
+  - EN TXT export returned 200 and included guided-solution / Euclidean /
+    Diophantine markers;
+  - EN PDF export returned 200 with `application/pdf` and a `%PDF` header;
+  - both new checkpoint preview API requests returned 200.
+- Verification still pending after this checkpoint: commit, push, production
+  deploy wait, and remote `www.evanalysis.top` verification.
+
 ## Unfinished Content And QA Backlog
 
 ### Content still not complete
 
 1. Math1025 remains the largest course-content backlog.
-   - Current public units: 7 three-language unit families.
+   - Current public units: 8 three-language unit families after the new `7.1`
+     integer-methods unit.
    - Current source-like files under `reference/MATH1025`: 26.
-   - `docs/chapter-coverage-map.md` still marks chapter-slide families `ch7`
-     through `ch11` as unauthored: integers / rationals, polynomials, vectors
-     in `R^n`, straight lines / planes / curves, and conic sections.
+   - `docs/chapter-coverage-map.md` now marks the first `ch7` integer-methods
+     slice as authored; remaining chapter-slide backlog is the later `ch7`
+     rational / irrational material, `ch8` polynomials, and `ch9` through
+     `ch11` vectors / geometry.
    - Homework and assessment PDFs remain secondary exercise-design backlog.
-   - Problem-bank coverage is thin: only 2 of 7 Math1025 units currently have
+   - Problem-bank coverage is thin: 3 of 8 Math1025 units currently have
      checkpoint problems.
-   - `check:textbook-content` reports depth warnings across all 21 localized
-     Math1025 files.
+   - `check:textbook-content` needs to be rerun after the new 24 localized
+     Math1025 files are generated.
 
 2. CSCI2520 has a public baseline but is still thin.
    - Current public units: 9 three-language unit families.
