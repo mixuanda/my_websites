@@ -308,7 +308,7 @@ the correct value.
 
 ## Chaining is flexible because it stores collision structure separately
 
-The simplest collision strategy in the source material is chaining. It is easy
+The simplest collision strategy here is chaining. It is easy
 to reason about because each bucket has its own list of entries.
 
 This gives the implementation a useful freedom: it can add new entries at the
@@ -425,9 +425,9 @@ When the bucket count changes, the hash function must change too. Every stored
 entry has to be reinserted under the new rule. That process is called
 rehashing.
 
-The lecture notes point out that rehashing is rarely necessary for most
-applications, but it is conceptually important because it explains why a hash
-table cannot be treated as a fixed pile of memory locations forever.
+In many applications rehashing is rare, but it is conceptually important because
+it explains why a hash table cannot be treated as a fixed pile of memory
+locations forever.
 
 <WorkedExample title="Why resizing forces rehashing">
 If a table grows from one bucket count to another, the old bucket index is no
@@ -440,8 +440,8 @@ meaning of the bucket index itself.
 
 ## How to choose between chaining and probing
 
-The source material does not frame one strategy as universally best. It
-instead makes the tradeoffs visible.
+No collision strategy is universally best. The useful comparison is the set of
+tradeoffs each strategy makes visible.
 
 - Chaining is easier to explain and naturally handles collisions with a linked
   list.

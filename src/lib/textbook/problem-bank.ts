@@ -7227,9 +7227,9 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
         "中间部分是等比和；除以 `1-r` 后，它贡献 `dbr(1-r^n)/(1-r)^2` 这个修正项。"
       ),
       text(
-        "After collecting boundary terms, the source formula is the one with both `[ab-(a+nd)br^n]/(1-r)` and the `dbr` correction.",
-        "整理邊界項後，來源公式正是同時含有 `[ab-(a+nd)br^n]/(1-r)` 與 `dbr` 修正項的選項。",
-        "整理边界项后，来源公式正是同时含有 `[ab-(a+nd)br^n]/(1-r)` 与 `dbr` 修正项的选项。"
+        "After collecting boundary terms, the derived formula is the one with both `[ab-(a+nd)br^n]/(1-r)` and the `dbr` correction.",
+        "整理邊界項後，推導出的公式正是同時含有 `[ab-(a+nd)br^n]/(1-r)` 與 `dbr` 修正項的選項。",
+        "整理边界项后，推导出的公式正是同时含有 `[ab-(a+nd)br^n]/(1-r)` 与 `dbr` 修正项的选项。"
       ),
     ],
     skillTags: ["sequences", "arithmetic-geometric-series", "finite-sums"],

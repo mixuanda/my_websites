@@ -1,6 +1,6 @@
 # Notes Improvement Tracker
 
-Last updated: 2026-05-11
+Last updated: 2026-05-14
 
 This document records the active improvement backlog raised on 2026-05-11 for
 the public Notes system. It is the single progress file for this round: every
@@ -47,6 +47,61 @@ verification result, and any remaining follow-up.
 | Math1025 rendering | Math1025 has rendering mistakes | Not started | Audit page rendering and export output for affected units. |
 | Math1025 exercises | Math1025 exercise / answer presentation should hide answers behind reveals | Not started | Align with the existing reveal-answer pattern used in other Notes units. |
 | Tracking | Record this backlog in the repository | Completed | This file created on 2026-05-11 and linked from `docs/README.md`. |
+
+## 2026-05-14 QA Checkpoint
+
+This QA pass created `docs/qa-checkpoints-2026-05-14.md` as the live checkpoint
+record for the current unfinished-content review.
+
+Verified locally:
+
+- `npm run contentlayer`
+- `npm run verify:mdx-tables`
+- `npm run lint`
+- `npx tsc --noEmit --pretty false`
+- `AUTH_SECRET=local-test-secret npm run build`
+- representative local route, screenshot, TXT export, PDF export, and
+  checkpoint grade-preview checks
+
+Key result:
+
+- The current Notes system builds and representative routes / exports work.
+- `npm run check:textbook-content` still reports 363 content warnings, so the
+  main unfinished work is content depth and exercise parity, not basic route
+  generation.
+- Math1025 is the largest unauthored source-backed backlog: chapter-slide
+  families `ch7` through `ch11` are still not public Notes units.
+- CSCI2520 has public baseline units but still needs serious algorithm depth,
+  source-process prose cleanup, and checkpoint expansion.
+- Math1030 has broad route coverage but still has five units without
+  checkpoint problems and many depth / worked-example warnings.
+- Math1090 has route-level and checkpoint coverage across all current units,
+  but still needs broader export / rendering / theme QA and optional deeper
+  practice.
+- Math1010 remains future-only because no `reference/MATH1010/**` source tree
+  exists.
+
+Fixes made during this QA pass:
+
+- Cleaned several public source-process phrases from MATH1090, Math1025,
+  Math1030, and CSCI2520 prose.
+- Fixed a zh-HK export prose defect in the Cantor / choice unit
+  (`同一段這裏` -> `同一部分`).
+- Replaced `source formula` / `來源公式` / `来源公式` wording in the Math1025
+  sequences unit and its checkpoint preview text.
+
+Blocked / incomplete verification:
+
+- In-app Browser QA remains blocked because the browser backend returned
+  `Browser is not available: iab`; fallback screenshots were taken with the
+  Playwright CLI after installing Chromium into the user cache.
+- Remote production QA was started with Microsoft Edge and direct remote HTTP
+  checks, not localhost. The remote Notes indexes, a representative Math1030
+  note route, TXT exports, PDF export, and checkpoint preview API returned 200.
+- The same remote TXT export checks found that current production still contains
+  the pre-fix `同一段這裏` and `source formula`-style wording. The local diff
+  already removes those strings, so the remaining step is deploy / production
+  re-verification rather than another local content edit.
 
 ## 1. Global Notes Navigation / Long Course Sidebar
 

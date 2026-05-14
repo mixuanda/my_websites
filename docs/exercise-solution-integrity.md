@@ -109,6 +109,15 @@ April 24, 2026 QA update:
   De Moivre identities, triangle inequality, roots of unity, locus equations,
   and complex-geometry criteria. The local grading preview API returned 200
   for the five new checkpoint IDs with the expected normalized answer or choice.
+- the May 14 QA pass counted current problem-bank coverage against catalog
+  units: Math1090 has checkpoint coverage for all 23 units; Math1030 has
+  coverage for 32 of 37 units; Math1025 has coverage for 2 of 7 units; and
+  CSCI2520 has coverage for 2 of 9 units. Local grade-preview API checks
+  returned 200 for `demo.math1030.rref-pivot-column` and
+  `checkpoint.math1025.complex-numbers.divide-by-conjugate`.
+- the May 14 remote-only QA pass rechecked the production preview API at
+  `www.evanalysis.top`; `demo.math1030.rref-pivot-column` returned 200 with
+  the expected selected-choice preview text.
 
 ### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
 
@@ -156,6 +165,11 @@ textbook exercise blocks.
   into mismatched prerequisite or answer labels.
 - Math1025 `6.1` is now part of that QA sample; exports should be checked for
   expanded answer sections rather than hidden or shifted reveal content.
+- The current checkpoint-depth backlog is now explicit: Math1030 still lacks
+  problem-bank coverage for five matrix-algebra units, Math1025 lacks
+  checkpoint coverage for five of its seven public units, and CSCI2520 lacks
+  checkpoint coverage for seven of its nine public units. Future exercise
+  passes should use source-backed practice rather than generic filler.
 
 ### 2026-04-14 checkpoint 7: preview / submit foundation
 

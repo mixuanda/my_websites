@@ -73,6 +73,14 @@ April 24, 2026 QA update:
   desktop rendering, and zh-HK dark mobile rendering. Production route and
   export checks on `www.evanalysis.top` also returned 200 with the expected
   roots-of-unity markers and PDF headers.
+- the May 14 QA pass re-ran the local rendering stack after public prose
+  cleanup: `npm run contentlayer`, `npm run verify:mdx-tables`, `npm run lint`,
+  `npx tsc --noEmit --pretty false`, and `AUTH_SECRET=local-test-secret npm run
+  build` all passed. Local Playwright CLI screenshots covered EN Math1030 light
+  desktop and zh-HK Math1090 dark mobile pages after the final rebuild. TXT
+  export checks confirmed static study snapshots for Math1030, Math1090, and
+  Math1025 sampled units, and a Math1025 PDF export returned a valid 18-page
+  PDF.
 
 ## Current findings
 
@@ -109,6 +117,24 @@ component- and authoring-shape issues inside the existing Notes stack.
 - Math1025 `6.1` is now part of the route/export sample because the source
   uses long aligned formulas, roots-of-unity products, determinant tests for
   collinearity, locus equations, and optional transformation notation.
+- The May 14 pass found and fixed one zh-HK export prose defect
+  (`同一段這裏`) in the MATH1090 Cantor / choice unit, plus source-process
+  wording such as `source formula` / `來源公式` / `来源公式` in the Math1025
+  sequences export path.
+- In-app Browser QA remains blocked in this environment because the browser
+  backend returned `Browser is not available: iab`; the current fallback
+  evidence is local production HTTP status, static HTML markers, Playwright CLI
+  screenshots, export outputs, and API responses.
+- A follow-up remote-only QA pass used Microsoft Edge through Computer Use and
+  direct `https://www.evanalysis.top` HTTP checks. Remote Notes indexes,
+  Math1030 `2.3`, Math1090 Cantor / choice, Math1025 sequences, Math1025
+  complex-number routes, TXT exports, PDF export, and the checkpoint preview API
+  all returned 200.
+- That remote pass also confirmed production has not yet received the latest
+  local wording cleanup: the sampled production TXT exports still include
+  `同一段這裏` and `source formula`-style wording. The local files no longer
+  contain those public strings outside internal docs, so the next rendering QA
+  step is deployment and remote re-check.
 
 ## Checkpoint log
 
