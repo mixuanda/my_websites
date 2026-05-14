@@ -334,8 +334,9 @@ source-backed chapters are added.
   bank for the `sqrt(2)` contradiction step and the perfect-square test for
   `sqrt(n)`. Local Contentlayer, MDX table, lint, typecheck, build, content
   structure, route, TXT/PDF export, and checkpoint preview checks passed in
-  this round; production verification for this new unit is pending in the
-  2026-05-15 QA checkpoint.
+  this round. Production deployment `dpl_CZ22PiVgSmTZ3wgscyibtSqejB9p` reached
+  Ready and `www.evanalysis.top` remote route / TXT export / PDF export /
+  checkpoint preview checks passed for this unit.
 
 ## Checkpoint log
 

@@ -150,8 +150,11 @@ Use this shape for future entries:
   the perfect-square test for `sqrt(n)`.
 - Verification: local Contentlayer, MDX table, lint, typecheck, build,
   content-structure, route, TXT/PDF export, and checkpoint preview API checks
-  passed in the 2026-05-15 QA checkpoint.
-- Deployment: pending.
+  passed in the 2026-05-15 QA checkpoint. Production route, TXT/PDF export,
+  checkpoint preview API, Vercel error-log, and Microsoft Edge visual checks
+  also passed against `www.evanalysis.top`.
+- Deployment: commit `dda996f` deployed successfully to Vercel production
+  deployment `dpl_CZ22PiVgSmTZ3wgscyibtSqejB9p`.
 - Remaining gaps: Math1025 `ch8` polynomial methods, `ch9` through `ch11`
   vectors / geometry, and secondary homework / assessment exercise design.
 

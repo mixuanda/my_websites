@@ -64,20 +64,46 @@ public note pages.
   - `checkpoint.math1025.integer-methods.sqrt-perfect-square-test` with
     normalized choice `a`
 
-### Pending
+### 2026-05-15 00:46 HKT - Production verification
 
-- commit and push
-- Vercel production deploy wait
-- remote `www.evanalysis.top` EN / zh-HK / zh-CN route checks
-- remote EN TXT/PDF export checks
-- remote preview API checks for both new checkpoint problems
-- remote browser-style page verification without Chrome
+- Commit `dda996f` (`Add Math1025 rational irrational notes`) was pushed to
+  `origin/main`.
+- Vercel production deployment `dpl_CZ22PiVgSmTZ3wgscyibtSqejB9p` reached
+  Ready. `vercel inspect https://www.evanalysis.top --wait` confirmed
+  `www.evanalysis.top` aliases to that deployment.
+- Remote-only checks against `https://www.evanalysis.top`:
+  - EN `7.2` route returned 200, 645706 bytes, and contained the new title
+    plus `Section mastery checkpoint`.
+  - zh-HK `7.2` route returned 200, 600931 bytes, and contained
+    `有理數與無理數` plus `本節掌握 checkpoint`.
+  - zh-CN `7.2` route returned 200, 600940 bytes, and contained
+    `有理数与无理数` plus `本节掌握 checkpoint`.
+  - EN TXT export returned 200, 13605 bytes, and included guided-solution,
+    perfect-square, and prime-root irrationality markers.
+  - EN PDF export returned 200, 40063 bytes, `application/pdf`, and `%PDF`.
+  - preview API returned 200 for
+    `checkpoint.math1025.integer-methods.sqrt2-contradiction-step` with
+    normalized answer `a`.
+  - preview API returned 200 for
+    `checkpoint.math1025.integer-methods.sqrt-perfect-square-test` with
+    normalized choice `a`.
+- Vercel deployment error-log check:
+  `vercel logs dpl_CZ22PiVgSmTZ3wgscyibtSqejB9p --no-follow --since 10m
+  --level error --limit 20` returned no logs.
+- Browser QA path:
+  - the Codex in-app Browser remained unavailable with `iab`;
+  - Computer Use successfully opened the remote EN page in Microsoft Edge and
+    confirmed the Notes shell, language controls, export button, chapter
+    sidebar, title, rendered math, and checkpoint section;
+  - fallback Microsoft Edge-channel screenshots were captured for the remote
+    EN desktop page and remote zh-HK mobile page:
+    `/tmp/math1025-7-2-en-edge-desktop.png` and
+    `/tmp/math1025-7-2-zh-hk-edge-mobile.png`.
 
 ## Unfinished Content And QA Backlog
 
-- Math1025 chapter 7 is now implemented locally through `7.2` and has passed
-  local verification, but it is not complete for the round until production
-  deployment and `www.evanalysis.top` verification pass.
+- Math1025 chapter 7 is implemented through `7.2` and passed local plus
+  production verification in this round.
 - Math1025 chapter 8 polynomial methods remains the next primary source-backed
   chapter-slide backlog after this round.
 - Math1025 chapters 9-11 remain pending vectors / geometry backlog.

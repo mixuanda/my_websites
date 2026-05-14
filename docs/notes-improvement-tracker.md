@@ -385,8 +385,8 @@ Every implementation pass that touches the items above should verify:
 
 ### 2026-05-15: Math1025 ch7 rational / irrational-number supplement
 
-- Status: Implemented locally and passed local verification; commit, push, and
-  production verification are the next checkpoints before closeout.
+- Status: Completed for this source-backed slice; broader Math1025 completion
+  remains active backlog.
 - Gap selected: Math1025 chapter 7 still had an unprocessed rational /
   irrational-number tail after the earlier integer-methods pass.
 - Files changed: three localized MDX files under
@@ -404,8 +404,18 @@ Every implementation pass that touches the items above should verify:
   `CONTENT_CHECK_MAX_WARNINGS=40 npm run check:textbook-content`, local EN /
   zh-HK / zh-CN route checks, EN TXT/PDF exports, and both new checkpoint
   preview API checks.
-- Verification pending: commit, push, Vercel production wait, and
-  `www.evanalysis.top` route / export / API / browser-style verification.
+- Commit / deployment: commit `dda996f` was pushed to `origin/main`; Vercel
+  production deployment `dpl_CZ22PiVgSmTZ3wgscyibtSqejB9p` reached Ready and
+  `www.evanalysis.top` resolved to it.
+- Production verification completed: remote EN / zh-HK / zh-CN note routes
+  returned 200, remote EN TXT export returned 200 with expected study markers,
+  remote EN PDF export returned 200 with `application/pdf` and `%PDF` header,
+  both new checkpoint preview API requests returned 200, and Vercel error logs
+  for the deployment returned no logs.
+- Browser verification note: the Codex in-app Browser still returned
+  `Browser is not available: iab`; Computer Use successfully opened the remote
+  EN page in Microsoft Edge, and Microsoft Edge-channel screenshots captured
+  the remote EN desktop page and zh-HK mobile page.
 - Remaining Math1025 backlog after this slice: `ch8` polynomial arithmetic /
   polynomial gcd / irreducibility, then `ch9`-`ch11` vectors and geometry;
   homework and assessment PDFs remain secondary exercise-design support.

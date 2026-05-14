@@ -692,5 +692,15 @@ Current checkpoint resolution:
   `CONTENT_CHECK_MAX_WARNINGS=40 npm run check:textbook-content` passed.
   Local production smoke on `127.0.0.1:3005` returned 200 for EN / zh-HK /
   zh-CN note routes, EN TXT export, EN PDF export with `%PDF` header, and both
-  new checkpoint preview API requests. Production route/export/API smoke and
-  browser-style production page verification are still pending until deploy.
+  new checkpoint preview API requests.
+- Production verification: deployment `dpl_CZ22PiVgSmTZ3wgscyibtSqejB9p`
+  reached Ready. On `www.evanalysis.top`, EN / zh-HK / zh-CN routes returned
+  200 with expected content markers, EN TXT/PDF exports returned 200, both
+  checkpoint preview API requests returned 200, and Vercel deployment error
+  logs returned no entries.
+- Browser note: in-app Browser remained unavailable (`iab` backend). Computer
+  Use successfully opened the remote EN page in Microsoft Edge and confirmed
+  the Notes shell, language controls, export button, chapter sidebar, title,
+  rendered math, and checkpoint section. Microsoft Edge-channel Playwright
+  screenshots were captured for the remote desktop EN page and remote mobile
+  zh-HK page.

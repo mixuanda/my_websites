@@ -730,5 +730,7 @@ unit-level coverage.
   `npm run lint`, `npx tsc --noEmit --pretty false`, `git diff --check`,
   `AUTH_SECRET=local-test-secret npm run build`, local EN / zh-HK / zh-CN
   route smoke, EN TXT/PDF export smoke, and both new checkpoint preview API
-  requests passed. Production route/export/API verification is still pending
-  until the new commit is deployed.
+  requests passed. On `www.evanalysis.top`, both checkpoint preview API
+  requests returned 200; EN TXT export included guided-solution,
+  perfect-square, and prime-root irrationality markers; EN PDF export returned
+  `application/pdf` with a `%PDF` header.
