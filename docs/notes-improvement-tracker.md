@@ -98,10 +98,11 @@ Blocked / incomplete verification:
 - Remote production QA was started with Microsoft Edge and direct remote HTTP
   checks, not localhost. The remote Notes indexes, a representative Math1030
   note route, TXT exports, PDF export, and checkpoint preview API returned 200.
-- The same remote TXT export checks found that current production still contains
-  the pre-fix `同一段這裏` and `source formula`-style wording. The local diff
-  already removes those strings, so the remaining step is deploy / production
-  re-verification rather than another local content edit.
+- The first remote TXT export checks found that production still contained the
+  pre-fix `同一段這裏` and `source formula`-style wording. After commit
+  `19cfc39` deployed, the same remote export checks returned
+  `stale_source_wording=no`, and Edge visual QA confirmed the zh-HK Math1090
+  page now shows `同一部分`.
 
 ## 1. Global Notes Navigation / Long Course Sidebar
 

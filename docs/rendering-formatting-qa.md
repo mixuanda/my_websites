@@ -135,6 +135,10 @@ component- and authoring-shape issues inside the existing Notes stack.
   `同一段這裏` and `source formula`-style wording. The local files no longer
   contain those public strings outside internal docs, so the next rendering QA
   step is deployment and remote re-check.
+- After commit `19cfc39` deployed to production, the same remote TXT export
+  stale-wording checks returned `no`; Edge visual QA of the zh-HK Math1090
+  Cantor / choice page also showed the corrected `同一部分` prose in the public
+  article body.
 
 ## Checkpoint log
 

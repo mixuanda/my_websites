@@ -141,6 +141,25 @@ be surfaced on public note pages.
   the problem bank, so this is a deployment gap rather than a still-unfixed
   local content defect.
 
+### 2026-05-14 22:28 HKT - Remote production QA after deploy
+
+- Commit `19cfc39` was pushed to `origin/main`.
+- Vercel production deployment
+  `dpl_NupUD7apH7okJyxvHUf5Cb6vX4aK` reached `Ready`, and
+  `https://www.evanalysis.top` resolved to that new production deployment.
+- Re-ran the same remote-only HTTP checks against `www.evanalysis.top`:
+  - all seven sampled Notes routes returned 200;
+  - sampled TXT exports returned 200 and retained static study snapshots;
+  - stale wording check returned `no` for `同一段這裏`, `source formula`,
+    `來源公式`, and `来源公式`;
+  - Math1025 complex-number PDF export returned 200 with `application/pdf`
+    and `%PDF` header;
+  - `demo.math1030.rref-pivot-column` preview API returned 200 with the
+    expected selected-choice preview text.
+- Microsoft Edge post-deploy visual QA confirmed the zh-HK Math1090 Cantor /
+  choice page loads from `www.evanalysis.top`, with localized course sidebar,
+  export control, checkpoint block, and the corrected prose `同一部分`.
+
 ## Unfinished Content And QA Backlog
 
 ### Content still not complete
@@ -209,5 +228,6 @@ be surfaced on public note pages.
   fallback evidence is local HTTP status, static HTML markers, Playwright CLI
   screenshots, Edge visual remote QA, export responses, and API responses.
 - Production verification on `www.evanalysis.top` has started and found that
-  current production is healthy at the route / export / API level, but it still
-  lacks the latest local wording cleanup until the current diff is deployed.
+  current production is healthy at the route / export / API level. The latest
+  deployed production checks no longer show the stale export wording found in
+  the pre-deploy pass.
