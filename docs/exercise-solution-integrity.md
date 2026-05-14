@@ -697,6 +697,13 @@ unit-level coverage.
   public page keeps answers hidden by default while TXT/PDF export can still
   expose them as study material. The checkpoint fill-in is a single integer,
   and the Diophantine solvability item is MCQ to avoid fragile parsing.
-- Verification: pending in this round
+- Verification: `npm run contentlayer`, `npm run verify:mdx-tables`,
+  `npm run lint`, `npx tsc --noEmit --pretty false`, `git diff --check`,
+  `AUTH_SECRET=local-test-secret npm run build`, local EN / zh-HK / zh-CN
+  route smoke, EN TXT/PDF export smoke, and both new checkpoint preview API
+  requests passed. On `www.evanalysis.top`, both checkpoint preview API
+  requests returned 200; EN TXT export included the expected guided solution,
+  Euclidean algorithm, and Diophantine markers; EN PDF export returned
+  `application/pdf` with a `%PDF` header.
 - Remaining issues: the rational / irrational-number material later in chapter
   7 still needs its own exercise and checkpoint pass.

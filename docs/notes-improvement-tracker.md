@@ -349,8 +349,8 @@ Every implementation pass that touches the items above should verify:
 
 ### 2026-05-14: Math1025 ch7 integer-methods supplement
 
-- Status: In progress; content integration and local verification are complete,
-  while commit / push / production verification remain pending in this round.
+- Status: Completed for this source-backed slice; broader Math1025 completion
+  remains active backlog.
 - Gap selected: Math1025 had no public Notes unit for the `ch7` integer
   methods despite checked-in chapter slides.
 - Files changed: three localized MDX files under
@@ -367,8 +367,22 @@ Every implementation pass that touches the items above should verify:
   `CONTENT_CHECK_MAX_WARNINGS=40 npm run check:textbook-content`, local EN /
   zh-HK / zh-CN route checks, EN TXT/PDF exports, and both new checkpoint
   preview API checks.
-- Remaining before completion: commit and push, wait for production
-  deployment, then verify `www.evanalysis.top` remotely.
+- Commit / deployment: commit `5851cad` was pushed to `origin/main`; Vercel
+  production deployment `dpl_BrKPbrrbAQvew3nfNHSdDMcc1b3H` reached Ready and
+  `www.evanalysis.top` resolved to it.
+- Production verification completed: remote EN / zh-HK / zh-CN note routes
+  returned 200, remote EN TXT export returned 200 with expected study markers,
+  remote EN PDF export returned 200 with `application/pdf` and `%PDF` header,
+  both new checkpoint preview API requests returned 200, and Vercel error logs
+  for the deployment returned no logs.
+- Browser verification note: the Codex in-app Browser still returned
+  `Browser is not available: iab`; Computer Use could not acquire a Microsoft
+  Edge window and returned `cgWindowNotFound`. As fallback, a Playwright
+  screenshot using the installed Microsoft Edge channel verified the remote EN
+  desktop page and zh-HK mobile page.
+- Remaining Math1025 backlog: finish the later `ch7` rational / irrational
+  material, then continue into `ch8` polynomials and `ch9`-`ch11` vectors /
+  geometry.
 
 ### 2026-05-11: Global Notes sidebar finder blocked on Chrome QA
 

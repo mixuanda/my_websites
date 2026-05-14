@@ -332,8 +332,10 @@ source-backed chapters are added.
 - Two unit-level checkpoint problems were added to the shared Math1025 problem
   bank for the Euclidean algorithm and Diophantine solvability. Local
   Contentlayer, MDX table, lint, typecheck, build, route, TXT/PDF export, and
-  checkpoint preview checks passed in this round; production deployment and
-  remote verification are still pending.
+  checkpoint preview checks passed in this round. Production deployment
+  `dpl_BrKPbrrbAQvew3nfNHSdDMcc1b3H` is Ready and `www.evanalysis.top` remote
+  route / TXT export / PDF export / checkpoint preview checks passed for this
+  unit.
 
 ## Checkpoint log
 

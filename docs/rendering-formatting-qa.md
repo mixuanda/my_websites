@@ -656,5 +656,15 @@ Current checkpoint resolution:
   Local production smoke on `127.0.0.1:3004` returned 200 for EN / zh-HK /
   zh-CN note routes, EN TXT export, EN PDF export with `%PDF` header, and both
   new checkpoint preview API requests.
+- Production verification: deployment `dpl_BrKPbrrbAQvew3nfNHSdDMcc1b3H`
+  reached Ready. On `www.evanalysis.top`, EN / zh-HK / zh-CN routes returned
+  200 with expected content markers, EN TXT/PDF exports returned 200, both
+  checkpoint preview API requests returned 200, and Vercel deployment error
+  logs returned no entries.
+- Browser note: in-app Browser remained unavailable (`iab` backend), and
+  Computer Use could not acquire the Edge window (`cgWindowNotFound`). A
+  Microsoft Edge-channel Playwright screenshot captured the remote desktop EN
+  page and remote mobile zh-HK page, confirming first-viewport layout,
+  localized title, language controls, chapter chip, and export button.
 - Remaining issues: run route / export / API verification locally, then verify
   the deployed `www.evanalysis.top` pages after push.

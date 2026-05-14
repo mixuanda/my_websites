@@ -198,6 +198,42 @@ be surfaced on public note pages.
 - Verification still pending after this checkpoint: commit, push, production
   deploy wait, and remote `www.evanalysis.top` verification.
 
+### 2026-05-14 23:43 HKT - Math1025 ch7 production verification
+
+- Commit `5851cad` (`Add Math1025 integer methods notes`) was pushed to
+  `origin/main`.
+- Vercel production deployment `dpl_BrKPbrrbAQvew3nfNHSdDMcc1b3H` reached
+  Ready. `vercel inspect https://www.evanalysis.top --wait` confirmed
+  `www.evanalysis.top` aliases to that deployment.
+- Remote-only checks against `https://www.evanalysis.top`:
+  - EN `7.1` route returned 200, 610030 bytes, and contained the new title
+    plus `Section mastery checkpoint`;
+  - zh-HK `7.1` route returned 200, 618863 bytes, and contained
+    `整除、最大公因數與整數方程` plus `章節掌握檢查`;
+  - zh-CN `7.1` route returned 200, 618876 bytes, and contained
+    `整除、最大公因数与整数方程` plus `章节掌握检查`;
+  - EN TXT export returned 200, 13388 bytes, and included guided-solution,
+    Euclidean-algorithm, and Diophantine markers;
+  - EN PDF export returned 200, 44317 bytes, `application/pdf`, and `%PDF`;
+  - preview API returned 200 for
+    `checkpoint.math1025.integer-methods.euclidean-last-remainder` with
+    normalized answer `258`;
+  - preview API returned 200 for
+    `checkpoint.math1025.integer-methods.diophantine-solvability` with
+    normalized choice `a`.
+- Vercel deployment error-log check:
+  `vercel logs dpl_BrKPbrrbAQvew3nfNHSdDMcc1b3H --no-follow --since 10m
+  --level error --limit 20` returned no logs.
+- Browser QA path:
+  - the Codex in-app Browser remained unavailable with `iab`;
+  - Computer Use could not acquire a Microsoft Edge window and returned
+    `cgWindowNotFound`;
+  - fallback Microsoft Edge-channel screenshots were captured for the remote
+    EN desktop page and remote zh-HK mobile page. They confirmed the first
+    viewport renders the Notes shell, localized title, language controls,
+    chapter chip, export button, course sidebar/mobile course card, and content
+    start without visible overlap.
+
 ## Unfinished Content And QA Backlog
 
 ### Content still not complete
