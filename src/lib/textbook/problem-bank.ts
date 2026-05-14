@@ -7381,6 +7381,153 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["integer-methods", "linear-diophantine-equations", "gcd"],
   },
+  "checkpoint.math1025.integer-methods.sqrt2-contradiction-step": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.integer-methods.sqrt2-contradiction-step",
+    type: "FILL_IN_BLANK",
+    courseId: "math1025",
+    chapterId: "integer-methods",
+    unitId: "math1025.integer-methods.rational-and-irrational-numbers",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "In the chapter 7 proof that `\\sqrt2` is irrational, suppose `\\sqrt2=a/b` with `a,b\\in\\mathbb Z^+` relatively prime. From `2b^2=a^2`, Euclid's lemma first shows that `2` divides which numerator? Fill in the blank: `2\\mid ____`.",
+      "在第 7 章證明 `\\sqrt2` 是無理數時，假設 `\\sqrt2=a/b`，其中 `a,b\\in\\mathbb Z^+` 且互質。由 `2b^2=a^2`，Euclid 引理首先推出 `2` 整除哪個分子？填空：`2\\mid ____`。",
+      "在第 7 章证明 `\\sqrt2` 是无理数时，假设 `\\sqrt2=a/b`，其中 `a,b\\in\\mathbb Z^+` 且互质。由 `2b^2=a^2`，Euclid 引理首先推出 `2` 整除哪个分子？填空：`2\\mid ____`。"
+    ),
+    correctAnswer: {
+      value: "a",
+      equivalentValues: [" a "],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "`2b^2=a^2` says the prime `2` divides `a\\cdot a`.",
+        "`2b^2=a^2` 表示質數 `2` 整除 `a\\cdot a`。",
+        "`2b^2=a^2` 表示质数 `2` 整除 `a\\cdot a`。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Enter one variable name.",
+        "請輸入一個變數名稱。",
+        "请输入一个变量名称。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter the numerator variable.",
+      "請輸入分子變數。",
+      "请输入分子变量。"
+    ),
+    solutionSteps: [
+      text(
+        "From `2b^2=a^2`, the prime `2` divides `a^2=a\\cdot a`.",
+        "由 `2b^2=a^2` 可知，質數 `2` 整除 `a^2=a\\cdot a`。",
+        "由 `2b^2=a^2` 可知，质数 `2` 整除 `a^2=a\\cdot a`。"
+      ),
+      text(
+        "By Euclid's lemma, if a prime divides a product, it divides at least one factor.",
+        "根據 Euclid 引理，若質數整除一個乘積，它必整除其中某個因子。",
+        "根据 Euclid 引理，若质数整除一个乘积，它必整除其中某个因子。"
+      ),
+      text(
+        "Therefore `2\\mid a`; this is the first step that eventually contradicts relative primality.",
+        "因此 `2\\mid a`；這是最後導向與互質矛盾的第一步。",
+        "因此 `2\\mid a`；这是最后导向与互质矛盾的第一步。"
+      ),
+    ],
+    skillTags: ["integer-methods", "irrationality", "euclids-lemma"],
+  },
+  "checkpoint.math1025.integer-methods.sqrt-perfect-square-test": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.integer-methods.sqrt-perfect-square-test",
+    type: "MCQ",
+    courseId: "math1025",
+    chapterId: "integer-methods",
+    unitId: "math1025.integer-methods.rational-and-irrational-numbers",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Use the chapter 7 criterion: `\\sqrt n` is rational if and only if `n` is a perfect square. Which statement is correct?",
+      "使用第 7 章判別：`\\sqrt n` 是有理數，當且僅當 `n` 是完全平方數。哪一項正確？",
+      "使用第 7 章判别：`\\sqrt n` 是有理数，当且仅当 `n` 是完全平方数。哪一项正确？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`\\sqrt{72}` is irrational, because `72` is not a perfect square.",
+          "`\\sqrt{72}` 是無理數，因為 `72` 不是完全平方數。",
+          "`\\sqrt{72}` 是无理数，因为 `72` 不是完全平方数。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "`\\sqrt{72}` is rational, because `72` is even.",
+          "`\\sqrt{72}` 是有理數，因為 `72` 是偶數。",
+          "`\\sqrt{72}` 是有理数，因为 `72` 是偶数。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "`\\sqrt{72}` is rational, because every square root of an integer is rational.",
+          "`\\sqrt{72}` 是有理數，因為每個整數的平方根都是有理數。",
+          "`\\sqrt{72}` 是有理数，因为每个整数的平方根都是有理数。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "The criterion says nothing about integers larger than `50`.",
+          "該判別對大於 `50` 的整數沒有結論。",
+          "该判别对大于 `50` 的整数没有结论。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Check whether `72` is exactly `m^2` for some integer `m`.",
+        "檢查 `72` 是否剛好等於某個整數 `m` 的 `m^2`。",
+        "检查 `72` 是否刚好等于某个整数 `m` 的 `m^2`。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "`64=8^2` is a perfect square, but `72` is between `8^2` and `9^2`.",
+        "`64=8^2` 是完全平方數，但 `72` 介乎 `8^2` 與 `9^2` 之間。",
+        "`64=8^2` 是完全平方数，但 `72` 介于 `8^2` 与 `9^2` 之间。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "Since `8^2=64` and `9^2=81`, no integer square equals `72`.",
+        "因為 `8^2=64` 且 `9^2=81`，沒有整數平方等於 `72`。",
+        "因为 `8^2=64` 且 `9^2=81`，没有整数平方等于 `72`。"
+      ),
+      text(
+        "Thus `72` is not a perfect square.",
+        "因此 `72` 不是完全平方數。",
+        "因此 `72` 不是完全平方数。"
+      ),
+      text(
+        "By the chapter criterion, `\\sqrt{72}` is irrational.",
+        "由本章判別，`\\sqrt{72}` 是無理數。",
+        "由本章判别，`\\sqrt{72}` 是无理数。"
+      ),
+    ],
+    skillTags: ["integer-methods", "irrationality", "perfect-square"],
+  },
   "checkpoint.math1025.complex-numbers.divide-by-conjugate": {
     accessTier: "FREE",
     id: "checkpoint.math1025.complex-numbers.divide-by-conjugate",

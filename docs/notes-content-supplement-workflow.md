@@ -129,6 +129,32 @@ Use this shape for future entries:
 
 ## Current log
 
+### 2026-05-15: Math1025 rational / irrational-number documentation checkpoint
+
+- Gap selected: after the `7.1` integer-methods pass, Math1025 chapter 7 still
+  had a source-backed rational / irrational-number tail not represented in
+  public Notes.
+- Reference basis: `reference/MATH1025/MATH1025_slides_ch7.pdf` pp. 36-41.
+- Source scope recorded: `Q`, rational closure under arithmetic, irrational
+  sum/product counterexamples, nonnegative nth-root notation, the
+  irrationality proof for `sqrt(2)`, prime-root irrationality, coefficient
+  uniqueness for `a+b sqrt(3)`, and the criterion that `sqrt(n)` is rational
+  exactly when `n` is a perfect square.
+- Content files changed: added EN / zh-HK / zh-CN `7.2 Rational and
+  irrational numbers` notes and registered the unit under the existing Notes
+  catalog.
+- Interactions added: none; this pass uses static proof exposition, quick
+  checks, and hidden guided solutions because the material is theorem-led.
+- Exercises added: paired quick checks / reveal answers, end exercises, and
+  two problem-bank checkpoints covering the `sqrt(2)` contradiction step and
+  the perfect-square test for `sqrt(n)`.
+- Verification: local Contentlayer, MDX table, lint, typecheck, build,
+  content-structure, route, TXT/PDF export, and checkpoint preview API checks
+  passed in the 2026-05-15 QA checkpoint.
+- Deployment: pending.
+- Remaining gaps: Math1025 `ch8` polynomial methods, `ch9` through `ch11`
+  vectors / geometry, and secondary homework / assessment exercise design.
+
 ### 2026-05-12: Math1025 complex numbers documentation checkpoint
 
 - Gap selected: Math1025 chapter 6 was the next contiguous source-backed

@@ -1315,6 +1315,35 @@ const math1025IntegerMethodUnits: TextbookUnitMeta[] = [
     unitId: "math1025.integer-methods.divisibility-gcd-and-integer-equations",
     unitNumber: "7.1",
   },
+  {
+    chapterId: "integer-methods",
+    chapterNumber: "7",
+    course: "math1025",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use rational-number closure, nth-root notation, and Euclid's lemma to prove standard irrationality results.",
+      "用有理數的封閉性、n 次根記號與 Euclid 引理，證明標準無理性結果。",
+      "用有理数的封闭性、n 次根记号与 Euclid 引理，证明标准无理性结果。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 9,
+    prerequisites: ["math1025.integer-methods.divisibility-gcd-and-integer-equations"],
+    slug: "rational-and-irrational-numbers",
+    sourceRefs: [
+      {
+        file: "reference/MATH1025/MATH1025_slides_ch7.pdf",
+        pages: "pp. 36-41",
+      },
+    ],
+    title: text(
+      "7.2 Rational and irrational numbers",
+      "7.2 有理數與無理數",
+      "7.2 有理数与无理数"
+    ),
+    unitId: "math1025.integer-methods.rational-and-irrational-numbers",
+    unitNumber: "7.2",
+  },
 ];
 
 const math1030SystemsUnits: TextbookUnitMeta[] = [

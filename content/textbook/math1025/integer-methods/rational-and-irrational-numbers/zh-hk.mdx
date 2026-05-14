@@ -1,0 +1,418 @@
+---
+title: "7.2 有理數與無理數"
+description: "研究有理數、無理數、Q 的封閉性、非負 n 次根、根式無理性的證明，以及平方根有理性的完全平方判別。"
+---
+
+## 為何有理數仍然不夠
+
+整數對加法、減法與乘法封閉，但對除法不封閉。為了解
+
+$$
+3x=2
+$$
+
+這類方程，我們把數系由 `\mathbb Z` 擴大到有理數 `\mathbb Q`。這個擴大非常有用：它容許分數，對四則運算穩定，並且仍然透過分子與分母保留整數整除的資訊。
+
+可是，即使 `\mathbb Q` 也不足以包含所有熟悉方程的解。例如
+
+$$
+x^2=2
+$$
+
+在實數中有非負解 `\sqrt2`，但這個解不是有理數。本節的目標是把這個差異說清楚：先整理有理數的運算封閉性，再用質數整除證明某些根式不可能是有理數。
+
+## 有理數與無理數
+
+<Definition title="有理數與無理數">
+設 `x\in\mathbb R`。
+
+1. 若存在整數 `m,n\in\mathbb Z`，其中 `n\ne0`，使得
+
+   $$
+   x=\frac mn,
+   $$
+
+   則稱 `x` 是有理數。
+
+2. 若 `x` 不是有理數，則稱 `x` 是無理數。
+
+所有有理數的集合記作 `\mathbb Q`。
+</Definition>
+
+條件 `n\ne0` 不能省略，因為除以零沒有定義。有理數表示也不唯一：
+
+$$
+\frac12=\frac24=\frac{-3}{-6}.
+$$
+
+要證明一個數是有理數，只需給出一個合法分數表示；要證明一個數是無理數，就要證明不存在任何這樣的分數表示。
+
+在無理性證明中，我們常把正有理數寫成最低項：
+
+$$
+x=\frac ab,\qquad a,b\in\mathbb Z^+,\quad \gcd(a,b)=1.
+$$
+
+條件 `\gcd(a,b)=1` 表示所有共同因數都已消去。很多證明會先假設存在這樣的最低項表示，再推出同一個質數同時整除 `a` 和 `b`，從而矛盾。
+
+## 有理數的封閉性
+
+<TheoremCard title="Q 對四則運算的封閉性">
+設 `x,y\in\mathbb Q`。
+
+1. `x+y\in\mathbb Q`、`x-y\in\mathbb Q`，且 `xy\in\mathbb Q`。
+2. 若 `y\ne0`，則 `x/y\in\mathbb Q`。
+</TheoremCard>
+
+設
+
+$$
+x=\frac mn,\qquad y=\frac pq,
+$$
+
+其中 `m,n,p,q\in\mathbb Z` 且 `n\ne0`、`q\ne0`。則
+
+$$
+x+y=\frac{mq+np}{nq},\qquad
+x-y=\frac{mq-np}{nq},\qquad
+xy=\frac{mp}{nq}.
+$$
+
+這些式子的分子與分母都是整數，而且分母 `nq` 非零，所以三個結果都是有理數。
+
+若 `y\ne0`，由 `y=p/q` 可知 `p\ne0`。因此
+
+$$
+\frac xy=\frac{m/n}{p/q}=\frac{mq}{np},
+$$
+
+而 `np\ne0`，所以 `x/y` 也是有理數。
+
+<CommonMistake title="Q 封閉不代表無理數也封閉">
+上面的定理只說明由有理數開始做運算會留在有理數中。它沒有說無理數對加法或乘法封閉；事實上，無理數並不封閉。
+</CommonMistake>
+
+例如 `\sqrt2` 是無理數，但
+
+$$
+\sqrt2+(-\sqrt2)=0
+$$
+
+是有理數，而且
+
+$$
+\sqrt2\cdot\sqrt2=2
+$$
+
+也是有理數。無理數只是「不在 `\mathbb Q` 中」的實數，不是一個對通常四則運算封閉的獨立數系。
+
+## 非負 n 次根
+
+<Definition title="非負 n 次實根">
+設 `n\in\mathbb Z^+`，且 `a,\rho` 是非負實數。若
+
+$$
+\rho^n=a,
+$$
+
+則稱 `\rho` 是 `a` 的非負 `n` 次實根。
+</Definition>
+
+<TheoremCard title="非負 n 次根的存在與唯一性">
+設 `n\in\mathbb Z^+`，且 `a` 是非負實數。存在唯一非負實數 `\rho` 使得
+
+$$
+\rho^n=a.
+$$
+
+這個數記作
+
+$$
+\sqrt[n]{a}.
+$$
+</TheoremCard>
+
+「非負」二字很重要。對平方根而言，`3` 和 `-3` 都滿足 `x^2=9`，但只有 `3` 是非負平方根，所以
+
+$$
+\sqrt9=3,
+$$
+
+不是 `\pm3`。在本節中，`\sqrt[n]{a}` 指的是非負實數 `a` 的唯一非負 `n` 次根。
+
+這裡把 `\sqrt[n]{a}` 的存在性當作實數中的事實記錄；完整證明屬於後續分析課程。本節使用這個記號來研究另一個問題：這些根何時是有理數？
+
+## `\sqrt2` 的無理性
+
+第一個重要例子是經典命題：`\sqrt2` 不是有理數。證明會用到整除章節中的 Euclid 引理：
+
+$$
+p\mid ab\quad\Longrightarrow\quad p\mid a\text{ or }p\mid b
+$$
+
+其中 `p` 是質數。特別地，若質數 `p` 整除 `a^2`，則 `p` 整除 `a`。
+
+<TheoremCard title="sqrt(2) 的無理性">
+實數 `\sqrt2` 是無理數。
+</TheoremCard>
+
+反設 `\sqrt2` 是有理數。因為它為正，可寫成最低項
+
+$$
+\sqrt2=\frac ab,
+$$
+
+其中 `a,b\in\mathbb Z^+` 且 `\gcd(a,b)=1`。兩邊平方得
+
+$$
+2=\frac{a^2}{b^2},
+\qquad\text{所以}\qquad
+2b^2=a^2.
+$$
+
+因此 `2\mid a^2`。由於 `2` 是質數，Euclid 引理推出 `2\mid a`。設 `a=2c`，其中 `c\in\mathbb Z^+`。代回 `2b^2=a^2` 得
+
+$$
+2b^2=(2c)^2=4c^2.
+$$
+
+兩邊除以 `2`：
+
+$$
+b^2=2c^2.
+$$
+
+所以 `2\mid b^2`，再次由 Euclid 引理得 `2\mid b`。這表示 `2` 同時整除 `a` 和 `b`，與 `\gcd(a,b)=1` 矛盾。
+
+因此 `\sqrt2` 不可能是有理數。
+
+<WorkedExample title="含 sqrt(3) 的有理係數唯一性">
+設 `a,b,c,d\in\mathbb Q`，且
+
+$$
+a+b\sqrt3=c+d\sqrt3.
+$$
+
+假設 `\sqrt3` 是無理數。我們證明 `a=c` 且 `b=d`。
+
+移項得
+
+$$
+a-c=(d-b)\sqrt3.
+$$
+
+若 `d-b\ne0`，則
+
+$$
+\sqrt3=\frac{a-c}{d-b}.
+$$
+
+右邊是兩個有理數的商，且分母非零，因此是有理數，與 `\sqrt3` 無理矛盾。所以 `d-b=0`，即 `b=d`；代回原式即得 `a=c`。
+</WorkedExample>
+
+這個例子說明：在有理數係數下，`1` 與 `\sqrt3` 不能互相偽裝。有理部分與 `\sqrt3` 部分必須分別相等。
+
+## 質數的 n 次根是無理數
+
+同樣的思路可證明更一般的根式無理性。
+
+<TheoremCard title="質數的 n 次根是無理數">
+設 `n` 是大於 `1` 的整數，且 `p` 是正質數。則
+
+$$
+\sqrt[n]{p}
+$$
+
+是無理數。
+</TheoremCard>
+
+反設 `\sqrt[n]{p}` 是有理數。因為它為正，可寫成最低項
+
+$$
+\sqrt[n]{p}=\frac ab,
+$$
+
+其中 `a,b\in\mathbb Z^+` 且 `\gcd(a,b)=1`。兩邊取 `n` 次方：
+
+$$
+p=\frac{a^n}{b^n},
+\qquad\text{所以}\qquad
+pb^n=a^n.
+$$
+
+因此 `p\mid a^n`。把 `a^n` 看成 `n` 個 `a` 的乘積，反覆使用 Euclid 引理可得 `p\mid a`。設 `a=pc`，則
+
+$$
+pb^n=(pc)^n=p^n c^n.
+$$
+
+消去一個 `p`：
+
+$$
+b^n=p^{n-1}c^n.
+$$
+
+因為 `n>1`，右邊仍含有因子 `p`，所以 `p\mid b^n`，再由 Euclid 引理得 `p\mid b`。這與 `a,b` 互質矛盾，所以 `\sqrt[n]{p}` 是無理數。
+
+<CommonMistake title="不要省略 n > 1">
+若 `n=1`，則 `\sqrt[1]{p}=p` 是整數，當然是有理數。上面的矛盾需要 `p^{n-1}` 至少仍含有一個 `p`。
+</CommonMistake>
+
+## `\sqrt n` 何時是有理數？
+
+對正整數的平方根，有理性有一個精確判別：正整數的平方根是有理數，當且僅當該整數本身是完全平方數。
+
+<Definition title="完全平方數">
+若正整數 `n` 可寫成
+
+$$
+n=m^2
+$$
+
+其中 `m\in\mathbb Z`，則稱 `n` 是完全平方數。
+</Definition>
+
+<TheoremCard title="平方根有理性判別">
+設 `n\in\mathbb Z^+`。則 `\sqrt n` 是有理數，當且僅當 `n` 是完全平方數。
+</TheoremCard>
+
+若 `n=m^2`，則非負平方根為 `\sqrt n=|m|`，這是一個整數，因此是有理數。
+
+反過來，假設 `\sqrt n` 是有理數，並寫成最低項
+
+$$
+\sqrt n=\frac ab,
+$$
+
+其中 `a,b\in\mathbb Z^+` 且 `\gcd(a,b)=1`。平方後得
+
+$$
+nb^2=a^2.
+$$
+
+我們證明 `b=1`。若 `b>1`，則 `b` 有質因數 `p`。由 `p\mid b` 得 `p\mid b^2`，而 `nb^2=a^2` 迫使 `p\mid a^2`。由 Euclid 引理，`p\mid a`。這與 `\gcd(a,b)=1` 矛盾。因此 `b=1`。
+
+所以 `\sqrt n=a`，從而
+
+$$
+n=a^2.
+$$
+
+因此 `n` 是完全平方數。
+
+這個定理解釋了為甚麼 `\sqrt4`、`\sqrt9`、`\sqrt{49}` 是有理數，而 `\sqrt2`、`\sqrt3`、`\sqrt5`、`\sqrt6`、`\sqrt{10}` 不是。重點不是小數展開看起來是否簡單，而是根號下的整數是否為整數平方。
+
+## 快速檢查
+
+<QuickCheck prompt="證明實數 `x` 是無理數，具體要證明甚麼？">
+留意定義中的「不是」。
+</QuickCheck>
+
+<RevealSolution title="答案">
+要證明不存在整數 `m,n`，其中 `n\ne0`，使得 `x=m/n`。
+</RevealSolution>
+
+<QuickCheck prompt="若 `x=m/n` 和 `y=p/q` 是有理數，且分母非零，為甚麼 `xy` 是有理數？">
+寫出乘積的分數形式。
+</QuickCheck>
+
+<RevealSolution title="答案">
+有 `xy=mp/(nq)`。因為 `mp,nq\in\mathbb Z` 且 `nq\ne0`，所以乘積是有理數。
+</RevealSolution>
+
+<QuickCheck prompt="給出兩個無理數相加卻得到有理數的例子。">
+使用互為相反數的無理數。
+</QuickCheck>
+
+<RevealSolution title="答案">
+例如 `\sqrt2` 和 `-\sqrt2` 都是無理數，但 `\sqrt2+(-\sqrt2)=0`，而 `0` 是有理數。
+</RevealSolution>
+
+<QuickCheck prompt="在證明 `\sqrt2` 無理時，為甚麼先把它寫成 `a/b` 且 `\gcd(a,b)=1`？">
+矛盾會來自共同因數。
+</QuickCheck>
+
+<RevealSolution title="答案">
+每個正有理數都可寫成最低項。若證明迫使同一個質數同時整除 `a` 和 `b`，就會與 `\gcd(a,b)=1` 矛盾。
+</RevealSolution>
+
+<QuickCheck prompt="若 `p` 是質數，為甚麼 `p\mid a^n` 會推出 `p\mid a`？">
+把 `a^n` 看成 `n` 個 `a` 的乘積。
+</QuickCheck>
+
+<RevealSolution title="答案">
+因為 `a^n=a\cdot a\cdots a`。Euclid 引理說，若質數 `p` 整除這個乘積，則它整除其中某個因子；每個因子都是 `a`，所以 `p\mid a`。
+</RevealSolution>
+
+<QuickCheck prompt="對正整數 `n`，`\sqrt n` 是有理數的充要條件是甚麼？">
+用「當且僅當」表述。
+</QuickCheck>
+
+<RevealSolution title="答案">
+`\sqrt n` 是有理數，當且僅當 `n` 是完全平方數，也就是 `n=m^2` 對某個整數 `m` 成立。
+</RevealSolution>
+
+## 練習
+
+1. 直接由定義證明：若 `x,y\in\mathbb Q`，則 `3x-5y\in\mathbb Q`。
+2. 給出例子說明兩個無理數的和與積都可能是有理數。
+3. 證明：若 `r\in\mathbb Q`、`s\notin\mathbb Q` 且 `r\ne0`，則 `rs\notin\mathbb Q`。
+4. 設 `a,b,c,d\in\mathbb Q`。若 `a+b\sqrt3=c+d\sqrt3`，並假設 `\sqrt3` 無理，證明 `a=c` 且 `b=d`。
+5. 證明 `\sqrt[3]{5}` 是無理數。
+6. 設 `n\in\mathbb Z^+`。證明 `\sqrt n` 是有理數，當且僅當 `n` 是完全平方數。
+7. 判斷下列數是有理數還是無理數：`\sqrt{16}`、`\sqrt{18}`、`\sqrt[4]{7}`、`2+\sqrt[3]{11}`。
+
+<RevealSolution title="引導解答">
+
+1. 設 `x=m/n`、`y=p/q`，其中 `m,n,p,q\in\mathbb Z` 且 `n,q\ne0`。則
+
+   $$
+   3x-5y=\frac{3m}{n}-\frac{5p}{q}
+   =\frac{3mq-5pn}{nq}.
+   $$
+
+   分子與分母都是整數，且 `nq\ne0`，所以 `3x-5y\in\mathbb Q`。
+
+2. 對和，可取 `\sqrt2+(-\sqrt2)=0`。對積，可取
+   `\sqrt2\cdot\sqrt2=2`。兩個例子都由無理數作輸入，但結果是有理數。
+
+3. 反設 `rs\in\mathbb Q`。因為 `r\in\mathbb Q` 且 `r\ne0`，由有理數對除法封閉，
+
+   $$
+   s=\frac{rs}{r}\in\mathbb Q,
+   $$
+
+   這與 `s\notin\mathbb Q` 矛盾。
+
+4. 由 `a+b\sqrt3=c+d\sqrt3` 得
+
+   $$
+   a-c=(d-b)\sqrt3.
+   $$
+
+   若 `d-b\ne0`，則 `\sqrt3=(a-c)/(d-b)`，右邊是有理數，矛盾。因此 `d-b=0`，即 `b=d`；代回原式得 `a=c`。
+
+5. 反設 `\sqrt[3]{5}=a/b` 為最低項，其中 `a,b\in\mathbb Z^+`。立方得
+
+   $$
+   5b^3=a^3.
+   $$
+
+   所以 `5\mid a^3`，從而 `5\mid a`。設 `a=5c`，則
+
+   $$
+   5b^3=125c^3,\qquad b^3=25c^3.
+   $$
+
+   因此 `5\mid b^3`，所以 `5\mid b`，與最低項矛盾。故 `\sqrt[3]{5}` 無理。
+
+6. 若 `n=m^2`，則 `\sqrt n=|m|`，所以是有理數。反過來，若
+   `\sqrt n=a/b` 為最低項，則 `nb^2=a^2`。若 `b>1`，取質數
+   `p\mid b`，則 `p\mid a^2`，所以 `p\mid a`，矛盾。因此 `b=1`，
+   於是 `n=a^2`。
+
+7. `\sqrt{16}=4`，所以是有理數。`18` 不是完全平方數，所以
+   `\sqrt{18}` 無理。`\sqrt[4]{7}` 由質數 n 次根定理可知無理。最後
+   `\sqrt[3]{11}` 無理，所以 `2+\sqrt[3]{11}` 也無理；否則減去有理數
+   `2` 會令 `\sqrt[3]{11}` 變成有理數。
+</RevealSolution>

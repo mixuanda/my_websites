@@ -705,5 +705,30 @@ unit-level coverage.
   requests returned 200; EN TXT export included the expected guided solution,
   Euclidean algorithm, and Diophantine markers; EN PDF export returned
   `application/pdf` with a `%PDF` header.
-- Remaining issues: the rational / irrational-number material later in chapter
-  7 still needs its own exercise and checkpoint pass.
+- Remaining issues: chapter 7 now has a follow-up `7.2` exercise and
+  checkpoint pass in progress; verify route / export / API behavior before
+  closing it.
+
+### 2026-05-15 checkpoint 24: Math1025 ch7 rational / irrational exercise integrity
+
+- Checkpoint name: `7.2` rational / irrational-number exercise and answer
+  pairing
+- What was inspected: `MATH1025_slides_ch7.pdf` pp. 36-41, the new EN /
+  zh-HK / zh-CN `7.2` MDX files, and `src/lib/textbook/problem-bank.ts`
+- What was changed: added paired quick checks / reveal answers for rational
+  closure, irrational sum/product counterexamples, the reduced-fraction setup
+  in the `sqrt(2)` contradiction, and the perfect-square criterion for
+  `sqrt(n)`; added an end exercise set with hidden guided solutions; added two
+  checkpoint problems for the `sqrt(2)` divisibility step and the perfect-square
+  test for `sqrt(n)`
+- Integrity note: the end-of-unit solutions are inside `RevealSolution` so the
+  public page keeps answers hidden by default while TXT/PDF export can expose
+  them as study material. The proof-step checkpoint is fill-in to avoid
+  overgrading a full proof, and the perfect-square item is MCQ to avoid fragile
+  radical parsing.
+- Verification: `npm run contentlayer`, `npm run verify:mdx-tables`,
+  `npm run lint`, `npx tsc --noEmit --pretty false`, `git diff --check`,
+  `AUTH_SECRET=local-test-secret npm run build`, local EN / zh-HK / zh-CN
+  route smoke, EN TXT/PDF export smoke, and both new checkpoint preview API
+  requests passed. Production route/export/API verification is still pending
+  until the new commit is deployed.

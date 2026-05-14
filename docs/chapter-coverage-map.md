@@ -63,13 +63,13 @@ The public Notes tree has therefore been expanded under `csci2520` only.
 ## Math1025
 
 Math1025 is no longer a purely future placeholder. The repo already exposes a
-public baseline through the chapter 6 complex-number unit, but the course is
-still far from complete.
+public baseline through the chapter 7 integer / rational-number units, but the
+course is still far from complete.
 
 | Course | Chapter family | Public state | Source state | Notes |
 | --- | --- | --- | --- | --- |
 | `math1025` | Foundations and early methods (`ch0` to `ch6`) | Authored through `6.1` | Usable | Seven three-language units are represented: notation, trigonometry, induction, inequalities / absolute value, binomial coefficients / expansions, sequences / recursion / series, and complex numbers / polar form / geometry. |
-| `math1025` | Integer methods (`ch7`) | Authored through `7.1` | Usable | New three-language unit covers divisibility, primes, well-ordering arguments, gcd, division algorithm, Euclidean / extended Euclidean algorithms, Bezout, unique prime factorization, and linear Diophantine equations. The rational / irrational-number part of `ch7` remains pending. |
+| `math1025` | Integer and rational-number methods (`ch7`) | Authored through `7.2` | Usable | Two three-language units cover divisibility, primes, well-ordering arguments, gcd, division algorithm, Euclidean / extended Euclidean algorithms, Bezout, unique prime factorization, linear Diophantine equations, rational closure, irrational counterexamples, nth-root notation, the irrationality of `sqrt(2)`, prime-root irrationality, and the perfect-square test for `sqrt(n)`. |
 | `math1025` | Polynomial methods (`ch8`) | Unauthored | Usable | Chapter slides cover polynomial arithmetic, division algorithm, polynomial gcd, irreducibility, and rational functions. |
 | `math1025` | Vectors and geometry (`ch9` to `ch11`) | Unauthored | Usable | Chapter slides cover vectors in `R^n`, straight lines / planes / curves, and conic sections. |
 | `math1025` | Homework and assessment support | Unauthored | Secondary support | Keep homework-solution PDFs and the MATH1025 midterm pair for later exercise design after baseline notes exist. |
@@ -104,4 +104,4 @@ determinant-free proof patterns, or the `as02` Q2 parameterized `G/H`
 row-operation-product construction. Remaining assignment work is mostly
 optional exhaustive intermediate-table replication and broader export QA across
 the expanded sequence. Math1025 expansion should remain controlled and
-source-backed, with `ch7` through `ch11` as the active chapter-slide backlog.
+source-backed, with `ch8` through `ch11` as the active chapter-slide backlog.

@@ -1,0 +1,550 @@
+---
+title: "7.2 Rational and irrational numbers"
+description: "Study rational numbers, irrational numbers, closure of Q, nonnegative nth roots, irrationality proofs for roots, and the perfect-square criterion for rational square roots."
+---
+
+## Why rational numbers are not enough
+
+The integers are closed under addition, subtraction, and multiplication, but not
+under division. To solve equations such as
+
+$$
+3x=2,
+$$
+
+we enlarge the number system from `\mathbb Z` to the rational numbers
+`\mathbb Q`. This enlargement is extremely useful: it allows fractions, it is
+stable under the four ordinary arithmetic operations, and it is still governed
+by integer divisibility through numerators and denominators.
+
+However, even `\mathbb Q` is not large enough for all familiar equations. The
+equation
+
+$$
+x^2=2
+$$
+
+has a real solution, namely the nonnegative square root `\sqrt2`, but that
+solution is not rational. The purpose of this section is to make this contrast
+precise. We first record the arithmetic stability of rational numbers, then use
+prime divisibility to prove that certain roots cannot be rational.
+
+## Rational and irrational numbers
+
+<Definition title="Rational and irrational numbers">
+Let `x\in\mathbb R`.
+
+1. We say that `x` is a rational number if there exist integers `m,n\in\mathbb Z`
+   such that `n\ne0` and
+
+   $$
+   x=\frac mn.
+   $$
+
+2. We say that `x` is irrational if `x` is not rational.
+
+The set of all rational numbers is denoted by `\mathbb Q`.
+</Definition>
+
+The denominator condition `n\ne0` is essential. Division by zero is not
+defined, so a rational representation must always have a nonzero denominator.
+Also, rational representations are not unique:
+
+$$
+\frac12=\frac24=\frac{-3}{-6}.
+$$
+
+When proving that a number is rational, it is enough to produce one valid
+fraction. When proving that a number is irrational, one must prove that no such
+fraction exists.
+
+It is often convenient to reduce a rational number to lowest terms. If
+`x\in\mathbb Q` and `x>0`, then we may write
+
+$$
+x=\frac ab
+$$
+
+with `a,b\in\mathbb Z^+` and `\gcd(a,b)=1`. The condition
+`\gcd(a,b)=1` means that all common factors have already been cancelled. Many
+irrationality proofs begin by assuming such a lowest-terms representation and
+then showing that a prime divides both `a` and `b`, which is impossible.
+
+## Closure of the rational numbers
+
+<TheoremCard title="Closure of Q under arithmetic">
+Let `x,y\in\mathbb Q`.
+
+1. `x+y\in\mathbb Q`, `x-y\in\mathbb Q`, and `xy\in\mathbb Q`.
+2. If `y\ne0`, then `x/y\in\mathbb Q`.
+</TheoremCard>
+
+This theorem says that rational numbers are closed under the four arithmetic
+operations, except that division by zero is still excluded.
+
+To prove it, write
+
+$$
+x=\frac mn,\qquad y=\frac pq,
+$$
+
+where `m,n,p,q\in\mathbb Z` and `n\ne0`, `q\ne0`. Then
+
+$$
+x+y=\frac{mq+np}{nq},
+\qquad
+x-y=\frac{mq-np}{nq},
+\qquad
+xy=\frac{mp}{nq}.
+$$
+
+The numerators and denominators displayed here are integers, and the denominator
+`nq` is nonzero. Hence all three numbers are rational.
+
+For division, suppose `y\ne0`. Since
+
+$$
+y=\frac pq,
+$$
+
+the condition `y\ne0` forces `p\ne0`. Therefore
+
+$$
+\frac xy=\frac{m/n}{p/q}=\frac{mq}{np}.
+$$
+
+Again the numerator and denominator are integers, and `np\ne0`, so `x/y` is
+rational.
+
+<CommonMistake title="Closure of Q is not closure of the irrational numbers">
+The theorem is about operations starting with rational numbers. It does not say
+that irrational numbers are closed under addition or multiplication. In fact,
+they are not.
+</CommonMistake>
+
+For example, `\sqrt2` is irrational, but
+
+$$
+\sqrt2+(-\sqrt2)=0
+$$
+
+is rational. Also,
+
+$$
+\sqrt2\cdot\sqrt2=2
+$$
+
+is rational. The word "irrational" means "not in `\mathbb Q`"; it does not
+create a separate number system closed under the usual arithmetic operations.
+
+## Nonnegative nth roots
+
+<Definition title="Nonnegative nth real root">
+Let `n\in\mathbb Z^+`, and let `a,\rho` be nonnegative real numbers. We say
+that `\rho` is a nonnegative `n`-th real root of `a` if
+
+$$
+\rho^n=a.
+$$
+</Definition>
+
+<TheoremCard title="Existence and uniqueness of nonnegative nth roots">
+Let `n\in\mathbb Z^+`, and let `a` be a nonnegative real number. There is a
+unique nonnegative real number `\rho` such that
+
+$$
+\rho^n=a.
+$$
+
+This number is denoted by
+
+$$
+\sqrt[n]{a}.
+$$
+</TheoremCard>
+
+The word "nonnegative" is doing important work. For square roots, both `3` and
+`-3` satisfy `x^2=9`, but only `3` is the nonnegative square root. Thus
+
+$$
+\sqrt9=3,
+$$
+
+not `\pm3`. The notation `\sqrt[n]{a}` always refers to the unique nonnegative
+root when `a\ge0`.
+
+For odd `n`, negative real roots can also be discussed, but this section only
+needs the nonnegative root of a nonnegative real number.
+
+The existence of `\sqrt[n]{a}` is recorded here as a fact about the real
+numbers. Its full proof belongs to a later analysis course. In this section, we
+use the notation to ask a different question: when can such a root be rational?
+
+## Irrationality of `\sqrt2`
+
+The first major example is the classical proof that `\sqrt2` is not rational.
+The proof uses Euclid's lemma from integer divisibility:
+
+$$
+p\mid ab\quad\Longrightarrow\quad p\mid a\text{ or }p\mid b
+$$
+
+when `p` is prime. In particular, if a prime `p` divides `a^2`, then `p`
+divides `a`.
+
+<TheoremCard title="Irrationality of sqrt(2)">
+The real number `\sqrt2` is irrational.
+</TheoremCard>
+
+Suppose, for contradiction, that `\sqrt2` is rational. Since it is positive,
+we may write
+
+$$
+\sqrt2=\frac ab
+$$
+
+where `a,b\in\mathbb Z^+` and `\gcd(a,b)=1`. Squaring both sides gives
+
+$$
+2=\frac{a^2}{b^2},
+\qquad\text{so}\qquad
+2b^2=a^2.
+$$
+
+Hence `2\mid a^2`. Since `2` is prime, Euclid's lemma implies `2\mid a`.
+Write `a=2c` for some `c\in\mathbb Z^+`. Substituting this into
+`2b^2=a^2` gives
+
+$$
+2b^2=(2c)^2=4c^2.
+$$
+
+Dividing by `2`,
+
+$$
+b^2=2c^2.
+$$
+
+Thus `2\mid b^2`, and again Euclid's lemma gives `2\mid b`. We have shown
+that `2` divides both `a` and `b`, contradicting `\gcd(a,b)=1`.
+
+Therefore the assumption that `\sqrt2` is rational is false, and `\sqrt2` is
+irrational.
+
+The structure of the proof is more important than the particular number `2`.
+A rational representation in lowest terms cannot have a prime factor forced
+into both numerator and denominator. Irrationality proofs often look for exactly
+that contradiction.
+
+<WorkedExample title="Uniqueness of rational coefficients with sqrt(3)">
+Let `a,b,c,d\in\mathbb Q`, and suppose
+
+$$
+a+b\sqrt3=c+d\sqrt3.
+$$
+
+Assume that `\sqrt3` is irrational. We prove that `a=c` and `b=d`.
+
+Move the rational terms to one side and the `\sqrt3` terms to the other:
+
+$$
+a-c=(d-b)\sqrt3.
+$$
+
+If `d-b\ne0`, then
+
+$$
+\sqrt3=\frac{a-c}{d-b}.
+$$
+
+The numerator and denominator are rational numbers, and the denominator is
+nonzero, so the quotient is rational by closure of `\mathbb Q` under division.
+That contradicts the irrationality of `\sqrt3`. Therefore `d-b=0`, so
+`b=d`. Substituting back gives `a=c`.
+</WorkedExample>
+
+This example shows a useful principle: over the rational numbers, the two
+pieces `1` and `\sqrt3` cannot secretly imitate each other. A rational part and
+an irrational `\sqrt3` part must match separately.
+
+## Irrationality of prime nth roots
+
+The same idea proves a stronger result for roots of prime numbers.
+
+<TheoremCard title="Prime nth roots are irrational">
+Let `n` be an integer greater than `1`, and let `p` be a positive prime number.
+Then
+
+$$
+\sqrt[n]{p}
+$$
+
+is irrational.
+</TheoremCard>
+
+Suppose, for contradiction, that `\sqrt[n]{p}` is rational. Since it is
+positive, write
+
+$$
+\sqrt[n]{p}=\frac ab
+$$
+
+where `a,b\in\mathbb Z^+` and `\gcd(a,b)=1`. Raising both sides to the `n`-th
+power gives
+
+$$
+p=\frac{a^n}{b^n},
+\qquad\text{so}\qquad
+pb^n=a^n.
+$$
+
+Hence `p\mid a^n`. By applying Euclid's lemma repeatedly, a prime dividing
+`a^n` must divide `a`. Therefore `p\mid a`, so write
+
+$$
+a=pc
+$$
+
+for some `c\in\mathbb Z^+`. Substitute this into `pb^n=a^n`:
+
+$$
+pb^n=(pc)^n=p^n c^n.
+$$
+
+Cancel one factor of `p`:
+
+$$
+b^n=p^{\,n-1}c^n.
+$$
+
+Because `n>1`, the right-hand side is divisible by `p`. Hence `p\mid b^n`.
+Again, Euclid's lemma applied repeatedly gives `p\mid b`.
+
+Thus `p` divides both `a` and `b`, contradicting `\gcd(a,b)=1`. Therefore
+`\sqrt[n]{p}` is irrational.
+
+<CommonMistake title="Do not skip the condition n > 1">
+If `n=1`, then `\sqrt[1]{p}=p`, which is an integer and therefore rational.
+The contradiction above needs `p^{n-1}` to contain at least one factor of `p`.
+</CommonMistake>
+
+## When is `\sqrt n` rational?
+
+For square roots of positive integers, rationality has an exact answer: a
+positive integer has a rational square root precisely when it is already a
+perfect square.
+
+<Definition title="Perfect square">
+An integer `n\in\mathbb Z^+` is a perfect square if there exists an integer
+`m\in\mathbb Z` such that
+
+$$
+n=m^2.
+$$
+</Definition>
+
+<TheoremCard title="Rational square-root criterion">
+Let `n\in\mathbb Z^+`. Then `\sqrt n` is rational if and only if `n` is a
+perfect square.
+</TheoremCard>
+
+First suppose `n` is a perfect square, say `n=m^2` for some `m\in\mathbb Z`.
+Since `n>0`, we have `m\ne0`, and the nonnegative square root is
+
+$$
+\sqrt n=|m|.
+$$
+
+This is an integer, hence rational.
+
+Conversely, suppose `\sqrt n` is rational. Write it in lowest terms as
+
+$$
+\sqrt n=\frac ab,
+$$
+
+where `a,b\in\mathbb Z^+` and `\gcd(a,b)=1`. Squaring gives
+
+$$
+nb^2=a^2.
+$$
+
+We claim that `b=1`. If `b>1`, then `b` has a prime divisor `p`. Since
+`p\mid b`, we have `p\mid b^2`, and the equation `nb^2=a^2` implies
+`p\mid a^2`. By Euclid's lemma, `p\mid a`. Thus `p` divides both `a` and
+`b`, contradicting `\gcd(a,b)=1`. Therefore `b=1`.
+
+So `\sqrt n=a`, and hence
+
+$$
+n=a^2.
+$$
+
+Thus `n` is a perfect square.
+
+The theorem explains why `\sqrt4`, `\sqrt9`, and `\sqrt{49}` are rational,
+while `\sqrt2`, `\sqrt3`, `\sqrt5`, `\sqrt6`, and `\sqrt{10}` are not. The
+question is not whether the decimal expansion looks simple; it is whether the
+integer under the square root is a square of an integer.
+
+## Quick checks
+
+<QuickCheck prompt="What does it mean to prove that a real number `x` is irrational?">
+Pay attention to the word "not" in the definition.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It means proving that there do not exist integers `m,n` with `n\ne0` such that
+`x=m/n`.
+</RevealSolution>
+
+<QuickCheck prompt="If `x=m/n` and `y=p/q` are rational numbers with nonzero denominators, why is `xy` rational?">
+Use the integer formula for the product.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+We have `xy=mp/(nq)`. Since `mp,nq\in\mathbb Z` and `nq\ne0`, the product is
+rational.
+</RevealSolution>
+
+<QuickCheck prompt="Give one example where the sum of two irrational numbers is rational.">
+Use opposite irrational numbers.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+For example, `\sqrt2` and `-\sqrt2` are irrational, but
+`\sqrt2+(-\sqrt2)=0`, which is rational.
+</RevealSolution>
+
+<QuickCheck prompt="In the proof that `\sqrt2` is irrational, why do we first write `\sqrt2=a/b` with `\gcd(a,b)=1`?">
+The contradiction concerns common divisors.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Every positive rational number can be written in lowest terms. If the proof then
+forces the same prime to divide both `a` and `b`, it contradicts
+`\gcd(a,b)=1`.
+</RevealSolution>
+
+<QuickCheck prompt="Why does `p\mid a^n` imply `p\mid a` when `p` is prime?">
+Think of `a^n` as a product of `n` copies of `a`.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Since `a^n=a\cdot a\cdots a`, Euclid's lemma says that if the prime `p`
+divides this product, then it divides at least one factor. Every factor is
+`a`, so `p\mid a`.
+</RevealSolution>
+
+<QuickCheck prompt="For a positive integer `n`, what exact condition makes `\sqrt n` rational?">
+State the criterion as an if and only if.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+`\sqrt n` is rational if and only if `n` is a perfect square, meaning
+`n=m^2` for some integer `m`.
+</RevealSolution>
+
+## Exercises
+
+1. Prove directly from the definition that if `x,y\in\mathbb Q`, then
+   `3x-5y\in\mathbb Q`.
+2. Give examples showing that the sum and product of irrational numbers may be
+   rational.
+3. Prove that if `r\in\mathbb Q`, `s\notin\mathbb Q`, and `r\ne0`, then
+   `rs\notin\mathbb Q`.
+4. Let `a,b,c,d\in\mathbb Q`. Suppose
+   `a+b\sqrt3=c+d\sqrt3`, and assume `\sqrt3` is irrational. Prove that
+   `a=c` and `b=d`.
+5. Prove that `\sqrt[3]{5}` is irrational.
+6. Let `n\in\mathbb Z^+`. Prove that `\sqrt n` is rational if and only if
+   `n` is a perfect square.
+7. Determine whether each number is rational or irrational:
+   `\sqrt{16}`, `\sqrt{18}`, `\sqrt[4]{7}`, and
+   `2+\sqrt[3]{11}`.
+
+<RevealSolution title="Guided solutions">
+
+1. Write `x=m/n` and `y=p/q`, where `m,n,p,q\in\mathbb Z` and
+   `n,q\ne0`. Then
+
+   $$
+   3x-5y=\frac{3m}{n}-\frac{5p}{q}
+   =\frac{3mq-5pn}{nq}.
+   $$
+
+   The numerator and denominator are integers, and `nq\ne0`, so
+   `3x-5y\in\mathbb Q`.
+
+2. For the sum, `\sqrt2+(-\sqrt2)=0`, which is rational. For the product,
+   `\sqrt2\cdot\sqrt2=2`, which is rational. Both examples use irrational
+   inputs but produce rational outputs.
+
+3. Suppose, for contradiction, that `rs\in\mathbb Q`. Since `r\in\mathbb Q`
+   and `r\ne0`, closure of `\mathbb Q` under division gives
+
+   $$
+   s=\frac{rs}{r}\in\mathbb Q,
+   $$
+
+   contradicting `s\notin\mathbb Q`. Therefore `rs` is irrational.
+
+4. Starting from
+
+   $$
+   a+b\sqrt3=c+d\sqrt3,
+   $$
+
+   rearrange to get
+
+   $$
+   a-c=(d-b)\sqrt3.
+   $$
+
+   If `d-b\ne0`, then
+
+   $$
+   \sqrt3=\frac{a-c}{d-b}.
+   $$
+
+   The right-hand side is rational, contradicting the irrationality of
+   `\sqrt3`. Hence `d-b=0`, so `b=d`. Substituting into the original equation
+   gives `a=c`.
+
+5. This is the prime nth-root theorem with `p=5` and `n=3`. For a direct proof,
+   suppose
+
+   $$
+   \sqrt[3]{5}=\frac ab
+   $$
+
+   in lowest terms, with `a,b\in\mathbb Z^+`. Cubing gives
+
+   $$
+   5b^3=a^3.
+   $$
+
+   Hence `5\mid a^3`, so `5\mid a`. Write `a=5c`. Then
+
+   $$
+   5b^3=125c^3,
+   \qquad\text{so}\qquad
+   b^3=25c^3.
+   $$
+
+   Thus `5\mid b^3`, so `5\mid b`, contradicting that `a` and `b` are
+   relatively prime. Therefore `\sqrt[3]{5}` is irrational.
+
+6. If `n=m^2` for some `m\in\mathbb Z`, then `\sqrt n=|m|`, so `\sqrt n`
+   is rational. Conversely, suppose `\sqrt n=a/b` in lowest terms with
+   `a,b\in\mathbb Z^+`. Then `nb^2=a^2`. If `b>1`, choose a prime
+   `p\mid b`. Then `p\mid a^2`, so `p\mid a`, contradicting
+   `\gcd(a,b)=1`. Hence `b=1`, and `n=a^2`. Therefore `n` is a perfect
+   square.
+
+7. `\sqrt{16}=4`, so it is rational. The integer `18` is not a perfect
+   square, so `\sqrt{18}` is irrational. The number `\sqrt[4]{7}` is
+   irrational by the prime nth-root theorem. Finally, `\sqrt[3]{11}` is
+   irrational by the same theorem, so `2+\sqrt[3]{11}` is irrational; otherwise
+   subtracting the rational number `2` would make `\sqrt[3]{11}` rational.
+</RevealSolution>

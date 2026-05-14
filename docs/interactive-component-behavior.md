@@ -195,5 +195,14 @@ static display math and worked examples in this first public unit. A future
 Euclidean-algorithm stepper could be useful only if it remains article-embedded
 and exports as a full static remainder / back-substitution table.
 
+The Math1025 `7.2` rational / irrational-number pass also does not add a
+widget. The supported material is proof-structure heavy: rational closure,
+counterexamples for irrational operations, the reduced-fraction contradiction
+for `sqrt(2)`, prime-root irrationality, and the perfect-square criterion for
+`sqrt(n)`. Static theorem / example / quick-check blocks preserve the logical
+sequence better than a detached calculator-style tool. A later radical
+classification widget would only be justified if it stays embedded and exports
+as a static table of representative integers and square-root classifications.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

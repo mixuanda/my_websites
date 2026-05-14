@@ -43,9 +43,9 @@ verification result, and any remaining follow-up.
 | CSCI2520 content | CSCI2520 is incomplete, especially algorithms | Not started | Audit `reference/CSCI2520`, extracted text, and current `content/textbook/csci2520/**`. |
 | CSCI2520 interactions | Algorithms need code / pseudocode plus synchronized demonstrations | Not started | Design split explanatory blocks where code or pseudocode and the demonstration advance together. |
 | CSCI2520 checkpoints | Add code-output and complexity-analysis checkpoint questions | Not started | Extend problem-bank support if current checkpoint types are insufficient. |
-| Math1025 content | Math1025 content is incomplete and currently too easy | In progress | Added source-backed `7.1 Divisibility, gcd, and integer equations` from `MATH1025_slides_ch7.pdf` pp. 2-35; remaining ch7 rational / irrational material plus ch8-ch11 are still backlog. |
-| Math1025 rendering | Math1025 has rendering mistakes | In progress | New `7.1` uses existing theorem / example / quick-check / reveal components and still needs the current round's local plus production route/export verification. |
-| Math1025 exercises | Math1025 exercise / answer presentation should hide answers behind reveals | In progress | New `7.1` keeps guided solutions inside `RevealSolution` and adds two problem-bank checkpoints for Euclidean algorithm and Diophantine solvability. |
+| Math1025 content | Math1025 content is incomplete and currently too easy | In progress | Added source-backed `7.1 Divisibility, gcd, and integer equations` and `7.2 Rational and irrational numbers` from `MATH1025_slides_ch7.pdf`; chapter 7 is represented, while ch8-ch11 remain backlog. |
+| Math1025 rendering | Math1025 has rendering mistakes | In progress | New `7.2` uses existing theorem / example / quick-check / reveal components and is queued for this round's local plus production route/export verification. |
+| Math1025 exercises | Math1025 exercise / answer presentation should hide answers behind reveals | In progress | New `7.2` keeps guided solutions inside `RevealSolution` and adds two problem-bank checkpoints for the `sqrt(2)` contradiction step and the perfect-square test for `sqrt(n)`. |
 | Tracking | Record this backlog in the repository | Completed | This file created on 2026-05-11 and linked from `docs/README.md`. |
 
 ## 2026-05-14 QA Checkpoint
@@ -69,9 +69,9 @@ Key result:
 - `npm run check:textbook-content` still reports 363 content warnings, so the
   main unfinished work is content depth and exercise parity, not basic route
   generation.
-- Math1025 is the largest source-backed backlog: the first `ch7` unit is now
-  authored, while the remaining `ch7` rational / irrational material plus
-  `ch8` through `ch11` are still not public Notes units.
+- Math1025 is the largest source-backed backlog: `ch7` is now represented by
+  public `7.1` and `7.2` units, while `ch8` through `ch11` are still not public
+  Notes units.
 - CSCI2520 has public baseline units but still needs serious algorithm depth,
   source-process prose cleanup, and checkpoint expansion.
 - Math1030 has broad route coverage but still has five units without
@@ -380,9 +380,35 @@ Every implementation pass that touches the items above should verify:
   Edge window and returned `cgWindowNotFound`. As fallback, a Playwright
   screenshot using the installed Microsoft Edge channel verified the remote EN
   desktop page and zh-HK mobile page.
-- Remaining Math1025 backlog: finish the later `ch7` rational / irrational
-  material, then continue into `ch8` polynomials and `ch9`-`ch11` vectors /
-  geometry.
+- Remaining Math1025 backlog: continue into `ch8` polynomials and
+  `ch9`-`ch11` vectors / geometry.
+
+### 2026-05-15: Math1025 ch7 rational / irrational-number supplement
+
+- Status: Implemented locally and passed local verification; commit, push, and
+  production verification are the next checkpoints before closeout.
+- Gap selected: Math1025 chapter 7 still had an unprocessed rational /
+  irrational-number tail after the earlier integer-methods pass.
+- Files changed: three localized MDX files under
+  `content/textbook/math1025/integer-methods/rational-and-irrational-numbers/`,
+  plus `src/lib/textbook/catalog.ts`, `src/lib/textbook/problem-bank.ts`, and
+  internal coverage / QA docs.
+- Implementation state: added `7.2 Rational and irrational numbers` in EN,
+  zh-HK, and zh-CN; registered the unit in the existing Math1025 chapter-7
+  family; added checkpoint problems for the `sqrt(2)` contradiction step and
+  the perfect-square criterion for `sqrt(n)`.
+- Verification completed locally: `npm run contentlayer`,
+  `npm run verify:mdx-tables`, `npm run lint`,
+  `npx tsc --noEmit --pretty false`, `git diff --check`,
+  `AUTH_SECRET=local-test-secret npm run build`,
+  `CONTENT_CHECK_MAX_WARNINGS=40 npm run check:textbook-content`, local EN /
+  zh-HK / zh-CN route checks, EN TXT/PDF exports, and both new checkpoint
+  preview API checks.
+- Verification pending: commit, push, Vercel production wait, and
+  `www.evanalysis.top` route / export / API / browser-style verification.
+- Remaining Math1025 backlog after this slice: `ch8` polynomial arithmetic /
+  polynomial gcd / irreducibility, then `ch9`-`ch11` vectors and geometry;
+  homework and assessment PDFs remain secondary exercise-design support.
 
 ### 2026-05-11: Global Notes sidebar finder blocked on Chrome QA
 

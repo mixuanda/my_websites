@@ -666,5 +666,31 @@ Current checkpoint resolution:
   Microsoft Edge-channel Playwright screenshot captured the remote desktop EN
   page and remote mobile zh-HK page, confirming first-viewport layout,
   localized title, language controls, chapter chip, and export button.
-- Remaining issues: run route / export / API verification locally, then verify
-  the deployed `www.evanalysis.top` pages after push.
+- Remaining issues: chapter 7 now has a follow-up `7.2` rendering pass in
+  progress; run route / export / API verification locally, then verify the
+  deployed `www.evanalysis.top` pages after push.
+
+### 2026-05-15 checkpoint 24: Math1025 ch7 rational / irrational rendering pass
+
+- Checkpoint name: `7.2 Rational and irrational numbers` initial rendering
+  integration
+- What was inspected: `MATH1025_slides_ch7.pdf` pp. 36-41, existing Math1025
+  MDX patterns, the shared MDX block registry, catalog source-ref metadata, and
+  problem-bank checkpoint rendering conventions
+- What was changed: added EN / zh-HK / zh-CN article pages using existing
+  `Definition`, `TheoremCard`, `WorkedExample`, `CommonMistake`,
+  `QuickCheck`, and `RevealSolution` blocks; no new interactive component was
+  introduced because the proof logic is clearer as static theorem / example /
+  exercise prose in this first pass
+- Rendering note: the unit uses display math for rational arithmetic, radical
+  equations, contradiction proof steps, prime-root arguments, and the
+  perfect-square criterion. TXT / PDF export should preserve the static proof
+  and solution sequence without an interactive fallback.
+- Verification: `npm run contentlayer`, `npm run verify:mdx-tables`,
+  `npm run lint`, `npx tsc --noEmit --pretty false`, `git diff --check`,
+  `AUTH_SECRET=local-test-secret npm run build`, and
+  `CONTENT_CHECK_MAX_WARNINGS=40 npm run check:textbook-content` passed.
+  Local production smoke on `127.0.0.1:3005` returned 200 for EN / zh-HK /
+  zh-CN note routes, EN TXT export, EN PDF export with `%PDF` header, and both
+  new checkpoint preview API requests. Production route/export/API smoke and
+  browser-style production page verification are still pending until deploy.

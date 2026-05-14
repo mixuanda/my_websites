@@ -319,23 +319,23 @@ source-backed chapters are added.
 
 ## Current Math1025 parity note
 
-- `7.1 Divisibility, gcd, and integer equations` is now the documented
-  Math1025 coverage boundary after `6.1 Complex numbers, polar form, and
-  geometry`.
-- The EN, zh-HK, and zh-CN `7.1` files keep matching section order:
-  divisibility, primes / well-ordering, gcd, division algorithm, Euclidean
-  algorithm, Bezout, Euclid's lemma, unique prime factorization, Diophantine
-  equations, quick checks, exercises, and hidden guided solutions.
+- `7.2 Rational and irrational numbers` is now the documented Math1025
+  coverage boundary after `7.1 Divisibility, gcd, and integer equations`.
+- The EN, zh-HK, and zh-CN `7.2` files keep matching section order:
+  motivation from `x^2=2`, rational / irrational definitions, rational
+  closure, irrational counterexamples, nonnegative nth roots, the
+  irrationality of `sqrt(2)`, prime-root irrationality, the perfect-square
+  criterion for `sqrt(n)`, quick checks, exercises, and hidden guided
+  solutions.
 - The unit is source-backed by `reference/MATH1025/MATH1025_slides_ch7.pdf`
-  pp. 2-35. The rational / irrational-number material beginning around p. 36
-  remains pending as the next `ch7` slice.
+  pp. 36-41. The full chapter 7 slide baseline is now represented by public
+  `7.1` and `7.2`; the next unprocessed chapter-slide source is chapter 8.
 - Two unit-level checkpoint problems were added to the shared Math1025 problem
-  bank for the Euclidean algorithm and Diophantine solvability. Local
-  Contentlayer, MDX table, lint, typecheck, build, route, TXT/PDF export, and
-  checkpoint preview checks passed in this round. Production deployment
-  `dpl_BrKPbrrbAQvew3nfNHSdDMcc1b3H` is Ready and `www.evanalysis.top` remote
-  route / TXT export / PDF export / checkpoint preview checks passed for this
-  unit.
+  bank for the `sqrt(2)` contradiction step and the perfect-square test for
+  `sqrt(n)`. Local Contentlayer, MDX table, lint, typecheck, build, content
+  structure, route, TXT/PDF export, and checkpoint preview checks passed in
+  this round; production verification for this new unit is pending in the
+  2026-05-15 QA checkpoint.
 
 ## Checkpoint log
 
