@@ -139,6 +139,9 @@ public note pages.
 
 ### Verification status
 
-- Pending at this checkpoint: contentlayer, lint, typecheck, build, local route
-  smoke, export smoke, checkpoint preview API, browser QA, commit / push, and
-  production verification.
+- Continued in `docs/qa-checkpoints-2026-05-22.md`.
+- Commit `c604156` shipped the chapter 8 polynomial-methods slice and
+  production deployment `dpl_B5yi1wnZcRAmcfgWdVFDG1ANkcwS` reached Ready.
+- Remote route, TXT/PDF export, checkpoint preview API, and deep browser
+  interaction checks passed, except deep visual QA found one Vieta checkpoint
+  prompt rendering issue. The fix is tracked in the May 22 QA checkpoint.

@@ -75,5 +75,73 @@ Homework and assessment PDFs remain secondary exercise-design support.
 
 ## Remote QA Status
 
-Pending until the commit is pushed and the production deployment for
-`www.evanalysis.top` reaches Ready.
+### Production deployment
+
+- Commit under test: `c604156` (`Add Math1025 polynomial notes and QA rules`).
+- Production deployment: `dpl_B5yi1wnZcRAmcfgWdVFDG1ANkcwS`.
+- `npx vercel inspect https://www.evanalysis.top --wait --timeout 5m`
+  confirmed `www.evanalysis.top` aliases to the Ready production deployment.
+- `npx vercel logs dpl_B5yi1wnZcRAmcfgWdVFDG1ANkcwS --no-follow --since 20m
+  --level error --limit 20`: no error logs found.
+
+### Remote route, export, and API checks
+
+Remote checks against `https://www.evanalysis.top` returned 200 for:
+
+- `/en/notes`, `/zh-hk/notes`, `/zh-cn/notes`;
+- `/en/notes/math1025`, `/zh-hk/notes/math1025`,
+  `/zh-cn/notes/math1025`;
+- EN / zh-HK / zh-CN `8.1 Polynomial arithmetic and division`;
+- EN `8.2 Polynomial gcds and irreducibility`;
+- EN `8.3 Rational functions, partial fractions, and Vieta formulas`;
+- TXT exports for EN / zh-HK `8.1` and EN `8.3`;
+- EN `8.1` PDF export, with `application/pdf` and `%PDF` header.
+
+Remote checkpoint preview API checks returned 200 and parsed successfully for
+all seven new Math1025 chapter 8 checkpoint IDs:
+
+- `checkpoint.math1025.polynomial-methods.division-remainder`
+- `checkpoint.math1025.polynomial-methods.factor-theorem-parameter`
+- `checkpoint.math1025.polynomial-methods.zero-count`
+- `checkpoint.math1025.polynomial-methods.euclidean-gcd`
+- `checkpoint.math1025.polynomial-methods.irreducible-over-field`
+- `checkpoint.math1025.polynomial-methods.partial-fraction-form`
+- `checkpoint.math1025.polynomial-methods.vieta-product`
+
+### Deep interaction checks
+
+Remote Playwright browser automation on `www.evanalysis.top` verified:
+
+- EN desktop `8.1` page identity, heading, stepper, checkpoint section, and no
+  framework overlay or console errors;
+- zh-HK mobile dark-mode `8.1` page identity, heading, stepper, checkpoint
+  section, and no framework overlay or console errors;
+- the polynomial long-division stepper advances from step 1 through step 5,
+  disables Previous on step 1, disables Next on step 5, and moves back to step
+  4 with Previous;
+- `8.1` checkpoint Preview enables after fill-in input, normalizes `x+8` as
+  `8+x`, previews `-7/3`, and previews the MCQ selected choice;
+- `8.1` checkpoint Submit API returned 200 for `x+8`, marked the answer
+  correct, updated progress, and exposed the full solution button in the
+  rendered page;
+- `8.2` checkpoint preview accepted `x-1` and displayed the normalized gcd
+  preview, and the correct irreducibility MCQ choice preview rendered;
+- `8.3` checkpoint preview rendered the correct partial-fraction form and
+  accepted the Vieta product answer `3`.
+
+Screenshots captured outside the repo:
+
+- `/tmp/my-websites-remote-en-desktop.png`
+- `/tmp/my-websites-remote-zh-hk-mobile-dark.png`
+- `/tmp/my-websites-deep-8-1-after-submit.png`
+- `/tmp/my-websites-deep-8-3-after-previews.png`
+
+### Additional issue found during deep QA
+
+Deep visual QA found that the `8.3` Vieta checkpoint prompt displayed the
+alpha-product blank as raw TeX-style code in the rendered prompt. Root cause:
+the prompt used a backticked expression with `____`, which failed the inline
+math renderer's KaTeX path and fell back to code text. Fix: rewrite the prompt
+in `src/lib/textbook/problem-bank.ts` to use explicit `$...$` inline math and
+`\\square` for the blank. This fix must be redeployed and rechecked before the
+QA round is closed.

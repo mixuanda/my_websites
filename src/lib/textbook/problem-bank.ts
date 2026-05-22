@@ -8309,9 +8309,9 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     maxAttempts: 5,
     points: 1,
     prompt: text(
-      "Let `\\alpha_1,\\alpha_2,\\alpha_3` be the roots of `x^3-33x^2+27x-3=0`. Fill in `\\alpha_1\\alpha_2\\alpha_3=____`.",
-      "設 `\\alpha_1,\\alpha_2,\\alpha_3` 是 `x^3-33x^2+27x-3=0` 的根。填上 `\\alpha_1\\alpha_2\\alpha_3=____`。",
-      "设 `\\alpha_1,\\alpha_2,\\alpha_3` 是 `x^3-33x^2+27x-3=0` 的根。填上 `\\alpha_1\\alpha_2\\alpha_3=____`。"
+      "Let $\\alpha_1,\\alpha_2,\\alpha_3$ be the roots of $x^3-33x^2+27x-3=0$. Fill in $\\alpha_1\\alpha_2\\alpha_3=\\square$.",
+      "設 $\\alpha_1,\\alpha_2,\\alpha_3$ 是 $x^3-33x^2+27x-3=0$ 的根。填上 $\\alpha_1\\alpha_2\\alpha_3=\\square$。",
+      "设 $\\alpha_1,\\alpha_2,\\alpha_3$ 是 $x^3-33x^2+27x-3=0$ 的根。填上 $\\alpha_1\\alpha_2\\alpha_3=\\square$。"
     ),
     correctAnswer: {
       value: "3",
