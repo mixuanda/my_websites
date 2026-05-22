@@ -144,4 +144,7 @@ public note pages.
   production deployment `dpl_B5yi1wnZcRAmcfgWdVFDG1ANkcwS` reached Ready.
 - Remote route, TXT/PDF export, checkpoint preview API, and deep browser
   interaction checks passed, except deep visual QA found one Vieta checkpoint
-  prompt rendering issue. The fix is tracked in the May 22 QA checkpoint.
+  prompt rendering issue.
+- Follow-up commit `147db3a` fixed the Vieta checkpoint prompt rendering and
+  deployment `dpl_AHZkEPRnukp9TUAUHFpHHPcSJxoe` passed remote recheck on
+  `www.evanalysis.top`.

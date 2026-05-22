@@ -83,6 +83,10 @@ Homework and assessment PDFs remain secondary exercise-design support.
   confirmed `www.evanalysis.top` aliases to the Ready production deployment.
 - `npx vercel logs dpl_B5yi1wnZcRAmcfgWdVFDG1ANkcwS --no-follow --since 20m
   --level error --limit 20`: no error logs found.
+- Follow-up fix commit: `147db3a` (`Fix Math1025 Vieta checkpoint rendering`).
+- Follow-up production deployment:
+  `dpl_AHZkEPRnukp9TUAUHFpHHPcSJxoe`, also confirmed Ready through
+  `www.evanalysis.top`.
 
 ### Remote route, export, and API checks
 
@@ -143,5 +147,17 @@ alpha-product blank as raw TeX-style code in the rendered prompt. Root cause:
 the prompt used a backticked expression with `____`, which failed the inline
 math renderer's KaTeX path and fell back to code text. Fix: rewrite the prompt
 in `src/lib/textbook/problem-bank.ts` to use explicit `$...$` inline math and
-`\\square` for the blank. This fix must be redeployed and rechecked before the
-QA round is closed.
+`\\square` for the blank.
+
+Follow-up remote verification on deployment
+`dpl_AHZkEPRnukp9TUAUHFpHHPcSJxoe` confirmed:
+
+- `www.evanalysis.top` points to the fixed Ready deployment;
+- the rendered `8.3` prompt visually shows Greek alpha notation and a square
+  blank instead of raw `\\alpha...=____` text;
+- remote HTML no longer contains the raw `\\alpha_1\\alpha_2\\alpha_3=____`
+  blank marker;
+- the Vieta checkpoint preview API accepts answer `3` and returns normalized
+  preview text `3`;
+- `npx vercel logs dpl_AHZkEPRnukp9TUAUHFpHHPcSJxoe --no-follow --since 10m
+  --level error --limit 20`: no error logs found.
