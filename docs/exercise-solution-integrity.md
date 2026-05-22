@@ -118,6 +118,18 @@ April 24, 2026 QA update:
 - the May 14 remote-only QA pass rechecked the production preview API at
   `www.evanalysis.top`; `demo.math1030.rref-pivot-column` returned 200 with
   the expected selected-choice preview text.
+- the May 15 Math1025 chapter 8 polynomial-methods pass adds three localized
+  note units with matched in-page `QuickCheck` / `RevealSolution` pairs and
+  source-backed guided exercises from Exercises 8.1-8.3. The new problem-bank
+  checkpoint IDs are
+  `checkpoint.math1025.polynomial-methods.division-remainder`,
+  `checkpoint.math1025.polynomial-methods.factor-theorem-parameter`,
+  `checkpoint.math1025.polynomial-methods.zero-count`,
+  `checkpoint.math1025.polynomial-methods.euclidean-gcd`,
+  `checkpoint.math1025.polynomial-methods.irreducible-over-field`,
+  `checkpoint.math1025.polynomial-methods.partial-fraction-form`, and
+  `checkpoint.math1025.polynomial-methods.vieta-product`. Final preview API
+  verification is pending until the local QA pass completes.
 
 ### 2026-04-14 checkpoint 8: attempt tracking + richer MATH1030 inventory
 

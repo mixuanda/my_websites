@@ -45,6 +45,7 @@ The current widget set lives in `src/components/textbook/interactives.tsx`.
   matrix-multiplication visualizer, solution-set classifier,
   invertibility row-reduction demo, subspace checker, span explorer,
   independence checker
+- `math1025`: sequence-recursion lab, polynomial-division stepper
 
 ## Behavior rules
 
@@ -203,6 +204,17 @@ for `sqrt(2)`, prime-root irrationality, and the perfect-square criterion for
 sequence better than a detached calculator-style tool. A later radical
 classification widget would only be justified if it stays embedded and exports
 as a static table of representative integers and square-root classifications.
+
+The Math1025 `8.1` polynomial-arithmetic pass adds
+`math1025-polynomial-division-stepper` because the source chapter's first
+computational bottleneck is reading long division as repeated leading-term
+cancellation. The widget remains fixed to the chapter's Example 8.0 rather
+than becoming a symbolic algebra app, and its export snapshot records the
+quotient / remainder sequence so TXT and PDF exports retain the study value.
+The companion `8.2` and `8.3` units do not add widgets; gcd proof structure,
+irreducibility, partial-fraction forms, and Vieta formulas are clearer as
+theorem-led prose, worked examples, quick checks, and source-backed guided
+exercises.
 
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

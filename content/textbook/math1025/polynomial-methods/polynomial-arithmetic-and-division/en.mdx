@@ -1,0 +1,438 @@
+---
+title: "8.1 Polynomial arithmetic and division"
+description: "Define polynomials as finite formal sums, control degree, prove the polynomial division algorithm, and use the remainder and factor theorems."
+---
+
+## Why polynomials need their own arithmetic
+
+A polynomial is familiar as an expression such as `x^4-3x^3+2x^2+4x-1`,
+but chapter 8 treats polynomials more carefully than ordinary algebraic
+shorthand. The point is not only to manipulate expressions. The point is to
+build an arithmetic system that behaves enough like the integers to support
+division with remainder, greatest common divisors, factorization, and later
+partial fraction decompositions.
+
+Throughout this chapter, the coefficients are real unless another field is
+explicitly named. The same definitions work over any field `F`, for example
+`Q`, `R`, or `C`.
+
+## Polynomials as finite formal sums
+
+<Definition title="Polynomial over R">
+A polynomial with real coefficients is a formal sum
+
+$$
+p(x)=\sum_{i=0}^{\infty} a_i x^i
+$$
+
+where each `a_i\in R` and all but finitely many coefficients are zero.
+The set of all such polynomials is denoted by `R[x]`.
+</Definition>
+
+The word "formal" matters. A polynomial is not merely a function value at one
+particular `x`; it is the whole list of coefficients, with only finitely many
+nonzero entries. Once the coefficients are fixed, the polynomial expression is
+fixed.
+
+If at least one coefficient is nonzero, the degree of `p(x)` is the largest
+index `i` for which `a_i\ne0`. If every coefficient is zero, we call `p(x)` the
+zero polynomial and set
+
+$$
+\deg(0)=-\infty.
+$$
+
+This convention lets degree formulas include the zero polynomial without many
+exceptional cases.
+
+A polynomial is **monic** if its leading coefficient is `1`. For instance,
+`x^3-4x+7` is monic, while `2x^3-4x+7` is not.
+
+<CommonMistake title="Do not read the displayed last term as the degree">
+If a polynomial is written as
+
+$$
+p(x)=a_0+a_1x+\cdots+a_nx^n,
+$$
+
+then `\deg(p)=n` only when `a_n\ne0`. The notation by itself does not guarantee
+that the displayed final coefficient is nonzero.
+</CommonMistake>
+
+## Addition, multiplication, and degree
+
+Let
+
+$$
+p(x)=\sum_{i=0}^{\infty}a_ix^i,\qquad
+q(x)=\sum_{i=0}^{\infty}b_ix^i.
+$$
+
+Their sum is formed coefficient-by-coefficient:
+
+$$
+p(x)+q(x)=\sum_{i=0}^{\infty}(a_i+b_i)x^i.
+$$
+
+Their product is given by the convolution rule:
+
+$$
+p(x)q(x)=\sum_{i=0}^{\infty}d_ix^i,\qquad
+d_i=\sum_{k=0}^{i}a_kb_{i-k}.
+$$
+
+Only finitely many terms contribute, so the product is again a polynomial.
+
+<TheoremCard title="Degree rules">
+For `p(x),q(x)\in R[x]`,
+
+1. `\deg(p+q)\le \max\{\deg p,\deg q\}`;
+2. `\deg(pq)=\deg p+\deg q`.
+
+The second identity uses the fact that the coefficient field has no zero
+divisors.
+</TheoremCard>
+
+The inequality in the first rule can be strict because leading terms may
+cancel. For example,
+
+$$
+(x^2+1)+(-x^2+x)=x+1.
+$$
+
+The product rule is stronger: if `p` and `q` are nonzero with leading
+coefficients `a_r` and `b_s`, then the coefficient of `x^{r+s}` in `pq` is
+`a_rb_s`, which is nonzero.
+
+## The division algorithm
+
+The central structural result is the polynomial version of integer division.
+It says that when we divide by a nonzero polynomial, there is a unique quotient
+and a unique remainder whose degree is smaller than the divisor.
+
+<TheoremCard title="Division algorithm for polynomials">
+Let `f(x),g(x)\in R[x]` with `g(x)\ne0`. Then there exist unique polynomials
+`q(x),r(x)\in R[x]` such that
+
+$$
+f(x)=g(x)q(x)+r(x),\qquad \deg r\lt\deg g.
+$$
+</TheoremCard>
+
+The proof follows a minimal-degree idea. Consider all possible expressions
+`f(x)-g(x)s(x)` as `s(x)` ranges over `R[x]`. If zero appears, the remainder is
+zero. Otherwise choose an element of least degree. If its degree were still at
+least `\deg g`, subtract a suitable multiple of `g(x)` that cancels its leading
+term. That creates an even smaller-degree element, a contradiction.
+
+Uniqueness is just as important as existence. If
+
+$$
+f=gq_1+r_1=gq_2+r_2
+$$
+
+with both remainders smaller than `g`, then
+
+$$
+g(q_1-q_2)=r_2-r_1.
+$$
+
+The left side is either zero or has degree at least `\deg g`; the right side
+has degree strictly less than `\deg g`. Thus both sides must be zero, so
+`q_1=q_2` and `r_1=r_2`.
+
+<InteractiveWidget id="math1025-polynomial-division-stepper" />
+
+<WorkedExample title="Divide a quartic by a quadratic">
+Find the quotient and remainder when
+
+$$
+f(x)=x^4-3x^3+2x^2+4x-1
+$$
+
+is divided by
+
+$$
+g(x)=x^2-2x+3.
+$$
+
+Long division gives
+
+$$
+q(x)=x^2-x-3,\qquad r(x)=x+8.
+$$
+
+Therefore
+
+$$
+x^4-3x^3+2x^2+4x-1
+=(x^2-2x+3)(x^2-x-3)+(x+8).
+$$
+</WorkedExample>
+
+## Remainders from evaluation
+
+When the divisor is linear, the division algorithm becomes especially powerful.
+
+<TheoremCard title="Remainder theorem">
+Let `f(x)\in R[x]` and `a\in R`. When `f(x)` is divided by `x-a`, the
+remainder is `f(a)`.
+</TheoremCard>
+
+Indeed, the remainder has degree less than `1`, so it is a constant `R`.
+Writing
+
+$$
+f(x)=(x-a)q(x)+R
+$$
+
+and substituting `x=a` gives `f(a)=R`.
+
+<TheoremCard title="Factor theorem">
+For `f(x)\in R[x]` and `a\in R`,
+
+$$
+(x-a)\mid f(x)\quad\Longleftrightarrow\quad f(a)=0.
+$$
+</TheoremCard>
+
+The factor theorem translates between algebraic factorization and roots. It is
+one of the main reasons roots become useful: a root supplies a linear factor,
+and a linear factor supplies a root.
+
+<WorkedExample title="Remainder modulo x^2-1">
+Suppose the remainders when `f(x)` is divided by `x-1` and `x+1` are `5` and
+`3`, respectively. Find the remainder when `f(x)` is divided by
+`x^2-1`.
+
+By the remainder theorem,
+
+$$
+f(1)=5,\qquad f(-1)=3.
+$$
+
+The remainder upon division by `x^2-1` has degree less than `2`, so write it as
+`ax+b`. Then
+
+$$
+a+b=5,\qquad -a+b=3.
+$$
+
+Solving gives `a=1` and `b=4`. The remainder is therefore
+
+$$
+x+4.
+$$
+</WorkedExample>
+
+## How many roots can a nonzero polynomial have?
+
+The factor theorem gives a degree bound on roots.
+
+<TheoremCard title="Root bound">
+A nonzero polynomial of degree `n` over `R` or `C` has at most `n` roots.
+</TheoremCard>
+
+The proof is by induction on degree. If `f` has a root `a`, then
+`f(x)=(x-a)q(x)` and `\deg q=\deg f-1`. Every root of `f` other than `a` is a
+root of `q`. The induction hypothesis then gives the bound.
+
+An immediate consequence is that a polynomial of degree at most `n` with
+`n+1` distinct roots must be the zero polynomial. This is a uniqueness theorem:
+too many zeros force every coefficient to vanish.
+
+## Proof sketch or proof idea
+
+The division algorithm is often introduced as a procedure, but in this course
+it is also a theorem with existence and uniqueness content. The existence part
+does not depend on the particular layout of long division. It depends on a
+simple descent principle for degrees. Among all expressions of the form
+`f-gs`, choose one with minimal degree. If its degree is still at least the
+degree of `g`, then its leading term can be cancelled by subtracting a suitable
+multiple of `g`. That cancellation produces another element of the same set
+with smaller degree, contradicting the choice of a minimal-degree remainder.
+
+The uniqueness part is equally structural. If two quotient-remainder pairs
+worked, subtracting the two identities would say that a multiple of `g` equals
+the difference of two small remainders. A nonzero multiple of `g` cannot have
+degree smaller than `g`; the difference of two allowed remainders must have
+degree smaller than `g`. The only way out is that both sides are zero. This is
+why the phrase "the quotient and the remainder" is justified.
+
+This proof pattern is worth remembering because it reappears in the next note.
+The Euclidean algorithm for polynomial gcds works only because every division
+step produces a strictly smaller-degree remainder. Degree plays the role that
+absolute value played for positive integers: it is the quantity that must
+descend and therefore cannot descend forever.
+
+## How to read a polynomial long division
+
+A long division table should not be read as a mysterious arrangement of
+symbols. It is a repeated leading-term cancellation algorithm.
+
+Start with the current dividend. Compare its leading term with the leading term
+of the divisor. In Example 8.0, the first comparison is
+
+$$
+\frac{x^4}{x^2}=x^2.
+$$
+
+That quotient term is chosen for one reason only: multiplying the divisor by
+`x^2` creates a leading term `x^4`, which cancels the current leading term.
+After subtraction, the current remainder becomes `-x^3-x^2+4x-1`. The same
+logic gives the next term
+
+$$
+\frac{-x^3}{x^2}=-x,
+$$
+
+and then the final quotient term
+
+$$
+\frac{-3x^2}{x^2}=-3.
+$$
+
+The algorithm stops not because the expression looks simpler, but because the
+current remainder has degree `1`, which is smaller than the divisor degree
+`2`. This stopping condition is exactly the condition in the theorem. If a
+student keeps dividing after the remainder has smaller degree, they are no
+longer following the division algorithm.
+
+<WorkedExample title="Choose a parameter with the factor theorem">
+Find `k` so that
+
+$$
+x-3
+$$
+
+divides
+
+$$
+f(x)=x^3+kx^2-4x+6.
+$$
+
+By the factor theorem, `x-3` divides `f(x)` exactly when `f(3)=0`. Compute
+
+$$
+f(3)=27+9k-12+6=21+9k.
+$$
+
+Thus `21+9k=0`, so
+
+$$
+k=-\frac{21}{9}=-\frac73.
+$$
+
+The important point is that we did not divide the cubic by `x-3`. The factor
+theorem converts the factor condition into a single evaluation equation.
+</WorkedExample>
+
+## Common mistakes
+
+<CommonMistake title="Confusing equality of values with equality of polynomials">
+Checking that two polynomials agree at one value of `x` does not prove they are
+the same polynomial. To prove equality of polynomials, either compare all
+coefficients or show that their difference has more roots than its degree
+allows.
+</CommonMistake>
+
+<CommonMistake title="Forgetting the degree condition on the remainder">
+An identity of the form `f=gq+r` is not yet the division algorithm unless
+`\deg r\lt\deg g`. Without that condition, the quotient and remainder are not
+unique; one can move a multiple of `g` back and forth between `q` and `r`.
+</CommonMistake>
+
+## Summary
+
+This note sets up the algebraic foundation for the rest of chapter 8. A
+polynomial is a finite-support formal sum. Degree measures the leading nonzero
+coefficient, and it controls addition, multiplication, and division. The
+division algorithm gives unique `q` and `r`; the remainder theorem turns
+division by `x-a` into evaluation at `a`; the factor theorem identifies roots
+with linear factors; and the root bound explains why too many roots force a
+polynomial to be zero.
+
+## Study guide for the exercises
+
+When solving the exercises, separate three tasks that are easy to mix together.
+First, simplify the expression only by operations that preserve the polynomial
+identity being studied. Second, keep track of the degree condition whenever a
+remainder appears. Third, decide whether the problem is asking for a
+calculation or for a proof about all polynomials of a given form.
+
+For degree questions, always inspect possible cancellation before announcing
+the degree of a sum. The degree rule for sums gives only an upper bound. A
+sum of two fourth-degree polynomials may become quadratic, linear, constant, or
+even zero if leading terms cancel. For products, the leading coefficient
+argument is stronger, so the degree is exactly additive as long as both factors
+are nonzero.
+
+For remainder and factor theorem questions, resist doing unnecessary long
+division. If the divisor is `x-a`, evaluation at `a` is the direct route. If
+the divisor is a product such as `(x-1)(x+1)`, the remainder has degree at most
+one, so write it as `ax+b` and use values at the roots of the divisor. This is
+a recurring strategy: choose the unknown remainder shape from the degree bound,
+then determine its coefficients from evaluation data.
+
+For proof exercises such as the roots-of-unity problem, the goal is not to
+expand a large polynomial. The key is to use the factor theorem twice, once at
+`\omega` and once at `\omega^2`, and then exploit `\omega^3=1`. That turns the
+divisibility of `F(x)+xG(x)` into two linear equations in the two unknown
+numbers `f(1)` and `g(1)`.
+
+## Quick checks
+
+<QuickCheck prompt="Why is the degree of the zero polynomial set to `-\infty`?">
+Think about formulas involving addition and multiplication.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The convention lets degree rules such as `\deg(0\cdot p)=\deg 0+\deg p`
+remain formally consistent.
+</RevealSolution>
+
+<QuickCheck prompt="What is the remainder when `f(x)=x^3+2x-5` is divided by `x-2`?">
+Use the remainder theorem.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The remainder is `f(2)=8+4-5=7`.
+</RevealSolution>
+
+<QuickCheck prompt="If a nonzero polynomial has degree at most `4`, how many distinct roots can it have?">
+Use the root bound.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It can have at most `4` distinct roots.
+</RevealSolution>
+
+## Exercises
+
+1. Let `p(x)=3x^4-x^2+2` and `q(x)=-3x^4+5x+1`. Find the largest possible
+   degree of `p+q`, and then compute its actual degree.
+2. Divide `x^4-3x^3+2x^2+4x-1` by `x^2-2x+3`.
+3. Use the remainder theorem to find the remainder when `x^5-2x^2+7` is
+   divided by `x+1`.
+4. Suppose `f(1)=5` and `f(-1)=3`. Reconstruct the remainder of `f` modulo
+   `x^2-1`.
+5. Prove Exercise 8.1 from the slides: if
+   `F(x)=f(x^3)`, `G(x)=g(x^3)`, and `F(x)+xG(x)` is divisible by
+   `x^2+x+1`, then both `f(x)` and `g(x)` are divisible by `x-1`.
+
+<RevealSolution title="Guided solutions">
+
+1. The largest possible degree is `4`, but the `3x^4` and `-3x^4` terms
+   cancel. Thus `p+q=-x^2+5x+3`, whose degree is `2`.
+2. The quotient is `x^2-x-3` and the remainder is `x+8`.
+3. Since the divisor is `x-(-1)`, the remainder is
+   `f(-1)=-1-2+7=4`.
+4. Write the remainder as `ax+b`. Then `a+b=5` and `-a+b=3`, so
+   `a=1`, `b=4`, and the remainder is `x+4`.
+5. Let `\omega=e^{2\pi i/3}`. Since `x^2+x+1=(x-\omega)(x-\omega^2)`,
+   the hypothesis gives
+   `f(1)+\omega g(1)=0` and `f(1)+\omega^2g(1)=0`, because
+   `\omega^3=(\omega^2)^3=1`. Subtracting gives
+   `(\omega-\omega^2)g(1)=0`, hence `g(1)=0`, and then `f(1)=0`.
+   By the factor theorem, `x-1` divides both `f(x)` and `g(x)`.
+</RevealSolution>

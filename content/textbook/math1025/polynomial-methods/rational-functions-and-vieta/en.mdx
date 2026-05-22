@@ -1,0 +1,515 @@
+---
+title: "8.3 Rational functions, partial fractions, and Vieta formulas"
+description: "Decompose rational functions into simpler fractions, relate roots to coefficients, and use Vieta formulas in trigonometric polynomial problems."
+---
+
+## Why the final part of the polynomial chapter matters
+
+Polynomial division and gcds are not isolated techniques. They support two
+large tools that appear throughout later mathematics:
+
+- partial fraction decomposition, which rewrites rational functions into
+  simpler pieces;
+- root-coefficient relations, especially Vieta's formulas, which let us compute
+  symmetric expressions in roots without solving for the roots one by one.
+
+Both tools depend on earlier results. Partial fractions need polynomial
+division, factorization, and relative primality. Vieta's formulas need the
+factorization of a polynomial over `C`.
+
+## Rational functions and the polynomial part
+
+<Definition title="Rational function">
+A rational function is a quotient
+
+$$
+\frac{p(x)}{q(x)}
+$$
+
+where `p(x),q(x)\in R[x]` and `q(x)\ne0`.
+</Definition>
+
+The first step in any partial fraction problem is to separate the polynomial
+part. If `\deg p\ge \deg q`, the division algorithm gives
+
+$$
+p(x)=q(x)b(x)+r(x),\qquad \deg r\lt\deg q.
+$$
+
+Therefore
+
+$$
+\frac{p(x)}{q(x)}=b(x)+\frac{r(x)}{q(x)}.
+$$
+
+Only the proper rational function `r(x)/q(x)` still needs decomposition.
+
+## Splitting relatively prime denominator factors
+
+Suppose
+
+$$
+q(x)=q_1(x)q_2(x)
+$$
+
+and `\gcd(q_1,q_2)=1`. For a proper rational function `r(x)/q(x)`, Bezout's
+identity gives polynomials `a(x),b(x)` with
+
+$$
+a(x)q_1(x)+b(x)q_2(x)=1.
+$$
+
+Multiplying by `r(x)` and dividing by `q_1q_2` gives
+
+$$
+\frac{r(x)}{q_1(x)q_2(x)}
+=\frac{r(x)b(x)}{q_1(x)}
++\frac{r(x)a(x)}{q_2(x)}.
+$$
+
+Then divide the numerators by `q_1` and `q_2` to reduce their degrees. The
+result is a unique decomposition
+
+$$
+\frac{r(x)}{q(x)}
+=\frac{r_1(x)}{q_1(x)}
++\frac{r_2(x)}{q_2(x)},
+\qquad
+\deg r_i\lt\deg q_i.
+$$
+
+This is the structural reason partial fractions work.
+
+<TheoremCard title="Partial fraction shape over R">
+If the denominator factors as
+
+$$
+K\prod_i(x-a_i)^{m_i}\prod_j(x^2+b_jx+c_j)^{n_j},
+$$
+
+where the quadratic factors are irreducible over `R`, then every rational
+function can be written uniquely as a polynomial plus terms of the forms
+
+$$
+\frac{k}{(x-a)^m},
+\qquad
+\frac{rx+s}{(x^2+bx+c)^n}.
+$$
+</TheoremCard>
+
+Repeated linear factors require one constant numerator for each power:
+
+$$
+\frac{A(x)}{(x-a)^m}
+=\frac{k_1}{x-a}+\frac{k_2}{(x-a)^2}+\cdots+\frac{k_m}{(x-a)^m}.
+$$
+
+Repeated irreducible quadratic factors require linear numerators:
+
+$$
+\frac{B(x)}{(x^2+bx+c)^n}
+=\sum_{j=1}^n\frac{r_jx+s_j}{(x^2+bx+c)^j}.
+$$
+
+<WorkedExample title="Set up a partial fraction decomposition">
+Resolve
+
+$$
+\frac{x^4+2x+4}{2x^3-4x^2+3x-6}
+$$
+
+into partial fractions.
+
+First divide:
+
+$$
+\frac{x^4+2x+4}{2x^3-4x^2+3x-6}
+=\frac12x+1+
+\frac{\frac52x^2+2x+10}{(2x^2+3)(x-2)}.
+$$
+
+Then write
+
+$$
+\frac{\frac52x^2+2x+10}{(2x^2+3)(x-2)}
+=\frac{Ax+B}{2x^2+3}+\frac{C}{x-2}.
+$$
+
+Comparing coefficients gives
+
+$$
+A=-\frac{41}{22},\qquad B=-\frac{19}{11},\qquad C=\frac{24}{11}.
+$$
+
+Thus
+
+$$
+\frac{x^4+2x+4}{2x^3-4x^2+3x-6}
+=\frac12x+1-\frac{41x+38}{22(2x^2+3)}
++\frac{24}{11(x-2)}.
+$$
+</WorkedExample>
+
+## Telescoping from partial fractions
+
+Partial fractions often convert a complicated finite sum into a telescoping
+one. The slides use
+
+$$
+\frac{x}{(2x-1)(2x+1)(2x+3)}
+=\frac{1}{16(2x-1)}+\frac{1}{8(2x+1)}
+-\frac{3}{16(2x+3)}.
+$$
+
+Substituting `x=k` and summing from `k=1` to `n` makes most middle terms cancel.
+The remaining boundary terms are
+
+$$
+\sum_{k=1}^{n}
+\frac{k}{(2k-1)(2k+1)(2k+3)}
+=\frac1{16}\left(2-\frac1{2n+1}-\frac3{2n+3}\right).
+$$
+
+The main lesson is not the particular numbers; it is the method. Decompose
+first, then check whether shifted denominator patterns cancel in a finite sum.
+
+## Vieta's formulas
+
+Let
+
+$$
+p(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0\in C[x],
+\qquad a_n\ne0.
+$$
+
+By the fundamental theorem of algebra,
+
+$$
+p(x)=a_n(x-\alpha_1)(x-\alpha_2)\cdots(x-\alpha_n),
+$$
+
+where the roots are counted with multiplicity.
+
+<TheoremCard title="Vieta's formulas">
+For `j=1,2,\ldots,n`,
+
+$$
+\sum_{1\le i_1\lt\cdots<i_j\le n}
+\alpha_{i_1}\alpha_{i_2}\cdots\alpha_{i_j}
+=(-1)^j\frac{a_{n-j}}{a_n}.
+$$
+</TheoremCard>
+
+For a cubic
+
+$$
+a_3x^3+a_2x^2+a_1x+a_0,
+$$
+
+with roots `\alpha_1,\alpha_2,\alpha_3`, this says
+
+$$
+\alpha_1+\alpha_2+\alpha_3=-\frac{a_2}{a_3},
+$$
+
+$$
+\alpha_1\alpha_2+\alpha_1\alpha_3+\alpha_2\alpha_3=\frac{a_1}{a_3},
+$$
+
+$$
+\alpha_1\alpha_2\alpha_3=-\frac{a_0}{a_3}.
+$$
+
+<WorkedExample title="Power sums for cubic roots">
+Let the roots of
+
+$$
+a_0+a_1x+a_2x^2+a_3x^3=0
+$$
+
+be `\alpha_1,\alpha_2,\alpha_3`, and write
+`S_r=\alpha_1^r+\alpha_2^r+\alpha_3^r`.
+
+Then
+
+$$
+S_2=(\alpha_1+\alpha_2+\alpha_3)^2
+-2(\alpha_1\alpha_2+\alpha_1\alpha_3+\alpha_2\alpha_3)
+=\frac{a_2^2-2a_1a_3}{a_3^2}.
+$$
+
+Similarly,
+
+$$
+S_3=
+\frac{-a_2^3+3a_1a_2a_3-3a_0a_3^2}{a_3^3}.
+$$
+
+The useful habit is to rewrite nonsymmetric-looking expressions in terms of
+symmetric sums that Vieta controls.
+</WorkedExample>
+
+## Optional interpolation viewpoint
+
+The slide chapter ends with Lagrange interpolation. If
+
+$$
+(x_1,y_1),\ldots,(x_{n+1},y_{n+1})
+$$
+
+have distinct `x_i`, then there is a unique polynomial of degree at most `n`
+passing through those `n+1` points.
+
+For each `i`, define
+
+$$
+L_i(x)=
+\prod_{j\ne i}\frac{x-x_j}{x_i-x_j}.
+$$
+
+Then `L_i(x_j)=\delta_{ij}`, so
+
+$$
+f(x)=\sum_{i=1}^{n+1}y_iL_i(x)
+$$
+
+has the required values. Uniqueness follows from the root bound: the difference
+of two such polynomials has degree at most `n` and `n+1` roots, so it must be
+zero.
+
+## Proof sketch or proof idea
+
+Partial fraction decomposition is not a memorized list of templates. The
+templates are the final form of three earlier facts working together. First,
+the division algorithm removes the polynomial part. If the fraction is
+improper, there is a polynomial part `b(x)` and a smaller proper fraction
+`r(x)/q(x)`.
+
+Second, relatively prime denominator factors can be separated by Bezout's
+identity. If `q=q_1q_2` and `\gcd(q_1,q_2)=1`, then `a q_1+b q_2=1`.
+Multiplying by the numerator and dividing by `q` splits the fraction into a
+term over `q_1` and a term over `q_2`. This explains why distinct relatively
+prime factors receive separate partial-fraction terms.
+
+Third, repeated powers are peeled off by division. A numerator above
+`(x-a)^m` can be divided by `x-a`, leaving a constant remainder over the top
+power and a smaller-power fraction. Repeating this produces one term for each
+power. The same idea works for irreducible quadratics, except the remainder has
+degree less than `2`, so it has the form `rx+s`.
+
+Vieta's formulas have a different but equally structural proof. Once the
+fundamental theorem of algebra writes `p(x)=a_n\prod_{i=1}^{n}(x-\alpha_i)`,
+the coefficient of each power of `x` is an elementary symmetric sum in the
+roots. Comparing coefficients gives the formulas. This is why Vieta controls
+symmetric expressions in roots, but not arbitrary expressions unless they can
+be rewritten symmetrically.
+
+<WorkedExample title="Read a partial-fraction form before solving coefficients">
+Write the correct partial-fraction form for
+
+$$
+\frac{2x^2+1}{x^2(x^2+1)^2}
+$$
+
+over `R`.
+
+The factor `x^2` is a repeated linear factor, so it contributes
+
+$$
+\frac{A}{x}+\frac{B}{x^2}.
+$$
+
+The factor `x^2+1` is an irreducible quadratic over `R`, and it is repeated to
+power `2`, so it contributes
+
+$$
+\frac{Cx+D}{x^2+1}+\frac{Ex+F}{(x^2+1)^2}.
+$$
+
+Thus the full form is
+
+$$
+\frac{A}{x}+\frac{B}{x^2}
++\frac{Cx+D}{x^2+1}
++\frac{Ex+F}{(x^2+1)^2}.
+$$
+
+At this stage we are not solving for `A,B,C,D,E,F`. We are first making sure
+the shape has every required denominator power and the correct numerator
+degree.
+</WorkedExample>
+
+<WorkedExample title="Use Vieta in the tangent capstone">
+Exercise 8.3 reduces the three numbers
+
+$$
+\tan^2(\pi/9),\quad \tan^2(2\pi/9),\quad \tan^2(4\pi/9)
+$$
+
+to the roots of `x^3-33x^2+27x-3=0`. Let these roots be
+`\alpha_1,\alpha_2,\alpha_3`. Vieta's formulas give
+
+$$
+\alpha_1+\alpha_2+\alpha_3=33,\qquad
+\alpha_1\alpha_2+\alpha_1\alpha_3+\alpha_2\alpha_3=27,
+$$
+
+and
+
+$$
+\alpha_1\alpha_2\alpha_3=3.
+$$
+
+Since the three tangent values are positive, their product is the positive
+square root of `3`:
+
+$$
+\tan(\pi/9)\tan(2\pi/9)\tan(4\pi/9)=\sqrt3.
+$$
+
+For the sixth-power sum, rewrite
+`\alpha_1^3+\alpha_2^3+\alpha_3^3` as
+
+$$
+(\alpha_1+\alpha_2+\alpha_3)^3
+-3(\alpha_1+\alpha_2+\alpha_3)(\alpha_1\alpha_2+\alpha_1\alpha_3+\alpha_2\alpha_3)
++3\alpha_1\alpha_2\alpha_3.
+$$
+
+Substitution gives `33^3-3(33)(27)+3(3)=33273`.
+</WorkedExample>
+
+## Common mistakes
+
+<CommonMistake title="Skipping denominator powers">
+For a repeated factor such as `(x-2)^4`, one term over `(x-2)^4` is not enough.
+The form must include every power from `1` through `4`.
+</CommonMistake>
+
+<CommonMistake title="Using constant numerators over irreducible quadratics">
+Over `R`, a term over `x^2+1` needs a numerator of degree less than `2`, so the
+general numerator is `Ax+B`, not just a constant.
+</CommonMistake>
+
+<CommonMistake title="Applying Vieta to non-symmetric expressions directly">
+Vieta gives sums of products of roots, not arbitrary individual roots. Before
+using it on a power sum or trigonometric product, rewrite the expression in
+terms of symmetric sums.
+</CommonMistake>
+
+## Summary
+
+This note uses the algebraic machinery from the first two polynomial notes.
+Division separates polynomial and proper-rational parts. Bezout identities and
+relative primality explain why denominator factors split. Repeated powers
+determine the number of partial-fraction terms. Vieta's formulas compare the
+root-factor form of a complex polynomial with its coefficient form, allowing
+root sums and products to be computed without solving the polynomial.
+
+## Study guide for the exercises
+
+For partial fractions, always decide the form before solving for coefficients.
+This prevents two common mistakes: omitting a repeated power and using a
+constant numerator where a linear numerator is needed. A repeated linear factor
+`(x-a)^m` contributes one term for each denominator power. A repeated
+irreducible quadratic contributes one linear numerator for each denominator
+power. Only after the form is correct should you clear denominators and compare
+coefficients.
+
+When coefficient comparison becomes messy, organize it by powers of `x`.
+After clearing denominators, expand the right-hand side and collect the
+coefficient of each power. A cubic identity gives four scalar equations, one
+for each of `x^3`, `x^2`, `x`, and the constant term. The system may look
+long, but it is ordinary linear algebra in the unknown coefficients of the
+partial fractions.
+
+For telescoping sums, do not expect cancellation until after the summand has
+been decomposed. The original rational expression may show no obvious
+cancellation. Once it is written as a combination of shifted simple fractions,
+write out the first few and last few terms. The middle terms should reveal
+which pieces cancel and which boundary terms remain.
+
+For Vieta problems, identify the polynomial and name its roots before doing
+any computation. Then list the elementary symmetric sums that Vieta gives:
+the sum of roots, the sum of pairwise products, and the full product in the
+cubic case. If the target expression is a power sum, rewrite it using these
+symmetric sums. If the target expression involves square roots of the roots,
+as in the tangent exercise, decide the sign separately from the product of the
+squared values.
+
+The optional interpolation section is included because it uses the same
+zero-count theorem from 8.1. It is not a new algebraic technique to memorize;
+it is an application of the idea that a low-degree polynomial is determined by
+enough point values. This same uniqueness logic appears in numerical methods,
+curve fitting, and approximation theory.
+
+One final habit helps throughout the chapter: after every decomposition or
+Vieta computation, state what has actually been proved. A partial fraction
+form proves equality of rational functions only where the original denominator
+is nonzero. A Vieta computation proves a relation among roots counted with
+multiplicity. Keeping these conditions visible prevents algebraic formulas from
+being used outside their valid domain.
+
+## Quick checks
+
+<QuickCheck prompt="Why do we first divide `p(x)` by `q(x)` before doing partial fractions?">
+Check the degree requirement on the remaining fraction.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Partial fraction shapes are for proper rational functions. Division separates
+the polynomial part and leaves a remainder `r(x)` with `\deg r\lt\deg q`.
+</RevealSolution>
+
+<QuickCheck prompt="What numerator shape belongs above an irreducible quadratic factor such as `x^2+1`?">
+Use the degree rule for the numerator.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The numerator should be linear, so it has the form `Ax+B`.
+</RevealSolution>
+
+<QuickCheck prompt="For `x^3-33x^2+27x-3`, what is the product of the three roots?">
+Use the cubic Vieta formula.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+For a monic cubic, the product is `-a_0`. Here `a_0=-3`, so the product is
+`3`.
+</RevealSolution>
+
+## Exercises
+
+1. Write the correct partial fraction form for
+   `5/(x^2+x-6)`.
+2. Write the correct partial fraction form for
+   `(2x^2+1)/(x^2(x^2+1)^2)`.
+3. Resolve
+   `x/((2x-1)(2x+1)(2x+3))` into partial fractions.
+4. Use the result of exercise 3 to evaluate
+   `\sum_{k=1}^n k/((2k-1)(2k+1)(2k+3))`.
+5. Let `\alpha_1,\alpha_2,\alpha_3` be the roots of
+   `x^3-33x^2+27x-3`. Compute
+   `\alpha_1+\alpha_2+\alpha_3`,
+   `\alpha_1\alpha_2+\alpha_1\alpha_3+\alpha_2\alpha_3`, and
+   `\alpha_1\alpha_2\alpha_3`.
+6. Following Exercise 8.3 from the slides, suppose
+   `\alpha_1,\alpha_2,\alpha_3` are
+   `\tan^2(\pi/9)`, `\tan^2(2\pi/9)`, and `\tan^2(4\pi/9)`, and they are the
+   roots of `x^3-33x^2+27x-3`. Deduce
+   `\tan(\pi/9)\tan(2\pi/9)\tan(4\pi/9)`.
+
+<RevealSolution title="Guided solutions">
+
+1. Since `x^2+x-6=(x+3)(x-2)`, the form is
+   `A/(x+3)+B/(x-2)`.
+2. The form is
+   `A/x+B/x^2+(Cx+D)/(x^2+1)+(Ex+F)/(x^2+1)^2`.
+3. The decomposition is
+   `1/[16(2x-1)]+1/[8(2x+1)]-3/[16(2x+3)]`.
+4. Substitute `x=k`, sum, and align shifted odd denominators. The result is
+   `1/16(2-1/(2n+1)-3/(2n+3))`.
+5. Vieta gives `33`, `27`, and `3`, respectively.
+6. The product of the three squared tangent values is `3`. Since each tangent
+   is positive for the angles shown, the product of the tangents is `\sqrt3`.
+</RevealSolution>

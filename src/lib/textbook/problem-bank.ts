@@ -7885,6 +7885,476 @@ export const textbookProblemBank: Record<string, ProblemSchema> = {
     ],
     skillTags: ["complex-numbers", "de-moivre", "polar-form", "powers"],
   },
+  "checkpoint.math1025.polynomial-methods.division-remainder": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.polynomial-methods.division-remainder",
+    type: "FILL_IN_BLANK",
+    courseId: "math1025",
+    chapterId: "polynomial-methods",
+    unitId: "math1025.polynomial-methods.polynomial-arithmetic-and-division",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "In Example 8.0, `x^4-3x^3+2x^2+4x-1` is divided by `x^2-2x+3`. Fill in the remainder: `r(x)=____`.",
+      "在 Example 8.0 中，`x^4-3x^3+2x^2+4x-1` 除以 `x^2-2x+3`。填上餘式：`r(x)=____`。",
+      "在 Example 8.0 中，`x^4-3x^3+2x^2+4x-1` 除以 `x^2-2x+3`。填上余式：`r(x)=____`。"
+    ),
+    correctAnswer: {
+      value: "x+8",
+      equivalentValues: ["x + 8", "8+x", "8 + x"],
+      equivalence: [{ type: "trimmed" }, { type: "symbolic" }],
+    },
+    hints: [
+      text(
+        "After quotient terms `x^2`, `-x`, and `-3`, the remaining polynomial has degree smaller than 2.",
+        "經過商式項 `x^2`、`-x` 與 `-3` 後，餘下多項式的次數小於 2。",
+        "经过商式项 `x^2`、`-x` 与 `-3` 后，余下多项式的次数小于 2。"
+      ),
+    ],
+    previewExamples: [
+      text("Enter a polynomial such as `x+8`.", "請輸入例如 `x+8` 的多項式。", "请输入例如 `x+8` 的多项式。"),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter the remainder polynomial.",
+      "請輸入餘式多項式。",
+      "请输入余式多项式。"
+    ),
+    solutionSteps: [
+      text(
+        "The long division gives quotient `q(x)=x^2-x-3`.",
+        "長除法得到商式 `q(x)=x^2-x-3`。",
+        "长除法得到商式 `q(x)=x^2-x-3`。"
+      ),
+      text(
+        "Substituting into `f=gq+r` leaves `r(x)=x+8`.",
+        "代入 `f=gq+r` 後餘下 `r(x)=x+8`。",
+        "代入 `f=gq+r` 后余下 `r(x)=x+8`。"
+      ),
+      text(
+        "Since `\\deg(x+8)=1<2=\\deg(x^2-2x+3)`, the division process stops.",
+        "因為 `\\deg(x+8)=1<2=\\deg(x^2-2x+3)`，除法過程停止。",
+        "因为 `\\deg(x+8)=1<2=\\deg(x^2-2x+3)`，除法过程停止。"
+      ),
+    ],
+    skillTags: ["polynomials", "division-algorithm", "remainder"],
+  },
+  "checkpoint.math1025.polynomial-methods.factor-theorem-parameter": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.polynomial-methods.factor-theorem-parameter",
+    type: "FILL_IN_BLANK",
+    courseId: "math1025",
+    chapterId: "polynomial-methods",
+    unitId: "math1025.polynomial-methods.polynomial-arithmetic-and-division",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Find `k` so that `x-3` divides `x^3+kx^2-4x+6`. Fill in `k=____`.",
+      "求 `k`，使 `x-3` 整除 `x^3+kx^2-4x+6`。填上 `k=____`。",
+      "求 `k`，使 `x-3` 整除 `x^3+kx^2-4x+6`。填上 `k=____`。"
+    ),
+    correctAnswer: {
+      value: "-7/3",
+      equivalentValues: ["- 7/3", "-14/6"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "By the factor theorem, substituting `x=3` must give zero.",
+        "由因式定理，代入 `x=3` 必須得到零。",
+        "由因式定理，代入 `x=3` 必须得到零。"
+      ),
+    ],
+    previewExamples: [
+      text("Enter a rational number.", "請輸入一個有理數。", "请输入一个有理数。"),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter the value of k.",
+      "請輸入 k 的值。",
+      "请输入 k 的值。"
+    ),
+    solutionSteps: [
+      text(
+        "Let `f(x)=x^3+kx^2-4x+6`.",
+        "設 `f(x)=x^3+kx^2-4x+6`。",
+        "设 `f(x)=x^3+kx^2-4x+6`。"
+      ),
+      text(
+        "`x-3` divides `f(x)` exactly when `f(3)=0`.",
+        "`x-3` 整除 `f(x)` 當且僅當 `f(3)=0`。",
+        "`x-3` 整除 `f(x)` 当且仅当 `f(3)=0`。"
+      ),
+      text(
+        "`f(3)=27+9k-12+6=21+9k`, so `k=-21/9=-7/3`.",
+        "`f(3)=27+9k-12+6=21+9k`，所以 `k=-21/9=-7/3`。",
+        "`f(3)=27+9k-12+6=21+9k`，所以 `k=-21/9=-7/3`。"
+      ),
+    ],
+    skillTags: ["polynomials", "factor-theorem", "parameters"],
+  },
+  "checkpoint.math1025.polynomial-methods.zero-count": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.polynomial-methods.zero-count",
+    type: "MCQ",
+    courseId: "math1025",
+    chapterId: "polynomial-methods",
+    unitId: "math1025.polynomial-methods.polynomial-arithmetic-and-division",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "A polynomial in `C[x]` has degree at most `5` and has `6` distinct zeros. What must be true?",
+      "一個 `C[x]` 中的多項式次數至多為 `5`，但有 `6` 個相異零點。必然有甚麼結論？",
+      "一个 `C[x]` 中的多项式次数至多为 `5`，但有 `6` 个相异零点。必然有什么结论？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text("It is the zero polynomial.", "它是零多項式。", "它是零多项式。"),
+      },
+      {
+        id: "b",
+        text: text("It has degree exactly 6.", "它的次數正好是 6。", "它的次数正好是 6。"),
+      },
+      {
+        id: "c",
+        text: text("It must be irreducible.", "它必定不可約。", "它必定不可约。"),
+      },
+      {
+        id: "d",
+        text: text("No conclusion follows from the root count.", "根的數量不能推出任何結論。", "根的数量不能推出任何结论。"),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "A nonzero polynomial of degree at most n has at most n distinct roots.",
+        "一個次數至多為 n 的非零多項式最多有 n 個相異根。",
+        "一个次数至多为 n 的非零多项式最多有 n 个相异根。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Compare the number of roots with the degree bound.",
+        "比較根的數量與次數上界。",
+        "比较根的数量与次数上界。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "If the polynomial were nonzero, degree at most `5` would allow at most `5` distinct roots.",
+        "若該多項式非零，次數至多 `5` 只容許最多 `5` 個相異根。",
+        "若该多项式非零，次数至多 `5` 只容许最多 `5` 个相异根。"
+      ),
+      text(
+        "Having `6` distinct zeros contradicts that bound.",
+        "有 `6` 個相異零點與這個上界矛盾。",
+        "有 `6` 个相异零点与这个上界矛盾。"
+      ),
+      text(
+        "Therefore the polynomial must be the zero polynomial.",
+        "因此該多項式必為零多項式。",
+        "因此该多项式必为零多项式。"
+      ),
+    ],
+    skillTags: ["polynomials", "roots", "degree"],
+  },
+  "checkpoint.math1025.polynomial-methods.euclidean-gcd": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.polynomial-methods.euclidean-gcd",
+    type: "FILL_IN_BLANK",
+    courseId: "math1025",
+    chapterId: "polynomial-methods",
+    unitId: "math1025.polynomial-methods.polynomial-gcds-and-irreducibility",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Find the monic gcd in `R[x]`: `\\gcd(x^3-1,x^2-1)=____`.",
+      "求 `R[x]` 中的 monic gcd：`\\gcd(x^3-1,x^2-1)=____`。",
+      "求 `R[x]` 中的 monic gcd：`\\gcd(x^3-1,x^2-1)=____`。"
+    ),
+    correctAnswer: {
+      value: "x-1",
+      equivalentValues: ["x - 1", "-1+x"],
+      equivalence: [{ type: "trimmed" }, { type: "symbolic" }],
+    },
+    hints: [
+      text(
+        "Factor both polynomials and take the common monic factor.",
+        "先分解兩個多項式，再取共同的 monic 因式。",
+        "先分解两个多项式，再取共同的 monic 因式。"
+      ),
+    ],
+    previewExamples: [
+      text("Enter a monic polynomial.", "請輸入 monic 多項式。", "请输入 monic 多项式。"),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter the monic greatest common divisor.",
+      "請輸入 monic 最大公因式。",
+      "请输入 monic 最大公因式。"
+    ),
+    solutionSteps: [
+      text(
+        "`x^3-1=(x-1)(x^2+x+1)`.",
+        "`x^3-1=(x-1)(x^2+x+1)`。",
+        "`x^3-1=(x-1)(x^2+x+1)`。"
+      ),
+      text(
+        "`x^2-1=(x-1)(x+1)`.",
+        "`x^2-1=(x-1)(x+1)`。",
+        "`x^2-1=(x-1)(x+1)`。"
+      ),
+      text(
+        "The common monic factor is `x-1`.",
+        "共同的 monic 因式是 `x-1`。",
+        "共同的 monic 因式是 `x-1`。"
+      ),
+    ],
+    skillTags: ["polynomials", "gcd", "euclidean-algorithm"],
+  },
+  "checkpoint.math1025.polynomial-methods.irreducible-over-field": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.polynomial-methods.irreducible-over-field",
+    type: "MCQ",
+    courseId: "math1025",
+    chapterId: "polynomial-methods",
+    unitId: "math1025.polynomial-methods.polynomial-gcds-and-irreducibility",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Which statement about `x^2+4` is correct?",
+      "關於 `x^2+4`，哪一項正確？",
+      "关于 `x^2+4`，哪一项正确？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "It is irreducible over `R`, but reducible over `C` as `(x-2i)(x+2i)`.",
+          "它在 `R` 上不可約，但在 `C` 上可分解為 `(x-2i)(x+2i)`。",
+          "它在 `R` 上不可约，但在 `C` 上可分解为 `(x-2i)(x+2i)`。"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "It is reducible over `R` as `(x-2)(x+2)`.",
+          "它在 `R` 上可分解為 `(x-2)(x+2)`。",
+          "它在 `R` 上可分解为 `(x-2)(x+2)`。"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "It is irreducible over both `R` and `C`.",
+          "它在 `R` 與 `C` 上都不可約。",
+          "它在 `R` 与 `C` 上都不可约。"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "It is not a polynomial over `R`.",
+          "它不是 `R` 上的多項式。",
+          "它不是 `R` 上的多项式。"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "`x^2+4` has no real root, but it has roots `2i` and `-2i` in `C`.",
+        "`x^2+4` 沒有實根，但在 `C` 中有根 `2i` 與 `-2i`。",
+        "`x^2+4` 没有实根，但在 `C` 中有根 `2i` 与 `-2i`。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Compare the available roots over `R` and `C`.",
+        "比較在 `R` 與 `C` 中可用的根。",
+        "比较在 `R` 与 `C` 中可用的根。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The discriminant of `x^2+4` is `-16<0`, so it has no real linear factor.",
+        "`x^2+4` 的判別式是 `-16<0`，所以沒有實一次因式。",
+        "`x^2+4` 的判别式是 `-16<0`，所以没有实一次因式。"
+      ),
+      text(
+        "Over `C`, the roots are `2i` and `-2i`.",
+        "在 `C` 上，根是 `2i` 與 `-2i`。",
+        "在 `C` 上，根是 `2i` 与 `-2i`。"
+      ),
+      text(
+        "Thus `x^2+4=(x-2i)(x+2i)` over `C`.",
+        "因此在 `C` 上 `x^2+4=(x-2i)(x+2i)`。",
+        "因此在 `C` 上 `x^2+4=(x-2i)(x+2i)`。"
+      ),
+    ],
+    skillTags: ["polynomials", "irreducibility", "fields"],
+  },
+  "checkpoint.math1025.polynomial-methods.partial-fraction-form": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.polynomial-methods.partial-fraction-form",
+    type: "MCQ",
+    courseId: "math1025",
+    chapterId: "polynomial-methods",
+    unitId: "math1025.polynomial-methods.rational-functions-and-vieta",
+    inputMode: "text",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "What is the correct partial fraction form for `(2x^2+1)/(x^2(x^2+1)^2)` over `R`?",
+      "在 `R` 上，`(2x^2+1)/(x^2(x^2+1)^2)` 的正確部分分式形狀是哪一個？",
+      "在 `R` 上，`(2x^2+1)/(x^2(x^2+1)^2)` 的正确部分分式形状是哪一个？"
+    ),
+    choices: [
+      {
+        id: "a",
+        text: text(
+          "`A/x+B/x^2+(Cx+D)/(x^2+1)+(Ex+F)/(x^2+1)^2`",
+          "`A/x+B/x^2+(Cx+D)/(x^2+1)+(Ex+F)/(x^2+1)^2`",
+          "`A/x+B/x^2+(Cx+D)/(x^2+1)+(Ex+F)/(x^2+1)^2`"
+        ),
+      },
+      {
+        id: "b",
+        text: text(
+          "`A/x+(Bx+C)/(x^2+1)^2` only",
+          "只需 `A/x+(Bx+C)/(x^2+1)^2`",
+          "只需 `A/x+(Bx+C)/(x^2+1)^2`"
+        ),
+      },
+      {
+        id: "c",
+        text: text(
+          "`A/x^2+B/(x^2+1)` only",
+          "只需 `A/x^2+B/(x^2+1)`",
+          "只需 `A/x^2+B/(x^2+1)`"
+        ),
+      },
+      {
+        id: "d",
+        text: text(
+          "`(Ax+B)/(x^2)+(Cx+D)/(x^2+1)` only",
+          "只需 `(Ax+B)/(x^2)+(Cx+D)/(x^2+1)`",
+          "只需 `(Ax+B)/(x^2)+(Cx+D)/(x^2+1)`"
+        ),
+      },
+    ],
+    correctAnswer: { choiceId: "a" },
+    hints: [
+      text(
+        "Repeated factors need every power, and irreducible quadratic factors need linear numerators.",
+        "重複因式需要每個冪次；不可約二次因式需要一次分子。",
+        "重复因式需要每个幂次；不可约二次因式需要一次分子。"
+      ),
+    ],
+    previewExamples: [
+      text(
+        "Handle `x^2` as `x` and `x^2`, and handle `(x^2+1)^2` with two linear numerators.",
+        "把 `x^2` 分成 `x` 與 `x^2`；對 `(x^2+1)^2` 放兩個一次分子。",
+        "把 `x^2` 分成 `x` 与 `x^2`；对 `(x^2+1)^2` 放两个一次分子。"
+      ),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    solutionSteps: [
+      text(
+        "The repeated linear factor `x^2` contributes `A/x+B/x^2`.",
+        "重複一次因式 `x^2` 貢獻 `A/x+B/x^2`。",
+        "重复一次因式 `x^2` 贡献 `A/x+B/x^2`。"
+      ),
+      text(
+        "The repeated irreducible quadratic factor `(x^2+1)^2` contributes `(Cx+D)/(x^2+1)+(Ex+F)/(x^2+1)^2`.",
+        "重複不可約二次因式 `(x^2+1)^2` 貢獻 `(Cx+D)/(x^2+1)+(Ex+F)/(x^2+1)^2`。",
+        "重复不可约二次因式 `(x^2+1)^2` 贡献 `(Cx+D)/(x^2+1)+(Ex+F)/(x^2+1)^2`。"
+      ),
+      text(
+        "Combining both gives the correct form.",
+        "合併兩部分即得正確形狀。",
+        "合并两部分即得正确形状。"
+      ),
+    ],
+    skillTags: ["polynomials", "rational-functions", "partial-fractions"],
+  },
+  "checkpoint.math1025.polynomial-methods.vieta-product": {
+    accessTier: "FREE",
+    id: "checkpoint.math1025.polynomial-methods.vieta-product",
+    type: "FILL_IN_BLANK",
+    courseId: "math1025",
+    chapterId: "polynomial-methods",
+    unitId: "math1025.polynomial-methods.rational-functions-and-vieta",
+    inputMode: "math-expression",
+    maxAttempts: 5,
+    points: 1,
+    prompt: text(
+      "Let `\\alpha_1,\\alpha_2,\\alpha_3` be the roots of `x^3-33x^2+27x-3=0`. Fill in `\\alpha_1\\alpha_2\\alpha_3=____`.",
+      "設 `\\alpha_1,\\alpha_2,\\alpha_3` 是 `x^3-33x^2+27x-3=0` 的根。填上 `\\alpha_1\\alpha_2\\alpha_3=____`。",
+      "设 `\\alpha_1,\\alpha_2,\\alpha_3` 是 `x^3-33x^2+27x-3=0` 的根。填上 `\\alpha_1\\alpha_2\\alpha_3=____`。"
+    ),
+    correctAnswer: {
+      value: "3",
+      equivalentValues: ["3.0"],
+      equivalence: [{ type: "trimmed" }],
+    },
+    hints: [
+      text(
+        "For a monic cubic `x^3+bx^2+cx+d`, the root product is `-d`.",
+        "對 monic 三次式 `x^3+bx^2+cx+d`，三根乘積是 `-d`。",
+        "对 monic 三次式 `x^3+bx^2+cx+d`，三根乘积是 `-d`。"
+      ),
+    ],
+    previewExamples: [
+      text("Enter a single integer.", "請輸入一個整數。", "请输入一个整数。"),
+    ],
+    showCorrectAnswerPolicy: "after-submit",
+    showSolutionPolicy: "after-submit",
+    solutionAccessTier: "FREE",
+    syntaxGuidance: text(
+      "Enter the product of the three roots.",
+      "請輸入三根乘積。",
+      "请输入三根乘积。"
+    ),
+    solutionSteps: [
+      text(
+        "The polynomial is monic and has constant term `-3`.",
+        "該多項式是 monic，常數項為 `-3`。",
+        "该多项式是 monic，常数项为 `-3`。"
+      ),
+      text(
+        "For a monic cubic, Vieta gives `\\alpha_1\\alpha_2\\alpha_3=-a_0`.",
+        "對 monic 三次式，Vieta 公式給出 `\\alpha_1\\alpha_2\\alpha_3=-a_0`。",
+        "对 monic 三次式，Vieta 公式给出 `\\alpha_1\\alpha_2\\alpha_3=-a_0`。"
+      ),
+      text(
+        "Here `a_0=-3`, so the product is `3`.",
+        "這裡 `a_0=-3`，所以乘積是 `3`。",
+        "这里 `a_0=-3`，所以乘积是 `3`。"
+      ),
+    ],
+    skillTags: ["polynomials", "vieta", "roots-coefficients"],
+  },
 };
 
 export function getProblemById(problemId: string) {

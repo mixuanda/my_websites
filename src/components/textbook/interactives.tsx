@@ -4176,6 +4176,167 @@ function Math1025SequenceRecursionLab({ locale }: { locale: Locale }) {
   );
 }
 
+function Math1025PolynomialDivisionStepper({ locale }: { locale: Locale }) {
+  const steps = [
+    {
+      label: text("Set up the division", "建立除法", "建立除法"),
+      quotient: text("No quotient term yet", "尚未有商式項", "尚未有商式项"),
+      subtraction: text(
+        "Dividend: `x^4-3x^3+2x^2+4x-1`; divisor: `x^2-2x+3`.",
+        "被除式：`x^4-3x^3+2x^2+4x-1`；除式：`x^2-2x+3`。",
+        "被除式：`x^4-3x^3+2x^2+4x-1`；除式：`x^2-2x+3`。"
+      ),
+      remainder: text(
+        "`x^4-3x^3+2x^2+4x-1`",
+        "`x^4-3x^3+2x^2+4x-1`",
+        "`x^4-3x^3+2x^2+4x-1`"
+      ),
+      focus: text(
+        "At each step, choose the quotient term that cancels the current leading term.",
+        "每一步都選一個商式項，消去目前餘下式子的最高次項。",
+        "每一步都选一个商式项，消去目前余下式子的最高次项。"
+      ),
+    },
+    {
+      label: text("Cancel the `x^4` term", "消去 `x^4` 項", "消去 `x^4` 项"),
+      quotient: text("Add `x^2` to the quotient.", "在商式加入 `x^2`。", "在商式加入 `x^2`。"),
+      subtraction: text(
+        "Subtract `x^2(x^2-2x+3)=x^4-2x^3+3x^2`.",
+        "減去 `x^2(x^2-2x+3)=x^4-2x^3+3x^2`。",
+        "减去 `x^2(x^2-2x+3)=x^4-2x^3+3x^2`。"
+      ),
+      remainder: text(
+        "`-x^3-x^2+4x-1`",
+        "`-x^3-x^2+4x-1`",
+        "`-x^3-x^2+4x-1`"
+      ),
+      focus: text(
+        "The new leading term is `-x^3`, so the next quotient term must start with `-x`.",
+        "新的最高次項是 `-x^3`，所以下一個商式項要以 `-x` 開始。",
+        "新的最高次项是 `-x^3`，所以下一个商式项要以 `-x` 开始。"
+      ),
+    },
+    {
+      label: text("Cancel the `-x^3` term", "消去 `-x^3` 項", "消去 `-x^3` 项"),
+      quotient: text("Current quotient: `x^2-x`.", "目前商式：`x^2-x`。", "目前商式：`x^2-x`。"),
+      subtraction: text(
+        "Subtract `-x(x^2-2x+3)=-x^3+2x^2-3x`.",
+        "減去 `-x(x^2-2x+3)=-x^3+2x^2-3x`。",
+        "减去 `-x(x^2-2x+3)=-x^3+2x^2-3x`。"
+      ),
+      remainder: text(
+        "`-3x^2+7x-1`",
+        "`-3x^2+7x-1`",
+        "`-3x^2+7x-1`"
+      ),
+      focus: text(
+        "The remaining leading term still has degree 2, so one more division step is needed.",
+        "餘下式子的最高次仍是 2 次，因此還要做一步除法。",
+        "余下式子的最高次仍是 2 次，因此还要做一步除法。"
+      ),
+    },
+    {
+      label: text("Cancel the `-3x^2` term", "消去 `-3x^2` 項", "消去 `-3x^2` 项"),
+      quotient: text("Current quotient: `x^2-x-3`.", "目前商式：`x^2-x-3`。", "目前商式：`x^2-x-3`。"),
+      subtraction: text(
+        "Subtract `-3(x^2-2x+3)=-3x^2+6x-9`.",
+        "減去 `-3(x^2-2x+3)=-3x^2+6x-9`。",
+        "减去 `-3(x^2-2x+3)=-3x^2+6x-9`。"
+      ),
+      remainder: text("`x+8`", "`x+8`", "`x+8`"),
+      focus: text(
+        "Now the remainder has degree 1, which is smaller than the divisor degree 2.",
+        "現在餘式是 1 次，已小於除式的 2 次。",
+        "现在余式是 1 次，已小于除式的 2 次。"
+      ),
+    },
+    {
+      label: text("Read quotient and remainder", "讀出商式與餘式", "读出商式与余式"),
+      quotient: text("`q(x)=x^2-x-3`", "`q(x)=x^2-x-3`", "`q(x)=x^2-x-3`"),
+      subtraction: text(
+        "`f(x)=g(x)q(x)+r(x)`.",
+        "`f(x)=g(x)q(x)+r(x)`。",
+        "`f(x)=g(x)q(x)+r(x)`。"
+      ),
+      remainder: text("`r(x)=x+8`", "`r(x)=x+8`", "`r(x)=x+8`"),
+      focus: text(
+        "`x^4-3x^3+2x^2+4x-1=(x^2-2x+3)(x^2-x-3)+(x+8)`.",
+        "`x^4-3x^3+2x^2+4x-1=(x^2-2x+3)(x^2-x-3)+(x+8)`。",
+        "`x^4-3x^3+2x^2+4x-1=(x^2-2x+3)(x^2-x-3)+(x+8)`。"
+      ),
+    },
+  ] as const;
+
+  const [stepIndex, setStepIndex] = useState(0);
+  const current = steps[stepIndex];
+
+  return (
+    <InteractiveShell icon={<StepForward className="h-5 w-5" />} locale={locale} widgetId="math1025-polynomial-division-stepper">
+      <div className="flex flex-wrap items-center gap-2">
+        <Button
+          disabled={stepIndex === 0}
+          onClick={() => setStepIndex((value) => Math.max(0, value - 1))}
+          size="sm"
+          type="button"
+          variant="outline"
+        >
+          {getLocalizedText(interactiveLabels.previous, locale)}
+        </Button>
+        <Button
+          disabled={stepIndex === steps.length - 1}
+          onClick={() => setStepIndex((value) => Math.min(steps.length - 1, value + 1))}
+          size="sm"
+          type="button"
+          variant="outline"
+        >
+          {getLocalizedText(interactiveLabels.next, locale)}
+        </Button>
+        <span className="text-sm text-muted-foreground">
+          {getLocalizedText(interactiveLabels.step, locale)} {stepIndex + 1}/{steps.length}
+        </span>
+      </div>
+
+      <div className="mt-4 grid gap-4 lg:grid-cols-3">
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+            {getLocalizedText(interactiveLabels.operation, locale)}
+          </p>
+          <p className="mt-2 text-sm font-semibold">
+            {getLocalizedText(current.label, locale)}
+          </p>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
+            <TextbookInlineRichText text={getLocalizedText(current.subtraction, locale)} />
+          </p>
+        </GlassPanel>
+
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+            {getLocalizedText(text("Quotient", "商式", "商式"), locale)}
+          </p>
+          <p className="mt-3 text-sm">
+            <TextbookInlineRichText text={getLocalizedText(current.quotient, locale)} />
+          </p>
+          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+            {getLocalizedText(text("Current remainder", "目前餘式", "目前余式"), locale)}
+          </p>
+          <p className="mt-3 text-sm">
+            <TextbookInlineRichText text={getLocalizedText(current.remainder, locale)} />
+          </p>
+        </GlassPanel>
+
+        <GlassPanel className="border border-border/60 bg-background/30 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+            {getLocalizedText(interactiveLabels.focus, locale)}
+          </p>
+          <p className="mt-3 text-sm leading-7 text-muted-foreground">
+            <TextbookInlineRichText text={getLocalizedText(current.focus, locale)} />
+          </p>
+        </GlassPanel>
+      </div>
+    </InteractiveShell>
+  );
+}
+
 const interactiveComponents = {
   "adt-stack-queue-stepper": AdtStackQueueStepper,
   "cantor-diagonal-lab": CantorDiagonalLab,
@@ -4194,6 +4355,7 @@ const interactiveComponents = {
   "matrix-family-checker": MatrixFamilyChecker,
   "matrix-reading-trainer": MatrixReadingTrainer,
   "matrix-multiplication-visualizer": MatrixMultiplicationVisualizer,
+  "math1025-polynomial-division-stepper": Math1025PolynomialDivisionStepper,
   "math1025-sequence-recursion-lab": Math1025SequenceRecursionLab,
   "monoid-group-law-checker": MonoidGroupLawChecker,
   "pointer-state-tracer": PointerStateTracer,

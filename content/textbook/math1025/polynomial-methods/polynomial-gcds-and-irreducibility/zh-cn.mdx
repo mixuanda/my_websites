@@ -1,0 +1,324 @@
+---
+title: "8.2 多项式最大公因式与不可约性"
+description: "使用多项式 Euclidean algorithm、Bézout 恒等式，并比较多项式在 Q、R、C 上的不可约性。"
+---
+
+## 从整数 gcd 到多项式 gcd
+
+第 7 章说明整数整除由最大公因数、Euclidean algorithm、Bézout 恒等式与质因数分解
+控制。第 8 章在多项式中重建同一套结构。类比很强，但多项式有一个新的细节：
+乘上一个非零常数不会改变整除关系的本质。
+
+例如 `x-1` 与 `5x-5` 只差一个非零常数倍。为了让 gcd 唯一，我们取 monic 代表。
+
+## 多项式整除与相伴多项式
+
+<Definition title="多项式整除">
+对 `f(x),g(x)\in R[x]`，若存在 `q(x)\in R[x]` 使得
+
+$$
+f(x)=g(x)q(x),
+$$
+
+便称 `g(x)` 整除 `f(x)`，记作 `g(x)\mid f(x)`。
+</Definition>
+
+两个非零多项式互相整除，当且仅当它们只差一个非零常数倍。
+
+<TheoremCard title="互相整除">
+对非零 `f(x),g(x)\in R[x]`，
+
+$$
+g\mid f\text{ 且 }f\mid g
+\quad\Longleftrightarrow\quad
+f(x)=kg(x)
+$$
+
+其中 `k\in R` 且 `k\ne0`。
+</TheoremCard>
+
+证明用次数即可。若 `f=d_1g` 且 `g=d_2f`，则 `f=d_1d_2f`。由于 `f\ne0`，
+乘积 `d_1d_2` 必须是常数多项式 `1`，所以 `d_1`、`d_2` 都是常数。
+
+## `R[x]` 中的最大公因式
+
+<Definition title="多项式最大公因式">
+设 `f(x),g(x)\in R[x]` 不同时为零。若 `d(x)` 满足：
+
+1. `d(x)\mid f(x)` 且 `d(x)\mid g(x)`；
+2. 每个 `f` 与 `g` 的共同因式都整除 `d(x)`；
+
+则 `d(x)` 是 `f` 与 `g` 的最大公因式。记号 `\gcd(f,g)` 指唯一的 monic 最大公因式。
+</Definition>
+
+这里“最大”不是大小排序，而是整除意义：gcd 是吸收所有共同因式的那个共同因式。
+
+<CommonMistake title="gcd 按惯例取 monic">
+若 Euclidean algorithm 的最后非零余式是 `-2x+2`，通常不把 gcd 写成 `-2x+2`。
+因为 `-2x+2=-2(x-1)`，monic gcd 是 `x-1`。
+</CommonMistake>
+
+## 多项式 Euclidean algorithm
+
+若
+
+$$
+f(x)=g(x)q(x)+r(x),\qquad \deg r\lt\deg g,
+$$
+
+则
+
+$$
+\gcd(f,g)=\gcd(g,r).
+$$
+
+原因是：`f` 与 `g` 的任何共同因式都整除 `r=f-gq`；反过来，`g` 与 `r` 的任何共同
+因式也整除 `f=gq+r`。重复这个步骤时，余式次数严格下降，因此算法必会停止。
+最后非零余式经 monic 化后就是 gcd。
+
+<WorkedExample title="一个多项式 Euclidean algorithm">
+设
+
+$$
+f(x)=4x^4-2x^3-16x^2+5x+9,\qquad
+g(x)=2x^3-x^2-5x+4.
+$$
+
+投影片中的计算为
+
+$$
+f(x)=(2x)g(x)+(-6x^2-3x+9),
+$$
+
+$$
+g(x)=\left(-\frac13x+\frac13\right)(-6x^2-3x+9)+(-x+1),
+$$
+
+且
+
+$$
+-6x^2-3x+9=(6x+9)(-x+1)+0.
+$$
+
+最后非零余式是 `-x+1`，所以 monic gcd 是
+
+$$
+\gcd(f,g)=x-1.
+$$
+</WorkedExample>
+
+## Bézout 恒等式
+
+延伸 Euclidean algorithm 亦适用于 `R[x]`。
+
+<TheoremCard title="多项式 Bézout 恒等式">
+若 `f(x),g(x)\in R[x]` 非零，则存在 `a(x),b(x)\in R[x]` 使得
+
+$$
+\gcd(f,g)=a(x)f(x)+b(x)g(x).
+$$
+</TheoremCard>
+
+在上面的例子中，回代得到
+
+$$
+x-1=
+\left(-\frac13x+\frac13\right)f(x)
+\left(\frac23x^2-\frac23x-1\right)g(x).
+$$
+
+这不只是计算技巧。若 `\gcd(f,g)=1`，Bézout 恒等式说明 `f` 与 `g` 的多项式线性
+组合可以产生常数多项式 `1`，这正是许多整除定理的核心。
+
+<Definition title="互质多项式">
+非零多项式 `f(x)` 与 `g(x)` 互质，意思是
+
+$$
+\gcd(f,g)=1.
+$$
+
+等价地，存在 `a(x),b(x)\in R[x]` 使得
+
+$$
+a(x)f(x)+b(x)g(x)=1.
+$$
+</Definition>
+
+## 不可约多项式
+
+<Definition title="在一个域上不可约">
+设 `F` 是一个域。非常数多项式 `p(x)\in F[x]` 若不能写成
+
+$$
+p(x)=g(x)h(x)
+$$
+
+其中 `g(x),h(x)\in F[x]` 且 `0\lt\deg g,\deg h\lt\deg p`，便称为在 `F` 上不可约。
+</Definition>
+
+不可约性取决于系数域。
+
+<WorkedExample title="改变系数域会改变不可约性">
+`x^2-2` 在 `Q` 上不可约，但在 `R` 上可约：
+
+$$
+x^2-2=(x-\sqrt2)(x+\sqrt2).
+$$
+
+`x^2+1` 在 `R` 上不可约，但在 `C` 上可约：
+
+$$
+x^2+1=(x-i)(x+i).
+$$
+</WorkedExample>
+
+在 `C[x]` 中，每个不可约多项式都是一次式。原因是代数基本定理保证每个非常数复
+系数多项式都有根。在 `R[x]` 中，不可约多项式刚好是一次式以及判别式
+`b^2-4ac\lt0` 的二次式 `ax^2+bx+c`。
+
+<TheoremCard title="不可约多项式的整除原理">
+设 `p(x)` 在 `R` 上不可约。
+
+1. 若 `p\nmid a`，则 `\gcd(a,p)=1`。
+2. 若 `p\mid ab`，则 `p\mid a` 或 `p\mid b`。
+3. 方程 `a(x)u(x)+b(x)v(x)=c(x)` 有多项式解，当且仅当 `\gcd(a,b)\mid c`。
+4. 域上的每个非常数多项式都可分解成不可约多项式；分解在排列与非零常数倍以外唯一。
+</TheoremCard>
+
+证明基本上重复第 7 章的整数证明。Bézout 恒等式是关键。若 `p` 不整除 `a`，
+则 `ua+vp=1`；乘以 `b` 后即可证明 `p\mid ab` 时必有 `p\mid b`。
+
+## 证明思路
+
+理解多项式 gcd 时，最安全的方法不是把它想成“最大的式子”。多项式没有像正整数
+那样自然又合用的大小排序。gcd 的真正意思是：它是一个共同因式，而且每个共同因式
+都整除它。因此定义中的第二条才是核心。
+
+Euclidean step
+
+$$
+\gcd(f,g)=\gcd(g,r)
+$$
+
+只是共同因式的等价。若某多项式同时整除 `f` 与 `g`，它便整除 `r=f-gq`；反过来，
+若它同时整除 `g` 与 `r`，它便整除 `f=gq+r`。所以两对多项式有完全相同的共同因式，
+也就有同一个 monic gcd。算法能停止，是因为每步都有 `\deg r\lt\deg g`，次数严格下降。
+
+Bézout 恒等式来自保留除法中的商式方程。每个新余式都是前两个余式的多项式线性组合；
+而最初两个余式就是 `f` 与 `g`。因此最后非零余式，即 gcd 的常数倍，也可以写成
+`a(x)f(x)+b(x)g(x)`。这也解释了为什么 Bézout 表示通常不唯一：只要一组 `a,b` 可行，
+就可用适当倍数改变它们而保持同一个线性组合。
+
+<WorkedExample title="用 gcd 判断多项式方程有无解">
+判断是否存在 `u(x),v(x)\in R[x]` 使得
+
+$$
+(x^2-1)u(x)+(x-1)v(x)=x+1.
+$$
+
+左边是 `x^2-1` 与 `x-1` 的多项式线性组合。因为
+
+$$
+x^2-1=(x-1)(x+1),
+$$
+
+所以
+
+$$
+\gcd(x^2-1,x-1)=x-1.
+$$
+
+由多项式 Bézout 可解性判别，方程有解必须有 `x-1\mid x+1`。但代入 `x=1`
+得到 `2\ne0`，所以 `x-1` 不整除 `x+1`，方程无解。
+</WorkedExample>
+
+## 常见错误
+
+<CommonMistake title="把常数倍当成不同 gcd 答案">
+在 `R[x]` 中，`x-1`、`2x-2`、`-7x+7` 的整除内容相同。只有 `x-1` 是 monic
+代表，因此标准 gcd 写作 `x-1`。
+</CommonMistake>
+
+<CommonMistake title="说不可约时没有指定系数域">
+“`x^2-2` 不可约”这句话不完整。它在 `Q` 上不可约，但在 `R` 上可约。讨论
+不可约性时一定要说明系数域。
+</CommonMistake>
+
+## 总结
+
+多项式 gcd 理论复制了整数 gcd 理论的结构，只是以次数取代大小，以 monic 标准化
+取代正数代表。Euclidean algorithm 在保持共同因式不变的同时降低次数；延伸算法给出
+Bézout 恒等式。不可约多项式扮演质数的角色，但不可约性取决于系数域：在 `C` 上只有
+一次式不可约；在 `R` 上，不可约多项式是一次式与判别式为负的二次式。
+
+## 练习阅读指南
+
+求多项式 gcd 时，先判断能否直接分解。若两个多项式都容易分解，共同的 monic 因式
+可以直接读出；若不容易，就照整数情况做 Euclidean algorithm：除法、用除式与余式
+取代原来一对，再重复直到余式为零。最后非零余式可能要乘上一个非零常数，才成为
+monic gcd。
+
+求 Bézout 恒等式时，要保留每一步除法方程。gcd 是向下做 Euclidean algorithm 得到，
+但 Bézout 表示是把方程向上回代得到。常见错误是改写了一个余式，却忘记它来自哪一个
+前一方程。最后最好展开 `a(x)f(x)+b(x)g(x)`，检查高次项是否全部抵消。
+
+判断不可约性时，系数域是题目的一部分。二次式没有有理根，不代表它在 `R` 上不可约；
+二次式没有实根，仍会在 `C` 上分解。对 `R` 上二次式，判别式测试已足够；对 `Q`，
+则要使用有理根与数系信息。例如 `x^2-5` 在 `Q` 上不可约，因为 `\sqrt5` 不是有理数，
+但它在 `R` 上可分解。
+
+证明题要有意识地重用整数章。不可约因式整除乘积时必整除其中一个因式，背后是
+Bézout。若 `p\nmid a`，则 `\gcd(a,p)=1`，所以 `ua+vp=1`；两边乘以 `b` 后，就能把
+`p\mid ab` 转化为 `p\mid b`。
+
+## 快速检查
+
+<QuickCheck prompt="为什么在 `R[x]` 中要取 monic gcd？">
+想想共同因式乘上非零常数后会怎样。
+</QuickCheck>
+
+<RevealSolution title="答案">
+最大公因式只在非零常数倍意义下唯一；取 monic 代表后，记号才真正唯一。
+</RevealSolution>
+
+<QuickCheck prompt="`-x+1` 与 `0` 的 monic gcd 是什么？">
+把非零多项式标准化。
+</QuickCheck>
+
+<RevealSolution title="答案">
+gcd 是 `x-1`，因为 `-x+1=-(x-1)`，monic 代表是 `x-1`。
+</RevealSolution>
+
+<QuickCheck prompt="`x^2+1` 在 `R` 上不可约吗？在 `C` 上不可约吗？">
+比较两个域中可用的根。
+</QuickCheck>
+
+<RevealSolution title="答案">
+它在 `R` 上不可约，因为没有实根；但在 `C` 上可约，因为
+`x^2+1=(x-i)(x+i)`。
+</RevealSolution>
+
+## Exercises
+
+1. 用 Euclidean algorithm 计算 `R[x]` 中的 `\gcd(x^3-1,x^2-1)`。
+2. 在例题中，展开右边以验证 `x-1` 的 Bézout 恒等式。
+3. 判断 `x^2-5` 在 `Q`、`R`、`C` 上是否不可约。
+4. 证明：若 `p(x)` 不可约且 `p\nmid a(x)`，则 `\gcd(a,p)=1`。
+5. 证明：若 `p(x)` 不可约且 `p\mid a(x)b(x)`，则 `p\mid a(x)` 或 `p\mid b(x)`。
+6. 判断是否存在 `u(x),v(x)\in R[x]` 使得
+   `(x^2-1)u(x)+(x-1)v(x)=x+1`。
+
+<RevealSolution title="引导解答">
+
+1. 因为 `x^3-1=(x-1)(x^2+x+1)` 且 `x^2-1=(x-1)(x+1)`，monic gcd 是
+   `x-1`。
+2. 代入显示的 `f`、`g`，展开并合并同类项；`x^4,x^3,x^2` 项抵消，留下
+   `x-1`。
+3. `x^2-5` 在 `Q` 上不可约，因为 `\sqrt5\notin Q`；在 `R` 上可分解为
+   `(x-\sqrt5)(x+\sqrt5)`；因此在 `C` 上亦可约。
+4. 由于 `p` 不可约，它的因式只有常数倍与本身。若 `p\nmid a`，gcd 不可能有
+   `\deg p`，故只能是 `1`。
+5. 若 `p\nmid a`，由第 4 题得 `\gcd(a,p)=1`。取 `u,v` 使 `ua+vp=1`，
+   两边乘以 `b`，可得 `p\mid b`。
+6. `x^2-1` 与 `x-1` 的 gcd 是 `x-1`。但 `x-1` 不整除 `x+1`，所以不存在。
+</RevealSolution>

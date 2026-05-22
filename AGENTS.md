@@ -39,6 +39,34 @@ The desired direction is:
 
 ---
 
+## Default orchestration
+
+For any non-trivial implementation, content supplement, QA, deployment,
+or recovery task in this repository, create an explicit work goal at the start
+of the run and keep it active until the task is genuinely complete or blocked.
+The goal should name the concrete deliverable, verification target, and any
+required recordkeeping. Trivial one-command checks and purely factual answers
+do not need a goal.
+
+Agent teams / sub-agents are allowed by default for substantial work in this
+repository. Use parallel agents when they can reduce risk or time without
+creating write conflicts, especially for:
+
+- read-only source and reference scouting
+- content gap analysis
+- independent course / chapter coverage audits
+- interactive-component review
+- exercise / answer integrity review
+- theme, export, rendering, i18n, and accessibility QA
+- remote deployment verification
+
+Keep agent scopes explicit and non-overlapping. The main thread owns final
+integration, conflict resolution, verification, commits, pushes, and production
+deployment judgment. Do not use agents to bypass repository truth, invent
+unsupported content, handle secrets unsafely, or make destructive git changes.
+
+---
+
 ## Public-facing product framing
 
 - This mathematics area must live under the public-facing **Notes** section.

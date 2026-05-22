@@ -780,3 +780,28 @@ Use this shape for future entries:
 - Remaining gaps: broader MATH1030 export QA remains; exhaustive reproduction
   of every intermediate numerical assignment table remains intentionally
   optional.
+
+### 2026-05-15: MATH1025 chapter 8 polynomial-methods checkpoint
+
+- Gap selected: Math1025 chapter 8 was the next pending source-backed chapter
+  after the verified chapter 7 integer / rational-number baseline, and the
+  existing course structure still made several chapters feel like one large
+  section rather than a multi-note chapter family.
+- Reference basis: `reference/MATH1025/MATH1025_slides_ch8.pdf` plus the
+  extracted source text `docs/extracted/math1025/MATH1025_slides_ch8.txt`.
+- Content files changed: added three localized units under
+  `content/textbook/math1025/polynomial-methods/**` for polynomial arithmetic
+  and division, polynomial gcds and irreducibility, and rational functions /
+  partial fractions / Vieta formulas.
+- Visuals added: none. The chapter is algebraic rather than diagram-heavy;
+  the high-value visual support is a stateful long-division stepper, not a
+  generated image.
+- Interactions added: `math1025-polynomial-division-stepper`, embedded in
+  `8.1` and backed by a static export snapshot.
+- Exercises added: source-backed guided exercises from Exercises 8.1-8.3 plus
+  seven problem-bank checkpoints covering long-division remainders, the factor
+  theorem, zero-count logic, monic polynomial gcds, irreducibility over fields,
+  partial-fraction forms, and Vieta products.
+- Verification: pending at implementation checkpoint; run contentlayer, lint,
+  typecheck, build, local route/export/API smoke, browser QA, and production
+  deployment verification before closing the round.

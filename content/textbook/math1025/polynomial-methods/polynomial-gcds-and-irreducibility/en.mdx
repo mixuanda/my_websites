@@ -1,0 +1,404 @@
+---
+title: "8.2 Polynomial gcds and irreducibility"
+description: "Use the Euclidean algorithm for polynomials, prove Bezout identities, and compare irreducibility over Q, R, and C."
+---
+
+## From integer gcds to polynomial gcds
+
+Chapter 7 showed that integer divisibility is controlled by gcds, the
+Euclidean algorithm, Bezout identities, and prime factorization. Chapter 8
+repeats the same architecture for polynomials. The analogy is powerful, but
+there is one new subtlety: multiplying a polynomial by a nonzero constant does
+not change its divisibility behavior.
+
+For example, `x-1` and `5x-5` divide exactly the same polynomials up to a
+constant factor. To make a gcd unique, we choose the monic representative.
+
+## Polynomial divisibility and associates
+
+<Definition title="Polynomial divisibility">
+For `f(x),g(x)\in R[x]`, we say that `g(x)` divides `f(x)`, written
+`g(x)\mid f(x)`, if there exists `q(x)\in R[x]` such that
+
+$$
+f(x)=g(x)q(x).
+$$
+</Definition>
+
+Two nonzero polynomials divide each other exactly when they differ by a nonzero
+constant factor.
+
+<TheoremCard title="Mutual divisibility">
+For nonzero `f(x),g(x)\in R[x]`,
+
+$$
+g\mid f\text{ and }f\mid g
+\quad\Longleftrightarrow\quad
+f(x)=kg(x)
+$$
+
+for some nonzero constant `k\in R`.
+</TheoremCard>
+
+The proof uses degrees. If `f=d_1g` and `g=d_2f`, then
+`f=d_1d_2f`. Since `f\ne0`, the product `d_1d_2` must be the constant
+polynomial `1`, so both `d_1` and `d_2` are constant.
+
+## Greatest common divisors in R[x]
+
+<Definition title="Greatest common divisor of polynomials">
+Let `f(x),g(x)\in R[x]` not both be zero. A polynomial `d(x)` is a greatest
+common divisor of `f` and `g` if
+
+1. `d(x)\mid f(x)` and `d(x)\mid g(x)`;
+2. every common divisor of `f` and `g` divides `d(x)`.
+
+The notation `\gcd(f,g)` means the unique monic greatest common divisor.
+</Definition>
+
+The second condition is often more useful than the word "greatest." There is
+no natural ordering by size for polynomials, so the gcd is characterized by
+divisibility: it is the common divisor that absorbs every other common divisor.
+
+<CommonMistake title="A gcd is monic by convention">
+If a Euclidean computation ends with `-2x+2`, the gcd is not usually recorded
+as `-2x+2`. Since `-2x+2=-2(x-1)`, the monic gcd is `x-1`.
+</CommonMistake>
+
+## The Euclidean algorithm for polynomials
+
+The division algorithm immediately gives the polynomial Euclidean algorithm.
+If
+
+$$
+f(x)=g(x)q(x)+r(x),\qquad \deg r\lt\deg g,
+$$
+
+then
+
+$$
+\gcd(f,g)=\gcd(g,r).
+$$
+
+Indeed, every common divisor of `f` and `g` divides `r=f-gq`, and every common
+divisor of `g` and `r` divides `f=gq+r`.
+
+Repeating this step produces remainders of strictly decreasing degree, so the
+algorithm must stop. The last nonzero remainder, made monic, is the gcd.
+
+<WorkedExample title="A polynomial Euclidean algorithm">
+Let
+
+$$
+f(x)=4x^4-2x^3-16x^2+5x+9,\qquad
+g(x)=2x^3-x^2-5x+4.
+$$
+
+The slide computation gives
+
+$$
+f(x)=(2x)g(x)+(-6x^2-3x+9),
+$$
+
+$$
+g(x)=\left(-\frac13x+\frac13\right)(-6x^2-3x+9)+(-x+1),
+$$
+
+and
+
+$$
+-6x^2-3x+9=(6x+9)(-x+1)+0.
+$$
+
+The last nonzero remainder is `-x+1`, so the monic gcd is
+
+$$
+\gcd(f,g)=x-1.
+$$
+</WorkedExample>
+
+## Bezout identities
+
+The extended Euclidean algorithm also survives in `R[x]`.
+
+<TheoremCard title="Polynomial Bezout identity">
+If `f(x),g(x)\in R[x]` are nonzero, then there exist `a(x),b(x)\in R[x]`
+such that
+
+$$
+\gcd(f,g)=a(x)f(x)+b(x)g(x).
+$$
+</TheoremCard>
+
+For the worked example above, back-substitution gives
+
+$$
+x-1=
+\left(-\frac13x+\frac13\right)f(x)
+\left(\frac23x^2-\frac23x-1\right)g(x).
+$$
+
+This identity is more than a computational trick. It proves that if
+`\gcd(f,g)=1`, then polynomial combinations of `f` and `g` can produce the
+constant polynomial `1`. That is the engine behind many divisibility theorems.
+
+<Definition title="Relatively prime polynomials">
+Nonzero polynomials `f(x)` and `g(x)` are relatively prime if
+
+$$
+\gcd(f,g)=1.
+$$
+
+Equivalently, there exist `a(x),b(x)\in R[x]` such that
+
+$$
+a(x)f(x)+b(x)g(x)=1.
+$$
+</Definition>
+
+## Irreducible polynomials
+
+<Definition title="Irreducible over a field">
+Let `F` be a field. A nonconstant polynomial `p(x)\in F[x]` is irreducible
+over `F` if it cannot be written as
+
+$$
+p(x)=g(x)h(x)
+$$
+
+with `g(x),h(x)\in F[x]` and
+
+$$
+0\lt\deg g,\deg h\lt\deg p.
+$$
+</Definition>
+
+Irreducibility depends on the coefficient field.
+
+<WorkedExample title="Changing the field can change irreducibility">
+The polynomial `x^2-2` is irreducible over `Q`, but reducible over `R`:
+
+$$
+x^2-2=(x-\sqrt2)(x+\sqrt2).
+$$
+
+The polynomial `x^2+1` is irreducible over `R`, but reducible over `C`:
+
+$$
+x^2+1=(x-i)(x+i).
+$$
+</WorkedExample>
+
+Over `C`, every irreducible polynomial is linear, because the fundamental
+theorem of algebra gives a root for every nonconstant polynomial. Over `R`, the
+irreducible polynomials are exactly:
+
+- linear polynomials;
+- quadratic polynomials `ax^2+bx+c` with discriminant `b^2-4ac\lt0`.
+
+The quadratic case reflects complex conjugate roots. If `\alpha\notin R`, then
+
+$$
+(x-\alpha)(x-\bar\alpha)=x^2-2\operatorname{Re}(\alpha)x+|\alpha|^2
+$$
+
+has real coefficients and no real linear factor.
+
+## Divisibility principles for irreducibles
+
+Irreducible polynomials behave like primes.
+
+<TheoremCard title="Irreducible-divisibility principles">
+Let `p(x)` be irreducible over `R`.
+
+1. If `p\nmid a`, then `\gcd(a,p)=1`.
+2. If `p\mid ab`, then `p\mid a` or `p\mid b`.
+3. The equation `a(x)u(x)+b(x)v(x)=c(x)` has polynomial solutions if and
+   only if `\gcd(a,b)\mid c`.
+4. Every nonconstant polynomial over a field factors into irreducibles, uniquely
+   up to order and nonzero constant factors.
+</TheoremCard>
+
+The proofs mirror the integer proofs from chapter 7. The Bezout identity gives
+the key step. For example, if `p` is irreducible and `p\nmid a`, then
+`\gcd(a,p)=1`, so
+
+$$
+u(x)a(x)+v(x)p(x)=1.
+$$
+
+Multiplying by `b(x)` shows that if `p\mid a(x)b(x)`, then `p\mid b(x)`.
+
+## Proof sketch or proof idea
+
+The safest way to reason about polynomial gcds is to avoid thinking of a gcd as
+"the biggest expression." Polynomials do not come with a natural size order
+that behaves like the order on positive integers. Instead, the gcd is the
+common divisor that is divisible by every other common divisor. This is why the
+second clause in the definition is the real content.
+
+The Euclidean step
+
+$$
+\gcd(f,g)=\gcd(g,r)
+$$
+
+is just a divisibility equivalence. If a polynomial divides both `f` and `g`,
+it divides `r=f-gq`. Conversely, if it divides both `g` and `r`, it divides
+`f=gq+r`. Thus the two pairs have exactly the same common divisors, and hence
+the same monic gcd. The only algorithmic ingredient is that `\deg r\lt\deg g`,
+so the sequence of degrees strictly decreases.
+
+Bezout's identity is obtained by keeping the quotient equations instead of
+throwing them away. Each remainder is a polynomial combination of the two
+previous remainders. Since the first two remainders are `f` and `g`, every later
+remainder is a polynomial combination of `f` and `g`. The final nonzero
+remainder is a constant multiple of the gcd, and after making it monic we get
+
+$$
+\gcd(f,g)=a(x)f(x)+b(x)g(x).
+$$
+
+This proof also explains why Bezout identities are not unique. Once one pair
+`a,b` works, other pairs may be obtained by adding and subtracting suitable
+multiples of `g/\gcd(f,g)` and `f/\gcd(f,g)`. In checkpoint problems, a prompt
+must either ask for a specific Euclidean back-substitution pair or check the
+identity itself.
+
+<WorkedExample title="Use gcd to decide a polynomial equation">
+Determine whether there exist `u(x),v(x)\in R[x]` such that
+
+$$
+(x^2-1)u(x)+(x-1)v(x)=x+1.
+$$
+
+The left side is a polynomial combination of `x^2-1` and `x-1`. Since
+
+$$
+x^2-1=(x-1)(x+1),
+$$
+
+we have
+
+$$
+\gcd(x^2-1,x-1)=x-1.
+$$
+
+By the polynomial Bezout-solvability criterion, the equation has a solution
+only if `x-1` divides `x+1`. It does not, because substituting `x=1` gives
+`2\ne0`. Therefore no such polynomials `u` and `v` exist.
+</WorkedExample>
+
+## Common mistakes
+
+<CommonMistake title="Treating scalar multiples as different gcd answers">
+In `R[x]`, `x-1`, `2x-2`, and `-7x+7` have the same divisibility content.
+Only `x-1` is the monic representative, so it is the standard value of the
+gcd.
+</CommonMistake>
+
+<CommonMistake title="Saying irreducible without naming the field">
+The phrase "`x^2-2` is irreducible" is incomplete. It is irreducible over
+`Q`, but reducible over `R`. Always state the coefficient field when
+irreducibility is the issue.
+</CommonMistake>
+
+## Summary
+
+Polynomial gcd theory copies the structure of integer gcd theory, with degree
+replacing size and monic normalization replacing positivity. The Euclidean
+algorithm computes a gcd by preserving common divisors while lowering degree.
+The extended algorithm gives Bezout identities. Irreducible polynomials play
+the role of primes, but irreducibility depends on the field: over `C` only
+linear polynomials are irreducible, while over `R` irreducibles are linear
+polynomials and quadratics with negative discriminant.
+
+## Study guide for the exercises
+
+When a problem asks for a polynomial gcd, decide first whether factoring is
+obvious. If both polynomials factor cleanly, the common monic factors can be
+read directly. If not, use the Euclidean algorithm exactly as with integers:
+divide, replace the pair by divisor and remainder, and repeat until the
+remainder is zero. The last nonzero remainder may need to be multiplied by a
+nonzero constant to make it monic.
+
+When a problem asks for a Bezout identity, keep a record of each division
+equation. The gcd is found by running the Euclidean algorithm downward, but the
+Bezout expression is found by running the equations backward. Students often
+make errors by changing a remainder without updating the earlier equation it
+came from. A useful check is to expand the final `a(x)f(x)+b(x)g(x)` and verify
+that every higher-degree term cancels.
+
+For irreducibility questions, the coefficient field is part of the problem.
+A quadratic with no rational root may still factor over `R`; a quadratic with
+no real root will factor over `C`. Over `R`, the discriminant test is enough
+for quadratics. Over `Q`, rational-root and number-system information matters.
+For example, `x^2-5` is irreducible over `Q` because `\sqrt5` is not rational,
+but it is reducible over `R`.
+
+For proof questions, reuse the integer chapter deliberately. The statement
+"irreducible divides a product implies it divides a factor" is not magic; it is
+Bézout plus multiplication. If `p\nmid a`, then `\gcd(a,p)=1`, so
+`ua+vp=1`. Multiplying by `b` turns this identity into a divisibility proof
+for `b` whenever `p` divides `ab`.
+
+## Quick checks
+
+<QuickCheck prompt="Why do we choose the monic gcd in `R[x]`?">
+Think about multiplying a common divisor by a nonzero constant.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+Greatest common divisors are unique only up to a nonzero constant factor, so
+choosing the monic representative makes the notation unique.
+</RevealSolution>
+
+<QuickCheck prompt="What is the monic gcd of `-x+1` and `0`?">
+Normalize the nonzero polynomial.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+The gcd is `x-1`, because `-x+1=-(x-1)` and the monic representative is
+`x-1`.
+</RevealSolution>
+
+<QuickCheck prompt="Is `x^2+1` irreducible over `R`? Is it irreducible over `C`?">
+Use the available roots in each field.
+</QuickCheck>
+
+<RevealSolution title="Answer">
+It is irreducible over `R` because it has no real root, but it is reducible
+over `C` since `x^2+1=(x-i)(x+i)`.
+</RevealSolution>
+
+## Exercises
+
+1. Use the Euclidean algorithm to compute
+   `\gcd(x^3-1,x^2-1)` in `R[x]`.
+2. In the worked example, verify the Bezout identity for `x-1` by expanding the
+   right-hand side.
+3. Decide whether `x^2-5` is irreducible over `Q`, `R`, and `C`.
+4. Prove: if `p(x)` is irreducible and `p\nmid a(x)`, then
+   `\gcd(a,p)=1`.
+5. Prove: if `p(x)` is irreducible and `p\mid a(x)b(x)`, then
+   `p\mid a(x)` or `p\mid b(x)`.
+6. Determine whether there exist `u(x),v(x)\in R[x]` such that
+   `(x^2-1)u(x)+(x-1)v(x)=x+1`.
+
+<RevealSolution title="Guided solutions">
+
+1. Since `x^3-1=(x-1)(x^2+x+1)` and `x^2-1=(x-1)(x+1)`, the monic gcd is
+   `x-1`.
+2. Substitute the displayed `f` and `g`, distribute, and collect terms. The
+   coefficients of `x^4,x^3,x^2` cancel, leaving `x-1`.
+3. `x^2-5` is irreducible over `Q` because `\sqrt5\notin Q`; reducible over
+   `R` as `(x-\sqrt5)(x+\sqrt5)`; and therefore reducible over `C`.
+4. Since `p` is irreducible, its only divisors up to constants are `1` and
+   `p`. If `p\nmid a`, the gcd cannot have degree `\deg p`, so it must be
+   `1`.
+5. From part 4, if `p\nmid a`, then `\gcd(a,p)=1`. Choose `u,v` with
+   `ua+vp=1`. Multiplying by `b` gives `uab+vpb=b`; both terms on the left
+   are divisible by `p`, so `p\mid b`.
+6. The gcd of `x^2-1` and `x-1` is `x-1`. Since `x-1` does not divide
+   `x+1`, no such `u,v` exist.
+</RevealSolution>

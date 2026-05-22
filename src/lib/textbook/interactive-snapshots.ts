@@ -1093,6 +1093,46 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "比较递推与显式数列描述"
     ),
   },
+  "math1025-polynomial-division-stepper": {
+    sampleStates: [
+      {
+        label: text("First cancellation", "第一次消項", "第一次消项"),
+        value: text(
+          "Choose `x^2` in the quotient and subtract `x^2(x^2-2x+3)`, leaving `-x^3-x^2+4x-1`.",
+          "在商式選 `x^2`，並減去 `x^2(x^2-2x+3)`，餘下 `-x^3-x^2+4x-1`。",
+          "在商式选 `x^2`，并减去 `x^2(x^2-2x+3)`，余下 `-x^3-x^2+4x-1`。"
+        ),
+      },
+      {
+        label: text("Final remainder", "最後餘式", "最后余式"),
+        value: text(
+          "After quotient terms `x^2`, `-x`, and `-3`, the remainder is `x+8`, whose degree is smaller than the divisor degree.",
+          "經過商式項 `x^2`、`-x` 與 `-3` 後，餘式是 `x+8`，其次數小於除式次數。",
+          "经过商式项 `x^2`、`-x` 与 `-3` 后，余式是 `x+8`，其次数小于除式次数。"
+        ),
+      },
+    ],
+    staticDiagramNote: text(
+      "Export as a static long-division sequence ending with `f(x)=(x^2-2x+3)(x^2-x-3)+(x+8)`.",
+      "匯出時保留靜態長除法步驟，最後得到 `f(x)=(x^2-2x+3)(x^2-x-3)+(x+8)`。",
+      "导出时保留静态长除法步骤，最后得到 `f(x)=(x^2-2x+3)(x^2-x-3)+(x+8)`。"
+    ),
+    summary: text(
+      "The stepper turns the chapter's long-division example into a sequence of leading-term cancellations.",
+      "這個 stepper 把本章長除法例題拆成逐步消去最高次項的序列。",
+      "这个 stepper 把本章长除法例题拆成逐步消去最高次项的序列。"
+    ),
+    steps: [
+      text("Compare the current leading term with the divisor leading term.", "比較目前最高次項與除式最高次項。", "比较目前最高次项与除式最高次项。"),
+      text("Add the matching quotient term and subtract its divisor multiple.", "加入相應商式項，並減去它乘出的除式倍數。", "加入相应商式项，并减去它乘出的除式倍数。"),
+      text("Stop only when the remainder degree is smaller than the divisor degree.", "只有當餘式次數小於除式次數時才停止。", "只有当余式次数小于除式次数时才停止。"),
+    ],
+    title: text(
+      "Step through polynomial long division",
+      "逐步查看多項式長除法",
+      "逐步查看多项式长除法"
+    ),
+  },
   "truth-table-builder": {
     sampleStates: [
       {

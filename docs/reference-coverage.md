@@ -541,9 +541,9 @@ public notes.
 
 The `reference/MATH1025/**` tree is large enough that it must be tracked now.
 The public site now exposes the foundations, induction, inequalities,
-binomial-theorem, sequences, chapter 6 complex numbers, and chapter 7 integer /
-rational-number baseline in EN, zh-HK, and zh-CN, but the course remains
-backlog-heavy from chapter 8 onward.
+binomial-theorem, sequences, chapter 6 complex numbers, chapter 7 integer /
+rational-number baseline, and chapter 8 polynomial-method units in EN, zh-HK,
+and zh-CN. The course remains backlog-heavy from chapter 9 onward.
 
 | Course | Source item | Material type | Current status | Incorporated | Overlap | Blocked | Notes / next action |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -555,7 +555,7 @@ backlog-heavy from chapter 8 onward.
 | MATH1025 | `reference/MATH1025/MATH1025_slides_ch5.pdf` | sequences slides | incorporated | yes | no | no | Direct source for public `5.1 Sequences, recursion, and series`. Extracted to `docs/extracted/math1025/MATH1025_slides_ch5.txt`; incorporated sequence-as-function notation, derivative-generated sequences, recursive definitions, the recursion theorem, Fibonacci pair recursion and Binet-form verification, arithmetic / geometric sums, the arithmetic-geometric sum exercise, and the mortgage recurrence. |
 | MATH1025 | `reference/MATH1025/MATH1025_slides_ch6(3).pdf` | complex numbers slides | incorporated | yes | no | no | Direct source for public `6.1 Complex numbers, polar form, and geometry`. Extracted to `docs/extracted/math1025/MATH1025_slides_ch63.txt`; incorporated ordered-pair construction, arithmetic and inverses, conjugate and modulus, polar and exponential forms, De Moivre's theorem, triangle inequality, fundamental theorem of algebra consequences, roots of unity, complex-plane geometry, locus problems, and optional transformation material. |
 | MATH1025 | `reference/MATH1025/MATH1025_slides_ch7.pdf` | integer and rational-number slides | incorporated | yes | no | no | Public `7.1 Divisibility, gcd, and integer equations` incorporates pp. 2-35: divisibility, primes, well-ordering arguments, gcd, division algorithm, Euclidean / extended Euclidean algorithms, Bezout's identity, Euclid's lemma, unique prime factorization, and linear Diophantine equations. Public `7.2 Rational and irrational numbers` incorporates pp. 36-41: `Q`, rational closure, irrational counterexamples, nonnegative nth roots, the irrationality of `sqrt(2)`, prime-root irrationality, and the perfect-square criterion for `sqrt(n)`. |
-| MATH1025 | `reference/MATH1025/MATH1025_slides_ch8.pdf` | polynomial methods slides | pending | no | no | no | Primary future-course backbone for polynomial arithmetic, division algorithm, polynomial gcd, irreducibility, and rational functions after the completed ch7 integer / rational-number baseline. |
+| MATH1025 | `reference/MATH1025/MATH1025_slides_ch8.pdf` | polynomial methods slides | incorporated | yes | no | no | Public `8.1 Polynomial arithmetic and division` incorporates formal polynomial definitions, degree rules, division algorithm, long division, remainder theorem, factor theorem, zero-count corollaries, and Exercise 8.1 as a guided roots-of-unity proof. Public `8.2 Polynomial gcds and irreducibility` incorporates polynomial divisibility up to scalar multiples, monic gcds, Euclidean / extended Euclidean algorithms, Bezout identities, irreducibility over `Q`, `R`, and `C`, and the Exercise 8.2 proposition family as guided proof practice. Public `8.3 Rational functions, partial fractions, and Vieta formulas` incorporates rational functions, denominator splitting, repeated linear / quadratic partial-fraction forms, the telescoping-sum example, Vieta formulas, the cubic power-sum example, optional Lagrange interpolation, and Exercise 8.3 as a Vieta/trigonometry capstone. Extracted text lives at `docs/extracted/math1025/MATH1025_slides_ch8.txt`. |
 | MATH1025 | `reference/MATH1025/MATH1025_slides_ch9.pdf` to `reference/MATH1025/MATH1025_slides_ch11.pdf` | vectors and geometry slides | pending | no | no | no | Primary future-course backbone for vectors in `R^n`, straight lines / planes / curves, and conic sections. |
 | MATH1025 | `reference/MATH1025/Solution to MATH1025_1028_HW1.pdf` to `reference/MATH1025/Solution to MATH1025_1028_HW10.pdf` | homework solutions | pending | no | partial | no | Keep for later exercise / solution authoring once the baseline chapter notes exist. |
 | MATH1025 | `reference/MATH1025/MATH1025_Midterm_Exam.pdf` and `reference/MATH1025/Solution to MATH1025_Midterm_Exam.pdf` | assessment pair | pending | no | partial | no | Secondary support only; use after the first chapter-family notes exist. |
@@ -566,8 +566,8 @@ backlog-heavy from chapter 8 onward.
 The next source-backed expansions with the clearest payoff are:
 
 1. Next missing source-backed priority: continue Math1025 chapter slides by
-   moving into `ch8` polynomial arithmetic and polynomial gcd,
-   unless the next user request narrows the course scope.
+   moving into `ch9` vectors in `R^n`, unless the next user request narrows the
+   course scope or asks for a second depth pass on earlier one-unit chapters.
 2. Keep refining thin but already public units, especially MATH1030 `3.1` and
    `4.1`, only when they compete directly with a current source-backed chapter
    family.

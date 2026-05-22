@@ -104,8 +104,41 @@ public note pages.
 
 - Math1025 chapter 7 is implemented through `7.2` and passed local plus
   production verification in this round.
-- Math1025 chapter 8 polynomial methods remains the next primary source-backed
-  chapter-slide backlog after this round.
+- Math1025 chapter 8 polynomial methods was selected as the next source-backed
+  expansion checkpoint later on 2026-05-15; local and production verification
+  for that later checkpoint is tracked below.
 - Math1025 chapters 9-11 remain pending vectors / geometry backlog.
 - Homework and assessment PDFs remain secondary exercise-design support after
   baseline chapter notes exist.
+
+## 2026-05-15 Later Checkpoint - Math1025 Chapter 8 Polynomial Methods
+
+### Scope / implementation checkpoint
+
+- Selected `reference/MATH1025/MATH1025_slides_ch8.pdf` and
+  `docs/extracted/math1025/MATH1025_slides_ch8.txt` because chapter 8 was the
+  next pending source-backed Math1025 chapter and naturally splits into
+  several article notes instead of one oversized page.
+- Added three localized public Notes units:
+  - `8.1 Polynomial arithmetic and division`
+  - `8.2 Polynomial gcds and irreducibility`
+  - `8.3 Rational functions, partial fractions, and Vieta formulas`
+- Registered the new `polynomial-methods` Math1025 chapter family in
+  `src/lib/textbook/catalog.ts`.
+- Added `math1025-polynomial-division-stepper` for the source long-division
+  example, with a static export snapshot in
+  `src/lib/textbook/interactive-snapshots.ts`.
+- Added seven problem-bank checkpoints:
+  - `checkpoint.math1025.polynomial-methods.division-remainder`
+  - `checkpoint.math1025.polynomial-methods.factor-theorem-parameter`
+  - `checkpoint.math1025.polynomial-methods.zero-count`
+  - `checkpoint.math1025.polynomial-methods.euclidean-gcd`
+  - `checkpoint.math1025.polynomial-methods.irreducible-over-field`
+  - `checkpoint.math1025.polynomial-methods.partial-fraction-form`
+  - `checkpoint.math1025.polynomial-methods.vieta-product`
+
+### Verification status
+
+- Pending at this checkpoint: contentlayer, lint, typecheck, build, local route
+  smoke, export smoke, checkpoint preview API, browser QA, commit / push, and
+  production verification.

@@ -70,7 +70,7 @@ course is still far from complete.
 | --- | --- | --- | --- | --- |
 | `math1025` | Foundations and early methods (`ch0` to `ch6`) | Authored through `6.1` | Usable | Seven three-language units are represented: notation, trigonometry, induction, inequalities / absolute value, binomial coefficients / expansions, sequences / recursion / series, and complex numbers / polar form / geometry. |
 | `math1025` | Integer and rational-number methods (`ch7`) | Authored through `7.2` | Usable | Two three-language units cover divisibility, primes, well-ordering arguments, gcd, division algorithm, Euclidean / extended Euclidean algorithms, Bezout, unique prime factorization, linear Diophantine equations, rational closure, irrational counterexamples, nth-root notation, the irrationality of `sqrt(2)`, prime-root irrationality, and the perfect-square test for `sqrt(n)`. |
-| `math1025` | Polynomial methods (`ch8`) | Unauthored | Usable | Chapter slides cover polynomial arithmetic, division algorithm, polynomial gcd, irreducibility, and rational functions. |
+| `math1025` | Polynomial methods (`ch8`) | Authored through `8.3` | Usable | Three three-language units cover polynomial formal sums, degree arithmetic, division with remainder, remainder / factor theorems, zero-count corollaries, polynomial gcds, Euclidean / extended Euclidean algorithms, Bezout identities, irreducibility over `Q` / `R` / `C`, rational functions, partial fractions, Vieta formulas, optional Lagrange interpolation, and source-backed Exercises 8.1-8.3. `8.1` includes an embedded polynomial long-division stepper with a static export snapshot. |
 | `math1025` | Vectors and geometry (`ch9` to `ch11`) | Unauthored | Usable | Chapter slides cover vectors in `R^n`, straight lines / planes / curves, and conic sections. |
 | `math1025` | Homework and assessment support | Unauthored | Secondary support | Keep homework-solution PDFs and the MATH1025 midterm pair for later exercise design after baseline notes exist. |
 | `math1025` | MATH1028 overlap material | Unauthored | Overlap | Treat the MATH1028 midterm pair as adjacent-course overlap, not as primary Math1025 conceptual source. |
@@ -104,4 +104,5 @@ determinant-free proof patterns, or the `as02` Q2 parameterized `G/H`
 row-operation-product construction. Remaining assignment work is mostly
 optional exhaustive intermediate-table replication and broader export QA across
 the expanded sequence. Math1025 expansion should remain controlled and
-source-backed, with `ch8` through `ch11` as the active chapter-slide backlog.
+source-backed, with `ch9` through `ch11` as the active chapter-slide backlog
+after the chapter 8 polynomial-methods pass.

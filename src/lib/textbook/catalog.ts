@@ -1346,6 +1346,96 @@ const math1025IntegerMethodUnits: TextbookUnitMeta[] = [
   },
 ];
 
+const math1025PolynomialMethodUnits: TextbookUnitMeta[] = [
+  {
+    chapterId: "polynomial-methods",
+    chapterNumber: "8",
+    course: "math1025",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Define polynomials as finite formal sums, control degree, prove division with remainder, and use the remainder and factor theorems.",
+      "把多項式定義為有限形式和，控制次數，證明帶餘除法，並使用餘式定理與因式定理。",
+      "把多项式定义为有限形式和，控制次数，证明带余除法，并使用余式定理与因式定理。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: ["math1025-polynomial-division-stepper"],
+    order: 10,
+    prerequisites: ["math1025.integer-methods.rational-and-irrational-numbers"],
+    slug: "polynomial-arithmetic-and-division",
+    sourceRefs: [
+      {
+        file: "reference/MATH1025/MATH1025_slides_ch8.pdf",
+        pages: "pp. 2-16",
+      },
+    ],
+    title: text(
+      "8.1 Polynomial arithmetic and division",
+      "8.1 多項式運算與除法",
+      "8.1 多项式运算与除法"
+    ),
+    unitId: "math1025.polynomial-methods.polynomial-arithmetic-and-division",
+    unitNumber: "8.1",
+  },
+  {
+    chapterId: "polynomial-methods",
+    chapterNumber: "8",
+    course: "math1025",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Use polynomial Euclidean algorithms, Bezout identities, irreducibility, and field-dependent factorization.",
+      "使用多項式 Euclidean algorithm、Bézout 恆等式、不可約性與依係數域而變的因式分解。",
+      "使用多项式 Euclidean algorithm、Bézout 恒等式、不可约性与依系数域而变的因式分解。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 11,
+    prerequisites: ["math1025.polynomial-methods.polynomial-arithmetic-and-division"],
+    slug: "polynomial-gcds-and-irreducibility",
+    sourceRefs: [
+      {
+        file: "reference/MATH1025/MATH1025_slides_ch8.pdf",
+        pages: "pp. 17-26",
+      },
+    ],
+    title: text(
+      "8.2 Polynomial gcds and irreducibility",
+      "8.2 多項式最大公因式與不可約性",
+      "8.2 多项式最大公因式与不可约性"
+    ),
+    unitId: "math1025.polynomial-methods.polynomial-gcds-and-irreducibility",
+    unitNumber: "8.2",
+  },
+  {
+    chapterId: "polynomial-methods",
+    chapterNumber: "8",
+    course: "math1025",
+    coverageStatus: "SOURCE_BACKED",
+    description: text(
+      "Decompose rational functions, use partial fractions in finite sums, and relate roots to coefficients with Vieta's formulas.",
+      "分解有理函數，在有限和中使用部分分式，並用 Vieta 公式連繫根與係數。",
+      "分解有理函数，在有限和中使用部分分式，并用 Vieta 公式联系根与系数。"
+    ),
+    glossaryRefs: [],
+    interactiveIds: [],
+    order: 12,
+    prerequisites: ["math1025.polynomial-methods.polynomial-gcds-and-irreducibility"],
+    slug: "rational-functions-and-vieta",
+    sourceRefs: [
+      {
+        file: "reference/MATH1025/MATH1025_slides_ch8.pdf",
+        pages: "pp. 27-47",
+      },
+    ],
+    title: text(
+      "8.3 Rational functions, partial fractions, and Vieta formulas",
+      "8.3 有理函數、部分分式與 Vieta 公式",
+      "8.3 有理函数、部分分式与 Vieta 公式"
+    ),
+    unitId: "math1025.polynomial-methods.rational-functions-and-vieta",
+    unitNumber: "8.3",
+  },
+];
+
 const math1030SystemsUnits: TextbookUnitMeta[] = [
   {
     chapterId: "systems",
@@ -3233,6 +3323,22 @@ const math1025: TextbookCourseMeta = {
         "整数方法"
       ),
       units: math1025IntegerMethodUnits,
+    },
+    {
+      course: "math1025",
+      id: "polynomial-methods",
+      number: "8",
+      summary: text(
+        "Polynomial arithmetic, division with remainder, polynomial gcds, irreducibility, rational functions, partial fractions, and Vieta formulas.",
+        "多項式運算、帶餘除法、多項式最大公因式、不可約性、有理函數、部分分式與 Vieta 公式。",
+        "多项式运算、带余除法、多项式最大公因式、不可约性、有理函数、部分分式与 Vieta 公式。"
+      ),
+      title: text(
+        "Polynomial methods",
+        "多項式方法",
+        "多项式方法"
+      ),
+      units: math1025PolynomialMethodUnits,
     },
   ],
   description: text(
