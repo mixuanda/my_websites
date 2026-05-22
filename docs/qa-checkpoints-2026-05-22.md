@@ -161,3 +161,151 @@ Follow-up remote verification on deployment
   preview text `3`;
 - `npx vercel logs dpl_AHZkEPRnukp9TUAUHFpHHPcSJxoe --no-follow --since 10m
   --level error --limit 20`: no error logs found.
+
+## Full-site remote QA - 2026-05-22
+
+### Scope and environment
+
+- Target: production `https://www.evanalysis.top`, tested remote-first.
+- Initial production baseline: `dpl_EoeSCHfXkB4yp4fJ1fZbED1oUGFe`.
+- Final verified production deployment after fixes:
+  `dpl_3wf7pbKsNhqbSDCmj4HhyfAohYEL`.
+- Browser path: Browser plugin was not available, so deep interaction coverage
+  used Playwright Chromium fallback.
+- Temporary evidence directory outside the repository:
+  `/tmp/my-websites-full-qa-2026-05-22/`.
+
+### Sitemap and route coverage
+
+The full production sitemap contained 259 public URLs:
+
+- root/static: 4;
+- `en`: 86;
+- `zh-hk`: 86;
+- `zh-cn`: 86;
+- `csci2520`: 30;
+- `math1025`: 39;
+- `math1030`: 114;
+- `math1090`: 72.
+
+After the production fixes below, the full remote crawl returned 259 / 259
+successful public sitemap URLs. The rerun found no framework overlays and no
+HTML error root on sitemap pages. The final spot check of
+`/en/notes/math1030/matrix-algebra/transpose-and-special-matrices` returned
+`200 text/html; charset=utf-8`.
+
+Negative-path checks behaved as expected:
+
+- preview-only public surfaces such as `/about`, `/blog`, `/projects`,
+  `/notes/membership`, and `/admin` returned 404 in production;
+- protected preview/development surfaces such as `/diary`, `/settings`, and
+  `/premium/*` redirected to `/login?callbackUrl=...` and did not expose
+  protected content;
+- localized legacy `/courses` paths redirected to the localized Notes index and
+  resolved with 200. This is acceptable as compatibility behavior unless the
+  production-surface policy later requires hard 404s.
+
+### Export coverage
+
+Remote TXT export succeeded for all 243 public unit pages:
+
+- `csci2520`: 27 / 27;
+- `math1025`: 36 / 36;
+- `math1030`: 111 / 111;
+- `math1090`: 69 / 69.
+
+Remote PDF export also succeeded for all 243 public unit pages. Each checked
+response returned status 200, `application/pdf`, and a `%PDF` header. The
+slowest observed examples were still within the normal production range, with a
+maximum around 6.4 seconds during this run.
+
+### API and interaction coverage
+
+The remote API smoke suite verified expected production behavior for:
+
+- grade request with missing payload: 400;
+- missing problem preview/grade path: 404;
+- progress path with missing problem: 404;
+- missing section progress: 200 with empty progress data;
+- billing status on production public surface: 404;
+- admin system status on production public surface: 404.
+
+Deep Playwright interaction coverage verified these representative flows:
+
+- desktop Notes course navigation, language switching to `zh-HK`, dark mode,
+  and high-contrast mode;
+- Math1030 transpose/special-matrices page render, export dropdown, TXT/PDF
+  actions, and checkpoint preview;
+- Math1090 truth-table interaction using the biconditional choice;
+- Math1030 matrix multiplication visualizer input editing and explanation
+  output;
+- Math1030 augmented-system explorer example switching;
+- CSCI2520 pointer tracer through the final step, including the final pointer
+  write state;
+- mobile zh-HK Notes menu in dark mode.
+
+### Issues found and fixed
+
+#### P0 - Math1030 transpose page returned 500 in production
+
+Initial sitemap crawling found all three localized versions of
+`/notes/math1030/matrix-algebra/transpose-and-special-matrices` returning 500.
+Vercel logs showed:
+
+`Expected component ProofSketch to be defined: you likely forgot to import, pass, or provide it.`
+
+Fix:
+
+- mapped `ProofSketch` to `CollapsibleProof` in
+  `src/components/textbook/mdx-components.tsx`;
+- local `npm run lint`: passed;
+- local `npm run build`: passed;
+- commit: `2a38c8f` (`Fix textbook proof sketch rendering`);
+- post-fix deployment: `dpl_8jUozsExRbpD5wug6oHxkP16g2fb`;
+- post-fix remote crawl: 259 / 259 public sitemap URLs OK.
+
+#### P2 - Mobile menu dialog lacked an accessible description
+
+Playwright console/a11y monitoring surfaced the Radix warning:
+
+`Missing Description or aria-describedby={undefined} for {DialogContent}.`
+
+Fix:
+
+- added localized, screen-reader-only `SheetDescription` content in
+  `src/components/glass/GlassSidebar.tsx`;
+- local `npm run lint`: passed;
+- local `npm run build`: passed;
+- commit: `f807a4e` (`Add mobile menu dialog description`);
+- final deployment: `dpl_3wf7pbKsNhqbSDCmj4HhyfAohYEL`;
+- final mobile zh-HK dark-menu rerun passed with no console events, page
+  errors, or bad responses.
+
+### Final production verification
+
+Final checks against `dpl_3wf7pbKsNhqbSDCmj4HhyfAohYEL` confirmed:
+
+- `www.evanalysis.top` points to the Ready production deployment;
+- the Math1030 transpose/special-matrices route returns 200;
+- Vercel error logs for the final deployment returned no logs in the checked
+  window;
+- the final mobile menu interaction rerun passed without the prior dialog
+  description warning.
+
+### Remaining observations
+
+No blocking production QA failures remain from this full-site pass.
+
+Non-blocking items to keep visible:
+
+- the localized legacy `/courses` redirects are compatible with the current
+  Notes framing, but can be hardened if strict hidden-surface behavior is later
+  desired;
+- protected preview/development surfaces currently redirect to login rather than
+  hard-404ing, which is content-safe but should remain an intentional policy;
+- this QA pass verified routes, exports, API behavior, interaction behavior,
+  deployment health, and obvious runtime/rendering failures. It did not attempt
+  to re-author every note or close the broader content-depth backlog already
+  tracked by `npm run check:textbook-content`;
+- the Math1025 chapters 9-11 source-backed backlog remains the next content
+  authoring target after QA closeout.

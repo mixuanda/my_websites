@@ -42,11 +42,12 @@ The desired direction is:
 ## Default orchestration
 
 For any non-trivial implementation, content supplement, QA, deployment,
-or recovery task in this repository, create an explicit work goal at the start
-of the run and keep it active until the task is genuinely complete or blocked.
-The goal should name the concrete deliverable, verification target, and any
-required recordkeeping. Trivial one-command checks and purely factual answers
-do not need a goal.
+or recovery task in this repository, use the available goal mechanism
+(`set_goal`, `create_goal`, or the current runtime's equivalent) at the start
+of the run and keep that goal active until the task is genuinely complete or
+blocked. The goal should name the concrete deliverable, verification target,
+and any required recordkeeping. Trivial one-command checks and purely factual
+answers do not need a goal.
 
 Agent teams / sub-agents are allowed by default for substantial work in this
 repository. Use parallel agents when they can reduce risk or time without
