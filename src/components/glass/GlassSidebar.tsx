@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { SiteLanguageSwitcher } from "@/components/SiteLanguageSwitcher";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Separator } from "@/components/ui/separator";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -38,6 +38,12 @@ interface NavItem {
   icon: React.ReactNode;
   matches?: (pathname: string) => boolean;
 }
+
+const mobileMenuDescription: Record<Locale, string> = {
+  en: "Navigation, language, theme, and contrast controls.",
+  "zh-cn": "导航、语言、主题与高对比度控制。",
+  "zh-hk": "導覽、語言、主題與高對比度控制。",
+};
 
 function getNavItems(locale: Locale, surface: SiteSurface): NavItem[] {
   const productionItems: NavItem[] = [
@@ -392,6 +398,9 @@ export function GlassSidebar({
             <SheetTitle className="sr-only">
               {getSiteText(siteUiText.mainMenu, locale)}
             </SheetTitle>
+            <SheetDescription className="sr-only">
+              {mobileMenuDescription[locale]}
+            </SheetDescription>
             <SidebarContent
               highContrast={highContrast}
               locale={locale}
