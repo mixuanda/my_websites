@@ -40,6 +40,9 @@ export function createTextbookMdxComponents(locale: Locale): MDXComponents {
     QuickCheck: (props: { children?: React.ReactNode; prompt: string }) => (
       <QuickCheck locale={locale} {...props} />
     ),
+    ProofSketch: (props: { children?: React.ReactNode; title?: string }) => (
+      <CollapsibleProof locale={locale} {...props} />
+    ),
     RevealSolution: (props: { children?: React.ReactNode; title?: string }) => (
       <RevealSolution locale={locale} {...props} />
     ),
