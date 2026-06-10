@@ -129,17 +129,22 @@ project has no custom environment named `development`.
 The completed deployment therefore used a standard preview deployment with
 explicit preview/development surface env overrides and no production promotion.
 
-Latest verified deployment:
+Verified development deployments in this pass:
 
-- Deployment ID: `dpl_6XXrPsuh1ZZ9u3b9EoFsYozivyaP`
-- Preview URL:
+- Manual CLI preview before the commit was pushed:
+  `dpl_6XXrPsuh1ZZ9u3b9EoFsYozivyaP`,
   `https://my-websites-otdp36cj4-mixuandahotmailcoms-projects.vercel.app`
-- Inspect URL:
-  `https://vercel.com/mixuandahotmailcoms-projects/my-websites/6XXrPsuh1ZZ9u3b9EoFsYozivyaP`
+- Clean Git preview after pushing `origin/codex/account` was:
+  `dpl_2anZdbHjD2y2cupeZG62WHUHbtnu`,
+  `https://my-websites-k58p82gpq-mixuandahotmailcoms-projects.vercel.app`
+- Git preview inspect URL:
+  `https://vercel.com/mixuandahotmailcoms-projects/my-websites/2anZdbHjD2y2cupeZG62WHUHbtnu`
+- Git preview commit: `32909e3a16dd05cf4e5e25ba3ea17020a49d80aa`
 - Vercel deployment state: `READY`
 - Vercel deployment target: `null` / preview, not production
+- Vercel source: `git`, branch `codex/account`
 
-Remote smoke through `vercel curl`:
+Remote smoke through authenticated Vercel fetch/curl against the Git preview:
 
 - `POST /api/auth/register` returned
   `{"error":"Registration is not enabled.","errorCode":"registration_disabled"}`.
@@ -166,8 +171,8 @@ Current Vercel state after the follow-up domain isolation pass:
   domain target.
 - The Vercel project-domain configuration for `development.evanalysis.top` now
   has `gitBranch: codex/account` instead of `gitBranch: null`.
-- `development.evanalysis.top` is aliased to the verified preview deployment
-  `dpl_6XXrPsuh1ZZ9u3b9EoFsYozivyaP`.
+- At the branch-push smoke point, `development.evanalysis.top` resolved to the
+  verified Git preview deployment `dpl_2anZdbHjD2y2cupeZG62WHUHbtnu`.
 - `www.evanalysis.top` remains the production public domain.
 
 Verified after isolation:

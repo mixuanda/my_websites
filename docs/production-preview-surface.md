@@ -52,11 +52,12 @@ to the `codex/account` Git branch or an equivalent non-production target; it
 must not have `gitBranch: null`, because a null branch assignment makes Vercel
 treat it as a normal production project domain.
 
-As of 2026-06-10, `development.evanalysis.top` is aliased to preview deployment
-`dpl_6XXrPsuh1ZZ9u3b9EoFsYozivyaP`
-(`my-websites-otdp36cj4-mixuandahotmailcoms-projects.vercel.app`) with
-`gitBranch: codex/account`. Ordinary public HTTP requests return Vercel
-Authentication `401`; use Vercel authenticated fetch/curl for development QA.
+During the 2026-06-10 account/login QA pass, `development.evanalysis.top` was
+confirmed with `gitBranch: codex/account` and resolved to a non-production Git
+preview deployment for commit `32909e3`. Ordinary public HTTP requests return
+Vercel Authentication `401`; use Vercel authenticated fetch/curl for
+development QA, and check the current Vercel deployment before recording new
+remote evidence.
 
 Production should keep these non-secret URL/surface variables:
 
