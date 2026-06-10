@@ -1,4 +1,5 @@
 import { firestore } from "@/lib/firebase-admin";
+import { assertAuthRateLimit } from "@/lib/auth-rate-limit";
 import { isAdminEmail } from "@/lib/membership/config";
 
 const HASH_PREFIX = "pbkdf2";
@@ -203,10 +204,7 @@ export function getPasswordAuthUsers(): PasswordAuthUser[] {
 const memoryRegisteredCredentialUsers = new Map<string, RegisteredCredentialUser>();
 
 export function isRegistrationEnabled() {
-  return (
-    process.env.AUTH_REGISTRATION_ENABLED === "true" ||
-    process.env.NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED === "true"
-  );
+  return process.env.AUTH_REGISTRATION_ENABLED === "true";
 }
 
 export function isPasswordAuthConfigured() {
@@ -315,7 +313,7 @@ export async function registerPasswordAuthUser(input: {
     throw new Error("admin_email_reserved");
   }
 
-  if (hasPasswordAuthUser(email) || (await hasRegisteredPasswordAuthUser(email))) {
+  if (hasPasswordAuthUser(email)) {
     throw new Error("email_already_registered");
   }
 
@@ -330,15 +328,27 @@ export async function registerPasswordAuthUser(input: {
     updatedAt: now,
   };
 
-  memoryRegisteredCredentialUsers.set(email, user);
-
   if (firestore) {
-    await firestore
-      .collection(REGISTERED_CREDENTIAL_COLLECTION)
-      .doc(user.id)
-      .set(user, { merge: false });
+    const userRef = firestore.collection(REGISTERED_CREDENTIAL_COLLECTION).doc(user.id);
+
+    await firestore.runTransaction(async (transaction) => {
+      const existingUser = await transaction.get(userRef);
+      if (existingUser.exists) {
+        throw new Error("email_already_registered");
+      }
+
+      transaction.create(userRef, user);
+    });
+
+    memoryRegisteredCredentialUsers.set(email, user);
+    return user;
   }
 
+  if (await hasRegisteredPasswordAuthUser(email)) {
+    throw new Error("email_already_registered");
+  }
+
+  memoryRegisteredCredentialUsers.set(email, user);
   return user;
 }
 
@@ -381,6 +391,17 @@ export async function verifyPassword(password: string, encodedHash: string) {
 
 export async function authorizePasswordUser(email: unknown, password: unknown) {
   if (typeof email !== "string" || typeof password !== "string") {
+    return null;
+  }
+
+  try {
+    await assertAuthRateLimit({
+      identifier: normalizeEmail(email),
+      limit: 10,
+      scope: "credentials-login-email",
+      windowMs: 15 * 60 * 1000,
+    });
+  } catch {
     return null;
   }
 

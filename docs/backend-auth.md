@@ -8,6 +8,7 @@
 - 支持 GitHub OAuth、Google OAuth。
 - 支持可选的站点邮箱密码登录，用于没有 OAuth 或需要管理员直登的场景。
 - 支持可选的站点账号注册；注册用户存入 Firestore 的 `credentialUsers` 集合，管理员邮箱不会开放注册。
+- 注册接口带有账号 / IP 速率限制；配置 Turnstile 后，注册必须通过服务端验证码校验。
 - Firestore 配置存在时，Auth adapter、用户资料、日记、会员资格和练习进度都写入 Firestore。
 - Firestore 未配置时，部分功能使用内存模式，仅适合本地开发和临时演示。
 - `/settings` 是受保护页面，未登录会先跳转 `/login?callbackUrl=/settings`。
@@ -31,9 +32,14 @@ NEXT_PUBLIC_SITE_URL=https://your-domain.com
 NEXT_PUBLIC_AUTH_PROVIDERS=credentials,github,google
 AUTH_REGISTRATION_ENABLED=true
 NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED=true
+AUTH_REGISTRATION_REQUIRE_TURNSTILE=true
+NEXT_PUBLIC_AUTH_REGISTRATION_REQUIRE_TURNSTILE=true
+NEXT_PUBLIC_TURNSTILE_SITE_KEY=...
+AUTH_TURNSTILE_SECRET_KEY=...
 ```
 
 只启用实际已经配置的 provider。若没有站点账号、也没有启用注册，不应把 `credentials` 放进公开列表。
+若 `NEXT_PUBLIC_AUTH_PROVIDERS` 未设置，或设置为 `disabled`、`none`、`off`，前端不会默认展示 GitHub / Google，也不会请求 NextAuth provider endpoint，避免按钮显示但后端 provider 未配置。
 
 ## 站点密码登录
 
@@ -66,7 +72,15 @@ AUTH_PASSWORD_USERS_JSON='[
 ]'
 ```
 
-公开注册由 `AUTH_REGISTRATION_ENABLED=true` 控制。注册接口是 `POST /api/auth/register`，只会创建普通 `user` 账号，不允许注册 `ADMIN_EMAILS` 中的管理员邮箱。管理员账号仍应通过环境变量里的 `AUTH_PASSWORD_EMAIL` / `AUTH_PASSWORD_HASH` 或 OAuth + `ADMIN_EMAILS` 管理。
+公开注册的服务端真实开关只由 `AUTH_REGISTRATION_ENABLED=true` 控制；`NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED` 只负责前端是否展示注册入口。注册接口是 `POST /api/auth/register`，只会创建普通 `user` 账号，不允许注册 `ADMIN_EMAILS` 中的保留邮箱。管理权限仍只由服务端 `ADMIN_EMAILS` 白名单决定。
+
+注册防滥用：
+
+- `registration-ip`：每个 IP 每小时最多 8 次注册尝试。
+- `registration-email`：同一邮箱每小时最多 3 次注册尝试。
+- `credentials-login-email`：同一邮箱每 15 分钟最多 10 次密码登录尝试。
+- Firestore 存在时，速率限制写入 `authRateLimits` 集合；本地无 Firestore 时使用内存 fallback。
+- 当服务端 `AUTH_REGISTRATION_REQUIRE_TURNSTILE=true` 时，`/api/auth/register` 会调用 Cloudflare Turnstile Siteverify API。`NEXT_PUBLIC_AUTH_REGISTRATION_REQUIRE_TURNSTILE` 只负责前端按钮和组件显示；没有 token、密钥缺失或校验失败都会被服务端拒绝。
 
 当前不提供找回密码流程；如需重设管理员密码，更新 `AUTH_PASSWORD_HASH` 后重新部署。
 
@@ -93,6 +107,30 @@ GOOGLE_CLIENT_SECRET=...
 ```
 
 NextAuth 也兼容 `AUTH_GITHUB_ID`、`AUTH_GITHUB_SECRET`、`AUTH_GOOGLE_ID`、`AUTH_GOOGLE_SECRET`。
+
+OAuth readiness 当前规则：
+
+- 后端只有在 client id 与 secret 成对存在时才注册 GitHub / Google provider。
+- 前端 `/login` 会同时检查 `NEXT_PUBLIC_AUTH_PROVIDERS` 和 NextAuth 的实际 provider 列表；不会因为 public env 写错而展示不可用按钮。
+- 当前 preview 可用 `NEXT_PUBLIC_AUTH_PROVIDERS=disabled` 暂停公开登录入口；真正开放邮箱密码、GitHub 或 Google 前，必须先配置对应后端 provider / secret。
+- Google 登录要求 provider profile 的 `email_verified=true`。
+- GitHub 登录会调用 GitHub emails API，要求登录邮箱已验证。
+
+## 数据存储决策
+
+当前不切换到所谓“Vercel 自带用户库”。截至 2026-05-25 的评估，Vercel 的存储路线主要是 Blob、Edge Config，以及 Marketplace 上的 Postgres / Redis / NoSQL 等集成；它不是一个可直接替换 Firestore 的单一账号数据库。
+
+本仓库下一阶段继续使用 Firestore，原因：
+
+- 当前 Auth.js Firestore adapter 已经接入。
+- `users`、OAuth `accounts`、`credentialUsers`、会员资格、Stripe customer / subscription 映射、练习记录和日记数据都已经围绕 Firestore 组织。
+- 对现在的 `codex/account` 分支来说，最大风险是注册安全与环境隔离，而不是数据库供应商本身。
+
+长期迁移方向：
+
+- 如果希望更 Vercel-native，可评估 Clerk 作为完整用户身份系统；这会是一次 auth 架构迁移，不是小改动。
+- 如果保留 Auth.js，但想用关系数据库，优先评估 Neon / Supabase Postgres via Vercel Marketplace。迁移前必须先完成 schema、备份、迁移 fixture、Stripe entitlement reconciliation 和 rollback。
+- Upstash Redis 更适合作为速率限制 / idempotency / cache，不适合作为主用户库。
 
 ## 用户资料 API
 

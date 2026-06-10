@@ -23,6 +23,7 @@ import {
   Unlink,
   User,
 } from "lucide-react";
+import { parsePublicAuthProviders } from "@/lib/auth-providers";
 
 interface Account {
   id: string;
@@ -48,8 +49,12 @@ interface UserProfile {
 interface ProfileResponse {
   backend: {
     authProvidersConfigured: boolean;
+    githubConfigured: boolean;
+    googleConfigured: boolean;
     passwordUserCount: number;
     persistence: "firestore" | "memory";
+    registrationCaptchaConfigured: boolean;
+    registrationCaptchaRequired: boolean;
     registrationEnabled: boolean;
   };
   billing: {
@@ -92,10 +97,8 @@ const providerInfo: Record<string, { name: string; icon: React.ReactNode; color:
   },
 };
 
-// 可用的 providers（根据环境变量配置）
-const availableProviders = (process.env.NEXT_PUBLIC_AUTH_PROVIDERS || "github,google")
-  .split(",")
-  .map((p) => p.trim())
+// 可用的 OAuth providers（根据环境变量配置）
+const availableProviders = parsePublicAuthProviders(process.env.NEXT_PUBLIC_AUTH_PROVIDERS)
   .filter((p) => !["credentials", "password", "passkey"].includes(p));
 
 export default function SettingsPage() {
@@ -198,7 +201,7 @@ export default function SettingsPage() {
   const linkedProviders = accounts.map((a) => a.provider);
   const unlinkedProviders = availableProviders.filter((p) => !linkedProviders.includes(p));
   const accessLabel = entitlements?.isAdmin
-    ? "Admin"
+    ? "完整权限"
     : entitlements?.tier === "PRO"
       ? "Pro"
       : entitlements?.tier === "MEMBER"
@@ -280,7 +283,7 @@ export default function SettingsPage() {
             <p className="text-xs text-muted-foreground">订阅状态</p>
             <p className="font-medium">
               {entitlements?.isAdmin
-                ? "管理员免付款"
+                ? "内部完整权限，无需付款"
                 : membership?.status ?? "未订阅"}
             </p>
           </div>
@@ -418,6 +421,26 @@ export default function SettingsPage() {
             </p>
           </div>
         </div>
+        <div className="mt-3 grid gap-3 sm:grid-cols-3">
+          <div className="rounded-lg bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">GitHub 登录</p>
+            <p className="font-medium">{backend?.githubConfigured ? "已配置" : "未配置"}</p>
+          </div>
+          <div className="rounded-lg bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">Google 登录</p>
+            <p className="font-medium">{backend?.googleConfigured ? "已配置" : "未配置"}</p>
+          </div>
+          <div className="rounded-lg bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">注册验证</p>
+            <p className="font-medium">
+              {backend?.registrationCaptchaRequired
+                ? backend.registrationCaptchaConfigured
+                  ? "已启用"
+                  : "缺少密钥"
+                : "未强制"}
+            </p>
+          </div>
+        </div>
       </GlassCard>
 
       {/* Linked Accounts */}
@@ -499,7 +522,7 @@ export default function SettingsPage() {
       {/* Info */}
       <GlassPanel className="p-4">
         <p className="text-xs text-muted-foreground text-center">
-          绑定多个 OAuth 账号后，使用任意一个都可以登录到相同的账户。站点账号由后端环境变量控制，不在前端创建。
+          绑定多个 OAuth 账号后，使用任意一个都可以登录到相同的账户。站点邮箱密码账号只在注册开放且完成验证时创建。
         </p>
       </GlassPanel>
 

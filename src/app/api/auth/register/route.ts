@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
-import { registerPasswordAuthUser } from "@/lib/password-auth";
+import { assertAuthRateLimit } from "@/lib/auth-rate-limit";
+import { isRegistrationEnabled, registerPasswordAuthUser } from "@/lib/password-auth";
 import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
+import { verifyRegistrationTurnstile } from "@/lib/turnstile";
 import { upsertUserProfile } from "@/lib/user-store";
 
 export const dynamic = "force-dynamic";
@@ -16,12 +18,32 @@ function messageFor(error: unknown) {
     case "weak_password":
       return { error: "Password must be at least 8 characters.", errorCode: code, status: 400 };
     case "admin_email_reserved":
-      return { error: "This email is reserved for administrator login.", errorCode: code, status: 409 };
+      return { error: "This email is reserved and cannot self-register.", errorCode: code, status: 409 };
     case "email_already_registered":
       return { error: "This email is already registered.", errorCode: code, status: 409 };
+    case "captcha_required":
+      return { error: "Please complete the verification challenge.", errorCode: code, status: 403 };
+    case "captcha_not_configured":
+      return { error: "Registration verification is not configured.", errorCode: code, status: 503 };
+    case "captcha_failed":
+      return { error: "Verification failed. Please try again.", errorCode: code, status: 403 };
+    case "rate_limited":
+      return { error: "Too many attempts. Please try again later.", errorCode: code, status: 429 };
     default:
       return { error: "Unable to create account.", errorCode: "registration_failed", status: 500 };
   }
+}
+
+function getRequestIp(request: Request) {
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  const forwardedIp = forwardedFor?.split(",")[0]?.trim();
+
+  return (
+    request.headers.get("cf-connecting-ip")?.trim() ||
+    request.headers.get("x-real-ip")?.trim() ||
+    forwardedIp ||
+    "unknown"
+  );
 }
 
 export async function POST(request: Request) {
@@ -29,10 +51,13 @@ export async function POST(request: Request) {
   if (hiddenResponse) return hiddenResponse;
 
   try {
+    const requestIp = getRequestIp(request);
     const payload = (await request.json()) as {
+      captchaToken?: unknown;
       email?: unknown;
       name?: unknown;
       password?: unknown;
+      turnstileToken?: unknown;
     };
 
     if (typeof payload.email !== "string" || typeof payload.password !== "string") {
@@ -41,6 +66,29 @@ export async function POST(request: Request) {
         { status: 400 }
       );
     }
+
+    if (!isRegistrationEnabled()) {
+      throw new Error("registration_disabled");
+    }
+
+    await assertAuthRateLimit({
+      identifier: requestIp,
+      limit: 8,
+      scope: "registration-ip",
+      windowMs: 60 * 60 * 1000,
+    });
+
+    await assertAuthRateLimit({
+      identifier: payload.email,
+      limit: 3,
+      scope: "registration-email",
+      windowMs: 60 * 60 * 1000,
+    });
+
+    await verifyRegistrationTurnstile(
+      payload.turnstileToken ?? payload.captchaToken,
+      requestIp === "unknown" ? null : requestIp
+    );
 
     const credentialUser = await registerPasswordAuthUser({
       email: payload.email,
@@ -69,8 +117,10 @@ export async function POST(request: Request) {
       { status: 201 }
     );
   } catch (error) {
-    console.error("Registration failed:", error);
     const message = messageFor(error);
+    if (message.status >= 500) {
+      console.error("Registration failed:", error);
+    }
     return NextResponse.json(
       { error: message.error, errorCode: message.errorCode },
       { status: message.status }

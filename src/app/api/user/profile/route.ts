@@ -48,8 +48,12 @@ export async function GET() {
     return NextResponse.json({
       backend: {
         authProvidersConfigured: authBackendStatus.hasConfiguredProvider,
+        githubConfigured: authBackendStatus.githubConfigured,
+        googleConfigured: authBackendStatus.googleConfigured,
         passwordUserCount: authBackendStatus.passwordUserCount,
         persistence: usingFirestore ? "firestore" : "memory",
+        registrationCaptchaConfigured: authBackendStatus.registrationCaptchaConfigured,
+        registrationCaptchaRequired: authBackendStatus.registrationCaptchaRequired,
         registrationEnabled: authBackendStatus.registrationEnabled,
       },
       billing: {

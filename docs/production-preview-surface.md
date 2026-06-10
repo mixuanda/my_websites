@@ -46,6 +46,18 @@ If no explicit value is set:
 The production project is `my-websites` on Vercel, with the public domain
 `https://www.evanalysis.top`.
 
+`https://development.evanalysis.top` is a development / preview domain, not a
+production domain. In Vercel project-domain configuration it should be assigned
+to the `codex/account` Git branch or an equivalent non-production target; it
+must not have `gitBranch: null`, because a null branch assignment makes Vercel
+treat it as a normal production project domain.
+
+As of 2026-06-10, `development.evanalysis.top` is aliased to preview deployment
+`dpl_6XXrPsuh1ZZ9u3b9EoFsYozivyaP`
+(`my-websites-otdp36cj4-mixuandahotmailcoms-projects.vercel.app`) with
+`gitBranch: codex/account`. Ordinary public HTTP requests return Vercel
+Authentication `401`; use Vercel authenticated fetch/curl for development QA.
+
 Production should keep these non-secret URL/surface variables:
 
 - `NEXT_PUBLIC_SITE_URL=https://www.evanalysis.top`
@@ -58,6 +70,21 @@ Development can explicitly use:
 
 - `SITE_SURFACE=preview`
 - `NEXT_PUBLIC_SITE_SURFACE=preview`
+- `NEXT_PUBLIC_SITE_URL=https://development.evanalysis.top`
+- `APP_URL=https://development.evanalysis.top`
+- `NEXTAUTH_URL=https://development.evanalysis.top`
+
+If public registration is enabled on a preview branch, keep it branch scoped and
+pair it with staging persistence plus Turnstile:
+
+- `AUTH_REGISTRATION_ENABLED=true`
+- `NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED=true`
+- `AUTH_REGISTRATION_REQUIRE_TURNSTILE=true`
+- `NEXT_PUBLIC_AUTH_REGISTRATION_REQUIRE_TURNSTILE=true`
+- `NEXT_PUBLIC_TURNSTILE_SITE_KEY=...`
+- `AUTH_TURNSTILE_SECRET_KEY=...`
+- Firebase Admin envs from a development/staging Firebase project, not the
+  production data project
 
 Preview deployments may rely on Vercel's built-in `VERCEL_ENV=preview` signal;
 that keeps unfinished preview-only routes available without pointing sitemap

@@ -1,12 +1,33 @@
 "use client";
 
-import { type FormEvent, Suspense, useEffect, useState } from "react";
+import { type FormEvent, Suspense, useEffect, useRef, useState } from "react";
 import { GlassCard } from "@/components/glass";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useRouter, useSearchParams } from "next/navigation";
-import { signIn } from "next-auth/react";
+import Script from "next/script";
+import { getProviders, signIn } from "next-auth/react";
 import { Github, LockKeyhole, Mail } from "lucide-react";
+import { parsePublicAuthProviders } from "@/lib/auth-providers";
+
+type TurnstileRenderOptions = {
+  callback?: (token: string) => void;
+  "error-callback"?: () => void;
+  "expired-callback"?: () => void;
+  sitekey: string;
+};
+
+type TurnstileApi = {
+  remove?: (widgetId: string) => void;
+  render: (container: HTMLElement, options: TurnstileRenderOptions) => string;
+  reset: (widgetId?: string) => void;
+};
+
+declare global {
+  interface Window {
+    turnstile?: TurnstileApi;
+  }
+}
 
 function LoginPageContent() {
   const [credentialError, setCredentialError] = useState<string | null>(null);
@@ -15,26 +36,95 @@ function LoginPageContent() {
   const [mode, setMode] = useState<"login" | "register">("login");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [providersLoaded, setProvidersLoaded] = useState(false);
+  const [serverProviders, setServerProviders] = useState<string[]>([]);
+  const [turnstileReady, setTurnstileReady] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const turnstileContainerRef = useRef<HTMLDivElement | null>(null);
+  const turnstileWidgetIdRef = useRef<string | null>(null);
   const router = useRouter();
   const searchParams = useSearchParams();
-  const availableProviders = (process.env.NEXT_PUBLIC_AUTH_PROVIDERS || "github,google")
-    .split(",")
-    .map((p) => p.trim())
-    .filter(Boolean);
+  const availableProviders = parsePublicAuthProviders(
+    process.env.NEXT_PUBLIC_AUTH_PROVIDERS
+  );
+  const availableProviderKey = availableProviders.join(",");
   const callbackUrl = searchParams.get("callbackUrl") || "/diary";
+  const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() ?? "";
+  const registrationVerificationRequired =
+    process.env.NEXT_PUBLIC_AUTH_REGISTRATION_REQUIRE_TURNSTILE === "true";
 
   const isLoading = Boolean(loadingProvider);
   const showCredentials =
-    availableProviders.includes("credentials") || availableProviders.includes("password");
-  const showGithub = availableProviders.includes("github");
-  const showGoogle = availableProviders.includes("google");
+    (availableProviders.includes("credentials") || availableProviders.includes("password")) &&
+    serverProviders.includes("credentials");
+  const showGithub =
+    availableProviders.includes("github") && serverProviders.includes("github");
+  const showGoogle =
+    availableProviders.includes("google") && serverProviders.includes("google");
   const registrationEnabled = process.env.NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED === "true";
+  const captchaMissing =
+    mode === "register" && registrationVerificationRequired && !turnstileSiteKey;
+  const captchaTokenMissing =
+    mode === "register" &&
+    registrationVerificationRequired &&
+    Boolean(turnstileSiteKey) &&
+    !turnstileToken;
 
   useEffect(() => {
     if (registrationEnabled && searchParams.get("mode") === "register") {
       setMode("register");
     }
   }, [registrationEnabled, searchParams]);
+
+  useEffect(() => {
+    if (!availableProviderKey) {
+      setServerProviders([]);
+      setProvidersLoaded(true);
+      return;
+    }
+
+    getProviders()
+      .then((providers) => {
+        setServerProviders(Object.keys(providers ?? {}));
+      })
+      .catch(() => {
+        setServerProviders([]);
+      })
+      .finally(() => {
+        setProvidersLoaded(true);
+      });
+  }, [availableProviderKey]);
+
+  useEffect(() => {
+    if (
+      mode !== "register" ||
+      !turnstileSiteKey ||
+      !turnstileReady ||
+      !turnstileContainerRef.current ||
+      !window.turnstile ||
+      turnstileWidgetIdRef.current
+    ) {
+      return;
+    }
+
+    turnstileWidgetIdRef.current = window.turnstile.render(
+      turnstileContainerRef.current,
+      {
+        callback: (token) => setTurnstileToken(token),
+        "error-callback": () => setTurnstileToken(""),
+        "expired-callback": () => setTurnstileToken(""),
+        sitekey: turnstileSiteKey,
+      }
+    );
+
+    return () => {
+      if (turnstileWidgetIdRef.current) {
+        window.turnstile?.remove?.(turnstileWidgetIdRef.current);
+        turnstileWidgetIdRef.current = null;
+      }
+      setTurnstileToken("");
+    };
+  }, [mode, turnstileReady, turnstileSiteKey]);
 
   const handleSignIn = async (provider: string) => {
     setCredentialError(null);
@@ -73,7 +163,7 @@ function LoginPageContent() {
 
     try {
       const response = await fetch("/api/auth/register", {
-        body: JSON.stringify({ email, name, password }),
+        body: JSON.stringify({ email, name, password, turnstileToken }),
         headers: { "Content-Type": "application/json" },
         method: "POST",
       });
@@ -98,6 +188,10 @@ function LoginPageContent() {
       router.refresh();
     } catch (error) {
       setCredentialError(error instanceof Error ? error.message : "账号创建失败。");
+      setTurnstileToken("");
+      if (turnstileWidgetIdRef.current) {
+        window.turnstile?.reset(turnstileWidgetIdRef.current);
+      }
     } finally {
       setLoadingProvider(null);
     }
@@ -105,11 +199,18 @@ function LoginPageContent() {
 
   return (
     <div className="max-w-md mx-auto mt-20">
+      {turnstileSiteKey ? (
+        <Script
+          src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
+          strategy="afterInteractive"
+          onLoad={() => setTurnstileReady(true)}
+        />
+      ) : null}
       <GlassCard className="p-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold mb-2">登录</h1>
           <p className="text-muted-foreground">
-            选择你喜欢的登录方式
+            使用已启用的账号登录方式
           </p>
         </div>
 
@@ -163,6 +264,16 @@ function LoginPageContent() {
                   value={password}
                 />
               </div>
+              {mode === "register" && turnstileSiteKey ? (
+                <div className="flex min-h-[65px] justify-center">
+                  <div ref={turnstileContainerRef} />
+                </div>
+              ) : null}
+              {captchaMissing ? (
+                <p className="rounded-md border border-amber-300/50 bg-amber-50 px-3 py-2 text-sm text-amber-950 dark:border-amber-900/60 dark:bg-amber-950/20 dark:text-amber-100">
+                  注册验证码尚未配置完成，暂时不能开放注册。
+                </p>
+              ) : null}
               {credentialError ? (
                 <p className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
                   {credentialError}
@@ -170,7 +281,7 @@ function LoginPageContent() {
               ) : null}
               <Button
                 className="w-full"
-                disabled={isLoading}
+                disabled={isLoading || captchaMissing || captchaTokenMissing}
                 type="submit"
                 variant="default"
               >
@@ -230,7 +341,7 @@ function LoginPageContent() {
             </Button>
           )}
 
-          {!showCredentials && !showGithub && !showGoogle ? (
+          {providersLoaded && !showCredentials && !showGithub && !showGoogle ? (
             <p className="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm text-muted-foreground">
               当前没有公开启用的登录方式。请先配置后端认证 provider。
             </p>

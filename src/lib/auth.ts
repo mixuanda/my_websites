@@ -12,6 +12,10 @@ import {
   isPasswordAuthConfigured,
   isRegistrationEnabled,
 } from "./password-auth";
+import {
+  isRegistrationTurnstileConfigured,
+  isRegistrationTurnstileRequired,
+} from "./turnstile";
 import { recordUserLogin } from "./user-store";
 import { isPreviewOnlyPath, isProductionSurface } from "./site-surface";
 
@@ -199,7 +203,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 });
 
 export const authBackendStatus = {
+  githubConfigured: Boolean(githubClientId && githubClientSecret),
+  googleConfigured: Boolean(googleClientId && googleClientSecret),
   hasConfiguredProvider: providers.length > 0,
   passwordUserCount: configuredPasswordUsers.length,
+  registrationCaptchaConfigured: isRegistrationTurnstileConfigured(),
+  registrationCaptchaRequired: isRegistrationTurnstileRequired(),
   registrationEnabled: isRegistrationEnabled(),
 };
