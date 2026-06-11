@@ -20,6 +20,7 @@ shared files need coordination before you edit them.
 - [Manim animation integration research](./manim-animation-integration-research.md)
 - [Video explanation opportunity audit](./video-explanation-opportunity-audit.md)
 - [Video explanation implementation roadmap](./video-explanation-implementation-roadmap.md)
+- [Generated video storage policy](./generated-video-storage-policy.md)
 - [Manim video QA - 2026-05-25](./manim-video-qa-2026-05-25.md)
 - [Manim matrix basics video QA - 2026-05-25](./manim-matrix-basics-video-qa-2026-05-25.md)
 - [Manim augmented matrices video QA - 2026-05-25](./manim-augmented-matrices-video-qa-2026-05-25.md)

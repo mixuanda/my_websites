@@ -215,11 +215,9 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 
 These are the concrete next slices to execute one by one:
 
-1. Revisit generated-video storage policy before the number of committed MP4
-    assets grows beyond the current pilot scale.
-2. Continue Math1025 integer-method and polynomial-method clips after the
+1. Continue Math1025 integer-method and polynomial-method clips after the
     first CSCI2520 visual pass, unless the roadmap priority changes.
-3. Generalize the Manim render registry further if the course-aware shell
+2. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.
 
 ## Maintenance Notes
@@ -227,6 +225,9 @@ These are the concrete next slices to execute one by one:
 - Keep this roadmap updated after each implementation slice.
 - Move items from `Manim` to `Done` only after localized assets and export QA
   are recorded.
+- Generated MP4/poster assets remain repo-local under
+  `public/generated/animations/` until the gates in
+  `docs/generated-video-storage-policy.md` say to move them.
 - If a unit is found to lack enough reference support, mark the item blocked in
   this file and in the relevant coverage document.
 - Do not add videos merely because a unit exists. The animation must clarify a

@@ -76,17 +76,17 @@ Fixes applied:
 
 ## Next Slice
 
-Proceed to the generated-video storage policy checkpoint, then Math1025
-integer-method and polynomial-method clips unless the roadmap priority changes.
+Proceed to Math1025 integer-method and polynomial-method clips unless the
+roadmap priority changes.
 
 Expected first step:
 
-1. Decide whether committed MP4 assets under `public/generated/animations/`
-   remain acceptable for the next several pilots or should move to external
-   static hosting.
-2. If assets remain repo-local, continue with Math1025 integer-method clips.
-3. Keep future CSCI2520 algorithm videos short and preserve widgets for
+1. Start with Math1025 `integer-methods/divisibility-gcd-and-integer-equations`
+   unless source inspection changes the priority.
+2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
+3. Revisit `docs/generated-video-storage-policy.md` before the generated asset
+   directory reaches its documented size gates.
 
 Useful explorer result:
 

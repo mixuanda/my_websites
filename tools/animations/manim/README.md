@@ -198,3 +198,5 @@ Connect rendered assets through localized `videoSrc` and `posterSrc` entries in
 - Keep Manim source under version control.
 - Commit rendered media only when the asset is small enough for the repo and
   has passed visual QA; otherwise record the hosting decision in `docs/`.
+- Current storage gates are recorded in
+  `docs/generated-video-storage-policy.md`.
