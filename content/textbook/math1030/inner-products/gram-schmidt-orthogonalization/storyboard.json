@@ -1,0 +1,252 @@
+{
+  "course": "math1030",
+  "chapter": "inner-products",
+  "unit": "gram-schmidt-orthogonalization",
+  "unitTitle": {
+    "en": "9.3 Gram-Schmidt orthogonalization",
+    "zh-hk": "9.3 Gram-Schmidt 正交化",
+    "zh-cn": "9.3 Gram-Schmidt 正交化"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Projection subtraction",
+          "goal": "Show Gram-Schmidt as the removal of already-used directions.",
+          "beats": [
+            "Start from the worked-example list w1=(1,0,1), w2=(1,1,1), w3=(0,1,2).",
+            "Set v1=w1 without changing the first direction.",
+            "Preview that each later vector is a remainder after subtracting projections."
+          ],
+          "mathBlocks": [
+            "v_1=w_1",
+            "v_\\ell=w_\\ell-\\sum_{i<\\ell}\\frac{\\langle w_\\ell,v_i\\rangle}{\\|v_i\\|^2}v_i"
+          ],
+          "voiceover": [
+            "Gram-Schmidt keeps the span but changes the basis.",
+            "Each new vector is the part of the current vector not already explained by earlier orthogonal directions."
+          ],
+          "animation": "input vector cards and first direction highlight"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Build v2",
+          "goal": "Animate the first projection subtraction from the page example.",
+          "beats": [
+            "Compute the coefficient <w2,v1>/||v1||^2 = 2/2 = 1.",
+            "Subtract one copy of v1 from w2.",
+            "Display v2=(0,1,0) and check v1·v2=0."
+          ],
+          "mathBlocks": [
+            "v_2=w_2-v_1=(0,1,0)^T"
+          ],
+          "voiceover": [
+            "The coefficient tells exactly how much of v1 sits inside w2.",
+            "After subtracting it, the remainder is perpendicular to v1."
+          ],
+          "animation": "before-minus-projection-equals-remainder row"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Build v3",
+          "goal": "Show that later vectors subtract every previous orthogonal direction.",
+          "beats": [
+            "Compute the coefficients along v1 and v2, both equal to 1.",
+            "Subtract v1 and v2 from w3.",
+            "Display v3=(-1,0,1) and the pairwise dot-product checks."
+          ],
+          "mathBlocks": [
+            "v_3=w_3-v_1-v_2=(-1,0,1)^T",
+            "v_1\\cdot v_2=v_1\\cdot v_3=v_2\\cdot v_3=0"
+          ],
+          "voiceover": [
+            "For the third vector, one old direction is not enough.",
+            "Subtract the components along every earlier orthogonal vector."
+          ],
+          "animation": "two-projection subtraction followed by three dot-product badges"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Same span, then normalize",
+          "goal": "Connect orthogonalization to the later orthonormal-basis step.",
+          "beats": [
+            "State the span invariant after all subtraction steps.",
+            "Emphasize that normalization comes after orthogonalization.",
+            "Show u1=v1/sqrt(2), u2=v2, u3=v3/sqrt(2)."
+          ],
+          "mathBlocks": [
+            "\\operatorname{span}\\{w_1,w_2,w_3\\}=\\operatorname{span}\\{v_1,v_2,v_3\\}",
+            "u_i=\\frac{v_i}{\\|v_i\\|}"
+          ],
+          "voiceover": [
+            "The output basis points in cleaner directions, but it spans the same subspace.",
+            "Normalize only after the orthogonal directions have been built."
+          ],
+          "animation": "span-invariant badge and normalization card"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "投影扣除",
+          "goal": "把 Gram-Schmidt 呈現為扣除已使用方向的過程。",
+          "beats": [
+            "由例子中的 w1=(1,0,1)、w2=(1,1,1)、w3=(0,1,2) 開始。",
+            "先設 v1=w1，第一個方向不改。",
+            "預告後面每個向量都是扣除投影後留下的餘量。"
+          ],
+          "mathBlocks": [
+            "v_1=w_1",
+            "v_\\ell=w_\\ell-\\sum_{i<\\ell}\\frac{\\langle w_\\ell,v_i\\rangle}{\\|v_i\\|^2}v_i"
+          ],
+          "voiceover": [
+            "Gram-Schmidt 保留張成空間，但改變基底。",
+            "每個新向量都是目前向量中未被舊正交方向解釋的部分。"
+          ],
+          "animation": "輸入向量卡和第一個方向標示"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "建立 v2",
+          "goal": "把頁面例子的第一個投影扣除動態化。",
+          "beats": [
+            "計算係數 <w2,v1>/||v1||^2 = 2/2 = 1。",
+            "從 w2 扣除一份 v1。",
+            "顯示 v2=(0,1,0) 並檢查 v1·v2=0。"
+          ],
+          "mathBlocks": [
+            "v_2=w_2-v_1=(0,1,0)^T"
+          ],
+          "voiceover": [
+            "投影係數準確說明 w2 裏面有多少 v1 方向。",
+            "扣除後，留下的餘量就與 v1 垂直。"
+          ],
+          "animation": "原向量減投影等於餘量"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "建立 v3",
+          "goal": "顯示後續向量要扣除所有已建立正交方向。",
+          "beats": [
+            "沿 v1 和 v2 的係數都等於 1。",
+            "從 w3 扣除 v1 和 v2。",
+            "顯示 v3=(-1,0,1) 和兩兩內積檢查。"
+          ],
+          "mathBlocks": [
+            "v_3=w_3-v_1-v_2=(-1,0,1)^T",
+            "v_1\\cdot v_2=v_1\\cdot v_3=v_2\\cdot v_3=0"
+          ],
+          "voiceover": [
+            "第三個向量不能只扣除一個舊方向。",
+            "要沿每個已建立的正交向量扣除相應部分。"
+          ],
+          "animation": "兩個投影扣除和三個內積檢查標記"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "同一張成空間，再正規化",
+          "goal": "連接正交化與後面的標準正交基步驟。",
+          "beats": [
+            "列出扣除完成後的張成不變量。",
+            "強調正規化應該在正交化之後。",
+            "顯示 u1=v1/sqrt(2)、u2=v2、u3=v3/sqrt(2)。"
+          ],
+          "mathBlocks": [
+            "\\operatorname{span}\\{w_1,w_2,w_3\\}=\\operatorname{span}\\{v_1,v_2,v_3\\}",
+            "u_i=\\frac{v_i}{\\|v_i\\|}"
+          ],
+          "voiceover": [
+            "輸出基底方向更乾淨，但張成的是同一個子空間。",
+            "先建立正交方向，需要時再除以長度。"
+          ],
+          "animation": "張成不變標記和正規化卡"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "投影扣除",
+          "goal": "把 Gram-Schmidt 呈现为扣去已使用方向的过程。",
+          "beats": [
+            "由例子中的 w1=(1,0,1)、w2=(1,1,1)、w3=(0,1,2) 开始。",
+            "先设 v1=w1，第一个方向不改。",
+            "预告后面每个向量都是扣去投影后留下的余量。"
+          ],
+          "mathBlocks": [
+            "v_1=w_1",
+            "v_\\ell=w_\\ell-\\sum_{i<\\ell}\\frac{\\langle w_\\ell,v_i\\rangle}{\\|v_i\\|^2}v_i"
+          ],
+          "voiceover": [
+            "Gram-Schmidt 保留张成空间，但改变基底。",
+            "每个新向量都是目前向量中未被旧正交方向解释的部分。"
+          ],
+          "animation": "输入向量卡和第一个方向标示"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "建立 v2",
+          "goal": "把页面例子的第一个投影扣除动态化。",
+          "beats": [
+            "计算系数 <w2,v1>/||v1||^2 = 2/2 = 1。",
+            "从 w2 扣去一份 v1。",
+            "显示 v2=(0,1,0) 并检查 v1·v2=0。"
+          ],
+          "mathBlocks": [
+            "v_2=w_2-v_1=(0,1,0)^T"
+          ],
+          "voiceover": [
+            "投影系数准确说明 w2 里面有多少 v1 方向。",
+            "扣去后，留下的余量就与 v1 垂直。"
+          ],
+          "animation": "原向量减投影等于余量"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "建立 v3",
+          "goal": "显示后续向量要扣去所有已建立正交方向。",
+          "beats": [
+            "沿 v1 和 v2 的系数都等于 1。",
+            "从 w3 扣去 v1 和 v2。",
+            "显示 v3=(-1,0,1) 和两两内积检查。"
+          ],
+          "mathBlocks": [
+            "v_3=w_3-v_1-v_2=(-1,0,1)^T",
+            "v_1\\cdot v_2=v_1\\cdot v_3=v_2\\cdot v_3=0"
+          ],
+          "voiceover": [
+            "第三个向量不能只扣去一个旧方向。",
+            "要沿每个已建立的正交向量扣去相应部分。"
+          ],
+          "animation": "两个投影扣除和三个内积检查标记"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "同一张成空间，再规范化",
+          "goal": "连接正交化与后面的标准正交基步骤。",
+          "beats": [
+            "列出扣除完成后的张成不变量。",
+            "强调规范化应该在正交化之后。",
+            "显示 u1=v1/sqrt(2)、u2=v2、u3=v3/sqrt(2)。"
+          ],
+          "mathBlocks": [
+            "\\operatorname{span}\\{w_1,w_2,w_3\\}=\\operatorname{span}\\{v_1,v_2,v_3\\}",
+            "u_i=\\frac{v_i}{\\|v_i\\|}"
+          ],
+          "voiceover": [
+            "输出基底方向更干净，但张成的是同一个子空间。",
+            "先建立正交方向，需要时再除以长度。"
+          ],
+          "animation": "张成不变标记和规范化卡"
+        }
+      ]
+    }
+  }
+}

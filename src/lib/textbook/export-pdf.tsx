@@ -313,6 +313,34 @@ function renderBlocks(
       );
     }
 
+    if (block.type === "videoExplanationSnapshot") {
+      return (
+        <View key={`video-${depth}-${index}`} style={styles.card}>
+          <Text style={styles.cardLabel}>
+            {getLocalizedText(uiText.videoExplanationSnapshot, locale)}
+          </Text>
+          <Text style={styles.cardTitle}>{block.snapshot.title}</Text>
+          <Text style={styles.bodyText}>{block.snapshot.summary}</Text>
+          {block.snapshot.frames.map((frame, frameIndex) => (
+            <Text key={`${frame.label}-${frameIndex}`} style={styles.bodyText}>
+              {frameIndex + 1}. {frame.label}: {frame.value}
+            </Text>
+          ))}
+          <Text style={styles.bodyText}>{block.snapshot.conclusion}</Text>
+          {block.snapshot.transcript?.length ? (
+            <Text style={styles.cardLabel}>
+              {getLocalizedText(uiText.transcript, locale)}
+            </Text>
+          ) : null}
+          {block.snapshot.transcript?.map((line, lineIndex) => (
+            <Text key={`transcript-${lineIndex}`} style={styles.bodyText}>
+              • {line}
+            </Text>
+          ))}
+        </View>
+      );
+    }
+
     return (
       <View key={`card-${depth}-${index}`} style={styles.card}>
         <Text style={styles.cardLabel}>

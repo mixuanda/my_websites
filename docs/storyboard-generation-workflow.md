@@ -11,6 +11,13 @@ MDX content, for example:
 - `content/textbook/math1030/matrices/matrix-basics/storyboard.json`
 - `content/textbook/math1030/matrices/augmented-matrices-row-operations/storyboard.json`
 - `content/textbook/math1030/matrices/gaussian-elimination-rref/storyboard.json`
+- `content/textbook/math1030/inner-products/gram-schmidt-orthogonalization/storyboard.json`
+- `content/textbook/math1030/matrix-algebra/matrix-multiplication-and-linear-systems/storyboard.json`
+- `content/textbook/math1030/matrix-algebra/row-operation-matrices/storyboard.json`
+- `content/textbook/math1030/vector-spaces/linear-combinations-and-span/storyboard.json`
+- `content/textbook/math1030/vector-spaces/linear-dependence-and-independence/storyboard.json`
+- `content/textbook/math1090/sets/functions-relations/storyboard.json`
+- `content/textbook/math1025/complex-numbers/complex-number-arithmetic-and-geometry/storyboard.json`
 
 Required segment taxonomy per locale:
 
@@ -90,3 +97,45 @@ Threshold and current pilot metrics are tracked in:
 
 If the gate fails, keep scope at pilot units and fix quality issues before
 expanding to more units.
+
+## 6) Manim bridge
+
+For visual explanations that should become rendered videos, use the storyboard
+package as the editorial source and Manim as the rendering backend.
+
+Current pilots:
+
+- `content/textbook/math1030/matrices/gaussian-elimination-rref/storyboard.json`
+- `tools/animations/manim/scenes/math1030/gaussian_elimination_rref.py`
+- public MDX id: `math1030-gaussian-elimination-rref-pivot-story`
+- `content/textbook/math1030/matrices/matrix-basics/storyboard.json`
+- `tools/animations/manim/scenes/math1030/matrix_basics.py`
+- public MDX id: `math1030-matrix-basics-position-map`
+- `content/textbook/math1030/matrices/augmented-matrices-row-operations/storyboard.json`
+- `tools/animations/manim/scenes/math1030/augmented_matrices.py`
+- public MDX id: `math1030-augmented-matrix-row-operation-safety`
+- `content/textbook/math1030/inner-products/gram-schmidt-orthogonalization/storyboard.json`
+- `tools/animations/manim/scenes/math1030/gram_schmidt.py`
+- public MDX id: `math1030-gram-schmidt-projection-story`
+- `content/textbook/math1030/matrix-algebra/matrix-multiplication-and-linear-systems/storyboard.json`
+- `tools/animations/manim/scenes/math1030/matrix_multiplication_linear_systems.py`
+- public MDX id: `math1030-matrix-product-linear-system-story`
+- `content/textbook/math1030/matrix-algebra/row-operation-matrices/storyboard.json`
+- `tools/animations/manim/scenes/math1030/row_operation_matrices.py`
+- public MDX id: `math1030-row-operation-matrix-left-multiply-story`
+- `content/textbook/math1030/vector-spaces/linear-combinations-and-span/storyboard.json`
+- `tools/animations/manim/scenes/math1030/linear_combinations_span.py`
+- public MDX id: `math1030-linear-combination-span-sweep-story`
+- `content/textbook/math1030/vector-spaces/linear-dependence-and-independence/storyboard.json`
+- `tools/animations/manim/scenes/math1030/linear_dependence_independence.py`
+- public MDX id: `math1030-linear-dependence-redundancy-story`
+- `content/textbook/math1090/sets/functions-relations/storyboard.json`
+- `tools/animations/manim/scenes/math1090/functions_relations.py`
+- public MDX id: `math1090-function-map-properties-story`
+- `content/textbook/math1025/complex-numbers/complex-number-arithmetic-and-geometry/storyboard.json`
+- `tools/animations/manim/scenes/math1025/complex_numbers.py`
+- public MDX id: `math1025-complex-plane-arithmetic-story`
+
+The Notes page should keep a static storyboard fallback through
+`VideoExplanation` until the MP4 has passed visual QA and is connected in
+`src/lib/textbook/video-explanations.ts`.

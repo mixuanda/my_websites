@@ -1,0 +1,255 @@
+{
+  "course": "math1030",
+  "chapter": "matrix-algebra",
+  "unit": "matrix-multiplication-and-linear-systems",
+  "unitTitle": {
+    "en": "3.2 Matrix multiplication and linear systems",
+    "zh-hk": "3.2 矩陣乘法與線性方程組",
+    "zh-cn": "3.2 矩阵乘法与线性方程组"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Matching size",
+          "goal": "Show why a row of A can pair with a column vector x.",
+          "beats": [
+            "Display a 2 x 3 matrix A and a 3 x 1 vector x.",
+            "Highlight that the row length and vector length both equal 3.",
+            "Preview that the result has two entries because A has two rows."
+          ],
+          "mathBlocks": [
+            "A\\in M_{2\\times 3},\\quad x\\in M_{3\\times 1}",
+            "Ax\\in M_{2\\times 1}"
+          ],
+          "voiceover": [
+            "The inner sizes match because every row of A has exactly enough entries to pair with x.",
+            "The outside size tells us how many equations will appear."
+          ],
+          "animation": "matrix and vector panes with size badges"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "One row becomes one expression",
+          "goal": "Unpack the first row of Ax as a row-by-column dot product.",
+          "beats": [
+            "Highlight the first row of A and all entries of x.",
+            "Write the first output entry as a11*x1+a12*x2+a13*x3.",
+            "Set that entry equal to b1 when Ax=b."
+          ],
+          "mathBlocks": [
+            "(Ax)_1=a_{11}x_1+a_{12}x_2+a_{13}x_3",
+            "a_{11}x_1+a_{12}x_2+a_{13}x_3=b_1"
+          ],
+          "voiceover": [
+            "The first row is not a single coefficient; it supplies the whole first linear equation.",
+            "Once Ax equals b, that first output entry becomes the first equation."
+          ],
+          "animation": "row highlight, vector highlight, output entry reveal"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Stack the rows",
+          "goal": "Turn the compact matrix equation Ax=b into a system.",
+          "beats": [
+            "Repeat the same row-by-vector pairing for the second row.",
+            "Place the two equations in a vertical stack.",
+            "Label the stack as the system represented by Ax=b."
+          ],
+          "mathBlocks": [
+            "a_{21}x_1+a_{22}x_2+a_{23}x_3=b_2",
+            "Ax=b\\Longleftrightarrow\\begin{cases}a_{11}x_1+a_{12}x_2+a_{13}x_3=b_1\\\\a_{21}x_1+a_{22}x_2+a_{23}x_3=b_2\\end{cases}"
+          ],
+          "voiceover": [
+            "Each row of A produces one equation.",
+            "The compact notation Ax=b is exactly this system written without repeating the row rule."
+          ],
+          "animation": "two equation cards descending from output vector entries"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Full products reuse the same idea",
+          "goal": "Connect the Ax reading to a general matrix product AB.",
+          "beats": [
+            "Write B as a collection of columns.",
+            "Show AB as the side-by-side products A times each column of B.",
+            "Point readers back to the editable multiplication visualizer for controlled practice."
+          ],
+          "mathBlocks": [
+            "B=[u\\;v]",
+            "AB=[Au\\;Av]"
+          ],
+          "voiceover": [
+            "A general product AB is several Ax-style products placed side by side.",
+            "The row-by-column rule is the shared mechanism behind both matrix products and systems."
+          ],
+          "animation": "column-of-B highlight and matching column in AB"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "大小吻合",
+          "goal": "說明為何 A 的每一行都可以和列向量 x 配對。",
+          "beats": [
+            "顯示 2 x 3 矩陣 A 和 3 x 1 列向量 x。",
+            "標示行長度和向量長度同樣是 3。",
+            "預告結果有兩個元素，因為 A 有兩行。"
+          ],
+          "mathBlocks": [
+            "A\\in M_{2\\times 3},\\quad x\\in M_{3\\times 1}",
+            "Ax\\in M_{2\\times 1}"
+          ],
+          "voiceover": [
+            "內側大小吻合，代表 A 的每一行都有足夠元素與 x 配對。",
+            "外側大小告訴我們會出現多少條方程。"
+          ],
+          "animation": "矩陣與向量分格，附大小標籤"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "一行變成一個式子",
+          "goal": "把 Ax 的第一個元素拆成行乘列內積。",
+          "beats": [
+            "標示 A 的第一行和 x 的所有元素。",
+            "把第一個輸出元素寫成 a11*x1+a12*x2+a13*x3。",
+            "當 Ax=b 時，將這個元素設為 b1。"
+          ],
+          "mathBlocks": [
+            "(Ax)_1=a_{11}x_1+a_{12}x_2+a_{13}x_3",
+            "a_{11}x_1+a_{12}x_2+a_{13}x_3=b_1"
+          ],
+          "voiceover": [
+            "第一行不是一個單獨係數，而是提供整條第一方程。",
+            "當 Ax 等於 b，第一個輸出元素就成為第一條方程。"
+          ],
+          "animation": "行標示、向量標示和輸出元素顯示"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "把行疊成方程組",
+          "goal": "把緊湊的矩陣方程 Ax=b 轉成方程組。",
+          "beats": [
+            "用同一種行與向量配對讀第二行。",
+            "把兩條方程上下排列。",
+            "標示這一疊方程就是 Ax=b 所代表的方程組。"
+          ],
+          "mathBlocks": [
+            "a_{21}x_1+a_{22}x_2+a_{23}x_3=b_2",
+            "Ax=b\\Longleftrightarrow\\begin{cases}a_{11}x_1+a_{12}x_2+a_{13}x_3=b_1\\\\a_{21}x_1+a_{22}x_2+a_{23}x_3=b_2\\end{cases}"
+          ],
+          "voiceover": [
+            "A 的每一行都產生一條方程。",
+            "Ax=b 只是把這個方程組用不重複行規則的方式寫下來。"
+          ],
+          "animation": "兩張方程卡由輸出向量元素展開"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "完整乘積沿用同一想法",
+          "goal": "把 Ax 的閱讀方式連到一般矩陣乘積 AB。",
+          "beats": [
+            "把 B 寫成列向量並排。",
+            "顯示 AB 是 A 分別乘 B 的每一列後並排而成。",
+            "提醒讀者用同頁的可編輯乘法工具練習。"
+          ],
+          "mathBlocks": [
+            "B=[u\\;v]",
+            "AB=[Au\\;Av]"
+          ],
+          "voiceover": [
+            "一般乘積 AB 就是多個 Ax 式乘積並排。",
+            "行乘列規則同時支撐矩陣乘積和線性方程組。"
+          ],
+          "animation": "標示 B 的一列和 AB 的對應列"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "大小匹配",
+          "goal": "说明为什么 A 的每一行都可以和列向量 x 配对。",
+          "beats": [
+            "显示 2 x 3 矩阵 A 和 3 x 1 列向量 x。",
+            "标示行长度和向量长度同样是 3。",
+            "预告结果有两个元素，因为 A 有两行。"
+          ],
+          "mathBlocks": [
+            "A\\in M_{2\\times 3},\\quad x\\in M_{3\\times 1}",
+            "Ax\\in M_{2\\times 1}"
+          ],
+          "voiceover": [
+            "内侧大小匹配，代表 A 的每一行都有足够元素与 x 配对。",
+            "外侧大小告诉我们会出现多少条方程。"
+          ],
+          "animation": "矩阵与向量分格，附大小标签"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "一行变成一个式子",
+          "goal": "把 Ax 的第一个元素拆成行乘列内积。",
+          "beats": [
+            "标示 A 的第一行和 x 的所有元素。",
+            "把第一个输出元素写成 a11*x1+a12*x2+a13*x3。",
+            "当 Ax=b 时，将这个元素设为 b1。"
+          ],
+          "mathBlocks": [
+            "(Ax)_1=a_{11}x_1+a_{12}x_2+a_{13}x_3",
+            "a_{11}x_1+a_{12}x_2+a_{13}x_3=b_1"
+          ],
+          "voiceover": [
+            "第一行不是一个单独系数，而是提供整条第一方程。",
+            "当 Ax 等于 b，第一个输出元素就成为第一条方程。"
+          ],
+          "animation": "行标示、向量标示和输出元素显示"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "把行叠成方程组",
+          "goal": "把紧凑的矩阵方程 Ax=b 转成方程组。",
+          "beats": [
+            "用同一种行与向量配对读第二行。",
+            "把两条方程上下排列。",
+            "标示这一叠方程就是 Ax=b 所代表的方程组。"
+          ],
+          "mathBlocks": [
+            "a_{21}x_1+a_{22}x_2+a_{23}x_3=b_2",
+            "Ax=b\\Longleftrightarrow\\begin{cases}a_{11}x_1+a_{12}x_2+a_{13}x_3=b_1\\\\a_{21}x_1+a_{22}x_2+a_{23}x_3=b_2\\end{cases}"
+          ],
+          "voiceover": [
+            "A 的每一行都产生一条方程。",
+            "Ax=b 只是把这个方程组用不重复行规则的方式写下来。"
+          ],
+          "animation": "两张方程卡由输出向量元素展开"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "完整乘积沿用同一想法",
+          "goal": "把 Ax 的阅读方式连到一般矩阵乘积 AB。",
+          "beats": [
+            "把 B 写成列向量并排。",
+            "显示 AB 是 A 分别乘 B 的每一列后并排而成。",
+            "提醒读者用同页的可编辑乘法工具练习。"
+          ],
+          "mathBlocks": [
+            "B=[u\\;v]",
+            "AB=[Au\\;Av]"
+          ],
+          "voiceover": [
+            "一般乘积 AB 就是多个 Ax 式乘积并排。",
+            "行乘列规则同时支撑矩阵乘积和线性方程组。"
+          ],
+          "animation": "标示 B 的一列和 AB 的对应列"
+        }
+      ]
+    }
+  }
+}

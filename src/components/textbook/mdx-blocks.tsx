@@ -2,11 +2,12 @@
 
 import katex from "katex";
 import { Fragment, useMemo, useState } from "react";
-import { ChevronDown, ChevronUp, CircleAlert, CircleCheck, Lightbulb, Sigma } from "lucide-react";
+import { ChevronDown, ChevronUp, CircleAlert, CircleCheck, Film, Lightbulb, Sigma } from "lucide-react";
 import { GlassPanel } from "@/components/glass";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { getLocalizedText } from "@/lib/textbook/i18n";
+import { getLocalizedText, uiText } from "@/lib/textbook/i18n";
+import { getVideoExplanationSnapshot } from "@/lib/textbook/video-explanations";
 import type { Locale, LocalizedText } from "@/lib/textbook/types";
 
 const blockLabels = {
@@ -495,6 +496,81 @@ export function MatrixAnatomyFigure({ locale }: { locale: Locale }) {
                   : "第一个下标选行，第二个下标选列。"}
             </p>
           </div>
+        </div>
+      </figure>
+    </GlassPanel>
+  );
+}
+
+export function VideoExplanation({
+  id,
+  locale,
+}: {
+  id: string;
+  locale: Locale;
+}) {
+  const snapshot = getVideoExplanationSnapshot(id, locale);
+
+  if (!snapshot) {
+    return null;
+  }
+
+  return (
+    <GlassPanel className="my-6 border border-border/70 p-0">
+      <figure className="overflow-hidden rounded-lg">
+        <div className="border-b border-border/60 bg-muted/25 px-5 py-4">
+          <div className="flex items-start gap-3">
+            <div className="mt-0.5 text-primary">
+              <Film className="h-5 w-5" />
+            </div>
+            <div className="min-w-0">
+              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                {getLocalizedText(uiText.videoExplanation, locale)}
+              </p>
+              <figcaption className="mt-1 text-lg font-semibold leading-7">
+                <TextbookInlineRichText text={snapshot.title} />
+              </figcaption>
+              <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                {snapshot.summary}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {snapshot.videoSrc ? (
+          <video
+            aria-label={snapshot.title}
+            className="aspect-video w-full bg-black"
+            controls
+            playsInline
+            poster={snapshot.posterSrc}
+            preload="metadata"
+          >
+            <source src={snapshot.videoSrc} type="video/mp4" />
+          </video>
+        ) : (
+          <div className="grid gap-3 bg-background/50 p-5 md:grid-cols-2">
+            {snapshot.frames.map((frame, index) => (
+              <div
+                className="rounded-lg border border-border/60 bg-card/55 p-4"
+                key={`${frame.label}-${index}`}
+              >
+                <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  {String(index + 1).padStart(2, "0")}
+                </p>
+                <p className="mt-2 text-sm font-semibold">
+                  <TextbookInlineRichText text={frame.label} />
+                </p>
+                <p className="mt-2 text-sm leading-7 text-muted-foreground">
+                  <TextbookInlineRichText text={frame.value} />
+                </p>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="border-t border-border/60 bg-muted/20 px-5 py-4 text-sm leading-7 text-foreground/90">
+          <TextbookInlineRichText text={snapshot.conclusion} />
         </div>
       </figure>
     </GlassPanel>

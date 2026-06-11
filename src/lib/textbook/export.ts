@@ -1,5 +1,6 @@
 import { getInteractiveSnapshot } from "./interactive-snapshots";
 import { getLocalizedText, localeNames, uiText } from "./i18n";
+import { getVideoExplanationSnapshot } from "./video-explanations";
 import type {
   ExportBlock,
   ExportableTextbookUnit,
@@ -127,6 +128,25 @@ function normalizeTextbookMdxSource(source: string): string {
     }
   );
 
+  normalized = normalized.replace(
+    new RegExp(`<VideoExplanation\\s+${tagAttributesPattern}\\s*\\/>`, "g"),
+    (_, attributes: string) => {
+      const id = extractAttribute(attributes, "id");
+      return `[[VIDEO_EXPLANATION:${id}]]`;
+    }
+  );
+
+  normalized = normalized.replace(
+    new RegExp(
+      `<VideoExplanation\\s+${tagAttributesPattern}><\\/VideoExplanation>`,
+      "g"
+    ),
+    (_, attributes: string) => {
+      const id = extractAttribute(attributes, "id");
+      return `[[VIDEO_EXPLANATION:${id}]]`;
+    }
+  );
+
   return normalized;
 }
 
@@ -190,6 +210,22 @@ function parseBlocks(markdown: string, locale: Locale): ExportBlock[] {
           id,
           snapshot,
           type: "interactiveSnapshot",
+        });
+      }
+      continue;
+    }
+
+    const videoExplanationMatch = trimmed.match(/^\[\[VIDEO_EXPLANATION:(.+)\]\]$/);
+    if (videoExplanationMatch) {
+      flushParagraph();
+      const id = videoExplanationMatch[1];
+      const snapshot = getVideoExplanationSnapshot(id, locale);
+
+      if (snapshot) {
+        blocks.push({
+          id,
+          snapshot,
+          type: "videoExplanationSnapshot",
         });
       }
       continue;
@@ -454,6 +490,24 @@ function renderBlockToText(block: ExportBlock, locale: Locale, depth = 0): strin
       ]) ?? []),
       ...(block.snapshot.staticDiagramNote
         ? [`- ${getLocalizedText(uiText.diagramNote, locale)}: ${block.snapshot.staticDiagramNote}`]
+        : []),
+    ].join("\n");
+  }
+
+  if (block.type === "videoExplanationSnapshot") {
+    return [
+      `[${getLocalizedText(uiText.videoExplanationSnapshot, locale)}] ${block.snapshot.title}`,
+      block.snapshot.summary,
+      ...block.snapshot.frames.map(
+        (frame, index) => `${index + 1}. ${frame.label}: ${frame.value}`
+      ),
+      block.snapshot.conclusion,
+      ...(block.snapshot.transcript?.length
+        ? [
+            "",
+            `${getLocalizedText(uiText.transcript, locale)}:`,
+            ...block.snapshot.transcript.map((line) => `- ${line}`),
+          ]
         : []),
     ].join("\n");
   }

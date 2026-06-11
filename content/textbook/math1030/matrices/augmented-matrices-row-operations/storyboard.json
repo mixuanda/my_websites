@@ -4,7 +4,7 @@
   "unit": "augmented-matrices-row-operations",
   "unitTitle": {
     "en": "2.2 Augmented matrices and row operations",
-    "zh-hk": "2.2 增廣矩陣與列運算",
+    "zh-hk": "2.2 增廣矩陣與行變換",
     "zh-cn": "2.2 增广矩阵与行变换"
   },
   "locales": {
@@ -59,8 +59,8 @@
             "Interpret resulting row as simplified equation."
           ],
           "mathBlocks": [
-            "R_2\\leftarrow R_2-2R_1",
-            "R_3\\leftarrow R_3+R_1"
+            "R_2\\leftarrow R_2-R_1",
+            "R_3\\leftarrow R_3-2R_1"
           ],
           "voiceover": [
             "Name the target zero first, then select the row operation.",
@@ -82,6 +82,160 @@
             "Consistent operation notation makes audit and QA possible."
           ],
           "animation": "checklist with pass/fail badges"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "為甚麼要用增廣矩陣",
+          "goal": "把線性方程組包裝成一個可以受控改寫的矩陣對象。",
+          "beats": [
+            "分清係數區塊和常數列。",
+            "解釋直線記號和必須保持對齊的資料。",
+            "預告合法基本行變換。"
+          ],
+          "mathBlocks": [
+            "\\left[\\begin{array}{ccc|c}1&2&2&4\\\\1&3&3&5\\\\2&6&5&6\\end{array}\\right]"
+          ],
+          "voiceover": [
+            "增廣矩陣保留方程結構，同時令消元可以系統化進行。",
+            "每一步行變換都必須保留解集等價。"
+          ],
+          "animation": "系統到增廣矩陣的轉換，係數和常數用不同顏色標示"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "基本行變換的安全性",
+          "goal": "陳述並說明行等價原理。",
+          "beats": [
+            "列出三種基本行變換。",
+            "說明這些操作保留解集。",
+            "強調行縮放中的非零要求。"
+          ],
+          "mathBlocks": [
+            "R_i\\leftrightarrow R_j",
+            "R_i\\leftarrow cR_i\\;(c\\neq0)",
+            "R_j\\leftarrow R_j+cR_i"
+          ],
+          "voiceover": [
+            "基本行變換改變的是表示方式，不是解集。",
+            "這個不變量正是高斯消元成立的理由。"
+          ],
+          "animation": "三張操作卡和解集不變標記"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "一次消元循環",
+          "goal": "執行兩個行變換，並解釋每一步的方程意義。",
+          "beats": [
+            "選定第一列第一行的主元。",
+            "用行替換清掉主元下方元素。",
+            "把新行重新讀成較簡單的方程。"
+          ],
+          "mathBlocks": [
+            "R_2\\leftarrow R_2-R_1",
+            "R_3\\leftarrow R_3-2R_1"
+          ],
+          "voiceover": [
+            "先講清楚想清掉哪個元素，再選擇行變換。",
+            "每一步後都把新行讀回方程，避免盲目搬數字。"
+          ],
+          "animation": "前後矩陣並排的行變換步驟"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "操作合法性檢查",
+          "goal": "避免常見代數和記帳錯誤。",
+          "beats": [
+            "檢查：常數列是否跟係數列一起改變。",
+            "檢查：行縮放是否沒有使用 0。",
+            "檢查：每一步是否用 R_i←... 記錄清楚。"
+          ],
+          "voiceover": [
+            "多數消元錯誤是記帳錯誤，不是概念錯誤。",
+            "穩定的行變換記號令計算可以被檢查。"
+          ],
+          "animation": "帶通過和失敗標記的檢查清單"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "为什么要用增广矩阵",
+          "goal": "把线性方程组包装成一个可以受控改写的矩阵对象。",
+          "beats": [
+            "分清系数区块和常数列。",
+            "解释直线记号和必须保持对齐的数据。",
+            "预告合法基本行变换。"
+          ],
+          "mathBlocks": [
+            "\\left[\\begin{array}{ccc|c}1&2&2&4\\\\1&3&3&5\\\\2&6&5&6\\end{array}\\right]"
+          ],
+          "voiceover": [
+            "增广矩阵保留方程结构，同时让消元可以系统化进行。",
+            "每一步行变换都必须保留解集等价。"
+          ],
+          "animation": "系统到增广矩阵的转换，系数和常数用不同颜色标示"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "基本行变换的安全性",
+          "goal": "陈述并说明行等价原理。",
+          "beats": [
+            "列出三种基本行变换。",
+            "说明这些操作保留解集。",
+            "强调行缩放中的非零要求。"
+          ],
+          "mathBlocks": [
+            "R_i\\leftrightarrow R_j",
+            "R_i\\leftarrow cR_i\\;(c\\neq0)",
+            "R_j\\leftarrow R_j+cR_i"
+          ],
+          "voiceover": [
+            "基本行变换改变的是表示方式，不是解集。",
+            "这个不变量正是高斯消元成立的理由。"
+          ],
+          "animation": "三张操作卡和解集不变标记"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "一次消元循环",
+          "goal": "执行两个行变换，并解释每一步的方程意义。",
+          "beats": [
+            "选定第一列第一行的主元。",
+            "用行替换清掉主元下方元素。",
+            "把新行重新读成较简单的方程。"
+          ],
+          "mathBlocks": [
+            "R_2\\leftarrow R_2-R_1",
+            "R_3\\leftarrow R_3-2R_1"
+          ],
+          "voiceover": [
+            "先讲清楚想清掉哪个元素，再选择行变换。",
+            "每一步后都把新行读回方程，避免盲目搬数字。"
+          ],
+          "animation": "前后矩阵并排的行变换步骤"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "操作合法性检查",
+          "goal": "避免常见代数和记账错误。",
+          "beats": [
+            "检查：常数列是否跟系数列一起改变。",
+            "检查：行缩放是否没有使用 0。",
+            "检查：每一步是否用 R_i←... 记录清楚。"
+          ],
+          "voiceover": [
+            "多数消元错误是记账错误，不是概念错误。",
+            "稳定的行变换记号让计算可以被检查。"
+          ],
+          "animation": "带通过和失败标记的检查清单"
         }
       ]
     }

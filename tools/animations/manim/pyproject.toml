@@ -1,0 +1,11 @@
+[project]
+name = "my-websites-manim-animations"
+version = "0.1.0"
+description = "Repo-local Manim scenes for Notes visual explanations."
+requires-python = ">=3.11"
+dependencies = [
+  "manim>=0.19,<1.0",
+]
+
+[tool.uv]
+package = false

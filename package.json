@@ -15,7 +15,8 @@
     "auth:hash-password": "node scripts/hash-auth-password.mjs",
     "check:textbook-content": "node scripts/check-textbook-content.mjs",
     "storyboard:generate": "node tools/storyboard/generate-storyboards.mjs",
-    "storyboard:pilot-evaluate": "node tools/storyboard/evaluate-pilot.mjs"
+    "storyboard:pilot-evaluate": "node tools/storyboard/evaluate-pilot.mjs",
+    "animation:manim:render": "bash tools/animations/manim/scripts/render_scene.sh"
   },
   "dependencies": {
     "@auth/firebase-adapter": "^2.11.2",

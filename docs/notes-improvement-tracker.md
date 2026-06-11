@@ -1,6 +1,6 @@
 # Notes Improvement Tracker
 
-Last updated: 2026-05-14
+Last updated: 2026-06-11
 
 This document records the active improvement backlog raised on 2026-05-11 for
 the public Notes system. It is the single progress file for this round: every
@@ -37,9 +37,11 @@ verification result, and any remaining follow-up.
 | Checkpoint UI | Checkpoint font is too small and not readable enough | In progress | Shared checkpoint shell, prompts, choices, inputs, feedback, and solution steps now use larger typography / spacing; committed, pushed, deployed, and HTTP/API/export-verified on `www.evanalysis.top`, but mobile / theme browser QA is still blocked. |
 | Checkpoint content | Math1030 needs more computational checkpoint practice | Not started | Use repository-backed MATH1030 practice / assignment sources, not generic filler. |
 | Checkpoint rendering | Some checkpoint mathematical structures do not render correctly | In progress | Rich-text rendering now promotes standalone math answer choices and no longer blocks fraction-like strings such as `1/sqrt(2)` as file paths; representative MATH1030 checkpoint HTML contains KaTeX output. |
-| Math1030 interactions | Gram-Schmidt / orthogonalization needs a clearer embedded interaction | Not started | Add or reuse an article-embedded stepper / visualization where it improves understanding. |
+| Math1030 interactions | Gram-Schmidt / orthogonalization needs a clearer embedded interaction | In progress | MATH1030 `9.3 Gram-Schmidt orthogonalization` now has a trilingual Manim `VideoExplanation` focused on projection subtraction and span preservation; MATH1030 `3.2 Matrix multiplication and linear systems` now has a trilingual Manim bridge from row-by-column products to `Ax=b`; MATH1030 `3.3 Row-operation matrices` now has a trilingual Manim bridge from `E_rho=rho(I)` to left multiplication and inverse elementary matrices; MATH1030 `6.3 Linear combinations and span` now has a trilingual Manim bridge for coefficients sweeping a line, a plane, and a missed target while preserving the existing `span-explorer`; MATH1030 `6.4 Linear dependence and independence` now has a trilingual Manim bridge for redundancy, nontrivial relations, and the free-column test while preserving the existing `independence-checker`; continue evaluating whether `9.2` needs a separate interactive support surface. |
 | Math1030 rendering | Existing Math1030 pages have rendering mistakes | Not started | Run page-level MDX / KaTeX / browser QA before and after changes. |
 | Math1090 content | Some Math1090 material may have been omitted from extra lecture notes | Not started | Re-audit `reference/MATH1090` lecture notes against authored content before writing. |
+| Math1090 visual explanations | First source-backed Manim pilot for functions / relations | Completed | MATH1090 `2.2 Functions and relations` now has a trilingual Manim `VideoExplanation` for domain, target, graph, image, preimage, injective, surjective, and composition; local static, browser, and export QA are recorded in `docs/manim-function-map-video-qa-2026-06-11.md`. |
+| Math1025 visual explanations | First source-backed Manim pilot for complex-plane arithmetic | Completed | MATH1025 `6.1 Complex numbers, polar form, and geometry` now has a trilingual Manim `VideoExplanation` for complex-plane points, vector addition, modulus, argument, polar form, and multiplication as rotation plus scaling; local static, browser, and export QA are recorded in `docs/manim-complex-plane-video-qa-2026-06-11.md`. |
 | CSCI2520 content | CSCI2520 is incomplete, especially algorithms | Not started | Audit `reference/CSCI2520`, extracted text, and current `content/textbook/csci2520/**`. |
 | CSCI2520 interactions | Algorithms need code / pseudocode plus synchronized demonstrations | Not started | Design split explanatory blocks where code or pseudocode and the demonstration advance together. |
 | CSCI2520 checkpoints | Add code-output and complexity-analysis checkpoint questions | Not started | Extend problem-bank support if current checkpoint types are insufficient. |
@@ -104,6 +106,115 @@ Blocked / incomplete verification:
   `19cfc39` deployed, the same remote export checks returned
   `stale_source_wording=no`, and Edge visual QA confirmed the zh-HK Math1090
   page now shows `同一部分`.
+
+## 2026-05-25 Feedback Intake
+
+The next work direction is now recorded in
+`docs/next-work-preparation-2026-05-25.md`.
+
+New priorities added by this feedback:
+
+- make the registration / account-entry experience complete before deciding
+  whether to expose registration publicly in production;
+- remove internal authoring, source-processing, QA, and agent-facing language
+  from public reader pages and exports;
+- correct Simplified Chinese CSCI2520 visible terminology from `资料结构` to
+  `数据结构`, while keeping Traditional Chinese as `資料結構`;
+- treat CSCI2520 as incomplete and especially suited to embedded algorithmic
+  interaction;
+- research code-generated explanatory math animation workflows, with Manim as
+  the main line for polished mathematical explainer assets and
+  React/TypeScript widgets remaining the likely path for reader-controlled
+  CSCI2520 traces. The Manim-specific research note is
+  `docs/manim-animation-integration-research.md`.
+
+Progress on the animation slice:
+
+- added a MATH1030 Gaussian-elimination/RREF pilot explanation id,
+  `math1030-gaussian-elimination-rref-pivot-story`;
+- added a reusable `VideoExplanation` MDX component that renders a reader-facing
+  localized MP4 when `videoSrc` is available, with a reader-facing static
+  storyboard fallback when it is not;
+- wired TXT/PDF exports to degrade video explanations into static study
+  sequences rather than dropping the learning value;
+- added repo-local Manim pilot source under `tools/animations/manim/` and the
+  render entrypoint `npm run animation:manim:render`;
+- embedded the pilot in the English, Traditional Chinese, and Simplified
+  Chinese MATH1030 `2.3 Gaussian elimination and RREF` notes.
+- rendered trilingual pilot MP4/poster assets:
+  `gaussian-elimination-rref-pivot-story-{en,zh-hk,zh-cn}.{mp4,png}`;
+- connected localized `videoSrc` and `posterSrc` in
+  `src/lib/textbook/video-explanations.ts`;
+- added `docs/video-explanation-opportunity-audit.md` to identify future
+  source-backed video candidates across Math1030, Math1090, Math1025, and
+  CSCI2520.
+- added `docs/video-explanation-implementation-roadmap.md` as the step-by-step
+  per-unit backlog for future video and interaction passes.
+- recorded local render, static, browser, and export QA in
+  `docs/manim-video-qa-2026-05-25.md`.
+- adjusted Manim video typography to use explicit locale fonts:
+  `Avenir Next` for English, `PingFang HK` for Traditional Chinese, and
+  `PingFang SC` for Simplified Chinese.
+- completed a second MATH1030 Manim pilot for `2.1 Matrix basics` with
+  trilingual `math1030-matrix-basics-position-map` videos, localized posters,
+  article embeds, and static export fallback; focused QA is recorded in
+  `docs/manim-matrix-basics-video-qa-2026-05-25.md`.
+- completed a third MATH1030 Manim pilot for `2.2 Augmented matrices and row
+  operations` with trilingual `math1030-augmented-matrix-row-operation-safety`
+  videos, localized posters, a corrected trilingual storyboard, article embeds
+  after the worked example, and static export fallback; focused QA is recorded
+  in `docs/manim-augmented-matrices-video-qa-2026-05-25.md`.
+- completed a fourth MATH1030 Manim pilot for `9.3 Gram-Schmidt
+  orthogonalization` with trilingual `math1030-gram-schmidt-projection-story`
+  videos, localized posters, a new trilingual storyboard, article embeds after
+  the first worked example, and static export fallback; focused QA is recorded
+  in `docs/manim-gram-schmidt-video-qa-2026-06-10.md`.
+- completed a fifth MATH1030 Manim pilot for `3.2 Matrix multiplication and
+  linear systems` with trilingual `math1030-matrix-product-linear-system-story`
+  videos, localized posters, a new trilingual storyboard, article embeds after
+  the symbolic `Ax` expansion, preserved `matrix-multiplication-visualizer`
+  interaction, and static export fallback; focused QA is recorded in
+  `docs/manim-matrix-product-linear-system-video-qa-2026-06-11.md`.
+- completed a sixth MATH1030 Manim pilot for `3.3 Row-operation matrices` with
+  trilingual `math1030-row-operation-matrix-left-multiply-story` videos,
+  localized posters, a new trilingual storyboard, article embeds after the
+  three basic row-operation matrix examples, and static export fallback;
+  focused QA is recorded in
+  `docs/manim-row-operation-matrices-video-qa-2026-06-11.md`.
+- completed a seventh MATH1030 Manim pilot for `6.3 Linear combinations and
+  span` with trilingual `math1030-linear-combination-span-sweep-story` videos,
+  localized posters, a new trilingual storyboard, article embeds after the
+  formal span definition, the existing `span-explorer` preserved as the
+  reader-controlled follow-up, and static export fallback; focused QA is
+  recorded in
+  `docs/manim-linear-combinations-span-video-qa-2026-06-11.md`.
+- completed an eighth MATH1030 Manim pilot for `6.4 Linear dependence and
+  independence` with trilingual `math1030-linear-dependence-redundancy-story`
+  videos, localized posters, a new trilingual storyboard, article embeds after
+  the two theorem cards, the existing `independence-checker` preserved as the
+  reader-controlled follow-up, and static export fallback; focused QA is
+  recorded in `docs/manim-linear-dependence-video-qa-2026-06-11.md`.
+- completed the first non-Math1030 Manim pilot for MATH1090 `2.2 Functions and
+  relations` with trilingual `math1090-function-map-properties-story` videos,
+  localized posters, a new trilingual storyboard, course-aware render output
+  under `public/generated/animations/math1090/`, article embeds after the
+  injective / surjective / bijective equivalent formulations, and static export
+  fallback; focused QA is recorded in
+  `docs/manim-function-map-video-qa-2026-06-11.md`.
+- completed the first Math1025 Manim pilot for `6.1 Complex numbers, polar
+  form, and geometry` with trilingual
+  `math1025-complex-plane-arithmetic-story` videos, localized posters, a new
+  trilingual storyboard, course-aware render output under
+  `public/generated/animations/math1025/`, article embeds after the polar
+  multiplication formula, and static export fallback; focused QA is recorded in
+  `docs/manim-complex-plane-video-qa-2026-06-11.md`.
+
+Remaining animation work:
+
+- decide whether these generated assets should be committed directly under
+  `public/generated/animations/` or moved to external/static hosting later.
+- continue with the next roadmap slice:
+  CSCI2520 `hash-tables-and-collision-strategies`.
 
 ## 1. Global Notes Navigation / Long Course Sidebar
 

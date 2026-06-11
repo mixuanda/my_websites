@@ -1,0 +1,354 @@
+{
+  "course": "math1025",
+  "chapter": "complex-numbers",
+  "unit": "complex-number-arithmetic-and-geometry",
+  "unitTitle": {
+    "en": "6.1 Complex numbers, polar form, and geometry",
+    "zh-hk": "6.1 複數、極形式與幾何",
+    "zh-cn": "6.1 复数、极形式与几何"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-year algebra and complex numbers",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Place x + iy in the plane",
+          "goal": "Show the ordered-pair construction as a point or vector in the complex plane.",
+          "beats": [
+            "Draw the real and imaginary axes.",
+            "Place z = x + iy at the point (x,y).",
+            "Read the same object as a directed vector from the origin."
+          ],
+          "mathBlocks": [
+            "z=x+iy \\leftrightarrow (x,y)"
+          ],
+          "voiceover": [
+            "A complex number remembers two real coordinates.",
+            "The complex plane turns those coordinates into a point or vector."
+          ],
+          "animation": "axis diagram with one complex vector"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Addition is vector addition",
+          "goal": "Connect coordinate addition to the parallelogram picture.",
+          "beats": [
+            "Draw z1 and z2 from the origin.",
+            "Translate the second vector to the tip of the first.",
+            "Draw the diagonal ending at z1 + z2."
+          ],
+          "mathBlocks": [
+            "(x_1+iy_1)+(x_2+iy_2)=(x_1+x_2)+i(y_1+y_2)"
+          ],
+          "voiceover": [
+            "Complex addition adds real parts and imaginary parts separately.",
+            "Geometrically this is the same parallelogram rule used for vectors."
+          ],
+          "animation": "two arrows forming a parallelogram and diagonal sum"
+        },
+        {
+          "type": "definition_detail",
+          "cardTitle": "Modulus and argument",
+          "goal": "Read a nonzero complex number by length and direction.",
+          "beats": [
+            "Keep one vector visible.",
+            "Mark its length as the modulus.",
+            "Mark the counterclockwise angle from the positive real axis."
+          ],
+          "mathBlocks": [
+            "|z|=r",
+            "\\arg(z)=\\theta+2k\\pi"
+          ],
+          "voiceover": [
+            "The modulus is the distance from the origin.",
+            "An argument is an angle, determined only up to whole turns."
+          ],
+          "animation": "length brace and angle arc on one vector"
+        },
+        {
+          "type": "definition_detail",
+          "cardTitle": "Polar form stores the same point",
+          "goal": "Relate rectangular coordinates to r(cos theta + i sin theta).",
+          "beats": [
+            "Project the vector onto the two axes.",
+            "Label x = r cos theta and y = r sin theta.",
+            "Write the polar form next to the diagram."
+          ],
+          "mathBlocks": [
+            "z=r(\\cos\\theta+i\\sin\\theta)"
+          ],
+          "voiceover": [
+            "Polar form does not create a new number.",
+            "It records the same point by length and angle."
+          ],
+          "animation": "right-triangle projections from the vector"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "Multiplication multiplies lengths",
+          "goal": "Show the modulus rule in the product.",
+          "beats": [
+            "Draw z1 and z2 with visible lengths r1 and r2.",
+            "Draw the product vector with length r1 r2.",
+            "Keep the length labels emphasized."
+          ],
+          "mathBlocks": [
+            "|z_1z_2|=|z_1||z_2|"
+          ],
+          "voiceover": [
+            "Multiplication is not coordinate-by-coordinate vector multiplication.",
+            "In polar form, the lengths multiply."
+          ],
+          "animation": "two input lengths feeding into a longer product vector"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Multiplication adds angles",
+          "goal": "Show complex multiplication as rotation and scaling.",
+          "beats": [
+            "Mark the input angles theta1 and theta2.",
+            "Rotate through theta1 + theta2.",
+            "State that division reverses the second rotation and divides lengths."
+          ],
+          "mathBlocks": [
+            "z_1z_2=r_1r_2(\\cos(\\theta_1+\\theta_2)+i\\sin(\\theta_1+\\theta_2))"
+          ],
+          "voiceover": [
+            "The angle of a product is the sum of the input angles modulo 2 pi.",
+            "This is why multiplication is best pictured as rotation together with scaling."
+          ],
+          "animation": "angle arcs combining into the product direction"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "大一代數與複數",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "把 x + iy 放到平面",
+          "goal": "把有序對構造顯示成複平面上的點或向量。",
+          "beats": [
+            "畫出實軸與虛軸。",
+            "把 z = x + iy 放在點 (x,y)。",
+            "把同一個對象讀成由原點出發的向量。"
+          ],
+          "mathBlocks": [
+            "z=x+iy \\leftrightarrow (x,y)"
+          ],
+          "voiceover": [
+            "複數記錄兩個實坐標。",
+            "複平面把這兩個坐標變成一個點或向量。"
+          ],
+          "animation": "坐標軸與一支複數向量"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "加法就是向量加法",
+          "goal": "把坐標加法連到平行四邊形圖像。",
+          "beats": [
+            "由原點畫出 z1 與 z2。",
+            "把第二支向量平移到第一支的末端。",
+            "畫出到 z1 + z2 的對角線。"
+          ],
+          "mathBlocks": [
+            "(x_1+iy_1)+(x_2+iy_2)=(x_1+x_2)+i(y_1+y_2)"
+          ],
+          "voiceover": [
+            "複數加法分別相加實部與虛部。",
+            "幾何上這正是向量的平行四邊形法則。"
+          ],
+          "animation": "兩支箭嘴組成平行四邊形與和向量"
+        },
+        {
+          "type": "definition_detail",
+          "cardTitle": "模與幅角",
+          "goal": "用長度與方向閱讀非零複數。",
+          "beats": [
+            "保留一支向量。",
+            "把它的長度標為模。",
+            "標出從正實軸逆時針量起的角。"
+          ],
+          "mathBlocks": [
+            "|z|=r",
+            "\\arg(z)=\\theta+2k\\pi"
+          ],
+          "voiceover": [
+            "模就是離原點的距離。",
+            "幅角是角度，而且只在相差整圈的意義下確定。"
+          ],
+          "animation": "在一支向量上標長度與角弧"
+        },
+        {
+          "type": "definition_detail",
+          "cardTitle": "極式記錄同一點",
+          "goal": "把直角坐標連到 r(cos theta + i sin theta)。",
+          "beats": [
+            "把向量投影到兩條坐標軸。",
+            "標出 x = r cos theta 與 y = r sin theta。",
+            "在圖旁寫出極式。"
+          ],
+          "mathBlocks": [
+            "z=r(\\cos\\theta+i\\sin\\theta)"
+          ],
+          "voiceover": [
+            "極式不是新的數。",
+            "它只是用長度和角度記錄同一點。"
+          ],
+          "animation": "由向量投影出直角三角形"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "乘法把長度相乘",
+          "goal": "在乘積中顯示模的規則。",
+          "beats": [
+            "畫出 z1 與 z2，並標出長度 r1 與 r2。",
+            "畫出長度為 r1 r2 的乘積向量。",
+            "強調長度標籤。"
+          ],
+          "mathBlocks": [
+            "|z_1z_2|=|z_1||z_2|"
+          ],
+          "voiceover": [
+            "乘法不是逐坐標的向量乘法。",
+            "在極式中，長度會相乘。"
+          ],
+          "animation": "兩個輸入長度合成乘積向量的長度"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "乘法把幅角相加",
+          "goal": "把複數乘法顯示成旋轉與縮放。",
+          "beats": [
+            "標出輸入角 theta1 與 theta2。",
+            "旋轉到 theta1 + theta2。",
+            "指出除法會反向第二個旋轉，並把長度相除。"
+          ],
+          "mathBlocks": [
+            "z_1z_2=r_1r_2(\\cos(\\theta_1+\\theta_2)+i\\sin(\\theta_1+\\theta_2))"
+          ],
+          "voiceover": [
+            "乘積的幅角是輸入幅角之和，模 2 pi 而定。",
+            "因此乘法最適合看成旋轉加縮放。"
+          ],
+          "animation": "兩段角弧合成乘積方向"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "大一代数与复数",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "把 x + iy 放到平面",
+          "goal": "把有序对构造显示成复平面上的点或向量。",
+          "beats": [
+            "画出实轴与虚轴。",
+            "把 z = x + iy 放在点 (x,y)。",
+            "把同一个对象读成从原点出发的向量。"
+          ],
+          "mathBlocks": [
+            "z=x+iy \\leftrightarrow (x,y)"
+          ],
+          "voiceover": [
+            "复数记录两个实坐标。",
+            "复平面把这两个坐标变成一个点或向量。"
+          ],
+          "animation": "坐标轴与一支复数向量"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "加法就是向量加法",
+          "goal": "把坐标加法连到平行四边形图像。",
+          "beats": [
+            "从原点画出 z1 与 z2。",
+            "把第二支向量平移到第一支的末端。",
+            "画出到 z1 + z2 的对角线。"
+          ],
+          "mathBlocks": [
+            "(x_1+iy_1)+(x_2+iy_2)=(x_1+x_2)+i(y_1+y_2)"
+          ],
+          "voiceover": [
+            "复数加法分别相加实部与虚部。",
+            "几何上这正是向量的平行四边形法则。"
+          ],
+          "animation": "两支箭头组成平行四边形与和向量"
+        },
+        {
+          "type": "definition_detail",
+          "cardTitle": "模与辐角",
+          "goal": "用长度与方向阅读非零复数。",
+          "beats": [
+            "保留一支向量。",
+            "把它的长度标为模。",
+            "标出从正实轴逆时针量起的角。"
+          ],
+          "mathBlocks": [
+            "|z|=r",
+            "\\arg(z)=\\theta+2k\\pi"
+          ],
+          "voiceover": [
+            "模就是离原点的距离。",
+            "辐角是角度，而且只在相差整圈的意义下确定。"
+          ],
+          "animation": "在一支向量上标长度与角弧"
+        },
+        {
+          "type": "definition_detail",
+          "cardTitle": "极式记录同一点",
+          "goal": "把直角坐标连到 r(cos theta + i sin theta)。",
+          "beats": [
+            "把向量投影到两条坐标轴。",
+            "标出 x = r cos theta 与 y = r sin theta。",
+            "在图旁写出极式。"
+          ],
+          "mathBlocks": [
+            "z=r(\\cos\\theta+i\\sin\\theta)"
+          ],
+          "voiceover": [
+            "极式不是新的数。",
+            "它只是用长度和角度记录同一点。"
+          ],
+          "animation": "由向量投影出直角三角形"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "乘法把长度相乘",
+          "goal": "在乘积中显示模的规则。",
+          "beats": [
+            "画出 z1 与 z2，并标出长度 r1 与 r2。",
+            "画出长度为 r1 r2 的乘积向量。",
+            "强调长度标签。"
+          ],
+          "mathBlocks": [
+            "|z_1z_2|=|z_1||z_2|"
+          ],
+          "voiceover": [
+            "乘法不是逐坐标的向量乘法。",
+            "在极式中，长度会相乘。"
+          ],
+          "animation": "两个输入长度合成乘积向量的长度"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "乘法把辐角相加",
+          "goal": "把复数乘法显示成旋转与缩放。",
+          "beats": [
+            "标出输入角 theta1 与 theta2。",
+            "旋转到 theta1 + theta2。",
+            "指出除法会反向第二个旋转，并把长度相除。"
+          ],
+          "mathBlocks": [
+            "z_1z_2=r_1r_2(\\cos(\\theta_1+\\theta_2)+i\\sin(\\theta_1+\\theta_2))"
+          ],
+          "voiceover": [
+            "乘积的辐角是输入辐角之和，模 2 pi 而定。",
+            "因此乘法最适合看成旋转加缩放。"
+          ],
+          "animation": "两段角弧合成乘积方向"
+        }
+      ]
+    }
+  }
+}

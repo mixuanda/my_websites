@@ -225,6 +225,16 @@ export const uiText = {
     "zh-cn": "静态学习快照",
     "zh-hk": "靜態學習快照",
   },
+  videoExplanation: {
+    en: "Visual explanation",
+    "zh-cn": "图解说明",
+    "zh-hk": "圖解說明",
+  },
+  videoExplanationSnapshot: {
+    en: "Static video-study sequence",
+    "zh-cn": "静态视频学习序列",
+    "zh-hk": "靜態影片學習序列",
+  },
   interactiveUnits: {
     en: "Embedded interaction",
     "zh-cn": "嵌入式互动",
@@ -469,6 +479,11 @@ export const uiText = {
     en: "Notes",
     "zh-cn": "笔记",
     "zh-hk": "筆記",
+  },
+  transcript: {
+    en: "Transcript",
+    "zh-cn": "文字稿",
+    "zh-hk": "文字稿",
   },
   unitList: {
     en: "Notes in this chapter",

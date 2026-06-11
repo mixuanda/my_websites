@@ -62,3 +62,8 @@ tina/__generated__/.cache/
 
 # Contentlayer cache churn
 .contentlayer/.cache/
+
+# Manim local runtime/cache
+tools/animations/manim/.venv/
+tools/animations/manim/.media/
+tools/animations/manim/scenes/**/__pycache__/

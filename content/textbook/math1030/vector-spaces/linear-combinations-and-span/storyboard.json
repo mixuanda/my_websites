@@ -1,0 +1,300 @@
+{
+  "course": "math1030",
+  "chapter": "vector-spaces",
+  "unit": "linear-combinations-and-span",
+  "unitTitle": {
+    "en": "6.3 Linear combinations and span",
+    "zh-hk": "6.3 線性組合與張成",
+    "zh-cn": "6.3 线性组合与张成"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Move coefficients to build outputs",
+          "goal": "Connect a linear combination to one visible output vector.",
+          "beats": [
+            "Start from two generators u and v in R^2.",
+            "Choose alpha=2 and beta=-1.",
+            "Show the output 2u-v as one built vector."
+          ],
+          "mathBlocks": [
+            "\\alpha u+\\beta v",
+            "2u-v=(2,-1)"
+          ],
+          "voiceover": [
+            "A linear combination is a recipe with adjustable coefficients.",
+            "One choice of coefficients produces one output vector."
+          ],
+          "animation": "two basis-like arrows and one resulting output arrow"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "One generator makes a line",
+          "goal": "Show why the span of one nonzero vector is a line through the origin.",
+          "beats": [
+            "Show multiples -2u, -u, 0, u, and 2u.",
+            "Highlight that all outputs stay on one line.",
+            "State Span{u}={tu:t in R}."
+          ],
+          "mathBlocks": [
+            "\\operatorname{Span}\\{u\\}=\\{tu:t\\in R\\}"
+          ],
+          "voiceover": [
+            "With one generator, the only freedom is how far to move along that direction.",
+            "Positive and negative scalars move along the same line."
+          ],
+          "animation": "dots slide along a single line through the origin"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Two nonparallel generators sweep a plane",
+          "goal": "Show independent coefficient movement in two directions.",
+          "beats": [
+            "Use two nonparallel generators u and v.",
+            "Move alpha in one direction and beta in another.",
+            "Show lattice sample points across the plane."
+          ],
+          "mathBlocks": [
+            "\\operatorname{Span}\\{u,v\\}=R^2"
+          ],
+          "voiceover": [
+            "When the directions are not parallel, the two coefficients move independently.",
+            "In R^2 that independent movement can reach the whole plane."
+          ],
+          "animation": "nonparallel arrows generate a visible sheet of sample outputs"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "Membership means solving for coefficients",
+          "goal": "Tie geometric membership back to the linear-system criterion in the note.",
+          "beats": [
+            "Place a target vector b.",
+            "Ask for alpha and beta satisfying alpha u + beta v = b.",
+            "Mark success as membership in the span."
+          ],
+          "mathBlocks": [
+            "b\\in\\operatorname{Span}\\{u,v\\}\\iff \\alpha u+\\beta v=b\\text{ is solvable}"
+          ],
+          "voiceover": [
+            "A target is in the span exactly when the required coefficients exist.",
+            "This is the same consistency question as Ax=b."
+          ],
+          "animation": "target arrow is reached by a two-step coefficient path"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Smaller spans miss off-line targets",
+          "goal": "Show non-membership when generators are collinear.",
+          "beats": [
+            "Replace v by 2u so both generators are collinear.",
+            "Keep the span as one line.",
+            "Place b off the line and mark that no coefficients hit it."
+          ],
+          "mathBlocks": [
+            "b\\notin\\operatorname{Span}\\{u,2u\\}"
+          ],
+          "voiceover": [
+            "Adding a duplicate direction does not enlarge the output set.",
+            "Targets outside that line cannot be built from those generators."
+          ],
+          "animation": "collinear span line with an off-line target"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "移動係數來造輸出",
+          "goal": "把線性組合連到一個可見的輸出向量。",
+          "beats": [
+            "由 R^2 裡兩個生成向量 u 與 v 開始。",
+            "選取 alpha=2 和 beta=-1。",
+            "顯示輸出 2u-v 是造出來的一個向量。"
+          ],
+          "mathBlocks": [
+            "\\alpha u+\\beta v",
+            "2u-v=(2,-1)"
+          ],
+          "voiceover": [
+            "線性組合是一條帶有可調係數的配方。",
+            "一組係數會產生一個輸出向量。"
+          ],
+          "animation": "兩個生成箭嘴和一個結果箭嘴"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "一個生成向量造出直線",
+          "goal": "顯示一個非零向量的張成為甚麼是通過原點的直線。",
+          "beats": [
+            "顯示 -2u、-u、0、u 和 2u。",
+            "強調所有輸出都留在同一直線上。",
+            "寫出 Span{u}={tu:t in R}。"
+          ],
+          "mathBlocks": [
+            "\\operatorname{Span}\\{u\\}=\\{tu:t\\in R\\}"
+          ],
+          "voiceover": [
+            "只有一個生成向量時，唯一自由度是沿着該方向走多遠。",
+            "正負純量都只會沿同一直線移動。"
+          ],
+          "animation": "點沿通過原點的一條直線移動"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "兩個非平行生成向量掃出平面",
+          "goal": "顯示兩個方向上的係數可以獨立移動。",
+          "beats": [
+            "使用兩個非平行生成向量 u 和 v。",
+            "沿一個方向移動 alpha，沿另一個方向移動 beta。",
+            "在平面上顯示若干輸出樣本點。"
+          ],
+          "mathBlocks": [
+            "\\operatorname{Span}\\{u,v\\}=R^2"
+          ],
+          "voiceover": [
+            "當方向不平行時，兩個係數可以獨立移動。",
+            "在 R^2 中，這種獨立移動可以到達整個平面。"
+          ],
+          "animation": "非平行箭嘴生成一片可見輸出區域"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "屬於張成就是求係數",
+          "goal": "把幾何上的屬於關係連回本頁的線性系統判準。",
+          "beats": [
+            "放置目標向量 b。",
+            "尋找滿足 alpha u + beta v = b 的 alpha 和 beta。",
+            "把成功命中標成屬於張成。"
+          ],
+          "mathBlocks": [
+            "b\\in\\operatorname{Span}\\{u,v\\}\\iff \\alpha u+\\beta v=b\\text{ 有解}"
+          ],
+          "voiceover": [
+            "目標向量屬於張成，正好等於需要的係數存在。",
+            "這就是 Ax=b 的一致性問題。"
+          ],
+          "animation": "用兩步係數路徑到達目標箭嘴"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "較小的張成會錯過線外目標",
+          "goal": "用共線生成向量顯示不屬於張成的情況。",
+          "beats": [
+            "把 v 換成 2u，令兩個生成向量共線。",
+            "張成仍只是一條直線。",
+            "把 b 放在線外，並標示沒有係數可以命中。"
+          ],
+          "mathBlocks": [
+            "b\\notin\\operatorname{Span}\\{u,2u\\}"
+          ],
+          "voiceover": [
+            "加入重複方向不會擴大輸出集合。",
+            "線外目標不能由這些生成向量造出。"
+          ],
+          "animation": "共線張成直線與線外目標"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "移动系数来造输出",
+          "goal": "把线性组合连到一个可见的输出向量。",
+          "beats": [
+            "由 R^2 里两个生成向量 u 与 v 开始。",
+            "选取 alpha=2 和 beta=-1。",
+            "显示输出 2u-v 是造出来的一个向量。"
+          ],
+          "mathBlocks": [
+            "\\alpha u+\\beta v",
+            "2u-v=(2,-1)"
+          ],
+          "voiceover": [
+            "线性组合是一条带有可调系数的配方。",
+            "一组系数会产生一个输出向量。"
+          ],
+          "animation": "两个生成箭头和一个结果箭头"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "一个生成向量造出直线",
+          "goal": "显示一个非零向量的张成为什么是通过原点的直线。",
+          "beats": [
+            "显示 -2u、-u、0、u 和 2u。",
+            "强调所有输出都留在同一直线上。",
+            "写出 Span{u}={tu:t in R}。"
+          ],
+          "mathBlocks": [
+            "\\operatorname{Span}\\{u\\}=\\{tu:t\\in R\\}"
+          ],
+          "voiceover": [
+            "只有一个生成向量时，唯一自由度是沿着该方向走多远。",
+            "正负数乘都只会沿同一直线移动。"
+          ],
+          "animation": "点沿通过原点的一条直线移动"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "两个非平行生成向量扫出平面",
+          "goal": "显示两个方向上的系数可以独立移动。",
+          "beats": [
+            "使用两个非平行生成向量 u 和 v。",
+            "沿一个方向移动 alpha，沿另一个方向移动 beta。",
+            "在平面上显示若干输出样本点。"
+          ],
+          "mathBlocks": [
+            "\\operatorname{Span}\\{u,v\\}=R^2"
+          ],
+          "voiceover": [
+            "当方向不平行时，两个系数可以独立移动。",
+            "在 R^2 中，这种独立移动可以到达整个平面。"
+          ],
+          "animation": "非平行箭头生成一片可见输出区域"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "属于张成就是求系数",
+          "goal": "把几何上的属于关系连回本页的线性系统判准。",
+          "beats": [
+            "放置目标向量 b。",
+            "寻找满足 alpha u + beta v = b 的 alpha 和 beta。",
+            "把成功命中标成属于张成。"
+          ],
+          "mathBlocks": [
+            "b\\in\\operatorname{Span}\\{u,v\\}\\iff \\alpha u+\\beta v=b\\text{ 有解}"
+          ],
+          "voiceover": [
+            "目标向量属于张成，正好等于需要的系数存在。",
+            "这就是 Ax=b 的一致性问题。"
+          ],
+          "animation": "用两步系数路径到达目标箭头"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "较小的张成会错过线外目标",
+          "goal": "用共线生成向量显示不属于张成的情况。",
+          "beats": [
+            "把 v 换成 2u，令两个生成向量共线。",
+            "张成仍只是一条直线。",
+            "把 b 放在线外，并标示没有系数可以命中。"
+          ],
+          "mathBlocks": [
+            "b\\notin\\operatorname{Span}\\{u,2u\\}"
+          ],
+          "voiceover": [
+            "加入重复方向不会扩大输出集合。",
+            "线外目标不能由这些生成向量造出。"
+          ],
+          "animation": "共线张成直线与线外目标"
+        }
+      ]
+    }
+  }
+}

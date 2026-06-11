@@ -1,0 +1,354 @@
+{
+  "course": "math1090",
+  "chapter": "sets",
+  "unit": "functions-relations",
+  "unitTitle": {
+    "en": "2.2 Functions and relations",
+    "zh-hk": "2.2 函數與關係",
+    "zh-cn": "2.2 函数与关系"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "introductory proof and set theory",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Start with domain and target",
+          "goal": "Show a function as a controlled relation from inputs to possible outputs.",
+          "beats": [
+            "Draw the domain X and target Y as two sets.",
+            "Send each input to exactly one output.",
+            "Keep unmatched target elements visible because they still belong to the target."
+          ],
+          "mathBlocks": [
+            "f:X\\to Y"
+          ],
+          "voiceover": [
+            "A function is a special relation.",
+            "Every input in the domain must choose exactly one output in the target."
+          ],
+          "animation": "two set boxes with one outgoing arrow from each input"
+        },
+        {
+          "type": "definition_detail",
+          "cardTitle": "The graph records ordered pairs",
+          "goal": "Connect the arrow diagram to the set-theoretic graph definition.",
+          "beats": [
+            "Keep the same arrows visible.",
+            "List the corresponding ordered pairs.",
+            "Emphasize that the graph is a subset of X times Y."
+          ],
+          "mathBlocks": [
+            "\\operatorname{graph}(f)\\subset X\\times Y"
+          ],
+          "voiceover": [
+            "The arrow picture and the ordered-pair definition contain the same information.",
+            "The function condition says each input appears in exactly one pair."
+          ],
+          "animation": "arrows paired with a graph set of ordered pairs"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Image and preimage ask opposite questions",
+          "goal": "Distinguish the reached outputs from the inputs landing in a chosen output set.",
+          "beats": [
+            "Highlight the outputs actually hit by the function.",
+            "Choose an output subset.",
+            "Trace backwards to the inputs whose outputs land there."
+          ],
+          "mathBlocks": [
+            "f(X)=\\{1,2\\}",
+            "f^{-1}(\\{2\\})=\\{b,c\\}"
+          ],
+          "voiceover": [
+            "The image is read forward from inputs to outputs.",
+            "A preimage is read backward from a set of outputs to the inputs that land there."
+          ],
+          "animation": "highlight forward image and backward preimage on the same diagram"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "Injective means no collision",
+          "goal": "Show injectivity as a condition on whether different inputs share an output.",
+          "beats": [
+            "Compare a no-collision map with a collision map.",
+            "Mark the collision where two arrows meet.",
+            "State the equivalent test f(x1)=f(x2) implies x1=x2."
+          ],
+          "mathBlocks": [
+            "f(x_1)=f(x_2)\\Rightarrow x_1=x_2"
+          ],
+          "voiceover": [
+            "Injectivity is not about hitting every target element.",
+            "It is about preventing two different inputs from landing on the same output."
+          ],
+          "animation": "side-by-side arrow diagrams with and without a collision"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "Surjective means every target is hit",
+          "goal": "Show surjectivity as full target coverage.",
+          "beats": [
+            "Compare an all-hit target with a target that has a missing element.",
+            "Mark the missing target value.",
+            "State the equivalent test f(X)=Y."
+          ],
+          "mathBlocks": [
+            "f(X)=Y"
+          ],
+          "voiceover": [
+            "Surjectivity is about the target, not about collisions.",
+            "Every target element must appear as an output."
+          ],
+          "animation": "side-by-side target coverage diagrams"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Composition follows the arrows in order",
+          "goal": "Connect function arrows to composition order.",
+          "beats": [
+            "Draw X to Y by f.",
+            "Draw Y to Z by g.",
+            "Trace the composed map from X to Z as first f, then g."
+          ],
+          "mathBlocks": [
+            "(g\\circ f)(x)=g(f(x))"
+          ],
+          "voiceover": [
+            "Composition follows the output of one function into the next function.",
+            "The notation g composed with f means first f, then g."
+          ],
+          "animation": "three set boxes with a two-step arrow trace"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "證明與集合論入門",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "先分清 domain 與 target",
+          "goal": "把函數顯示成由輸入到可能輸出的受控關係。",
+          "beats": [
+            "把 domain X 與 target Y 畫成兩個集合。",
+            "每個輸入都只連到一個輸出。",
+            "保留未被命中的 target 元素，因為它仍屬於 target。"
+          ],
+          "mathBlocks": [
+            "f:X\\to Y"
+          ],
+          "voiceover": [
+            "函數是一種特別的關係。",
+            "domain 中每個輸入都必須選取 target 中唯一一個輸出。"
+          ],
+          "animation": "兩個集合盒，每個輸入有一支箭嘴"
+        },
+        {
+          "type": "definition_detail",
+          "cardTitle": "graph 記錄有序對",
+          "goal": "把箭嘴圖連到集合論中的 graph 定義。",
+          "beats": [
+            "保留同一批箭嘴。",
+            "列出相應有序對。",
+            "強調 graph 是 X times Y 的子集。"
+          ],
+          "mathBlocks": [
+            "\\operatorname{graph}(f)\\subset X\\times Y"
+          ],
+          "voiceover": [
+            "箭嘴圖與有序對定義記錄的是同一份資料。",
+            "函數條件表示每個輸入只在一個有序對中出現。"
+          ],
+          "animation": "箭嘴與 graph 有序對集合並列"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "image 與 preimage 問相反方向",
+          "goal": "區分實際命中的輸出，以及落入指定輸出集合的輸入。",
+          "beats": [
+            "標出函數實際命中的輸出。",
+            "選定一個輸出子集。",
+            "反向追蹤哪些輸入會落入其中。"
+          ],
+          "mathBlocks": [
+            "f(X)=\\{1,2\\}",
+            "f^{-1}(\\{2\\})=\\{b,c\\}"
+          ],
+          "voiceover": [
+            "image 是由輸入向前讀到輸出。",
+            "preimage 是由輸出集合反向讀回會落入其中的輸入。"
+          ],
+          "animation": "同一圖中標出向前 image 與反向 preimage"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "單射表示沒有碰撞",
+          "goal": "用不同輸入是否共享輸出來理解單射。",
+          "beats": [
+            "比較無碰撞映射與有碰撞映射。",
+            "標出兩支箭嘴相遇的位置。",
+            "寫出 f(x1)=f(x2) 蘊含 x1=x2 的等價測試。"
+          ],
+          "mathBlocks": [
+            "f(x_1)=f(x_2)\\Rightarrow x_1=x_2"
+          ],
+          "voiceover": [
+            "單射不是在問是否命中所有 target 元素。",
+            "它問的是兩個不同輸入會否落在同一輸出。"
+          ],
+          "animation": "左右比較無碰撞與有碰撞箭嘴圖"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "滿射表示整個 target 都被命中",
+          "goal": "用 target 覆蓋理解滿射。",
+          "beats": [
+            "比較 target 全被命中與有缺口的情況。",
+            "標出沒有被命中的 target 值。",
+            "寫出 f(X)=Y 的等價測試。"
+          ],
+          "mathBlocks": [
+            "f(X)=Y"
+          ],
+          "voiceover": [
+            "滿射關心的是 target，而不是碰撞。",
+            "每個 target 元素都必須作為輸出出現。"
+          ],
+          "animation": "左右比較 target 覆蓋情況"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "合成按箭嘴次序前進",
+          "goal": "把函數箭嘴連到合成次序。",
+          "beats": [
+            "畫出 f 由 X 到 Y。",
+            "畫出 g 由 Y 到 Z。",
+            "把合成由 X 到 Z 讀成先做 f，再做 g。"
+          ],
+          "mathBlocks": [
+            "(g\\circ f)(x)=g(f(x))"
+          ],
+          "voiceover": [
+            "合成是把一個函數的輸出接到下一個函數。",
+            "g composed with f 的意思是先做 f，再做 g。"
+          ],
+          "animation": "三個集合盒和兩步箭嘴路徑"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "证明与集合论入门",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "先分清 domain 和 target",
+          "goal": "把函数显示成从输入到可能输出的受控关系。",
+          "beats": [
+            "把 domain X 和 target Y 画成两个集合。",
+            "每个输入都只连到一个输出。",
+            "保留未被取到的 target 元素，因为它仍属于 target。"
+          ],
+          "mathBlocks": [
+            "f:X\\to Y"
+          ],
+          "voiceover": [
+            "函数是一种特殊的关系。",
+            "domain 中每个输入都必须选取 target 中唯一一个输出。"
+          ],
+          "animation": "两个集合盒，每个输入有一支箭头"
+        },
+        {
+          "type": "definition_detail",
+          "cardTitle": "graph 记录有序对",
+          "goal": "把箭头图连到集合论中的 graph 定义。",
+          "beats": [
+            "保留同一批箭头。",
+            "列出相应有序对。",
+            "强调 graph 是 X times Y 的子集。"
+          ],
+          "mathBlocks": [
+            "\\operatorname{graph}(f)\\subset X\\times Y"
+          ],
+          "voiceover": [
+            "箭头图和有序对定义记录的是同一份数据。",
+            "函数条件表示每个输入只在一个有序对中出现。"
+          ],
+          "animation": "箭头与 graph 有序对集合并列"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "image 和 preimage 问相反方向",
+          "goal": "区分实际取到的输出，以及落入指定输出集合的输入。",
+          "beats": [
+            "标出函数实际取到的输出。",
+            "选定一个输出子集。",
+            "反向追踪哪些输入会落入其中。"
+          ],
+          "mathBlocks": [
+            "f(X)=\\{1,2\\}",
+            "f^{-1}(\\{2\\})=\\{b,c\\}"
+          ],
+          "voiceover": [
+            "image 是从输入向前读到输出。",
+            "preimage 是从输出集合反向读回会落入其中的输入。"
+          ],
+          "animation": "同一图中标出向前 image 与反向 preimage"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "单射表示没有碰撞",
+          "goal": "用不同输入是否共享输出来理解单射。",
+          "beats": [
+            "比较无碰撞映射和有碰撞映射。",
+            "标出两支箭头相遇的位置。",
+            "写出 f(x1)=f(x2) 蕴含 x1=x2 的等价测试。"
+          ],
+          "mathBlocks": [
+            "f(x_1)=f(x_2)\\Rightarrow x_1=x_2"
+          ],
+          "voiceover": [
+            "单射不是在问是否取到所有 target 元素。",
+            "它问的是两个不同输入会不会落在同一个输出。"
+          ],
+          "animation": "左右比较无碰撞和有碰撞箭头图"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "满射表示整个 target 都被取到",
+          "goal": "用 target 覆盖理解满射。",
+          "beats": [
+            "比较 target 全被取到和有缺口的情况。",
+            "标出没有被取到的 target 值。",
+            "写出 f(X)=Y 的等价测试。"
+          ],
+          "mathBlocks": [
+            "f(X)=Y"
+          ],
+          "voiceover": [
+            "满射关心的是 target，而不是碰撞。",
+            "每个 target 元素都必须作为输出出现。"
+          ],
+          "animation": "左右比较 target 覆盖情况"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "合成按箭头次序前进",
+          "goal": "把函数箭头连到合成次序。",
+          "beats": [
+            "画出 f 从 X 到 Y。",
+            "画出 g 从 Y 到 Z。",
+            "把合成从 X 到 Z 读成先做 f，再做 g。"
+          ],
+          "mathBlocks": [
+            "(g\\circ f)(x)=g(f(x))"
+          ],
+          "voiceover": [
+            "合成是把一个函数的输出接到下一个函数。",
+            "g composed with f 的意思是先做 f，再做 g。"
+          ],
+          "animation": "三个集合盒和两步箭头路径"
+        }
+      ]
+    }
+  }
+}

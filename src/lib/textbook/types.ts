@@ -89,6 +89,22 @@ export interface InteractiveExportSnapshot {
   title: string;
 }
 
+export interface VideoExplanationFrame {
+  label: string;
+  value: string;
+}
+
+export interface VideoExplanationSnapshot {
+  conclusion: string;
+  durationSeconds?: number;
+  frames: VideoExplanationFrame[];
+  posterSrc?: string;
+  summary: string;
+  title: string;
+  transcript?: string[];
+  videoSrc?: string;
+}
+
 export type ExportBlock =
   | {
       level: number;
@@ -128,6 +144,11 @@ export type ExportBlock =
       id: string;
       snapshot: InteractiveExportSnapshot;
       type: "interactiveSnapshot";
+    }
+  | {
+      id: string;
+      snapshot: VideoExplanationSnapshot;
+      type: "videoExplanationSnapshot";
     }
   | {
       type: "separator";

@@ -10,6 +10,7 @@ import {
   RevealSolution,
   TextbookInlineCode,
   TheoremCard,
+  VideoExplanation,
   WorkedExample,
 } from "./mdx-blocks";
 import { InteractiveWidget } from "./interactives";
@@ -48,6 +49,9 @@ export function createTextbookMdxComponents(locale: Locale): MDXComponents {
     ),
     TheoremCard: (props: { children?: React.ReactNode; title?: string }) => (
       <TheoremCard locale={locale} {...props} />
+    ),
+    VideoExplanation: (props: { id: string }) => (
+      <VideoExplanation locale={locale} {...props} />
     ),
     WorkedExample: (props: { children?: React.ReactNode; title?: string }) => (
       <WorkedExample locale={locale} {...props} />

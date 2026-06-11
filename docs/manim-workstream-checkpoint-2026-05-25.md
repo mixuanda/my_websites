@@ -1,0 +1,107 @@
+# Manim Workstream Checkpoint - 2026-05-25
+
+Branch: `codex/manim`
+
+Workspace: `/Users/evan/.codex/worktrees/0258/my_websites`
+
+Purpose: protect the main-thread context for the long-running video explanation
+workstream. Use this as the first resume anchor before reopening broad chat
+history.
+
+## Current Constraints
+
+- Keep all Manim-related work on `codex/manim`.
+- Public Notes pages must stay article-first; videos are embedded supporting
+  figures, not standalone course portals.
+- Every public video entry must have English, Traditional Chinese, and
+  Simplified Chinese copy and assets.
+- TXT/PDF exports must degrade videos into static study sequences.
+- Browser plugin is not available in this session; QA is using Playwright
+  fallback with the reason recorded.
+- Restore `.contentlayer/generated/**` after builds when it is generator churn.
+
+## Completed VideoExplanation Units
+
+| Unit | Component id | QA record |
+| --- | --- | --- |
+| Math1030 `2.3 Gaussian elimination and RREF` | `math1030-gaussian-elimination-rref-pivot-story` | `docs/manim-video-qa-2026-05-25.md` |
+| Math1030 `2.1 Matrix basics` | `math1030-matrix-basics-position-map` | `docs/manim-matrix-basics-video-qa-2026-05-25.md` |
+| Math1030 `2.2 Augmented matrices and row operations` | `math1030-augmented-matrix-row-operation-safety` | `docs/manim-augmented-matrices-video-qa-2026-05-25.md` |
+| Math1030 `9.3 Gram-Schmidt orthogonalization` | `math1030-gram-schmidt-projection-story` | `docs/manim-gram-schmidt-video-qa-2026-06-10.md` |
+| Math1030 `3.2 Matrix multiplication and linear systems` | `math1030-matrix-product-linear-system-story` | `docs/manim-matrix-product-linear-system-video-qa-2026-06-11.md` |
+| Math1030 `3.3 Row-operation matrices` | `math1030-row-operation-matrix-left-multiply-story` | `docs/manim-row-operation-matrices-video-qa-2026-06-11.md` |
+| Math1030 `6.3 Linear combinations and span` | `math1030-linear-combination-span-sweep-story` | `docs/manim-linear-combinations-span-video-qa-2026-06-11.md` |
+| Math1030 `6.4 Linear dependence and independence` | `math1030-linear-dependence-redundancy-story` | `docs/manim-linear-dependence-video-qa-2026-06-11.md` |
+| Math1090 `2.2 Functions and relations` | `math1090-function-map-properties-story` | `docs/manim-function-map-video-qa-2026-06-11.md` |
+| Math1025 `6.1 Complex numbers, polar form, and geometry` | `math1025-complex-plane-arithmetic-story` | `docs/manim-complex-plane-video-qa-2026-06-11.md` |
+
+## Latest Slice Notes
+
+Math1025 `6.1` was implemented after the roadmap, current MDX, extracted
+chapter 6 source text, and a read-only explorer confirmed that the strongest
+first video focus is the complex-plane bridge from rectangular arithmetic to
+polar multiplication. The clip explains complex numbers as points/vectors,
+addition as vector addition, modulus and argument as length/direction, polar
+form, and multiplication as rotation plus scaling.
+
+Fixes applied:
+
+- new storyboard covers complex-plane placement, vector addition, modulus /
+  argument, polar form, product length, and product angle;
+- Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
+- render script now includes the Math1025 scene and writes assets under
+  `public/generated/animations/math1025/`;
+- visible in-video explanatory text uses reader-facing terms consistent with
+  the page, especially complex plane, modulus, argument, polar form, and
+  rotation / scaling;
+- video embed was placed after the polar multiplication formula and before
+  division in all three localized MDX files;
+- the first visual render had a crowded axis-label area in the addition frame,
+  so later frames now hide axis labels where they do not carry new information;
+- no existing React widget exists for this unit, so the video is the supporting
+  visual explanation and export fallback surface.
+
+## Verification Stack Used For Latest Slice
+
+- `python3 -m py_compile ...`
+- `bash -n tools/animations/manim/scripts/render_scene.sh`
+- JSON parse check for the touched storyboard
+- `git diff --check`
+- `npm run verify:mdx-tables`
+- `npx tsc --noEmit --pretty false`
+- `npm run lint`
+- `AUTH_SECRET=local-test-secret npm run build`
+- Playwright route, video metadata/playback, responsive/theme screenshots, and
+  TXT/PDF export checks for all three locales
+
+## Next Slice
+
+Proceed to CSCI2520 `hash-tables-and-collision-strategies`, the first CSCI2520
+visual pass in the roadmap.
+
+Expected first step:
+
+1. Inspect the current MDX unit, reference sources, extracted text, and any
+   existing hash-table / bucket widgets.
+2. Decide whether the first pass should be Manim + widget or widget-first.
+3. If Manim is appropriate, keep the clip focused on collision strategies
+   rather than trying to animate every hash-table operation.
+
+Useful explorer result:
+
+- After Gram-Schmidt, the next implementation-slice explorer flagged
+  Math1030 `matrix-multiplication-and-linear-systems`, `row-operation-matrices`,
+  span, and independence as feasible near-term Math1030 video candidates.
+  `matrix-multiplication-and-linear-systems` and `row-operation-matrices` are
+  now complete, and span plus independence are now complete.
+- A dedicated Math1090 explorer confirmed `functions-relations` had sufficient
+  source support in the February 27 lecture notes, midterm review notes, and
+  Worksheet 3; that first non-Math1030 pilot is now complete.
+- A dedicated Math1025 explorer confirmed `complex-number-arithmetic-and-geometry`
+  had sufficient support in `MATH1025_slides_ch6(3).pdf`; the first clip
+  intentionally deferred roots of unity, loci, complex ratios, and
+  transformations to avoid overloading the video.
+- A separate register scan found Math1030 `9.4 Cauchy-Schwarz and triangle
+  inequalities` is also feasible as a careful proof-diagram video, but it
+  remains a later candidate behind the current Math1025 and CSCI2520 roadmap
+  slices.
