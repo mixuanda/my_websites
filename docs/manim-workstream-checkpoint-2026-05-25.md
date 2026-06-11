@@ -34,32 +34,32 @@ history.
 | Math1030 `6.4 Linear dependence and independence` | `math1030-linear-dependence-redundancy-story` | `docs/manim-linear-dependence-video-qa-2026-06-11.md` |
 | Math1090 `2.2 Functions and relations` | `math1090-function-map-properties-story` | `docs/manim-function-map-video-qa-2026-06-11.md` |
 | Math1025 `6.1 Complex numbers, polar form, and geometry` | `math1025-complex-plane-arithmetic-story` | `docs/manim-complex-plane-video-qa-2026-06-11.md` |
+| CSCI2520 `1.2 Hash tables and collision strategies` | `csci2520-hash-table-collision-strategy-story` | `docs/manim-hash-table-video-qa-2026-06-11.md` |
 
 ## Latest Slice Notes
 
-Math1025 `6.1` was implemented after the roadmap, current MDX, extracted
-chapter 6 source text, and a read-only explorer confirmed that the strongest
-first video focus is the complex-plane bridge from rectangular arithmetic to
-polar multiplication. The clip explains complex numbers as points/vectors,
-addition as vector addition, modulus and argument as length/direction, polar
-form, and multiplication as rotation plus scaling.
+CSCI2520 `1.2` was implemented after the roadmap, current MDX, extracted
+lecture/tutorial text, and a read-only explorer confirmed that the first visual
+pass should be Manim + widget. The clip explains the dictionary contract,
+hashing to a bucket, collision meaning, chaining, and open addressing while the
+existing `hash-bucket-lab` remains the reader-controlled follow-up.
 
 Fixes applied:
 
-- new storyboard covers complex-plane placement, vector addition, modulus /
-  argument, polar form, product length, and product angle;
+- new storyboard covers dictionary operations, hash-to-bucket compression,
+  collision meaning, chaining, and probing;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the Math1025 scene and writes assets under
-  `public/generated/animations/math1025/`;
+- render script now includes the CSCI2520 scene and writes assets under
+  `public/generated/animations/csci2520/`;
 - visible in-video explanatory text uses reader-facing terms consistent with
-  the page, especially complex plane, modulus, argument, polar form, and
-  rotation / scaling;
-- video embed was placed after the polar multiplication formula and before
-  division in all three localized MDX files;
-- the first visual render had a crowded axis-label area in the addition frame,
-  so later frames now hide axis labels where they do not carry new information;
-- no existing React widget exists for this unit, so the video is the supporting
-  visual explanation and export fallback surface.
+  the page, especially dictionary contract, bucket, collision, chaining, and
+  open addressing;
+- video embed was placed after the collision definition and before the
+  chaining section in all three localized MDX files;
+- Chinese probing labels were shortened to avoid overlap, and the explanation
+  card was moved upward so browser video controls do not obscure it;
+- existing `hash-bucket-lab` remains embedded and its export snapshot is still
+  present.
 
 ## Verification Stack Used For Latest Slice
 
@@ -76,16 +76,17 @@ Fixes applied:
 
 ## Next Slice
 
-Proceed to CSCI2520 `hash-tables-and-collision-strategies`, the first CSCI2520
-visual pass in the roadmap.
+Proceed to the generated-video storage policy checkpoint, then Math1025
+integer-method and polynomial-method clips unless the roadmap priority changes.
 
 Expected first step:
 
-1. Inspect the current MDX unit, reference sources, extracted text, and any
-   existing hash-table / bucket widgets.
-2. Decide whether the first pass should be Manim + widget or widget-first.
-3. If Manim is appropriate, keep the clip focused on collision strategies
-   rather than trying to animate every hash-table operation.
+1. Decide whether committed MP4 assets under `public/generated/animations/`
+   remain acceptable for the next several pilots or should move to external
+   static hosting.
+2. If assets remain repo-local, continue with Math1025 integer-method clips.
+3. Keep future CSCI2520 algorithm videos short and preserve widgets for
+   reader-controlled traces.
 
 Useful explorer result:
 
@@ -101,6 +102,9 @@ Useful explorer result:
   had sufficient support in `MATH1025_slides_ch6(3).pdf`; the first clip
   intentionally deferred roots of unity, loci, complex ratios, and
   transformations to avoid overloading the video.
+- A dedicated CSCI2520 explorer confirmed `hash-tables-and-collision-strategies`
+  should be Manim + widget: a short invariant-focused clip for collision
+  handling plus the existing `hash-bucket-lab` for editable bucket/key tracing.
 - A separate register scan found Math1030 `9.4 Cauchy-Schwarz and triangle
   inequalities` is also feasible as a careful proof-diagram video, but it
   remains a later candidate behind the current Math1025 and CSCI2520 roadmap

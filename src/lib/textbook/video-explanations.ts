@@ -873,6 +873,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1025/complex-plane-arithmetic-story-zh-cn.mp4"
     ),
   },
+  "csci2520-hash-table-collision-strategy-story": {
+    conclusion: text(
+      "Hashing is only the first step. Correct lookup and update still depend on the collision strategy checking keys along the chain or probe sequence.",
+      "Hashing 只是第一步。正確 lookup 和 update 仍取決於 collision strategy 是否沿 chain 或 probe sequence 檢查 key。",
+      "Hashing 只是第一步。正确 lookup 和 update 仍取决于 collision strategy 是否沿 chain 或 probe sequence 检查 key。"
+    ),
+    durationSeconds: 12,
+    frames: [
+      {
+        label: text("Dictionary contract", "Dictionary contract", "Dictionary contract"),
+        value: text(
+          "A hash table implements dictionary operations by key; buckets are the implementation, not the logical contract.",
+          "Hash table 按 key 實作 dictionary 操作；bucket 是實作方式，不是邏輯 contract 本身。",
+          "Hash table 按 key 实现 dictionary 操作；bucket 是实现方式，不是逻辑 contract 本身。"
+        ),
+      },
+      {
+        label: text("Hash to a bucket", "Hash 到 bucket", "Hash 到 bucket"),
+        value: text(
+          "The hash function compresses a key to an index, so lookup starts in a small region of the table.",
+          "Hash function 把 key 壓成 index，令 lookup 由 table 中較小範圍開始。",
+          "Hash function 把 key 压成 index，让 lookup 从 table 中较小范围开始。"
+        ),
+      },
+      {
+        label: text("Collision", "Collision", "Collision"),
+        value: text(
+          "Two different keys can land in the same bucket. Collision does not mean the keys are equal.",
+          "兩個不同 key 可以落入同一 bucket。Collision 不代表兩個 key 相等。",
+          "两个不同 key 可以落入同一 bucket。Collision 不代表两个 key 相等。"
+        ),
+      },
+      {
+        label: text("Chaining", "Chaining", "Chaining"),
+        value: text(
+          "Chaining attaches a linked list to the bucket and compares keys while scanning that list.",
+          "Chaining 把 linked list 掛在 bucket 底下，並在掃描該 list 時比較 key。",
+          "Chaining 把 linked list 挂在 bucket 下面，并在扫描该 list 时比较 key。"
+        ),
+      },
+      {
+        label: text("Open addressing", "Open addressing", "Open addressing"),
+        value: text(
+          "Open addressing stores entries in the table itself and follows a probe sequence after a collision.",
+          "Open addressing 把 entry 存在 table 本身，collision 後沿 probe sequence 前進。",
+          "Open addressing 把 entry 存在 table 本身，collision 后沿 probe sequence 前进。"
+        ),
+      },
+      {
+        label: text("Invariant", "不變量", "不变量"),
+        value: text(
+          "Hashing narrows the search; collision handling preserves dictionary correctness.",
+          "Hashing 縮小搜尋；collision handling 保持 dictionary 正確。",
+          "Hashing 缩小搜索；collision handling 保持 dictionary 正确。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch how a hash table keeps dictionary operations correct when two different keys collide.",
+      "看清 hash table 在兩個不同 key 發生 collision 時，如何仍保持 dictionary 操作正確。",
+      "看清 hash table 在两个不同 key 发生 collision 时，如何仍保持 dictionary 操作正确。"
+    ),
+    posterSrc: text(
+      "/generated/animations/csci2520/hash-table-collision-strategy-story-en.png",
+      "/generated/animations/csci2520/hash-table-collision-strategy-story-zh-hk.png",
+      "/generated/animations/csci2520/hash-table-collision-strategy-story-zh-cn.png"
+    ),
+    title: text(
+      "Hash-table collisions and correctness",
+      "Hash table collision 與正確性",
+      "Hash table collision 与正确性"
+    ),
+    transcript: [
+      text(
+        "A hash table implements dictionary operations by key.",
+        "Hash table 按 key 實作 dictionary 操作。",
+        "Hash table 按 key 实现 dictionary 操作。"
+      ),
+      text(
+        "A collision means two different keys reached the same bucket, so lookup must still compare keys.",
+        "Collision 表示兩個不同 key 到達同一 bucket，所以 lookup 仍然要比較 key。",
+        "Collision 表示两个不同 key 到达同一 bucket，所以 lookup 仍然要比较 key。"
+      ),
+      text(
+        "Chaining and probing are different recovery strategies, but both preserve the same dictionary contract.",
+        "Chaining 與 probing 是不同補救策略，但兩者都保留同一個 dictionary contract。",
+        "Chaining 与 probing 是不同补救策略，但两者都保留同一个 dictionary contract。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/csci2520/hash-table-collision-strategy-story-en.mp4",
+      "/generated/animations/csci2520/hash-table-collision-strategy-story-zh-hk.mp4",
+      "/generated/animations/csci2520/hash-table-collision-strategy-story-zh-cn.mp4"
+    ),
+  },
   "math1090-function-map-properties-story": {
     conclusion: text(
       "The same arrow diagram separates the main definitions. A function gives each input exactly one output, injectivity forbids collisions, surjectivity covers the target, and composition feeds one output into the next map.",

@@ -1,0 +1,303 @@
+{
+  "course": "csci2520",
+  "chapter": "adt-and-operations",
+  "unit": "hash-tables-and-collision-strategies",
+  "unitTitle": {
+    "en": "1.2 Hash tables and collision strategies",
+    "zh-hk": "1.2 Hash table 與 collision 策略",
+    "zh-cn": "1.2 Hash table 与 collision 策略"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "introductory data structures and ADTs",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Start from the dictionary contract",
+          "goal": "Frame the hash table as an implementation of insert, lookup, and delete by key.",
+          "beats": [
+            "Show the logical ADT operations before showing buckets.",
+            "Emphasize that keys identify entries and values are payload.",
+            "State that implementation details must preserve the dictionary contract."
+          ],
+          "mathBlocks": [
+            "Enter(key,value)",
+            "Lookup(key)"
+          ],
+          "voiceover": [
+            "A hash table is not first a row of boxes.",
+            "It is a way to implement dictionary operations by key."
+          ],
+          "animation": "operation cards feeding into a dictionary invariant box"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Hashing chooses a bucket",
+          "goal": "Show a key being compressed into a bucket index.",
+          "beats": [
+            "Place several keys on the left.",
+            "Pass each key through h(key) mod m.",
+            "Send the result to a fixed bucket array."
+          ],
+          "mathBlocks": [
+            "index = h(key) mod m"
+          ],
+          "voiceover": [
+            "The hash function narrows the search from the whole table to one bucket.",
+            "It does not prove that the bucket contains only one possible key."
+          ],
+          "animation": "key chips passing through a hash box into bucket cells"
+        },
+        {
+          "type": "definition_detail",
+          "cardTitle": "Collision means same bucket, not same key",
+          "goal": "Separate the collision condition from equality of keys.",
+          "beats": [
+            "Send two different keys to the same bucket index.",
+            "Label the event as a collision.",
+            "Keep the two key labels visibly distinct."
+          ],
+          "mathBlocks": [
+            "key1 != key2, h(key1)=h(key2)"
+          ],
+          "voiceover": [
+            "A collision is normal whenever a large key space is compressed into finitely many buckets.",
+            "The implementation must still compare keys after hashing."
+          ],
+          "animation": "two arrows landing in one highlighted bucket"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Chaining scans one bucket list",
+          "goal": "Show how a bucket head can point to a linked list of entries with the same hash index.",
+          "beats": [
+            "Replace the collided bucket by a linked-list chain.",
+            "Trace lookup from bucket index to nodes.",
+            "Mark key comparison inside the chain."
+          ],
+          "mathBlocks": [
+            "bucket[i] -> node(key,value) -> node(key,value)"
+          ],
+          "voiceover": [
+            "Chaining keeps all colliding entries attached to the chosen bucket.",
+            "Lookup still checks keys inside the chain, so the dictionary meaning is preserved."
+          ],
+          "animation": "bucket cell pointing to two linked entry nodes"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Probing searches an alternate slot",
+          "goal": "Contrast chaining with open addressing while preserving the same invariant.",
+          "beats": [
+            "Show a collision at the home bucket.",
+            "Probe later table slots until a usable slot is found.",
+            "End with the invariant: hash narrows search, collision handling preserves correctness."
+          ],
+          "mathBlocks": [
+            "h(key), h(key)+1, h(key)+2, ...",
+            "hash narrows; collision handling preserves correctness"
+          ],
+          "voiceover": [
+            "Open addressing stores entries in the table itself and probes another slot when the home slot is occupied.",
+            "Both strategies must preserve the same dictionary contract."
+          ],
+          "animation": "probe arrows stepping through adjacent bucket cells"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "初級資料結構與 ADT",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "先由 dictionary contract 開始",
+          "goal": "把 hash table 定位成用 key 實作 insert、lookup、delete 的方法。",
+          "beats": [
+            "先顯示邏輯 ADT 操作，然後才顯示 bucket。",
+            "強調 key 用來識別 entry，而 value 是 payload。",
+            "指出實作細節必須保留 dictionary contract。"
+          ],
+          "mathBlocks": [
+            "Enter(key,value)",
+            "Lookup(key)"
+          ],
+          "voiceover": [
+            "Hash table 首先唔係一排格仔。",
+            "它是一種按 key 實作 dictionary 操作的方法。"
+          ],
+          "animation": "操作卡流向 dictionary 不變量方框"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Hashing 選出 bucket",
+          "goal": "展示 key 如何被壓縮成 bucket index。",
+          "beats": [
+            "把幾個 key 放在左邊。",
+            "令每個 key 通過 h(key) mod m。",
+            "把結果送到固定 bucket array。"
+          ],
+          "mathBlocks": [
+            "index = h(key) mod m"
+          ],
+          "voiceover": [
+            "Hash function 把搜尋範圍由整張 table 縮到一個 bucket。",
+            "但它並不證明該 bucket 只可能有一個 key。"
+          ],
+          "animation": "key 標籤通過 hash 方框落到 bucket"
+        },
+        {
+          "type": "definition_detail",
+          "cardTitle": "Collision 是同 bucket，不是同 key",
+          "goal": "把 collision 條件與 key 相等分清楚。",
+          "beats": [
+            "讓兩個不同 key 落到同一 bucket index。",
+            "把這件事標為 collision。",
+            "保持兩個 key 的標籤清楚不同。"
+          ],
+          "mathBlocks": [
+            "key1 != key2, h(key1)=h(key2)"
+          ],
+          "voiceover": [
+            "當很大的 key 空間被壓到有限 bucket，collision 是正常現象。",
+            "實作在 hash 之後仍然要比較 key。"
+          ],
+          "animation": "兩條箭嘴落入同一個高亮 bucket"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Chaining 只掃描一條 bucket list",
+          "goal": "展示 bucket head 如何指向同一 hash index 的 linked list。",
+          "beats": [
+            "把碰撞 bucket 改成 linked-list chain。",
+            "追蹤 lookup 由 bucket index 走到 node。",
+            "標出 chain 內的 key comparison。"
+          ],
+          "mathBlocks": [
+            "bucket[i] -> node(key,value) -> node(key,value)"
+          ],
+          "voiceover": [
+            "Chaining 把所有碰撞 entry 都掛在被選中的 bucket 底下。",
+            "Lookup 仍會在 chain 中比較 key，因此 dictionary 意義被保留。"
+          ],
+          "animation": "bucket cell 指向兩個 linked entry node"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Probing 會尋找替代 slot",
+          "goal": "把 chaining 與 open addressing 對比，同時保留同一不變量。",
+          "beats": [
+            "顯示 home bucket 發生 collision。",
+            "依次 probe 後面的 table slot，直到找到可用位置。",
+            "以不變量收束：hash 縮小搜尋，collision handling 保持正確。"
+          ],
+          "mathBlocks": [
+            "h(key), h(key)+1, h(key)+2, ...",
+            "hash narrows; collision handling preserves correctness"
+          ],
+          "voiceover": [
+            "Open addressing 把 entry 存在 table 本身；home slot 被佔用時，就 probe 另一個 slot。",
+            "兩種策略都必須保留同一個 dictionary contract。"
+          ],
+          "animation": "probe 箭嘴沿相鄰 bucket cell 前進"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "初级数据结构与 ADT",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "先从 dictionary contract 开始",
+          "goal": "把 hash table 定位成用 key 实现 insert、lookup、delete 的方法。",
+          "beats": [
+            "先显示逻辑 ADT 操作，然后才显示 bucket。",
+            "强调 key 用来识别 entry，而 value 是 payload。",
+            "指出实现细节必须保留 dictionary contract。"
+          ],
+          "mathBlocks": [
+            "Enter(key,value)",
+            "Lookup(key)"
+          ],
+          "voiceover": [
+            "Hash table 首先不是一排格子。",
+            "它是一种按 key 实现 dictionary 操作的方法。"
+          ],
+          "animation": "操作卡流向 dictionary 不变量方框"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Hashing 选出 bucket",
+          "goal": "展示 key 如何被压缩成 bucket index。",
+          "beats": [
+            "把几个 key 放在左边。",
+            "让每个 key 通过 h(key) mod m。",
+            "把结果送到固定 bucket array。"
+          ],
+          "mathBlocks": [
+            "index = h(key) mod m"
+          ],
+          "voiceover": [
+            "Hash function 把搜索范围从整张 table 缩到一个 bucket。",
+            "但它并不证明该 bucket 只可能有一个 key。"
+          ],
+          "animation": "key 标签通过 hash 方框落到 bucket"
+        },
+        {
+          "type": "definition_detail",
+          "cardTitle": "Collision 是同 bucket，不是同 key",
+          "goal": "把 collision 条件与 key 相等分清楚。",
+          "beats": [
+            "让两个不同 key 落到同一 bucket index。",
+            "把这件事标为 collision。",
+            "保持两个 key 的标签清楚不同。"
+          ],
+          "mathBlocks": [
+            "key1 != key2, h(key1)=h(key2)"
+          ],
+          "voiceover": [
+            "当很大的 key 空间被压到有限 bucket，collision 是正常现象。",
+            "实现中 hash 之后仍然要比较 key。"
+          ],
+          "animation": "两条箭头落入同一个高亮 bucket"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Chaining 只扫描一条 bucket list",
+          "goal": "展示 bucket head 如何指向同一 hash index 的 linked list。",
+          "beats": [
+            "把碰撞 bucket 改成 linked-list chain。",
+            "追踪 lookup 从 bucket index 走到 node。",
+            "标出 chain 内的 key comparison。"
+          ],
+          "mathBlocks": [
+            "bucket[i] -> node(key,value) -> node(key,value)"
+          ],
+          "voiceover": [
+            "Chaining 把所有碰撞 entry 都挂在被选中的 bucket 下面。",
+            "Lookup 仍会在 chain 中比较 key，因此 dictionary 意义被保留。"
+          ],
+          "animation": "bucket cell 指向两个 linked entry node"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Probing 会寻找替代 slot",
+          "goal": "把 chaining 与 open addressing 对比，同时保留同一不变量。",
+          "beats": [
+            "显示 home bucket 发生 collision。",
+            "依次 probe 后面的 table slot，直到找到可用位置。",
+            "以不变量收束：hash 缩小搜索，collision handling 保持正确。"
+          ],
+          "mathBlocks": [
+            "h(key), h(key)+1, h(key)+2, ...",
+            "hash narrows; collision handling preserves correctness"
+          ],
+          "voiceover": [
+            "Open addressing 把 entry 存在 table 本身；home slot 被占用时，就 probe 另一个 slot。",
+            "两种策略都必须保留同一个 dictionary contract。"
+          ],
+          "animation": "probe 箭头沿相邻 bucket cell 前进"
+        }
+      ]
+    }
+  }
+}

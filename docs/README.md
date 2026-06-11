@@ -30,6 +30,7 @@ shared files need coordination before you edit them.
 - [Manim linear dependence video QA - 2026-06-11](./manim-linear-dependence-video-qa-2026-06-11.md)
 - [Manim function map video QA - 2026-06-11](./manim-function-map-video-qa-2026-06-11.md)
 - [Manim complex plane video QA - 2026-06-11](./manim-complex-plane-video-qa-2026-06-11.md)
+- [Manim hash-table video QA - 2026-06-11](./manim-hash-table-video-qa-2026-06-11.md)
 - [QA checkpoints - 2026-05-22](./qa-checkpoints-2026-05-22.md)
 - [Tiered access development checkpoints](./tiered-access-development.md)
 

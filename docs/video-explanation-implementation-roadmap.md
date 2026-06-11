@@ -35,6 +35,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/vector-spaces/linear-dependence-and-independence`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
+  - `csci2520/adt-and-operations/hash-tables-and-collision-strategies`
 - No `reference/MATH1010/**` tree exists, so Math1010 should not enter this
   implementation roadmap yet.
 
@@ -202,7 +203,7 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 | --- | --- | --- | --- | --- |
 | `csci2520/programming-foundations/pointers-memory-and-structs` | 0.1 Pointers, memory, and structs | Widget-first | Pointer state, memory boxes, struct fields, and aliasing. | Improve pointer tracer first. |
 | `csci2520/adt-and-operations/stack-queue-and-function-operations` | 1.1 ADT operations: stack, queue, and function pointers | Manim + widget | Stack push/pop, queue enqueue/dequeue, and call-stack frames. | Pair with existing ADT stepper. |
-| `csci2520/adt-and-operations/hash-tables-and-collision-strategies` | 1.2 Hash tables and collision strategies | Manim + widget | Hash buckets, collisions, chaining, and probing. | Pair with hash bucket lab. |
+| `csci2520/adt-and-operations/hash-tables-and-collision-strategies` | 1.2 Hash tables and collision strategies | Done | Hash buckets, collisions, chaining, and probing. | Completed as the first CSCI2520 trilingual Manim + widget pass; `hash-bucket-lab` remains the reader-controlled follow-up. |
 | `csci2520/lists-and-recursion/lists-as-recursive-adts` | 2.1 Lists as recursive ADTs | Widget-first | Recursive list structure and pointer traversal. | Add trace widget before video. |
 | `csci2520/complexity-and-sorting/complexity-growth-and-cost` | 3.1 Complexity growth and algorithmic cost | Manim + widget | Growth curves and cost comparison. | Pair with complexity comparator. |
 | `csci2520/complexity-and-sorting/selection-quickselect-and-linear-sorting` | 3.2 Selection, quickselect, and linear-time sorting | Manim + widget | Partition movement, narrowing search, and bucket/counting states. | Decide per-algorithm clip scope. |
@@ -214,13 +215,11 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 
 These are the concrete next slices to execute one by one:
 
-1. CSCI2520 `hash-tables-and-collision-strategies`: decide widget/video split,
-    then build the first CSCI2520 visual pass.
-2. Revisit generated-video storage policy before the number of committed MP4
+1. Revisit generated-video storage policy before the number of committed MP4
     assets grows beyond the current pilot scale.
-3. Continue Math1025 integer-method and polynomial-method clips after the
+2. Continue Math1025 integer-method and polynomial-method clips after the
     first CSCI2520 visual pass, unless the roadmap priority changes.
-4. Generalize the Manim render registry further if the course-aware shell
+3. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.
 
 ## Maintenance Notes

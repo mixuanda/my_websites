@@ -42,8 +42,9 @@ verification result, and any remaining follow-up.
 | Math1090 content | Some Math1090 material may have been omitted from extra lecture notes | Not started | Re-audit `reference/MATH1090` lecture notes against authored content before writing. |
 | Math1090 visual explanations | First source-backed Manim pilot for functions / relations | Completed | MATH1090 `2.2 Functions and relations` now has a trilingual Manim `VideoExplanation` for domain, target, graph, image, preimage, injective, surjective, and composition; local static, browser, and export QA are recorded in `docs/manim-function-map-video-qa-2026-06-11.md`. |
 | Math1025 visual explanations | First source-backed Manim pilot for complex-plane arithmetic | Completed | MATH1025 `6.1 Complex numbers, polar form, and geometry` now has a trilingual Manim `VideoExplanation` for complex-plane points, vector addition, modulus, argument, polar form, and multiplication as rotation plus scaling; local static, browser, and export QA are recorded in `docs/manim-complex-plane-video-qa-2026-06-11.md`. |
+| CSCI2520 visual explanations | First source-backed Manim + widget pass for hash-table collisions | Completed | CSCI2520 `1.2 Hash tables and collision strategies` now has a trilingual Manim `VideoExplanation` for dictionary contract, hashing to buckets, collision meaning, chaining, and open addressing; the existing `hash-bucket-lab` remains visible and export-friendly; QA is recorded in `docs/manim-hash-table-video-qa-2026-06-11.md`. |
 | CSCI2520 content | CSCI2520 is incomplete, especially algorithms | Not started | Audit `reference/CSCI2520`, extracted text, and current `content/textbook/csci2520/**`. |
-| CSCI2520 interactions | Algorithms need code / pseudocode plus synchronized demonstrations | Not started | Design split explanatory blocks where code or pseudocode and the demonstration advance together. |
+| CSCI2520 interactions | Algorithms need code / pseudocode plus synchronized demonstrations | In progress | First Manim + widget pattern is complete for hash-table collision strategies; future algorithm traces should keep reader-controlled widgets for variable inputs and use Manim only for short invariant-focused bridges. |
 | CSCI2520 checkpoints | Add code-output and complexity-analysis checkpoint questions | Not started | Extend problem-bank support if current checkpoint types are insufficient. |
 | Math1025 content | Math1025 content is incomplete and currently too easy | In progress | Added source-backed `7.1 Divisibility, gcd, and integer equations` and `7.2 Rational and irrational numbers` from `MATH1025_slides_ch7.pdf`; chapter 7 is represented, while ch8-ch11 remain backlog. |
 | Math1025 rendering | Math1025 has rendering mistakes | In progress | New `7.2` uses existing theorem / example / quick-check / reveal components and is queued for this round's local plus production route/export verification. |
@@ -208,13 +209,21 @@ Progress on the animation slice:
   `public/generated/animations/math1025/`, article embeds after the polar
   multiplication formula, and static export fallback; focused QA is recorded in
   `docs/manim-complex-plane-video-qa-2026-06-11.md`.
+- completed the first CSCI2520 Manim + widget pass for `1.2 Hash tables and
+  collision strategies` with trilingual
+  `csci2520-hash-table-collision-strategy-story` videos, localized posters, a
+  new trilingual storyboard, course-aware render output under
+  `public/generated/animations/csci2520/`, article embeds after the collision
+  definition, the existing `hash-bucket-lab` preserved as the reader-controlled
+  follow-up, and static export fallback; focused QA is recorded in
+  `docs/manim-hash-table-video-qa-2026-06-11.md`.
 
 Remaining animation work:
 
 - decide whether these generated assets should be committed directly under
   `public/generated/animations/` or moved to external/static hosting later.
-- continue with the next roadmap slice:
-  CSCI2520 `hash-tables-and-collision-strategies`.
+- continue with the next roadmap slice after the storage-policy checkpoint:
+  Math1025 integer-method and polynomial-method clips.
 
 ## 1. Global Notes Navigation / Long Course Sidebar
 

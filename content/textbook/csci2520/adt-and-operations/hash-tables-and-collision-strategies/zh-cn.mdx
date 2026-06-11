@@ -78,6 +78,14 @@ int Hash(char *s, int nBuckets) {
 真正要问的不是“如何完全避免 collision”，而是“有 collision 时仍然如何
 保持 dictionary 正确”。
 
+## 观看 collision handling 如何保持 dictionary 正确
+
+下面的短图解会保留 ADT contract，同时比较两种主要补救方式。Hashing
+只决定从哪里开始搜索；chaining 与 probing 则解释 table 如何在 collision
+之后仍不混淆不同 key。
+
+<VideoExplanation id="csci2520-hash-table-collision-strategy-story" />
+
 ## Chaining：在 bucket 下面挂一条链
 
 Lecture material 用 chaining 作为最直观的补救方法。

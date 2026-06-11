@@ -18,6 +18,7 @@ MDX content, for example:
 - `content/textbook/math1030/vector-spaces/linear-dependence-and-independence/storyboard.json`
 - `content/textbook/math1090/sets/functions-relations/storyboard.json`
 - `content/textbook/math1025/complex-numbers/complex-number-arithmetic-and-geometry/storyboard.json`
+- `content/textbook/csci2520/adt-and-operations/hash-tables-and-collision-strategies/storyboard.json`
 
 Required segment taxonomy per locale:
 
@@ -135,6 +136,9 @@ Current pilots:
 - `content/textbook/math1025/complex-numbers/complex-number-arithmetic-and-geometry/storyboard.json`
 - `tools/animations/manim/scenes/math1025/complex_numbers.py`
 - public MDX id: `math1025-complex-plane-arithmetic-story`
+- `content/textbook/csci2520/adt-and-operations/hash-tables-and-collision-strategies/storyboard.json`
+- `tools/animations/manim/scenes/csci2520/hash_table_collision_strategy.py`
+- public MDX id: `csci2520-hash-table-collision-strategy-story`
 
 The Notes page should keep a static storyboard fallback through
 `VideoExplanation` until the MP4 has passed visual QA and is connected in

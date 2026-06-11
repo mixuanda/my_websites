@@ -88,6 +88,15 @@ inevitable. So the real implementation question is not “how do we avoid every
 collision?” but “how do we recover from collisions without breaking dictionary
 correctness?”
 
+## Watch collision handling preserve dictionary correctness
+
+The short visual below keeps the ADT contract visible while comparing the two
+main recovery patterns. Hashing only chooses where to start; chaining and
+probing explain how the table keeps different keys from being confused after a
+collision.
+
+<VideoExplanation id="csci2520-hash-table-collision-strategy-story" />
+
 ## Chaining keeps colliding keys in one bucket list
 
 The lecture material treats chaining as the most direct recovery method.

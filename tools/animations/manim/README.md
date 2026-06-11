@@ -78,6 +78,13 @@ Current pilots target:
   - `ComplexPlaneArithmeticStoryZhHk`
   - `ComplexPlaneArithmeticStoryZhCn`
 - source: `scenes/math1025/complex_numbers.py`
+- unit: `csci2520.adt-and-operations.hash-tables-and-collision-strategies`
+- public component id: `csci2520-hash-table-collision-strategy-story`
+- scenes:
+  - `HashTableCollisionStrategyStoryEn`
+  - `HashTableCollisionStrategyStoryZhHk`
+  - `HashTableCollisionStrategyStoryZhCn`
+- source: `scenes/csci2520/hash_table_collision_strategy.py`
 
 ## Local Render
 
@@ -150,6 +157,12 @@ course-specific directory under `public/generated/animations/<course>/`:
 - `math1025/complex-plane-arithmetic-story-zh-hk.png`
 - `math1025/complex-plane-arithmetic-story-zh-cn.mp4`
 - `math1025/complex-plane-arithmetic-story-zh-cn.png`
+- `csci2520/hash-table-collision-strategy-story-en.mp4`
+- `csci2520/hash-table-collision-strategy-story-en.png`
+- `csci2520/hash-table-collision-strategy-story-zh-hk.mp4`
+- `csci2520/hash-table-collision-strategy-story-zh-hk.png`
+- `csci2520/hash-table-collision-strategy-story-zh-cn.mp4`
+- `csci2520/hash-table-collision-strategy-story-zh-cn.png`
 
 To render a single scene during iteration, pass the class name directly:
 
@@ -170,6 +183,7 @@ tools/animations/manim/scripts/render_scene.sh LinearCombinationSpanSweepStoryZh
 tools/animations/manim/scripts/render_scene.sh LinearDependenceRedundancyStoryZhHk
 tools/animations/manim/scripts/render_scene.sh FunctionMapPropertiesStoryZhHk
 tools/animations/manim/scripts/render_scene.sh ComplexPlaneArithmeticStoryZhHk
+tools/animations/manim/scripts/render_scene.sh HashTableCollisionStrategyStoryZhHk
 ```
 
 Connect rendered assets through localized `videoSrc` and `posterSrc` entries in
