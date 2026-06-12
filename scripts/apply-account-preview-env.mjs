@@ -34,6 +34,16 @@ const REGISTRATION_REQUIRED = [
 ];
 
 const BILLING_RECOMMENDED = ["NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"];
+const DEVELOPMENT_URL_NAMES = ["APP_URL", "NEXTAUTH_URL", "NEXT_PUBLIC_SITE_URL"];
+const SURFACE_NAMES = ["SITE_SURFACE", "NEXT_PUBLIC_SITE_SURFACE"];
+const BOOLEAN_TRUE_NAMES = [
+  "AUTH_REGISTRATION_ENABLED",
+  "AUTH_REGISTRATION_REQUIRE_PERSISTENCE",
+  "AUTH_REGISTRATION_REQUIRE_TURNSTILE",
+  "NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED",
+  "NEXT_PUBLIC_AUTH_REGISTRATION_REQUIRE_TURNSTILE",
+];
+const ALLOWED_AUTH_PROVIDERS = new Set(["credentials", "github", "google"]);
 
 const args = parseArgs(process.argv.slice(2));
 const branch = args.branch ?? DEFAULTS.branch;
@@ -185,6 +195,71 @@ function validateValues(envValues, options) {
     }
   }
 
+  for (const name of DEVELOPMENT_URL_NAMES) {
+    if (envValues[name] !== DEFAULTS.developmentDomain) {
+      errors.push(`${name} must be ${DEFAULTS.developmentDomain} for codex/account preview`);
+    }
+  }
+
+  for (const name of SURFACE_NAMES) {
+    if (envValues[name] !== "preview") {
+      errors.push(`${name} must be preview for codex/account`);
+    }
+  }
+
+  for (const name of BOOLEAN_TRUE_NAMES) {
+    if (envValues[name] !== "true") {
+      errors.push(`${name} must be true for public development registration`);
+    }
+  }
+
+  if (!["1", "true"].includes(envValues.AUTH_TRUST_HOST)) {
+    errors.push("AUTH_TRUST_HOST must be 1 or true for codex/account preview");
+  }
+
+  for (const provider of providers) {
+    if (!ALLOWED_AUTH_PROVIDERS.has(provider)) {
+      errors.push(`unsupported auth provider for this branch: ${provider}`);
+    }
+  }
+
+  const productionOriginValues = Object.entries(envValues).filter(([, value]) =>
+    containsProductionOrigin(value),
+  );
+  for (const [name] of productionOriginValues) {
+    errors.push(`${name} contains a production origin; use ${DEFAULTS.developmentDomain}`);
+  }
+
+  validateStripePublishableKey({
+    errors,
+    name: "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+    value: envValues.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
+  });
+  validateStripeServerKey({
+    errors,
+    name: "STRIPE_SECRET_KEY",
+    value: envValues.STRIPE_SECRET_KEY,
+  });
+  validateStripeServerKey({
+    errors,
+    name: "STRIPE_RESTRICTED_KEY",
+    value: envValues.STRIPE_RESTRICTED_KEY,
+  });
+  validateStripeWebhookSecret({
+    errors,
+    name: "STRIPE_WEBHOOK_SECRET",
+    value: envValues.STRIPE_WEBHOOK_SECRET,
+  });
+
+  const privateKey = envValues.FIREBASE_PRIVATE_KEY;
+  if (
+    privateKey &&
+    (!privateKey.includes("-----BEGIN PRIVATE KEY-----") ||
+      !privateKey.includes("-----END PRIVATE KEY-----"))
+  ) {
+    errors.push("FIREBASE_PRIVATE_KEY must be a complete PEM private key");
+  }
+
   if (!options.allowPlaceholders) {
     for (const [name, value] of Object.entries(envValues)) {
       if (value && looksLikePlaceholder(value)) {
@@ -212,6 +287,41 @@ function looksLikePlaceholder(value) {
     normalized.includes("xxx") ||
     normalized.includes("placeholder")
   );
+}
+
+function containsProductionOrigin(value) {
+  const normalized = String(value ?? "").toLowerCase();
+  return (
+    normalized.includes("https://www.evanalysis.top") ||
+    normalized.includes("https://evanalysis.top")
+  );
+}
+
+function validateStripePublishableKey({ errors, name, value }) {
+  if (!value) return;
+  if (looksLikePlaceholder(value)) return;
+
+  if (!value.startsWith("pk_test_")) {
+    errors.push(`${name} must use a pk_test_ value for codex/account preview`);
+  }
+}
+
+function validateStripeServerKey({ errors, name, value }) {
+  if (!value) return;
+  if (looksLikePlaceholder(value)) return;
+
+  if (!value.startsWith("sk_test_") && !value.startsWith("rk_test_")) {
+    errors.push(`${name} must use an sk_test_ or rk_test_ value for codex/account preview`);
+  }
+}
+
+function validateStripeWebhookSecret({ errors, name, value }) {
+  if (!value) return;
+  if (looksLikePlaceholder(value)) return;
+
+  if (!value.startsWith("whsec_")) {
+    errors.push(`${name} must use a whsec_ value`);
+  }
 }
 
 function isSensitive(name) {

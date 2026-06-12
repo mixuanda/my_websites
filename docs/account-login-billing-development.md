@@ -276,7 +276,11 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
   checkout. Use `npm run auth:apply-development-env -- --file
   .env.codex-account.preview.local` for a dry-run and add `--apply` only after
   reviewing the target variable names. The provider-by-provider key acquisition
-  checklist is `docs/account-preview-provider-key-setup.md`.
+  checklist is `docs/account-preview-provider-key-setup.md`. The import script
+  now rejects production origins, production surface values, disabled
+  registration safety flags, unsupported provider names, malformed Firebase
+  private keys, and obvious live Stripe key prefixes before writing branch
+  Preview env vars.
 
 ## Recommended next step
 

@@ -48,6 +48,13 @@ What the command line can safely do:
   npm run auth:apply-development-env -- --file .env.codex-account.preview.local --apply
   ```
 
+  The import script validates the development isolation contract before writing:
+  `APP_URL`, `NEXTAUTH_URL`, and `NEXT_PUBLIC_SITE_URL` must point at
+  `https://development.evanalysis.top`; `SITE_SURFACE` values must stay
+  `preview`; registration persistence and Turnstile requirements must remain
+  enabled; and obvious live Stripe keys such as `pk_live_...`, `sk_live_...`,
+  or `rk_live_...` are rejected.
+
 - pull already configured Vercel env values into a local file if needed and if
   the current Vercel identity has permission:
 
@@ -213,6 +220,7 @@ test account or prices:
 - `STRIPE_PRICE_ID_MEMBER_YEARLY`
 
 Use Stripe test mode values only for `codex/account` development.
+The env import script rejects obvious live-mode key prefixes for this branch.
 
 The live deployed webhook endpoint for this branch is:
 
