@@ -146,19 +146,24 @@ function parseEnvFile(envFile) {
       throw new Error(`Invalid env key: ${key}`);
     }
 
-    parsed[key] = unquoteEnvValue(value);
+    parsed[key] = unquoteEnvValue(key, value);
   }
 
   return parsed;
 }
 
-function unquoteEnvValue(value) {
+function unquoteEnvValue(key, value) {
   if (value.startsWith('"') && value.endsWith('"')) {
-    return value
+    const unquoted = value
       .slice(1, -1)
-      .replace(/\\n/g, "\n")
       .replace(/\\"/g, '"')
       .replace(/\\\\/g, "\\");
+
+    if (key === "FIREBASE_PRIVATE_KEY") {
+      return unquoted.replace(/\n/g, "\\n");
+    }
+
+    return unquoted.replace(/\\n/g, "\n");
   }
 
   if (value.startsWith("'") && value.endsWith("'")) {

@@ -149,6 +149,10 @@ single-line escaped form is safest:
 FIREBASE_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n...\n-----END PRIVATE KEY-----\n"
 ```
 
+The Vercel import script keeps `FIREBASE_PRIVATE_KEY` in this single-line
+escaped `\n` form when writing Preview env vars. The runtime converts `\n` back
+to real PEM line breaks before initializing Firebase Admin.
+
 Reference: https://firebase.google.com/docs/admin/setup
 
 ## Optional OAuth login providers
