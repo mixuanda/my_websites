@@ -275,7 +275,8 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
   exact variable names for staging Firebase, Turnstile, OAuth, and Stripe test
   checkout. Use `npm run auth:apply-development-env -- --file
   .env.codex-account.preview.local` for a dry-run and add `--apply` only after
-  reviewing the target variable names.
+  reviewing the target variable names. The provider-by-provider key acquisition
+  checklist is `docs/account-preview-provider-key-setup.md`.
 
 ## Recommended next step
 
