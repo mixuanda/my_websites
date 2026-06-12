@@ -1063,6 +1063,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1025/rational-irrational-root-proof-story-zh-cn.mp4"
     ),
   },
+  "math1025-polynomial-division-remainder-story": {
+    conclusion: text(
+      "Polynomial long division repeatedly cancels the current leading term while preserving f=gq+current remainder. The process stops only when the remainder degree is smaller than the divisor degree.",
+      "多項式長除法反覆消去暫時餘式的最高次項，同時保持 f=gq+暫時餘式。過程只在餘式次數小於除式次數時停止。",
+      "多项式长除法反复消去暂时余式的最高次项，同时保持 f=gq+暂时余式。过程只在余式次数小于除式次数时停止。"
+    ),
+    durationSeconds: 11.3,
+    frames: [
+      {
+        label: text("Division identity", "除法恆等式", "除法恒等式"),
+        value: text(
+          "For nonzero g, polynomial division writes f(x)=g(x)q(x)+r(x) with deg r < deg g.",
+          "對非零 g，多項式除法把 f(x) 寫成 f(x)=g(x)q(x)+r(x)，且 deg r < deg g。",
+          "对非零 g，多项式除法把 f(x) 写成 f(x)=g(x)q(x)+r(x)，且 deg r < deg g。"
+        ),
+      },
+      {
+        label: text("Chapter example", "本章例子", "本章例子"),
+        value: text(
+          "Divide f=x^4-3x^3+2x^2+4x-1 by g=x^2-2x+3, building q and r one leading term at a time.",
+          "用 g=x^2-2x+3 除 f=x^4-3x^3+2x^2+4x-1，逐個最高次項建立 q 與 r。",
+          "用 g=x^2-2x+3 除 f=x^4-3x^3+2x^2+4x-1，逐个最高次项建立 q 与 r。"
+        ),
+      },
+      {
+        label: text("Cancel x^4", "消去 x^4", "消去 x^4"),
+        value: text(
+          "The leading ratio x^4/x^2 gives the first quotient term x^2; subtracting x^2g leaves -x^3-x^2+4x-1.",
+          "最高次項比值 x^4/x^2 給出第一個商式項 x^2；減去 x^2g 後留下 -x^3-x^2+4x-1。",
+          "最高次项比值 x^4/x^2 给出第一个商式项 x^2；减去 x^2g 后留下 -x^3-x^2+4x-1。"
+        ),
+      },
+      {
+        label: text("Cancel -x^3", "消去 -x^3", "消去 -x^3"),
+        value: text(
+          "Repeating the rule gives the second quotient term -x and updates the current remainder to -3x^2+7x-1.",
+          "重複同一規則得到第二個商式項 -x，並把暫時餘式更新為 -3x^2+7x-1。",
+          "重复同一规则得到第二个商式项 -x，并把暂时余式更新为 -3x^2+7x-1。"
+        ),
+      },
+      {
+        label: text("Stop by degree", "按次數停止", "按次数停止"),
+        value: text(
+          "The last quotient term is -3; the remainder x+8 has degree 1, which is smaller than deg(g)=2.",
+          "最後商式項是 -3；餘式 x+8 的次數為 1，小於 deg(g)=2。",
+          "最后商式项是 -3；余式 x+8 的次数为 1，小于 deg(g)=2。"
+        ),
+      },
+      {
+        label: text("Invariant", "不變量", "不变量"),
+        value: text(
+          "The final identity is f=(x^2-2x+3)(x^2-x-3)+(x+8), and the stepper below lets readers inspect the same updates.",
+          "最後恆等式是 f=(x^2-2x+3)(x^2-x-3)+(x+8)，下方 stepper 可逐步檢查同一批更新。",
+          "最后恒等式是 f=(x^2-2x+3)(x^2-x-3)+(x+8)，下方 stepper 可逐步检查同一批更新。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch polynomial long division build quotient terms by canceling leading terms while preserving the identity f=gq+current remainder.",
+      "觀看多項式長除法如何逐步消去最高次項來建立商式，同時保持 f=gq+暫時餘式。",
+      "观看多项式长除法如何逐步消去最高次项来建立商式，同时保持 f=gq+暂时余式。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1025/polynomial-division-remainder-story-en.png",
+      "/generated/animations/math1025/polynomial-division-remainder-story-zh-hk.png",
+      "/generated/animations/math1025/polynomial-division-remainder-story-zh-cn.png"
+    ),
+    title: text(
+      "Polynomial division and remainder tracking",
+      "多項式除法與餘式追蹤",
+      "多项式除法与余式追踪"
+    ),
+    transcript: [
+      text(
+        "Polynomial division produces the identity f=gq+r, where the remainder has smaller degree than the divisor.",
+        "多項式除法產生恆等式 f=gq+r，其中餘式次數小於除式次數。",
+        "多项式除法产生恒等式 f=gq+r，其中余式次数小于除式次数。"
+      ),
+      text(
+        "Each step chooses a quotient term by comparing the leading term of the current remainder with the leading term of g.",
+        "每一步都比較暫時餘式的最高次項與 g 的最高次項，從而選出下一個商式項。",
+        "每一步都比较暂时余式的最高次项与 g 的最高次项，从而选出下一个商式项。"
+      ),
+      text(
+        "For the chapter example, the quotient is x^2-x-3 and the remainder is x+8.",
+        "在本章例子中，商式是 x^2-x-3，餘式是 x+8。",
+        "在本章例子中，商式是 x^2-x-3，余式是 x+8。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1025/polynomial-division-remainder-story-en.mp4",
+      "/generated/animations/math1025/polynomial-division-remainder-story-zh-hk.mp4",
+      "/generated/animations/math1025/polynomial-division-remainder-story-zh-cn.mp4"
+    ),
+  },
   "csci2520-hash-table-collision-strategy-story": {
     conclusion: text(
       "Hashing is only the first step. Correct lookup and update still depend on the collision strategy checking keys along the chain or probe sequence.",

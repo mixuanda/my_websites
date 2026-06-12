@@ -1,0 +1,399 @@
+{
+  "course": "math1025",
+  "chapter": "polynomial-methods",
+  "unit": "polynomial-arithmetic-and-division",
+  "unitTitle": {
+    "en": "8.1 Polynomial arithmetic and division",
+    "zh-hk": "8.1 多項式運算與除法",
+    "zh-cn": "8.1 多项式运算与除法"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-year proof-based algebra and number theory",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Division is an identity with a stopping rule",
+          "goal": "State the division algorithm as f=gq+r and make the degree condition visible.",
+          "beats": [
+            "Show the identity f(x)=g(x)q(x)+r(x).",
+            "Mark g as the nonzero divisor.",
+            "Highlight the stop condition deg r < deg g."
+          ],
+          "mathBlocks": [
+            "f(x)=g(x)q(x)+r(x)",
+            "g(x)\\ne0",
+            "\\deg r<\\deg g"
+          ],
+          "voiceover": [
+            "Polynomial division is not just a computation; it produces an identity.",
+            "The process stops when the remainder has smaller degree than the divisor."
+          ],
+          "animation": "Identity card with quotient and remainder slots, plus the degree stop condition"
+        },
+        {
+          "type": "example_setup",
+          "cardTitle": "Use the chapter's long-division example",
+          "goal": "Set up Example 8.0 from the source slides and current note page.",
+          "beats": [
+            "Put the dividend x^4-3x^3+2x^2+4x-1 on the left.",
+            "Put the divisor x^2-2x+3 on the right.",
+            "Leave quotient and remainder as quantities to be built."
+          ],
+          "mathBlocks": [
+            "f=x^4-3x^3+2x^2+4x-1",
+            "g=x^2-2x+3",
+            "q=?,\\ r=?"
+          ],
+          "voiceover": [
+            "The example divides a quartic by a quadratic.",
+            "The quotient will be built one leading-term cancellation at a time."
+          ],
+          "animation": "Dividend and divisor cards feed into empty quotient and remainder slots"
+        },
+        {
+          "type": "division_step",
+          "cardTitle": "First cancel x^4",
+          "goal": "Show why the first quotient term is x^2 and update the current remainder.",
+          "beats": [
+            "Compare leading terms x^4 and x^2.",
+            "Choose x^2 because x^4/x^2=x^2.",
+            "Subtract x^2 times the divisor.",
+            "Record the new current remainder."
+          ],
+          "mathBlocks": [
+            "x^4/x^2=x^2",
+            "x^2g=x^4-2x^3+3x^2",
+            "current=-x^3-x^2+4x-1"
+          ],
+          "voiceover": [
+            "The leading term of the current dividend determines the next quotient term.",
+            "Subtracting that multiple cancels x to the fourth."
+          ],
+          "animation": "Leading-term ratio produces the first quotient chip and a new current remainder"
+        },
+        {
+          "type": "division_step",
+          "cardTitle": "Then cancel -x^3",
+          "goal": "Show the second quotient term and update the current remainder again.",
+          "beats": [
+            "Compare -x^3 with x^2.",
+            "Choose -x because -x^3/x^2=-x.",
+            "Subtract -x times the divisor.",
+            "Record the current remainder -3x^2+7x-1."
+          ],
+          "mathBlocks": [
+            "(-x^3)/x^2=-x",
+            "(-x)g=-x^3+2x^2-3x",
+            "current=-3x^2+7x-1"
+          ],
+          "voiceover": [
+            "The same rule repeats on the new current remainder.",
+            "After subtracting -x times the divisor, the degree drops again."
+          ],
+          "animation": "Second quotient chip joins the first and the current remainder moves down"
+        },
+        {
+          "type": "division_step",
+          "cardTitle": "The last cancellation produces the remainder",
+          "goal": "Show the final quotient term and stop because the remainder degree is smaller.",
+          "beats": [
+            "Compare -3x^2 with x^2.",
+            "Choose -3 because -3x^2/x^2=-3.",
+            "Subtract -3 times the divisor.",
+            "Stop at x+8 because its degree is 1, smaller than deg g=2."
+          ],
+          "mathBlocks": [
+            "(-3x^2)/x^2=-3",
+            "(-3)g=-3x^2+6x-9",
+            "r=x+8,\\ \\deg r=1<2"
+          ],
+          "voiceover": [
+            "The process stops for a structural reason, not because the expression looks simple.",
+            "The remainder degree is now smaller than the divisor degree."
+          ],
+          "animation": "Final quotient chip appears, then the remainder card is checked against the degree rule"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Every subtraction preserves the identity",
+          "goal": "Summarize the invariant and point readers to the interactive stepper.",
+          "beats": [
+            "Collect the quotient x^2-x-3.",
+            "Collect the remainder x+8.",
+            "Write the final identity.",
+            "Connect the video to the stepper that follows in the note."
+          ],
+          "mathBlocks": [
+            "q=x^2-x-3",
+            "r=x+8",
+            "f=(x^2-2x+3)(x^2-x-3)+(x+8)"
+          ],
+          "voiceover": [
+            "At every stage, the same dividend is represented as divisor times accumulated quotient plus current remainder.",
+            "The stepper below lets the reader inspect these same cancellations one by one."
+          ],
+          "animation": "Quotient and remainder cards lock into the final identity and point toward the stepper"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "大一證明式代數與數論",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "除法是一個恆等式加停止條件",
+          "goal": "把除法算法寫成 f=gq+r，並顯示餘式的次數條件。",
+          "beats": [
+            "顯示恆等式 f(x)=g(x)q(x)+r(x)。",
+            "標出 g 是非零除式。",
+            "強調停止條件 deg r < deg g。"
+          ],
+          "mathBlocks": [
+            "f(x)=g(x)q(x)+r(x)",
+            "g(x)\\ne0",
+            "\\deg r<\\deg g"
+          ],
+          "voiceover": [
+            "多項式除法不只是計算；它產生一條恆等式。",
+            "過程在餘式次數小於除式次數時停止。"
+          ],
+          "animation": "恆等式卡片顯示商式與餘式位置，旁邊加上次數停止條件"
+        },
+        {
+          "type": "example_setup",
+          "cardTitle": "使用本章的長除法例子",
+          "goal": "設定來源 slides 與現有 notes 中的 Example 8.0。",
+          "beats": [
+            "左邊放被除式 x^4-3x^3+2x^2+4x-1。",
+            "右邊放除式 x^2-2x+3。",
+            "商式與餘式先留作待建立的量。"
+          ],
+          "mathBlocks": [
+            "f=x^4-3x^3+2x^2+4x-1",
+            "g=x^2-2x+3",
+            "q=?,\\ r=?"
+          ],
+          "voiceover": [
+            "這個例子用二次式除四次式。",
+            "商式會由一次一次消去最高次項建立。"
+          ],
+          "animation": "被除式與除式卡片指向空白商式與餘式位置"
+        },
+        {
+          "type": "division_step",
+          "cardTitle": "先消去 x^4",
+          "goal": "說明第一個商式項為何是 x^2，並更新暫時餘式。",
+          "beats": [
+            "比較最高次項 x^4 與 x^2。",
+            "因為 x^4/x^2=x^2，所以選 x^2。",
+            "減去 x^2 倍的除式。",
+            "記錄新的暫時餘式。"
+          ],
+          "mathBlocks": [
+            "x^4/x^2=x^2",
+            "x^2g=x^4-2x^3+3x^2",
+            "current=-x^3-x^2+4x-1"
+          ],
+          "voiceover": [
+            "暫時被除式的最高次項決定下一個商式項。",
+            "減去這個倍式會消去 x 的四次項。"
+          ],
+          "animation": "最高次項比值產生第一個商式標籤，並落到新的暫時餘式"
+        },
+        {
+          "type": "division_step",
+          "cardTitle": "再消去 -x^3",
+          "goal": "顯示第二個商式項，並再次更新暫時餘式。",
+          "beats": [
+            "比較 -x^3 與 x^2。",
+            "因為 -x^3/x^2=-x，所以選 -x。",
+            "減去 -x 倍的除式。",
+            "記錄暫時餘式 -3x^2+7x-1。"
+          ],
+          "mathBlocks": [
+            "(-x^3)/x^2=-x",
+            "(-x)g=-x^3+2x^2-3x",
+            "current=-3x^2+7x-1"
+          ],
+          "voiceover": [
+            "同一規則在新的暫時餘式上重複。",
+            "減去 -x 倍的除式後，次數又下降。"
+          ],
+          "animation": "第二個商式標籤加入第一個標籤，暫時餘式向下更新"
+        },
+        {
+          "type": "division_step",
+          "cardTitle": "最後一次消去產生餘式",
+          "goal": "顯示最後一個商式項，並因餘式次數較小而停止。",
+          "beats": [
+            "比較 -3x^2 與 x^2。",
+            "因為 -3x^2/x^2=-3，所以選 -3。",
+            "減去 -3 倍的除式。",
+            "停在 x+8，因為它的次數是 1，小於 deg g=2。"
+          ],
+          "mathBlocks": [
+            "(-3x^2)/x^2=-3",
+            "(-3)g=-3x^2+6x-9",
+            "r=x+8,\\ \\deg r=1<2"
+          ],
+          "voiceover": [
+            "過程停止是因為結構條件，不是因為式子看起來簡單。",
+            "餘式次數現在小於除式次數。"
+          ],
+          "animation": "最後商式標籤出現，餘式卡片通過次數檢查"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "每次相減都保持同一恆等式",
+          "goal": "總結不變量，並把讀者引到下方互動 stepper。",
+          "beats": [
+            "收集商式 x^2-x-3。",
+            "收集餘式 x+8。",
+            "寫出最後恆等式。",
+            "連到 notes 下面的 stepper。"
+          ],
+          "mathBlocks": [
+            "q=x^2-x-3",
+            "r=x+8",
+            "f=(x^2-2x+3)(x^2-x-3)+(x+8)"
+          ],
+          "voiceover": [
+            "每一階段，同一被除式都等於除式乘以累積商式，再加暫時餘式。",
+            "下方 stepper 讓讀者逐步檢查同一批消去。"
+          ],
+          "animation": "商式與餘式卡片鎖入最後恆等式，並指向 stepper"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "大一证明式代数与数论",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "除法是一个恒等式加停止条件",
+          "goal": "把除法算法写成 f=gq+r，并显示余式的次数条件。",
+          "beats": [
+            "显示恒等式 f(x)=g(x)q(x)+r(x)。",
+            "标出 g 是非零除式。",
+            "强调停止条件 deg r < deg g。"
+          ],
+          "mathBlocks": [
+            "f(x)=g(x)q(x)+r(x)",
+            "g(x)\\ne0",
+            "\\deg r<\\deg g"
+          ],
+          "voiceover": [
+            "多项式除法不只是计算；它产生一条恒等式。",
+            "过程在余式次数小于除式次数时停止。"
+          ],
+          "animation": "恒等式卡片显示商式与余式位置，旁边加上次数停止条件"
+        },
+        {
+          "type": "example_setup",
+          "cardTitle": "使用本章的长除法例子",
+          "goal": "设置来源 slides 与现有 notes 中的 Example 8.0。",
+          "beats": [
+            "左边放被除式 x^4-3x^3+2x^2+4x-1。",
+            "右边放除式 x^2-2x+3。",
+            "商式与余式先留作待建立的量。"
+          ],
+          "mathBlocks": [
+            "f=x^4-3x^3+2x^2+4x-1",
+            "g=x^2-2x+3",
+            "q=?,\\ r=?"
+          ],
+          "voiceover": [
+            "这个例子用二次式除四次式。",
+            "商式会由一次一次消去最高次项建立。"
+          ],
+          "animation": "被除式与除式卡片指向空白商式与余式位置"
+        },
+        {
+          "type": "division_step",
+          "cardTitle": "先消去 x^4",
+          "goal": "说明第一个商式项为什么是 x^2，并更新暂时余式。",
+          "beats": [
+            "比较最高次项 x^4 与 x^2。",
+            "因为 x^4/x^2=x^2，所以选 x^2。",
+            "减去 x^2 倍的除式。",
+            "记录新的暂时余式。"
+          ],
+          "mathBlocks": [
+            "x^4/x^2=x^2",
+            "x^2g=x^4-2x^3+3x^2",
+            "current=-x^3-x^2+4x-1"
+          ],
+          "voiceover": [
+            "暂时被除式的最高次项决定下一个商式项。",
+            "减去这个倍式会消去 x 的四次项。"
+          ],
+          "animation": "最高次项比值产生第一个商式标签，并落到新的暂时余式"
+        },
+        {
+          "type": "division_step",
+          "cardTitle": "再消去 -x^3",
+          "goal": "显示第二个商式项，并再次更新暂时余式。",
+          "beats": [
+            "比较 -x^3 与 x^2。",
+            "因为 -x^3/x^2=-x，所以选 -x。",
+            "减去 -x 倍的除式。",
+            "记录暂时余式 -3x^2+7x-1。"
+          ],
+          "mathBlocks": [
+            "(-x^3)/x^2=-x",
+            "(-x)g=-x^3+2x^2-3x",
+            "current=-3x^2+7x-1"
+          ],
+          "voiceover": [
+            "同一规则在新的暂时余式上重复。",
+            "减去 -x 倍的除式后，次数又下降。"
+          ],
+          "animation": "第二个商式标签加入第一个标签，暂时余式向下更新"
+        },
+        {
+          "type": "division_step",
+          "cardTitle": "最后一次消去产生余式",
+          "goal": "显示最后一个商式项，并因余式次数较小而停止。",
+          "beats": [
+            "比较 -3x^2 与 x^2。",
+            "因为 -3x^2/x^2=-3，所以选 -3。",
+            "减去 -3 倍的除式。",
+            "停在 x+8，因为它的次数是 1，小于 deg g=2。"
+          ],
+          "mathBlocks": [
+            "(-3x^2)/x^2=-3",
+            "(-3)g=-3x^2+6x-9",
+            "r=x+8,\\ \\deg r=1<2"
+          ],
+          "voiceover": [
+            "过程停止是因为结构条件，不是因为式子看起来简单。",
+            "余式次数现在小于除式次数。"
+          ],
+          "animation": "最后商式标签出现，余式卡片通过次数检查"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "每次相减都保持同一恒等式",
+          "goal": "总结不变量，并把读者引到下方互动 stepper。",
+          "beats": [
+            "收集商式 x^2-x-3。",
+            "收集余式 x+8。",
+            "写出最后恒等式。",
+            "连到 notes 下面的 stepper。"
+          ],
+          "mathBlocks": [
+            "q=x^2-x-3",
+            "r=x+8",
+            "f=(x^2-2x+3)(x^2-x-3)+(x+8)"
+          ],
+          "voiceover": [
+            "每一阶段，同一被除式都等于除式乘以累积商式，再加暂时余式。",
+            "下方 stepper 让读者逐步检查同一批消去。"
+          ],
+          "animation": "商式与余式卡片锁入最后恒等式，并指向 stepper"
+        }
+      ]
+    }
+  }
+}

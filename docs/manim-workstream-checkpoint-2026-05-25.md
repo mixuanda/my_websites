@@ -37,28 +37,33 @@ history.
 | CSCI2520 `1.2 Hash tables and collision strategies` | `csci2520-hash-table-collision-strategy-story` | `docs/manim-hash-table-video-qa-2026-06-11.md` |
 | Math1025 `7.1 Divisibility, gcd, and integer equations` | `math1025-euclidean-bezout-integer-equation-story` | `docs/manim-euclidean-bezout-video-qa-2026-06-12.md` |
 | Math1025 `7.2 Rational and irrational numbers` | `math1025-rational-irrational-root-proof-story` | `docs/manim-rational-irrational-video-qa-2026-06-12.md` |
+| Math1025 `8.1 Polynomial arithmetic and division` | `math1025-polynomial-division-remainder-story` | `docs/manim-polynomial-division-video-qa-2026-06-12.md` |
 
 ## Latest Slice Notes
 
-Math1025 `7.2` was implemented after the roadmap, current MDX, extracted
-chapter 7 text, and a read-only explorer confirmed that the rational/irrational
-unit should be Manim-only. The clip explains why arithmetic closure of `Q` does
-not contain every root, then visualizes the lowest-terms contradiction for
-`sqrt(2)`, the prime nth-root pattern, and the perfect-square criterion for
-`sqrt(n)`.
+Math1025 `8.1` was implemented after the roadmap, current MDX, extracted
+chapter 8 text, and a read-only explorer confirmed that the polynomial
+division unit should be Manim + widget with no new widget because
+`math1025-polynomial-division-stepper` already exists. The clip uses the
+source-backed Example 8.0:
+`x^4-3x^3+2x^2+4x-1` divided by `x^2-2x+3`. It visualizes
+leading-term cancellation, quotient accumulation, the degree-based stop rule,
+and the final `f=gq+r` invariant.
 
 Fixes applied:
 
-- new storyboard covers closure of `Q`, the lowest-terms setup, Euclid's lemma
-  forcing `2|a`, substitution forcing `2|b`, the contradiction with
-  `gcd(a,b)=1`, and the root-test generalization;
+- new storyboard covers the division identity, the Example 8.0 setup, three
+  leading-term cancellation passes, the remainder-degree stop condition, and
+  the stepper follow-up;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the rational/irrational root scene and writes assets under
+- render script now includes the polynomial-division scene and writes assets under
   `public/generated/animations/math1025/`;
-- video embed was placed after the perfect-square criterion and before quick
-  checks in all three localized MDX files;
-- lowest-terms and final root-test frames were adjusted after visual QA to
-  remove label crowding and bottom-card overlap.
+- video embed was placed after the division-algorithm uniqueness proof and
+  before the existing polynomial division stepper in all three localized MDX
+  files;
+- step frame layout, final-step layout, summary-card text, and poster timing
+  were adjusted after visual QA to remove overlap and transition-frame poster
+  artifacts.
 
 ## Verification Stack Used For Latest Slice
 
@@ -79,7 +84,7 @@ Proceed to Math1025 polynomial-method clips unless the roadmap priority changes.
 
 Expected first step:
 
-1. Start with Math1025 `polynomial-methods/polynomial-arithmetic-and-division`
+1. Start with Math1025 `polynomial-methods/polynomial-gcds-and-irreducibility`
    unless source inspection changes the priority.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.

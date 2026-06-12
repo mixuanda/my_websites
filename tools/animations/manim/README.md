@@ -92,6 +92,13 @@ Current pilots target:
   - `RationalIrrationalRootProofStoryZhHk`
   - `RationalIrrationalRootProofStoryZhCn`
 - source: `scenes/math1025/rational_irrational_roots.py`
+- unit: `math1025.polynomial-methods.polynomial-arithmetic-and-division`
+- public component id: `math1025-polynomial-division-remainder-story`
+- scenes:
+  - `PolynomialDivisionRemainderStoryEn`
+  - `PolynomialDivisionRemainderStoryZhHk`
+  - `PolynomialDivisionRemainderStoryZhCn`
+- source: `scenes/math1025/polynomial_division.py`
 - unit: `csci2520.adt-and-operations.hash-tables-and-collision-strategies`
 - public component id: `csci2520-hash-table-collision-strategy-story`
 - scenes:
@@ -183,6 +190,12 @@ course-specific directory under `public/generated/animations/<course>/`:
 - `math1025/rational-irrational-root-proof-story-zh-hk.png`
 - `math1025/rational-irrational-root-proof-story-zh-cn.mp4`
 - `math1025/rational-irrational-root-proof-story-zh-cn.png`
+- `math1025/polynomial-division-remainder-story-en.mp4`
+- `math1025/polynomial-division-remainder-story-en.png`
+- `math1025/polynomial-division-remainder-story-zh-hk.mp4`
+- `math1025/polynomial-division-remainder-story-zh-hk.png`
+- `math1025/polynomial-division-remainder-story-zh-cn.mp4`
+- `math1025/polynomial-division-remainder-story-zh-cn.png`
 - `csci2520/hash-table-collision-strategy-story-en.mp4`
 - `csci2520/hash-table-collision-strategy-story-en.png`
 - `csci2520/hash-table-collision-strategy-story-zh-hk.mp4`
@@ -211,6 +224,7 @@ tools/animations/manim/scripts/render_scene.sh FunctionMapPropertiesStoryZhHk
 tools/animations/manim/scripts/render_scene.sh ComplexPlaneArithmeticStoryZhHk
 tools/animations/manim/scripts/render_scene.sh EuclideanBezoutIntegerEquationStoryZhHk
 tools/animations/manim/scripts/render_scene.sh RationalIrrationalRootProofStoryZhHk
+tools/animations/manim/scripts/render_scene.sh PolynomialDivisionRemainderStoryZhHk
 tools/animations/manim/scripts/render_scene.sh HashTableCollisionStrategyStoryZhHk
 ```
 
