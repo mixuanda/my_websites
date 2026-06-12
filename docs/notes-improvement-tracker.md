@@ -217,6 +217,12 @@ Progress on the animation slice:
   `public/generated/animations/math1025/`, article embeds after the
   back-substitution worked example, and static export fallback; focused QA is
   recorded in `docs/manim-euclidean-bezout-video-qa-2026-06-12.md`.
+- completed the third Math1025 Manim pilot for `7.2 Rational and irrational
+  numbers` with trilingual
+  `math1025-rational-irrational-root-proof-story` videos, localized posters, a
+  new trilingual storyboard, article embeds after the perfect-square criterion
+  and before quick checks, and TXT/PDF static fallback; focused QA is recorded in
+  `docs/manim-rational-irrational-video-qa-2026-06-12.md`.
 - completed the first CSCI2520 Manim + widget pass for `1.2 Hash tables and
   collision strategies` with trilingual
   `csci2520-hash-table-collision-strategy-story` videos, localized posters, a
@@ -230,8 +236,8 @@ Remaining animation work:
 
 - decide whether these generated assets should be committed directly under
   `public/generated/animations/` or moved to external/static hosting later.
-- continue with the next roadmap slice after the storage-policy checkpoint:
-  Math1025 integer-method and polynomial-method clips.
+- continue with the next roadmap slice after the rational/irrational checkpoint:
+  Math1025 polynomial-method clips.
 
 ## 1. Global Notes Navigation / Long Course Sidebar
 

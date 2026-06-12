@@ -44,6 +44,9 @@ else
     "EuclideanBezoutIntegerEquationStoryEn"
     "EuclideanBezoutIntegerEquationStoryZhHk"
     "EuclideanBezoutIntegerEquationStoryZhCn"
+    "RationalIrrationalRootProofStoryEn"
+    "RationalIrrationalRootProofStoryZhHk"
+    "RationalIrrationalRootProofStoryZhCn"
     "HashTableCollisionStrategyStoryEn"
     "HashTableCollisionStrategyStoryZhHk"
     "HashTableCollisionStrategyStoryZhCn"
@@ -97,6 +100,9 @@ scene_file() {
     EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|EuclideanBezoutIntegerEquationStoryZhHk|EuclideanBezoutIntegerEquationStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1025/euclidean_bezout_integer_equations.py"
       ;;
+    RationalIrrationalRootProofStory|RationalIrrationalRootProofStoryEn|RationalIrrationalRootProofStoryZhHk|RationalIrrationalRootProofStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1025/rational_irrational_roots.py"
+      ;;
     HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn|HashTableCollisionStrategyStoryZhHk|HashTableCollisionStrategyStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/csci2520/hash_table_collision_strategy.py"
       ;;
@@ -108,13 +114,13 @@ scene_file() {
 
 scene_locale() {
   case "$1" in
-    GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn)
+    GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|RationalIrrationalRootProofStory|RationalIrrationalRootProofStoryEn|HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn)
       printf '%s\n' "en"
       ;;
-    GaussianEliminationRrefPivotStoryZhHk|MatrixBasicsPositionMapZhHk|AugmentedMatrixRowOperationSafetyZhHk|GramSchmidtProjectionStoryZhHk|MatrixProductLinearSystemStoryZhHk|RowOperationMatrixLeftMultiplyStoryZhHk|LinearCombinationSpanSweepStoryZhHk|LinearDependenceRedundancyStoryZhHk|FunctionMapPropertiesStoryZhHk|ComplexPlaneArithmeticStoryZhHk|EuclideanBezoutIntegerEquationStoryZhHk|HashTableCollisionStrategyStoryZhHk)
+    GaussianEliminationRrefPivotStoryZhHk|MatrixBasicsPositionMapZhHk|AugmentedMatrixRowOperationSafetyZhHk|GramSchmidtProjectionStoryZhHk|MatrixProductLinearSystemStoryZhHk|RowOperationMatrixLeftMultiplyStoryZhHk|LinearCombinationSpanSweepStoryZhHk|LinearDependenceRedundancyStoryZhHk|FunctionMapPropertiesStoryZhHk|ComplexPlaneArithmeticStoryZhHk|EuclideanBezoutIntegerEquationStoryZhHk|RationalIrrationalRootProofStoryZhHk|HashTableCollisionStrategyStoryZhHk)
       printf '%s\n' "zh-hk"
       ;;
-    GaussianEliminationRrefPivotStoryZhCn|MatrixBasicsPositionMapZhCn|AugmentedMatrixRowOperationSafetyZhCn|GramSchmidtProjectionStoryZhCn|MatrixProductLinearSystemStoryZhCn|RowOperationMatrixLeftMultiplyStoryZhCn|LinearCombinationSpanSweepStoryZhCn|LinearDependenceRedundancyStoryZhCn|FunctionMapPropertiesStoryZhCn|ComplexPlaneArithmeticStoryZhCn|EuclideanBezoutIntegerEquationStoryZhCn|HashTableCollisionStrategyStoryZhCn)
+    GaussianEliminationRrefPivotStoryZhCn|MatrixBasicsPositionMapZhCn|AugmentedMatrixRowOperationSafetyZhCn|GramSchmidtProjectionStoryZhCn|MatrixProductLinearSystemStoryZhCn|RowOperationMatrixLeftMultiplyStoryZhCn|LinearCombinationSpanSweepStoryZhCn|LinearDependenceRedundancyStoryZhCn|FunctionMapPropertiesStoryZhCn|ComplexPlaneArithmeticStoryZhCn|EuclideanBezoutIntegerEquationStoryZhCn|RationalIrrationalRootProofStoryZhCn|HashTableCollisionStrategyStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
     *)
@@ -158,6 +164,9 @@ video_basename() {
     EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|EuclideanBezoutIntegerEquationStoryZhHk|EuclideanBezoutIntegerEquationStoryZhCn)
       printf '%s\n' "euclidean-bezout-integer-equation-story"
       ;;
+    RationalIrrationalRootProofStory|RationalIrrationalRootProofStoryEn|RationalIrrationalRootProofStoryZhHk|RationalIrrationalRootProofStoryZhCn)
+      printf '%s\n' "rational-irrational-root-proof-story"
+      ;;
     HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn|HashTableCollisionStrategyStoryZhHk|HashTableCollisionStrategyStoryZhCn)
       printf '%s\n' "hash-table-collision-strategy-story"
       ;;
@@ -175,7 +184,7 @@ scene_course() {
     FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|FunctionMapPropertiesStoryZhHk|FunctionMapPropertiesStoryZhCn)
       printf '%s\n' "math1090"
       ;;
-    ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|ComplexPlaneArithmeticStoryZhHk|ComplexPlaneArithmeticStoryZhCn|EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|EuclideanBezoutIntegerEquationStoryZhHk|EuclideanBezoutIntegerEquationStoryZhCn)
+    ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|ComplexPlaneArithmeticStoryZhHk|ComplexPlaneArithmeticStoryZhCn|EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|EuclideanBezoutIntegerEquationStoryZhHk|EuclideanBezoutIntegerEquationStoryZhCn|RationalIrrationalRootProofStory|RationalIrrationalRootProofStoryEn|RationalIrrationalRootProofStoryZhHk|RationalIrrationalRootProofStoryZhCn)
       printf '%s\n' "math1025"
       ;;
     HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn|HashTableCollisionStrategyStoryZhHk|HashTableCollisionStrategyStoryZhCn)

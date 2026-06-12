@@ -1,0 +1,401 @@
+{
+  "course": "math1025",
+  "chapter": "integer-methods",
+  "unit": "rational-and-irrational-numbers",
+  "unitTitle": {
+    "en": "7.2 Rational and irrational numbers",
+    "zh-hk": "7.2 有理數與無理數",
+    "zh-cn": "7.2 有理数与无理数"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-year proof-based algebra and number theory",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Q is closed, but not complete",
+          "goal": "Separate arithmetic closure of rational numbers from the existence of roots outside Q.",
+          "beats": [
+            "Show that rational numbers are stable under ordinary arithmetic.",
+            "Place x^2=2 beside Q as an equation whose real root is not rational.",
+            "Name the proof goal: no fraction can equal sqrt(2)."
+          ],
+          "mathBlocks": [
+            "x,y\\in\\mathbb Q \\Longrightarrow x+y,xy\\in\\mathbb Q",
+            "x^2=2",
+            "\\sqrt2\\notin\\mathbb Q"
+          ],
+          "voiceover": [
+            "The rational numbers are closed under the usual arithmetic operations.",
+            "That closure does not mean every real root belongs to Q."
+          ],
+          "animation": "Q card linked to arithmetic arrows, with x^2=2 outside the card"
+        },
+        {
+          "type": "proof_setup",
+          "cardTitle": "Assume a lowest-terms fraction",
+          "goal": "Set up the contradiction by writing sqrt(2)=a/b with gcd(a,b)=1.",
+          "beats": [
+            "Assume sqrt(2) is rational.",
+            "Write sqrt(2)=a/b with positive integers a and b.",
+            "Attach the lowest-terms invariant gcd(a,b)=1."
+          ],
+          "mathBlocks": [
+            "\\sqrt2=\\frac ab",
+            "a,b\\in\\mathbb Z^+",
+            "\\gcd(a,b)=1"
+          ],
+          "voiceover": [
+            "If sqrt(2) were rational, it could be written in lowest terms.",
+            "The proof will force a common prime factor, contradicting this setup."
+          ],
+          "animation": "fraction cards for numerator and denominator with a lowest-terms seal"
+        },
+        {
+          "type": "proof_step",
+          "cardTitle": "Squaring forces 2 into the numerator",
+          "goal": "Use 2b^2=a^2 and Euclid's lemma to infer 2 divides a.",
+          "beats": [
+            "Square both sides of sqrt(2)=a/b.",
+            "Rewrite the equation as 2b^2=a^2.",
+            "Highlight 2|a^2, then use Euclid's lemma to conclude 2|a."
+          ],
+          "mathBlocks": [
+            "2b^2=a^2",
+            "2\\mid a^2",
+            "2\\mid a"
+          ],
+          "voiceover": [
+            "After squaring, the factor 2 divides a squared.",
+            "Since 2 is prime, Euclid's lemma says it already divides a."
+          ],
+          "animation": "prime badge 2 moving from the equation to the numerator card"
+        },
+        {
+          "type": "proof_step",
+          "cardTitle": "Substitution forces 2 into the denominator",
+          "goal": "Substitute a=2c and derive 2|b.",
+          "beats": [
+            "Write a=2c.",
+            "Substitute into 2b^2=a^2.",
+            "Simplify to b^2=2c^2 and infer 2|b."
+          ],
+          "mathBlocks": [
+            "a=2c",
+            "2b^2=(2c)^2",
+            "b^2=2c^2",
+            "2\\mid b"
+          ],
+          "voiceover": [
+            "Once a is even, substitute a=2c back into the same equation.",
+            "The same prime is then forced into b."
+          ],
+          "animation": "substitution chain ending with prime badge 2 on the denominator card"
+        },
+        {
+          "type": "contradiction",
+          "cardTitle": "The lowest-terms condition breaks",
+          "goal": "Make the contradiction with gcd(a,b)=1 explicit.",
+          "beats": [
+            "Show 2 divides a and 2 divides b at the same time.",
+            "Compare that with gcd(a,b)=1.",
+            "Conclude that the original rational assumption was false."
+          ],
+          "mathBlocks": [
+            "2\\mid a \\text{ and } 2\\mid b",
+            "\\gcd(a,b)\\ne1",
+            "\\sqrt2\\notin\\mathbb Q"
+          ],
+          "voiceover": [
+            "A lowest-terms fraction cannot have the same prime dividing numerator and denominator.",
+            "The contradiction proves sqrt(2) is irrational."
+          ],
+          "animation": "two prime badges collide with the lowest-terms seal and produce a contradiction"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "The pattern gives root tests",
+          "goal": "Connect the sqrt(2) proof to prime roots and the perfect-square criterion.",
+          "beats": [
+            "Replace 2 by a prime p and square roots by nth roots.",
+            "Show the same prime factor being forced into both a and b.",
+            "Close with sqrt(n) rational iff n is a perfect square."
+          ],
+          "mathBlocks": [
+            "\\sqrt[n]{p}\\notin\\mathbb Q \\quad(n>1)",
+            "\\sqrt n\\in\\mathbb Q \\Longleftrightarrow n=m^2"
+          ],
+          "voiceover": [
+            "The proof is not a trick specific to 2.",
+            "For positive integers, a rational square root occurs exactly when the integer is already a perfect square."
+          ],
+          "animation": "prime-root template flowing into a perfect-square/non-square split"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "大一證明式代數與數論",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "有理數封閉，但仍不夠大",
+          "goal": "區分有理數的四則運算封閉性與 Q 以外實根的存在。",
+          "beats": [
+            "顯示有理數在普通四則運算下穩定。",
+            "把 x^2=2 放在 Q 旁邊，表示它的實根不是有理數。",
+            "點出證明目標：沒有分數等於 sqrt(2)。"
+          ],
+          "mathBlocks": [
+            "x,y\\in\\mathbb Q \\Longrightarrow x+y,xy\\in\\mathbb Q",
+            "x^2=2",
+            "\\sqrt2\\notin\\mathbb Q"
+          ],
+          "voiceover": [
+            "有理數對通常四則運算封閉。",
+            "但這種封閉性不代表每個實根都在 Q 裏。"
+          ],
+          "animation": "Q 卡連到四則運算箭咀，x^2=2 留在卡外"
+        },
+        {
+          "type": "proof_setup",
+          "cardTitle": "先假設有最低項分數",
+          "goal": "用 sqrt(2)=a/b 且 gcd(a,b)=1 設定反證法。",
+          "beats": [
+            "假設 sqrt(2) 是有理數。",
+            "寫成 sqrt(2)=a/b，其中 a 和 b 是正整數。",
+            "加上最低項不變量 gcd(a,b)=1。"
+          ],
+          "mathBlocks": [
+            "\\sqrt2=\\frac ab",
+            "a,b\\in\\mathbb Z^+",
+            "\\gcd(a,b)=1"
+          ],
+          "voiceover": [
+            "如果 sqrt(2) 是有理數，它可以寫成最低項。",
+            "證明會迫出一個共同質因數，和最低項設定矛盾。"
+          ],
+          "animation": "分子與分母卡片附上最低項標記"
+        },
+        {
+          "type": "proof_step",
+          "cardTitle": "平方迫使 2 進入分子",
+          "goal": "由 2b^2=a^2 和 Euclid 引理推出 2 整除 a。",
+          "beats": [
+            "把 sqrt(2)=a/b 兩邊平方。",
+            "改寫成 2b^2=a^2。",
+            "高亮 2|a^2，再用 Euclid 引理推出 2|a。"
+          ],
+          "mathBlocks": [
+            "2b^2=a^2",
+            "2\\mid a^2",
+            "2\\mid a"
+          ],
+          "voiceover": [
+            "平方後，因數 2 整除 a 的平方。",
+            "因為 2 是質數，Euclid 引理說它已經整除 a。"
+          ],
+          "animation": "質數 2 標記由等式移到分子卡片"
+        },
+        {
+          "type": "proof_step",
+          "cardTitle": "代入後也進入分母",
+          "goal": "代入 a=2c 並推出 2|b。",
+          "beats": [
+            "寫 a=2c。",
+            "代回 2b^2=a^2。",
+            "化簡成 b^2=2c^2，從而推出 2|b。"
+          ],
+          "mathBlocks": [
+            "a=2c",
+            "2b^2=(2c)^2",
+            "b^2=2c^2",
+            "2\\mid b"
+          ],
+          "voiceover": [
+            "既然 a 是偶數，就把 a=2c 代回同一條等式。",
+            "同一個質數於是又被迫進入 b。"
+          ],
+          "animation": "代入鏈最後把質數 2 標記放到分母卡片"
+        },
+        {
+          "type": "contradiction",
+          "cardTitle": "最低項條件被破壞",
+          "goal": "明確展示與 gcd(a,b)=1 的矛盾。",
+          "beats": [
+            "同時顯示 2 整除 a 和 2 整除 b。",
+            "與 gcd(a,b)=1 比較。",
+            "得出原本有理數假設為假。"
+          ],
+          "mathBlocks": [
+            "2\\mid a \\text{ and } 2\\mid b",
+            "\\gcd(a,b)\\ne1",
+            "\\sqrt2\\notin\\mathbb Q"
+          ],
+          "voiceover": [
+            "最低項分數不可能有同一個質數同時整除分子和分母。",
+            "這個矛盾證明 sqrt(2) 是無理數。"
+          ],
+          "animation": "兩個質數標記撞上最低項標記並形成矛盾"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "同一模式給出根式判別",
+          "goal": "連接 sqrt(2) 證明、質數 n 次根，以及完全平方數判別。",
+          "beats": [
+            "把 2 換成質數 p，把平方根換成 n 次根。",
+            "顯示同一質因數被迫進入 a 和 b。",
+            "以 sqrt(n) 有理當且僅當 n 是完全平方數作結。"
+          ],
+          "mathBlocks": [
+            "\\sqrt[n]{p}\\notin\\mathbb Q \\quad(n>1)",
+            "\\sqrt n\\in\\mathbb Q \\Longleftrightarrow n=m^2"
+          ],
+          "voiceover": [
+            "這個證明不是只適用於 2 的技巧。",
+            "對正整數而言，平方根有理正好等於根號下的數已經是完全平方數。"
+          ],
+          "animation": "質數根式模板流向完全平方數與非完全平方數分流"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "大一证明式代数与数论",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "有理数封闭，但仍不够大",
+          "goal": "区分有理数的四则运算封闭性与 Q 以外实根的存在。",
+          "beats": [
+            "显示有理数在普通四则运算下稳定。",
+            "把 x^2=2 放在 Q 旁边，表示它的实根不是有理数。",
+            "点出证明目标：没有分数等于 sqrt(2)。"
+          ],
+          "mathBlocks": [
+            "x,y\\in\\mathbb Q \\Longrightarrow x+y,xy\\in\\mathbb Q",
+            "x^2=2",
+            "\\sqrt2\\notin\\mathbb Q"
+          ],
+          "voiceover": [
+            "有理数对通常四则运算封闭。",
+            "但这种封闭性不代表每个实根都在 Q 里。"
+          ],
+          "animation": "Q 卡连到四则运算箭头，x^2=2 留在卡外"
+        },
+        {
+          "type": "proof_setup",
+          "cardTitle": "先假设有最低项分数",
+          "goal": "用 sqrt(2)=a/b 且 gcd(a,b)=1 设置反证法。",
+          "beats": [
+            "假设 sqrt(2) 是有理数。",
+            "写成 sqrt(2)=a/b，其中 a 和 b 是正整数。",
+            "加上最低项不变量 gcd(a,b)=1。"
+          ],
+          "mathBlocks": [
+            "\\sqrt2=\\frac ab",
+            "a,b\\in\\mathbb Z^+",
+            "\\gcd(a,b)=1"
+          ],
+          "voiceover": [
+            "如果 sqrt(2) 是有理数，它可以写成最低项。",
+            "证明会迫出一个共同质因数，和最低项设置矛盾。"
+          ],
+          "animation": "分子与分母卡片附上最低项标记"
+        },
+        {
+          "type": "proof_step",
+          "cardTitle": "平方迫使 2 进入分子",
+          "goal": "由 2b^2=a^2 和 Euclid 引理推出 2 整除 a。",
+          "beats": [
+            "把 sqrt(2)=a/b 两边平方。",
+            "改写成 2b^2=a^2。",
+            "高亮 2|a^2，再用 Euclid 引理推出 2|a。"
+          ],
+          "mathBlocks": [
+            "2b^2=a^2",
+            "2\\mid a^2",
+            "2\\mid a"
+          ],
+          "voiceover": [
+            "平方后，因数 2 整除 a 的平方。",
+            "因为 2 是质数，Euclid 引理说它已经整除 a。"
+          ],
+          "animation": "质数 2 标记由等式移到分子卡片"
+        },
+        {
+          "type": "proof_step",
+          "cardTitle": "代入后也进入分母",
+          "goal": "代入 a=2c 并推出 2|b。",
+          "beats": [
+            "写 a=2c。",
+            "代回 2b^2=a^2。",
+            "化简成 b^2=2c^2，从而推出 2|b。"
+          ],
+          "mathBlocks": [
+            "a=2c",
+            "2b^2=(2c)^2",
+            "b^2=2c^2",
+            "2\\mid b"
+          ],
+          "voiceover": [
+            "既然 a 是偶数，就把 a=2c 代回同一条等式。",
+            "同一个质数于是又被迫进入 b。"
+          ],
+          "animation": "代入链最后把质数 2 标记放到分母卡片"
+        },
+        {
+          "type": "contradiction",
+          "cardTitle": "最低项条件被破坏",
+          "goal": "明确展示与 gcd(a,b)=1 的矛盾。",
+          "beats": [
+            "同时显示 2 整除 a 和 2 整除 b。",
+            "与 gcd(a,b)=1 比较。",
+            "得出原本有理数假设为假。"
+          ],
+          "mathBlocks": [
+            "2\\mid a \\text{ and } 2\\mid b",
+            "\\gcd(a,b)\\ne1",
+            "\\sqrt2\\notin\\mathbb Q"
+          ],
+          "voiceover": [
+            "最低项分数不可能有同一个质数同时整除分子和分母。",
+            "这个矛盾证明 sqrt(2) 是无理数。"
+          ],
+          "animation": "两个质数标记撞上最低项标记并形成矛盾"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "同一模式给出根式判别",
+          "goal": "连接 sqrt(2) 证明、质数 n 次根，以及完全平方数判别。",
+          "beats": [
+            "把 2 换成质数 p，把平方根换成 n 次根。",
+            "显示同一质因数被迫进入 a 和 b。",
+            "以 sqrt(n) 有理当且仅当 n 是完全平方数作结。"
+          ],
+          "mathBlocks": [
+            "\\sqrt[n]{p}\\notin\\mathbb Q \\quad(n>1)",
+            "\\sqrt n\\in\\mathbb Q \\Longleftrightarrow n=m^2"
+          ],
+          "voiceover": [
+            "这个证明不是只适用于 2 的技巧。",
+            "对正整数而言，平方根有理正好等于根号下的数已经是完全平方数。"
+          ],
+          "animation": "质数根式模板流向完全平方数与非完全平方数分流"
+        }
+      ]
+    }
+  },
+  "deferred": [
+    {
+      "item": "Interactive irrationality proof widget",
+      "reason": "The unit already has proof prose and problem-bank checkpoint coverage; the useful missing piece is an invariant-focused proof-structure video."
+    },
+    {
+      "item": "Decimal-expansion intuition",
+      "reason": "Decimal expansions belong more naturally to the Math1090 real-number and completeness material."
+    },
+    {
+      "item": "Full existence proof for nth roots",
+      "reason": "The note records existence and uniqueness as real-number facts and explicitly defers the proof to later analysis."
+    }
+  ]
+}

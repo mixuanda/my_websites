@@ -85,6 +85,13 @@ Current pilots target:
   - `EuclideanBezoutIntegerEquationStoryZhHk`
   - `EuclideanBezoutIntegerEquationStoryZhCn`
 - source: `scenes/math1025/euclidean_bezout_integer_equations.py`
+- unit: `math1025.integer-methods.rational-and-irrational-numbers`
+- public component id: `math1025-rational-irrational-root-proof-story`
+- scenes:
+  - `RationalIrrationalRootProofStoryEn`
+  - `RationalIrrationalRootProofStoryZhHk`
+  - `RationalIrrationalRootProofStoryZhCn`
+- source: `scenes/math1025/rational_irrational_roots.py`
 - unit: `csci2520.adt-and-operations.hash-tables-and-collision-strategies`
 - public component id: `csci2520-hash-table-collision-strategy-story`
 - scenes:
@@ -170,6 +177,12 @@ course-specific directory under `public/generated/animations/<course>/`:
 - `math1025/euclidean-bezout-integer-equation-story-zh-hk.png`
 - `math1025/euclidean-bezout-integer-equation-story-zh-cn.mp4`
 - `math1025/euclidean-bezout-integer-equation-story-zh-cn.png`
+- `math1025/rational-irrational-root-proof-story-en.mp4`
+- `math1025/rational-irrational-root-proof-story-en.png`
+- `math1025/rational-irrational-root-proof-story-zh-hk.mp4`
+- `math1025/rational-irrational-root-proof-story-zh-hk.png`
+- `math1025/rational-irrational-root-proof-story-zh-cn.mp4`
+- `math1025/rational-irrational-root-proof-story-zh-cn.png`
 - `csci2520/hash-table-collision-strategy-story-en.mp4`
 - `csci2520/hash-table-collision-strategy-story-en.png`
 - `csci2520/hash-table-collision-strategy-story-zh-hk.mp4`
@@ -197,6 +210,7 @@ tools/animations/manim/scripts/render_scene.sh LinearDependenceRedundancyStoryZh
 tools/animations/manim/scripts/render_scene.sh FunctionMapPropertiesStoryZhHk
 tools/animations/manim/scripts/render_scene.sh ComplexPlaneArithmeticStoryZhHk
 tools/animations/manim/scripts/render_scene.sh EuclideanBezoutIntegerEquationStoryZhHk
+tools/animations/manim/scripts/render_scene.sh RationalIrrationalRootProofStoryZhHk
 tools/animations/manim/scripts/render_scene.sh HashTableCollisionStrategyStoryZhHk
 ```
 

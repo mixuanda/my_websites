@@ -968,6 +968,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1025/euclidean-bezout-integer-equation-story-zh-cn.mp4"
     ),
   },
+  "math1025-rational-irrational-root-proof-story": {
+    conclusion: text(
+      "The proof of sqrt(2) is a lowest-terms contradiction: a prime is forced into both the numerator and denominator. The same pattern explains why prime nth roots are irrational and why sqrt(n) is rational exactly when n is a perfect square.",
+      "sqrt(2) 的證明是一個最低項反證：同一個質數被迫同時進入分子和分母。同一模式解釋質數 n 次根為何無理，也解釋為何 sqrt(n) 有理正好等於 n 是完全平方數。",
+      "sqrt(2) 的证明是一个最低项反证：同一个质数被迫同时进入分子和分母。同一模式解释质数 n 次根为何无理，也解释为什么 sqrt(n) 有理正好等于 n 是完全平方数。"
+    ),
+    durationSeconds: 11,
+    frames: [
+      {
+        label: text("The gap in Q", "Q 的缺口", "Q 的缺口"),
+        value: text(
+          "The rational numbers are closed under arithmetic, but the real equation x^2=2 has no rational solution.",
+          "有理數對四則運算封閉，但實數方程 x^2=2 沒有有理數解。",
+          "有理数对四则运算封闭，但实数方程 x^2=2 没有有理数解。"
+        ),
+      },
+      {
+        label: text("Lowest terms", "最低項", "最低项"),
+        value: text(
+          "Assume sqrt(2)=a/b with positive integers a,b and gcd(a,b)=1; the contradiction must break that lowest-terms condition.",
+          "假設 sqrt(2)=a/b，其中 a,b 為正整數且 gcd(a,b)=1；矛盾必須打破這個最低項條件。",
+          "假设 sqrt(2)=a/b，其中 a,b 为正整数且 gcd(a,b)=1；矛盾必须打破这个最低项条件。"
+        ),
+      },
+      {
+        label: text("Prime enters a", "質數進入 a", "质数进入 a"),
+        value: text(
+          "Squaring gives 2b^2=a^2, so 2 divides a^2; Euclid's lemma then forces 2 to divide a.",
+          "平方得到 2b^2=a^2，所以 2 整除 a^2；Euclid 引理迫使 2 整除 a。",
+          "平方得到 2b^2=a^2，所以 2 整除 a^2；Euclid 引理迫使 2 整除 a。"
+        ),
+      },
+      {
+        label: text("Prime enters b", "質數進入 b", "质数进入 b"),
+        value: text(
+          "Writing a=2c and substituting back gives b^2=2c^2, so the same prime also divides b.",
+          "寫 a=2c 並代回去得到 b^2=2c^2，所以同一質數也整除 b。",
+          "写 a=2c 并代回去得到 b^2=2c^2，所以同一质数也整除 b。"
+        ),
+      },
+      {
+        label: text("Contradiction", "矛盾", "矛盾"),
+        value: text(
+          "A lowest-terms fraction cannot have the same prime dividing both numerator and denominator, so sqrt(2) is irrational.",
+          "最低項分數不可能讓同一個質數同時整除分子和分母，因此 sqrt(2) 是無理數。",
+          "最低项分数不可能让同一个质数同时整除分子和分母，因此 sqrt(2) 是无理数。"
+        ),
+      },
+      {
+        label: text("Root tests", "根式判別", "根式判别"),
+        value: text(
+          "The same proof pattern gives prime nth-root irrationality and the criterion sqrt(n) is rational iff n is a perfect square.",
+          "同一證明模式給出質數 n 次根無理性，以及 sqrt(n) 有理 iff n 是完全平方數的判別。",
+          "同一证明模式给出质数 n 次根无理性，以及 sqrt(n) 有理 iff n 是完全平方数的判别。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch the contradiction proof behind sqrt(2): the same prime is forced into numerator and denominator, then the idea extends to prime roots and perfect squares.",
+      "觀看 sqrt(2) 背後的反證法：同一質數被迫同時進入分子和分母，然後把這個想法推到質數根式和完全平方數。",
+      "观看 sqrt(2) 背后的反证法：同一质数被迫同时进入分子和分母，然后把这个想法推到质数根式和完全平方数。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1025/rational-irrational-root-proof-story-en.png",
+      "/generated/animations/math1025/rational-irrational-root-proof-story-zh-hk.png",
+      "/generated/animations/math1025/rational-irrational-root-proof-story-zh-cn.png"
+    ),
+    title: text(
+      "Why some roots are irrational",
+      "為何某些根式是無理數",
+      "为什么某些根式是无理数"
+    ),
+    transcript: [
+      text(
+        "Assume sqrt(2) has a lowest-terms rational representation.",
+        "先假設 sqrt(2) 有一個最低項有理表示。",
+        "先假设 sqrt(2) 有一个最低项有理表示。"
+      ),
+      text(
+        "Squaring and Euclid's lemma force 2 to divide both numerator and denominator.",
+        "平方再用 Euclid 引理，會迫使 2 同時整除分子和分母。",
+        "平方再用 Euclid 引理，会迫使 2 同时整除分子和分母。"
+      ),
+      text(
+        "That contradiction is the template for prime roots and the perfect-square criterion.",
+        "這個矛盾就是質數根式和完全平方數判別的模板。",
+        "这个矛盾就是质数根式和完全平方数判别的模板。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1025/rational-irrational-root-proof-story-en.mp4",
+      "/generated/animations/math1025/rational-irrational-root-proof-story-zh-hk.mp4",
+      "/generated/animations/math1025/rational-irrational-root-proof-story-zh-cn.mp4"
+    ),
+  },
   "csci2520-hash-table-collision-strategy-story": {
     conclusion: text(
       "Hashing is only the first step. Correct lookup and update still depend on the collision strategy checking keys along the chain or probe sequence.",

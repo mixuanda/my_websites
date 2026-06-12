@@ -36,28 +36,29 @@ history.
 | Math1025 `6.1 Complex numbers, polar form, and geometry` | `math1025-complex-plane-arithmetic-story` | `docs/manim-complex-plane-video-qa-2026-06-11.md` |
 | CSCI2520 `1.2 Hash tables and collision strategies` | `csci2520-hash-table-collision-strategy-story` | `docs/manim-hash-table-video-qa-2026-06-11.md` |
 | Math1025 `7.1 Divisibility, gcd, and integer equations` | `math1025-euclidean-bezout-integer-equation-story` | `docs/manim-euclidean-bezout-video-qa-2026-06-12.md` |
+| Math1025 `7.2 Rational and irrational numbers` | `math1025-rational-irrational-root-proof-story` | `docs/manim-rational-irrational-video-qa-2026-06-12.md` |
 
 ## Latest Slice Notes
 
-Math1025 `7.1` was implemented after the roadmap, current MDX, extracted
-chapter 7 text, and a read-only explorer confirmed that the first integer-method
-visual pass should be Manim-only. The clip explains the Euclidean remainder
-chain, the gcd invariant, reverse substitution, the concrete Bézout identity
-`258 = 2*7224 - 11*1290`, and the `ax+by=c` divisibility test.
+Math1025 `7.2` was implemented after the roadmap, current MDX, extracted
+chapter 7 text, and a read-only explorer confirmed that the rational/irrational
+unit should be Manim-only. The clip explains why arithmetic closure of `Q` does
+not contain every root, then visualizes the lowest-terms contradiction for
+`sqrt(2)`, the prime nth-root pattern, and the perfect-square criterion for
+`sqrt(n)`.
 
 Fixes applied:
 
-- new storyboard covers division with remainder, gcd invariance, remainder
-  chain termination, back-substitution, Bézout combination, and Diophantine
-  solvability;
+- new storyboard covers closure of `Q`, the lowest-terms setup, Euclid's lemma
+  forcing `2|a`, substitution forcing `2|b`, the contradiction with
+  `gcd(a,b)=1`, and the root-test generalization;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the Euclidean-Bézout scene and writes assets under
+- render script now includes the rational/irrational root scene and writes assets under
   `public/generated/animations/math1025/`;
-- video embed was placed after the back-substitution worked example and before
-  the Bézout identity theorem in all three localized MDX files;
-- Chinese video titles were localized to `Bézout 恆等式` / `Bézout 恒等式`;
-- reverse-substitution, Bézout, and Diophantine frames were adjusted after
-  visual QA to remove text overlap and redundant labels.
+- video embed was placed after the perfect-square criterion and before quick
+  checks in all three localized MDX files;
+- lowest-terms and final root-test frames were adjusted after visual QA to
+  remove label crowding and bottom-card overlap.
 
 ## Verification Stack Used For Latest Slice
 
@@ -74,13 +75,12 @@ Fixes applied:
 
 ## Next Slice
 
-Proceed to Math1025 integer-method and polynomial-method clips unless the
-roadmap priority changes.
+Proceed to Math1025 polynomial-method clips unless the roadmap priority changes.
 
 Expected first step:
 
-1. Start with Math1025 `integer-methods/rational-and-irrational-numbers` unless
-   source inspection changes the priority.
+1. Start with Math1025 `polynomial-methods/polynomial-arithmetic-and-division`
+   unless source inspection changes the priority.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset

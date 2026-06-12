@@ -140,6 +140,9 @@ Current pilots:
 - `content/textbook/math1025/integer-methods/divisibility-gcd-and-integer-equations/storyboard.json`
 - `tools/animations/manim/scenes/math1025/euclidean_bezout_integer_equations.py`
 - public MDX id: `math1025-euclidean-bezout-integer-equation-story`
+- `content/textbook/math1025/integer-methods/rational-and-irrational-numbers/storyboard.json`
+- `tools/animations/manim/scenes/math1025/rational_irrational_roots.py`
+- public MDX id: `math1025-rational-irrational-root-proof-story`
 - `content/textbook/csci2520/adt-and-operations/hash-tables-and-collision-strategies/storyboard.json`
 - `tools/animations/manim/scenes/csci2520/hash_table_collision_strategy.py`
 - public MDX id: `csci2520-hash-table-collision-strategy-story`
