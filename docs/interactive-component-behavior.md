@@ -211,10 +211,13 @@ computational bottleneck is reading long division as repeated leading-term
 cancellation. The widget remains fixed to the chapter's Example 8.0 rather
 than becoming a symbolic algebra app, and its export snapshot records the
 quotient / remainder sequence so TXT and PDF exports retain the study value.
-The companion `8.2` and `8.3` units do not add widgets; gcd proof structure,
-irreducibility, partial-fraction forms, and Vieta formulas are clearer as
-theorem-led prose, worked examples, quick checks, and source-backed guided
-exercises.
+The companion `8.2` unit now uses a trilingual `VideoExplanation` for the
+monic-gcd convention, Euclidean remainder-chain invariant, Bézout reverse pass,
+and field-dependent irreducibility checks, but does not add a widget. The `8.3`
+unit should follow the same constraint unless partial-fraction or Vieta support
+requires a reader-controlled state. Gcd proof structure, irreducibility,
+partial-fraction forms, and Vieta formulas are usually clearer as theorem-led
+prose, worked examples, quick checks, and source-backed guided exercises.
 
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

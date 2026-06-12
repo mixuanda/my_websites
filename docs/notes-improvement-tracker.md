@@ -44,6 +44,7 @@ verification result, and any remaining follow-up.
 | Math1025 visual explanations | First source-backed Manim pilot for complex-plane arithmetic | Completed | MATH1025 `6.1 Complex numbers, polar form, and geometry` now has a trilingual Manim `VideoExplanation` for complex-plane points, vector addition, modulus, argument, polar form, and multiplication as rotation plus scaling; local static, browser, and export QA are recorded in `docs/manim-complex-plane-video-qa-2026-06-11.md`. |
 | Math1025 visual explanations | Euclidean algorithm and Bézout back-substitution Manim clip | Completed | MATH1025 `7.1 Divisibility, gcd, and integer equations` now has a trilingual Manim `VideoExplanation` for the Euclidean remainder chain, gcd invariant, reverse substitution, concrete Bézout identity, and `ax+by=c` solvability test; local static, browser, and export QA are recorded in `docs/manim-euclidean-bezout-video-qa-2026-06-12.md`. |
 | Math1025 visual explanations | Polynomial long division and remainder tracking Manim + widget pass | Completed | MATH1025 `8.1 Polynomial arithmetic and division` now has a trilingual Manim `VideoExplanation` for leading-term cancellation, quotient accumulation, the degree-based stop rule, and the final `f=gq+r` invariant; the existing `math1025-polynomial-division-stepper` remains visible immediately after the video and was browser-tested through step 2; QA is recorded in `docs/manim-polynomial-division-video-qa-2026-06-12.md`. |
+| Math1025 visual explanations | Polynomial gcd, Bézout, and irreducibility Manim pass | Completed | MATH1025 `8.2 Polynomial gcds and irreducibility` now has a trilingual Manim-only `VideoExplanation` for monic gcd normalization, the Euclidean invariant, the source-backed Example 8.2 remainder chain, Bézout back-substitution, field-dependent irreducibility, and prime-like divisibility; no widget was added because this unit is theorem-led; QA is recorded in `docs/manim-polynomial-gcd-video-qa-2026-06-12.md`. |
 | CSCI2520 visual explanations | First source-backed Manim + widget pass for hash-table collisions | Completed | CSCI2520 `1.2 Hash tables and collision strategies` now has a trilingual Manim `VideoExplanation` for dictionary contract, hashing to buckets, collision meaning, chaining, and open addressing; the existing `hash-bucket-lab` remains visible and export-friendly; QA is recorded in `docs/manim-hash-table-video-qa-2026-06-11.md`. |
 | CSCI2520 content | CSCI2520 is incomplete, especially algorithms | Not started | Audit `reference/CSCI2520`, extracted text, and current `content/textbook/csci2520/**`. |
 | CSCI2520 interactions | Algorithms need code / pseudocode plus synchronized demonstrations | In progress | First Manim + widget pattern is complete for hash-table collision strategies; future algorithm traces should keep reader-controlled widgets for variable inputs and use Manim only for short invariant-focused bridges. |
@@ -232,6 +233,13 @@ Progress on the animation slice:
   preserved and browser-tested as the reader-controlled follow-up, and TXT/PDF
   static fallback; focused QA is recorded in
   `docs/manim-polynomial-division-video-qa-2026-06-12.md`.
+- completed the fifth Math1025 Manim pass for `8.2 Polynomial gcds and
+  irreducibility` with trilingual
+  `math1025-polynomial-gcd-irreducibility-story` videos, localized posters, a
+  new trilingual storyboard, a source-backed correction to the displayed
+  Bézout identity, article embeds before the proof-sketch section, no new
+  widget, and TXT/PDF static fallback; focused QA is recorded in
+  `docs/manim-polynomial-gcd-video-qa-2026-06-12.md`.
 - completed the first CSCI2520 Manim + widget pass for `1.2 Hash tables and
   collision strategies` with trilingual
   `csci2520-hash-table-collision-strategy-story` videos, localized posters, a
@@ -245,8 +253,8 @@ Remaining animation work:
 
 - decide whether these generated assets should be committed directly under
   `public/generated/animations/` or moved to external/static hosting later.
-- continue with the next roadmap slice after the polynomial-division checkpoint:
-  Math1025 `8.2 Polynomial gcds and irreducibility`.
+- continue with the next roadmap slice after the polynomial-gcd checkpoint:
+  Math1025 `8.3 Rational functions, partial fractions, and Vieta formulas`.
 
 ## 1. Global Notes Navigation / Long Course Sidebar
 

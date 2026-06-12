@@ -1,0 +1,381 @@
+{
+  "course": "math1025",
+  "chapter": "polynomial-methods",
+  "unit": "polynomial-gcds-and-irreducibility",
+  "unitTitle": {
+    "en": "8.2 Polynomial gcds and irreducibility",
+    "zh-hk": "8.2 多項式最大公因式與不可約性",
+    "zh-cn": "8.2 多项式最大公因式与不可约性"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-year proof-based algebra and number theory",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Gcds are chosen monic",
+          "goal": "Explain why polynomial gcds are unique only after fixing the monic representative.",
+          "beats": [
+            "Show that x-1, 5x-5, and -2x+2 have the same divisor behavior up to nonzero scalar.",
+            "State that associates are normalized by choosing the monic representative.",
+            "Name x-1 as the gcd representative."
+          ],
+          "mathBlocks": [
+            "x-1,\\ 5x-5,\\ -2x+2",
+            "\\gcd(f,g)=\\text{monic common divisor}"
+          ],
+          "voiceover": [
+            "Polynomial gcds are not unique until we ignore nonzero scalar multiples.",
+            "The convention is to record the monic representative."
+          ],
+          "animation": "Associate cards collapse into a single monic gcd card"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "The Euclidean step preserves common divisors",
+          "goal": "Show the invariant gcd(f,g)=gcd(g,r) from the division identity.",
+          "beats": [
+            "Write f=gq+r with smaller-degree remainder.",
+            "Show r=f-gq, so common divisors of f and g divide r.",
+            "Show f=gq+r, so common divisors of g and r divide f.",
+            "Conclude that the two pairs have the same monic gcd."
+          ],
+          "mathBlocks": [
+            "f=gq+r",
+            "\\gcd(f,g)=\\gcd(g,r)"
+          ],
+          "voiceover": [
+            "The Euclidean algorithm works because the division step does not change the set of common divisors.",
+            "Only the degrees decrease."
+          ],
+          "animation": "Two divisor-pair cards exchange arrows through r=f-gq and f=gq+r"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Run the chapter example",
+          "goal": "Animate the source-backed Example 8.2 remainder chain.",
+          "beats": [
+            "Start with f=4x^4-2x^3-16x^2+5x+9 and g=2x^3-x^2-5x+4.",
+            "Record r1=-6x^2-3x+9.",
+            "Record r2=-x+1.",
+            "Stop when the next remainder is zero."
+          ],
+          "mathBlocks": [
+            "f=(2x)g+r_1",
+            "g=(-\\frac13x+\\frac13)r_1+r_2",
+            "r_1=(6x+9)r_2+0"
+          ],
+          "voiceover": [
+            "The same decreasing-remainder chain from integer gcds appears in R[x].",
+            "The last nonzero remainder is the gcd up to a scalar."
+          ],
+          "animation": "Remainder chain descends through three rows, ending at zero"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Normalize and back-substitute",
+          "goal": "Connect the last nonzero remainder to the monic gcd and the Bezout identity.",
+          "beats": [
+            "Turn -x+1 into the monic gcd x-1.",
+            "Reverse the remainder equations.",
+            "Display the source-backed Bezout combination."
+          ],
+          "mathBlocks": [
+            "-x+1=-(x-1)",
+            "x-1=(-\\frac13x+\\frac13)f+(\\frac23x^2-\\frac23x-1)g"
+          ],
+          "voiceover": [
+            "The last nonzero remainder is normalized before it is named as the gcd.",
+            "Keeping the quotient equations lets the gcd be written as a polynomial combination of f and g."
+          ],
+          "animation": "Last remainder flips sign, then expands backward into a Bezout line"
+        },
+        {
+          "type": "concept_intro",
+          "cardTitle": "Irreducibility depends on the field",
+          "goal": "Show that factorability changes when the coefficient field changes.",
+          "beats": [
+            "Compare x^2-2 over Q and R.",
+            "Compare x^2+1 over R and C.",
+            "Emphasize that every irreducibility statement must name the coefficient field."
+          ],
+          "mathBlocks": [
+            "x^2-2\\text{ irreducible over }Q,\\text{ reducible over }R",
+            "x^2+1\\text{ irreducible over }R,\\text{ reducible over }C"
+          ],
+          "voiceover": [
+            "Irreducible is not an absolute label.",
+            "It depends on which coefficients are allowed in the factors."
+          ],
+          "animation": "Field columns Q, R, and C reveal different factor cards"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Irreducibles behave like primes",
+          "goal": "Use Bezout to summarize the prime-like divisibility step.",
+          "beats": [
+            "If p is irreducible and p does not divide a, then gcd(a,p)=1.",
+            "Use ua+vp=1.",
+            "Multiply by b to explain why p|ab forces p|b."
+          ],
+          "mathBlocks": [
+            "p\\nmid a\\Rightarrow \\gcd(a,p)=1",
+            "u a+v p=1",
+            "p\\mid ab\\Rightarrow p\\mid b"
+          ],
+          "voiceover": [
+            "The Bezout identity is the bridge from gcd computations to divisibility theorems.",
+            "That is why irreducible polynomials play the role of primes."
+          ],
+          "animation": "Bezout card multiplies by b and routes divisibility from ab to b"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "大一證明式代數與數論",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "gcd 取 monic 代表",
+          "goal": "說明多項式 gcd 只有在固定 monic 代表後才唯一。",
+          "beats": [
+            "顯示 x-1、5x-5、-2x+2 只差非零常數倍。",
+            "說明相伴多項式以 monic 代表作標準化。",
+            "把 x-1 命名為 gcd 代表。"
+          ],
+          "mathBlocks": [
+            "x-1,\\ 5x-5,\\ -2x+2",
+            "\\gcd(f,g)=\\text{monic common divisor}"
+          ],
+          "voiceover": [
+            "多項式 gcd 在忽略非零常數倍前並不唯一。",
+            "慣例是記錄 monic 代表。"
+          ],
+          "animation": "相伴多項式卡片收合成一張 monic gcd 卡片"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "Euclidean step 保持共同因式",
+          "goal": "由除法恆等式顯示不變量 gcd(f,g)=gcd(g,r)。",
+          "beats": [
+            "寫出 f=gq+r，且餘式次數較小。",
+            "用 r=f-gq 說明 f 與 g 的共同因式會整除 r。",
+            "用 f=gq+r 說明 g 與 r 的共同因式會整除 f。",
+            "總結兩對多項式有同一個 monic gcd。"
+          ],
+          "mathBlocks": [
+            "f=gq+r",
+            "\\gcd(f,g)=\\gcd(g,r)"
+          ],
+          "voiceover": [
+            "Euclidean algorithm 可行，是因為除法步驟不改變共同因式集合。",
+            "真正下降的是餘式次數。"
+          ],
+          "animation": "兩張因式對卡片透過 r=f-gq 與 f=gq+r 互相連接"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "執行本章例子",
+          "goal": "動畫化來源 Example 8.2 的餘式鏈。",
+          "beats": [
+            "由 f=4x^4-2x^3-16x^2+5x+9 與 g=2x^3-x^2-5x+4 開始。",
+            "記錄 r1=-6x^2-3x+9。",
+            "記錄 r2=-x+1。",
+            "下一個餘式為零時停止。"
+          ],
+          "mathBlocks": [
+            "f=(2x)g+r_1",
+            "g=(-\\frac13x+\\frac13)r_1+r_2",
+            "r_1=(6x+9)r_2+0"
+          ],
+          "voiceover": [
+            "整數 gcd 的遞減餘式鏈，在 R[x] 中也同樣出現。",
+            "最後非零餘式就是 gcd 的常數倍。"
+          ],
+          "animation": "餘式鏈沿三行下降，最後到零"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "標準化並回代",
+          "goal": "把最後非零餘式連到 monic gcd 與 Bézout 恆等式。",
+          "beats": [
+            "把 -x+1 轉成 monic gcd x-1。",
+            "反向使用餘式方程。",
+            "顯示來源支持的 Bézout 線性組合。"
+          ],
+          "mathBlocks": [
+            "-x+1=-(x-1)",
+            "x-1=(-\\frac13x+\\frac13)f+(\\frac23x^2-\\frac23x-1)g"
+          ],
+          "voiceover": [
+            "最後非零餘式要先標準化，才命名為 gcd。",
+            "保留商式方程，就能把 gcd 寫成 f 與 g 的多項式線性組合。"
+          ],
+          "animation": "最後餘式翻號，再反向展開成 Bézout 一行"
+        },
+        {
+          "type": "concept_intro",
+          "cardTitle": "不可約性取決於係數域",
+          "goal": "顯示可否分解會隨係數域改變。",
+          "beats": [
+            "比較 x^2-2 在 Q 與 R 上的情況。",
+            "比較 x^2+1 在 R 與 C 上的情況。",
+            "強調每個不可約判斷都必須說明係數域。"
+          ],
+          "mathBlocks": [
+            "x^2-2\\text{ 在 }Q\\text{ 上不可約，在 }R\\text{ 上可約}",
+            "x^2+1\\text{ 在 }R\\text{ 上不可約，在 }C\\text{ 上可約}"
+          ],
+          "voiceover": [
+            "不可約不是絕對標籤。",
+            "它取決於允許哪些係數出現在因式中。"
+          ],
+          "animation": "Q、R、C 三欄分別展開不同因式卡片"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "不可約多項式像質數",
+          "goal": "用 Bézout 總結類似質數的整除步驟。",
+          "beats": [
+            "若 p 不可約且 p 不整除 a，則 gcd(a,p)=1。",
+            "使用 ua+vp=1。",
+            "乘以 b，解釋為何 p|ab 會迫使 p|b。"
+          ],
+          "mathBlocks": [
+            "p\\nmid a\\Rightarrow \\gcd(a,p)=1",
+            "u a+v p=1",
+            "p\\mid ab\\Rightarrow p\\mid b"
+          ],
+          "voiceover": [
+            "Bézout 恆等式把 gcd 計算接到整除定理。",
+            "這就是不可約多項式扮演質數角色的原因。"
+          ],
+          "animation": "Bézout 卡片乘以 b，將整除關係由 ab 推到 b"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "大一证明式代数与数论",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "gcd 取 monic 代表",
+          "goal": "说明多项式 gcd 只有在固定 monic 代表后才唯一。",
+          "beats": [
+            "显示 x-1、5x-5、-2x+2 只差非零常数倍。",
+            "说明相伴多项式以 monic 代表作标准化。",
+            "把 x-1 命名为 gcd 代表。"
+          ],
+          "mathBlocks": [
+            "x-1,\\ 5x-5,\\ -2x+2",
+            "\\gcd(f,g)=\\text{monic common divisor}"
+          ],
+          "voiceover": [
+            "多项式 gcd 在忽略非零常数倍前并不唯一。",
+            "惯例是记录 monic 代表。"
+          ],
+          "animation": "相伴多项式卡片收合成一张 monic gcd 卡片"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "Euclidean step 保持共同因式",
+          "goal": "由除法恒等式显示不变量 gcd(f,g)=gcd(g,r)。",
+          "beats": [
+            "写出 f=gq+r，且余式次数较小。",
+            "用 r=f-gq 说明 f 与 g 的共同因式会整除 r。",
+            "用 f=gq+r 说明 g 与 r 的共同因式会整除 f。",
+            "总结两对多项式有同一个 monic gcd。"
+          ],
+          "mathBlocks": [
+            "f=gq+r",
+            "\\gcd(f,g)=\\gcd(g,r)"
+          ],
+          "voiceover": [
+            "Euclidean algorithm 可行，是因为除法步骤不改变共同因式集合。",
+            "真正下降的是余式次数。"
+          ],
+          "animation": "两张因式对卡片通过 r=f-gq 与 f=gq+r 互相连接"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "执行本章例子",
+          "goal": "动画化来源 Example 8.2 的余式链。",
+          "beats": [
+            "由 f=4x^4-2x^3-16x^2+5x+9 与 g=2x^3-x^2-5x+4 开始。",
+            "记录 r1=-6x^2-3x+9。",
+            "记录 r2=-x+1。",
+            "下一个余式为零时停止。"
+          ],
+          "mathBlocks": [
+            "f=(2x)g+r_1",
+            "g=(-\\frac13x+\\frac13)r_1+r_2",
+            "r_1=(6x+9)r_2+0"
+          ],
+          "voiceover": [
+            "整数 gcd 的递减余式链，在 R[x] 中也同样出现。",
+            "最后非零余式就是 gcd 的常数倍。"
+          ],
+          "animation": "余式链沿三行下降，最后到零"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "标准化并回代",
+          "goal": "把最后非零余式连到 monic gcd 与 Bézout 恒等式。",
+          "beats": [
+            "把 -x+1 转成 monic gcd x-1。",
+            "反向使用余式方程。",
+            "显示来源支持的 Bézout 线性组合。"
+          ],
+          "mathBlocks": [
+            "-x+1=-(x-1)",
+            "x-1=(-\\frac13x+\\frac13)f+(\\frac23x^2-\\frac23x-1)g"
+          ],
+          "voiceover": [
+            "最后非零余式要先标准化，才命名为 gcd。",
+            "保留商式方程，就能把 gcd 写成 f 与 g 的多项式线性组合。"
+          ],
+          "animation": "最后余式翻号，再反向展开成 Bézout 一行"
+        },
+        {
+          "type": "concept_intro",
+          "cardTitle": "不可约性取决于系数域",
+          "goal": "显示可否分解会随系数域改变。",
+          "beats": [
+            "比较 x^2-2 在 Q 与 R 上的情况。",
+            "比较 x^2+1 在 R 与 C 上的情况。",
+            "强调每个不可约判断都必须说明系数域。"
+          ],
+          "mathBlocks": [
+            "x^2-2\\text{ 在 }Q\\text{ 上不可约，在 }R\\text{ 上可约}",
+            "x^2+1\\text{ 在 }R\\text{ 上不可约，在 }C\\text{ 上可约}"
+          ],
+          "voiceover": [
+            "不可约不是绝对标签。",
+            "它取决于允许哪些系数出现在因式中。"
+          ],
+          "animation": "Q、R、C 三栏分别展开不同因式卡片"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "不可约多项式像质数",
+          "goal": "用 Bézout 总结类似质数的整除步骤。",
+          "beats": [
+            "若 p 不可约且 p 不整除 a，则 gcd(a,p)=1。",
+            "使用 ua+vp=1。",
+            "乘以 b，解释为何 p|ab 会迫使 p|b。"
+          ],
+          "mathBlocks": [
+            "p\\nmid a\\Rightarrow \\gcd(a,p)=1",
+            "u a+v p=1",
+            "p\\mid ab\\Rightarrow p\\mid b"
+          ],
+          "voiceover": [
+            "Bézout 恒等式把 gcd 计算接到整除定理。",
+            "这就是不可约多项式扮演质数角色的原因。"
+          ],
+          "animation": "Bézout 卡片乘以 b，将整除关系由 ab 推到 b"
+        }
+      ]
+    }
+  }
+}

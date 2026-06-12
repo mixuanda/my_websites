@@ -21,6 +21,7 @@ MDX content, for example:
 - `content/textbook/math1025/integer-methods/divisibility-gcd-and-integer-equations/storyboard.json`
 - `content/textbook/math1025/integer-methods/rational-and-irrational-numbers/storyboard.json`
 - `content/textbook/math1025/polynomial-methods/polynomial-arithmetic-and-division/storyboard.json`
+- `content/textbook/math1025/polynomial-methods/polynomial-gcds-and-irreducibility/storyboard.json`
 - `content/textbook/csci2520/adt-and-operations/hash-tables-and-collision-strategies/storyboard.json`
 
 Required segment taxonomy per locale:
@@ -148,6 +149,9 @@ Current pilots:
 - `content/textbook/math1025/polynomial-methods/polynomial-arithmetic-and-division/storyboard.json`
 - `tools/animations/manim/scenes/math1025/polynomial_division.py`
 - public MDX id: `math1025-polynomial-division-remainder-story`
+- `content/textbook/math1025/polynomial-methods/polynomial-gcds-and-irreducibility/storyboard.json`
+- `tools/animations/manim/scenes/math1025/polynomial_gcds.py`
+- public MDX id: `math1025-polynomial-gcd-irreducibility-story`
 - `content/textbook/csci2520/adt-and-operations/hash-tables-and-collision-strategies/storyboard.json`
 - `tools/animations/manim/scenes/csci2520/hash_table_collision_strategy.py`
 - public MDX id: `csci2520-hash-table-collision-strategy-story`

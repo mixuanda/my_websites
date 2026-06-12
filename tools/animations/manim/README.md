@@ -99,6 +99,13 @@ Current pilots target:
   - `PolynomialDivisionRemainderStoryZhHk`
   - `PolynomialDivisionRemainderStoryZhCn`
 - source: `scenes/math1025/polynomial_division.py`
+- unit: `math1025.polynomial-methods.polynomial-gcds-and-irreducibility`
+- public component id: `math1025-polynomial-gcd-irreducibility-story`
+- scenes:
+  - `PolynomialGcdIrreducibilityStoryEn`
+  - `PolynomialGcdIrreducibilityStoryZhHk`
+  - `PolynomialGcdIrreducibilityStoryZhCn`
+- source: `scenes/math1025/polynomial_gcds.py`
 - unit: `csci2520.adt-and-operations.hash-tables-and-collision-strategies`
 - public component id: `csci2520-hash-table-collision-strategy-story`
 - scenes:
@@ -196,6 +203,12 @@ course-specific directory under `public/generated/animations/<course>/`:
 - `math1025/polynomial-division-remainder-story-zh-hk.png`
 - `math1025/polynomial-division-remainder-story-zh-cn.mp4`
 - `math1025/polynomial-division-remainder-story-zh-cn.png`
+- `math1025/polynomial-gcd-irreducibility-story-en.mp4`
+- `math1025/polynomial-gcd-irreducibility-story-en.png`
+- `math1025/polynomial-gcd-irreducibility-story-zh-hk.mp4`
+- `math1025/polynomial-gcd-irreducibility-story-zh-hk.png`
+- `math1025/polynomial-gcd-irreducibility-story-zh-cn.mp4`
+- `math1025/polynomial-gcd-irreducibility-story-zh-cn.png`
 - `csci2520/hash-table-collision-strategy-story-en.mp4`
 - `csci2520/hash-table-collision-strategy-story-en.png`
 - `csci2520/hash-table-collision-strategy-story-zh-hk.mp4`
@@ -225,6 +238,7 @@ tools/animations/manim/scripts/render_scene.sh ComplexPlaneArithmeticStoryZhHk
 tools/animations/manim/scripts/render_scene.sh EuclideanBezoutIntegerEquationStoryZhHk
 tools/animations/manim/scripts/render_scene.sh RationalIrrationalRootProofStoryZhHk
 tools/animations/manim/scripts/render_scene.sh PolynomialDivisionRemainderStoryZhHk
+tools/animations/manim/scripts/render_scene.sh PolynomialGcdIrreducibilityStoryZhHk
 tools/animations/manim/scripts/render_scene.sh HashTableCollisionStrategyStoryZhHk
 ```
 

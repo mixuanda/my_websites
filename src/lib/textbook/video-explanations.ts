@@ -1158,6 +1158,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1025/polynomial-division-remainder-story-zh-cn.mp4"
     ),
   },
+  "math1025-polynomial-gcd-irreducibility-story": {
+    conclusion: text(
+      "Polynomial gcd work has three linked layers: normalize associates to a monic gcd, preserve common divisors through the Euclidean remainder chain, and use Bezout to prove irreducible-polynomial divisibility tests.",
+      "多項式 gcd 有三層連接：把相伴多項式標準化為 monic gcd，透過 Euclidean 餘式鏈保持共同因式，再用 Bézout 證明不可約多項式的整除判別。",
+      "多项式 gcd 有三层连接：把相伴多项式标准化为 monic gcd，通过 Euclidean 余式链保持共同因式，再用 Bézout 证明不可约多项式的整除判别。"
+    ),
+    durationSeconds: 15.9,
+    frames: [
+      {
+        label: text("Monic gcd", "Monic gcd", "Monic gcd"),
+        value: text(
+          "Scalar multiples such as x-1, 5x-5, and -2x+2 have the same divisibility behavior, so gcds are recorded using the monic representative.",
+          "x-1、5x-5、-2x+2 這些常數倍有相同整除行為，所以 gcd 以 monic 代表記錄。",
+          "x-1、5x-5、-2x+2 这些常数倍有相同整除行为，所以 gcd 以 monic 代表记录。"
+        ),
+      },
+      {
+        label: text("Euclidean invariant", "Euclidean 不變量", "Euclidean 不变量"),
+        value: text(
+          "From f=gq+r, the common divisors of f and g are exactly the common divisors of g and r; hence gcd(f,g)=gcd(g,r).",
+          "由 f=gq+r 可知，f 與 g 的共同因式正好就是 g 與 r 的共同因式；所以 gcd(f,g)=gcd(g,r)。",
+          "由 f=gq+r 可知，f 与 g 的共同因式正好就是 g 与 r 的共同因式；所以 gcd(f,g)=gcd(g,r)。"
+        ),
+      },
+      {
+        label: text("Example chain", "例子餘式鏈", "例子余式链"),
+        value: text(
+          "For the chapter example, the remainders are r1=-6x^2-3x+9, r2=-x+1, and then 0.",
+          "在本章例子中，餘式依次是 r1=-6x^2-3x+9、r2=-x+1，然後是 0。",
+          "在本章例子中，余式依次是 r1=-6x^2-3x+9、r2=-x+1，然后是 0。"
+        ),
+      },
+      {
+        label: text("Back-substitution", "回代", "回代"),
+        value: text(
+          "The last nonzero remainder -x+1 is normalized to x-1, then reversed into x-1=(-1/3x+1/3)f+(2/3x^2-2/3x-1)g.",
+          "最後非零餘式 -x+1 標準化為 x-1，再回代成 x-1=(-1/3x+1/3)f+(2/3x^2-2/3x-1)g。",
+          "最后非零余式 -x+1 标准化为 x-1，再回代成 x-1=(-1/3x+1/3)f+(2/3x^2-2/3x-1)g。"
+        ),
+      },
+      {
+        label: text("Field dependence", "係數域依賴", "系数域依赖"),
+        value: text(
+          "Irreducibility depends on the field: x^2-2 changes between Q and R, while x^2+1 changes between R and C.",
+          "不可約性取決於係數域：x^2-2 在 Q 與 R 之間改變，x^2+1 在 R 與 C 之間改變。",
+          "不可约性取决于系数域：x^2-2 在 Q 与 R 之间改变，x^2+1 在 R 与 C 之间改变。"
+        ),
+      },
+      {
+        label: text("Prime-like role", "類似質數", "类似质数"),
+        value: text(
+          "If p is irreducible and p does not divide a, Bezout gives ua+vp=1; multiplying by b explains why p|ab forces p|b.",
+          "若 p 不可約且 p 不整除 a，Bézout 給出 ua+vp=1；乘以 b 便解釋 p|ab 為何迫使 p|b。",
+          "若 p 不可约且 p 不整除 a，Bézout 给出 ua+vp=1；乘以 b 便解释 p|ab 为何迫使 p|b。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch the polynomial Euclidean algorithm produce a monic gcd, reverse into a Bezout identity, and support field-dependent irreducibility tests.",
+      "觀看多項式 Euclidean algorithm 如何產生 monic gcd、回代成 Bézout 恆等式，並支撐依係數域而定的不可約判別。",
+      "观看多项式 Euclidean algorithm 如何产生 monic gcd、回代成 Bézout 恒等式，并支撑依系数域而定的不可约判别。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1025/polynomial-gcd-irreducibility-story-en.png",
+      "/generated/animations/math1025/polynomial-gcd-irreducibility-story-zh-hk.png",
+      "/generated/animations/math1025/polynomial-gcd-irreducibility-story-zh-cn.png"
+    ),
+    title: text(
+      "Polynomial gcds, Bezout, and irreducibility",
+      "多項式 gcd、Bézout 與不可約性",
+      "多项式 gcd、Bézout 与不可约性"
+    ),
+    transcript: [
+      text(
+        "Polynomial gcds are normalized by choosing a monic representative among scalar multiples.",
+        "多項式 gcd 會在常數倍之中選 monic 代表作標準化。",
+        "多项式 gcd 会在常数倍之中选 monic 代表作标准化。"
+      ),
+      text(
+        "The Euclidean step f=gq+r keeps the same common divisors, so the last nonzero remainder gives the gcd after normalization.",
+        "Euclidean step f=gq+r 保持同一批共同因式，所以最後非零餘式標準化後就是 gcd。",
+        "Euclidean step f=gq+r 保持同一批共同因式，所以最后非零余式标准化后就是 gcd。"
+      ),
+      text(
+        "Back-substitution gives a Bezout identity, and that identity powers the prime-like divisibility tests for irreducible polynomials.",
+        "回代給出 Bézout 恆等式，而這個恆等式支撐不可約多項式像質數一樣的整除判別。",
+        "回代给出 Bézout 恒等式，而这个恒等式支撑不可约多项式像质数一样的整除判别。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1025/polynomial-gcd-irreducibility-story-en.mp4",
+      "/generated/animations/math1025/polynomial-gcd-irreducibility-story-zh-hk.mp4",
+      "/generated/animations/math1025/polynomial-gcd-irreducibility-story-zh-cn.mp4"
+    ),
+  },
   "csci2520-hash-table-collision-strategy-story": {
     conclusion: text(
       "Hashing is only the first step. Correct lookup and update still depend on the collision strategy checking keys along the chain or probe sequence.",
