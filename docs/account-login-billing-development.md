@@ -284,6 +284,38 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
   registration safety flags, unsupported provider names, malformed Firebase
   private keys, and obvious live Stripe key prefixes before writing branch
   Preview env vars.
+- 2026-06-12 Firebase / Turnstile setup check:
+  - Firebase Admin SDK file
+    `/Users/evan/Downloads/evanalysislogin-firebase-adminsdk-fbsvc-d8f36c5018.json`
+    was validated without printing the private key. Project
+    `evanalysislogin` is reachable through Firestore and Firebase Auth.
+  - Firebase Authentication has email/password enabled, and Google/GitHub
+    provider configs are enabled with client IDs configured. Firebase Auth
+    authorized domains now include `localhost`,
+    `evanalysislogin.firebaseapp.com`, `evanalysislogin.web.app`, and
+    `development.evanalysis.top`.
+  - Cloudflare Turnstile Siteverify accepts the configured secret; a dummy token
+    correctly returns `invalid-input-response` rather than a secret-key error.
+  - The branch-scoped `Preview (codex/account)` env now includes Firebase Admin
+    and Turnstile values. The latest verified deployment
+    `dpl_5iLTWMUh3PseQXb31Wdn8RuHcCUg`,
+    `https://my-websites-f6lfx11k9-mixuandahotmailcoms-projects.vercel.app`,
+    is Ready, target `preview`, and aliased to
+    `https://development.evanalysis.top`.
+  - `npm run auth:verify-development -- --require-ready` passes:
+    registration readiness is true, persistence is configured, captcha is
+    configured, and providers currently expose `credentials`.
+  - The stricter
+    `npm run auth:verify-development -- --require-ready --require-oauth --require-checkout`
+    still fails because Auth.js Google/GitHub env vars and
+    `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` are not configured.
+  - Ordinary public requests to `https://development.evanalysis.top/` still
+    return Vercel Authentication `401`; `https://www.evanalysis.top/en/notes`
+    returns `200`.
+  - Do not disable project-level Vercel Authentication just to open this domain:
+    the CLI exposes only project-level SSO toggles. The correct narrow public
+    opening is a Vercel Deployment Protection Exception for
+    `development.evanalysis.top`, if the plan/add-on supports it.
 
 ## Recommended next step
 
@@ -318,3 +350,14 @@ Concrete key handoff flow:
 7. Only after readiness is true, disable or adjust Vercel Authentication for
    `development.evanalysis.top`, then run
    `npm run auth:verify-development -- --require-ready --require-oauth --require-checkout --expect-public`.
+
+Credentials-only opening variant:
+
+1. Keep `NEXT_PUBLIC_AUTH_PROVIDERS=credentials`.
+2. Ensure `npm run auth:verify-development -- --require-ready` passes.
+3. Add a Vercel Deployment Protection Exception for
+   `development.evanalysis.top` from the dashboard if available.
+4. Verify public access with
+   `npm run auth:verify-development -- --require-ready --expect-public`.
+5. Complete real browser registration/login QA with a Turnstile token before
+   considering public credentials auth fully accepted.

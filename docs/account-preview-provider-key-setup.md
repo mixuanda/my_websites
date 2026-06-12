@@ -122,6 +122,32 @@ as `AUTH_TURNSTILE_SECRET_KEY`.
 
 Reference: https://developers.cloudflare.com/turnstile/get-started/
 
+Safe CLI check after creating the widget:
+
+```bash
+node --input-type=module <<'NODE'
+const secret = process.env.AUTH_TURNSTILE_SECRET_KEY;
+if (!secret) throw new Error("Set AUTH_TURNSTILE_SECRET_KEY locally first");
+const response = await fetch("https://challenges.cloudflare.com/turnstile/v0/siteverify", {
+  method: "POST",
+  body: new URLSearchParams({ secret, response: "codex-dummy-token" }),
+});
+const result = await response.json();
+const codes = Array.isArray(result["error-codes"]) ? result["error-codes"] : [];
+console.log({
+  httpStatus: response.status,
+  secretAcceptedBySiteverify:
+    !codes.includes("invalid-input-secret") && !codes.includes("missing-input-secret"),
+  expectedDummyTokenFailure:
+    !result.success && codes.some((code) => code.includes("input-response")),
+  errorCodes: codes,
+});
+NODE
+```
+
+Expected result with a valid secret and dummy token: HTTP `200`,
+`secretAcceptedBySiteverify: true`, and `invalid-input-response`.
+
 ### Firebase Admin staging project
 
 Variables:
@@ -137,7 +163,9 @@ Required setup:
 1. Create or choose the staging Firebase project.
 2. Enable Firestore in that project.
 3. Create a service account key for the staging project.
-4. Copy the JSON fields into the local env file:
+4. Add `development.evanalysis.top` to Firebase Authentication authorized
+   domains before using Firebase Client Auth flows.
+5. Copy the JSON fields into the local env file:
    - `project_id` -> `FIREBASE_PROJECT_ID`
    - `client_email` -> `FIREBASE_CLIENT_EMAIL`
    - `private_key` -> `FIREBASE_PRIVATE_KEY`
@@ -282,6 +310,12 @@ npm run auth:verify-development -- --require-ready --require-oauth --require-che
 
 Vercel Authentication reference:
 https://vercel.com/docs/deployment-protection/methods-to-protect-deployments/vercel-authentication
+
+For a narrow public development domain, use a Vercel Deployment Protection
+Exception for `development.evanalysis.top` rather than disabling project-wide
+protection. Exceptions are managed from the Vercel dashboard under the
+project's Deployment Protection settings, and Vercel documents them as an
+Advanced Deployment Protection feature for Preview domains.
 
 ## Non-production isolation rules
 
