@@ -331,6 +331,13 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
   - After redeploying the Firebase bridge code, the expected Auth.js provider
     endpoint is `firebase`; Google/GitHub are handled by Firebase Client Auth,
     not Auth.js OAuth secrets.
+  - Firebase bridge deployment `f03019e` produced preview
+    `my-websites-oa7zc2ss6-mixuandahotmailcoms-projects.vercel.app`, status
+    `READY`. Verification command
+    `npm run auth:verify-development -- --deployment my-websites-oa7zc2ss6-mixuandahotmailcoms-projects.vercel.app --require-ready --require-oauth`
+    passed with registration `ready=true`, Firebase bridge/client configured,
+    provider list `["firebase"]`, `developmentPublicStatus=401`, and
+    production `/en/notes` status `200`.
   - The stricter
     `npm run auth:verify-development -- --require-ready --require-oauth --require-checkout`
     should still fail until `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` is configured
