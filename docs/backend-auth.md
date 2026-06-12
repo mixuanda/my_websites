@@ -84,6 +84,17 @@ production runtime 若缺少 `FIREBASE_PROJECT_ID`、`FIREBASE_CLIENT_EMAIL` 或
 代码，不泄露 secret。Preview / development 可用它确认 `ready=true` 后再解除
 Vercel Authentication；production surface 仍会隐藏该接口。
 
+远程 development QA 可运行：
+
+```bash
+npm run auth:verify-development
+npm run auth:verify-development -- --require-ready
+npm run auth:verify-development -- --require-ready --expect-public
+```
+
+第一条用于当前受保护状态；第二条用于写入 staging Firebase 和 Turnstile 后确认注册
+ready；第三条用于明确解除 Vercel Authentication 后确认公开访问。
+
 注册防滥用：
 
 - `registration-ip`：每个 IP 每小时最多 8 次注册尝试。

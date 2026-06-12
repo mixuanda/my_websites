@@ -52,6 +52,14 @@ Follow-up account/login hardening in this workstream:
   `ready`, `blockers`, `persistence`, and `captcha` booleans. The login page
   uses this payload to disable public self-registration before submit when
   staging storage or Turnstile server verification is not configured.
+- `npm run auth:verify-development` now runs the read-only development auth QA
+  checklist against the latest `codex/account` preview deployment. It checks
+  the deployment target, `development.evanalysis.top` alias, branch-scoped env
+  flags, registration readiness, providers, billing status, ordinary domain
+  protection, and production `/en/notes` availability without reading or
+  printing any secret values. After staging Firebase and Turnstile are
+  configured, run it with `-- --require-ready`; after Vercel Authentication is
+  deliberately opened, run it with `-- --require-ready --expect-public`.
 - `/login` no longer defaults to showing GitHub / Google buttons. It intersects
   `NEXT_PUBLIC_AUTH_PROVIDERS` with the actual NextAuth provider list so public
   buttons do not appear before the backend provider is configured.
@@ -251,6 +259,11 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
   deployment. Current subscription readiness still passes because server-side
   subscription checkout uses Stripe secret key plus recurring price IDs, but the
   public key should be added before a full browser checkout QA pass.
+- The current automated development auth check is
+  `npm run auth:verify-development`. In the current protected state it should
+  pass with readiness warnings and `development.evanalysis.top` returning
+  Vercel Authentication `401`. It should fail if the domain becomes public
+  before registration readiness is true.
 
 ## Recommended next step
 
