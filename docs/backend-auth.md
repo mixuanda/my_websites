@@ -87,13 +87,20 @@ Vercel Authentication；production surface 仍会隐藏该接口。
 远程 development QA 可运行：
 
 ```bash
+npm run auth:apply-development-env -- --file .env.codex-account.preview.local
+npm run auth:apply-development-env -- --file .env.codex-account.preview.local --apply
 npm run auth:verify-development
 npm run auth:verify-development -- --require-ready
 npm run auth:verify-development -- --require-ready --expect-public
 ```
 
-第一条用于当前受保护状态；第二条用于写入 staging Firebase 和 Turnstile 后确认注册
-ready；第三条用于明确解除 Vercel Authentication 后确认公开访问。
+先从 `.env.codex-account.preview.example` 复制出本地
+`.env.codex-account.preview.local`，填入 staging Firebase、Turnstile、
+development OAuth 和 Stripe test key。`auth:apply-development-env` 默认只 dry-run；
+加 `--apply` 才会写入 Vercel，并且只写入 branch-scoped
+`Preview (codex/account)`。`auth:verify-development` 第一条用于当前受保护状态；
+第二条用于写入 staging Firebase 和 Turnstile 后确认注册 ready；第三条用于明确
+解除 Vercel Authentication 后确认公开访问。
 
 注册防滥用：
 

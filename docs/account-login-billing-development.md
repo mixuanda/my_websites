@@ -60,6 +60,12 @@ Follow-up account/login hardening in this workstream:
   printing any secret values. After staging Firebase and Turnstile are
   configured, run it with `-- --require-ready`; after Vercel Authentication is
   deliberately opened, run it with `-- --require-ready --expect-public`.
+- `.env.codex-account.preview.example` and
+  `npm run auth:apply-development-env` provide the safe local handoff path for
+  real keys. Copy the example to `.env.codex-account.preview.local`, fill
+  development/staging values, dry-run the import, then re-run with `-- --apply`
+  to write only branch-scoped `Preview (codex/account)` env vars. The script
+  does not print secret values and never targets Production.
 - `/login` no longer defaults to showing GitHub / Google buttons. It intersects
   `NEXT_PUBLIC_AUTH_PROVIDERS` with the actual NextAuth provider list so public
   buttons do not appear before the backend provider is configured.
@@ -264,6 +270,12 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
   pass with readiness warnings and `development.evanalysis.top` returning
   Vercel Authentication `401`. It should fail if the domain becomes public
   before registration readiness is true.
+- The local key handoff file is `.env.codex-account.preview.local`; it is
+  ignored by git. The committed `.env.codex-account.preview.example` lists the
+  exact variable names for staging Firebase, Turnstile, OAuth, and Stripe test
+  checkout. Use `npm run auth:apply-development-env -- --file
+  .env.codex-account.preview.local` for a dry-run and add `--apply` only after
+  reviewing the target variable names.
 
 ## Recommended next step
 
@@ -284,3 +296,17 @@ QA pass:
   `development.evanalysis.top` under the current CLI identity, but the Vercel
   REST API successfully repoints the alias. Re-check this before relying on CLI
   alias commands in future deployment work.
+
+Concrete key handoff flow:
+
+1. `cp .env.codex-account.preview.example .env.codex-account.preview.local`
+2. Fill `.env.codex-account.preview.local` with staging Firebase, Turnstile,
+   development OAuth app keys, and Stripe test publishable key.
+3. `npm run auth:apply-development-env -- --file .env.codex-account.preview.local`
+4. If the dry-run lists only intended `Preview (codex/account)` variables,
+   rerun with `-- --file .env.codex-account.preview.local --apply`.
+5. Redeploy the latest `codex/account` preview.
+6. `npm run auth:verify-development -- --require-ready`
+7. Only after readiness is true, disable or adjust Vercel Authentication for
+   `development.evanalysis.top`, then run
+   `npm run auth:verify-development -- --require-ready --expect-public`.

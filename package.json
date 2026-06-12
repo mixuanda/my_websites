@@ -13,6 +13,7 @@
     "verify:mdx-tables": "node scripts/verify-mdx-table-rendering.mjs",
     "build:site": "npm run verify:mdx-tables && contentlayer2 build && next build --webpack",
     "auth:hash-password": "node scripts/hash-auth-password.mjs",
+    "auth:apply-development-env": "node scripts/apply-account-preview-env.mjs",
     "auth:verify-development": "node scripts/verify-account-preview-readiness.mjs",
     "check:textbook-content": "node scripts/check-textbook-content.mjs",
     "storyboard:generate": "node tools/storyboard/generate-storyboards.mjs",
