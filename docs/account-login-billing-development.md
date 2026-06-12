@@ -1,7 +1,7 @@
 # Account, Login, And Billing Development Notes
 
 Date: 2026-05-25
-Last updated: 2026-06-10
+Last updated: 2026-06-12
 
 This file records the first focused account/login/subscription deployment pass
 from the `codex/account` workstream.
@@ -203,6 +203,34 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
 
 ## Current blockers / constraints
 
+- 2026-06-12 public-registration preparation deployed code
+  `7e55c77a4c8ecded9179155a5145e9d7f53616fd` to preview deployment
+  `dpl_5X3HQCHgnPAx8fnS2kyFQCyWLBLL`,
+  `https://my-websites-db3p7sk5o-mixuandahotmailcoms-projects.vercel.app`.
+  Vercel reports target `preview`, status `Ready`, and aliases include
+  `https://development.evanalysis.top` plus the `codex/account` git preview
+  alias.
+- The branch-scoped `Preview (codex/account)` env now enables the credentials
+  surface and registration preparation flags without adding production secrets:
+  `NEXT_PUBLIC_AUTH_PROVIDERS=credentials`,
+  `AUTH_REGISTRATION_ENABLED=true`,
+  `NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED=true`,
+  `AUTH_REGISTRATION_REQUIRE_TURNSTILE=true`,
+  `NEXT_PUBLIC_AUTH_REGISTRATION_REQUIRE_TURNSTILE=true`, and
+  `AUTH_REGISTRATION_REQUIRE_PERSISTENCE=true`.
+- Remote verification against the 2026-06-12 preview deployment:
+  `/api/auth/providers` returns only the `credentials` provider with callback
+  URLs under `https://development.evanalysis.top`;
+  `POST /api/auth/register` returns
+  `registration_persistence_not_configured`; `/api/billing/status` returns
+  `billingReady=true`, `configuredPlanCount=2`,
+  `membershipGatingEnabled=true`, Stripe secret/webhook configured, and
+  `publishableKeyConfigured=false`.
+- Ordinary public requests to `https://development.evanalysis.top/` still
+  return Vercel Authentication `401`. Do not disable deployment protection
+  until Turnstile and a development/staging Firebase project are configured;
+  otherwise the login page could become publicly reachable before registration
+  is actually safe.
 - `development.evanalysis.top` has been repointed to the verified preview
   deployment through the Vercel API, and its project-domain config is branch
   scoped to `codex/account`. Do not replace this with a production alias or a
