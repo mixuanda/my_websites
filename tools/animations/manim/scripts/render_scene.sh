@@ -41,6 +41,9 @@ else
     "ComplexPlaneArithmeticStoryEn"
     "ComplexPlaneArithmeticStoryZhHk"
     "ComplexPlaneArithmeticStoryZhCn"
+    "EuclideanBezoutIntegerEquationStoryEn"
+    "EuclideanBezoutIntegerEquationStoryZhHk"
+    "EuclideanBezoutIntegerEquationStoryZhCn"
     "HashTableCollisionStrategyStoryEn"
     "HashTableCollisionStrategyStoryZhHk"
     "HashTableCollisionStrategyStoryZhCn"
@@ -91,6 +94,9 @@ scene_file() {
     ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|ComplexPlaneArithmeticStoryZhHk|ComplexPlaneArithmeticStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1025/complex_numbers.py"
       ;;
+    EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|EuclideanBezoutIntegerEquationStoryZhHk|EuclideanBezoutIntegerEquationStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1025/euclidean_bezout_integer_equations.py"
+      ;;
     HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn|HashTableCollisionStrategyStoryZhHk|HashTableCollisionStrategyStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/csci2520/hash_table_collision_strategy.py"
       ;;
@@ -102,13 +108,13 @@ scene_file() {
 
 scene_locale() {
   case "$1" in
-    GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn)
+    GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn)
       printf '%s\n' "en"
       ;;
-    GaussianEliminationRrefPivotStoryZhHk|MatrixBasicsPositionMapZhHk|AugmentedMatrixRowOperationSafetyZhHk|GramSchmidtProjectionStoryZhHk|MatrixProductLinearSystemStoryZhHk|RowOperationMatrixLeftMultiplyStoryZhHk|LinearCombinationSpanSweepStoryZhHk|LinearDependenceRedundancyStoryZhHk|FunctionMapPropertiesStoryZhHk|ComplexPlaneArithmeticStoryZhHk|HashTableCollisionStrategyStoryZhHk)
+    GaussianEliminationRrefPivotStoryZhHk|MatrixBasicsPositionMapZhHk|AugmentedMatrixRowOperationSafetyZhHk|GramSchmidtProjectionStoryZhHk|MatrixProductLinearSystemStoryZhHk|RowOperationMatrixLeftMultiplyStoryZhHk|LinearCombinationSpanSweepStoryZhHk|LinearDependenceRedundancyStoryZhHk|FunctionMapPropertiesStoryZhHk|ComplexPlaneArithmeticStoryZhHk|EuclideanBezoutIntegerEquationStoryZhHk|HashTableCollisionStrategyStoryZhHk)
       printf '%s\n' "zh-hk"
       ;;
-    GaussianEliminationRrefPivotStoryZhCn|MatrixBasicsPositionMapZhCn|AugmentedMatrixRowOperationSafetyZhCn|GramSchmidtProjectionStoryZhCn|MatrixProductLinearSystemStoryZhCn|RowOperationMatrixLeftMultiplyStoryZhCn|LinearCombinationSpanSweepStoryZhCn|LinearDependenceRedundancyStoryZhCn|FunctionMapPropertiesStoryZhCn|ComplexPlaneArithmeticStoryZhCn|HashTableCollisionStrategyStoryZhCn)
+    GaussianEliminationRrefPivotStoryZhCn|MatrixBasicsPositionMapZhCn|AugmentedMatrixRowOperationSafetyZhCn|GramSchmidtProjectionStoryZhCn|MatrixProductLinearSystemStoryZhCn|RowOperationMatrixLeftMultiplyStoryZhCn|LinearCombinationSpanSweepStoryZhCn|LinearDependenceRedundancyStoryZhCn|FunctionMapPropertiesStoryZhCn|ComplexPlaneArithmeticStoryZhCn|EuclideanBezoutIntegerEquationStoryZhCn|HashTableCollisionStrategyStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
     *)
@@ -149,6 +155,9 @@ video_basename() {
     ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|ComplexPlaneArithmeticStoryZhHk|ComplexPlaneArithmeticStoryZhCn)
       printf '%s\n' "complex-plane-arithmetic-story"
       ;;
+    EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|EuclideanBezoutIntegerEquationStoryZhHk|EuclideanBezoutIntegerEquationStoryZhCn)
+      printf '%s\n' "euclidean-bezout-integer-equation-story"
+      ;;
     HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn|HashTableCollisionStrategyStoryZhHk|HashTableCollisionStrategyStoryZhCn)
       printf '%s\n' "hash-table-collision-strategy-story"
       ;;
@@ -166,7 +175,7 @@ scene_course() {
     FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|FunctionMapPropertiesStoryZhHk|FunctionMapPropertiesStoryZhCn)
       printf '%s\n' "math1090"
       ;;
-    ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|ComplexPlaneArithmeticStoryZhHk|ComplexPlaneArithmeticStoryZhCn)
+    ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|ComplexPlaneArithmeticStoryZhHk|ComplexPlaneArithmeticStoryZhCn|EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|EuclideanBezoutIntegerEquationStoryZhHk|EuclideanBezoutIntegerEquationStoryZhCn)
       printf '%s\n' "math1025"
       ;;
     HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn|HashTableCollisionStrategyStoryZhHk|HashTableCollisionStrategyStoryZhCn)

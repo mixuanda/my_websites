@@ -1,0 +1,375 @@
+{
+  "course": "math1025",
+  "chapter": "integer-methods",
+  "unit": "divisibility-gcd-and-integer-equations",
+  "unitTitle": {
+    "en": "7.1 Divisibility, gcd, and integer equations",
+    "zh-hk": "7.1 整除、最大公因數與整數方程",
+    "zh-cn": "7.1 整除、最大公因数与整数方程"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-year proof-based algebra and number theory",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Start with division with remainder",
+          "goal": "Show the legal Euclidean reduction from one pair of integers to the next.",
+          "beats": [
+            "Display the initial pair (7224,1290).",
+            "Write the first division equation.",
+            "Move from the old pair to the new pair (1290,774)."
+          ],
+          "mathBlocks": [
+            "7224=1290\\cdot5+774",
+            "\\gcd(7224,1290)=\\gcd(1290,774)"
+          ],
+          "voiceover": [
+            "The Euclidean algorithm is repeated division with remainder.",
+            "The remainder becomes the second number in the next pair."
+          ],
+          "animation": "two integer cards becoming a new pair after one division step"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "Preserve the gcd at every step",
+          "goal": "Make the invariant gcd(a,b)=gcd(b,r) visible.",
+          "beats": [
+            "Highlight the equation a=bq+r.",
+            "Mark r=a-bq as an integer linear combination.",
+            "Show that common divisors are unchanged."
+          ],
+          "mathBlocks": [
+            "a=bq+r",
+            "\\gcd(a,b)=\\gcd(b,r)"
+          ],
+          "voiceover": [
+            "A common divisor of a and b divides the remainder a-bq.",
+            "A common divisor of b and the remainder divides a=bq+r."
+          ],
+          "animation": "invariant badge attached to the pair transition"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Follow the remainder chain",
+          "goal": "Step through the concrete remainder chain until the first zero remainder.",
+          "beats": [
+            "Show 1290=774*1+516.",
+            "Show 774=516*1+258.",
+            "Show 516=258*2+0 and mark 258 as last nonzero remainder."
+          ],
+          "mathBlocks": [
+            "1290=774\\cdot1+516",
+            "774=516\\cdot1+258",
+            "516=258\\cdot2+0"
+          ],
+          "voiceover": [
+            "The remainders strictly decrease.",
+            "When the next remainder is zero, the last nonzero remainder is the gcd."
+          ],
+          "animation": "vertical remainder ladder ending at highlighted 258"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Reverse the computation",
+          "goal": "Show that the last nonzero remainder can be rewritten using earlier remainders.",
+          "beats": [
+            "Start from 258=774-516.",
+            "Substitute 516=1290-774.",
+            "Simplify to 258=2*774-1290."
+          ],
+          "mathBlocks": [
+            "258=774-516",
+            "258=774-(1290-774)",
+            "258=2\\cdot774-1290"
+          ],
+          "voiceover": [
+            "The extended Euclidean algorithm runs the same equations backward.",
+            "Each remainder becomes a linear combination of earlier numbers."
+          ],
+          "animation": "reverse arrows from the last remainder back up the ladder"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "Reach a Bézout combination",
+          "goal": "Substitute the original first division to express the gcd using the original pair.",
+          "beats": [
+            "Replace 774 by 7224-5*1290.",
+            "Simplify the final linear combination.",
+            "Label it as a concrete Bézout identity."
+          ],
+          "mathBlocks": [
+            "258=2(7224-5\\cdot1290)-1290",
+            "258=2\\cdot7224-11\\cdot1290"
+          ],
+          "voiceover": [
+            "Back-substitution reaches the original numbers.",
+            "The gcd is now written as an integer linear combination."
+          ],
+          "animation": "final boxed Bézout combination with coefficient tags"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Use the gcd to test integer equations",
+          "goal": "Connect Bézout's identity to linear Diophantine solvability.",
+          "beats": [
+            "Show ax+by=c.",
+            "Show the solvability condition gcd(a,b)|c.",
+            "Refer back to the gcd as the number produced by the algorithm."
+          ],
+          "mathBlocks": [
+            "ax+by=c",
+            "\\text{integer solutions} \\Longleftrightarrow \\gcd(a,b)\\mid c"
+          ],
+          "voiceover": [
+            "Bézout explains why the gcd controls integer linear equations.",
+            "The video stops at the solvability test; the note gives the full solution family."
+          ],
+          "animation": "gcd badge feeding into a Diophantine equation test"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "大一證明式代數與數論",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "由帶餘除法開始",
+          "goal": "顯示 Euclidean algorithm 如何合法地把一對整數換成下一對。",
+          "beats": [
+            "顯示初始 pair (7224,1290)。",
+            "寫出第一條除法等式。",
+            "把舊 pair 換成新 pair (1290,774)。"
+          ],
+          "mathBlocks": [
+            "7224=1290\\cdot5+774",
+            "\\gcd(7224,1290)=\\gcd(1290,774)"
+          ],
+          "voiceover": [
+            "歐幾里得算法是不斷做帶餘除法。",
+            "餘數會成為下一對數的第二個數。"
+          ],
+          "animation": "兩張整數卡經一個除法步驟變成新 pair"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "每一步都保留最大公因數",
+          "goal": "令不變量 gcd(a,b)=gcd(b,r) 可見。",
+          "beats": [
+            "高亮 a=bq+r。",
+            "標示 r=a-bq 是整數線性組合。",
+            "顯示共同因數沒有改變。"
+          ],
+          "mathBlocks": [
+            "a=bq+r",
+            "\\gcd(a,b)=\\gcd(b,r)"
+          ],
+          "voiceover": [
+            "a 和 b 的共同因數會整除餘數 a-bq。",
+            "b 和餘數的共同因數亦會整除 a=bq+r。"
+          ],
+          "animation": "在 pair transition 上加不變量標籤"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "沿着餘數鏈前進",
+          "goal": "追蹤具體餘數鏈，直到第一個零餘數。",
+          "beats": [
+            "顯示 1290=774*1+516。",
+            "顯示 774=516*1+258。",
+            "顯示 516=258*2+0，並標出 258 是最後非零餘數。"
+          ],
+          "mathBlocks": [
+            "1290=774\\cdot1+516",
+            "774=516\\cdot1+258",
+            "516=258\\cdot2+0"
+          ],
+          "voiceover": [
+            "餘數會嚴格遞減。",
+            "當下一個餘數是零時，最後非零餘數就是最大公因數。"
+          ],
+          "animation": "垂直餘數階梯最後高亮 258"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "倒轉計算",
+          "goal": "顯示最後非零餘數如何用較早的餘數改寫。",
+          "beats": [
+            "由 258=774-516 開始。",
+            "代入 516=1290-774。",
+            "化簡成 258=2*774-1290。"
+          ],
+          "mathBlocks": [
+            "258=774-516",
+            "258=774-(1290-774)",
+            "258=2\\cdot774-1290"
+          ],
+          "voiceover": [
+            "擴展歐幾里得算法把同一批等式倒過來用。",
+            "每個餘數都變成更早數字的線性組合。"
+          ],
+          "animation": "由最後餘數沿階梯向上回代"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "得到一個 Bézout 組合",
+          "goal": "代回最初的除法，把 gcd 寫成原始兩個數的線性組合。",
+          "beats": [
+            "把 774 換成 7224-5*1290。",
+            "化簡最後線性組合。",
+            "標示它是具體 Bézout identity。"
+          ],
+          "mathBlocks": [
+            "258=2(7224-5\\cdot1290)-1290",
+            "258=2\\cdot7224-11\\cdot1290"
+          ],
+          "voiceover": [
+            "倒代最終回到原本兩個數。",
+            "最大公因數便寫成整數線性組合。"
+          ],
+          "animation": "最後把 Bézout 組合框起並標係數"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "用 gcd 測試整數方程",
+          "goal": "連接 Bézout 恆等式與一次 Diophantine 方程可解性。",
+          "beats": [
+            "顯示 ax+by=c。",
+            "顯示可解條件 gcd(a,b)|c。",
+            "把 gcd 連回算法算出的數。"
+          ],
+          "mathBlocks": [
+            "ax+by=c",
+            "\\text{integer solutions} \\Longleftrightarrow \\gcd(a,b)\\mid c"
+          ],
+          "voiceover": [
+            "Bézout 解釋了為何 gcd 控制整數線性方程。",
+            "短片只停在可解判別；完整解族留給正文。"
+          ],
+          "animation": "gcd 標籤流向 Diophantine 方程判別"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "大一证明式代数与数论",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "从带余除法开始",
+          "goal": "显示 Euclidean algorithm 如何合法地把一对整数换成下一对。",
+          "beats": [
+            "显示初始 pair (7224,1290)。",
+            "写出第一条除法等式。",
+            "把旧 pair 换成新 pair (1290,774)。"
+          ],
+          "mathBlocks": [
+            "7224=1290\\cdot5+774",
+            "\\gcd(7224,1290)=\\gcd(1290,774)"
+          ],
+          "voiceover": [
+            "欧几里得算法是不断做带余除法。",
+            "余数会成为下一对数的第二个数。"
+          ],
+          "animation": "两张整数卡经一个除法步骤变成新 pair"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "每一步都保留最大公因数",
+          "goal": "让不变量 gcd(a,b)=gcd(b,r) 可见。",
+          "beats": [
+            "高亮 a=bq+r。",
+            "标示 r=a-bq 是整数线性组合。",
+            "显示共同因数没有改变。"
+          ],
+          "mathBlocks": [
+            "a=bq+r",
+            "\\gcd(a,b)=\\gcd(b,r)"
+          ],
+          "voiceover": [
+            "a 和 b 的共同因数会整除余数 a-bq。",
+            "b 和余数的共同因数也会整除 a=bq+r。"
+          ],
+          "animation": "在 pair transition 上加不变量标签"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "沿着余数链前进",
+          "goal": "追踪具体余数链，直到第一个零余数。",
+          "beats": [
+            "显示 1290=774*1+516。",
+            "显示 774=516*1+258。",
+            "显示 516=258*2+0，并标出 258 是最后非零余数。"
+          ],
+          "mathBlocks": [
+            "1290=774\\cdot1+516",
+            "774=516\\cdot1+258",
+            "516=258\\cdot2+0"
+          ],
+          "voiceover": [
+            "余数会严格递减。",
+            "当下一个余数是零时，最后非零余数就是最大公因数。"
+          ],
+          "animation": "垂直余数阶梯最后高亮 258"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "倒转计算",
+          "goal": "显示最后非零余数如何用较早的余数改写。",
+          "beats": [
+            "从 258=774-516 开始。",
+            "代入 516=1290-774。",
+            "化简成 258=2*774-1290。"
+          ],
+          "mathBlocks": [
+            "258=774-516",
+            "258=774-(1290-774)",
+            "258=2\\cdot774-1290"
+          ],
+          "voiceover": [
+            "扩展欧几里得算法把同一批等式倒过来用。",
+            "每个余数都变成更早数字的线性组合。"
+          ],
+          "animation": "由最后余数沿阶梯向上回代"
+        },
+        {
+          "type": "theorem_statement",
+          "cardTitle": "得到一个 Bézout 组合",
+          "goal": "代回最初的除法，把 gcd 写成原始两个数的线性组合。",
+          "beats": [
+            "把 774 换成 7224-5*1290。",
+            "化简最后线性组合。",
+            "标示它是具体 Bézout identity。"
+          ],
+          "mathBlocks": [
+            "258=2(7224-5\\cdot1290)-1290",
+            "258=2\\cdot7224-11\\cdot1290"
+          ],
+          "voiceover": [
+            "倒代最终回到原本两个数。",
+            "最大公因数便写成整数线性组合。"
+          ],
+          "animation": "最后把 Bézout 组合框起并标系数"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "用 gcd 测试整数方程",
+          "goal": "连接 Bézout 恒等式与一次 Diophantine 方程可解性。",
+          "beats": [
+            "显示 ax+by=c。",
+            "显示可解条件 gcd(a,b)|c。",
+            "把 gcd 连回算法算出的数。"
+          ],
+          "mathBlocks": [
+            "ax+by=c",
+            "\\text{integer solutions} \\Longleftrightarrow \\gcd(a,b)\\mid c"
+          ],
+          "voiceover": [
+            "Bézout 解释了为什么 gcd 控制整数线性方程。",
+            "短片只停在可解判别；完整解族留给正文。"
+          ],
+          "animation": "gcd 标签流向 Diophantine 方程判别"
+        }
+      ]
+    }
+  }
+}

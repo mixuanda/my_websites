@@ -78,6 +78,13 @@ Current pilots target:
   - `ComplexPlaneArithmeticStoryZhHk`
   - `ComplexPlaneArithmeticStoryZhCn`
 - source: `scenes/math1025/complex_numbers.py`
+- unit: `math1025.integer-methods.divisibility-gcd-and-integer-equations`
+- public component id: `math1025-euclidean-bezout-integer-equation-story`
+- scenes:
+  - `EuclideanBezoutIntegerEquationStoryEn`
+  - `EuclideanBezoutIntegerEquationStoryZhHk`
+  - `EuclideanBezoutIntegerEquationStoryZhCn`
+- source: `scenes/math1025/euclidean_bezout_integer_equations.py`
 - unit: `csci2520.adt-and-operations.hash-tables-and-collision-strategies`
 - public component id: `csci2520-hash-table-collision-strategy-story`
 - scenes:
@@ -157,6 +164,12 @@ course-specific directory under `public/generated/animations/<course>/`:
 - `math1025/complex-plane-arithmetic-story-zh-hk.png`
 - `math1025/complex-plane-arithmetic-story-zh-cn.mp4`
 - `math1025/complex-plane-arithmetic-story-zh-cn.png`
+- `math1025/euclidean-bezout-integer-equation-story-en.mp4`
+- `math1025/euclidean-bezout-integer-equation-story-en.png`
+- `math1025/euclidean-bezout-integer-equation-story-zh-hk.mp4`
+- `math1025/euclidean-bezout-integer-equation-story-zh-hk.png`
+- `math1025/euclidean-bezout-integer-equation-story-zh-cn.mp4`
+- `math1025/euclidean-bezout-integer-equation-story-zh-cn.png`
 - `csci2520/hash-table-collision-strategy-story-en.mp4`
 - `csci2520/hash-table-collision-strategy-story-en.png`
 - `csci2520/hash-table-collision-strategy-story-zh-hk.mp4`
@@ -183,6 +196,7 @@ tools/animations/manim/scripts/render_scene.sh LinearCombinationSpanSweepStoryZh
 tools/animations/manim/scripts/render_scene.sh LinearDependenceRedundancyStoryZhHk
 tools/animations/manim/scripts/render_scene.sh FunctionMapPropertiesStoryZhHk
 tools/animations/manim/scripts/render_scene.sh ComplexPlaneArithmeticStoryZhHk
+tools/animations/manim/scripts/render_scene.sh EuclideanBezoutIntegerEquationStoryZhHk
 tools/animations/manim/scripts/render_scene.sh HashTableCollisionStrategyStoryZhHk
 ```
 

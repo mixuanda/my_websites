@@ -873,6 +873,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1025/complex-plane-arithmetic-story-zh-cn.mp4"
     ),
   },
+  "math1025-euclidean-bezout-integer-equation-story": {
+    conclusion: text(
+      "The Euclidean algorithm moves downward through smaller remainders to find the gcd. The extended algorithm then reads the same equations backward to express that gcd as a Bézout combination, which is why gcd(a,b) controls when ax+by=c has integer solutions.",
+      "歐幾里得算法向下經過越來越小的餘數來求 gcd。擴展算法再把同一批等式倒過來讀，把 gcd 寫成 Bézout 組合，因此 gcd(a,b) 會控制 ax+by=c 何時有整數解。",
+      "欧几里得算法向下经过越来越小的余数来求 gcd。扩展算法再把同一批等式倒过来读，把 gcd 写成 Bézout 组合，因此 gcd(a,b) 会控制 ax+by=c 何时有整数解。"
+    ),
+    durationSeconds: 11,
+    frames: [
+      {
+        label: text("First division", "第一次帶餘除法", "第一次带余除法"),
+        value: text(
+          "The computation starts with 7224=1290*5+774, so the next pair is (1290,774).",
+          "計算由 7224=1290*5+774 開始，所以下一對數是 (1290,774)。",
+          "计算由 7224=1290*5+774 开始，所以下一对数是 (1290,774)。"
+        ),
+      },
+      {
+        label: text("Gcd invariant", "gcd 不變量", "gcd 不变量"),
+        value: text(
+          "If a=bq+r, then the positive common divisors of (a,b) are exactly the positive common divisors of (b,r).",
+          "若 a=bq+r，則 (a,b) 的正共同因數正好就是 (b,r) 的正共同因數。",
+          "若 a=bq+r，则 (a,b) 的正共同因数正好就是 (b,r) 的正共同因数。"
+        ),
+      },
+      {
+        label: text("Remainder chain", "餘數鏈", "余数链"),
+        value: text(
+          "The remainders 774, 516, 258, 0 show that the last nonzero remainder is gcd(7224,1290)=258.",
+          "餘數 774, 516, 258, 0 說明最後非零餘數是 gcd(7224,1290)=258。",
+          "余数 774, 516, 258, 0 说明最后非零余数是 gcd(7224,1290)=258。"
+        ),
+      },
+      {
+        label: text("Back-substitution", "倒代", "倒代"),
+        value: text(
+          "Running the equations backward first gives 258=2*774-1290.",
+          "把等式倒過來用，先得到 258=2*774-1290。",
+          "把等式倒过来用，先得到 258=2*774-1290。"
+        ),
+      },
+      {
+        label: text("Bézout combination", "Bézout 組合", "Bézout 组合"),
+        value: text(
+          "Substituting 774=7224-5*1290 gives the concrete identity 258=2*7224-11*1290.",
+          "代入 774=7224-5*1290，得到具體恆等式 258=2*7224-11*1290。",
+          "代入 774=7224-5*1290，得到具体恒等式 258=2*7224-11*1290。"
+        ),
+      },
+      {
+        label: text("Equation test", "方程判別", "方程判别"),
+        value: text(
+          "A linear integer equation ax+by=c has integer solutions exactly when gcd(a,b) divides c.",
+          "一次整數方程 ax+by=c 有整數解，當且僅當 gcd(a,b) 整除 c。",
+          "一次整数方程 ax+by=c 有整数解，当且仅当 gcd(a,b) 整除 c。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch the Euclidean algorithm first find the gcd and then reverse into a concrete Bézout identity for integer equations.",
+      "觀看歐幾里得算法如何先找出 gcd，再倒代成可用於整數方程的具體 Bézout 恆等式。",
+      "观看欧几里得算法如何先找出 gcd，再倒代成可用于整数方程的具体 Bézout 恒等式。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1025/euclidean-bezout-integer-equation-story-en.png",
+      "/generated/animations/math1025/euclidean-bezout-integer-equation-story-zh-hk.png",
+      "/generated/animations/math1025/euclidean-bezout-integer-equation-story-zh-cn.png"
+    ),
+    title: text(
+      "From Euclid to Bézout",
+      "由歐幾里得算法到 Bézout",
+      "从欧几里得算法到 Bézout"
+    ),
+    transcript: [
+      text(
+        "Euclid's algorithm repeatedly replaces (a,b) by (b,r), where a=bq+r.",
+        "歐幾里得算法反覆把 (a,b) 換成 (b,r)，其中 a=bq+r。",
+        "欧几里得算法反复把 (a,b) 换成 (b,r)，其中 a=bq+r。"
+      ),
+      text(
+        "The last nonzero remainder is the gcd.",
+        "最後非零餘數就是最大公因數。",
+        "最后非零余数就是最大公因数。"
+      ),
+      text(
+        "Back-substitution expresses that gcd as an integer linear combination of the original two numbers.",
+        "倒代把這個 gcd 寫成原本兩個數的整數線性組合。",
+        "倒代把这个 gcd 写成原本两个数的整数线性组合。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1025/euclidean-bezout-integer-equation-story-en.mp4",
+      "/generated/animations/math1025/euclidean-bezout-integer-equation-story-zh-hk.mp4",
+      "/generated/animations/math1025/euclidean-bezout-integer-equation-story-zh-cn.mp4"
+    ),
+  },
   "csci2520-hash-table-collision-strategy-story": {
     conclusion: text(
       "Hashing is only the first step. Correct lookup and update still depend on the collision strategy checking keys along the chain or probe sequence.",

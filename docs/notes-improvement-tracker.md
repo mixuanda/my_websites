@@ -1,6 +1,6 @@
 # Notes Improvement Tracker
 
-Last updated: 2026-06-11
+Last updated: 2026-06-12
 
 This document records the active improvement backlog raised on 2026-05-11 for
 the public Notes system. It is the single progress file for this round: every
@@ -42,6 +42,7 @@ verification result, and any remaining follow-up.
 | Math1090 content | Some Math1090 material may have been omitted from extra lecture notes | Not started | Re-audit `reference/MATH1090` lecture notes against authored content before writing. |
 | Math1090 visual explanations | First source-backed Manim pilot for functions / relations | Completed | MATH1090 `2.2 Functions and relations` now has a trilingual Manim `VideoExplanation` for domain, target, graph, image, preimage, injective, surjective, and composition; local static, browser, and export QA are recorded in `docs/manim-function-map-video-qa-2026-06-11.md`. |
 | Math1025 visual explanations | First source-backed Manim pilot for complex-plane arithmetic | Completed | MATH1025 `6.1 Complex numbers, polar form, and geometry` now has a trilingual Manim `VideoExplanation` for complex-plane points, vector addition, modulus, argument, polar form, and multiplication as rotation plus scaling; local static, browser, and export QA are recorded in `docs/manim-complex-plane-video-qa-2026-06-11.md`. |
+| Math1025 visual explanations | Euclidean algorithm and Bézout back-substitution Manim clip | Completed | MATH1025 `7.1 Divisibility, gcd, and integer equations` now has a trilingual Manim `VideoExplanation` for the Euclidean remainder chain, gcd invariant, reverse substitution, concrete Bézout identity, and `ax+by=c` solvability test; local static, browser, and export QA are recorded in `docs/manim-euclidean-bezout-video-qa-2026-06-12.md`. |
 | CSCI2520 visual explanations | First source-backed Manim + widget pass for hash-table collisions | Completed | CSCI2520 `1.2 Hash tables and collision strategies` now has a trilingual Manim `VideoExplanation` for dictionary contract, hashing to buckets, collision meaning, chaining, and open addressing; the existing `hash-bucket-lab` remains visible and export-friendly; QA is recorded in `docs/manim-hash-table-video-qa-2026-06-11.md`. |
 | CSCI2520 content | CSCI2520 is incomplete, especially algorithms | Not started | Audit `reference/CSCI2520`, extracted text, and current `content/textbook/csci2520/**`. |
 | CSCI2520 interactions | Algorithms need code / pseudocode plus synchronized demonstrations | In progress | First Manim + widget pattern is complete for hash-table collision strategies; future algorithm traces should keep reader-controlled widgets for variable inputs and use Manim only for short invariant-focused bridges. |
@@ -209,6 +210,13 @@ Progress on the animation slice:
   `public/generated/animations/math1025/`, article embeds after the polar
   multiplication formula, and static export fallback; focused QA is recorded in
   `docs/manim-complex-plane-video-qa-2026-06-11.md`.
+- completed the second Math1025 Manim pilot for `7.1 Divisibility, gcd, and
+  integer equations` with trilingual
+  `math1025-euclidean-bezout-integer-equation-story` videos, localized
+  posters, a new trilingual storyboard, course-aware render output under
+  `public/generated/animations/math1025/`, article embeds after the
+  back-substitution worked example, and static export fallback; focused QA is
+  recorded in `docs/manim-euclidean-bezout-video-qa-2026-06-12.md`.
 - completed the first CSCI2520 Manim + widget pass for `1.2 Hash tables and
   collision strategies` with trilingual
   `csci2520-hash-table-collision-strategy-story` videos, localized posters, a

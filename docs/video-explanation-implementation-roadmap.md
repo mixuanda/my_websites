@@ -21,9 +21,18 @@ This pass checked the current repository, not an imagined course list.
   - Math1030: 37 English note units.
   - Math1090: 23 English note units.
 - Existing storyboard files:
+  - `math1030/matrices/gaussian-elimination-rref`
   - `math1030/matrices/matrix-basics`
   - `math1030/matrices/augmented-matrices-row-operations`
-  - `math1030/matrices/gaussian-elimination-rref`
+  - `math1030/inner-products/gram-schmidt-orthogonalization`
+  - `math1030/matrix-algebra/matrix-multiplication-and-linear-systems`
+  - `math1030/matrix-algebra/row-operation-matrices`
+  - `math1030/vector-spaces/linear-combinations-and-span`
+  - `math1030/vector-spaces/linear-dependence-and-independence`
+  - `math1090/sets/functions-relations`
+  - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
+  - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
+  - `csci2520/adt-and-operations/hash-tables-and-collision-strategies`
 - Existing video pilots:
   - `math1030/matrices/gaussian-elimination-rref`
   - `math1030/matrices/matrix-basics`
@@ -35,6 +44,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/vector-spaces/linear-dependence-and-independence`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
+  - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
   - `csci2520/adt-and-operations/hash-tables-and-collision-strategies`
 - No `reference/MATH1010/**` tree exists, so Math1010 should not enter this
   implementation roadmap yet.
@@ -188,7 +198,7 @@ Use this order unless a later user request changes priority:
 | `math1025/binomial-theorem/binomial-coefficients-and-expansions` | 4.1 Binomial coefficients and expansions | Manim | Pascal triangle growth and coefficient extraction. | Good medium-priority clip. |
 | `math1025/sequences/sequences-and-recursion` | 5.1 Sequences, recursion, and series | Manim + widget | Recurrence generation and convergence/divergence behavior. | Pair with existing recursion lab. |
 | `math1025/complex-numbers/complex-number-arithmetic-and-geometry` | 6.1 Complex numbers, polar form, and geometry | Done | Complex-plane point/vector reading, vector addition, modulus, argument, polar form, and multiplication as rotation plus scaling. | Completed as the first Math1025 trilingual Manim pilot; no separate widget exists for this unit yet. |
-| `math1025/integer-methods/divisibility-gcd-and-integer-equations` | 7.1 Divisibility, gcd, and integer equations | Manim | Euclidean algorithm and Bezout back-substitution. | Strong algorithmic math clip. |
+| `math1025/integer-methods/divisibility-gcd-and-integer-equations` | 7.1 Divisibility, gcd, and integer equations | Done | Euclidean algorithm, gcd invariant, back-substitution, Bézout combination, and Diophantine solvability test. | Completed as the second Math1025 trilingual Manim pilot; QA is recorded in `docs/manim-euclidean-bezout-video-qa-2026-06-12.md`. |
 | `math1025/integer-methods/rational-and-irrational-numbers` | 7.2 Rational and irrational numbers | Manim | Contradiction proof for irrationality and perfect-square test. | Keep proof sequence precise. |
 | `math1025/polynomial-methods/polynomial-arithmetic-and-division` | 8.1 Polynomial arithmetic and division | Manim + widget | Long division tableau and remainder tracking. | Pair with polynomial division stepper. |
 | `math1025/polynomial-methods/polynomial-gcds-and-irreducibility` | 8.2 Polynomial gcds and irreducibility | Manim | Euclidean algorithm for polynomials and factor checks. | Storyboard after division clip. |
@@ -215,8 +225,8 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 
 These are the concrete next slices to execute one by one:
 
-1. Continue Math1025 integer-method and polynomial-method clips after the
-    first CSCI2520 visual pass, unless the roadmap priority changes.
+1. Continue Math1025 `7.2` rational / irrational proof clip, then polynomial
+   method clips, unless the roadmap priority changes.
 2. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.
 

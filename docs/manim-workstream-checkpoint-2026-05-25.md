@@ -35,31 +35,29 @@ history.
 | Math1090 `2.2 Functions and relations` | `math1090-function-map-properties-story` | `docs/manim-function-map-video-qa-2026-06-11.md` |
 | Math1025 `6.1 Complex numbers, polar form, and geometry` | `math1025-complex-plane-arithmetic-story` | `docs/manim-complex-plane-video-qa-2026-06-11.md` |
 | CSCI2520 `1.2 Hash tables and collision strategies` | `csci2520-hash-table-collision-strategy-story` | `docs/manim-hash-table-video-qa-2026-06-11.md` |
+| Math1025 `7.1 Divisibility, gcd, and integer equations` | `math1025-euclidean-bezout-integer-equation-story` | `docs/manim-euclidean-bezout-video-qa-2026-06-12.md` |
 
 ## Latest Slice Notes
 
-CSCI2520 `1.2` was implemented after the roadmap, current MDX, extracted
-lecture/tutorial text, and a read-only explorer confirmed that the first visual
-pass should be Manim + widget. The clip explains the dictionary contract,
-hashing to a bucket, collision meaning, chaining, and open addressing while the
-existing `hash-bucket-lab` remains the reader-controlled follow-up.
+Math1025 `7.1` was implemented after the roadmap, current MDX, extracted
+chapter 7 text, and a read-only explorer confirmed that the first integer-method
+visual pass should be Manim-only. The clip explains the Euclidean remainder
+chain, the gcd invariant, reverse substitution, the concrete Bézout identity
+`258 = 2*7224 - 11*1290`, and the `ax+by=c` divisibility test.
 
 Fixes applied:
 
-- new storyboard covers dictionary operations, hash-to-bucket compression,
-  collision meaning, chaining, and probing;
+- new storyboard covers division with remainder, gcd invariance, remainder
+  chain termination, back-substitution, Bézout combination, and Diophantine
+  solvability;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the CSCI2520 scene and writes assets under
-  `public/generated/animations/csci2520/`;
-- visible in-video explanatory text uses reader-facing terms consistent with
-  the page, especially dictionary contract, bucket, collision, chaining, and
-  open addressing;
-- video embed was placed after the collision definition and before the
-  chaining section in all three localized MDX files;
-- Chinese probing labels were shortened to avoid overlap, and the explanation
-  card was moved upward so browser video controls do not obscure it;
-- existing `hash-bucket-lab` remains embedded and its export snapshot is still
-  present.
+- render script now includes the Euclidean-Bézout scene and writes assets under
+  `public/generated/animations/math1025/`;
+- video embed was placed after the back-substitution worked example and before
+  the Bézout identity theorem in all three localized MDX files;
+- Chinese video titles were localized to `Bézout 恆等式` / `Bézout 恒等式`;
+- reverse-substitution, Bézout, and Diophantine frames were adjusted after
+  visual QA to remove text overlap and redundant labels.
 
 ## Verification Stack Used For Latest Slice
 
@@ -81,8 +79,8 @@ roadmap priority changes.
 
 Expected first step:
 
-1. Start with Math1025 `integer-methods/divisibility-gcd-and-integer-equations`
-   unless source inspection changes the priority.
+1. Start with Math1025 `integer-methods/rational-and-irrational-numbers` unless
+   source inspection changes the priority.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset
