@@ -55,6 +55,10 @@ export async function GET() {
         registrationCaptchaConfigured: authBackendStatus.registrationCaptchaConfigured,
         registrationCaptchaRequired: authBackendStatus.registrationCaptchaRequired,
         registrationEnabled: authBackendStatus.registrationEnabled,
+        registrationPersistenceConfigured:
+          authBackendStatus.registrationPersistenceConfigured,
+        registrationPersistenceRequired:
+          authBackendStatus.registrationPersistenceRequired,
       },
       billing: {
         configuredPlanCount: getConfiguredBillingPlans().length,

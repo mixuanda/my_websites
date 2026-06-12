@@ -1,6 +1,11 @@
 import { NextResponse } from "next/server";
 import { assertAuthRateLimit } from "@/lib/auth-rate-limit";
-import { isRegistrationEnabled, registerPasswordAuthUser } from "@/lib/password-auth";
+import {
+  isRegistrationEnabled,
+  isRegistrationPersistenceConfigured,
+  isRegistrationPersistenceRequired,
+  registerPasswordAuthUser,
+} from "@/lib/password-auth";
 import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 import { verifyRegistrationTurnstile } from "@/lib/turnstile";
 import { upsertUserProfile } from "@/lib/user-store";
@@ -27,6 +32,8 @@ function messageFor(error: unknown) {
       return { error: "Registration verification is not configured.", errorCode: code, status: 503 };
     case "captcha_failed":
       return { error: "Verification failed. Please try again.", errorCode: code, status: 403 };
+    case "registration_persistence_not_configured":
+      return { error: "Registration storage is not configured.", errorCode: code, status: 503 };
     case "rate_limited":
       return { error: "Too many attempts. Please try again later.", errorCode: code, status: 429 };
     default:
@@ -69,6 +76,10 @@ export async function POST(request: Request) {
 
     if (!isRegistrationEnabled()) {
       throw new Error("registration_disabled");
+    }
+
+    if (isRegistrationPersistenceRequired() && !isRegistrationPersistenceConfigured()) {
+      throw new Error("registration_persistence_not_configured");
     }
 
     await assertAuthRateLimit({

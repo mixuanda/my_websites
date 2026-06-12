@@ -74,6 +74,12 @@ AUTH_PASSWORD_USERS_JSON='[
 
 公开注册的服务端真实开关只由 `AUTH_REGISTRATION_ENABLED=true` 控制；`NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED` 只负责前端是否展示注册入口。注册接口是 `POST /api/auth/register`，只会创建普通 `user` 账号，不允许注册 `ADMIN_EMAILS` 中的保留邮箱。管理权限仍只由服务端 `ADMIN_EMAILS` 白名单决定。
 
+部署环境中的公开注册还要求 Firestore 持久化已经配置完成。Vercel preview /
+production runtime 若缺少 `FIREBASE_PROJECT_ID`、`FIREBASE_CLIENT_EMAIL` 或
+`FIREBASE_PRIVATE_KEY`，即使 `AUTH_REGISTRATION_ENABLED=true`，注册接口也会返回
+`registration_persistence_not_configured`，避免把内存 fallback 误当成公开账号系统。
+本地临时演示仍可在无 Firestore 时使用内存注册，但不能用于公开 domain。
+
 注册防滥用：
 
 - `registration-ip`：每个 IP 每小时最多 8 次注册尝试。

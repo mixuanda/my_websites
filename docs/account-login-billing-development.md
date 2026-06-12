@@ -32,6 +32,9 @@ when Firestore is configured:
   succeeds;
 - the no-Firestore fallback remains memory-only for local or temporary
   development.
+- deployed preview / production runtimes now require Firestore before public
+  registration can create accounts, so a branch env mistake cannot silently
+  create memory-only public users.
 
 Follow-up account/login hardening in this workstream:
 
@@ -42,6 +45,9 @@ Follow-up account/login hardening in this workstream:
 - When `AUTH_REGISTRATION_REQUIRE_TURNSTILE=true`, public registration must
   include a Turnstile token and the server validates it against Cloudflare
   Siteverify before account creation.
+- When a deployed Vercel runtime has `AUTH_REGISTRATION_ENABLED=true` but no
+  Firebase Admin envs, `/api/auth/register` returns
+  `503 registration_persistence_not_configured`.
 - `/login` no longer defaults to showing GitHub / Google buttons. It intersects
   `NEXT_PUBLIC_AUTH_PROVIDERS` with the actual NextAuth provider list so public
   buttons do not appear before the backend provider is configured.

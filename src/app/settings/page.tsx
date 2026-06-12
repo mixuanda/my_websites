@@ -56,6 +56,8 @@ interface ProfileResponse {
     registrationCaptchaConfigured: boolean;
     registrationCaptchaRequired: boolean;
     registrationEnabled: boolean;
+    registrationPersistenceConfigured: boolean;
+    registrationPersistenceRequired: boolean;
   };
   billing: {
     configuredPlanCount: number;
@@ -421,7 +423,7 @@ export default function SettingsPage() {
             </p>
           </div>
         </div>
-        <div className="mt-3 grid gap-3 sm:grid-cols-3">
+        <div className="mt-3 grid gap-3 sm:grid-cols-4">
           <div className="rounded-lg bg-muted/50 p-3">
             <p className="text-xs text-muted-foreground">GitHub 登录</p>
             <p className="font-medium">{backend?.githubConfigured ? "已配置" : "未配置"}</p>
@@ -438,6 +440,16 @@ export default function SettingsPage() {
                   ? "已启用"
                   : "缺少密钥"
                 : "未强制"}
+            </p>
+          </div>
+          <div className="rounded-lg bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">注册存储</p>
+            <p className="font-medium">
+              {backend?.registrationPersistenceRequired
+                ? backend.registrationPersistenceConfigured
+                  ? "已配置"
+                  : "缺少 Firestore"
+                : "本地可选"}
             </p>
           </div>
         </div>

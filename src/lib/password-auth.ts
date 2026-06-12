@@ -207,6 +207,26 @@ export function isRegistrationEnabled() {
   return process.env.AUTH_REGISTRATION_ENABLED === "true";
 }
 
+function isDeployedRuntime() {
+  return process.env.VERCEL === "1" || Boolean(process.env.VERCEL_ENV);
+}
+
+export function isRegistrationPersistenceConfigured() {
+  return Boolean(firestore);
+}
+
+export function isRegistrationPersistenceRequired() {
+  if (!isRegistrationEnabled()) {
+    return false;
+  }
+
+  if (process.env.AUTH_REGISTRATION_REQUIRE_PERSISTENCE === "true") {
+    return true;
+  }
+
+  return isDeployedRuntime();
+}
+
 export function isPasswordAuthConfigured() {
   return getPasswordAuthUsers().length > 0 || isRegistrationEnabled();
 }
@@ -296,6 +316,10 @@ export async function registerPasswordAuthUser(input: {
 }) {
   if (!isRegistrationEnabled()) {
     throw new Error("registration_disabled");
+  }
+
+  if (isRegistrationPersistenceRequired() && !isRegistrationPersistenceConfigured()) {
+    throw new Error("registration_persistence_not_configured");
   }
 
   const email = normalizeEmail(input.email);

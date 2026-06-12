@@ -87,6 +87,12 @@ pair it with staging persistence plus Turnstile:
 - Firebase Admin envs from a development/staging Firebase project, not the
   production data project
 
+The deployed preview runtime refuses public registration without Firestore
+persistence. If the branch registration env is enabled before staging Firebase
+is configured, `/api/auth/register` returns
+`registration_persistence_not_configured` rather than creating memory-only
+public users.
+
 Preview deployments may rely on Vercel's built-in `VERCEL_ENV=preview` signal;
 that keeps unfinished preview-only routes available without pointing sitemap
 metadata at the production domain unless a branch-specific override is added.

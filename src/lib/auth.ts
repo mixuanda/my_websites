@@ -11,6 +11,8 @@ import {
   getPasswordAuthUsers,
   isPasswordAuthConfigured,
   isRegistrationEnabled,
+  isRegistrationPersistenceConfigured,
+  isRegistrationPersistenceRequired,
 } from "./password-auth";
 import {
   isRegistrationTurnstileConfigured,
@@ -210,4 +212,6 @@ export const authBackendStatus = {
   registrationCaptchaConfigured: isRegistrationTurnstileConfigured(),
   registrationCaptchaRequired: isRegistrationTurnstileRequired(),
   registrationEnabled: isRegistrationEnabled(),
+  registrationPersistenceConfigured: isRegistrationPersistenceConfigured(),
+  registrationPersistenceRequired: isRegistrationPersistenceRequired(),
 };
