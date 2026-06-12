@@ -263,17 +263,17 @@ npm run auth:apply-development-env -- --file .env.codex-account.preview.local --
 ```
 
 Redeploy the latest `codex/account` preview, then require registration
-readiness:
+readiness, OAuth provider availability, and browser checkout configuration:
 
 ```bash
-npm run auth:verify-development -- --require-ready
+npm run auth:verify-development -- --require-ready --require-oauth --require-checkout
 ```
 
-Only after that check is ready should Vercel Authentication be opened for
-ordinary public requests to `development.evanalysis.top`. Then verify again:
+Only after that check passes should Vercel Authentication be opened for ordinary
+public requests to `development.evanalysis.top`. Then verify again:
 
 ```bash
-npm run auth:verify-development -- --require-ready --expect-public
+npm run auth:verify-development -- --require-ready --require-oauth --require-checkout --expect-public
 ```
 
 Vercel Authentication reference:

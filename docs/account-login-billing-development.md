@@ -269,7 +269,10 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
   `npm run auth:verify-development`. In the current protected state it should
   pass with readiness warnings and `development.evanalysis.top` returning
   Vercel Authentication `401`. It should fail if the domain becomes public
-  before registration readiness is true.
+  before registration readiness is true. It now reports missing branch-scoped
+  Preview env names without printing secret values, and supports
+  `--require-ready`, `--require-oauth`, and `--require-checkout` as hard gates
+  before public opening.
 - The local key handoff file is `.env.codex-account.preview.local`; it is
   ignored by git. The committed `.env.codex-account.preview.example` lists the
   exact variable names for staging Firebase, Turnstile, OAuth, and Stripe test
@@ -311,7 +314,7 @@ Concrete key handoff flow:
 4. If the dry-run lists only intended `Preview (codex/account)` variables,
    rerun with `-- --file .env.codex-account.preview.local --apply`.
 5. Redeploy the latest `codex/account` preview.
-6. `npm run auth:verify-development -- --require-ready`
+6. `npm run auth:verify-development -- --require-ready --require-oauth --require-checkout`
 7. Only after readiness is true, disable or adjust Vercel Authentication for
    `development.evanalysis.top`, then run
-   `npm run auth:verify-development -- --require-ready --expect-public`.
+   `npm run auth:verify-development -- --require-ready --require-oauth --require-checkout --expect-public`.

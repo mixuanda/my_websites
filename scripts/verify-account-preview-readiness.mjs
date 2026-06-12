@@ -14,6 +14,8 @@ const DEFAULTS = {
 const args = parseArgs(process.argv.slice(2));
 const branch = args.branch ?? DEFAULTS.branch;
 const developmentDomain = args.domain ?? DEFAULTS.developmentDomain;
+const requireCheckout = args.requireCheckout === true;
+const requireOauth = args.requireOauth === true;
 const expectPublic = args.expectPublic === true;
 const productionCheckUrl = args.productionUrl ?? DEFAULTS.productionCheckUrl;
 const requireReady = args.requireReady === true;
@@ -33,7 +35,14 @@ checkPattern(cleanInspect, /status\s+.*Ready/i, "deployment status is Ready");
 checkIncludes(cleanInspect, new URL(developmentDomain).host, `${developmentDomain} is an alias of the preview deployment`);
 
 const envOutput = run("vercel", ["env", "ls", "--scope", scope]);
-const requiredBranchEnv = [
+const coreBranchEnv = [
+  "SITE_SURFACE",
+  "NEXT_PUBLIC_SITE_SURFACE",
+  "NEXT_PUBLIC_SITE_URL",
+  "APP_URL",
+  "NEXTAUTH_URL",
+  "AUTH_TRUST_HOST",
+  "AUTH_SECRET",
   "NEXT_PUBLIC_AUTH_PROVIDERS",
   "AUTH_REGISTRATION_ENABLED",
   "NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED",
@@ -41,10 +50,50 @@ const requiredBranchEnv = [
   "NEXT_PUBLIC_AUTH_REGISTRATION_REQUIRE_TURNSTILE",
   "AUTH_REGISTRATION_REQUIRE_PERSISTENCE",
 ];
-for (const name of requiredBranchEnv) {
-  if (!hasBranchPreviewEnv(envOutput, name, branch)) {
-    failures.push(`missing branch-scoped Preview (${branch}) env: ${name}`);
-  }
+const registrationReadyBranchEnv = [
+  "FIREBASE_PROJECT_ID",
+  "FIREBASE_CLIENT_EMAIL",
+  "FIREBASE_PRIVATE_KEY",
+  "NEXT_PUBLIC_TURNSTILE_SITE_KEY",
+  "AUTH_TURNSTILE_SECRET_KEY",
+];
+const checkoutBranchEnv = ["NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"];
+const oauthBranchEnv = [
+  "GITHUB_CLIENT_ID",
+  "GITHUB_CLIENT_SECRET",
+  "GOOGLE_CLIENT_ID",
+  "GOOGLE_CLIENT_SECRET",
+];
+const expectedOauthProviders = ["github", "google"];
+const missingCoreBranchEnv = missingBranchPreviewEnv(envOutput, coreBranchEnv, branch);
+const missingRegistrationReadyBranchEnv = missingBranchPreviewEnv(
+  envOutput,
+  registrationReadyBranchEnv,
+  branch,
+);
+const missingCheckoutBranchEnv = missingBranchPreviewEnv(envOutput, checkoutBranchEnv, branch);
+const missingOauthBranchEnv = missingBranchPreviewEnv(envOutput, oauthBranchEnv, branch);
+
+for (const name of missingCoreBranchEnv) {
+  failures.push(`missing branch-scoped Preview (${branch}) env: ${name}`);
+}
+
+if (missingRegistrationReadyBranchEnv.length > 0) {
+  const message = `missing registration readiness env for Preview (${branch}): ${missingRegistrationReadyBranchEnv.join(", ")}`;
+  if (requireReady) failures.push(message);
+  else warnings.push(message);
+}
+
+if (missingCheckoutBranchEnv.length > 0) {
+  const message = `missing browser checkout env for Preview (${branch}): ${missingCheckoutBranchEnv.join(", ")}`;
+  if (requireCheckout) failures.push(message);
+  else warnings.push(message);
+}
+
+if (missingOauthBranchEnv.length > 0) {
+  const message = `missing OAuth env for Preview (${branch}): ${missingOauthBranchEnv.join(", ")}`;
+  if (requireOauth) failures.push(message);
+  else warnings.push(message);
 }
 
 const registrationReadiness = vercelJson("/api/auth/register");
@@ -52,8 +101,14 @@ const providers = vercelJson("/api/auth/providers");
 const billingStatus = vercelJson("/api/billing/status");
 
 const providerKeys = Object.keys(providers);
+const missingOauthProviders = expectedOauthProviders.filter((provider) => !providerKeys.includes(provider));
 if (!providerKeys.includes("credentials")) {
   failures.push("credentials provider is not exposed on the preview deployment");
+}
+if (missingOauthProviders.length > 0) {
+  const message = `OAuth providers not exposed yet: ${missingOauthProviders.join(", ")}`;
+  if (requireOauth) failures.push(message);
+  else warnings.push(message);
 }
 if (!JSON.stringify(providers).includes(new URL(developmentDomain).host)) {
   failures.push("provider callback URLs do not point at the development domain");
@@ -77,7 +132,9 @@ if (!billingStatus.billingReady) {
   failures.push("billing status is not ready");
 }
 if (!billingStatus.stripe?.publishableKeyConfigured) {
-  warnings.push("NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is not configured; full browser checkout QA remains incomplete");
+  const message = "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY is not configured; full browser checkout QA remains incomplete";
+  if (requireCheckout) failures.push(message);
+  else warnings.push(message);
 }
 
 const registrationPost = vercelJson("/api/auth/register", [
@@ -122,6 +179,16 @@ console.log(
       configuredPlanCount: billingStatus.configuredPlanCount,
       developmentPublicStatus,
       deployment,
+      env: {
+        missingCoreBranchEnv,
+        missingRegistrationReadyBranchEnv,
+        missingCheckoutBranchEnv,
+        missingOauthBranchEnv,
+      },
+      oauth: {
+        expectedProviders: expectedOauthProviders,
+        missingProviders: missingOauthProviders,
+      },
       providers: providerKeys,
       productionStatus,
       registration: registrationReadiness,
@@ -158,6 +225,8 @@ function parseArgs(argv) {
     else if (item === "--domain") parsed.domain = argv[++index];
     else if (item === "--expect-public") parsed.expectPublic = true;
     else if (item === "--production-url") parsed.productionUrl = argv[++index];
+    else if (item === "--require-checkout") parsed.requireCheckout = true;
+    else if (item === "--require-oauth") parsed.requireOauth = true;
     else if (item === "--require-ready") parsed.requireReady = true;
     else if (item === "--scope") parsed.scope = argv[++index];
     else {
@@ -225,6 +294,10 @@ function hasBranchPreviewEnv(output, name, targetBranch) {
   const escapedBranch = escapeRegExp(targetBranch);
   const pattern = new RegExp(`^\\s*${escapedName}\\s+Encrypted\\s+Preview \\(${escapedBranch}\\)`, "m");
   return pattern.test(output);
+}
+
+function missingBranchPreviewEnv(output, names, targetBranch) {
+  return names.filter((name) => !hasBranchPreviewEnv(output, name, targetBranch));
 }
 
 function vercelJson(apiPath, curlArgs = []) {
