@@ -7,6 +7,8 @@ import { useRouter } from "next/navigation";
 import { GlassCard, GlassPanel } from "@/components/glass";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { getFirebaseClientAuth, getFirebasePopupProvider } from "@/lib/firebase-client";
+import { isFirebaseClientAuthConfigured } from "@/lib/firebase-client-config";
 import {
   ArrowLeft,
   Check,
@@ -24,6 +26,7 @@ import {
   User,
 } from "lucide-react";
 import { parsePublicAuthProviders } from "@/lib/auth-providers";
+import { linkWithPopup } from "firebase/auth";
 
 interface Account {
   id: string;
@@ -49,6 +52,9 @@ interface UserProfile {
 interface ProfileResponse {
   backend: {
     authProvidersConfigured: boolean;
+    firebaseBridgeConfigured: boolean;
+    firebaseClientConfigured: boolean;
+    firebaseClientMissingEnv: string[];
     githubConfigured: boolean;
     googleConfigured: boolean;
     passwordUserCount: number;
@@ -97,11 +103,26 @@ const providerInfo: Record<string, { name: string; icon: React.ReactNode; color:
     icon: <Mail className="w-5 h-5" />,
     color: "bg-red-500 hover:bg-red-600",
   },
+  "firebase-password": {
+    name: "邮箱密码",
+    icon: <LockKeyhole className="w-5 h-5" />,
+    color: "bg-blue-700 hover:bg-blue-800",
+  },
+  "firebase-github": {
+    name: "GitHub",
+    icon: <Github className="w-5 h-5" />,
+    color: "bg-gray-800 hover:bg-gray-700",
+  },
+  "firebase-google": {
+    name: "Google",
+    icon: <Mail className="w-5 h-5" />,
+    color: "bg-red-500 hover:bg-red-600",
+  },
 };
 
-// 可用的 OAuth providers（根据环境变量配置）
+// 可用的 Firebase Client Auth providers（根据环境变量配置）
 const availableProviders = parsePublicAuthProviders(process.env.NEXT_PUBLIC_AUTH_PROVIDERS)
-  .filter((p) => !["credentials", "password", "passkey"].includes(p));
+  .filter((p) => ["github", "google"].includes(p));
 
 export default function SettingsPage() {
   const { data: session, status } = useSession();
@@ -167,9 +188,51 @@ export default function SettingsPage() {
 
   const handleLinkAccount = async (provider: string) => {
     setLinking(provider);
-    // 使用 signIn 并设置 redirect: false，然后手动处理
-    // 这会创建新的 account 记录并链接到当前用户（基于 email）
-    await signIn(provider, { callbackUrl: "/settings" });
+
+    try {
+      if (
+        !isFirebaseClientAuthConfigured() ||
+        (provider !== "github" && provider !== "google")
+      ) {
+        throw new Error("firebase_client_not_configured");
+      }
+
+      const firebaseAuth = getFirebaseClientAuth();
+      if (!firebaseAuth.currentUser) {
+        throw new Error("firebase_user_missing");
+      }
+
+      const credential = await linkWithPopup(
+        firebaseAuth.currentUser,
+        getFirebasePopupProvider(provider)
+      );
+      const idToken = await credential.user.getIdToken(true);
+      const result = await signIn("firebase", {
+        idToken,
+        redirect: false,
+        redirectTo: "/settings",
+      });
+
+      if (!result?.ok) {
+        throw new Error("firebase_bridge_failed");
+      }
+
+      await Promise.all([fetchProfile(), fetchAccounts()]);
+      setProfileMessage("登录方式已绑定。");
+    } catch (error) {
+      const code = (error as { code?: string }).code;
+      if (code === "auth/provider-already-linked") {
+        setProfileMessage("这个登录方式已经绑定。");
+      } else if (code === "auth/credential-already-in-use") {
+        setProfileMessage("这个第三方账号已被其他 Firebase 用户使用。");
+      } else if (error instanceof Error && error.message === "firebase_user_missing") {
+        setProfileMessage("请先在当前浏览器重新登录后再绑定账号。");
+      } else {
+        setProfileMessage("绑定失败，请稍后重试。");
+      }
+    } finally {
+      setLinking(null);
+    }
   };
 
   const handleSaveProfile = async () => {
@@ -201,7 +264,10 @@ export default function SettingsPage() {
   };
 
   const linkedProviders = accounts.map((a) => a.provider);
-  const unlinkedProviders = availableProviders.filter((p) => !linkedProviders.includes(p));
+  const linkedProviderAliases = new Set(
+    linkedProviders.map((provider) => provider.replace(/^firebase-/, ""))
+  );
+  const unlinkedProviders = availableProviders.filter((p) => !linkedProviderAliases.has(p));
   const accessLabel = entitlements?.isAdmin
     ? "完整权限"
     : entitlements?.tier === "PRO"
@@ -425,12 +491,32 @@ export default function SettingsPage() {
         </div>
         <div className="mt-3 grid gap-3 sm:grid-cols-4">
           <div className="rounded-lg bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">Firebase 桥接</p>
+            <p className="font-medium">
+              {backend?.firebaseBridgeConfigured && backend.firebaseClientConfigured
+                ? "已配置"
+                : "未配置"}
+            </p>
+          </div>
+          <div className="rounded-lg bg-muted/50 p-3">
             <p className="text-xs text-muted-foreground">GitHub 登录</p>
-            <p className="font-medium">{backend?.githubConfigured ? "已配置" : "未配置"}</p>
+            <p className="font-medium">
+              {availableProviders.includes("github") && backend?.firebaseClientConfigured
+                ? "Firebase"
+                : backend?.githubConfigured
+                  ? "Auth.js"
+                  : "未配置"}
+            </p>
           </div>
           <div className="rounded-lg bg-muted/50 p-3">
             <p className="text-xs text-muted-foreground">Google 登录</p>
-            <p className="font-medium">{backend?.googleConfigured ? "已配置" : "未配置"}</p>
+            <p className="font-medium">
+              {availableProviders.includes("google") && backend?.firebaseClientConfigured
+                ? "Firebase"
+                : backend?.googleConfigured
+                  ? "Auth.js"
+                  : "未配置"}
+            </p>
           </div>
           <div className="rounded-lg bg-muted/50 p-3">
             <p className="text-xs text-muted-foreground">注册验证</p>
@@ -442,14 +528,22 @@ export default function SettingsPage() {
                 : "未强制"}
             </p>
           </div>
+        </div>
+        <div className="mt-3 grid gap-3 sm:grid-cols-2">
           <div className="rounded-lg bg-muted/50 p-3">
             <p className="text-xs text-muted-foreground">注册存储</p>
             <p className="font-medium">
               {backend?.registrationPersistenceRequired
                 ? backend.registrationPersistenceConfigured
-                  ? "已配置"
+                  ? "已启用"
                   : "缺少 Firestore"
                 : "本地可选"}
+            </p>
+          </div>
+          <div className="rounded-lg bg-muted/50 p-3">
+            <p className="text-xs text-muted-foreground">Firebase Client</p>
+            <p className="font-medium">
+              {backend?.firebaseClientConfigured ? "已配置" : "缺少公开配置"}
             </p>
           </div>
         </div>

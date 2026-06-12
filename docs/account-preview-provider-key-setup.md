@@ -69,12 +69,14 @@ What the command line can safely do:
   recover values that already exist in Vercel; it will not create missing
   Firebase, Turnstile, OAuth, or Stripe keys.
 
-Current branch Preview env gap observed through `vercel env ls`:
+Current branch Preview env status observed through `vercel env ls` after the
+Firebase bridge update:
 
 - present: core preview surface flags, `AUTH_SECRET`, registration flags,
-  membership gating flags, and member monthly/yearly Stripe price IDs.
-- missing: staging Firebase Admin envs, Turnstile site/secret keys,
-  GitHub OAuth keys, Google OAuth keys, and Stripe test publishable key.
+  membership gating flags, member monthly/yearly Stripe price IDs, staging
+  Firebase Admin envs, Firebase Web App public config, and Turnstile
+  site/secret keys.
+- missing for full checkout QA: Stripe test publishable key.
 
 ## Local handoff file
 
@@ -183,7 +185,25 @@ to real PEM line breaks before initializing Firebase Admin.
 
 Reference: https://firebase.google.com/docs/admin/setup
 
-## Optional OAuth login providers
+### Firebase Client Auth Web App config
+
+Variables:
+
+- `NEXT_PUBLIC_FIREBASE_API_KEY`
+- `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`
+- `NEXT_PUBLIC_FIREBASE_PROJECT_ID`
+- `NEXT_PUBLIC_FIREBASE_APP_ID`
+- optional `NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID`
+
+These values are public Firebase Web App config, not service-account secrets.
+They are still environment-specific and must be scoped to
+`Preview (codex/account)` for this development branch.
+
+The current staging project `evanalysislogin` has a Firebase Web App named
+`development.evanalysis.top`; its public config was applied to Vercel Preview
+branch env from the command line through the Firebase Management API.
+
+## Firebase Client Auth login providers
 
 If either provider is not ready, remove it from:
 
@@ -197,40 +217,25 @@ For example, credentials-only public registration is:
 NEXT_PUBLIC_AUTH_PROVIDERS=credentials
 ```
 
-### GitHub OAuth
+GitHub and Google login on this branch are configured inside Firebase
+Authentication. The app does not require Auth.js `GITHUB_CLIENT_SECRET` or
+`GOOGLE_CLIENT_SECRET` for these buttons.
 
-Variables:
+Firebase Authentication setup checklist:
 
-- `GITHUB_CLIENT_ID`
-- `GITHUB_CLIENT_SECRET`
+1. Enable Email/Password in Firebase Authentication.
+2. Enable Google and GitHub providers in Firebase Authentication.
+3. Keep `development.evanalysis.top` in Firebase Authentication authorized
+   domains.
+4. Keep `NEXT_PUBLIC_AUTH_PROVIDERS=credentials,github,google` only after the
+   provider buttons work in the Firebase console.
 
-Create a separate development OAuth App. Do not reuse a production OAuth app.
+### Optional legacy Auth.js OAuth
 
-Use these URLs:
-
-- Homepage URL: `https://development.evanalysis.top`
-- Authorization callback URL:
-  `https://development.evanalysis.top/api/auth/callback/github`
-
-Reference:
-https://docs.github.com/en/apps/oauth-apps/building-oauth-apps/creating-an-oauth-app
-
-### Google OAuth
-
-Variables:
-
-- `GOOGLE_CLIENT_ID`
-- `GOOGLE_CLIENT_SECRET`
-
-Create a separate OAuth 2.0 Web application client for development.
-
-Use these URLs:
-
-- Authorized JavaScript origin: `https://development.evanalysis.top`
-- Authorized redirect URI:
-  `https://development.evanalysis.top/api/auth/callback/google`
-
-Reference: https://developers.google.com/identity/protocols/oauth2/web-server
+The repo can still support Auth.js GitHub/Google providers if the corresponding
+server-side env vars are provided, but the `codex/account` development branch
+uses Firebase Client Auth by default. Only configure the legacy Auth.js OAuth
+vars when intentionally testing that alternate path.
 
 ## Stripe test checkout values
 
@@ -295,7 +300,7 @@ npm run auth:apply-development-env -- --file .env.codex-account.preview.local --
 ```
 
 Redeploy the latest `codex/account` preview, then require registration
-readiness, OAuth provider availability, and browser checkout configuration:
+readiness, Firebase bridge availability, and browser checkout configuration:
 
 ```bash
 npm run auth:verify-development -- --require-ready --require-oauth --require-checkout

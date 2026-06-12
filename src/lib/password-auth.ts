@@ -228,7 +228,10 @@ export function isRegistrationPersistenceRequired() {
 }
 
 export function isPasswordAuthConfigured() {
-  return getPasswordAuthUsers().length > 0 || isRegistrationEnabled();
+  return (
+    getPasswordAuthUsers().length > 0 ||
+    process.env.AUTH_LEGACY_CREDENTIALS_ENABLED === "true"
+  );
 }
 
 export function hasPasswordAuthUser(email?: string | null) {

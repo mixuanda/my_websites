@@ -54,17 +54,15 @@ const registrationReadyBranchEnv = [
   "FIREBASE_PROJECT_ID",
   "FIREBASE_CLIENT_EMAIL",
   "FIREBASE_PRIVATE_KEY",
+  "NEXT_PUBLIC_FIREBASE_API_KEY",
+  "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
+  "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
+  "NEXT_PUBLIC_FIREBASE_APP_ID",
   "NEXT_PUBLIC_TURNSTILE_SITE_KEY",
   "AUTH_TURNSTILE_SECRET_KEY",
 ];
 const checkoutBranchEnv = ["NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY"];
-const oauthBranchEnv = [
-  "GITHUB_CLIENT_ID",
-  "GITHUB_CLIENT_SECRET",
-  "GOOGLE_CLIENT_ID",
-  "GOOGLE_CLIENT_SECRET",
-];
-const expectedOauthProviders = ["github", "google"];
+const expectedAuthBridgeProviders = ["firebase"];
 const missingCoreBranchEnv = missingBranchPreviewEnv(envOutput, coreBranchEnv, branch);
 const missingRegistrationReadyBranchEnv = missingBranchPreviewEnv(
   envOutput,
@@ -72,7 +70,6 @@ const missingRegistrationReadyBranchEnv = missingBranchPreviewEnv(
   branch,
 );
 const missingCheckoutBranchEnv = missingBranchPreviewEnv(envOutput, checkoutBranchEnv, branch);
-const missingOauthBranchEnv = missingBranchPreviewEnv(envOutput, oauthBranchEnv, branch);
 
 for (const name of missingCoreBranchEnv) {
   failures.push(`missing branch-scoped Preview (${branch}) env: ${name}`);
@@ -90,28 +87,25 @@ if (missingCheckoutBranchEnv.length > 0) {
   else warnings.push(message);
 }
 
-if (missingOauthBranchEnv.length > 0) {
-  const message = `missing OAuth env for Preview (${branch}): ${missingOauthBranchEnv.join(", ")}`;
-  if (requireOauth) failures.push(message);
-  else warnings.push(message);
-}
-
 const registrationReadiness = vercelJson("/api/auth/register");
 const providers = vercelJson("/api/auth/providers");
 const billingStatus = vercelJson("/api/billing/status");
 
 const providerKeys = Object.keys(providers);
-const missingOauthProviders = expectedOauthProviders.filter((provider) => !providerKeys.includes(provider));
-if (!providerKeys.includes("credentials")) {
-  failures.push("credentials provider is not exposed on the preview deployment");
-}
-if (missingOauthProviders.length > 0) {
-  const message = `OAuth providers not exposed yet: ${missingOauthProviders.join(", ")}`;
+const missingAuthBridgeProviders = expectedAuthBridgeProviders.filter((provider) => !providerKeys.includes(provider));
+if (missingAuthBridgeProviders.length > 0) {
+  const message = `Auth bridge providers not exposed yet: ${missingAuthBridgeProviders.join(", ")}`;
   if (requireOauth) failures.push(message);
   else warnings.push(message);
 }
 if (!JSON.stringify(providers).includes(new URL(developmentDomain).host)) {
   failures.push("provider callback URLs do not point at the development domain");
+}
+
+if (requireOauth && !registrationReadiness.firebase?.clientConfigured) {
+  failures.push(
+    `Firebase Client Auth is not configured: ${registrationReadiness.firebase?.missingClientEnv?.join(", ") || "unknown"}`
+  );
 }
 
 if (requireReady && !registrationReadiness.ready) {
@@ -183,11 +177,10 @@ console.log(
         missingCoreBranchEnv,
         missingRegistrationReadyBranchEnv,
         missingCheckoutBranchEnv,
-        missingOauthBranchEnv,
       },
-      oauth: {
-        expectedProviders: expectedOauthProviders,
-        missingProviders: missingOauthProviders,
+      authBridge: {
+        expectedProviders: expectedAuthBridgeProviders,
+        missingProviders: missingAuthBridgeProviders,
       },
       providers: providerKeys,
       productionStatus,

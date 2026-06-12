@@ -7,6 +7,11 @@ import { FirestoreAdapter } from "@auth/firebase-adapter";
 import { firestore, firebaseEnabled } from "./firebase-admin";
 import { isAdminEmail } from "./membership/config";
 import {
+  authorizeFirebaseIdToken,
+  isFirebaseAuthBridgeConfigured,
+} from "./firebase-auth-bridge";
+import { getFirebaseClientConfigStatus } from "./firebase-client-config";
+import {
   authorizePasswordUser,
   getPasswordAuthUsers,
   isPasswordAuthConfigured,
@@ -71,6 +76,24 @@ const googleClientSecret =
 
 const providers: Provider[] = [];
 
+if (isFirebaseAuthBridgeConfigured()) {
+  providers.push(
+    Credentials({
+      id: "firebase",
+      name: "Firebase",
+      credentials: {
+        idToken: {
+          label: "Firebase ID token",
+          type: "text",
+        },
+      },
+      async authorize(credentials) {
+        return authorizeFirebaseIdToken(credentials.idToken);
+      },
+    })
+  );
+}
+
 if (isPasswordAuthConfigured()) {
   providers.push(
     Credentials({
@@ -125,6 +148,7 @@ if (providers.length === 0) {
 }
 
 const configuredPasswordUsers = getPasswordAuthUsers();
+const firebaseClientConfigStatus = getFirebaseClientConfigStatus();
 
 const adapter = firebaseEnabled && firestore ? FirestoreAdapter(firestore) : undefined;
 
@@ -205,6 +229,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 });
 
 export const authBackendStatus = {
+  firebaseBridgeConfigured: isFirebaseAuthBridgeConfigured(),
+  firebaseClientConfigured: firebaseClientConfigStatus.configured,
+  firebaseClientMissingEnv: firebaseClientConfigStatus.missing,
   githubConfigured: Boolean(githubClientId && githubClientSecret),
   googleConfigured: Boolean(googleClientId && googleClientSecret),
   hasConfiguredProvider: providers.length > 0,

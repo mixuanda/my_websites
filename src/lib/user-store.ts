@@ -40,6 +40,7 @@ export interface UserProfilePatch {
 
 const memoryUsersById = new Map<string, SiteUserProfile>();
 const memoryUsersByEmail = new Map<string, string>();
+const memoryAccountsByUserId = new Map<string, LinkedAccount[]>();
 
 function normalizeEmail(email?: string | null) {
   return email?.trim().toLowerCase() || null;
@@ -130,6 +131,13 @@ async function findFirestoreUserProfileByEmail(email: string) {
 function rememberProfile(profile: SiteUserProfile) {
   memoryUsersById.set(profile.id, profile);
   memoryUsersByEmail.set(profile.email, profile.id);
+}
+
+function rememberLinkedAccount(userId: string, account: LinkedAccount) {
+  const current = memoryAccountsByUserId.get(userId) ?? [];
+  const next = new Map(current.map((item) => [item.id, item]));
+  next.set(account.id, account);
+  memoryAccountsByUserId.set(userId, Array.from(next.values()));
 }
 
 export async function getUserProfile(userId?: string | null, email?: string | null) {
@@ -288,11 +296,44 @@ export async function updateUserProfile(
   return nextProfile;
 }
 
+export async function upsertLinkedAccount(input: {
+  provider: string;
+  providerAccountId: string;
+  type: string;
+  userId: string;
+}) {
+  const account: LinkedAccount = {
+    id: `${input.provider}_${hashString(input.providerAccountId)}`,
+    provider: input.provider,
+    providerAccountId: input.providerAccountId,
+    type: input.type,
+  };
+
+  rememberLinkedAccount(input.userId, account);
+
+  if (firestore) {
+    await firestore
+      .collection("accounts")
+      .doc(account.id)
+      .set(
+        {
+          ...account,
+          userId: input.userId,
+        },
+        { merge: true }
+      );
+  }
+
+  return account;
+}
+
 export async function getLinkedAccounts(session: Session | null): Promise<LinkedAccount[]> {
   const profile = await getSessionProfile(session);
   if (!profile) return [];
 
-  const accounts: LinkedAccount[] = [];
+  const accounts: LinkedAccount[] = [
+    ...(memoryAccountsByUserId.get(profile.id) ?? []),
+  ];
 
   if (firestore) {
     const snapshot = await firestore
@@ -336,7 +377,7 @@ export async function getLinkedAccounts(session: Session | null): Promise<Linked
     });
   }
 
-  return accounts;
+  return Array.from(new Map(accounts.map((account) => [account.id, account])).values());
 }
 
 export async function listUserProfiles(limit = 200) {

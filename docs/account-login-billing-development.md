@@ -11,6 +11,7 @@ from the `codex/account` workstream.
 - Account and registration planning is in
   `docs/next-work-preparation-2026-05-25.md`.
 - Auth implementation is centered on `src/lib/auth.ts`,
+  `src/lib/firebase-auth-bridge.ts`, `src/lib/firebase-client.ts`,
   `src/lib/password-auth.ts`, `/login`, `/api/auth/register`,
   `/api/user/profile`, and `/api/user/accounts`.
 - Membership and subscription billing are centered on `src/lib/membership/**`,
@@ -78,6 +79,25 @@ Follow-up account/login hardening in this workstream:
 - The public membership page no longer presents the internal admin bypass as a
   normal public membership plan.
 
+2026-06-12 Firebase Client Auth bridge update:
+
+- Public login now uses Firebase Client Auth for email/password, Google, and
+  GitHub. The browser obtains a Firebase ID token and then signs into Auth.js
+  through the internal `firebase` credentials bridge provider.
+- `POST /api/auth/register` no longer creates new public password hashes in
+  `credentialUsers`. It validates Turnstile and rate limits on the server, then
+  creates the user in Firebase Authentication through Firebase Admin.
+- Auth.js remains the site session layer, so existing settings, membership,
+  route guards, and billing APIs continue to read the same session shape.
+- Firebase provider links are mirrored into the Firestore `accounts`
+  collection as `firebase-password`, `firebase-google`, or `firebase-github`
+  records for settings/admin visibility.
+- `credentialUsers` remains legacy-compatible for pre-existing static or
+  explicitly enabled legacy credential users, but it is no longer the public
+  registration source of truth.
+- `GET /api/auth/register` now includes Firebase bridge/client readiness in
+  addition to Turnstile and persistence readiness.
+
 ## Storage decision for the account branch
 
 Keep Firestore for the current account/login/billing branch.
@@ -102,7 +122,9 @@ Therefore the concrete next implementation path is:
 2. Keep production and preview Firebase credentials separate.
 3. Enable Turnstile before public registration is opened on
    `development.evanalysis.top`.
-4. Configure GitHub / Google OAuth as preview branch env vars first.
+4. Configure Firebase Authentication Email/Google/GitHub in the staging
+   Firebase project and set the Firebase Web App public config as branch-scoped
+   preview env vars first.
 5. Only evaluate Neon / Clerk migration after the current account and billing
    flow is stable enough to migrate with fixtures and rollback.
 
@@ -228,9 +250,10 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
   Vercel reports target `preview`, status `Ready`, and aliases include
   `https://development.evanalysis.top` plus the `codex/account` git preview
   alias.
-- The branch-scoped `Preview (codex/account)` env now enables the credentials
-  surface and registration preparation flags without adding production secrets:
-  `NEXT_PUBLIC_AUTH_PROVIDERS=credentials`,
+- The branch-scoped `Preview (codex/account)` env now enables the Firebase
+  Client Auth surface and registration preparation flags without adding
+  production secrets:
+  `NEXT_PUBLIC_AUTH_PROVIDERS=credentials,github,google`,
   `AUTH_REGISTRATION_ENABLED=true`,
   `NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED=true`,
   `AUTH_REGISTRATION_REQUIRE_TURNSTILE=true`,
@@ -253,14 +276,10 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
   deployment through the Vercel API, and its project-domain config is branch
   scoped to `codex/account`. Do not replace this with a production alias or a
   `gitBranch: null` domain entry.
-- The preview environment for this branch does not currently include Firebase
-  or OAuth provider env vars. Public remote registration should remain disabled
-  until preview Firestore and Turnstile are both configured.
-- The current development deploy deliberately uses
-  `NEXT_PUBLIC_AUTH_PROVIDERS=disabled`. The login page does not call the
-  NextAuth providers endpoint in this closed state; direct provider-endpoint
-  output is not a readiness check until at least one backend provider is
-  configured.
+- The preview environment for this branch now includes Firebase Admin,
+  Firebase Web App public config, and Turnstile values for the staging
+  `evanalysislogin` project. Public remote access still remains blocked by
+  Vercel Authentication until browser QA is deliberately opened.
 - `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` is not configured in the one-off preview
   deployment. Current subscription readiness still passes because server-side
   subscription checkout uses Stripe secret key plus recurring price IDs, but the
@@ -294,6 +313,13 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
     authorized domains now include `localhost`,
     `evanalysislogin.firebaseapp.com`, `evanalysislogin.web.app`, and
     `development.evanalysis.top`.
+  - A Firebase Web App named `development.evanalysis.top` was created in the
+    `evanalysislogin` project. Its public browser config was written only to
+    branch-scoped `Preview (codex/account)` env vars:
+    `NEXT_PUBLIC_FIREBASE_API_KEY`,
+    `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`,
+    `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, and
+    `NEXT_PUBLIC_FIREBASE_APP_ID`.
   - Cloudflare Turnstile Siteverify accepts the configured secret; a dummy token
     correctly returns `invalid-input-response` rather than a secret-key error.
   - The branch-scoped `Preview (codex/account)` env now includes Firebase Admin
@@ -302,13 +328,13 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
     `https://my-websites-f6lfx11k9-mixuandahotmailcoms-projects.vercel.app`,
     is Ready, target `preview`, and aliased to
     `https://development.evanalysis.top`.
-  - `npm run auth:verify-development -- --require-ready` passes:
-    registration readiness is true, persistence is configured, captcha is
-    configured, and providers currently expose `credentials`.
+  - After redeploying the Firebase bridge code, the expected Auth.js provider
+    endpoint is `firebase`; Google/GitHub are handled by Firebase Client Auth,
+    not Auth.js OAuth secrets.
   - The stricter
     `npm run auth:verify-development -- --require-ready --require-oauth --require-checkout`
-    still fails because Auth.js Google/GitHub env vars and
-    `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` are not configured.
+    should still fail until `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` is configured
+    for full browser checkout QA.
   - Ordinary public requests to `https://development.evanalysis.top/` still
     return Vercel Authentication `401`; `https://www.evanalysis.top/en/notes`
     returns `200`.
@@ -322,13 +348,13 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
 Configure branch-scoped preview env for `codex/account` before the next remote
 QA pass:
 
-- Auth: `AUTH_SECRET`, `AUTH_TRUST_HOST`, actual provider envs or a deliberate
-  credentials-registration strategy.
+- Auth: `AUTH_SECRET`, `AUTH_TRUST_HOST`, Firebase Admin envs, and Firebase
+  Web App public envs for the Firebase Client Auth bridge.
 - Registration security: `AUTH_REGISTRATION_REQUIRE_TURNSTILE=true`,
   `NEXT_PUBLIC_AUTH_REGISTRATION_REQUIRE_TURNSTILE=true`,
   `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, and `AUTH_TURNSTILE_SECRET_KEY`.
-- Persistence: Firebase Admin envs, preferably a development/staging Firebase
-  project rather than production data if public registration is enabled.
+- Persistence and identity: Firebase Admin envs plus Firebase Authentication in
+  a development/staging Firebase project rather than production data.
 - Billing: `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`,
   `STRIPE_PRICE_ID_MEMBER_MONTHLY`, `STRIPE_PRICE_ID_MEMBER_YEARLY`,
   `NOTES_MEMBERSHIP_GATING`, and `NEXT_PUBLIC_NOTES_MEMBERSHIP_GATING`.
@@ -340,8 +366,8 @@ QA pass:
 Concrete key handoff flow:
 
 1. `cp .env.codex-account.preview.example .env.codex-account.preview.local`
-2. Fill `.env.codex-account.preview.local` with staging Firebase, Turnstile,
-   development OAuth app keys, and Stripe test publishable key.
+2. Fill `.env.codex-account.preview.local` with staging Firebase Admin,
+   Firebase Web App public config, Turnstile, and Stripe test publishable key.
 3. `npm run auth:apply-development-env -- --file .env.codex-account.preview.local`
 4. If the dry-run lists only intended `Preview (codex/account)` variables,
    rerun with `-- --file .env.codex-account.preview.local --apply`.
@@ -351,7 +377,7 @@ Concrete key handoff flow:
    `development.evanalysis.top`, then run
    `npm run auth:verify-development -- --require-ready --require-oauth --require-checkout --expect-public`.
 
-Credentials-only opening variant:
+Firebase email/password-only opening variant:
 
 1. Keep `NEXT_PUBLIC_AUTH_PROVIDERS=credentials`.
 2. Ensure `npm run auth:verify-development -- --require-ready` passes.

@@ -6,7 +6,7 @@ const privateKey = process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n");
 
 export const firebaseEnabled = Boolean(projectId && clientEmail && privateKey);
 
-export const firestore = (() => {
+function getFirebaseAdminApp() {
   if (!firebaseEnabled) {
     return null;
   }
@@ -19,6 +19,18 @@ export const firestore = (() => {
         privateKey: privateKey!,
       }),
     });
+  }
+
+  return admin.app();
+}
+
+const firebaseAdminApp = getFirebaseAdminApp();
+
+export const firebaseAuth = firebaseAdminApp ? admin.auth(firebaseAdminApp) : null;
+
+export const firestore = (() => {
+  if (!firebaseAdminApp) {
+    return null;
   }
 
   return admin.firestore();

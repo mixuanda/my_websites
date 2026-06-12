@@ -29,6 +29,10 @@ const REGISTRATION_REQUIRED = [
   "FIREBASE_PROJECT_ID",
   "FIREBASE_CLIENT_EMAIL",
   "FIREBASE_PRIVATE_KEY",
+  "NEXT_PUBLIC_FIREBASE_API_KEY",
+  "NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN",
+  "NEXT_PUBLIC_FIREBASE_PROJECT_ID",
+  "NEXT_PUBLIC_FIREBASE_APP_ID",
   "NEXT_PUBLIC_TURNSTILE_SITE_KEY",
   "AUTH_TURNSTILE_SECRET_KEY",
 ];
@@ -179,13 +183,6 @@ function validateValues(envValues, options) {
   const required = [...REGISTRATION_REQUIRED];
   const providers = splitCsv(envValues.NEXT_PUBLIC_AUTH_PROVIDERS);
 
-  if (!options.allowMissingOauth && providers.includes("github")) {
-    required.push("GITHUB_CLIENT_ID", "GITHUB_CLIENT_SECRET");
-  }
-  if (!options.allowMissingOauth && providers.includes("google")) {
-    required.push("GOOGLE_CLIENT_ID", "GOOGLE_CLIENT_SECRET");
-  }
-
   for (const name of required) {
     if (!envValues[name]) {
       const message = `missing required value: ${name}`;
@@ -228,6 +225,20 @@ function validateValues(envValues, options) {
     }
   }
 
+  if (
+    !options.allowMissingOauth &&
+    [
+      envValues.GITHUB_CLIENT_ID,
+      envValues.GITHUB_CLIENT_SECRET,
+      envValues.GOOGLE_CLIENT_ID,
+      envValues.GOOGLE_CLIENT_SECRET,
+    ].some((value) => value && !looksLikePlaceholder(value))
+  ) {
+    warnings.push(
+      "Auth.js OAuth env vars are present but github/google login on this branch uses Firebase Client Auth",
+    );
+  }
+
   const productionOriginValues = Object.entries(envValues).filter(([, value]) =>
     containsProductionOrigin(value),
   );
@@ -263,6 +274,16 @@ function validateValues(envValues, options) {
       !privateKey.includes("-----END PRIVATE KEY-----"))
   ) {
     errors.push("FIREBASE_PRIVATE_KEY must be a complete PEM private key");
+  }
+
+  if (
+    envValues.FIREBASE_PROJECT_ID &&
+    envValues.NEXT_PUBLIC_FIREBASE_PROJECT_ID &&
+    !looksLikePlaceholder(envValues.FIREBASE_PROJECT_ID) &&
+    !looksLikePlaceholder(envValues.NEXT_PUBLIC_FIREBASE_PROJECT_ID) &&
+    envValues.FIREBASE_PROJECT_ID !== envValues.NEXT_PUBLIC_FIREBASE_PROJECT_ID
+  ) {
+    errors.push("NEXT_PUBLIC_FIREBASE_PROJECT_ID must match FIREBASE_PROJECT_ID");
   }
 
   if (!options.allowPlaceholders) {

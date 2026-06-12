@@ -4,8 +4,12 @@ import {
   isRegistrationEnabled,
   isRegistrationPersistenceConfigured,
   isRegistrationPersistenceRequired,
-  registerPasswordAuthUser,
 } from "@/lib/password-auth";
+import {
+  isFirebaseAuthBridgeConfigured,
+  registerFirebaseAuthUser,
+} from "@/lib/firebase-auth-bridge";
+import { getFirebaseClientConfigStatus } from "@/lib/firebase-client-config";
 import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
 import {
   isRegistrationTurnstileConfigured,
@@ -38,6 +42,12 @@ function messageFor(error: unknown) {
       return { error: "Verification failed. Please try again.", errorCode: code, status: 403 };
     case "registration_persistence_not_configured":
       return { error: "Registration storage is not configured.", errorCode: code, status: 503 };
+    case "firebase_auth_not_configured":
+      return { error: "Firebase Auth is not configured.", errorCode: code, status: 503 };
+    case "firebase_client_not_configured":
+      return { error: "Firebase browser auth is not configured.", errorCode: code, status: 503 };
+    case "firebase_project_mismatch":
+      return { error: "Firebase client and server projects do not match.", errorCode: code, status: 503 };
     case "rate_limited":
       return { error: "Too many attempts. Please try again later.", errorCode: code, status: 429 };
     default:
@@ -64,6 +74,8 @@ function getRegistrationReadiness() {
   const persistenceConfigured = isRegistrationPersistenceConfigured();
   const captchaRequired = isRegistrationTurnstileRequired();
   const captchaConfigured = isRegistrationTurnstileConfigured();
+  const firebaseClient = getFirebaseClientConfigStatus();
+  const firebaseBridgeConfigured = isFirebaseAuthBridgeConfigured();
 
   if (!enabled) {
     blockers.push("registration_disabled");
@@ -77,6 +89,22 @@ function getRegistrationReadiness() {
     blockers.push("captcha_not_configured");
   }
 
+  if (!firebaseBridgeConfigured) {
+    blockers.push("firebase_auth_not_configured");
+  }
+
+  if (!firebaseClient.configured) {
+    blockers.push("firebase_client_not_configured");
+  }
+
+  if (
+    firebaseClient.configured &&
+    process.env.FIREBASE_PROJECT_ID &&
+    firebaseClient.config.projectId !== process.env.FIREBASE_PROJECT_ID
+  ) {
+    blockers.push("firebase_project_mismatch");
+  }
+
   return {
     blockers,
     captcha: {
@@ -84,6 +112,11 @@ function getRegistrationReadiness() {
       required: captchaRequired,
     },
     enabled,
+    firebase: {
+      bridgeConfigured: firebaseBridgeConfigured,
+      clientConfigured: firebaseClient.configured,
+      missingClientEnv: firebaseClient.missing,
+    },
     persistence: {
       configured: persistenceConfigured,
       required: persistenceRequired,
@@ -147,16 +180,33 @@ export async function POST(request: Request) {
       requestIp === "unknown" ? null : requestIp
     );
 
-    const credentialUser = await registerPasswordAuthUser({
+    if (!isFirebaseAuthBridgeConfigured()) {
+      throw new Error("firebase_auth_not_configured");
+    }
+
+    const firebaseClient = getFirebaseClientConfigStatus();
+    if (!firebaseClient.configured) {
+      throw new Error("firebase_client_not_configured");
+    }
+
+    if (
+      process.env.FIREBASE_PROJECT_ID &&
+      firebaseClient.config.projectId !== process.env.FIREBASE_PROJECT_ID
+    ) {
+      throw new Error("firebase_project_mismatch");
+    }
+
+    const { firebaseUser } = await registerFirebaseAuthUser({
       email: payload.email,
       name: typeof payload.name === "string" ? payload.name : undefined,
       password: payload.password,
     });
 
     const profile = await upsertUserProfile({
-      email: credentialUser.email,
-      id: credentialUser.id,
-      name: credentialUser.name,
+      email: firebaseUser.email,
+      id: `firebase_${firebaseUser.uid}`,
+      image: firebaseUser.photoURL,
+      name: firebaseUser.displayName,
       role: "user",
     });
 

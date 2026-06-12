@@ -5,9 +5,12 @@
 ## 当前后端能力
 
 - NextAuth 统一处理登录会话。
-- 支持 GitHub OAuth、Google OAuth。
-- 支持可选的站点邮箱密码登录，用于没有 OAuth 或需要管理员直登的场景。
-- 支持可选的站点账号注册；注册用户存入 Firestore 的 `credentialUsers` 集合，管理员邮箱不会开放注册。
+- 公开登录通过 Firebase Client Auth 支持邮箱密码、Google、GitHub。
+- Firebase Client Auth 登录成功后，浏览器把 Firebase ID token 交给
+  Auth.js 的 `firebase` bridge provider 建立本站会话。
+- 支持可选的 legacy 站点邮箱密码登录，用于迁移期或管理员直登场景。
+- 支持公开站点账号注册；注册接口通过 Turnstile 和速率限制后，用
+  Firebase Admin 创建 Firebase Authentication 用户，管理员邮箱不会开放注册。
 - 注册接口带有账号 / IP 速率限制；配置 Turnstile 后，注册必须通过服务端验证码校验。
 - Firestore 配置存在时，Auth adapter、用户资料、日记、会员资格和练习进度都写入 Firestore。
 - Firestore 未配置时，部分功能使用内存模式，仅适合本地开发和临时演示。
@@ -36,9 +39,14 @@ AUTH_REGISTRATION_REQUIRE_TURNSTILE=true
 NEXT_PUBLIC_AUTH_REGISTRATION_REQUIRE_TURNSTILE=true
 NEXT_PUBLIC_TURNSTILE_SITE_KEY=...
 AUTH_TURNSTILE_SECRET_KEY=...
+NEXT_PUBLIC_FIREBASE_API_KEY=...
+NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN=...
+NEXT_PUBLIC_FIREBASE_PROJECT_ID=...
+NEXT_PUBLIC_FIREBASE_APP_ID=...
 ```
 
-只启用实际已经配置的 provider。若没有站点账号、也没有启用注册，不应把 `credentials` 放进公开列表。
+只启用实际已经配置的 provider。`credentials` 表示 Firebase
+email/password，`github` 和 `google` 表示 Firebase Client Auth provider。
 若 `NEXT_PUBLIC_AUTH_PROVIDERS` 未设置，或设置为 `disabled`、`none`、`off`，前端不会默认展示 GitHub / Google，也不会请求 NextAuth provider endpoint，避免按钮显示但后端 provider 未配置。
 
 ## 站点密码登录
@@ -72,7 +80,11 @@ AUTH_PASSWORD_USERS_JSON='[
 ]'
 ```
 
-公开注册的服务端真实开关只由 `AUTH_REGISTRATION_ENABLED=true` 控制；`NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED` 只负责前端是否展示注册入口。注册接口是 `POST /api/auth/register`，只会创建普通 `user` 账号，不允许注册 `ADMIN_EMAILS` 中的保留邮箱。管理权限仍只由服务端 `ADMIN_EMAILS` 白名单决定。
+公开注册的服务端真实开关只由 `AUTH_REGISTRATION_ENABLED=true` 控制；
+`NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED` 只负责前端是否展示注册入口。注册接口是
+`POST /api/auth/register`，只会在 Firebase Authentication 中创建普通 `user`
+账号，不允许注册 `ADMIN_EMAILS` 中的保留邮箱。管理权限仍只由服务端
+`ADMIN_EMAILS` 白名单决定。
 
 部署环境中的公开注册还要求 Firestore 持久化已经配置完成。Vercel preview /
 production runtime 若缺少 `FIREBASE_PROJECT_ID`、`FIREBASE_CLIENT_EMAIL` 或
@@ -95,8 +107,8 @@ npm run auth:verify-development -- --require-ready --expect-public
 ```
 
 先从 `.env.codex-account.preview.example` 复制出本地
-`.env.codex-account.preview.local`，填入 staging Firebase、Turnstile、
-development OAuth 和 Stripe test key。`auth:apply-development-env` 默认只 dry-run；
+`.env.codex-account.preview.local`，填入 staging Firebase Admin、Firebase Web
+App public config、Turnstile 和 Stripe test key。`auth:apply-development-env` 默认只 dry-run；
 加 `--apply` 才会写入 Vercel，并且只写入 branch-scoped
 `Preview (codex/account)`。`auth:verify-development` 第一条用于当前受保护状态；
 第二条用于写入 staging Firebase 和 Turnstile 后确认注册 ready；第三条用于明确
@@ -110,7 +122,8 @@ development OAuth 和 Stripe test key。`auth:apply-development-env` 默认只 d
 - Firestore 存在时，速率限制写入 `authRateLimits` 集合；本地无 Firestore 时使用内存 fallback。
 - 当服务端 `AUTH_REGISTRATION_REQUIRE_TURNSTILE=true` 时，`/api/auth/register` 会调用 Cloudflare Turnstile Siteverify API。`NEXT_PUBLIC_AUTH_REGISTRATION_REQUIRE_TURNSTILE` 只负责前端按钮和组件显示；没有 token、密钥缺失或校验失败都会被服务端拒绝。
 
-当前不提供找回密码流程；如需重设管理员密码，更新 `AUTH_PASSWORD_HASH` 后重新部署。
+Firebase email/password 账号的找回密码流程仍未接入 UI；如需重设 legacy
+管理员密码，更新 `AUTH_PASSWORD_HASH` 后重新部署。
 
 当前 production bootstrap 管理员邮箱：
 
@@ -118,31 +131,32 @@ development OAuth 和 Stripe test key。`auth:apply-development-env` 默认只 d
 
 管理员密码只保存为 Vercel 环境变量中的 PBKDF2 hash，不写入仓库。
 
-## OAuth 登录
+## Firebase Client Auth 登录
 
-GitHub：
+公开 `/login` 页面不会直接调用 Auth.js `github` / `google` provider。它会：
 
-```env
-GITHUB_CLIENT_ID=...
-GITHUB_CLIENT_SECRET=...
-```
+1. 通过 Firebase Client Auth 完成邮箱密码、Google 或 GitHub 登录。
+2. 从 Firebase 当前用户取得 ID token。
+3. 调用 Auth.js `firebase` credentials bridge provider。
+4. 服务端用 Firebase Admin `verifyIdToken` 校验 token，写入或更新 Firestore
+   `users` 与 `accounts` 记录。
+5. Auth.js 建立本站 JWT session。
 
-Google：
+Readiness 当前规则：
 
-```env
-GOOGLE_CLIENT_ID=...
-GOOGLE_CLIENT_SECRET=...
-```
+- 后端必须暴露 Auth.js `firebase` bridge provider。
+- 前端必须配置 `NEXT_PUBLIC_FIREBASE_API_KEY`,
+  `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, and
+  `NEXT_PUBLIC_FIREBASE_APP_ID`。
+- Firebase Authentication 必须启用 Email/Password、Google、GitHub 中对应的
+  provider。
+- 当前 preview 可用 `NEXT_PUBLIC_AUTH_PROVIDERS=disabled` 暂停公开登录入口。
 
-NextAuth 也兼容 `AUTH_GITHUB_ID`、`AUTH_GITHUB_SECRET`、`AUTH_GOOGLE_ID`、`AUTH_GOOGLE_SECRET`。
+## Optional legacy Auth.js OAuth
 
-OAuth readiness 当前规则：
-
-- 后端只有在 client id 与 secret 成对存在时才注册 GitHub / Google provider。
-- 前端 `/login` 会同时检查 `NEXT_PUBLIC_AUTH_PROVIDERS` 和 NextAuth 的实际 provider 列表；不会因为 public env 写错而展示不可用按钮。
-- 当前 preview 可用 `NEXT_PUBLIC_AUTH_PROVIDERS=disabled` 暂停公开登录入口；真正开放邮箱密码、GitHub 或 Google 前，必须先配置对应后端 provider / secret。
-- Google 登录要求 provider profile 的 `email_verified=true`。
-- GitHub 登录会调用 GitHub emails API，要求登录邮箱已验证。
+NextAuth 仍兼容 `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET`、
+`GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` 以及 `AUTH_*` aliases，但这已经不是
+`codex/account` 分支的默认第三方登录路径。
 
 ## 数据存储决策
 
@@ -151,7 +165,7 @@ OAuth readiness 当前规则：
 本仓库下一阶段继续使用 Firestore，原因：
 
 - 当前 Auth.js Firestore adapter 已经接入。
-- `users`、OAuth `accounts`、`credentialUsers`、会员资格、Stripe customer / subscription 映射、练习记录和日记数据都已经围绕 Firestore 组织。
+- `users`、Firebase/Auth.js `accounts`、legacy `credentialUsers`、会员资格、Stripe customer / subscription 映射、练习记录和日记数据都已经围绕 Firestore 组织。
 - 对现在的 `codex/account` 分支来说，最大风险是注册安全与环境隔离，而不是数据库供应商本身。
 
 长期迁移方向：

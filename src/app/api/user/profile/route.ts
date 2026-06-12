@@ -48,6 +48,9 @@ export async function GET() {
     return NextResponse.json({
       backend: {
         authProvidersConfigured: authBackendStatus.hasConfiguredProvider,
+        firebaseBridgeConfigured: authBackendStatus.firebaseBridgeConfigured,
+        firebaseClientConfigured: authBackendStatus.firebaseClientConfigured,
+        firebaseClientMissingEnv: authBackendStatus.firebaseClientMissingEnv,
         githubConfigured: authBackendStatus.githubConfigured,
         googleConfigured: authBackendStatus.googleConfigured,
         passwordUserCount: authBackendStatus.passwordUserCount,

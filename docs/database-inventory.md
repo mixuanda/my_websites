@@ -34,9 +34,11 @@ authorization correctness must come from application code and route guards.
 | Area | Variables | Notes |
 | --- | --- | --- |
 | Auth.js | `AUTH_SECRET`, `NEXTAUTH_SECRET`, `AUTH_TRUST_HOST`, `NEXTAUTH_URL` | `AUTH_SECRET` or `NEXTAUTH_SECRET` is required for stable auth sessions. |
-| OAuth | `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, plus `AUTH_*` aliases | GitHub and Google providers are optional but must be paired. |
-| Credentials auth | `AUTH_PASSWORD_EMAIL`, `AUTH_PASSWORD_HASH`, `AUTH_PASSWORD_USERS_JSON`, `AUTH_REGISTRATION_ENABLED`, `NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED` | Registered credentials persist in Firestore when configured. |
-| Firebase Admin | `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, `FIREBASE_PRIVATE_KEY` | Current source of durable app state. |
+| Firebase Client Auth | `NEXT_PUBLIC_FIREBASE_API_KEY`, `NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN`, `NEXT_PUBLIC_FIREBASE_PROJECT_ID`, `NEXT_PUBLIC_FIREBASE_APP_ID` | Public browser config for Firebase email/password, Google, and GitHub login. |
+| Optional Auth.js OAuth | `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET`, `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, plus `AUTH_*` aliases | Legacy/alternate Auth.js OAuth path; not required for the Firebase Client Auth bridge. |
+| Firebase auth registration | `AUTH_REGISTRATION_ENABLED`, `NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED` | Public registration creates Firebase Authentication users after server checks. |
+| Legacy credentials auth | `AUTH_PASSWORD_EMAIL`, `AUTH_PASSWORD_HASH`, `AUTH_PASSWORD_USERS_JSON`, `AUTH_LEGACY_CREDENTIALS_ENABLED` | Legacy static or previously registered credentials. |
+| Firebase Admin | `FIREBASE_PROJECT_ID`, `FIREBASE_CLIENT_EMAIL`, `FIREBASE_PRIVATE_KEY` | Current source of durable app state and Firebase ID token verification. |
 | Legacy Notes membership | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRICE_ID_MEMBER_MONTHLY`, `STRIPE_PRICE_ID_MEMBER_YEARLY`, `NOTES_MEMBERSHIP_GATING` | Used by `src/lib/membership/**` and `/api/billing/**`. |
 | Product-scope billing | `STRIPE_PRODUCT_PREMIUM_NOTES`, `STRIPE_PRICE_PREMIUM_NOTES_MONTHLY`, `STRIPE_PRICE_PREMIUM_NOTES_ONE_TIME`, `STRIPE_PRODUCT_PREMIUM_VIDEO_TOOLS`, `STRIPE_PRICE_PREMIUM_VIDEO_TOOLS_MONTHLY`, `STRIPE_PRICE_PREMIUM_VIDEO_TOOLS_ONE_TIME` | Used by `src/lib/billing/**` and `/api/stripe/**`. |
 | Public URLs | `NEXT_PUBLIC_SITE_URL`, `APP_URL`, `NEXT_PUBLIC_APP_URL` | Used for callback, checkout, and portal URLs. |
@@ -48,10 +50,10 @@ authorization correctness must come from application code and route guards.
 | Collection / path | Writer | Reader | Durability role |
 | --- | --- | --- | --- |
 | `users/{userId}` | `src/lib/user-store.ts`, Auth.js Firebase adapter, membership webhook | auth session profile, settings, admin users, membership checks | Primary user profile and Auth.js-adjacent user record. |
-| `accounts/{accountId}` | Auth.js Firebase adapter | `src/lib/user-store.ts`, `src/lib/admin-users.ts` | OAuth account-linking records. |
+| `accounts/{accountId}` | Auth.js Firebase adapter, `src/lib/firebase-auth-bridge.ts` | `src/lib/user-store.ts`, `src/lib/admin-users.ts` | OAuth and Firebase provider-link records. |
 | `sessions/{sessionId}` | Auth.js Firebase adapter if adapter uses it | Auth.js adapter | Lower priority because this repo configures JWT sessions, but still part of the adapter surface. |
 | `verificationTokens/{tokenId}` | Auth.js Firebase adapter when token flows are used | Auth.js adapter | Auth token flow support. |
-| `credentialUsers/{credentialId}` | `src/lib/password-auth.ts` | credentials provider, admin users | Registered site-password users and PBKDF2 hashes. |
+| `credentialUsers/{credentialId}` | legacy `src/lib/password-auth.ts` | legacy credentials provider, admin users | Legacy site-password users and PBKDF2 hashes; no longer the public registration source of truth. |
 | `users/{userId}.membership` | `src/lib/membership/entitlements.ts`, `/api/billing/webhook` | Notes membership UI, export/access gating, settings, admin users | Legacy/current Notes membership authorization cache. |
 | `user_entitlements/{userId}` | `src/lib/billing/store.ts`, `/api/stripe/webhook` | `/api/stripe/entitlements`, settings billing path | Product-scope entitlement model for premium products. |
 | `stripe_customers/{stripeCustomerId}` | `src/lib/billing/store.ts` | `/api/stripe/webhook`, Stripe portal path | Stripe customer to app user mapping. |

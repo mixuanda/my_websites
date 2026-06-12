@@ -9,6 +9,13 @@ import Script from "next/script";
 import { getProviders, signIn } from "next-auth/react";
 import { Github, LockKeyhole, Mail } from "lucide-react";
 import { parsePublicAuthProviders } from "@/lib/auth-providers";
+import { getFirebaseClientAuth, getFirebasePopupProvider } from "@/lib/firebase-client";
+import { isFirebaseClientAuthConfigured } from "@/lib/firebase-client-config";
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  type User as FirebaseUser,
+} from "firebase/auth";
 
 type TurnstileRenderOptions = {
   callback?: (token: string) => void;
@@ -30,6 +37,11 @@ type RegistrationReadiness = {
     required: boolean;
   };
   enabled: boolean;
+  firebase?: {
+    bridgeConfigured: boolean;
+    clientConfigured: boolean;
+    missingClientEnv: string[];
+  };
   persistence: {
     configured: boolean;
     required: boolean;
@@ -69,15 +81,18 @@ function LoginPageContent() {
   const turnstileSiteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() ?? "";
   const registrationVerificationRequired =
     process.env.NEXT_PUBLIC_AUTH_REGISTRATION_REQUIRE_TURNSTILE === "true";
+  const firebaseClientConfigured = isFirebaseClientAuthConfigured();
 
   const isLoading = Boolean(loadingProvider);
+  const firebaseBridgeConfigured = serverProviders.includes("firebase");
+  const firebaseAuthReady = firebaseClientConfigured && firebaseBridgeConfigured;
   const showCredentials =
     (availableProviders.includes("credentials") || availableProviders.includes("password")) &&
-    serverProviders.includes("credentials");
+    firebaseAuthReady;
   const showGithub =
-    availableProviders.includes("github") && serverProviders.includes("github");
+    availableProviders.includes("github") && firebaseAuthReady;
   const showGoogle =
-    availableProviders.includes("google") && serverProviders.includes("google");
+    availableProviders.includes("google") && firebaseAuthReady;
   const registrationEnabled = process.env.NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED === "true";
   const captchaMissing =
     mode === "register" && registrationVerificationRequired && !turnstileSiteKey;
@@ -105,6 +120,10 @@ function LoginPageContent() {
     registrationVerificationRequired &&
     Boolean(turnstileSiteKey) &&
     !turnstileToken;
+  const firebaseMissing =
+    providersLoaded &&
+    availableProviders.length > 0 &&
+    (!firebaseClientConfigured || !firebaseBridgeConfigured);
 
   useEffect(() => {
     if (registrationEnabled && searchParams.get("mode") === "register") {
@@ -187,11 +206,62 @@ function LoginPageContent() {
     };
   }, [mode, turnstileReady, turnstileSiteKey]);
 
-  const handleSignIn = async (provider: string) => {
+  function messageForFirebaseError(error: unknown) {
+    const code = (error as { code?: string }).code;
+    const message = error instanceof Error ? error.message : "";
+
+    switch (code) {
+      case "auth/email-already-in-use":
+        return "这个邮箱已经注册，请直接登录。";
+      case "auth/invalid-credential":
+      case "auth/user-not-found":
+      case "auth/wrong-password":
+        return "邮箱或密码不正确。";
+      case "auth/popup-blocked":
+        return "浏览器阻止了登录弹窗，请允许弹窗后重试。";
+      case "auth/popup-closed-by-user":
+        return "登录弹窗已关闭。";
+      case "auth/unauthorized-domain":
+        return "当前域名尚未加入 Firebase Authentication 授权域名。";
+      case "auth/weak-password":
+        return "密码强度不足，请使用至少 8 个字符。";
+      default:
+        return message || "登录失败，请稍后再试。";
+    }
+  }
+
+  const completeFirebaseBridgeSignIn = async (user: FirebaseUser) => {
+    const idToken = await user.getIdToken(true);
+    const result = await signIn("firebase", {
+      idToken,
+      redirect: false,
+      redirectTo: callbackUrl,
+    });
+
+    if (!result?.ok) {
+      throw new Error("Firebase 登录已完成，但站点会话创建失败。");
+    }
+
+    router.push(result.url || callbackUrl);
+    router.refresh();
+  };
+
+  const handleSignIn = async (provider: "github" | "google") => {
     setCredentialError(null);
     setLoadingProvider(provider);
-    await signIn(provider, { redirectTo: callbackUrl });
-    setLoadingProvider(null);
+
+    try {
+      const firebaseAuth = getFirebaseClientAuth();
+      const credential = await signInWithPopup(
+        firebaseAuth,
+        getFirebasePopupProvider(provider)
+      );
+      await completeFirebaseBridgeSignIn(credential.user);
+    } catch (error) {
+      setCredentialError(messageForFirebaseError(error));
+    } finally {
+      setLoadingProvider(null);
+    }
   };
 
   const handleCredentialSignIn = async (event: FormEvent<HTMLFormElement>) => {
@@ -199,22 +269,19 @@ function LoginPageContent() {
     setCredentialError(null);
     setLoadingProvider("credentials");
 
-    const result = await signIn("credentials", {
-      email,
-      password,
-      redirect: false,
-      redirectTo: callbackUrl,
-    });
-
-    setLoadingProvider(null);
-
-    if (!result?.ok) {
-      setCredentialError("邮箱或密码不正确，或此登录方式尚未在后端配置。");
-      return;
+    try {
+      const firebaseAuth = getFirebaseClientAuth();
+      const credential = await signInWithEmailAndPassword(
+        firebaseAuth,
+        email,
+        password
+      );
+      await completeFirebaseBridgeSignIn(credential.user);
+    } catch (error) {
+      setCredentialError(messageForFirebaseError(error));
+    } finally {
+      setLoadingProvider(null);
     }
-
-    router.push(result.url || callbackUrl);
-    router.refresh();
   };
 
   const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
@@ -234,21 +301,15 @@ function LoginPageContent() {
         throw new Error(data.error ?? "账号创建失败。");
       }
 
-      const result = await signIn("credentials", {
+      const firebaseAuth = getFirebaseClientAuth();
+      const credential = await signInWithEmailAndPassword(
+        firebaseAuth,
         email,
-        password,
-        redirect: false,
-        redirectTo: callbackUrl,
-      });
-
-      if (!result?.ok) {
-        throw new Error("账号已创建，但自动登录失败。请重新登录。");
-      }
-
-      router.push(result.url || callbackUrl);
-      router.refresh();
+        password
+      );
+      await completeFirebaseBridgeSignIn(credential.user);
     } catch (error) {
-      setCredentialError(error instanceof Error ? error.message : "账号创建失败。");
+      setCredentialError(messageForFirebaseError(error));
       setTurnstileToken("");
       if (turnstileWidgetIdRef.current) {
         window.turnstile?.reset(turnstileWidgetIdRef.current);
@@ -430,7 +491,9 @@ function LoginPageContent() {
 
           {providersLoaded && !showCredentials && !showGithub && !showGoogle ? (
             <p className="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm text-muted-foreground">
-              当前没有公开启用的登录方式。请先配置后端认证 provider。
+              {firebaseMissing
+                ? "Firebase 登录尚未配置完成。"
+                : "当前没有公开启用的登录方式。"}
             </p>
           ) : null}
         </div>
