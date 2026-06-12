@@ -80,6 +80,10 @@ production runtime 若缺少 `FIREBASE_PROJECT_ID`、`FIREBASE_CLIENT_EMAIL` 或
 `registration_persistence_not_configured`，避免把内存 fallback 误当成公开账号系统。
 本地临时演示仍可在无 Firestore 时使用内存注册，但不能用于公开 domain。
 
+`GET /api/auth/register` 返回公开注册 readiness 摘要，只包含布尔状态和 blocker
+代码，不泄露 secret。Preview / development 可用它确认 `ready=true` 后再解除
+Vercel Authentication；production surface 仍会隐藏该接口。
+
 注册防滥用：
 
 - `registration-ip`：每个 IP 每小时最多 8 次注册尝试。

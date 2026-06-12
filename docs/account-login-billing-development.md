@@ -48,6 +48,10 @@ Follow-up account/login hardening in this workstream:
 - When a deployed Vercel runtime has `AUTH_REGISTRATION_ENABLED=true` but no
   Firebase Admin envs, `/api/auth/register` returns
   `503 registration_persistence_not_configured`.
+- `GET /api/auth/register` now returns a preview-only readiness payload with
+  `ready`, `blockers`, `persistence`, and `captcha` booleans. The login page
+  uses this payload to disable public self-registration before submit when
+  staging storage or Turnstile server verification is not configured.
 - `/login` no longer defaults to showing GitHub / Google buttons. It intersects
   `NEXT_PUBLIC_AUTH_PROVIDERS` with the actual NextAuth provider list so public
   buttons do not appear before the backend provider is configured.

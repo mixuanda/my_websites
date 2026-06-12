@@ -7,7 +7,11 @@ import {
   registerPasswordAuthUser,
 } from "@/lib/password-auth";
 import { notFoundApiResponseInProduction } from "@/lib/production-api-guard";
-import { verifyRegistrationTurnstile } from "@/lib/turnstile";
+import {
+  isRegistrationTurnstileConfigured,
+  isRegistrationTurnstileRequired,
+  verifyRegistrationTurnstile,
+} from "@/lib/turnstile";
 import { upsertUserProfile } from "@/lib/user-store";
 
 export const dynamic = "force-dynamic";
@@ -51,6 +55,48 @@ function getRequestIp(request: Request) {
     forwardedIp ||
     "unknown"
   );
+}
+
+function getRegistrationReadiness() {
+  const blockers: string[] = [];
+  const enabled = isRegistrationEnabled();
+  const persistenceRequired = isRegistrationPersistenceRequired();
+  const persistenceConfigured = isRegistrationPersistenceConfigured();
+  const captchaRequired = isRegistrationTurnstileRequired();
+  const captchaConfigured = isRegistrationTurnstileConfigured();
+
+  if (!enabled) {
+    blockers.push("registration_disabled");
+  }
+
+  if (persistenceRequired && !persistenceConfigured) {
+    blockers.push("registration_persistence_not_configured");
+  }
+
+  if (captchaRequired && !captchaConfigured) {
+    blockers.push("captcha_not_configured");
+  }
+
+  return {
+    blockers,
+    captcha: {
+      configured: captchaConfigured,
+      required: captchaRequired,
+    },
+    enabled,
+    persistence: {
+      configured: persistenceConfigured,
+      required: persistenceRequired,
+    },
+    ready: blockers.length === 0,
+  };
+}
+
+export async function GET() {
+  const hiddenResponse = notFoundApiResponseInProduction();
+  if (hiddenResponse) return hiddenResponse;
+
+  return NextResponse.json(getRegistrationReadiness());
 }
 
 export async function POST(request: Request) {

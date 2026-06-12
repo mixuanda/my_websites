@@ -23,6 +23,20 @@ type TurnstileApi = {
   reset: (widgetId?: string) => void;
 };
 
+type RegistrationReadiness = {
+  blockers: string[];
+  captcha: {
+    configured: boolean;
+    required: boolean;
+  };
+  enabled: boolean;
+  persistence: {
+    configured: boolean;
+    required: boolean;
+  };
+  ready: boolean;
+};
+
 declare global {
   interface Window {
     turnstile?: TurnstileApi;
@@ -37,6 +51,9 @@ function LoginPageContent() {
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [providersLoaded, setProvidersLoaded] = useState(false);
+  const [registrationReadiness, setRegistrationReadiness] =
+    useState<RegistrationReadiness | null>(null);
+  const [registrationReadinessLoaded, setRegistrationReadinessLoaded] = useState(false);
   const [serverProviders, setServerProviders] = useState<string[]>([]);
   const [turnstileReady, setTurnstileReady] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState("");
@@ -64,6 +81,25 @@ function LoginPageContent() {
   const registrationEnabled = process.env.NEXT_PUBLIC_AUTH_REGISTRATION_ENABLED === "true";
   const captchaMissing =
     mode === "register" && registrationVerificationRequired && !turnstileSiteKey;
+  const serverCaptchaMissing =
+    mode === "register" &&
+    registrationReadiness !== null &&
+    registrationReadiness.captcha.required &&
+    !registrationReadiness.captcha.configured;
+  const registrationStorageMissing =
+    mode === "register" &&
+    registrationReadiness !== null &&
+    registrationReadiness.persistence.required &&
+    !registrationReadiness.persistence.configured;
+  const registrationStatusMissing =
+    mode === "register" && registrationEnabled && registrationReadinessLoaded && !registrationReadiness;
+  const registrationStatusPending =
+    mode === "register" && registrationEnabled && !registrationReadinessLoaded;
+  const registrationNotReady =
+    mode === "register" &&
+    registrationEnabled &&
+    registrationReadinessLoaded &&
+    (!registrationReadiness || !registrationReadiness.ready);
   const captchaTokenMissing =
     mode === "register" &&
     registrationVerificationRequired &&
@@ -94,6 +130,31 @@ function LoginPageContent() {
         setProvidersLoaded(true);
       });
   }, [availableProviderKey]);
+
+  useEffect(() => {
+    if (!registrationEnabled) {
+      setRegistrationReadiness(null);
+      setRegistrationReadinessLoaded(true);
+      return;
+    }
+
+    fetch("/api/auth/register", {
+      headers: { Accept: "application/json" },
+    })
+      .then(async (response) => {
+        if (!response.ok) {
+          throw new Error("registration_status_unavailable");
+        }
+
+        setRegistrationReadiness((await response.json()) as RegistrationReadiness);
+      })
+      .catch(() => {
+        setRegistrationReadiness(null);
+      })
+      .finally(() => {
+        setRegistrationReadinessLoaded(true);
+      });
+  }, [registrationEnabled]);
 
   useEffect(() => {
     if (
@@ -274,6 +335,26 @@ function LoginPageContent() {
                   注册验证码尚未配置完成，暂时不能开放注册。
                 </p>
               ) : null}
+              {registrationStatusPending ? (
+                <p className="rounded-md border border-border bg-muted/40 px-3 py-2 text-sm text-muted-foreground">
+                  正在检查注册服务状态。
+                </p>
+              ) : null}
+              {registrationStorageMissing ? (
+                <p className="rounded-md border border-amber-300/50 bg-amber-50 px-3 py-2 text-sm text-amber-950 dark:border-amber-900/60 dark:bg-amber-950/20 dark:text-amber-100">
+                  注册存储尚未配置完成，暂时不能开放注册。
+                </p>
+              ) : null}
+              {serverCaptchaMissing && !captchaMissing ? (
+                <p className="rounded-md border border-amber-300/50 bg-amber-50 px-3 py-2 text-sm text-amber-950 dark:border-amber-900/60 dark:bg-amber-950/20 dark:text-amber-100">
+                  注册验证码服务端密钥尚未配置完成，暂时不能开放注册。
+                </p>
+              ) : null}
+              {registrationStatusMissing ? (
+                <p className="rounded-md border border-amber-300/50 bg-amber-50 px-3 py-2 text-sm text-amber-950 dark:border-amber-900/60 dark:bg-amber-950/20 dark:text-amber-100">
+                  注册服务状态暂时无法确认，请稍后再试。
+                </p>
+              ) : null}
               {credentialError ? (
                 <p className="rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
                   {credentialError}
@@ -281,7 +362,13 @@ function LoginPageContent() {
               ) : null}
               <Button
                 className="w-full"
-                disabled={isLoading || captchaMissing || captchaTokenMissing}
+                disabled={
+                  isLoading ||
+                  captchaMissing ||
+                  captchaTokenMissing ||
+                  registrationStatusPending ||
+                  registrationNotReady
+                }
                 type="submit"
                 variant="default"
               >
