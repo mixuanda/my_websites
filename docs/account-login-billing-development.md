@@ -349,6 +349,16 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
     the CLI exposes only project-level SSO toggles. The correct narrow public
     opening is a Vercel Deployment Protection Exception for
     `development.evanalysis.top`, if the plan/add-on supports it.
+- 2026-06-12 browser Firebase Client Auth correction:
+  - `src/lib/firebase-client-config.ts` now reads every
+    `NEXT_PUBLIC_FIREBASE_*` value through static `process.env.NAME` property
+    access. This is required for Next.js to inline the public Firebase Web App
+    config into the browser bundle.
+  - The earlier dynamic `process.env[name]` lookup could make server-side
+    readiness report Firebase client config as present while the browser bundle
+    still behaved as if Firebase Client Auth was missing.
+  - `/login` now shows mode-specific login/register copy and asks users to
+    confirm the password before the registration POST is sent.
 
 ## Recommended next step
 

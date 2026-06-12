@@ -62,6 +62,7 @@ function LoginPageContent() {
   const [mode, setMode] = useState<"login" | "register">("login");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
   const [providersLoaded, setProvidersLoaded] = useState(false);
   const [registrationReadiness, setRegistrationReadiness] =
     useState<RegistrationReadiness | null>(null);
@@ -124,6 +125,11 @@ function LoginPageContent() {
     providersLoaded &&
     availableProviders.length > 0 &&
     (!firebaseClientConfigured || !firebaseBridgeConfigured);
+  const pageTitle = mode === "register" ? "创建账号" : "登录";
+  const pageDescription =
+    mode === "register"
+      ? "使用邮箱密码创建站点账号，或使用 Google / GitHub 登录。"
+      : "使用邮箱密码、Google 或 GitHub 登录。";
 
   useEffect(() => {
     if (registrationEnabled && searchParams.get("mode") === "register") {
@@ -290,6 +296,10 @@ function LoginPageContent() {
     setLoadingProvider("register");
 
     try {
+      if (password !== passwordConfirm) {
+        throw new Error("两次输入的密码不一致。");
+      }
+
       const response = await fetch("/api/auth/register", {
         body: JSON.stringify({ email, name, password, turnstileToken }),
         headers: { "Content-Type": "application/json" },
@@ -330,9 +340,9 @@ function LoginPageContent() {
       ) : null}
       <GlassCard className="p-8">
         <div className="text-center mb-8">
-          <h1 className="text-2xl font-bold mb-2">登录</h1>
+          <h1 className="text-2xl font-bold mb-2">{pageTitle}</h1>
           <p className="text-muted-foreground">
-            使用已启用的账号登录方式
+            {pageDescription}
           </p>
         </div>
 
@@ -386,6 +396,25 @@ function LoginPageContent() {
                   value={password}
                 />
               </div>
+              {mode === "register" ? (
+                <div className="space-y-2">
+                  <label
+                    className="text-sm font-medium"
+                    htmlFor="login-password-confirm"
+                  >
+                    确认密码
+                  </label>
+                  <Input
+                    id="login-password-confirm"
+                    autoComplete="new-password"
+                    onChange={(event) => setPasswordConfirm(event.target.value)}
+                    minLength={8}
+                    required
+                    type="password"
+                    value={passwordConfirm}
+                  />
+                </div>
+              ) : null}
               {mode === "register" && turnstileSiteKey ? (
                 <div className="flex min-h-[65px] justify-center">
                   <div ref={turnstileContainerRef} />
@@ -499,7 +528,7 @@ function LoginPageContent() {
         </div>
 
         <p className="text-xs text-center text-muted-foreground mt-6">
-          仅限授权用户访问私密内容
+          账号用于站点设置、订阅状态和私密内容访问。
         </p>
       </GlassCard>
     </div>

@@ -306,6 +306,11 @@ readiness, Firebase bridge availability, and browser checkout configuration:
 npm run auth:verify-development -- --require-ready --require-oauth --require-checkout
 ```
 
+Browser Firebase Client Auth depends on the public Web App config being read
+with static `process.env.NEXT_PUBLIC_FIREBASE_*` access in application code.
+Do not replace this with dynamic `process.env[name]` lookup; Next.js will not
+reliably inline dynamically indexed public env vars into the client bundle.
+
 Only after that check passes should Vercel Authentication be opened for ordinary
 public requests to `development.evanalysis.top`. Then verify again:
 
