@@ -359,10 +359,12 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
     still behaved as if Firebase Client Auth was missing.
   - `/login` now shows mode-specific login/register copy and asks users to
     confirm the password before the registration POST is sent.
-  - Deployment `dpl_J8pqTzD7D5BJPvY9MXBscNvyjynf`,
+  - Code-bearing deployment `dpl_J8pqTzD7D5BJPvY9MXBscNvyjynf`,
     `https://my-websites-9cbcnb92f-mixuandahotmailcoms-projects.vercel.app`,
-    is Ready for commit `a59a021` and is aliased to
-    `https://development.evanalysis.top`.
+    is Ready for commit `a59a021` and was used for browser bundle verification.
+    Later documentation-only deployments may supersede the
+    `development.evanalysis.top` alias; check the current Vercel preview target
+    before using a deployment URL in QA.
   - `npm run auth:verify-development -- --deployment my-websites-9cbcnb92f-mixuandahotmailcoms-projects.vercel.app --require-ready --require-oauth`
     passed with registration `ready=true`, Auth.js provider list
     `["firebase"]`, Firebase bridge/client configured, and production
