@@ -228,5 +228,14 @@ requires a reader-controlled state. Gcd proof structure, irreducibility,
 partial-fraction forms, and Vieta formulas are usually clearer as theorem-led
 prose, worked examples, quick checks, and source-backed guided exercises.
 
+The Math1030 `6.7` matrix-subspaces pass also does not add a widget. The
+source-backed learning move is not stateful manipulation; it is recognizing
+that fixed-size matrices form a vector space, identifying free parameters in
+families such as `Sym_2(R)`, `UT_3(R)`, and `Skew_3(R)`, and splitting a
+general matrix into fixed basis matrices. The trilingual Manim clip now
+supports that one conceptual transition while the article keeps the formal
+definitions, example, and entry-comparison independence proof in static,
+export-friendly form.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

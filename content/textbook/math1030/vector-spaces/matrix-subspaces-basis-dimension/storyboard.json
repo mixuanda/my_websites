@@ -1,0 +1,366 @@
+{
+  "course": "math1030",
+  "chapter": "vector-spaces",
+  "unit": "matrix-subspaces-basis-dimension",
+  "unitTitle": {
+    "en": "6.7 Matrix subspaces, basis, and dimension",
+    "zh-hk": "6.7 矩陣子空間、基底與維數",
+    "zh-cn": "6.7 矩阵子空间、基与维数"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Matrices can be vectors",
+          "goal": "Place fixed-size matrices inside a vector space with ordinary addition and scalar multiplication.",
+          "beats": [
+            "Show two 2 by 2 matrices A and B.",
+            "Add them entrywise and keep the result in M2,2(R).",
+            "State that fixed size is part of the ambient-space rule."
+          ],
+          "mathBlocks": [
+            "A+B\\in M_{2,2}(R)",
+            "\\alpha A\\in M_{2,2}(R)"
+          ],
+          "voiceover": [
+            "A fixed-size matrix can play the role of a vector.",
+            "The operations are the ordinary matrix operations, but the size must stay fixed."
+          ],
+          "animation": "display A+B inside an M2,2(R) label"
+        },
+        {
+          "type": "basis_decomposition",
+          "cardTitle": "Matrix units isolate entries",
+          "goal": "Connect each free entry of a full 2 by 2 matrix to a standard matrix unit.",
+          "beats": [
+            "Highlight the four entry positions in a general 2 by 2 matrix.",
+            "Place E11, E12, E21, and E22 beside it.",
+            "Write the decomposition aE11+bE12+cE21+dE22."
+          ],
+          "mathBlocks": [
+            "\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}=aE_{11}+bE_{12}+cE_{21}+dE_{22}"
+          ],
+          "voiceover": [
+            "The standard matrix units separate the entries.",
+            "For the full space M2,2(R), there are four independent entry directions."
+          ],
+          "animation": "highlight one entry and the matching Eij at a time"
+        },
+        {
+          "type": "constraint",
+          "cardTitle": "Constraints reduce freedom",
+          "goal": "Show that Sym2(R) has three free parameters because symmetry ties the off-diagonal entries together.",
+          "beats": [
+            "Start from a general 2 by 2 matrix.",
+            "Apply A^T=A.",
+            "Replace the two off-diagonal positions by the same parameter b."
+          ],
+          "mathBlocks": [
+            "\\begin{bmatrix}a&b\\\\b&c\\end{bmatrix}",
+            "\\text{three free parameters: }a,b,c"
+          ],
+          "voiceover": [
+            "A subspace may impose equations on the entries.",
+            "For symmetric 2 by 2 matrices, the off-diagonal entries must match, so only three choices remain."
+          ],
+          "animation": "tie the two off-diagonal cells with matching color"
+        },
+        {
+          "type": "basis_decomposition",
+          "cardTitle": "Split by the free parameters",
+          "goal": "Turn the general symmetric matrix into a linear combination of fixed matrices.",
+          "beats": [
+            "Start with the general matrix [a b; b c].",
+            "Separate the a, b, and c contributions.",
+            "Name the fixed matrices B1, B2, and B3."
+          ],
+          "mathBlocks": [
+            "\\begin{bmatrix}a&b\\\\b&c\\end{bmatrix}=aB_1+bB_2+cB_3"
+          ],
+          "voiceover": [
+            "Each free parameter multiplies one fixed matrix.",
+            "Those fixed matrices are the natural candidate basis."
+          ],
+          "animation": "split one symmetric matrix into three highlighted fixed matrices"
+        },
+        {
+          "type": "proof_check",
+          "cardTitle": "Spanning and independence",
+          "goal": "Explain why the three fixed matrices form a basis of Sym2(R).",
+          "beats": [
+            "State that the decomposition reaches every symmetric 2 by 2 matrix.",
+            "Set aB1+bB2+cB3 equal to zero.",
+            "Compare entries to force a=b=c=0."
+          ],
+          "mathBlocks": [
+            "\\{B_1,B_2,B_3\\}\\text{ is a basis for }\\operatorname{Sym}_2(R)"
+          ],
+          "voiceover": [
+            "Spanning comes from the decomposition of the general element.",
+            "Independence comes from comparing matrix entries."
+          ],
+          "animation": "show span and independence cards under B1, B2, and B3"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Dimension counts free choices",
+          "goal": "Conclude the dimension counts basis matrices or free parameters, not all visible entries.",
+          "beats": [
+            "Compare M2,2(R), Sym2(R), UT3(R), and Skew3(R).",
+            "Emphasize the free-entry count in each case.",
+            "End with dimension equals basis size."
+          ],
+          "mathBlocks": [
+            "\\dim M_{2,2}(R)=4",
+            "\\dim \\operatorname{Sym}_2(R)=3",
+            "\\dim UT_3(R)=6",
+            "\\dim Skew_3(R)=3"
+          ],
+          "voiceover": [
+            "Dimension counts the number of independent directions in the subspace.",
+            "When constraints are present, that is the number of free parameters, not simply the total number of matrix entries."
+          ],
+          "animation": "collapse comparison cards into dimension equals basis size"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "矩陣也可以作為向量",
+          "goal": "把固定大小的矩陣放入使用普通加法與純量乘法的向量空間。",
+          "beats": [
+            "顯示兩個 2 乘 2 矩陣 A 與 B。",
+            "逐項相加，並保持結果仍在 M2,2(R) 中。",
+            "說明固定大小是環境空間規則的一部分。"
+          ],
+          "mathBlocks": [
+            "A+B\\in M_{2,2}(R)",
+            "\\alpha A\\in M_{2,2}(R)"
+          ],
+          "voiceover": [
+            "固定大小的矩陣可以扮演向量的角色。",
+            "運算仍是普通矩陣運算，但矩陣大小必須保持固定。"
+          ],
+          "animation": "在 M2,2(R) 標籤內顯示 A+B"
+        },
+        {
+          "type": "basis_decomposition",
+          "cardTitle": "矩陣單位分離矩陣項",
+          "goal": "把完整 2 乘 2 矩陣的每個自由項連到一個標準矩陣單位。",
+          "beats": [
+            "高亮一般 2 乘 2 矩陣的四個位置。",
+            "把 E11、E12、E21、E22 放在旁邊。",
+            "寫出分解式 aE11+bE12+cE21+dE22。"
+          ],
+          "mathBlocks": [
+            "\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}=aE_{11}+bE_{12}+cE_{21}+dE_{22}"
+          ],
+          "voiceover": [
+            "標準矩陣單位把各個矩陣項分開。",
+            "對完整空間 M2,2(R) 而言，有四個獨立的位置方向。"
+          ],
+          "animation": "逐一高亮一個位置和對應的 Eij"
+        },
+        {
+          "type": "constraint",
+          "cardTitle": "限制減少自由度",
+          "goal": "顯示 Sym2(R) 只有三個自由參數，因為對稱性綁定兩個非對角項。",
+          "beats": [
+            "由一般 2 乘 2 矩陣開始。",
+            "套用 A^T=A。",
+            "把兩個非對角位置改成同一個參數 b。"
+          ],
+          "mathBlocks": [
+            "\\begin{bmatrix}a&b\\\\b&c\\end{bmatrix}",
+            "\\text{三個自由參數：}a,b,c"
+          ],
+          "voiceover": [
+            "子空間可以對矩陣項加入方程限制。",
+            "對稱 2 乘 2 矩陣的非對角項必須相等，所以只剩三個選擇。"
+          ],
+          "animation": "用同一顏色連接兩個非對角格"
+        },
+        {
+          "type": "basis_decomposition",
+          "cardTitle": "按自由參數拆開",
+          "goal": "把一般對稱矩陣轉成固定矩陣的線性組合。",
+          "beats": [
+            "從一般矩陣 [a b; b c] 開始。",
+            "分離 a、b、c 三個貢獻。",
+            "把固定矩陣命名為 B1、B2、B3。"
+          ],
+          "mathBlocks": [
+            "\\begin{bmatrix}a&b\\\\b&c\\end{bmatrix}=aB_1+bB_2+cB_3"
+          ],
+          "voiceover": [
+            "每個自由參數乘上一個固定矩陣。",
+            "這些固定矩陣就是自然的候選基底。"
+          ],
+          "animation": "把一個對稱矩陣拆成三個高亮固定矩陣"
+        },
+        {
+          "type": "proof_check",
+          "cardTitle": "張成與線性獨立",
+          "goal": "說明三個固定矩陣為何形成 Sym2(R) 的一組基底。",
+          "beats": [
+            "說明分解式能到達每個對稱 2 乘 2 矩陣。",
+            "令 aB1+bB2+cB3 等於零矩陣。",
+            "比較矩陣項，推出 a=b=c=0。"
+          ],
+          "mathBlocks": [
+            "\\{B_1,B_2,B_3\\}\\text{ 是 }\\operatorname{Sym}_2(R)\\text{ 的基底}"
+          ],
+          "voiceover": [
+            "張成來自一般元素的分解式。",
+            "線性獨立來自逐項比較。"
+          ],
+          "animation": "在 B1、B2、B3 下方顯示張成與線性獨立卡"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "維數數自由選擇",
+          "goal": "總結維數數的是基底矩陣或自由參數，不是所有可見矩陣項。",
+          "beats": [
+            "比較 M2,2(R)、Sym2(R)、UT3(R)、Skew3(R)。",
+            "強調各自的自由項數目。",
+            "以維數等於基底大小作結。"
+          ],
+          "mathBlocks": [
+            "\\dim M_{2,2}(R)=4",
+            "\\dim \\operatorname{Sym}_2(R)=3",
+            "\\dim UT_3(R)=6",
+            "\\dim Skew_3(R)=3"
+          ],
+          "voiceover": [
+            "維數數的是子空間內獨立方向的數目。",
+            "當有限制時，這個數就是自由參數數目，而不只是矩陣項總數。"
+          ],
+          "animation": "把比較卡收束到維數等於基底大小"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "矩阵也可以作为向量",
+          "goal": "把固定大小的矩阵放入使用普通加法与标量乘法的向量空间。",
+          "beats": [
+            "显示两个 2 乘 2 矩阵 A 与 B。",
+            "逐项相加，并保持结果仍在 M2,2(R) 中。",
+            "说明固定大小是环境空间规则的一部分。"
+          ],
+          "mathBlocks": [
+            "A+B\\in M_{2,2}(R)",
+            "\\alpha A\\in M_{2,2}(R)"
+          ],
+          "voiceover": [
+            "固定大小的矩阵可以扮演向量的角色。",
+            "运算仍是普通矩阵运算，但矩阵大小必须保持固定。"
+          ],
+          "animation": "在 M2,2(R) 标签内显示 A+B"
+        },
+        {
+          "type": "basis_decomposition",
+          "cardTitle": "矩阵单位分离矩阵项",
+          "goal": "把完整 2 乘 2 矩阵的每个自由项连到一个标准矩阵单位。",
+          "beats": [
+            "高亮一般 2 乘 2 矩阵的四个位置。",
+            "把 E11、E12、E21、E22 放在旁边。",
+            "写出分解式 aE11+bE12+cE21+dE22。"
+          ],
+          "mathBlocks": [
+            "\\begin{bmatrix}a&b\\\\c&d\\end{bmatrix}=aE_{11}+bE_{12}+cE_{21}+dE_{22}"
+          ],
+          "voiceover": [
+            "标准矩阵单位把各个矩阵项分开。",
+            "对完整空间 M2,2(R) 而言，有四个独立的位置方向。"
+          ],
+          "animation": "逐一高亮一个位置和对应的 Eij"
+        },
+        {
+          "type": "constraint",
+          "cardTitle": "限制减少自由度",
+          "goal": "显示 Sym2(R) 只有三个自由参数，因为对称性绑定两个非对角项。",
+          "beats": [
+            "由一般 2 乘 2 矩阵开始。",
+            "套用 A^T=A。",
+            "把两个非对角位置改成同一个参数 b。"
+          ],
+          "mathBlocks": [
+            "\\begin{bmatrix}a&b\\\\b&c\\end{bmatrix}",
+            "\\text{三个自由参数：}a,b,c"
+          ],
+          "voiceover": [
+            "子空间可以对矩阵项加入方程限制。",
+            "对称 2 乘 2 矩阵的非对角项必须相等，所以只剩三个选择。"
+          ],
+          "animation": "用同一颜色连接两个非对角格"
+        },
+        {
+          "type": "basis_decomposition",
+          "cardTitle": "按自由参数拆开",
+          "goal": "把一般对称矩阵转成固定矩阵的线性组合。",
+          "beats": [
+            "从一般矩阵 [a b; b c] 开始。",
+            "分离 a、b、c 三个贡献。",
+            "把固定矩阵命名为 B1、B2、B3。"
+          ],
+          "mathBlocks": [
+            "\\begin{bmatrix}a&b\\\\b&c\\end{bmatrix}=aB_1+bB_2+cB_3"
+          ],
+          "voiceover": [
+            "每个自由参数乘上一个固定矩阵。",
+            "这些固定矩阵就是自然的候选基。"
+          ],
+          "animation": "把一个对称矩阵拆成三个高亮固定矩阵"
+        },
+        {
+          "type": "proof_check",
+          "cardTitle": "张成与线性无关",
+          "goal": "说明三个固定矩阵为什么形成 Sym2(R) 的一组基。",
+          "beats": [
+            "说明分解式能到达每个对称 2 乘 2 矩阵。",
+            "令 aB1+bB2+cB3 等于零矩阵。",
+            "比较矩阵项，推出 a=b=c=0。"
+          ],
+          "mathBlocks": [
+            "\\{B_1,B_2,B_3\\}\\text{ 是 }\\operatorname{Sym}_2(R)\\text{ 的基}"
+          ],
+          "voiceover": [
+            "张成来自一般元素的分解式。",
+            "线性无关来自逐项比较。"
+          ],
+          "animation": "在 B1、B2、B3 下方显示张成与线性无关卡"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "维数数自由选择",
+          "goal": "总结维数数的是基矩阵或自由参数，不是所有可见矩阵项。",
+          "beats": [
+            "比较 M2,2(R)、Sym2(R)、UT3(R)、Skew3(R)。",
+            "强调各自的自由项个数。",
+            "以维数等于基大小作结。"
+          ],
+          "mathBlocks": [
+            "\\dim M_{2,2}(R)=4",
+            "\\dim \\operatorname{Sym}_2(R)=3",
+            "\\dim UT_3(R)=6",
+            "\\dim Skew_3(R)=3"
+          ],
+          "voiceover": [
+            "维数数的是子空间内独立方向的个数。",
+            "当有限制时，这个数就是自由参数个数，而不只是矩阵项总数。"
+          ],
+          "animation": "把比较卡收束到维数等于基大小"
+        }
+      ]
+    }
+  }
+}

@@ -873,6 +873,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/column-row-space-rank-story-zh-cn.mp4"
     ),
   },
+  "math1030-matrix-subspace-basis-dimension-story": {
+    conclusion: text(
+      "For a matrix subspace, write the general matrix, identify the free parameters, split by those parameters, and count the fixed matrices that form the basis.",
+      "處理矩陣子空間時，先寫出一般矩陣，找出自由參數，按參數拆成固定矩陣，最後數形成基底的固定矩陣。",
+      "处理矩阵子空间时，先写出一般矩阵，找出自由参数，按参数拆成固定矩阵，最后数形成基的固定矩阵。"
+    ),
+    durationSeconds: 12,
+    frames: [
+      {
+        label: text("Matrices can be vectors", "矩陣也可以作為向量", "矩阵也可以作为向量"),
+        value: text(
+          "Inside a fixed-size matrix space such as M2,2(R), ordinary matrix addition and scalar multiplication keep every result in the same ambient space.",
+          "在固定大小的矩陣空間，例如 M2,2(R)，普通矩陣加法與純量乘法會令結果仍留在同一環境空間。",
+          "在固定大小的矩阵空间，例如 M2,2(R)，普通矩阵加法与标量乘法会让结果仍留在同一环境空间。"
+        ),
+      },
+      {
+        label: text("Matrix units isolate entries", "矩陣單位分離矩陣項", "矩阵单位分离矩阵项"),
+        value: text(
+          "The standard matrices E11, E12, E21, and E22 isolate the four independent entry directions of M2,2(R).",
+          "標準矩陣 E11、E12、E21、E22 分離出 M2,2(R) 的四個獨立位置方向。",
+          "标准矩阵 E11、E12、E21、E22 分离出 M2,2(R) 的四个独立位置方向。"
+        ),
+      },
+      {
+        label: text("Constraints reduce freedom", "限制減少自由度", "限制减少自由度"),
+        value: text(
+          "In Sym2(R), the equation A^T=A ties the two off-diagonal entries together, leaving only a, b, and c free.",
+          "在 Sym2(R) 中，方程 A^T=A 綁定兩個非對角項，所以只剩 a、b、c 自由。",
+          "在 Sym2(R) 中，方程 A^T=A 绑定两个非对角项，所以只剩 a、b、c 自由。"
+        ),
+      },
+      {
+        label: text("Split by parameters", "按參數拆開", "按参数拆开"),
+        value: text(
+          "The general symmetric matrix [a b; b c] splits as aB1+bB2+cB3, one fixed matrix for each free parameter.",
+          "一般對稱矩陣 [a b; b c] 可拆成 aB1+bB2+cB3，每個自由參數對應一個固定矩陣。",
+          "一般对称矩阵 [a b; b c] 可拆成 aB1+bB2+cB3，每个自由参数对应一个固定矩阵。"
+        ),
+      },
+      {
+        label: text("Check basis", "檢查基底", "检查基"),
+        value: text(
+          "The decomposition gives spanning, and comparing entries in aB1+bB2+cB3=0 gives independence.",
+          "分解式給出張成；在 aB1+bB2+cB3=0 中比較矩陣項，便得到線性獨立。",
+          "分解式给出张成；在 aB1+bB2+cB3=0 中比较矩阵项，便得到线性无关。"
+        ),
+      },
+      {
+        label: text("Count free choices", "數自由選擇", "数自由选择"),
+        value: text(
+          "Dimension counts the basis matrices, so dim Sym2(R)=3 even though the matrices are still 2 by 2.",
+          "維數數基底矩陣，所以 dim Sym2(R)=3，即使這些矩陣仍然是 2 乘 2。",
+          "维数数基矩阵，所以 dim Sym2(R)=3，即使这些矩阵仍然是 2 乘 2。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch the Sym2(R) worked example turn free parameters into fixed basis matrices, then compare the resulting dimensions with full, triangular, and skew-symmetric matrix spaces.",
+      "觀看 Sym2(R) 例子如何把自由參數變成固定基底矩陣，再與全矩陣、上三角矩陣、反對稱矩陣空間的維數作比較。",
+      "观看 Sym2(R) 例子如何把自由参数变成固定基矩阵，再与全矩阵、上三角矩阵、反对称矩阵空间的维数作比较。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/matrix-subspace-basis-dimension-story-en.png",
+      "/generated/animations/math1030/matrix-subspace-basis-dimension-story-zh-hk.png",
+      "/generated/animations/math1030/matrix-subspace-basis-dimension-story-zh-cn.png"
+    ),
+    title: text(
+      "Matrix subspaces, basis, and dimension",
+      "矩陣子空間、基底與維數",
+      "矩阵子空间、基与维数"
+    ),
+    transcript: [
+      text(
+        "A fixed-size matrix space behaves like a vector space because addition and scalar multiplication keep the same matrix size.",
+        "固定大小的矩陣空間像向量空間一樣運作，因為加法與純量乘法會保持同一矩陣大小。",
+        "固定大小的矩阵空间像向量空间一样运作，因为加法与标量乘法会保持同一矩阵大小。"
+      ),
+      text(
+        "Standard matrix units isolate free entries; constraints such as symmetry reduce how many entries are free.",
+        "標準矩陣單位分離自由矩陣項；對稱等限制會減少自由項的數目。",
+        "标准矩阵单位分离自由矩阵项；对称等限制会减少自由项的个数。"
+      ),
+      text(
+        "For Sym2(R), the three free parameters produce three fixed basis matrices, so the dimension is three.",
+        "對 Sym2(R) 而言，三個自由參數產生三個固定基底矩陣，所以維數是三。",
+        "对 Sym2(R) 而言，三个自由参数产生三个固定基矩阵，所以维数是三。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/matrix-subspace-basis-dimension-story-en.mp4",
+      "/generated/animations/math1030/matrix-subspace-basis-dimension-story-zh-hk.mp4",
+      "/generated/animations/math1030/matrix-subspace-basis-dimension-story-zh-cn.mp4"
+    ),
+  },
   "math1030-gram-schmidt-projection-story": {
     conclusion: text(
       "Gram-Schmidt preserves the subspace because every new vector is made from the vectors already in the same partial span. The subtraction removes old directions; normalization only changes lengths afterward.",
