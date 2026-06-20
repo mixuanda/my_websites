@@ -105,6 +105,10 @@ The current pass especially strengthens the `math1030` note flow.
   before the learner opens the row-reduction stepper.
 - Vector-space notes already use widgets to make subspace testing, span, and
   independence visible inside the article flow.
+- The MATH1030 `6.5` basis-and-dimension video pass did not add a new widget.
+  The existing `span-explorer` remains the reader-controlled follow-up; the new
+  Manim clip is a short static overview tying span, independence, dimension,
+  and the two-of-three basis shortcut together before the interactive pause.
 - Public note pages now keep source tracing out of the interaction chrome so
   the widget remains focused on learning rather than documentation.
 

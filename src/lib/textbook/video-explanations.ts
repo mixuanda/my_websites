@@ -683,6 +683,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/linear-dependence-redundancy-story-zh-cn.mp4"
     ),
   },
+  "math1030-basis-dimension-just-right-story": {
+    conclusion: text(
+      "A basis is exactly enough information: it reaches every vector in the space and contains no redundant direction. Dimension records the stable size of such a list.",
+      "基底是剛好足夠的資訊：它能到達空間內每個向量，而且沒有冗餘方向。維數記錄這種列表的穩定大小。",
+      "基是刚好足够的信息：它能到达空间内每个向量，而且没有冗余方向。维数记录这种列表的稳定大小。"
+    ),
+    durationSeconds: 16,
+    frames: [
+      {
+        label: text("Spanning means enough reach", "張成表示範圍足夠", "张成表示范围足够"),
+        value: text(
+          "A list such as {u1,u2} spans W when every target x in W can be written as a linear combination of the listed vectors.",
+          "像 {u1,u2} 這樣的列表若張成 W，就表示 W 中每個目標 x 都可寫成列表向量的線性組合。",
+          "像 {u1,u2} 这样的列表若张成 W，就表示 W 中每个目标 x 都可写成列表向量的线性组合。"
+        ),
+      },
+      {
+        label: text("Independence removes redundancy", "線性獨立排除冗餘", "线性独立排除冗余"),
+        value: text(
+          "If u3=u1+u2, then adding u3 changes the description but not the span, so the list is too large to be a basis.",
+          "如果 u3=u1+u2，加入 u3 只會改變描述方式而不改變張成，所以列表太大，不能成為基底。",
+          "如果 u3=u1+u2，加入 u3 只会改变描述方式而不改变张成，所以列表太大，不能成为基。"
+        ),
+      },
+      {
+        label: text("Basis means both conditions", "基底需要兩個條件", "基需要两个条件"),
+        value: text(
+          "A basis is a spanning list that is also linearly independent: large enough to reach W, but not larger than necessary.",
+          "基底是同時線性獨立的張成列表：足夠大，可以到達 W，但不比必要的更大。",
+          "基是同时线性独立的张成列表：足够大，可以到达 W，但不比必要的更大。"
+        ),
+      },
+      {
+        label: text("Dimension is the stable count", "維數是穩定數目", "维数是稳定数目"),
+        value: text(
+          "Different bases of the same finite-dimensional space may look different, but they contain the same number of vectors.",
+          "同一有限維空間的不同基底可以長得不同，但它們含有相同數目的向量。",
+          "同一有限维空间的不同基可以长得不同，但它们含有相同数目的向量。"
+        ),
+      },
+      {
+        label: text("Use the two-of-three shortcut", "使用二推一捷徑", "使用二推一捷径"),
+        value: text(
+          "For n vectors in W, any two facts among dim(W)=n, independence, and spanning imply the third.",
+          "對 W 中 n 個向量而言，dim(W)=n、線性獨立、張成 W 這三項任取兩項，即可推出第三項。",
+          "对 W 中 n 个向量而言，dim(W)=n、线性独立、张成 W 这三项任取两项，即可推出第三项。"
+        ),
+      },
+      {
+        label: text("Shortcut in R3", "在 R3 中使用捷徑", "在 R3 中使用捷径"),
+        value: text(
+          "Once row reduction shows three vectors in R3 are independent, dim(R3)=3 supplies the spanning part automatically.",
+          "一旦行化簡顯示 R3 中三個向量線性獨立，dim(R3)=3 就會自動補上張成部分。",
+          "一旦行化简显示 R3 中三个向量线性独立，dim(R3)=3 就会自动补上张成部分。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch basis and dimension connect span, independence, stable basis size, and the two-of-three basis shortcut.",
+      "觀看基底與維數如何連接張成、線性獨立、穩定的基底大小，以及二推一基底捷徑。",
+      "观看基与维数如何连接张成、线性独立、稳定的基大小，以及二推一基捷径。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/basis-dimension-just-right-story-en.png",
+      "/generated/animations/math1030/basis-dimension-just-right-story-zh-hk.png",
+      "/generated/animations/math1030/basis-dimension-just-right-story-zh-cn.png"
+    ),
+    title: text(
+      "Basis and dimension: exactly enough",
+      "基底與維數：剛好足夠",
+      "基与维数：刚好足够"
+    ),
+    transcript: [
+      text(
+        "Spanning says the list reaches every vector in the space.",
+        "張成表示列表能到達空間內每個向量。",
+        "张成表示列表能到达空间内每个向量。"
+      ),
+      text(
+        "Independence says no listed vector is redundant.",
+        "線性獨立表示沒有列出的向量是冗餘的。",
+        "线性独立表示没有列出的向量是冗余的。"
+      ),
+      text(
+        "Dimension records the stable size of a just-right list, so it can finish basis arguments once the count matches.",
+        "維數記錄剛好列表的穩定大小，所以當數目匹配時，它可以完成基底論證。",
+        "维数记录刚好列表的稳定大小，所以当数目匹配时，它可以完成基论证。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/basis-dimension-just-right-story-en.mp4",
+      "/generated/animations/math1030/basis-dimension-just-right-story-zh-hk.mp4",
+      "/generated/animations/math1030/basis-dimension-just-right-story-zh-cn.mp4"
+    ),
+  },
   "math1030-gram-schmidt-projection-story": {
     conclusion: text(
       "Gram-Schmidt preserves the subspace because every new vector is made from the vectors already in the same partial span. The subtraction removes old directions; normalization only changes lengths afterward.",

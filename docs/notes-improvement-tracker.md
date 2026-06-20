@@ -198,6 +198,12 @@ Progress on the animation slice:
   the two theorem cards, the existing `independence-checker` preserved as the
   reader-controlled follow-up, and static export fallback; focused QA is
   recorded in `docs/manim-linear-dependence-video-qa-2026-06-11.md`.
+- completed a ninth MATH1030 Manim pilot for `6.5 Basis and dimension` with
+  trilingual `math1030-basis-dimension-just-right-story` videos, localized
+  posters, a new trilingual storyboard, article embeds after the basis
+  definition, the existing `span-explorer` preserved as the reader-controlled
+  follow-up, and static export fallback; focused QA is recorded in
+  `docs/manim-basis-dimension-video-qa-2026-06-19.md`.
 - completed the first non-Math1030 Manim pilot for MATH1090 `2.2 Functions and
   relations` with trilingual `math1090-function-map-properties-story` videos,
   localized posters, a new trilingual storyboard, course-aware render output
