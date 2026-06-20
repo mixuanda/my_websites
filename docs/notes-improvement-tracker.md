@@ -204,6 +204,12 @@ Progress on the animation slice:
   definition, the existing `span-explorer` preserved as the reader-controlled
   follow-up, and static export fallback; focused QA is recorded in
   `docs/manim-basis-dimension-video-qa-2026-06-19.md`.
+- completed a tenth MATH1030 Manim pilot for `6.6 Column space, row space, and
+  rank` with trilingual `math1030-column-row-space-rank-story` videos,
+  localized posters, a new trilingual storyboard, article embeds after the
+  static worked-example map, the existing article-first static map preserved
+  as the export-friendly companion, and static export fallback; focused QA is
+  recorded in `docs/manim-column-row-space-rank-video-qa-2026-06-20.md`.
 - completed the first non-Math1030 Manim pilot for MATH1090 `2.2 Functions and
   relations` with trilingual `math1090-function-map-properties-story` videos,
   localized posters, a new trilingual storyboard, course-aware render output

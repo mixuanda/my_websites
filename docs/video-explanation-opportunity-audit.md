@@ -94,7 +94,7 @@ fallback are written.
 | --- | --- | --- | --- |
 | Math1030 | `systems/equations-solution-sets` and `matrices/solution-set-types` | Lines / planes changing from unique solution to no solution to infinitely many solutions. | A short geometric clip would pair well with the existing classifier. |
 | Math1030 | `matrix-algebra/row-operation-matrices` | Left multiplication by elementary matrices as row swaps, scaling, and replacement. | Use after the row-operation pilot is stable. |
-| Math1030 | `vector-spaces/column-space-row-space-rank` | Columns as span generators, pivot columns selected through RREF, rank highlighted. | Needs careful pacing because there are multiple spaces. |
+| Math1030 | `vector-spaces/column-space-row-space-rank` | Done: one RREF selects original pivot columns for `C(A)`, nonzero RREF rows for `R(A)`, and rank as the shared count. | Implemented as `math1030-column-row-space-rank-story`; careful pacing keeps column space and row space separate. |
 | Math1030 | `inner-products/orthogonal-sets-and-orthonormal-bases` | Orthogonal vectors, projections, and coordinate reading in an orthonormal basis. | Pairs naturally with Gram-Schmidt. |
 | Math1090 | `sets/set-operations` | Union, intersection, complement, difference, and De Morgan transformations. | Existing set-operation interaction exists; video should be a concise theorem/intuition clip, not a replacement. |
 | Math1090 | `sets/functions-relations` | Domain, codomain, image, preimage, injective/surjective/composition maps. | Strong visual fit for Manim arrows and set diagrams. |

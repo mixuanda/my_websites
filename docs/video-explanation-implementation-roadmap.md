@@ -30,6 +30,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/vector-spaces/linear-combinations-and-span`
   - `math1030/vector-spaces/linear-dependence-and-independence`
   - `math1030/vector-spaces/basis-and-dimension`
+  - `math1030/vector-spaces/column-space-row-space-rank`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -44,6 +45,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/vector-spaces/linear-combinations-and-span`
   - `math1030/vector-spaces/linear-dependence-and-independence`
   - `math1030/vector-spaces/basis-and-dimension`
+  - `math1030/vector-spaces/column-space-row-space-rank`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -110,7 +112,8 @@ Use this order unless a later user request changes priority:
    operations`, Math1030 `9.3 Gram-Schmidt orthogonalization`, Math1030 `3.2
    Matrix multiplication and linear systems`, and Math1030 `3.3 Row-operation
    matrices`, Math1030 `6.3 Linear combinations and span`, and Math1030 `6.4
-   Linear dependence and independence`, and Math1030 `6.5 Basis and dimension`.
+   Linear dependence and independence`, Math1030 `6.5 Basis and dimension`,
+   and Math1030 `6.6 Column space, row space, and rank`.
 2. Math1030 basis, rank, determinant, and eigenvalue units.
 3. Remaining Math1030 matrix-algebra clips such as transpose, special
    matrices, and block matrices.
@@ -147,7 +150,7 @@ Use this order unless a later user request changes priority:
 | `math1030/vector-spaces/linear-combinations-and-span` | 6.3 Linear combinations and span | Done | Coefficients sweeping out a line, plane, or span. | Completed as the seventh trilingual Manim pilot; keep the existing `span-explorer` as the reader-controlled follow-up. |
 | `math1030/vector-spaces/linear-dependence-and-independence` | 6.4 Linear dependence and independence | Done | One vector entering span of previous vectors. | Completed as the eighth trilingual Manim pilot; keep the existing `independence-checker` as the reader-controlled follow-up. |
 | `math1030/vector-spaces/basis-and-dimension` | 6.5 Basis and dimension | Done | Spanning as reach, independence as no redundancy, dimension as stable basis count, and the two-of-three shortcut. | Completed as the ninth Math1030 trilingual Manim pass; the existing `span-explorer` remains the reader-controlled follow-up. |
-| `math1030/vector-spaces/column-space-row-space-rank` | 6.6 Column space, row space, and rank | Manim | Pivot columns, row space, and rank count. | Keep scope narrow to avoid overloaded clip. |
+| `math1030/vector-spaces/column-space-row-space-rank` | 6.6 Column space, row space, and rank | Done | RREF pivot positions, original pivot columns as a column-space basis, nonzero RREF rows as a row-space basis, and rank as the shared count. | Completed as the tenth Math1030 trilingual Manim pass; no separate widget was added because the existing static map plus video covers the same source-backed example. |
 | `math1030/vector-spaces/matrix-subspaces-basis-dimension` | 6.7 Matrix subspaces, basis, and dimension | Manim | Matrix-shaped vectors and basis expansion. | Storyboard after rank clip. |
 | `math1030/vector-spaces/basis-extension-and-change-of-basis` | 6.8 Basis extension and change of basis | Manim | Coordinates moving between bases. | Storyboard coordinate-grid movement. |
 | `math1030/determinants/determinants-and-cofactor-expansion` | 7.1 Determinants and cofactor expansion | Manim | Area/volume scaling and cofactor expansion tree. | Choose one primary story before scene work. |
@@ -227,8 +230,9 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 
 These are the concrete next slices to execute one by one:
 
-1. Continue Math1030 rank-oriented clips, starting with `6.6 Column space, row
-   space, and rank`, unless the roadmap priority changes.
+1. Continue Math1030 vector-space rank-oriented clips, starting with `6.7
+   Matrix subspaces, basis, and dimension`, unless the roadmap priority
+   changes.
 2. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.
 

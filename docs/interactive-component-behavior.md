@@ -109,6 +109,11 @@ The current pass especially strengthens the `math1030` note flow.
   The existing `span-explorer` remains the reader-controlled follow-up; the new
   Manim clip is a short static overview tying span, independence, dimension,
   and the two-of-three basis shortcut together before the interactive pause.
+- The MATH1030 `6.6` column-space / row-space / rank video pass did not add a
+  new widget. The page already has a static map for the worked example, and
+  the Manim clip clarifies the source-backed warning that RREF gives pivot
+  positions for column-space basis selection while its nonzero rows give the
+  row-space basis directly.
 - Public note pages now keep source tracing out of the interaction chrome so
   the widget remains focused on learning rather than documentation.
 

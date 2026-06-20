@@ -1,0 +1,382 @@
+{
+  "course": "math1030",
+  "chapter": "vector-spaces",
+  "unit": "column-space-row-space-rank",
+  "unitTitle": {
+    "en": "6.6 Column space, row space, and rank",
+    "zh-hk": "6.6 列空間、行空間與秩",
+    "zh-cn": "6.6 列空间、行空间与秩"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Column space records reachable outputs",
+          "goal": "Connect C(A) to the output set of the matrix equation Ax=b.",
+          "beats": [
+            "Display the 3 by 4 matrix A from the worked example.",
+            "Label its columns c1,c2,c3,c4.",
+            "State C(A)=Span{c1,c2,c3,c4} and that Ax is a column combination."
+          ],
+          "mathBlocks": [
+            "C(A)=\\operatorname{Span}\\{c_1,c_2,c_3,c_4\\}",
+            "Ax=x_1c_1+x_2c_2+x_3c_3+x_4c_4"
+          ],
+          "voiceover": [
+            "The column space is the set of outputs the matrix can produce.",
+            "Equivalently, b belongs to C(A) exactly when Ax=b is consistent."
+          ],
+          "animation": "highlight the columns of A and place the column-space formula beside the matrix"
+        },
+        {
+          "type": "contrast",
+          "cardTitle": "Row space records row information",
+          "goal": "Keep column space and row space in different ambient spaces for a non-square matrix.",
+          "beats": [
+            "Highlight the rows of the same matrix A.",
+            "State R(A)=Span{rows of A}.",
+            "Contrast that C(A) lives in R3 while R(A) lives in R4."
+          ],
+          "mathBlocks": [
+            "C(A)\\subseteq R^3",
+            "R(A)\\subseteq R^4"
+          ],
+          "voiceover": [
+            "The row space is built from different vectors.",
+            "For this non-square matrix it does not even live in the same ambient space as the column space."
+          ],
+          "animation": "switch highlighting from columns to rows and show the two ambient-space labels"
+        },
+        {
+          "type": "algorithmic_step",
+          "cardTitle": "RREF locates the pivots",
+          "goal": "Use row reduction only to identify pivot positions and counts.",
+          "beats": [
+            "Show A row-reducing to its RREF R.",
+            "Highlight pivot entries in columns 1 and 2.",
+            "Mark columns 3 and 4 as non-pivot positions."
+          ],
+          "mathBlocks": [
+            "A\\sim R",
+            "\\text{pivot columns: }1,2"
+          ],
+          "voiceover": [
+            "The RREF tells us where the pivots are.",
+            "Those positions are the bridge from row reduction back to the original matrix."
+          ],
+          "animation": "two matrices connected by a row-reduction arrow with pivots highlighted in R"
+        },
+        {
+          "type": "warning",
+          "cardTitle": "Column-space basis comes from A",
+          "goal": "Prevent the common error of using RREF columns as column-space basis vectors.",
+          "beats": [
+            "Keep pivot positions highlighted in R.",
+            "Move the highlight back to columns c1 and c2 of the original A.",
+            "State that {c1,c2} is a basis for C(A)."
+          ],
+          "mathBlocks": [
+            "\\{c_1,c_2\\}\\text{ is a basis for }C(A)",
+            "c_3=-c_1+c_2,\\quad c_4=c_1+c_2"
+          ],
+          "voiceover": [
+            "For column space, the pivot positions are read from R, but the vectors come from A.",
+            "The non-pivot columns are combinations of the pivot columns."
+          ],
+          "animation": "arrow from pivot positions in R back to the original first and second columns of A"
+        },
+        {
+          "type": "theorem_application",
+          "cardTitle": "Row-space basis comes from R",
+          "goal": "Use row-space invariance under row operations.",
+          "beats": [
+            "Highlight the nonzero rows of R.",
+            "State that row operations preserve row space.",
+            "Use those nonzero rows as a basis for R(A)."
+          ],
+          "mathBlocks": [
+            "\\{(1,0,-1,1),(0,1,1,1)\\}\\text{ is a basis for }R(A)"
+          ],
+          "voiceover": [
+            "For row space, the RREF gives actual basis vectors.",
+            "This works because row operations preserve the row space."
+          ],
+          "animation": "highlight the first two rows of R and fade out the zero row"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Rank is the shared count",
+          "goal": "Conclude rank as the common dimension of the column and row spaces.",
+          "beats": [
+            "Count two pivot positions.",
+            "Show dim C(A)=2 and dim R(A)=2.",
+            "Conclude rank(A)=2."
+          ],
+          "mathBlocks": [
+            "\\operatorname{rank}(A)=\\dim C(A)=\\dim R(A)=2"
+          ],
+          "voiceover": [
+            "Rank is not a separate mystery number.",
+            "It is the common dimension of the column space and the row space, read here as the number of pivots."
+          ],
+          "animation": "three count cards collapse into one rank card"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "列空間記錄可到達輸出",
+          "goal": "把 C(A) 連到矩陣方程 Ax=b 的輸出集合。",
+          "beats": [
+            "顯示例題中的 3 乘 4 矩陣 A。",
+            "標出它的列 c1,c2,c3,c4。",
+            "寫出 C(A)=Span{c1,c2,c3,c4}，並說明 Ax 是列的線性組合。"
+          ],
+          "mathBlocks": [
+            "C(A)=\\operatorname{Span}\\{c_1,c_2,c_3,c_4\\}",
+            "Ax=x_1c_1+x_2c_2+x_3c_3+x_4c_4"
+          ],
+          "voiceover": [
+            "列空間是矩陣可以產生的所有輸出。",
+            "等價地，b 屬於 C(A) 正正表示 Ax=b 相容。"
+          ],
+          "animation": "高亮 A 的各列，並在旁邊放上列空間公式"
+        },
+        {
+          "type": "contrast",
+          "cardTitle": "行空間記錄行資訊",
+          "goal": "對非方陣清楚分開列空間和行空間所在的環境空間。",
+          "beats": [
+            "高亮同一矩陣 A 的各行。",
+            "寫出 R(A)=Span{A 的各行}。",
+            "對比 C(A) 在 R3 中，而 R(A) 在 R4 中。"
+          ],
+          "mathBlocks": [
+            "C(A)\\subseteq R^3",
+            "R(A)\\subseteq R^4"
+          ],
+          "voiceover": [
+            "行空間由另一批向量建立。",
+            "對這個非方陣而言，它甚至不在列空間所在的同一個環境空間。"
+          ],
+          "animation": "由高亮列切換到高亮行，並顯示兩個環境空間標籤"
+        },
+        {
+          "type": "algorithmic_step",
+          "cardTitle": "RREF 找出樞紐位置",
+          "goal": "只用行化簡來識別樞紐位置和數目。",
+          "beats": [
+            "顯示 A 行化簡到 RREF R。",
+            "高亮第 1、2 列的樞紐。",
+            "標出第 3、4 列是非樞紐位置。"
+          ],
+          "mathBlocks": [
+            "A\\sim R",
+            "\\text{樞紐列：}1,2"
+          ],
+          "voiceover": [
+            "RREF 告訴我們樞紐在哪裏。",
+            "這些位置把行化簡結果連回原矩陣。"
+          ],
+          "animation": "兩個矩陣以行化簡箭頭連接，並高亮 R 中的樞紐"
+        },
+        {
+          "type": "warning",
+          "cardTitle": "列空間基底取自 A",
+          "goal": "避免把 RREF 的列當成列空間基底這個常見錯誤。",
+          "beats": [
+            "保留 R 中的樞紐位置。",
+            "把高亮移回原矩陣 A 的第 1、2 列。",
+            "說明 {c1,c2} 是 C(A) 的一組基底。"
+          ],
+          "mathBlocks": [
+            "\\{c_1,c_2\\}\\text{ 是 }C(A)\\text{ 的基底}",
+            "c_3=-c_1+c_2,\\quad c_4=c_1+c_2"
+          ],
+          "voiceover": [
+            "對列空間而言，樞紐位置由 R 讀出，但向量要取自 A。",
+            "非樞紐列是樞紐列的線性組合。"
+          ],
+          "animation": "由 R 中的樞紐位置箭頭返回 A 的第 1、2 列"
+        },
+        {
+          "type": "theorem_application",
+          "cardTitle": "行空間基底取自 R",
+          "goal": "使用行變換保留行空間這一點。",
+          "beats": [
+            "高亮 R 的非零行。",
+            "說明行變換保留行空間。",
+            "把這些非零行用作 R(A) 的基底。"
+          ],
+          "mathBlocks": [
+            "\\{(1,0,-1,1),(0,1,1,1)\\}\\text{ 是 }R(A)\\text{ 的基底}"
+          ],
+          "voiceover": [
+            "對行空間而言，RREF 給出的就是實際基底向量。",
+            "這是因為行變換保留行空間。"
+          ],
+          "animation": "高亮 R 的前兩行，淡出零行"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "秩是共同數目",
+          "goal": "把秩總結為列空間和行空間的共同維數。",
+          "beats": [
+            "數出兩個樞紐位置。",
+            "顯示 dim C(A)=2 和 dim R(A)=2。",
+            "總結 rank(A)=2。"
+          ],
+          "mathBlocks": [
+            "\\operatorname{rank}(A)=\\dim C(A)=\\dim R(A)=2"
+          ],
+          "voiceover": [
+            "秩不是另一個神秘數字。",
+            "它是列空間與行空間的共同維數，在這裏就是樞紐數目。"
+          ],
+          "animation": "三張數目卡收合成一張秩卡"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "列空间记录可到达输出",
+          "goal": "把 C(A) 连到矩阵方程 Ax=b 的输出集合。",
+          "beats": [
+            "显示例题中的 3 乘 4 矩阵 A。",
+            "标出它的列 c1,c2,c3,c4。",
+            "写出 C(A)=Span{c1,c2,c3,c4}，并说明 Ax 是列的线性组合。"
+          ],
+          "mathBlocks": [
+            "C(A)=\\operatorname{Span}\\{c_1,c_2,c_3,c_4\\}",
+            "Ax=x_1c_1+x_2c_2+x_3c_3+x_4c_4"
+          ],
+          "voiceover": [
+            "列空间是矩阵可以产生的所有输出。",
+            "等价地，b 属于 C(A) 正好表示 Ax=b 相容。"
+          ],
+          "animation": "高亮 A 的各列，并在旁边放上列空间公式"
+        },
+        {
+          "type": "contrast",
+          "cardTitle": "行空间记录行信息",
+          "goal": "对非方阵清楚分开列空间和行空间所在的环境空间。",
+          "beats": [
+            "高亮同一矩阵 A 的各行。",
+            "写出 R(A)=Span{A 的各行}。",
+            "对比 C(A) 在 R3 中，而 R(A) 在 R4 中。"
+          ],
+          "mathBlocks": [
+            "C(A)\\subseteq R^3",
+            "R(A)\\subseteq R^4"
+          ],
+          "voiceover": [
+            "行空间由另一批向量建立。",
+            "对这个非方阵而言，它甚至不在列空间所在的同一个环境空间。"
+          ],
+          "animation": "由高亮列切换到高亮行，并显示两个环境空间标签"
+        },
+        {
+          "type": "algorithmic_step",
+          "cardTitle": "RREF 找出主元位置",
+          "goal": "只用行化简来识别主元位置和数目。",
+          "beats": [
+            "显示 A 行化简到 RREF R。",
+            "高亮第 1、2 列的主元。",
+            "标出第 3、4 列是非主元位置。"
+          ],
+          "mathBlocks": [
+            "A\\sim R",
+            "\\text{主元列：}1,2"
+          ],
+          "voiceover": [
+            "RREF 告诉我们主元在哪里。",
+            "这些位置把行化简结果连回原矩阵。"
+          ],
+          "animation": "两个矩阵以行化简箭头连接，并高亮 R 中的主元"
+        },
+        {
+          "type": "warning",
+          "cardTitle": "列空间基取自 A",
+          "goal": "避免把 RREF 的列当成列空间基这个常见错误。",
+          "beats": [
+            "保留 R 中的主元位置。",
+            "把高亮移回原矩阵 A 的第 1、2 列。",
+            "说明 {c1,c2} 是 C(A) 的一组基。"
+          ],
+          "mathBlocks": [
+            "\\{c_1,c_2\\}\\text{ 是 }C(A)\\text{ 的基}",
+            "c_3=-c_1+c_2,\\quad c_4=c_1+c_2"
+          ],
+          "voiceover": [
+            "对列空间而言，主元位置由 R 读出，但向量要取自 A。",
+            "非主元列是主元列的线性组合。"
+          ],
+          "animation": "由 R 中的主元位置箭头返回 A 的第 1、2 列"
+        },
+        {
+          "type": "theorem_application",
+          "cardTitle": "行空间基取自 R",
+          "goal": "使用行变换保持行空间这一点。",
+          "beats": [
+            "高亮 R 的非零行。",
+            "说明行变换保持行空间。",
+            "把这些非零行用作 R(A) 的基。"
+          ],
+          "mathBlocks": [
+            "\\{(1,0,-1,1),(0,1,1,1)\\}\\text{ 是 }R(A)\\text{ 的基}"
+          ],
+          "voiceover": [
+            "对行空间而言，RREF 给出的就是实际基向量。",
+            "这是因为行变换保持行空间。"
+          ],
+          "animation": "高亮 R 的前两行，淡出零行"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "秩是共同数目",
+          "goal": "把秩总结为列空间和行空间的共同维数。",
+          "beats": [
+            "数出两个主元位置。",
+            "显示 dim C(A)=2 和 dim R(A)=2。",
+            "总结 rank(A)=2。"
+          ],
+          "mathBlocks": [
+            "\\operatorname{rank}(A)=\\dim C(A)=\\dim R(A)=2"
+          ],
+          "voiceover": [
+            "秩不是另一个神秘数字。",
+            "它是列空间与行空间的共同维数，在这里就是主元数目。"
+          ],
+          "animation": "三张数目卡收合成一张秩卡"
+        }
+      ]
+    }
+  },
+  "sourceSupport": [
+    {
+      "file": "reference/MATH1030/MATH1030-Notes.pdf",
+      "pages": "146-147, 151-162",
+      "use": "Column-space definition, row-space definition, pivot-column basis rule, nonzero-RREF-row basis rule, and rank as common dimension."
+    },
+    {
+      "file": "reference/MATH1030/1030gi-n05-04.pdf",
+      "pages": "1-9",
+      "use": "Column space, row space, column rank, row rank, and row-operation preservation facts."
+    }
+  ],
+  "publicVideoId": "math1030-column-row-space-rank-story",
+  "assetBasename": "column-row-space-rank-story",
+  "sceneClasses": [
+    "ColumnRowSpaceRankStoryEn",
+    "ColumnRowSpaceRankStoryZhHk",
+    "ColumnRowSpaceRankStoryZhCn"
+  ]
+}

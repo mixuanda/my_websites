@@ -778,6 +778,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/basis-dimension-just-right-story-zh-cn.mp4"
     ),
   },
+  "math1030-column-row-space-rank-story": {
+    conclusion: text(
+      "The RREF tells you positions and counts. For column space, return to the original matrix; for row space, keep the nonzero rows of the RREF.",
+      "RREF 告訴你位置和數目。列空間要回到原矩陣取列；行空間則保留 RREF 的非零行。",
+      "RREF 告诉你位置和数目。列空间要回到原矩阵取列；行空间则保留 RREF 的非零行。"
+    ),
+    durationSeconds: 12,
+    frames: [
+      {
+        label: text("Column space records outputs", "列空間記錄輸出", "列空间记录输出"),
+        value: text(
+          "The columns of A span all right-hand sides b for which Ax=b is consistent.",
+          "A 的列張成所有令 Ax=b 有解的右端向量 b。",
+          "A 的列张成所有使 Ax=b 有解的右端向量 b。"
+        ),
+      },
+      {
+        label: text("Row space is different data", "行空間是另一種資訊", "行空间是另一种信息"),
+        value: text(
+          "For this 3 by 4 matrix, C(A) lives in R3 while R(A) lives in R4, so the two spaces must be distinguished.",
+          "對這個 3 乘 4 矩陣，C(A) 在 R3 中，而 R(A) 在 R4 中，所以兩個空間必須分清楚。",
+          "对这个 3 乘 4 矩阵，C(A) 在 R3 中，而 R(A) 在 R4 中，所以两个空间必须分清楚。"
+        ),
+      },
+      {
+        label: text("RREF gives pivot positions", "RREF 給出樞紐位置", "RREF 给出主元位置"),
+        value: text(
+          "Row reduction locates pivot columns 1 and 2, but this is only positional information for column space.",
+          "行化簡找出第 1、2 列是樞紐列，但對列空間而言，這只是位置信息。",
+          "行化简找出第 1、2 列是主元列，但对列空间而言，这只是位置信息。"
+        ),
+      },
+      {
+        label: text("Column basis comes from A", "列空間基底取自 A", "列空间基取自 A"),
+        value: text(
+          "Use the original columns c1 and c2 as a basis for C(A); do not use the pivot columns of the RREF as the actual basis vectors.",
+          "用原矩陣的列 c1 和 c2 作為 C(A) 的基底；不要把 RREF 的樞紐列當成真正基底向量。",
+          "用原矩阵的列 c1 和 c2 作为 C(A) 的基；不要把 RREF 的主元列当成真正基向量。"
+        ),
+      },
+      {
+        label: text("Row basis comes from R", "行空間基底取自 R", "行空间基取自 R"),
+        value: text(
+          "Row operations preserve row space, so the nonzero rows of the RREF form a basis for R(A).",
+          "行變換保留行空間，所以 RREF 的非零行形成 R(A) 的一組基底。",
+          "行变换保持行空间，所以 RREF 的非零行形成 R(A) 的一组基。"
+        ),
+      },
+      {
+        label: text("Rank is the shared count", "秩是共同數目", "秩是共同数目"),
+        value: text(
+          "The number of pivots, dim C(A), and dim R(A) are all 2, so rank(A)=2.",
+          "樞紐數、dim C(A) 與 dim R(A) 全都是 2，所以 rank(A)=2。",
+          "主元数、dim C(A) 与 dim R(A) 全都是 2，所以 rank(A)=2。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch one row reduction identify the column-space basis, row-space basis, and rank without confusing the RREF with the original matrix.",
+      "觀看一次行化簡如何辨認列空間基底、行空間基底與秩，同時避免混淆 RREF 和原矩陣。",
+      "观看一次行化简如何辨认列空间基、行空间基与秩，同时避免混淆 RREF 和原矩阵。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/column-row-space-rank-story-en.png",
+      "/generated/animations/math1030/column-row-space-rank-story-zh-hk.png",
+      "/generated/animations/math1030/column-row-space-rank-story-zh-cn.png"
+    ),
+    title: text(
+      "Column space, row space, and rank",
+      "列空間、行空間與秩",
+      "列空间、行空间与秩"
+    ),
+    transcript: [
+      text(
+        "Column space is the set of outputs the matrix can produce.",
+        "列空間是矩陣可以產生的輸出集合。",
+        "列空间是矩阵可以产生的输出集合。"
+      ),
+      text(
+        "The RREF gives pivot positions, but the column-space basis vectors are taken from the original matrix.",
+        "RREF 給出樞紐位置，但列空間的基底向量要取自原矩陣。",
+        "RREF 给出主元位置，但列空间的基向量要取自原矩阵。"
+      ),
+      text(
+        "For row space, the nonzero rows of the RREF are already basis vectors, and their count equals the rank.",
+        "對行空間而言，RREF 的非零行本身就是基底向量，而它們的數目等於秩。",
+        "对行空间而言，RREF 的非零行本身就是基向量，而它们的数目等于秩。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/column-row-space-rank-story-en.mp4",
+      "/generated/animations/math1030/column-row-space-rank-story-zh-hk.mp4",
+      "/generated/animations/math1030/column-row-space-rank-story-zh-cn.mp4"
+    ),
+  },
   "math1030-gram-schmidt-projection-story": {
     conclusion: text(
       "Gram-Schmidt preserves the subspace because every new vector is made from the vectors already in the same partial span. The subtraction removes old directions; normalization only changes lengths afterward.",
