@@ -1158,6 +1158,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/determinants-cofactor-expansion-story-zh-cn.mp4"
     ),
   },
+  "math1030-determinants-row-operation-effects-story": {
+    conclusion: text(
+      "Row reduction becomes a determinant algorithm only after every row-operation effect has been recorded: zero determinant means singular, and an invertible matrix satisfies det(A^{-1})=1/det(A).",
+      "只有把每一步行變換的影響記下來，行化簡才會成為行列式算法：行列式為零代表奇異；可逆矩陣滿足 det(A^{-1})=1/det(A)。",
+      "只有把每一步行变换的影响记下来，行化简才会成为行列式算法：行列式为零代表奇异；可逆矩阵满足 det(A^{-1})=1/det(A)。"
+    ),
+    durationSeconds: 11,
+    frames: [
+      {
+        label: text("Operation ledger", "行變換記帳", "行变换记账"),
+        value: text(
+          "A row swap multiplies the determinant by -1, row scaling by beta multiplies it by beta, and row replacement multiplies it by 1.",
+          "換行令行列式乘上 -1；把某行乘上 beta 會令行列式乘上 beta；行替換則乘上 1。",
+          "换行令行列式乘上 -1；把某行乘上 beta 会令行列式乘上 beta；行替换则乘上 1。"
+        ),
+      },
+      {
+        label: text("Swap changes sign", "換行改變符號", "换行改变符号"),
+        value: text(
+          "For B=[[0,1],[4,3]], swapping rows gives a triangular determinant 4, so det(B)=-4.",
+          "對 B=[[0,1],[4,3]]，換行後得到行列式為 4 的三角矩陣，所以 det(B)=-4。",
+          "对 B=[[0,1],[4,3]]，换行后得到行列式为 4 的三角矩阵，所以 det(B)=-4。"
+        ),
+      },
+      {
+        label: text("Replacement preserves value", "行替換保持數值", "行替换保持数值"),
+        value: text(
+          "The source 3 by 3 example uses only row replacements, so the triangular diagonal product 1*(-2)*(-3)=6 is the original determinant.",
+          "來源中的 3 乘 3 例子只用行替換，所以三角矩陣的對角線乘積 1*(-2)*(-3)=6 就是原行列式。",
+          "来源中的 3 乘 3 例子只用行替换，所以三角矩阵的对角线乘积 1*(-2)*(-3)=6 就是原行列式。"
+        ),
+      },
+      {
+        label: text("Scaling must be corrected", "縮放要補回", "缩放要补回"),
+        value: text(
+          "If elimination normalizes a row by multiplying it by beta, the determinant of the new matrix is beta times the old determinant.",
+          "若消元時把某行乘上 beta，新矩陣的行列式就是舊行列式的 beta 倍。",
+          "若消元时把某行乘上 beta，新矩阵的行列式就是旧行列式的 beta 倍。"
+        ),
+      },
+      {
+        label: text("Zero row means zero determinant", "零行代表零行列式", "零行代表零行列式"),
+        value: text(
+          "A source zero-row example reduces to echelon form with a zero row, so the determinant is 0 and the matrix is singular.",
+          "來源中的零行例子化成帶零行的階梯形，所以行列式為 0，矩陣是奇異的。",
+          "来源中的零行例子化成带零行的阶梯形，所以行列式为 0，矩阵是奇异的。"
+        ),
+      },
+      {
+        label: text("Theorems from the ledger", "由記帳到定理", "由记账到定理"),
+        value: text(
+          "Elementary matrices turn the ledger into det(EA)=det(E)det(A), which leads to det(AB)=det(A)det(B) and det(A)!=0 iff A is invertible.",
+          "基本矩陣把記帳規則寫成 det(EA)=det(E)det(A)，進而得到 det(AB)=det(A)det(B) 與 det(A)!=0 當且僅當 A 可逆。",
+          "基本矩阵把记账规则写成 det(EA)=det(E)det(A)，进而得到 det(AB)=det(A)det(B) 与 det(A)!=0 当且仅当 A 可逆。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch the three determinant effects of row operations become an elimination ledger, then see how that ledger leads to product and invertibility theorems.",
+      "觀看三種行變換對行列式的影響如何成為消元記帳，再看這套記帳如何導向乘積公式與可逆性定理。",
+      "观看三种行变换对行列式的影响如何成为消元记账，再看这套记账如何导向乘积公式与可逆性定理。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/determinants-row-operation-effects-story-en.png",
+      "/generated/animations/math1030/determinants-row-operation-effects-story-zh-hk.png",
+      "/generated/animations/math1030/determinants-row-operation-effects-story-zh-cn.png"
+    ),
+    title: text(
+      "Row-operation effects on determinants",
+      "行變換對行列式的影響",
+      "行变换对行列式的影响"
+    ),
+    transcript: [
+      text(
+        "Elimination is useful for determinants only when every row-operation effect is recorded.",
+        "消元法只有在每一步行變換影響都被記下來時，才會成為有效的行列式方法。",
+        "消元法只有在每一步行变换影响都被记下来时，才会成为有效的行列式方法。"
+      ),
+      text(
+        "Swaps flip the sign, row scaling multiplies by the scaling factor, and row replacement leaves the determinant unchanged.",
+        "換行會翻轉符號；縮放一行會乘上縮放倍數；行替換則保持行列式不變。",
+        "换行会翻转符号；缩放一行会乘上缩放倍数；行替换则保持行列式不变。"
+      ),
+      text(
+        "Those rules support triangular determinant computation, det(EA)=det(E)det(A), product determinants, and the test det(A)!=0 iff A is invertible.",
+        "這些規則支撐三角矩陣讀值、det(EA)=det(E)det(A)、乘積行列式，以及 det(A)!=0 當且僅當 A 可逆的判準。",
+        "这些规则支撑三角矩阵读值、det(EA)=det(E)det(A)、乘积行列式，以及 det(A)!=0 当且仅当 A 可逆的判准。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/determinants-row-operation-effects-story-en.mp4",
+      "/generated/animations/math1030/determinants-row-operation-effects-story-zh-hk.mp4",
+      "/generated/animations/math1030/determinants-row-operation-effects-story-zh-cn.mp4"
+    ),
+  },
   "math1030-gram-schmidt-projection-story": {
     conclusion: text(
       "Gram-Schmidt preserves the subspace because every new vector is made from the vectors already in the same partial span. The subtraction removes old directions; normalization only changes lengths afterward.",

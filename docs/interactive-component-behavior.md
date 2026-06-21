@@ -254,5 +254,16 @@ products. A widget would be justified later only for reader-chosen row/column
 expansion practice with grading; the current clip is the conceptual bridge
 before the existing checkpoint and exercises.
 
+The Math1030 `7.2` row-operations/products/invertibility pass also stays
+Manim-only. The source-backed move is determinant bookkeeping: swaps multiply
+by `-1`, row scaling multiplies by the scale factor, row replacement preserves
+the determinant, triangular read-off must be corrected by that ledger, and the
+same rules become `det(EA)=det(E)det(A)`, `det(AB)=det(A)det(B)`, and
+`det(A)!=0` iff `A` is invertible. A widget would mostly duplicate
+row-reduction bookkeeping and risk becoming a determinant calculator; a later
+graded determinant-practice surface could be justified only if it remains
+article-embedded and exports every operation, factor, and final determinant as
+a static ledger.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

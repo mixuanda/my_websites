@@ -1,0 +1,378 @@
+{
+  "course": "math1030",
+  "chapter": "determinants",
+  "unit": "row-operations-products-and-invertibility",
+  "unitTitle": {
+    "en": "7.2 Row operations, products, and invertibility",
+    "zh-hk": "7.2 行變換、乘積與可逆性",
+    "zh-cn": "7.2 行变换、乘积与可逆性"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "operation_ledger",
+          "cardTitle": "Three operations, three determinant effects",
+          "goal": "Separate the determinant bookkeeping for swaps, row scaling, and row replacement.",
+          "beats": [
+            "Display the three elementary row operations.",
+            "Attach multipliers -1, beta, and 1.",
+            "Emphasize that row replacement is the operation that preserves determinant."
+          ],
+          "mathBlocks": [
+            "R_i<->R_j: det(new)=-det(old)",
+            "beta R_i: det(new)=beta det(old)",
+            "R_j+alpha R_i: det(new)=det(old)"
+          ],
+          "voiceover": [
+            "Elimination is efficient, but determinant values must be tracked.",
+            "Each row operation has its own exact ledger entry."
+          ],
+          "animation": "show three compact rule cards with determinant multipliers"
+        },
+        {
+          "type": "swap_sign",
+          "cardTitle": "A single swap flips the sign",
+          "goal": "Use a small triangular example to show that swapping rows reverses the determinant sign.",
+          "beats": [
+            "Start with B=[[0,1],[4,3]].",
+            "Swap the rows to get an upper triangular matrix with determinant 4.",
+            "Undo the swap sign to conclude det(B)=-4."
+          ],
+          "mathBlocks": [
+            "det([[0,1],[4,3]])=-det([[4,3],[0,1]])=-4"
+          ],
+          "voiceover": [
+            "The triangular matrix is easy to read.",
+            "The swap is exactly the reason the original determinant is negative."
+          ],
+          "animation": "swap two highlighted rows, then attach a red -1 sign"
+        },
+        {
+          "type": "replacement_triangular",
+          "cardTitle": "Row replacement preserves the determinant",
+          "goal": "Animate the source-backed 3 by 3 example from row replacement to triangular read-off.",
+          "beats": [
+            "Display A=[[1,3,5],[1,1,1],[3,5,4]].",
+            "Apply R2-R1 and R3-3R1.",
+            "Apply R3-2R2.",
+            "Read the diagonal product 1*(-2)*(-3)=6."
+          ],
+          "mathBlocks": [
+            "det(A)=det([[1,3,5],[0,-2,-4],[0,0,-3]])=6"
+          ],
+          "voiceover": [
+            "Only row replacement steps were used.",
+            "Because row replacement has multiplier 1, the diagonal product is the determinant of the original matrix."
+          ],
+          "animation": "morph the matrix through two row-replacement stages and highlight the diagonal"
+        },
+        {
+          "type": "scaling_correction",
+          "cardTitle": "Scaling factors must be undone",
+          "goal": "Show why multiplying a row during elimination changes the determinant by that scalar.",
+          "beats": [
+            "Show a row scaled by beta.",
+            "Record det(new)=beta det(old).",
+            "Warn that the final diagonal product belongs to the scaled matrix unless the factor is corrected."
+          ],
+          "mathBlocks": [
+            "det(new)=beta det(old)",
+            "det(old)=beta^{-1}det(new)"
+          ],
+          "voiceover": [
+            "Scaling can make arithmetic nicer, but it changes the determinant.",
+            "That factor has to be recorded before the final read-off is trusted."
+          ],
+          "animation": "show a row normalization and move its factor into a side ledger"
+        },
+        {
+          "type": "zero_row_singularity",
+          "cardTitle": "A zero row forces determinant zero",
+          "goal": "Use the source-backed zero-row example to connect row reduction with singularity.",
+          "beats": [
+            "Display A=[[1,3,5],[2,8,14],[-1,3,7]].",
+            "Apply replacement steps to reach a triangular matrix with a zero row.",
+            "Conclude det(A)=0."
+          ],
+          "mathBlocks": [
+            "[[1,3,5],[2,8,14],[-1,3,7]] -> [[1,3,5],[0,2,4],[0,0,0]]",
+            "det(A)=0"
+          ],
+          "voiceover": [
+            "A zero row in echelon form gives a zero diagonal product.",
+            "The determinant ledger then certifies that the original matrix is singular."
+          ],
+          "animation": "fade the zero row into a red singularity marker"
+        },
+        {
+          "type": "product_and_invertibility",
+          "cardTitle": "The ledger becomes a theorem",
+          "goal": "Connect elementary row-operation matrices to product determinants and the determinant invertibility test.",
+          "beats": [
+            "Write A -> EA for one elementary row operation.",
+            "Promote the rule to det(EA)=det(E)det(A).",
+            "Chain elementary matrices to get det(AB)=det(A)det(B).",
+            "Finish with det(A)!=0 iff A is invertible and det(A^{-1})=1/det(A)."
+          ],
+          "mathBlocks": [
+            "det(EA)=det(E)det(A)",
+            "det(AB)=det(A)det(B)",
+            "det(A)!=0 <=> A is invertible",
+            "det(A^{-1})=1/det(A)"
+          ],
+          "voiceover": [
+            "The bookkeeping rules are not only computational shortcuts.",
+            "They are the bridge to the product theorem and the determinant test for invertibility."
+          ],
+          "animation": "compress the row-operation ledger into theorem cards"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "operation_ledger",
+          "cardTitle": "三種行變換，三種行列式影響",
+          "goal": "把換行、縮放行與行替換的行列式記帳分清楚。",
+          "beats": [
+            "顯示三種基本行變換。",
+            "分別貼上倍數 -1、beta、1。",
+            "強調行替換是不改變行列式的操作。"
+          ],
+          "mathBlocks": [
+            "R_i<->R_j: det(新)=-det(舊)",
+            "beta R_i: det(新)=beta det(舊)",
+            "R_j+alpha R_i: det(新)=det(舊)"
+          ],
+          "voiceover": [
+            "消元法很有效率，但行列式的數值必須追蹤。",
+            "每一種行變換都有精確的記帳規則。"
+          ],
+          "animation": "用三張規則卡顯示行列式倍數"
+        },
+        {
+          "type": "swap_sign",
+          "cardTitle": "換行一次會翻轉符號",
+          "goal": "用小型三角例子說明換行會反轉行列式符號。",
+          "beats": [
+            "由 B=[[0,1],[4,3]] 開始。",
+            "交換兩行，得到行列式為 4 的上三角矩陣。",
+            "補回換行符號，得到 det(B)=-4。"
+          ],
+          "mathBlocks": [
+            "det([[0,1],[4,3]])=-det([[4,3],[0,1]])=-4"
+          ],
+          "voiceover": [
+            "三角矩陣很容易直接讀值。",
+            "換行正是原本行列式變成負數的原因。"
+          ],
+          "animation": "交換兩條高亮行，並加上紅色 -1"
+        },
+        {
+          "type": "replacement_triangular",
+          "cardTitle": "行替換保持行列式不變",
+          "goal": "把來源支撐的 3 乘 3 例子從行替換動畫化到三角讀值。",
+          "beats": [
+            "顯示 A=[[1,3,5],[1,1,1],[3,5,4]]。",
+            "做 R2-R1 與 R3-3R1。",
+            "做 R3-2R2。",
+            "讀出對角線乘積 1*(-2)*(-3)=6。"
+          ],
+          "mathBlocks": [
+            "det(A)=det([[1,3,5],[0,-2,-4],[0,0,-3]])=6"
+          ],
+          "voiceover": [
+            "過程只用了行替換。",
+            "因為行替換的倍數是 1，對角線乘積就是原矩陣的行列式。"
+          ],
+          "animation": "矩陣經過兩次行替換後高亮對角線"
+        },
+        {
+          "type": "scaling_correction",
+          "cardTitle": "縮放因素必須補回",
+          "goal": "說明消元時把某行乘上純量，會使行列式乘上該純量。",
+          "beats": [
+            "顯示某一行乘上 beta。",
+            "記錄 det(新)=beta det(舊)。",
+            "提醒若不修正，最後的對角線乘積只屬於縮放後的矩陣。"
+          ],
+          "mathBlocks": [
+            "det(新)=beta det(舊)",
+            "det(舊)=beta^{-1}det(新)"
+          ],
+          "voiceover": [
+            "縮放能令計算較乾淨，但會改變行列式。",
+            "最後讀對角線前，這個因素必須先記下來。"
+          ],
+          "animation": "把行正規化，並把縮放因素移到旁邊的記帳欄"
+        },
+        {
+          "type": "zero_row_singularity",
+          "cardTitle": "零行迫使行列式為零",
+          "goal": "用來源支撐的零行例子，把行化簡連到奇異性。",
+          "beats": [
+            "顯示 A=[[1,3,5],[2,8,14],[-1,3,7]]。",
+            "用行替換得到有零行的三角矩陣。",
+            "結論是 det(A)=0。"
+          ],
+          "mathBlocks": [
+            "[[1,3,5],[2,8,14],[-1,3,7]] -> [[1,3,5],[0,2,4],[0,0,0]]",
+            "det(A)=0"
+          ],
+          "voiceover": [
+            "階梯形中的零行會給出零對角線乘積。",
+            "行列式記帳因此證明原矩陣是奇異矩陣。"
+          ],
+          "animation": "把零行淡入紅色奇異標記"
+        },
+        {
+          "type": "product_and_invertibility",
+          "cardTitle": "記帳規則變成定理",
+          "goal": "把基本行變換矩陣連到乘積行列式與可逆性判準。",
+          "beats": [
+            "寫出一次基本行變換 A -> EA。",
+            "把規則提升成 det(EA)=det(E)det(A)。",
+            "串接基本矩陣，得到 det(AB)=det(A)det(B)。",
+            "最後得到 det(A)!=0 當且僅當 A 可逆，以及 det(A^{-1})=1/det(A)。"
+          ],
+          "mathBlocks": [
+            "det(EA)=det(E)det(A)",
+            "det(AB)=det(A)det(B)",
+            "det(A)!=0 <=> A 可逆",
+            "det(A^{-1})=1/det(A)"
+          ],
+          "voiceover": [
+            "這些記帳規則不只是計算捷徑。",
+            "它們也是乘積公式與行列式可逆性測試的橋樑。"
+          ],
+          "animation": "把行變換記帳壓縮成定理卡"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "operation_ledger",
+          "cardTitle": "三种行变换，三种行列式影响",
+          "goal": "把换行、缩放行与行替换的行列式记账分清楚。",
+          "beats": [
+            "显示三种基本行变换。",
+            "分别贴上倍数 -1、beta、1。",
+            "强调行替换是不改变行列式的操作。"
+          ],
+          "mathBlocks": [
+            "R_i<->R_j: det(新)=-det(旧)",
+            "beta R_i: det(新)=beta det(旧)",
+            "R_j+alpha R_i: det(新)=det(旧)"
+          ],
+          "voiceover": [
+            "消元法很有效率，但行列式的数值必须追踪。",
+            "每一种行变换都有精确的记账规则。"
+          ],
+          "animation": "用三张规则卡显示行列式倍数"
+        },
+        {
+          "type": "swap_sign",
+          "cardTitle": "换行一次会翻转符号",
+          "goal": "用小型三角例子说明换行会反转行列式符号。",
+          "beats": [
+            "由 B=[[0,1],[4,3]] 开始。",
+            "交换两行，得到行列式为 4 的上三角矩阵。",
+            "补回换行符号，得到 det(B)=-4。"
+          ],
+          "mathBlocks": [
+            "det([[0,1],[4,3]])=-det([[4,3],[0,1]])=-4"
+          ],
+          "voiceover": [
+            "三角矩阵很容易直接读值。",
+            "换行正是原本行列式变成负数的原因。"
+          ],
+          "animation": "交换两条高亮行，并加上红色 -1"
+        },
+        {
+          "type": "replacement_triangular",
+          "cardTitle": "行替换保持行列式不变",
+          "goal": "把来源支撑的 3 乘 3 例子从行替换动画化到三角读值。",
+          "beats": [
+            "显示 A=[[1,3,5],[1,1,1],[3,5,4]]。",
+            "做 R2-R1 与 R3-3R1。",
+            "做 R3-2R2。",
+            "读出对角线乘积 1*(-2)*(-3)=6。"
+          ],
+          "mathBlocks": [
+            "det(A)=det([[1,3,5],[0,-2,-4],[0,0,-3]])=6"
+          ],
+          "voiceover": [
+            "过程只用了行替换。",
+            "因为行替换的倍数是 1，对角线乘积就是原矩阵的行列式。"
+          ],
+          "animation": "矩阵经过两次行替换后高亮对角线"
+        },
+        {
+          "type": "scaling_correction",
+          "cardTitle": "缩放因素必须补回",
+          "goal": "说明消元时把某行乘上标量，会使行列式乘上该标量。",
+          "beats": [
+            "显示某一行乘上 beta。",
+            "记录 det(新)=beta det(旧)。",
+            "提醒若不修正，最后的对角线乘积只属于缩放后的矩阵。"
+          ],
+          "mathBlocks": [
+            "det(新)=beta det(旧)",
+            "det(旧)=beta^{-1}det(新)"
+          ],
+          "voiceover": [
+            "缩放能令计算较干净，但会改变行列式。",
+            "最后读对角线前，这个因素必须先记下来。"
+          ],
+          "animation": "把行规范化，并把缩放因素移到旁边的记账栏"
+        },
+        {
+          "type": "zero_row_singularity",
+          "cardTitle": "零行迫使行列式为零",
+          "goal": "用来源支撑的零行例子，把行化简连到奇异性。",
+          "beats": [
+            "显示 A=[[1,3,5],[2,8,14],[-1,3,7]]。",
+            "用行替换得到有零行的三角矩阵。",
+            "结论是 det(A)=0。"
+          ],
+          "mathBlocks": [
+            "[[1,3,5],[2,8,14],[-1,3,7]] -> [[1,3,5],[0,2,4],[0,0,0]]",
+            "det(A)=0"
+          ],
+          "voiceover": [
+            "阶梯形中的零行会给出零对角线乘积。",
+            "行列式记账因此证明原矩阵是奇异矩阵。"
+          ],
+          "animation": "把零行淡入红色奇异标记"
+        },
+        {
+          "type": "product_and_invertibility",
+          "cardTitle": "记账规则变成定理",
+          "goal": "把基本行变换矩阵连到乘积行列式与可逆性判准。",
+          "beats": [
+            "写出一次基本行变换 A -> EA。",
+            "把规则提升成 det(EA)=det(E)det(A)。",
+            "串接基本矩阵，得到 det(AB)=det(A)det(B)。",
+            "最后得到 det(A)!=0 当且仅当 A 可逆，以及 det(A^{-1})=1/det(A)。"
+          ],
+          "mathBlocks": [
+            "det(EA)=det(E)det(A)",
+            "det(AB)=det(A)det(B)",
+            "det(A)!=0 <=> A 可逆",
+            "det(A^{-1})=1/det(A)"
+          ],
+          "voiceover": [
+            "这些记账规则不只是计算捷径。",
+            "它们也是乘积公式与行列式可逆性测试的桥梁。"
+          ],
+          "animation": "把行变换记账压缩成定理卡"
+        }
+      ]
+    }
+  }
+}

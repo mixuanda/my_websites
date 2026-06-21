@@ -50,6 +50,9 @@ else
     "DeterminantsCofactorExpansionStoryEn"
     "DeterminantsCofactorExpansionStoryZhHk"
     "DeterminantsCofactorExpansionStoryZhCn"
+    "DeterminantsRowOperationEffectsStoryEn"
+    "DeterminantsRowOperationEffectsStoryZhHk"
+    "DeterminantsRowOperationEffectsStoryZhCn"
     "FunctionMapPropertiesStoryEn"
     "FunctionMapPropertiesStoryZhHk"
     "FunctionMapPropertiesStoryZhCn"
@@ -127,6 +130,9 @@ scene_file() {
     DeterminantsCofactorExpansionStory|DeterminantsCofactorExpansionStoryEn|DeterminantsCofactorExpansionStoryZhHk|DeterminantsCofactorExpansionStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/determinants_cofactor_expansion.py"
       ;;
+    DeterminantsRowOperationEffectsStory|DeterminantsRowOperationEffectsStoryEn|DeterminantsRowOperationEffectsStoryZhHk|DeterminantsRowOperationEffectsStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1030/determinants_row_operation_effects.py"
+      ;;
     FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|FunctionMapPropertiesStoryZhHk|FunctionMapPropertiesStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1090/functions_relations.py"
       ;;
@@ -192,6 +198,15 @@ scene_locale() {
     DeterminantsCofactorExpansionStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
+    DeterminantsRowOperationEffectsStory|DeterminantsRowOperationEffectsStoryEn)
+      printf '%s\n' "en"
+      ;;
+    DeterminantsRowOperationEffectsStoryZhHk)
+      printf '%s\n' "zh-hk"
+      ;;
+    DeterminantsRowOperationEffectsStoryZhCn)
+      printf '%s\n' "zh-cn"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|BasisDimensionJustRightStory|BasisDimensionJustRightStoryEn|FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|RationalIrrationalRootProofStory|RationalIrrationalRootProofStoryEn|PolynomialDivisionRemainderStory|PolynomialDivisionRemainderStoryEn|PolynomialGcdIrreducibilityStory|PolynomialGcdIrreducibilityStoryEn|HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn)
       printf '%s\n' "en"
       ;;
@@ -248,6 +263,9 @@ video_basename() {
     DeterminantsCofactorExpansionStory|DeterminantsCofactorExpansionStoryEn|DeterminantsCofactorExpansionStoryZhHk|DeterminantsCofactorExpansionStoryZhCn)
       printf '%s\n' "determinants-cofactor-expansion-story"
       ;;
+    DeterminantsRowOperationEffectsStory|DeterminantsRowOperationEffectsStoryEn|DeterminantsRowOperationEffectsStoryZhHk|DeterminantsRowOperationEffectsStoryZhCn)
+      printf '%s\n' "determinants-row-operation-effects-story"
+      ;;
     FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|FunctionMapPropertiesStoryZhHk|FunctionMapPropertiesStoryZhCn)
       printf '%s\n' "function-map-properties-story"
       ;;
@@ -289,6 +307,9 @@ scene_course() {
     DeterminantsCofactorExpansionStory|DeterminantsCofactorExpansionStoryEn|DeterminantsCofactorExpansionStoryZhHk|DeterminantsCofactorExpansionStoryZhCn)
       printf '%s\n' "math1030"
       ;;
+    DeterminantsRowOperationEffectsStory|DeterminantsRowOperationEffectsStoryEn|DeterminantsRowOperationEffectsStoryZhHk|DeterminantsRowOperationEffectsStoryZhCn)
+      printf '%s\n' "math1030"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|MatrixBasicsPositionMapZhHk|MatrixBasicsPositionMapZhCn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|AugmentedMatrixRowOperationSafetyZhHk|AugmentedMatrixRowOperationSafetyZhCn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|GramSchmidtProjectionStoryZhHk|GramSchmidtProjectionStoryZhCn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|MatrixProductLinearSystemStoryZhHk|MatrixProductLinearSystemStoryZhCn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|RowOperationMatrixLeftMultiplyStoryZhHk|RowOperationMatrixLeftMultiplyStoryZhCn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearCombinationSpanSweepStoryZhHk|LinearCombinationSpanSweepStoryZhCn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|LinearDependenceRedundancyStoryZhHk|LinearDependenceRedundancyStoryZhCn|BasisDimensionJustRightStory|BasisDimensionJustRightStoryEn|BasisDimensionJustRightStoryZhHk|BasisDimensionJustRightStoryZhCn)
       printf '%s\n' "math1030"
       ;;
@@ -303,6 +324,17 @@ scene_course() {
       ;;
     *)
       return 1
+      ;;
+  esac
+}
+
+poster_timestamp() {
+  case "$1" in
+    DeterminantsRowOperationEffectsStory|DeterminantsRowOperationEffectsStoryEn|DeterminantsRowOperationEffectsStoryZhHk|DeterminantsRowOperationEffectsStoryZhCn)
+      printf '%s\n' "1.0"
+      ;;
+    *)
+      printf '%s\n' "2.25"
       ;;
   esac
 }
@@ -346,7 +378,7 @@ for scene_class in "${TARGET_SCENES[@]}"; do
   cp "$source_video" "$output_video"
 
   if command -v ffmpeg >/dev/null 2>&1; then
-    ffmpeg -y -ss 2.25 -i "$output_video" -frames:v 1 "$output_poster" >/dev/null 2>&1
+    ffmpeg -y -ss "$(poster_timestamp "$scene_class")" -i "$output_video" -frames:v 1 "$output_poster" >/dev/null 2>&1
   fi
 
   echo "Wrote $output_video"
