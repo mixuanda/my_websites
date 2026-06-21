@@ -1,0 +1,373 @@
+{
+  "course": "math1030",
+  "chapter": "determinants",
+  "unit": "transpose-column-operations-and-cramers-rule",
+  "unitTitle": {
+    "en": "7.3 Transpose, column operations, and Cramer's rule",
+    "zh-hk": "7.3 轉置、列變換與克拉默法則",
+    "zh-cn": "7.3 转置、列变换与克拉默法则"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "column_reading",
+          "cardTitle": "Read Ax=b by columns",
+          "goal": "Connect the matrix equation to a column linear combination.",
+          "beats": [
+            "Display the columns of A as a1, a2, a3.",
+            "Show Ax=b as b=x1a1+x2a2+x3a3.",
+            "Emphasize that the unknown coordinates are column weights."
+          ],
+          "mathBlocks": [
+            "b=x_1a_1+x_2a_2+x_3a_3"
+          ],
+          "voiceover": [
+            "Cramer's rule starts by reading the system column-wise.",
+            "The right-hand side vector is a weighted combination of the columns of A."
+          ],
+          "animation": "show A's columns feeding into b with coordinate weights"
+        },
+        {
+          "type": "replace_column",
+          "cardTitle": "Replace one column",
+          "goal": "Define the numerator matrix M1 by replacing the first column with b.",
+          "beats": [
+            "Start with A=[a1,a2,a3].",
+            "Replace a1 with b.",
+            "Label the result M1=[b,a2,a3]."
+          ],
+          "mathBlocks": [
+            "M_1=[b,a_2,a_3]"
+          ],
+          "voiceover": [
+            "The numerator determinant is not arbitrary.",
+            "It is made by replacing exactly the coordinate column being solved for."
+          ],
+          "animation": "swap the first column card for b"
+        },
+        {
+          "type": "substitute_b",
+          "cardTitle": "Substitute the column equation",
+          "goal": "Replace b in M1 by the known column combination from Ax=b.",
+          "beats": [
+            "Rewrite b as x1a1+x2a2+x3a3.",
+            "Put that expression into the first column of M1.",
+            "Keep columns a2 and a3 fixed."
+          ],
+          "mathBlocks": [
+            "det(M_1)=det([x_1a_1+x_2a_2+x_3a_3,a_2,a_3])"
+          ],
+          "voiceover": [
+            "Now the replaced column contains all three coordinates.",
+            "The determinant will separate them by column linearity."
+          ],
+          "animation": "expand b into a long first-column expression"
+        },
+        {
+          "type": "column_linearity",
+          "cardTitle": "Column linearity splits the determinant",
+          "goal": "Use source-backed column multilinearity to split only the replaced column.",
+          "beats": [
+            "Split the first column into three determinant terms.",
+            "Keep a2 and a3 fixed in every term.",
+            "Attach x1, x2, and x3 as scalar multipliers."
+          ],
+          "mathBlocks": [
+            "det(M_1)=x_1det(A)+x_2det([a_2,a_2,a_3])+x_3det([a_3,a_2,a_3])"
+          ],
+          "voiceover": [
+            "Column linearity is the mechanism behind the formula.",
+            "Only the column containing b is split."
+          ],
+          "animation": "split one determinant into three labeled determinant cards"
+        },
+        {
+          "type": "repeated_columns_vanish",
+          "cardTitle": "Repeated columns vanish",
+          "goal": "Show why all terms except x1 det(A) disappear.",
+          "beats": [
+            "Mark the term with columns a2,a2,a3 as zero.",
+            "Mark the term with columns a3,a2,a3 as zero.",
+            "Conclude det(M1)=x1 det(A)."
+          ],
+          "mathBlocks": [
+            "det(M_1)=x_1det(A)",
+            "x_1=det(M_1)/det(A)"
+          ],
+          "voiceover": [
+            "A determinant with repeated columns is zero.",
+            "That is why the replacement determinant isolates the chosen coordinate."
+          ],
+          "animation": "cross out repeated-column determinant cards and reveal the ratio"
+        },
+        {
+          "type": "source_example",
+          "cardTitle": "Use the source Cramer example",
+          "goal": "Apply the ratio to the MATH1030 source example.",
+          "beats": [
+            "Display A=[[1,2,3],[1,0,1],[1,1,-1]] and b=[2,3,1]^T.",
+            "Record det(A)=6.",
+            "Record det(M1)=15, det(M2)=-6, det(M3)=3.",
+            "Read x=(5/2,-1,1/2)."
+          ],
+          "mathBlocks": [
+            "x_1=15/6=5/2",
+            "x_2=-6/6=-1",
+            "x_3=3/6=1/2"
+          ],
+          "voiceover": [
+            "In the source example, each coordinate is one replacement determinant divided by det(A).",
+            "The denominator is shared because A is fixed and invertible."
+          ],
+          "animation": "show the three determinant ratios collapsing to the solution vector"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "column_reading",
+          "cardTitle": "用列去讀 Ax=b",
+          "goal": "把矩陣方程連到列向量線性組合。",
+          "beats": [
+            "把 A 的各列顯示成 a1、a2、a3。",
+            "把 Ax=b 寫成 b=x1a1+x2a2+x3a3。",
+            "強調未知座標就是各列的權重。"
+          ],
+          "mathBlocks": [
+            "b=x_1a_1+x_2a_2+x_3a_3"
+          ],
+          "voiceover": [
+            "克拉默法則首先要用列向量角度閱讀系統。",
+            "右邊向量是 A 的各列向量的加權組合。"
+          ],
+          "animation": "顯示 A 的各列如何用座標權重組成 b"
+        },
+        {
+          "type": "replace_column",
+          "cardTitle": "替換其中一列",
+          "goal": "把第一列換成 b，定義分子矩陣 M1。",
+          "beats": [
+            "由 A=[a1,a2,a3] 開始。",
+            "把 a1 換成 b。",
+            "標示結果 M1=[b,a2,a3]。"
+          ],
+          "mathBlocks": [
+            "M_1=[b,a_2,a_3]"
+          ],
+          "voiceover": [
+            "分子行列式不是任意選出來的。",
+            "它是把正在求的座標所在那一列換掉。"
+          ],
+          "animation": "把第一張列卡由 a1 換成 b"
+        },
+        {
+          "type": "substitute_b",
+          "cardTitle": "代入 b 的列向量表示",
+          "goal": "把 M1 裡的 b 換成 Ax=b 給出的列向量組合。",
+          "beats": [
+            "把 b 寫成 x1a1+x2a2+x3a3。",
+            "把這個式子放進 M1 的第一列。",
+            "a2 與 a3 保持不變。"
+          ],
+          "mathBlocks": [
+            "det(M_1)=det([x_1a_1+x_2a_2+x_3a_3,a_2,a_3])"
+          ],
+          "voiceover": [
+            "被替換的那一列現在含有三個座標。",
+            "行列式會透過列線性把它們分開。"
+          ],
+          "animation": "把 b 展開成第一列中的長式子"
+        },
+        {
+          "type": "column_linearity",
+          "cardTitle": "列線性把行列式拆開",
+          "goal": "使用來源支撐的列多線性，只拆被替換的一列。",
+          "beats": [
+            "把第一列拆成三個行列式項。",
+            "每一項都保留 a2 與 a3。",
+            "把 x1、x2、x3 作為純量倍數放在外面。"
+          ],
+          "mathBlocks": [
+            "det(M_1)=x_1det(A)+x_2det([a_2,a_2,a_3])+x_3det([a_3,a_2,a_3])"
+          ],
+          "voiceover": [
+            "列線性是公式背後的機制。",
+            "只有含有 b 的那一列被拆開。"
+          ],
+          "animation": "把一個行列式拆成三張行列式卡"
+        },
+        {
+          "type": "repeated_columns_vanish",
+          "cardTitle": "重複列令多餘項消失",
+          "goal": "說明為何只剩下 x1 det(A)。",
+          "beats": [
+            "把含有 a2,a2,a3 的項標成零。",
+            "把含有 a3,a2,a3 的項標成零。",
+            "得到 det(M1)=x1 det(A)。"
+          ],
+          "mathBlocks": [
+            "det(M_1)=x_1det(A)",
+            "x_1=det(M_1)/det(A)"
+          ],
+          "voiceover": [
+            "有重複列的行列式等於零。",
+            "所以替換行列式能隔離正在求的座標。"
+          ],
+          "animation": "劃去有重複列的行列式卡，顯示比值"
+        },
+        {
+          "type": "source_example",
+          "cardTitle": "套用來源中的克拉默例子",
+          "goal": "把比值套用到 MATH1030 來源例子。",
+          "beats": [
+            "顯示 A=[[1,2,3],[1,0,1],[1,1,-1]] 與 b=[2,3,1]^T。",
+            "記錄 det(A)=6。",
+            "記錄 det(M1)=15、det(M2)=-6、det(M3)=3。",
+            "讀出 x=(5/2,-1,1/2)。"
+          ],
+          "mathBlocks": [
+            "x_1=15/6=5/2",
+            "x_2=-6/6=-1",
+            "x_3=3/6=1/2"
+          ],
+          "voiceover": [
+            "在來源例子中，每個座標都是一個替換行列式除以 det(A)。",
+            "分母相同，因為 A 固定且可逆。"
+          ],
+          "animation": "顯示三個行列式比值收束成解向量"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "column_reading",
+          "cardTitle": "用列去读 Ax=b",
+          "goal": "把矩阵方程连到列向量线性组合。",
+          "beats": [
+            "把 A 的各列显示成 a1、a2、a3。",
+            "把 Ax=b 写成 b=x1a1+x2a2+x3a3。",
+            "强调未知坐标就是各列的权重。"
+          ],
+          "mathBlocks": [
+            "b=x_1a_1+x_2a_2+x_3a_3"
+          ],
+          "voiceover": [
+            "克拉默法则首先要用列向量角度阅读系统。",
+            "右侧向量是 A 的各列向量的加权组合。"
+          ],
+          "animation": "显示 A 的各列如何用坐标权重组成 b"
+        },
+        {
+          "type": "replace_column",
+          "cardTitle": "替换其中一列",
+          "goal": "把第一列换成 b，定义分子矩阵 M1。",
+          "beats": [
+            "由 A=[a1,a2,a3] 开始。",
+            "把 a1 换成 b。",
+            "标示结果 M1=[b,a2,a3]。"
+          ],
+          "mathBlocks": [
+            "M_1=[b,a_2,a_3]"
+          ],
+          "voiceover": [
+            "分子行列式不是任意选出来的。",
+            "它是把正在求的坐标所在那一列换掉。"
+          ],
+          "animation": "把第一张列卡由 a1 换成 b"
+        },
+        {
+          "type": "substitute_b",
+          "cardTitle": "代入 b 的列向量表示",
+          "goal": "把 M1 里的 b 换成 Ax=b 给出的列向量组合。",
+          "beats": [
+            "把 b 写成 x1a1+x2a2+x3a3。",
+            "把这个式子放进 M1 的第一列。",
+            "a2 与 a3 保持不变。"
+          ],
+          "mathBlocks": [
+            "det(M_1)=det([x_1a_1+x_2a_2+x_3a_3,a_2,a_3])"
+          ],
+          "voiceover": [
+            "被替换的那一列现在含有三个坐标。",
+            "行列式会通过列线性把它们分开。"
+          ],
+          "animation": "把 b 展开成第一列中的长式子"
+        },
+        {
+          "type": "column_linearity",
+          "cardTitle": "列线性把行列式拆开",
+          "goal": "使用来源支持的列多线性，只拆被替换的一列。",
+          "beats": [
+            "把第一列拆成三个行列式项。",
+            "每一项都保留 a2 与 a3。",
+            "把 x1、x2、x3 作为标量倍数放在外面。"
+          ],
+          "mathBlocks": [
+            "det(M_1)=x_1det(A)+x_2det([a_2,a_2,a_3])+x_3det([a_3,a_2,a_3])"
+          ],
+          "voiceover": [
+            "列线性是公式背后的机制。",
+            "只有含有 b 的那一列被拆开。"
+          ],
+          "animation": "把一个行列式拆成三张行列式卡"
+        },
+        {
+          "type": "repeated_columns_vanish",
+          "cardTitle": "重复列令多余项消失",
+          "goal": "说明为何只剩下 x1 det(A)。",
+          "beats": [
+            "把含有 a2,a2,a3 的项标成零。",
+            "把含有 a3,a2,a3 的项标成零。",
+            "得到 det(M1)=x1 det(A)。"
+          ],
+          "mathBlocks": [
+            "det(M_1)=x_1det(A)",
+            "x_1=det(M_1)/det(A)"
+          ],
+          "voiceover": [
+            "有重复列的行列式等于零。",
+            "所以替换行列式能隔离正在求的坐标。"
+          ],
+          "animation": "划去有重复列的行列式卡，显示比值"
+        },
+        {
+          "type": "source_example",
+          "cardTitle": "套用来源中的克拉默例子",
+          "goal": "把比值套用到 MATH1030 来源例子。",
+          "beats": [
+            "显示 A=[[1,2,3],[1,0,1],[1,1,-1]] 与 b=[2,3,1]^T。",
+            "记录 det(A)=6。",
+            "记录 det(M1)=15、det(M2)=-6、det(M3)=3。",
+            "读出 x=(5/2,-1,1/2)。"
+          ],
+          "mathBlocks": [
+            "x_1=15/6=5/2",
+            "x_2=-6/6=-1",
+            "x_3=3/6=1/2"
+          ],
+          "voiceover": [
+            "在来源例子中，每个坐标都是一个替换行列式除以 det(A)。",
+            "分母相同，因为 A 固定且可逆。"
+          ],
+          "animation": "显示三个行列式比值收束成解向量"
+        }
+      ]
+    }
+  },
+  "sourceRefs": [
+    {
+      "file": "reference/MATH1030/MATH1030-Notes.pdf",
+      "pages": "187-190"
+    },
+    {
+      "file": "reference/MATH1030/1030gi-n06-03.pdf",
+      "pages": "5-9"
+    }
+  ]
+}

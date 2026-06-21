@@ -265,5 +265,15 @@ graded determinant-practice surface could be justified only if it remains
 article-embedded and exports every operation, factor, and final determinant as
 a static ledger.
 
+The Math1030 `7.3` transpose, column-operations, and Cramer's-rule pass also
+stays Manim-only. The source-backed move is the fixed proof mechanism behind
+Cramer's rule: read `Ax=b` by columns, replace one selected column by `b`, use
+column linearity, cancel the repeated-column determinants, and then divide by
+`det(A)` in the source example. A reader-controlled widget would mainly become
+another determinant calculator unless it were promoted into a later graded
+Cramer-practice surface; the current article, static example, checkpoint, and
+trilingual clip cover the explanatory transition cleanly and export as a fixed
+study sequence.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

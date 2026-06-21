@@ -53,6 +53,9 @@ else
     "DeterminantsRowOperationEffectsStoryEn"
     "DeterminantsRowOperationEffectsStoryZhHk"
     "DeterminantsRowOperationEffectsStoryZhCn"
+    "DeterminantsColumnReplacementCramersRuleStoryEn"
+    "DeterminantsColumnReplacementCramersRuleStoryZhHk"
+    "DeterminantsColumnReplacementCramersRuleStoryZhCn"
     "FunctionMapPropertiesStoryEn"
     "FunctionMapPropertiesStoryZhHk"
     "FunctionMapPropertiesStoryZhCn"
@@ -133,6 +136,9 @@ scene_file() {
     DeterminantsRowOperationEffectsStory|DeterminantsRowOperationEffectsStoryEn|DeterminantsRowOperationEffectsStoryZhHk|DeterminantsRowOperationEffectsStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/determinants_row_operation_effects.py"
       ;;
+    DeterminantsColumnReplacementCramersRuleStory|DeterminantsColumnReplacementCramersRuleStoryEn|DeterminantsColumnReplacementCramersRuleStoryZhHk|DeterminantsColumnReplacementCramersRuleStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1030/determinants_column_replacement_cramers_rule.py"
+      ;;
     FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|FunctionMapPropertiesStoryZhHk|FunctionMapPropertiesStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1090/functions_relations.py"
       ;;
@@ -207,6 +213,15 @@ scene_locale() {
     DeterminantsRowOperationEffectsStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
+    DeterminantsColumnReplacementCramersRuleStory|DeterminantsColumnReplacementCramersRuleStoryEn)
+      printf '%s\n' "en"
+      ;;
+    DeterminantsColumnReplacementCramersRuleStoryZhHk)
+      printf '%s\n' "zh-hk"
+      ;;
+    DeterminantsColumnReplacementCramersRuleStoryZhCn)
+      printf '%s\n' "zh-cn"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|BasisDimensionJustRightStory|BasisDimensionJustRightStoryEn|FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|RationalIrrationalRootProofStory|RationalIrrationalRootProofStoryEn|PolynomialDivisionRemainderStory|PolynomialDivisionRemainderStoryEn|PolynomialGcdIrreducibilityStory|PolynomialGcdIrreducibilityStoryEn|HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn)
       printf '%s\n' "en"
       ;;
@@ -266,6 +281,9 @@ video_basename() {
     DeterminantsRowOperationEffectsStory|DeterminantsRowOperationEffectsStoryEn|DeterminantsRowOperationEffectsStoryZhHk|DeterminantsRowOperationEffectsStoryZhCn)
       printf '%s\n' "determinants-row-operation-effects-story"
       ;;
+    DeterminantsColumnReplacementCramersRuleStory|DeterminantsColumnReplacementCramersRuleStoryEn|DeterminantsColumnReplacementCramersRuleStoryZhHk|DeterminantsColumnReplacementCramersRuleStoryZhCn)
+      printf '%s\n' "determinants-column-replacement-cramers-rule-story"
+      ;;
     FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|FunctionMapPropertiesStoryZhHk|FunctionMapPropertiesStoryZhCn)
       printf '%s\n' "function-map-properties-story"
       ;;
@@ -310,6 +328,9 @@ scene_course() {
     DeterminantsRowOperationEffectsStory|DeterminantsRowOperationEffectsStoryEn|DeterminantsRowOperationEffectsStoryZhHk|DeterminantsRowOperationEffectsStoryZhCn)
       printf '%s\n' "math1030"
       ;;
+    DeterminantsColumnReplacementCramersRuleStory|DeterminantsColumnReplacementCramersRuleStoryEn|DeterminantsColumnReplacementCramersRuleStoryZhHk|DeterminantsColumnReplacementCramersRuleStoryZhCn)
+      printf '%s\n' "math1030"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|MatrixBasicsPositionMapZhHk|MatrixBasicsPositionMapZhCn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|AugmentedMatrixRowOperationSafetyZhHk|AugmentedMatrixRowOperationSafetyZhCn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|GramSchmidtProjectionStoryZhHk|GramSchmidtProjectionStoryZhCn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|MatrixProductLinearSystemStoryZhHk|MatrixProductLinearSystemStoryZhCn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|RowOperationMatrixLeftMultiplyStoryZhHk|RowOperationMatrixLeftMultiplyStoryZhCn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearCombinationSpanSweepStoryZhHk|LinearCombinationSpanSweepStoryZhCn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|LinearDependenceRedundancyStoryZhHk|LinearDependenceRedundancyStoryZhCn|BasisDimensionJustRightStory|BasisDimensionJustRightStoryEn|BasisDimensionJustRightStoryZhHk|BasisDimensionJustRightStoryZhCn)
       printf '%s\n' "math1030"
       ;;
@@ -330,7 +351,7 @@ scene_course() {
 
 poster_timestamp() {
   case "$1" in
-    DeterminantsRowOperationEffectsStory|DeterminantsRowOperationEffectsStoryEn|DeterminantsRowOperationEffectsStoryZhHk|DeterminantsRowOperationEffectsStoryZhCn)
+    DeterminantsRowOperationEffectsStory|DeterminantsRowOperationEffectsStoryEn|DeterminantsRowOperationEffectsStoryZhHk|DeterminantsRowOperationEffectsStoryZhCn|DeterminantsColumnReplacementCramersRuleStory|DeterminantsColumnReplacementCramersRuleStoryEn|DeterminantsColumnReplacementCramersRuleStoryZhHk|DeterminantsColumnReplacementCramersRuleStoryZhCn)
       printf '%s\n' "1.0"
       ;;
     *)

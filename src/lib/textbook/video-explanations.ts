@@ -1253,6 +1253,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/determinants-row-operation-effects-story-zh-cn.mp4"
     ),
   },
+  "math1030-determinants-column-replacement-cramers-rule-story": {
+    conclusion: text(
+      "Cramer's rule works because replacing one column by b turns det(M_j) into x_j det(A); invertibility lets us divide by det(A).",
+      "克拉默法則成立，是因為把第 j 列換成 b 後，det(M_j) 會變成 x_j det(A)；可逆性保證我們可以除以 det(A)。",
+      "克拉默法则成立，是因为把第 j 列换成 b 后，det(M_j) 会变成 x_j det(A)；可逆性保证我们可以除以 det(A)。"
+    ),
+    durationSeconds: 11,
+    frames: [
+      {
+        label: text("Read by columns", "用列去讀", "用列去读"),
+        value: text(
+          "The system Ax=b says the right-hand side vector is b=x1 a1+x2 a2+x3 a3, a weighted combination of A's columns.",
+          "系統 Ax=b 表示右邊向量是 b=x1 a1+x2 a2+x3 a3，也就是 A 各列的加權組合。",
+          "系统 Ax=b 表示右侧向量是 b=x1 a1+x2 a2+x3 a3，也就是 A 各列的加权组合。"
+        ),
+      },
+      {
+        label: text("Replace one column", "替換一列", "替换一列"),
+        value: text(
+          "To solve for x1, build M1 by replacing the first column of A with b while leaving the other columns fixed.",
+          "要求 x1，就把 A 的第一列換成 b，其他列保持不變，得到 M1。",
+          "要求 x1，就把 A 的第一列换成 b，其他列保持不变，得到 M1。"
+        ),
+      },
+      {
+        label: text("Substitute b", "代入 b", "代入 b"),
+        value: text(
+          "Substituting b=x1 a1+x2 a2+x3 a3 makes the replaced column a sum of three column vectors.",
+          "代入 b=x1 a1+x2 a2+x3 a3 後，被替換的那一列就是三個列向量的和。",
+          "代入 b=x1 a1+x2 a2+x3 a3 后，被替换的那一列就是三个列向量的和。"
+        ),
+      },
+      {
+        label: text("Use column linearity", "使用列線性", "使用列线性"),
+        value: text(
+          "Column linearity splits det(M1) into x1 det(A) plus two determinants with repeated columns.",
+          "列線性把 det(M1) 拆成 x1 det(A)，再加上兩個含有重複列的行列式。",
+          "列线性把 det(M1) 拆成 x1 det(A)，再加上两个含有重复列的行列式。"
+        ),
+      },
+      {
+        label: text("Repeated columns vanish", "重複列消失", "重复列消失"),
+        value: text(
+          "The repeated-column determinants are zero, so det(M1)=x1 det(A), and x1=det(M1)/det(A).",
+          "有重複列的行列式為零，所以 det(M1)=x1 det(A)，並得到 x1=det(M1)/det(A)。",
+          "有重复列的行列式为零，所以 det(M1)=x1 det(A)，并得到 x1=det(M1)/det(A)。"
+        ),
+      },
+      {
+        label: text("Source example", "來源例子", "来源例子"),
+        value: text(
+          "For the source system, det(A)=6 and the replacement determinants are 15, -6, and 3, so x=(5/2,-1,1/2).",
+          "在來源系統中，det(A)=6，三個替換行列式是 15、-6、3，所以 x=(5/2,-1,1/2)。",
+          "在来源系统中，det(A)=6，三个替换行列式是 15、-6、3，所以 x=(5/2,-1,1/2)。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch how replacing one column by the right-hand side vector makes Cramer's rule isolate a single coordinate.",
+      "觀看把其中一列換成右邊向量後，克拉默法則如何隔離單一座標。",
+      "观看把其中一列换成右侧向量后，克拉默法则如何隔离单一坐标。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/determinants-column-replacement-cramers-rule-story-en.png",
+      "/generated/animations/math1030/determinants-column-replacement-cramers-rule-story-zh-hk.png",
+      "/generated/animations/math1030/determinants-column-replacement-cramers-rule-story-zh-cn.png"
+    ),
+    title: text(
+      "Column replacement in Cramer's rule",
+      "克拉默法則中的列替換",
+      "克拉默法则中的列替换"
+    ),
+    transcript: [
+      text(
+        "Cramer's rule begins by reading Ax=b as a statement about the columns of A.",
+        "克拉默法則先把 Ax=b 讀成關於 A 的各列向量的敘述。",
+        "克拉默法则先把 Ax=b 读成关于 A 的各列向量的叙述。"
+      ),
+      text(
+        "When one column is replaced by b, column linearity splits the numerator determinant.",
+        "當其中一列被 b 替換時，列線性會把分子行列式拆開。",
+        "当其中一列被 b 替换时，列线性会把分子行列式拆开。"
+      ),
+      text(
+        "All terms with repeated columns vanish, leaving det(M_j)=x_j det(A).",
+        "所有有重複列的項都會消失，只剩 det(M_j)=x_j det(A)。",
+        "所有有重复列的项都会消失，只剩 det(M_j)=x_j det(A)。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/determinants-column-replacement-cramers-rule-story-en.mp4",
+      "/generated/animations/math1030/determinants-column-replacement-cramers-rule-story-zh-hk.mp4",
+      "/generated/animations/math1030/determinants-column-replacement-cramers-rule-story-zh-cn.mp4"
+    ),
+  },
   "math1030-gram-schmidt-projection-story": {
     conclusion: text(
       "Gram-Schmidt preserves the subspace because every new vector is made from the vectors already in the same partial span. The subtraction removes old directions; normalization only changes lengths afterward.",

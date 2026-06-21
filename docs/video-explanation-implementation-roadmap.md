@@ -35,6 +35,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/vector-spaces/basis-extension-and-change-of-basis`
   - `math1030/determinants/determinants-and-cofactor-expansion`
   - `math1030/determinants/row-operations-products-and-invertibility`
+  - `math1030/determinants/transpose-column-operations-and-cramers-rule`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -54,6 +55,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/vector-spaces/basis-extension-and-change-of-basis`
   - `math1030/determinants/determinants-and-cofactor-expansion`
   - `math1030/determinants/row-operations-products-and-invertibility`
+  - `math1030/determinants/transpose-column-operations-and-cramers-rule`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -124,7 +126,8 @@ Use this order unless a later user request changes priority:
    Math1030 `6.6 Column space, row space, and rank`, and Math1030 `6.7 Matrix
    subspaces, basis, and dimension`, and Math1030 `6.8 Basis extension and
    change of basis`, Math1030 `7.1 Determinants and cofactor expansion`, and
-   Math1030 `7.2 Row operations, products, and invertibility`.
+   Math1030 `7.2 Row operations, products, and invertibility`, and Math1030
+   `7.3 Transpose, column operations, and Cramer's rule`.
 2. Math1030 basis, rank, determinant, and eigenvalue units.
 3. Remaining Math1030 matrix-algebra clips such as transpose, special
    matrices, and block matrices.
@@ -166,7 +169,7 @@ Use this order unless a later user request changes priority:
 | `math1030/vector-spaces/basis-extension-and-change-of-basis` | 6.8 Basis extension and change of basis | Done | Ordered bases on the same subspace, columns of `S` as coordinate recipes, `U=VS`, `[x]_V=S[x]_U`, and the reverse conversion via `S^{-1}`. | Completed as the twelfth Math1030 trilingual Manim pass; no separate widget was added because the source-backed theorem and proper-subspace example are best served by a curated coordinate-translation clip plus static worked examples. |
 | `math1030/determinants/determinants-and-cofactor-expansion` | 7.1 Determinants and cofactor expansion | Done | Minor deletion, checkerboard cofactor signs, the source-backed 3 by 3 expansion tree, zero-branch pruning, one-nonzero collapse, and triangular diagonal products. | Completed as the thirteenth Math1030 trilingual Manim pass; no widget was added because the source-backed learning move is a curated recursive computation strategy, not an open-ended manipulation surface. |
 | `math1030/determinants/row-operations-products-and-invertibility` | 7.2 Row operations, products, and invertibility | Done | Swap, scaling, and replacement determinant effects; row-replacement triangular computation; zero-row singularity; elementary-matrix bridge to product and invertibility tests. | Completed as the fourteenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is determinant bookkeeping, not a detached calculator. |
-| `math1030/determinants/transpose-column-operations-and-cramers-rule` | 7.3 Transpose, column operations, and Cramer's rule | Manim | Column replacement and Cramer's rule numerator logic. | Storyboard with one 2x2 or 3x3 example. |
+| `math1030/determinants/transpose-column-operations-and-cramers-rule` | 7.3 Transpose, column operations, and Cramer's rule | Done | Column replacement, column linearity, repeated-column cancellation, and the source-backed Cramer numerator example. | Completed as the fifteenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is the fixed proof mechanism behind Cramer's rule, not open-ended determinant calculation. |
 | `math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces` | 8.1 Eigenvalues, eigenvectors, and eigenspaces | Manim | Vectors that keep direction under transformation. | Use geometric arrows and eigenspace highlight. |
 | `math1030/eigenvalues/diagonalization-and-similarity` | 8.2 Diagonalization and similarity | Manim | Change of basis making the transformation diagonal. | Storyboard after eigenvector clip. |
 | `math1030/eigenvalues/characteristic-polynomials-and-diagonalization-tests` | 8.3 Characteristic polynomials and diagonalization tests | Manim | `det(A - lambda I)` pipeline and eigenspace dimension test. | Keep symbolic sequence concise. |
@@ -241,9 +244,8 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 
 These are the concrete next slices to execute one by one:
 
-1. Continue Math1030 vector-space rank-oriented clips, starting with `6.7
-   Matrix subspaces, basis, and dimension`, unless the roadmap priority
-   changes.
+1. Continue Math1030 eigenvalue clips, starting with `8.1 Eigenvalues,
+   eigenvectors, and eigenspaces`, unless the roadmap priority changes.
 2. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.
 
