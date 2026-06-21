@@ -1063,6 +1063,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/basis-extension-change-of-basis-story-zh-cn.mp4"
     ),
   },
+  "math1030-determinants-cofactor-expansion-story": {
+    conclusion: text(
+      "Cofactor expansion is both a recursive definition and a computation strategy: choose sparse rows or columns so zero branches disappear before they cost work.",
+      "餘因子展開既是遞迴定義，也是計算策略：選零多的行或列，讓零分支先消失，才不用花力氣計算它們。",
+      "余因子展开既是递归定义，也是计算策略：选零多的行或列，让零分支先消失，才不用花力气计算它们。"
+    ),
+    durationSeconds: 14,
+    frames: [
+      {
+        label: text("Minor, sign, cofactor", "子式、符號、餘因子", "子式、符号、余因子"),
+        value: text(
+          "Deleting row i and column j gives the minor; multiplying by (-1)^{i+j} gives the cofactor.",
+          "刪去第 i 行與第 j 列得到子式；再乘以 (-1)^{i+j} 得到餘因子。",
+          "删去第 i 行与第 j 列得到子式；再乘以 (-1)^{i+j} 得到余因子。"
+        ),
+      },
+      {
+        label: text("Expansion branches", "展開分支", "展开分支"),
+        value: text(
+          "The source 3 by 3 example splits into three signed 2 by 2 determinant branches along the first row.",
+          "來源中的 3 乘 3 例子沿第一行分成三個帶符號的 2 乘 2 行列式分支。",
+          "来源中的 3 乘 3 例子沿第一行分成三个带符号的 2 乘 2 行列式分支。"
+        ),
+      },
+      {
+        label: text("Combine branch values", "合併分支值", "合并分支值"),
+        value: text(
+          "The smaller determinants are 8, 26, and -1, so the signed sum gives -27.",
+          "較小行列式分別是 8、26、-1，所以有符號總和得到 -27。",
+          "较小行列式分别是 8、26、-1，所以有符号总和得到 -27。"
+        ),
+      },
+      {
+        label: text("Zeros prune work", "零項剪掉工作", "零项剪掉工作"),
+        value: text(
+          "A zero entry contributes a zero cofactor term, so choosing a sparse row or column removes branches immediately.",
+          "零項貢獻的是零餘因子項，所以選零多的行或列會立即刪去分支。",
+          "零项贡献的是零余因子项，所以选零多的行或列会立即删去分支。"
+        ),
+      },
+      {
+        label: text("One nonzero entry", "唯一非零項", "唯一非零项"),
+        value: text(
+          "If a row or column has only one nonzero entry, the determinant collapses to one signed smaller determinant.",
+          "若某行或列只有一個非零項，行列式就縮成一個帶符號的較小行列式。",
+          "若某行或列只有一个非零项，行列式就缩成一个带符号的较小行列式。"
+        ),
+      },
+      {
+        label: text("Triangular read-off", "三角矩陣直接讀", "三角矩阵直接读"),
+        value: text(
+          "For a triangular matrix, repeated one-branch expansion leaves the product of the diagonal entries.",
+          "對三角矩陣而言，反覆做單分支展開後，留下的是對角線項之積。",
+          "对三角矩阵而言，反复做单分支展开后，留下的是对角线项之积。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch cofactor expansion turn one determinant into smaller signed branches, then see how zeros prune the tree and triangular matrices collapse to diagonal products.",
+      "觀看餘因子展開如何把一個行列式化成較小的有符號分支，再看零項如何剪枝、三角矩陣如何縮成對角線乘積。",
+      "观看余因子展开如何把一个行列式化成较小的有符号分支，再看零项如何剪枝、三角矩阵如何缩成对角线乘积。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/determinants-cofactor-expansion-story-en.png",
+      "/generated/animations/math1030/determinants-cofactor-expansion-story-zh-hk.png",
+      "/generated/animations/math1030/determinants-cofactor-expansion-story-zh-cn.png"
+    ),
+    title: text(
+      "Determinants and cofactor expansion",
+      "行列式與餘因子展開",
+      "行列式与余因子展开"
+    ),
+    transcript: [
+      text(
+        "A minor deletes one row and one column; a cofactor attaches the checkerboard sign to that minor.",
+        "子式是刪去一行一列後得到的較小行列式；餘因子則把棋盤符號加到這個子式上。",
+        "子式是删去一行一列后得到的较小行列式；余因子则把棋盘符号加到这个子式上。"
+      ),
+      text(
+        "The 3 by 3 source example becomes three 2 by 2 determinant branches whose signed sum is -27.",
+        "來源中的 3 乘 3 例子會變成三個 2 乘 2 行列式分支，它們的有符號總和是 -27。",
+        "来源中的 3 乘 3 例子会变成三个 2 乘 2 行列式分支，它们的有符号总和是 -27。"
+      ),
+      text(
+        "When a row or column contains zeros, choose it: zero branches vanish, and triangular determinants keep collapsing to the diagonal product.",
+        "若某行或列有零項，就優先選它：零分支會消失，而三角矩陣會一路縮成對角線乘積。",
+        "若某行或列有零项，就优先选它：零分支会消失，而三角矩阵会一路缩成对角线乘积。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/determinants-cofactor-expansion-story-en.mp4",
+      "/generated/animations/math1030/determinants-cofactor-expansion-story-zh-hk.mp4",
+      "/generated/animations/math1030/determinants-cofactor-expansion-story-zh-cn.mp4"
+    ),
+  },
   "math1030-gram-schmidt-projection-story": {
     conclusion: text(
       "Gram-Schmidt preserves the subspace because every new vector is made from the vectors already in the same partial span. The subtraction removes old directions; normalization only changes lengths afterward.",

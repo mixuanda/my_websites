@@ -245,5 +245,14 @@ columns as `S`, read `U=VS`, convert `[x]_U` to `[x]_V` with `S`, and reserve
 worth adding later if the course needs multi-basis coordinate conversion
 practice beyond the current checkpoint questions and worked example.
 
+The Math1030 `7.1` determinants and cofactor-expansion pass also stays
+Manim-only. The source-backed move is a fixed recursive computation strategy:
+delete one row and one column to form a minor, attach the checkerboard sign to
+form a cofactor, split the determinant into signed smaller branches, prune zero
+branches, and repeatedly collapse triangular matrices to their diagonal
+products. A widget would be justified later only for reader-chosen row/column
+expansion practice with grading; the current clip is the conceptual bridge
+before the existing checkpoint and exercises.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

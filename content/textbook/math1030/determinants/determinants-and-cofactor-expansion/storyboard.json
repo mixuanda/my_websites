@@ -1,0 +1,354 @@
+{
+  "course": "math1030",
+  "chapter": "determinants",
+  "unit": "determinants-and-cofactor-expansion",
+  "unitTitle": {
+    "en": "7.1 Determinants and cofactor expansion",
+    "zh-hk": "7.1 行列式與餘因子展開",
+    "zh-cn": "7.1 行列式与余因子展开"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "A determinant is recursive",
+          "goal": "Show that minors and cofactors reduce one square determinant to smaller square determinants.",
+          "beats": [
+            "Start with a square matrix A.",
+            "Delete one row and one column to form A(i|j).",
+            "Attach the checkerboard sign (-1)^{i+j} to form the cofactor."
+          ],
+          "mathBlocks": [
+            "M_{ij}=det(A(i|j))",
+            "A_{ij}=(-1)^{i+j}M_{ij}"
+          ],
+          "voiceover": [
+            "A cofactor is not only a smaller determinant.",
+            "It is a smaller determinant with the correct sign attached."
+          ],
+          "animation": "highlight an entry, cross out its row and column, then show the surviving minor and sign board"
+        },
+        {
+          "type": "expansion_tree",
+          "cardTitle": "First-row expansion becomes a tree",
+          "goal": "Use the source-backed 3 by 3 example to show the expansion branching into three 2 by 2 determinants.",
+          "beats": [
+            "Display B=[[3,2,-1],[4,1,6],[-3,-1,2]].",
+            "Highlight the first row.",
+            "Split into the three signed first-row branches."
+          ],
+          "mathBlocks": [
+            "det(B)=3M_{11}-2M_{12}+(-1)M_{13}"
+          ],
+          "voiceover": [
+            "Each first-row entry starts one branch.",
+            "The signs are part of the cofactor, not an optional decoration."
+          ],
+          "animation": "branch from the first row into three labeled 2 by 2 determinant cards"
+        },
+        {
+          "type": "branch_evaluation",
+          "cardTitle": "Branches end at 2 by 2 determinants",
+          "goal": "Evaluate the three source-backed branches and combine them to get -27.",
+          "beats": [
+            "Evaluate det[[1,6],[-1,2]]=8.",
+            "Evaluate det[[4,6],[-3,2]]=26.",
+            "Evaluate det[[4,1],[-3,-1]]=-1.",
+            "Combine the signed contributions."
+          ],
+          "mathBlocks": [
+            "3(8)-2(26)+(-1)(-1)=-27"
+          ],
+          "voiceover": [
+            "The recursive definition stops when every branch reaches a 2 by 2 or 1 by 1 determinant.",
+            "The final number is the signed sum of all surviving branches."
+          ],
+          "animation": "collapse the three branch values into one final determinant value"
+        },
+        {
+          "type": "zero_pruning",
+          "cardTitle": "Zeros prune branches",
+          "goal": "Connect arbitrary-row expansion to choosing a row or column with many zeros.",
+          "beats": [
+            "Display the 4 by 4 source-backed matrix C.",
+            "Highlight the second row.",
+            "Cross out the 0*A21 branch before any smaller determinant is computed."
+          ],
+          "mathBlocks": [
+            "det(C)=0A_{21}+5A_{22}+2A_{23}+5A_{24}"
+          ],
+          "voiceover": [
+            "Expansion along any row or column lets computation be strategic.",
+            "A zero entry contributes a zero branch, so that branch disappears immediately."
+          ],
+          "animation": "show four second-row branches and strike the zero branch"
+        },
+        {
+          "type": "one_nonzero_collapse",
+          "cardTitle": "One nonzero entry collapses the problem",
+          "goal": "State the source-backed one-nonzero row or column theorem as the formal zero-pruning rule.",
+          "beats": [
+            "Show a row with one surviving nonzero entry.",
+            "Shrink the determinant to one signed minor."
+          ],
+          "mathBlocks": [
+            "det(C)=c_{k\\ell}(-1)^{k+\\ell}det(C(k|\\ell))"
+          ],
+          "voiceover": [
+            "If every other entry in a row or column is zero, there is only one branch left.",
+            "The whole determinant becomes one signed smaller determinant."
+          ],
+          "animation": "collapse a sparse row into one signed minor"
+        },
+        {
+          "type": "triangular_product",
+          "cardTitle": "Triangular matrices keep collapsing",
+          "goal": "Explain why upper or lower triangular determinants equal the product of diagonal entries.",
+          "beats": [
+            "Display T=[[2,3,4],[0,5,7],[0,0,-1]].",
+            "Repeatedly expand down the sparse first column.",
+            "Read the diagonal product 2*5*(-1)=-10."
+          ],
+          "mathBlocks": [
+            "det(T)=2\\cdot5\\cdot(-1)=-10"
+          ],
+          "voiceover": [
+            "Triangular matrices are full of zero-pruning opportunities.",
+            "Repeated one-branch expansion leaves exactly the diagonal product."
+          ],
+          "animation": "highlight diagonal entries as the determinant collapses"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "行列式是遞迴定義",
+          "goal": "說明子式與餘因子如何把一個方陣行列式化成較小的方陣行列式。",
+          "beats": [
+            "由方陣 A 開始。",
+            "刪去一行一列形成 A(i|j)。",
+            "加上棋盤符號 (-1)^{i+j} 形成餘因子。"
+          ],
+          "mathBlocks": [
+            "M_{ij}=det(A(i|j))",
+            "A_{ij}=(-1)^{i+j}M_{ij}"
+          ],
+          "voiceover": [
+            "餘因子不只是較小的行列式。",
+            "它是加上正確符號後的較小行列式。"
+          ],
+          "animation": "高亮某一項，劃去它所在的行與列，再顯示保留下來的子式和符號棋盤"
+        },
+        {
+          "type": "expansion_tree",
+          "cardTitle": "第一行展開是一棵樹",
+          "goal": "用來源支撐的 3 乘 3 例子，顯示展開如何分成三個 2 乘 2 行列式。",
+          "beats": [
+            "顯示 B=[[3,2,-1],[4,1,6],[-3,-1,2]]。",
+            "高亮第一行。",
+            "分成三個有符號的第一行分支。"
+          ],
+          "mathBlocks": [
+            "det(B)=3M_{11}-2M_{12}+(-1)M_{13}"
+          ],
+          "voiceover": [
+            "第一行每個項都開出一個分支。",
+            "符號是餘因子的一部分，不是可有可無的裝飾。"
+          ],
+          "animation": "由第一行分出三張 2 乘 2 行列式卡片"
+        },
+        {
+          "type": "branch_evaluation",
+          "cardTitle": "分支最後到 2 乘 2 行列式",
+          "goal": "計算三個來源支撐的分支，並合併得到 -27。",
+          "beats": [
+            "計算 det[[1,6],[-1,2]]=8。",
+            "計算 det[[4,6],[-3,2]]=26。",
+            "計算 det[[4,1],[-3,-1]]=-1。",
+            "合併有符號貢獻。"
+          ],
+          "mathBlocks": [
+            "3(8)-2(26)+(-1)(-1)=-27"
+          ],
+          "voiceover": [
+            "遞迴定義會在每個分支到達 2 乘 2 或 1 乘 1 行列式時停止。",
+            "最後的數字是所有保留下來分支的有符號總和。"
+          ],
+          "animation": "把三個分支數值收束成一個最終行列式值"
+        },
+        {
+          "type": "zero_pruning",
+          "cardTitle": "零項會剪掉分支",
+          "goal": "把任意行展開連到選擇零最多的行或列。",
+          "beats": [
+            "顯示來源支撐的 4 乘 4 矩陣 C。",
+            "高亮第二行。",
+            "在計算較小行列式之前，刪去 0*A21 分支。"
+          ],
+          "mathBlocks": [
+            "det(C)=0A_{21}+5A_{22}+2A_{23}+5A_{24}"
+          ],
+          "voiceover": [
+            "可以沿任何行或列展開，所以計算可以有策略。",
+            "零項貢獻零分支，因此該分支會立即消失。"
+          ],
+          "animation": "顯示四個第二行分支，並劃去零分支"
+        },
+        {
+          "type": "one_nonzero_collapse",
+          "cardTitle": "唯一非零項會直接縮小問題",
+          "goal": "把來源支撐的唯一非零行或列定理，表述成正式的剪枝規則。",
+          "beats": [
+            "顯示一行只有一個保留下來的非零項。",
+            "把行列式縮成一個帶符號的子式。"
+          ],
+          "mathBlocks": [
+            "det(C)=c_{k\\ell}(-1)^{k+\\ell}det(C(k|\\ell))"
+          ],
+          "voiceover": [
+            "若某行或列其餘項都是零，就只剩一個分支。",
+            "整個行列式會變成一個帶符號的較小行列式。"
+          ],
+          "animation": "把稀疏行收束成一個帶符號的子式"
+        },
+        {
+          "type": "triangular_product",
+          "cardTitle": "三角矩陣會一路縮小",
+          "goal": "解釋為何上三角或下三角矩陣的行列式等於對角線乘積。",
+          "beats": [
+            "顯示 T=[[2,3,4],[0,5,7],[0,0,-1]]。",
+            "沿稀疏第一列反覆展開。",
+            "讀出對角線乘積 2*5*(-1)=-10。"
+          ],
+          "mathBlocks": [
+            "det(T)=2\\cdot5\\cdot(-1)=-10"
+          ],
+          "voiceover": [
+            "三角矩陣充滿可以剪枝的零項。",
+            "反覆做單分支展開後，留下來的正是對角線乘積。"
+          ],
+          "animation": "在行列式縮小時高亮對角線項"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "行列式是递归定义",
+          "goal": "说明子式与余因子如何把一个方阵行列式化成较小的方阵行列式。",
+          "beats": [
+            "由方阵 A 开始。",
+            "删去一行一列形成 A(i|j)。",
+            "加上棋盘符号 (-1)^{i+j} 形成余因子。"
+          ],
+          "mathBlocks": [
+            "M_{ij}=det(A(i|j))",
+            "A_{ij}=(-1)^{i+j}M_{ij}"
+          ],
+          "voiceover": [
+            "余因子不只是较小的行列式。",
+            "它是加上正确符号后的较小行列式。"
+          ],
+          "animation": "高亮某一项，划去它所在的行与列，再显示保留下来的子式和符号棋盘"
+        },
+        {
+          "type": "expansion_tree",
+          "cardTitle": "第一行展开是一棵树",
+          "goal": "用来源支撑的 3 乘 3 例子，显示展开如何分成三个 2 乘 2 行列式。",
+          "beats": [
+            "显示 B=[[3,2,-1],[4,1,6],[-3,-1,2]]。",
+            "高亮第一行。",
+            "分成三个有符号的第一行分支。"
+          ],
+          "mathBlocks": [
+            "det(B)=3M_{11}-2M_{12}+(-1)M_{13}"
+          ],
+          "voiceover": [
+            "第一行每个项都开出一个分支。",
+            "符号是余因子的一部分，不是可有可无的装饰。"
+          ],
+          "animation": "由第一行分出三张 2 乘 2 行列式卡片"
+        },
+        {
+          "type": "branch_evaluation",
+          "cardTitle": "分支最后到 2 乘 2 行列式",
+          "goal": "计算三个来源支撑的分支，并合并得到 -27。",
+          "beats": [
+            "计算 det[[1,6],[-1,2]]=8。",
+            "计算 det[[4,6],[-3,2]]=26。",
+            "计算 det[[4,1],[-3,-1]]=-1。",
+            "合并有符号贡献。"
+          ],
+          "mathBlocks": [
+            "3(8)-2(26)+(-1)(-1)=-27"
+          ],
+          "voiceover": [
+            "递归定义会在每个分支到达 2 乘 2 或 1 乘 1 行列式时停止。",
+            "最后的数字是所有保留下来分支的有符号总和。"
+          ],
+          "animation": "把三个分支数值收束成一个最终行列式值"
+        },
+        {
+          "type": "zero_pruning",
+          "cardTitle": "零项会剪掉分支",
+          "goal": "把任意行展开连到选择零最多的行或列。",
+          "beats": [
+            "显示来源支撑的 4 乘 4 矩阵 C。",
+            "高亮第二行。",
+            "在计算较小行列式之前，删去 0*A21 分支。"
+          ],
+          "mathBlocks": [
+            "det(C)=0A_{21}+5A_{22}+2A_{23}+5A_{24}"
+          ],
+          "voiceover": [
+            "可以沿任何行或列展开，所以计算可以有策略。",
+            "零项贡献零分支，因此该分支会立即消失。"
+          ],
+          "animation": "显示四个第二行分支，并划去零分支"
+        },
+        {
+          "type": "one_nonzero_collapse",
+          "cardTitle": "唯一非零项会直接缩小问题",
+          "goal": "把来源支撑的唯一非零行或列定理，表述成正式的剪枝规则。",
+          "beats": [
+            "显示一行只有一个保留下来的非零项。",
+            "把行列式缩成一个带符号的子式。"
+          ],
+          "mathBlocks": [
+            "det(C)=c_{k\\ell}(-1)^{k+\\ell}det(C(k|\\ell))"
+          ],
+          "voiceover": [
+            "若某行或列其余项都是零，就只剩一个分支。",
+            "整个行列式会变成一个带符号的较小行列式。"
+          ],
+          "animation": "把稀疏行收束成一个带符号的子式"
+        },
+        {
+          "type": "triangular_product",
+          "cardTitle": "三角矩阵会一路缩小",
+          "goal": "解释为何上三角或下三角矩阵的行列式等于对角线乘积。",
+          "beats": [
+            "显示 T=[[2,3,4],[0,5,7],[0,0,-1]]。",
+            "沿稀疏第一列反复展开。",
+            "读出对角线乘积 2*5*(-1)=-10。"
+          ],
+          "mathBlocks": [
+            "det(T)=2\\cdot5\\cdot(-1)=-10"
+          ],
+          "voiceover": [
+            "三角矩阵充满可以剪枝的零项。",
+            "反复做单分支展开后，留下来的正是对角线乘积。"
+          ],
+          "animation": "在行列式缩小时高亮对角线项"
+        }
+      ]
+    }
+  }
+}

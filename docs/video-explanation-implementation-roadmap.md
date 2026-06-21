@@ -33,6 +33,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/vector-spaces/column-space-row-space-rank`
   - `math1030/vector-spaces/matrix-subspaces-basis-dimension`
   - `math1030/vector-spaces/basis-extension-and-change-of-basis`
+  - `math1030/determinants/determinants-and-cofactor-expansion`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -50,6 +51,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/vector-spaces/column-space-row-space-rank`
   - `math1030/vector-spaces/matrix-subspaces-basis-dimension`
   - `math1030/vector-spaces/basis-extension-and-change-of-basis`
+  - `math1030/determinants/determinants-and-cofactor-expansion`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -119,7 +121,7 @@ Use this order unless a later user request changes priority:
    Linear dependence and independence`, Math1030 `6.5 Basis and dimension`,
    Math1030 `6.6 Column space, row space, and rank`, and Math1030 `6.7 Matrix
    subspaces, basis, and dimension`, and Math1030 `6.8 Basis extension and
-   change of basis`.
+   change of basis`, and Math1030 `7.1 Determinants and cofactor expansion`.
 2. Math1030 basis, rank, determinant, and eigenvalue units.
 3. Remaining Math1030 matrix-algebra clips such as transpose, special
    matrices, and block matrices.
@@ -159,7 +161,7 @@ Use this order unless a later user request changes priority:
 | `math1030/vector-spaces/column-space-row-space-rank` | 6.6 Column space, row space, and rank | Done | RREF pivot positions, original pivot columns as a column-space basis, nonzero RREF rows as a row-space basis, and rank as the shared count. | Completed as the tenth Math1030 trilingual Manim pass; no separate widget was added because the existing static map plus video covers the same source-backed example. |
 | `math1030/vector-spaces/matrix-subspaces-basis-dimension` | 6.7 Matrix subspaces, basis, and dimension | Done | Fixed-size matrices as vectors, standard matrix units, free-parameter splitting for `Sym_2(R)`, and dimension as basis-size/free-parameter count. | Completed as the eleventh Math1030 trilingual Manim pass; no separate widget was added because the source-backed Sym2/UT/Skew examples are best served by the article, static formulas, and curated clip. |
 | `math1030/vector-spaces/basis-extension-and-change-of-basis` | 6.8 Basis extension and change of basis | Done | Ordered bases on the same subspace, columns of `S` as coordinate recipes, `U=VS`, `[x]_V=S[x]_U`, and the reverse conversion via `S^{-1}`. | Completed as the twelfth Math1030 trilingual Manim pass; no separate widget was added because the source-backed theorem and proper-subspace example are best served by a curated coordinate-translation clip plus static worked examples. |
-| `math1030/determinants/determinants-and-cofactor-expansion` | 7.1 Determinants and cofactor expansion | Manim | Area/volume scaling and cofactor expansion tree. | Choose one primary story before scene work. |
+| `math1030/determinants/determinants-and-cofactor-expansion` | 7.1 Determinants and cofactor expansion | Done | Minor deletion, checkerboard cofactor signs, the source-backed 3 by 3 expansion tree, zero-branch pruning, one-nonzero collapse, and triangular diagonal products. | Completed as the thirteenth Math1030 trilingual Manim pass; no widget was added because the source-backed learning move is a curated recursive computation strategy, not an open-ended manipulation surface. |
 | `math1030/determinants/row-operations-products-and-invertibility` | 7.2 Row operations, products, and invertibility | Manim | Swap, scaling, and replacement effects on determinant. | High-value determinant clip. |
 | `math1030/determinants/transpose-column-operations-and-cramers-rule` | 7.3 Transpose, column operations, and Cramer's rule | Manim | Column replacement and Cramer's rule numerator logic. | Storyboard with one 2x2 or 3x3 example. |
 | `math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces` | 8.1 Eigenvalues, eigenvectors, and eigenspaces | Manim | Vectors that keep direction under transformation. | Use geometric arrows and eigenspace highlight. |
