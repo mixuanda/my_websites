@@ -1,0 +1,366 @@
+{
+  "course": "math1030",
+  "chapter": "vector-spaces",
+  "unit": "basis-extension-and-change-of-basis",
+  "unitTitle": {
+    "en": "6.8 Basis extension and change of basis",
+    "zh-hk": "6.8 基底延伸與基變換",
+    "zh-cn": "6.8 基底延伸与基变换"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Two ordered bases describe the same plane",
+          "goal": "Show that a change-of-basis problem compares coordinate systems, not different vectors.",
+          "beats": [
+            "Display one plane W in R3.",
+            "Draw the ordered basis U=(u1,u2) and the ordered basis V=(v1,v2) on the same plane.",
+            "Label that the order matters because coordinates are ordered columns."
+          ],
+          "mathBlocks": [
+            "U=(u_1,u_2)",
+            "V=(v_1,v_2)"
+          ],
+          "voiceover": [
+            "The two bases describe the same subspace.",
+            "A change-of-basis matrix translates coordinate columns between those two ordered bases."
+          ],
+          "animation": "show one plane with two colored ordered bases"
+        },
+        {
+          "type": "coordinate_recipe",
+          "cardTitle": "Columns of S are coordinate recipes",
+          "goal": "Use the source example to identify each column of the change-of-basis matrix.",
+          "beats": [
+            "Show u1=v1+v2.",
+            "Show u2=-v1+v2.",
+            "Assemble the coefficient columns (1,1)^T and (-1,1)^T."
+          ],
+          "mathBlocks": [
+            "u_1=v_1+v_2",
+            "u_2=-v_1+v_2",
+            "S=\\begin{bmatrix}1&-1\\\\1&1\\end{bmatrix}"
+          ],
+          "voiceover": [
+            "Each U-basis vector is rewritten in the V-basis.",
+            "Those coordinate columns become the columns of S."
+          ],
+          "animation": "move the two coefficient columns into the matrix S"
+        },
+        {
+          "type": "matrix_identity",
+          "cardTitle": "The matrix equality packages the recipes",
+          "goal": "Connect the vector equalities to U=VS.",
+          "beats": [
+            "Place U=[u1 u2] on the left.",
+            "Place V=[v1 v2] and S on the right.",
+            "Highlight that U=VS means the U columns are expressed using V columns."
+          ],
+          "mathBlocks": [
+            "\\mathcal U=\\mathcal V S"
+          ],
+          "voiceover": [
+            "The equality U=VS is not decorative notation.",
+            "It says that every column of U has been translated into V-coordinate language."
+          ],
+          "animation": "display U equals V times S and highlight corresponding columns"
+        },
+        {
+          "type": "coordinate_conversion",
+          "cardTitle": "Convert the coordinate column",
+          "goal": "Apply [x]_V=S[x]_U to the worked example coordinate vector.",
+          "beats": [
+            "Start with [x]_U=(3,2)^T.",
+            "Multiply by S=[[1,-1],[1,1]].",
+            "Obtain [x]_V=(1,5)^T."
+          ],
+          "mathBlocks": [
+            "[x]_V=S[x]_U",
+            "\\begin{bmatrix}1&-1\\\\1&1\\end{bmatrix}\\begin{bmatrix}3\\\\2\\end{bmatrix}=\\begin{bmatrix}1\\\\5\\end{bmatrix}"
+          ],
+          "voiceover": [
+            "Once U=VS is known, the same matrix converts U-coordinates into V-coordinates.",
+            "The input coordinate column changes from (3,2) to (1,5)."
+          ],
+          "animation": "matrix multiplication transforms the coordinate column"
+        },
+        {
+          "type": "invariant",
+          "cardTitle": "The vector has not moved",
+          "goal": "Emphasize that only the coordinate description changes.",
+          "beats": [
+            "Keep the endpoint of x fixed in the plane.",
+            "Show x=3u1+2u2 on one side.",
+            "Show x=v1+5v2 on the other side."
+          ],
+          "mathBlocks": [
+            "3u_1+2u_2=v_1+5v_2"
+          ],
+          "voiceover": [
+            "The vector x is the same object in the ambient space.",
+            "Only the coordinate language has changed."
+          ],
+          "animation": "freeze the arrow x while swapping the coordinate labels"
+        },
+        {
+          "type": "warning",
+          "cardTitle": "Direction matters",
+          "goal": "Prevent the common mistake of using the inverse conversion.",
+          "beats": [
+            "Show [x]_V=S[x]_U as the forward conversion.",
+            "Show [x]_U=S^{-1}[x]_V as the reverse conversion.",
+            "State that ordered bases must be kept in the chosen order."
+          ],
+          "mathBlocks": [
+            "[x]_V=S[x]_U",
+            "[x]_U=S^{-1}[x]_V"
+          ],
+          "voiceover": [
+            "The inverse matrix is for the reverse direction.",
+            "Changing the order of a basis changes the coordinate language too."
+          ],
+          "animation": "show forward and backward conversion arrows"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "兩組有序基底描述同一平面",
+          "goal": "說明基變換比較的是坐標系統，而不是不同向量。",
+          "beats": [
+            "顯示 R3 中的一個平面 W。",
+            "在同一平面上畫出有序基底 U=(u1,u2) 和 V=(v1,v2)。",
+            "標出次序重要，因為坐標是有序列向量。"
+          ],
+          "mathBlocks": [
+            "U=(u_1,u_2)",
+            "V=(v_1,v_2)"
+          ],
+          "voiceover": [
+            "兩組基底描述同一個子空間。",
+            "基變換矩陣把坐標列在兩組有序基底之間翻譯。"
+          ],
+          "animation": "在同一平面上顯示兩組有色有序基底"
+        },
+        {
+          "type": "coordinate_recipe",
+          "cardTitle": "S 的各列是坐標配方",
+          "goal": "用來源例子找出基變換矩陣的每一列。",
+          "beats": [
+            "顯示 u1=v1+v2。",
+            "顯示 u2=-v1+v2。",
+            "把係數列 (1,1)^T 和 (-1,1)^T 組成矩陣。"
+          ],
+          "mathBlocks": [
+            "u_1=v_1+v_2",
+            "u_2=-v_1+v_2",
+            "S=\\begin{bmatrix}1&-1\\\\1&1\\end{bmatrix}"
+          ],
+          "voiceover": [
+            "每個 U 基底向量都改寫成 V 基底表示。",
+            "這些坐標列成為 S 的各列。"
+          ],
+          "animation": "把兩個係數列移入矩陣 S"
+        },
+        {
+          "type": "matrix_identity",
+          "cardTitle": "矩陣等式包起坐標配方",
+          "goal": "把向量等式連到 U=VS。",
+          "beats": [
+            "左邊放 U=[u1 u2]。",
+            "右邊放 V=[v1 v2] 和 S。",
+            "高亮 U=VS 表示 U 的各列用 V 的各列表示。"
+          ],
+          "mathBlocks": [
+            "\\mathcal U=\\mathcal V S"
+          ],
+          "voiceover": [
+            "等式 U=VS 不是裝飾性記號。",
+            "它表示 U 的每一列都已翻譯成 V-坐標語言。"
+          ],
+          "animation": "顯示 U 等於 V 乘 S，並高亮對應列"
+        },
+        {
+          "type": "coordinate_conversion",
+          "cardTitle": "轉換坐標列",
+          "goal": "把 [x]_V=S[x]_U 用在例題坐標向量上。",
+          "beats": [
+            "由 [x]_U=(3,2)^T 開始。",
+            "乘上 S=[[1,-1],[1,1]]。",
+            "得到 [x]_V=(1,5)^T。"
+          ],
+          "mathBlocks": [
+            "[x]_V=S[x]_U",
+            "\\begin{bmatrix}1&-1\\\\1&1\\end{bmatrix}\\begin{bmatrix}3\\\\2\\end{bmatrix}=\\begin{bmatrix}1\\\\5\\end{bmatrix}"
+          ],
+          "voiceover": [
+            "一旦知道 U=VS，同一個矩陣就把 U-坐標轉成 V-坐標。",
+            "輸入坐標列由 (3,2) 變成 (1,5)。"
+          ],
+          "animation": "矩陣乘法把坐標列轉換"
+        },
+        {
+          "type": "invariant",
+          "cardTitle": "向量沒有移動",
+          "goal": "強調改變的只是坐標描述。",
+          "beats": [
+            "保持平面中 x 的終點不動。",
+            "一邊顯示 x=3u1+2u2。",
+            "另一邊顯示 x=v1+5v2。"
+          ],
+          "mathBlocks": [
+            "3u_1+2u_2=v_1+5v_2"
+          ],
+          "voiceover": [
+            "向量 x 在環境空間中仍是同一個物件。",
+            "改變的只是坐標語言。"
+          ],
+          "animation": "固定 x 的箭頭，同時切換坐標標籤"
+        },
+        {
+          "type": "warning",
+          "cardTitle": "方向要分清",
+          "goal": "避免誤用反方向逆矩陣。",
+          "beats": [
+            "顯示 [x]_V=S[x]_U 作為正向轉換。",
+            "顯示 [x]_U=S^{-1}[x]_V 作為反向轉換。",
+            "說明有序基底必須保持指定次序。"
+          ],
+          "mathBlocks": [
+            "[x]_V=S[x]_U",
+            "[x]_U=S^{-1}[x]_V"
+          ],
+          "voiceover": [
+            "逆矩陣是反方向使用的。",
+            "改變基底次序也會改變坐標語言。"
+          ],
+          "animation": "顯示正向與反向轉換箭頭"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "两组有序基底描述同一平面",
+          "goal": "说明基变换比较的是坐标系统，而不是不同向量。",
+          "beats": [
+            "显示 R3 中的一个平面 W。",
+            "在同一平面上画出有序基底 U=(u1,u2) 和 V=(v1,v2)。",
+            "标出次序重要，因为坐标是有序列向量。"
+          ],
+          "mathBlocks": [
+            "U=(u_1,u_2)",
+            "V=(v_1,v_2)"
+          ],
+          "voiceover": [
+            "两组基底描述同一个子空间。",
+            "基变换矩阵把坐标列在两组有序基底之间翻译。"
+          ],
+          "animation": "在同一平面上显示两组有色有序基底"
+        },
+        {
+          "type": "coordinate_recipe",
+          "cardTitle": "S 的各列是坐标配方",
+          "goal": "用来源例子找出基变换矩阵的每一列。",
+          "beats": [
+            "显示 u1=v1+v2。",
+            "显示 u2=-v1+v2。",
+            "把系数列 (1,1)^T 和 (-1,1)^T 组成矩阵。"
+          ],
+          "mathBlocks": [
+            "u_1=v_1+v_2",
+            "u_2=-v_1+v_2",
+            "S=\\begin{bmatrix}1&-1\\\\1&1\\end{bmatrix}"
+          ],
+          "voiceover": [
+            "每个 U 基底向量都改写成 V 基底表示。",
+            "这些坐标列成为 S 的各列。"
+          ],
+          "animation": "把两个系数列移入矩阵 S"
+        },
+        {
+          "type": "matrix_identity",
+          "cardTitle": "矩阵等式包起坐标配方",
+          "goal": "把向量等式连到 U=VS。",
+          "beats": [
+            "左边放 U=[u1 u2]。",
+            "右边放 V=[v1 v2] 和 S。",
+            "高亮 U=VS 表示 U 的各列用 V 的各列表示。"
+          ],
+          "mathBlocks": [
+            "\\mathcal U=\\mathcal V S"
+          ],
+          "voiceover": [
+            "等式 U=VS 不是装饰性记号。",
+            "它表示 U 的每一列都已翻译成 V-坐标语言。"
+          ],
+          "animation": "显示 U 等于 V 乘 S，并高亮对应列"
+        },
+        {
+          "type": "coordinate_conversion",
+          "cardTitle": "转换坐标列",
+          "goal": "把 [x]_V=S[x]_U 用在例题坐标向量上。",
+          "beats": [
+            "由 [x]_U=(3,2)^T 开始。",
+            "乘上 S=[[1,-1],[1,1]]。",
+            "得到 [x]_V=(1,5)^T。"
+          ],
+          "mathBlocks": [
+            "[x]_V=S[x]_U",
+            "\\begin{bmatrix}1&-1\\\\1&1\\end{bmatrix}\\begin{bmatrix}3\\\\2\\end{bmatrix}=\\begin{bmatrix}1\\\\5\\end{bmatrix}"
+          ],
+          "voiceover": [
+            "一旦知道 U=VS，同一个矩阵就把 U-坐标转成 V-坐标。",
+            "输入坐标列由 (3,2) 变成 (1,5)。"
+          ],
+          "animation": "矩阵乘法把坐标列转换"
+        },
+        {
+          "type": "invariant",
+          "cardTitle": "向量没有移动",
+          "goal": "强调改变的只是坐标描述。",
+          "beats": [
+            "保持平面中 x 的终点不动。",
+            "一边显示 x=3u1+2u2。",
+            "另一边显示 x=v1+5v2。"
+          ],
+          "mathBlocks": [
+            "3u_1+2u_2=v_1+5v_2"
+          ],
+          "voiceover": [
+            "向量 x 在环境空间中仍是同一个对象。",
+            "改变的只是坐标语言。"
+          ],
+          "animation": "固定 x 的箭头，同时切换坐标标签"
+        },
+        {
+          "type": "warning",
+          "cardTitle": "方向要分清",
+          "goal": "避免误用反方向逆矩阵。",
+          "beats": [
+            "显示 [x]_V=S[x]_U 作为正向转换。",
+            "显示 [x]_U=S^{-1}[x]_V 作为反向转换。",
+            "说明有序基底必须保持指定次序。"
+          ],
+          "mathBlocks": [
+            "[x]_V=S[x]_U",
+            "[x]_U=S^{-1}[x]_V"
+          ],
+          "voiceover": [
+            "逆矩阵是反方向使用的。",
+            "改变基底次序也会改变坐标语言。"
+          ],
+          "animation": "显示正向与反向转换箭头"
+        }
+      ]
+    }
+  }
+}

@@ -968,6 +968,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/matrix-subspace-basis-dimension-story-zh-cn.mp4"
     ),
   },
+  "math1030-basis-extension-change-of-basis-story": {
+    conclusion: text(
+      "A change-of-basis matrix does not move the vector in space. It rewrites the coordinate column from one ordered basis into another.",
+      "基變換矩陣不是把空間中的向量移走，而是把坐標列由一組有序基底翻譯到另一組有序基底。",
+      "基变换矩阵不是把空间中的向量移走，而是把坐标列由一组有序基底翻译到另一组有序基底。"
+    ),
+    durationSeconds: 13,
+    frames: [
+      {
+        label: text("Two bases, one plane", "兩組基底，同一平面", "两组基底，同一平面"),
+        value: text(
+          "The ordered bases U=(u1,u2) and V=(v1,v2) describe the same subspace W, so the comparison is about coordinates, not a new vector space.",
+          "有序基底 U=(u1,u2) 和 V=(v1,v2) 描述同一子空間 W，所以比較的是坐標，不是新的向量空間。",
+          "有序基底 U=(u1,u2) 和 V=(v1,v2) 描述同一子空间 W，所以比较的是坐标，不是新的向量空间。"
+        ),
+      },
+      {
+        label: text("Columns are recipes", "各列是配方", "各列是配方"),
+        value: text(
+          "The equalities u1=v1+v2 and u2=-v1+v2 become the two columns of S.",
+          "等式 u1=v1+v2 和 u2=-v1+v2 會成為 S 的兩列。",
+          "等式 u1=v1+v2 和 u2=-v1+v2 会成为 S 的两列。"
+        ),
+      },
+      {
+        label: text("Package as U=VS", "包裝成 U=VS", "包装成 U=VS"),
+        value: text(
+          "The matrix identity U=VS says every U-basis vector has been rewritten in V-basis coordinates.",
+          "矩陣等式 U=VS 表示每個 U 基底向量都已改寫成 V 基底坐標。",
+          "矩阵等式 U=VS 表示每个 U 基底向量都已改写成 V 基底坐标。"
+        ),
+      },
+      {
+        label: text("Convert the coordinate column", "轉換坐標列", "转换坐标列"),
+        value: text(
+          "For [x]_U=(3,2)^T, multiplying by S gives [x]_V=(1,5)^T.",
+          "對 [x]_U=(3,2)^T，乘以 S 得到 [x]_V=(1,5)^T。",
+          "对 [x]_U=(3,2)^T，乘以 S 得到 [x]_V=(1,5)^T。"
+        ),
+      },
+      {
+        label: text("The vector is unchanged", "向量沒有改變", "向量没有改变"),
+        value: text(
+          "The equality 3u1+2u2=v1+5v2 describes the same x in two coordinate languages.",
+          "等式 3u1+2u2=v1+5v2 是用兩種坐標語言描述同一個 x。",
+          "等式 3u1+2u2=v1+5v2 是用两种坐标语言描述同一个 x。"
+        ),
+      },
+      {
+        label: text("Use the inverse in the reverse direction", "反方向使用逆矩陣", "反方向使用逆矩阵"),
+        value: text(
+          "S sends U-coordinates to V-coordinates; S^{-1} sends V-coordinates back to U-coordinates.",
+          "S 把 U-坐標送到 V-坐標；S^{-1} 把 V-坐標送回 U-坐標。",
+          "S 把 U-坐标送到 V-坐标；S^{-1} 把 V-坐标送回 U-坐标。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch the worked plane example turn u1=v1+v2 and u2=-v1+v2 into U=VS, then use S to convert [x]_U into [x]_V without moving the vector x.",
+      "觀看平面例子如何把 u1=v1+v2 和 u2=-v1+v2 組成 U=VS，再用 S 把 [x]_U 轉成 [x]_V，同時保持向量 x 不變。",
+      "观看平面例子如何把 u1=v1+v2 和 u2=-v1+v2 组成 U=VS，再用 S 把 [x]_U 转成 [x]_V，同时保持向量 x 不变。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/basis-extension-change-of-basis-story-en.png",
+      "/generated/animations/math1030/basis-extension-change-of-basis-story-zh-hk.png",
+      "/generated/animations/math1030/basis-extension-change-of-basis-story-zh-cn.png"
+    ),
+    title: text(
+      "Basis extension and change of basis",
+      "基底延伸與基變換",
+      "基底延伸与基变换"
+    ),
+    transcript: [
+      text(
+        "Two ordered bases can describe the same subspace, but their coordinate columns can be different.",
+        "兩組有序基底可以描述同一子空間，但它們給出的坐標列可以不同。",
+        "两组有序基底可以描述同一子空间，但它们给出的坐标列可以不同。"
+      ),
+      text(
+        "The columns of S are obtained by rewriting the U-basis vectors in the V-basis.",
+        "S 的各列來自把 U 基底向量改寫成 V 基底表示。",
+        "S 的各列来自把 U 基底向量改写成 V 基底表示。"
+      ),
+      text(
+        "If U=VS, then [x]_V=S[x]_U; the inverse matrix is for the reverse coordinate conversion.",
+        "若 U=VS，則 [x]_V=S[x]_U；逆矩陣用於反方向坐標轉換。",
+        "若 U=VS，则 [x]_V=S[x]_U；逆矩阵用于反方向坐标转换。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/basis-extension-change-of-basis-story-en.mp4",
+      "/generated/animations/math1030/basis-extension-change-of-basis-story-zh-hk.mp4",
+      "/generated/animations/math1030/basis-extension-change-of-basis-story-zh-cn.mp4"
+    ),
+  },
   "math1030-gram-schmidt-projection-story": {
     conclusion: text(
       "Gram-Schmidt preserves the subspace because every new vector is made from the vectors already in the same partial span. The subtraction removes old directions; normalization only changes lengths afterward.",

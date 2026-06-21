@@ -237,5 +237,13 @@ supports that one conceptual transition while the article keeps the formal
 definitions, example, and entry-comparison independence proof in static,
 export-friendly form.
 
+The Math1030 `6.8` basis-extension and change-of-basis pass also stays
+Manim-only. The source-backed move is a fixed theorem/example bridge:
+express each `U`-basis vector in the `V`-basis, package those coordinate
+columns as `S`, read `U=VS`, convert `[x]_U` to `[x]_V` with `S`, and reserve
+`S^{-1}` for the reverse direction. A reader-controlled widget would only be
+worth adding later if the course needs multi-basis coordinate conversion
+practice beyond the current checkpoint questions and worked example.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.
