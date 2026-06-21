@@ -170,8 +170,8 @@ Use this order unless a later user request changes priority:
 | `math1030/determinants/determinants-and-cofactor-expansion` | 7.1 Determinants and cofactor expansion | Done | Minor deletion, checkerboard cofactor signs, the source-backed 3 by 3 expansion tree, zero-branch pruning, one-nonzero collapse, and triangular diagonal products. | Completed as the thirteenth Math1030 trilingual Manim pass; no widget was added because the source-backed learning move is a curated recursive computation strategy, not an open-ended manipulation surface. |
 | `math1030/determinants/row-operations-products-and-invertibility` | 7.2 Row operations, products, and invertibility | Done | Swap, scaling, and replacement determinant effects; row-replacement triangular computation; zero-row singularity; elementary-matrix bridge to product and invertibility tests. | Completed as the fourteenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is determinant bookkeeping, not a detached calculator. |
 | `math1030/determinants/transpose-column-operations-and-cramers-rule` | 7.3 Transpose, column operations, and Cramer's rule | Done | Column replacement, column linearity, repeated-column cancellation, and the source-backed Cramer numerator example. | Completed as the fifteenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is the fixed proof mechanism behind Cramer's rule, not open-ended determinant calculation. |
-| `math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces` | 8.1 Eigenvalues, eigenvectors, and eigenspaces | Manim | Vectors that keep direction under transformation. | Use geometric arrows and eigenspace highlight. |
-| `math1030/eigenvalues/diagonalization-and-similarity` | 8.2 Diagonalization and similarity | Manim | Change of basis making the transformation diagonal. | Storyboard after eigenvector clip. |
+| `math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces` | 8.1 Eigenvalues, eigenvectors, and eigenspaces | Done | Vectors that keep direction under transformation, the conversion `Av=λv` to `(A-λI)v=0`, and eigenspace as null space. | Completed as the sixteenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is a fixed direction-to-null-space bridge. |
+| `math1030/eigenvalues/diagonalization-and-similarity` | 8.2 Diagonalization and similarity | Manim | Change of basis making the transformation diagonal. | Storyboard after eigenvector clip; use the completed 8.1 direction/eigenspace video as prerequisite context. |
 | `math1030/eigenvalues/characteristic-polynomials-and-diagonalization-tests` | 8.3 Characteristic polynomials and diagonalization tests | Manim | `det(A - lambda I)` pipeline and eigenspace dimension test. | Keep symbolic sequence concise. |
 | `math1030/inner-products/inner-products-norms-and-angles` | 9.1 Inner products, norms, and angles | Manim | Dot product, angle, norm, and projection geometry. | Storyboard geometry first. |
 | `math1030/inner-products/orthogonal-sets-and-orthonormal-bases` | 9.2 Orthogonal sets and orthonormal bases | Manim | Orthogonality, normalization, and coordinate reading. | Pair with Gram-Schmidt. |
@@ -244,8 +244,8 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 
 These are the concrete next slices to execute one by one:
 
-1. Continue Math1030 eigenvalue clips, starting with `8.1 Eigenvalues,
-   eigenvectors, and eigenspaces`, unless the roadmap priority changes.
+1. Continue Math1030 eigenvalue clips with `8.2 Diagonalization and
+   similarity`, unless the roadmap priority changes.
 2. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.
 

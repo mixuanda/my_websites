@@ -1,0 +1,366 @@
+{
+  "course": "math1030",
+  "chapter": "eigenvalues",
+  "unit": "eigenvalues-eigenvectors-and-eigenspaces",
+  "unitTitle": {
+    "en": "8.1 Eigenvalues, eigenvectors, and eigenspaces",
+    "zh-hk": "8.1 特徵值、特徵向量與特徵空間",
+    "zh-cn": "8.1 特征值、特征向量与特征空间"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "direction_question",
+          "cardTitle": "Most vectors turn; eigenvectors do not",
+          "goal": "Introduce eigenvectors as nonzero vectors whose direction is preserved by the matrix action.",
+          "beats": [
+            "Draw a vector whose image under A points in a different direction.",
+            "Draw a second vector whose image remains on the same line through the origin.",
+            "Label the preserved-direction equation Av=lambda v."
+          ],
+          "mathBlocks": [
+            "Av=\\lambda v"
+          ],
+          "voiceover": [
+            "Eigenvalues begin with a geometric question: which directions survive multiplication by A?",
+            "An eigenvector may stretch, shrink, or reverse, but it does not leave its line."
+          ],
+          "animation": "two arrows on a coordinate plane, one turning and one remaining collinear with its image"
+        },
+        {
+          "type": "definition",
+          "cardTitle": "The definition compares two actions",
+          "goal": "Emphasize that v is nonzero and that A agrees with scalar multiplication on v.",
+          "beats": [
+            "Place Av=lambda v in the center.",
+            "Mark v not equal to zero.",
+            "Contrast positive scaling with negative scaling."
+          ],
+          "mathBlocks": [
+            "v\\neq 0",
+            "\\lambda>0",
+            "\\lambda<0"
+          ],
+          "voiceover": [
+            "The zero vector is excluded because it satisfies the equation for every scalar.",
+            "The scalar lambda records the stretching or reversal that remains after the direction is preserved."
+          ],
+          "animation": "definition cards for nonzero vector, scalar scaling, and reversed direction"
+        },
+        {
+          "type": "eigendirection",
+          "cardTitle": "One eigenvector represents a whole direction",
+          "goal": "Show why every nonzero scalar multiple of an eigenvector has the same eigenvalue.",
+          "beats": [
+            "Draw a line through the origin containing v, 2v, and -cv.",
+            "Show that A(cv)=lambda(cv).",
+            "Name the line as one eigendirection before zero is added back."
+          ],
+          "mathBlocks": [
+            "A(cv)=cAv=c\\lambda v=\\lambda(cv)"
+          ],
+          "voiceover": [
+            "An eigenvector never appears as an isolated vector.",
+            "Every nonzero point on the same line gives the same preserved direction."
+          ],
+          "animation": "multiple points and arrows on a single line through the origin"
+        },
+        {
+          "type": "null_space_conversion",
+          "cardTitle": "Move everything to one side",
+          "goal": "Convert the eigenvector equation into a homogeneous linear system.",
+          "beats": [
+            "Start from Av=lambda v.",
+            "Subtract lambda v.",
+            "Use lambda v=lambda I v to obtain (A-lambda I)v=0."
+          ],
+          "mathBlocks": [
+            "Av-\\lambda v=0",
+            "(A-\\lambda I)v=0"
+          ],
+          "voiceover": [
+            "The computational form is a null-space problem.",
+            "For a fixed lambda, the eigenvectors are the nonzero solutions of a homogeneous system."
+          ],
+          "animation": "formula chain from Av=lambda v to (A-lambda I)v=0"
+        },
+        {
+          "type": "eigenspace",
+          "cardTitle": "The eigenspace is that null space",
+          "goal": "Define the eigenspace as N(A-lambda I) and clarify the role of the zero vector.",
+          "beats": [
+            "Highlight the preserved line as a subspace.",
+            "Add the zero vector to the picture.",
+            "Display E_A(lambda)=N(A-lambda I)."
+          ],
+          "mathBlocks": [
+            "E_A(\\lambda)=N(A-\\lambda I)"
+          ],
+          "voiceover": [
+            "The zero vector is not an eigenvector, but it belongs to the eigenspace.",
+            "That is why the eigenspace is a genuine subspace."
+          ],
+          "animation": "line through origin becomes a highlighted eigenspace with the origin marked"
+        },
+        {
+          "type": "source_example",
+          "cardTitle": "Each source eigenvalue gives one line",
+          "goal": "Tie the visual idea to the source-backed matrix C=[[3,2],[3,-2]].",
+          "beats": [
+            "Display C=[[3,2],[3,-2]].",
+            "Show the null-space test (C-lambda I)x=0.",
+            "Record E_C(4)=span{(2,1)} and E_C(-3)=span{(1,-3)}."
+          ],
+          "mathBlocks": [
+            "\\det(C-\\lambda I)=\\lambda^2-\\lambda-12",
+            "E_C(4)=\\operatorname{span}\\{(2,1)\\}",
+            "E_C(-3)=\\operatorname{span}\\{(1,-3)\\}"
+          ],
+          "voiceover": [
+            "After lambda is known, row reduction of C-lambda I supplies the eigenspace.",
+            "The basis vector may be scaled without changing the eigenspace."
+          ],
+          "animation": "two highlighted eigenspace lines for the source matrix"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "direction_question",
+          "cardTitle": "大部分向量會轉向；特徵向量不會",
+          "goal": "把特徵向量引入為矩陣作用下方向被保留的非零向量。",
+          "beats": [
+            "畫出一個經 A 作用後方向改變的向量。",
+            "畫出另一個輸出仍在穿過原點同一直線上的向量。",
+            "標出方向保持的方程 Av=lambda v。"
+          ],
+          "mathBlocks": [
+            "Av=\\lambda v"
+          ],
+          "voiceover": [
+            "特徵值由一個幾何問題開始：哪些方向在乘以 A 後仍保留下來？",
+            "特徵向量可以被拉長、縮短或反向，但不會離開本來的直線。"
+          ],
+          "animation": "座標平面上兩個箭頭，一個轉向，一個與輸出共線"
+        },
+        {
+          "type": "definition",
+          "cardTitle": "定義比較兩種作用",
+          "goal": "強調 v 非零，以及 A 在 v 上等同於純量乘法。",
+          "beats": [
+            "把 Av=lambda v 放在中央。",
+            "標記 v 不等於零。",
+            "對比正純量倍與負純量倍。"
+          ],
+          "mathBlocks": [
+            "v\\neq 0",
+            "\\lambda>0",
+            "\\lambda<0"
+          ],
+          "voiceover": [
+            "零向量被排除，因為它對每個純量都滿足方程。",
+            "純量 lambda 記錄的是方向保留後剩下的伸縮或反向。"
+          ],
+          "animation": "非零向量、純量伸縮和反向三張定義卡"
+        },
+        {
+          "type": "eigendirection",
+          "cardTitle": "一個特徵向量代表整個方向",
+          "goal": "顯示每個非零純量倍都對應同一個特徵值。",
+          "beats": [
+            "畫出通過原點並包含 v、2v、-cv 的直線。",
+            "顯示 A(cv)=lambda(cv)。",
+            "在加入零向量前，把這條直線命名為一個特徵方向。"
+          ],
+          "mathBlocks": [
+            "A(cv)=cAv=c\\lambda v=\\lambda(cv)"
+          ],
+          "voiceover": [
+            "特徵向量從來不是孤立出現的。",
+            "同一直線上的每個非零點都給出同一個保留方向。"
+          ],
+          "animation": "通過原點的同一直線上放多個點和箭頭"
+        },
+        {
+          "type": "null_space_conversion",
+          "cardTitle": "把所有項移到同一邊",
+          "goal": "把特徵向量方程改寫成齊次線性系統。",
+          "beats": [
+            "由 Av=lambda v 開始。",
+            "減去 lambda v。",
+            "利用 lambda v=lambda I v 得到 (A-lambda I)v=0。"
+          ],
+          "mathBlocks": [
+            "Av-\\lambda v=0",
+            "(A-\\lambda I)v=0"
+          ],
+          "voiceover": [
+            "可計算的形式是一個零空間問題。",
+            "固定 lambda 後，特徵向量就是某個齊次系統的非零解。"
+          ],
+          "animation": "公式鏈由 Av=lambda v 變成 (A-lambda I)v=0"
+        },
+        {
+          "type": "eigenspace",
+          "cardTitle": "特徵空間就是那個零空間",
+          "goal": "把特徵空間定義為 N(A-lambda I)，並釐清零向量的角色。",
+          "beats": [
+            "把被保留的直線標成子空間。",
+            "把零向量加到圖中。",
+            "顯示 E_A(lambda)=N(A-lambda I)。"
+          ],
+          "mathBlocks": [
+            "E_A(\\lambda)=N(A-\\lambda I)"
+          ],
+          "voiceover": [
+            "零向量不是特徵向量，但它屬於特徵空間。",
+            "因此特徵空間是真正的子空間。"
+          ],
+          "animation": "通過原點的直線變成被標示的特徵空間"
+        },
+        {
+          "type": "source_example",
+          "cardTitle": "每個來源特徵值給出一條直線",
+          "goal": "把視覺概念連到來源支撐的矩陣 C=[[3,2],[3,-2]]。",
+          "beats": [
+            "顯示 C=[[3,2],[3,-2]]。",
+            "顯示零空間測試 (C-lambda I)x=0。",
+            "記錄 E_C(4)=span{(2,1)} 與 E_C(-3)=span{(1,-3)}。"
+          ],
+          "mathBlocks": [
+            "\\det(C-\\lambda I)=\\lambda^2-\\lambda-12",
+            "E_C(4)=\\operatorname{span}\\{(2,1)\\}",
+            "E_C(-3)=\\operatorname{span}\\{(1,-3)\\}"
+          ],
+          "voiceover": [
+            "知道 lambda 後，對 C-lambda I 做行化簡便得到特徵空間。",
+            "基向量可以乘以非零純量而不改變特徵空間。"
+          ],
+          "animation": "來源矩陣的兩條特徵空間直線"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "direction_question",
+          "cardTitle": "大部分向量会转向；特征向量不会",
+          "goal": "把特征向量引入为矩阵作用下方向被保留的非零向量。",
+          "beats": [
+            "画出一个经 A 作用后方向改变的向量。",
+            "画出另一个输出仍在穿过原点同一直线上的向量。",
+            "标出方向保持的方程 Av=lambda v。"
+          ],
+          "mathBlocks": [
+            "Av=\\lambda v"
+          ],
+          "voiceover": [
+            "特征值由一个几何问题开始：哪些方向在乘以 A 后仍保留下来？",
+            "特征向量可以被拉长、缩短或反向，但不会离开本来的直线。"
+          ],
+          "animation": "坐标平面上两个箭头，一个转向，一个与输出共线"
+        },
+        {
+          "type": "definition",
+          "cardTitle": "定义比较两种作用",
+          "goal": "强调 v 非零，以及 A 在 v 上等同于标量乘法。",
+          "beats": [
+            "把 Av=lambda v 放在中央。",
+            "标记 v 不等于零。",
+            "对比正标量倍与负标量倍。"
+          ],
+          "mathBlocks": [
+            "v\\neq 0",
+            "\\lambda>0",
+            "\\lambda<0"
+          ],
+          "voiceover": [
+            "零向量被排除，因为它对每个标量都满足方程。",
+            "标量 lambda 记录的是方向保留后剩下的伸缩或反向。"
+          ],
+          "animation": "非零向量、标量伸缩和反向三张定义卡"
+        },
+        {
+          "type": "eigendirection",
+          "cardTitle": "一个特征向量代表整个方向",
+          "goal": "显示每个非零标量倍都对应同一个特征值。",
+          "beats": [
+            "画出通过原点并包含 v、2v、-cv 的直线。",
+            "显示 A(cv)=lambda(cv)。",
+            "在加入零向量前，把这条直线命名为一个特征方向。"
+          ],
+          "mathBlocks": [
+            "A(cv)=cAv=c\\lambda v=\\lambda(cv)"
+          ],
+          "voiceover": [
+            "特征向量从来不是孤立出现的。",
+            "同一直线上的每个非零点都给出同一个保留方向。"
+          ],
+          "animation": "通过原点的同一直线上放多个点和箭头"
+        },
+        {
+          "type": "null_space_conversion",
+          "cardTitle": "把所有项移到同一边",
+          "goal": "把特征向量方程改写成齐次线性系统。",
+          "beats": [
+            "由 Av=lambda v 开始。",
+            "减去 lambda v。",
+            "利用 lambda v=lambda I v 得到 (A-lambda I)v=0。"
+          ],
+          "mathBlocks": [
+            "Av-\\lambda v=0",
+            "(A-\\lambda I)v=0"
+          ],
+          "voiceover": [
+            "可计算的形式是一个零空间问题。",
+            "固定 lambda 后，特征向量就是某个齐次系统的非零解。"
+          ],
+          "animation": "公式链由 Av=lambda v 变成 (A-lambda I)v=0"
+        },
+        {
+          "type": "eigenspace",
+          "cardTitle": "特征空间就是那个零空间",
+          "goal": "把特征空间定义为 N(A-lambda I)，并厘清零向量的角色。",
+          "beats": [
+            "把被保留的直线标成子空间。",
+            "把零向量加到图中。",
+            "显示 E_A(lambda)=N(A-lambda I)。"
+          ],
+          "mathBlocks": [
+            "E_A(\\lambda)=N(A-\\lambda I)"
+          ],
+          "voiceover": [
+            "零向量不是特征向量，但它属于特征空间。",
+            "因此特征空间是真正的子空间。"
+          ],
+          "animation": "通过原点的直线变成被标示的特征空间"
+        },
+        {
+          "type": "source_example",
+          "cardTitle": "每个来源特征值给出一条直线",
+          "goal": "把视觉概念连到来源支撑的矩阵 C=[[3,2],[3,-2]]。",
+          "beats": [
+            "显示 C=[[3,2],[3,-2]]。",
+            "显示零空间测试 (C-lambda I)x=0。",
+            "记录 E_C(4)=span{(2,1)} 与 E_C(-3)=span{(1,-3)}。"
+          ],
+          "mathBlocks": [
+            "\\det(C-\\lambda I)=\\lambda^2-\\lambda-12",
+            "E_C(4)=\\operatorname{span}\\{(2,1)\\}",
+            "E_C(-3)=\\operatorname{span}\\{(1,-3)\\}"
+          ],
+          "voiceover": [
+            "知道 lambda 后，对 C-lambda I 做行化简便得到特征空间。",
+            "基向量可以乘以非零标量而不改变特征空间。"
+          ],
+          "animation": "来源矩阵的两条特征空间直线"
+        }
+      ]
+    }
+  }
+}

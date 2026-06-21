@@ -250,6 +250,14 @@ Progress on the animation slice:
   the fixed Cramer numerator-isolation proof, and static export fallback;
   focused QA is recorded in
   `docs/manim-determinants-column-replacement-cramers-rule-video-qa-2026-06-21.md`.
+- completed a sixteenth MATH1030 Manim pilot for `8.1 Eigenvalues,
+  eigenvectors, and eigenspaces` with trilingual
+  `math1030-eigenvalue-direction-eigenspace-story` videos, localized posters,
+  a new trilingual storyboard, article embeds after the eigenvalue/eigenvector
+  definition, no new widget because the source-backed learning move is the
+  fixed direction-to-null-space bridge, and static export fallback; focused QA
+  is recorded in
+  `docs/manim-eigenvalue-direction-eigenspace-video-qa-2026-06-21.md`.
 - completed the first non-Math1030 Manim pilot for MATH1090 `2.2 Functions and
   relations` with trilingual `math1090-function-map-properties-story` videos,
   localized posters, a new trilingual storyboard, course-aware render output
@@ -305,8 +313,8 @@ Remaining animation work:
 
 - decide whether these generated assets should be committed directly under
   `public/generated/animations/` or moved to external/static hosting later.
-- continue with the next roadmap slice after the polynomial-gcd checkpoint:
-  Math1025 `8.3 Rational functions, partial fractions, and Vieta formulas`.
+- continue with the next roadmap slice after the eigenvalue/eigenspace
+  checkpoint: Math1030 `8.2 Diagonalization and similarity`.
 
 ## 1. Global Notes Navigation / Long Course Sidebar
 

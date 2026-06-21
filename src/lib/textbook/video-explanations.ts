@@ -1348,6 +1348,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/determinants-column-replacement-cramers-rule-story-zh-cn.mp4"
     ),
   },
+  "math1030-eigenvalue-direction-eigenspace-story": {
+    conclusion: text(
+      "Eigenvalues are not just roots of a determinant; they are the scalars for which A-λI has a nontrivial null space, so the corresponding directions survive the matrix action.",
+      "特徵值不只是行列式的根；它們是令 A-λI 有非平凡零空間的純量，因此對應方向會在矩陣作用下保留下來。",
+      "特征值不只是行列式的根；它们是使 A-λI 有非平凡零空间的标量，因此对应方向会在矩阵作用下保留下来。"
+    ),
+    durationSeconds: 11,
+    frames: [
+      {
+        label: text("Preserved direction", "保留方向", "保留方向"),
+        value: text(
+          "Most vectors are sent to new directions by A. An eigenvector is nonzero and satisfies Av=λv, so its image remains on the same line.",
+          "大部分向量經 A 作用後會轉到新方向。特徵向量是非零向量，並滿足 Av=λv，所以輸出仍在同一直線上。",
+          "大部分向量经 A 作用后会转到新方向。特征向量是非零向量，并满足 Av=λv，所以输出仍在同一直线上。"
+        ),
+      },
+      {
+        label: text("Nonzero condition", "非零條件", "非零条件"),
+        value: text(
+          "The zero vector is excluded because A0=λ0 for every scalar λ; it has no direction to preserve.",
+          "零向量被排除，因為每個純量 λ 都滿足 A0=λ0；它本身沒有可保留的方向。",
+          "零向量被排除，因为每个标量 λ 都满足 A0=λ0；它本身没有可保留的方向。"
+        ),
+      },
+      {
+        label: text("Whole eigendirection", "整個特徵方向", "整个特征方向"),
+        value: text(
+          "If v is an eigenvector, then every nonzero multiple cv is also an eigenvector with the same eigenvalue because A(cv)=λ(cv).",
+          "若 v 是特徵向量，則每個非零倍數 cv 也對應同一特徵值，因為 A(cv)=λ(cv)。",
+          "若 v 是特征向量，则每个非零倍数 cv 也对应同一特征值，因为 A(cv)=λ(cv)。"
+        ),
+      },
+      {
+        label: text("Null-space conversion", "改寫成零空間", "改写成零空间"),
+        value: text(
+          "Moving all terms to one side gives Av-λv=0, equivalently (A-λI)v=0.",
+          "把所有項移到同一邊，得到 Av-λv=0，也就是 (A-λI)v=0。",
+          "把所有项移到同一边，得到 Av-λv=0，也就是 (A-λI)v=0。"
+        ),
+      },
+      {
+        label: text("Eigenspace", "特徵空間", "特征空间"),
+        value: text(
+          "For an eigenvalue λ, the eigenspace is E_A(λ)=N(A-λI): all eigenvectors for λ plus the zero vector.",
+          "對於特徵值 λ，特徵空間是 E_A(λ)=N(A-λI)：所有對應 λ 的特徵向量，再加上零向量。",
+          "对于特征值 λ，特征空间是 E_A(λ)=N(A-λI)：所有对应 λ 的特征向量，再加上零向量。"
+        ),
+      },
+      {
+        label: text("Source matrix", "來源矩陣", "来源矩阵"),
+        value: text(
+          "For C=[[3,2],[3,-2]], the source computation gives E_C(4)=span{(2,1)} and E_C(-3)=span{(1,-3)}.",
+          "對 C=[[3,2],[3,-2]]，來源計算給出 E_C(4)=span{(2,1)} 與 E_C(-3)=span{(1,-3)}。",
+          "对 C=[[3,2],[3,-2]]，来源计算给出 E_C(4)=span{(2,1)} 与 E_C(-3)=span{(1,-3)}。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch how the geometric idea of a direction preserved by A becomes the algebraic null-space condition (A-λI)v=0.",
+      "觀看「方向在 A 下被保留」這個幾何想法，如何變成代數上的零空間條件 (A-λI)v=0。",
+      "观看“方向在 A 下被保留”这个几何想法，如何变成代数上的零空间条件 (A-λI)v=0。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/eigenvalue-direction-eigenspace-story-en.png",
+      "/generated/animations/math1030/eigenvalue-direction-eigenspace-story-zh-hk.png",
+      "/generated/animations/math1030/eigenvalue-direction-eigenspace-story-zh-cn.png"
+    ),
+    title: text(
+      "Eigenvectors as preserved directions",
+      "把特徵向量看成被保留的方向",
+      "把特征向量看成被保留的方向"
+    ),
+    transcript: [
+      text(
+        "An eigenvector is a nonzero vector whose image under A stays on the same line.",
+        "特徵向量是非零向量，而且在 A 作用後仍留在同一直線上。",
+        "特征向量是非零向量，而且在 A 作用后仍留在同一直线上。"
+      ),
+      text(
+        "The equation Av=λv becomes (A-λI)v=0 after moving terms to one side.",
+        "方程 Av=λv 移項後變成 (A-λI)v=0。",
+        "方程 Av=λv 移项后变成 (A-λI)v=0。"
+      ),
+      text(
+        "The eigenspace is the null space N(A-λI), which includes the zero vector even though zero is not an eigenvector.",
+        "特徵空間就是零空間 N(A-λI)；它包含零向量，但零向量本身不是特徵向量。",
+        "特征空间就是零空间 N(A-λI)；它包含零向量，但零向量本身不是特征向量。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/eigenvalue-direction-eigenspace-story-en.mp4",
+      "/generated/animations/math1030/eigenvalue-direction-eigenspace-story-zh-hk.mp4",
+      "/generated/animations/math1030/eigenvalue-direction-eigenspace-story-zh-cn.mp4"
+    ),
+  },
   "math1030-gram-schmidt-projection-story": {
     conclusion: text(
       "Gram-Schmidt preserves the subspace because every new vector is made from the vectors already in the same partial span. The subtraction removes old directions; normalization only changes lengths afterward.",

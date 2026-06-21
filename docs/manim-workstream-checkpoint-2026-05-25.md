@@ -39,32 +39,32 @@ history.
 | Math1025 `7.2 Rational and irrational numbers` | `math1025-rational-irrational-root-proof-story` | `docs/manim-rational-irrational-video-qa-2026-06-12.md` |
 | Math1025 `8.1 Polynomial arithmetic and division` | `math1025-polynomial-division-remainder-story` | `docs/manim-polynomial-division-video-qa-2026-06-12.md` |
 | Math1025 `8.2 Polynomial gcds and irreducibility` | `math1025-polynomial-gcd-irreducibility-story` | `docs/manim-polynomial-gcd-video-qa-2026-06-12.md` |
+| Math1030 `8.1 Eigenvalues, eigenvectors, and eigenspaces` | `math1030-eigenvalue-direction-eigenspace-story` | `docs/manim-eigenvalue-direction-eigenspace-video-qa-2026-06-21.md` |
 
 ## Latest Slice Notes
 
-Math1025 `8.2` was implemented after the roadmap, current MDX, extracted
-chapter 8 text, and a read-only explorer confirmed that the polynomial gcd /
-irreducibility unit should be Manim-only. The clip uses the source-backed
-Example 8.2 with
-`f=4x^4-2x^3-16x^2+5x+9` and `g=2x^3-x^2-5x+4`. It visualizes the monic-gcd
-convention, the Euclidean invariant `gcd(f,g)=gcd(g,r)`, the remainder chain
-ending at `-x+1`, normalization to `x-1`, Bézout back-substitution,
-field-dependent irreducibility, and the prime-like divisibility step.
+Math1030 `8.1` was implemented after the roadmap, current MDX, extracted
+`MATH1030-Notes.pdf` section 8.1, `1030gi-n07-01.pdf`, and read-only explorer
+results confirmed that the eigenvalue/eigenspace unit should be Manim-only.
+The clip visualizes the fixed conceptual bridge from a preserved
+eigendirection to the null-space equation `(A-λI)v=0`, then names the
+eigenspace as `N(A-λI)` and closes with the source-backed
+`C=[[3,2],[3,-2]]` eigenspace spans.
 
 Fixes applied:
 
-- new storyboard covers monic gcd normalization, the Euclidean step, the
-  Example 8.2 remainder chain, Bézout reverse substitution, coefficient-field
-  dependence, and irreducible-polynomial divisibility;
+- new storyboard covers ordinary vectors versus eigen-directions, the nonzero
+  condition, nonzero scalar multiples, null-space conversion, eigenspace
+  definition, and the source `C` example;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the polynomial-gcd scene and writes assets under
-  `public/generated/animations/math1025/`;
-- video embed was placed before the proof-sketch section in all three localized
-  MDX files;
-- the displayed Bézout formula in all three locales was corrected with the
-  source-backed `+ (... )g(x)` term;
-- layout spacing, arrow placement, and field-comparison cards were adjusted
-  after visual QA to reduce overlap.
+- render script now includes the eigenvalue/eigenspace scene and writes assets
+  under `public/generated/animations/math1030/`;
+- video embed was placed immediately after the eigenvalue/eigenvector
+  definition in all three localized MDX files;
+- poster timestamp was adjusted to a stable first-screen frame after visual QA
+  found that the default timestamp landed during a transition;
+- the QA note records that the source basis `(-1,3)` and page/video basis
+  `(1,-3)` span the same eigenspace.
 
 ## Verification Stack Used For Latest Slice
 
@@ -81,13 +81,13 @@ Fixes applied:
 
 ## Next Slice
 
-Proceed to the next Math1025 polynomial-method clip unless the roadmap priority
+Proceed to the next Math1030 eigenvalue clip unless the roadmap priority
 changes.
 
 Expected first step:
 
-1. Start with Math1025 `polynomial-methods/rational-functions-and-vieta`
-   unless source inspection changes the priority.
+1. Start with Math1030 `eigenvalues/diagonalization-and-similarity` unless
+   source inspection changes the priority.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset

@@ -275,5 +275,14 @@ Cramer-practice surface; the current article, static example, checkpoint, and
 trilingual clip cover the explanatory transition cleanly and export as a fixed
 study sequence.
 
+The Math1030 `8.1` eigenvalues, eigenvectors, and eigenspaces pass also stays
+Manim-only. The source-backed move is a fixed conceptual bridge: compare a
+generic vector that changes direction with an eigenvector whose image stays on
+the same line, enforce the nonzero-vector condition, rewrite `Av=λv` as
+`(A-λI)v=0`, and name the eigenspace as `N(A-λI)`. A widget would only be
+justified later for graded eigenspace-practice problems; this first pass is
+better served as a short article-embedded explanation that exports as a static
+study sequence.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.
