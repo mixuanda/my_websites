@@ -330,7 +330,7 @@ function LoginPageContent() {
   };
 
   return (
-    <div className="mx-auto mt-12 w-[calc(100vw-4rem)] max-w-md sm:mt-20 sm:w-full">
+    <div className="mx-auto mt-12 w-full max-w-xs sm:mt-20 sm:max-w-md">
       {turnstileSiteKey ? (
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
