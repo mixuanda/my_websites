@@ -182,6 +182,26 @@ function LoginPageContent() {
   }, [registrationEnabled]);
 
   useEffect(() => {
+    if (!turnstileSiteKey || turnstileReady) {
+      return;
+    }
+
+    if (window.turnstile) {
+      setTurnstileReady(true);
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      if (window.turnstile) {
+        setTurnstileReady(true);
+        window.clearInterval(timer);
+      }
+    }, 250);
+
+    return () => window.clearInterval(timer);
+  }, [turnstileReady, turnstileSiteKey]);
+
+  useEffect(() => {
     if (
       mode !== "register" ||
       !turnstileSiteKey ||
