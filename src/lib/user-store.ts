@@ -42,6 +42,12 @@ const memoryUsersById = new Map<string, SiteUserProfile>();
 const memoryUsersByEmail = new Map<string, string>();
 const memoryAccountsByUserId = new Map<string, LinkedAccount[]>();
 
+function withoutUndefinedFields<T extends object>(value: T): Partial<T> {
+  return Object.fromEntries(
+    Object.entries(value).filter(([, fieldValue]) => fieldValue !== undefined)
+  ) as Partial<T>;
+}
+
 function normalizeEmail(email?: string | null) {
   return email?.trim().toLowerCase() || null;
 }
@@ -198,7 +204,10 @@ export async function upsertUserProfile(input: {
   rememberProfile(profile);
 
   if (firestore) {
-    await firestore.collection("users").doc(userId).set(profile, { merge: true });
+    await firestore
+      .collection("users")
+      .doc(userId)
+      .set(withoutUndefinedFields(profile), { merge: true });
   }
 
   return profile;
@@ -232,10 +241,10 @@ export async function recordUserLogin(user: User, account?: Account | null) {
       .collection("users")
       .doc(updated.id)
       .set(
-        {
+        withoutUndefinedFields({
           ...updated,
           lastProvider: account?.provider ?? "credentials",
-        },
+        }),
         { merge: true }
       );
   }
@@ -290,7 +299,10 @@ export async function updateUserProfile(
   rememberProfile(nextProfile);
 
   if (firestore) {
-    await firestore.collection("users").doc(nextProfile.id).set(nextProfile, { merge: true });
+    await firestore
+      .collection("users")
+      .doc(nextProfile.id)
+      .set(withoutUndefinedFields(nextProfile), { merge: true });
   }
 
   return nextProfile;
