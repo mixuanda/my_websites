@@ -1,6 +1,13 @@
 "use client";
 
-import { type FormEvent, Suspense, useEffect, useRef, useState } from "react";
+import {
+  type FormEvent,
+  Suspense,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { GlassCard } from "@/components/glass";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -68,7 +75,6 @@ function LoginPageContent() {
     useState<RegistrationReadiness | null>(null);
   const [registrationReadinessLoaded, setRegistrationReadinessLoaded] = useState(false);
   const [serverProviders, setServerProviders] = useState<string[]>([]);
-  const [turnstileReady, setTurnstileReady] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState("");
   const turnstileContainerRef = useRef<HTMLDivElement | null>(null);
   const turnstileWidgetIdRef = useRef<string | null>(null);
@@ -181,36 +187,15 @@ function LoginPageContent() {
       });
   }, [registrationEnabled]);
 
-  useEffect(() => {
-    if (!turnstileSiteKey || turnstileReady) {
-      return;
-    }
-
-    if (window.turnstile) {
-      setTurnstileReady(true);
-      return;
-    }
-
-    const timer = window.setInterval(() => {
-      if (window.turnstile) {
-        setTurnstileReady(true);
-        window.clearInterval(timer);
-      }
-    }, 250);
-
-    return () => window.clearInterval(timer);
-  }, [turnstileReady, turnstileSiteKey]);
-
-  useEffect(() => {
+  const renderTurnstileWidget = useCallback(() => {
     if (
       mode !== "register" ||
       !turnstileSiteKey ||
-      !turnstileReady ||
       !turnstileContainerRef.current ||
-      !window.turnstile ||
+      !window.turnstile?.render ||
       turnstileWidgetIdRef.current
     ) {
-      return;
+      return false;
     }
 
     turnstileWidgetIdRef.current = window.turnstile.render(
@@ -223,14 +208,36 @@ function LoginPageContent() {
       }
     );
 
+    return true;
+  }, [mode, turnstileSiteKey]);
+
+  useEffect(() => {
+    let timer: number | undefined;
+
+    if (
+      !renderTurnstileWidget() &&
+      mode === "register" &&
+      turnstileSiteKey &&
+      !turnstileWidgetIdRef.current
+    ) {
+      timer = window.setInterval(() => {
+        if (renderTurnstileWidget()) {
+          window.clearInterval(timer);
+        }
+      }, 250);
+    }
+
     return () => {
+      if (timer) {
+        window.clearInterval(timer);
+      }
       if (turnstileWidgetIdRef.current) {
         window.turnstile?.remove?.(turnstileWidgetIdRef.current);
         turnstileWidgetIdRef.current = null;
       }
       setTurnstileToken("");
     };
-  }, [mode, turnstileReady, turnstileSiteKey]);
+  }, [mode, renderTurnstileWidget, turnstileSiteKey]);
 
   function messageForFirebaseError(error: unknown) {
     const code = (error as { code?: string }).code;
@@ -355,7 +362,7 @@ function LoginPageContent() {
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
           strategy="afterInteractive"
-          onLoad={() => setTurnstileReady(true)}
+          onLoad={() => renderTurnstileWidget()}
         />
       ) : null}
       <GlassCard className="w-full p-6 sm:p-8">
