@@ -42,32 +42,29 @@ history.
 | Math1030 `8.1 Eigenvalues, eigenvectors, and eigenspaces` | `math1030-eigenvalue-direction-eigenspace-story` | `docs/manim-eigenvalue-direction-eigenspace-video-qa-2026-06-21.md` |
 | Math1030 `8.2 Diagonalization and similarity` | `math1030-diagonalization-similarity-eigenbasis-story` | `docs/manim-diagonalization-similarity-video-qa-2026-06-29.md` |
 | Math1030 `8.3 Characteristic polynomials and diagonalization tests` | `math1030-characteristic-polynomial-diagonalization-test-story` | `docs/manim-characteristic-polynomial-diagonalization-test-video-qa-2026-06-29.md` |
+| Math1030 `9.1 Inner products, norms, and angles` | `math1030-inner-product-norm-angle-story` | `docs/manim-inner-products-norms-angles-video-qa-2026-06-29.md` |
 
 ## Latest Slice Notes
 
-Math1030 `8.3` was implemented after the roadmap, current MDX, extracted
-`MATH1030-Notes.pdf` sections 8.3 and `1030gi-n07-03.pdf` confirmed that the
-characteristic-polynomial / multiplicity-test unit should be Manim-only. The
-clip visualizes the fixed source-backed decision chain: package
-`det(A-lambda I)=0` as `p_A(x)=det(A-xI)`, factor the source `2x2` polynomial
-to read roots/eigenvalues, contrast the repeated-root example
-`B=[[2,3],[0,2]]` with its one-dimensional eigenspace, and finish with the
-dimension-sum and distinct-eigenvalue tests for diagonalizability.
+Math1030 `9.1` was implemented after roadmap, current MDX, and reference
+inspection confirmed the source boundary. `MATH1030-Notes.pdf` pp. 209-213 and
+`1030gi-n08-01.pdf` support the standard inner product, its properties, norm,
+and normalization. The angle / orthogonality material is a short bridge from
+`MATH1030-Notes.pdf` p. 214 / section 9.2, and projection subtraction is
+explicitly deferred to the already-completed Gram-Schmidt video.
 
 Fixes applied:
 
-- new storyboard covers the determinant pipeline, source factorization,
-  repeated-root algebraic multiplicity, geometric multiplicity via a null-space
-  calculation, the dimension-sum test, and the distinct-eigenvalue shortcut;
+- new storyboard covers the dot-product scalar, basic properties, norm from
+  self-product, unit-vector normalization, the 9.2 angle bridge, and the
+  zero-inner-product orthogonality criterion;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the characteristic-polynomial test scene and
-  writes assets under `public/generated/animations/math1030/`;
-- video embed was placed immediately after the root/eigenvalue equivalence in
-  all three localized MDX files;
-- visual QA caught English fallback text in Chinese repeated-root cards; the
-  scene now localizes those card bodies before final QA;
-- the MDX dimension-sum theorem wording now explicitly says the listed real
-  eigenvalues are all distinct eigenvalues of the matrix.
+- render script now includes the inner-product scene and writes assets under
+  `public/generated/animations/math1030/`;
+- video embed was placed after the angle / orthogonality bridge and before the
+  worked angle example in all three localized MDX files;
+- no widget was added because the first-pass learning move is a fixed
+  algebra-to-geometry bridge rather than a reader-controlled vector calculator.
 
 ## Verification Stack Used For Latest Slice
 
@@ -89,7 +86,7 @@ Proceed to the next Math1030 clip unless the roadmap priority changes.
 Expected first step:
 
 1. Start with Math1030
-   `inner-products/inner-products-norms-and-angles` unless source inspection
+   `inner-products/orthogonal-sets-and-orthonormal-bases` unless source inspection
    changes the priority.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.

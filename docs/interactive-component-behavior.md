@@ -114,6 +114,12 @@ The current pass especially strengthens the `math1030` note flow.
   the Manim clip clarifies the source-backed warning that RREF gives pivot
   positions for column-space basis selection while its nonzero rows give the
   row-space basis directly.
+- The MATH1030 `9.1` inner-product / norm / angle video pass did not add a new
+  widget. The roadmap marks the unit as Manim-only, and source inspection
+  showed the first-pass learning move is a fixed bridge from dot product to
+  norm, normalization, and the 9.2 angle / orthogonality criterion. Projection
+  subtraction remains in the existing Gram-Schmidt video rather than being
+  duplicated here.
 - Public note pages now keep source tracing out of the interaction chrome so
   the widget remains focused on learning rather than documentation.
 

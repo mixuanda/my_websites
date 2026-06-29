@@ -1633,6 +1633,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/characteristic-polynomial-diagonalization-test-story-zh-cn.mp4"
     ),
   },
+  "math1030-inner-product-norm-angle-story": {
+    conclusion: text(
+      "Inner products are the algebraic device behind the geometry of this chapter: self-products give length, scaled vectors give unit directions, and inner products between vectors read angles and orthogonality.",
+      "內積是本章幾何背後的代數工具：自己與自己內積給出長度，除以長度給出單位方向，兩個向量的內積則讀出夾角與正交。",
+      "内积是本章几何背后的代数工具：自己与自己内积给出长度，除以长度给出单位方向，两个向量的内积则读出夹角与正交。"
+    ),
+    durationSeconds: 13,
+    frames: [
+      {
+        label: text("Dot product as a scalar", "點積作為純量", "点积作为标量"),
+        value: text(
+          "The standard inner product multiplies matching coordinates and adds them, so <u,v>=u^T v is one number, not another vector.",
+          "標準內積把對應坐標相乘再相加，所以 <u,v>=u^T v 是一個數，不是另一個向量。",
+          "标准内积把对应坐标相乘再相加，所以 <u,v>=u^T v 是一个数，不是另一个向量。"
+        ),
+      },
+      {
+        label: text("Reliable properties", "可靠性質", "可靠性质"),
+        value: text(
+          "Linearity, symmetry, and positive definiteness are the source-backed properties that make this scalar useful for geometry.",
+          "線性、對稱與正定性是來源支持的基本性質，令這個純量能夠服務幾何。",
+          "线性、对称与正定性是来源支持的基本性质，让这个标量能够服务几何。"
+        ),
+      },
+      {
+        label: text("Norm from self-product", "由自內積得到範數", "由自内积得到范数"),
+        value: text(
+          "The norm is ||u||=sqrt(<u,u>). For u=(1,2), this gives ||u||=sqrt(1^2+2^2)=sqrt(5).",
+          "範數是 ||u||=sqrt(<u,u>)。對 u=(1,2)，得到 ||u||=sqrt(1^2+2^2)=sqrt(5)。",
+          "范数是 ||u||=sqrt(<u,u>)。对 u=(1,2)，得到 ||u||=sqrt(1^2+2^2)=sqrt(5)。"
+        ),
+      },
+      {
+        label: text("Normalize without turning", "不轉向地正規化", "不转向地规范化"),
+        value: text(
+          "A nonzero vector becomes a unit vector by dividing by its norm: u/||u|| keeps the direction and has length 1.",
+          "非零向量除以自己的範數就成為單位向量：u/||u|| 保持方向，長度變成 1。",
+          "非零向量除以自己的范数就成为单位向量：u/||u|| 保持方向，长度变成 1。"
+        ),
+      },
+      {
+        label: text("Angle bridge", "夾角橋接", "夹角桥接"),
+        value: text(
+          "In R2 or R3, the same inner product appears in <u,v>=||u||||v|| cos(theta), which is the bridge to the next section.",
+          "在 R2 或 R3 中，同一個內積出現在 <u,v>=||u||||v|| cos(theta)，這就是通向下一節的橋接。",
+          "在 R2 或 R3 中，同一个内积出现在 <u,v>=||u||||v|| cos(theta)，这就是通向下一节的桥接。"
+        ),
+      },
+      {
+        label: text("Orthogonality criterion", "正交判準", "正交判准"),
+        value: text(
+          "For nonzero vectors, <x,y>=0 forces cos(theta)=0, so the vectors are perpendicular. Projection subtraction is left for Gram-Schmidt.",
+          "對非零向量，<x,y>=0 迫使 cos(theta)=0，所以兩向量垂直。投影扣除留到 Gram-Schmidt 再處理。",
+          "对非零向量，<x,y>=0 迫使 cos(theta)=0，所以两向量垂直。投影扣除留到 Gram-Schmidt 再处理。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch the standard inner product become geometry: a dot product scalar becomes length through self-products, unit direction through normalization, and an angle or perpendicularity test through the cosine formula.",
+      "觀看標準內積如何變成幾何：點積純量經由自內積變成長度，經由正規化變成單位方向，再經由餘弦公式變成夾角或垂直判準。",
+      "观看标准内积如何变成几何：点积标量经由自内积变成长度，经由规范化变成单位方向，再经由余弦公式变成夹角或垂直判准。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/inner-product-norm-angle-story-en.png",
+      "/generated/animations/math1030/inner-product-norm-angle-story-zh-hk.png",
+      "/generated/animations/math1030/inner-product-norm-angle-story-zh-cn.png"
+    ),
+    title: text(
+      "From inner product to length and angle",
+      "由內積走到長度與夾角",
+      "由内积走到长度与夹角"
+    ),
+    transcript: [
+      text(
+        "The standard inner product multiplies matching coordinates and adds them into one scalar.",
+        "標準內積把對應坐標相乘，再加成一個純量。",
+        "标准内积把对应坐标相乘，再加成一个标量。"
+      ),
+      text(
+        "The self-product gives the norm, and dividing a nonzero vector by its norm gives a unit vector.",
+        "自己與自己內積給出範數；非零向量除以自己的範數就得到單位向量。",
+        "自己与自己内积给出范数；非零向量除以自己的范数就得到单位向量。"
+      ),
+      text(
+        "The angle formula and the zero inner-product test explain why orthogonality is defined algebraically in the next section.",
+        "夾角公式和內積為零的測試，說明下一節為何可以用代數方式定義正交。",
+        "夹角公式和内积为零的测试，说明下一节为何可以用代数方式定义正交。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/inner-product-norm-angle-story-en.mp4",
+      "/generated/animations/math1030/inner-product-norm-angle-story-zh-hk.mp4",
+      "/generated/animations/math1030/inner-product-norm-angle-story-zh-cn.mp4"
+    ),
+  },
   "math1030-gram-schmidt-projection-story": {
     conclusion: text(
       "Gram-Schmidt preserves the subspace because every new vector is made from the vectors already in the same partial span. The subtraction removes old directions; normalization only changes lengths afterward.",

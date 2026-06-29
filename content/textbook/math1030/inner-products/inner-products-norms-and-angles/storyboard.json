@@ -1,0 +1,303 @@
+{
+  "course": "math1030",
+  "chapter": "inner-products",
+  "unit": "inner-products-norms-and-angles",
+  "unitTitle": {
+    "en": "9.1 Inner products, norms, and angles",
+    "zh-hk": "9.1 內積、範數與夾角",
+    "zh-cn": "9.1 内积、范数与夹角"
+  },
+  "videoId": "math1030-inner-product-norm-angle-story",
+  "sourceBoundary": {
+    "en": "The inner-product, norm, and normalization material is from section 9.1. Angle and orthogonality are used only as a short bridge into section 9.2. Projection subtraction is intentionally reserved for 9.3.",
+    "zh-hk": "內積、範數與正規化材料來自 9.1。夾角與正交只作為進入 9.2 的短橋接。投影扣除刻意保留給 9.3。",
+    "zh-cn": "内积、范数与规范化材料来自 9.1。夹角与正交只作为进入 9.2 的短桥接。投影扣除刻意保留给 9.3。"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "dot_product_definition",
+          "cardTitle": "Multiply matching coordinates, then add",
+          "goal": "Show the standard inner product as a scalar-valued operation.",
+          "beats": [
+            "Display u=(1,2) and v=(3,1) as column-vector data.",
+            "Pair matching coordinates.",
+            "Collapse 1*3+2*1 to the scalar 5."
+          ],
+          "mathBlocks": [
+            "\\langle u,v\\rangle=u^Tv=\\sum_i u_i v_i",
+            "\\langle (1,2),(3,1)\\rangle=5"
+          ],
+          "animation": "matched-coordinate products flow into one scalar card"
+        },
+        {
+          "type": "basic_properties",
+          "cardTitle": "The operation has the properties geometry needs",
+          "goal": "Tie the source-backed axioms to why this scalar is mathematically reliable.",
+          "beats": [
+            "Show linearity in one argument.",
+            "Show symmetry.",
+            "Show positive definiteness through a self-product."
+          ],
+          "mathBlocks": [
+            "\\langle av+bw,u\\rangle=a\\langle v,u\\rangle+b\\langle w,u\\rangle",
+            "\\langle v,w\\rangle=\\langle w,v\\rangle",
+            "\\langle v,v\\rangle\\ge 0"
+          ],
+          "animation": "three property badges appear as the inner product becomes a reliable geometry tool"
+        },
+        {
+          "type": "norm_from_self_product",
+          "cardTitle": "A vector measures its own length",
+          "goal": "Convert the self-inner-product into the norm.",
+          "beats": [
+            "Reuse u=(1,2).",
+            "Compute <u,u>=1^2+2^2=5.",
+            "Take the square root to get ||u||=sqrt(5)."
+          ],
+          "mathBlocks": [
+            "\\|u\\|=\\sqrt{\\langle u,u\\rangle}",
+            "\\|u\\|=\\sqrt5"
+          ],
+          "animation": "a vector arrow gains a length label built from its self-product"
+        },
+        {
+          "type": "normalization",
+          "cardTitle": "Normalize by dividing by length",
+          "goal": "Show how a nonzero vector becomes a unit vector without changing direction.",
+          "beats": [
+            "Display u and the shorter vector u/||u|| on the same ray.",
+            "Label the normalized vector.",
+            "Mark its length as 1."
+          ],
+          "mathBlocks": [
+            "\\frac{u}{\\|u\\|}",
+            "\\left\\|\\frac{u}{\\|u\\|}\\right\\|=1"
+          ],
+          "animation": "the original arrow and its unit version share direction, with different lengths"
+        },
+        {
+          "type": "angle_bridge",
+          "cardTitle": "The same scalar reads the angle",
+          "goal": "Bridge from 9.1 into the source-backed 9.2 angle formula.",
+          "beats": [
+            "Show two nonzero vectors in R2.",
+            "Draw the angle between them.",
+            "Display cos(theta)=<u,v>/(||u||||v||)."
+          ],
+          "mathBlocks": [
+            "\\langle u,v\\rangle=\\|u\\|\\|v\\|\\cos\\theta"
+          ],
+          "animation": "the dot-product scalar is reinterpreted as an angle measurement"
+        },
+        {
+          "type": "orthogonality_bridge",
+          "cardTitle": "Zero inner product means perpendicular",
+          "goal": "Close with the orthogonality criterion that motivates the next section.",
+          "beats": [
+            "Use x=(1,2) and y=(-2,1).",
+            "Compute <x,y>=-2+2=0.",
+            "Show the right-angle marker and label the vectors perpendicular."
+          ],
+          "mathBlocks": [
+            "\\langle x,y\\rangle=0",
+            "x\\perp y"
+          ],
+          "animation": "a zero dot-product computation becomes a right-angle diagram"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "dot_product_definition",
+          "cardTitle": "對應坐標相乘，然後相加",
+          "goal": "把標準內積呈現為輸出純量的運算。",
+          "beats": [
+            "把 u=(1,2) 與 v=(3,1) 顯示為列向量資料。",
+            "配對對應坐標。",
+            "把 1*3+2*1 收束成純量 5。"
+          ],
+          "mathBlocks": [
+            "\\langle u,v\\rangle=u^Tv=\\sum_i u_i v_i",
+            "\\langle (1,2),(3,1)\\rangle=5"
+          ],
+          "animation": "對應坐標乘積流入同一張純量卡"
+        },
+        {
+          "type": "basic_properties",
+          "cardTitle": "這個運算具備幾何所需的性質",
+          "goal": "把來源支持的公理連到這個純量為何可靠。",
+          "beats": [
+            "顯示其中一個變量的線性。",
+            "顯示對稱性。",
+            "用自己與自己的內積顯示正定性。"
+          ],
+          "mathBlocks": [
+            "\\langle av+bw,u\\rangle=a\\langle v,u\\rangle+b\\langle w,u\\rangle",
+            "\\langle v,w\\rangle=\\langle w,v\\rangle",
+            "\\langle v,v\\rangle\\ge 0"
+          ],
+          "animation": "三個性質標記依次出現，內積成為可靠的幾何工具"
+        },
+        {
+          "type": "norm_from_self_product",
+          "cardTitle": "向量可以量度自己的長度",
+          "goal": "把自己與自己的內積轉成範數。",
+          "beats": [
+            "沿用 u=(1,2)。",
+            "計算 <u,u>=1^2+2^2=5。",
+            "開平方得到 ||u||=sqrt(5)。"
+          ],
+          "mathBlocks": [
+            "\\|u\\|=\\sqrt{\\langle u,u\\rangle}",
+            "\\|u\\|=\\sqrt5"
+          ],
+          "animation": "向量箭嘴旁出現由自內積建立的長度標籤"
+        },
+        {
+          "type": "normalization",
+          "cardTitle": "除以長度得到單位向量",
+          "goal": "顯示非零向量如何在方向不變下變成單位向量。",
+          "beats": [
+            "在同一條射線上顯示 u 與較短的 u/||u||。",
+            "標記正規化後的向量。",
+            "把其長度標示為 1。"
+          ],
+          "mathBlocks": [
+            "\\frac{u}{\\|u\\|}",
+            "\\left\\|\\frac{u}{\\|u\\|}\\right\\|=1"
+          ],
+          "animation": "原向量和單位版本方向相同，但長度不同"
+        },
+        {
+          "type": "angle_bridge",
+          "cardTitle": "同一個純量讀出夾角",
+          "goal": "由 9.1 橋接到來源支持的 9.2 夾角公式。",
+          "beats": [
+            "在 R2 中顯示兩個非零向量。",
+            "畫出它們之間的夾角。",
+            "顯示 cos(theta)=<u,v>/(||u||||v||)。"
+          ],
+          "mathBlocks": [
+            "\\langle u,v\\rangle=\\|u\\|\\|v\\|\\cos\\theta"
+          ],
+          "animation": "點積純量被重新解讀為夾角量度"
+        },
+        {
+          "type": "orthogonality_bridge",
+          "cardTitle": "內積為零表示垂直",
+          "goal": "用正交判準收束，為下一節鋪路。",
+          "beats": [
+            "使用 x=(1,2) 與 y=(-2,1)。",
+            "計算 <x,y>=-2+2=0。",
+            "顯示直角標記，並標示兩向量垂直。"
+          ],
+          "mathBlocks": [
+            "\\langle x,y\\rangle=0",
+            "x\\perp y"
+          ],
+          "animation": "內積為零的計算變成直角圖像"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "dot_product_definition",
+          "cardTitle": "对应坐标相乘，然后相加",
+          "goal": "把标准内积呈现为输出标量的运算。",
+          "beats": [
+            "把 u=(1,2) 与 v=(3,1) 显示为列向量数据。",
+            "配对对应坐标。",
+            "把 1*3+2*1 收束成标量 5。"
+          ],
+          "mathBlocks": [
+            "\\langle u,v\\rangle=u^Tv=\\sum_i u_i v_i",
+            "\\langle (1,2),(3,1)\\rangle=5"
+          ],
+          "animation": "对应坐标乘积流入同一张标量卡"
+        },
+        {
+          "type": "basic_properties",
+          "cardTitle": "这个运算具备几何所需的性质",
+          "goal": "把来源支持的公理连到这个标量为何可靠。",
+          "beats": [
+            "显示其中一个变量的线性。",
+            "显示对称性。",
+            "用自己与自己的内积显示正定性。"
+          ],
+          "mathBlocks": [
+            "\\langle av+bw,u\\rangle=a\\langle v,u\\rangle+b\\langle w,u\\rangle",
+            "\\langle v,w\\rangle=\\langle w,v\\rangle",
+            "\\langle v,v\\rangle\\ge 0"
+          ],
+          "animation": "三个性质标记依次出现，内积成为可靠的几何工具"
+        },
+        {
+          "type": "norm_from_self_product",
+          "cardTitle": "向量可以量度自己的长度",
+          "goal": "把自己与自己的内积转成范数。",
+          "beats": [
+            "沿用 u=(1,2)。",
+            "计算 <u,u>=1^2+2^2=5。",
+            "开平方得到 ||u||=sqrt(5)。"
+          ],
+          "mathBlocks": [
+            "\\|u\\|=\\sqrt{\\langle u,u\\rangle}",
+            "\\|u\\|=\\sqrt5"
+          ],
+          "animation": "向量箭头旁出现由自内积建立的长度标签"
+        },
+        {
+          "type": "normalization",
+          "cardTitle": "除以长度得到单位向量",
+          "goal": "显示非零向量如何在方向不变下变成单位向量。",
+          "beats": [
+            "在同一条射线上显示 u 与较短的 u/||u||。",
+            "标记规范化后的向量。",
+            "把其长度标示为 1。"
+          ],
+          "mathBlocks": [
+            "\\frac{u}{\\|u\\|}",
+            "\\left\\|\\frac{u}{\\|u\\|}\\right\\|=1"
+          ],
+          "animation": "原向量和单位版本方向相同，但长度不同"
+        },
+        {
+          "type": "angle_bridge",
+          "cardTitle": "同一个标量读出夹角",
+          "goal": "由 9.1 桥接到来源支持的 9.2 夹角公式。",
+          "beats": [
+            "在 R2 中显示两个非零向量。",
+            "画出它们之间的夹角。",
+            "显示 cos(theta)=<u,v>/(||u||||v||)。"
+          ],
+          "mathBlocks": [
+            "\\langle u,v\\rangle=\\|u\\|\\|v\\|\\cos\\theta"
+          ],
+          "animation": "点积标量被重新解读为夹角量度"
+        },
+        {
+          "type": "orthogonality_bridge",
+          "cardTitle": "内积为零表示垂直",
+          "goal": "用正交判准收束，为下一节铺路。",
+          "beats": [
+            "使用 x=(1,2) 与 y=(-2,1)。",
+            "计算 <x,y>=-2+2=0。",
+            "显示直角标记，并标示两向量垂直。"
+          ],
+          "mathBlocks": [
+            "\\langle x,y\\rangle=0",
+            "x\\perp y"
+          ],
+          "animation": "内积为零的计算变成直角图像"
+        }
+      ]
+    }
+  }
+}

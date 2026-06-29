@@ -1109,3 +1109,17 @@ existing invertibility note instead of creating a detached new route.
   checkpoint coverage. Remaining MATH1090 work should prioritize export /
   rendering QA and optional depth for earlier logic / number-construction
   units.
+
+### 2026-06-29 checkpoint 30: MATH1030 9.1 video explanation boundary pass
+
+- Revisited `9.1 Inner products, norms, and angles` against
+  `MATH1030-Notes.pdf` pp. 209-214 and `1030gi-n08-01.pdf` pp. 1-2 before
+  adding the Manim explanation.
+- Added a trilingual article-embedded `VideoExplanation` for the standard
+  inner product, norm from self-product, unit-vector normalization, and the
+  short angle / orthogonality bridge into section 9.2.
+- Recorded the source boundary explicitly: projection subtraction belongs to
+  the existing Gram-Schmidt / 9.3 material and was not treated as a 9.1 claim.
+- Status change: the 9.1 reference-backed prose remains incorporated, and the
+  video explanation is now incorporated as an export-friendly static fallback
+  through the `VideoExplanation` frame sequence.

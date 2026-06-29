@@ -65,6 +65,9 @@ else
     "CharacteristicPolynomialDiagonalizationTestStoryEn"
     "CharacteristicPolynomialDiagonalizationTestStoryZhHk"
     "CharacteristicPolynomialDiagonalizationTestStoryZhCn"
+    "InnerProductNormAngleStoryEn"
+    "InnerProductNormAngleStoryZhHk"
+    "InnerProductNormAngleStoryZhCn"
     "FunctionMapPropertiesStoryEn"
     "FunctionMapPropertiesStoryZhHk"
     "FunctionMapPropertiesStoryZhCn"
@@ -156,6 +159,9 @@ scene_file() {
       ;;
     CharacteristicPolynomialDiagonalizationTestStory|CharacteristicPolynomialDiagonalizationTestStoryEn|CharacteristicPolynomialDiagonalizationTestStoryZhHk|CharacteristicPolynomialDiagonalizationTestStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/characteristic_polynomials_diagonalization_tests.py"
+      ;;
+    InnerProductNormAngleStory|InnerProductNormAngleStoryEn|InnerProductNormAngleStoryZhHk|InnerProductNormAngleStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1030/inner_products_norms_angles.py"
       ;;
     FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|FunctionMapPropertiesStoryZhHk|FunctionMapPropertiesStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1090/functions_relations.py"
@@ -267,6 +273,15 @@ scene_locale() {
     CharacteristicPolynomialDiagonalizationTestStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
+    InnerProductNormAngleStory|InnerProductNormAngleStoryEn)
+      printf '%s\n' "en"
+      ;;
+    InnerProductNormAngleStoryZhHk)
+      printf '%s\n' "zh-hk"
+      ;;
+    InnerProductNormAngleStoryZhCn)
+      printf '%s\n' "zh-cn"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|BasisDimensionJustRightStory|BasisDimensionJustRightStoryEn|FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|RationalIrrationalRootProofStory|RationalIrrationalRootProofStoryEn|PolynomialDivisionRemainderStory|PolynomialDivisionRemainderStoryEn|PolynomialGcdIrreducibilityStory|PolynomialGcdIrreducibilityStoryEn|HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn)
       printf '%s\n' "en"
       ;;
@@ -338,6 +353,9 @@ video_basename() {
     CharacteristicPolynomialDiagonalizationTestStory|CharacteristicPolynomialDiagonalizationTestStoryEn|CharacteristicPolynomialDiagonalizationTestStoryZhHk|CharacteristicPolynomialDiagonalizationTestStoryZhCn)
       printf '%s\n' "characteristic-polynomial-diagonalization-test-story"
       ;;
+    InnerProductNormAngleStory|InnerProductNormAngleStoryEn|InnerProductNormAngleStoryZhHk|InnerProductNormAngleStoryZhCn)
+      printf '%s\n' "inner-product-norm-angle-story"
+      ;;
     FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|FunctionMapPropertiesStoryZhHk|FunctionMapPropertiesStoryZhCn)
       printf '%s\n' "function-map-properties-story"
       ;;
@@ -392,6 +410,9 @@ scene_course() {
       printf '%s\n' "math1030"
       ;;
     CharacteristicPolynomialDiagonalizationTestStory|CharacteristicPolynomialDiagonalizationTestStoryEn|CharacteristicPolynomialDiagonalizationTestStoryZhHk|CharacteristicPolynomialDiagonalizationTestStoryZhCn)
+      printf '%s\n' "math1030"
+      ;;
+    InnerProductNormAngleStory|InnerProductNormAngleStoryEn|InnerProductNormAngleStoryZhHk|InnerProductNormAngleStoryZhCn)
       printf '%s\n' "math1030"
       ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|MatrixBasicsPositionMapZhHk|MatrixBasicsPositionMapZhCn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|AugmentedMatrixRowOperationSafetyZhHk|AugmentedMatrixRowOperationSafetyZhCn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|GramSchmidtProjectionStoryZhHk|GramSchmidtProjectionStoryZhCn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|MatrixProductLinearSystemStoryZhHk|MatrixProductLinearSystemStoryZhCn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|RowOperationMatrixLeftMultiplyStoryZhHk|RowOperationMatrixLeftMultiplyStoryZhCn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearCombinationSpanSweepStoryZhHk|LinearCombinationSpanSweepStoryZhCn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|LinearDependenceRedundancyStoryZhHk|LinearDependenceRedundancyStoryZhCn|BasisDimensionJustRightStory|BasisDimensionJustRightStoryEn|BasisDimensionJustRightStoryZhHk|BasisDimensionJustRightStoryZhCn)
