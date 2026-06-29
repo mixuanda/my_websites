@@ -97,6 +97,11 @@ Current decision:
 - TinaCMS removal and database migration are separate tracks.
 - TinaCMS has been removed from this worktree.
 - Firestore remains the application database for now.
+- 2026-05-25 account-branch update: keep Firestore for email/password users,
+  OAuth adapter data, membership entitlements, Stripe customer mappings, and
+  problem attempts until a fixture-backed migration exists. Vercel Marketplace
+  Postgres or Clerk can be evaluated later, but neither should be introduced as
+  an unplanned same-pass replacement for the current Auth.js/Firestore model.
 - Vercel Marketplace Postgres remains a future candidate after schema,
   backup/rollback, and billing reconciliation work.
 - Redis/KV is cache/rate-limit/idempotency tooling only.

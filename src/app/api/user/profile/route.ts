@@ -48,9 +48,20 @@ export async function GET() {
     return NextResponse.json({
       backend: {
         authProvidersConfigured: authBackendStatus.hasConfiguredProvider,
+        firebaseBridgeConfigured: authBackendStatus.firebaseBridgeConfigured,
+        firebaseClientConfigured: authBackendStatus.firebaseClientConfigured,
+        firebaseClientMissingEnv: authBackendStatus.firebaseClientMissingEnv,
+        githubConfigured: authBackendStatus.githubConfigured,
+        googleConfigured: authBackendStatus.googleConfigured,
         passwordUserCount: authBackendStatus.passwordUserCount,
         persistence: usingFirestore ? "firestore" : "memory",
+        registrationCaptchaConfigured: authBackendStatus.registrationCaptchaConfigured,
+        registrationCaptchaRequired: authBackendStatus.registrationCaptchaRequired,
         registrationEnabled: authBackendStatus.registrationEnabled,
+        registrationPersistenceConfigured:
+          authBackendStatus.registrationPersistenceConfigured,
+        registrationPersistenceRequired:
+          authBackendStatus.registrationPersistenceRequired,
       },
       billing: {
         configuredPlanCount: getConfiguredBillingPlans().length,
