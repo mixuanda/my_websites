@@ -70,6 +70,7 @@ const missingRegistrationReadyBranchEnv = missingBranchPreviewEnv(
   branch,
 );
 const missingCheckoutBranchEnv = missingBranchPreviewEnv(envOutput, checkoutBranchEnv, branch);
+const readPreviewJson = expectPublic ? publicJson : vercelJson;
 
 for (const name of missingCoreBranchEnv) {
   failures.push(`missing branch-scoped Preview (${branch}) env: ${name}`);
@@ -87,9 +88,9 @@ if (missingCheckoutBranchEnv.length > 0) {
   else warnings.push(message);
 }
 
-const registrationReadiness = vercelJson("/api/auth/register");
-const providers = vercelJson("/api/auth/providers");
-const billingStatus = vercelJson("/api/billing/status");
+const registrationReadiness = readPreviewJson("/api/auth/register");
+const providers = readPreviewJson("/api/auth/providers");
+const billingStatus = readPreviewJson("/api/billing/status");
 
 const providerKeys = Object.keys(providers);
 const missingAuthBridgeProviders = expectedAuthBridgeProviders.filter((provider) => !providerKeys.includes(provider));
@@ -131,7 +132,7 @@ if (!billingStatus.stripe?.publishableKeyConfigured) {
   else warnings.push(message);
 }
 
-const registrationPost = vercelJson("/api/auth/register", [
+const registrationPost = readPreviewJson("/api/auth/register", [
   "--request",
   "POST",
   "--header",
@@ -307,6 +308,22 @@ function vercelJson(apiPath, curlArgs = []) {
   const lastBrace = out.lastIndexOf("}");
   if (firstBrace < 0 || lastBrace < firstBrace) {
     throw new Error(`No JSON object returned from ${apiPath}`);
+  }
+  return JSON.parse(out.slice(firstBrace, lastBrace + 1));
+}
+
+function publicJson(apiPath, curlArgs = []) {
+  const out = run("curl", [
+    "-sS",
+    "--max-time",
+    "60",
+    ...curlArgs,
+    new URL(apiPath, developmentDomain).toString(),
+  ]);
+  const firstBrace = out.indexOf("{");
+  const lastBrace = out.lastIndexOf("}");
+  if (firstBrace < 0 || lastBrace < firstBrace) {
+    throw new Error(`No JSON object returned from public ${apiPath}`);
   }
   return JSON.parse(out.slice(firstBrace, lastBrace + 1));
 }

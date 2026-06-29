@@ -330,7 +330,7 @@ function LoginPageContent() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20">
+    <div className="mx-auto mt-12 w-[calc(100vw-2rem)] max-w-md sm:mt-20">
       {turnstileSiteKey ? (
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
@@ -338,10 +338,10 @@ function LoginPageContent() {
           onLoad={() => setTurnstileReady(true)}
         />
       ) : null}
-      <GlassCard className="p-8">
+      <GlassCard className="w-full p-6 sm:p-8">
         <div className="text-center mb-8">
           <h1 className="text-2xl font-bold mb-2">{pageTitle}</h1>
-          <p className="text-muted-foreground">
+          <p className="break-words text-muted-foreground">
             {pageDescription}
           </p>
         </div>

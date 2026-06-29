@@ -311,21 +311,28 @@ with static `process.env.NEXT_PUBLIC_FIREBASE_*` access in application code.
 Do not replace this with dynamic `process.env[name]` lookup; Next.js will not
 reliably inline dynamically indexed public env vars into the client bundle.
 
-Only after that check passes should Vercel Authentication be opened for ordinary
-public requests to `development.evanalysis.top`. Then verify again:
+After the user explicitly authorizes public development access, Vercel
+Authentication can be disabled for the project. Then verify ordinary public
+requests to `development.evanalysis.top`:
 
 ```bash
 npm run auth:verify-development -- --require-ready --require-oauth --require-checkout --expect-public
 ```
 
+Current 2026-06-29 state: Vercel Authentication has been disabled, and
+`--require-ready --require-oauth --expect-public` passes against the public
+development domain. The stricter command above still requires adding a
+staging/test `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` to
+`Preview (codex/account)`.
+
 Vercel Authentication reference:
 https://vercel.com/docs/deployment-protection/methods-to-protect-deployments/vercel-authentication
 
-For a narrow public development domain, use a Vercel Deployment Protection
-Exception for `development.evanalysis.top` rather than disabling project-wide
-protection. Exceptions are managed from the Vercel dashboard under the
-project's Deployment Protection settings, and Vercel documents them as an
-Advanced Deployment Protection feature for Preview domains.
+If project-wide public preview access is not acceptable in a future pass, use a
+Vercel Deployment Protection Exception for `development.evanalysis.top` rather
+than disabling project-wide protection. Exceptions are managed from the Vercel
+dashboard under the project's Deployment Protection settings, and Vercel
+documents them as an Advanced Deployment Protection feature for Preview domains.
 
 ## Non-production isolation rules
 

@@ -377,6 +377,35 @@ again, first check the Vercel project domain entry. `gitBranch` must not be
     still fails only because ordinary
     `https://development.evanalysis.top/` requests return Vercel
     Authentication `401`.
+- 2026-06-29 public development opening:
+  - Project-level Vercel Authentication was disabled with explicit user
+    authorization:
+    `vercel project protection disable my-websites --sso --scope mixuandahotmailcoms-projects`.
+  - `vercel project protection my-websites --scope mixuandahotmailcoms-projects --format json`
+    now reports `ssoProtection: null`; Git fork protection and automation
+    bypass entries were not changed.
+  - Ordinary public requests to `https://development.evanalysis.top/` and
+    `https://development.evanalysis.top/login` return `200`. Production
+    `https://www.evanalysis.top/` and
+    `https://www.evanalysis.top/en/notes` also return `200`.
+  - `scripts/verify-account-preview-readiness.mjs` now uses the public
+    `development.evanalysis.top` endpoints for JSON readiness checks when
+    `--expect-public` is set. This avoids `vercel curl` timeouts against the
+    deployment URL after the public domain is intentionally opened.
+  - `npm run auth:verify-development -- --deployment my-websites-m2b6o6pr7-mixuandahotmailcoms-projects.vercel.app --require-ready --require-oauth --expect-public`
+    passes with registration `ready=true`, Auth.js provider list
+    `["firebase"]`, billing status `billingReady=true`, and
+    `developmentPublicStatus=200`.
+  - Strict checkout verification still fails because
+    `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` is missing from
+    `Preview (codex/account)`. Do not treat subscription checkout browser QA as
+    complete until a staging/test publishable key is added and
+    `--require-checkout --expect-public` passes.
+  - Headless Chrome smoke for `/login?mode=register` confirmed no Vercel auth
+    wall and visible register, email/password, GitHub, Google, and Turnstile
+    content on desktop and mobile. The mobile card width was tightened in
+    `src/app/login/page.tsx` so the register form no longer overflows a
+    390px viewport.
 
 ## Recommended next step
 
@@ -390,7 +419,7 @@ QA pass:
   `NEXT_PUBLIC_TURNSTILE_SITE_KEY`, and `AUTH_TURNSTILE_SECRET_KEY`.
 - Persistence and identity: Firebase Admin envs plus Firebase Authentication in
   a development/staging Firebase project rather than production data.
-- Billing: `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`,
+- Billing: add a staging/test `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`,
   `STRIPE_PRICE_ID_MEMBER_MONTHLY`, `STRIPE_PRICE_ID_MEMBER_YEARLY`,
   `NOTES_MEMBERSHIP_GATING`, and `NEXT_PUBLIC_NOTES_MEMBERSHIP_GATING`.
 - Domain: ordinary `vercel alias set` still reports no access to
