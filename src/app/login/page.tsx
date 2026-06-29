@@ -128,7 +128,7 @@ function LoginPageContent() {
   const pageTitle = mode === "register" ? "创建账号" : "登录";
   const pageDescription =
     mode === "register"
-      ? "使用邮箱密码创建站点账号，或使用 Google / GitHub 登录。"
+      ? "使用邮箱密码创建站点账号。也可以使用 Google 或 GitHub 登录。"
       : "使用邮箱密码、Google 或 GitHub 登录。";
 
   useEffect(() => {
@@ -330,7 +330,7 @@ function LoginPageContent() {
   };
 
   return (
-    <div className="mx-auto mt-12 w-[calc(100vw-2rem)] max-w-md sm:mt-20">
+    <div className="mx-auto mt-12 w-[calc(100vw-4rem)] max-w-md sm:mt-20 sm:w-full">
       {turnstileSiteKey ? (
         <Script
           src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"
