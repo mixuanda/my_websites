@@ -178,7 +178,7 @@ Use this order unless a later user request changes priority:
 | `math1030/determinants/transpose-column-operations-and-cramers-rule` | 7.3 Transpose, column operations, and Cramer's rule | Done | Column replacement, column linearity, repeated-column cancellation, and the source-backed Cramer numerator example. | Completed as the fifteenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is the fixed proof mechanism behind Cramer's rule, not open-ended determinant calculation. |
 | `math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces` | 8.1 Eigenvalues, eigenvectors, and eigenspaces | Done | Vectors that keep direction under transformation, the conversion `Av=λv` to `(A-λI)v=0`, and eigenspace as null space. | Completed as the sixteenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is a fixed direction-to-null-space bridge. |
 | `math1030/eigenvalues/diagonalization-and-similarity` | 8.2 Diagonalization and similarity | Done | Change of basis making the transformation diagonal: source eigendirections become columns of `S`, `CS=SD` packages the eigenvector equations, and `S^{-1}CS=D` is the diagonalization. | Completed as the seventeenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is the fixed eigenbasis-to-similarity bridge. |
-| `math1030/eigenvalues/characteristic-polynomials-and-diagonalization-tests` | 8.3 Characteristic polynomials and diagonalization tests | Manim | `det(A - lambda I)` pipeline and eigenspace dimension test. | Start after the completed 8.2 eigenbasis-change clip; keep symbolic sequence concise. |
+| `math1030/eigenvalues/characteristic-polynomials-and-diagonalization-tests` | 8.3 Characteristic polynomials and diagonalization tests | Done | `det(A - lambda I)` pipeline, repeated-root multiplicity warning, eigenspace dimension count, and distinct-eigenvalue shortcut. | Completed as the eighteenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is the fixed polynomial-to-diagonalization-test bridge. |
 | `math1030/inner-products/inner-products-norms-and-angles` | 9.1 Inner products, norms, and angles | Manim | Dot product, angle, norm, and projection geometry. | Storyboard geometry first. |
 | `math1030/inner-products/orthogonal-sets-and-orthonormal-bases` | 9.2 Orthogonal sets and orthonormal bases | Manim | Orthogonality, normalization, and coordinate reading. | Pair with Gram-Schmidt. |
 | `math1030/inner-products/gram-schmidt-orthogonalization` | 9.3 Gram-Schmidt orthogonalization | Done | Projection subtraction and normalization step by step. | Completed as the fourth trilingual Manim pilot; keep the static table as the export-friendly follow-up. |
@@ -250,8 +250,8 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 
 These are the concrete next slices to execute one by one:
 
-1. Continue Math1030 eigenvalue clips with `8.2 Diagonalization and
-   similarity`, unless the roadmap priority changes.
+1. Continue Math1030 clips with `9.1 Inner products, norms, and angles`, unless
+   the roadmap priority changes.
 2. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.
 

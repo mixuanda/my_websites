@@ -62,6 +62,9 @@ else
     "DiagonalizationSimilarityEigenbasisStoryEn"
     "DiagonalizationSimilarityEigenbasisStoryZhHk"
     "DiagonalizationSimilarityEigenbasisStoryZhCn"
+    "CharacteristicPolynomialDiagonalizationTestStoryEn"
+    "CharacteristicPolynomialDiagonalizationTestStoryZhHk"
+    "CharacteristicPolynomialDiagonalizationTestStoryZhCn"
     "FunctionMapPropertiesStoryEn"
     "FunctionMapPropertiesStoryZhHk"
     "FunctionMapPropertiesStoryZhCn"
@@ -150,6 +153,9 @@ scene_file() {
       ;;
     DiagonalizationSimilarityEigenbasisStory|DiagonalizationSimilarityEigenbasisStoryEn|DiagonalizationSimilarityEigenbasisStoryZhHk|DiagonalizationSimilarityEigenbasisStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/diagonalization_similarity.py"
+      ;;
+    CharacteristicPolynomialDiagonalizationTestStory|CharacteristicPolynomialDiagonalizationTestStoryEn|CharacteristicPolynomialDiagonalizationTestStoryZhHk|CharacteristicPolynomialDiagonalizationTestStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1030/characteristic_polynomials_diagonalization_tests.py"
       ;;
     FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|FunctionMapPropertiesStoryZhHk|FunctionMapPropertiesStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1090/functions_relations.py"
@@ -252,6 +258,15 @@ scene_locale() {
     DiagonalizationSimilarityEigenbasisStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
+    CharacteristicPolynomialDiagonalizationTestStory|CharacteristicPolynomialDiagonalizationTestStoryEn)
+      printf '%s\n' "en"
+      ;;
+    CharacteristicPolynomialDiagonalizationTestStoryZhHk)
+      printf '%s\n' "zh-hk"
+      ;;
+    CharacteristicPolynomialDiagonalizationTestStoryZhCn)
+      printf '%s\n' "zh-cn"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|BasisDimensionJustRightStory|BasisDimensionJustRightStoryEn|FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|RationalIrrationalRootProofStory|RationalIrrationalRootProofStoryEn|PolynomialDivisionRemainderStory|PolynomialDivisionRemainderStoryEn|PolynomialGcdIrreducibilityStory|PolynomialGcdIrreducibilityStoryEn|HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn)
       printf '%s\n' "en"
       ;;
@@ -320,6 +335,9 @@ video_basename() {
     DiagonalizationSimilarityEigenbasisStory|DiagonalizationSimilarityEigenbasisStoryEn|DiagonalizationSimilarityEigenbasisStoryZhHk|DiagonalizationSimilarityEigenbasisStoryZhCn)
       printf '%s\n' "diagonalization-similarity-eigenbasis-story"
       ;;
+    CharacteristicPolynomialDiagonalizationTestStory|CharacteristicPolynomialDiagonalizationTestStoryEn|CharacteristicPolynomialDiagonalizationTestStoryZhHk|CharacteristicPolynomialDiagonalizationTestStoryZhCn)
+      printf '%s\n' "characteristic-polynomial-diagonalization-test-story"
+      ;;
     FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|FunctionMapPropertiesStoryZhHk|FunctionMapPropertiesStoryZhCn)
       printf '%s\n' "function-map-properties-story"
       ;;
@@ -371,6 +389,9 @@ scene_course() {
       printf '%s\n' "math1030"
       ;;
     DiagonalizationSimilarityEigenbasisStory|DiagonalizationSimilarityEigenbasisStoryEn|DiagonalizationSimilarityEigenbasisStoryZhHk|DiagonalizationSimilarityEigenbasisStoryZhCn)
+      printf '%s\n' "math1030"
+      ;;
+    CharacteristicPolynomialDiagonalizationTestStory|CharacteristicPolynomialDiagonalizationTestStoryEn|CharacteristicPolynomialDiagonalizationTestStoryZhHk|CharacteristicPolynomialDiagonalizationTestStoryZhCn)
       printf '%s\n' "math1030"
       ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|MatrixBasicsPositionMapZhHk|MatrixBasicsPositionMapZhCn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|AugmentedMatrixRowOperationSafetyZhHk|AugmentedMatrixRowOperationSafetyZhCn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|GramSchmidtProjectionStoryZhHk|GramSchmidtProjectionStoryZhCn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|MatrixProductLinearSystemStoryZhHk|MatrixProductLinearSystemStoryZhCn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|RowOperationMatrixLeftMultiplyStoryZhHk|RowOperationMatrixLeftMultiplyStoryZhCn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearCombinationSpanSweepStoryZhHk|LinearCombinationSpanSweepStoryZhCn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|LinearDependenceRedundancyStoryZhHk|LinearDependenceRedundancyStoryZhCn|BasisDimensionJustRightStory|BasisDimensionJustRightStoryEn|BasisDimensionJustRightStoryZhHk|BasisDimensionJustRightStoryZhCn)

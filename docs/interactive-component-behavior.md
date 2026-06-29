@@ -293,5 +293,15 @@ widget would mainly become a diagonalization calculator unless promoted later
 into graded eigenbasis practice; this first pass is better as a curated
 article-embedded sequence with static export frames.
 
+The Math1030 `8.3` characteristic-polynomial and diagonalization-test pass also
+stays Manim-only. The source-backed move is a decision chain rather than a
+stateful manipulation surface: package `det(A-lambda I)=0` as
+`p_A(x)=det(A-xI)`, factor to read eigenvalues, separate algebraic
+multiplicity from eigenspace dimension, and apply the dimension-sum or
+distinct-eigenvalue tests. A reader-controlled widget would mainly become a
+symbolic characteristic-polynomial calculator; a later graded practice surface
+would need carefully scoped matrices, static export of every determinant and
+null-space step, and answer checking before it belongs on the article page.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

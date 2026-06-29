@@ -41,29 +41,33 @@ history.
 | Math1025 `8.2 Polynomial gcds and irreducibility` | `math1025-polynomial-gcd-irreducibility-story` | `docs/manim-polynomial-gcd-video-qa-2026-06-12.md` |
 | Math1030 `8.1 Eigenvalues, eigenvectors, and eigenspaces` | `math1030-eigenvalue-direction-eigenspace-story` | `docs/manim-eigenvalue-direction-eigenspace-video-qa-2026-06-21.md` |
 | Math1030 `8.2 Diagonalization and similarity` | `math1030-diagonalization-similarity-eigenbasis-story` | `docs/manim-diagonalization-similarity-video-qa-2026-06-29.md` |
+| Math1030 `8.3 Characteristic polynomials and diagonalization tests` | `math1030-characteristic-polynomial-diagonalization-test-story` | `docs/manim-characteristic-polynomial-diagonalization-test-video-qa-2026-06-29.md` |
 
 ## Latest Slice Notes
 
-Math1030 `8.2` was implemented after the roadmap, current MDX, extracted
-`MATH1030-Notes.pdf` sections 8.2-8.3, and `1030gi-n07-02.pdf` confirmed that
-the diagonalization/similarity unit should be Manim-only. The clip visualizes
-the fixed eigenbasis bridge from the source-backed matrix `C=[[3,2],[3,-2]]`:
-the eigendirections become the columns of `S`, matching eigenvalues become
-the diagonal entries of `D`, `CS=SD` packages the eigenvector equations, and
-`S^{-1}CS=D` is the diagonalization.
+Math1030 `8.3` was implemented after the roadmap, current MDX, extracted
+`MATH1030-Notes.pdf` sections 8.3 and `1030gi-n07-03.pdf` confirmed that the
+characteristic-polynomial / multiplicity-test unit should be Manim-only. The
+clip visualizes the fixed source-backed decision chain: package
+`det(A-lambda I)=0` as `p_A(x)=det(A-xI)`, factor the source `2x2` polynomial
+to read roots/eigenvalues, contrast the repeated-root example
+`B=[[2,3],[0,2]]` with its one-dimensional eigenspace, and finish with the
+dimension-sum and distinct-eigenvalue tests for diagonalizability.
 
 Fixes applied:
 
-- new storyboard covers the source eigendirections, `S`/`D` construction,
-  `CS=SD` column packaging, conversion to `S^{-1}CS=D`, diagonal coordinate
-  action, and the full-eigenbasis requirement;
+- new storyboard covers the determinant pipeline, source factorization,
+  repeated-root algebraic multiplicity, geometric multiplicity via a null-space
+  calculation, the dimension-sum test, and the distinct-eigenvalue shortcut;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the diagonalization/similarity scene and writes
-  assets under `public/generated/animations/math1030/`;
-- video embed was placed immediately after the `AS=SD` explanation in all
-  three localized MDX files;
-- visual QA caught English fallback text in Chinese mid-video cards; the scene
-  now localizes those card bodies before final QA.
+- render script now includes the characteristic-polynomial test scene and
+  writes assets under `public/generated/animations/math1030/`;
+- video embed was placed immediately after the root/eigenvalue equivalence in
+  all three localized MDX files;
+- visual QA caught English fallback text in Chinese repeated-root cards; the
+  scene now localizes those card bodies before final QA;
+- the MDX dimension-sum theorem wording now explicitly says the listed real
+  eigenvalues are all distinct eigenvalues of the matrix.
 
 ## Verification Stack Used For Latest Slice
 
@@ -80,14 +84,13 @@ Fixes applied:
 
 ## Next Slice
 
-Proceed to the next Math1030 eigenvalue clip unless the roadmap priority
-changes.
+Proceed to the next Math1030 clip unless the roadmap priority changes.
 
 Expected first step:
 
 1. Start with Math1030
-   `eigenvalues/characteristic-polynomials-and-diagonalization-tests` unless
-   source inspection changes the priority.
+   `inner-products/inner-products-norms-and-angles` unless source inspection
+   changes the priority.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset

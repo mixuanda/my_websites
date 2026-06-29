@@ -47,6 +47,13 @@ $$
 p_A(\lambda)=0.
 $$
 
+## 觀看特徵多項式測試如何變成對角化測試
+
+下面的影片沿着最短的來源支持鏈條：計算 `p_A(x)=\det(A-xI)`，把根讀
+成特徵值，再檢查重根是否有足夠特徵空間維數來支持對角化。
+
+<VideoExplanation id="math1030-characteristic-polynomial-diagonalization-test-story" />
+
 <TheoremCard title="特徵多項式的基本形狀">
 若 `A` 是 `n\times n` 矩陣，則 `p_A(x)` 是一個 `n` 次多項式，其最高
 次項係數是 `(-1)^n`，而常數項是 `\det(A)`。
@@ -220,7 +227,7 @@ $$
 互異特徵值是一個充分條件，但不是唯一條件。
 
 <TheoremCard title="特徵空間維數總和判準">
-設實 `n\times n` 矩陣 `A` 的所有互異實特徵值為
+設實 `n\times n` 矩陣 `A` 的所有互異特徵值都是實數，並記為
 `\lambda_1,\dots,\lambda_s`。則 `A` 可對角化，當且僅當
 
 $$

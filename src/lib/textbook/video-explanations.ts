@@ -1538,6 +1538,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/diagonalization-similarity-eigenbasis-story-zh-cn.mp4"
     ),
   },
+  "math1030-characteristic-polynomial-diagonalization-test-story": {
+    conclusion: text(
+      "The characteristic polynomial finds the possible diagonal entries, but diagonalization still asks whether the eigenspaces provide a full eigenbasis.",
+      "特徵多項式找出可能的對角線項；但對角化仍要問特徵空間能否提供完整特徵基底。",
+      "特征多项式找出可能的对角线项；但对角化仍要问特征空间能否提供完整特征基。"
+    ),
+    durationSeconds: 14,
+    frames: [
+      {
+        label: text("Determinant pipeline", "行列式流程", "行列式流程"),
+        value: text(
+          "The eigenvalue test det(A-lambda I)=0 is packaged as one polynomial p_A(x)=det(A-xI), whose roots are exactly the eigenvalues.",
+          "特徵值測試 det(A-lambda I)=0 會被打包成一個多項式 p_A(x)=det(A-xI)，而它的根正正就是特徵值。",
+          "特征值测试 det(A-lambda I)=0 会被打包成一个多项式 p_A(x)=det(A-xI)，而它的根正是特征值。"
+        ),
+      },
+      {
+        label: text("Factor to read roots", "因式分解讀根", "因式分解读根"),
+        value: text(
+          "For A=[[3,2],[3,-2]], the determinant simplifies to x^2-x-12=(x-4)(x+3), so the eigenvalues are 4 and -3.",
+          "對 A=[[3,2],[3,-2]]，行列式化簡為 x^2-x-12=(x-4)(x+3)，所以特徵值是 4 與 -3。",
+          "对 A=[[3,2],[3,-2]]，行列式化简为 x^2-x-12=(x-4)(x+3)，所以特征值是 4 与 -3。"
+        ),
+      },
+      {
+        label: text("Algebraic multiplicity", "代數重數", "代数重数"),
+        value: text(
+          "For B=[[2,3],[0,2]], p_B(x)=(x-2)^2. The repeated root means the eigenvalue 2 has algebraic multiplicity 2.",
+          "對 B=[[2,3],[0,2]]，p_B(x)=(x-2)^2。重根表示特徵值 2 的代數重數是 2。",
+          "对 B=[[2,3],[0,2]]，p_B(x)=(x-2)^2。重根表示特征值 2 的代数重数是 2。"
+        ),
+      },
+      {
+        label: text("Geometric multiplicity", "幾何重數", "几何重数"),
+        value: text(
+          "Solving (B-2I)v=0 gives E_B(2)=span{(1,0)^T}, so the geometric multiplicity is only 1.",
+          "解 (B-2I)v=0 得到 E_B(2)=span{(1,0)^T}，所以幾何重數只有 1。",
+          "解 (B-2I)v=0 得到 E_B(2)=span{(1,0)^T}，所以几何重数只有 1。"
+        ),
+      },
+      {
+        label: text("Dimension-sum test", "維數總和測試", "维数总和测试"),
+        value: text(
+          "Diagonalization succeeds exactly when the dimensions of all eigenspaces add up to n, the size of the matrix.",
+          "對角化成功，當且僅當所有特徵空間的維數總和等於矩陣大小 n。",
+          "对角化成功，当且仅当所有特征空间的维数总和等于矩阵大小 n。"
+        ),
+      },
+      {
+        label: text("Distinct-eigenvalue shortcut", "互異特徵值捷徑", "互异特征值捷径"),
+        value: text(
+          "If an n by n matrix has n distinct eigenvalues, their eigenvectors are automatically independent, so the matrix is diagonalizable.",
+          "如果 n 乘 n 矩陣有 n 個互異特徵值，對應特徵向量會自動線性無關，所以矩陣可對角化。",
+          "如果 n 乘 n 矩阵有 n 个互异特征值，对应特征向量会自动线性无关，所以矩阵可对角化。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch how det(A-xI) becomes the characteristic polynomial, how repeated roots split into algebraic and geometric multiplicity, and how eigenspace dimensions decide diagonalizability.",
+      "觀看 det(A-xI) 如何變成特徵多項式，重根如何分成代數與幾何重數，以及特徵空間維數如何決定可否對角化。",
+      "观看 det(A-xI) 如何变成特征多项式，重根如何分成代数与几何重数，以及特征空间维数如何决定可否对角化。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/characteristic-polynomial-diagonalization-test-story-en.png",
+      "/generated/animations/math1030/characteristic-polynomial-diagonalization-test-story-zh-hk.png",
+      "/generated/animations/math1030/characteristic-polynomial-diagonalization-test-story-zh-cn.png"
+    ),
+    title: text(
+      "From characteristic roots to diagonalization tests",
+      "由特徵根走到對角化測試",
+      "由特征根走到对角化测试"
+    ),
+    transcript: [
+      text(
+        "The characteristic polynomial records the determinant test for every possible scalar at once.",
+        "特徵多項式一次過記錄所有可能純量的行列式測試。",
+        "特征多项式一次性记录所有可能标量的行列式测试。"
+      ),
+      text(
+        "A repeated root gives algebraic multiplicity, but the eigenspace dimension gives geometric multiplicity.",
+        "重根給出代數重數，但特徵空間維數給出幾何重數。",
+        "重根给出代数重数，但特征空间维数给出几何重数。"
+      ),
+      text(
+        "Diagonalization needs enough independent eigenvectors, so the eigenspace dimensions must add up to the matrix size.",
+        "對角化需要足夠多線性無關特徵向量，所以特徵空間維數總和必須等於矩陣大小。",
+        "对角化需要足够多线性无关特征向量，所以特征空间维数总和必须等于矩阵大小。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/characteristic-polynomial-diagonalization-test-story-en.mp4",
+      "/generated/animations/math1030/characteristic-polynomial-diagonalization-test-story-zh-hk.mp4",
+      "/generated/animations/math1030/characteristic-polynomial-diagonalization-test-story-zh-cn.mp4"
+    ),
+  },
   "math1030-gram-schmidt-projection-story": {
     conclusion: text(
       "Gram-Schmidt preserves the subspace because every new vector is made from the vectors already in the same partial span. The subtraction removes old directions; normalization only changes lengths afterward.",

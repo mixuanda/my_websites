@@ -1,0 +1,305 @@
+{
+  "course": "math1030",
+  "chapter": "eigenvalues",
+  "unit": "characteristic-polynomials-and-diagonalization-tests",
+  "unitTitle": {
+    "en": "8.3 Characteristic polynomials and diagonalization tests",
+    "zh-hk": "8.3 特徵多項式與對角化測試",
+    "zh-cn": "8.3 特征多项式与对角化测试"
+  },
+  "videoId": "math1030-characteristic-polynomial-diagonalization-test-story",
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "determinant_pipeline",
+          "cardTitle": "Package the determinant test into one polynomial",
+          "goal": "Connect the null-space eigenvalue criterion with the characteristic polynomial definition.",
+          "beats": [
+            "Recall that lambda is an eigenvalue exactly when det(A-lambda I)=0.",
+            "Replace lambda by an indeterminate x.",
+            "Define p_A(x)=det(A-xI)."
+          ],
+          "mathBlocks": [
+            "det(A-\\lambda I)=0",
+            "p_A(x)=det(A-xI)"
+          ],
+          "animation": "matrix A becomes A-xI, then the determinant becomes one polynomial"
+        },
+        {
+          "type": "source_example",
+          "cardTitle": "Factor the polynomial to read the eigenvalues",
+          "goal": "Use the source-backed 2 by 2 matrix to show roots becoming eigenvalues.",
+          "beats": [
+            "Use A=[[3,2],[3,-2]].",
+            "Compute det(A-xI)=(3-x)(-2-x)-6.",
+            "Factor x^2-x-12=(x-4)(x+3).",
+            "Mark 4 and -3 as roots/eigenvalues."
+          ],
+          "mathBlocks": [
+            "p_A(x)=x^2-x-12",
+            "p_A(x)=(x-4)(x+3)"
+          ],
+          "animation": "factorization sends roots to a number-line view of eigenvalues"
+        },
+        {
+          "type": "repeated_root",
+          "cardTitle": "A repeated root creates a multiplicity question",
+          "goal": "Show that algebraic multiplicity comes from the exponent in the characteristic polynomial.",
+          "beats": [
+            "Use B=[[2,3],[0,2]].",
+            "Show p_B(x)=(2-x)^2=(x-2)^2.",
+            "Label m_a(2)=2."
+          ],
+          "mathBlocks": [
+            "p_B(x)=(x-2)^2",
+            "m_a(2)=2"
+          ],
+          "animation": "two algebraic slots both labeled with eigenvalue 2"
+        },
+        {
+          "type": "geometric_multiplicity",
+          "cardTitle": "The eigenspace dimension is a separate count",
+          "goal": "Compute the geometric multiplicity of the repeated root example.",
+          "beats": [
+            "Form B-2I=[[0,3],[0,0]].",
+            "Solve (B-2I)v=0 to get v=(t,0).",
+            "Label dim E_B(2)=1."
+          ],
+          "mathBlocks": [
+            "B-2I=\\begin{bmatrix}0&3\\\\0&0\\end{bmatrix}",
+            "E_B(2)=\\operatorname{span}\\{(1,0)^T\\}"
+          ],
+          "animation": "one eigenspace line appears, contrasted against two algebraic slots"
+        },
+        {
+          "type": "dimension_sum_test",
+          "cardTitle": "Diagonalization succeeds only with enough eigendirections",
+          "goal": "State the dimension-sum test and contrast failure with a repeated-but-diagonalizable example.",
+          "beats": [
+            "For B, m_g(2)=1 is not enough for a 2 by 2 basis.",
+            "For [[2,1,1],[1,2,1],[1,1,2]], the eigenspace dimensions are 1 and 2.",
+            "Show 1+2=3."
+          ],
+          "mathBlocks": [
+            "\\sum_i \\dim E_A(\\lambda_i)=n"
+          ],
+          "animation": "dimension blocks fail to fill n for B, then fill n for the 3 by 3 example"
+        },
+        {
+          "type": "distinct_eigenvalue_test",
+          "cardTitle": "Distinct eigenvalues are the fast sufficient test",
+          "goal": "Close with the source-backed theorem that n distinct eigenvalues guarantee diagonalizability.",
+          "beats": [
+            "Eigenvectors of distinct eigenvalues are linearly independent.",
+            "An n by n matrix has at most n distinct eigenvalues.",
+            "If it has n distinct eigenvalues, those eigenvectors form a basis."
+          ],
+          "mathBlocks": [
+            "n\\text{ distinct eigenvalues}\\Rightarrow\\text{ diagonalizable}"
+          ],
+          "animation": "n distinct roots become n independent directions and then a diagonalization verdict"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "determinant_pipeline",
+          "cardTitle": "把行列式判準打包成一個多項式",
+          "goal": "連接零空間特徵值判準與特徵多項式定義。",
+          "beats": [
+            "回顧 lambda 是特徵值，當且僅當 det(A-lambda I)=0。",
+            "把 lambda 換成未定元 x。",
+            "定義 p_A(x)=det(A-xI)。"
+          ],
+          "mathBlocks": [
+            "det(A-\\lambda I)=0",
+            "p_A(x)=det(A-xI)"
+          ],
+          "animation": "矩陣 A 變成 A-xI，再由行列式變成一個多項式"
+        },
+        {
+          "type": "source_example",
+          "cardTitle": "因式分解多項式以讀出特徵值",
+          "goal": "用來源支持的 2 乘 2 矩陣展示根如何成為特徵值。",
+          "beats": [
+            "使用 A=[[3,2],[3,-2]]。",
+            "計算 det(A-xI)=(3-x)(-2-x)-6。",
+            "因式分解 x^2-x-12=(x-4)(x+3)。",
+            "把 4 與 -3 標示為根和特徵值。"
+          ],
+          "mathBlocks": [
+            "p_A(x)=x^2-x-12",
+            "p_A(x)=(x-4)(x+3)"
+          ],
+          "animation": "因式分解把根送到數線上的特徵值視圖"
+        },
+        {
+          "type": "repeated_root",
+          "cardTitle": "重根帶來重數問題",
+          "goal": "展示代數重數來自特徵多項式中的指數。",
+          "beats": [
+            "使用 B=[[2,3],[0,2]]。",
+            "顯示 p_B(x)=(2-x)^2=(x-2)^2。",
+            "標示 m_a(2)=2。"
+          ],
+          "mathBlocks": [
+            "p_B(x)=(x-2)^2",
+            "m_a(2)=2"
+          ],
+          "animation": "兩個代數位置都標記為特徵值 2"
+        },
+        {
+          "type": "geometric_multiplicity",
+          "cardTitle": "特徵空間維數是另一個計數",
+          "goal": "計算重根例子的幾何重數。",
+          "beats": [
+            "形成 B-2I=[[0,3],[0,0]]。",
+            "解 (B-2I)v=0 得 v=(t,0)。",
+            "標示 dim E_B(2)=1。"
+          ],
+          "mathBlocks": [
+            "B-2I=\\begin{bmatrix}0&3\\\\0&0\\end{bmatrix}",
+            "E_B(2)=\\operatorname{span}\\{(1,0)^T\\}"
+          ],
+          "animation": "出現一條特徵空間直線，並與兩個代數位置對比"
+        },
+        {
+          "type": "dimension_sum_test",
+          "cardTitle": "對角化只在特徵方向足夠時成功",
+          "goal": "說明維數總和判準，並對比失敗例子與重根但可對角化的例子。",
+          "beats": [
+            "對 B，m_g(2)=1 不足以形成 2 乘 2 的基底。",
+            "對 [[2,1,1],[1,2,1],[1,1,2]]，特徵空間維數是 1 與 2。",
+            "顯示 1+2=3。"
+          ],
+          "mathBlocks": [
+            "\\sum_i \\dim E_A(\\lambda_i)=n"
+          ],
+          "animation": "B 的維數區塊填不滿 n，3 乘 3 例子的區塊則填滿 n"
+        },
+        {
+          "type": "distinct_eigenvalue_test",
+          "cardTitle": "互異特徵值是快速充分測試",
+          "goal": "用來源支持的定理收束：n 個互異特徵值保證可對角化。",
+          "beats": [
+            "互異特徵值所對應的特徵向量線性無關。",
+            "n 乘 n 矩陣最多有 n 個互異特徵值。",
+            "若它有 n 個互異特徵值，這些特徵向量形成基底。"
+          ],
+          "mathBlocks": [
+            "n\\text{ 個互異特徵值}\\Rightarrow\\text{ 可對角化}"
+          ],
+          "animation": "n 個互異根變成 n 個線性無關方向，再變成對角化判斷"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "determinant_pipeline",
+          "cardTitle": "把行列式判准打包成一个多项式",
+          "goal": "连接零空间特征值判准与特征多项式定义。",
+          "beats": [
+            "回顾 lambda 是特征值，当且仅当 det(A-lambda I)=0。",
+            "把 lambda 换成未定元 x。",
+            "定义 p_A(x)=det(A-xI)。"
+          ],
+          "mathBlocks": [
+            "det(A-\\lambda I)=0",
+            "p_A(x)=det(A-xI)"
+          ],
+          "animation": "矩阵 A 变成 A-xI，再由行列式变成一个多项式"
+        },
+        {
+          "type": "source_example",
+          "cardTitle": "因式分解多项式以读出特征值",
+          "goal": "用来源支持的 2 乘 2 矩阵展示根如何成为特征值。",
+          "beats": [
+            "使用 A=[[3,2],[3,-2]]。",
+            "计算 det(A-xI)=(3-x)(-2-x)-6。",
+            "因式分解 x^2-x-12=(x-4)(x+3)。",
+            "把 4 与 -3 标示为根和特征值。"
+          ],
+          "mathBlocks": [
+            "p_A(x)=x^2-x-12",
+            "p_A(x)=(x-4)(x+3)"
+          ],
+          "animation": "因式分解把根送到数线上的特征值视图"
+        },
+        {
+          "type": "repeated_root",
+          "cardTitle": "重根带来重数问题",
+          "goal": "展示代数重数来自特征多项式中的指数。",
+          "beats": [
+            "使用 B=[[2,3],[0,2]]。",
+            "显示 p_B(x)=(2-x)^2=(x-2)^2。",
+            "标示 m_a(2)=2。"
+          ],
+          "mathBlocks": [
+            "p_B(x)=(x-2)^2",
+            "m_a(2)=2"
+          ],
+          "animation": "两个代数位置都标记为特征值 2"
+        },
+        {
+          "type": "geometric_multiplicity",
+          "cardTitle": "特征空间维数是另一个计数",
+          "goal": "计算重根例子的几何重数。",
+          "beats": [
+            "形成 B-2I=[[0,3],[0,0]]。",
+            "解 (B-2I)v=0 得 v=(t,0)。",
+            "标示 dim E_B(2)=1。"
+          ],
+          "mathBlocks": [
+            "B-2I=\\begin{bmatrix}0&3\\\\0&0\\end{bmatrix}",
+            "E_B(2)=\\operatorname{span}\\{(1,0)^T\\}"
+          ],
+          "animation": "出现一条特征空间直线，并与两个代数位置对比"
+        },
+        {
+          "type": "dimension_sum_test",
+          "cardTitle": "对角化只在特征方向足够时成功",
+          "goal": "说明维数总和判准，并对比失败例子与重根但可对角化的例子。",
+          "beats": [
+            "对 B，m_g(2)=1 不足以形成 2 乘 2 的基。",
+            "对 [[2,1,1],[1,2,1],[1,1,2]]，特征空间维数是 1 与 2。",
+            "显示 1+2=3。"
+          ],
+          "mathBlocks": [
+            "\\sum_i \\dim E_A(\\lambda_i)=n"
+          ],
+          "animation": "B 的维数区块填不满 n，3 乘 3 例子的区块则填满 n"
+        },
+        {
+          "type": "distinct_eigenvalue_test",
+          "cardTitle": "互异特征值是快速充分测试",
+          "goal": "用来源支持的定理收束：n 个互异特征值保证可对角化。",
+          "beats": [
+            "互异特征值所对应的特征向量线性无关。",
+            "n 乘 n 矩阵最多有 n 个互异特征值。",
+            "若它有 n 个互异特征值，这些特征向量形成基。"
+          ],
+          "mathBlocks": [
+            "n\\text{ 个互异特征值}\\Rightarrow\\text{ 可对角化}"
+          ],
+          "animation": "n 个互异根变成 n 个线性无关方向，再变成对角化判断"
+        }
+      ]
+    }
+  },
+  "sourceScope": [
+    "reference/MATH1030/MATH1030-Notes.pdf pages 202-206 for diagonalization criteria, distinct-eigenvalue theorem, algebraic/geometric multiplicity remarks, and repeated-root examples.",
+    "reference/MATH1030/1030gi-n07-03.pdf pages 1-5 for characteristic polynomial definition, root/eigenvalue theorem, characteristic-polynomial examples, distinct-eigenvalue test, and eigenspace-dimension criterion.",
+    "reference/MATH1030/1030gi-n07-02.pdf pages 2-5 for diagonalizability examples and the full-eigenbasis criterion."
+  ],
+  "excludedScope": [
+    "Full Cayley-Hamilton proof and power-reduction applications; these remain in the article text but are not included in the short 8.3 clip.",
+    "A general symbolic characteristic-polynomial calculator widget; this pass is a curated Manim explanation rather than an open-ended computation surface.",
+    "Complex eigenvalue examples; the video stays with the real diagonalization criterion used by the current course note."
+  ]
+}
