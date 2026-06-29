@@ -284,5 +284,14 @@ justified later for graded eigenspace-practice problems; this first pass is
 better served as a short article-embedded explanation that exports as a static
 study sequence.
 
+The Math1030 `8.2` diagonalization and similarity pass also stays Manim-only.
+The source-backed move is a fixed eigenbasis bridge: use the already computed
+`C=[[3,2],[3,-2]]` eigendirections, place the independent eigenvectors as the
+columns of `S`, match their eigenvalues in `D`, read `CS=SD` by columns, and
+then convert it to the similarity form `S^{-1}CS=D`. A reader-controlled
+widget would mainly become a diagonalization calculator unless promoted later
+into graded eigenbasis practice; this first pass is better as a curated
+article-embedded sequence with static export frames.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

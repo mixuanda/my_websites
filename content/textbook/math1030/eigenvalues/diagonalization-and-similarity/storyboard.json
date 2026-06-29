@@ -1,0 +1,382 @@
+{
+  "course": "math1030",
+  "chapter": "eigenvalues",
+  "unit": "diagonalization-and-similarity",
+  "unitTitle": {
+    "en": "8.2 Diagonalization and similarity",
+    "zh-hk": "8.2 對角化與相似",
+    "zh-cn": "8.2 对角化与相似"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "source_eigenbasis",
+          "cardTitle": "Start with directions that survive C",
+          "goal": "Continue from the source-backed 8.1 matrix and show the two independent eigendirections that make diagonalization possible.",
+          "beats": [
+            "Display C=[[3,2],[3,-2]].",
+            "Show v1=(2,1) with eigenvalue 4 and v2=(-1,3) with eigenvalue -3.",
+            "Mark the two directions as independent."
+          ],
+          "mathBlocks": [
+            "Cv_1=4v_1",
+            "Cv_2=-3v_2"
+          ],
+          "voiceover": [
+            "Diagonalization starts only after we have enough eigenvectors.",
+            "For this source matrix, the two eigendirections form a basis of R^2."
+          ],
+          "animation": "two eigendirection lines on a plane, with the source matrix and eigenvector equations beside them"
+        },
+        {
+          "type": "build_s_d",
+          "cardTitle": "Put the eigenvectors into S",
+          "goal": "Explain that the diagonalizing matrix is built from eigenvectors and that D must match their order.",
+          "beats": [
+            "Place v1 and v2 as the columns of S.",
+            "Put 4 and -3 into D in the same order.",
+            "Highlight the column-to-diagonal correspondence."
+          ],
+          "mathBlocks": [
+            "S=[v_1\\ v_2]=\\begin{bmatrix}2&-1\\\\1&3\\end{bmatrix}",
+            "D=\\operatorname{diag}(4,-3)"
+          ],
+          "voiceover": [
+            "The columns of S are not arbitrary.",
+            "If a column is an eigenvector, the matching eigenvalue goes in the same position on the diagonal."
+          ],
+          "animation": "matrix S and matrix D shown side-by-side, with matching highlights"
+        },
+        {
+          "type": "column_package",
+          "cardTitle": "AS=SD packages every eigenvector equation",
+          "goal": "Show the theorem's column computation before multiplying by S inverse.",
+          "beats": [
+            "Compute CS as [Cv1 Cv2].",
+            "Compute SD as [4v1 -3v2].",
+            "Show that the columns match."
+          ],
+          "mathBlocks": [
+            "CS=[Cv_1\\ Cv_2]",
+            "SD=[4v_1\\ -3v_2]",
+            "CS=SD"
+          ],
+          "voiceover": [
+            "The single matrix equation CS=SD contains both eigenvector equations at once.",
+            "This is the algebraic bridge between eigenvectors and diagonalization."
+          ],
+          "animation": "two column matrices align into the same displayed result"
+        },
+        {
+          "type": "similarity",
+          "cardTitle": "Multiply by S inverse to see similarity",
+          "goal": "Convert CS=SD into the diagonalization formula S^{-1}CS=D.",
+          "beats": [
+            "Start with CS=SD.",
+            "Use invertibility of S.",
+            "Display S^{-1}CS=D as the diagonalization."
+          ],
+          "mathBlocks": [
+            "CS=SD",
+            "S^{-1}CS=D"
+          ],
+          "voiceover": [
+            "Because the eigenvectors form a basis, S is invertible.",
+            "Multiplying by S inverse gives the similarity presentation."
+          ],
+          "animation": "formula chain from column package to diagonalization"
+        },
+        {
+          "type": "diagonal_action",
+          "cardTitle": "In eigenvector coordinates, C acts diagonally",
+          "goal": "Explain the basis-change meaning: in the eigenbasis, the action scales each coordinate separately.",
+          "beats": [
+            "Represent x by its eigenbasis coordinate column (a,b).",
+            "Apply D to get (4a,-3b).",
+            "Mention that powers are easy once the diagonal form is known."
+          ],
+          "mathBlocks": [
+            "[x]_S=(a,b)^T",
+            "D[x]_S=(4a,-3b)^T",
+            "D^m=\\operatorname{diag}(4^m,(-3)^m)"
+          ],
+          "voiceover": [
+            "In the eigenvector basis, C no longer mixes coordinates.",
+            "That is why powers and structural questions become easier after diagonalization."
+          ],
+          "animation": "coordinate column sent through diagonal D without cross-coordinate arrows"
+        },
+        {
+          "type": "full_basis_requirement",
+          "cardTitle": "Diagonalization needs a full eigenbasis",
+          "goal": "Close with the criterion and avoid overclaiming from a single eigendirection.",
+          "beats": [
+            "Contrast a full eigenbasis with a single eigendirection.",
+            "Show that S must be invertible.",
+            "State the diagonalizability criterion."
+          ],
+          "mathBlocks": [
+            "A\\text{ diagonalizable }\\Longleftrightarrow A\\text{ has }n\\text{ linearly independent eigenvectors}"
+          ],
+          "voiceover": [
+            "A single eigenvector helps us understand one direction, but it cannot change the whole coordinate system.",
+            "Diagonalization requires enough independent eigenvectors to build an invertible S."
+          ],
+          "animation": "side-by-side comparison between two independent eigendirections and one insufficient eigendirection"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "source_eigenbasis",
+          "cardTitle": "由 C 保留下來的方向開始",
+          "goal": "延續 8.1 的來源矩陣，顯示令對角化可行的兩個線性無關特徵方向。",
+          "beats": [
+            "顯示 C=[[3,2],[3,-2]]。",
+            "顯示 v1=(2,1) 對應特徵值 4，而 v2=(-1,3) 對應特徵值 -3。",
+            "標記兩個方向線性無關。"
+          ],
+          "mathBlocks": [
+            "Cv_1=4v_1",
+            "Cv_2=-3v_2"
+          ],
+          "voiceover": [
+            "對角化要在我們有足夠特徵向量之後才開始。",
+            "對這個來源矩陣而言，兩個特徵方向形成 R^2 的一組基底。"
+          ],
+          "animation": "平面上兩條特徵方向線，旁邊顯示來源矩陣與特徵向量方程"
+        },
+        {
+          "type": "build_s_d",
+          "cardTitle": "把特徵向量放入 S",
+          "goal": "說明對角化矩陣由特徵向量組成，而 D 必須按相同次序配對。",
+          "beats": [
+            "把 v1 和 v2 作為 S 的兩列。",
+            "把 4 和 -3 按相同次序放入 D。",
+            "標出列向量與對角線項的配對。"
+          ],
+          "mathBlocks": [
+            "S=[v_1\\ v_2]=\\begin{bmatrix}2&-1\\\\1&3\\end{bmatrix}",
+            "D=\\operatorname{diag}(4,-3)"
+          ],
+          "voiceover": [
+            "S 的各列不是隨便選的。",
+            "若某一列是特徵向量，對應特徵值就要放在 D 的同一位置。"
+          ],
+          "animation": "並排顯示矩陣 S 與 D，並用高亮標示配對"
+        },
+        {
+          "type": "column_package",
+          "cardTitle": "AS=SD 打包所有特徵向量方程",
+          "goal": "先展示定理中的列計算，再乘以 S 的逆矩陣。",
+          "beats": [
+            "把 CS 讀成 [Cv1 Cv2]。",
+            "把 SD 讀成 [4v1 -3v2]。",
+            "顯示兩邊各列相同。"
+          ],
+          "mathBlocks": [
+            "CS=[Cv_1\\ Cv_2]",
+            "SD=[4v_1\\ -3v_2]",
+            "CS=SD"
+          ],
+          "voiceover": [
+            "單一條矩陣等式 CS=SD 一次過包含兩條特徵向量方程。",
+            "這就是由特徵向量通往對角化的代數橋樑。"
+          ],
+          "animation": "兩個列矩陣對齊成同一個結果"
+        },
+        {
+          "type": "similarity",
+          "cardTitle": "乘以 S 的逆便看見相似",
+          "goal": "把 CS=SD 轉成對角化公式 S^{-1}CS=D。",
+          "beats": [
+            "由 CS=SD 開始。",
+            "使用 S 可逆。",
+            "顯示 S^{-1}CS=D 作為對角化。"
+          ],
+          "mathBlocks": [
+            "CS=SD",
+            "S^{-1}CS=D"
+          ],
+          "voiceover": [
+            "因為這些特徵向量形成一組基底，S 是可逆的。",
+            "乘以 S 的逆矩陣後，就得到相似形式。"
+          ],
+          "animation": "公式鏈由列打包變成對角化"
+        },
+        {
+          "type": "diagonal_action",
+          "cardTitle": "在特徵向量坐標中，C 作對角作用",
+          "goal": "說明基底變換意義：在特徵基底中，矩陣只會分別縮放各個坐標。",
+          "beats": [
+            "用特徵基底坐標列 (a,b) 表示 x。",
+            "套用 D 得到 (4a,-3b)。",
+            "指出已知對角形式後，冪次會容易計算。"
+          ],
+          "mathBlocks": [
+            "[x]_S=(a,b)^T",
+            "D[x]_S=(4a,-3b)^T",
+            "D^m=\\operatorname{diag}(4^m,(-3)^m)"
+          ],
+          "voiceover": [
+            "在特徵向量基底中，C 不再混合不同坐標。",
+            "這正是對角化後冪次和結構問題會變容易的原因。"
+          ],
+          "animation": "坐標列經過對角矩陣 D，沒有跨坐標箭頭"
+        },
+        {
+          "type": "full_basis_requirement",
+          "cardTitle": "對角化需要完整特徵基底",
+          "goal": "用判準收結，避免由單一特徵方向作過度推論。",
+          "beats": [
+            "比較完整特徵基底與單一特徵方向。",
+            "顯示 S 必須可逆。",
+            "陳述可對角化判準。"
+          ],
+          "mathBlocks": [
+            "A\\text{ 可對角化 }\\Longleftrightarrow A\\text{ 有 }n\\text{ 個線性無關特徵向量}"
+          ],
+          "voiceover": [
+            "單一特徵向量可以幫助理解一個方向，但不足以改變整個坐標系。",
+            "對角化需要足夠多線性無關特徵向量來建立可逆的 S。"
+          ],
+          "animation": "並排比較兩條線性無關特徵方向與一條不足夠的特徵方向"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "source_eigenbasis",
+          "cardTitle": "由 C 保留下来的方向开始",
+          "goal": "延续 8.1 的来源矩阵，显示使对角化可行的两个线性无关特征方向。",
+          "beats": [
+            "显示 C=[[3,2],[3,-2]]。",
+            "显示 v1=(2,1) 对应特征值 4，而 v2=(-1,3) 对应特征值 -3。",
+            "标记两个方向线性无关。"
+          ],
+          "mathBlocks": [
+            "Cv_1=4v_1",
+            "Cv_2=-3v_2"
+          ],
+          "voiceover": [
+            "对角化要在我们有足够特征向量之后才开始。",
+            "对这个来源矩阵而言，两个特征方向形成 R^2 的一组基。"
+          ],
+          "animation": "平面上两条特征方向线，旁边显示来源矩阵与特征向量方程"
+        },
+        {
+          "type": "build_s_d",
+          "cardTitle": "把特征向量放入 S",
+          "goal": "说明对角化矩阵由特征向量组成，而 D 必须按相同次序配对。",
+          "beats": [
+            "把 v1 和 v2 作为 S 的两列。",
+            "把 4 和 -3 按相同次序放入 D。",
+            "标出列向量与对角线项的配对。"
+          ],
+          "mathBlocks": [
+            "S=[v_1\\ v_2]=\\begin{bmatrix}2&-1\\\\1&3\\end{bmatrix}",
+            "D=\\operatorname{diag}(4,-3)"
+          ],
+          "voiceover": [
+            "S 的各列不是随便选的。",
+            "若某一列是特征向量，对应特征值就要放在 D 的同一位置。"
+          ],
+          "animation": "并排显示矩阵 S 与 D，并用高亮标示配对"
+        },
+        {
+          "type": "column_package",
+          "cardTitle": "AS=SD 打包所有特征向量方程",
+          "goal": "先展示定理中的列计算，再乘以 S 的逆矩阵。",
+          "beats": [
+            "把 CS 读成 [Cv1 Cv2]。",
+            "把 SD 读成 [4v1 -3v2]。",
+            "显示两边各列相同。"
+          ],
+          "mathBlocks": [
+            "CS=[Cv_1\\ Cv_2]",
+            "SD=[4v_1\\ -3v_2]",
+            "CS=SD"
+          ],
+          "voiceover": [
+            "单一条矩阵等式 CS=SD 一次性包含两条特征向量方程。",
+            "这就是由特征向量通往对角化的代数桥梁。"
+          ],
+          "animation": "两个列矩阵对齐成同一个结果"
+        },
+        {
+          "type": "similarity",
+          "cardTitle": "乘以 S 的逆便看见相似",
+          "goal": "把 CS=SD 转成对角化公式 S^{-1}CS=D。",
+          "beats": [
+            "由 CS=SD 开始。",
+            "使用 S 可逆。",
+            "显示 S^{-1}CS=D 作为对角化。"
+          ],
+          "mathBlocks": [
+            "CS=SD",
+            "S^{-1}CS=D"
+          ],
+          "voiceover": [
+            "因为这些特征向量形成一组基，S 是可逆的。",
+            "乘以 S 的逆矩阵后，就得到相似形式。"
+          ],
+          "animation": "公式链由列打包变成对角化"
+        },
+        {
+          "type": "diagonal_action",
+          "cardTitle": "在特征向量坐标中，C 作对角作用",
+          "goal": "说明基变换意义：在特征基中，矩阵只会分别缩放各个坐标。",
+          "beats": [
+            "用特征基坐标列 (a,b) 表示 x。",
+            "套用 D 得到 (4a,-3b)。",
+            "指出已知对角形式后，幂次会容易计算。"
+          ],
+          "mathBlocks": [
+            "[x]_S=(a,b)^T",
+            "D[x]_S=(4a,-3b)^T",
+            "D^m=\\operatorname{diag}(4^m,(-3)^m)"
+          ],
+          "voiceover": [
+            "在特征向量基中，C 不再混合不同坐标。",
+            "这正是对角化后幂次和结构问题会变容易的原因。"
+          ],
+          "animation": "坐标列经过对角矩阵 D，没有跨坐标箭头"
+        },
+        {
+          "type": "full_basis_requirement",
+          "cardTitle": "对角化需要完整特征基",
+          "goal": "用判准收结，避免由单一特征方向作过度推论。",
+          "beats": [
+            "比较完整特征基与单一特征方向。",
+            "显示 S 必须可逆。",
+            "陈述可对角化判准。"
+          ],
+          "mathBlocks": [
+            "A\\text{ 可对角化 }\\Longleftrightarrow A\\text{ 有 }n\\text{ 个线性无关特征向量}"
+          ],
+          "voiceover": [
+            "单一特征向量可以帮助理解一个方向，但不足以改变整个坐标系。",
+            "对角化需要足够多线性无关特征向量来建立可逆的 S。"
+          ],
+          "animation": "并排比较两条线性无关特征方向与一条不足够的特征方向"
+        }
+      ]
+    }
+  },
+  "sourceScope": [
+    "reference/MATH1030/MATH1030-Notes.pdf pages 199-204: similarity definition, equal characteristic polynomial theorem, diagonalizable definition, diagonalization characterization, and source matrix C diagonalization.",
+    "reference/MATH1030/1030gi-n07-02.pdf pages 1-6: diagonalization definitions, AU=UD theorem, diagonalizability criterion, non-diagonalizable examples, and powers of diagonalizable matrices.",
+    "reference/MATH1030/1030gi-n07-03.pdf pages 4-5: eigenspace dimension criterion and source C-like repeated-eigenvalue power example context."
+  ],
+  "excludedScope": [
+    "Full characteristic-polynomial pipeline and algebraic/geometric multiplicity tests are left to the following 8.3 unit.",
+    "Complex diagonalization examples are not used in this first 8.2 clip.",
+    "No open-ended diagonalization calculator is added in this pass."
+  ]
+}

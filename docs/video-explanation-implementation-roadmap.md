@@ -36,6 +36,8 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/determinants/determinants-and-cofactor-expansion`
   - `math1030/determinants/row-operations-products-and-invertibility`
   - `math1030/determinants/transpose-column-operations-and-cramers-rule`
+  - `math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces`
+  - `math1030/eigenvalues/diagonalization-and-similarity`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -56,6 +58,8 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/determinants/determinants-and-cofactor-expansion`
   - `math1030/determinants/row-operations-products-and-invertibility`
   - `math1030/determinants/transpose-column-operations-and-cramers-rule`
+  - `math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces`
+  - `math1030/eigenvalues/diagonalization-and-similarity`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -127,7 +131,9 @@ Use this order unless a later user request changes priority:
    subspaces, basis, and dimension`, and Math1030 `6.8 Basis extension and
    change of basis`, Math1030 `7.1 Determinants and cofactor expansion`, and
    Math1030 `7.2 Row operations, products, and invertibility`, and Math1030
-   `7.3 Transpose, column operations, and Cramer's rule`.
+   `7.3 Transpose, column operations, and Cramer's rule`, Math1030 `8.1
+   Eigenvalues, eigenvectors, and eigenspaces`, and Math1030 `8.2
+   Diagonalization and similarity`.
 2. Math1030 basis, rank, determinant, and eigenvalue units.
 3. Remaining Math1030 matrix-algebra clips such as transpose, special
    matrices, and block matrices.
@@ -171,8 +177,8 @@ Use this order unless a later user request changes priority:
 | `math1030/determinants/row-operations-products-and-invertibility` | 7.2 Row operations, products, and invertibility | Done | Swap, scaling, and replacement determinant effects; row-replacement triangular computation; zero-row singularity; elementary-matrix bridge to product and invertibility tests. | Completed as the fourteenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is determinant bookkeeping, not a detached calculator. |
 | `math1030/determinants/transpose-column-operations-and-cramers-rule` | 7.3 Transpose, column operations, and Cramer's rule | Done | Column replacement, column linearity, repeated-column cancellation, and the source-backed Cramer numerator example. | Completed as the fifteenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is the fixed proof mechanism behind Cramer's rule, not open-ended determinant calculation. |
 | `math1030/eigenvalues/eigenvalues-eigenvectors-and-eigenspaces` | 8.1 Eigenvalues, eigenvectors, and eigenspaces | Done | Vectors that keep direction under transformation, the conversion `Av=λv` to `(A-λI)v=0`, and eigenspace as null space. | Completed as the sixteenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is a fixed direction-to-null-space bridge. |
-| `math1030/eigenvalues/diagonalization-and-similarity` | 8.2 Diagonalization and similarity | Manim | Change of basis making the transformation diagonal. | Storyboard after eigenvector clip; use the completed 8.1 direction/eigenspace video as prerequisite context. |
-| `math1030/eigenvalues/characteristic-polynomials-and-diagonalization-tests` | 8.3 Characteristic polynomials and diagonalization tests | Manim | `det(A - lambda I)` pipeline and eigenspace dimension test. | Keep symbolic sequence concise. |
+| `math1030/eigenvalues/diagonalization-and-similarity` | 8.2 Diagonalization and similarity | Done | Change of basis making the transformation diagonal: source eigendirections become columns of `S`, `CS=SD` packages the eigenvector equations, and `S^{-1}CS=D` is the diagonalization. | Completed as the seventeenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is the fixed eigenbasis-to-similarity bridge. |
+| `math1030/eigenvalues/characteristic-polynomials-and-diagonalization-tests` | 8.3 Characteristic polynomials and diagonalization tests | Manim | `det(A - lambda I)` pipeline and eigenspace dimension test. | Start after the completed 8.2 eigenbasis-change clip; keep symbolic sequence concise. |
 | `math1030/inner-products/inner-products-norms-and-angles` | 9.1 Inner products, norms, and angles | Manim | Dot product, angle, norm, and projection geometry. | Storyboard geometry first. |
 | `math1030/inner-products/orthogonal-sets-and-orthonormal-bases` | 9.2 Orthogonal sets and orthonormal bases | Manim | Orthogonality, normalization, and coordinate reading. | Pair with Gram-Schmidt. |
 | `math1030/inner-products/gram-schmidt-orthogonalization` | 9.3 Gram-Schmidt orthogonalization | Done | Projection subtraction and normalization step by step. | Completed as the fourth trilingual Manim pilot; keep the static table as the export-friendly follow-up. |

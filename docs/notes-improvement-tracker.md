@@ -37,7 +37,7 @@ verification result, and any remaining follow-up.
 | Checkpoint UI | Checkpoint font is too small and not readable enough | In progress | Shared checkpoint shell, prompts, choices, inputs, feedback, and solution steps now use larger typography / spacing; committed, pushed, deployed, and HTTP/API/export-verified on `www.evanalysis.top`, but mobile / theme browser QA is still blocked. |
 | Checkpoint content | Math1030 needs more computational checkpoint practice | Not started | Use repository-backed MATH1030 practice / assignment sources, not generic filler. |
 | Checkpoint rendering | Some checkpoint mathematical structures do not render correctly | In progress | Rich-text rendering now promotes standalone math answer choices and no longer blocks fraction-like strings such as `1/sqrt(2)` as file paths; representative MATH1030 checkpoint HTML contains KaTeX output. |
-| Math1030 interactions | Gram-Schmidt / orthogonalization needs a clearer embedded interaction | In progress | MATH1030 `9.3 Gram-Schmidt orthogonalization` now has a trilingual Manim `VideoExplanation` focused on projection subtraction and span preservation; MATH1030 `3.2 Matrix multiplication and linear systems` now has a trilingual Manim bridge from row-by-column products to `Ax=b`; MATH1030 `3.3 Row-operation matrices` now has a trilingual Manim bridge from `E_rho=rho(I)` to left multiplication and inverse elementary matrices; MATH1030 `6.3 Linear combinations and span`, `6.4 Linear dependence and independence`, `6.5 Basis and dimension`, `6.6 Column space, row space, and rank`, `6.7 Matrix subspaces, basis, and dimension`, `6.8 Basis extension and change of basis`, `7.1 Determinants and cofactor expansion`, `7.2 Row operations, products, and invertibility`, and `7.3 Transpose, column operations, and Cramer's rule` now have trilingual Manim explanations integrated into their article flow; keep evaluating whether `9.2` needs a separate interactive support surface. |
+| Math1030 interactions | Gram-Schmidt / orthogonalization needs a clearer embedded interaction | In progress | MATH1030 `9.3 Gram-Schmidt orthogonalization` now has a trilingual Manim `VideoExplanation` focused on projection subtraction and span preservation; MATH1030 `3.2 Matrix multiplication and linear systems` now has a trilingual Manim bridge from row-by-column products to `Ax=b`; MATH1030 `3.3 Row-operation matrices` now has a trilingual Manim bridge from `E_rho=rho(I)` to left multiplication and inverse elementary matrices; MATH1030 `6.3 Linear combinations and span`, `6.4 Linear dependence and independence`, `6.5 Basis and dimension`, `6.6 Column space, row space, and rank`, `6.7 Matrix subspaces, basis, and dimension`, `6.8 Basis extension and change of basis`, `7.1 Determinants and cofactor expansion`, `7.2 Row operations, products, and invertibility`, `7.3 Transpose, column operations, and Cramer's rule`, `8.1 Eigenvalues, eigenvectors, and eigenspaces`, and `8.2 Diagonalization and similarity` now have trilingual Manim explanations integrated into their article flow; keep evaluating whether `9.2` needs a separate interactive support surface. |
 | Math1030 rendering | Existing Math1030 pages have rendering mistakes | Not started | Run page-level MDX / KaTeX / browser QA before and after changes. |
 | Math1090 content | Some Math1090 material may have been omitted from extra lecture notes | Not started | Re-audit `reference/MATH1090` lecture notes against authored content before writing. |
 | Math1090 visual explanations | First source-backed Manim pilot for functions / relations | Completed | MATH1090 `2.2 Functions and relations` now has a trilingual Manim `VideoExplanation` for domain, target, graph, image, preimage, injective, surjective, and composition; local static, browser, and export QA are recorded in `docs/manim-function-map-video-qa-2026-06-11.md`. |
@@ -258,6 +258,14 @@ Progress on the animation slice:
   fixed direction-to-null-space bridge, and static export fallback; focused QA
   is recorded in
   `docs/manim-eigenvalue-direction-eigenspace-video-qa-2026-06-21.md`.
+- completed a seventeenth MATH1030 Manim pilot for `8.2 Diagonalization and
+  similarity` with trilingual
+  `math1030-diagonalization-similarity-eigenbasis-story` videos, localized
+  posters, a new trilingual storyboard, article embeds after the `AS=SD`
+  column-package explanation, no new widget because the source-backed learning
+  move is the fixed eigenbasis-to-similarity bridge, and static export
+  fallback; focused QA is recorded in
+  `docs/manim-diagonalization-similarity-video-qa-2026-06-29.md`.
 - completed the first non-Math1030 Manim pilot for MATH1090 `2.2 Functions and
   relations` with trilingual `math1090-function-map-properties-story` videos,
   localized posters, a new trilingual storyboard, course-aware render output
@@ -313,8 +321,9 @@ Remaining animation work:
 
 - decide whether these generated assets should be committed directly under
   `public/generated/animations/` or moved to external/static hosting later.
-- continue with the next roadmap slice after the eigenvalue/eigenspace
-  checkpoint: Math1030 `8.2 Diagonalization and similarity`.
+- continue with the next roadmap slice after the diagonalization/similarity
+  checkpoint: Math1030 `8.3 Characteristic polynomials and diagonalization
+  tests`.
 
 ## 1. Global Notes Navigation / Long Course Sidebar
 

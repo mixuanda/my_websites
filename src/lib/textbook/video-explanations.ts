@@ -1443,6 +1443,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/eigenvalue-direction-eigenspace-story-zh-cn.mp4"
     ),
   },
+  "math1030-diagonalization-similarity-eigenbasis-story": {
+    conclusion: text(
+      "Diagonalization is not a trick for guessing S. It is the basis-change form of a full set of independent eigenvector equations: put the eigenvectors in S, put the matching eigenvalues in D, and CS=SD becomes S^{-1}CS=D.",
+      "對角化不是靠運氣猜 S。它是一整組線性無關特徵向量方程的基底變換形式：把特徵向量放進 S，把相應特徵值放進 D，然後 CS=SD 變成 S^{-1}CS=D。",
+      "对角化不是靠运气猜 S。它是一整组线性无关特征向量方程的基变换形式：把特征向量放进 S，把相应特征值放进 D，然后 CS=SD 变成 S^{-1}CS=D。"
+    ),
+    durationSeconds: 14,
+    frames: [
+      {
+        label: text("Source eigenbasis", "來源特徵基底", "来源特征基"),
+        value: text(
+          "For C=[[3,2],[3,-2]], the source computation gives Cv1=4v1 for v1=(2,1) and Cv2=-3v2 for v2=(-1,3). These two directions are independent.",
+          "對 C=[[3,2],[3,-2]]，來源計算給出 v1=(2,1) 時 Cv1=4v1，以及 v2=(-1,3) 時 Cv2=-3v2。這兩個方向線性無關。",
+          "对 C=[[3,2],[3,-2]]，来源计算给出 v1=(2,1) 时 Cv1=4v1，以及 v2=(-1,3) 时 Cv2=-3v2。这两个方向线性无关。"
+        ),
+      },
+      {
+        label: text("Build S and D", "建立 S 和 D", "建立 S 和 D"),
+        value: text(
+          "Put the eigenvectors into the columns of S=[[2,-1],[1,3]], and put the matching eigenvalues into D=diag(4,-3) in the same order.",
+          "把特徵向量按列放入 S=[[2,-1],[1,3]]，並按相同次序把對應特徵值放入 D=diag(4,-3)。",
+          "把特征向量按列放入 S=[[2,-1],[1,3]]，并按相同次序把对应特征值放入 D=diag(4,-3)。"
+        ),
+      },
+      {
+        label: text("Column equation", "按列方程", "按列方程"),
+        value: text(
+          "The matrix equation CS=SD packages both eigenvector equations at once: the jth column says Cv_j=lambda_j v_j.",
+          "矩陣等式 CS=SD 一次過打包兩條特徵向量方程：第 j 列表示 Cv_j=lambda_j v_j。",
+          "矩阵等式 CS=SD 一次性打包两条特征向量方程：第 j 列表示 Cv_j=lambda_j v_j。"
+        ),
+      },
+      {
+        label: text("Similarity form", "相似形式", "相似形式"),
+        value: text(
+          "Since the eigenvectors form a basis, S is invertible. Multiplying CS=SD by S^{-1} on the left gives S^{-1}CS=D.",
+          "因為這些特徵向量形成基底，S 可逆。將 CS=SD 左乘 S^{-1}，得到 S^{-1}CS=D。",
+          "因为这些特征向量形成基，S 可逆。将 CS=SD 左乘 S^{-1}，得到 S^{-1}CS=D。"
+        ),
+      },
+      {
+        label: text("Diagonal action", "對角作用", "对角作用"),
+        value: text(
+          "In eigenvector coordinates, a coordinate column (a,b) becomes (4a,-3b). The coordinates are scaled separately instead of being mixed.",
+          "在特徵向量坐標中，坐標列 (a,b) 變成 (4a,-3b)。兩個坐標被分別縮放，而不是互相混合。",
+          "在特征向量坐标中，坐标列 (a,b) 变成 (4a,-3b)。两个坐标被分别缩放，而不是互相混合。"
+        ),
+      },
+      {
+        label: text("Full basis required", "需要完整基底", "需要完整基"),
+        value: text(
+          "A single eigenvector is not enough to diagonalize a matrix. An n by n matrix is diagonalizable exactly when it has n linearly independent eigenvectors.",
+          "單一特徵向量不足以把矩陣對角化。n 乘 n 矩陣可對角化，當且僅當它有 n 個線性無關特徵向量。",
+          "单一特征向量不足以把矩阵对角化。n 乘 n 矩阵可对角化，当且仅当它有 n 个线性无关特征向量。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch how the source eigenvectors become the change-of-basis matrix S, why CS=SD, and why S^{-1}CS=D is a diagonalization.",
+      "觀看來源特徵向量如何變成基底變換矩陣 S，為甚麼 CS=SD，以及為甚麼 S^{-1}CS=D 就是對角化。",
+      "观看来源特征向量如何变成基变换矩阵 S，为什么 CS=SD，以及为什么 S^{-1}CS=D 就是对角化。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/diagonalization-similarity-eigenbasis-story-en.png",
+      "/generated/animations/math1030/diagonalization-similarity-eigenbasis-story-zh-hk.png",
+      "/generated/animations/math1030/diagonalization-similarity-eigenbasis-story-zh-cn.png"
+    ),
+    title: text(
+      "Diagonalization as an eigenbasis change",
+      "把對角化看成特徵基底變換",
+      "把对角化看成特征基变换"
+    ),
+    transcript: [
+      text(
+        "A diagonalizing matrix is built from enough independent eigenvectors.",
+        "對角化矩陣由足夠多線性無關的特徵向量建立。",
+        "对角化矩阵由足够多线性无关的特征向量建立。"
+      ),
+      text(
+        "The equation CS=SD packages the individual equations Cv_j=lambda_j v_j.",
+        "方程 CS=SD 打包了每條 Cv_j=lambda_j v_j。",
+        "方程 CS=SD 打包了每条 Cv_j=lambda_j v_j。"
+      ),
+      text(
+        "Once S is invertible, CS=SD becomes S^{-1}CS=D, so the same transformation is diagonal in eigenvector coordinates.",
+        "只要 S 可逆，CS=SD 就變成 S^{-1}CS=D，因此同一個變換在特徵向量坐標中是對角的。",
+        "只要 S 可逆，CS=SD 就变成 S^{-1}CS=D，因此同一个变换在特征向量坐标中是对角的。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/diagonalization-similarity-eigenbasis-story-en.mp4",
+      "/generated/animations/math1030/diagonalization-similarity-eigenbasis-story-zh-hk.mp4",
+      "/generated/animations/math1030/diagonalization-similarity-eigenbasis-story-zh-cn.mp4"
+    ),
+  },
   "math1030-gram-schmidt-projection-story": {
     conclusion: text(
       "Gram-Schmidt preserves the subspace because every new vector is made from the vectors already in the same partial span. The subtraction removes old directions; normalization only changes lengths afterward.",
