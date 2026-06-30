@@ -150,5 +150,35 @@ Export QA passed:
 
 ## Production Status
 
-Pending. This checkpoint will be updated after the branch is pushed, merged to
-`main`, and the production deployment for `www.evanalysis.top` reaches `READY`.
+Ready.
+
+Git and deployment checkpoint:
+
+- Feature commit pushed to `origin/codex/manim`:
+  `ac22339273ee848025676570ce56f630ddc931bb`.
+- `origin/main` was fast-forwarded from `codex/manim` at the same commit.
+- Vercel production deployment:
+  `dpl_AKwdb73KyvuvrENtCVwTLHm3eYFP`.
+- Deployment target: `production`.
+- Deployment state: `READY`.
+- Production alias verified: `www.evanalysis.top`.
+
+Production checks against `https://www.evanalysis.top` passed:
+
+- EN route returned `200` and includes the `Matrix products and identity
+  matrices` video explanation card with source
+  `/generated/animations/math1030/matrix-multiplication-identity-story-en.mp4`
+  and poster
+  `/generated/animations/math1030/matrix-multiplication-identity-story-en.png`.
+- zh-HK route returned `200` and includes the localized video title plus
+  `/generated/animations/math1030/matrix-multiplication-identity-story-zh-hk.mp4`
+  and poster.
+- zh-CN route returned `200` and includes the localized video title plus
+  `/generated/animations/math1030/matrix-multiplication-identity-story-zh-cn.mp4`
+  and poster.
+- EN / zh-HK / zh-CN mp4 assets returned `200` with `video/mp4`.
+- EN / zh-HK / zh-CN poster assets returned `200` with `image/png`.
+- EN / zh-HK / zh-CN TXT exports returned `200`, contained the localized static
+  video-study sequence and existing multiplication visualizer snapshot, and did
+  not leak raw `<video>`, `.mp4`, or `poster=` markup.
+- EN / zh-HK / zh-CN PDF exports returned `200` with valid `%PDF` headers.
