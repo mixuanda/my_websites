@@ -48,31 +48,32 @@ history.
 | Math1030 `9.4 Cauchy-Schwarz and triangle inequalities` | `math1030-cauchy-schwarz-triangle-inequalities-story` | `docs/manim-cauchy-schwarz-triangle-inequalities-video-qa-2026-06-30.md` |
 | Math1030 `2.4 Solution-set types` | `math1030-solution-set-types-trichotomy-story` | `docs/manim-solution-set-types-video-qa-2026-06-30.md` |
 | Math1030 `2.5 Existence of row-echelon forms` | `math1030-existence-of-row-echelon-forms-story` | `docs/manim-existence-row-echelon-forms-video-qa-2026-06-30.md` |
+| Math1030 `1.1 Equations and solution sets` | `math1030-equations-solution-sets-story` | `docs/manim-equations-solution-sets-video-qa-2026-07-01.md` |
 
 ## Latest Slice Notes
 
-Math1030 `2.5` was implemented after roadmap, current MDX, and reference
-inspection confirmed the source boundary. `1030gi-n02-03p.pdf` pp. 1-3
-supports the row-count induction proof of REF existence, the rank-induction
-cleanup from REF to RREF, and pivot-column preservation. `MATH1030-Notes.pdf`
-pp. 21-25 and `1030gi-n02-03.pdf` pp. 1-6 provide the surrounding definitions,
-algorithm steps, and theorem context.
+Math1030 `1.1` was implemented after roadmap, current MDX, and reference
+inspection confirmed the source boundary. `MATH1030-Notes.pdf` pp. 5-11
+supports systems as simultaneous conditions, solution sets, consistent /
+inconsistent systems, the three two-line geometric outcomes, equivalent
+systems, and reversible equation operations. Practice Set 1 supports ordered
+tuple checks, solution-set preservation, equivalence misconceptions, and
+parameterized solution reading.
 
 Fixes applied:
 
-- new storyboard covers existence as a reachable target, first pivot selection,
-  clearing below, induction on the lower-right block, REF-to-RREF cleanup, and
-  pivot-column preservation;
+- new storyboard covers conditions as intersections, unique / empty /
+  infinite line-solution outcomes, reversible equation rewrites, and the
+  augmented-matrix bridge;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the row-echelon existence scene and writes
+- render script now includes the equations / solution-sets scene and writes
   assets under `public/generated/animations/math1030/`;
-- video embed was placed after the pivot-column preservation theorem and
-  before the worked examples in all three localized MDX files;
-- two additional source-backed worked examples and a short "how this theorem
-  is used later" section were added so the target unit clears the
-  `check:textbook-content` depth / worked-example thresholds;
-- no new widget was added because the source-backed value is a fixed proof
-  mechanism rather than a reader-controlled manipulation surface.
+- video embed was placed after the geometric solution-set figure and before
+  the augmented-matrix explorer lead-in in all three localized MDX files;
+- the existing `system-augmented-matrix-explorer` remains the
+  reader-controlled follow-up and was verified after the video insertion;
+- shared `VideoExplanation` mobile header spacing was tightened after local
+  Browser QA found the icon/text row too narrow for the 390px viewport.
 
 ## Verification Stack Used For Latest Slice
 
@@ -95,7 +96,8 @@ priority changes.
 
 Expected first step:
 
-1. Start with Math1030 `systems/equations-solution-sets` unless source
+1. Start with the next unresolved Math1030 register item, currently
+   `matrix-algebra/matrix-addition-scalar-multiplication`, unless source
    inspection changes the priority.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.

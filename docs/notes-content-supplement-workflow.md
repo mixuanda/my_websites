@@ -882,3 +882,30 @@ Use this shape for future entries:
   language-switch interaction, dark-mode and mobile checks, and three-locale
   TXT / PDF export checks passed. The target unit no longer appears in
   `check:textbook-content` warnings.
+
+### 2026-07-01: MATH1030 1.1 equations / solution-sets video checkpoint
+
+- Gap selected: the video roadmap marked Math1030 `1.1 Equations and solution
+  sets` as a Manim + widget target because the current article already had a
+  source-backed line-intersection figure and an augmented-matrix explorer
+  follow-up.
+- Reference basis: `reference/MATH1030/MATH1030-Notes.pdf` pp. 5-11, with
+  supporting practice material from Practice Set 1.
+- Content files changed: added the 1.1 storyboard, Manim scene, render-script
+  entries, localized `VideoExplanation` registry metadata, and EN / zh-HK /
+  zh-CN page embeds.
+- Visuals added: trilingual Manim video and poster assets for solution sets as
+  intersections, unique / empty / infinite line outcomes, reversible equation
+  rewrites, and the bridge from equations to augmented matrices.
+- Interactions added: none. The existing `system-augmented-matrix-explorer`
+  remains the reader-controlled follow-up and was verified after insertion.
+- Exercises added: none. Existing quick checks and reveal solutions were left
+  in place; the video insertion did not reorder answer blocks.
+- Component QA: the shared `VideoExplanation` header was tightened for mobile
+  after Browser QA found the icon/text row too narrow at a 390px viewport.
+- Verification: Python syntax, storyboard JSON, render-script syntax, Manim
+  render, `ffprobe` / `sips` asset checks, visual frame inspection,
+  `git diff --check`, MDX table verification, TypeScript, lint, textbook
+  content check, production build, local Browser DOM / console checks,
+  language-switch controls, existing widget interaction, mobile checks, and
+  three-locale TXT / PDF export checks passed.

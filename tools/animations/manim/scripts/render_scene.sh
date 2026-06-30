@@ -11,6 +11,9 @@ if [[ "$#" -gt 0 ]]; then
   TARGET_SCENES=("$@")
 else
   TARGET_SCENES=(
+    "EquationsSolutionSetsStoryEn"
+    "EquationsSolutionSetsStoryZhHk"
+    "EquationsSolutionSetsStoryZhCn"
     "GaussianEliminationRrefPivotStoryEn"
     "GaussianEliminationRrefPivotStoryZhHk"
     "GaussianEliminationRrefPivotStoryZhCn"
@@ -118,6 +121,9 @@ run_manim() {
 
 scene_file() {
   case "$1" in
+    EquationsSolutionSetsStory|EquationsSolutionSetsStoryEn|EquationsSolutionSetsStoryZhHk|EquationsSolutionSetsStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1030/equations_solution_sets.py"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/gaussian_elimination_rref.py"
       ;;
@@ -216,6 +222,15 @@ scene_file() {
 
 scene_locale() {
   case "$1" in
+    EquationsSolutionSetsStory|EquationsSolutionSetsStoryEn)
+      printf '%s\n' "en"
+      ;;
+    EquationsSolutionSetsStoryZhHk)
+      printf '%s\n' "zh-hk"
+      ;;
+    EquationsSolutionSetsStoryZhCn)
+      printf '%s\n' "zh-cn"
+      ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn)
       printf '%s\n' "en"
       ;;
@@ -359,6 +374,9 @@ scene_locale() {
 
 video_basename() {
   case "$1" in
+    EquationsSolutionSetsStory|EquationsSolutionSetsStoryEn|EquationsSolutionSetsStoryZhHk|EquationsSolutionSetsStoryZhCn)
+      printf '%s\n' "equations-solution-sets-story"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "gaussian-elimination-rref-pivot-story"
       ;;
@@ -457,6 +475,9 @@ video_basename() {
 
 scene_course() {
   case "$1" in
+    EquationsSolutionSetsStory|EquationsSolutionSetsStoryEn|EquationsSolutionSetsStoryZhHk|EquationsSolutionSetsStoryZhCn)
+      printf '%s\n' "math1030"
+      ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn|ColumnRowSpaceRankStoryZhHk|ColumnRowSpaceRankStoryZhCn)
       printf '%s\n' "math1030"
       ;;

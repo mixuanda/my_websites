@@ -516,21 +516,21 @@ export function VideoExplanation({
   }
 
   return (
-    <GlassPanel className="my-6 border border-border/70 p-0">
-      <figure className="overflow-hidden rounded-lg">
-        <div className="border-b border-border/60 bg-muted/25 px-5 py-4">
-          <div className="flex items-start gap-3">
-            <div className="mt-0.5 text-primary">
+    <GlassPanel className="my-6 min-w-0 overflow-hidden border border-border/70 p-0">
+      <figure className="min-w-0 overflow-hidden rounded-lg">
+        <div className="border-b border-border/60 bg-muted/25 px-3 py-4 sm:px-5">
+          <div className="flex min-w-0 flex-col items-start gap-2 sm:flex-row sm:gap-3">
+            <div className="mt-0.5 shrink-0 text-primary">
               <Film className="h-5 w-5" />
             </div>
             <div className="min-w-0">
-              <p className="text-xs font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+              <p className="break-words text-xs font-semibold uppercase tracking-[0.04em] text-muted-foreground [overflow-wrap:anywhere] sm:tracking-[0.24em]">
                 {getLocalizedText(uiText.videoExplanation, locale)}
               </p>
-              <figcaption className="mt-1 text-lg font-semibold leading-7">
+              <figcaption className="mt-1 break-words text-base font-semibold leading-6 [overflow-wrap:anywhere] sm:text-lg sm:leading-7">
                 <TextbookInlineRichText text={snapshot.title} />
               </figcaption>
-              <p className="mt-2 text-sm leading-7 text-muted-foreground">
+              <p className="mt-2 break-words text-xs leading-6 text-muted-foreground [overflow-wrap:anywhere] sm:text-sm sm:leading-7">
                 {snapshot.summary}
               </p>
             </div>
@@ -540,7 +540,7 @@ export function VideoExplanation({
         {snapshot.videoSrc ? (
           <video
             aria-label={snapshot.title}
-            className="aspect-video w-full bg-black"
+            className="block aspect-video w-full max-w-full bg-black"
             controls
             playsInline
             poster={snapshot.posterSrc}

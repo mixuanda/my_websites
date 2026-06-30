@@ -803,3 +803,22 @@ unit-level coverage.
   sections. Local TXT / PDF export checks passed for all three locales,
   including the static video sequence, new examples, and no leaked video
   markup.
+
+### 2026-07-01 checkpoint 28: MATH1030 1.1 video insertion integrity
+
+- Checkpoint name: `1.1` equations / solution-sets video embed, existing
+  explorer, and export fallback integrity.
+- What was inspected: the existing EN / zh-HK / zh-CN `1.1` MDX files, the new
+  `VideoExplanation` frame sequence, the existing
+  `system-augmented-matrix-explorer`, static TXT / PDF exports, and the
+  existing in-page quick-check / reveal-solution placement.
+- What was changed: inserted the localized video explanation after the
+  geometric solution-set figure and before the augmented-matrix explorer
+  lead-in; no quick-check, exercise, or reveal-solution block was reordered.
+- Integrity note: the explorer remains below the video as the interactive
+  follow-up. Its `Example 2` state was clicked in Browser QA and showed the
+  expected three-equation system and matching augmented matrix.
+- Verification: local Browser DOM checks confirmed the EN / zh-HK / zh-CN
+  routes expose the localized video assets. Local TXT / PDF export checks
+  passed for all three locales, including the static video sequence, the
+  existing explorer snapshot, and no leaked video markup.

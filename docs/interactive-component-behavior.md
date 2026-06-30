@@ -338,5 +338,14 @@ some RREF must exist for every matrix. The static article examples and the
 exported video frame sequence preserve the study value more cleanly than a
 new or reused widget.
 
+The Math1030 `1.1` equations / solution-sets pass is Manim + existing-widget.
+The new clip handles the curated conceptual sequence: equations as conditions,
+solution sets as intersections, the three source-backed two-line geometric
+outcomes, reversible rewrites, and the bridge toward augmented matrices. The
+existing `system-augmented-matrix-explorer` remains the appropriate
+reader-controlled follow-up because it lets the reader translate a small
+system into one matrix row per equation. Browser QA clicked `Example 2` and
+verified the three-equation system and matching `3 x 4` augmented matrix.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

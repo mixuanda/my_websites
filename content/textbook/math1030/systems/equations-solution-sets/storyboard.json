@@ -1,0 +1,294 @@
+{
+  "course": "math1030",
+  "chapter": "systems",
+  "unit": "equations-solution-sets",
+  "unitTitle": {
+    "en": "1.1 Equations and solution sets",
+    "zh-hk": "1.1 方程與解集",
+    "zh-cn": "1.1 方程与解集"
+  },
+  "videoId": "math1030-equations-solution-sets-story",
+  "sourceBoundary": {
+    "en": "This storyboard uses MATH1030-Notes.pdf pp. 5-11 as the direct source. It covers linear systems, solution sets as all tuples satisfying every equation, consistent/inconsistent systems, the two-variable line-intersection picture, the no/unique/infinite trichotomy, equivalent systems, and the three reversible equation operations. Practice Set 1 supports the ordered-tuple and equation-operation checks. It does not use later RREF pivot-count criteria except as a bridge to later notes.",
+    "zh-hk": "此 storyboard 以 MATH1030-Notes.pdf pp. 5-11 為直接來源，涵蓋線性方程組、解集作為滿足每條方程的全部有序元組、一致/不一致、二元直線交集圖像、無解/唯一解/無限多解三種情況、等價方程組，以及三種可逆方程操作。Practice Set 1 支持有序元組與方程操作的檢查。不使用後面 RREF 的主元計數判準，只把它作為後續筆記的橋接。",
+    "zh-cn": "此 storyboard 以 MATH1030-Notes.pdf pp. 5-11 为直接来源，涵盖线性方程组、解集作为满足每条方程的全部有序元组、相容/不相容、二元直线交集图像、无解/唯一解/无限多解三种情况、等价方程组，以及三种可逆方程操作。Practice Set 1 支持有序元组与方程操作的检查。不使用后面 RREF 的主元计数判准，只把它作为后续笔记的桥接。"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "conditions_intersect",
+          "cardTitle": "A system is an intersection of conditions",
+          "goal": "Show that a tuple must pass every equation, so the solution set is the intersection of individual equation solution sets.",
+          "beats": [
+            "Display two equations as two simultaneous conditions.",
+            "Represent each condition as a set.",
+            "Highlight the overlap as the solution set."
+          ],
+          "mathBlocks": [
+            "S = S_1 ∩ S_2",
+            "(x_1,...,x_n) must satisfy every equation"
+          ],
+          "animation": "two condition cards feed into overlapping solution-set regions"
+        },
+        {
+          "type": "unique_point",
+          "cardTitle": "One intersection point",
+          "goal": "Use the source two-line example to show a unique solution.",
+          "beats": [
+            "Plot x + y = 5 and 2x - 3y = -5.",
+            "Mark their intersection at (2, 3).",
+            "Label the solution set as a singleton."
+          ],
+          "mathBlocks": [
+            "{(2,3)}"
+          ],
+          "animation": "two lines cross at one highlighted point"
+        },
+        {
+          "type": "empty_set",
+          "cardTitle": "Parallel distinct lines",
+          "goal": "Show an inconsistent system as an empty intersection.",
+          "beats": [
+            "Plot 2x - 3y = -5 and 2x - 3y = 0.",
+            "Show that the lines never meet.",
+            "Label the solution set as empty."
+          ],
+          "mathBlocks": [
+            "∅"
+          ],
+          "animation": "parallel lines are shaded with no intersection marker"
+        },
+        {
+          "type": "infinite_family",
+          "cardTitle": "Coincident lines",
+          "goal": "Show infinitely many solutions as a whole line.",
+          "beats": [
+            "Plot 2x - 3y = -5 and -2x + 3y = 5.",
+            "Show that the equations describe the same line.",
+            "Use a parameter to mark infinitely many points."
+          ],
+          "mathBlocks": [
+            "{((3t-5)/2,t) | t in R}"
+          ],
+          "animation": "several points appear along one coincident line"
+        },
+        {
+          "type": "equivalent_rewrite",
+          "cardTitle": "Safe rewrites are reversible",
+          "goal": "Connect elimination to equivalent systems and equation-operation safety.",
+          "beats": [
+            "Show a 2 by 2 source example before and after row replacement.",
+            "Label the operation E2 <- E2 - 4/3 E1.",
+            "Show its inverse and preserve the solution set."
+          ],
+          "mathBlocks": [
+            "equivalent systems have equal solution sets",
+            "each equation operation has an inverse"
+          ],
+          "animation": "one equation system rewrites into a simpler equivalent one while the solution-set badge stays fixed"
+        },
+        {
+          "type": "matrix_bridge",
+          "cardTitle": "Then package the same system",
+          "goal": "Bridge the fixed video to the existing augmented-matrix explorer.",
+          "beats": [
+            "Translate x + 2y = 5 and 3x - y = 4 into an augmented matrix.",
+            "Point out that each row is one equation.",
+            "Send the reader to the embedded explorer."
+          ],
+          "mathBlocks": [
+            "[A|b]",
+            "use the explorer below"
+          ],
+          "animation": "system cards compress into an augmented matrix and an explorer-practice badge"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "conditions_intersect",
+          "cardTitle": "方程組是多個條件的交集",
+          "goal": "說明一個有序元組必須通過每條方程，所以解集是各條方程解集的交集。",
+          "beats": [
+            "把兩條方程顯示為兩個同時成立的條件。",
+            "把每個條件表示成一個集合。",
+            "把重疊部分標成解集。"
+          ],
+          "mathBlocks": [
+            "S = S_1 ∩ S_2",
+            "(x_1,...,x_n) 必須滿足每條方程"
+          ],
+          "animation": "兩個條件卡片進入重疊的解集區域"
+        },
+        {
+          "type": "unique_point",
+          "cardTitle": "只有一個交點",
+          "goal": "用來源中的雙直線例子展示唯一解。",
+          "beats": [
+            "畫出 x + y = 5 和 2x - 3y = -5。",
+            "標出交點 (2, 3)。",
+            "把解集標成單一元素集合。"
+          ],
+          "mathBlocks": [
+            "{(2,3)}"
+          ],
+          "animation": "兩條直線交於一個高亮點"
+        },
+        {
+          "type": "empty_set",
+          "cardTitle": "平行而不同的直線",
+          "goal": "把不一致方程組顯示成空交集。",
+          "beats": [
+            "畫出 2x - 3y = -5 和 2x - 3y = 0。",
+            "顯示兩條直線沒有交點。",
+            "把解集標成空集。"
+          ],
+          "mathBlocks": [
+            "∅"
+          ],
+          "animation": "兩條平行線沒有交點標記"
+        },
+        {
+          "type": "infinite_family",
+          "cardTitle": "重合直線",
+          "goal": "把整條直線展示成無限多解。",
+          "beats": [
+            "畫出 2x - 3y = -5 和 -2x + 3y = 5。",
+            "顯示兩條方程描述同一條線。",
+            "用參數標出無限多點。"
+          ],
+          "mathBlocks": [
+            "{((3t-5)/2,t) | t in R}"
+          ],
+          "animation": "多個點沿同一條重合直線出現"
+        },
+        {
+          "type": "equivalent_rewrite",
+          "cardTitle": "安全改寫是可逆的",
+          "goal": "把消去法連到等價方程組和方程操作安全性。",
+          "beats": [
+            "顯示一個 2 by 2 來源例子在行替換前後的形式。",
+            "標示操作 E2 <- E2 - 4/3 E1。",
+            "顯示逆操作並保持解集。"
+          ],
+          "mathBlocks": [
+            "等價方程組有相同解集",
+            "每個方程操作都有逆操作"
+          ],
+          "animation": "方程組改寫成較簡單的等價方程組，而解集標籤保持不變"
+        },
+        {
+          "type": "matrix_bridge",
+          "cardTitle": "再把同一方程組包裝起來",
+          "goal": "由固定影片接到現有增廣矩陣探索器。",
+          "beats": [
+            "把 x + 2y = 5 和 3x - y = 4 翻成增廣矩陣。",
+            "指出每一行仍是一條方程。",
+            "把讀者帶到已嵌入的探索器。"
+          ],
+          "mathBlocks": [
+            "[A|b]",
+            "使用下面的探索器"
+          ],
+          "animation": "方程卡片壓縮成增廣矩陣和探索器練習標籤"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "conditions_intersect",
+          "cardTitle": "方程组是多个条件的交集",
+          "goal": "说明一个有序元组必须通过每条方程，所以解集是各条方程解集的交集。",
+          "beats": [
+            "把两条方程显示为两个同时成立的条件。",
+            "把每个条件表示成一个集合。",
+            "把重叠部分标成解集。"
+          ],
+          "mathBlocks": [
+            "S = S_1 ∩ S_2",
+            "(x_1,...,x_n) 必须满足每条方程"
+          ],
+          "animation": "两个条件卡片进入重叠的解集区域"
+        },
+        {
+          "type": "unique_point",
+          "cardTitle": "只有一个交点",
+          "goal": "用来源中的双直线例子展示唯一解。",
+          "beats": [
+            "画出 x + y = 5 和 2x - 3y = -5。",
+            "标出交点 (2, 3)。",
+            "把解集标成单一元素集合。"
+          ],
+          "mathBlocks": [
+            "{(2,3)}"
+          ],
+          "animation": "两条直线交于一个高亮点"
+        },
+        {
+          "type": "empty_set",
+          "cardTitle": "平行而不同的直线",
+          "goal": "把不相容方程组显示成空交集。",
+          "beats": [
+            "画出 2x - 3y = -5 和 2x - 3y = 0。",
+            "显示两条直线没有交点。",
+            "把解集标成空集。"
+          ],
+          "mathBlocks": [
+            "∅"
+          ],
+          "animation": "两条平行线没有交点标记"
+        },
+        {
+          "type": "infinite_family",
+          "cardTitle": "重合直线",
+          "goal": "把整条直线展示成无限多解。",
+          "beats": [
+            "画出 2x - 3y = -5 和 -2x + 3y = 5。",
+            "显示两条方程描述同一条线。",
+            "用参数标出无限多点。"
+          ],
+          "mathBlocks": [
+            "{((3t-5)/2,t) | t in R}"
+          ],
+          "animation": "多个点沿同一条重合直线出现"
+        },
+        {
+          "type": "equivalent_rewrite",
+          "cardTitle": "安全改写是可逆的",
+          "goal": "把消去法连到等价方程组和方程操作安全性。",
+          "beats": [
+            "显示一个 2 by 2 来源例子在行替换前后的形式。",
+            "标示操作 E2 <- E2 - 4/3 E1。",
+            "显示逆操作并保持解集。"
+          ],
+          "mathBlocks": [
+            "等价方程组有相同解集",
+            "每个方程操作都有逆操作"
+          ],
+          "animation": "方程组改写成较简单的等价方程组，而解集标签保持不变"
+        },
+        {
+          "type": "matrix_bridge",
+          "cardTitle": "再把同一方程组包装起来",
+          "goal": "由固定视频接到现有增广矩阵探索器。",
+          "beats": [
+            "把 x + 2y = 5 和 3x - y = 4 翻成增广矩阵。",
+            "指出每一行仍是一条方程。",
+            "把读者带到已嵌入的探索器。"
+          ],
+          "mathBlocks": [
+            "[A|b]",
+            "使用下面的探索器"
+          ],
+          "animation": "方程卡片压缩成增广矩阵和探索器练习标签"
+        }
+      ]
+    }
+  }
+}

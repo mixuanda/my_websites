@@ -44,6 +44,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/inner-products/cauchy-schwarz-and-triangle-inequalities`
   - `math1030/matrices/solution-set-types`
   - `math1030/matrices/existence-of-row-echelon-forms`
+  - `math1030/systems/equations-solution-sets`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -72,6 +73,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/inner-products/cauchy-schwarz-and-triangle-inequalities`
   - `math1030/matrices/solution-set-types`
   - `math1030/matrices/existence-of-row-echelon-forms`
+  - `math1030/systems/equations-solution-sets`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -165,7 +167,7 @@ Use this order unless a later user request changes priority:
 | `math1030/matrices/augmented-matrices-row-operations` | 2.2 Augmented matrices and row operations | Done | System-to-matrix morph and row-operation invariance. | Completed as the third trilingual Manim pilot; keep the existing widget as the reader-controlled follow-up. |
 | `math1030/matrices/solution-set-types` | 2.4 Solution-set types | Done | RREF reading order, contradiction-row consistency, pivot/free-variable count, unique / no / infinite trichotomy, and bridge to the existing classifier. | Completed as the twenty-second Math1030 trilingual Manim pass; existing `solution-set-classifier` remains the reader-controlled follow-up. |
 | `math1030/matrices/existence-of-row-echelon-forms` | 2.5 Existence of row-echelon forms | Done | REF existence by row-count induction, REF-to-RREF cleanup by rank induction, and pivot-column preservation. | Completed as the twenty-third Math1030 trilingual Manim pass; no widget was added because the source-backed value is the fixed proof-as-algorithm sequence. |
-| `math1030/systems/equations-solution-sets` | 1.1 Equations and solution sets | Manim + widget | Lines or planes as solution sets and intersections. | Tie to current augmented-matrix explorer. |
+| `math1030/systems/equations-solution-sets` | 1.1 Equations and solution sets | Done | Lines as solution sets, intersections, empty intersections, coincident-line families, reversible equation rewrites, and bridge to augmented matrices. | Completed as the twenty-fourth Math1030 trilingual Manim pass; existing `system-augmented-matrix-explorer` remains the reader-controlled follow-up. |
 | `math1030/systems/reading-theorems-and-proof-language` | 1.2 Reading theorems and proof language | Defer | Proof-reading map only if later needed. | Improve prose/checkpoints first. |
 | `math1030/matrix-algebra/matrix-addition-scalar-multiplication` | 3.1 Matrix addition, subtraction, and scalar multiplication | Manim + widget | Entrywise arithmetic and scalar scaling. | Storyboard entrywise transformation. |
 | `math1030/matrix-algebra/matrix-multiplication-and-identity` | 3.1 Matrix multiplication and identity matrices | Manim + widget | Dot products becoming entries; identity preserving vectors. | Storyboard multiplication panes. |

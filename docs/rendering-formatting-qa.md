@@ -704,3 +704,18 @@ Current checkpoint resolution:
   rendered math, and checkpoint section. Microsoft Edge-channel Playwright
   screenshots were captured for the remote desktop EN page and remote mobile
   zh-HK page.
+
+### 2026-07-01 checkpoint 29: VideoExplanation mobile header pass
+
+- Checkpoint name: shared `VideoExplanation` mobile header responsiveness.
+- Trigger: local Browser QA for Math1030 `1.1 Equations and solution sets`
+  found the video-card icon/title row too narrow at a `390 x 844` viewport,
+  making the uppercase label and title visually cramped.
+- What was changed: the video-card header now stacks icon and text on mobile,
+  restores the horizontal layout from `sm` upward, lowers mobile tracking /
+  title / summary density, and keeps the video element `block w-full max-w-full`.
+- Verification: local Browser DOM checks at `390 x 844` reported no horizontal
+  overflow, no framework overlay, no console warnings/errors, and matching
+  `scrollWidth == clientWidth` for the video-card eyebrow, title, and summary.
+  Desktop EN video-card and existing widget interaction were rechecked after
+  the style change.

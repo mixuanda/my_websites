@@ -34,6 +34,101 @@ function resolveLocalizedAsset(asset: LocalizedAsset | undefined, locale: Locale
 }
 
 const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
+  "math1030-equations-solution-sets-story": {
+    conclusion: text(
+      "The visible equations may be rewritten, but the object we protect is the full solution set: all ordered tuples that satisfy every equation at the same time.",
+      "眼前方程可以改寫，但我們真正保護的是完整解集：所有同時滿足每條方程的有序元組。",
+      "眼前方程可以改写，但我们真正保护的是完整解集：所有同时满足每条方程的有序元组。"
+    ),
+    durationSeconds: 14,
+    frames: [
+      {
+        label: text("Conditions intersect", "條件交集", "条件交集"),
+        value: text(
+          "A system is a stack of simultaneous conditions. A tuple belongs to the solution set only if it passes every equation.",
+          "方程組是一疊同時成立的條件。有序元組只有通過每條方程，才屬於解集。",
+          "方程组是一叠同时成立的条件。有序元组只有通过每条方程，才属于解集。"
+        ),
+      },
+      {
+        label: text("One point", "一個點", "一个点"),
+        value: text(
+          "For x+y=5 and 2x-3y=-5, the two lines meet at (2,3), so the solution set is the singleton {(2,3)}.",
+          "在 x+y=5 與 2x-3y=-5 中，兩條線交於 (2,3)，所以解集是單一元素集合 {(2,3)}。",
+          "在 x+y=5 与 2x-3y=-5 中，两条线交于 (2,3)，所以解集是单一元素集合 {(2,3)}。"
+        ),
+      },
+      {
+        label: text("No point", "沒有交點", "没有交点"),
+        value: text(
+          "Parallel distinct lines give an empty intersection. In the two-variable picture, that is an inconsistent system.",
+          "平行而不同的直線交集為空。在二元圖像中，這表示方程組不一致。",
+          "平行而不同的直线交集为空。在二元图像中，这表示方程组不相容。"
+        ),
+      },
+      {
+        label: text("Whole line", "整條線", "整条线"),
+        value: text(
+          "Coincident lines produce infinitely many solutions. A parameter records the whole family rather than one sample point.",
+          "重合直線產生無限多解。參數記錄的是整個解族，而不是某一個樣本點。",
+          "重合直线产生无限多解。参数记录的是整个解族，而不是某一个样本点。"
+        ),
+      },
+      {
+        label: text("Equivalent rewrites", "等價改寫", "等价改写"),
+        value: text(
+          "The three elementary equation operations are safe because each has an inverse operation. They rewrite the system while preserving the solution set.",
+          "三種基本方程操作是安全的，因為每一種都有逆操作。它們改寫方程組，但保留解集。",
+          "三种基本方程操作是安全的，因为每一种都有逆操作。它们改写方程组，但保留解集。"
+        ),
+      },
+      {
+        label: text("Matrix bridge", "矩陣橋接", "矩阵桥接"),
+        value: text(
+          "The augmented matrix is only a compact way to package the same conditions: each row is still one equation.",
+          "增廣矩陣只是把同一批條件壓縮記錄：每一行仍然是一條方程。",
+          "增广矩阵只是把同一批条件压缩记录：每一行仍然是一条方程。"
+        ),
+      },
+    ],
+    summary: text(
+      "Use line-intersection examples to see solution sets as intersections, then connect reversible equation rewrites to the augmented-matrix explorer.",
+      "用直線交集例子，把解集看成條件交集，再把可逆方程改寫接到增廣矩陣探索器。",
+      "用直线交集例子，把解集看成条件交集，再把可逆方程改写接到增广矩阵探索器。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/equations-solution-sets-story-en.png",
+      "/generated/animations/math1030/equations-solution-sets-story-zh-hk.png",
+      "/generated/animations/math1030/equations-solution-sets-story-zh-cn.png"
+    ),
+    title: text(
+      "Solution sets as intersections",
+      "解集作為條件交集",
+      "解集作为条件交集"
+    ),
+    transcript: [
+      text(
+        "A system of equations is a stack of simultaneous conditions.",
+        "方程組是一疊需要同時成立的條件。",
+        "方程组是一叠需要同时成立的条件。"
+      ),
+      text(
+        "For two variables, the solution set is the intersection of lines: one point, no point, or a whole line.",
+        "在二元情況，解集就是直線交集：一點、沒有交點、或整條線。",
+        "在二元情形，解集就是直线交集：一点、没有交点、或整条线。"
+      ),
+      text(
+        "Equation operations are useful because they are reversible, so they preserve the same solution set.",
+        "方程操作之所以有用，是因為它們可逆，因此保留同一個解集。",
+        "方程操作之所以有用，是因为它们可逆，因此保留同一个解集。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/equations-solution-sets-story-en.mp4",
+      "/generated/animations/math1030/equations-solution-sets-story-zh-hk.mp4",
+      "/generated/animations/math1030/equations-solution-sets-story-zh-cn.mp4"
+    ),
+  },
   "math1030-augmented-matrix-row-operation-safety": {
     conclusion: text(
       "Use the augmented matrix because elementary row operations are reversible equation rewrites. The constants column is part of the same rows, so it must change together with the coefficient block.",

@@ -182,6 +182,11 @@ Current MATH1030 practice / rendering progress from April 25, 2026:
   zh-HK, and zh-CN with assignment-style RREF drills from `as02`, including a
   long augmented-system reduction, one-step RREF cleanup, parametric solution
   reading, and two matching checkpoint problems.
+- added the source-backed trilingual Manim video pass for public MATH1030 unit
+  `1.1 Equations and solution sets`, using `MATH1030-Notes.pdf` pp. 5-11 and
+  Practice Set 1 to connect solution sets as intersections, the three
+  two-line geometric outcomes, reversible equation rewrites, and the existing
+  augmented-matrix explorer.
 
 Current Math1025 expansion progress from April 25, 2026:
 
