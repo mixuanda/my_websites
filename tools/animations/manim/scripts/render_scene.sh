@@ -23,6 +23,9 @@ else
     "TransposeSymmetryStoryEn"
     "TransposeSymmetryStoryZhHk"
     "TransposeSymmetryStoryZhCn"
+    "SpecialMatricesFamilyRecognitionStoryEn"
+    "SpecialMatricesFamilyRecognitionStoryZhHk"
+    "SpecialMatricesFamilyRecognitionStoryZhCn"
     "GaussianEliminationRrefPivotStoryEn"
     "GaussianEliminationRrefPivotStoryZhHk"
     "GaussianEliminationRrefPivotStoryZhCn"
@@ -141,6 +144,9 @@ scene_file() {
       ;;
     TransposeSymmetryStory|TransposeSymmetryStoryEn|TransposeSymmetryStoryZhHk|TransposeSymmetryStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/transpose_symmetry.py"
+      ;;
+    SpecialMatricesFamilyRecognitionStory|SpecialMatricesFamilyRecognitionStoryEn|SpecialMatricesFamilyRecognitionStoryZhHk|SpecialMatricesFamilyRecognitionStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1030/special_matrices.py"
       ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/gaussian_elimination_rref.py"
@@ -274,6 +280,15 @@ scene_locale() {
       printf '%s\n' "zh-hk"
       ;;
     TransposeSymmetryStoryZhCn)
+      printf '%s\n' "zh-cn"
+      ;;
+    SpecialMatricesFamilyRecognitionStory|SpecialMatricesFamilyRecognitionStoryEn)
+      printf '%s\n' "en"
+      ;;
+    SpecialMatricesFamilyRecognitionStoryZhHk)
+      printf '%s\n' "zh-hk"
+      ;;
+    SpecialMatricesFamilyRecognitionStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn)
@@ -431,6 +446,9 @@ video_basename() {
     TransposeSymmetryStory|TransposeSymmetryStoryEn|TransposeSymmetryStoryZhHk|TransposeSymmetryStoryZhCn)
       printf '%s\n' "transpose-symmetry-story"
       ;;
+    SpecialMatricesFamilyRecognitionStory|SpecialMatricesFamilyRecognitionStoryEn|SpecialMatricesFamilyRecognitionStoryZhHk|SpecialMatricesFamilyRecognitionStoryZhCn)
+      printf '%s\n' "special-matrices-family-recognition-story"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "gaussian-elimination-rref-pivot-story"
       ;;
@@ -539,6 +557,9 @@ scene_course() {
       printf '%s\n' "math1030"
       ;;
     TransposeSymmetryStory|TransposeSymmetryStoryEn|TransposeSymmetryStoryZhHk|TransposeSymmetryStoryZhCn)
+      printf '%s\n' "math1030"
+      ;;
+    SpecialMatricesFamilyRecognitionStory|SpecialMatricesFamilyRecognitionStoryEn|SpecialMatricesFamilyRecognitionStoryZhHk|SpecialMatricesFamilyRecognitionStoryZhCn)
       printf '%s\n' "math1030"
       ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn|ColumnRowSpaceRankStoryZhHk|ColumnRowSpaceRankStoryZhCn)

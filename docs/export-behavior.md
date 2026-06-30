@@ -76,6 +76,12 @@ then serializes that structure to TXT or PDF.
   the later redundancy / null-space material, the final summary, quick checks,
   and guided solutions all survive TXT export. EN PDF export returned
   `application/pdf`.
+- The July 1 MATH1030 `3.4 Special matrices` QA pass verified that TXT / PDF
+  export preserves the new static video-study sequence, the new
+  `matrix-family-checker` snapshot, and the existing `row-reduction-stepper`
+  snapshot in EN / zh-HK / zh-CN. The TXT checks also verified that no raw
+  `<video>`, `.mp4`, poster attribute, video id, or widget id leaks into the
+  exported study material.
 
 ## Current blockers
 

@@ -381,5 +381,19 @@ remains the export fallback paired with the new shared video frame sequence.
 The broader `matrix-family-checker` belongs to the next `special-matrices`
 slice, not this shared transpose/symmetry clip.
 
+The Math1030 `3.4` special-matrices pass is Manim-plus-existing-widgets. The
+new clip handles the curated source-backed recognition sequence: family map,
+diagonal zero patterns, diagonal product closure, upper-triangular zero
+patterns, triangular product closure, identity multiplication, and elementary
+matrices as one row operation applied to `I`. The existing
+`matrix-family-checker` remains the right reader-controlled follow-up because
+readers can switch among symmetric, skew-symmetric, diagonal, identity, and
+neither examples without turning the section into a broad matrix calculator.
+This pass adds a static export snapshot for `matrix-family-checker` so TXT and
+PDF exports preserve the representative classification states. The existing
+`row-reduction-stepper` remains the elementary-matrix follow-up because it
+shows how row-operation chains behave after the article states that left
+multiplication by an elementary matrix performs the matching row operation.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

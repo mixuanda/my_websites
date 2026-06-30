@@ -329,6 +329,71 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "跟着看一格矩阵乘法"
     ),
   },
+  "matrix-family-checker": {
+    sampleStates: [
+      {
+        label: text("Symmetric example", "對稱例子", "对称例子"),
+        value: text(
+          "A = [[2, -1], [-1, 5]] satisfies A^T = A because the off-diagonal entries match across the main diagonal.",
+          "A = [[2, -1], [-1, 5]] 滿足 A^T = A，因為主對角線兩側的非對角元素互相配對相等。",
+          "A = [[2, -1], [-1, 5]] 满足 A^T = A，因为主对角线两侧的非对角元素互相配对相等。"
+        ),
+      },
+      {
+        label: text("Skew-symmetric example", "反對稱例子", "反对称例子"),
+        value: text(
+          "A = [[0, 4], [-4, 0]] satisfies A^T = -A; the diagonal is zero and the off-diagonal pair changes sign.",
+          "A = [[0, 4], [-4, 0]] 滿足 A^T = -A；對角線為零，而非對角成對元素互為相反數。",
+          "A = [[0, 4], [-4, 0]] 满足 A^T = -A；对角线为零，而非对角成对元素互为相反数。"
+        ),
+      },
+      {
+        label: text("Diagonal example", "對角例子", "对角例子"),
+        value: text(
+          "A = [[3, 0], [0, -1]] is diagonal, so it is also symmetric; every off-diagonal entry is zero.",
+          "A = [[3, 0], [0, -1]] 是對角矩陣，因此也是對稱矩陣；每個非對角元素都是零。",
+          "A = [[3, 0], [0, -1]] 是对角矩阵，因此也是对称矩阵；每个非对角元素都是零。"
+        ),
+      },
+      {
+        label: text("Identity example", "單位矩陣例子", "单位矩阵例子"),
+        value: text(
+          "I_2 = [[1, 0], [0, 1]] is identity, diagonal, and symmetric, so one matrix can belong to several families.",
+          "I_2 = [[1, 0], [0, 1]] 既是單位矩陣，也是對角矩陣和對稱矩陣，所以同一矩陣可屬於多個家族。",
+          "I_2 = [[1, 0], [0, 1]] 既是单位矩阵，也是对角矩阵和对称矩阵，所以同一矩阵可属于多个家族。"
+        ),
+      },
+      {
+        label: text("Neither example", "兩者都不是的例子", "两者都不是的例子"),
+        value: text(
+          "A = [[1, 2], [0, 1]] has A^T different from A and also different from -A, so it is neither symmetric nor skew-symmetric.",
+          "A = [[1, 2], [0, 1]] 的轉置既不同於 A，也不同於 -A，所以既不是對稱矩陣，也不是反對稱矩陣。",
+          "A = [[1, 2], [0, 1]] 的转置既不同于 A，也不同于 -A，所以既不是对称矩阵，也不是反对称矩阵。"
+        ),
+      },
+    ],
+    staticDiagramNote: text(
+      "In the live checker, each button swaps in a matrix, displays its transpose, and labels the family after comparing entries across the main diagonal.",
+      "在互動分類工具中，每個按鈕會換入一個矩陣、顯示其轉置，並在比較主對角線兩側元素後標示所屬家族。",
+      "在互动分类工具中，每个按钮会换入一个矩阵、显示其转置，并在比较主对角线两侧元素后标示所属家族。"
+    ),
+    summary: text(
+      "The live checker compares A with A^T so readers can distinguish symmetric, skew-symmetric, diagonal, identity, and neither cases.",
+      "互動分類工具會比較 A 與 A^T，幫助讀者區分對稱、反對稱、對角、單位矩陣與兩者都不是的情況。",
+      "互动分类工具会比较 A 与 A^T，帮助读者区分对称、反对称、对角、单位矩阵与两者都不是的情况。"
+    ),
+    steps: [
+      text("Start by checking whether the matrix is square.", "先檢查矩陣是否為方陣。", "先检查矩阵是否为方阵。"),
+      text("Compare entries across the main diagonal by forming A^T.", "透過形成 A^T，比較主對角線兩側的元素。", "通过形成 A^T，比较主对角线两侧的元素。"),
+      text("Use A^T = A for symmetry and A^T = -A for skew-symmetry.", "用 A^T = A 判斷對稱，用 A^T = -A 判斷反對稱。", "用 A^T = A 判断对称，用 A^T = -A 判断反对称。"),
+      text("Record overlapping families such as identity, diagonal, and symmetric.", "記錄可重疊的家族，例如單位、對角與對稱。", "记录可重叠的家族，例如单位、对角与对称。"),
+    ],
+    title: text(
+      "Classify matrix families by transpose comparison",
+      "用轉置比較分類矩陣家族",
+      "用转置比较分类矩阵家族"
+    ),
+  },
   "transpose-symmetry-lab": {
     sampleStates: [
       {

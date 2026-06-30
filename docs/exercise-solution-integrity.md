@@ -884,3 +884,25 @@ unit-level coverage.
 - Verification: local route and export checks confirmed the localized video
   assets are exposed and static TXT / PDF exports include the video-study
   frame sequence without raw video markup.
+
+### 2026-07-01 checkpoint 32: MATH1030 3.4 special-matrices video insertion integrity
+
+- Checkpoint name: special-matrix family video embed, existing
+  `matrix-family-checker`, existing `row-reduction-stepper`, and export
+  fallback integrity.
+- What was inspected: the existing EN / zh-HK / zh-CN `3.4` MDX files, the new
+  `VideoExplanation` frame sequence, the existing `matrix-family-checker`, the
+  existing `row-reduction-stepper`, static TXT / PDF exports, and the in-page
+  quick checks / reveal-solution placement.
+- What was changed: inserted the localized video explanation immediately after
+  the definition block and before the family checker. No quick-check,
+  exercise, or reveal-solution block was reordered.
+- Integrity note: `matrix-family-checker` remains below the video as the
+  family-recognition follow-up, and `row-reduction-stepper` remains below the
+  elementary-matrix bridge as the operation-chain follow-up. Browser QA clicked
+  `Neither` in the family checker and `Next step` in the row stepper, verifying
+  that both still update visible state after the video insertion.
+- Verification: local route and export checks confirmed the localized video
+  assets are exposed and static TXT / PDF exports include the video-study
+  frame sequence, the new family-checker snapshot, and the existing
+  row-stepper snapshot without raw video or widget markup.

@@ -774,3 +774,22 @@ Current checkpoint resolution:
   locale-specific mp4/poster values, no raw widget id, no framework overlay,
   ready video metadata, existing lab rendering after the video, and no
   horizontal overflow on the checked mobile pages.
+
+### 2026-07-01 checkpoint 33: MATH1030 3.4 special-matrices rendering pass
+
+- Checkpoint name: `3.4` special-matrix family video, existing
+  `matrix-family-checker`, and existing `row-reduction-stepper` rendering.
+- What was inspected: EN / zh-HK / zh-CN note pages for
+  `special-matrices`, the new localized video card, the generated trilingual
+  MP4/poster assets, the existing family checker, the existing row-reduction
+  stepper, mobile layout at `390 x 844`, and dark mode.
+- Rendering note: the video stays inside the article flow immediately after
+  the definitions and before the family checker. Poster QA found the initial
+  frame readable but slightly dense, so the scene text was shortened and
+  re-rendered; the final posters show stable EN / zh-HK / zh-CN diagonal
+  product frames with no crossfade residue or text overflow.
+- Verification: in-app Browser QA found one localized video per route, correct
+  locale-specific mp4/poster values, no raw widget id, no framework overlay,
+  clean console logs, working `matrix-family-checker` state changes, working
+  row-stepper next-state interaction, and no horizontal overflow on the checked
+  mobile pages.

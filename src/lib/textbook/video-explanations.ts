@@ -319,6 +319,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/transpose-symmetry-story-zh-cn.mp4"
     ),
   },
+  "math1030-special-matrices-family-recognition-story": {
+    conclusion: text(
+      "Special matrix families are not just names. Diagonal, triangular, identity, zero, and elementary matrices package visible structure, so you should classify the shape before deciding how much computation is really needed.",
+      "特殊矩陣家族不只是名稱。對角、三角、單位、零矩陣和初等矩陣都把可見結構包裝起來，所以應先辨認形狀，再決定需要多少計算。",
+      "特殊矩阵家族不只是名称。对角、三角、单位、零矩阵和初等矩阵都把可见结构包装起来，所以应先辨认形状，再决定需要多少计算。"
+    ),
+    durationSeconds: 9,
+    frames: [
+      {
+        label: text("Family map", "家族地圖", "家族地图"),
+        value: text(
+          "Diagonal, triangular, identity, zero, and elementary matrices are useful because their shape carries algebraic information.",
+          "對角、三角、單位、零矩陣和初等矩陣之所以有用，是因為它們的形狀本身帶有代數資訊。",
+          "对角、三角、单位、零矩阵和初等矩阵之所以有用，是因为它们的形状本身带有代数信息。"
+        ),
+      },
+      {
+        label: text("Diagonal pattern", "對角圖案", "对角图案"),
+        value: text(
+          "A diagonal matrix has all off-diagonal entries equal to zero, and the product of two diagonal matrices is still diagonal.",
+          "對角矩陣的所有非對角元素都等於零，而且兩個對角矩陣相乘後仍是對角矩陣。",
+          "对角矩阵的所有非对角元素都等于零，而且两个对角矩阵相乘后仍是对角矩阵。"
+        ),
+      },
+      {
+        label: text("Triangular pattern", "三角圖案", "三角图案"),
+        value: text(
+          "An upper triangular matrix has zeros below the main diagonal, and multiplying upper triangular matrices preserves that zero side.",
+          "上三角矩陣在主對角線下方全為零，而上三角矩陣相乘會保留這一側的零元素。",
+          "上三角矩阵在主对角线下方全为零，而上三角矩阵相乘会保留这一侧的零元素。"
+        ),
+      },
+      {
+        label: text("Identity action", "單位作用", "单位作用"),
+        value: text(
+          "The identity matrix is diagonal with ones on the diagonal; compatible products satisfy AI_n = A and I_mA = A.",
+          "單位矩陣是在對角線上全為一的對角矩陣；相容乘法滿足 AI_n = A 與 I_mA = A。",
+          "单位矩阵是在对角线上全为一的对角矩阵；相容乘法满足 AI_n = A 与 I_mA = A。"
+        ),
+      },
+      {
+        label: text("Elementary bridge", "初等橋樑", "初等桥梁"),
+        value: text(
+          "An elementary matrix is obtained by applying one elementary row operation to an identity matrix.",
+          "初等矩陣是由單位矩陣做一次初等行變換得到的矩陣。",
+          "初等矩阵是由单位矩阵做一次初等行变换得到的矩阵。"
+        ),
+      },
+      {
+        label: text("Side matters", "乘法側邊很重要", "乘法侧边很重要"),
+        value: text(
+          "Multiplying by E on the left performs the matching row operation on A, while multiplying on the right performs the corresponding column operation.",
+          "在左邊乘上 E 會對 A 做相應行變換；在右邊乘上 E 則會做相應列變換。",
+          "在左边乘上 E 会对 A 做相应行变换；在右边乘上 E 则会做相应列变换。"
+        ),
+      },
+    ],
+    summary: text(
+      "Classify special matrix families by their visible shape, then connect diagonal and triangular closure, the identity law, and elementary matrices as row-operation packages.",
+      "從可見形狀辨認特殊矩陣家族，再連到對角與三角乘積保持形狀、單位律，以及把行變換包裝成矩陣的初等矩陣。",
+      "从可见形状辨认特殊矩阵家族，再连到对角与三角乘积保持形状、单位律，以及把行变换包装成矩阵的初等矩阵。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/special-matrices-family-recognition-story-en.png",
+      "/generated/animations/math1030/special-matrices-family-recognition-story-zh-hk.png",
+      "/generated/animations/math1030/special-matrices-family-recognition-story-zh-cn.png"
+    ),
+    title: text(
+      "Special matrix families",
+      "特殊矩陣家族",
+      "特殊矩阵家族"
+    ),
+    transcript: [
+      text(
+        "Special matrices are useful because their visible shape already tells you something.",
+        "特殊矩陣有用，是因為可見形狀已經先告訴你一些資訊。",
+        "特殊矩阵有用，是因为可见形状已经先告诉你一些信息。"
+      ),
+      text(
+        "Diagonal and triangular matrices are governed by zero patterns that survive the matching products.",
+        "對角與三角矩陣受零元素圖案控制，而這些圖案會在相應乘積中保留下來。",
+        "对角与三角矩阵受零元素图案控制，而这些图案会在相应乘积中保留下来。"
+      ),
+      text(
+        "Elementary matrices start from the identity matrix and turn one row operation into multiplication.",
+        "初等矩陣由單位矩陣出發，把一次行變換轉成矩陣乘法。",
+        "初等矩阵由单位矩阵出发，把一次行变换转成矩阵乘法。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/special-matrices-family-recognition-story-en.mp4",
+      "/generated/animations/math1030/special-matrices-family-recognition-story-zh-hk.mp4",
+      "/generated/animations/math1030/special-matrices-family-recognition-story-zh-cn.mp4"
+    ),
+  },
   "math1030-equations-solution-sets-story": {
     conclusion: text(
       "The visible equations may be rewritten, but the object we protect is the full solution set: all ordered tuples that satisfy every equation at the same time.",

@@ -997,3 +997,32 @@ Use this shape for future entries:
   content check, production build, browser DOM / console checks, existing
   widget rendering, responsive checks, and three-locale TXT / PDF export
   checks passed locally.
+
+### 2026-07-01: MATH1030 3.4 special matrices video checkpoint
+
+- Gap selected: the video roadmap marked Math1030 `3.4 Special matrices` as a
+  Manim + widget target because the article already had source-backed special
+  family prose plus existing `matrix-family-checker` and `row-reduction-stepper`
+  follow-ups.
+- Reference basis: `reference/MATH1030/MATH1030-Notes.pdf` §3.4 pp. 51-56 and
+  `reference/MATH1030/Practice Set 3_Matrix Algebra and Linear Equation
+  System.pdf` questions 9-11.
+- Content files changed: added the 3.4 storyboard, Manim scene, render-script
+  entries, localized `VideoExplanation` registry metadata, EN / zh-HK / zh-CN
+  page embeds, and a static export snapshot for the existing
+  `matrix-family-checker`.
+- Visuals added: trilingual Manim video and poster assets for the family map,
+  diagonal zero patterns and diagonal product closure, upper-triangular zero
+  patterns and triangular product closure, identity multiplication, and
+  elementary matrices as one row operation applied to `I`.
+- Interactions added: no new widget. The existing `matrix-family-checker`
+  remains the recognition follow-up, and the existing `row-reduction-stepper`
+  remains the row-operation follow-up.
+- Exercises added: none. Existing quick checks and reveal solutions were left
+  in place; the video insertion did not reorder answer blocks.
+- Verification: Python syntax, storyboard JSON, render-script syntax, Manim
+  render, media metadata checks, visual poster inspection, `git diff --check`,
+  MDX table verification, TypeScript, lint, textbook content check, production
+  build, in-app Browser DOM / console checks, existing widget interactions,
+  desktop / dark / mobile checks, and three-locale TXT / PDF export checks
+  passed locally.

@@ -1258,3 +1258,24 @@ existing invertibility note instead of creating a detached new route.
 - Status change: the transpose / symmetry source-backed prose remains
   incorporated, and the new shared video explanation is now incorporated as an
   export-friendly static fallback in both supported units.
+
+### 2026-07-01 checkpoint 38: MATH1030 3.4 special matrices video pass
+
+- Revisited `3.4 Special matrices` against `MATH1030-Notes.pdf` §3.4
+  pp. 51-56 and Practice Set 3 questions 9-11.
+- Added a trilingual article-embedded `VideoExplanation` for the
+  source-backed recognition sequence: classify special matrix families by
+  visible zero pattern, identify diagonal matrices and their product closure,
+  identify upper triangular matrices and triangular product closure, read the
+  identity matrix as a diagonal matrix with multiplicative identity behavior,
+  and bridge elementary matrices to one row operation applied to `I`.
+- Preserved the existing `matrix-family-checker` and `row-reduction-stepper`
+  as reader-controlled follow-ups. Added a static export snapshot for
+  `matrix-family-checker`; `row-reduction-stepper` already had one.
+- Recorded the source boundary explicitly: symmetric / skew-symmetric
+  transpose theory stays in the previous shared video, block matrices belong
+  to 3.5, and invertibility / longer elementary-matrix products remain later
+  units.
+- Status change: the 3.4 source-backed prose remains incorporated, and the new
+  video explanation plus both widget snapshots are now incorporated as
+  export-friendly static fallbacks.

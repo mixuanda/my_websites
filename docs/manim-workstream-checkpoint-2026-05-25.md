@@ -52,34 +52,36 @@ history.
 | Math1030 `3.1 Matrix addition, subtraction, and scalar multiplication` | `math1030-matrix-entrywise-arithmetic-story` | `docs/manim-matrix-entrywise-arithmetic-video-qa-2026-07-01.md` |
 | Math1030 `3.1 Matrix multiplication and identity matrices` | `math1030-matrix-multiplication-identity-story` | `docs/manim-matrix-multiplication-identity-video-qa-2026-07-01.md` |
 | Math1030 `3.2/3.3 Transpose, symmetry, and skew-symmetry` | `math1030-transpose-symmetry-story` | `docs/manim-transpose-symmetry-video-qa-2026-07-01.md` |
+| Math1030 `3.4 Special matrices` | `math1030-special-matrices-family-recognition-story` | `docs/manim-special-matrices-video-qa-2026-07-01.md` |
 
 ## Latest Slice Notes
 
-Math1030 `3.2/3.3` transpose, symmetry, and skew-symmetry was implemented
-after roadmap, current MDX, catalog metadata, and reference inspection
-confirmed that `transpose-and-special-matrices` and
-`transposes-and-symmetric-matrices` should share one video boundary.
-`MATH1030-Notes.pdf` pp. 47-50, `1030gi-n01-03.pdf` pp. 1-4,
-`1030efghi-tutorial-week04.pdf` p. 1, `1030gi-n01-se0304.pdf` pp. 1-4, and
-Practice Set 3 support transpose as index swap / diagonal reflection,
-symmetric and skew-symmetric pair rules, zero skew diagonal, product-order
-reversal, and the symmetric/skew-symmetric decomposition.
+Math1030 `3.4 Special matrices` was implemented after roadmap, current MDX,
+catalog metadata, reference inspection, and read-only agent scouting confirmed
+that the source-backed boundary is matrix-family recognition plus the
+elementary-matrix bridge. `MATH1030-Notes.pdf` §3.4 pp. 51-56 and Practice Set
+3 questions 9-11 support diagonal matrices, triangular matrices, identity
+matrices, elementary matrices, diagonal / triangular product closure, identity
+multiplication, and elementary matrices as row / column operation packages.
 
 Fixes applied:
 
-- new storyboard covers the transpose index swap, square-matrix diagonal
-  reflection, symmetric and skew-symmetric pair rules, zero diagonal for
-  skew-symmetric matrices, `(AB)^T=B^T A^T`, and the split
-  `A=1/2(A+A^T)+1/2(A-A^T)`;
+- new storyboard covers the special-matrix family map, diagonal zero pattern,
+  diagonal product closure, upper-triangular zero pattern, triangular product
+  closure, identity multiplication, and elementary matrices from one row
+  operation on `I`;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the transpose / symmetry scene and
+- render script now includes the special-matrices scene and
   writes assets under `public/generated/animations/math1030/`;
-- the same localized video was embedded into both
-  `transpose-and-special-matrices` and `transposes-and-symmetric-matrices`;
-- the existing `transpose-symmetry-lab` remains the reader-controlled follow-up
-  on the split page and keeps its static export snapshot;
-- the full diagonal / triangular / identity / elementary matrix family clip is
-  intentionally deferred to `special-matrices`.
+- the localized video was embedded into the EN / zh-HK / zh-CN
+  `special-matrices` note immediately after the definitions and before the
+  family checker;
+- the existing `matrix-family-checker` remains the recognition follow-up and
+  now has a static export snapshot;
+- the existing `row-reduction-stepper` remains the elementary-matrix operation
+  follow-up and keeps its existing static export snapshot;
+- block matrices, invertibility consequences, and longer row-operation chains
+  are intentionally deferred to their own units.
 
 ## Verification Stack Used For Latest Slice
 
@@ -92,9 +94,10 @@ Fixes applied:
 - `npm run lint`
 - `npm run check:textbook-content`
 - `AUTH_SECRET=local-test-secret npm run build`
-- Browser DOM / console checks through system Chrome, route / asset checks,
-  existing widget interaction, responsive screenshots, media metadata, target
-  content-check warning check, and TXT/PDF export checks for all three locales
+- Browser DOM / console checks through the in-app Browser, route / asset
+  checks, family-checker and row-stepper interactions, desktop / dark / mobile
+  screenshots, media metadata, target content-check warning check, and TXT/PDF
+  export checks for all three locales
 
 ## Next Slice
 
@@ -104,8 +107,8 @@ priority changes.
 Expected first step:
 
 1. Start with the next unresolved Math1030 register item, currently
-   `matrix-algebra/special-matrices`; use the current `matrix-family-checker`
-   as the interaction anchor and add an export snapshot if it remains visible.
+   `matrix-algebra/block-matrices`; keep it focused on block partitions,
+   compatible block sizes, and block arithmetic boundaries.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset

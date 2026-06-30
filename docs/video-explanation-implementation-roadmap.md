@@ -158,8 +158,8 @@ Use this order unless a later user request changes priority:
    Inner products, norms, and angles`, and Math1030 `9.2 Orthogonal sets and
    orthonormal bases`.
 2. Math1030 basis, rank, determinant, and eigenvalue units.
-3. Remaining Math1030 matrix-algebra clips such as transpose, special
-   matrices, and block matrices.
+3. Remaining Math1030 matrix-algebra clips such as block matrices and later
+   solution-structure / invertibility transitions.
 4. Remaining Math1090 set, limit, and completeness clips.
 5. Math1025 complex-number, Euclidean-algorithm, polynomial, and sequence clips.
 6. CSCI2520 algorithm clips only after deciding the Manim-vs-widget split for
@@ -182,7 +182,7 @@ Use this order unless a later user request changes priority:
 | `math1030/matrix-algebra/transpose-and-special-matrices` | 3.2 Transpose and special matrices | Done | Reflect entries across the diagonal and label matrix families. | Completed as a shared transpose/symmetry video boundary; full special-matrix family recognition remains separate. |
 | `math1030/matrix-algebra/row-operation-matrices` | 3.3 Row-operation matrices | Done | Elementary matrices acting by left multiplication. | Completed as the sixth trilingual Manim pilot; no separate widget exists for this unit yet. |
 | `math1030/matrix-algebra/transposes-and-symmetric-matrices` | 3.3 Transposes, symmetric matrices, and skew-symmetric matrices | Done | Symmetry and skew-symmetry as diagonal reflection rules. | Completed by the shared `math1030-transpose-symmetry-story`; existing `transpose-symmetry-lab` remains the reader-controlled follow-up and export snapshot. |
-| `math1030/matrix-algebra/special-matrices` | 3.4 Special matrices | Manim + widget | Diagonal, triangular, identity, zero, and special-family recognition. | Use current family checker as interactive anchor. |
+| `math1030/matrix-algebra/special-matrices` | 3.4 Special matrices | Done | Diagonal, triangular, identity, zero, and special-family recognition. | Completed by `math1030-special-matrices-family-recognition-story`; existing `matrix-family-checker` and `row-reduction-stepper` remain the reader-controlled follow-ups, and `matrix-family-checker` now has a static export snapshot. |
 | `math1030/matrix-algebra/block-matrices` | 3.5 Block matrices | Manim | Partitioned matrices and block multiplication compatibility. | Storyboard block boundaries and compatible sizes. |
 | `math1030/solution-structure/homogeneous-systems-and-null-space` | 4.1 Homogeneous systems and null space | Manim | Null space as all vectors sent to zero. | Storyboard solution-set geometry. |
 | `math1030/solution-structure/set-language-and-solution-sets` | 4.2 Set language and solution sets | Manim | Translate algebraic constraints into set-builder notation. | Keep short; avoid replacing prose. |
@@ -274,9 +274,8 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 These are the concrete next slices to execute one by one:
 
 1. Continue the next unresolved Math1030 matrix-algebra register item:
-   `matrix-algebra/special-matrices`, using the existing
-   `matrix-family-checker` as the reader-controlled follow-up and adding a
-   static export snapshot if the widget remains on the page.
+   `matrix-algebra/block-matrices`, with a focused clip on block partitions,
+   compatible block sizes, and block addition / multiplication boundaries.
 2. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.
 

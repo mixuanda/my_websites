@@ -363,12 +363,19 @@ Progress on the animation slice:
   `transpose-symmetry-lab` preserved as the reader-controlled follow-up, and
   TXT/PDF static fallback; focused QA is recorded in
   `docs/manim-transpose-symmetry-video-qa-2026-07-01.md`.
+- completed the twenty-eighth Math1030 Manim pass for `3.4 Special matrices`
+  with trilingual `math1030-special-matrices-family-recognition-story` videos,
+  localized posters, a new trilingual storyboard, article embeds after the
+  definitions, the existing `matrix-family-checker` and `row-reduction-stepper`
+  preserved as reader-controlled follow-ups, a new static export snapshot for
+  `matrix-family-checker`, and TXT/PDF static fallback; focused QA is recorded
+  in `docs/manim-special-matrices-video-qa-2026-07-01.md`.
 
 Remaining animation work:
 
 - decide whether these generated assets should be committed directly under
   `public/generated/animations/` or moved to external/static hosting later.
-- continue with the next roadmap slice: Math1030 `3.4 Special matrices`, unless
+- continue with the next roadmap slice: Math1030 `3.5 Block matrices`, unless
   the roadmap priority changes.
 
 ## 1. Global Notes Navigation / Long Course Sidebar

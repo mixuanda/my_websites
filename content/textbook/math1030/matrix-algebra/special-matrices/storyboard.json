@@ -1,0 +1,283 @@
+{
+  "course": "math1030",
+  "chapter": "matrix-algebra",
+  "unit": "special-matrices",
+  "unitTitle": {
+    "en": "3.4 Special matrices",
+    "zh-hk": "3.4 特殊矩陣",
+    "zh-cn": "3.4 特殊矩阵"
+  },
+  "videoId": "math1030-special-matrices-family-recognition-story",
+  "sourceBoundary": [
+    "reference/MATH1030/MATH1030-Notes.pdf §3.4, pp. 51-56",
+    "reference/MATH1030/Practice Set 3_Matrix Algebra and Linear Equation System.pdf, questions 9-11"
+  ],
+  "exclusions": [
+    "Detailed symmetric and skew-symmetric transpose theory belongs to the transpose/symmetry video.",
+    "Block partitions and block arithmetic belong to 3.5 Block matrices.",
+    "Long products of row-operation matrices and invertibility consequences belong to later row-operation and invertibility notes."
+  ],
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "Shape is information",
+          "goal": "Frame special matrices as families whose zero pattern predicts algebra before computation.",
+          "beats": [
+            "Display the family map: diagonal, triangular, identity, zero, and elementary.",
+            "Emphasize that a matrix may belong to more than one family."
+          ],
+          "mathBlocks": [
+            "recognize family -> predict behavior"
+          ],
+          "animation": "family cards grouped as a map"
+        },
+        {
+          "type": "definition_visual",
+          "cardTitle": "Diagonal matrices",
+          "goal": "Show that off-diagonal zeros define the family and that products remain diagonal.",
+          "beats": [
+            "Mute all off-diagonal entries of a diagonal matrix.",
+            "Show a diagonal product with only diagonal entries surviving."
+          ],
+          "mathBlocks": [
+            "D=diag(d_1,...,d_n)",
+            "diag(a_i)diag(b_i)=diag(a_i b_i)"
+          ],
+          "animation": "off-diagonal zero mask and product arrow"
+        },
+        {
+          "type": "definition_visual",
+          "cardTitle": "Triangular matrices",
+          "goal": "Make the below-diagonal zero pattern of upper triangular matrices visible.",
+          "beats": [
+            "Highlight the main diagonal and mute entries below it.",
+            "Show that an upper-triangular product keeps zeros below the diagonal."
+          ],
+          "mathBlocks": [
+            "u_{ij}=0 when i>j",
+            "upper * upper = upper"
+          ],
+          "animation": "upper triangular matrix and upper triangular product"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "Identity matrix",
+          "goal": "Connect identity matrices to diagonal matrices and the multiplication identity law.",
+          "beats": [
+            "Show I as a diagonal matrix with all diagonal entries equal to 1.",
+            "Show A times I returning A."
+          ],
+          "mathBlocks": [
+            "AI_n=A",
+            "I_mA=A"
+          ],
+          "animation": "A, I, and unchanged result"
+        },
+        {
+          "type": "bridge",
+          "cardTitle": "Elementary matrices",
+          "goal": "Show that applying one row operation to I creates an elementary matrix.",
+          "beats": [
+            "Start from I_3.",
+            "Display row swap, row scaling, and row-addition examples."
+          ],
+          "mathBlocks": [
+            "E = one elementary row operation applied to I"
+          ],
+          "animation": "I_3 branching into three elementary matrices"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "Left and right multiplication",
+          "goal": "Close with the row/column-operation bridge and point back to the live widgets.",
+          "beats": [
+            "Show EA changing rows and AE changing columns.",
+            "Use the family checker for recognition and the row stepper for operation chains."
+          ],
+          "mathBlocks": [
+            "EA: row operation on A",
+            "AE: column operation on A"
+          ],
+          "animation": "left/right multiplication badges"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "形狀本身就是訊息",
+          "goal": "把特殊矩陣理解為可由零元素圖案預測代數行為的家族。",
+          "beats": [
+            "顯示對角、三角、單位、零矩陣與初等矩陣的家族地圖。",
+            "指出同一矩陣可以同時屬於多個家族。"
+          ],
+          "mathBlocks": [
+            "先認家族 -> 預測行為"
+          ],
+          "animation": "矩陣家族卡片地圖"
+        },
+        {
+          "type": "definition_visual",
+          "cardTitle": "對角矩陣",
+          "goal": "顯示非對角零元素如何定義家族，以及對角乘積仍為對角。",
+          "beats": [
+            "淡化對角矩陣的所有非對角元素。",
+            "顯示兩個對角矩陣相乘後只有對角元素保留。"
+          ],
+          "mathBlocks": [
+            "D=diag(d_1,...,d_n)",
+            "diag(a_i)diag(b_i)=diag(a_i b_i)"
+          ],
+          "animation": "非對角零元素遮罩與乘積箭頭"
+        },
+        {
+          "type": "definition_visual",
+          "cardTitle": "三角矩陣",
+          "goal": "讓上三角矩陣對角線下方全為零的圖案變得可見。",
+          "beats": [
+            "標示主對角線，淡化其下方元素。",
+            "顯示上三角乘積仍在下方保留零元素。"
+          ],
+          "mathBlocks": [
+            "i>j 時 u_{ij}=0",
+            "上三角 * 上三角 = 上三角"
+          ],
+          "animation": "上三角矩陣與上三角乘積"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "單位矩陣",
+          "goal": "把單位矩陣連到對角矩陣與乘法中的單位律。",
+          "beats": [
+            "顯示 I 是對角線全為 1 的對角矩陣。",
+            "顯示 A 乘 I 後仍回到 A。"
+          ],
+          "mathBlocks": [
+            "AI_n=A",
+            "I_mA=A"
+          ],
+          "animation": "A、I 和不變的結果"
+        },
+        {
+          "type": "bridge",
+          "cardTitle": "初等矩陣",
+          "goal": "顯示對 I 做一次行變換即可得到初等矩陣。",
+          "beats": [
+            "由 I_3 開始。",
+            "顯示交換行、縮放行與加上某行倍數的例子。"
+          ],
+          "mathBlocks": [
+            "E = 對 I 做一次初等行變換"
+          ],
+          "animation": "I_3 分支成三個初等矩陣"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "左乘與右乘",
+          "goal": "用行/列變換橋樑收束，並連回頁面中的互動工具。",
+          "beats": [
+            "顯示 EA 改變行，而 AE 改變列。",
+            "用分類工具做識別，再用行化簡步驟器看操作鏈。"
+          ],
+          "mathBlocks": [
+            "EA：對 A 做行變換",
+            "AE：對 A 做列變換"
+          ],
+          "animation": "左乘/右乘標籤"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "concept_intro",
+          "cardTitle": "形状本身就是信息",
+          "goal": "把特殊矩阵理解为可由零元素图案预测代数行为的家族。",
+          "beats": [
+            "显示对角、三角、单位、零矩阵与初等矩阵的家族地图。",
+            "指出同一矩阵可以同时属于多个家族。"
+          ],
+          "mathBlocks": [
+            "先认家族 -> 预测行为"
+          ],
+          "animation": "矩阵家族卡片地图"
+        },
+        {
+          "type": "definition_visual",
+          "cardTitle": "对角矩阵",
+          "goal": "显示非对角零元素如何定义家族，以及对角乘积仍为对角。",
+          "beats": [
+            "淡化对角矩阵的所有非对角元素。",
+            "显示两个对角矩阵相乘后只有对角元素保留。"
+          ],
+          "mathBlocks": [
+            "D=diag(d_1,...,d_n)",
+            "diag(a_i)diag(b_i)=diag(a_i b_i)"
+          ],
+          "animation": "非对角零元素遮罩与乘积箭头"
+        },
+        {
+          "type": "definition_visual",
+          "cardTitle": "三角矩阵",
+          "goal": "让上三角矩阵对角线下方全为零的图案变得可见。",
+          "beats": [
+            "标示主对角线，淡化其下方元素。",
+            "显示上三角乘积仍在下方保留零元素。"
+          ],
+          "mathBlocks": [
+            "i>j 时 u_{ij}=0",
+            "上三角 * 上三角 = 上三角"
+          ],
+          "animation": "上三角矩阵与上三角乘积"
+        },
+        {
+          "type": "example_walkthrough",
+          "cardTitle": "单位矩阵",
+          "goal": "把单位矩阵连到对角矩阵与乘法中的单位律。",
+          "beats": [
+            "显示 I 是对角线上全为 1 的对角矩阵。",
+            "显示 A 乘 I 后仍回到 A。"
+          ],
+          "mathBlocks": [
+            "AI_n=A",
+            "I_mA=A"
+          ],
+          "animation": "A、I 和不变的结果"
+        },
+        {
+          "type": "bridge",
+          "cardTitle": "初等矩阵",
+          "goal": "显示对 I 做一次行变换即可得到初等矩阵。",
+          "beats": [
+            "由 I_3 开始。",
+            "显示交换行、缩放行与加上某行倍数的例子。"
+          ],
+          "mathBlocks": [
+            "E = 对 I 做一次初等行变换"
+          ],
+          "animation": "I_3 分支成三个初等矩阵"
+        },
+        {
+          "type": "recap_checkpoints",
+          "cardTitle": "左乘与右乘",
+          "goal": "用行/列变换桥梁收束，并连回页面中的互动工具。",
+          "beats": [
+            "显示 EA 改变行，而 AE 改变列。",
+            "用分类工具做识别，再用行化简步骤器看操作链。"
+          ],
+          "mathBlocks": [
+            "EA：对 A 做行变换",
+            "AE：对 A 做列变换"
+          ],
+          "animation": "左乘/右乘标签"
+        }
+      ]
+    }
+  }
+}
