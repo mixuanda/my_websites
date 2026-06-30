@@ -115,5 +115,33 @@ internal video id. PDF exports returned valid `%PDF` headers.
 
 ## Production Verification
 
-Pending. Complete after the branch is pushed and the production deployment for
-`www.evanalysis.top` is ready.
+Completed after commit `01e19cc` was pushed to `codex/manim` and fast-forwarded
+to `main`.
+
+Production page checks:
+
+| Locale | Route | Status | Expected marker |
+| --- | --- | ---: | --- |
+| EN | `/en/notes/math1030/matrix-algebra/block-matrices` | 200 | `block-matrix-partition-product-story-en.mp4` |
+| zh-HK | `/zh-hk/notes/math1030/matrix-algebra/block-matrices` | 200 | `block-matrix-partition-product-story-zh-hk.mp4` |
+| zh-CN | `/zh-cn/notes/math1030/matrix-algebra/block-matrices` | 200 | `block-matrix-partition-product-story-zh-cn.mp4` |
+
+Production media checks:
+
+| Asset | Status | Content type | Bytes |
+| --- | ---: | --- | ---: |
+| `block-matrix-partition-product-story-en.mp4` | 200 | `video/mp4` | 479535 |
+| `block-matrix-partition-product-story-en.png` | 200 | `image/png` | 77200 |
+| `block-matrix-partition-product-story-zh-hk.mp4` | 200 | `video/mp4` | 461214 |
+| `block-matrix-partition-product-story-zh-hk.png` | 200 | `image/png` | 72928 |
+| `block-matrix-partition-product-story-zh-cn.mp4` | 200 | `video/mp4` | 454331 |
+| `block-matrix-partition-product-story-zh-cn.png` | 200 | `image/png` | 72457 |
+
+Production export checks:
+
+- EN / zh-HK / zh-CN TXT exports contain the localized static video-study
+  sequence markers.
+- EN / zh-HK / zh-CN TXT exports do not leak raw `<video>`, `.mp4`, poster
+  attributes, or the internal video id.
+- EN / zh-HK / zh-CN PDF exports return `application/pdf` and valid `%PDF`
+  headers.
