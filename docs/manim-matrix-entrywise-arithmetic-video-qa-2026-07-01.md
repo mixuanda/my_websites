@@ -144,5 +144,31 @@ Export QA passed:
 
 ## Production Status
 
-Pending until this checkpoint is committed, pushed, synced to `main`, and the
-production deployment for `www.evanalysis.top` reaches `READY`.
+Ready.
+
+Git and deployment checkpoint:
+
+- Commit pushed to `origin/codex/manim`:
+  `4f4fb14d06cc4746af6e89cec4ba0b3f49fe4d9f`.
+- `origin/main` was updated from `codex/manim` at the same commit.
+- Vercel production deployment:
+  `dpl_GcV41rnngjxf6bCMxyWmP4CST8nD`.
+- Deployment target: `production`.
+- Deployment state: `READY`.
+- Production alias verified: `www.evanalysis.top`.
+
+Production checks against `https://www.evanalysis.top` passed:
+
+- EN route returned `200` and includes the `Entrywise matrix arithmetic` video
+  explanation card with source
+  `/generated/animations/math1030/matrix-entrywise-arithmetic-story-en.mp4`.
+- zh-HK route returned localized page HTML pointing to
+  `/generated/animations/math1030/matrix-entrywise-arithmetic-story-zh-hk.mp4`.
+- zh-CN route returned localized page HTML pointing to
+  `/generated/animations/math1030/matrix-entrywise-arithmetic-story-zh-cn.mp4`.
+- EN / zh-HK / zh-CN mp4 assets returned `200` with `video/mp4`.
+- EN / zh-HK / zh-CN poster assets returned `200` with `image/png`.
+- EN / zh-HK / zh-CN TXT exports returned `200`, contained localized static
+  video-study sequence and static matrix-arithmetic lab snapshot content, and
+  did not leak raw `<video>`, `.mp4`, or `poster=` markup.
+- EN / zh-HK / zh-CN PDF exports returned `200` with valid `%PDF` headers.
