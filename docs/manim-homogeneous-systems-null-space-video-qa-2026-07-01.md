@@ -133,5 +133,46 @@ Local export sizes:
 
 ## Production Verification
 
-Pending after the branch is committed, pushed to `codex/manim`, and
+Completed after commit `85e085f` was pushed to `codex/manim` and
 fast-forwarded to `main`.
+
+Vercel production deployment:
+
+- Deployment id: `dpl_sVuzhfoscQJuMa6EWDbyABZf5GFP`.
+- Deployment URL:
+  `https://my-websites-7897dmxq7-mixuandahotmailcoms-projects.vercel.app`.
+- Target: production.
+- Status: Ready.
+- Alias verified: `www.evanalysis.top`.
+
+Production page checks:
+
+| Locale | Route | Status | Expected marker | HTML bytes |
+| --- | --- | ---: | --- | ---: |
+| EN | `/en/notes/math1030/solution-structure/homogeneous-systems-and-null-space` | 200 | `homogeneous-systems-null-space-story-en.mp4` | 804725 |
+| zh-HK | `/zh-hk/notes/math1030/solution-structure/homogeneous-systems-and-null-space` | 200 | `homogeneous-systems-null-space-story-zh-hk.mp4` | 805247 |
+| zh-CN | `/zh-cn/notes/math1030/solution-structure/homogeneous-systems-and-null-space` | 200 | `homogeneous-systems-null-space-story-zh-cn.mp4` | 805268 |
+
+Production media checks:
+
+| Asset | Status | Content type | Bytes |
+| --- | ---: | --- | ---: |
+| `homogeneous-systems-null-space-story-en.mp4` | 200 | `video/mp4` | 416909 |
+| `homogeneous-systems-null-space-story-en.png` | 200 | `image/png` | 85933 |
+| `homogeneous-systems-null-space-story-zh-hk.mp4` | 200 | `video/mp4` | 356377 |
+| `homogeneous-systems-null-space-story-zh-hk.png` | 200 | `image/png` | 70616 |
+| `homogeneous-systems-null-space-story-zh-cn.mp4` | 200 | `video/mp4` | 349701 |
+| `homogeneous-systems-null-space-story-zh-cn.png` | 200 | `image/png` | 69964 |
+
+Production export checks:
+
+| Locale | TXT bytes | PDF bytes | Result |
+| --- | ---: | ---: | --- |
+| EN | 15801 | 48859 | Static video sequence present; no raw video markup; PDF header valid. |
+| zh-HK | 13751 | 183175 | Static video sequence present; no raw video markup; PDF header valid. |
+| zh-CN | 13762 | 168426 | Static video sequence present; no raw video markup; PDF header valid. |
+
+Production error-log check:
+
+- `vercel logs dpl_sVuzhfoscQJuMa6EWDbyABZf5GFP --no-follow --since 15m --level error`
+  returned no logs.
