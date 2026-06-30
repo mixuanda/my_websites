@@ -46,30 +46,29 @@ history.
 | Math1030 `9.1 Inner products, norms, and angles` | `math1030-inner-product-norm-angle-story` | `docs/manim-inner-products-norms-angles-video-qa-2026-06-29.md` |
 | Math1030 `9.2 Orthogonal sets and orthonormal bases` | `math1030-orthogonal-sets-orthonormal-bases-story` | `docs/manim-orthogonal-sets-orthonormal-bases-video-qa-2026-06-30.md` |
 | Math1030 `9.4 Cauchy-Schwarz and triangle inequalities` | `math1030-cauchy-schwarz-triangle-inequalities-story` | `docs/manim-cauchy-schwarz-triangle-inequalities-video-qa-2026-06-30.md` |
+| Math1030 `2.4 Solution-set types` | `math1030-solution-set-types-trichotomy-story` | `docs/manim-solution-set-types-video-qa-2026-06-30.md` |
 
 ## Latest Slice Notes
 
-Math1030 `9.4` was implemented after roadmap, current MDX, and reference
-inspection confirmed the source boundary. `MATH1030-Notes.pdf` pp. 225-226
-supports the Cauchy-Schwarz theorem, its nonnegative-quadratic proof, the
-zero-vector branch, equality as linear dependence, the triangle inequality, and
-the equality condition. `1030gi-n08-01.pdf` pp. 1-5 reinforces the same real
-column-vector inner product and norm setting; the reverse triangle inequality
-is source-supported there but left to the article / exercises rather than the
-first 9.4 clip.
+Math1030 `2.4` was implemented after roadmap, current MDX, widget, and
+reference inspection confirmed the source boundary. `MATH1030-Notes.pdf`
+pp. 31-34 supports the RREF consistency test, pivot/free-variable
+classification, and unique / no / infinite trichotomy. `1030gi-n02-04.pdf`
+pp. 1-5 reinforces row-equivalent augmented matrices, the last-column pivot
+test, and reading parameterized solution sets from RREF.
 
 Fixes applied:
 
-- new storyboard covers the inner-product bound, the quadratic proof, equality
-  in Cauchy-Schwarz, the triangle path comparison, the cross-term estimate, and
-  the nonnegative-direction equality case;
+- new storyboard covers RREF as the reading form, contradiction rows, the
+  unique-solution case, the free-variable infinite case, the three-outcome
+  decision tree, and the bridge to the existing classifier;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the Cauchy-Schwarz / triangle scene and writes
+- render script now includes the solution-set trichotomy scene and writes
   assets under `public/generated/animations/math1030/`;
-- video embed was placed after the Cauchy-Schwarz proof and before the first
-  numerical worked example in all three localized MDX files;
-- no widget was added because the first-pass learning move is a fixed proof
-  chain rather than a reader-controlled vector calculator.
+- video embed was placed after the RREF reading habit list and before the
+  larger parameterized example in all three localized MDX files;
+- no new widget was added because `solution-set-classifier` already gives the
+  reader-controlled follow-up, with static export snapshots.
 
 ## Verification Stack Used For Latest Slice
 
@@ -92,8 +91,8 @@ priority changes.
 
 Expected first step:
 
-1. Start with Math1030 `matrices/solution-set-types` unless source inspection
-   changes the priority.
+1. Start with Math1030 `matrices/existence-of-row-echelon-forms` unless source
+   inspection changes the priority.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset

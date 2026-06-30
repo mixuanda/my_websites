@@ -1,0 +1,375 @@
+{
+  "course": "math1030",
+  "chapter": "matrices",
+  "unit": "solution-set-types",
+  "unitTitle": {
+    "en": "2.4 Solution-set types",
+    "zh-hk": "2.4 解集的類型",
+    "zh-cn": "2.4 解集的类型"
+  },
+  "videoId": "math1030-solution-set-types-trichotomy-story",
+  "sourceBoundary": {
+    "en": "This storyboard uses MATH1030-Notes.pdf section 2.3, especially pp. 31-34 in the PDF pagination, plus 1030gi-n02-04.pdf pp. 1-5. It covers dependent/free variables, the last-column pivot consistency criterion, classification by pivot count, unique/no/infinite solution cases, and the underdetermined consistent corollary. It avoids later rank-theorem language except where the current note already says pivot count.",
+    "zh-hk": "此 storyboard 使用 MATH1030-Notes.pdf 第 2.3 節，尤其 PDF 頁碼 pp. 31-34，以及 1030gi-n02-04.pdf pp. 1-5。內容限於主變量/自由變量、最後一欄主元的一致性判準、按主元數分類、唯一解/無解/無限多解，以及一致且未知數較多時的推論。除目前筆記已使用的主元數語言外，不引入後面才系統處理的 rank theorem。",
+    "zh-cn": "此 storyboard 使用 MATH1030-Notes.pdf 第 2.3 节，尤其 PDF 页码 pp. 31-34，以及 1030gi-n02-04.pdf pp. 1-5。内容限于主变量/自由变量、最后一列主元的一致性判准、按主元数分类、唯一解/无解/无限多解，以及一致且未知数较多时的推论。除目前笔记已使用的主元数语言外，不引入后面才系统处理的 rank theorem。"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "rref_reading",
+          "cardTitle": "RREF is the reading form",
+          "goal": "Show that solution-set classification begins after row reduction, by reading pivots, free columns, and the augmented column.",
+          "beats": [
+            "Display an RREF augmented matrix with a vertical bar.",
+            "Highlight variable columns separately from the last column.",
+            "Mark pivot columns and non-pivot variable columns."
+          ],
+          "mathBlocks": [
+            "[A|b] -> B in RREF",
+            "pivot variable versus free variable"
+          ],
+          "voiceover": [
+            "Row operations preserve the solution set, so the reduced form is safe to read.",
+            "The classification comes from pivot positions, not from guessing solutions."
+          ],
+          "animation": "highlight variable columns, the augmented column, pivots, and free columns"
+        },
+        {
+          "type": "contradiction_row",
+          "cardTitle": "Check consistency first",
+          "goal": "Make the last-column pivot / contradiction-row test visible.",
+          "beats": [
+            "Show a row [0 0 0 | 1].",
+            "Translate it to the impossible equation 0=1.",
+            "Mark the system as no solution before counting free variables."
+          ],
+          "mathBlocks": [
+            "[0 0 ... 0 | d], d != 0",
+            "0=d"
+          ],
+          "voiceover": [
+            "If the last column is a pivot column, a contradiction row appears.",
+            "In that case the system is inconsistent and has no solution."
+          ],
+          "animation": "red contradiction row blocks the decision path"
+        },
+        {
+          "type": "unique_solution",
+          "cardTitle": "Consistent and no free variables",
+          "goal": "Show why every variable-column pivot gives a single solution.",
+          "beats": [
+            "Display an identity left block with constants.",
+            "Mark every variable column as pivot.",
+            "Translate the matrix to one solution vector."
+          ],
+          "mathBlocks": [
+            "r=n",
+            "x=(2,-1,3)"
+          ],
+          "voiceover": [
+            "After consistency is known, if every variable column has a pivot, no variable is free.",
+            "The RREF directly names one solution vector."
+          ],
+          "animation": "matrix collapses to one point in a coordinate plane"
+        },
+        {
+          "type": "infinite_solutions",
+          "cardTitle": "Consistent and at least one free variable",
+          "goal": "Show why a free variable creates a parameter family.",
+          "beats": [
+            "Display a consistent RREF with one non-pivot variable column.",
+            "Name the free variable t.",
+            "Show several choices of t producing different solution vectors."
+          ],
+          "mathBlocks": [
+            "r<n",
+            "x3=t"
+          ],
+          "voiceover": [
+            "A free variable is not an unfinished computation.",
+            "It is a parameter that can take infinitely many real values."
+          ],
+          "animation": "several points appear along a parameter line"
+        },
+        {
+          "type": "decision_tree",
+          "cardTitle": "The trichotomy",
+          "goal": "Package the classification as a decision tree.",
+          "beats": [
+            "First branch: contradiction row means no solution.",
+            "Second branch: consistent and r=n means unique solution.",
+            "Third branch: consistent and r<n means infinitely many solutions."
+          ],
+          "mathBlocks": [
+            "last column pivot -> no solution",
+            "consistent, r=n -> unique",
+            "consistent, r<n -> infinite"
+          ],
+          "voiceover": [
+            "There is no fourth option and no exactly-two-solutions case.",
+            "The source theorem is a structural statement about RREF."
+          ],
+          "animation": "three terminal boxes form the final classification tree"
+        },
+        {
+          "type": "widget_bridge",
+          "cardTitle": "Use the classifier as practice",
+          "goal": "Bridge from the fixed Manim sequence to the existing reader-controlled classifier.",
+          "beats": [
+            "Show the three representative reduced matrices side by side.",
+            "Label the reading order: contradiction, pivots, free variables.",
+            "Point to the embedded interactive classifier."
+          ],
+          "mathBlocks": [
+            "check -> count -> classify"
+          ],
+          "voiceover": [
+            "The live classifier below lets you switch among the three forms.",
+            "Use it to rehearse the same reading order."
+          ],
+          "animation": "three mini matrices align with three labels"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "rref_reading",
+          "cardTitle": "RREF 是閱讀形式",
+          "goal": "說明解集分類是在行化簡之後，從主元、自由欄與增廣欄讀出來。",
+          "beats": [
+            "顯示一個 RREF 增廣矩陣和直線。",
+            "把變量欄與最後一欄分開標示。",
+            "標出主元欄與非主元變量欄。"
+          ],
+          "mathBlocks": [
+            "[A|b] -> B in RREF",
+            "主變量與自由變量"
+          ],
+          "voiceover": [
+            "行變換保留解集，所以化簡後的形式可以安全閱讀。",
+            "分類來自主元位置，而不是靠猜解。"
+          ],
+          "animation": "依次高亮變量欄、增廣欄、主元與自由欄"
+        },
+        {
+          "type": "contradiction_row",
+          "cardTitle": "先檢查一致性",
+          "goal": "視覺化最後一欄主元與矛盾行判準。",
+          "beats": [
+            "顯示一行 [0 0 0 | 1]。",
+            "把它翻譯成不可能的方程 0=1。",
+            "在數自由變量之前，先判定系統無解。"
+          ],
+          "mathBlocks": [
+            "[0 0 ... 0 | d], d != 0",
+            "0=d"
+          ],
+          "voiceover": [
+            "若最後一欄是主元欄，就會出現矛盾行。",
+            "此時系統不一致，因此沒有解。"
+          ],
+          "animation": "紅色矛盾行擋住分類流程"
+        },
+        {
+          "type": "unique_solution",
+          "cardTitle": "一致且沒有自由變量",
+          "goal": "說明每個變量欄都有主元時，為何只有一個解。",
+          "beats": [
+            "顯示左側為單位矩陣的 RREF。",
+            "標出每個變量欄都是主元欄。",
+            "把矩陣讀成一個解向量。"
+          ],
+          "mathBlocks": [
+            "r=n",
+            "x=(2,-1,3)"
+          ],
+          "voiceover": [
+            "確定一致之後，若每個變量欄都有主元，就沒有自由變量。",
+            "RREF 直接寫出唯一的解向量。"
+          ],
+          "animation": "矩陣收束成座標平面上的一個點"
+        },
+        {
+          "type": "infinite_solutions",
+          "cardTitle": "一致且至少有一個自由變量",
+          "goal": "說明自由變量如何產生參數族。",
+          "beats": [
+            "顯示一個一致但有非主元變量欄的 RREF。",
+            "把自由變量命名為 t。",
+            "展示幾個 t 的選擇給出不同解向量。"
+          ],
+          "mathBlocks": [
+            "r<n",
+            "x3=t"
+          ],
+          "voiceover": [
+            "自由變量不是尚未完成的計算。",
+            "它是一個可以取任意實數值的參數。"
+          ],
+          "animation": "多個點沿參數直線出現"
+        },
+        {
+          "type": "decision_tree",
+          "cardTitle": "三分法",
+          "goal": "把分類整理成決策樹。",
+          "beats": [
+            "第一支：矛盾行代表無解。",
+            "第二支：一致且 r=n 代表唯一解。",
+            "第三支：一致且 r<n 代表無限多解。"
+          ],
+          "mathBlocks": [
+            "最後一欄主元 -> 無解",
+            "一致, r=n -> 唯一",
+            "一致, r<n -> 無限多"
+          ],
+          "voiceover": [
+            "不存在第四種情況，也不存在剛好兩個解的情況。",
+            "來源定理是一個關於 RREF 結構的敘述。"
+          ],
+          "animation": "三個終點方塊構成最後分類樹"
+        },
+        {
+          "type": "widget_bridge",
+          "cardTitle": "用分類器練習",
+          "goal": "由固定 Manim 序列接到現有互動分類器。",
+          "beats": [
+            "並排顯示三個代表性的化簡矩陣。",
+            "標示閱讀順序：矛盾、主元、自由變量。",
+            "指向嵌入的互動分類器。"
+          ],
+          "mathBlocks": [
+            "檢查 -> 計數 -> 分類"
+          ],
+          "voiceover": [
+            "下面的互動分類器讓你在三種形式之間切換。",
+            "用它練習同一個閱讀順序。"
+          ],
+          "animation": "三個小矩陣對應三個標籤"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "rref_reading",
+          "cardTitle": "RREF 是阅读形式",
+          "goal": "说明解集分类是在行化简之后，从主元、自由列与增广列读出来。",
+          "beats": [
+            "显示一个 RREF 增广矩阵和竖线。",
+            "把变量列与最后一列分开标示。",
+            "标出主元列与非主元变量列。"
+          ],
+          "mathBlocks": [
+            "[A|b] -> B in RREF",
+            "主变量与自由变量"
+          ],
+          "voiceover": [
+            "行变换保留解集，所以化简后的形式可以安全阅读。",
+            "分类来自主元位置，而不是靠猜解。"
+          ],
+          "animation": "依次高亮变量列、增广列、主元与自由列"
+        },
+        {
+          "type": "contradiction_row",
+          "cardTitle": "先检查一致性",
+          "goal": "可视化最后一列主元与矛盾行判准。",
+          "beats": [
+            "显示一行 [0 0 0 | 1]。",
+            "把它翻译成不可能的方程 0=1。",
+            "在数自由变量之前，先判定系统无解。"
+          ],
+          "mathBlocks": [
+            "[0 0 ... 0 | d], d != 0",
+            "0=d"
+          ],
+          "voiceover": [
+            "若最后一列是主元列，就会出现矛盾行。",
+            "此时系统不相容，因此没有解。"
+          ],
+          "animation": "红色矛盾行挡住分类流程"
+        },
+        {
+          "type": "unique_solution",
+          "cardTitle": "相容且没有自由变量",
+          "goal": "说明每个变量列都有主元时，为什么只有一个解。",
+          "beats": [
+            "显示左侧为单位矩阵的 RREF。",
+            "标出每个变量列都是主元列。",
+            "把矩阵读成一个解向量。"
+          ],
+          "mathBlocks": [
+            "r=n",
+            "x=(2,-1,3)"
+          ],
+          "voiceover": [
+            "确定相容之后，若每个变量列都有主元，就没有自由变量。",
+            "RREF 直接写出唯一的解向量。"
+          ],
+          "animation": "矩阵收束成坐标平面上的一个点"
+        },
+        {
+          "type": "infinite_solutions",
+          "cardTitle": "相容且至少有一个自由变量",
+          "goal": "说明自由变量如何产生参数族。",
+          "beats": [
+            "显示一个相容但有非主元变量列的 RREF。",
+            "把自由变量命名为 t。",
+            "展示几个 t 的选择给出不同解向量。"
+          ],
+          "mathBlocks": [
+            "r<n",
+            "x3=t"
+          ],
+          "voiceover": [
+            "自由变量不是尚未完成的计算。",
+            "它是一个可以取任意实数值的参数。"
+          ],
+          "animation": "多个点沿参数直线出现"
+        },
+        {
+          "type": "decision_tree",
+          "cardTitle": "三分法",
+          "goal": "把分类整理成决策树。",
+          "beats": [
+            "第一支：矛盾行代表无解。",
+            "第二支：相容且 r=n 代表唯一解。",
+            "第三支：相容且 r<n 代表无限多解。"
+          ],
+          "mathBlocks": [
+            "最后一列主元 -> 无解",
+            "相容, r=n -> 唯一",
+            "相容, r<n -> 无限多"
+          ],
+          "voiceover": [
+            "不存在第四种情况，也不存在恰好两个解的情况。",
+            "来源定理是一个关于 RREF 结构的叙述。"
+          ],
+          "animation": "三个终点方块构成最后分类树"
+        },
+        {
+          "type": "widget_bridge",
+          "cardTitle": "用分类器练习",
+          "goal": "由固定 Manim 序列接到现有互动分类器。",
+          "beats": [
+            "并排显示三个代表性的化简矩阵。",
+            "标示阅读顺序：矛盾、主元、自由变量。",
+            "指向嵌入的互动分类器。"
+          ],
+          "mathBlocks": [
+            "检查 -> 计数 -> 分类"
+          ],
+          "voiceover": [
+            "下面的互动分类器让你在三种形式之间切换。",
+            "用它练习同一个阅读顺序。"
+          ],
+          "animation": "三个小矩阵对应三个标签"
+        }
+      ]
+    }
+  }
+}

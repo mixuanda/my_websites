@@ -303,6 +303,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/gaussian-elimination-rref-pivot-story-zh-cn.mp4"
     ),
   },
+  "math1030-solution-set-types-trichotomy-story": {
+    conclusion: text(
+      "The classification is structural: a contradiction row decides inconsistency, and once the system is consistent, the number of free variables decides whether the solution set is one point or an infinite family.",
+      "分類是結構性的：矛盾行判定不一致；一旦系統一致，自由變量的數目便決定解集是一個點還是一個無限族。",
+      "分类是结构性的：矛盾行判定不相容；一旦系统相容，自由变量的数目便决定解集是一个点还是一个无限族。"
+    ),
+    durationSeconds: 13,
+    frames: [
+      {
+        label: text("Read RREF", "閱讀 RREF", "阅读 RREF"),
+        value: text(
+          "Row operations preserve solution sets, so the RREF is safe to read. Separate the variable columns from the augmented column, then locate pivots and free columns.",
+          "行變換保留解集，所以 RREF 可以安全閱讀。先分開變量欄與增廣欄，再找主元欄與自由欄。",
+          "行变换保留解集，所以 RREF 可以安全阅读。先分开变量列与增广列，再找主元列与自由列。"
+        ),
+      },
+      {
+        label: text("Consistency first", "先看一致性", "先看相容性"),
+        value: text(
+          "A row [0 0 ... 0 | d] with d nonzero represents 0=d. Equivalently, a pivot in the last column means the system has no solution.",
+          "若有一行 [0 0 ... 0 | d] 且 d 非零，它代表 0=d。等價地說，最後一欄有主元便表示系統無解。",
+          "若有一行 [0 0 ... 0 | d] 且 d 非零，它代表 0=d。等价地说，最后一列有主元便表示系统无解。"
+        ),
+      },
+      {
+        label: text("Unique solution", "唯一解", "唯一解"),
+        value: text(
+          "If the system is consistent and every variable column has a pivot, there are no free variables, so the RREF names exactly one solution vector.",
+          "若系統一致，而且每個變量欄都有主元，就沒有自由變量；RREF 便直接給出唯一解向量。",
+          "若系统相容，而且每个变量列都有主元，就没有自由变量；RREF 便直接给出唯一解向量。"
+        ),
+      },
+      {
+        label: text("Infinitely many", "無限多解", "无限多解"),
+        value: text(
+          "If the system is consistent but some variable column has no pivot, that free variable becomes a real parameter, giving infinitely many solutions.",
+          "若系統一致，但有變量欄沒有主元，該自由變量便成為實參數，產生無限多個解。",
+          "若系统相容，但有变量列没有主元，该自由变量便成为实参数，产生无限多个解。"
+        ),
+      },
+      {
+        label: text("Three outcomes", "三個結果", "三个结果"),
+        value: text(
+          "The trichotomy is complete: no solution, unique solution, or infinitely many solutions. A linear system cannot have exactly two solutions.",
+          "三分法是完整的：無解、唯一解、或無限多解。線性方程組不會剛好有兩個解。",
+          "三分法是完整的：无解、唯一解、或无限多解。线性方程组不会恰好有两个解。"
+        ),
+      },
+      {
+        label: text("Practice the reading order", "練習閱讀順序", "练习阅读顺序"),
+        value: text(
+          "Use the live classifier below to rehearse the same order: check for contradiction rows, count variable pivots, then classify the solution set.",
+          "用下面的互動分類器練習同一順序：先查矛盾行，再數變量主元，最後分類解集。",
+          "用下面的互动分类器练习同一顺序：先查矛盾行，再数变量主元，最后分类解集。"
+        ),
+      },
+    ],
+    summary: text(
+      "Compress the source theorem into a decision tree: check the last column for inconsistency, then use pivot and free-variable counts to choose unique or infinite.",
+      "把來源定理壓縮成決策樹：先檢查最後一欄是否造成不一致，再用主元與自由變量數目判斷唯一或無限多。",
+      "把来源定理压缩成决策树：先检查最后一列是否造成不相容，再用主元与自由变量数目判断唯一或无限多。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/solution-set-types-trichotomy-story-en.png",
+      "/generated/animations/math1030/solution-set-types-trichotomy-story-zh-hk.png",
+      "/generated/animations/math1030/solution-set-types-trichotomy-story-zh-cn.png"
+    ),
+    title: text(
+      "Three solution-set types from RREF",
+      "由 RREF 讀出三種解集",
+      "由 RREF 读出三种解集"
+    ),
+    transcript: [
+      text(
+        "Start with the RREF because row operations have preserved the solution set.",
+        "由 RREF 開始，因為行變換已經保留了解集。",
+        "由 RREF 开始，因为行变换已经保留了解集。"
+      ),
+      text(
+        "If the last column is a pivot column, a contradiction row appears and the system has no solution.",
+        "若最後一欄是主元欄，便出現矛盾行，系統無解。",
+        "若最后一列是主元列，便出现矛盾行，系统无解。"
+      ),
+      text(
+        "If the system is consistent, no free variables means one solution; any free variable means infinitely many solutions.",
+        "若系統一致，沒有自由變量代表唯一解；只要有自由變量便有無限多解。",
+        "若系统相容，没有自由变量代表唯一解；只要有自由变量便有无限多解。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/solution-set-types-trichotomy-story-en.mp4",
+      "/generated/animations/math1030/solution-set-types-trichotomy-story-zh-hk.mp4",
+      "/generated/animations/math1030/solution-set-types-trichotomy-story-zh-cn.mp4"
+    ),
+  },
   "math1030-matrix-product-linear-system-story": {
     conclusion: text(
       "The row-by-column rule is why one compact equation, `Ax = b`, can store an entire linear system. Each row of `A` supplies one equation; a full product `AB` repeats the same idea once for every column of `B`.",

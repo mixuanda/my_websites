@@ -764,3 +764,22 @@ unit-level coverage.
   routes expose the localized video asset and export menu. Local TXT / PDF
   export checks passed for all three locales, including static frame labels
   and absence of `<video>`, `<source>`, `poster=`, or `.mp4` leakage.
+
+### 2026-06-30 checkpoint 26: MATH1030 2.4 video insertion integrity
+
+- Checkpoint name: `2.4` solution-set trichotomy video embed, classifier, and
+  export fallback integrity.
+- What was inspected: the existing EN / zh-HK / zh-CN `2.4` MDX files, the new
+  `VideoExplanation` frame sequence, the existing `solution-set-classifier`,
+  static TXT / PDF exports, and the existing in-page quick-check / reveal
+  solution placement.
+- What was changed: inserted the localized video explanation after the RREF
+  reading habit list and before the larger parameterized example; no
+  quick-check, exercise, or reveal-solution block was reordered.
+- Integrity note: the classifier remains below the video as the interactive
+  follow-up. Its unique / infinite / no-solution states were clicked in Browser
+  QA and each showed the matching matrix and explanation.
+- Verification: local Browser DOM checks confirmed the EN / zh-HK / zh-CN
+  routes expose the localized video asset. Local TXT / PDF export checks passed
+  for all three locales, including the static video sequence and the existing
+  classifier snapshot with no leaked video markup.

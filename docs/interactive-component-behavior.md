@@ -133,6 +133,12 @@ The current pass especially strengthens the `math1030` note flow.
   A reader-controlled widget would mainly duplicate vector arithmetic unless a
   later exercise pass defines a focused inequality-checking practice surface
   with static export states.
+- The MATH1030 `2.4` solution-set trichotomy video pass did not add a new
+  widget because the existing `solution-set-classifier` already provides the
+  reader-controlled follow-up for unique, infinite, and no-solution RREF
+  states. Browser QA verified the three button states after the new video
+  embed, and TXT/PDF export QA verified the existing static classifier snapshot
+  still appears after the video-study sequence.
 - Public note pages now keep source tracing out of the interaction chrome so
   the widget remains focused on learning rather than documentation.
 

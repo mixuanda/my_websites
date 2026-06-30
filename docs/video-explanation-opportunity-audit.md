@@ -64,6 +64,7 @@ Implemented candidate:
 | --- | --- | --- | --- | --- |
 | Math1030 | `math1030.matrices.gaussian-elimination-rref` | `math1030-gaussian-elimination-rref-pivot-story` | Implemented pilot | Pivot selection, row replacement, REF, RREF, and reading the solution are sequential visual states. |
 | Math1030 | `math1030.inner-products.cauchy-schwarz-and-triangle-inequalities` | `math1030-cauchy-schwarz-triangle-inequalities-story` | Implemented | The source proof is a compact visual chain: a nonnegative quadratic proves Cauchy-Schwarz, equality is linear dependence, and Cauchy-Schwarz controls the triangle-inequality cross term. |
+| Math1030 | `math1030.matrices.solution-set-types` | `math1030-solution-set-types-trichotomy-story` | Implemented | RREF solution-set classification is a short decision tree: contradiction row first, then pivot/free-variable count for unique or infinitely many solutions. |
 
 The pilot now uses separate rendered assets for `en`, `zh-hk`, and `zh-cn`
 because the video frame itself contains localized explanatory text.
@@ -93,7 +94,7 @@ fallback are written.
 
 | Course | Unit / topic | Suggested video idea | Notes |
 | --- | --- | --- | --- |
-| Math1030 | `systems/equations-solution-sets` and `matrices/solution-set-types` | Lines / planes changing from unique solution to no solution to infinitely many solutions. | A short geometric clip would pair well with the existing classifier. |
+| Math1030 | `systems/equations-solution-sets` and `matrices/solution-set-types` | Done for `solution-set-types`: RREF decision tree from no solution to unique solution to infinitely many solutions. | Implemented as `math1030-solution-set-types-trichotomy-story`; the existing classifier remains the reader-controlled practice surface. A separate `systems/equations-solution-sets` geometry clip can still be considered later. |
 | Math1030 | `matrix-algebra/row-operation-matrices` | Left multiplication by elementary matrices as row swaps, scaling, and replacement. | Use after the row-operation pilot is stable. |
 | Math1030 | `vector-spaces/column-space-row-space-rank` | Done: one RREF selects original pivot columns for `C(A)`, nonzero RREF rows for `R(A)`, and rank as the shared count. | Implemented as `math1030-column-row-space-rank-story`; careful pacing keeps column space and row space separate. |
 | Math1030 | `vector-spaces/matrix-subspaces-basis-dimension` | Done: fixed-size matrices as vectors, standard matrix units, constraints as free-parameter reductions, and `Sym_2(R)` splitting into basis matrices. | Implemented as `math1030-matrix-subspace-basis-dimension-story`; no widget added because the source-backed move is a curated decomposition, not reader-controlled computation. |

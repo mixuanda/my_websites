@@ -829,3 +829,29 @@ Use this shape for future entries:
   textbook content check, production build, local browser DOM checks, desktop /
   mobile screenshots, three-locale TXT / PDF export checks, and production
   route / asset / export smoke checks on `www.evanalysis.top` passed.
+
+### 2026-06-30: MATH1030 2.4 solution-set trichotomy video checkpoint
+
+- Gap selected: the video roadmap marked Math1030 `2.4 Solution-set types` as
+  the next unresolved Math1030 item after the 9.4 proof-geometry pass.
+- Reference basis: `reference/MATH1030/MATH1030-Notes.pdf` pp. 31-34,
+  `reference/MATH1030/1030gi-n02-04.pdf` pp. 1-5, and supporting examples
+  from `reference/MATH1030/1030gi-n02-02.pdf`.
+- Content files changed: added the 2.4 storyboard, Manim scene, render-script
+  entries, localized `VideoExplanation` registry metadata, and EN / zh-HK /
+  zh-CN page embeds.
+- Visuals added: trilingual Manim video and poster assets for the RREF
+  reading order: check consistency, count pivots/free variables, then classify
+  no / unique / infinitely many solutions.
+- Interactions added: none. The existing `solution-set-classifier` remains the
+  reader-controlled follow-up and was verified after the video insertion.
+- Exercises added: none. Existing quick checks and reveal solutions were left
+  in place; the video insertion did not reorder answer blocks.
+- Verification: Python syntax, storyboard JSON, render-script syntax, Manim
+  render, `git diff --check`, MDX table verification, TypeScript, lint,
+  textbook content check, production build, local Browser DOM / console checks,
+  classifier interaction checks, responsive checks, three-locale TXT / PDF
+  export checks, and local asset checks passed.
+- Status change: the 2.4 reference-backed prose remains incorporated, and the
+  video explanation is now incorporated as an export-friendly static fallback
+  through the `VideoExplanation` frame sequence.

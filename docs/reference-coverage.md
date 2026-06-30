@@ -1156,3 +1156,18 @@ existing invertibility note instead of creating a detached new route.
 - Status change: the 9.4 reference-backed prose remains incorporated, and the
   video explanation is now incorporated as an export-friendly static fallback
   through the `VideoExplanation` frame sequence.
+
+### 2026-06-30 checkpoint 33: MATH1030 2.4 solution-set video pass
+
+- Revisited `2.4 Solution-set types` against `MATH1030-Notes.pdf` pp. 31-34,
+  `1030gi-n02-04.pdf` pp. 1-5, and supporting examples from
+  `1030gi-n02-02.pdf`.
+- Added a trilingual article-embedded `VideoExplanation` for the source-backed
+  RREF decision order: first detect a last-column pivot / contradiction row,
+  then classify consistent systems by pivot count and free variables.
+- Preserved the existing `solution-set-classifier` as the reader-controlled
+  practice surface. No new unsupported rank theorem, plane-geometry, or
+  calculator-style content was introduced.
+- Status change: the 2.4 reference-backed prose remains incorporated, and the
+  video explanation is now incorporated as an export-friendly static fallback
+  through the `VideoExplanation` frame sequence.
