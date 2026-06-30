@@ -157,5 +157,29 @@ Result:
 
 ## Production QA
 
-Pending until this checkpoint is fast-forwarded into `main` and the production
-deployment refreshes.
+After `codex/manim` commit `969cb02` was fast-forwarded into `main` and pushed,
+`www.evanalysis.top` refreshed on the twelfth polling attempt.
+
+Checked production routes:
+
+- `https://www.evanalysis.top/en/notes/math1030/matrices/solution-set-types`
+- `https://www.evanalysis.top/zh-hk/notes/math1030/matrices/solution-set-types`
+- `https://www.evanalysis.top/zh-cn/notes/math1030/matrices/solution-set-types`
+
+Result:
+
+- All three localized note pages returned 200 and included the expected
+  localized MP4 reference and video title.
+- All six MP4 / PNG asset URLs returned 200 with the expected content type and
+  byte size:
+  EN MP4 516291, EN PNG 83112;
+  zh-HK MP4 504446, zh-HK PNG 78571;
+  zh-CN MP4 502763, zh-CN PNG 77237.
+- All three TXT exports returned 200, included the localized static
+  video-study sequence labels and classifier snapshot, and did not leak
+  `<video>`, `poster=`, or `.mp4`.
+- All three PDF exports returned 200 with `%PDF-` magic bytes.
+- Production export sizes observed:
+  EN TXT 11675 bytes, EN PDF 37249 bytes;
+  zh-HK TXT 10059 bytes, zh-HK PDF 161937 bytes;
+  zh-CN TXT 10065 bytes, zh-CN PDF 150744 bytes.
