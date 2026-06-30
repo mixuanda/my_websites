@@ -143,5 +143,22 @@ Result:
 
 ## Production QA
 
-Pending until the branch is merged into `main`, pushed, and the production
-deployment for `www.evanalysis.top` has refreshed.
+After `codex/manim` commit `e469025` was fast-forwarded into `main` and pushed,
+`www.evanalysis.top` refreshed on the ninth polling attempt.
+
+Checked production routes:
+
+- `https://www.evanalysis.top/en/notes/math1030/inner-products/cauchy-schwarz-and-triangle-inequalities`
+- `https://www.evanalysis.top/zh-hk/notes/math1030/inner-products/cauchy-schwarz-and-triangle-inequalities`
+- `https://www.evanalysis.top/zh-cn/notes/math1030/inner-products/cauchy-schwarz-and-triangle-inequalities`
+
+Result:
+
+- All three localized note pages returned 200.
+- All three pages included the expected localized MP4 and poster references.
+- All three MP4 and PNG asset URLs returned 200.
+- All three TXT exports returned 200, included the localized static
+  video-study sequence labels, and did not leak `<video>`, `<source>`,
+  `poster=`, or `.mp4`.
+- All three PDF exports returned 200 with `%PDF` magic bytes.
+- Production PDF byte sizes observed: EN 32775, zh-HK 149390, zh-CN 138421.

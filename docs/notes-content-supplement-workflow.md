@@ -827,6 +827,5 @@ Use this shape for future entries:
 - Verification: Python syntax, storyboard JSON, render-script syntax, Manim
   render, `git diff --check`, MDX table verification, TypeScript, lint,
   textbook content check, production build, local browser DOM checks, desktop /
-  mobile screenshots, and three-locale TXT / PDF export checks passed. The
-  production verification remains pending until this branch is merged into
-  `main` and the live site refreshes.
+  mobile screenshots, three-locale TXT / PDF export checks, and production
+  route / asset / export smoke checks on `www.evanalysis.top` passed.
