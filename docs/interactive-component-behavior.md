@@ -405,5 +405,16 @@ matrix multiplication controls while turning the section into a calculator
 surface. The localized `VideoExplanation` frames are enough for the article
 and export fallback.
 
+The Math1030 `4.1` homogeneous-systems and null-space pass is also Manim-only.
+The source-backed value is the fixed solution-structure bridge: `Ax=0` always
+contains the trivial solution, the zero augmented column stays zero under row
+reduction, free variables become direction vectors, `N(A)` records the whole
+solution set, and one particular nonhomogeneous solution shifts that null
+space. A new widget would mostly duplicate the earlier solution-set classifier
+or row-reduction stepper unless it became a full null-space calculator, which
+would distract from the article's theorem-led flow. Keep future widgets for
+state-changing geometry or carefully scoped practice rather than this curated
+transition.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

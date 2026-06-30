@@ -1053,3 +1053,32 @@ Use this shape for future entries:
   MDX table verification, TypeScript, lint, textbook content check, production
   build, in-app Browser DOM / console checks, desktop / dark / mobile checks,
   and three-locale TXT / PDF export checks passed locally.
+
+### 2026-07-01: MATH1030 4.1 homogeneous systems and null-space video checkpoint
+
+- Gap selected: the video roadmap marked Math1030 `4.1 Homogeneous systems
+  and null space` as the next unresolved Math1030 Manim target because the
+  article already had source-backed homogeneous-solution prose but no rendered
+  bridge from RREF/free variables to null-space set notation.
+- Reference basis: `reference/MATH1030/MATH1030-Notes.pdf` §4.1 pp. 62-68
+  and §4.2 pp. 69-70, `reference/MATH1030/1030gi-n02-04.pdf` pp. 7-8,
+  `reference/MATH1030/1030gi-n04-01.pdf` pp. 4-7, and
+  `reference/MATH1030/1030gi-n04-03.pdf` pp. 1-5.
+- Content files changed: added the 4.1 storyboard, Manim scene, render-script
+  entries, localized `VideoExplanation` registry metadata, and EN / zh-HK /
+  zh-CN page embeds.
+- Visuals added: trilingual Manim video and poster assets for the trivial
+  solution, RREF with zero augmented column, free-variable direction vectors,
+  null-space set notation, nonhomogeneous translation by a particular
+  solution, and the uniqueness/freedom interpretation.
+- Interactions added: none. The pass intentionally avoids adding an open
+  null-space calculator and keeps the video as a supporting figure inside the
+  existing article flow.
+- Exercises added: none. Existing examples, quick checks, and reveal solutions
+  were left in place; the video insertion did not reorder answer blocks.
+- Verification: Python syntax, storyboard JSON, render-script syntax, Manim
+  render, media metadata checks, visual poster inspection, `git diff --check`,
+  MDX table verification, TypeScript, lint, textbook content check, production
+  build, bundled Playwright fallback DOM / console checks, desktop / dark /
+  mobile checks, and three-locale TXT / PDF export checks are recorded in the
+  focused QA document.

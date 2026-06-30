@@ -53,32 +53,37 @@ history.
 | Math1030 `3.1 Matrix multiplication and identity matrices` | `math1030-matrix-multiplication-identity-story` | `docs/manim-matrix-multiplication-identity-video-qa-2026-07-01.md` |
 | Math1030 `3.2/3.3 Transpose, symmetry, and skew-symmetry` | `math1030-transpose-symmetry-story` | `docs/manim-transpose-symmetry-video-qa-2026-07-01.md` |
 | Math1030 `3.4 Special matrices` | `math1030-special-matrices-family-recognition-story` | `docs/manim-special-matrices-video-qa-2026-07-01.md` |
+| Math1030 `3.5 Block matrices` | `math1030-block-matrix-partition-product-story` | `docs/manim-block-matrices-video-qa-2026-07-01.md` |
+| Math1030 `4.1 Homogeneous systems and null space` | `math1030-homogeneous-systems-null-space-story` | `docs/manim-homogeneous-systems-null-space-video-qa-2026-07-01.md` |
 
 ## Latest Slice Notes
 
-Math1030 `3.5 Block matrices` was implemented after roadmap, current MDX,
-catalog metadata, reference inspection, and read-only agent scouting confirmed
-that the source-backed boundary is block partitions, blockwise addition /
-scalar multiplication, compatible block multiplication, and the column-block
-bridge. `MATH1030-Notes.pdf` §3.5 pp. 57-61, `1030gi-n01-01.pdf` pp. 5-6,
-`1030gi-n01-02.pdf` pp. 1-2, and `1030gi-n01-se0102.pdf` pp. 1 and 4 support
-the implemented clip.
+Math1030 `4.1 Homogeneous systems and null space` was implemented after the
+roadmap, current MDX, catalog metadata, reference inspection, and read-only
+agent scouting confirmed that the source-backed boundary is homogeneous
+systems, the always-present trivial solution, RREF/free-variable descriptions,
+the null space as all vectors sent to zero, and the affine shift
+`x_p + N(A)` for nonhomogeneous systems. `MATH1030-Notes.pdf` §4.1 pp. 62-68,
+`MATH1030-Notes.pdf` §4.2 pp. 69-70, `1030gi-n02-04.pdf` pp. 7-8,
+`1030gi-n04-01.pdf` pp. 4-7, and `1030gi-n04-03.pdf` pp. 1-5 support the
+implemented clip.
 
 Fixes applied:
 
-- new storyboard covers partition cuts, block sizes, same-partition addition,
-  scalar multiplication, the 2 by 2 block product formula, compatibility of
-  each inner block product, and the column-block bridge;
+- new storyboard covers `Ax=0`, the trivial solution, the zero augmented
+  column in RREF, free variables becoming direction vectors, the null-space
+  set-builder definition, and the nonhomogeneous shift `x_p + N(A)`;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the block-matrix scene and
+- render script now includes the homogeneous/null-space scene and
   writes assets under `public/generated/animations/math1030/`;
 - the localized video was embedded into the EN / zh-HK / zh-CN
-  `block-matrices` note immediately after the partition-motivation discussion
-  and before the worked example;
-- no new widget was added because the section already reads as an article-led
-  formula and compatibility explanation;
-- solving `AX=B` by columns is only bridged briefly; full null-space,
-  invertibility, and solution-structure geometry stay in later units.
+  `homogeneous-systems-and-null-space` note immediately after the first
+  null-space worked example and before the nonhomogeneous-solution theorem;
+- no new widget was added because the section already has the needed
+  algebraic worked examples, and an open solver would duplicate earlier row
+  reduction / solution-set controls;
+- singular/nonsingular invertibility theory, rank-nullity, eigenspaces, and
+  set-language proof details stay in later units.
 
 ## Verification Stack Used For Latest Slice
 
@@ -91,9 +96,10 @@ Fixes applied:
 - `npm run lint`
 - `npm run check:textbook-content`
 - `AUTH_SECRET=local-test-secret npm run build`
-- Browser DOM / console checks through the in-app Browser, route / asset
-  checks, desktop / dark / mobile screenshots, media metadata, target
-  content-check warning check, and TXT/PDF export checks for all three locales
+- Browser DOM / console checks through bundled Playwright fallback because the
+  in-app Browser handle was disconnected, route / asset checks, desktop / dark
+  / mobile screenshots, media metadata, target content-check warning check,
+  and TXT/PDF export checks for all three locales
 
 ## Next Slice
 
@@ -103,8 +109,9 @@ priority changes.
 Expected first step:
 
 1. Start with the next unresolved Math1030 register item, currently
-   `solution-structure/homogeneous-systems-and-null-space`; keep it focused on
-   homogeneous systems, null space, and the geometry of solution sets.
+   `solution-structure/set-language-and-solution-sets`; keep it focused on
+   set-builder notation, solution-set equality, subsets, and algebraic
+   constraints without duplicating the 4.1 null-space clip.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset

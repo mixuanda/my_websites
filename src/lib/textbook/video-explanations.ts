@@ -509,6 +509,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/block-matrix-partition-product-story-zh-cn.mp4"
     ),
   },
+  "math1030-homogeneous-systems-null-space-story": {
+    conclusion: text(
+      "The homogeneous system Ax=0 tells you the directions left free by the equations. If Ax=b is consistent, one particular solution places those directions at the correct right-hand side, so the full solution set is p+N(A).",
+      "齊次系統 Ax=0 告訴你方程留下哪些自由方向。若 Ax=b 一致，一個特解會把這些方向放到正確右端的位置，因此完整解集是 p+N(A)。",
+      "齐次系统 Ax=0 告诉你方程留下哪些自由方向。若 Ax=b 相容，一个特解会把这些方向放到正确右端的位置，因此完整解集是 p+N(A)。"
+    ),
+    durationSeconds: 8,
+    frames: [
+      {
+        label: text("Trivial solution", "平凡解", "平凡解"),
+        value: text(
+          "A homogeneous system is always consistent because x=0 gives A0=0. The real question is whether there are nonzero solutions too.",
+          "齊次系統永遠一致，因為 x=0 會給出 A0=0。真正問題是是否還有非零解。",
+          "齐次系统永远相容，因为 x=0 会给出 A0=0。真正问题是是否还有非零解。"
+        ),
+      },
+      {
+        label: text("Zero column stays zero", "零列保持為零", "零列保持为零"),
+        value: text(
+          "When you row-reduce [A|0], the augmented zero column remains zero, so the coefficient matrix RREF determines the homogeneous solution structure.",
+          "對 [A|0] 做行化簡時，增廣零列仍然是零，因此係數矩陣的 RREF 決定齊次解結構。",
+          "对 [A|0] 做行化简时，增广零列仍然是零，因此系数矩阵的 RREF 决定齐次解结构。"
+        ),
+      },
+      {
+        label: text("Free variables become directions", "自由變量成為方向", "自由变量成为方向"),
+        value: text(
+          "Pivot variables are determined by the free variables. Setting one free variable at a time produces the null-space direction vectors.",
+          "主元變量由自由變量決定。每次只設定一個自由變量，便得到一個零空間方向向量。",
+          "主元变量由自由变量决定。每次只设定一个自由变量，便得到一个零空间方向向量。"
+        ),
+      },
+      {
+        label: text("Null space", "零空間", "零空间"),
+        value: text(
+          "N(A)={x:Ax=0} is not just a sample list. It is the entire homogeneous solution set, usually written as all linear combinations of its directions.",
+          "N(A)={x:Ax=0} 不是一些例子的清單，而是整個齊次解集，通常寫成方向向量的所有線性組合。",
+          "N(A)={x:Ax=0} 不是一些例子的清单，而是整个齐次解集，通常写成方向向量的所有线性组合。"
+        ),
+      },
+      {
+        label: text("Translate by one solution", "由一個特解平移", "由一个特解平移"),
+        value: text(
+          "If p solves Ax=b, then every vector p+q with q in N(A) also solves Ax=b, and every solution arises this way.",
+          "若 p 解 Ax=b，則每個 p+q（其中 q 屬於 N(A)）也解 Ax=b，而且所有解都如此得到。",
+          "若 p 解 Ax=b，则每个 p+q（其中 q 属于 N(A)）也解 Ax=b，而且所有解都如此得到。"
+        ),
+      },
+      {
+        label: text("Freedom and uniqueness", "自由度與唯一性", "自由度与唯一性"),
+        value: text(
+          "If N(A)={0}, a consistent system has only one solution. If N(A) has a nonzero direction, adding multiples of it gives infinitely many solutions.",
+          "若 N(A)={0}，一致系統只有一個解。若 N(A) 有非零方向，加入其倍數便得到無限多解。",
+          "若 N(A)={0}，相容系统只有一个解。若 N(A) 有非零方向，加入其倍数便得到无限多解。"
+        ),
+      },
+    ],
+    summary: text(
+      "See how a homogeneous system produces null-space directions and how one particular solution shifts those directions to describe every solution of Ax=b.",
+      "觀看齊次系統如何產生零空間方向，以及一個特解如何平移這些方向，描述 Ax=b 的全部解。",
+      "观看齐次系统如何产生零空间方向，以及一个特解如何平移这些方向，描述 Ax=b 的全部解。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/homogeneous-systems-null-space-story-en.png",
+      "/generated/animations/math1030/homogeneous-systems-null-space-story-zh-hk.png",
+      "/generated/animations/math1030/homogeneous-systems-null-space-story-zh-cn.png"
+    ),
+    title: text(
+      "Homogeneous systems and null space",
+      "齊次方程組與零空間",
+      "齐次方程组与零空间"
+    ),
+    transcript: [
+      text(
+        "The zero vector always solves Ax=0, so homogeneous systems are never empty.",
+        "零向量永遠解 Ax=0，所以齊次系統不會沒有解。",
+        "零向量永远解 Ax=0，所以齐次系统不会没有解。"
+      ),
+      text(
+        "Row reduction identifies the free variables, and those free variables become directions inside N(A).",
+        "行化簡找出自由變量，而這些自由變量會變成 N(A) 裏的方向。",
+        "行化简找出自由变量，而这些自由变量会变成 N(A) 里的方向。"
+      ),
+      text(
+        "For a consistent nonhomogeneous system, one particular solution shifts the same directions to the solution set p+N(A).",
+        "對一致的非齊次系統，一個特解會把同一批方向平移成解集 p+N(A)。",
+        "对相容的非齐次系统，一个特解会把同一批方向平移成解集 p+N(A)。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/homogeneous-systems-null-space-story-en.mp4",
+      "/generated/animations/math1030/homogeneous-systems-null-space-story-zh-hk.mp4",
+      "/generated/animations/math1030/homogeneous-systems-null-space-story-zh-cn.mp4"
+    ),
+  },
   "math1030-equations-solution-sets-story": {
     conclusion: text(
       "The visible equations may be rewritten, but the object we protect is the full solution set: all ordered tuples that satisfy every equation at the same time.",

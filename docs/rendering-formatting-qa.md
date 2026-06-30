@@ -805,6 +805,26 @@ Current checkpoint resolution:
   `2.85s`; this avoided the first transition and left a stable same-partition
   addition frame. The final EN / zh-HK / zh-CN posters use shortened subtitle
   text and show no crossfade residue, text overflow, or matrix-label overlap.
+- Verification: the Codex in-app Browser handle was disconnected, so bundled
+  Playwright fallback QA found one localized video per route, correct
+  locale-specific mp4/poster values, no framework overlay, no actionable
+  console logs, desktop video size `560 x 315`, mobile video size
+  `306 x 172`, and no horizontal overflow on the checked pages. The only
+  ignored local console item was the existing `/_vercel/insights/script.js`
+  404 from `next start`.
+
+### 2026-07-01 checkpoint 35: MATH1030 4.1 homogeneous/null-space rendering pass
+
+- Checkpoint name: `4.1` homogeneous-systems and null-space video rendering.
+- What was inspected: EN / zh-HK / zh-CN note pages for
+  `homogeneous-systems-and-null-space`, the new localized video card, the
+  generated trilingual MP4/poster assets, mobile layout at `390 x 844`, and
+  dark mode.
+- Rendering note: the video stays inside the article flow after the first
+  null-space worked example and before the nonhomogeneous-solution theorem.
+  Poster extraction uses `2.35s`; the final EN / zh-HK / zh-CN posters show a
+  stable RREF/free-variable frame with no crossfade residue, text overflow, or
+  label overlap.
 - Verification: in-app Browser QA found one localized video per route, correct
   locale-specific mp4/poster values, no framework overlay, clean console logs,
   desktop video size `560 x 315`, mobile video size `306 x 172`, and no

@@ -1,0 +1,96 @@
+{
+  "course": "math1030",
+  "unit": "solution-structure/homogeneous-systems-and-null-space",
+  "title": {
+    "en": "Homogeneous systems and null-space structure",
+    "zh-hk": "齊次方程組與零空間結構",
+    "zh-cn": "齐次方程组与零空间结构"
+  },
+  "videoId": "math1030-homogeneous-systems-null-space-story",
+  "mode": "manim",
+  "sourceBoundary": {
+    "included": [
+      "MATH1030-Notes.pdf §4.1 pp. 62-68: homogeneous systems, trivial solution, free-variable examples, null-space definition",
+      "MATH1030-Notes.pdf §4.2 pp. 69-70: particular solution plus homogeneous solutions",
+      "1030gi-n02-04.pdf pp. 7-8: solving homogeneous systems through RREF of the coefficient matrix",
+      "1030gi-n04-03.pdf pp. 1-5: null-space properties and S(A,b)=p+N(A)",
+      "1030efghi-as02.pdf and 1030efghi-as02as.pdf: assignment pattern for particular solution plus homogeneous directions"
+    ],
+    "excluded": [
+      "Full singular / nonsingular matrix theory and invertibility equivalences",
+      "General set-equality, subset, and null-space intersection proofs",
+      "Rank-nullity as a formal theorem",
+      "Eigenvalue and eigenspace applications of null spaces",
+      "Open-ended row-reduction calculator or null-space solver"
+    ]
+  },
+  "frames": [
+    {
+      "key": "trivial-solution",
+      "purpose": "Establish that every homogeneous system is consistent because x=0 always works.",
+      "visual": "Input x=0 passes through multiplication by A and lands at the zero output.",
+      "text": {
+        "en": "A0=0 is always present.",
+        "zh-hk": "A0=0 永遠存在。",
+        "zh-cn": "A0=0 永远存在。"
+      }
+    },
+    {
+      "key": "rref-zero-column",
+      "purpose": "Show why the coefficient matrix determines the homogeneous solution structure.",
+      "visual": "A small augmented matrix [A|0] row-reduces to [R|0], with pivot and free variables labelled.",
+      "text": {
+        "en": "The augmented zero column stays zero.",
+        "zh-hk": "增廣零列保持為零。",
+        "zh-cn": "增广零列保持为零。"
+      }
+    },
+    {
+      "key": "free-directions",
+      "purpose": "Convert free variables into parameter directions.",
+      "visual": "Two vectors q1 and q2 sweep points through x=sq1+tq2.",
+      "text": {
+        "en": "Free variables become null-space directions.",
+        "zh-hk": "自由變量變成零空間方向。",
+        "zh-cn": "自由变量变成零空间方向。"
+      }
+    },
+    {
+      "key": "null-space-set",
+      "purpose": "Name the full solution set as N(A).",
+      "visual": "Directions through the origin labelled N(A)={x:Ax=0}.",
+      "text": {
+        "en": "N(A) is the whole homogeneous solution set.",
+        "zh-hk": "N(A) 是整個齊次解集。",
+        "zh-cn": "N(A) 是整个齐次解集。"
+      }
+    },
+    {
+      "key": "translate",
+      "purpose": "Bridge to nonhomogeneous systems without taking over the later set-language unit.",
+      "visual": "The null-space family is shifted by a particular solution p.",
+      "text": {
+        "en": "A consistent system has solution set p+N(A).",
+        "zh-hk": "一致系統的解集是 p+N(A)。",
+        "zh-cn": "相容系统的解集是 p+N(A)。"
+      }
+    },
+    {
+      "key": "freedom",
+      "purpose": "Summarize how null space controls uniqueness and infinite families.",
+      "visual": "N(A)={0} contrasted with p+tq for q nonzero.",
+      "text": {
+        "en": "Null space measures the freedom left by the equations.",
+        "zh-hk": "零空間量度方程留下的自由度。",
+        "zh-cn": "零空间量度方程留下的自由度。"
+      }
+    }
+  ],
+  "qaPlan": [
+    "Render EN, zh-HK, and zh-CN Manim assets.",
+    "Inspect poster frames for no transition residue or text overflow.",
+    "Verify each localized Notes route exposes the matching video and poster.",
+    "Verify TXT/PDF exports include the static video-study sequence and no raw video markup.",
+    "Record source boundary, local QA, production QA, and remaining deferrals in docs."
+  ]
+}

@@ -1300,3 +1300,25 @@ existing invertibility note instead of creating a detached new route.
   matrix identities remain later units.
 - Status change: the 3.5 source-backed prose remains incorporated, and the new
   video explanation is now incorporated as an export-friendly static fallback.
+
+### 2026-07-01 checkpoint 40: MATH1030 4.1 homogeneous systems and null-space video pass
+
+- Revisited `4.1 Homogeneous systems and null space` against
+  `MATH1030-Notes.pdf` §4.1 pp. 62-68, the §4.2 bridge on pp. 69-70,
+  `1030gi-n02-04.pdf` pp. 7-8, `1030gi-n04-01.pdf` pp. 4-7, and
+  `1030gi-n04-03.pdf` pp. 1-5.
+- Added a trilingual article-embedded `VideoExplanation` for the
+  source-backed solution-structure sequence: `Ax=0` is always consistent,
+  `x=0` is always present, the augmented zero column stays zero during row
+  reduction, free variables become direction vectors, the null space is
+  `N(A)={x:Ax=0}`, and a nonhomogeneous solution set is a translate
+  `x_p + N(A)` when one particular solution exists.
+- Kept the pass Manim-only. No new widget was added because an open null-space
+  calculator would duplicate earlier row-reduction and solution-set controls;
+  this unit benefits more from a curated bridge between RREF reading and set
+  notation.
+- Recorded the source boundary explicitly: singular/nonsingular invertibility
+  theory, rank-nullity, eigenspaces, and the fuller set-language proof
+  machinery belong to later units.
+- Status change: the 4.1 source-backed prose remains incorporated, and the new
+  video explanation is now incorporated as an export-friendly static fallback.
