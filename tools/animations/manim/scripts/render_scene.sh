@@ -23,6 +23,9 @@ else
     "SolutionSetTypesTrichotomyStoryEn"
     "SolutionSetTypesTrichotomyStoryZhHk"
     "SolutionSetTypesTrichotomyStoryZhCn"
+    "ExistenceOfRowEchelonFormsStoryEn"
+    "ExistenceOfRowEchelonFormsStoryZhHk"
+    "ExistenceOfRowEchelonFormsStoryZhCn"
     "GramSchmidtProjectionStoryEn"
     "GramSchmidtProjectionStoryZhHk"
     "GramSchmidtProjectionStoryZhCn"
@@ -126,6 +129,9 @@ scene_file() {
       ;;
     SolutionSetTypesTrichotomyStory|SolutionSetTypesTrichotomyStoryEn|SolutionSetTypesTrichotomyStoryZhHk|SolutionSetTypesTrichotomyStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/solution_set_types.py"
+      ;;
+    ExistenceOfRowEchelonFormsStory|ExistenceOfRowEchelonFormsStoryEn|ExistenceOfRowEchelonFormsStoryZhHk|ExistenceOfRowEchelonFormsStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1030/existence_of_row_echelon_forms.py"
       ;;
     GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|GramSchmidtProjectionStoryZhHk|GramSchmidtProjectionStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/gram_schmidt.py"
@@ -327,6 +333,15 @@ scene_locale() {
     SolutionSetTypesTrichotomyStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
+    ExistenceOfRowEchelonFormsStory|ExistenceOfRowEchelonFormsStoryEn)
+      printf '%s\n' "en"
+      ;;
+    ExistenceOfRowEchelonFormsStoryZhHk)
+      printf '%s\n' "zh-hk"
+      ;;
+    ExistenceOfRowEchelonFormsStoryZhCn)
+      printf '%s\n' "zh-cn"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|BasisDimensionJustRightStory|BasisDimensionJustRightStoryEn|FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|ComplexPlaneArithmeticStory|ComplexPlaneArithmeticStoryEn|EuclideanBezoutIntegerEquationStory|EuclideanBezoutIntegerEquationStoryEn|RationalIrrationalRootProofStory|RationalIrrationalRootProofStoryEn|PolynomialDivisionRemainderStory|PolynomialDivisionRemainderStoryEn|PolynomialGcdIrreducibilityStory|PolynomialGcdIrreducibilityStoryEn|HashTableCollisionStrategyStory|HashTableCollisionStrategyStoryEn)
       printf '%s\n' "en"
       ;;
@@ -410,6 +425,9 @@ video_basename() {
     SolutionSetTypesTrichotomyStory|SolutionSetTypesTrichotomyStoryEn|SolutionSetTypesTrichotomyStoryZhHk|SolutionSetTypesTrichotomyStoryZhCn)
       printf '%s\n' "solution-set-types-trichotomy-story"
       ;;
+    ExistenceOfRowEchelonFormsStory|ExistenceOfRowEchelonFormsStoryEn|ExistenceOfRowEchelonFormsStoryZhHk|ExistenceOfRowEchelonFormsStoryZhCn)
+      printf '%s\n' "existence-of-row-echelon-forms-story"
+      ;;
     FunctionMapPropertiesStory|FunctionMapPropertiesStoryEn|FunctionMapPropertiesStoryZhHk|FunctionMapPropertiesStoryZhCn)
       printf '%s\n' "function-map-properties-story"
       ;;
@@ -476,6 +494,9 @@ scene_course() {
       printf '%s\n' "math1030"
       ;;
     SolutionSetTypesTrichotomyStory|SolutionSetTypesTrichotomyStoryEn|SolutionSetTypesTrichotomyStoryZhHk|SolutionSetTypesTrichotomyStoryZhCn)
+      printf '%s\n' "math1030"
+      ;;
+    ExistenceOfRowEchelonFormsStory|ExistenceOfRowEchelonFormsStoryEn|ExistenceOfRowEchelonFormsStoryZhHk|ExistenceOfRowEchelonFormsStoryZhCn)
       printf '%s\n' "math1030"
       ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn|MatrixBasicsPositionMap|MatrixBasicsPositionMapEn|MatrixBasicsPositionMapZhHk|MatrixBasicsPositionMapZhCn|AugmentedMatrixRowOperationSafety|AugmentedMatrixRowOperationSafetyEn|AugmentedMatrixRowOperationSafetyZhHk|AugmentedMatrixRowOperationSafetyZhCn|GramSchmidtProjectionStory|GramSchmidtProjectionStoryEn|GramSchmidtProjectionStoryZhHk|GramSchmidtProjectionStoryZhCn|MatrixProductLinearSystemStory|MatrixProductLinearSystemStoryEn|MatrixProductLinearSystemStoryZhHk|MatrixProductLinearSystemStoryZhCn|RowOperationMatrixLeftMultiplyStory|RowOperationMatrixLeftMultiplyStoryEn|RowOperationMatrixLeftMultiplyStoryZhHk|RowOperationMatrixLeftMultiplyStoryZhCn|LinearCombinationSpanSweepStory|LinearCombinationSpanSweepStoryEn|LinearCombinationSpanSweepStoryZhHk|LinearCombinationSpanSweepStoryZhCn|LinearDependenceRedundancyStory|LinearDependenceRedundancyStoryEn|LinearDependenceRedundancyStoryZhHk|LinearDependenceRedundancyStoryZhCn|BasisDimensionJustRightStory|BasisDimensionJustRightStoryEn|BasisDimensionJustRightStoryZhHk|BasisDimensionJustRightStoryZhCn)

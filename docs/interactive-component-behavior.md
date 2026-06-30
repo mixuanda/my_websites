@@ -328,5 +328,15 @@ symbolic characteristic-polynomial calculator; a later graded practice surface
 would need carefully scoped matrices, static export of every determinant and
 null-space step, and answer checking before it belongs on the article page.
 
+The Math1030 `2.5` REF / RREF existence pass also stays Manim-only. The
+source-backed move is an optional proof mechanism, not a computation surface:
+place the first pivot, clear below, reduce the smaller lower-right block by
+induction, then clean REF to RREF without moving pivot columns. The existing
+row-reduction stepper is intentionally not reused here because it traces a
+specific elimination computation, while this section explains why some REF and
+some RREF must exist for every matrix. The static article examples and the
+exported video frame sequence preserve the study value more cleanly than a
+new or reused widget.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

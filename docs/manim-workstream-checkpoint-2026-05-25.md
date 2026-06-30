@@ -47,28 +47,32 @@ history.
 | Math1030 `9.2 Orthogonal sets and orthonormal bases` | `math1030-orthogonal-sets-orthonormal-bases-story` | `docs/manim-orthogonal-sets-orthonormal-bases-video-qa-2026-06-30.md` |
 | Math1030 `9.4 Cauchy-Schwarz and triangle inequalities` | `math1030-cauchy-schwarz-triangle-inequalities-story` | `docs/manim-cauchy-schwarz-triangle-inequalities-video-qa-2026-06-30.md` |
 | Math1030 `2.4 Solution-set types` | `math1030-solution-set-types-trichotomy-story` | `docs/manim-solution-set-types-video-qa-2026-06-30.md` |
+| Math1030 `2.5 Existence of row-echelon forms` | `math1030-existence-of-row-echelon-forms-story` | `docs/manim-existence-row-echelon-forms-video-qa-2026-06-30.md` |
 
 ## Latest Slice Notes
 
-Math1030 `2.4` was implemented after roadmap, current MDX, widget, and
-reference inspection confirmed the source boundary. `MATH1030-Notes.pdf`
-pp. 31-34 supports the RREF consistency test, pivot/free-variable
-classification, and unique / no / infinite trichotomy. `1030gi-n02-04.pdf`
-pp. 1-5 reinforces row-equivalent augmented matrices, the last-column pivot
-test, and reading parameterized solution sets from RREF.
+Math1030 `2.5` was implemented after roadmap, current MDX, and reference
+inspection confirmed the source boundary. `1030gi-n02-03p.pdf` pp. 1-3
+supports the row-count induction proof of REF existence, the rank-induction
+cleanup from REF to RREF, and pivot-column preservation. `MATH1030-Notes.pdf`
+pp. 21-25 and `1030gi-n02-03.pdf` pp. 1-6 provide the surrounding definitions,
+algorithm steps, and theorem context.
 
 Fixes applied:
 
-- new storyboard covers RREF as the reading form, contradiction rows, the
-  unique-solution case, the free-variable infinite case, the three-outcome
-  decision tree, and the bridge to the existing classifier;
+- new storyboard covers existence as a reachable target, first pivot selection,
+  clearing below, induction on the lower-right block, REF-to-RREF cleanup, and
+  pivot-column preservation;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the solution-set trichotomy scene and writes
+- render script now includes the row-echelon existence scene and writes
   assets under `public/generated/animations/math1030/`;
-- video embed was placed after the RREF reading habit list and before the
-  larger parameterized example in all three localized MDX files;
-- no new widget was added because `solution-set-classifier` already gives the
-  reader-controlled follow-up, with static export snapshots.
+- video embed was placed after the pivot-column preservation theorem and
+  before the worked examples in all three localized MDX files;
+- two additional source-backed worked examples and a short "how this theorem
+  is used later" section were added so the target unit clears the
+  `check:textbook-content` depth / worked-example thresholds;
+- no new widget was added because the source-backed value is a fixed proof
+  mechanism rather than a reader-controlled manipulation surface.
 
 ## Verification Stack Used For Latest Slice
 
@@ -80,9 +84,9 @@ Fixes applied:
 - `npx tsc --noEmit --pretty false`
 - `npm run lint`
 - `AUTH_SECRET=local-test-secret npm run build`
-- Browser DOM / console / export-menu interaction checks, system-Chrome
-  screenshot checks, route / asset checks, video metadata, responsive
-  screenshots, and TXT/PDF export checks for all three locales
+- Browser DOM / console checks, language-switch interaction, route / asset
+  checks, video metadata, responsive screenshots, dark-mode check, target
+  content-check warning check, and TXT/PDF export checks for all three locales
 
 ## Next Slice
 
@@ -91,7 +95,7 @@ priority changes.
 
 Expected first step:
 
-1. Start with Math1030 `matrices/existence-of-row-echelon-forms` unless source
+1. Start with Math1030 `systems/equations-solution-sets` unless source
    inspection changes the priority.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.

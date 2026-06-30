@@ -91,6 +91,58 @@ The point of the proof is not to memorize the block notation. The point is to
 see the recursive structure: one pivot is placed, everything below it is
 cleared, and the remaining smaller matrix is handled by the same theorem.
 
+<WorkedExample title="Seeing the smaller block in an actual matrix">
+Consider
+
+$$
+A=
+\begin{bmatrix}
+0 & 2 & 1\\
+0 & 4 & 3\\
+0 & 0 & 5
+\end{bmatrix}.
+$$
+
+The leftmost nonzero column is column `2`. The top entry in that column is
+already nonzero, so we may use `\beta=2` in row `1` as the first pivot. Clearing
+below it gives
+
+$$
+R_2\leftarrow R_2-2R_1,\qquad
+\begin{bmatrix}
+0 & 2 & 1\\
+0 & 0 & 1\\
+0 & 0 & 5
+\end{bmatrix}.
+$$
+
+What remains below and to the right of the first pivot is the smaller block
+
+$$
+V=
+\begin{bmatrix}
+1\\
+5
+\end{bmatrix}.
+$$
+
+This is exactly the point of the induction proof. The whole matrix no longer
+has to be solved at once: after the first pivot is fixed, the remaining task is
+to put a matrix with fewer rows into row-echelon form. In this example, one
+more operation, `R_3\leftarrow R_3-5R_2`, gives
+
+$$
+\begin{bmatrix}
+0 & 2 & 1\\
+0 & 0 & 1\\
+0 & 0 & 0
+\end{bmatrix},
+$$
+
+which is in REF. The example is small, but it shows the same reduction in size
+used in the general proof.
+</WorkedExample>
+
 ## From REF to RREF
 
 The second part begins with a matrix already in row-echelon form. The goal is
@@ -120,6 +172,57 @@ because the echelon form has zeros in the relevant positions.
 The result is a matrix whose pivot columns each contain exactly one nonzero
 entry, and that entry is `1`. Hence the result is in RREF.
 
+<WorkedExample title="Cleaning a REF without moving its pivot columns">
+Start from the row-echelon form
+
+$$
+B=
+\begin{bmatrix}
+2 & 1 & 4 & 5\\
+0 & 0 & -3 & 6\\
+0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+Its pivot columns are columns `1` and `3`. To clean it toward RREF, first
+normalize the second pivot:
+
+$$
+R_2\leftarrow -\frac{1}{3}R_2,\qquad
+\begin{bmatrix}
+2 & 1 & 4 & 5\\
+0 & 0 & 1 & -2\\
+0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+Then clear the entry above the second pivot:
+
+$$
+R_1\leftarrow R_1-4R_2,\qquad
+\begin{bmatrix}
+2 & 1 & 0 & 13\\
+0 & 0 & 1 & -2\\
+0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+Finally normalize the first pivot:
+
+$$
+R_1\leftarrow \frac{1}{2}R_1,\qquad
+\begin{bmatrix}
+1 & \frac12 & 0 & \frac{13}{2}\\
+0 & 0 & 1 & -2\\
+0 & 0 & 0 & 0
+\end{bmatrix}.
+$$
+
+The numerical entries in columns `2` and `4` changed, but the pivot columns
+did not. They are still columns `1` and `3`. This is the concrete version of
+the preservation statement in the REF-to-RREF proof.
+</WorkedExample>
+
 ## Pivot columns are preserved in the REF-to-RREF cleanup
 
 The proof actually gives a useful extra statement.
@@ -132,6 +235,12 @@ whose pivot columns are still `d_1,\ldots,d_r`.
 
 This is why, once a matrix is in REF, you can already read the pivot columns.
 Continuing from REF to RREF cleans the pivot columns; it does not move them.
+
+The video below turns the optional proof into a short proof-as-algorithm map:
+one pivot is placed, the smaller lower block is handled by induction, and the
+REF cleanup preserves the pivot columns already visible in the staircase.
+
+<VideoExplanation id="math1030-existence-of-row-echelon-forms-story" />
 
 <WorkedExample title="REF already tells you the pivot columns">
 Consider
@@ -167,6 +276,40 @@ For ordinary computation, you mainly need the practical consequence:
 3. pivot columns read in REF are the same pivot columns in the corresponding
    RREF cleanup;
 4. row equivalence preserves the solution set of an augmented system.
+
+## How this theorem is used later
+
+The existence theorem is quiet, but it supports many later calculations. When
+you solve a system, you usually do not pause to prove that the row-reduction
+process will reach an interpretable form. You simply reduce the augmented
+matrix and expect to read pivot variables, free variables, and consistency
+from the result. This note supplies the missing guarantee: the row operations
+can always be organized so that an REF exists, and the REF can always be
+cleaned further to an RREF.
+
+It is also important to separate two different kinds of information. REF is
+already enough to identify the pivot columns and decide which variables are
+basic or free. RREF is more convenient when you want final formulas, because
+each pivot column has been normalized and cleared. The proof explains why
+these two uses are compatible: the cleanup from REF to RREF improves the shape
+of the pivot columns without changing their positions.
+
+This is why later notes may move quickly between computation and theory. For
+example, when rank is defined using pivot columns, we are not merely relying on
+a lucky example. The existence result ensures that a pivot staircase can be
+reached, and the preservation result ensures that the pivot columns read from a
+staircase remain the relevant columns during the RREF cleanup. The separate
+uniqueness theorem will later make the final RREF independent of the path of
+row operations; this note deliberately stops one step earlier, at existence
+and pivot-column preservation.
+
+One practical way to remember the distinction is this: existence justifies the
+method before you start, while uniqueness later justifies the independence of
+the final reduced answer. When you are still at the REF stage, you should
+trust the pivot pattern but not pretend that the entire matrix is already in
+its final canonical form.
+This separation keeps the computational procedure honest without overstating
+what the optional proof has actually established.
 
 ## Common mistakes
 

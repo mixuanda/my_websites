@@ -1171,3 +1171,23 @@ existing invertibility note instead of creating a detached new route.
 - Status change: the 2.4 reference-backed prose remains incorporated, and the
   video explanation is now incorporated as an export-friendly static fallback
   through the `VideoExplanation` frame sequence.
+
+### 2026-06-30 checkpoint 34: MATH1030 2.5 REF/RREF existence video pass
+
+- Revisited `2.5 Existence of row-echelon forms` against
+  `1030gi-n02-03p.pdf` pp. 1-3, `1030gi-n02-03.pdf` pp. 1-6, and
+  `MATH1030-Notes.pdf` pp. 21-25.
+- Added a trilingual article-embedded `VideoExplanation` for the
+  source-backed proof-as-algorithm sequence: select the leftmost nonzero
+  column, place the first pivot, clear below, apply induction to the smaller
+  lower-right block, clean REF to RREF by rank induction, and preserve pivot
+  columns.
+- Deepened the existing three-locale note with two worked examples and a short
+  later-use section so the target unit clears the local textbook-content
+  depth / worked-example thresholds.
+- Recorded the source boundary explicitly: ordinary REF uniqueness and RREF
+  uniqueness are not treated as claims of this clip; RREF uniqueness remains a
+  later theorem.
+- Status change: the 2.5 reference-backed prose remains incorporated, and the
+  video explanation is now incorporated as an export-friendly static fallback
+  through the `VideoExplanation` frame sequence.

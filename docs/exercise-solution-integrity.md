@@ -783,3 +783,23 @@ unit-level coverage.
   routes expose the localized video asset. Local TXT / PDF export checks passed
   for all three locales, including the static video sequence and the existing
   classifier snapshot with no leaked video markup.
+
+### 2026-06-30 checkpoint 27: MATH1030 2.5 video insertion integrity
+
+- Checkpoint name: `2.5` REF / RREF existence video embed, worked examples,
+  and export fallback integrity.
+- What was inspected: the existing EN / zh-HK / zh-CN `2.5` MDX files, the new
+  `VideoExplanation` frame sequence, static TXT / PDF exports, and the existing
+  in-page quick-check / reveal-solution placement.
+- What was changed: inserted the localized video explanation after the
+  pivot-column preservation theorem and before the worked-example section;
+  added two static worked examples plus a later-use explanation section before
+  common mistakes.
+- Integrity note: no quick-check, exercise, or reveal-solution block was moved
+  away from its paired prompt. The new worked examples are ordinary article
+  blocks and do not introduce hidden answers.
+- Verification: local Browser DOM checks confirmed the EN / zh-HK / zh-CN
+  routes expose the localized video asset and the new example / later-use
+  sections. Local TXT / PDF export checks passed for all three locales,
+  including the static video sequence, new examples, and no leaked video
+  markup.

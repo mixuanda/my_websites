@@ -43,6 +43,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/inner-products/orthogonal-sets-and-orthonormal-bases`
   - `math1030/inner-products/cauchy-schwarz-and-triangle-inequalities`
   - `math1030/matrices/solution-set-types`
+  - `math1030/matrices/existence-of-row-echelon-forms`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -70,6 +71,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/inner-products/orthogonal-sets-and-orthonormal-bases`
   - `math1030/inner-products/cauchy-schwarz-and-triangle-inequalities`
   - `math1030/matrices/solution-set-types`
+  - `math1030/matrices/existence-of-row-echelon-forms`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -162,7 +164,7 @@ Use this order unless a later user request changes priority:
 | `math1030/matrices/matrix-basics` | 2.1 Matrix basics | Done | Rows, columns, entries, size, equality, and indexing. | Completed as the second trilingual Manim pilot; keep as the entry-level matrix-position reference pattern. |
 | `math1030/matrices/augmented-matrices-row-operations` | 2.2 Augmented matrices and row operations | Done | System-to-matrix morph and row-operation invariance. | Completed as the third trilingual Manim pilot; keep the existing widget as the reader-controlled follow-up. |
 | `math1030/matrices/solution-set-types` | 2.4 Solution-set types | Done | RREF reading order, contradiction-row consistency, pivot/free-variable count, unique / no / infinite trichotomy, and bridge to the existing classifier. | Completed as the twenty-second Math1030 trilingual Manim pass; existing `solution-set-classifier` remains the reader-controlled follow-up. |
-| `math1030/matrices/existence-of-row-echelon-forms` | 2.5 Existence of row-echelon forms | Manim | Algorithm always finds a pivot staircase or a zero row. | Storyboard proof-as-algorithm sequence. |
+| `math1030/matrices/existence-of-row-echelon-forms` | 2.5 Existence of row-echelon forms | Done | REF existence by row-count induction, REF-to-RREF cleanup by rank induction, and pivot-column preservation. | Completed as the twenty-third Math1030 trilingual Manim pass; no widget was added because the source-backed value is the fixed proof-as-algorithm sequence. |
 | `math1030/systems/equations-solution-sets` | 1.1 Equations and solution sets | Manim + widget | Lines or planes as solution sets and intersections. | Tie to current augmented-matrix explorer. |
 | `math1030/systems/reading-theorems-and-proof-language` | 1.2 Reading theorems and proof language | Defer | Proof-reading map only if later needed. | Improve prose/checkpoints first. |
 | `math1030/matrix-algebra/matrix-addition-scalar-multiplication` | 3.1 Matrix addition, subtraction, and scalar multiplication | Manim + widget | Entrywise arithmetic and scalar scaling. | Storyboard entrywise transformation. |
@@ -263,8 +265,7 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 These are the concrete next slices to execute one by one:
 
 1. Continue the next unresolved Math1030 register item:
-   `matrices/existence-of-row-echelon-forms`, unless the roadmap priority
-   changes.
+   `systems/equations-solution-sets`, unless the roadmap priority changes.
 2. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.
 

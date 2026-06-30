@@ -398,6 +398,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/solution-set-types-trichotomy-story-zh-cn.mp4"
     ),
   },
+  "math1030-existence-of-row-echelon-forms-story": {
+    conclusion: text(
+      "The existence proof is constructive: place one pivot, reduce the smaller block by induction, then clean a REF to RREF without moving the pivot columns. It proves a reachable target, not RREF uniqueness.",
+      "存在性證明是構造性的：先放一個樞軸，再用歸納化簡較小分塊，最後把 REF 清理成 RREF 而不移動樞軸欄。它證明目標可到達，並不是證明 RREF 唯一。",
+      "存在性证明是构造性的：先放一个主元，再用归纳化简较小分块，最后把 REF 清理成 RREF 而不移动主元列。它证明目标可到达，并不是证明 RREF 唯一。"
+    ),
+    durationSeconds: 17,
+    frames: [
+      {
+        label: text("Target guarantee", "目標保證", "目标保证"),
+        value: text(
+          "Every matrix can reach a row-equivalent REF, and then a row-equivalent RREF. Row equivalence is the invariant throughout the proof.",
+          "每個矩陣都可到達行等價的 REF，然後到達行等價的 RREF。行等價是整個證明中的不變量。",
+          "每个矩阵都可到达行等价的 REF，然后到达行等价的 RREF。行等价是整个证明中的不变量。"
+        ),
+      },
+      {
+        label: text("First pivot", "第一個樞軸", "第一个主元"),
+        value: text(
+          "If the matrix is not zero, find the leftmost nonzero column and move its topmost nonzero entry into the first row.",
+          "若矩陣不是零矩陣，先找最左非零欄，並把該欄最上方的非零項移到第一行。",
+          "若矩阵不是零矩阵，先找最左非零列，并把该列最上方的非零项移到第一行。"
+        ),
+      },
+      {
+        label: text("Smaller block", "較小分塊", "较小分块"),
+        value: text(
+          "Use the first row to clear below the pivot. The remaining block V has fewer rows, so the induction hypothesis applies there.",
+          "用第一行清掉樞軸下方項。剩下的分塊 V 行數較少，所以可在那裏使用歸納假設。",
+          "用第一行清掉主元下方项。剩下的分块 V 行数较少，所以可在那里使用归纳假设。"
+        ),
+      },
+      {
+        label: text("Lift the induction", "提升歸納步驟", "提升归纳步骤"),
+        value: text(
+          "The row operations that reduce V to V# act only on lower rows when lifted back to the full matrix, so the first pivot remains fixed.",
+          "把 V 化成 V# 的行變換提升回整個矩陣時，只作用於下方行，所以第一個樞軸保持固定。",
+          "把 V 化成 V# 的行变换提升回整个矩阵时，只作用于下方行，所以第一个主元保持固定。"
+        ),
+      },
+      {
+        label: text("REF to RREF", "由 REF 到 RREF", "由 REF 到 RREF"),
+        value: text(
+          "For a REF of rank r, rank induction reduces earlier pivot columns, then normalizes the last pivot and clears above it.",
+          "對秩為 r 的 REF，秩歸納先處理較早樞軸欄，再把最後樞軸化成 1 並清掉其上方項。",
+          "对秩为 r 的 REF，秩归纳先处理较早主元列，再把最后主元化成 1 并清掉其上方项。"
+        ),
+      },
+      {
+        label: text("Pivots stay", "樞軸欄保持", "主元列保持"),
+        value: text(
+          "The cleanup changes entries, not pivot-column positions. This is the useful preservation result; uniqueness of RREF is a separate stronger theorem.",
+          "清理會改變數值，但不改變樞軸欄位置。這是有用的保持性結論；RREF 唯一性是另一個更強定理。",
+          "清理会改变数值，但不改变主元列位置。这是有用的保持性结论；RREF 唯一性是另一个更强定理。"
+        ),
+      },
+    ],
+    summary: text(
+      "Turn the optional appendix proof into a proof-as-algorithm map: leftmost pivot, clear below, recurse on a smaller block, then clean REF to RREF while preserving pivot columns.",
+      "把可選 appendix 證明整理成 proof-as-algorithm 圖：找最左樞軸、清下方、對較小分塊遞歸，最後把 REF 清成 RREF 並保持樞軸欄。",
+      "把可选 appendix 证明整理成 proof-as-algorithm 图：找最左主元、清下方、对较小分块递归，最后把 REF 清成 RREF 并保持主元列。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/existence-of-row-echelon-forms-story-en.png",
+      "/generated/animations/math1030/existence-of-row-echelon-forms-story-zh-hk.png",
+      "/generated/animations/math1030/existence-of-row-echelon-forms-story-zh-cn.png"
+    ),
+    title: text(
+      "Existence of REF and RREF",
+      "REF 與 RREF 的存在性",
+      "REF 与 RREF 的存在性"
+    ),
+    transcript: [
+      text(
+        "The first induction places one pivot and leaves a smaller lower block.",
+        "第一個歸納先放一個樞軸，留下較小的下方分塊。",
+        "第一个归纳先放一个主元，留下较小的下方分块。"
+      ),
+      text(
+        "The induction hypothesis reduces that smaller block, so the whole matrix reaches REF.",
+        "歸納假設化簡該較小分塊，因此整個矩陣到達 REF。",
+        "归纳假设化简该较小分块，因此整个矩阵到达 REF。"
+      ),
+      text(
+        "The second induction cleans REF to RREF and preserves the pivot columns already visible in REF.",
+        "第二個歸納把 REF 清理成 RREF，並保持 REF 中已可見的樞軸欄。",
+        "第二个归纳把 REF 清理成 RREF，并保持 REF 中已可见的主元列。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/existence-of-row-echelon-forms-story-en.mp4",
+      "/generated/animations/math1030/existence-of-row-echelon-forms-story-zh-hk.mp4",
+      "/generated/animations/math1030/existence-of-row-echelon-forms-story-zh-cn.mp4"
+    ),
+  },
   "math1030-matrix-product-linear-system-story": {
     conclusion: text(
       "The row-by-column rule is why one compact equation, `Ax = b`, can store an entire linear system. Each row of `A` supplies one equation; a full product `AB` repeats the same idea once for every column of `B`.",

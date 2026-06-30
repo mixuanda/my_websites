@@ -855,3 +855,30 @@ Use this shape for future entries:
 - Status change: the 2.4 reference-backed prose remains incorporated, and the
   video explanation is now incorporated as an export-friendly static fallback
   through the `VideoExplanation` frame sequence.
+
+### 2026-06-30: MATH1030 2.5 REF / RREF existence video checkpoint
+
+- Gap selected: the video roadmap marked Math1030 `2.5 Existence of
+  row-echelon forms` as the next unresolved matrix-theory item after the 2.4
+  solution-set pass.
+- Reference basis: `reference/MATH1030/1030gi-n02-03p.pdf` pp. 1-3, with
+  surrounding support from `reference/MATH1030/1030gi-n02-03.pdf` pp. 1-6 and
+  `reference/MATH1030/MATH1030-Notes.pdf` pp. 21-25.
+- Content files changed: added the 2.5 storyboard, Manim scene, render-script
+  entries, localized `VideoExplanation` registry metadata, EN / zh-HK / zh-CN
+  page embeds, two extra worked examples, and a short later-use section.
+- Visuals added: trilingual Manim video and poster assets for the
+  proof-as-algorithm sequence: first pivot, smaller lower block, induction,
+  REF-to-RREF cleanup, and pivot-column preservation.
+- Interactions added: none. No widget was added because the source-backed
+  value is a fixed proof mechanism rather than reader-controlled
+  manipulation.
+- Exercises added: none. Existing quick checks and reveal solutions were left
+  in place; the new worked examples are static article content.
+- Verification: Python syntax, storyboard JSON, render-script syntax, Manim
+  render, `ffprobe` / `sips` asset checks, visual frame inspection,
+  `git diff --check`, MDX table verification, TypeScript, lint, textbook
+  content check, production build, local Browser DOM / console checks,
+  language-switch interaction, dark-mode and mobile checks, and three-locale
+  TXT / PDF export checks passed. The target unit no longer appears in
+  `check:textbook-content` warnings.
