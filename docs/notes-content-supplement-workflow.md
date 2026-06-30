@@ -909,3 +909,31 @@ Use this shape for future entries:
   content check, production build, local Browser DOM / console checks,
   language-switch controls, existing widget interaction, mobile checks, and
   three-locale TXT / PDF export checks passed.
+
+### 2026-07-01: MATH1030 3.1 entrywise matrix arithmetic video checkpoint
+
+- Gap selected: the video roadmap marked Math1030 `3.1 Matrix addition,
+  subtraction, and scalar multiplication` as a Manim + widget target because
+  the article already had source-backed entrywise prose and an existing
+  `matrix-arithmetic-lab` follow-up.
+- Reference basis: `reference/MATH1030/MATH1030-Notes.pdf` pp. 35-38,
+  `reference/MATH1030/1030gi-n01-se0102.pdf` pp. 1-3, and Practice Set 2
+  questions 1-2.
+- Content files changed: added the 3.1 storyboard, Manim scene, render-script
+  entries, localized `VideoExplanation` registry metadata, EN / zh-HK / zh-CN
+  page embeds, and a static export snapshot for the existing matrix-arithmetic
+  lab.
+- Visuals added: trilingual Manim video and poster assets for same-size
+  compatibility, entrywise addition, scalar multiplication, subtraction via
+  additive inverse, zero matrices, and entrywise algebraic laws.
+- Interactions added: no new widget. The existing `matrix-arithmetic-lab`
+  remains the reader-controlled follow-up and was verified after insertion by
+  changing scalar `c` from `2` to `3`.
+- Exercises added: none. Existing quick checks and reveal solutions were left
+  in place; the video insertion did not reorder answer blocks.
+- Verification: Python syntax, storyboard JSON, render-script syntax, Manim
+  render, media metadata checks, visual frame inspection, `git diff --check`,
+  MDX table verification, TypeScript, lint, textbook content check, production
+  build, local Browser DOM / console checks through system Chrome, existing
+  widget interaction, mobile checks, and three-locale TXT / PDF export checks
+  passed.

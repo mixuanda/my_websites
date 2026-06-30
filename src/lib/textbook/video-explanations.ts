@@ -34,6 +34,101 @@ function resolveLocalizedAsset(asset: LocalizedAsset | undefined, locale: Locale
 }
 
 const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
+  "math1030-matrix-entrywise-arithmetic-story": {
+    conclusion: text(
+      "For addition and subtraction, the size match is part of the definition. For scalar multiplication, one scalar reaches every entry while the matrix shape stays fixed.",
+      "對加法與減法來說，大小相配是定義的一部分。對純量乘法來說，一個純量會作用到每個元素，但矩陣形狀保持不變。",
+      "对加法与减法来说，大小相配是定义的一部分。对数乘来说，一个标量会作用到每个元素，但矩阵形状保持不变。"
+    ),
+    durationSeconds: 9,
+    frames: [
+      {
+        label: text("Same-size gate", "同型入口", "同型入口"),
+        value: text(
+          "A + B and A - B require A and B to have the same m x n size, so every entry has a corresponding partner.",
+          "A + B 與 A - B 要求 A 和 B 都是同一個 m x n 大小，令每個元素都有對應配對。",
+          "A + B 与 A - B 要求 A 和 B 都是同一个 m x n 大小，让每个元素都有对应配对。"
+        ),
+      },
+      {
+        label: text("Entrywise addition", "逐格加法", "逐格加法"),
+        value: text(
+          "The output entry at position (i,j) is built from the two input entries in that same position: [A+B]_{ij}=a_{ij}+b_{ij}.",
+          "輸出矩陣的 (i,j) 位置，來自兩個輸入矩陣同一位置的元素：[A+B]_{ij}=a_{ij}+b_{ij}。",
+          "输出矩阵的 (i,j) 位置，来自两个输入矩阵同一位置的元素：[A+B]_{ij}=a_{ij}+b_{ij}。"
+        ),
+      },
+      {
+        label: text("Scalar multiplication", "純量乘法", "数乘"),
+        value: text(
+          "A scalar multiplies every entry of A. The entries change, but the result is still an m x n matrix.",
+          "純量會乘上 A 的每一個元素。元素會改變，但結果仍然是 m x n 矩陣。",
+          "标量会乘上 A 的每一个元素。元素会改变，但结果仍然是 m x n 矩阵。"
+        ),
+      },
+      {
+        label: text("Subtraction via inverse", "用逆元理解減法", "用逆元理解减法"),
+        value: text(
+          "Subtraction is defined as A - B = A + (-B), so it uses the same size rule as addition.",
+          "減法定義為 A - B = A + (-B)，所以它使用與加法相同的大小規則。",
+          "减法定义为 A - B = A + (-B)，所以它使用与加法相同的大小规则。"
+        ),
+      },
+      {
+        label: text("Zero and inverse", "零矩陣與逆元", "零矩阵与逆元"),
+        value: text(
+          "The zero matrix O and the additive inverse -A must have the same size as A, so A+O=A and A+(-A)=O are well-defined.",
+          "零矩陣 O 與加法逆元 -A 必須與 A 同型，因此 A+O=A 與 A+(-A)=O 才有定義。",
+          "零矩阵 O 与加法逆元 -A 必须与 A 同型，因此 A+O=A 与 A+(-A)=O 才有定义。"
+        ),
+      },
+      {
+        label: text("Entrywise laws", "逐項證明規律", "逐项证明规律"),
+        value: text(
+          "The familiar algebraic laws are proved by checking the (i,j)-entry on both sides of the proposed matrix equality.",
+          "熟悉的代數規律，是透過比較矩陣等式兩邊的 (i,j)-元素來證明。",
+          "熟悉的代数规律，是通过比较矩阵等式两边的 (i,j)-元素来证明。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch same-size compatibility, entrywise addition, scalar scaling, subtraction by additive inverse, and the zero-matrix identity move in one short sequence.",
+      "用一段短片串起同型條件、逐格加法、純量縮放、以加法逆元理解減法，以及零矩陣單位元。",
+      "用一段短片串起同型条件、逐格加法、数乘缩放、以加法逆元理解减法，以及零矩阵单位元。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/matrix-entrywise-arithmetic-story-en.png",
+      "/generated/animations/math1030/matrix-entrywise-arithmetic-story-zh-hk.png",
+      "/generated/animations/math1030/matrix-entrywise-arithmetic-story-zh-cn.png"
+    ),
+    title: text(
+      "Entrywise matrix arithmetic",
+      "逐格矩陣算術",
+      "逐格矩阵算术"
+    ),
+    transcript: [
+      text(
+        "Matrix addition and subtraction begin with a size check.",
+        "矩陣加法與減法先從大小檢查開始。",
+        "矩阵加法与减法先从大小检查开始。"
+      ),
+      text(
+        "Once the sizes match, each output entry is computed from the corresponding input entries.",
+        "大小相配後，每個輸出元素都由對應輸入元素計算出來。",
+        "大小相配后，每个输出元素都由对应输入元素计算出来。"
+      ),
+      text(
+        "Scalar multiplication uses one scalar on every entry and keeps the same matrix shape.",
+        "純量乘法用同一個純量作用到每個元素，並保持矩陣形狀。",
+        "数乘用同一个标量作用到每个元素，并保持矩阵形状。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/matrix-entrywise-arithmetic-story-en.mp4",
+      "/generated/animations/math1030/matrix-entrywise-arithmetic-story-zh-hk.mp4",
+      "/generated/animations/math1030/matrix-entrywise-arithmetic-story-zh-cn.mp4"
+    ),
+  },
   "math1030-equations-solution-sets-story": {
     conclusion: text(
       "The visible equations may be rewritten, but the object we protect is the full solution set: all ordered tuples that satisfy every equation at the same time.",

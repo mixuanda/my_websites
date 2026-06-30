@@ -255,6 +255,49 @@ const snapshotCatalog: Record<string, SnapshotBuilder> = {
       "计算前先练习读懂矩阵"
     ),
   },
+  "matrix-arithmetic-lab": {
+    sampleStates: [
+      {
+        label: text("Addition state", "加法狀態", "加法状态"),
+        value: text(
+          "With A = [[1,-2],[3,0]] and B = [[4,1],[-1,2]], the live lab shows A+B = [[5,-1],[2,2]].",
+          "當 A = [[1,-2],[3,0]]、B = [[4,1],[-1,2]] 時，互動工具顯示 A+B = [[5,-1],[2,2]]。",
+          "当 A = [[1,-2],[3,0]]、B = [[4,1],[-1,2]] 时，互动工具显示 A+B = [[5,-1],[2,2]]。"
+        ),
+      },
+      {
+        label: text("Subtraction state", "減法狀態", "减法状态"),
+        value: text(
+          "The same matrices give A-B = [[-3,-3],[4,-2]], matching A + (-B) entry by entry.",
+          "同一對矩陣給出 A-B = [[-3,-3],[4,-2]]，逐格等同於 A + (-B)。",
+          "同一对矩阵给出 A-B = [[-3,-3],[4,-2]]，逐格等同于 A + (-B)。"
+        ),
+      },
+      {
+        label: text("Scalar state", "純量狀態", "数乘状态"),
+        value: text(
+          "At scalar c = 2, the lab shows cA = [[2,-4],[6,0]]. The result is still 2 x 2.",
+          "當純量 c = 2 時，工具顯示 cA = [[2,-4],[6,0]]。結果仍然是 2 x 2。",
+          "当标量 c = 2 时，工具显示 cA = [[2,-4],[6,0]]。结果仍然是 2 x 2。"
+        ),
+      },
+    ],
+    summary: text(
+      "The live lab keeps fixed same-size matrices A and B in view, then displays A+B, A-B, and cA so readers can check the entrywise rule against each output cell.",
+      "互動工具把固定同型矩陣 A 與 B 放在畫面中，並顯示 A+B、A-B 和 cA，讓讀者逐格核對運算規則。",
+      "互动工具把固定同型矩阵 A 与 B 放在画面中，并显示 A+B、A-B 和 cA，让读者逐格核对运算规则。"
+    ),
+    steps: [
+      text("Compare A and B first: the widget uses same-size 2 x 2 matrices.", "先比較 A 與 B：工具使用同型的 2 x 2 矩陣。", "先比较 A 与 B：工具使用同型的 2 x 2 矩阵。"),
+      text("Read each output cell by matching the same position in the input matrices.", "按輸入矩陣的相同位置讀出每個輸出格。", "按输入矩阵的相同位置读出每个输出格。"),
+      text("Change the scalar c and check that every entry of A changes while the shape stays fixed.", "改變純量 c，檢查 A 的每個元素如何改變，而形狀保持不變。", "改变标量 c，检查 A 的每个元素如何改变，而形状保持不变。"),
+    ],
+    title: text(
+      "Compare entrywise matrix operations",
+      "比較逐格矩陣運算",
+      "比较逐格矩阵运算"
+    ),
+  },
   "matrix-multiplication-visualizer": {
     sampleIO: [
       {

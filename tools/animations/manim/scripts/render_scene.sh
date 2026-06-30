@@ -14,6 +14,9 @@ else
     "EquationsSolutionSetsStoryEn"
     "EquationsSolutionSetsStoryZhHk"
     "EquationsSolutionSetsStoryZhCn"
+    "MatrixEntrywiseArithmeticStoryEn"
+    "MatrixEntrywiseArithmeticStoryZhHk"
+    "MatrixEntrywiseArithmeticStoryZhCn"
     "GaussianEliminationRrefPivotStoryEn"
     "GaussianEliminationRrefPivotStoryZhHk"
     "GaussianEliminationRrefPivotStoryZhCn"
@@ -124,6 +127,9 @@ scene_file() {
     EquationsSolutionSetsStory|EquationsSolutionSetsStoryEn|EquationsSolutionSetsStoryZhHk|EquationsSolutionSetsStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/equations_solution_sets.py"
       ;;
+    MatrixEntrywiseArithmeticStory|MatrixEntrywiseArithmeticStoryEn|MatrixEntrywiseArithmeticStoryZhHk|MatrixEntrywiseArithmeticStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1030/matrix_entrywise_arithmetic.py"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/gaussian_elimination_rref.py"
       ;;
@@ -229,6 +235,15 @@ scene_locale() {
       printf '%s\n' "zh-hk"
       ;;
     EquationsSolutionSetsStoryZhCn)
+      printf '%s\n' "zh-cn"
+      ;;
+    MatrixEntrywiseArithmeticStory|MatrixEntrywiseArithmeticStoryEn)
+      printf '%s\n' "en"
+      ;;
+    MatrixEntrywiseArithmeticStoryZhHk)
+      printf '%s\n' "zh-hk"
+      ;;
+    MatrixEntrywiseArithmeticStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn)
@@ -377,6 +392,9 @@ video_basename() {
     EquationsSolutionSetsStory|EquationsSolutionSetsStoryEn|EquationsSolutionSetsStoryZhHk|EquationsSolutionSetsStoryZhCn)
       printf '%s\n' "equations-solution-sets-story"
       ;;
+    MatrixEntrywiseArithmeticStory|MatrixEntrywiseArithmeticStoryEn|MatrixEntrywiseArithmeticStoryZhHk|MatrixEntrywiseArithmeticStoryZhCn)
+      printf '%s\n' "matrix-entrywise-arithmetic-story"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "gaussian-elimination-rref-pivot-story"
       ;;
@@ -476,6 +494,9 @@ video_basename() {
 scene_course() {
   case "$1" in
     EquationsSolutionSetsStory|EquationsSolutionSetsStoryEn|EquationsSolutionSetsStoryZhHk|EquationsSolutionSetsStoryZhCn)
+      printf '%s\n' "math1030"
+      ;;
+    MatrixEntrywiseArithmeticStory|MatrixEntrywiseArithmeticStoryEn|MatrixEntrywiseArithmeticStoryZhHk|MatrixEntrywiseArithmeticStoryZhCn)
       printf '%s\n' "math1030"
       ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn|ColumnRowSpaceRankStoryZhHk|ColumnRowSpaceRankStoryZhCn)

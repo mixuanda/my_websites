@@ -719,3 +719,19 @@ Current checkpoint resolution:
   `scrollWidth == clientWidth` for the video-card eyebrow, title, and summary.
   Desktop EN video-card and existing widget interaction were rechecked after
   the style change.
+
+### 2026-07-01 checkpoint 30: MATH1030 3.1 matrix arithmetic rendering pass
+
+- Checkpoint name: `3.1` matrix entrywise-arithmetic video and existing lab
+  rendering.
+- What was inspected: EN / zh-HK / zh-CN note pages for
+  `matrix-addition-scalar-multiplication`, the new localized video card, the
+  existing `matrix-arithmetic-lab`, and mobile layout at `390 x 844`.
+- Rendering note: the video stays inside the article flow before the lab. The
+  desktop screenshot shows the poster, controls, section heading, and lab card
+  in sequence. The mobile screenshot shows no horizontal overflow and keeps the
+  video at `306px` inside a `390px` viewport.
+- Verification: Browser QA through system Chrome found one localized video per
+  route, correct locale-specific mp4/poster values, no raw widget id, no
+  actionable console errors, and no actionable network errors after ignoring
+  the expected unauthenticated local `/api/user/profile` request.

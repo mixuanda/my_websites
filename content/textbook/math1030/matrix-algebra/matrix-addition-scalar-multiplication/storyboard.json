@@ -1,0 +1,297 @@
+{
+  "course": "math1030",
+  "chapter": "matrix-algebra",
+  "unit": "matrix-addition-scalar-multiplication",
+  "unitTitle": {
+    "en": "3.1 Matrix addition, subtraction, and scalar multiplication",
+    "zh-hk": "3.1 矩陣加法、減法與純量乘法",
+    "zh-cn": "3.1 矩阵加法、减法与数乘"
+  },
+  "videoId": "math1030-matrix-entrywise-arithmetic-story",
+  "sourceBoundary": {
+    "en": "This storyboard uses MATH1030-Notes.pdf pp. 35-38 as the direct source for matrix equality, matrix addition, scalar multiplication, zero matrices, additive inverses, subtraction as A + (-B), and the entrywise proof style for algebraic laws. It also uses Practice Set 2 questions 1-2 for entrywise scalar/addition practice and defined/not-defined size checks. It does not introduce matrix multiplication rules except to contrast that addition and scalar multiplication are entrywise.",
+    "zh-hk": "此 storyboard 以 MATH1030-Notes.pdf pp. 35-38 為直接來源，涵蓋矩陣相等、矩陣加法、純量乘法、零矩陣、加法逆元、把減法定義為 A + (-B)，以及用逐項比較證明代數規律的方式。Practice Set 2 第 1-2 題支持逐項數乘/加法練習和有定義/無定義的大小檢查。不引入矩陣乘法規則，只用來對比加法與純量乘法是逐格運算。",
+    "zh-cn": "此 storyboard 以 MATH1030-Notes.pdf pp. 35-38 为直接来源，涵盖矩阵相等、矩阵加法、数乘、零矩阵、加法逆元、把减法定义为 A + (-B)，以及用逐项比较证明代数规律的方式。Practice Set 2 第 1-2 题支持逐项数乘/加法练习和有定义/无定义的大小检查。不引入矩阵乘法规则，只用来对比加法与数乘是逐格运算。"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "shape_gate",
+          "cardTitle": "Same size is the gate",
+          "goal": "Show that A + B is defined only when every position in A has a matching position in B.",
+          "beats": [
+            "Display two 2 by 3 matrices as compatible.",
+            "Display a 2 by 3 matrix next to a 2 by 2 matrix as incompatible.",
+            "Keep the phrase corresponding entries on screen."
+          ],
+          "mathBlocks": [
+            "A, B in R^{m x n}",
+            "A + B is m x n"
+          ],
+          "animation": "matching grid positions light up, then a missing third-column partner blocks the operation"
+        },
+        {
+          "type": "entrywise_addition",
+          "cardTitle": "Addition happens position by position",
+          "goal": "Use the source example to compute representative entries and then reveal the full sum.",
+          "beats": [
+            "Highlight the top-left entries 2 and 6.",
+            "Show 2 + 6 = 8.",
+            "Reveal the full 2 by 3 sum."
+          ],
+          "mathBlocks": [
+            "[A + B]_{ij} = a_{ij} + b_{ij}"
+          ],
+          "animation": "corresponding cells move into one result cell"
+        },
+        {
+          "type": "scalar_multiplication",
+          "cardTitle": "A scalar reaches every entry",
+          "goal": "Show scalar multiplication as a shape-preserving operation on every entry.",
+          "beats": [
+            "Place the scalar 7 beside the sample matrix.",
+            "Highlight one positive and one negative entry.",
+            "Reveal the scaled matrix while keeping the 2 by 3 outline."
+          ],
+          "mathBlocks": [
+            "[7A]_{ij} = 7a_{ij}"
+          ],
+          "animation": "one scalar badge fans out to every matrix cell"
+        },
+        {
+          "type": "subtraction_inverse",
+          "cardTitle": "Subtraction uses the additive inverse",
+          "goal": "Connect subtraction to the definition A - B = A + (-B).",
+          "beats": [
+            "Negate every entry of B to build -B.",
+            "Replace A - B with A + (-B).",
+            "Label subtraction as not a separate shape rule."
+          ],
+          "mathBlocks": [
+            "A - B = A + (-B)"
+          ],
+          "animation": "B flips signs, then joins A through addition"
+        },
+        {
+          "type": "zero_inverse",
+          "cardTitle": "Zero and inverse explain the additive structure",
+          "goal": "Show the zero matrix and additive inverse as same-size objects.",
+          "beats": [
+            "Display A + O = A.",
+            "Display A + (-A) = O.",
+            "Emphasize that O has the same size as A."
+          ],
+          "mathBlocks": [
+            "O_{m x n}",
+            "A + (-A) = O"
+          ],
+          "animation": "identity and cancellation badges lock to the same matrix outline"
+        },
+        {
+          "type": "entrywise_laws",
+          "cardTitle": "The algebraic laws are entrywise proofs",
+          "goal": "Bridge the definitions to the theorem that addition and scalar multiplication obey familiar algebraic laws.",
+          "beats": [
+            "Show a few theorem identities as cards.",
+            "Point to the (i,j)-entry test for proving equality.",
+            "Send the reader to the interactive arithmetic lab."
+          ],
+          "mathBlocks": [
+            "A + B = B + A",
+            "(alpha + beta)A = alpha A + beta A",
+            "1A = A"
+          ],
+          "animation": "identity cards sit above one highlighted generic cell"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "shape_gate",
+          "cardTitle": "同型是入口條件",
+          "goal": "說明只有當 A 的每個位置都能在 B 中找到對應位置時，A + B 才有定義。",
+          "beats": [
+            "把兩個 2 by 3 矩陣顯示為大小相容。",
+            "把 2 by 3 與 2 by 2 矩陣顯示為大小不相容。",
+            "保留「對應位置」這個關鍵詞。"
+          ],
+          "mathBlocks": [
+            "A, B in R^{m x n}",
+            "A + B 是 m x n"
+          ],
+          "animation": "對應格逐一亮起，然後第三列缺少配對位置時阻止運算"
+        },
+        {
+          "type": "entrywise_addition",
+          "cardTitle": "加法逐格發生",
+          "goal": "用來源例子計算代表性元素，再顯示完整和矩陣。",
+          "beats": [
+            "突出左上角元素 2 和 6。",
+            "顯示 2 + 6 = 8。",
+            "顯示完整 2 by 3 和矩陣。"
+          ],
+          "mathBlocks": [
+            "[A + B]_{ij} = a_{ij} + b_{ij}"
+          ],
+          "animation": "兩個對應格合成一個結果格"
+        },
+        {
+          "type": "scalar_multiplication",
+          "cardTitle": "純量會作用到每一格",
+          "goal": "把純量乘法展示成保持形狀、逐項縮放的運算。",
+          "beats": [
+            "把純量 7 放在範例矩陣旁邊。",
+            "突出一個正元素和一個負元素。",
+            "顯示數乘後矩陣，同時保持 2 by 3 外形。"
+          ],
+          "mathBlocks": [
+            "[7A]_{ij} = 7a_{ij}"
+          ],
+          "animation": "一個純量標籤散射到所有矩陣格"
+        },
+        {
+          "type": "subtraction_inverse",
+          "cardTitle": "減法使用加法逆元",
+          "goal": "把減法連到定義 A - B = A + (-B)。",
+          "beats": [
+            "把 B 的每個元素變號得到 -B。",
+            "把 A - B 改寫成 A + (-B)。",
+            "標示減法不是另一套大小規則。"
+          ],
+          "mathBlocks": [
+            "A - B = A + (-B)"
+          ],
+          "animation": "B 變號後，透過加法與 A 合併"
+        },
+        {
+          "type": "zero_inverse",
+          "cardTitle": "零矩陣與逆元揭示加法結構",
+          "goal": "把零矩陣與加法逆元顯示成同型對象。",
+          "beats": [
+            "顯示 A + O = A。",
+            "顯示 A + (-A) = O。",
+            "強調 O 與 A 大小相同。"
+          ],
+          "mathBlocks": [
+            "O_{m x n}",
+            "A + (-A) = O"
+          ],
+          "animation": "單位元與抵消標籤鎖在同一矩陣外形上"
+        },
+        {
+          "type": "entrywise_laws",
+          "cardTitle": "代數規律靠逐項證明",
+          "goal": "把定義連到加法與純量乘法滿足的熟悉代數規律。",
+          "beats": [
+            "顯示幾張定理恒等式卡片。",
+            "指向 (i,j)-元素檢查作為證明矩陣相等的方法。",
+            "把讀者帶到互動算術 lab。"
+          ],
+          "mathBlocks": [
+            "A + B = B + A",
+            "(alpha + beta)A = alpha A + beta A",
+            "1A = A"
+          ],
+          "animation": "恒等式卡片位於一個被標出的通用格上方"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "shape_gate",
+          "cardTitle": "同型是入口条件",
+          "goal": "说明只有当 A 的每个位置都能在 B 中找到对应位置时，A + B 才有定义。",
+          "beats": [
+            "把两个 2 by 3 矩阵显示为大小相容。",
+            "把 2 by 3 与 2 by 2 矩阵显示为大小不相容。",
+            "保留“对应位置”这个关键词。"
+          ],
+          "mathBlocks": [
+            "A, B in R^{m x n}",
+            "A + B 是 m x n"
+          ],
+          "animation": "对应格逐一亮起，然后第三列缺少配对位置时阻止运算"
+        },
+        {
+          "type": "entrywise_addition",
+          "cardTitle": "加法逐格发生",
+          "goal": "用来源例子计算代表性元素，再显示完整和矩阵。",
+          "beats": [
+            "突出左上角元素 2 和 6。",
+            "显示 2 + 6 = 8。",
+            "显示完整 2 by 3 和矩阵。"
+          ],
+          "mathBlocks": [
+            "[A + B]_{ij} = a_{ij} + b_{ij}"
+          ],
+          "animation": "两个对应格合成一个结果格"
+        },
+        {
+          "type": "scalar_multiplication",
+          "cardTitle": "标量会作用到每一格",
+          "goal": "把数乘展示成保持形状、逐项缩放的运算。",
+          "beats": [
+            "把标量 7 放在示例矩阵旁边。",
+            "突出一个正元素和一个负元素。",
+            "显示数乘后矩阵，同时保持 2 by 3 外形。"
+          ],
+          "mathBlocks": [
+            "[7A]_{ij} = 7a_{ij}"
+          ],
+          "animation": "一个标量标签散射到所有矩阵格"
+        },
+        {
+          "type": "subtraction_inverse",
+          "cardTitle": "减法使用加法逆元",
+          "goal": "把减法连到定义 A - B = A + (-B)。",
+          "beats": [
+            "把 B 的每个元素变号得到 -B。",
+            "把 A - B 改写成 A + (-B)。",
+            "标示减法不是另一套大小规则。"
+          ],
+          "mathBlocks": [
+            "A - B = A + (-B)"
+          ],
+          "animation": "B 变号后，通过加法与 A 合并"
+        },
+        {
+          "type": "zero_inverse",
+          "cardTitle": "零矩阵与逆元揭示加法结构",
+          "goal": "把零矩阵与加法逆元显示成同型对象。",
+          "beats": [
+            "显示 A + O = A。",
+            "显示 A + (-A) = O。",
+            "强调 O 与 A 大小相同。"
+          ],
+          "mathBlocks": [
+            "O_{m x n}",
+            "A + (-A) = O"
+          ],
+          "animation": "单位元与抵消标签锁在同一矩阵外形上"
+        },
+        {
+          "type": "entrywise_laws",
+          "cardTitle": "代数规律靠逐项证明",
+          "goal": "把定义连到加法与数乘满足的熟悉代数规律。",
+          "beats": [
+            "显示几张定理恒等式卡片。",
+            "指向 (i,j)-元素检查作为证明矩阵相等的方法。",
+            "把读者带到互动算术 lab。"
+          ],
+          "mathBlocks": [
+            "A + B = B + A",
+            "(alpha + beta)A = alpha A + beta A",
+            "1A = A"
+          ],
+          "animation": "恒等式卡片位于一个被标出的通用格上方"
+        }
+      ]
+    }
+  }
+}

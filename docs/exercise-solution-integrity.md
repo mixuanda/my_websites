@@ -822,3 +822,24 @@ unit-level coverage.
   routes expose the localized video assets. Local TXT / PDF export checks
   passed for all three locales, including the static video sequence, the
   existing explorer snapshot, and no leaked video markup.
+
+### 2026-07-01 checkpoint 29: MATH1030 3.1 video insertion integrity
+
+- Checkpoint name: `3.1` matrix entrywise-arithmetic video embed, existing
+  matrix-arithmetic lab, and export fallback integrity.
+- What was inspected: the existing EN / zh-HK / zh-CN `3.1` MDX files, the new
+  `VideoExplanation` frame sequence, the existing `matrix-arithmetic-lab`,
+  static TXT / PDF exports, and the existing in-page quick-check / reveal
+  solution placement.
+- What was changed: inserted the localized video explanation before the
+  embedded matrix-arithmetic lab and added a static export snapshot for the
+  lab; no quick-check, exercise, or reveal-solution block was reordered.
+- Integrity note: the lab remains below the video as the interactive follow-up.
+  Browser QA changed scalar `c` from `2` to `3` in all three locales and
+  verified the displayed `cA` matrix changed from `[[2,-4],[6,0]]` to
+  `[[3,-6],[9,0]]`.
+- Verification: local Browser DOM checks confirmed the EN / zh-HK / zh-CN
+  routes expose the localized video assets and localized widget snapshot
+  titles without showing the raw widget id. Local TXT / PDF export checks
+  passed for all three locales, including the static video sequence, the static
+  matrix-arithmetic lab snapshot, and no leaked video markup.

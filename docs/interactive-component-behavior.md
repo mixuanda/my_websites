@@ -347,5 +347,15 @@ reader-controlled follow-up because it lets the reader translate a small
 system into one matrix row per equation. Browser QA clicked `Example 2` and
 verified the three-equation system and matching `3 x 4` augmented matrix.
 
+The Math1030 `3.1` matrix addition / scalar-multiplication pass is also a
+Manim-plus-existing-widget pass. The new clip handles the curated entrywise
+sequence: same-size gate, `A+B`, `cA`, `A-B=A+(-B)`, zero matrices, additive
+inverses, and entrywise algebraic laws. The existing `matrix-arithmetic-lab`
+remains the right reader-controlled follow-up because the reader can change
+scalar `c` and compare `A+B`, `A-B`, and `cA` without turning the page into a
+matrix calculator. This pass adds a static export snapshot for
+`matrix-arithmetic-lab` so TXT and PDF exports show representative addition,
+subtraction, and scalar states instead of the raw widget id.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

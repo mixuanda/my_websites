@@ -1196,3 +1196,22 @@ existing invertibility note instead of creating a detached new route.
 - Status change: the 2.5 reference-backed prose remains incorporated, and the
   video explanation is now incorporated as an export-friendly static fallback
   through the `VideoExplanation` frame sequence.
+
+### 2026-07-01 checkpoint 35: MATH1030 3.1 entrywise matrix arithmetic video pass
+
+- Revisited `3.1 Matrix addition, subtraction, and scalar multiplication`
+  against `MATH1030-Notes.pdf` pp. 35-38, `1030gi-n01-se0102.pdf` pp. 1-3,
+  and Practice Set 2 questions 1-2.
+- Added a trilingual article-embedded `VideoExplanation` for the
+  source-backed entrywise workflow: first check same-size compatibility, then
+  compute `A+B`, apply one scalar to every entry of `A`, read subtraction as
+  `A+(-B)`, and use zero / additive inverse matrices of the same size.
+- Preserved the existing `matrix-arithmetic-lab` as the reader-controlled
+  follow-up and added a static export snapshot so exported study materials
+  show representative `A+B`, `A-B`, and `cA` states.
+- Recorded the source boundary explicitly: matrix multiplication, block
+  matrices, and broader vector-space axiom discussion are not part of this
+  clip. Matrix multiplication remains the next matrix-algebra video target.
+- Status change: the 3.1 entrywise-arithmetic prose remains incorporated, and
+  the new video explanation plus widget snapshot are now incorporated as
+  export-friendly static fallbacks.

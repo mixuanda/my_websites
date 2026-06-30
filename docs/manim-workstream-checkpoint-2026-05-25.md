@@ -49,31 +49,32 @@ history.
 | Math1030 `2.4 Solution-set types` | `math1030-solution-set-types-trichotomy-story` | `docs/manim-solution-set-types-video-qa-2026-06-30.md` |
 | Math1030 `2.5 Existence of row-echelon forms` | `math1030-existence-of-row-echelon-forms-story` | `docs/manim-existence-row-echelon-forms-video-qa-2026-06-30.md` |
 | Math1030 `1.1 Equations and solution sets` | `math1030-equations-solution-sets-story` | `docs/manim-equations-solution-sets-video-qa-2026-07-01.md` |
+| Math1030 `3.1 Matrix addition, subtraction, and scalar multiplication` | `math1030-matrix-entrywise-arithmetic-story` | `docs/manim-matrix-entrywise-arithmetic-video-qa-2026-07-01.md` |
 
 ## Latest Slice Notes
 
-Math1030 `1.1` was implemented after roadmap, current MDX, and reference
-inspection confirmed the source boundary. `MATH1030-Notes.pdf` pp. 5-11
-supports systems as simultaneous conditions, solution sets, consistent /
-inconsistent systems, the three two-line geometric outcomes, equivalent
-systems, and reversible equation operations. Practice Set 1 supports ordered
-tuple checks, solution-set preservation, equivalence misconceptions, and
-parameterized solution reading.
+Math1030 `3.1` entrywise matrix arithmetic was implemented after roadmap,
+current MDX, and reference inspection confirmed the source boundary.
+`MATH1030-Notes.pdf` pp. 35-38 supports matrix equality, addition, scalar
+multiplication, zero matrices, additive inverses, subtraction, and entrywise
+laws. `1030gi-n01-se0102.pdf` pp. 1-3 and Practice Set 2 support the
+computational size-check / entrywise examples.
 
 Fixes applied:
 
-- new storyboard covers conditions as intersections, unique / empty /
-  infinite line-solution outcomes, reversible equation rewrites, and the
-  augmented-matrix bridge;
+- new storyboard covers the same-size gate, entrywise addition, scalar
+  multiplication, subtraction via additive inverse, zero matrices, and
+  entrywise laws;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the equations / solution-sets scene and writes
+- render script now includes the matrix entrywise-arithmetic scene and writes
   assets under `public/generated/animations/math1030/`;
-- video embed was placed after the geometric solution-set figure and before
-  the augmented-matrix explorer lead-in in all three localized MDX files;
-- the existing `system-augmented-matrix-explorer` remains the
-  reader-controlled follow-up and was verified after the video insertion;
-- shared `VideoExplanation` mobile header spacing was tightened after local
-  Browser QA found the icon/text row too narrow for the 390px viewport.
+- video embed was placed before the existing matrix-arithmetic lab in all
+  three localized MDX files;
+- the existing `matrix-arithmetic-lab` remains the reader-controlled follow-up
+  and was verified after the video insertion;
+- a static export snapshot was added for `matrix-arithmetic-lab` so TXT/PDF
+  exports show representative `A+B`, `A-B`, and `cA` states instead of the raw
+  widget id.
 
 ## Verification Stack Used For Latest Slice
 
@@ -85,8 +86,8 @@ Fixes applied:
 - `npx tsc --noEmit --pretty false`
 - `npm run lint`
 - `AUTH_SECRET=local-test-secret npm run build`
-- Browser DOM / console checks, language-switch interaction, route / asset
-  checks, video metadata, responsive screenshots, dark-mode check, target
+- Browser DOM / console checks through system Chrome, route / asset checks,
+  existing widget interaction, responsive screenshots, media metadata, target
   content-check warning check, and TXT/PDF export checks for all three locales
 
 ## Next Slice
@@ -97,7 +98,7 @@ priority changes.
 Expected first step:
 
 1. Start with the next unresolved Math1030 register item, currently
-   `matrix-algebra/matrix-addition-scalar-multiplication`, unless source
+   `matrix-algebra/matrix-multiplication-and-identity`, unless source
    inspection changes the priority.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
