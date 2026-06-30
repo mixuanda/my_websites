@@ -138,5 +138,33 @@ Export QA passed:
 
 ## Production Status
 
-Pending until the commit is pushed to `codex/manim`, synchronized to `main`,
-and the production deployment for `www.evanalysis.top` reaches Ready.
+Ready.
+
+Git and deployment checkpoint:
+
+- Commit pushed to `origin/codex/manim`:
+  `20dba552e744bedb1e7d8f5e65f571a677b94289`.
+- `origin/main` was updated from `codex/manim` at the same commit.
+- Vercel production deployment:
+  `dpl_EhKC5VorvRrwmqFi9AzuSdXQmsKz`.
+- Deployment target: `production`.
+- Deployment state: `READY`.
+- Production alias verified: `www.evanalysis.top`.
+
+Production checks against `https://www.evanalysis.top` passed:
+
+- EN route returned `200` and includes the `Solution sets as intersections`
+  video explanation card with source
+  `/generated/animations/math1030/equations-solution-sets-story-en.mp4`.
+- zh-HK route returned localized page HTML pointing to
+  `/generated/animations/math1030/equations-solution-sets-story-zh-hk.mp4`.
+- zh-CN route returned localized page HTML pointing to
+  `/generated/animations/math1030/equations-solution-sets-story-zh-cn.mp4`.
+- EN / zh-HK / zh-CN mp4 assets returned `200` with `video/mp4`.
+- EN / zh-HK / zh-CN poster assets returned `200` with `image/png`.
+- EN TXT export returned `200`, contained
+  `[Static video-study sequence] Solution sets as intersections`, and did not
+  leak raw `<video>`, `.mp4`, or `poster=` markup.
+- EN PDF export returned `200` with a valid `%PDF` header.
+- zh-HK TXT/PDF exports returned `200`.
+- zh-CN TXT/PDF exports returned `200`.
