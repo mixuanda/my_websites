@@ -153,4 +153,56 @@ TXT and PDF exports passed for EN, zh-HK, and zh-CN:
 
 ## Production Status
 
-Pending until `codex/manim` is pushed and `main` is advanced / deployed.
+Verified on production after pushing `codex/manim` and advancing `main`.
+
+Deployment:
+
+- Vercel project: `my-websites` (`prj_wzgmN4OzwyHUYg3AsmdAsLRncgzF`)
+- Production deployment: `dpl_Cz8sBepyfuceem7Ur4ZcACAFAWfe`
+- Deployment URL:
+  `https://my-websites-5vk21v89w-mixuandahotmailcoms-projects.vercel.app`
+- Production branch / commit: `main` at
+  `0949917411a39d3281760f9f3c5c0f0f129f573a`
+- Vercel state: `READY`
+
+Production route checks passed:
+
+- `https://www.evanalysis.top/en/notes/math1030/matrices/existence-of-row-echelon-forms`
+- `https://www.evanalysis.top/zh-hk/notes/math1030/matrices/existence-of-row-echelon-forms`
+- `https://www.evanalysis.top/zh-cn/notes/math1030/matrices/existence-of-row-echelon-forms`
+
+Each route returned HTTP 200 and contained:
+
+- `math1030-existence-of-row-echelon-forms-story`;
+- the new source-backed worked example;
+- the new section explaining how the theorem is used later.
+
+Production asset checks passed:
+
+| Locale | MP4 status | MP4 type | MP4 size | Poster status | Poster type | Poster size |
+| --- | ---: | --- | ---: | ---: | --- | ---: |
+| EN | 200 | `video/mp4` | 569920 bytes | 200 | `image/png` | 82240 bytes |
+| zh-HK | 200 | `video/mp4` | 555217 bytes | 200 | `image/png` | 77188 bytes |
+| zh-CN | 200 | `video/mp4` | 544772 bytes | 200 | `image/png` | 74579 bytes |
+
+Downloaded production MP4s were checked with `ffprobe` and remain H.264,
+854x480, 16.266667s. Downloaded production posters were checked with `sips`
+and remain 854x480.
+
+Production export checks passed:
+
+| Locale | TXT | PDF |
+| --- | --- | --- |
+| EN | HTTP 200, `text/plain; charset=utf-8`, 14888 bytes | HTTP 200, `application/pdf`, 39618 bytes |
+| zh-HK | HTTP 200, `text/plain; charset=utf-8`, 12793 bytes | HTTP 200, `application/pdf`, 179288 bytes |
+| zh-CN | HTTP 200, `text/plain; charset=utf-8`, 12802 bytes | HTTP 200, `application/pdf`, 163076 bytes |
+
+TXT exports include the static video-study sequence, the first / last frame
+labels, the new worked example, and the later-use section. TXT exports do not
+contain `<video>`, `.mp4`, or `poster=`.
+
+PDF exports returned valid `%PDF-` files.
+
+Production runtime error scan:
+
+- Vercel runtime errors over the last hour: none found.
