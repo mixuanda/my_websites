@@ -367,5 +367,19 @@ entries and see the product formula update without expanding the article into a
 general matrix calculator. The existing static export snapshot for the
 visualizer remains the export fallback paired with the new video frame sequence.
 
+The Math1030 `3.2/3.3` transpose and symmetry pass is also a
+Manim-plus-existing-widget pass, but the video is shared across two overlapping
+pages. The clip handles the curated conceptual sequence: transpose as index
+swap, square-matrix diagonal reflection, symmetric and skew-symmetric pair
+rules, zero diagonal for skew-symmetric matrices, product-order reversal, and
+the symmetric/skew-symmetric split. The existing `transpose-symmetry-lab`
+remains the correct reader-controlled follow-up on
+`transposes-and-symmetric-matrices` because it lets readers switch examples and
+inspect `A`, `A^T`, `1/2(A+A^T)`, and `1/2(A-A^T)` without turning the article
+into a general matrix-family calculator. Its existing static export snapshot
+remains the export fallback paired with the new shared video frame sequence.
+The broader `matrix-family-checker` belongs to the next `special-matrices`
+slice, not this shared transpose/symmetry clip.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

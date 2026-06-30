@@ -754,3 +754,23 @@ Current checkpoint resolution:
   framework overlay, ready video metadata, a working visualizer update after an
   input edit, and no actionable console/network issues beyond the expected
   local Vercel Insights 404 in `next start`.
+
+### 2026-07-01 checkpoint 32: MATH1030 3.2/3.3 transpose-symmetry rendering pass
+
+- Checkpoint name: shared `3.2/3.3` transpose / symmetry video and existing
+  transpose-symmetry lab rendering.
+- What was inspected: EN / zh-HK / zh-CN note pages for
+  `transpose-and-special-matrices` and `transposes-and-symmetric-matrices`,
+  the shared localized video card, the existing `transpose-symmetry-lab`, the
+  generated trilingual MP4/poster assets, mobile layout at `390 x 844`, and
+  dark mode.
+- Rendering note: the same video stays inside the article flow immediately
+  after the introductory transpose definition on the broader page and after
+  the square-matrix warning on the split transpose/symmetry page. Poster
+  extraction was moved to `1.6s` after visual QA found that the default `2.25s`
+  frame landed on a transition. The final posters show stable EN / zh-HK /
+  zh-CN frames with no crossfade residue.
+- Verification: browser QA found one localized video per route, correct
+  locale-specific mp4/poster values, no raw widget id, no framework overlay,
+  ready video metadata, existing lab rendering after the video, and no
+  horizontal overflow on the checked mobile pages.

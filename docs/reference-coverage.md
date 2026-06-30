@@ -1234,3 +1234,27 @@ existing invertibility note instead of creating a detached new route.
 - Status change: the 3.1 multiplication prose remains incorporated, and the new
   video explanation plus existing widget snapshot are now incorporated as
   export-friendly static fallbacks.
+
+### 2026-07-01 checkpoint 37: MATH1030 3.2/3.3 transpose and symmetry shared video pass
+
+- Revisited `3.2 Transpose and special matrices` and
+  `3.3 Transposes, symmetric matrices, and skew-symmetric matrices` against
+  `MATH1030-Notes.pdf` pp. 47-50, `1030gi-n01-03.pdf` pp. 1-4,
+  `1030efghi-tutorial-week04.pdf` p. 1, `1030gi-n01-se0304.pdf` pp. 1-4, and
+  Practice Set 3 transpose / symmetry exercises.
+- Added one shared trilingual article-embedded `VideoExplanation` for the
+  source-backed overlap: transpose as index swap, diagonal reflection for
+  square matrices, symmetric and skew-symmetric pair rules, zero diagonal for
+  skew-symmetric matrices, `(AB)^T=B^T A^T`, and
+  `A=1/2(A+A^T)+1/2(A-A^T)`.
+- Embedded the same video in both target pages. The existing
+  `transpose-symmetry-lab` remains the reader-controlled follow-up and retains
+  its static export snapshot.
+- Recorded the source boundary explicitly: diagonal / triangular / identity /
+  elementary matrix-family recognition, orthogonal matrices, block matrices,
+  determinant transpose rules, and column-operation material are not part of
+  this shared clip. The next matrix-algebra video target remains
+  `special-matrices`.
+- Status change: the transpose / symmetry source-backed prose remains
+  incorporated, and the new shared video explanation is now incorporated as an
+  export-friendly static fallback in both supported units.

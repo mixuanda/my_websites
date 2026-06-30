@@ -1,0 +1,294 @@
+{
+  "course": "math1030",
+  "chapter": "matrix-algebra",
+  "unit": "transpose-and-special-matrices",
+  "unitTitle": {
+    "en": "3.2 Transpose and special matrices",
+    "zh-hk": "3.2 轉置與特殊矩陣",
+    "zh-cn": "3.2 转置与特殊矩阵"
+  },
+  "sharedWith": [
+    "math1030/matrix-algebra/transposes-and-symmetric-matrices"
+  ],
+  "videoId": "math1030-transpose-symmetry-story",
+  "sourceBoundary": {
+    "en": "This storyboard uses MATH1030-Notes.pdf pp. 47-50, 1030gi-n01-03.pdf pp. 1-4, 1030efghi-tutorial-week04.pdf p. 1, 1030gi-n01-se0304.pdf pp. 1-4, and Practice Set 3 transpose/symmetry exercises for the transpose definition, diagonal-reflection picture, symmetric and skew-symmetric definitions, zero diagonal consequence, product-order reversal, A + A^T and A - A^T, and the symmetric/skew-symmetric decomposition. It intentionally excludes the full diagonal/triangular/identity/elementary matrix family treatment, which remains the separate special-matrices roadmap row.",
+    "zh-hk": "此 storyboard 使用 MATH1030-Notes.pdf 第 47-50 頁、1030gi-n01-03.pdf 第 1-4 頁、1030efghi-tutorial-week04.pdf 第 1 頁、1030gi-n01-se0304.pdf 第 1-4 頁，以及 Practice Set 3 的轉置與對稱題目，涵蓋轉置定義、主對角線反射圖像、對稱與反對稱定義、反對稱矩陣對角線為零、乘積轉置反序、A + A^T 與 A - A^T，以及對稱/反對稱分解。本片刻意不完整處理對角、三角、單位與初等矩陣族；那些仍屬於另一條 special-matrices roadmap 項目。",
+    "zh-cn": "此 storyboard 使用 MATH1030-Notes.pdf 第 47-50 页、1030gi-n01-03.pdf 第 1-4 页、1030efghi-tutorial-week04.pdf 第 1 页、1030gi-n01-se0304.pdf 第 1-4 页，以及 Practice Set 3 的转置与对称题目，涵盖转置定义、主对角线反射图像、对称与反对称定义、反对称矩阵对角线为零、乘积转置反序、A + A^T 与 A - A^T，以及对称/反对称分解。本片刻意不完整处理对角、三角、单位与初等矩阵族；那些仍属于另一条 special-matrices roadmap 项目。"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "transpose_orientation",
+          "cardTitle": "Transpose swaps row-column orientation",
+          "goal": "Show an entry moving from position (i,j) in A to position (j,i) in A^T.",
+          "beats": [
+            "Display a 2 by 3 matrix and its 3 by 2 transpose.",
+            "Highlight two off-diagonal-style positions and their transposed partners.",
+            "State (A^T)_{ji} = a_ij."
+          ],
+          "mathBlocks": [
+            "(A^T)_{ji}=a_{ij}"
+          ],
+          "animation": "side-by-side matrix grids with entry-pair highlights"
+        },
+        {
+          "type": "diagonal_reflection",
+          "cardTitle": "Square matrices reveal the diagonal reflection picture",
+          "goal": "Use the main diagonal as the fixed axis for transpose.",
+          "beats": [
+            "Show a square matrix with the main diagonal drawn.",
+            "Keep diagonal entries fixed.",
+            "Pair entries across the diagonal."
+          ],
+          "mathBlocks": [
+            "a_{ij} \\leftrightarrow a_{ji}"
+          ],
+          "animation": "diagonal line across a square matrix with paired entries"
+        },
+        {
+          "type": "symmetric_skew_pair_rules",
+          "cardTitle": "Symmetric and skew-symmetric matrices are pair rules",
+          "goal": "Separate equality across the diagonal from sign reversal across the diagonal.",
+          "beats": [
+            "Display a symmetric matrix with matching off-diagonal entries.",
+            "Display a skew-symmetric matrix with opposite off-diagonal entries.",
+            "State A^T = A and K^T = -K."
+          ],
+          "mathBlocks": [
+            "A^T=A",
+            "K^T=-K"
+          ],
+          "animation": "two matrix cards with matching and sign-changing entry pairs"
+        },
+        {
+          "type": "zero_diagonal",
+          "cardTitle": "Skew-symmetric diagonal entries must be zero",
+          "goal": "Explain the diagonal consequence k_ii = -k_ii.",
+          "beats": [
+            "Highlight the diagonal of a skew-symmetric matrix.",
+            "Write k_ii = -k_ii.",
+            "Conclude k_ii = 0."
+          ],
+          "mathBlocks": [
+            "k_{ii}=-k_{ii}",
+            "k_{ii}=0"
+          ],
+          "animation": "diagonal cells brighten, then the zero condition appears"
+        },
+        {
+          "type": "product_order_reversal",
+          "cardTitle": "Transpose reverses product order",
+          "goal": "Show that product transpose is not an entrywise decoration but an order change.",
+          "beats": [
+            "Start with AB.",
+            "Transpose the product.",
+            "Reveal B^T A^T."
+          ],
+          "mathBlocks": [
+            "(AB)^T=B^T A^T"
+          ],
+          "animation": "order cards move from AB to B^T A^T"
+        },
+        {
+          "type": "symmetric_skew_decomposition",
+          "cardTitle": "Every square matrix splits into symmetric and skew-symmetric parts",
+          "goal": "Connect A + A^T and A - A^T with the existing transpose-symmetry lab.",
+          "beats": [
+            "Display a square matrix A.",
+            "Show 1/2(A + A^T) as the symmetric part.",
+            "Show 1/2(A - A^T) as the skew-symmetric part and add the parts back to A."
+          ],
+          "mathBlocks": [
+            "A=\\frac12(A+A^T)+\\frac12(A-A^T)"
+          ],
+          "animation": "A decomposes into two side-by-side matrix parts"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "transpose_orientation",
+          "cardTitle": "轉置會交換行列方向",
+          "goal": "顯示 A 中位置 (i,j) 的元素如何移到 A^T 的位置 (j,i)。",
+          "beats": [
+            "顯示一個 2 by 3 矩陣及其 3 by 2 轉置。",
+            "突出兩個位置及其轉置後的對應位置。",
+            "寫出 (A^T)_{ji} = a_ij。"
+          ],
+          "mathBlocks": [
+            "(A^T)_{ji}=a_{ij}"
+          ],
+          "animation": "並排矩陣格加上元素配對標示"
+        },
+        {
+          "type": "diagonal_reflection",
+          "cardTitle": "方陣會顯出對角線反射圖像",
+          "goal": "把主對角線視為轉置時不動的軸。",
+          "beats": [
+            "顯示一個方陣並畫出主對角線。",
+            "保留對角線元素不動。",
+            "配對對角線兩側的元素。"
+          ],
+          "mathBlocks": [
+            "a_{ij} \\leftrightarrow a_{ji}"
+          ],
+          "animation": "方陣上畫出對角線並標示成對元素"
+        },
+        {
+          "type": "symmetric_skew_pair_rules",
+          "cardTitle": "對稱與反對稱都是成對規則",
+          "goal": "分清對角線兩側相等與變號兩種情況。",
+          "beats": [
+            "顯示一個對稱矩陣，其非對角元素成對相等。",
+            "顯示一個反對稱矩陣，其非對角元素成對互為相反數。",
+            "寫出 A^T = A 與 K^T = -K。"
+          ],
+          "mathBlocks": [
+            "A^T=A",
+            "K^T=-K"
+          ],
+          "animation": "兩張矩陣卡分別顯示相等配對與變號配對"
+        },
+        {
+          "type": "zero_diagonal",
+          "cardTitle": "反對稱矩陣的對角元素必為零",
+          "goal": "解釋 k_ii = -k_ii 的對角線後果。",
+          "beats": [
+            "突出反對稱矩陣的對角線。",
+            "寫出 k_ii = -k_ii。",
+            "推出 k_ii = 0。"
+          ],
+          "mathBlocks": [
+            "k_{ii}=-k_{ii}",
+            "k_{ii}=0"
+          ],
+          "animation": "對角線格亮起，再顯示零條件"
+        },
+        {
+          "type": "product_order_reversal",
+          "cardTitle": "轉置會反轉乘積次序",
+          "goal": "說明乘積轉置不是逐格裝飾，而是次序改變。",
+          "beats": [
+            "從 AB 開始。",
+            "對乘積做轉置。",
+            "顯示 B^T A^T。"
+          ],
+          "mathBlocks": [
+            "(AB)^T=B^T A^T"
+          ],
+          "animation": "次序卡由 AB 轉成 B^T A^T"
+        },
+        {
+          "type": "symmetric_skew_decomposition",
+          "cardTitle": "每個方陣都可拆成對稱與反對稱部分",
+          "goal": "把 A + A^T 和 A - A^T 連到現有的 transpose-symmetry lab。",
+          "beats": [
+            "顯示一個方陣 A。",
+            "顯示 1/2(A + A^T) 作為對稱部分。",
+            "顯示 1/2(A - A^T) 作為反對稱部分，並把兩部分加回 A。"
+          ],
+          "mathBlocks": [
+            "A=\\frac12(A+A^T)+\\frac12(A-A^T)"
+          ],
+          "animation": "A 分解成兩個並排矩陣部分"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "transpose_orientation",
+          "cardTitle": "转置会交换行列方向",
+          "goal": "显示 A 中位置 (i,j) 的元素如何移到 A^T 的位置 (j,i)。",
+          "beats": [
+            "显示一个 2 by 3 矩阵及其 3 by 2 转置。",
+            "突出两个位置及其转置后的对应位置。",
+            "写出 (A^T)_{ji} = a_ij。"
+          ],
+          "mathBlocks": [
+            "(A^T)_{ji}=a_{ij}"
+          ],
+          "animation": "并排矩阵格加上元素配对标示"
+        },
+        {
+          "type": "diagonal_reflection",
+          "cardTitle": "方阵会显出对角线反射图像",
+          "goal": "把主对角线视为转置时不动的轴。",
+          "beats": [
+            "显示一个方阵并画出主对角线。",
+            "保留对角线元素不动。",
+            "配对对角线两侧的元素。"
+          ],
+          "mathBlocks": [
+            "a_{ij} \\leftrightarrow a_{ji}"
+          ],
+          "animation": "方阵上画出对角线并标示成对元素"
+        },
+        {
+          "type": "symmetric_skew_pair_rules",
+          "cardTitle": "对称与反对称都是成对规则",
+          "goal": "分清对角线两侧相等与变号两种情况。",
+          "beats": [
+            "显示一个对称矩阵，其非对角元素成对相等。",
+            "显示一个反对称矩阵，其非对角元素成对互为相反数。",
+            "写出 A^T = A 与 K^T = -K。"
+          ],
+          "mathBlocks": [
+            "A^T=A",
+            "K^T=-K"
+          ],
+          "animation": "两张矩阵卡分别显示相等配对与变号配对"
+        },
+        {
+          "type": "zero_diagonal",
+          "cardTitle": "反对称矩阵的对角元素必为零",
+          "goal": "解释 k_ii = -k_ii 的对角线后果。",
+          "beats": [
+            "突出反对称矩阵的对角线。",
+            "写出 k_ii = -k_ii。",
+            "推出 k_ii = 0。"
+          ],
+          "mathBlocks": [
+            "k_{ii}=-k_{ii}",
+            "k_{ii}=0"
+          ],
+          "animation": "对角线格亮起，再显示零条件"
+        },
+        {
+          "type": "product_order_reversal",
+          "cardTitle": "转置会反转乘积次序",
+          "goal": "说明乘积转置不是逐格装饰，而是次序改变。",
+          "beats": [
+            "从 AB 开始。",
+            "对乘积做转置。",
+            "显示 B^T A^T。"
+          ],
+          "mathBlocks": [
+            "(AB)^T=B^T A^T"
+          ],
+          "animation": "次序卡由 AB 转成 B^T A^T"
+        },
+        {
+          "type": "symmetric_skew_decomposition",
+          "cardTitle": "每个方阵都可拆成对称与反对称部分",
+          "goal": "把 A + A^T 和 A - A^T 连到现有的 transpose-symmetry lab。",
+          "beats": [
+            "显示一个方阵 A。",
+            "显示 1/2(A + A^T) 作为对称部分。",
+            "显示 1/2(A - A^T) 作为反对称部分，并把两部分加回 A。"
+          ],
+          "mathBlocks": [
+            "A=\\frac12(A+A^T)+\\frac12(A-A^T)"
+          ],
+          "animation": "A 分解成两个并排矩阵部分"
+        }
+      ]
+    }
+  }
+}

@@ -965,3 +965,35 @@ Use this shape for future entries:
   build, local Browser DOM / console checks through system Chrome, existing
   widget interaction, mobile and dark-mode checks, and three-locale TXT / PDF
   export checks passed locally.
+
+### 2026-07-01: MATH1030 3.2/3.3 transpose and symmetry shared video checkpoint
+
+- Gap selected: the video roadmap marked Math1030
+  `3.2 Transpose and special matrices` and `3.3 Transposes, symmetric
+  matrices, and skew-symmetric matrices` as overlapping Manim targets. The
+  source-backed overlap is exactly transpose, diagonal reflection, symmetry,
+  skew-symmetry, product-order reversal, and the symmetric/skew split.
+- Reference basis: `reference/MATH1030/MATH1030-Notes.pdf` pp. 47-50,
+  `reference/MATH1030/1030gi-n01-03.pdf` pp. 1-4,
+  `reference/MATH1030/1030efghi-tutorial-week04.pdf` p. 1,
+  `reference/MATH1030/1030gi-n01-se0304.pdf` pp. 1-4, and Practice Set 3
+  transpose / symmetry exercises.
+- Content files changed: added the shared storyboard, Manim scene,
+  render-script entries, localized `VideoExplanation` registry metadata, and
+  EN / zh-HK / zh-CN embeds in both target note pages.
+- Visuals added: trilingual Manim video and poster assets for transpose as
+  index swap, square-matrix diagonal reflection, symmetric and skew-symmetric
+  pair rules, zero diagonal for skew-symmetric matrices, `(AB)^T=B^T A^T`, and
+  `A=1/2(A+A^T)+1/2(A-A^T)`.
+- Interactions added: no new widget. The existing `transpose-symmetry-lab`
+  remains the reader-controlled follow-up on the split transpose/symmetry page
+  and already has a static export snapshot.
+- Exercises added: none. Existing quick checks, exercises, and reveal
+  solutions were left in place; the video insertion did not reorder answer
+  blocks.
+- Verification: Python syntax, storyboard JSON, render-script syntax, Manim
+  render, media metadata checks, visual poster / frame inspection,
+  `git diff --check`, MDX table verification, TypeScript, lint, textbook
+  content check, production build, browser DOM / console checks, existing
+  widget rendering, responsive checks, and three-locale TXT / PDF export
+  checks passed locally.

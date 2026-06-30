@@ -863,3 +863,24 @@ unit-level coverage.
   showing the raw widget id. Local TXT / PDF export checks passed for all three
   locales, including the static video sequence, the existing visualizer
   snapshot, and no leaked video markup.
+
+### 2026-07-01 checkpoint 31: MATH1030 3.2/3.3 transpose-symmetry video insertion integrity
+
+- Checkpoint name: shared transpose / symmetry video embed, existing
+  transpose-symmetry lab, and export fallback integrity.
+- What was inspected: the existing EN / zh-HK / zh-CN MDX files for
+  `transpose-and-special-matrices` and `transposes-and-symmetric-matrices`, the
+  new shared `VideoExplanation` frame sequence, the existing
+  `transpose-symmetry-lab`, static TXT / PDF exports, and the in-page quick
+  checks / reveal-solution placement.
+- What was changed: inserted the localized video explanation after the
+  transpose definition lead-in in `transpose-and-special-matrices`, and after
+  the square-matrix warning but before the existing lab in
+  `transposes-and-symmetric-matrices`. No quick-check, exercise, or
+  reveal-solution block was reordered.
+- Integrity note: the `transpose-symmetry-lab` remains below the video as the
+  interactive follow-up. The broader `matrix-family-checker` remains deferred
+  to the next `special-matrices` slice.
+- Verification: local route and export checks confirmed the localized video
+  assets are exposed and static TXT / PDF exports include the video-study
+  frame sequence without raw video markup.

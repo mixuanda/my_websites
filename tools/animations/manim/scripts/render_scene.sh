@@ -20,6 +20,9 @@ else
     "MatrixMultiplicationIdentityStoryEn"
     "MatrixMultiplicationIdentityStoryZhHk"
     "MatrixMultiplicationIdentityStoryZhCn"
+    "TransposeSymmetryStoryEn"
+    "TransposeSymmetryStoryZhHk"
+    "TransposeSymmetryStoryZhCn"
     "GaussianEliminationRrefPivotStoryEn"
     "GaussianEliminationRrefPivotStoryZhHk"
     "GaussianEliminationRrefPivotStoryZhCn"
@@ -135,6 +138,9 @@ scene_file() {
       ;;
     MatrixMultiplicationIdentityStory|MatrixMultiplicationIdentityStoryEn|MatrixMultiplicationIdentityStoryZhHk|MatrixMultiplicationIdentityStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/matrix_multiplication_identity.py"
+      ;;
+    TransposeSymmetryStory|TransposeSymmetryStoryEn|TransposeSymmetryStoryZhHk|TransposeSymmetryStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1030/transpose_symmetry.py"
       ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/gaussian_elimination_rref.py"
@@ -259,6 +265,15 @@ scene_locale() {
       printf '%s\n' "zh-hk"
       ;;
     MatrixMultiplicationIdentityStoryZhCn)
+      printf '%s\n' "zh-cn"
+      ;;
+    TransposeSymmetryStory|TransposeSymmetryStoryEn)
+      printf '%s\n' "en"
+      ;;
+    TransposeSymmetryStoryZhHk)
+      printf '%s\n' "zh-hk"
+      ;;
+    TransposeSymmetryStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn)
@@ -413,6 +428,9 @@ video_basename() {
     MatrixMultiplicationIdentityStory|MatrixMultiplicationIdentityStoryEn|MatrixMultiplicationIdentityStoryZhHk|MatrixMultiplicationIdentityStoryZhCn)
       printf '%s\n' "matrix-multiplication-identity-story"
       ;;
+    TransposeSymmetryStory|TransposeSymmetryStoryEn|TransposeSymmetryStoryZhHk|TransposeSymmetryStoryZhCn)
+      printf '%s\n' "transpose-symmetry-story"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "gaussian-elimination-rref-pivot-story"
       ;;
@@ -520,6 +538,9 @@ scene_course() {
     MatrixMultiplicationIdentityStory|MatrixMultiplicationIdentityStoryEn|MatrixMultiplicationIdentityStoryZhHk|MatrixMultiplicationIdentityStoryZhCn)
       printf '%s\n' "math1030"
       ;;
+    TransposeSymmetryStory|TransposeSymmetryStoryEn|TransposeSymmetryStoryZhHk|TransposeSymmetryStoryZhCn)
+      printf '%s\n' "math1030"
+      ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn|ColumnRowSpaceRankStoryZhHk|ColumnRowSpaceRankStoryZhCn)
       printf '%s\n' "math1030"
       ;;
@@ -587,6 +608,9 @@ poster_timestamp() {
       ;;
     EigenvalueDirectionEigenspaceStory|EigenvalueDirectionEigenspaceStoryEn|EigenvalueDirectionEigenspaceStoryZhHk|EigenvalueDirectionEigenspaceStoryZhCn)
       printf '%s\n' "1.45"
+      ;;
+    TransposeSymmetryStory|TransposeSymmetryStoryEn|TransposeSymmetryStoryZhHk|TransposeSymmetryStoryZhCn)
+      printf '%s\n' "1.6"
       ;;
     *)
       printf '%s\n' "2.25"

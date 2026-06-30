@@ -224,6 +224,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/matrix-multiplication-identity-story-zh-cn.mp4"
     ),
   },
+  "math1030-transpose-symmetry-story": {
+    conclusion: text(
+      "Transpose swaps the two indices. For square matrices, that is diagonal reflection: symmetric matrices keep paired entries equal, skew-symmetric matrices make paired entries opposite, and every square matrix splits into symmetric and skew-symmetric parts.",
+      "轉置會交換兩個索引。對方陣來說，這就是沿主對角線反射：對稱矩陣讓成對元素相等，反對稱矩陣讓成對元素互為相反數，而每個方陣都可拆成對稱部分和反對稱部分。",
+      "转置会交换两个索引。对方阵来说，这就是沿主对角线反射：对称矩阵让成对元素相等，反对称矩阵让成对元素互为相反数，而每个方阵都可拆成对称部分和反对称部分。"
+    ),
+    durationSeconds: 9,
+    frames: [
+      {
+        label: text("Index swap", "索引交換", "索引交换"),
+        value: text(
+          "The entry a_ij in A appears at position (j,i) in A^T, so an m x n matrix becomes an n x m matrix.",
+          "A 中的 a_ij 會出現在 A^T 的 (j,i) 位置，因此 m x n 矩陣會變成 n x m 矩陣。",
+          "A 中的 a_ij 会出现在 A^T 的 (j,i) 位置，因此 m x n 矩阵会变成 n x m 矩阵。"
+        ),
+      },
+      {
+        label: text("Diagonal reflection", "對角線反射", "对角线反射"),
+        value: text(
+          "For a square matrix, transpose keeps the main diagonal fixed and swaps entries across that diagonal.",
+          "對方陣來說，轉置會保持主對角線不動，並交換主對角線兩側的元素。",
+          "对方阵来说，转置会保持主对角线不动，并交换主对角线两侧的元素。"
+        ),
+      },
+      {
+        label: text("Symmetric rule", "對稱規則", "对称规则"),
+        value: text(
+          "A matrix is symmetric when A^T = A, which means each off-diagonal pair satisfies a_ij = a_ji.",
+          "若 A^T = A，矩陣就是對稱矩陣；也就是每一對非對角元素滿足 a_ij = a_ji。",
+          "若 A^T = A，矩阵就是对称矩阵；也就是每一对非对角元素满足 a_ij = a_ji。"
+        ),
+      },
+      {
+        label: text("Skew rule", "反對稱規則", "反对称规则"),
+        value: text(
+          "A matrix is skew-symmetric when A^T = -A, so paired entries have opposite signs and diagonal entries must be zero.",
+          "若 A^T = -A，矩陣就是反對稱矩陣；成對元素互為相反數，而且對角元素必為零。",
+          "若 A^T = -A，矩阵就是反对称矩阵；成对元素互为相反数，而且对角元素必为零。"
+        ),
+      },
+      {
+        label: text("Product order", "乘積次序", "乘积次序"),
+        value: text(
+          "Transpose reverses products: (AB)^T = B^T A^T. The order changes because row-column pairings turn around.",
+          "轉置會反轉乘積次序：(AB)^T = B^T A^T。次序改變，是因為行乘列配對被整個轉向。",
+          "转置会反转乘积次序：(AB)^T = B^T A^T。次序改变，是因为行乘列配对被整个转向。"
+        ),
+      },
+      {
+        label: text("Two-part split", "兩部分分解", "两部分分解"),
+        value: text(
+          "For square A, the matrix 1/2(A+A^T) is symmetric, 1/2(A-A^T) is skew-symmetric, and the two parts add back to A.",
+          "對方陣 A，1/2(A+A^T) 是對稱部分，1/2(A-A^T) 是反對稱部分，兩部分相加會回到 A。",
+          "对方阵 A，1/2(A+A^T) 是对称部分，1/2(A-A^T) 是反对称部分，两部分相加会回到 A。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch transpose as index-swapping and diagonal reflection, then connect that picture to symmetric matrices, skew-symmetric matrices, product order reversal, and the symmetric/skew decomposition.",
+      "把轉置看成索引交換與對角線反射，再把這個圖像連到對稱矩陣、反對稱矩陣、乘積反序，以及對稱/反對稱分解。",
+      "把转置看成索引交换与对角线反射，再把这个图像连到对称矩阵、反对称矩阵、乘积反序，以及对称/反对称分解。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/transpose-symmetry-story-en.png",
+      "/generated/animations/math1030/transpose-symmetry-story-zh-hk.png",
+      "/generated/animations/math1030/transpose-symmetry-story-zh-cn.png"
+    ),
+    title: text(
+      "Transpose, symmetry, and skew-symmetry",
+      "轉置、對稱與反對稱",
+      "转置、对称与反对称"
+    ),
+    transcript: [
+      text(
+        "The transpose moves the entry in position (i,j) to position (j,i).",
+        "轉置會把 (i,j) 位置的元素移到 (j,i) 位置。",
+        "转置会把 (i,j) 位置的元素移到 (j,i) 位置。"
+      ),
+      text(
+        "For square matrices, this is best read as reflection across the main diagonal.",
+        "對方陣來說，最好的讀法是沿主對角線反射。",
+        "对方阵来说，最好的读法是沿主对角线反射。"
+      ),
+      text(
+        "Symmetric matrices keep paired entries equal, while skew-symmetric matrices make the paired entries opposite.",
+        "對稱矩陣讓成對元素相等；反對稱矩陣讓成對元素互為相反數。",
+        "对称矩阵让成对元素相等；反对称矩阵让成对元素互为相反数。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/transpose-symmetry-story-en.mp4",
+      "/generated/animations/math1030/transpose-symmetry-story-zh-hk.mp4",
+      "/generated/animations/math1030/transpose-symmetry-story-zh-cn.mp4"
+    ),
+  },
   "math1030-equations-solution-sets-story": {
     conclusion: text(
       "The visible equations may be rewritten, but the object we protect is the full solution set: all ordered tuples that satisfy every equation at the same time.",

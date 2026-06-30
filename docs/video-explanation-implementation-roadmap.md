@@ -179,9 +179,9 @@ Use this order unless a later user request changes priority:
 | `math1030/matrix-algebra/matrix-addition-scalar-multiplication` | 3.1 Matrix addition, subtraction, and scalar multiplication | Done | Entrywise arithmetic and scalar scaling. | Completed as the twenty-fifth Math1030 trilingual Manim pass; existing `matrix-arithmetic-lab` remains the reader-controlled follow-up and now has a static export snapshot. |
 | `math1030/matrix-algebra/matrix-multiplication-and-identity` | 3.1 Matrix multiplication and identity matrices | Done | Dot products becoming entries; identity preserving vectors. | Completed as the twenty-sixth Math1030 trilingual Manim pass; existing `matrix-multiplication-visualizer` remains the reader-controlled follow-up and export snapshot. |
 | `math1030/matrix-algebra/matrix-multiplication-and-linear-systems` | 3.2 Matrix multiplication and linear systems | Done | Matrix product as multiple linear equations. | Completed as the fifth trilingual Manim pilot; existing multiplication visualizer remains the reader-controlled follow-up. |
-| `math1030/matrix-algebra/transpose-and-special-matrices` | 3.2 Transpose and special matrices | Manim | Reflect entries across the diagonal and label matrix families. | Consolidate with symmetric/skew-symmetric unit if overlapping. |
+| `math1030/matrix-algebra/transpose-and-special-matrices` | 3.2 Transpose and special matrices | Done | Reflect entries across the diagonal and label matrix families. | Completed as a shared transpose/symmetry video boundary; full special-matrix family recognition remains separate. |
 | `math1030/matrix-algebra/row-operation-matrices` | 3.3 Row-operation matrices | Done | Elementary matrices acting by left multiplication. | Completed as the sixth trilingual Manim pilot; no separate widget exists for this unit yet. |
-| `math1030/matrix-algebra/transposes-and-symmetric-matrices` | 3.3 Transposes, symmetric matrices, and skew-symmetric matrices | Manim + widget | Symmetry and skew-symmetry as diagonal reflection rules. | Decide whether to merge with transpose video. |
+| `math1030/matrix-algebra/transposes-and-symmetric-matrices` | 3.3 Transposes, symmetric matrices, and skew-symmetric matrices | Done | Symmetry and skew-symmetry as diagonal reflection rules. | Completed by the shared `math1030-transpose-symmetry-story`; existing `transpose-symmetry-lab` remains the reader-controlled follow-up and export snapshot. |
 | `math1030/matrix-algebra/special-matrices` | 3.4 Special matrices | Manim + widget | Diagonal, triangular, identity, zero, and special-family recognition. | Use current family checker as interactive anchor. |
 | `math1030/matrix-algebra/block-matrices` | 3.5 Block matrices | Manim | Partitioned matrices and block multiplication compatibility. | Storyboard block boundaries and compatible sizes. |
 | `math1030/solution-structure/homogeneous-systems-and-null-space` | 4.1 Homogeneous systems and null space | Manim | Null space as all vectors sent to zero. | Storyboard solution-set geometry. |
@@ -274,9 +274,9 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 These are the concrete next slices to execute one by one:
 
 1. Continue the next unresolved Math1030 matrix-algebra register item:
-   `matrix-algebra/transpose-and-special-matrices`, while checking overlap with
-   `matrix-algebra/transposes-and-symmetric-matrices`, unless the roadmap
-   priority changes.
+   `matrix-algebra/special-matrices`, using the existing
+   `matrix-family-checker` as the reader-controlled follow-up and adding a
+   static export snapshot if the widget remains on the page.
 2. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.
 

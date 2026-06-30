@@ -51,29 +51,35 @@ history.
 | Math1030 `1.1 Equations and solution sets` | `math1030-equations-solution-sets-story` | `docs/manim-equations-solution-sets-video-qa-2026-07-01.md` |
 | Math1030 `3.1 Matrix addition, subtraction, and scalar multiplication` | `math1030-matrix-entrywise-arithmetic-story` | `docs/manim-matrix-entrywise-arithmetic-video-qa-2026-07-01.md` |
 | Math1030 `3.1 Matrix multiplication and identity matrices` | `math1030-matrix-multiplication-identity-story` | `docs/manim-matrix-multiplication-identity-video-qa-2026-07-01.md` |
+| Math1030 `3.2/3.3 Transpose, symmetry, and skew-symmetry` | `math1030-transpose-symmetry-story` | `docs/manim-transpose-symmetry-video-qa-2026-07-01.md` |
 
 ## Latest Slice Notes
 
-Math1030 `3.1` matrix multiplication and identity matrices was implemented
-after roadmap, current MDX, and reference inspection confirmed the source
-boundary. `1030gi-n01-02.pdf` pp. 1-4, `MATH1030-Notes.pdf` pp. 39-46 and
-52-53, and Practice Set 2 support product-size compatibility, row-by-column
-entry construction, identity matrices, and standard product warnings.
+Math1030 `3.2/3.3` transpose, symmetry, and skew-symmetry was implemented
+after roadmap, current MDX, catalog metadata, and reference inspection
+confirmed that `transpose-and-special-matrices` and
+`transposes-and-symmetric-matrices` should share one video boundary.
+`MATH1030-Notes.pdf` pp. 47-50, `1030gi-n01-03.pdf` pp. 1-4,
+`1030efghi-tutorial-week04.pdf` p. 1, `1030gi-n01-se0304.pdf` pp. 1-4, and
+Practice Set 3 support transpose as index swap / diagonal reflection,
+symmetric and skew-symmetric pair rules, zero skew diagonal, product-order
+reversal, and the symmetric/skew-symmetric decomposition.
 
 Fixes applied:
 
-- new storyboard covers the product-size gate, a highlighted `c_11` row-column
-  dot product, full product assembly, right and left identity multiplication,
-  and the noncommutativity / order warning;
+- new storyboard covers the transpose index swap, square-matrix diagonal
+  reflection, symmetric and skew-symmetric pair rules, zero diagonal for
+  skew-symmetric matrices, `(AB)^T=B^T A^T`, and the split
+  `A=1/2(A+A^T)+1/2(A-A^T)`;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the matrix multiplication / identity scene and
+- render script now includes the transpose / symmetry scene and
   writes assets under `public/generated/animations/math1030/`;
-- video embed was placed before the noncommutativity discussion in all
-  three localized MDX files;
-- the existing `matrix-multiplication-visualizer` remains the reader-controlled
-  follow-up and was verified after the video insertion;
-- TXT/PDF exports use the localized static video-study frames and the existing
-  multiplication-visualizer snapshot, without leaking raw video markup.
+- the same localized video was embedded into both
+  `transpose-and-special-matrices` and `transposes-and-symmetric-matrices`;
+- the existing `transpose-symmetry-lab` remains the reader-controlled follow-up
+  on the split page and keeps its static export snapshot;
+- the full diagonal / triangular / identity / elementary matrix family clip is
+  intentionally deferred to `special-matrices`.
 
 ## Verification Stack Used For Latest Slice
 
@@ -98,8 +104,8 @@ priority changes.
 Expected first step:
 
 1. Start with the next unresolved Math1030 register item, currently
-   `matrix-algebra/transpose-and-special-matrices`; first inspect whether it
-   should be merged with `transposes-and-symmetric-matrices` before rendering.
+   `matrix-algebra/special-matrices`; use the current `matrix-family-checker`
+   as the interaction anchor and add an export snapshot if it remains visible.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset
