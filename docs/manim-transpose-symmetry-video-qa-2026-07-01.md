@@ -188,3 +188,34 @@ Export checks passed:
 Local QA passed. The same shared video can be shipped on both target pages.
 `special-matrices` remains the next unresolved Math1030 matrix-algebra video
 slice.
+
+## Production Verification
+
+After pushing `bd6207b` to `main`, production initially served the existing
+routes while the new static MP4 assets were still unavailable. The static
+assets reached production on polling attempt 19.
+
+Production route / media checks:
+
+| URL | Status | Content type |
+| --- | ---: | --- |
+| `https://www.evanalysis.top/en/notes/math1030/matrix-algebra/transpose-and-special-matrices` | 200 | `text/html; charset=utf-8` |
+| `https://www.evanalysis.top/en/notes/math1030/matrix-algebra/transposes-and-symmetric-matrices` | 200 | `text/html; charset=utf-8` |
+| `https://www.evanalysis.top/generated/animations/math1030/transpose-symmetry-story-en.mp4` | 200 | `video/mp4` |
+| `https://www.evanalysis.top/generated/animations/math1030/transpose-symmetry-story-zh-hk.mp4` | 200 | `video/mp4` |
+| `https://www.evanalysis.top/generated/animations/math1030/transpose-symmetry-story-zh-cn.mp4` | 200 | `video/mp4` |
+
+Production export spot checks:
+
+| Locale | Unit | TXT bytes | PDF bytes |
+| --- | --- | ---: | ---: |
+| EN | `transpose-and-special-matrices` | 15480 | 50778 |
+| zh-HK | `transposes-and-symmetric-matrices` | 6740 | 145751 |
+| zh-CN | `transposes-and-symmetric-matrices` | 6840 | 135618 |
+
+Production export checks passed:
+
+- every checked PDF begins with `%PDF`;
+- every checked TXT export includes the localized static video-study title;
+- no checked TXT export leaks `<video`, `.mp4`,
+  `math1030-transpose-symmetry-story`, or `transpose-symmetry-lab`.
