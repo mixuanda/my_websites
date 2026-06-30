@@ -40,6 +40,13 @@ export interface UserProfilePatch {
 
 const memoryUsersById = new Map<string, SiteUserProfile>();
 const memoryUsersByEmail = new Map<string, string>();
+const memoryAccountsByUserId = new Map<string, LinkedAccount[]>();
+
+function withoutUndefinedFields<T extends object>(value: T): Partial<T> {
+  return Object.fromEntries(
+    Object.entries(value).filter(([, fieldValue]) => fieldValue !== undefined)
+  ) as Partial<T>;
+}
 
 function normalizeEmail(email?: string | null) {
   return email?.trim().toLowerCase() || null;
@@ -132,6 +139,13 @@ function rememberProfile(profile: SiteUserProfile) {
   memoryUsersByEmail.set(profile.email, profile.id);
 }
 
+function rememberLinkedAccount(userId: string, account: LinkedAccount) {
+  const current = memoryAccountsByUserId.get(userId) ?? [];
+  const next = new Map(current.map((item) => [item.id, item]));
+  next.set(account.id, account);
+  memoryAccountsByUserId.set(userId, Array.from(next.values()));
+}
+
 export async function getUserProfile(userId?: string | null, email?: string | null) {
   const normalizedEmail = normalizeEmail(email);
   const resolvedId =
@@ -190,7 +204,10 @@ export async function upsertUserProfile(input: {
   rememberProfile(profile);
 
   if (firestore) {
-    await firestore.collection("users").doc(userId).set(profile, { merge: true });
+    await firestore
+      .collection("users")
+      .doc(userId)
+      .set(withoutUndefinedFields(profile), { merge: true });
   }
 
   return profile;
@@ -224,10 +241,10 @@ export async function recordUserLogin(user: User, account?: Account | null) {
       .collection("users")
       .doc(updated.id)
       .set(
-        {
+        withoutUndefinedFields({
           ...updated,
           lastProvider: account?.provider ?? "credentials",
-        },
+        }),
         { merge: true }
       );
   }
@@ -282,17 +299,53 @@ export async function updateUserProfile(
   rememberProfile(nextProfile);
 
   if (firestore) {
-    await firestore.collection("users").doc(nextProfile.id).set(nextProfile, { merge: true });
+    await firestore
+      .collection("users")
+      .doc(nextProfile.id)
+      .set(withoutUndefinedFields(nextProfile), { merge: true });
   }
 
   return nextProfile;
+}
+
+export async function upsertLinkedAccount(input: {
+  provider: string;
+  providerAccountId: string;
+  type: string;
+  userId: string;
+}) {
+  const account: LinkedAccount = {
+    id: `${input.provider}_${hashString(input.providerAccountId)}`,
+    provider: input.provider,
+    providerAccountId: input.providerAccountId,
+    type: input.type,
+  };
+
+  rememberLinkedAccount(input.userId, account);
+
+  if (firestore) {
+    await firestore
+      .collection("accounts")
+      .doc(account.id)
+      .set(
+        {
+          ...account,
+          userId: input.userId,
+        },
+        { merge: true }
+      );
+  }
+
+  return account;
 }
 
 export async function getLinkedAccounts(session: Session | null): Promise<LinkedAccount[]> {
   const profile = await getSessionProfile(session);
   if (!profile) return [];
 
-  const accounts: LinkedAccount[] = [];
+  const accounts: LinkedAccount[] = [
+    ...(memoryAccountsByUserId.get(profile.id) ?? []),
+  ];
 
   if (firestore) {
     const snapshot = await firestore
@@ -336,7 +389,7 @@ export async function getLinkedAccounts(session: Session | null): Promise<Linked
     });
   }
 
-  return accounts;
+  return Array.from(new Map(accounts.map((account) => [account.id, account])).values());
 }
 
 export async function listUserProfiles(limit = 200) {

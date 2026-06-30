@@ -31,22 +31,18 @@ function text(en: string, zhHk: string, zhCn: string): LocalizedText {
 
 const membershipCopy = {
   accessModel: text("Access model", "存取模型", "访问模型"),
-  adminBullet: text(
-    "Admin: server-side whitelist bypass via ADMIN_EMAILS, with full access and no payment requirement.",
-    "Admin：透過 ADMIN_EMAILS 的伺服器白名單直接取得完整權限，不需要付款。",
-    "Admin：通过 ADMIN_EMAILS 的服务器白名单直接取得完整权限，不需要付款。"
-  ),
-  adminStatus: text(
-    "Admin accounts already have full access across notes, premium checkpoints, guided solutions, and server-side APIs.",
-    "Admin 帳號已經在筆記、進階 checkpoint、引導解答，以及伺服器 API 上擁有完整權限。",
-    "Admin 账号已经在笔记、进阶 checkpoint、引导解答，以及服务器 API 上拥有完整权限。"
-  ),
   body: text(
     "The Notes section stays public-first. Paid tiers unlock deeper checkpoints, fuller guided solutions, richer exports, and the highest tier of experimental study tools.",
     "Notes 仍以公開閱讀為先。付費層會解鎖更深入的 checkpoint、更完整的引導解答、更完整的匯出，以及最高層級的實驗性溫習工具。",
     "Notes 仍以公开阅读为先。付费层会解锁更深入的 checkpoint、更完整的引导解答、更完整的导出，以及最高层级的实验性复习工具。"
   ),
   currentAccess: text("Current access", "目前權限", "当前权限"),
+  fullAccess: text("Full access", "完整權限", "完整权限"),
+  fullAccessStatus: text(
+    "This account already has full access across notes, premium checkpoints, guided solutions, and server-side APIs.",
+    "這個帳號已經在筆記、進階 checkpoint、引導解答，以及伺服器 API 上擁有完整權限。",
+    "这个账号已经在笔记、进阶 checkpoint、引导解答，以及服务器 API 上拥有完整权限。"
+  ),
   freeBullet: text(
     "Free: core notes, selected examples, and selected quick checks stay public.",
     "Free：公開核心筆記、部分例題，以及部分 quick checks。",
@@ -123,9 +119,10 @@ export default async function LocalizedMembershipPage({
     billingConfig.webhookSecretConfigured;
   const callbackUrl = getMembershipHref(locale);
   const currentAccess = entitlements.isAdmin
-    ? "Admin"
+    ? getLocalizedText(membershipCopy.fullAccess, locale)
     : entitlements.tier;
   const freeDailyLimit = getFreeDailyAttemptLimit();
+  const publicMembershipTiers = membershipTiers.filter((tier) => tier.id !== "ADMIN");
 
   return (
     <main className="mx-auto max-w-4xl space-y-6 px-4 py-10">
@@ -140,8 +137,8 @@ export default async function LocalizedMembershipPage({
         <h2 className="text-xl font-semibold">
           {getLocalizedText(membershipCopy.accessModel, locale)}
         </h2>
-        <div className="mt-4 grid gap-3 md:grid-cols-2 lg:grid-cols-4">
-          {membershipTiers.map((tier) => (
+        <div className="mt-4 grid gap-3 md:grid-cols-3">
+          {publicMembershipTiers.map((tier) => (
             <div key={tier.id} className="rounded-lg border bg-muted/20 p-4">
               <p className="font-semibold">{getLocalizedText(tier.label, locale)}</p>
               <p className="mt-2 text-sm text-muted-foreground">
@@ -200,7 +197,7 @@ export default async function LocalizedMembershipPage({
           <div className="mt-4 space-y-3">
             {entitlements.isAdmin ? (
               <p className="text-sm text-muted-foreground">
-                {getLocalizedText(membershipCopy.adminStatus, locale)}
+                {getLocalizedText(membershipCopy.fullAccessStatus, locale)}
               </p>
             ) : entitlements.isMember ? (
               <p className="text-sm text-muted-foreground">
