@@ -41,6 +41,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/eigenvalues/characteristic-polynomials-and-diagonalization-tests`
   - `math1030/inner-products/inner-products-norms-and-angles`
   - `math1030/inner-products/orthogonal-sets-and-orthonormal-bases`
+  - `math1030/inner-products/cauchy-schwarz-and-triangle-inequalities`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -66,6 +67,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/eigenvalues/characteristic-polynomials-and-diagonalization-tests`
   - `math1030/inner-products/inner-products-norms-and-angles`
   - `math1030/inner-products/orthogonal-sets-and-orthonormal-bases`
+  - `math1030/inner-products/cauchy-schwarz-and-triangle-inequalities`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -190,7 +192,7 @@ Use this order unless a later user request changes priority:
 | `math1030/inner-products/inner-products-norms-and-angles` | 9.1 Inner products, norms, and angles | Done | Standard inner product, source-backed norm and normalization, plus a short 9.2 angle / orthogonality bridge. Projection subtraction is explicitly deferred to Gram-Schmidt. | Completed as the nineteenth Math1030 trilingual Manim pass; no widget was added because the source-backed value is the fixed algebra-to-geometry bridge, not an open-ended vector calculator. |
 | `math1030/inner-products/orthogonal-sets-and-orthonormal-bases` | 9.2 Orthogonal sets and orthonormal bases | Done | Orthogonality, automatic independence, coordinate reading, and normalization to an orthonormal basis. Projection subtraction remains reserved for Gram-Schmidt. | Completed as the twentieth Math1030 trilingual Manim pass; no widget was added because the source-backed value is the fixed coefficient-reading mechanism, not a general vector calculator. |
 | `math1030/inner-products/gram-schmidt-orthogonalization` | 9.3 Gram-Schmidt orthogonalization | Done | Projection subtraction and normalization step by step. | Completed as the fourth trilingual Manim pilot; keep the static table as the export-friendly follow-up. |
-| `math1030/inner-products/cauchy-schwarz-and-triangle-inequalities` | 9.4 Cauchy-Schwarz and triangle inequalities | Manim | Projection bound and triangle geometry proof diagram. | Storyboard proof visual carefully. |
+| `math1030/inner-products/cauchy-schwarz-and-triangle-inequalities` | 9.4 Cauchy-Schwarz and triangle inequalities | Done | Nonnegative quadratic proof of Cauchy-Schwarz, zero-vector case, equality as linear dependence, and triangle inequality as a two-step path estimate controlled by Cauchy-Schwarz. | Completed as the twenty-first Math1030 trilingual Manim pass; no widget was added because the source-backed value is a fixed proof chain, not an open-ended vector calculator. |
 
 ## Math1090 Register
 
@@ -258,8 +260,8 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 
 These are the concrete next slices to execute one by one:
 
-1. Continue Math1030 clips with `9.4 Cauchy-Schwarz and triangle inequalities`, unless
-   the roadmap priority changes.
+1. Continue the next unresolved Math1030 register item:
+   `matrices/solution-set-types`, unless the roadmap priority changes.
 2. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.
 

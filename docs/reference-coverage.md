@@ -1140,3 +1140,19 @@ existing invertibility note instead of creating a detached new route.
 - Status change: the 9.2 reference-backed prose remains incorporated, and the
   video explanation is now incorporated as an export-friendly static fallback
   through the `VideoExplanation` frame sequence.
+
+### 2026-06-30 checkpoint 32: MATH1030 9.4 inequality video pass
+
+- Revisited `9.4 Cauchy-Schwarz and triangle inequalities` against
+  `MATH1030-Notes.pdf` pp. 225-226 and `1030gi-n08-01.pdf` pp. 1-5 before
+  adding the Manim explanation.
+- Added a trilingual article-embedded `VideoExplanation` for the source-backed
+  proof chain: the nonnegative quadratic proves Cauchy-Schwarz, the zero-vector
+  branch is handled explicitly, equality means linear dependence, and
+  Cauchy-Schwarz controls the cross term in the triangle inequality.
+- Recorded the source boundary explicitly: reverse triangle inequality is
+  supported by `1030gi-n08-01.pdf`, but it remains article / exercise material
+  rather than part of the first short video.
+- Status change: the 9.4 reference-backed prose remains incorporated, and the
+  video explanation is now incorporated as an export-friendly static fallback
+  through the `VideoExplanation` frame sequence.

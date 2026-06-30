@@ -126,6 +126,13 @@ The current pass especially strengthens the `math1030` note flow.
   normalization removes the squared-norm denominator. A future widget should
   only be considered if it is a focused orthonormal coordinate reader with
   export snapshots, not a general vector calculator.
+- The MATH1030 `9.4` Cauchy-Schwarz / triangle-inequality video pass did not
+  add a new widget. The source-backed learning move is a fixed proof chain:
+  a nonnegative quadratic proves Cauchy-Schwarz, equality is linear
+  dependence, and the same bound controls the triangle-inequality cross term.
+  A reader-controlled widget would mainly duplicate vector arithmetic unless a
+  later exercise pass defines a focused inequality-checking practice surface
+  with static export states.
 - Public note pages now keep source tracing out of the interaction chrome so
   the widget remains focused on learning rather than documentation.
 

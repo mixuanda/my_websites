@@ -45,30 +45,31 @@ history.
 | Math1030 `8.3 Characteristic polynomials and diagonalization tests` | `math1030-characteristic-polynomial-diagonalization-test-story` | `docs/manim-characteristic-polynomial-diagonalization-test-video-qa-2026-06-29.md` |
 | Math1030 `9.1 Inner products, norms, and angles` | `math1030-inner-product-norm-angle-story` | `docs/manim-inner-products-norms-angles-video-qa-2026-06-29.md` |
 | Math1030 `9.2 Orthogonal sets and orthonormal bases` | `math1030-orthogonal-sets-orthonormal-bases-story` | `docs/manim-orthogonal-sets-orthonormal-bases-video-qa-2026-06-30.md` |
+| Math1030 `9.4 Cauchy-Schwarz and triangle inequalities` | `math1030-cauchy-schwarz-triangle-inequalities-story` | `docs/manim-cauchy-schwarz-triangle-inequalities-video-qa-2026-06-30.md` |
 
 ## Latest Slice Notes
 
-Math1030 `9.2` was implemented after roadmap, current MDX, and reference
-inspection confirmed the source boundary. `MATH1030-Notes.pdf` pp. 214-220
-support the zero-inner-product orthogonality test, orthogonal set definition,
-automatic independence theorem, coordinate coefficient formula, orthogonal
-basis criterion, orthonormal set / basis definition, normalization, and the
-orthonormal coordinate formula. Projection subtraction is explicitly deferred
-to the already-completed Gram-Schmidt video in `9.3`.
+Math1030 `9.4` was implemented after roadmap, current MDX, and reference
+inspection confirmed the source boundary. `MATH1030-Notes.pdf` pp. 225-226
+supports the Cauchy-Schwarz theorem, its nonnegative-quadratic proof, the
+zero-vector branch, equality as linear dependence, the triangle inequality, and
+the equality condition. `1030gi-n08-01.pdf` pp. 1-5 reinforces the same real
+column-vector inner product and norm setting; the reverse triangle inequality
+is source-supported there but left to the article / exercises rather than the
+first 9.4 clip.
 
 Fixes applied:
 
-- new storyboard covers the zero-inner-product test, pairwise orthogonal set
-  checks, the automatic-independence proof mechanism, coordinate reading from
-  inner products, normalization, and the denominator-free orthonormal formula;
+- new storyboard covers the inner-product bound, the quadratic proof, equality
+  in Cauchy-Schwarz, the triangle path comparison, the cross-term estimate, and
+  the nonnegative-direction equality case;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the orthogonal-basis scene and writes assets under
-  `public/generated/animations/math1030/`;
-- video embed was placed after the coefficient formula and before the
-  coordinate-reading worked example in all three localized MDX files;
-- no widget was added because the first-pass learning move is a fixed
-  coefficient-isolation mechanism rather than a reader-controlled vector
-  calculator.
+- render script now includes the Cauchy-Schwarz / triangle scene and writes
+  assets under `public/generated/animations/math1030/`;
+- video embed was placed after the Cauchy-Schwarz proof and before the first
+  numerical worked example in all three localized MDX files;
+- no widget was added because the first-pass learning move is a fixed proof
+  chain rather than a reader-controlled vector calculator.
 
 ## Verification Stack Used For Latest Slice
 
@@ -86,13 +87,13 @@ Fixes applied:
 
 ## Next Slice
 
-Proceed to the next Math1030 clip unless the roadmap priority changes.
+Proceed to the next unresolved Math1030 register item unless the roadmap
+priority changes.
 
 Expected first step:
 
-1. Start with Math1030
-   `inner-products/cauchy-schwarz-and-triangle-inequalities` unless source
-   inspection changes the priority.
+1. Start with Math1030 `matrices/solution-set-types` unless source inspection
+   changes the priority.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset
@@ -115,7 +116,5 @@ Useful explorer result:
 - A dedicated CSCI2520 explorer confirmed `hash-tables-and-collision-strategies`
   should be Manim + widget: a short invariant-focused clip for collision
   handling plus the existing `hash-bucket-lab` for editable bucket/key tracing.
-- A separate register scan found Math1030 `9.4 Cauchy-Schwarz and triangle
-  inequalities` is also feasible as a careful proof-diagram video, but it
-  remains a later candidate behind the current Math1025 and CSCI2520 roadmap
-  slices.
+- Math1030 `9.4 Cauchy-Schwarz and triangle inequalities` is now complete as a
+  careful proof-diagram video.

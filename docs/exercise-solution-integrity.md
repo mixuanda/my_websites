@@ -746,3 +746,21 @@ unit-level coverage.
   requests returned 200; EN TXT export included guided-solution,
   perfect-square, and prime-root irrationality markers; EN PDF export returned
   `application/pdf` with a `%PDF` header.
+
+### 2026-06-30 checkpoint 25: MATH1030 9.4 video insertion integrity
+
+- Checkpoint name: `9.4` Cauchy-Schwarz / triangle-inequality video embed
+  and export fallback integrity
+- What was inspected: the existing EN / zh-HK / zh-CN `9.4` MDX files, the
+  new `VideoExplanation` frame sequence, the static TXT / PDF exports, and the
+  existing in-page `QuickCheck` / `RevealSolution` pairings.
+- What was changed: inserted the localized video explanation after the
+  Cauchy-Schwarz proof and before the first numerical worked example; no
+  quick-check or reveal-solution content was reordered.
+- Integrity note: each locale still keeps the same in-page prompt / answer
+  pairings, while export exposes the new video as a static six-frame study
+  sequence with no leaked video markup.
+- Verification: local Browser DOM checks confirmed the EN / zh-HK / zh-CN
+  routes expose the localized video asset and export menu. Local TXT / PDF
+  export checks passed for all three locales, including static frame labels
+  and absence of `<video>`, `<source>`, `poster=`, or `.mp4` leakage.

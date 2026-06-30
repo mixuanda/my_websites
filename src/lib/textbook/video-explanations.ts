@@ -1918,6 +1918,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/gram-schmidt-projection-story-zh-cn.mp4"
     ),
   },
+  "math1030-cauchy-schwarz-triangle-inequalities-story": {
+    conclusion: text(
+      "Cauchy-Schwarz is the controlling estimate: it bounds the cross inner-product term, explains equality as linear dependence, and turns the expansion of ||u+v||^2 into the triangle inequality.",
+      "Cauchy-Schwarz 是核心控制估計：它限制交叉內積項，將等號解釋為線性相關，並把 ||u+v||^2 的展開式轉成三角不等式。",
+      "Cauchy-Schwarz 是核心控制估计：它限制交叉内积项，将等号解释为线性相关，并把 ||u+v||^2 的展开式转成三角不等式。"
+    ),
+    durationSeconds: 13,
+    frames: [
+      {
+        label: text("Inner-product bound", "內積上界", "内积上界"),
+        value: text(
+          "Cauchy-Schwarz says |<v,w>| <= ||v|| ||w|| for real vectors. The inner product cannot be larger in magnitude than the product of the two lengths.",
+          "Cauchy-Schwarz 說明，對實向量有 |<v,w>| <= ||v|| ||w||。內積的絕對值不可能大過兩個長度的乘積。",
+          "Cauchy-Schwarz 说明，对实向量有 |<v,w>| <= ||v|| ||w||。内积的绝对值不可能大过两个长度的乘积。"
+        ),
+      },
+      {
+        label: text("Quadratic proof", "二次式證明", "二次式证明"),
+        value: text(
+          "The proof considers F(t)=||tw-v||^2. If w=0 the inequality is immediate; if w is nonzero, F(t) is a nonnegative quadratic, so its discriminant is <= 0.",
+          "證明考慮 F(t)=||tw-v||^2。若 w=0，不等式立即成立；若 w 非零，F(t) 是非負二次式，所以判別式 <= 0。",
+          "证明考虑 F(t)=||tw-v||^2。若 w=0，不等式立即成立；若 w 非零，F(t) 是非负二次式，所以判别式 <= 0。"
+        ),
+      },
+      {
+        label: text("C-S equality", "C-S 等號", "C-S 等号"),
+        value: text(
+          "Equality in Cauchy-Schwarz happens exactly when the norm-square can collapse to zero, meaning tw-v=0 for some real t, or equivalently v and w are linearly dependent.",
+          "Cauchy-Schwarz 取等，正是範數平方可以縮成零的時候：存在實數 t 令 tw-v=0，也就是 v 與 w 線性相關。",
+          "Cauchy-Schwarz 取等，正是范数平方可以缩成零的时候：存在实数 t 使 tw-v=0，也就是 v 与 w 线性相关。"
+        ),
+      },
+      {
+        label: text("Triangle geometry", "三角幾何", "三角几何"),
+        value: text(
+          "The triangle inequality compares the direct vector u+v with the two-step path u followed by v: ||u+v|| <= ||u||+||v||.",
+          "三角不等式比較直達向量 u+v 與先走 u 再走 v 的兩步路徑：||u+v|| <= ||u||+||v||。",
+          "三角不等式比较直达向量 u+v 与先走 u 再走 v 的两步路径：||u+v|| <= ||u||+||v||。"
+        ),
+      },
+      {
+        label: text("Algebra step", "代數步驟", "代数步骤"),
+        value: text(
+          "Expanding gives ||u+v||^2=||u||^2+2<u,v>+||v||^2. Cauchy-Schwarz bounds the middle term by 2||u||||v||, giving (||u||+||v||)^2.",
+          "展開得 ||u+v||^2=||u||^2+2<u,v>+||v||^2。Cauchy-Schwarz 把中間項限制為最多 2||u||||v||，得到 (||u||+||v||)^2。",
+          "展开得 ||u+v||^2=||u||^2+2<u,v>+||v||^2。Cauchy-Schwarz 把中间项限制为最多 2||u||||v||，得到 (||u||+||v||)^2。"
+        ),
+      },
+      {
+        label: text("Triangle equality", "三角等號", "三角等号"),
+        value: text(
+          "Triangle equality is stricter than Cauchy-Schwarz equality: apart from zero-vector cases, one vector must be a nonnegative scalar multiple of the other.",
+          "三角取等比 Cauchy-Schwarz 取等更嚴格：除零向量情況外，一個向量必須是另一個的非負純量倍。",
+          "三角取等比 Cauchy-Schwarz 取等更严格：除零向量情形外，一个向量必须是另一个的非负标量倍。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch the two source-backed inequalities as one proof chain: a nonnegative quadratic gives Cauchy-Schwarz, then Cauchy-Schwarz controls the cross term in the triangle inequality.",
+      "把兩條來源支持的不等式看成一條證明鏈：非負二次式給出 Cauchy-Schwarz，然後 Cauchy-Schwarz 控制三角不等式中的交叉項。",
+      "把两条来源支持的不等式看成一条证明链：非负二次式给出 Cauchy-Schwarz，然后 Cauchy-Schwarz 控制三角不等式中的交叉项。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/cauchy-schwarz-triangle-inequalities-story-en.png",
+      "/generated/animations/math1030/cauchy-schwarz-triangle-inequalities-story-zh-hk.png",
+      "/generated/animations/math1030/cauchy-schwarz-triangle-inequalities-story-zh-cn.png"
+    ),
+    title: text(
+      "Cauchy-Schwarz into triangle inequality",
+      "由 Cauchy-Schwarz 走到三角不等式",
+      "由 Cauchy-Schwarz 走到三角不等式"
+    ),
+    transcript: [
+      text(
+        "Cauchy-Schwarz bounds the magnitude of an inner product by the product of the two norms.",
+        "Cauchy-Schwarz 用兩個範數的乘積，限制內積絕對值的大小。",
+        "Cauchy-Schwarz 用两个范数的乘积，限制内积绝对值的大小。"
+      ),
+      text(
+        "The proof uses the nonnegative norm-square F(t)=||tw-v||^2 and the fact that its discriminant cannot be positive.",
+        "證明使用非負的範數平方 F(t)=||tw-v||^2，以及其判別式不能為正這件事。",
+        "证明使用非负的范数平方 F(t)=||tw-v||^2，以及其判别式不能为正这件事。"
+      ),
+      text(
+        "After expanding ||u+v||^2, the same Cauchy-Schwarz bound gives the triangle inequality and its nonnegative-direction equality case.",
+        "展開 ||u+v||^2 後，同一個 Cauchy-Schwarz 上界給出三角不等式及其非負同方向等號條件。",
+        "展开 ||u+v||^2 后，同一个 Cauchy-Schwarz 上界给出三角不等式及其非负同方向等号条件。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/cauchy-schwarz-triangle-inequalities-story-en.mp4",
+      "/generated/animations/math1030/cauchy-schwarz-triangle-inequalities-story-zh-hk.mp4",
+      "/generated/animations/math1030/cauchy-schwarz-triangle-inequalities-story-zh-cn.mp4"
+    ),
+  },
   "math1025-complex-plane-arithmetic-story": {
     conclusion: text(
       "Complex addition has the geometry of vector addition. Complex multiplication is clearest in polar form: multiply the moduli and add the arguments, with angles understood modulo 2 pi.",

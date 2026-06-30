@@ -805,3 +805,28 @@ Use this shape for future entries:
 - Verification: pending at implementation checkpoint; run contentlayer, lint,
   typecheck, build, local route/export/API smoke, browser QA, and production
   deployment verification before closing the round.
+
+### 2026-06-30: MATH1030 9.4 Cauchy-Schwarz video checkpoint
+
+- Gap selected: the video roadmap marked Math1030 `9.4 Cauchy-Schwarz and
+  triangle inequalities` as a high-value proof-diagram candidate after the
+  9.1-9.3 inner-product video passes.
+- Reference basis: `reference/MATH1030/MATH1030-Notes.pdf` pp. 225-226 and
+  `reference/MATH1030/1030gi-n08-01.pdf` pp. 1-5.
+- Content files changed: added the 9.4 storyboard, Manim scene, render-script
+  entries, localized `VideoExplanation` registry metadata, and EN / zh-HK /
+  zh-CN page embeds.
+- Visuals added: trilingual Manim video and poster assets for the proof chain
+  from the nonnegative quadratic to Cauchy-Schwarz and then to the triangle
+  inequality.
+- Interactions added: none. The unit remains article-first and Manim-only for
+  this pass because the source-backed value is a fixed proof chain rather than
+  reader-controlled manipulation.
+- Exercises added: none. Existing quick checks and reveal solutions were left
+  in place; the video insertion did not reorder answer blocks.
+- Verification: Python syntax, storyboard JSON, render-script syntax, Manim
+  render, `git diff --check`, MDX table verification, TypeScript, lint,
+  textbook content check, production build, local browser DOM checks, desktop /
+  mobile screenshots, and three-locale TXT / PDF export checks passed. The
+  production verification remains pending until this branch is merged into
+  `main` and the live site refreshes.

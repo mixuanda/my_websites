@@ -63,6 +63,7 @@ Implemented candidate:
 | Course | Unit | Explanation id | Status | Why it fits |
 | --- | --- | --- | --- | --- |
 | Math1030 | `math1030.matrices.gaussian-elimination-rref` | `math1030-gaussian-elimination-rref-pivot-story` | Implemented pilot | Pivot selection, row replacement, REF, RREF, and reading the solution are sequential visual states. |
+| Math1030 | `math1030.inner-products.cauchy-schwarz-and-triangle-inequalities` | `math1030-cauchy-schwarz-triangle-inequalities-story` | Implemented | The source proof is a compact visual chain: a nonnegative quadratic proves Cauchy-Schwarz, equality is linear dependence, and Cauchy-Schwarz controls the triangle-inequality cross term. |
 
 The pilot now uses separate rendered assets for `en`, `zh-hk`, and `zh-cn`
 because the video frame itself contains localized explanatory text.

@@ -1,0 +1,366 @@
+{
+  "course": "math1030",
+  "chapter": "inner-products",
+  "unit": "cauchy-schwarz-and-triangle-inequalities",
+  "unitTitle": {
+    "en": "9.4 Cauchy-Schwarz and triangle inequalities",
+    "zh-hk": "9.4 Cauchy-Schwarz 與三角不等式",
+    "zh-cn": "9.4 Cauchy-Schwarz 与三角不等式"
+  },
+  "videoId": "math1030-cauchy-schwarz-triangle-inequalities-story",
+  "sourceBoundary": {
+    "en": "This storyboard uses section 9.4 of MATH1030-Notes.pdf and 1030gi-n08-01.pdf: Cauchy-Schwarz, its quadratic norm-square proof, zero-vector handling, equality as linear dependence, the triangle inequality, and its nonnegative-scalar equality condition. Reverse triangle inequality is source-supported by 1030gi-n08-01.pdf but is left to the article and exercises rather than the main clip.",
+    "zh-hk": "此 storyboard 使用 MATH1030-Notes.pdf 第 9.4 節與 1030gi-n08-01.pdf：Cauchy-Schwarz、範數平方二次式證明、零向量處理、線性相關等號條件、三角不等式，以及非負純量倍的等號條件。反向三角不等式由 1030gi-n08-01.pdf 支持，但留在正文與練習中，不放入主片段。",
+    "zh-cn": "此 storyboard 使用 MATH1030-Notes.pdf 第 9.4 节与 1030gi-n08-01.pdf：Cauchy-Schwarz、范数平方二次式证明、零向量处理、线性相关等号条件、三角不等式，以及非负标量倍的等号条件。反向三角不等式由 1030gi-n08-01.pdf 支持，但留在正文与练习中，不放入主片段。"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "cauchy_schwarz_bound",
+          "cardTitle": "Inner product has a length bound",
+          "goal": "Show that the magnitude of an inner product is controlled by the product of norms.",
+          "beats": [
+            "Draw two vectors with an angle between them.",
+            "Compare a shorter inner-product magnitude bar with the product-of-lengths bar.",
+            "Name the inequality |<v,w>| <= ||v|| ||w||."
+          ],
+          "mathBlocks": [
+            "|\\langle v,w\\rangle|\\le\\|v\\|\\,\\|w\\|"
+          ],
+          "voiceover": [
+            "The estimate says the inner product cannot grow independently of vector length.",
+            "This is the algebraic reason the cosine formula stays between -1 and 1."
+          ],
+          "animation": "vector angle diagram feeds into two comparison bars"
+        },
+        {
+          "type": "quadratic_proof",
+          "cardTitle": "Nonnegative quadratic proof",
+          "goal": "Storyboard the source proof using F(t)=||tw-v||^2.",
+          "beats": [
+            "Display F(t)=||tw-v||^2 >= 0 for all real t.",
+            "Separate the w=0 case as trivial.",
+            "For w nonzero, expand the quadratic and force its discriminant to be nonpositive."
+          ],
+          "mathBlocks": [
+            "F(t)=\\|tw-v\\|^2",
+            "\\Delta=4\\langle v,w\\rangle^2-4\\|v\\|^2\\|w\\|^2\\le0"
+          ],
+          "voiceover": [
+            "A norm-square cannot be negative.",
+            "A genuine quadratic that is never negative cannot have two real roots, so the discriminant cannot be positive."
+          ],
+          "animation": "proof cards narrow from norm-square to discriminant to the inequality"
+        },
+        {
+          "type": "cauchy_schwarz_equality",
+          "cardTitle": "Equality means linear dependence",
+          "goal": "Make the equality condition visible and include the zero-vector case.",
+          "beats": [
+            "Show v and w lying on the same line.",
+            "Label tw-v=0 and v=tw.",
+            "Add the zero-vector case as already tight."
+          ],
+          "mathBlocks": [
+            "tw-v=0",
+            "v=tw"
+          ],
+          "voiceover": [
+            "The bound is tight only when the distance vector in the norm-square can collapse to zero.",
+            "That is exactly linear dependence, with the zero-vector case included."
+          ],
+          "animation": "arrows collapse onto one line with a zero-distance label"
+        },
+        {
+          "type": "triangle_geometry",
+          "cardTitle": "Direct path versus two-step path",
+          "goal": "Read the triangle inequality geometrically before the algebra proof.",
+          "beats": [
+            "Draw u from the origin and v starting at the tip of u.",
+            "Draw u+v as the direct arrow from the origin.",
+            "Compare ||u+v|| with ||u||+||v||."
+          ],
+          "mathBlocks": [
+            "\\|u+v\\|\\le\\|u\\|+\\|v\\|"
+          ],
+          "voiceover": [
+            "The direct side of a triangle cannot exceed the two-step path around the other sides.",
+            "The algebra below proves that geometric fact inside any real inner-product setting."
+          ],
+          "animation": "two-step path and direct arrow appear on the same plane"
+        },
+        {
+          "type": "triangle_from_cauchy_schwarz",
+          "cardTitle": "Cauchy-Schwarz gives the key estimate",
+          "goal": "Show how the inner-product bound becomes the triangle inequality.",
+          "beats": [
+            "Expand ||u+v||^2.",
+            "Replace <u,v> by at most ||u|| ||v||.",
+            "Recognize the perfect square and take square roots."
+          ],
+          "mathBlocks": [
+            "\\|u+v\\|^2=\\|u\\|^2+2\\langle u,v\\rangle+\\|v\\|^2",
+            "\\|u+v\\|^2\\le(\\|u\\|+\\|v\\|)^2"
+          ],
+          "voiceover": [
+            "Only one term can be troublesome: the cross inner product.",
+            "Cauchy-Schwarz caps that term exactly where the perfect square appears."
+          ],
+          "animation": "formula chain highlights the cross term and turns it into a square"
+        },
+        {
+          "type": "triangle_equality",
+          "cardTitle": "Equality needs the same nonnegative direction",
+          "goal": "Distinguish triangle equality from opposite-direction linear dependence.",
+          "beats": [
+            "Show same-direction vectors giving equality.",
+            "Contrast an opposite-direction vector, which is linearly dependent but not the triangle-equality case.",
+            "Record that zero-vector cases are included."
+          ],
+          "mathBlocks": [
+            "v=\\alpha u,\\quad \\alpha\\ge0"
+          ],
+          "voiceover": [
+            "Cauchy-Schwarz equality allows same or opposite directions.",
+            "Triangle equality is stricter: the vectors must point in the same nonnegative direction, unless one vector is zero."
+          ],
+          "animation": "same-direction path aligns; opposite-direction path is marked as not the equality pattern"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "cauchy_schwarz_bound",
+          "cardTitle": "內積有長度上界",
+          "goal": "顯示內積大小由兩個範數的乘積控制。",
+          "beats": [
+            "畫出兩個有夾角的向量。",
+            "用較短的內積絕對值長條比較長度乘積長條。",
+            "標示不等式 |<v,w>| <= ||v|| ||w||。"
+          ],
+          "mathBlocks": [
+            "|\\langle v,w\\rangle|\\le\\|v\\|\\,\\|w\\|"
+          ],
+          "voiceover": [
+            "這個估計說明內積不能脫離向量長度而任意變大。",
+            "這也是餘弦公式會落在 -1 與 1 之間的代數原因。"
+          ],
+          "animation": "向量夾角圖像轉成兩條比較長條"
+        },
+        {
+          "type": "quadratic_proof",
+          "cardTitle": "非負二次式證明",
+          "goal": "按來源證明展示 F(t)=||tw-v||^2。",
+          "beats": [
+            "顯示對所有實數 t 都有 F(t)=||tw-v||^2 >= 0。",
+            "把 w=0 的平凡情況分開處理。",
+            "當 w 非零時，展開二次式並迫使判別式非正。"
+          ],
+          "mathBlocks": [
+            "F(t)=\\|tw-v\\|^2",
+            "\\Delta=4\\langle v,w\\rangle^2-4\\|v\\|^2\\|w\\|^2\\le0"
+          ],
+          "voiceover": [
+            "範數平方不可能是負數。",
+            "真正的二次式若永遠非負，就不能有兩個實根，所以判別式不能為正。"
+          ],
+          "animation": "證明卡由範數平方收束到判別式，再得到不等式"
+        },
+        {
+          "type": "cauchy_schwarz_equality",
+          "cardTitle": "等號表示線性相關",
+          "goal": "把等號條件視覺化，並包含零向量情況。",
+          "beats": [
+            "顯示 v 與 w 落在同一直線上。",
+            "標示 tw-v=0 與 v=tw。",
+            "加入零向量情況本身已經取等。"
+          ],
+          "mathBlocks": [
+            "tw-v=0",
+            "v=tw"
+          ],
+          "voiceover": [
+            "當範數平方中的距離向量可以縮成零時，上界才會剛好成立。",
+            "這正是線性相關，並包含零向量情況。"
+          ],
+          "animation": "箭嘴收束到同一直線，旁邊顯示零距離標記"
+        },
+        {
+          "type": "triangle_geometry",
+          "cardTitle": "直達路徑與兩步路徑",
+          "goal": "在代數證明前先讀出三角不等式的幾何意思。",
+          "beats": [
+            "從原點畫 u，並在 u 的端點接上 v。",
+            "由原點直接畫到 u+v。",
+            "比較 ||u+v|| 與 ||u||+||v||。"
+          ],
+          "mathBlocks": [
+            "\\|u+v\\|\\le\\|u\\|+\\|v\\|"
+          ],
+          "voiceover": [
+            "三角形的直邊不會長過繞另外兩邊走的路徑。",
+            "下面的代數證明會把這個幾何事實放進實內積空間中。"
+          ],
+          "animation": "兩步路徑與直達箭嘴同時出現在平面上"
+        },
+        {
+          "type": "triangle_from_cauchy_schwarz",
+          "cardTitle": "Cauchy-Schwarz 給出關鍵估計",
+          "goal": "顯示內積上界如何變成三角不等式。",
+          "beats": [
+            "展開 ||u+v||^2。",
+            "用最多 ||u|| ||v|| 取代 <u,v>。",
+            "辨認完全平方並取平方根。"
+          ],
+          "mathBlocks": [
+            "\\|u+v\\|^2=\\|u\\|^2+2\\langle u,v\\rangle+\\|v\\|^2",
+            "\\|u+v\\|^2\\le(\\|u\\|+\\|v\\|)^2"
+          ],
+          "voiceover": [
+            "唯一可能難控制的是交叉內積項。",
+            "Cauchy-Schwarz 正好把這一項限制在完全平方出現的位置。"
+          ],
+          "animation": "公式鏈高亮交叉項，然後把它轉成完全平方"
+        },
+        {
+          "type": "triangle_equality",
+          "cardTitle": "等號需要同一個非負方向",
+          "goal": "分清三角等號與反方向線性相關。",
+          "beats": [
+            "顯示同方向向量給出等號。",
+            "對比反方向向量：它線性相關，但不是三角取等情況。",
+            "記錄零向量情況也包括在內。"
+          ],
+          "mathBlocks": [
+            "v=\\alpha u,\\quad \\alpha\\ge0"
+          ],
+          "voiceover": [
+            "Cauchy-Schwarz 的等號可容許同方向或反方向。",
+            "三角等號更嚴格：除非有零向量，否則必須指向同一個非負方向。"
+          ],
+          "animation": "同方向路徑排成直線；反方向路徑標成非等號模式"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "cauchy_schwarz_bound",
+          "cardTitle": "内积有长度上界",
+          "goal": "显示内积大小由两个范数的乘积控制。",
+          "beats": [
+            "画出两个有夹角的向量。",
+            "用较短的内积绝对值长条比较长度乘积长条。",
+            "标示不等式 |<v,w>| <= ||v|| ||w||。"
+          ],
+          "mathBlocks": [
+            "|\\langle v,w\\rangle|\\le\\|v\\|\\,\\|w\\|"
+          ],
+          "voiceover": [
+            "这个估计说明内积不能脱离向量长度而任意变大。",
+            "这也是余弦公式会落在 -1 与 1 之间的代数原因。"
+          ],
+          "animation": "向量夹角图像转成两条比较长条"
+        },
+        {
+          "type": "quadratic_proof",
+          "cardTitle": "非负二次式证明",
+          "goal": "按来源证明展示 F(t)=||tw-v||^2。",
+          "beats": [
+            "显示对所有实数 t 都有 F(t)=||tw-v||^2 >= 0。",
+            "把 w=0 的平凡情形分开处理。",
+            "当 w 非零时，展开二次式并迫使判别式非正。"
+          ],
+          "mathBlocks": [
+            "F(t)=\\|tw-v\\|^2",
+            "\\Delta=4\\langle v,w\\rangle^2-4\\|v\\|^2\\|w\\|^2\\le0"
+          ],
+          "voiceover": [
+            "范数平方不可能是负数。",
+            "真正的二次式若永远非负，就不能有两个实根，所以判别式不能为正。"
+          ],
+          "animation": "证明卡由范数平方收束到判别式，再得到不等式"
+        },
+        {
+          "type": "cauchy_schwarz_equality",
+          "cardTitle": "等号表示线性相关",
+          "goal": "把等号条件视觉化，并包含零向量情形。",
+          "beats": [
+            "显示 v 与 w 落在同一直线上。",
+            "标示 tw-v=0 与 v=tw。",
+            "加入零向量情形本身已经取等。"
+          ],
+          "mathBlocks": [
+            "tw-v=0",
+            "v=tw"
+          ],
+          "voiceover": [
+            "当范数平方中的距离向量可以缩成零时，上界才会恰好成立。",
+            "这正是线性相关，并包含零向量情形。"
+          ],
+          "animation": "箭头收束到同一直线，旁边显示零距离标记"
+        },
+        {
+          "type": "triangle_geometry",
+          "cardTitle": "直达路径与两步路径",
+          "goal": "在代数证明前先读出三角不等式的几何意义。",
+          "beats": [
+            "从原点画 u，并在 u 的端点接上 v。",
+            "由原点直接画到 u+v。",
+            "比较 ||u+v|| 与 ||u||+||v||。"
+          ],
+          "mathBlocks": [
+            "\\|u+v\\|\\le\\|u\\|+\\|v\\|"
+          ],
+          "voiceover": [
+            "三角形的直边不会长过绕另外两边走的路径。",
+            "下面的代数证明会把这个几何事实放进实内积空间中。"
+          ],
+          "animation": "两步路径与直达箭头同时出现在平面上"
+        },
+        {
+          "type": "triangle_from_cauchy_schwarz",
+          "cardTitle": "Cauchy-Schwarz 给出关键估计",
+          "goal": "显示内积上界如何变成三角不等式。",
+          "beats": [
+            "展开 ||u+v||^2。",
+            "用最多 ||u|| ||v|| 取代 <u,v>。",
+            "辨认完全平方并取平方根。"
+          ],
+          "mathBlocks": [
+            "\\|u+v\\|^2=\\|u\\|^2+2\\langle u,v\\rangle+\\|v\\|^2",
+            "\\|u+v\\|^2\\le(\\|u\\|+\\|v\\|)^2"
+          ],
+          "voiceover": [
+            "唯一可能难控制的是交叉内积项。",
+            "Cauchy-Schwarz 正好把这一项限制在完全平方出现的位置。"
+          ],
+          "animation": "公式链高亮交叉项，然后把它转成完全平方"
+        },
+        {
+          "type": "triangle_equality",
+          "cardTitle": "等号需要同一个非负方向",
+          "goal": "分清三角等号与反方向线性相关。",
+          "beats": [
+            "显示同方向向量给出等号。",
+            "对比反方向向量：它线性相关，但不是三角取等情形。",
+            "记录零向量情形也包括在内。"
+          ],
+          "mathBlocks": [
+            "v=\\alpha u,\\quad \\alpha\\ge0"
+          ],
+          "voiceover": [
+            "Cauchy-Schwarz 的等号可容许同方向或反方向。",
+            "三角等号更严格：除非有零向量，否则必须指向同一个非负方向。"
+          ],
+          "animation": "同方向路径排成直线；反方向路径标成非等号模式"
+        }
+      ]
+    }
+  }
+}
