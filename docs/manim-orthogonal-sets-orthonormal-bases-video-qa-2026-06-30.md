@@ -161,5 +161,26 @@ Export checks:
 
 ## Production QA
 
-Pending until this checkpoint is committed, pushed, fast-forwarded into `main`,
-and deployed.
+Completed after `codex/manim` was pushed, `origin/main` was merged into
+`codex/manim`, and `main` was fast-forwarded to merge commit `2b3b649`.
+
+Production polling initially saw the previous deployment: pages returned 200
+but did not include the new video refs, and the new assets returned 404. The
+deployment switched over on polling attempt 9.
+
+Production route and asset checks:
+
+| Locale | Page | Expected video refs |
+| --- | --- | --- |
+| EN | 200 | `orthogonal-sets-orthonormal-bases-story-en.mp4`, `orthogonal-sets-orthonormal-bases-story-en.png` |
+| zh-HK | 200 | `orthogonal-sets-orthonormal-bases-story-zh-hk.mp4`, `orthogonal-sets-orthonormal-bases-story-zh-hk.png` |
+| zh-CN | 200 | `orthogonal-sets-orthonormal-bases-story-zh-cn.mp4`, `orthogonal-sets-orthonormal-bases-story-zh-cn.png` |
+
+| Asset | HTTP | Content type | Bytes |
+| --- | --- | --- | --- |
+| EN mp4 | 200 | `video/mp4` | 683884 |
+| EN png | 200 | `image/png` | 108334 |
+| zh-HK mp4 | 200 | `video/mp4` | 618925 |
+| zh-HK png | 200 | `image/png` | 91541 |
+| zh-CN mp4 | 200 | `video/mp4` | 615995 |
+| zh-CN png | 200 | `image/png` | 90303 |
