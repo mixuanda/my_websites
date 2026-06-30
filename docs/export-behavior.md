@@ -82,6 +82,11 @@ then serializes that structure to TXT or PDF.
   snapshot in EN / zh-HK / zh-CN. The TXT checks also verified that no raw
   `<video>`, `.mp4`, poster attribute, video id, or widget id leaks into the
   exported study material.
+- The July 1 MATH1030 `3.5 Block matrices` QA pass verified that TXT / PDF
+  export preserves the new static video-study sequence in EN / zh-HK / zh-CN.
+  The TXT checks also verified that no raw `<video>`, `.mp4`, poster attribute,
+  or `math1030-block-matrix-partition-product-story` id leaks into the
+  exported study material; PDF responses returned valid `%PDF` headers.
 
 ## Current blockers
 

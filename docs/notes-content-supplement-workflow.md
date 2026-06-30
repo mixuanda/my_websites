@@ -1026,3 +1026,30 @@ Use this shape for future entries:
   build, in-app Browser DOM / console checks, existing widget interactions,
   desktop / dark / mobile checks, and three-locale TXT / PDF export checks
   passed locally.
+
+### 2026-07-01: MATH1030 3.5 block matrices video checkpoint
+
+- Gap selected: the video roadmap marked Math1030 `3.5 Block matrices` as the
+  next unresolved matrix-algebra Manim target because the article had
+  source-backed prose but no rendered explanation for partition compatibility.
+- Reference basis: `reference/MATH1030/MATH1030-Notes.pdf` §3.5 pp. 57-61,
+  `reference/MATH1030/1030gi-n01-01.pdf` pp. 5-6,
+  `reference/MATH1030/1030gi-n01-02.pdf` pp. 1-2, and
+  `reference/MATH1030/1030gi-n01-se0102.pdf` pp. 1 and 4.
+- Content files changed: added the 3.5 storyboard, Manim scene, render-script
+  entries, localized `VideoExplanation` registry metadata, and EN / zh-HK /
+  zh-CN page embeds.
+- Visuals added: trilingual Manim video and poster assets for partition cuts,
+  block sizes, same-partition addition, scalar multiplication, 2 by 2 block
+  multiplication, compatibility of each inner product, and the column-block
+  bridge.
+- Interactions added: none. A new widget would duplicate existing matrix
+  arithmetic and multiplication visualizers without adding enough value to
+  this article-first section.
+- Exercises added: none. Existing examples, quick checks, and reveal solutions
+  were left in place; the video insertion did not reorder answer blocks.
+- Verification: Python syntax, storyboard JSON, render-script syntax, Manim
+  render, media metadata checks, visual poster inspection, `git diff --check`,
+  MDX table verification, TypeScript, lint, textbook content check, production
+  build, in-app Browser DOM / console checks, desktop / dark / mobile checks,
+  and three-locale TXT / PDF export checks passed locally.

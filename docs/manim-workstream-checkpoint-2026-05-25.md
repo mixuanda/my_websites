@@ -56,32 +56,29 @@ history.
 
 ## Latest Slice Notes
 
-Math1030 `3.4 Special matrices` was implemented after roadmap, current MDX,
+Math1030 `3.5 Block matrices` was implemented after roadmap, current MDX,
 catalog metadata, reference inspection, and read-only agent scouting confirmed
-that the source-backed boundary is matrix-family recognition plus the
-elementary-matrix bridge. `MATH1030-Notes.pdf` §3.4 pp. 51-56 and Practice Set
-3 questions 9-11 support diagonal matrices, triangular matrices, identity
-matrices, elementary matrices, diagonal / triangular product closure, identity
-multiplication, and elementary matrices as row / column operation packages.
+that the source-backed boundary is block partitions, blockwise addition /
+scalar multiplication, compatible block multiplication, and the column-block
+bridge. `MATH1030-Notes.pdf` §3.5 pp. 57-61, `1030gi-n01-01.pdf` pp. 5-6,
+`1030gi-n01-02.pdf` pp. 1-2, and `1030gi-n01-se0102.pdf` pp. 1 and 4 support
+the implemented clip.
 
 Fixes applied:
 
-- new storyboard covers the special-matrix family map, diagonal zero pattern,
-  diagonal product closure, upper-triangular zero pattern, triangular product
-  closure, identity multiplication, and elementary matrices from one row
-  operation on `I`;
+- new storyboard covers partition cuts, block sizes, same-partition addition,
+  scalar multiplication, the 2 by 2 block product formula, compatibility of
+  each inner block product, and the column-block bridge;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the special-matrices scene and
+- render script now includes the block-matrix scene and
   writes assets under `public/generated/animations/math1030/`;
 - the localized video was embedded into the EN / zh-HK / zh-CN
-  `special-matrices` note immediately after the definitions and before the
-  family checker;
-- the existing `matrix-family-checker` remains the recognition follow-up and
-  now has a static export snapshot;
-- the existing `row-reduction-stepper` remains the elementary-matrix operation
-  follow-up and keeps its existing static export snapshot;
-- block matrices, invertibility consequences, and longer row-operation chains
-  are intentionally deferred to their own units.
+  `block-matrices` note immediately after the partition-motivation discussion
+  and before the worked example;
+- no new widget was added because the section already reads as an article-led
+  formula and compatibility explanation;
+- solving `AX=B` by columns is only bridged briefly; full null-space,
+  invertibility, and solution-structure geometry stay in later units.
 
 ## Verification Stack Used For Latest Slice
 
@@ -95,9 +92,8 @@ Fixes applied:
 - `npm run check:textbook-content`
 - `AUTH_SECRET=local-test-secret npm run build`
 - Browser DOM / console checks through the in-app Browser, route / asset
-  checks, family-checker and row-stepper interactions, desktop / dark / mobile
-  screenshots, media metadata, target content-check warning check, and TXT/PDF
-  export checks for all three locales
+  checks, desktop / dark / mobile screenshots, media metadata, target
+  content-check warning check, and TXT/PDF export checks for all three locales
 
 ## Next Slice
 
@@ -107,8 +103,8 @@ priority changes.
 Expected first step:
 
 1. Start with the next unresolved Math1030 register item, currently
-   `matrix-algebra/block-matrices`; keep it focused on block partitions,
-   compatible block sizes, and block arithmetic boundaries.
+   `solution-structure/homogeneous-systems-and-null-space`; keep it focused on
+   homogeneous systems, null space, and the geometry of solution sets.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset

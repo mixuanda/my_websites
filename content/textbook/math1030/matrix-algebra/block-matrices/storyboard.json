@@ -1,0 +1,306 @@
+{
+  "course": "math1030",
+  "chapter": "matrix-algebra",
+  "unit": "block-matrices",
+  "unitTitle": {
+    "en": "3.5 Block matrices",
+    "zh-hk": "3.5 分塊矩陣",
+    "zh-cn": "3.5 分块矩阵"
+  },
+  "videoId": "math1030-block-matrix-partition-product-story",
+  "sourceBoundary": [
+    "reference/MATH1030/MATH1030-Notes.pdf §3.5, pp. 57-61",
+    "reference/MATH1030/1030gi-n01-01.pdf, pp. 5-6",
+    "reference/MATH1030/1030gi-n01-02.pdf, pp. 1-2",
+    "reference/MATH1030/1030gi-n01-se0102.pdf, pp. 1 and 4"
+  ],
+  "exclusions": [
+    "Gaussian-elimination submatrix language from earlier pages is not a block-matrix arithmetic source for this video.",
+    "Invertibility, inverse computation, and augmented inverse blocks belong to later invertibility units.",
+    "General solution-structure and null-space geometry belong to chapter 4 roadmap items."
+  ],
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "definition_visual",
+          "cardTitle": "A partition creates the blocks",
+          "goal": "Show that horizontal and vertical cuts turn one large matrix into rectangular submatrices Aij.",
+          "beats": [
+            "Display a 2 by 2 block partition.",
+            "Label the row cuts by m1, m2 and the column cuts by p1, p2.",
+            "State that Aij contains mi rows and pj columns."
+          ],
+          "mathBlocks": [
+            "A = [[A11, A12], [A21, A22]]",
+            "Aij has size mi x pj"
+          ],
+          "animation": "partitioned block diagram with row and column size badges"
+        },
+        {
+          "type": "operation_rule",
+          "cardTitle": "Addition needs the same partition",
+          "goal": "Make corresponding-block addition depend on matching cuts, not merely the same outer size.",
+          "beats": [
+            "Place A and B with the same block partition side by side.",
+            "Pair each Aij with Bij.",
+            "Reveal A+B as the matrix of block sums."
+          ],
+          "mathBlocks": [
+            "A+B = [Aij + Bij]"
+          ],
+          "animation": "matching block colors feed the corresponding block sums"
+        },
+        {
+          "type": "operation_rule",
+          "cardTitle": "Scalar multiplication is blockwise",
+          "goal": "Connect cA=[cAij] to ordinary scalar multiplication on every entry inside the blocks.",
+          "beats": [
+            "Show scalar c acting on the whole block matrix.",
+            "Reveal each output block as cAij.",
+            "Emphasize that the partition shape is preserved."
+          ],
+          "mathBlocks": [
+            "cA = [cAij]"
+          ],
+          "animation": "one scalar reaches every block"
+        },
+        {
+          "type": "multiplication_rule",
+          "cardTitle": "Block multiplication follows the ordinary pattern",
+          "goal": "Highlight the top-left output block C11 as a row-block by column-block sum.",
+          "beats": [
+            "Highlight the first block row of A and the first block column of B.",
+            "Reveal C11 in the product.",
+            "Write C11=A11B11+A12B21."
+          ],
+          "mathBlocks": [
+            "C11 = A11B11 + A12B21"
+          ],
+          "animation": "block row and block column feed one output block"
+        },
+        {
+          "type": "compatibility_check",
+          "cardTitle": "Compatibility is the real size check",
+          "goal": "State the inner block-size condition for each summand AikBkj.",
+          "beats": [
+            "Display Aik as mi by pk.",
+            "Display Bkj as pk by nj.",
+            "Show that the shared pk makes AikBkj defined and gives size mi by nj."
+          ],
+          "mathBlocks": [
+            "Aik: mi x pk",
+            "Bkj: pk x nj",
+            "Cij = sum_{k=1}^t AikBkj"
+          ],
+          "animation": "dimension chain from Aik and Bkj to AikBkj"
+        },
+        {
+          "type": "column_partition_bridge",
+          "cardTitle": "Column blocks keep many products organized",
+          "goal": "Use the source-backed column partition examples to connect AB with repeated column products.",
+          "beats": [
+            "Partition B into columns b1, b2, b3.",
+            "Show AB=[Ab1, Ab2, Ab3].",
+            "Mention that the same idea organizes AX=B column by column."
+          ],
+          "mathBlocks": [
+            "B=[b1,b2,...,br]",
+            "AB=[Ab1,Ab2,...,Abr]",
+            "AX=B"
+          ],
+          "animation": "column-block product row"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "definition_visual",
+          "cardTitle": "先有分割，才有區塊",
+          "goal": "顯示水平和垂直切線如何把一個大矩陣變成長方形子矩陣 Aij。",
+          "beats": [
+            "顯示一個 2 by 2 分塊。",
+            "以 m1、m2 標示行分割，以 p1、p2 標示列分割。",
+            "指出 Aij 有 mi 行和 pj 列。"
+          ],
+          "mathBlocks": [
+            "A = [[A11, A12], [A21, A22]]",
+            "Aij 的大小是 mi x pj"
+          ],
+          "animation": "分塊圖配行列大小標籤"
+        },
+        {
+          "type": "operation_rule",
+          "cardTitle": "加法需要相同分割",
+          "goal": "說明逐塊加法依賴相同切線，而不只是整體大小相同。",
+          "beats": [
+            "把擁有相同分割的 A 和 B 並排。",
+            "把每個 Aij 與 Bij 配對。",
+            "顯示 A+B 是由區塊和組成的矩陣。"
+          ],
+          "mathBlocks": [
+            "A+B = [Aij + Bij]"
+          ],
+          "animation": "相同顏色區塊進入對應區塊和"
+        },
+        {
+          "type": "operation_rule",
+          "cardTitle": "純量乘法可逐塊進行",
+          "goal": "把 cA=[cAij] 連到區塊內每個元素的普通純量乘法。",
+          "beats": [
+            "顯示純量 c 作用到整個分塊矩陣。",
+            "顯示每個輸出區塊都是 cAij。",
+            "強調分割形狀保持不變。"
+          ],
+          "mathBlocks": [
+            "cA = [cAij]"
+          ],
+          "animation": "一個純量作用到每個區塊"
+        },
+        {
+          "type": "multiplication_rule",
+          "cardTitle": "分塊乘法沿用普通模式",
+          "goal": "把左上角輸出區塊 C11 顯示成區塊行乘區塊列的和。",
+          "beats": [
+            "突出 A 的第一個區塊行和 B 的第一個區塊列。",
+            "顯示乘積中的 C11。",
+            "寫出 C11=A11B11+A12B21。"
+          ],
+          "mathBlocks": [
+            "C11 = A11B11 + A12B21"
+          ],
+          "animation": "區塊行與區塊列生成一個輸出區塊"
+        },
+        {
+          "type": "compatibility_check",
+          "cardTitle": "相容性才是真正的大小檢查",
+          "goal": "說出每個乘積 AikBkj 所需的內側區塊大小條件。",
+          "beats": [
+            "顯示 Aik 是 mi by pk。",
+            "顯示 Bkj 是 pk by nj。",
+            "說明共同的 pk 令 AikBkj 有定義，結果大小為 mi by nj。"
+          ],
+          "mathBlocks": [
+            "Aik: mi x pk",
+            "Bkj: pk x nj",
+            "Cij = sum_{k=1}^t AikBkj"
+          ],
+          "animation": "由 Aik 與 Bkj 的大小鏈到 AikBkj"
+        },
+        {
+          "type": "column_partition_bridge",
+          "cardTitle": "列分塊讓多個乘積保持整齊",
+          "goal": "用來源中的列分塊例子，把 AB 連到逐列乘積。",
+          "beats": [
+            "把 B 分成 b1、b2、b3 幾列。",
+            "顯示 AB=[Ab1, Ab2, Ab3]。",
+            "指出同一想法可逐列組織 AX=B。"
+          ],
+          "mathBlocks": [
+            "B=[b1,b2,...,br]",
+            "AB=[Ab1,Ab2,...,Abr]",
+            "AX=B"
+          ],
+          "animation": "列區塊乘積列"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "definition_visual",
+          "cardTitle": "先有分割，才有区块",
+          "goal": "显示水平和垂直切线如何把一个大矩阵变成长方形子矩阵 Aij。",
+          "beats": [
+            "显示一个 2 by 2 分块。",
+            "以 m1、m2 标示行分割，以 p1、p2 标示列分割。",
+            "指出 Aij 有 mi 行和 pj 列。"
+          ],
+          "mathBlocks": [
+            "A = [[A11, A12], [A21, A22]]",
+            "Aij 的大小是 mi x pj"
+          ],
+          "animation": "分块图配行列大小标签"
+        },
+        {
+          "type": "operation_rule",
+          "cardTitle": "加法需要相同分割",
+          "goal": "说明逐块加法依赖相同切线，而不只是整体大小相同。",
+          "beats": [
+            "把拥有相同分割的 A 和 B 并排。",
+            "把每个 Aij 与 Bij 配对。",
+            "显示 A+B 是由区块和组成的矩阵。"
+          ],
+          "mathBlocks": [
+            "A+B = [Aij + Bij]"
+          ],
+          "animation": "相同颜色区块进入对应区块和"
+        },
+        {
+          "type": "operation_rule",
+          "cardTitle": "数乘可以逐块进行",
+          "goal": "把 cA=[cAij] 连到区块内每个元素的普通数乘。",
+          "beats": [
+            "显示标量 c 作用到整个分块矩阵。",
+            "显示每个输出区块都是 cAij。",
+            "强调分割形状保持不变。"
+          ],
+          "mathBlocks": [
+            "cA = [cAij]"
+          ],
+          "animation": "一个标量作用到每个区块"
+        },
+        {
+          "type": "multiplication_rule",
+          "cardTitle": "分块乘法沿用普通模式",
+          "goal": "把左上角输出区块 C11 显示成区块行乘区块列的和。",
+          "beats": [
+            "突出 A 的第一个区块行和 B 的第一个区块列。",
+            "显示乘积中的 C11。",
+            "写出 C11=A11B11+A12B21。"
+          ],
+          "mathBlocks": [
+            "C11 = A11B11 + A12B21"
+          ],
+          "animation": "区块行与区块列生成一个输出区块"
+        },
+        {
+          "type": "compatibility_check",
+          "cardTitle": "相容性才是真正的大小检查",
+          "goal": "说出每个乘积 AikBkj 所需的内侧区块大小条件。",
+          "beats": [
+            "显示 Aik 是 mi by pk。",
+            "显示 Bkj 是 pk by nj。",
+            "说明共同的 pk 令 AikBkj 有定义，结果大小为 mi by nj。"
+          ],
+          "mathBlocks": [
+            "Aik: mi x pk",
+            "Bkj: pk x nj",
+            "Cij = sum_{k=1}^t AikBkj"
+          ],
+          "animation": "由 Aik 与 Bkj 的大小链到 AikBkj"
+        },
+        {
+          "type": "column_partition_bridge",
+          "cardTitle": "列分块让多个乘积保持整齐",
+          "goal": "用来源中的列分块例子，把 AB 连到逐列乘积。",
+          "beats": [
+            "把 B 分成 b1、b2、b3 几列。",
+            "显示 AB=[Ab1, Ab2, Ab3]。",
+            "指出同一想法可逐列组织 AX=B。"
+          ],
+          "mathBlocks": [
+            "B=[b1,b2,...,br]",
+            "AB=[Ab1,Ab2,...,Abr]",
+            "AX=B"
+          ],
+          "animation": "列区块乘积列"
+        }
+      ]
+    }
+  }
+}

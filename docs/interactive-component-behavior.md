@@ -395,5 +395,15 @@ PDF exports preserve the representative classification states. The existing
 shows how row-operation chains behave after the article states that left
 multiplication by an elementary matrix performs the matching row operation.
 
+The Math1030 `3.5` block-matrices pass is Manim-only. The source-backed value
+is the fixed partition/compatibility sequence: choose horizontal and vertical
+cuts, track the `m_i` and `p_j` sizes, require the same partition for blockwise
+addition, apply scalar multiplication block by block, and check every
+`A_ik B_kj` product before forming the 2 by 2 block product formula. A new
+interactive widget would mostly duplicate existing matrix arithmetic and
+matrix multiplication controls while turning the section into a calculator
+surface. The localized `VideoExplanation` frames are enough for the article
+and export fallback.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

@@ -26,6 +26,9 @@ else
     "SpecialMatricesFamilyRecognitionStoryEn"
     "SpecialMatricesFamilyRecognitionStoryZhHk"
     "SpecialMatricesFamilyRecognitionStoryZhCn"
+    "BlockMatrixPartitionProductStoryEn"
+    "BlockMatrixPartitionProductStoryZhHk"
+    "BlockMatrixPartitionProductStoryZhCn"
     "GaussianEliminationRrefPivotStoryEn"
     "GaussianEliminationRrefPivotStoryZhHk"
     "GaussianEliminationRrefPivotStoryZhCn"
@@ -147,6 +150,9 @@ scene_file() {
       ;;
     SpecialMatricesFamilyRecognitionStory|SpecialMatricesFamilyRecognitionStoryEn|SpecialMatricesFamilyRecognitionStoryZhHk|SpecialMatricesFamilyRecognitionStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/special_matrices.py"
+      ;;
+    BlockMatrixPartitionProductStory|BlockMatrixPartitionProductStoryEn|BlockMatrixPartitionProductStoryZhHk|BlockMatrixPartitionProductStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1030/block_matrices.py"
       ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/gaussian_elimination_rref.py"
@@ -289,6 +295,15 @@ scene_locale() {
       printf '%s\n' "zh-hk"
       ;;
     SpecialMatricesFamilyRecognitionStoryZhCn)
+      printf '%s\n' "zh-cn"
+      ;;
+    BlockMatrixPartitionProductStory|BlockMatrixPartitionProductStoryEn)
+      printf '%s\n' "en"
+      ;;
+    BlockMatrixPartitionProductStoryZhHk)
+      printf '%s\n' "zh-hk"
+      ;;
+    BlockMatrixPartitionProductStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn)
@@ -449,6 +464,9 @@ video_basename() {
     SpecialMatricesFamilyRecognitionStory|SpecialMatricesFamilyRecognitionStoryEn|SpecialMatricesFamilyRecognitionStoryZhHk|SpecialMatricesFamilyRecognitionStoryZhCn)
       printf '%s\n' "special-matrices-family-recognition-story"
       ;;
+    BlockMatrixPartitionProductStory|BlockMatrixPartitionProductStoryEn|BlockMatrixPartitionProductStoryZhHk|BlockMatrixPartitionProductStoryZhCn)
+      printf '%s\n' "block-matrix-partition-product-story"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "gaussian-elimination-rref-pivot-story"
       ;;
@@ -562,6 +580,9 @@ scene_course() {
     SpecialMatricesFamilyRecognitionStory|SpecialMatricesFamilyRecognitionStoryEn|SpecialMatricesFamilyRecognitionStoryZhHk|SpecialMatricesFamilyRecognitionStoryZhCn)
       printf '%s\n' "math1030"
       ;;
+    BlockMatrixPartitionProductStory|BlockMatrixPartitionProductStoryEn|BlockMatrixPartitionProductStoryZhHk|BlockMatrixPartitionProductStoryZhCn)
+      printf '%s\n' "math1030"
+      ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn|ColumnRowSpaceRankStoryZhHk|ColumnRowSpaceRankStoryZhCn)
       printf '%s\n' "math1030"
       ;;
@@ -632,6 +653,9 @@ poster_timestamp() {
       ;;
     TransposeSymmetryStory|TransposeSymmetryStoryEn|TransposeSymmetryStoryZhHk|TransposeSymmetryStoryZhCn)
       printf '%s\n' "1.6"
+      ;;
+    BlockMatrixPartitionProductStory|BlockMatrixPartitionProductStoryEn|BlockMatrixPartitionProductStoryZhHk|BlockMatrixPartitionProductStoryZhCn)
+      printf '%s\n' "2.85"
       ;;
     *)
       printf '%s\n' "2.25"

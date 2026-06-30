@@ -906,3 +906,20 @@ unit-level coverage.
   assets are exposed and static TXT / PDF exports include the video-study
   frame sequence, the new family-checker snapshot, and the existing
   row-stepper snapshot without raw video or widget markup.
+
+### 2026-07-01 checkpoint 33: MATH1030 3.5 block-matrices video insertion integrity
+
+- Checkpoint name: block-matrix partition / product video embed and export
+  fallback integrity.
+- What was inspected: the existing EN / zh-HK / zh-CN `3.5` MDX files, the new
+  `VideoExplanation` frame sequence, static TXT / PDF exports, and the in-page
+  worked example / quick-check / reveal-solution placement.
+- What was changed: inserted the localized video explanation immediately after
+  the partition-motivation list and before the worked example. No quick-check,
+  exercise, or reveal-solution block was reordered.
+- Integrity note: this pass intentionally adds no widget, so there is no new
+  answer-checking surface. The video is a supporting figure for the existing
+  formula explanation.
+- Verification: local route and export checks confirmed the localized video
+  assets are exposed and static TXT / PDF exports include the video-study
+  frame sequence without raw video, poster, or internal video-id markup.

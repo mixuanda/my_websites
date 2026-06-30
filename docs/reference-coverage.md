@@ -1279,3 +1279,24 @@ existing invertibility note instead of creating a detached new route.
 - Status change: the 3.4 source-backed prose remains incorporated, and the new
   video explanation plus both widget snapshots are now incorporated as
   export-friendly static fallbacks.
+
+### 2026-07-01 checkpoint 39: MATH1030 3.5 block matrices video pass
+
+- Revisited `3.5 Block matrices` against `MATH1030-Notes.pdf` §3.5 pp. 57-61,
+  `1030gi-n01-01.pdf` pp. 5-6, `1030gi-n01-02.pdf` pp. 1-2, and
+  `1030gi-n01-se0102.pdf` pp. 1 and 4.
+- Added a trilingual article-embedded `VideoExplanation` for the
+  source-backed block workflow: cut a large matrix into rectangular blocks,
+  track each block size, require the same partition for blockwise addition,
+  apply scalars to every block, multiply 2 by 2 block matrices through the
+  ordinary row-column block formula, and check that every inner block product
+  is itself defined.
+- Kept the pass Manim-only. No new widget was added because the useful
+  teaching move is a compact compatibility diagram rather than an open-ended
+  block-matrix calculator.
+- Recorded the source boundary explicitly: the clip only gives a light bridge
+  to column-block multiplication and `AX=B` by columns. Full homogeneous
+  systems, null-space geometry, invertibility, row equivalence, and broader
+  matrix identities remain later units.
+- Status change: the 3.5 source-backed prose remains incorporated, and the new
+  video explanation is now incorporated as an export-friendly static fallback.

@@ -414,6 +414,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/special-matrices-family-recognition-story-zh-cn.mp4"
     ),
   },
+  "math1030-block-matrix-partition-product-story": {
+    conclusion: text(
+      "A block matrix is ordinary matrix algebra viewed at a larger scale. The partition must be fixed first, addition needs matching cuts, and multiplication is valid only when every block product in the formula is an ordinary defined matrix product.",
+      "分塊矩陣只是把普通矩陣代數提升到較大的觀察尺度。必須先固定分割，加法需要相同切線，而乘法只有在公式中每個區塊乘積都是普通有定義矩陣乘積時才成立。",
+      "分块矩阵只是把普通矩阵代数提升到较大的观察尺度。必须先固定分割，加法需要相同切线，而乘法只有在公式中每个区块乘积都是普通有定义矩阵乘积时才成立。"
+    ),
+    durationSeconds: 9,
+    frames: [
+      {
+        label: text("Partition first", "先定分割", "先定分割"),
+        value: text(
+          "Horizontal and vertical cuts divide one matrix into rectangular blocks A_ij. If A_ij has m_i rows and p_j columns, the block labels carry size information.",
+          "水平與垂直切線把一個矩陣分成長方形區塊 A_ij。若 A_ij 有 m_i 行和 p_j 列，區塊標記同時帶有大小資訊。",
+          "水平与垂直切线把一个矩阵分成长方形区块 A_ij。若 A_ij 有 m_i 行和 p_j 列，区块标记同时带有大小信息。"
+        ),
+      },
+      {
+        label: text("Same cuts for addition", "加法要同樣切線", "加法要同样切线"),
+        value: text(
+          "Blockwise addition requires the same partition, so every A_ij has a corresponding B_ij of the same size.",
+          "逐塊加法要求相同分割，因此每個 A_ij 都要有同樣大小的對應 B_ij。",
+          "逐块加法要求相同分割，因此每个 A_ij 都要有同样大小的对应 B_ij。"
+        ),
+      },
+      {
+        label: text("Scalar reaches every block", "純量作用每塊", "标量作用每块"),
+        value: text(
+          "Scalar multiplication preserves the partition: cA is the block matrix whose blocks are cA_ij.",
+          "純量乘法保留分割：cA 是以 cA_ij 作為各區塊的分塊矩陣。",
+          "数乘保留分割：cA 是以 cA_ij 作为各区块的分块矩阵。"
+        ),
+      },
+      {
+        label: text("2 x 2 block product", "2 x 2 分塊乘積", "2 x 2 分块乘积"),
+        value: text(
+          "For compatible 2 x 2 block partitions, the top-left block of AB is C_11=A_11B_11+A_12B_21, exactly mirroring ordinary matrix multiplication.",
+          "對相容的 2 x 2 分塊，AB 的左上區塊是 C_11=A_11B_11+A_12B_21，模式與普通矩陣乘法相同。",
+          "对相容的 2 x 2 分块，AB 的左上区块是 C_11=A_11B_11+A_12B_21，模式与普通矩阵乘法相同。"
+        ),
+      },
+      {
+        label: text("Compatibility check", "相容性檢查", "相容性检查"),
+        value: text(
+          "The formula works only if each A_ikB_kj is defined. If A_ik is m_i x p_k and B_kj is p_k x n_j, their product has size m_i x n_j.",
+          "公式只有在每個 A_ikB_kj 都有定義時才可用。若 A_ik 是 m_i x p_k，而 B_kj 是 p_k x n_j，乘積大小就是 m_i x n_j。",
+          "公式只有在每个 A_ikB_kj 都有定义时才可用。若 A_ik 是 m_i x p_k，而 B_kj 是 p_k x n_j，乘积大小就是 m_i x n_j。"
+        ),
+      },
+      {
+        label: text("Column-block bridge", "列分塊橋接", "列分块桥接"),
+        value: text(
+          "When B is partitioned into columns, AB=[Ab_1,Ab_2,...,Ab_r]. This is the same bookkeeping idea used later to organize several right-hand sides.",
+          "當 B 被分成多列時，AB=[Ab_1,Ab_2,...,Ab_r]。這就是之後組織多個右端時會用到的同一種簿記想法。",
+          "当 B 被分成多列时，AB=[Ab_1,Ab_2,...,Ab_r]。这就是之后组织多个右端时会用到的同一种簿记想法。"
+        ),
+      },
+    ],
+    summary: text(
+      "See how cuts create block matrices, why blockwise addition needs the same partition, and how compatible block products reproduce the ordinary multiplication rule.",
+      "觀看切線如何產生分塊矩陣、為何逐塊加法需要相同分割，以及相容區塊乘積如何重現普通乘法規則。",
+      "观看切线如何产生分块矩阵、为什么逐块加法需要相同分割，以及相容区块乘积如何重现普通乘法规则。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/block-matrix-partition-product-story-en.png",
+      "/generated/animations/math1030/block-matrix-partition-product-story-zh-hk.png",
+      "/generated/animations/math1030/block-matrix-partition-product-story-zh-cn.png"
+    ),
+    title: text(
+      "Block partitions and products",
+      "分塊與分塊乘積",
+      "分块与分块乘积"
+    ),
+    transcript: [
+      text(
+        "A block matrix begins with a partition: horizontal and vertical cuts group entries into smaller rectangular matrices.",
+        "分塊矩陣由分割開始：水平與垂直切線把元素組成較小的長方形矩陣。",
+        "分块矩阵由分割开始：水平与垂直切线把元素组成较小的长方形矩阵。"
+      ),
+      text(
+        "Addition and scalar multiplication are blockwise bookkeeping once the partition has been fixed.",
+        "分割固定後，加法與純量乘法就是逐塊簿記。",
+        "分割固定后，加法与数乘就是逐块簿记。"
+      ),
+      text(
+        "For multiplication, blocks may be treated like entries only when the inner block sizes make every product meaningful.",
+        "做乘法時，只有內側區塊大小令每個乘積都有意義，才可把區塊當作元素處理。",
+        "做乘法时，只有内侧区块大小让每个乘积都有意义，才可把区块当作元素处理。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/block-matrix-partition-product-story-en.mp4",
+      "/generated/animations/math1030/block-matrix-partition-product-story-zh-hk.mp4",
+      "/generated/animations/math1030/block-matrix-partition-product-story-zh-cn.mp4"
+    ),
+  },
   "math1030-equations-solution-sets-story": {
     conclusion: text(
       "The visible equations may be rewritten, but the object we protect is the full solution set: all ordered tuples that satisfy every equation at the same time.",
