@@ -357,5 +357,15 @@ matrix calculator. This pass adds a static export snapshot for
 `matrix-arithmetic-lab` so TXT and PDF exports show representative addition,
 subtraction, and scalar states instead of the raw widget id.
 
+The Math1030 `3.1` matrix multiplication / identity pass is also a
+Manim-plus-existing-widget pass. The new clip handles the curated conceptual
+sequence: compatible inner sizes, one row-column dot product becoming an entry,
+the repeated rule that fills the output matrix, right and left identity
+selection, and the order warning. The existing `matrix-multiplication-visualizer`
+remains the right reader-controlled follow-up because readers can alter input
+entries and see the product formula update without expanding the article into a
+general matrix calculator. The existing static export snapshot for the
+visualizer remains the export fallback paired with the new video frame sequence.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

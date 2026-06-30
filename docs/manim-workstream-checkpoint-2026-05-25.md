@@ -50,31 +50,30 @@ history.
 | Math1030 `2.5 Existence of row-echelon forms` | `math1030-existence-of-row-echelon-forms-story` | `docs/manim-existence-row-echelon-forms-video-qa-2026-06-30.md` |
 | Math1030 `1.1 Equations and solution sets` | `math1030-equations-solution-sets-story` | `docs/manim-equations-solution-sets-video-qa-2026-07-01.md` |
 | Math1030 `3.1 Matrix addition, subtraction, and scalar multiplication` | `math1030-matrix-entrywise-arithmetic-story` | `docs/manim-matrix-entrywise-arithmetic-video-qa-2026-07-01.md` |
+| Math1030 `3.1 Matrix multiplication and identity matrices` | `math1030-matrix-multiplication-identity-story` | `docs/manim-matrix-multiplication-identity-video-qa-2026-07-01.md` |
 
 ## Latest Slice Notes
 
-Math1030 `3.1` entrywise matrix arithmetic was implemented after roadmap,
-current MDX, and reference inspection confirmed the source boundary.
-`MATH1030-Notes.pdf` pp. 35-38 supports matrix equality, addition, scalar
-multiplication, zero matrices, additive inverses, subtraction, and entrywise
-laws. `1030gi-n01-se0102.pdf` pp. 1-3 and Practice Set 2 support the
-computational size-check / entrywise examples.
+Math1030 `3.1` matrix multiplication and identity matrices was implemented
+after roadmap, current MDX, and reference inspection confirmed the source
+boundary. `1030gi-n01-02.pdf` pp. 1-4, `MATH1030-Notes.pdf` pp. 39-46 and
+52-53, and Practice Set 2 support product-size compatibility, row-by-column
+entry construction, identity matrices, and standard product warnings.
 
 Fixes applied:
 
-- new storyboard covers the same-size gate, entrywise addition, scalar
-  multiplication, subtraction via additive inverse, zero matrices, and
-  entrywise laws;
+- new storyboard covers the product-size gate, a highlighted `c_11` row-column
+  dot product, full product assembly, right and left identity multiplication,
+  and the noncommutativity / order warning;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the matrix entrywise-arithmetic scene and writes
-  assets under `public/generated/animations/math1030/`;
-- video embed was placed before the existing matrix-arithmetic lab in all
+- render script now includes the matrix multiplication / identity scene and
+  writes assets under `public/generated/animations/math1030/`;
+- video embed was placed before the noncommutativity discussion in all
   three localized MDX files;
-- the existing `matrix-arithmetic-lab` remains the reader-controlled follow-up
-  and was verified after the video insertion;
-- a static export snapshot was added for `matrix-arithmetic-lab` so TXT/PDF
-  exports show representative `A+B`, `A-B`, and `cA` states instead of the raw
-  widget id.
+- the existing `matrix-multiplication-visualizer` remains the reader-controlled
+  follow-up and was verified after the video insertion;
+- TXT/PDF exports use the localized static video-study frames and the existing
+  multiplication-visualizer snapshot, without leaking raw video markup.
 
 ## Verification Stack Used For Latest Slice
 
@@ -85,6 +84,7 @@ Fixes applied:
 - `npm run verify:mdx-tables`
 - `npx tsc --noEmit --pretty false`
 - `npm run lint`
+- `npm run check:textbook-content`
 - `AUTH_SECRET=local-test-secret npm run build`
 - Browser DOM / console checks through system Chrome, route / asset checks,
   existing widget interaction, responsive screenshots, media metadata, target
@@ -98,8 +98,8 @@ priority changes.
 Expected first step:
 
 1. Start with the next unresolved Math1030 register item, currently
-   `matrix-algebra/matrix-multiplication-and-identity`, unless source
-   inspection changes the priority.
+   `matrix-algebra/transpose-and-special-matrices`; first inspect whether it
+   should be merged with `transposes-and-symmetric-matrices` before rendering.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset

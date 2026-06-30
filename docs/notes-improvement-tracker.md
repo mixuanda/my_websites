@@ -37,7 +37,7 @@ verification result, and any remaining follow-up.
 | Checkpoint UI | Checkpoint font is too small and not readable enough | In progress | Shared checkpoint shell, prompts, choices, inputs, feedback, and solution steps now use larger typography / spacing; committed, pushed, deployed, and HTTP/API/export-verified on `www.evanalysis.top`, but mobile / theme browser QA is still blocked. |
 | Checkpoint content | Math1030 needs more computational checkpoint practice | Not started | Use repository-backed MATH1030 practice / assignment sources, not generic filler. |
 | Checkpoint rendering | Some checkpoint mathematical structures do not render correctly | In progress | Rich-text rendering now promotes standalone math answer choices and no longer blocks fraction-like strings such as `1/sqrt(2)` as file paths; representative MATH1030 checkpoint HTML contains KaTeX output. |
-| Math1030 interactions | Gram-Schmidt / orthogonalization needs a clearer embedded interaction | In progress | MATH1030 `9.3 Gram-Schmidt orthogonalization` now has a trilingual Manim `VideoExplanation` focused on projection subtraction and span preservation; MATH1030 `3.2 Matrix multiplication and linear systems` now has a trilingual Manim bridge from row-by-column products to `Ax=b`; MATH1030 `3.3 Row-operation matrices` now has a trilingual Manim bridge from `E_rho=rho(I)` to left multiplication and inverse elementary matrices; MATH1030 `2.4 Solution-set types`, `2.5 Existence of row-echelon forms`, `6.3 Linear combinations and span`, `6.4 Linear dependence and independence`, `6.5 Basis and dimension`, `6.6 Column space, row space, and rank`, `6.7 Matrix subspaces, basis, and dimension`, `6.8 Basis extension and change of basis`, `7.1 Determinants and cofactor expansion`, `7.2 Row operations, products, and invertibility`, `7.3 Transpose, column operations, and Cramer's rule`, `8.1 Eigenvalues, eigenvectors, and eigenspaces`, `8.2 Diagonalization and similarity`, `8.3 Characteristic polynomials and diagonalization tests`, `9.1 Inner products, norms, and angles`, `9.2 Orthogonal sets and orthonormal bases`, and `9.4 Cauchy-Schwarz and triangle inequalities` now have trilingual Manim explanations integrated into their article flow; keep evaluating the next roadmap candidate, `1.1 Equations and solution sets`. |
+| Math1030 interactions | Gram-Schmidt / orthogonalization needs a clearer embedded interaction | In progress | MATH1030 `1.1 Equations and solution sets`, `2.4 Solution-set types`, `2.5 Existence of row-echelon forms`, `3.1 Matrix addition, subtraction, and scalar multiplication`, `3.1 Matrix multiplication and identity matrices`, `3.2 Matrix multiplication and linear systems`, `3.3 Row-operation matrices`, `6.3 Linear combinations and span`, `6.4 Linear dependence and independence`, `6.5 Basis and dimension`, `6.6 Column space, row space, and rank`, `6.7 Matrix subspaces, basis, and dimension`, `6.8 Basis extension and change of basis`, `7.1 Determinants and cofactor expansion`, `7.2 Row operations, products, and invertibility`, `7.3 Transpose, column operations, and Cramer's rule`, `8.1 Eigenvalues, eigenvectors, and eigenspaces`, `8.2 Diagonalization and similarity`, `8.3 Characteristic polynomials and diagonalization tests`, `9.1 Inner products, norms, and angles`, `9.2 Orthogonal sets and orthonormal bases`, `9.3 Gram-Schmidt orthogonalization`, and `9.4 Cauchy-Schwarz and triangle inequalities` now have trilingual Manim explanations integrated into their article flow; keep evaluating the next roadmap candidate, `3.2 Transpose and special matrices`. |
 | Math1030 rendering | Existing Math1030 pages have rendering mistakes | Not started | Run page-level MDX / KaTeX / browser QA before and after changes. |
 | Math1090 content | Some Math1090 material may have been omitted from extra lecture notes | Not started | Re-audit `reference/MATH1090` lecture notes against authored content before writing. |
 | Math1090 visual explanations | First source-backed Manim pilot for functions / relations | Completed | MATH1090 `2.2 Functions and relations` now has a trilingual Manim `VideoExplanation` for domain, target, graph, image, preimage, injective, surjective, and composition; local static, browser, and export QA are recorded in `docs/manim-function-map-video-qa-2026-06-11.md`. |
@@ -347,13 +347,21 @@ Progress on the animation slice:
   preservation theorem, added source-backed worked examples, no new widget, and
   TXT/PDF static fallback; focused QA is recorded in
   `docs/manim-existence-row-echelon-forms-video-qa-2026-06-30.md`.
+- completed the twenty-sixth Math1030 Manim pass for `3.1 Matrix multiplication
+  and identity matrices` with trilingual
+  `math1030-matrix-multiplication-identity-story` videos, localized posters, a
+  new trilingual storyboard, article embeds after the identity matrix
+  paragraph, the existing `matrix-multiplication-visualizer` preserved as the
+  reader-controlled follow-up, and TXT/PDF static fallback; focused QA is
+  recorded in
+  `docs/manim-matrix-multiplication-identity-video-qa-2026-07-01.md`.
 
 Remaining animation work:
 
 - decide whether these generated assets should be committed directly under
   `public/generated/animations/` or moved to external/static hosting later.
-- continue with the next roadmap slice: Math1030 `1.1 Equations and solution
-  sets`, unless the roadmap priority changes.
+- continue with the next roadmap slice: Math1030 `3.2 Transpose and special
+  matrices`, unless the roadmap priority changes.
 
 ## 1. Global Notes Navigation / Long Course Sidebar
 

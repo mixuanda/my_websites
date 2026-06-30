@@ -1215,3 +1215,22 @@ existing invertibility note instead of creating a detached new route.
 - Status change: the 3.1 entrywise-arithmetic prose remains incorporated, and
   the new video explanation plus widget snapshot are now incorporated as
   export-friendly static fallbacks.
+
+### 2026-07-01 checkpoint 36: MATH1030 3.1 matrix multiplication / identity video pass
+
+- Revisited `3.1 Matrix multiplication and identity matrices` against
+  `1030gi-n01-02.pdf` pp. 1-4, `MATH1030-Notes.pdf` pp. 39-46 and pp. 52-53,
+  Practice Set 2, and Practice Set 2 solutions.
+- Added a trilingual article-embedded `VideoExplanation` for the source-backed
+  product workflow: check that inner sizes match, build an entry as a row-column
+  dot product, repeat that rule across the output matrix, and read `AI=A` and
+  `IA=A` as identity-column / identity-row selection.
+- Preserved the existing `matrix-multiplication-visualizer` as the
+  reader-controlled follow-up. No new calculator surface was introduced.
+- Recorded the source boundary explicitly: the clip does not repeat the later
+  `Ax=b` systems video, does not introduce inverses or elementary matrices, and
+  does not imply commutativity, cancellation, or scalar polynomial shortcuts for
+  matrix products.
+- Status change: the 3.1 multiplication prose remains incorporated, and the new
+  video explanation plus existing widget snapshot are now incorporated as
+  export-friendly static fallbacks.

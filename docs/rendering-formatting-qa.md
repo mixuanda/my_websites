@@ -735,3 +735,22 @@ Current checkpoint resolution:
   route, correct locale-specific mp4/poster values, no raw widget id, no
   actionable console errors, and no actionable network errors after ignoring
   the expected unauthenticated local `/api/user/profile` request.
+
+### 2026-07-01 checkpoint 31: MATH1030 3.1 matrix multiplication rendering pass
+
+- Checkpoint name: `3.1` matrix multiplication / identity video and existing
+  multiplication visualizer rendering.
+- What was inspected: EN / zh-HK / zh-CN note pages for
+  `matrix-multiplication-and-identity`, the new localized video card, the
+  existing `matrix-multiplication-visualizer`, mobile layout at `390 x 844`,
+  and dark mode.
+- Rendering note: the video stays inside the article flow after the identity
+  paragraph and before the noncommutativity discussion. Desktop and mobile
+  screenshots showed the poster, controls, localized title, and existing
+  visualizer in sequence without horizontal overflow; the mobile video measured
+  `306px` inside a `390px` viewport.
+- Verification: Browser QA through system Chrome found one localized video per
+  route, correct locale-specific mp4/poster values, no raw widget id, no
+  framework overlay, ready video metadata, a working visualizer update after an
+  input edit, and no actionable console/network issues beyond the expected
+  local Vercel Insights 404 in `next start`.

@@ -17,6 +17,9 @@ else
     "MatrixEntrywiseArithmeticStoryEn"
     "MatrixEntrywiseArithmeticStoryZhHk"
     "MatrixEntrywiseArithmeticStoryZhCn"
+    "MatrixMultiplicationIdentityStoryEn"
+    "MatrixMultiplicationIdentityStoryZhHk"
+    "MatrixMultiplicationIdentityStoryZhCn"
     "GaussianEliminationRrefPivotStoryEn"
     "GaussianEliminationRrefPivotStoryZhHk"
     "GaussianEliminationRrefPivotStoryZhCn"
@@ -129,6 +132,9 @@ scene_file() {
       ;;
     MatrixEntrywiseArithmeticStory|MatrixEntrywiseArithmeticStoryEn|MatrixEntrywiseArithmeticStoryZhHk|MatrixEntrywiseArithmeticStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/matrix_entrywise_arithmetic.py"
+      ;;
+    MatrixMultiplicationIdentityStory|MatrixMultiplicationIdentityStoryEn|MatrixMultiplicationIdentityStoryZhHk|MatrixMultiplicationIdentityStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1030/matrix_multiplication_identity.py"
       ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/gaussian_elimination_rref.py"
@@ -244,6 +250,15 @@ scene_locale() {
       printf '%s\n' "zh-hk"
       ;;
     MatrixEntrywiseArithmeticStoryZhCn)
+      printf '%s\n' "zh-cn"
+      ;;
+    MatrixMultiplicationIdentityStory|MatrixMultiplicationIdentityStoryEn)
+      printf '%s\n' "en"
+      ;;
+    MatrixMultiplicationIdentityStoryZhHk)
+      printf '%s\n' "zh-hk"
+      ;;
+    MatrixMultiplicationIdentityStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn)
@@ -395,6 +410,9 @@ video_basename() {
     MatrixEntrywiseArithmeticStory|MatrixEntrywiseArithmeticStoryEn|MatrixEntrywiseArithmeticStoryZhHk|MatrixEntrywiseArithmeticStoryZhCn)
       printf '%s\n' "matrix-entrywise-arithmetic-story"
       ;;
+    MatrixMultiplicationIdentityStory|MatrixMultiplicationIdentityStoryEn|MatrixMultiplicationIdentityStoryZhHk|MatrixMultiplicationIdentityStoryZhCn)
+      printf '%s\n' "matrix-multiplication-identity-story"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "gaussian-elimination-rref-pivot-story"
       ;;
@@ -497,6 +515,9 @@ scene_course() {
       printf '%s\n' "math1030"
       ;;
     MatrixEntrywiseArithmeticStory|MatrixEntrywiseArithmeticStoryEn|MatrixEntrywiseArithmeticStoryZhHk|MatrixEntrywiseArithmeticStoryZhCn)
+      printf '%s\n' "math1030"
+      ;;
+    MatrixMultiplicationIdentityStory|MatrixMultiplicationIdentityStoryEn|MatrixMultiplicationIdentityStoryZhHk|MatrixMultiplicationIdentityStoryZhCn)
       printf '%s\n' "math1030"
       ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn|ColumnRowSpaceRankStoryZhHk|ColumnRowSpaceRankStoryZhCn)

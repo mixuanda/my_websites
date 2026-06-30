@@ -937,3 +937,31 @@ Use this shape for future entries:
   build, local Browser DOM / console checks through system Chrome, existing
   widget interaction, mobile checks, and three-locale TXT / PDF export checks
   passed.
+
+### 2026-07-01: MATH1030 3.1 matrix multiplication / identity video checkpoint
+
+- Gap selected: the video roadmap marked Math1030 `3.1 Matrix multiplication
+  and identity matrices` as a Manim + widget target because the article already
+  had source-backed product prose and an existing
+  `matrix-multiplication-visualizer` follow-up.
+- Reference basis: `reference/MATH1030/1030gi-n01-02.pdf` pp. 1-4,
+  `reference/MATH1030/MATH1030-Notes.pdf` pp. 39-46 and pp. 52-53, Practice
+  Set 2, and Practice Set 2 solutions.
+- Content files changed: added the 3.1 multiplication storyboard, Manim scene,
+  render-script entries, localized `VideoExplanation` registry metadata, and
+  EN / zh-HK / zh-CN page embeds.
+- Visuals added: trilingual Manim video and poster assets for product-size
+  compatibility, one row-column dot product becoming `c_11`, full product
+  assembly, right and left identity selection, and the order warning.
+- Interactions added: no new widget. The existing
+  `matrix-multiplication-visualizer` remains the reader-controlled follow-up
+  and was verified after insertion by editing an input entry and observing the
+  updated product calculation.
+- Exercises added: none. Existing quick checks and reveal solutions were left
+  in place; the video insertion did not reorder answer blocks.
+- Verification: Python syntax, storyboard JSON, render-script syntax, Manim
+  render, media metadata checks, visual frame inspection, `git diff --check`,
+  MDX table verification, TypeScript, lint, textbook content check, production
+  build, local Browser DOM / console checks through system Chrome, existing
+  widget interaction, mobile and dark-mode checks, and three-locale TXT / PDF
+  export checks passed locally.

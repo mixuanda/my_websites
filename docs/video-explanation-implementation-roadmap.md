@@ -46,6 +46,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/matrices/existence-of-row-echelon-forms`
   - `math1030/systems/equations-solution-sets`
   - `math1030/matrix-algebra/matrix-addition-scalar-multiplication`
+  - `math1030/matrix-algebra/matrix-multiplication-and-identity`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -76,6 +77,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/matrices/existence-of-row-echelon-forms`
   - `math1030/systems/equations-solution-sets`
   - `math1030/matrix-algebra/matrix-addition-scalar-multiplication`
+  - `math1030/matrix-algebra/matrix-multiplication-and-identity`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -149,10 +151,12 @@ Use this order unless a later user request changes priority:
    Math1030 `7.2 Row operations, products, and invertibility`, and Math1030
    `7.3 Transpose, column operations, and Cramer's rule`, Math1030 `1.1
    Equations and solution sets`, Math1030 `3.1 Matrix addition, subtraction,
-   and scalar multiplication`, Math1030 `8.1 Eigenvalues, eigenvectors, and eigenspaces`, Math1030 `8.2
-   Diagonalization and similarity`, Math1030 `8.3 Characteristic polynomials
-   and diagonalization tests`, and Math1030 `9.1 Inner products, norms, and
-   angles`, and Math1030 `9.2 Orthogonal sets and orthonormal bases`.
+   and scalar multiplication`, Math1030 `3.1 Matrix multiplication and identity
+   matrices`, Math1030 `8.1 Eigenvalues, eigenvectors, and eigenspaces`,
+   Math1030 `8.2 Diagonalization and similarity`, Math1030 `8.3
+   Characteristic polynomials and diagonalization tests`, and Math1030 `9.1
+   Inner products, norms, and angles`, and Math1030 `9.2 Orthogonal sets and
+   orthonormal bases`.
 2. Math1030 basis, rank, determinant, and eigenvalue units.
 3. Remaining Math1030 matrix-algebra clips such as transpose, special
    matrices, and block matrices.
@@ -173,7 +177,7 @@ Use this order unless a later user request changes priority:
 | `math1030/systems/equations-solution-sets` | 1.1 Equations and solution sets | Done | Lines as solution sets, intersections, empty intersections, coincident-line families, reversible equation rewrites, and bridge to augmented matrices. | Completed as the twenty-fourth Math1030 trilingual Manim pass; existing `system-augmented-matrix-explorer` remains the reader-controlled follow-up. |
 | `math1030/systems/reading-theorems-and-proof-language` | 1.2 Reading theorems and proof language | Defer | Proof-reading map only if later needed. | Improve prose/checkpoints first. |
 | `math1030/matrix-algebra/matrix-addition-scalar-multiplication` | 3.1 Matrix addition, subtraction, and scalar multiplication | Done | Entrywise arithmetic and scalar scaling. | Completed as the twenty-fifth Math1030 trilingual Manim pass; existing `matrix-arithmetic-lab` remains the reader-controlled follow-up and now has a static export snapshot. |
-| `math1030/matrix-algebra/matrix-multiplication-and-identity` | 3.1 Matrix multiplication and identity matrices | Manim + widget | Dot products becoming entries; identity preserving vectors. | Storyboard multiplication panes. |
+| `math1030/matrix-algebra/matrix-multiplication-and-identity` | 3.1 Matrix multiplication and identity matrices | Done | Dot products becoming entries; identity preserving vectors. | Completed as the twenty-sixth Math1030 trilingual Manim pass; existing `matrix-multiplication-visualizer` remains the reader-controlled follow-up and export snapshot. |
 | `math1030/matrix-algebra/matrix-multiplication-and-linear-systems` | 3.2 Matrix multiplication and linear systems | Done | Matrix product as multiple linear equations. | Completed as the fifth trilingual Manim pilot; existing multiplication visualizer remains the reader-controlled follow-up. |
 | `math1030/matrix-algebra/transpose-and-special-matrices` | 3.2 Transpose and special matrices | Manim | Reflect entries across the diagonal and label matrix families. | Consolidate with symmetric/skew-symmetric unit if overlapping. |
 | `math1030/matrix-algebra/row-operation-matrices` | 3.3 Row-operation matrices | Done | Elementary matrices acting by left multiplication. | Completed as the sixth trilingual Manim pilot; no separate widget exists for this unit yet. |
@@ -270,7 +274,8 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 These are the concrete next slices to execute one by one:
 
 1. Continue the next unresolved Math1030 matrix-algebra register item:
-   `matrix-algebra/matrix-multiplication-and-identity`, unless the roadmap
+   `matrix-algebra/transpose-and-special-matrices`, while checking overlap with
+   `matrix-algebra/transposes-and-symmetric-matrices`, unless the roadmap
    priority changes.
 2. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.

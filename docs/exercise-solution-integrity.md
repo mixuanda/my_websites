@@ -843,3 +843,23 @@ unit-level coverage.
   titles without showing the raw widget id. Local TXT / PDF export checks
   passed for all three locales, including the static video sequence, the static
   matrix-arithmetic lab snapshot, and no leaked video markup.
+
+### 2026-07-01 checkpoint 30: MATH1030 3.1 matrix multiplication video insertion integrity
+
+- Checkpoint name: `3.1` matrix multiplication / identity video embed, existing
+  multiplication visualizer, and export fallback integrity.
+- What was inspected: the existing EN / zh-HK / zh-CN `3.1` multiplication MDX
+  files, the new `VideoExplanation` frame sequence, the existing
+  `matrix-multiplication-visualizer`, static TXT / PDF exports, and the
+  existing in-page quick-check / reveal-solution placement.
+- What was changed: inserted the localized video explanation after the identity
+  matrix paragraph and before the noncommutativity discussion; no quick-check,
+  exercise, or reveal-solution block was reordered.
+- Integrity note: the visualizer remains below the video as the interactive
+  follow-up. Browser QA changed the first matrix input to `5` and verified the
+  displayed product calculation updated to `16 = 5*2 + 2*3`.
+- Verification: local Browser DOM checks confirmed the EN / zh-HK / zh-CN
+  routes expose the localized video assets and the existing visualizer without
+  showing the raw widget id. Local TXT / PDF export checks passed for all three
+  locales, including the static video sequence, the existing visualizer
+  snapshot, and no leaked video markup.

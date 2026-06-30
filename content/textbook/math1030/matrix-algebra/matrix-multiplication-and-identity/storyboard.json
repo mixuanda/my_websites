@@ -1,0 +1,288 @@
+{
+  "course": "math1030",
+  "chapter": "matrix-algebra",
+  "unit": "matrix-multiplication-and-identity",
+  "unitTitle": {
+    "en": "3.1 Matrix multiplication and identity matrices",
+    "zh-hk": "3.1 矩陣乘法與單位矩陣",
+    "zh-cn": "3.1 矩阵乘法与单位矩阵"
+  },
+  "videoId": "math1030-matrix-multiplication-identity-story",
+  "sourceBoundary": {
+    "en": "This storyboard uses MATH1030-Notes.pdf pp. 39-43 and 1030gi-n01-02.pdf pp. 1-4 for row-vector by column-vector multiplication, the general row-by-column entry formula, the output-size rule, noncommutativity warnings, the identity matrix definition, and the equalities I_m A = A and A I_n = A. It also uses Practice Set 2 questions 2, 3, 5, 6, and 7 as supported practice context for defined products, product expansion, triangular closure, and common false statements. The clip does not replace the separate 3.2 Ax=b video.",
+    "zh-hk": "此 storyboard 以 MATH1030-Notes.pdf 第 39-43 頁及 1030gi-n01-02.pdf 第 1-4 頁為來源，涵蓋行向量乘列向量、一般行乘列元素公式、輸出大小規則、非交換性提醒、單位矩陣定義，以及 I_m A = A 和 A I_n = A。Practice Set 2 第 2、3、5、6、7 題支持有定義乘積、乘積展開、三角矩陣封閉性與常見錯誤判斷。不取代另一條 3.2 Ax=b 影片。",
+    "zh-cn": "此 storyboard 以 MATH1030-Notes.pdf 第 39-43 页及 1030gi-n01-02.pdf 第 1-4 页为来源，涵盖行向量乘列向量、一般行乘列元素公式、输出大小规则、非交换性提醒、单位矩阵定义，以及 I_m A = A 和 A I_n = A。Practice Set 2 第 2、3、5、6、7 题支持有定义乘积、乘积展开、三角矩阵封闭性与常见错误判断。不取代另一条 3.2 Ax=b 视频。"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "size_gate",
+          "cardTitle": "Inner size decides whether the product exists",
+          "goal": "Show that a 2 by 3 matrix can multiply a 3 by 2 matrix because each row has enough entries to pair with each column.",
+          "beats": [
+            "Display A as 2 by 3 and B as 3 by 2.",
+            "Mark the matching inner size 3.",
+            "Preview that the result has outer size 2 by 2."
+          ],
+          "mathBlocks": [
+            "A in M_{2 x 3}, B in M_{3 x 2}",
+            "AB in M_{2 x 2}"
+          ],
+          "animation": "matrix panes with inner-size and outer-size badges"
+        },
+        {
+          "type": "entry_dot_product",
+          "cardTitle": "One output entry is one row-column pairing",
+          "goal": "Unpack c11 as a dot-product-style sum.",
+          "beats": [
+            "Highlight row 1 of A and column 1 of B.",
+            "Move attention to the top-left output entry.",
+            "Write c11 = 1*4 + 2*5 + (-1)*6 = 8."
+          ],
+          "mathBlocks": [
+            "c_{11}=1\\cdot 4+2\\cdot 5+(-1)\\cdot 6=8"
+          ],
+          "animation": "highlighted row and column feed a highlighted result cell"
+        },
+        {
+          "type": "repeat_rule",
+          "cardTitle": "Repeat the same rule for every cell",
+          "goal": "Show that the whole product is obtained by repeating the same row-column calculation.",
+          "beats": [
+            "Reveal all four entries of AB.",
+            "Keep the generic formula c_ik = sum_j a_ij b_jk visible.",
+            "Warn that this is not entrywise multiplication."
+          ],
+          "mathBlocks": [
+            "c_{ik}=a_{i1}b_{1k}+a_{i2}b_{2k}+a_{i3}b_{3k}"
+          ],
+          "animation": "four output cells light up in order"
+        },
+        {
+          "type": "right_identity",
+          "cardTitle": "Right identity preserves columns",
+          "goal": "Explain A I_n = A by showing each identity column selects the corresponding column of A.",
+          "beats": [
+            "Display a 2 by 2 matrix A beside I_2.",
+            "Highlight the first column of I_2 selecting the first column of A.",
+            "Reveal A I_2 = A."
+          ],
+          "mathBlocks": [
+            "A I_2 = A"
+          ],
+          "animation": "identity columns act like selectors"
+        },
+        {
+          "type": "left_identity",
+          "cardTitle": "Left identity preserves rows",
+          "goal": "Explain I_m A = A by showing identity rows leave the rows of A in place.",
+          "beats": [
+            "Display I_2 beside the same matrix A.",
+            "Highlight the first row of I_2 selecting the first row of A.",
+            "Reveal I_2 A = A."
+          ],
+          "mathBlocks": [
+            "I_2 A = A"
+          ],
+          "animation": "identity rows act like selectors"
+        },
+        {
+          "type": "order_warning",
+          "cardTitle": "Order still matters",
+          "goal": "Close by separating the identity behavior from the false belief that all matrix products commute.",
+          "beats": [
+            "Compare AB and BA dimension outcomes.",
+            "State that even when both products exist, they answer different row-column questions.",
+            "Point readers to the live multiplication visualizer below."
+          ],
+          "mathBlocks": [
+            "AB != BA in general"
+          ],
+          "animation": "two order cards with different output sizes"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "size_gate",
+          "cardTitle": "內側大小決定乘積是否存在",
+          "goal": "說明 2 by 3 矩陣可以乘 3 by 2 矩陣，因為每一行都有足夠元素配對每一列。",
+          "beats": [
+            "顯示 A 是 2 by 3、B 是 3 by 2。",
+            "標示吻合的內側大小 3。",
+            "預告結果大小由外側大小決定，是 2 by 2。"
+          ],
+          "mathBlocks": [
+            "A in M_{2 x 3}, B in M_{3 x 2}",
+            "AB in M_{2 x 2}"
+          ],
+          "animation": "矩陣分格附內側大小與外側大小標籤"
+        },
+        {
+          "type": "entry_dot_product",
+          "cardTitle": "一個輸出元素就是一次行列配對",
+          "goal": "把 c11 拆成類似內積的和。",
+          "beats": [
+            "突出 A 的第 1 行與 B 的第 1 列。",
+            "把注意力移到左上角輸出元素。",
+            "寫出 c11 = 1*4 + 2*5 + (-1)*6 = 8。"
+          ],
+          "mathBlocks": [
+            "c_{11}=1\\cdot 4+2\\cdot 5+(-1)\\cdot 6=8"
+          ],
+          "animation": "被標示的行與列共同產生被標示的結果格"
+        },
+        {
+          "type": "repeat_rule",
+          "cardTitle": "每一格重複同一條規則",
+          "goal": "顯示整個乘積由同一種行列計算重複得到。",
+          "beats": [
+            "顯示 AB 的四個元素。",
+            "保留一般公式 c_ik = sum_j a_ij b_jk。",
+            "提醒這不是逐格相乘。"
+          ],
+          "mathBlocks": [
+            "c_{ik}=a_{i1}b_{1k}+a_{i2}b_{2k}+a_{i3}b_{3k}"
+          ],
+          "animation": "四個輸出格依次亮起"
+        },
+        {
+          "type": "right_identity",
+          "cardTitle": "右邊單位矩陣保持列不變",
+          "goal": "用單位矩陣的列選擇作用，說明 A I_n = A。",
+          "beats": [
+            "顯示一個 2 by 2 矩陣 A 與 I_2。",
+            "突出 I_2 第一列如何選出 A 的第一列。",
+            "顯示 A I_2 = A。"
+          ],
+          "mathBlocks": [
+            "A I_2 = A"
+          ],
+          "animation": "單位矩陣列像選擇器一樣作用"
+        },
+        {
+          "type": "left_identity",
+          "cardTitle": "左邊單位矩陣保持行不變",
+          "goal": "用單位矩陣的行選擇作用，說明 I_m A = A。",
+          "beats": [
+            "顯示 I_2 與同一個矩陣 A。",
+            "突出 I_2 第一行如何保留 A 的第一行。",
+            "顯示 I_2 A = A。"
+          ],
+          "mathBlocks": [
+            "I_2 A = A"
+          ],
+          "animation": "單位矩陣行像選擇器一樣作用"
+        },
+        {
+          "type": "order_warning",
+          "cardTitle": "次序仍然重要",
+          "goal": "把單位矩陣的不改變作用，與「所有矩陣乘積都可交換」這個錯誤想法分開。",
+          "beats": [
+            "比較 AB 與 BA 的大小結果。",
+            "說明即使兩個乘積都存在，它們回答的行列問題也不同。",
+            "把讀者帶到下面的互動乘法工具。"
+          ],
+          "mathBlocks": [
+            "一般而言 AB != BA"
+          ],
+          "animation": "兩張次序卡顯示不同輸出大小"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "size_gate",
+          "cardTitle": "内侧大小决定乘积是否存在",
+          "goal": "说明 2 by 3 矩阵可以乘 3 by 2 矩阵，因为每一行都有足够元素配对每一列。",
+          "beats": [
+            "显示 A 是 2 by 3、B 是 3 by 2。",
+            "标示匹配的内侧大小 3。",
+            "预告结果大小由外侧大小决定，是 2 by 2。"
+          ],
+          "mathBlocks": [
+            "A in M_{2 x 3}, B in M_{3 x 2}",
+            "AB in M_{2 x 2}"
+          ],
+          "animation": "矩阵分格附内侧大小与外侧大小标签"
+        },
+        {
+          "type": "entry_dot_product",
+          "cardTitle": "一个输出元素就是一次行列配对",
+          "goal": "把 c11 拆成类似内积的和。",
+          "beats": [
+            "突出 A 的第 1 行与 B 的第 1 列。",
+            "把注意力移到左上角输出元素。",
+            "写出 c11 = 1*4 + 2*5 + (-1)*6 = 8。"
+          ],
+          "mathBlocks": [
+            "c_{11}=1\\cdot 4+2\\cdot 5+(-1)\\cdot 6=8"
+          ],
+          "animation": "被标示的行与列共同产生被标示的结果格"
+        },
+        {
+          "type": "repeat_rule",
+          "cardTitle": "每一格重复同一条规则",
+          "goal": "显示整个乘积由同一种行列计算重复得到。",
+          "beats": [
+            "显示 AB 的四个元素。",
+            "保留一般公式 c_ik = sum_j a_ij b_jk。",
+            "提醒这不是逐格相乘。"
+          ],
+          "mathBlocks": [
+            "c_{ik}=a_{i1}b_{1k}+a_{i2}b_{2k}+a_{i3}b_{3k}"
+          ],
+          "animation": "四个输出格依次亮起"
+        },
+        {
+          "type": "right_identity",
+          "cardTitle": "右边单位矩阵保持列不变",
+          "goal": "用单位矩阵的列选择作用，说明 A I_n = A。",
+          "beats": [
+            "显示一个 2 by 2 矩阵 A 与 I_2。",
+            "突出 I_2 第一列如何选出 A 的第一列。",
+            "显示 A I_2 = A。"
+          ],
+          "mathBlocks": [
+            "A I_2 = A"
+          ],
+          "animation": "单位矩阵列像选择器一样作用"
+        },
+        {
+          "type": "left_identity",
+          "cardTitle": "左边单位矩阵保持行不变",
+          "goal": "用单位矩阵的行选择作用，说明 I_m A = A。",
+          "beats": [
+            "显示 I_2 与同一个矩阵 A。",
+            "突出 I_2 第一行如何保留 A 的第一行。",
+            "显示 I_2 A = A。"
+          ],
+          "mathBlocks": [
+            "I_2 A = A"
+          ],
+          "animation": "单位矩阵行像选择器一样作用"
+        },
+        {
+          "type": "order_warning",
+          "cardTitle": "次序仍然重要",
+          "goal": "把单位矩阵的不改变作用，与“所有矩阵乘积都可交换”这个错误想法分开。",
+          "beats": [
+            "比较 AB 与 BA 的大小结果。",
+            "说明即使两个乘积都存在，它们回答的行列问题也不同。",
+            "把读者带到下面的互动乘法工具。"
+          ],
+          "mathBlocks": [
+            "一般而言 AB != BA"
+          ],
+          "animation": "两张次序卡显示不同输出大小"
+        }
+      ]
+    }
+  }
+}

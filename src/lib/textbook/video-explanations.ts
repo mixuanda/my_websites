@@ -129,6 +129,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/matrix-entrywise-arithmetic-story-zh-cn.mp4"
     ),
   },
+  "math1030-matrix-multiplication-identity-story": {
+    conclusion: text(
+      "A matrix product is defined by compatible inner sizes. Each output entry is a row-column sum, and identity matrices preserve compatible matrices because their rows and columns select the original rows and columns.",
+      "矩陣乘積由相容的內側大小決定是否有定義。每個輸出元素都是行列求和，而單位矩陣會保持相容矩陣不變，因為它的行和列會選回原本的行與列。",
+      "矩阵乘积由相容的内侧大小决定是否有定义。每个输出元素都是行列求和，而单位矩阵会保持相容矩阵不变，因为它的行和列会选回原本的行与列。"
+    ),
+    durationSeconds: 9,
+    frames: [
+      {
+        label: text("Size gate", "大小入口", "大小入口"),
+        value: text(
+          "A 2 x 3 matrix can multiply a 3 x 2 matrix because the inner sizes match. The outer sizes make AB a 2 x 2 matrix.",
+          "2 x 3 矩陣可以乘 3 x 2 矩陣，因為內側大小吻合。外側大小決定 AB 是 2 x 2 矩陣。",
+          "2 x 3 矩阵可以乘 3 x 2 矩阵，因为内侧大小匹配。外侧大小决定 AB 是 2 x 2 矩阵。"
+        ),
+      },
+      {
+        label: text("One entry", "一個元素", "一个元素"),
+        value: text(
+          "The top-left output entry uses row 1 of A and column 1 of B: c11 = 1*4 + 2*5 + (-1)*6 = 8.",
+          "左上角輸出元素使用 A 的第 1 行與 B 的第 1 列：c11 = 1*4 + 2*5 + (-1)*6 = 8。",
+          "左上角输出元素使用 A 的第 1 行与 B 的第 1 列：c11 = 1*4 + 2*5 + (-1)*6 = 8。"
+        ),
+      },
+      {
+        label: text("Whole product", "整個乘積", "整个乘积"),
+        value: text(
+          "Repeat the row-column rule for every output cell. The product is not built by multiplying corresponding positions.",
+          "對每個輸出格重複行乘列規則。乘積不是把對應位置逐格相乘而成。",
+          "对每个输出格重复行乘列规则。乘积不是把对应位置逐格相乘而成。"
+        ),
+      },
+      {
+        label: text("Right identity", "右邊單位矩陣", "右边单位矩阵"),
+        value: text(
+          "In A I_n = A, the columns of I_n select the columns of A, so right multiplication by the identity preserves A.",
+          "在 A I_n = A 中，I_n 的列會選出 A 的各列，所以右乘單位矩陣保持 A 不變。",
+          "在 A I_n = A 中，I_n 的列会选出 A 的各列，所以右乘单位矩阵保持 A 不变。"
+        ),
+      },
+      {
+        label: text("Left identity", "左邊單位矩陣", "左边单位矩阵"),
+        value: text(
+          "In I_m A = A, the rows of I_m select the rows of A, so left multiplication by the identity also preserves A.",
+          "在 I_m A = A 中，I_m 的行會選出 A 的各行，所以左乘單位矩陣也保持 A 不變。",
+          "在 I_m A = A 中，I_m 的行会选出 A 的各行，所以左乘单位矩阵也保持 A 不变。"
+        ),
+      },
+      {
+        label: text("Order warning", "次序提醒", "次序提醒"),
+        value: text(
+          "Identity matrices are special. In general AB and BA ask different row-column questions and need not be equal.",
+          "單位矩陣是特殊情況。一般而言，AB 與 BA 回答的是不同的行列問題，不必相等。",
+          "单位矩阵是特殊情形。一般而言，AB 与 BA 回答的是不同的行列问题，不必相等。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch one matrix product entry form from a row-column sum, then see why multiplying by an identity matrix preserves rows and columns.",
+      "觀看一個矩陣乘積元素如何由行列求和形成，再看單位矩陣為何會保留原本的行與列。",
+      "观看一个矩阵乘积元素如何由行列求和形成，再看单位矩阵为什么会保留原本的行与列。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/matrix-multiplication-identity-story-en.png",
+      "/generated/animations/math1030/matrix-multiplication-identity-story-zh-hk.png",
+      "/generated/animations/math1030/matrix-multiplication-identity-story-zh-cn.png"
+    ),
+    title: text(
+      "Matrix products and identity matrices",
+      "矩陣乘積與單位矩陣",
+      "矩阵乘积与单位矩阵"
+    ),
+    transcript: [
+      text(
+        "Matrix multiplication begins with a size check: the inner dimensions must match.",
+        "矩陣乘法先從大小檢查開始：內側維度必須吻合。",
+        "矩阵乘法先从大小检查开始：内侧维度必须匹配。"
+      ),
+      text(
+        "Each output entry is a row-column sum, not an entrywise product.",
+        "每個輸出元素都是行列求和，不是逐格相乘。",
+        "每个输出元素都是行列求和，不是逐格相乘。"
+      ),
+      text(
+        "The identity matrix preserves A because its rows and columns select the original rows and columns of A.",
+        "單位矩陣會保持 A 不變，因為它的行和列會選回 A 原本的行與列。",
+        "单位矩阵会保持 A 不变，因为它的行和列会选回 A 原本的行与列。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/matrix-multiplication-identity-story-en.mp4",
+      "/generated/animations/math1030/matrix-multiplication-identity-story-zh-hk.mp4",
+      "/generated/animations/math1030/matrix-multiplication-identity-story-zh-cn.mp4"
+    ),
+  },
   "math1030-equations-solution-sets-story": {
     conclusion: text(
       "The visible equations may be rewritten, but the object we protect is the full solution set: all ordered tuples that satisfy every equation at the same time.",
