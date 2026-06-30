@@ -122,6 +122,37 @@ PDF checks confirmed:
 - zh-HK PDF: valid `%PDF`, 6 pages.
 - zh-CN PDF: valid `%PDF`, 6 pages.
 
+## Production Verification
+
+Production route checked after pushing `23bee1b` to both `codex/manim` and
+`main`:
+
+- `https://www.evanalysis.top/en/notes/math1030/matrix-algebra/special-matrices`
+- `https://www.evanalysis.top/zh-hk/notes/math1030/matrix-algebra/special-matrices`
+- `https://www.evanalysis.top/zh-cn/notes/math1030/matrix-algebra/special-matrices`
+
+All three routes returned `200` and contained the expected localized MP4 asset
+marker.
+
+Production asset checks:
+
+| Asset | Result |
+| --- | --- |
+| `special-matrices-family-recognition-story-en.mp4` | `200`, `video/mp4`, 434880 bytes |
+| `special-matrices-family-recognition-story-en.png` | `200`, `image/png`, 88730 bytes |
+| `special-matrices-family-recognition-story-zh-hk.mp4` | `200`, `video/mp4`, 419727 bytes |
+| `special-matrices-family-recognition-story-zh-hk.png` | `200`, `image/png`, 86933 bytes |
+| `special-matrices-family-recognition-story-zh-cn.mp4` | `200`, `video/mp4`, 419523 bytes |
+| `special-matrices-family-recognition-story-zh-cn.png` | `200`, `image/png`, 86300 bytes |
+
+Production export checks:
+
+| Locale | TXT | PDF |
+| --- | --- | --- |
+| EN | `200`, `text/plain`, 9903 bytes; static video and snapshot markers present | `200`, `application/pdf`, valid `%PDF`, 32330 bytes |
+| zh-HK | `200`, `text/plain`, 9086 bytes; static video and snapshot markers present | `200`, `application/pdf`, valid `%PDF`, 163882 bytes |
+| zh-CN | `200`, `text/plain`, 9119 bytes; static video and snapshot markers present | `200`, `application/pdf`, valid `%PDF`, 150872 bytes |
+
 ## Follow-Up
 
 The roadmap now moves to `math1030/matrix-algebra/block-matrices`.
