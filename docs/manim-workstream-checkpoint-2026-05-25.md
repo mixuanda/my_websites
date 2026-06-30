@@ -16,8 +16,9 @@ history.
 - Every public video entry must have English, Traditional Chinese, and
   Simplified Chinese copy and assets.
 - TXT/PDF exports must degrade videos into static study sequences.
-- Browser plugin is not available in this session; QA is using Playwright
-  fallback with the reason recorded.
+- Browser plugin is available in this session for DOM / console / interaction
+  QA. Its screenshot capability timed out on `Page.captureScreenshot`, so
+  visual screenshot evidence used Playwright against the system Chrome channel.
 - Restore `.contentlayer/generated/**` after builds when it is generator churn.
 
 ## Completed VideoExplanation Units
@@ -43,28 +44,31 @@ history.
 | Math1030 `8.2 Diagonalization and similarity` | `math1030-diagonalization-similarity-eigenbasis-story` | `docs/manim-diagonalization-similarity-video-qa-2026-06-29.md` |
 | Math1030 `8.3 Characteristic polynomials and diagonalization tests` | `math1030-characteristic-polynomial-diagonalization-test-story` | `docs/manim-characteristic-polynomial-diagonalization-test-video-qa-2026-06-29.md` |
 | Math1030 `9.1 Inner products, norms, and angles` | `math1030-inner-product-norm-angle-story` | `docs/manim-inner-products-norms-angles-video-qa-2026-06-29.md` |
+| Math1030 `9.2 Orthogonal sets and orthonormal bases` | `math1030-orthogonal-sets-orthonormal-bases-story` | `docs/manim-orthogonal-sets-orthonormal-bases-video-qa-2026-06-30.md` |
 
 ## Latest Slice Notes
 
-Math1030 `9.1` was implemented after roadmap, current MDX, and reference
-inspection confirmed the source boundary. `MATH1030-Notes.pdf` pp. 209-213 and
-`1030gi-n08-01.pdf` support the standard inner product, its properties, norm,
-and normalization. The angle / orthogonality material is a short bridge from
-`MATH1030-Notes.pdf` p. 214 / section 9.2, and projection subtraction is
-explicitly deferred to the already-completed Gram-Schmidt video.
+Math1030 `9.2` was implemented after roadmap, current MDX, and reference
+inspection confirmed the source boundary. `MATH1030-Notes.pdf` pp. 214-220
+support the zero-inner-product orthogonality test, orthogonal set definition,
+automatic independence theorem, coordinate coefficient formula, orthogonal
+basis criterion, orthonormal set / basis definition, normalization, and the
+orthonormal coordinate formula. Projection subtraction is explicitly deferred
+to the already-completed Gram-Schmidt video in `9.3`.
 
 Fixes applied:
 
-- new storyboard covers the dot-product scalar, basic properties, norm from
-  self-product, unit-vector normalization, the 9.2 angle bridge, and the
-  zero-inner-product orthogonality criterion;
+- new storyboard covers the zero-inner-product test, pairwise orthogonal set
+  checks, the automatic-independence proof mechanism, coordinate reading from
+  inner products, normalization, and the denominator-free orthonormal formula;
 - Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the inner-product scene and writes assets under
+- render script now includes the orthogonal-basis scene and writes assets under
   `public/generated/animations/math1030/`;
-- video embed was placed after the angle / orthogonality bridge and before the
-  worked angle example in all three localized MDX files;
+- video embed was placed after the coefficient formula and before the
+  coordinate-reading worked example in all three localized MDX files;
 - no widget was added because the first-pass learning move is a fixed
-  algebra-to-geometry bridge rather than a reader-controlled vector calculator.
+  coefficient-isolation mechanism rather than a reader-controlled vector
+  calculator.
 
 ## Verification Stack Used For Latest Slice
 
@@ -76,8 +80,9 @@ Fixes applied:
 - `npx tsc --noEmit --pretty false`
 - `npm run lint`
 - `AUTH_SECRET=local-test-secret npm run build`
-- Playwright route, video metadata/playback, responsive/theme screenshots, and
-  TXT/PDF export checks for all three locales
+- Browser DOM / console / export-menu interaction checks, system-Chrome
+  screenshot checks, route / asset checks, video metadata, responsive
+  screenshots, and TXT/PDF export checks for all three locales
 
 ## Next Slice
 
@@ -86,8 +91,8 @@ Proceed to the next Math1030 clip unless the roadmap priority changes.
 Expected first step:
 
 1. Start with Math1030
-   `inner-products/orthogonal-sets-and-orthonormal-bases` unless source inspection
-   changes the priority.
+   `inner-products/cauchy-schwarz-and-triangle-inequalities` unless source
+   inspection changes the priority.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset

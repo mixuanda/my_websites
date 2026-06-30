@@ -1,0 +1,375 @@
+{
+  "course": "math1030",
+  "chapter": "inner-products",
+  "unit": "orthogonal-sets-and-orthonormal-bases",
+  "unitTitle": {
+    "en": "9.2 Orthogonal sets and orthonormal bases",
+    "zh-hk": "9.2 正交集與標準正交基",
+    "zh-cn": "9.2 正交集与标准正交基"
+  },
+  "videoId": "math1030-orthogonal-sets-orthonormal-bases-story",
+  "sourceBoundary": {
+    "en": "This storyboard uses section 9.2 only: orthogonal vectors, orthogonal sets, automatic independence, coefficient recovery in an orthogonal basis, and normalization to an orthonormal basis. Projection subtraction is intentionally left to section 9.3 Gram-Schmidt.",
+    "zh-hk": "此 storyboard 只使用 9.2 的內容：正交向量、正交集、自動線性無關、正交基中的係數恢復，以及正規化成標準正交基。投影扣除刻意留給 9.3 Gram-Schmidt。",
+    "zh-cn": "此 storyboard 只使用 9.2 的内容：正交向量、正交集、自动线性无关、正交基中的系数恢复，以及规范化成标准正交基。投影扣除刻意留给 9.3 Gram-Schmidt。"
+  },
+  "locales": {
+    "en": {
+      "audienceLevel": "first-course linear algebra",
+      "segments": [
+        {
+          "type": "orthogonality_test",
+          "cardTitle": "Zero inner product means orthogonal",
+          "goal": "Connect the algebraic equation <x,y>=0 to the perpendicularity criterion.",
+          "beats": [
+            "Show x=(1,2) and y=(-2,1) as two arrows.",
+            "Compute 1(-2)+2(1)=0.",
+            "Add a right-angle marker and label x perpendicular y."
+          ],
+          "mathBlocks": [
+            "\\langle x,y\\rangle=0",
+            "x\\perp y"
+          ],
+          "voiceover": [
+            "The definition is algebraic, so it works beyond pictures in the plane.",
+            "When the inner product is zero, the vectors do not interfere in the coordinate formula."
+          ],
+          "animation": "dot-product computation becomes a right-angle marker"
+        },
+        {
+          "type": "orthogonal_set_check",
+          "cardTitle": "A set must be nonzero and pairwise orthogonal",
+          "goal": "Use the source-backed three-vector example to show the pairwise checks.",
+          "beats": [
+            "Display v1=(1,1,1), v2=(1,-1,0), and v3=(1,1,-2).",
+            "Check <v1,v2>=0, <v1,v3>=0, and <v2,v3>=0.",
+            "Emphasize that zero vectors are not allowed in an orthogonal set."
+          ],
+          "mathBlocks": [
+            "\\langle v_1,v_2\\rangle=\\langle v_1,v_3\\rangle=\\langle v_2,v_3\\rangle=0"
+          ],
+          "voiceover": [
+            "Orthogonality is a pairwise condition, and the nonzero condition is part of the definition.",
+            "This example will also be used to read coordinates directly."
+          ],
+          "animation": "three vector cards feed into three zero dot-product badges"
+        },
+        {
+          "type": "independence_proof",
+          "cardTitle": "Cross terms vanish",
+          "goal": "Show why an orthogonal nonzero set is automatically linearly independent.",
+          "beats": [
+            "Start from alpha_1v_1+...+alpha_kv_k=0.",
+            "Take the inner product with v_i.",
+            "All cross terms vanish, leaving alpha_i||v_i||^2=0."
+          ],
+          "mathBlocks": [
+            "\\alpha_1v_1+\\cdots+\\alpha_kv_k=0",
+            "\\alpha_i\\|v_i\\|^2=0",
+            "\\alpha_i=0"
+          ],
+          "voiceover": [
+            "Orthogonality isolates one coefficient at a time.",
+            "Since v_i is nonzero, its squared norm cannot vanish."
+          ],
+          "animation": "linear relation narrows to one surviving coefficient"
+        },
+        {
+          "type": "coordinate_reading",
+          "cardTitle": "Read coordinates without solving a system",
+          "goal": "Apply the source coefficient formula to v=(1,2,3).",
+          "beats": [
+            "Place v=(1,2,3) beside the orthogonal set.",
+            "Compute alpha_1=6/3=2, alpha_2=-1/2, alpha_3=-3/6=-1/2.",
+            "Assemble v=2v_1-(1/2)v_2-(1/2)v_3."
+          ],
+          "mathBlocks": [
+            "\\alpha_i=\\frac{\\langle v,v_i\\rangle}{\\|v_i\\|^2}",
+            "v=2v_1-\\frac12v_2-\\frac12v_3"
+          ],
+          "voiceover": [
+            "The theorem gives coordinates one coefficient at a time.",
+            "The calculation is not a new row reduction; it is a set of inner-product readings."
+          ],
+          "animation": "three coefficient cards combine into the final expansion"
+        },
+        {
+          "type": "normalization",
+          "cardTitle": "Normalize the orthogonal basis",
+          "goal": "Show how an orthogonal basis becomes orthonormal.",
+          "beats": [
+            "Read ||v1||=sqrt(3), ||v2||=sqrt(2), and ||v3||=sqrt(6).",
+            "Divide each vector by its own norm.",
+            "Label the resulting vectors q_i."
+          ],
+          "mathBlocks": [
+            "q_i=\\frac{v_i}{\\|v_i\\|}",
+            "\\|q_i\\|=1"
+          ],
+          "voiceover": [
+            "Normalization changes length, not direction.",
+            "Pairwise orthogonality survives because each vector is only rescaled."
+          ],
+          "animation": "orthogonal vector cards shrink into unit-vector cards"
+        },
+        {
+          "type": "orthonormal_formula",
+          "cardTitle": "The denominator disappears",
+          "goal": "Finish with the coordinate formula in an orthonormal basis.",
+          "beats": [
+            "Compare alpha_i=<v,v_i>/||v_i||^2 with beta_i=<v,q_i>.",
+            "Show that ||q_i||^2=1.",
+            "Write v=<v,q_1>q_1+...+<v,q_k>q_k."
+          ],
+          "mathBlocks": [
+            "\\|q_i\\|^2=1",
+            "v=\\langle v,q_1\\rangle q_1+\\cdots+\\langle v,q_k\\rangle q_k"
+          ],
+          "voiceover": [
+            "Orthonormal means orthogonal plus unit length.",
+            "That is why the coordinate formula is especially clean."
+          ],
+          "animation": "old formula loses its denominator and becomes the orthonormal formula"
+        }
+      ]
+    },
+    "zh-hk": {
+      "audienceLevel": "線性代數入門",
+      "segments": [
+        {
+          "type": "orthogonality_test",
+          "cardTitle": "內積為零表示正交",
+          "goal": "把代數條件 <x,y>=0 連到垂直判準。",
+          "beats": [
+            "把 x=(1,2) 與 y=(-2,1) 畫成兩個箭嘴。",
+            "計算 1(-2)+2(1)=0。",
+            "加入直角標記，並標示 x 垂直 y。"
+          ],
+          "mathBlocks": [
+            "\\langle x,y\\rangle=0",
+            "x\\perp y"
+          ],
+          "voiceover": [
+            "定義是代數式的，所以不只適用於平面圖像。",
+            "內積為零時，兩個方向在坐標公式中不會互相干擾。"
+          ],
+          "animation": "內積計算變成直角標記"
+        },
+        {
+          "type": "orthogonal_set_check",
+          "cardTitle": "集合要非零，而且兩兩正交",
+          "goal": "用來源支持的三向量例子顯示兩兩檢查。",
+          "beats": [
+            "顯示 v1=(1,1,1)、v2=(1,-1,0)、v3=(1,1,-2)。",
+            "檢查 <v1,v2>=0、<v1,v3>=0、<v2,v3>=0。",
+            "強調零向量不可出現在正交集中。"
+          ],
+          "mathBlocks": [
+            "\\langle v_1,v_2\\rangle=\\langle v_1,v_3\\rangle=\\langle v_2,v_3\\rangle=0"
+          ],
+          "voiceover": [
+            "正交性是兩兩條件，而非零也是定義的一部分。",
+            "這個例子稍後也用來直接讀出坐標。"
+          ],
+          "animation": "三張向量卡流入三個零內積標記"
+        },
+        {
+          "type": "independence_proof",
+          "cardTitle": "交叉項消失",
+          "goal": "說明為甚麼非零正交集自動線性無關。",
+          "beats": [
+            "由 alpha_1v_1+...+alpha_kv_k=0 開始。",
+            "與 v_i 取內積。",
+            "所有交叉項消失，只留下 alpha_i||v_i||^2=0。"
+          ],
+          "mathBlocks": [
+            "\\alpha_1v_1+\\cdots+\\alpha_kv_k=0",
+            "\\alpha_i\\|v_i\\|^2=0",
+            "\\alpha_i=0"
+          ],
+          "voiceover": [
+            "正交性每次只隔離一個係數。",
+            "因為 v_i 非零，它的範數平方不可能是零。"
+          ],
+          "animation": "線性關係收束成一個剩下的係數"
+        },
+        {
+          "type": "coordinate_reading",
+          "cardTitle": "不用解系統也可讀出坐標",
+          "goal": "把來源係數公式套用到 v=(1,2,3)。",
+          "beats": [
+            "把 v=(1,2,3) 放在正交集旁邊。",
+            "計算 alpha_1=6/3=2、alpha_2=-1/2、alpha_3=-3/6=-1/2。",
+            "組合成 v=2v_1-(1/2)v_2-(1/2)v_3。"
+          ],
+          "mathBlocks": [
+            "\\alpha_i=\\frac{\\langle v,v_i\\rangle}{\\|v_i\\|^2}",
+            "v=2v_1-\\frac12v_2-\\frac12v_3"
+          ],
+          "voiceover": [
+            "定理會逐一給出坐標係數。",
+            "這不是新的行化簡，而是一組內積讀數。"
+          ],
+          "animation": "三張係數卡組合成最後展開式"
+        },
+        {
+          "type": "normalization",
+          "cardTitle": "正規化正交基",
+          "goal": "顯示正交基如何變成標準正交基。",
+          "beats": [
+            "讀出 ||v1||=sqrt(3)、||v2||=sqrt(2)、||v3||=sqrt(6)。",
+            "每個向量除以自身範數。",
+            "把所得向量標為 q_i。"
+          ],
+          "mathBlocks": [
+            "q_i=\\frac{v_i}{\\|v_i\\|}",
+            "\\|q_i\\|=1"
+          ],
+          "voiceover": [
+            "正規化改變長度，不改變方向。",
+            "兩兩正交性會保留，因為每個向量只是被縮放。"
+          ],
+          "animation": "正交向量卡縮放成單位向量卡"
+        },
+        {
+          "type": "orthonormal_formula",
+          "cardTitle": "分母消失",
+          "goal": "以標準正交基中的坐標公式收束。",
+          "beats": [
+            "比較 alpha_i=<v,v_i>/||v_i||^2 與 beta_i=<v,q_i>。",
+            "顯示 ||q_i||^2=1。",
+            "寫出 v=<v,q_1>q_1+...+<v,q_k>q_k。"
+          ],
+          "mathBlocks": [
+            "\\|q_i\\|^2=1",
+            "v=\\langle v,q_1\\rangle q_1+\\cdots+\\langle v,q_k\\rangle q_k"
+          ],
+          "voiceover": [
+            "標準正交表示正交加單位長度。",
+            "因此坐標公式特別乾淨。"
+          ],
+          "animation": "舊公式失去分母，變成標準正交公式"
+        }
+      ]
+    },
+    "zh-cn": {
+      "audienceLevel": "线性代数入门",
+      "segments": [
+        {
+          "type": "orthogonality_test",
+          "cardTitle": "内积为零表示正交",
+          "goal": "把代数条件 <x,y>=0 连到垂直判准。",
+          "beats": [
+            "把 x=(1,2) 与 y=(-2,1) 画成两个箭头。",
+            "计算 1(-2)+2(1)=0。",
+            "加入直角标记，并标示 x 垂直 y。"
+          ],
+          "mathBlocks": [
+            "\\langle x,y\\rangle=0",
+            "x\\perp y"
+          ],
+          "voiceover": [
+            "定义是代数式的，所以不只适用于平面图像。",
+            "内积为零时，两个方向在坐标公式中不会互相干扰。"
+          ],
+          "animation": "内积计算变成直角标记"
+        },
+        {
+          "type": "orthogonal_set_check",
+          "cardTitle": "集合要非零，而且两两正交",
+          "goal": "用来源支持的三向量例子显示两两检查。",
+          "beats": [
+            "显示 v1=(1,1,1)、v2=(1,-1,0)、v3=(1,1,-2)。",
+            "检查 <v1,v2>=0、<v1,v3>=0、<v2,v3>=0。",
+            "强调零向量不可出现在正交集中。"
+          ],
+          "mathBlocks": [
+            "\\langle v_1,v_2\\rangle=\\langle v_1,v_3\\rangle=\\langle v_2,v_3\\rangle=0"
+          ],
+          "voiceover": [
+            "正交性是两两条件，而非零也是定义的一部分。",
+            "这个例子稍后也用来直接读出坐标。"
+          ],
+          "animation": "三张向量卡流入三个零内积标记"
+        },
+        {
+          "type": "independence_proof",
+          "cardTitle": "交叉项消失",
+          "goal": "说明为什么非零正交集自动线性无关。",
+          "beats": [
+            "由 alpha_1v_1+...+alpha_kv_k=0 开始。",
+            "与 v_i 取内积。",
+            "所有交叉项消失，只留下 alpha_i||v_i||^2=0。"
+          ],
+          "mathBlocks": [
+            "\\alpha_1v_1+\\cdots+\\alpha_kv_k=0",
+            "\\alpha_i\\|v_i\\|^2=0",
+            "\\alpha_i=0"
+          ],
+          "voiceover": [
+            "正交性每次只隔离一个系数。",
+            "因为 v_i 非零，它的范数平方不可能是零。"
+          ],
+          "animation": "线性关系收束成一个剩下的系数"
+        },
+        {
+          "type": "coordinate_reading",
+          "cardTitle": "不用解系统也可读出坐标",
+          "goal": "把来源系数公式套用到 v=(1,2,3)。",
+          "beats": [
+            "把 v=(1,2,3) 放在正交集旁边。",
+            "计算 alpha_1=6/3=2、alpha_2=-1/2、alpha_3=-3/6=-1/2。",
+            "组合成 v=2v_1-(1/2)v_2-(1/2)v_3。"
+          ],
+          "mathBlocks": [
+            "\\alpha_i=\\frac{\\langle v,v_i\\rangle}{\\|v_i\\|^2}",
+            "v=2v_1-\\frac12v_2-\\frac12v_3"
+          ],
+          "voiceover": [
+            "定理会逐一给出坐标系数。",
+            "这不是新的行化简，而是一组内积读数。"
+          ],
+          "animation": "三张系数卡组合成最后展开式"
+        },
+        {
+          "type": "normalization",
+          "cardTitle": "规范化正交基",
+          "goal": "显示正交基如何变成标准正交基。",
+          "beats": [
+            "读出 ||v1||=sqrt(3)、||v2||=sqrt(2)、||v3||=sqrt(6)。",
+            "每个向量除以自身范数。",
+            "把所得向量标为 q_i。"
+          ],
+          "mathBlocks": [
+            "q_i=\\frac{v_i}{\\|v_i\\|}",
+            "\\|q_i\\|=1"
+          ],
+          "voiceover": [
+            "规范化改变长度，不改变方向。",
+            "两两正交性会保留，因为每个向量只是被缩放。"
+          ],
+          "animation": "正交向量卡缩放成单位向量卡"
+        },
+        {
+          "type": "orthonormal_formula",
+          "cardTitle": "分母消失",
+          "goal": "以标准正交基中的坐标公式收束。",
+          "beats": [
+            "比较 alpha_i=<v,v_i>/||v_i||^2 与 beta_i=<v,q_i>。",
+            "显示 ||q_i||^2=1。",
+            "写出 v=<v,q_1>q_1+...+<v,q_k>q_k。"
+          ],
+          "mathBlocks": [
+            "\\|q_i\\|^2=1",
+            "v=\\langle v,q_1\\rangle q_1+\\cdots+\\langle v,q_k\\rangle q_k"
+          ],
+          "voiceover": [
+            "标准正交表示正交加单位长度。",
+            "因此坐标公式特别干净。"
+          ],
+          "animation": "旧公式失去分母，变成标准正交公式"
+        }
+      ]
+    }
+  }
+}

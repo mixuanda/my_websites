@@ -120,6 +120,12 @@ The current pass especially strengthens the `math1030` note flow.
   norm, normalization, and the 9.2 angle / orthogonality criterion. Projection
   subtraction remains in the existing Gram-Schmidt video rather than being
   duplicated here.
+- The MATH1030 `9.2` orthogonal-sets / orthonormal-bases video pass did not add
+  a new widget. The source-backed learning move is the fixed coefficient
+  isolation mechanism: pairwise orthogonality removes cross terms, then
+  normalization removes the squared-norm denominator. A future widget should
+  only be considered if it is a focused orthonormal coordinate reader with
+  export snapshots, not a general vector calculator.
 - Public note pages now keep source tracing out of the interaction chrome so
   the widget remains focused on learning rather than documentation.
 

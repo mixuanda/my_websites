@@ -1728,6 +1728,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/inner-product-norm-angle-story-zh-cn.mp4"
     ),
   },
+  "math1030-orthogonal-sets-orthonormal-bases-story": {
+    conclusion: text(
+      "Orthogonality turns coordinate recovery into independent inner-product readings. Normalizing the orthogonal basis keeps the same directions while making every denominator equal to 1.",
+      "正交性把坐標恢復拆成互不干擾的內積讀數。把正交基正規化後，方向保持不變，而每個分母都變成 1。",
+      "正交性把坐标恢复拆成互不干扰的内积读数。把正交基规范化后，方向保持不变，而每个分母都变成 1。"
+    ),
+    durationSeconds: 13,
+    frames: [
+      {
+        label: text("Zero inner product", "內積為零", "内积为零"),
+        value: text(
+          "For x=(1,2) and y=(-2,1), the dot product is 1(-2)+2(1)=0, so the vectors are orthogonal.",
+          "對 x=(1,2) 與 y=(-2,1)，點積是 1(-2)+2(1)=0，所以兩向量正交。",
+          "对 x=(1,2) 与 y=(-2,1)，点积是 1(-2)+2(1)=0，所以两向量正交。"
+        ),
+      },
+      {
+        label: text("Pairwise checks", "兩兩檢查", "两两检查"),
+        value: text(
+          "An orthogonal set must be nonzero and pairwise orthogonal; the source vectors v1=(1,1,1), v2=(1,-1,0), and v3=(1,1,-2) pass all three dot-product checks.",
+          "正交集必須非零且兩兩正交；來源向量 v1=(1,1,1)、v2=(1,-1,0)、v3=(1,1,-2) 通過全部三個內積檢查。",
+          "正交集必须非零且两两正交；来源向量 v1=(1,1,1)、v2=(1,-1,0)、v3=(1,1,-2) 通过全部三个内积检查。"
+        ),
+      },
+      {
+        label: text("Independence follows", "推出線性無關", "推出线性无关"),
+        value: text(
+          "Taking the inner product of alpha_1v_1+...+alpha_kv_k=0 with v_i removes every cross term and leaves alpha_i||v_i||^2=0.",
+          "把 alpha_1v_1+...+alpha_kv_k=0 與 v_i 取內積，所有交叉項都消失，只剩 alpha_i||v_i||^2=0。",
+          "把 alpha_1v_1+...+alpha_kv_k=0 与 v_i 取内积，所有交叉项都消失，只剩 alpha_i||v_i||^2=0。"
+        ),
+      },
+      {
+        label: text("Coordinate reading", "讀出坐標", "读出坐标"),
+        value: text(
+          "For v=(1,2,3), the coefficients are alpha_1=6/3=2, alpha_2=-1/2, and alpha_3=-3/6=-1/2, so no new linear system is needed.",
+          "對 v=(1,2,3)，係數是 alpha_1=6/3=2、alpha_2=-1/2、alpha_3=-3/6=-1/2，因此不用再解新的線性系統。",
+          "对 v=(1,2,3)，系数是 alpha_1=6/3=2、alpha_2=-1/2、alpha_3=-3/6=-1/2，因此不用再解新的线性系统。"
+        ),
+      },
+      {
+        label: text("Normalize directions", "正規化方向", "规范化方向"),
+        value: text(
+          "Dividing each orthogonal vector by its norm gives q_i=v_i/||v_i||. The directions stay orthogonal and each new vector has length 1.",
+          "每個正交向量除以自身範數，得到 q_i=v_i/||v_i||。方向仍然正交，而每個新向量長度為 1。",
+          "每个正交向量除以自身范数，得到 q_i=v_i/||v_i||。方向仍然正交，而每个新向量长度为 1。"
+        ),
+      },
+      {
+        label: text("Orthonormal formula", "標準正交公式", "标准正交公式"),
+        value: text(
+          "In an orthonormal basis, ||q_i||=1, so the coordinate formula becomes v=<v,q_1>q_1+...+<v,q_k>q_k.",
+          "在標準正交基中，||q_i||=1，所以坐標公式變成 v=<v,q_1>q_1+...+<v,q_k>q_k。",
+          "在标准正交基中，||q_i||=1，所以坐标公式变成 v=<v,q_1>q_1+...+<v,q_k>q_k。"
+        ),
+      },
+    ],
+    summary: text(
+      "Watch orthogonality remove cross terms, turn a nonzero orthogonal set into an independent list, and make coordinates readable from inner products before normalization simplifies the formula.",
+      "觀看正交性如何消除交叉項，令非零正交集自動線性無關，並在正規化簡化公式之前，先用內積直接讀出坐標。",
+      "观看正交性如何消除交叉项，让非零正交集自动线性无关，并在规范化简化公式之前，先用内积直接读出坐标。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/orthogonal-sets-orthonormal-bases-story-en.png",
+      "/generated/animations/math1030/orthogonal-sets-orthonormal-bases-story-zh-hk.png",
+      "/generated/animations/math1030/orthogonal-sets-orthonormal-bases-story-zh-cn.png"
+    ),
+    title: text(
+      "From orthogonal set to orthonormal coordinate formula",
+      "由正交集走到標準正交坐標公式",
+      "由正交集走到标准正交坐标公式"
+    ),
+    transcript: [
+      text(
+        "Orthogonal vectors have zero inner product, and an orthogonal set must also exclude the zero vector.",
+        "正交向量的內積為零，而正交集還必須排除零向量。",
+        "正交向量的内积为零，而正交集还必须排除零向量。"
+      ),
+      text(
+        "When a linear relation is paired with one basis vector, orthogonality removes all other coefficients and proves independence.",
+        "把線性關係與其中一個基向量配對時，正交性會移走其他全部係數，從而證明線性無關。",
+        "把线性关系与其中一个基向量配对时，正交性会移走其他全部系数，从而证明线性无关。"
+      ),
+      text(
+        "The same isolation gives the coefficient formula, and unit-length orthonormal vectors remove the squared-norm denominator.",
+        "同一種隔離方法給出係數公式；長度為一的標準正交向量再移除範數平方分母。",
+        "同一种隔离方法给出系数公式；长度为一的标准正交向量再移除范数平方分母。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/orthogonal-sets-orthonormal-bases-story-en.mp4",
+      "/generated/animations/math1030/orthogonal-sets-orthonormal-bases-story-zh-hk.mp4",
+      "/generated/animations/math1030/orthogonal-sets-orthonormal-bases-story-zh-cn.mp4"
+    ),
+  },
   "math1030-gram-schmidt-projection-story": {
     conclusion: text(
       "Gram-Schmidt preserves the subspace because every new vector is made from the vectors already in the same partial span. The subtraction removes old directions; normalization only changes lengths afterward.",

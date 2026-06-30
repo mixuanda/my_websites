@@ -1123,3 +1123,20 @@ existing invertibility note instead of creating a detached new route.
 - Status change: the 9.1 reference-backed prose remains incorporated, and the
   video explanation is now incorporated as an export-friendly static fallback
   through the `VideoExplanation` frame sequence.
+
+### 2026-06-30 checkpoint 31: MATH1030 9.2 orthogonal-basis video pass
+
+- Revisited `9.2 Orthogonal sets and orthonormal bases` against
+  `MATH1030-Notes.pdf` pp. 214-220 before adding the Manim explanation.
+- Added a trilingual article-embedded `VideoExplanation` for the
+  zero-inner-product orthogonality test, pairwise orthogonal set checks, the
+  automatic-independence proof mechanism, direct coordinate reading by
+  `alpha_i=<v,v_i>/||v_i||^2`, normalization, and the denominator-free
+  orthonormal coordinate formula.
+- Recorded the source boundary explicitly: projection subtraction,
+  closest-point projection, least-squares language, and orthogonal complements
+  are not treated as 9.2 claims. Projection subtraction remains in the existing
+  `9.3 Gram-Schmidt orthogonalization` video.
+- Status change: the 9.2 reference-backed prose remains incorporated, and the
+  video explanation is now incorporated as an export-friendly static fallback
+  through the `VideoExplanation` frame sequence.
