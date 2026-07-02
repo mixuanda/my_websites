@@ -8,6 +8,13 @@ supporting study figures with static storyboard fallbacks for TXT/PDF export.
 
 Current pilots target:
 
+- unit: `math1030.solution-structure.set-language-and-solution-sets`
+- public component id: `math1030-set-language-solution-sets-story`
+- scenes:
+  - `SetLanguageSolutionSetsStoryEn`
+  - `SetLanguageSolutionSetsStoryZhHk`
+  - `SetLanguageSolutionSetsStoryZhCn`
+- source: `scenes/math1030/set_language_solution_sets.py`
 - unit: `math1030.matrices.gaussian-elimination-rref`
 - public component id: `math1030-gaussian-elimination-rref-pivot-story`
 - scenes:
@@ -131,6 +138,12 @@ course-specific directory under `public/generated/animations/<course>/`:
 - `gaussian-elimination-rref-pivot-story-zh-hk.png`
 - `gaussian-elimination-rref-pivot-story-zh-cn.mp4`
 - `gaussian-elimination-rref-pivot-story-zh-cn.png`
+- `math1030/set-language-solution-sets-story-en.mp4`
+- `math1030/set-language-solution-sets-story-en.png`
+- `math1030/set-language-solution-sets-story-zh-hk.mp4`
+- `math1030/set-language-solution-sets-story-zh-hk.png`
+- `math1030/set-language-solution-sets-story-zh-cn.mp4`
+- `math1030/set-language-solution-sets-story-zh-cn.png`
 - `matrix-basics-position-map-en.mp4`
 - `matrix-basics-position-map-en.png`
 - `matrix-basics-position-map-zh-hk.mp4`
@@ -240,6 +253,7 @@ tools/animations/manim/scripts/render_scene.sh RationalIrrationalRootProofStoryZ
 tools/animations/manim/scripts/render_scene.sh PolynomialDivisionRemainderStoryZhHk
 tools/animations/manim/scripts/render_scene.sh PolynomialGcdIrreducibilityStoryZhHk
 tools/animations/manim/scripts/render_scene.sh HashTableCollisionStrategyStoryZhHk
+tools/animations/manim/scripts/render_scene.sh SetLanguageSolutionSetsStoryZhHk
 ```
 
 Connect rendered assets through localized `videoSrc` and `posterSrc` entries in

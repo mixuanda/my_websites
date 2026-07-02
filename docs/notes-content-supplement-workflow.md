@@ -1082,3 +1082,33 @@ Use this shape for future entries:
   build, bundled Playwright fallback DOM / console checks, desktop / dark /
   mobile checks, and three-locale TXT / PDF export checks are recorded in the
   focused QA document.
+
+### 2026-07-02: MATH1030 4.2 set language and solution sets video checkpoint
+
+- Gap selected: the video roadmap marked Math1030 `4.2 Set language and
+  solution sets` as the next unresolved Math1030 Manim target because the
+  article had source-backed set-language prose but no rendered guide for
+  translating algebraic constraints into set notation and proof routines.
+- Reference basis: `reference/MATH1030/1030gi-n04-01.pdf` pp. 1-7,
+  `reference/MATH1030/1030gi-n04-02.pdf` pp. 1-8,
+  `reference/MATH1030/MATH1030-Notes.pdf` §1.1 / §2.3 / §4.1-§4.2 / §6.3,
+  `reference/MATH1030/1030efghi-as03.pdf`, and
+  `reference/MATH1030/1030efghi-as03as.pdf`.
+- Content files changed: added the 4.2 storyboard, Manim scene, render-script
+  entries, localized `VideoExplanation` registry metadata, and EN / zh-HK /
+  zh-CN page embeds.
+- Visuals added: trilingual Manim video and poster assets for membership
+  versus subset notation, set-builder anatomy, solution-set notation, null
+  spaces and spans as sets, subset-proof grammar, and set equality by two
+  inclusions.
+- Interactions added: none. The pass intentionally avoids an open
+  set-builder calculator and keeps the video as a supporting proof-language
+  figure inside the existing article flow.
+- Exercises added: none. Existing examples, quick checks, and reveal solutions
+  were left in place; the video insertion did not reorder answer blocks.
+- Verification: Python syntax, storyboard JSON, render-script syntax, Manim
+  render, media metadata checks, visual poster inspection, `git diff --check`,
+  MDX table verification, TypeScript, lint, textbook content check, production
+  build, in-app Browser DOM / console checks, desktop / dark / mobile checks,
+  and three-locale TXT / PDF export checks are recorded in the focused QA
+  document.

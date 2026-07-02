@@ -416,5 +416,14 @@ would distract from the article's theorem-led flow. Keep future widgets for
 state-changing geometry or carefully scoped practice rather than this curated
 transition.
 
+The Math1030 `4.2` set-language and solution-set pass is Manim-only. The
+source-backed value is the proof-language grammar: distinguish membership from
+subset language, read set-builder notation as ambient space plus condition,
+interpret `S(A,b)`, `N(A)`, and `Span` as whole sets, and prove subset/equality
+claims by unpacking definitions. A new widget would either duplicate the
+article's written proofs or become a broad symbolic set-builder surface. The
+localized `VideoExplanation` frames are enough for the article and export
+fallback.
+
 Add the next `math1030` widgets only for geometry-heavy or state-changing
 topics once the source audit supports those units.

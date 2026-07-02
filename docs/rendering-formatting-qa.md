@@ -829,3 +829,22 @@ Current checkpoint resolution:
   locale-specific mp4/poster values, no framework overlay, clean console logs,
   desktop video size `560 x 315`, mobile video size `306 x 172`, and no
   horizontal overflow on the checked pages.
+
+### 2026-07-02 checkpoint 36: MATH1030 4.2 set-language rendering pass
+
+- Checkpoint name: `4.2` set-language and solution-set proof-grammar video
+  rendering.
+- What was inspected: EN / zh-HK / zh-CN note pages for
+  `set-language-and-solution-sets`, the new localized video card, the
+  generated trilingual MP4/poster assets, mobile layout at `390 x 844`, and
+  dark mode.
+- Rendering note: the video stays inside the article flow after the
+  set-equality explanation and before the same-coefficient solution-set
+  intersection theorem. Poster extraction uses `2.35s`; poster QA shortened
+  the English on-video caption and localized the Chinese ambient-space label.
+  The final EN / zh-HK / zh-CN posters show a stable set-builder frame with no
+  crossfade residue, text overflow, or label overlap.
+- Verification: in-app Browser QA found one localized video per route,
+  correct locale-specific mp4/poster values, no framework overlay, clean
+  console logs, desktop video size `545 x 306.6`, mobile video size
+  `291 x 163.7`, and no horizontal overflow on the checked pages.

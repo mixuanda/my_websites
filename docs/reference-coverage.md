@@ -1322,3 +1322,22 @@ existing invertibility note instead of creating a detached new route.
   machinery belong to later units.
 - Status change: the 4.1 source-backed prose remains incorporated, and the new
   video explanation is now incorporated as an export-friendly static fallback.
+
+### 2026-07-02 checkpoint 41: MATH1030 4.2 set language and solution sets video pass
+
+- Revisited `4.2 Set language and solution sets` against
+  `1030gi-n04-01.pdf` pp. 1-7, `1030gi-n04-02.pdf` pp. 1-8,
+  `MATH1030-Notes.pdf` §1.1 / §2.3 / §4.1-§4.2 / §6.3,
+  `1030efghi-as03.pdf`, and `1030efghi-as03as.pdf`.
+- Added a trilingual article-embedded `VideoExplanation` for the
+  source-backed proof-language sequence: membership versus subset language,
+  set-builder notation as ambient space plus condition, solution sets as
+  algebraic constraints, null spaces and spans as sets, subset proofs by an
+  arbitrary element, and set equality by two inclusions.
+- Kept the pass Manim-only. No widget was added because the useful teaching
+  move is a compact proof-grammar guide, not an open set-builder calculator.
+- Recorded the source boundary explicitly: nonsingular / invertible matrix
+  theory, rank-nullity, eigenspaces, long induction for repeated redundant
+  vectors, and assignment-only invertibility examples belong to later units.
+- Status change: the 4.2 source-backed prose remains incorporated, and the new
+  video explanation is now incorporated as an export-friendly static fallback.

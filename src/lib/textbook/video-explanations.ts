@@ -604,6 +604,101 @@ const videoExplanationCatalog: Record<string, VideoExplanationEntry> = {
       "/generated/animations/math1030/homogeneous-systems-null-space-story-zh-cn.mp4"
     ),
   },
+  "math1030-set-language-solution-sets-story": {
+    conclusion: text(
+      "Set language turns algebra into precise collections: write the ambient space, state the condition, then prove inclusions by starting with one arbitrary element.",
+      "集合語言把代數條件變成精確集合：先寫所在空間，再寫條件，然後由任意元素開始證明包含關係。",
+      "集合语言把代数条件变成精确集合：先写所在空间，再写条件，然后由任意元素开始证明包含关系。"
+    ),
+    durationSeconds: 8,
+    frames: [
+      {
+        label: text("Membership versus subset", "屬於與子集", "属于与子集"),
+        value: text(
+          "The statement x in S says one object belongs to S. The statement S subset T compares two collections.",
+          "`x\\in S` 說一個物件屬於 S；`S\\subseteq T` 則比較兩個集合。",
+          "`x\\in S` 说一个对象属于 S；`S\\subseteq T` 则比较两个集合。"
+        ),
+      },
+      {
+        label: text("Set-builder grammar", "集合描述語法", "集合描述语法"),
+        value: text(
+          "In {x in R^n : Ax=b}, R^n names the ambient space and Ax=b is the condition selecting the elements.",
+          "在 `{x\\in R^n:Ax=b}` 中，`R^n` 指出所在空間，`Ax=b` 是挑選元素的條件。",
+          "在 `{x\\in R^n:Ax=b}` 中，`R^n` 指出所在空间，`Ax=b` 是挑选元素的条件。"
+        ),
+      },
+      {
+        label: text("Solution set", "解集", "解集"),
+        value: text(
+          "S(A,b)={x in R^n : Ax=b} is one set statement, whether the set is empty, a singleton, or a parameter family.",
+          "`S(A,b)={x\\in R^n:Ax=b}` 是一個集合陳述；它可以是空集、單元素集合，或參數族。",
+          "`S(A,b)={x\\in R^n:Ax=b}` 是一个集合陈述；它可以是空集、单元素集合，或参数族。"
+        ),
+      },
+      {
+        label: text("Null space and span", "零空間與張成", "零空间与张成"),
+        value: text(
+          "N(A) is equation-defined, while Span{u1,...,uq} is parameter-defined. In both cases the notation describes a whole set.",
+          "`N(A)` 由方程定義；`Span{u_1,...,u_q}` 由參數定義。兩者都描述整個集合。",
+          "`N(A)` 由方程定义；`Span{u_1,...,u_q}` 由参数定义。两者都描述整个集合。"
+        ),
+      },
+      {
+        label: text("Subset proof routine", "子集證明套路", "子集证明套路"),
+        value: text(
+          "To prove S subset T, take an arbitrary element of S, unpack the definition of S, and show the condition defining T.",
+          "要證明 `S\\subseteq T`，取 S 中任意元素，拆開 S 的定義，再證明它滿足 T 的條件。",
+          "要证明 `S\\subseteq T`，取 S 中任意元素，拆开 S 的定义，再证明它满足 T 的条件。"
+        ),
+      },
+      {
+        label: text("Equality proof routine", "相等證明套路", "相等证明套路"),
+        value: text(
+          "Set equality needs both inclusions. This is the proof grammar behind removing redundant vectors from a spanning list.",
+          "集合相等需要兩個包含關係。刪去張成列表中的冗餘向量，背後也是這套證明語法。",
+          "集合相等需要两个包含关系。删去张成列表中的冗余向量，背后也是这套证明语法。"
+        ),
+      },
+    ],
+    summary: text(
+      "Follow the grammar that turns algebraic constraints into solution sets, then use one arbitrary element to prove subsets and set equality.",
+      "跟着集合語言的語法，把代數條件轉成解集，再用任意元素證明子集與集合相等。",
+      "跟着集合语言的语法，把代数条件转成解集，再用任意元素证明子集与集合相等。"
+    ),
+    posterSrc: text(
+      "/generated/animations/math1030/set-language-solution-sets-story-en.png",
+      "/generated/animations/math1030/set-language-solution-sets-story-zh-hk.png",
+      "/generated/animations/math1030/set-language-solution-sets-story-zh-cn.png"
+    ),
+    title: text(
+      "Set language and solution sets",
+      "集合語言與解集",
+      "集合语言与解集"
+    ),
+    transcript: [
+      text(
+        "A set-builder expression records both the ambient space and the condition an object must satisfy.",
+        "集合描述式同時記錄所在空間，以及物件必須滿足的條件。",
+        "集合描述式同时记录所在空间，以及对象必须满足的条件。"
+      ),
+      text(
+        "Solution sets, null spaces, and spans are all whole collections, not just sample vectors or a displayed list.",
+        "解集、零空間、張成都表示整個集合，不只是樣本向量或眼前的列表。",
+        "解集、零空间、张成都表示整个集合，不只是样本向量或眼前的列表。"
+      ),
+      text(
+        "A subset proof begins with an arbitrary element; a set-equality proof runs that argument in both directions.",
+        "子集證明由任意元素開始；集合相等證明則要把這個方向做兩次。",
+        "子集证明由任意元素开始；集合相等证明则要把这个方向做两次。"
+      ),
+    ],
+    videoSrc: text(
+      "/generated/animations/math1030/set-language-solution-sets-story-en.mp4",
+      "/generated/animations/math1030/set-language-solution-sets-story-zh-hk.mp4",
+      "/generated/animations/math1030/set-language-solution-sets-story-zh-cn.mp4"
+    ),
+  },
   "math1030-equations-solution-sets-story": {
     conclusion: text(
       "The visible equations may be rewritten, but the object we protect is the full solution set: all ordered tuples that satisfy every equation at the same time.",

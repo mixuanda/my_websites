@@ -1,0 +1,62 @@
+{
+  "videoId": "math1030-set-language-solution-sets-story",
+  "course": "math1030",
+  "unit": "solution-structure/set-language-and-solution-sets",
+  "title": {
+    "en": "Set language and solution sets",
+    "zh-hk": "集合語言與解集",
+    "zh-cn": "集合语言与解集"
+  },
+  "sourceBoundary": {
+    "included": [
+      "Membership and non-membership notation",
+      "Ambient spaces and set-builder notation",
+      "Solution sets S(A,b), null spaces N(A), and spans as sets",
+      "Subset proofs by taking an arbitrary element",
+      "Set equality as two subset directions",
+      "Redundant-vector span equality as a model two-inclusion proof"
+    ],
+    "excluded": [
+      "Full nonsingular/invertible-matrix equivalence theory",
+      "Rank-nullity and vector-space dimension theory",
+      "Long induction proofs for many redundant vectors",
+      "All assignment 3 invertibility and nilpotence applications",
+      "Open-ended set-proof or span-calculator widget"
+    ],
+    "references": [
+      "reference/MATH1030/1030gi-n04-01.pdf pp. 1-7",
+      "reference/MATH1030/1030gi-n04-02.pdf pp. 1-8",
+      "reference/MATH1030/1030efghi-as03.pdf questions 1-3",
+      "reference/MATH1030/1030efghi-as03as.pdf pp. 1-2",
+      "reference/MATH1030/MATH1030-Notes.pdf pp. 69-70"
+    ]
+  },
+  "beats": [
+    {
+      "label": "membership",
+      "content": "A set is treated as an object; x belongs to S, while a smaller collection can be a subset of S."
+    },
+    {
+      "label": "set-builder notation",
+      "content": "The ambient space names the objects; the condition selects which objects are collected."
+    },
+    {
+      "label": "solution sets",
+      "content": "S(A,b)={x in R^n: Ax=b}; empty, singleton, and parameterized solution sets are all set statements."
+    },
+    {
+      "label": "recurring sets",
+      "content": "N(A) and Span{u_i} are sets described by equations or parameters, not merely lists."
+    },
+    {
+      "label": "subset proof",
+      "content": "To prove S subset T, take arbitrary x in S, translate definitions, and show x satisfies T."
+    },
+    {
+      "label": "set equality",
+      "content": "To prove S=T, prove S subset T and T subset S; redundant-vector span equality follows this routine."
+    }
+  ],
+  "exportFallback": "Exports should include the localized static video-study frame sequence and no raw video paths.",
+  "widgetDecision": "Manim-only. The useful teaching move is a fixed proof-language routine; a widget would duplicate existing span and solution-set controls without adding enough value."
+}

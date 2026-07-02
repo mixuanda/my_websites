@@ -32,6 +32,9 @@ else
     "HomogeneousSystemsNullSpaceStoryEn"
     "HomogeneousSystemsNullSpaceStoryZhHk"
     "HomogeneousSystemsNullSpaceStoryZhCn"
+    "SetLanguageSolutionSetsStoryEn"
+    "SetLanguageSolutionSetsStoryZhHk"
+    "SetLanguageSolutionSetsStoryZhCn"
     "GaussianEliminationRrefPivotStoryEn"
     "GaussianEliminationRrefPivotStoryZhHk"
     "GaussianEliminationRrefPivotStoryZhCn"
@@ -159,6 +162,9 @@ scene_file() {
       ;;
     HomogeneousSystemsNullSpaceStory|HomogeneousSystemsNullSpaceStoryEn|HomogeneousSystemsNullSpaceStoryZhHk|HomogeneousSystemsNullSpaceStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/homogeneous_systems_null_space.py"
+      ;;
+    SetLanguageSolutionSetsStory|SetLanguageSolutionSetsStoryEn|SetLanguageSolutionSetsStoryZhHk|SetLanguageSolutionSetsStoryZhCn)
+      printf '%s\n' "tools/animations/manim/scenes/math1030/set_language_solution_sets.py"
       ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "tools/animations/manim/scenes/math1030/gaussian_elimination_rref.py"
@@ -319,6 +325,15 @@ scene_locale() {
       printf '%s\n' "zh-hk"
       ;;
     HomogeneousSystemsNullSpaceStoryZhCn)
+      printf '%s\n' "zh-cn"
+      ;;
+    SetLanguageSolutionSetsStory|SetLanguageSolutionSetsStoryEn)
+      printf '%s\n' "en"
+      ;;
+    SetLanguageSolutionSetsStoryZhHk)
+      printf '%s\n' "zh-hk"
+      ;;
+    SetLanguageSolutionSetsStoryZhCn)
       printf '%s\n' "zh-cn"
       ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn)
@@ -485,6 +500,9 @@ video_basename() {
     HomogeneousSystemsNullSpaceStory|HomogeneousSystemsNullSpaceStoryEn|HomogeneousSystemsNullSpaceStoryZhHk|HomogeneousSystemsNullSpaceStoryZhCn)
       printf '%s\n' "homogeneous-systems-null-space-story"
       ;;
+    SetLanguageSolutionSetsStory|SetLanguageSolutionSetsStoryEn|SetLanguageSolutionSetsStoryZhHk|SetLanguageSolutionSetsStoryZhCn)
+      printf '%s\n' "set-language-solution-sets-story"
+      ;;
     GaussianEliminationRrefPivotStory|GaussianEliminationRrefPivotStoryEn|GaussianEliminationRrefPivotStoryZhHk|GaussianEliminationRrefPivotStoryZhCn)
       printf '%s\n' "gaussian-elimination-rref-pivot-story"
       ;;
@@ -604,6 +622,9 @@ scene_course() {
     HomogeneousSystemsNullSpaceStory|HomogeneousSystemsNullSpaceStoryEn|HomogeneousSystemsNullSpaceStoryZhHk|HomogeneousSystemsNullSpaceStoryZhCn)
       printf '%s\n' "math1030"
       ;;
+    SetLanguageSolutionSetsStory|SetLanguageSolutionSetsStoryEn|SetLanguageSolutionSetsStoryZhHk|SetLanguageSolutionSetsStoryZhCn)
+      printf '%s\n' "math1030"
+      ;;
     ColumnRowSpaceRankStory|ColumnRowSpaceRankStoryEn|ColumnRowSpaceRankStoryZhHk|ColumnRowSpaceRankStoryZhCn)
       printf '%s\n' "math1030"
       ;;
@@ -679,6 +700,9 @@ poster_timestamp() {
       printf '%s\n' "2.85"
       ;;
     HomogeneousSystemsNullSpaceStory|HomogeneousSystemsNullSpaceStoryEn|HomogeneousSystemsNullSpaceStoryZhHk|HomogeneousSystemsNullSpaceStoryZhCn)
+      printf '%s\n' "2.35"
+      ;;
+    SetLanguageSolutionSetsStory|SetLanguageSolutionSetsStoryEn|SetLanguageSolutionSetsStoryZhHk|SetLanguageSolutionSetsStoryZhCn)
       printf '%s\n' "2.35"
       ;;
     *)

@@ -55,35 +55,38 @@ history.
 | Math1030 `3.4 Special matrices` | `math1030-special-matrices-family-recognition-story` | `docs/manim-special-matrices-video-qa-2026-07-01.md` |
 | Math1030 `3.5 Block matrices` | `math1030-block-matrix-partition-product-story` | `docs/manim-block-matrices-video-qa-2026-07-01.md` |
 | Math1030 `4.1 Homogeneous systems and null space` | `math1030-homogeneous-systems-null-space-story` | `docs/manim-homogeneous-systems-null-space-video-qa-2026-07-01.md` |
+| Math1030 `4.2 Set language and solution sets` | `math1030-set-language-solution-sets-story` | `docs/manim-set-language-solution-sets-video-qa-2026-07-02.md` |
 
 ## Latest Slice Notes
 
-Math1030 `4.1 Homogeneous systems and null space` was implemented after the
+Math1030 `4.2 Set language and solution sets` was implemented after the
 roadmap, current MDX, catalog metadata, reference inspection, and read-only
-agent scouting confirmed that the source-backed boundary is homogeneous
-systems, the always-present trivial solution, RREF/free-variable descriptions,
-the null space as all vectors sent to zero, and the affine shift
-`x_p + N(A)` for nonhomogeneous systems. `MATH1030-Notes.pdf` §4.1 pp. 62-68,
-`MATH1030-Notes.pdf` §4.2 pp. 69-70, `1030gi-n02-04.pdf` pp. 7-8,
-`1030gi-n04-01.pdf` pp. 4-7, and `1030gi-n04-03.pdf` pp. 1-5 support the
+agent scouting confirmed that the source-backed boundary is set-builder
+notation, membership versus subset language, solution sets as algebraic
+conditions on an ambient space, null spaces and spans as sets, subset-proof
+grammar, and set equality as two inclusions. `1030gi-n04-01.pdf` pp. 1-7,
+`1030gi-n04-02.pdf` pp. 1-8, `MATH1030-Notes.pdf` §1.1 / §2.3 / §4.1-§4.2 /
+§6.3, `1030efghi-as03.pdf`, and `1030efghi-as03as.pdf` support the
 implemented clip.
 
 Fixes applied:
 
-- new storyboard covers `Ax=0`, the trivial solution, the zero augmented
-  column in RREF, free variables becoming direction vectors, the null-space
-  set-builder definition, and the nonhomogeneous shift `x_p + N(A)`;
-- Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts;
-- render script now includes the homogeneous/null-space scene and
-  writes assets under `public/generated/animations/math1030/`;
+- new storyboard covers membership versus subset notation, set-builder
+  anatomy, solution-set notation, null spaces and spans as sets, subset-proof
+  grammar, and set equality as two inclusions;
+- Manim scene renders EN, zh-HK, and zh-CN variants with locale fonts and
+  shortened on-video text after poster QA;
+- render script now includes the set-language / solution-set scene and writes
+  assets under `public/generated/animations/math1030/`;
 - the localized video was embedded into the EN / zh-HK / zh-CN
-  `homogeneous-systems-and-null-space` note immediately after the first
-  null-space worked example and before the nonhomogeneous-solution theorem;
-- no new widget was added because the section already has the needed
-  algebraic worked examples, and an open solver would duplicate earlier row
-  reduction / solution-set controls;
-- singular/nonsingular invertibility theory, rank-nullity, eigenspaces, and
-  set-language proof details stay in later units.
+  `set-language-and-solution-sets` note immediately after the set-equality
+  explanation and before the same-coefficient solution-set intersection
+  theorem;
+- no new widget was added because the section needs a compact proof-language
+  guide, not an open set-builder calculator;
+- nonsingular / invertible matrix theory, rank-nullity, eigenspaces, long
+  induction for repeated redundant vectors, and assignment-only invertibility
+  examples stay in later units.
 
 ## Verification Stack Used For Latest Slice
 
@@ -109,9 +112,9 @@ priority changes.
 Expected first step:
 
 1. Start with the next unresolved Math1030 register item, currently
-   `solution-structure/set-language-and-solution-sets`; keep it focused on
-   set-builder notation, solution-set equality, subsets, and algebraic
-   constraints without duplicating the 4.1 null-space clip.
+   `invertibility/invertible-matrices`; inspect the existing invertibility
+   demo first, then decide the Manim + widget boundary for row-reduction tests
+   and inverse behavior.
 2. Keep future CSCI2520 algorithm videos short and preserve widgets for
    reader-controlled traces.
 3. Revisit `docs/generated-video-storage-policy.md` before the generated asset

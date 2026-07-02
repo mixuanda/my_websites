@@ -49,6 +49,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/matrix-algebra/matrix-multiplication-and-identity`
   - `math1030/matrix-algebra/block-matrices`
   - `math1030/solution-structure/homogeneous-systems-and-null-space`
+  - `math1030/solution-structure/set-language-and-solution-sets`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -82,6 +83,7 @@ This pass checked the current repository, not an imagined course list.
   - `math1030/matrix-algebra/matrix-multiplication-and-identity`
   - `math1030/matrix-algebra/block-matrices`
   - `math1030/solution-structure/homogeneous-systems-and-null-space`
+  - `math1030/solution-structure/set-language-and-solution-sets`
   - `math1090/sets/functions-relations`
   - `math1025/complex-numbers/complex-number-arithmetic-and-geometry`
   - `math1025/integer-methods/divisibility-gcd-and-integer-equations`
@@ -189,7 +191,7 @@ Use this order unless a later user request changes priority:
 | `math1030/matrix-algebra/special-matrices` | 3.4 Special matrices | Done | Diagonal, triangular, identity, zero, and special-family recognition. | Completed by `math1030-special-matrices-family-recognition-story`; existing `matrix-family-checker` and `row-reduction-stepper` remain the reader-controlled follow-ups, and `matrix-family-checker` now has a static export snapshot. |
 | `math1030/matrix-algebra/block-matrices` | 3.5 Block matrices | Done | Partitioned matrices and block multiplication compatibility. | Completed by `math1030-block-matrix-partition-product-story`; Manim-only, no new widget, with export fallback through localized `VideoExplanation` frames. |
 | `math1030/solution-structure/homogeneous-systems-and-null-space` | 4.1 Homogeneous systems and null space | Done | Null space as all vectors sent to zero. | Completed by `math1030-homogeneous-systems-null-space-story`; Manim-only, no new widget, with export fallback through localized `VideoExplanation` frames. |
-| `math1030/solution-structure/set-language-and-solution-sets` | 4.2 Set language and solution sets | Manim | Translate algebraic constraints into set-builder notation. | Keep short; avoid replacing prose. |
+| `math1030/solution-structure/set-language-and-solution-sets` | 4.2 Set language and solution sets | Done | Translate algebraic constraints into set-builder notation. | Completed by `math1030-set-language-solution-sets-story`; Manim-only, no new widget, with export fallback through localized `VideoExplanation` frames. |
 | `math1030/invertibility/invertible-matrices` | 5.1 Invertible matrices | Manim + widget | Equivalent invertibility tests through row reduction and inverse behavior. | Pair with existing invertibility demo. |
 | `math1030/invertibility/rref-uniqueness-and-rank` | 5.2 RREF uniqueness and well-defined rank | Manim | Same matrix reaching one RREF and stable rank count. | Storyboard uniqueness/rank invariant. |
 | `math1030/vector-spaces/vector-spaces` | 6.1 Vector spaces | Defer | Abstract axiom overview only if later needed. | Improve content/checkpoints first. |
@@ -278,9 +280,9 @@ inputs. Manim is still useful for short invariant-focused overview clips.
 These are the concrete next slices to execute one by one:
 
 1. Continue the next unresolved Math1030 register item:
-   `solution-structure/set-language-and-solution-sets`, with a focused clip
-   on set-builder notation, translated solution-set descriptions, and the
-   relation between subset language and algebraic constraints.
+   `invertibility/invertible-matrices`, with a focused clip / widget pass on
+   equivalent invertibility tests, row-reduction behavior, and inverse
+   behavior supported by the existing note and reference material.
 2. Generalize the Manim render registry further if the course-aware shell
     registry becomes too large for future non-Math1030 assets.
 

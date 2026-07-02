@@ -924,6 +924,24 @@ unit-level coverage.
   assets are exposed and static TXT / PDF exports include the video-study
   frame sequence without raw video, poster, or internal video-id markup.
 
+### 2026-07-02 checkpoint 35: MATH1030 4.2 set-language video insertion integrity
+
+- Checkpoint name: set-language / solution-set proof-grammar video embed and
+  export fallback integrity.
+- What was inspected: the existing EN / zh-HK / zh-CN `4.2` MDX files, the new
+  `VideoExplanation` frame sequence, static TXT / PDF exports, and the
+  in-page worked examples / quick checks / reveal-solution placement.
+- What was changed: inserted the localized video explanation immediately after
+  the set-equality explanation and before the same-coefficient solution-set
+  intersection theorem. No quick-check, exercise, or reveal-solution block was
+  reordered.
+- Integrity note: this pass intentionally adds no widget, so there is no new
+  answer-checking surface. The video is a supporting figure for the existing
+  set-builder and proof-language explanation.
+- Verification: local route and export checks confirmed the localized video
+  assets are exposed and static TXT / PDF exports include the video-study
+  frame sequence without raw video, poster, or internal video-id markup.
+
 ### 2026-07-01 checkpoint 34: MATH1030 4.1 homogeneous/null-space video insertion integrity
 
 - Checkpoint name: homogeneous-system / null-space video embed and export
