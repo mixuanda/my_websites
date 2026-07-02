@@ -45,7 +45,7 @@ Final assets:
 
 | Locale | MP4 | Poster | Duration | Size |
 | --- | --- | --- | --- | --- |
-| EN | `public/generated/animations/math1030/set-language-solution-sets-story-en.mp4` | `public/generated/animations/math1030/set-language-solution-sets-story-en.png` | 7.666667s | 456835 bytes |
+| EN | `public/generated/animations/math1030/set-language-solution-sets-story-en.mp4` | `public/generated/animations/math1030/set-language-solution-sets-story-en.png` | 7.666667s | 451959 bytes |
 | zh-HK | `public/generated/animations/math1030/set-language-solution-sets-story-zh-hk.mp4` | `public/generated/animations/math1030/set-language-solution-sets-story-zh-hk.png` | 7.666667s | 416022 bytes |
 | zh-CN | `public/generated/animations/math1030/set-language-solution-sets-story-zh-cn.mp4` | `public/generated/animations/math1030/set-language-solution-sets-story-zh-cn.png` | 7.666667s | 406344 bytes |
 
