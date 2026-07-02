@@ -142,5 +142,25 @@ PDF checks:
 
 ## Production QA
 
-Pending until the local slice is committed, pushed to `codex/manim`, and
-fast-forwarded to `main`.
+Deployment:
+
+- Commit: `6c30cbb` (`Add Math1030 set language video`)
+- Deployment id: `dpl_FBYthS5mCHZfdAz9u3PSdTkF3wik`
+- Production alias: `https://www.evanalysis.top`
+- Status: Ready
+
+Passed:
+
+- `https://www.evanalysis.top/en/notes/math1030/solution-structure/set-language-and-solution-sets`
+- `https://www.evanalysis.top/zh-hk/notes/math1030/solution-structure/set-language-and-solution-sets`
+- `https://www.evanalysis.top/zh-cn/notes/math1030/solution-structure/set-language-and-solution-sets`
+- production page HTML contains the localized title and new
+  `set-language-solution-sets-story` asset references;
+- all six production MP4 / PNG assets returned HTTP 200;
+- EN / zh-HK / zh-CN TXT exports contain the localized static video-study
+  sequence markers;
+- production TXT exports do not leak `<video`, `.mp4`, `poster=`, or the
+  internal video id;
+- EN / zh-HK / zh-CN PDF export responses start with `%PDF`;
+- `vercel logs dpl_FBYthS5mCHZfdAz9u3PSdTkF3wik --no-follow --level error
+  --since 15m --limit 20` returned no logs.
